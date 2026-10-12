@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Decarbonization Dashboard — Purpose, Methodology and Implementation</title>
+<style>
+:root{color-scheme:light;--ink:#193337;--muted:#54696d;--accent:#087f72;--line:#d7e3e1}
+*{box-sizing:border-box}body{margin:0;background:#eef3f2;color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:36px auto;background:white;padding:64px 72px;box-shadow:0 8px 30px #1638310b}
+header{border-top:7px solid var(--accent);padding-top:28px;margin-bottom:35px}h1{font-size:38px;line-height:1.16;letter-spacing:-1px;margin:12px 0 22px}
+h2{font-size:25px;line-height:1.3;margin:44px 0 18px;border-bottom:1px solid var(--line);padding-bottom:10px}h3{font-size:19px;margin-top:28px}
+p,li{max-width:82ch}li{margin:7px 0}a{color:var(--accent)}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:750;color:var(--accent)}
+.meta,small{color:var(--muted)}.box{padding:18px 22px;background:#eff8f5;border-left:4px solid var(--accent);margin:22px 0}.warning{background:#fff7e9;border-color:#c58a25}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:18px 0}th,td{vertical-align:top;text-align:left;padding:10px 12px;border:1px solid var(--line)}th{background:#eef5f3}
+code{font-family:ui-monospace,monospace;font-size:.87em;overflow-wrap:anywhere}pre{background:#f2f5f5;padding:15px;white-space:pre-wrap;overflow-wrap:anywhere}
+nav ol{columns:2;column-gap:35px;padding-left:23px}nav li{break-inside:avoid}footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;font-size:13px;color:var(--muted)}
+@media(max-width:700px){main{margin:0;padding:28px 20px}h1{font-size:30px}nav ol{columns:1}table{font-size:12px}td,th{padding:7px}}
+@media print{@page{size:A4;margin:19mm}body{background:white;font-size:10.5pt}main{max-width:none;margin:0;padding:0;box-shadow:none}h1{font-size:28pt}h2{font-size:17pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr,.box{break-inside:avoid}a{color:inherit;text-decoration:none}nav{break-after:page}footer{font-size:9pt}}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">Product and technical reference · 12 October 2026</div>
+<h1>Global Decarbonization Dashboard</h1>
+<p style="font-size:21px">Purpose, analytical approach, practical implementation and code provenance</p>
+<p class="meta">Prepared for product stakeholders, scientific reviewers and developers. Based on inspected workspace code, not an independent audit of the published service.</p></header>
+
+<div class="box warning"><strong>Important status distinction.</strong> The dashboard currently uses its existing sector-based Monte Carlo model and simplified temperature conversion. A gas-resolved FaIR replacement has been approved and reference execution has begun, but it has <strong>not</strong> replaced the dashboard model. This document separates implemented behavior from approved future work.</div>
+
+<nav aria-label="Contents"><h2>Contents</h2><ol>
+<li><a href="#purpose">Purpose and intended use</a></li><li><a href="#pages">Dashboard pages</a></li>
+<li><a href="#data">Indicators and source framework</a></li><li><a href="#updates">Collection and approval process</a></li>
+<li><a href="#climate">Current climate methodology</a></li><li><a href="#comparisons">Scenarios, regions and history</a></li>
+<li><a href="#finance">Finance and valuation methodology</a></li><li><a href="#backtest">Portfolio backtesting</a></li>
+<li><a href="#architecture">Software architecture</a></li><li><a href="#operations">Practical operation and APIs</a></li>
+<li><a href="#quality">Controls and limitations</a></li><li><a href="#remediation">Approved scientific remediation</a></li>
+<li><a href="#repository">GitHub and code provenance</a></li><li><a href="#references">References and handover checklist</a></li>
+</ol></nav>
+
+<section id="purpose"><h2>1. Purpose and intended use</h2>
+<p>The dashboard brings together climate-transition indicators, illustrative global emissions projections and company valuation analysis. Its central purpose is to help users compare the direction suggested by transition activity with the expectations implied by equity valuations.</p>
+<p>It addresses three related questions:</p><ol>
+<li><strong>What do transition indicators suggest about future emissions?</strong> Technology adoption, policy implementation, corporate targets, economic conditions and investment flows inform an exploratory emissions pathway.</li>
+<li><strong>How do equity valuations differ with climate characteristics?</strong> The finance tools compare company groups by carbon intensity, climate-related revenue or SDG exposure, and announced decarbonization ambition.</li>
+<li><strong>Where do these perspectives diverge?</strong> The Decarb Gap tools compare a modelled decarbonization rate with a valuation-derived proxy and explore associated historical portfolio behavior.</li></ol>
+<p>The intended use is research, comparison, scenario exploration and identification of questions for further investigation. It is not a verified emissions inventory, an operational climate forecasting service or an investment recommendation engine. A valuation differential does not by itself prove market mispricing or identify a physically meaningful global warming outcome.</p>
+</section>
+
+<section id="pages"><h2>2. Dashboard pages</h2>
+<table><thead><tr><th>Page</th><th>Purpose and practical behavior</th></tr></thead><tbody>
+<tr><td>Main dashboard<br><code>/</code></td><td>Shows modelled end-century temperature, an emissions trajectory and uncertainty bands, a temperature distribution, annual reduction and residual-emissions milestones. Includes category filters, indicator histories, scenario comparisons, regional comparisons and sensitivity analysis.</td></tr>
+<tr><td>Methodology<br><code>/methodology</code></td><td>Explains the calculations and publication caveats. It should be read alongside the limitations in this document; documentation is not evidence of independent validation.</td></tr>
+<tr><td>Climate Scenario Analyzer<br><code>/climate-valuation</code></td><td>Accepts company-data uploads and presents carbon-pricing and valuation-group comparisons, with options such as emissions scope and peer grouping where supported.</td></tr>
+<tr><td>Decarb Signal<br><code>/decarb-signal</code></td><td>Compares model-projected and valuation-implied decarbonization rates using the available inference methods.</td></tr>
+<tr><td>Decarb Gap<br><code>/decarb-gap</code></td><td>Shows company-level and aggregate gaps and compares a selected signal backtest with the Decarb Gap backtest. It does not contain an independent “valuation-aware” strategy in addition to Decarb Gap.</td></tr>
+<tr><td>News Sentiment<br><code>/news-sentiment</code></td><td>Displays climate-related news volume, sentiment and topic summaries from the NewsAPI.ai/Event Registry service. This is a contextual panel, not a demonstrated physical climate driver.</td></tr>
+<tr><td>Data Management<br><code>/data-management</code></td><td>Shows applied indicators, source provenance, estimated versus observed values, proposed updates and collection history. Users can fetch, approve, reject or manually enter indicator updates.</td></tr>
+</tbody></table></section>
+
+<section id="data"><h2>3. Indicators and source framework</h2>
+<p>The current registry contains <strong>22 indicators in six categories</strong>. Curated historical inputs cover 2010–2025; approved overrides and estimated current-year extensions are applied separately. A current-year label does not mean that the underlying source published an observation for that year.</p>
+<table><thead><tr><th>Category</th><th>Indicators</th><th>Source families</th></tr></thead><tbody>
+<tr><td>Technology · 4</td><td>Renewable capacity and growth; EV sales share and growth.</td><td>IRENA; IEA.</td></tr>
+<tr><td>Policy · 2</td><td>Net-zero policy coverage; policy implementation rate.</td><td>Climate Action Tracker and associated estimates.</td></tr>
+<tr><td>Corporate · 2</td><td>Companies with SBTi targets; corporate implementation rate.</td><td>SBTi and implementation estimates.</td></tr>
+<tr><td>Socioeconomic · 6</td><td>Global GDP; carbon intensity of GDP; climate concern; climate policy support; willingness to sacrifice; belief in human causation.</td><td>World Bank/IMF; Gallup; Pew; derived measures.</td></tr>
+<tr><td>Financial flows · 4</td><td>Clean-energy investment; fossil-fuel investment; green-bond issuance; fossil divestment commitments.</td><td>IEA; Climate Bonds Initiative; Stand.earth.</td></tr>
+<tr><td>Emissions outcomes · 4</td><td>Fossil CO₂ emissions; atmospheric CO₂ concentration; CO₂ growth rate; remaining 1.5°C budget.</td><td>Global Carbon Project through OWID; NOAA Mauna Loa; IPCC-based derived budget.</td></tr>
+</tbody></table>
+<p>Collection methods are mixed: direct source retrieval for NOAA, OWID and World Bank; web-search-assisted retrieval for selected other indicators; and calculated values for derived measures. Web-search results and estimated implementation rates should not be treated as audited statistical series. An unavailable source or missing web-search configuration can leave the curated or previously approved value in use.</p>
+<p>Units must remain explicit. Capacity in GW, investment in trillions of dollars, bond issuance in billions, atmospheric concentration in ppm and annual emissions in gigatonnes are distinct quantities. OWID regional carbon intensity is expressed per international dollar using purchasing-power parity; it is not interchangeable with nominal-dollar intensity.</p>
+</section>
+
+<section id="updates"><h2>4. Collection and approval process</h2>
+<div class="box"><strong>User-approved operating rule:</strong> retain the current process. Collection is automatic, but applying new indicator values requires human approval. No change to that process is implied by this document or the scientific-model remediation.</div>
+<ol><li><strong>Scheduled collection.</strong> A server-side scheduler checks approximately every six hours whether 30 days have elapsed since the latest recorded run. Its first check occurs approximately one minute after application startup. It runs while the application process is running, rather than as a separate always-on scheduling service.</li>
+<li><strong>Staging.</strong> Source adapters collect values and record them as pending proposals with source information. Collection does not directly overwrite the model’s approved inputs.</li>
+<li><strong>Review.</strong> In Data Management, the user reviews and approves or rejects proposals. Manual entries provide another route to an approved value.</li>
+<li><strong>Application.</strong> Approval reloads the approved overrides and invalidates the relevant projection caches. Subsequent analysis uses the resolved inputs.</li>
+<li><strong>Estimation.</strong> Where current observations are unavailable, a momentum-decay nowcast extends historical trends. The recent slope decays by 50% annually rather than continuing unchanged indefinitely.</li></ol>
+<table><thead><tr><th>Control</th><th>What it does</th><th>What it does not do</th></tr></thead><tbody>
+<tr><td>Re-run Analysis</td><td>Clears projection caches so results are recalculated on the next request.</td><td>Does not fetch new observations or approve proposals.</td></tr>
+<tr><td>Data Management → Refresh now</td><td>Runs source collection immediately and stages proposals.</td><td>Does not automatically apply the returned values.</td></tr>
+<tr><td>Approve proposal</td><td>Applies the selected value and invalidates model caches.</td><td>Does not certify the entire source or the scientific model.</td></tr>
+</tbody></table>
+<p>Consequently, unchanged headline figures can be expected when the underlying publications are annual, proposals remain pending or a refresh returns the same observations. A run labelled “completed” can also contain adapters returning no values. Run completion should not be interpreted as proof that every indicator has fresh data.</p>
+<p><strong>Development-only observation:</strong> the update-history check preceding this document found a collection dated 4 October 2026 producing 15 proposals, with 21 proposals pending across the registry at the time of inspection. These are a dated operational snapshot, not a statement about the published database.</p>
+</section>
+
+<section id="climate"><h2>5. Current climate methodology</h2>
+<h3>5.1 Input resolution and simulation</h3>
+<p>The main projection resolves the historical series with approved overrides and nowcasts, then uses its latest row as the starting input. The resulting start year can therefore differ from the fixed 2024 baseline used elsewhere in the application. The main emissions calculation runs 10,000 seeded simulations; category and historical calculations generally use smaller ensembles, and sensitivity uses 2,000 runs.</p>
+<p>Seeded random numbers make repeat runs deterministic when the code, inputs, start year and calculation settings are unchanged. They do not preserve past data vintages or independently establish statistical calibration.</p>
+<h3>5.2 Sector-based emissions model</h3>
+<p>The existing model allocates emissions across power (26.9%), industry (24.1%), agriculture (17.1%), transport (14.4%), buildings (9.6%) and other activities (8.0%). These rounded shares sum to 100.1%, illustrating why the accounting needs explicit reconciliation.</p>
+<p>Mechanisms include renewable displacement with diminishing returns, EV sales translating gradually into fleet turnover, background sector declines, policy and corporate implementation effects, financial-flow multipliers and economic/intensity adjustments. Observed fossil CO₂ provides a decaying near-term influence; atmospheric growth also affects a near-term adjustment. Not every tracked indicator is a causal input: the remaining carbon budget, for example, is contextual.</p>
+<p>The starting emissions scale is derived from an internal 60.3 anchor and carbon-intensity scaling. It is not a reconciled, independently verified total-GHG inventory. Factors such as policy implementation and investment are heuristic mechanisms rather than demonstrated causal estimates. Sensitivity magnitudes therefore describe this implementation, not the real-world importance of an intervention.</p>
+<h3>5.3 Temperature calculation and uncertainty</h3>
+<p>The current temperature calculation uses a simplified cumulative-emissions relationship, broadly of the form:</p>
+<pre><code>temperature ≈ 1.1°C + cumulative emissions × 0.00045°C/Gt
+with additional sampled climate-response and emissions multipliers</code></pre>
+<p><strong>This is a material scientific limitation:</strong> TCRE applies to cumulative CO₂, while the dashboard’s emissions aggregate is presented as CO₂-equivalent. Methane, nitrous oxide, fluorinated gases and aerosol changes cannot be represented correctly by passing a combined CO₂e total through a CO₂-only formula.</p>
+<p>The temperature stage also uses a summary emissions trajectory and additional sampling, rather than preserving each emissions draw through a fully coherent gas-resolved response. The displayed distribution and summary statistics are generated through separate sampling routines. Their intervals should not be described as comprehensive or independently validated probabilities of future warming.</p>
+<h3>5.4 Headline metrics</h3>
+<ul><li><strong>First-decade reduction:</strong> the main route reports compound annual decline, <code>100 × [1 − (E10 / E0)^(1/10)]</code>. Some historical calculations use a straight-line definition instead.</li>
+<li><strong>“Net-Zero Year”:</strong> the current main route finds when median emissions fall below an absolute 5 Gt threshold; if not reached, it can extrapolate a date beyond 2100 using the average absolute decline. This is not literal net zero.</li>
+<li><strong>Temperature:</strong> an illustrative output of the current simplified response, not a validated forecast. The approved replacement will change its scientific basis.</li></ul>
+</section>
+
+<section id="comparisons"><h2>6. Scenarios, regional comparisons and history</h2>
+<p><strong>Category comparisons are input-shock scenarios, not additive contributions.</strong> Each changes selected starting inputs and runs the full model; other categories are not frozen. For example, the technology scenario sets renewable capacity to 5,000 GW and EV sales share to 50%; policy sets coverage and implementation to 100%; financial flows multiply clean investment by 2.5, fossil investment by 0.3 and green bonds by 3.</p>
+<p>The socioeconomic scenario also changes policy and corporate assumptions. Shocks are not calibrated to equal effort or likelihood, and a fixed target can be worse than a later baseline. The standalone category endpoint uses the 2024 resolver, whereas the main category-filtered projection uses the latest nowcast. Baseline alignment is still pending.</p>
+<p><strong>Regional views</strong> scale the global projection using regional carbon-intensity information. They are not independent regional energy-system or climate models. Country differences should be interpreted within that simplified construction and with consistent PPP versus nominal-dollar units.</p>
+<p><strong>Historical views</strong> reconstruct what the current methodology produces when applied to historical inputs. They are not archived forecasts issued at those dates. Revised observations and intensity estimates informed by later data prevent treating these charts as a clean out-of-sample forecasting test.</p>
+</section>
+
+<section id="finance"><h2>7. Finance and valuation methodology</h2>
+<h3>7.1 Data and comparisons</h3>
+<p>The finance modules ingest Excel company data, map companies using ISIN identifiers and store company attributes and dated observations in PostgreSQL. Analyses use market value, earnings, return indices, emissions and climate characteristics where available. Emissions can be carried forward to later dates when a newer observation is absent; that extends availability but does not create a new measured emissions value.</p>
+<p>Companies are grouped into terciles, climate-exposure groups or ambition bands. Aggregate P/E is generally calculated from total market capitalization divided by total earnings, rather than averaging company P/E ratios. Peer-relative methods can compare within sectors, sub-sectors or industries where the endpoint supports them.</p>
+<h3>7.2 Valuation-derived growth</h3>
+<p>A simplified Gordon Growth relationship maps P/E to an implied growth proxy:</p>
+<pre><code>g = r − 1/PE
+growth differential = g(cleaner group) − g(other group)
+implied decarbonization proxy (%/year) = growth differential × 100</code></pre>
+<p>The default cost of equity, <code>r</code>, is 8%. Some endpoints allow a user-specified value; others fix it or do not use it. A common cost of equity cancels in a difference between groups. Changing it uniformly may alter absolute growth estimates without changing the differential.</p>
+<p>The simplified formula suppresses payout and other valuation assumptions. Growth differentials may reflect profitability, geography, sector composition, discount rates or risk, not just climate expectations. Interpreting an earnings-growth differential as a physical emissions-reduction rate is an exploratory assumption, not an established identity.</p>
+<h3>7.3 Carbon prices, temperature and company gaps</h3>
+<p>Derived rates can be mapped through a six-year cumulative-reduction and abatement-cost relationship into an illustrative carbon price. A constant compounded emissions decline is also translated through the legacy temperature conversion. Those derived temperatures inherit its scientific limitations and should not be presented as an independently verified temperature “priced by the market.”</p>
+<p>The Decarb Gap compares company-level valuation-implied growth against peers and a model-projected decarbonization rate. Lower P/E implies lower growth under the stated formula; a larger gap is not automatically evidence of a stronger emissions-reduction opportunity.</p>
+<p>An upload ID identifies an upload record and cache namespace, but does not currently guarantee an immutable full-data snapshot. Some calculations read shared current company tables. Reproducing a published result therefore requires preserving the actual input extract and response, not just its upload ID.</p>
+</section>
+
+<section id="backtest"><h2>8. Portfolio backtesting</h2>
+<p>The backtest calculates monthly returns from company total-return indices, compares a signal-tilted portfolio with a market-cap-weighted benchmark, and reports performance and tracking-error statistics. Monthly returns outside ±50% are excluded as outliers; that filtering can also remove genuine extreme moves.</p>
+<p>Decarb Gap uses continuous peer-relative rank scores. Portfolio weights are tilted from benchmark weights, with nonnegative weight constraints. The tilt is calibrated by binary search against the <strong>full historical sample</strong> to target an annualized tracking error, normally 2%.</p>
+<div class="box warning"><strong>Interpretation:</strong> this is ex-post calibration, not an ex-ante risk constraint. The reported target can differ from realized tracking error; the response now exposes the calibration status and actual result.</div>
+<p>Decarb Gap scores are recomputed quarterly using records dated through the preceding quarter-end. That does not establish when those records were published or what the historical investable universe was. Other signal backtests apply fixed scores retrospectively. Results are gross of trading costs and do not establish investable predictive performance.</p>
+<p>The API returns <code>{ series, summary }</code> by default. <code>trackingError=2</code> means 2%, not 0.02%. Summary tracking-error values are percentage points; series tracking-error values are decimals and use expanding history. The legacy bare-array response is available through <code>format=series</code>.</p>
+</section>
+
+<section id="architecture"><h2>9. Software architecture</h2>
+<pre><code>Browser: React UI → same-origin REST API → Express services
+                                              ├─ climate calculation modules
+                                              ├─ valuation and backtest modules
+                                              ├─ source collection and approval
+                                              └─ news retrieval
+                                  PostgreSQL + application caches
+
+Separate reference tooling: Python / FaIR
+(not connected to the dashboard's production calculation path)</code></pre>
+<table><thead><tr><th>Layer</th><th>Implementation</th></tr></thead><tbody>
+<tr><td>Browser application</td><td>React 18 and TypeScript; Vite build/development tooling; Wouter routing; TanStack Query for server-state access; Recharts for visualizations; Tailwind CSS and Radix/shadcn-style UI components.</td></tr>
+<tr><td>Application server</td><td>Node.js and Express 5; REST routes; Zod-backed validation for finance requests; TypeScript calculation modules.</td></tr>
+<tr><td>Persistent data</td><td>PostgreSQL accessed through Drizzle ORM: company data, time series, upload records, indicator proposals/overrides and cache-related records.</td></tr>
+<tr><td>Temporary and cached data</td><td>Module-level and storage-layer projection caches; database-backed caches where used; temporary upload files. News has a six-hour cache; regional results have a 24-hour route-cache lifetime.</td></tr>
+<tr><td>Reference science tooling</td><td>Python project with FaIR pinned to 2.2.4 and dependencies recorded in <code>pyproject.toml</code>/<code>uv.lock</code>. Upstream input revision and file hashes are recorded by the reference runner.</td></tr>
+</tbody></table>
+<h3>Principal code locations</h3>
+<ul><li><code>client/src/pages/</code>: routed application screens.</li>
+<li><code>client/src/components/</code>: charts, controls and methodology notices.</li>
+<li><code>server/routes.ts</code>: API orchestration, refresh behavior and response construction.</li>
+<li><code>server/calculation/</code>: historical indicators, projections, category scenarios, regional scaling and sensitivity calculations.</li>
+<li><code>server/dataIngestion/</code>: indicator registry, source adapters, scheduler, proposal storage and approved overrides.</li>
+<li><code>server/climateValuation/</code>: upload processing, grouping, valuation conversions, gap calculations and backtests.</li>
+<li><code>server/newsApi/newsService.ts</code>: news collection and cache handling.</li>
+<li><code>shared/schema.ts</code>, <code>shared/backtest.ts</code>: persistence schema and backtest response contract.</li></ul>
+</section>
+
+<section id="operations"><h2>10. Practical operation and API surface</h2>
+<h3>Running the application</h3>
+<p>The configured development command is <code>npm run dev</code>, serving the application on port 5000. The production build command is <code>npm run build</code>; <code>npm start</code> runs the generated <code>dist/index.cjs</code> server. This describes the checked-in configuration, not verification of which commit is currently published.</p>
+<p><code>npm run check</code> invokes TypeScript checking. <code>npm run db:push</code> changes the database schema and should be treated as an operational change, not a harmless validation command. Database configuration and service credentials must be supplied securely, never committed into documentation or source code.</p>
+<h3>Representative API endpoints</h3>
+<table><thead><tr><th>Group</th><th>Routes and behavior</th></tr></thead><tbody>
+<tr><td>Climate</td><td><code>GET /api/projection</code>; <code>/api/projection/categories</code>, <code>/regions</code>, <code>/sensitivity</code>, <code>/historical-trend</code>; <code>GET /api/indicators/historical</code>.</td></tr>
+<tr><td>Recalculation</td><td><code>POST /api/refresh</code> invalidates climate projection caches; it is separate from source collection.</td></tr>
+<tr><td>Data management</td><td><code>GET /api/data/indicators</code>; <code>GET /api/data/runs</code>; <code>POST /api/data/refresh</code>; proposal approval/rejection routes and indicator manual-entry routes.</td></tr>
+<tr><td>Company uploads</td><td><code>POST /api/cv/upload</code> accepts an uploaded file, with a 50 MB request-file limit. Upload listing and status routes expose progress. A completed upload is required for carbon-price requests.</td></tr>
+<tr><td>Valuation</td><td><code>/api/cv/carbon-price</code>, <code>/pe-comparison</code>, <code>/sdg-growth</code>, <code>/decarb-bands</code>, <code>/decarb-terciles</code> and Decarb Gap summary/timeseries routes.</td></tr>
+<tr><td>Backtest and news</td><td><code>GET /api/cv/backtest</code> returns series plus calibration metadata; <code>GET /api/news/climate</code> returns news analytics.</td></tr>
+</tbody></table>
+<p>Finance request validation rejects malformed, duplicated, non-finite and unsupported parameter combinations rather than guessing units or silently ignoring unsupported methods. The detailed parameter rules are recorded in <code>docs/API_Contract.md</code>.</p>
+</section>
+
+<section id="quality"><h2>11. Controls and limitations</h2>
+<ul><li><strong>Human approval:</strong> a safeguard against silently applying collected or web-search-derived observations; not a substitute for checking their definitions and dates.</li>
+<li><strong>Cache coherence:</strong> changing approved inputs must clear module, storage and database projection caches. Reloading a browser alone does not guarantee refreshed calculations.</li>
+<li><strong>Scientific comparability:</strong> current mixed gas accounting, temperature conversion, differing baseline dates and differing “net-zero” definitions prevent treating every chart as scientifically interchangeable.</li>
+<li><strong>Reproducibility:</strong> preserve code revision, input series, approved overrides, source vintages, model settings and full outputs. A seeded generator alone is insufficient.</li>
+<li><strong>Access control:</strong> no explicit authentication/authorization middleware was evident on the inspected upload, refresh and approval routes. The presence of authentication-related dependencies is not proof of enforced permissions. Exposure of administrative actions should be checked before broader sharing; this document is not a security audit.</li>
+<li><strong>Testing:</strong> targeted Priority 1 regression tests and a FaIR reference execution exist. This documentation task did not rerun a full build, security audit or scientific validation suite and does not certify a clean build.</li>
+<li><strong>Production status:</strong> workspace code and development records were inspected. The deployed revision, production data state and GitHub synchronization are separate facts and remain unverified here.</li></ul>
+</section>
+
+<section id="remediation"><h2>12. Approved scientific remediation: current status</h2>
+<p>Priority 1 clarified finance API contracts, tracking-error reporting, strategy labels and methodology limitations. It did not validate the underlying climate or investment models.</p>
+<p>For Priority 2A, the user approved the following direction:</p><ol>
+<li>Use the IGCC 2025 update, published in 2026, as the gas-resolved, WGIII-consistent inventory basis for 2024. Its reported total is 56.8 GtCO₂e; UNEP 2025’s 57.7 GtCO₂e is a separately labelled comparison, not a number to force into agreement.</li>
+<li>Keep AR6 GWP100 CO₂e for reporting, but use native gas inputs and appropriate forcings for the climate response.</li>
+<li>Use historically initialized FaIR with a pinned constrained parameter ensemble and sourced pathways.</li>
+<li>Evaluate against the 2025 human-induced warming estimate of 1.37°C, without simply substituting it as a fixed additive offset. Distinguish annual human-induced warming from observed or decadal averages.</li>
+<li>Propagate coherent emissions/response draws and describe uncertainty as conditional on the specified pathways.</li>
+<li>Align current and category baselines; keep historical reconstructions clearly labelled.</li>
+<li>Distinguish compound and straight-line first-decade reductions. Replace the residual-emissions label with “near-zero,” defined as 5% of starting annual emissions, and report “not reached by 2100” instead of an extrapolated net-zero date.</li></ol>
+<p><strong>Completed foundation:</strong> the FaIR 2.2.4 reference runner executes an upstream example with 841 constrained members from 1750, recording input hashes. The initial 2003–2022 median warming was approximately 1.027°C relative to 1850–1900, broadly consistent with that calibration’s documented target.</p>
+<p><strong>Not yet complete:</strong> independent numerical reference comparison, native-gas inventory reconciliation and historical updates, validation against newer evidence, coupling to dashboard mechanisms, coherent ensemble output and migration of consumers/UI. The upstream example uses draft scenario extensions and calibration through 2022; it is not a current-policy forecast for this dashboard.</p>
+<p>The approved scientific basis is detailed in <code>docs/Climate_Model_Remediation_Basis.md</code>. Priority 2B investment-backtest remediation has not been undertaken as part of this phase.</p>
+</section>
+
+<section id="repository"><h2>13. GitHub repository and latest-code provenance</h2>
+<div class="box"><strong>Repository update:</strong> the user has created <a href="https://github.com/ahow/climate_implied">ahow/climate_implied</a> for the current application. It is distinct from the older <code>ahow/climate-implied</code> implementation. The synchronization process exports reviewed application source only; uploaded data and the workspace's private-data-bearing history are excluded. Consult GitHub's <code>main</code> commit history for the latest verified export.</div>
+<table><thead><tr><th>Item</th><th>Verified status at document preparation</th></tr></thead><tbody>
+<tr><td>Local branch</td><td><code>main</code></td></tr>
+<tr><td>Latest local commit</td><td><code>a993be6375bce83bf6b9cfb516b653657180a6e4</code></td></tr>
+<tr><td>Commit timestamp</td><td>12 October 2026, 00:05:05 UTC (01:05:05 British Summer Time).</td></tr>
+<tr><td>Commit subject</td><td>Document memory update process and update memory file.</td></tr>
+<tr><td>Previous implementation commit</td><td><code>0cee317</code> — Configure environment and add climate model reference script; 11 October 2026, 23:55:06 UTC.</td></tr>
+<tr><td>Working tree before documentation work</td><td>Clean. This newly created document is later than the cited baseline revision.</td></tr>
+<tr><td>GitHub owner/repository URL</td><td><a href="https://github.com/ahow/climate_implied">https://github.com/ahow/climate_implied</a> — current application; user-created repository.</td></tr>
+<tr><td>Latest GitHub push / branch head</td><td>See the repository's <code>main</code> history. Export commit messages record the originating workspace revision. The local hashes above describe the original documentation baseline, not a continuously updated GitHub head.</td></tr>
+<tr><td>Published application revision</td><td>Not verified against a commit in this review.</td></tr>
+</tbody></table>
+<p>The user has requested continuing source synchronization. After reviewing, checking and committing application changes, use <code>python script/sync-github.py</code>. The helper exports selected source files, checks common credential patterns and verifies the remote commit. It stops if GitHub has changed independently. Do not push workspace history directly or force-push.</p>
+<p>This is an explicit completion step, not an unattended background job. A GitHub push and an application publication are separate operations. No production publication is implied.</p>
+</section>
+
+<section id="references"><h2>14. References and handover checklist</h2>
+<h3>Project evidence</h3>
+<p>This document was checked against the current route implementations, indicator registry and scheduler, package manifests, version-control state and the following maintained project references:</p>
+<ul><li><code>docs/API_Contract.md</code> — finance endpoint parameters, units and response shapes.</li>
+<li><code>docs/Climate_Model_Remediation_Basis.md</code> — approved scientific direction and promotion gates.</li>
+<li><code>docs/Climate_Tracking_Dashboard_Documentation.md</code> — earlier technical reference; some legacy scientific descriptions remain and must be read with the qualifications here.</li>
+<li><code>script/priority1.test.ts</code> — targeted contract/regression checks.</li>
+<li><code>script/capture-climate-baseline.ts</code> — preservation of model-source and API-output snapshots.</li>
+<li><code>script/fair-reference.py</code> — separate FaIR reference execution, not the dashboard’s production calculation.</li></ul>
+<h3>Scientific references for the approved replacement</h3>
+<ul><li>Forster et al., <em>Indicators of Global Climate Change 2025</em>, Earth System Science Data 18, 3889–3933 (2026): <a href="https://doi.org/10.5194/essd-18-3889-2026">doi.org/10.5194/essd-18-3889-2026</a>.</li>
+<li>UNEP, <em>Emissions Gap Report 2025</em>: <a href="https://www.unep.org/resources/emissions-gap-report-2025">official report page</a>.</li>
+<li>FaIR constrained-ensemble documentation: <a href="https://docs.fairmodel.net/en/stable/examples/calibrated_constrained_ensemble.html">reference example and calibration explanation</a>.</li>
+<li>FaIR upstream source: <a href="https://github.com/OMS-NetZero/FAIR">github.com/OMS-NetZero/FAIR</a>. This is the climate library’s repository, <strong>not</strong> the dashboard’s repository.</li></ul>
+<h3>Before external publication or technical handover</h3>
+<ol><li>Verify the latest export commit on <code>ahow/climate_implied</code>, branch <code>main</code>, and its recorded workspace source revision.</li>
+<li>Record the separately verified deployed revision and the data snapshot used for cited results.</li>
+<li>Keep existing-model results separate from experimental FaIR outputs until all promotion gates pass.</li>
+<li>Retain manual approval for data updates, as instructed by the user.</li>
+<li>Disclose current scientific, backtest and data-vintage limitations alongside results.</li>
+<li>Review permissions on data-mutating routes and run appropriate build, regression and security checks before widening access.</li></ol>
+</section>
+<footer>Prepared 12 October 2026. This document describes observed implementation and approved direction; it is not a scientific certification, investment recommendation or confirmation of GitHub synchronization. Print from a browser to save a PDF copy.</footer>
+</main></body></html>

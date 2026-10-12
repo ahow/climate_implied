@@ -1,0 +1,10 @@
+[project]
+name = "repl-nix-workspace"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "fair==2.2.4",
+    "matplotlib>=3.11.2",
+    "pooch>=1.9.0",
+]
