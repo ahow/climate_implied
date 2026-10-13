@@ -3,6 +3,7 @@ import type { ScoringMethod } from "./sharedUtils";
 import { filterCompaniesByGeography, loadCompaniesAndTimeSeries } from "./sharedUtils";
 import { computeDecarbGapScores } from "./decarbGapCalculator";
 import { buildBacktestResponse, type BacktestResponse } from "../../shared/backtest";
+import { orderCalculationRows } from "../../shared/calculationContract";
 import type { BacktestPoint, SignalType } from "../../shared/backtest";
 export type { SignalType } from "../../shared/backtest";
 
@@ -18,7 +19,7 @@ function toMonthKey(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
 }
 
-function computeSignalScores(
+export function computeSignalScores(
   companies: CvCompany[],
   signal: SignalType,
   timeSeriesByCompany: Map<number, CvTimeSeries[]>,
@@ -42,7 +43,8 @@ function computeSignalScores(
     for (const c of companies) {
       const series = timeSeriesByCompany.get(c.id);
       if (!series || series.length === 0) continue;
-      const latest = series[series.length - 1];
+      const sorted = orderCalculationRows(series);
+      const latest = sorted[sorted.length - 1];
       const s1 = latest.scope1Emissions ?? 0;
       const s2 = latest.scope2Emissions ?? 0;
       const totalEmissions = s1 + s2;
@@ -54,7 +56,7 @@ function computeSignalScores(
 
   if (rawValues.length < 2) return scores;
 
-  rawValues.sort((a, b) => a.value - b.value);
+  rawValues.sort((a, b) => a.value - b.value || a.id - b.id);
   const n = rawValues.length;
   for (let i = 0; i < n; i++) {
     const percentile = i / (n - 1);
@@ -65,7 +67,7 @@ function computeSignalScores(
   return scores;
 }
 
-function computeMonthlyReturns(
+export function computeMonthlyReturns(
   timeSeriesByCompany: Map<number, CvTimeSeries[]>,
 ): Map<string, CompanyMonthly[]> {
   const monthlyData = new Map<string, CompanyMonthly[]>();
@@ -118,7 +120,7 @@ function computeMonthlyReturns(
   return monthlyData;
 }
 
-function computeBenchmarkReturn(monthData: CompanyMonthly[]): number {
+export function computeBenchmarkReturn(monthData: CompanyMonthly[]): number {
   let totalMV = 0;
   for (const d of monthData) totalMV += d.marketCap;
   if (totalMV <= 0) return 0;

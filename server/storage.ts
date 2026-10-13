@@ -44,9 +44,16 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const cache: ProjectionCache = {
       ...data,
+      category: data.category ?? null,
+      region: data.region ?? null,
       id,
       createdAt: new Date(),
     };
+    // Content-addressed entries may change as inputs refresh; bound memory use.
+    if (this.projectionCaches.size >= 64) {
+      const oldest = this.projectionCaches.keys().next().value;
+      if (oldest) this.projectionCaches.delete(oldest);
+    }
     this.projectionCaches.set(data.cacheKey, cache);
     return cache;
   }

@@ -45,6 +45,8 @@ import {
   getRecentRuns,
 } from "./dataIngestion/dataStore";
 import { INDICATORS, getCuratedValue, getIndicatorDef } from "./dataIngestion/indicatorRegistry";
+import { calculationKey } from "./calculation/identity";
+import { CALCULATION_VERSION, legacyContext } from "../shared/calculationContract";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -62,6 +64,12 @@ const REGIONAL_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 let historicalTrendCacheResult: any = null;
 let sensitivityCacheResult: any = null;
 let categoryHistoricalTrendCache: any = null;
+let projectionInputRevision = "";
+const routeCacheRevisions = new Map<string, string>();
+
+function currentProjectionRevision() {
+  return calculationKey("climate-inputs", getAllHistoricalIndicatorsWithNowcast());
+}
 
 export async function registerRoutes(
   httpServer: Server,
@@ -120,7 +128,51 @@ export async function registerRoutes(
     historicalTrendCacheResult = null;
     sensitivityCacheResult = null;
     categoryHistoricalTrendCache = null;
+    routeCacheRevisions.clear();
   }
+
+  // Revisions include the full effective history (including nowcast), engine,
+  // assumptions and RNG. Store a per-route revision to reject late async writes.
+  app.use(["/api/projection", "/api/cv"], async (req, res, next) => {
+    if (req.method !== "GET") return next();
+    try {
+      const revision = currentProjectionRevision();
+      res.locals.calculationRevision = revision;
+      res.setHeader("X-Calculation-Version", CALCULATION_VERSION);
+      res.setHeader("X-Calculation-Input-Revision", revision);
+      if (revision !== projectionInputRevision) {
+        clearProjectionCaches();
+        await storage.clearProjectionCaches();
+        await db.execute(sql`DELETE FROM projection_cache`);
+        projectionInputRevision = revision;
+      }
+      next();
+    } catch (error) { next(error); }
+  });
+
+  const validRouteCache = (name: string, res: any) =>
+    routeCacheRevisions.get(name) === res.locals.calculationRevision;
+  const tagRouteCache = (name: string, res: any) =>
+    routeCacheRevisions.set(name, res.locals.calculationRevision);
+
+  app.get("/api/calculation-contract", (_req, res) => {
+    const history = getAllHistoricalIndicatorsWithNowcast();
+    const latest = history[history.length - 1];
+    res.json({
+      ...legacyContext(latest?.year ?? new Date().getFullYear(), "all"),
+      inputRevision: currentProjectionRevision(),
+      indicatorUnits: INDICATORS.map(({ key, unit }) => ({ key, unit })),
+      metricDefinitions: {
+        reductionRate: "First-decade compound annual emissions decline, percentage points/year",
+        temperature: "Legacy 2100 warming; not a validated physical forecast",
+        physicalResidualThreshold: "Legacy 5 Gt annual residual (not net zero)",
+        financeResidualThreshold: "Legacy 5% of starting annual emissions (not net zero)",
+        financeGrowth: "Legacy r - E/P; not a calibrated emissions-decline inference",
+      },
+      remainingScientificWork: ["inventory reconciliation", "emissions mechanisms", "FaIR",
+        "coherent ensemble propagation", "valuation inference", "point-in-time backtesting"],
+    });
+  });
 
   app.post("/api/refresh", async (_req, res) => {
     try {
@@ -144,9 +196,9 @@ export async function registerRoutes(
   app.get("/api/projection", async (req, res) => {
     try {
       const category = (req.query.category as string) || "all";
-      const cacheKey = `projection-${category}`;
+      const cacheKey = calculationKey("projection", res.locals.calculationRevision, { category, runs: 10000 });
 
-      if (category === "all" && projectionResultCache) {
+      if (category === "all" && projectionResultCache && validRouteCache("projection", res)) {
         return res.json(projectionResultCache);
       }
 
@@ -191,6 +243,16 @@ export async function registerRoutes(
       }
 
       const result = {
+        calculation: {
+          ...legacyContext(startYear, category),
+          inputHash: calculationKey("effective-projection", indicators, { startYear, endYear: 2100, runs: 10000, category }),
+          inputRevision: res.locals.calculationRevision,
+          runs: 10000,
+          seeds: { emissions: startYear * 12345, temperaturePdf: 42 * 12345, temperatureSummary: 99 * 12345 },
+          warnings: ["Legacy scientific assumptions retained; RNG corrected only. Not scientifically validated.",
+            "Temperature still resamples median cumulative emissions; coherent propagation is deferred to Package 3.",
+            "Input observation and availability dates, GWP, GDP basis and currency are not yet reconciled."],
+        },
         emissionsTrajectory: trajectory,
         temperatureDistribution: {
           median: tempStats.median,
@@ -212,11 +274,12 @@ export async function registerRoutes(
 
       if (category === "all") {
         projectionResultCache = result;
+        tagRouteCache("projection", res);
       }
 
       await storage.setProjectionCache({
         cacheKey,
-        projectionYear: 2024,
+        projectionYear: startYear,
         category: category === "all" ? null : String(category),
         region: null,
         resultData: result,
@@ -241,11 +304,12 @@ export async function registerRoutes(
 
   app.get("/api/projection/categories", async (_req, res) => {
     try {
-      if (categoryCacheResult) {
+      if (categoryCacheResult && validRouteCache("categories", res)) {
         return res.json(categoryCacheResult);
       }
       const result = calculateAllCategoryProjections();
       categoryCacheResult = result;
+      tagRouteCache("categories", res);
       res.json(result);
     } catch (error) {
       console.error("Category projections error:", error);
@@ -255,12 +319,13 @@ export async function registerRoutes(
 
   app.get("/api/projection/regions", async (_req, res) => {
     try {
-      if (regionalCacheResult && Date.now() - regionalCacheFetchedAt < REGIONAL_CACHE_TTL_MS) {
+      if (regionalCacheResult && validRouteCache("regions", res) && Date.now() - regionalCacheFetchedAt < REGIONAL_CACHE_TTL_MS) {
         return res.json(regionalCacheResult);
       }
       const result = await calculateRegionalProjections();
       regionalCacheResult = result;
       regionalCacheFetchedAt = Date.now();
+      tagRouteCache("regions", res);
       res.json(result);
     } catch (error) {
       console.error("Regional projections error:", error);
@@ -270,7 +335,7 @@ export async function registerRoutes(
 
   app.get("/api/projection/sensitivity", async (_req, res) => {
     try {
-      if (sensitivityCacheResult) {
+      if (sensitivityCacheResult && validRouteCache("sensitivity", res)) {
         return res.json(sensitivityCacheResult);
       }
       const allNowcast = getAllHistoricalIndicatorsWithNowcast();
@@ -279,6 +344,7 @@ export async function registerRoutes(
       const startYear = latestData?.year || new Date().getFullYear();
       const result = calculateSensitivityAnalysis(indicators, startYear);
       sensitivityCacheResult = result;
+      tagRouteCache("sensitivity", res);
       res.json(result);
     } catch (error) {
       console.error("Sensitivity analysis error:", error);
@@ -288,11 +354,12 @@ export async function registerRoutes(
 
   app.get("/api/projection/historical-trend", async (_req, res) => {
     try {
-      if (historicalTrendCacheResult) {
+      if (historicalTrendCacheResult && validRouteCache("history", res)) {
         return res.json(historicalTrendCacheResult);
       }
       const result = getRecalculatedHistoricalTrend();
       historicalTrendCacheResult = result;
+      tagRouteCache("history", res);
       res.json(result);
     } catch (error) {
       console.error("Historical trend error:", error);
@@ -302,11 +369,12 @@ export async function registerRoutes(
 
   app.get("/api/projection/categories/historical-trend", async (_req, res) => {
     try {
-      if (categoryHistoricalTrendCache) {
+      if (categoryHistoricalTrendCache && validRouteCache("category-history", res)) {
         return res.json(categoryHistoricalTrendCache);
       }
       const result = getCategoryHistoricalTrend();
       categoryHistoricalTrendCache = result;
+      tagRouteCache("category-history", res);
       res.json(result);
     } catch (error) {
       console.error("Category historical trend error:", error);
@@ -620,15 +688,21 @@ export async function registerRoutes(
   });
 
   async function getProjectedRate(): Promise<number> {
-    if (projectionResultCache?.metrics?.reductionRate != null) {
+    const revision = currentProjectionRevision();
+    const cacheKey = calculationKey("projection", revision, { category: "all", runs: 10000 });
+    if (projectionResultCache?.metrics?.reductionRate != null && routeCacheRevisions.get("projection") === revision) {
       return projectionResultCache.metrics.reductionRate;
     }
-    const cached = await storage.getProjectionCache("projection-all");
+    const cached = await storage.getProjectionCache(cacheKey);
     const cachedData = cached?.resultData as any;
     if (cachedData?.metrics?.reductionRate != null) {
       projectionResultCache = cachedData;
+      routeCacheRevisions.set("projection", revision);
       return cachedData.metrics.reductionRate;
     }
+    const rateOnly = await storage.getProjectionCache(calculationKey("finance-projected-rate", revision, { runs: 10000 }));
+    const rateOnlyData = rateOnly?.resultData as any;
+    if (rateOnlyData?.metrics?.reductionRate != null) return rateOnlyData.metrics.reductionRate;
     const allNowcast = getAllHistoricalIndicatorsWithNowcast();
     const latestData = allNowcast[allNowcast.length - 1];
     const indicators = latestData ? getCurrentIndicatorsFromHistorical(latestData) : getCurrentIndicators();
@@ -667,9 +741,11 @@ export async function registerRoutes(
       },
     };
 
-    projectionResultCache = result;
+    // This reduced finance calculation is NOT the full headline response.
+    // Do not poison the headline cache with its different threshold semantics.
     await storage.setProjectionCache({
-      cacheKey: "projection-all",
+      cacheKey: calculationKey("finance-projected-rate", revision, { runs: 10000 }),
+      projectionYear: startYear,
       resultData: result,
     });
 

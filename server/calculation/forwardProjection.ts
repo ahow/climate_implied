@@ -1,4 +1,6 @@
 import { computeEmpiricalCarbonIntensityDeclineRate, getAllHistoricalIndicators } from "./historicalIndicators";
+import { SeededRandom, randomNormalFrom } from "./random";
+import { LEGACY_CLIMATE } from "../../shared/calculationContract";
 
 // Projection baseline year. The model's "current" indicators are the values for
 // this year (NOT the last historical row). Approved overrides for this year flow
@@ -44,30 +46,8 @@ export interface TemperatureProjection {
   cumulativeProbability: number;
 }
 
-class SeededRandom {
-  private seed: number;
-  constructor(seed: number) {
-    this.seed = seed;
-  }
-  next(): number {
-    this.seed = (this.seed * 1103515245 + 12345) & 0x7fffffff;
-    return this.seed / 0x7fffffff;
-  }
-}
-
 function createRNG(seed: number): SeededRandom {
   return new SeededRandom(seed);
-}
-
-function randomFrom(rng: SeededRandom): number {
-  return rng.next();
-}
-
-function randomNormalFrom(rng: SeededRandom, mean: number, stdDev: number): number {
-  const u1 = randomFrom(rng);
-  const u2 = randomFrom(rng);
-  const z0 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
-  return mean + z0 * stdDev;
 }
 
 export const SECTOR_SHARES = {
@@ -193,14 +173,25 @@ export function calculateEmissionsTrajectory(
   indicators: IndicatorData,
   startYear: number = 2024,
   endYear: number = 2100,
-  runs: number = 10000
+  runs: number = 10000,
+  seed: number = startYear * 12345
 ): ForwardProjection[] {
-  const rng = createRNG(startYear * 12345);
+  const required: (keyof IndicatorData)[] = [
+    "renewableCapacityGW", "renewableGrowthRate", "renewableAcceleration", "evSalesShare",
+    "evGrowthRate", "policyCoveragePercent", "policyImplementationRate", "netZeroTargetsCoverage",
+    "globalGDP", "carbonIntensity", "carbonIntensityDeclineRate", "sbtiCompaniesPercent",
+    "corporateImplementationRate", "cleanEnergyInvestmentTrn", "fossilFuelInvestmentTrn",
+    "greenBondIssuanceBln", "fossilCO2GtPerYear", "atmosphericCO2ppm", "co2GrowthRatePpm",
+  ];
+  for (const key of required) if (!Number.isFinite(indicators[key])) throw new Error(`Missing or non-finite indicator: ${key}`);
+  if (!Number.isInteger(startYear) || !Number.isInteger(endYear) || endYear < startYear ||
+      !Number.isInteger(runs) || runs < 1) throw new Error("Invalid calculation horizon or run count");
+  const rng = createRNG(seed);
 
   const years = endYear - startYear + 1;
   const projections: ForwardProjection[] = [];
-  const carbonIntensityScaling = indicators.carbonIntensity / 0.32;
-  const baselineEmissions = 60.3 * carbonIntensityScaling;
+  const carbonIntensityScaling = indicators.carbonIntensity / LEGACY_CLIMATE.intensityNormalizer;
+  const baselineEmissions = LEGACY_CLIMATE.baselineEmissionsGt * carbonIntensityScaling;
 
   const baselineSectors = {
     power: baselineEmissions * SECTOR_SHARES.power,
@@ -327,6 +318,7 @@ export function calculateEmissionsTrajectory(
         yearEmissions *= (1 + co2AccelerationSignal * 0.005 * Math.max(0, 1 - yearOffset / 10));
       }
 
+      if (!Number.isFinite(yearEmissions)) throw new Error("Non-finite emissions outcome");
       simulation.push(yearEmissions);
     }
 
@@ -364,8 +356,8 @@ export function calculateTemperatureDistribution(
   const finalProjection = trajectory[trajectory.length - 1];
   if (!finalProjection) return [];
 
-  const tcreBase = 0.00045;
-  const baselineWarming = 1.1;
+  const tcreBase = LEGACY_CLIMATE.tcreCPerGt;
+  const baselineWarming = LEGACY_CLIMATE.warmingOffsetC;
 
   for (let i = 0; i < runs; i++) {
     const ecs = randomNormalFrom(rng, climateSensitivity, 0.5);
@@ -405,8 +397,8 @@ export function getTemperatureStats(pdf: TemperatureProjection[], trajectory: Fo
   const finalProjection = trajectory[trajectory.length - 1];
   if (!finalProjection) return { median: 0, mean: 0, p10: 0, p90: 0 };
 
-  const tcreBase = 0.00045;
-  const baselineWarming = 1.1;
+  const tcreBase = LEGACY_CLIMATE.tcreCPerGt;
+  const baselineWarming = LEGACY_CLIMATE.warmingOffsetC;
   const rng = createRNG(99 * 12345);
   const runs = 10000;
   const temps: number[] = [];

@@ -1,6 +1,7 @@
 import { db } from "../db";
 import { cvCompanies, cvTimeSeries } from "@shared/schema";
 import type { CvCompany, CvTimeSeries } from "@shared/schema";
+import { orderCalculationRows } from "../../shared/calculationContract";
 import { carryForwardEmissions } from "./emissionsCarryForward";
 
 export type ScoringMethod = "absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative";
@@ -118,8 +119,8 @@ export async function loadCompaniesAndTimeSeries(applyCarryForward: boolean = tr
   companies: CvCompany[];
   timeSeries: CvTimeSeries[];
 }> {
-  const companies = await db.select().from(cvCompanies);
-  const rawTimeSeries = await db.select().from(cvTimeSeries);
+  const companies = (await db.select().from(cvCompanies)).sort((a, b) => a.id - b.id);
+  const rawTimeSeries = orderCalculationRows(await db.select().from(cvTimeSeries));
   const timeSeries = applyCarryForward ? carryForwardEmissions(rawTimeSeries) : rawTimeSeries;
   return { companies, timeSeries };
 }

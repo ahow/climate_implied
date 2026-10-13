@@ -1,7 +1,8 @@
 import { db } from "../db";
-import { cvCarbonPriceCache } from "@shared/schema";
-import type { InsertCvCarbonPriceCache, CvCarbonPriceCache, CvTimeSeries, CvCompany } from "@shared/schema";
-import { eq, and } from "drizzle-orm";
+import { projectionCache } from "@shared/schema";
+import type { CvTimeSeries, CvCompany } from "@shared/schema";
+import { eq } from "drizzle-orm";
+import { calculationKey } from "../calculation/identity";
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
 import { calculateCarbonIntensity, assignTerciles, groupTimeSeriesByDate, filterCompaniesByGeography, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
@@ -125,58 +126,26 @@ export async function calculateTotalBasedCarbonPrice(
   inferenceMethod: InferenceMethod = "carbon_intensity",
   geography?: string
 ): Promise<CarbonPriceResult[]> {
-  const cacheMethod = `${method}_${inferenceMethod}`;
+  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const cacheMethod = calculationKey("finance", { companies: allCompanies, timeSeries: allTimeSeries }, {
+    uploadId, method, inferenceMethod, includeScope3, winsorize, winsorizePercentile, geography: geography ?? null,
+  });
 
   const groupLabels = getGroupLabels(inferenceMethod);
 
   if (!geography) {
-    const cached = await db
-      .select()
-      .from(cvCarbonPriceCache)
-      .where(
-        and(
-          eq(cvCarbonPriceCache.uploadId, uploadId),
-          eq(cvCarbonPriceCache.method, cacheMethod),
-          eq(cvCarbonPriceCache.includeScope3, includeScope3),
-          eq(cvCarbonPriceCache.winsorize, winsorize),
-          eq(cvCarbonPriceCache.winsorizePercentile, winsorizePercentile)
-        )
-      );
-
-    if (cached.length > 0) {
-      console.log(`[CarbonPrice] Using cached results (${cached.length} dates) for ${cacheMethod}`);
-      return cached.map((row: CvCarbonPriceCache) => {
-        const dirtyPE = row.topTercilePeRatio || 0;
-        const cleanPE = row.bottomTercilePeRatio || 0;
-        const cleanGrowth = impliedGrowthFromPE(cleanPE, 0.08);
-        const dirtyGrowth = impliedGrowthFromPE(dirtyPE, 0.08);
-        const decarbRate = growthDifferentialToDecarbRate(cleanGrowth, dirtyGrowth);
-        const conversion = convertAll(decarbRate);
-        return {
-          date: row.date,
-          topTercileEmissions: row.topTercileEmissions || 0,
-          topTercileProfit: row.topTercileProfit || 0,
-          topTercileMarketCap: row.topTercileMarketCap || 0,
-          topTercilePeRatio: dirtyPE,
-          topTercileCompanyCount: row.topTercileCompanyCount || 0,
-          bottomTercileEmissions: row.bottomTercileEmissions || 0,
-          bottomTercileProfit: row.bottomTercileProfit || 0,
-          bottomTercileMarketCap: row.bottomTercileMarketCap || 0,
-          bottomTercilePeRatio: cleanPE,
-          bottomTercileCompanyCount: row.bottomTercileCompanyCount || 0,
-          impliedCarbonPrice: row.impliedCarbonPrice || 0,
-          impliedDecarbRate: Math.round(decarbRate * 100) / 100,
-          impliedTemperature: conversion.impliedTemperature,
-          inferenceMethod,
-          ...groupLabels,
-        };
-      });
+    const [cached] = await db.select().from(projectionCache)
+      .where(eq(projectionCache.cacheKey, cacheMethod));
+    if (cached) {
+      // Existing JSONB cache preserves JS-number precision; legacy REAL columns
+      // rounded computed aggregates to float32 and changed warm-cache results.
+      return (cached.resultData as CarbonPriceResult[])
+        .map(row => ({ ...row, date: new Date(row.date) }))
+        .sort((a, b) => a.date.getTime() - b.date.getTime());
     }
   }
 
   console.log(`[CarbonPrice] Computing on-the-fly for ${cacheMethod}...`);
-
-  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
 
   const filteredCompanies = filterCompaniesByGeography(allCompanies, geography);
   const companyIdSet = new Set(filteredCompanies.map(c => c.id));
@@ -202,7 +171,6 @@ export async function calculateTotalBasedCarbonPrice(
   const timeSeriesByDate = groupTimeSeriesByDate(filteredTimeSeries);
 
   const results: CarbonPriceResult[] = [];
-  const cacheRecords: Array<InsertCvCarbonPriceCache> = [];
   const dateEntries = Array.from(timeSeriesByDate.entries());
 
   for (const [dateKey, tsForDate] of dateEntries) {
@@ -281,34 +249,13 @@ export async function calculateTotalBasedCarbonPrice(
 
     results.push(result);
 
-    cacheRecords.push({
-      uploadId,
-      date,
-      method: cacheMethod,
-      includeScope3,
-      winsorize,
-      winsorizePercentile,
-      topTercileEmissions: highAgg.totalEmissions,
-      topTercileProfit: highAgg.totalProfit,
-      topTercileMarketCap: highAgg.totalMarketCap,
-      topTercilePeRatio: highAgg.peRatio,
-      topTercileCompanyCount: highAgg.count,
-      bottomTercileEmissions: lowAgg.totalEmissions,
-      bottomTercileProfit: lowAgg.totalProfit,
-      bottomTercileMarketCap: lowAgg.totalMarketCap,
-      bottomTercilePeRatio: lowAgg.peRatio,
-      bottomTercileCompanyCount: lowAgg.count,
-      impliedCarbonPrice,
-    } as InsertCvCarbonPriceCache);
   }
 
-  if (!geography && cacheRecords.length > 0) {
-    console.log(`[CarbonPrice] Caching ${cacheRecords.length} results for ${cacheMethod}...`);
-    const chunkSize = 100;
-    for (let i = 0; i < cacheRecords.length; i += chunkSize) {
-      const chunk = cacheRecords.slice(i, i + chunkSize) as InsertCvCarbonPriceCache[];
-      await db.insert(cvCarbonPriceCache).values(chunk);
-    }
+  if (!geography && results.length > 0) {
+    await db.insert(projectionCache).values({
+      cacheKey: cacheMethod, projectionYear: 2024, category: "finance", region: null,
+      resultData: results,
+    }).onConflictDoNothing({ target: projectionCache.cacheKey });
   }
 
   if (results.length > 0) {

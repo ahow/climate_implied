@@ -1,9 +1,10 @@
-const TCRE_BASE = 0.00045;
-const BASELINE_WARMING = 1.1;
-const CURRENT_ANNUAL_EMISSIONS_GT = 60.3;
-const PROJECTION_END_YEAR = 2100;
-const BASE_YEAR = 2024;
-const CARBON_PRICE_HORIZON_YEARS = 6;
+import { LEGACY_FINANCE } from "../../shared/calculationContract";
+const TCRE_BASE = LEGACY_FINANCE.tcreCPerGt;
+const BASELINE_WARMING = LEGACY_FINANCE.warmingOffsetC;
+const CURRENT_ANNUAL_EMISSIONS_GT = LEGACY_FINANCE.annualEmissionsGt;
+const PROJECTION_END_YEAR = LEGACY_FINANCE.endYear;
+const BASE_YEAR = LEGACY_FINANCE.baselineYear;
+const CARBON_PRICE_HORIZON_YEARS = LEGACY_FINANCE.carbonPriceHorizonYears;
 
 const CARBON_PRICE_LOOKUP: Array<{ price: number; reduction: number }> = [
   { price: 0, reduction: 0 },
@@ -74,7 +75,7 @@ export function decarbRateToCarbonPrice(annualDecarbRatePercent: number): number
 export function decarbRateToNetZeroYear(annualDecarbRatePercent: number): number | null {
   const rate = annualDecarbRatePercent / 100;
   if (rate <= 0) return null;
-  const threshold = 0.05;
+  const threshold = LEGACY_FINANCE.nearZeroFraction;
   const yearsToNetZero = Math.log(threshold) / Math.log(1 - rate);
   const netZeroYear = Math.round(BASE_YEAR + yearsToNetZero);
   if (netZeroYear > 2200) return null;

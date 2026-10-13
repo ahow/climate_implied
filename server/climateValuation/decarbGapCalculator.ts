@@ -141,7 +141,8 @@ export function computeDecarbGapScores(
       continue;
     }
 
-    peerGaps.sort((a: { companyId: number; gap: number }, b: { companyId: number; gap: number }) => a.gap - b.gap);
+    peerGaps.sort((a: { companyId: number; gap: number }, b: { companyId: number; gap: number }) =>
+      a.gap - b.gap || a.companyId - b.companyId);
     const n = peerGaps.length;
     for (let i = 0; i < n; i++) {
       const pctile = i / (n - 1);
