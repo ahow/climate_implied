@@ -1,0 +1,900 @@
+{
+  "version": "igcc-2024-candidate-1",
+  "year": 2024,
+  "status": "candidate-not-promoted",
+  "source": "https://essd.copernicus.org/articles/18/3889/2026/",
+  "sourceRevision": "e81bb760b66ab182f9052d8d4218d42a97acbd75",
+  "reporting": {
+    "totalGtCO2e": 56.8,
+    "uncertainty90GtCO2e": 5.5,
+    "gwp": "AR6 GWP100",
+    "components": {
+      "CO2-FFI": 38.598578029999985,
+      "CH4": 9.287705274802745,
+      "N2O": 2.603738611039944,
+      "F-gases": 1.7367322119875694,
+      "CO2-LULUCF": 4.585508213
+    }
+  },
+  "boundary": "WGIII update: CO2-FFI, net bookkeeping LULUCF, anthropogenic CH4/N2O, UNFCCC F-gases; excludes ODS and additional natural-fire fluxes.",
+  "allocation": {
+    "method": "GCB total / EDGAR fossil CO2 total; preserve EDGAR sector proportions",
+    "edgarCo2Mt": 39632.67905220347
+  },
+  "sourceHashes": {
+    "EDGAR_CO2_1970_2024.xlsx": "9ff49d241999bcc893300e108e99ef042a09cb974211e107042f2eab2e98fc75",
+    "EDGAR_CH4_1970_2024.xlsx": "3de82b00ee6a4ba210c09ec9cdd288f45840fcf1b9ad713c4edea8defa670a1f",
+    "EDGAR_N2O_1970_2024.xlsx": "f4cd9e6a9dd3b86c15478db0036ba084088269f673cee84260b47594293b3f9b",
+    "EDGAR_F-gases_1970_2024.xlsx": "1109c2459bd95b296ce2797046b72070ff9180ee7a62e72a6e953090a7f0b5c1"
+  },
+  "omittedMissingCells": {
+    "EDGAR_CO2_1970_2024.xlsx": 307,
+    "EDGAR_CH4_1970_2024.xlsx": 358,
+    "EDGAR_N2O_1970_2024.xlsx": 288,
+    "EDGAR_F-gases_1970_2024.xlsx": 92
+  },
+  "negativeSourceCells": {
+    "EDGAR_CH4_1970_2024.xlsx": 1,
+    "EDGAR_F-gases_1970_2024.xlsx": 14
+  },
+  "metricsUrl": "https://raw.githubusercontent.com/chrisroadmap/ar6/24f279260fc2d1ebd09b2bd4114f2be11859e925/data_output/7sm/metrics_supplement_cleaned.csv",
+  "metricsSha256": "584fe16c1ffe454a0db4656857f54176cbf290d55a6775ea4e060ae2f461930c",
+  "reportUrl": "https://raw.githubusercontent.com/ClimateIndicator/data/v2026.06.02/data/greenhouse_gas_emissions/greehouse_gas_emissions_co2eq.csv",
+  "reportSha256": "7c4328c215f0981d80029625e371bac9cec3dc5ce816cabbfed80c6776552ef2",
+  "cells": [
+    {
+      "gas": "c-C4F8",
+      "sector": "2.B",
+      "nativeMt": 0.0000032158368666667,
+      "gwp100": 10200,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "c-C4F8",
+      "sector": "2.E",
+      "nativeMt": 0.0001012090344614855,
+      "gwp100": 10200,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "c-C4F8",
+      "sector": "2.F",
+      "nativeMt": 0.000032351939883144,
+      "gwp100": 10200,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C2F6",
+      "sector": "2.B",
+      "nativeMt": 0.0000016705076198625,
+      "gwp100": 12400,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C2F6",
+      "sector": "2.C",
+      "nativeMt": 0.0004628164864254497,
+      "gwp100": 12400,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C2F6",
+      "sector": "2.E",
+      "nativeMt": 0.00032894095770713105,
+      "gwp100": 12400,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C2F6",
+      "sector": "2.G",
+      "nativeMt": 0.0000015341732000000003,
+      "gwp100": 12400,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C3F8",
+      "sector": "2.B",
+      "nativeMt": 0.000015575604108059,
+      "gwp100": 9290,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C3F8",
+      "sector": "2.E",
+      "nativeMt": 0.00002991683153346512,
+      "gwp100": 9290,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C3F8",
+      "sector": "2.G",
+      "nativeMt": 0.00000192087215,
+      "gwp100": 9290,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C4F10",
+      "sector": "2.B",
+      "nativeMt": 0.00001093989845876,
+      "gwp100": 10000,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C4F10",
+      "sector": "2.F",
+      "nativeMt": 9.1679924781527e-7,
+      "gwp100": 10000,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C4F10",
+      "sector": "2.G",
+      "nativeMt": 0.0000030502420000000008,
+      "gwp100": 10000,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C5F12",
+      "sector": "2.B",
+      "nativeMt": 7.2588572747992e-9,
+      "gwp100": 9220,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C6F14",
+      "sector": "2.B",
+      "nativeMt": 0.0000016122318400184002,
+      "gwp100": 8620,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "C6F14",
+      "sector": "2.F",
+      "nativeMt": 0.00017940692947166002,
+      "gwp100": 8620,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CF4",
+      "sector": "2.B",
+      "nativeMt": 0.0000017530473698625,
+      "gwp100": 7380,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CF4",
+      "sector": "2.C",
+      "nativeMt": 0.0038308103342053383,
+      "gwp100": 7380,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CF4",
+      "sector": "2.E",
+      "nativeMt": 0.002793447187255318,
+      "gwp100": 7380,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CF4",
+      "sector": "2.F",
+      "nativeMt": 0.0000081449333333333,
+      "gwp100": 7380,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.1.a",
+      "nativeMt": 0.5802755218773408,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.1.bc",
+      "nativeMt": 0.07425994314257249,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.2",
+      "nativeMt": 0.6976966629751175,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.3.a",
+      "nativeMt": 0.0072232882180811725,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.3.b_noRES",
+      "nativeMt": 1.0091847631136883,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.3.c",
+      "nativeMt": 0.0054564861171733795,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.3.d",
+      "nativeMt": 0.0789488670869183,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.3.e",
+      "nativeMt": 0.003970581205381323,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.4",
+      "nativeMt": 8.063330527880636,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.A.5",
+      "nativeMt": 0.24400510774391979,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.B.1",
+      "nativeMt": 53.3347482041991,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "1.B.2",
+      "nativeMt": 54.33264886384618,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "2.B",
+      "nativeMt": 0.37500552776143126,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "2.C",
+      "nativeMt": 0.1706508228851179,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "3.A.1",
+      "nativeMt": 114.36737940073056,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "3.A.2",
+      "nativeMt": 12.435073750232597,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "3.C.1",
+      "nativeMt": 2.4445357817260738,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "3.C.7",
+      "nativeMt": 25.527917232357552,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "4.A",
+      "nativeMt": 31.816420840583547,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "4.B",
+      "nativeMt": 0.43614382743471236,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "4.C",
+      "nativeMt": 1.8578190327346753,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "4.D",
+      "nativeMt": 24.879367145457582,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CH4",
+      "sector": "5.B",
+      "nativeMt": 0.1506,
+      "gwp100": 27.9,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.1.a",
+      "nativeMt": 15081.73132048486,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.1.bc",
+      "nativeMt": 1630.795172696647,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.2",
+      "nativeMt": 6288.558621922099,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.3.a",
+      "nativeMt": 1005.6885834926456,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.3.b_noRES",
+      "nativeMt": 5965.541497733504,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.3.c",
+      "nativeMt": 89.21690897041348,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.3.d",
+      "nativeMt": 837.8291866714665,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.3.e",
+      "nativeMt": 184.4314752345584,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.4",
+      "nativeMt": 3034.197084996852,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.A.5",
+      "nativeMt": 159.043541810475,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.B.1",
+      "nativeMt": 550.4742435740967,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "1.B.2",
+      "nativeMt": 448.6444628535385,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.A.1",
+      "nativeMt": 1426.9110035265908,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.A.2",
+      "nativeMt": 310.9225222017248,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.A.3",
+      "nativeMt": 10.902122237051426,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.A.4",
+      "nativeMt": 111.39035638760143,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.B",
+      "nativeMt": 765.4818112128331,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.C",
+      "nativeMt": 411.1125884880365,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "2.D",
+      "nativeMt": 86.70544472257284,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "3.C.2",
+      "nativeMt": 54.792545648445895,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "3.C.3",
+      "nativeMt": 84.93785146326901,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "4.C",
+      "nativeMt": 13.019578060441487,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "5.B",
+      "nativeMt": 46.25010561026823,
+      "gwp100": 1,
+      "origin": "GCB 2024 CO2-FFI total allocated with EDGAR v2025 sector weights (not a sector observation)"
+    },
+    {
+      "gas": "CO2",
+      "sector": "LULUCF",
+      "nativeMt": 4585.508213,
+      "gwp100": 1,
+      "origin": "GCB 2024 net land-use CO2 (BLUE/OSCAR/LUCE)"
+    },
+    {
+      "gas": "HFC-125",
+      "sector": "2.B",
+      "nativeMt": 0.000006208463265632401,
+      "gwp100": 3740,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-125",
+      "sector": "2.E",
+      "nativeMt": 2.702962962963e-9,
+      "gwp100": 3740,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-125",
+      "sector": "2.F",
+      "nativeMt": 0.10237086806942779,
+      "gwp100": 3740,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-134",
+      "sector": "2.F",
+      "nativeMt": 0.00004155462974578484,
+      "gwp100": 1260,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-134a",
+      "sector": "2.B",
+      "nativeMt": 0.00000466220159052494,
+      "gwp100": 1530,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-134a",
+      "sector": "2.F",
+      "nativeMt": 0.32991508404109876,
+      "gwp100": 1530,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-143",
+      "sector": "2.F",
+      "nativeMt": 4.11114869016248e-7,
+      "gwp100": 364,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-143a",
+      "sector": "2.B",
+      "nativeMt": 0.00000162508126228213,
+      "gwp100": 5810,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-143a",
+      "sector": "2.F",
+      "nativeMt": 0.0408248037678828,
+      "gwp100": 5810,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-152a",
+      "sector": "2.B",
+      "nativeMt": 0.0000016948888888889,
+      "gwp100": 164,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-152a",
+      "sector": "2.F",
+      "nativeMt": 0.06074447081866048,
+      "gwp100": 164,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-227ea",
+      "sector": "2.B",
+      "nativeMt": 1.706138473589e-8,
+      "gwp100": 3600,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-227ea",
+      "sector": "2.F",
+      "nativeMt": 0.009660844682043798,
+      "gwp100": 3600,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-23",
+      "sector": "2.B",
+      "nativeMt": 0.009771645532644183,
+      "gwp100": 14600,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-23",
+      "sector": "2.E",
+      "nativeMt": 0.00007684340580382802,
+      "gwp100": 14600,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-23",
+      "sector": "2.F",
+      "nativeMt": 0.00017581252812536662,
+      "gwp100": 14600,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-236fa",
+      "sector": "2.F",
+      "nativeMt": 0.0001374112275791529,
+      "gwp100": 8690,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-245fa",
+      "sector": "2.F",
+      "nativeMt": 0.016822004837585412,
+      "gwp100": 962,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-32",
+      "sector": "2.B",
+      "nativeMt": 0.00000303976239212097,
+      "gwp100": 771,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-32",
+      "sector": "2.E",
+      "nativeMt": 0.0000010467236709730697,
+      "gwp100": 771,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-32",
+      "sector": "2.F",
+      "nativeMt": 0.07363051793424878,
+      "gwp100": 771,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-365mfc",
+      "sector": "2.B",
+      "nativeMt": 0.00000425374,
+      "gwp100": 914,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-365mfc",
+      "sector": "2.F",
+      "nativeMt": 0.005705244352813938,
+      "gwp100": 914,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-41",
+      "sector": "2.F",
+      "nativeMt": 0.000014818512368886401,
+      "gwp100": 135,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "HFC-43-10-mee",
+      "sector": "2.F",
+      "nativeMt": 0.000017712574735481703,
+      "gwp100": 1600,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.1.a",
+      "nativeMt": 0.5201301708235012,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.1.bc",
+      "nativeMt": 0.009195406473911611,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.2",
+      "nativeMt": 0.09738778964554924,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.3.a",
+      "nativeMt": 0.02889313458949609,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.3.b_noRES",
+      "nativeMt": 0.33313920536604,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.3.c",
+      "nativeMt": 0.03527768714862603,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.3.d",
+      "nativeMt": 0.022546224614192253,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.3.e",
+      "nativeMt": 0.0005817869522985913,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.4",
+      "nativeMt": 0.2362785650398026,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.A.5",
+      "nativeMt": 0.01178448018182694,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.B.1",
+      "nativeMt": 0.007637725170613234,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "1.B.2",
+      "nativeMt": 0.004782764875806308,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "2.B",
+      "nativeMt": 0.36972959698856994,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "2.G",
+      "nativeMt": 0.09944079271091286,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "3.A.2",
+      "nativeMt": 0.3317539168454193,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "3.C.1",
+      "nativeMt": 0.063376853600305,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "3.C.4",
+      "nativeMt": 5.215242487302004,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "3.C.5",
+      "nativeMt": 0.9009335385113043,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "3.C.6",
+      "nativeMt": 0.0445453124820646,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "4.B",
+      "nativeMt": 0.03850351326843823,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "4.C",
+      "nativeMt": 0.006118326469946455,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "4.D",
+      "nativeMt": 0.4755879852455472,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "5.A",
+      "nativeMt": 0.6838838054372084,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "N2O",
+      "sector": "5.B",
+      "nativeMt": 0.000753,
+      "gwp100": 273,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "NF3",
+      "sector": "2.B",
+      "nativeMt": 2.0196667502370002e-7,
+      "gwp100": 17400,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "NF3",
+      "sector": "2.E",
+      "nativeMt": 0.00019714040064703337,
+      "gwp100": 17400,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "SF6",
+      "sector": "2.B",
+      "nativeMt": 0.0002009768976662142,
+      "gwp100": 25200,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "SF6",
+      "sector": "2.C",
+      "nativeMt": 0.0004434101883667474,
+      "gwp100": 25200,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "SF6",
+      "sector": "2.E",
+      "nativeMt": 0.00026263078066520855,
+      "gwp100": 25200,
+      "origin": "EDGAR v2025"
+    },
+    {
+      "gas": "SF6",
+      "sector": "2.G",
+      "nativeMt": 0.010026313287583794,
+      "gwp100": 25200,
+      "origin": "EDGAR v2025"
+    }
+  ]
+}

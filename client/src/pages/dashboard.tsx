@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { TemperatureGauge } from "@/components/temperature-gauge";
 import { EmissionsChart } from "@/components/emissions-chart";
+import { EmissionsCandidateReview } from "@/components/emissions-candidate-review";
 import { TemperatureHistogram } from "@/components/temperature-histogram";
 import { IndicatorCards } from "@/components/indicator-cards";
 import { CategoryFilter } from "@/components/category-filter";
@@ -122,6 +123,8 @@ export default function Dashboard() {
             />
           </div>
         </div>
+
+        <EmissionsCandidateReview />
 
         <TemperatureHistogram
           pdf={projection?.temperatureDistribution.pdf ?? []}

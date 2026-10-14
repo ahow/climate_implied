@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { candidateInventory, constantScenario, illustrativeScenario, projectNativeEmissions } from "./calculation/emissionsCandidate";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -171,6 +172,17 @@ export async function registerRoutes(
       },
       remainingScientificWork: ["inventory reconciliation", "emissions mechanisms", "FaIR",
         "coherent ensemble propagation", "valuation inference", "point-in-time backtesting"],
+    });
+  });
+
+  app.get("/api/emissions/candidate", (req, res) => {
+    if (req.query.scenario !== undefined && !["constant", "transition"].includes(String(req.query.scenario))) {
+      return res.status(400).json({ error: "scenario must be constant or transition" });
+    }
+    res.json({
+      promotion: "blocked-pending-calibration-and-Packages-3-4",
+      inventory: candidateInventory(),
+      result: projectNativeEmissions(req.query.scenario === "transition" ? illustrativeScenario : constantScenario),
     });
   });
 
