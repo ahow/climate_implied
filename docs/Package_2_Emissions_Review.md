@@ -76,12 +76,20 @@ also applied, which would count the grid-emissions penalty twice.
 
 ## Indicator roles (B6)
 
-The workbench intentionally does not read the mixed-year dashboard nowcast.
-Its inputs are the 2024 inventory plus explicit scenario parameters.
+The workbench does not read the mixed-year dashboard nowcast. The additional
+`dashboard` diagnostic reads the **effective 2024 curated/approved row** plus
+2023 capacity to calculate net additions. It does not import proposals or change
+the collection/approval process. A same-year approved override changes the
+effective inputs and calculation identity. A later-year override cannot be
+silently applied to the 2024 inventory.
 
-- Renewable capacity/additions, EV sales/fleet and policy/corporate delivery
-  are candidate mechanism inputs; dashboard indicator values are not yet
-  wired in as calibrated assumptions.
+- Renewable capacity and EV sales are connected in this diagnostic, not in a
+  calibrated central forecast. The diagnostic holds the latest dated sales mix
+  and net annual additions constant, with no inferred acceleration. Net
+  additions are paired with zero retirements to avoid subtracting retirements
+  twice. A gross-additions scenario requires separate retirement evidence.
+- All registered dashboard indicators have an explicit mechanism-input,
+  validation or context role and a reason, exposed by the API and review panel.
 - GDP and aggregate carbon intensity are contextual/comparison data until
   price basis and residual-intensity overlap are resolved. No 0.32 divisor.
 - Fossil CO2 is an inventory/reference quantity, not an outcome multiplier.
@@ -102,27 +110,108 @@ Its inputs are the 2024 inventory plus explicit scenario parameters.
 4. Connect appropriate approved indicators to the central scenario with explicit
    date/basis checks, then run and explain matched before/after trajectories.
 
+The dated diagnostic connection is now implemented, but it is not the central
+scenario in item 4. The API explicitly returns `blocked-evidence-required`.
+
+## Additional mechanism repairs and evidence assessment
+
+The engine now supports separately documented sector activity and residual
+efficiency pathways, each with a fixed trend end year independent of the
+requested output horizon. They operate on native gas masses, including
+agricultural methane and nitrous oxide. They are not automatically populated
+with assumed central rates.
+
+Scoped abatement measures require exact source-sector codes, native gas names,
+bounded emissions coverage, implementation, reduction potential, delivery
+timing and an evidence description. Policy, corporate and process measures
+use complete overlap, not additive savings. An evidence description is a
+required audit field, **not automatic scientific validation**.
+
+Generic policy multipliers no longer reduce power CO2 independently of the
+electricity balance. A scoped power measure is rejected until a fuel-mix or
+capture mechanism can represent it. Nuclear generation can be supplied
+separately from renewables. EV electricity load now accounts for passenger
+activity growth while removing the initial EV load from the non-EV demand
+base, avoiding double counting. Reversal uses the same baseline-relative
+tailpipe denominator as adoption. Plug-in hybrids may have partial direct
+tailpipe displacement; grid emissions are still accounted for separately.
+
+### What the source review establishes—and does not establish
+
+- [IEA WEO 2025 Current Policies Scenario](https://www.iea.org/reports/world-energy-outlook-2025/current-policies-scenario):
+  total final consumption grows around 1.3% annually over the next decade,
+  solar additions average 540 GW to 2035 and energy-related CO2 approaches
+  40 Gt in the early 2030s. These are global scenario aggregates, **not
+  gas-by-sector implementation coefficients**. Applying 1.3% to every sector
+  or solar additions to the entire renewable mix would be unjustified.
+- [IEA Global Energy Review 2025](https://www.iea.org/reports/global-energy-review-2025/electricity):
+  2024 electricity demand grew 4.3%, compared with a 2.7% 2010–2023 average.
+  Neither single rate is silently extrapolated through 2100. The report also
+  distinguishes nuclear generation and plug-in hybrids, motivating their
+  explicit accounting above.
+- [UNEP Emissions Gap Report 2025](https://www.unep.org/resources/emissions-gap-report-2025):
+  current policies and full NDC implementation are different cases. Its
+  temperature headlines are not used to tune emissions or replace FaIR.
+- The existing policy implementation collection definition measures legal
+  status, and corporate coverage is company/market-cap based. Neither supplies
+  the emissions-weighted eligibility or abatement timing needed by the repaired
+  mechanism. Both remain context rather than receiving invented coefficients.
+
+Consequently, the approved two policy cases are not yet produced. Finishing
+the acceptance gate requires a quantified, dated sector/gas reference pathway
+or a calibrated set of measures—not simply setting implementation to 100%.
+No claim of completed Package 2, calibration or readiness for Package 3 is made.
+
 The legacy headline stays unchanged while these are unfinished. FaIR conversion,
 historical validation and consumer promotion remain Packages 3–4. Collection,
 approval, source overrides, deployment and finance calculations are unchanged.
 
-The central policy case must also be explicit: implementation of existing
-policies and delivery of all announced commitments are different scenarios.
-The illustrative transition is neither, and should not be used as a substitute.
+## Approved central policy basis
+
+The main projection will use **implemented policies**. Delivery of all
+**announced commitments** will be a separate comparison scenario, not an
+additional reduction added to the main case. The user approved this basis.
+
+Retain both policy coverage and policy implementation indicators. Coverage
+describes the reach of targets; implementation must represent evidence of
+measures actually in place and their expected effects. The existing collection
+definition (targets enshrined in law or policy) is not, on its own, evidence of
+delivered reductions. Keep that value available as target/legal-status context
+until its suitability as a quantitative input is established.
+
+Implementation requirements within Package 2:
+
+- Build the central case from evidenced measures and technology pathways;
+  do not credit uncovered or unimplemented promises automatically.
+- Specify the additional measures and delivery assumptions needed to achieve
+  commitments in the comparison case. Do not obtain this case merely by
+  setting the old implementation indicator to 100%.
+- Apply explicit sector eligibility, timing and overlap accounting so policy,
+  technology and corporate measures do not receive duplicate credit.
+- Identify each dashboard indicator as a mechanism input, validation measure
+  or context; preserve the existing collection and approval workflow.
+- Compare the cases using the same starting inventory and disclose differences
+  in assumptions and resulting emissions.
+
+These are approved requirements, not completed calibration. The existing
+illustrative transition is neither policy case and must not be relabeled as
+one. The legacy headline remains unchanged pending the validation gates.
 
 ## Verification of the current workbench
 
-Seven candidate tests and nineteen existing regression tests passed. The
+Twelve candidate tests and nineteen existing regression tests cover the
+mechanisms and foundations. The
 production build succeeded; type checking still reports the eight pre-existing
 upload/schema errors, with no new errors. Both candidate API scenarios returned
 200; invalid scenario names returned 400. A Preview screenshot confirmed that
 the new review section renders. Its scenario selector changes the query URL;
 both corresponding API responses were checked.
 
-The constant-activity control remains 56.81226 GtCO2e throughout. The
-illustrative transition returns 53.94627 in 2030, 46.50376 in 2050 and 38.49126
-in 2100. These are diagnostic outputs of the disclosed assumptions, not new
-forecasts. The existing headline API remained 2.401152°C.
+The constant-activity control remains 56.81226 GtCO2e throughout. Diagnostic
+outputs are not new forecasts. The existing headline calculation is unchanged.
+The additional dated-dashboard diagnostic is sensitive to approved 2024 input
+changes, but saturates once fossil power displacement is exhausted; extra
+renewable capacity then cannot produce negative emissions.
 
 ## Developer checks
 
@@ -135,7 +224,9 @@ Read-only endpoints:
 
 - `/api/emissions/candidate?scenario=constant`
 - `/api/emissions/candidate?scenario=transition`
+- `/api/emissions/candidate?scenario=dashboard`
 
-Invalid scenario names return 400. Responses include native Mt by gas, reporting
+Invalid scenario names return 400; invalid effective dated inputs return 422,
+not fabricated fallback values. Responses include native Mt by gas, reporting
 GtCO2e by sector, annual energy accounting and a version/input/settings identity.
 Source preparation is a manual research operation, not a new scheduled import.

@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { candidateInventory, constantScenario, illustrativeScenario, projectNativeEmissions } from "./calculation/emissionsCandidate";
+import { resolveEmissionsInputs } from "./calculation/emissionsInputs";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -176,14 +177,21 @@ export async function registerRoutes(
   });
 
   app.get("/api/emissions/candidate", (req, res) => {
-    if (req.query.scenario !== undefined && !["constant", "transition"].includes(String(req.query.scenario))) {
-      return res.status(400).json({ error: "scenario must be constant or transition" });
+    if (req.query.scenario !== undefined && !["constant", "transition", "dashboard"].includes(String(req.query.scenario))) {
+      return res.status(400).json({ error: "scenario must be constant, transition or dashboard" });
     }
-    res.json({
-      promotion: "blocked-pending-calibration-and-Packages-3-4",
-      inventory: candidateInventory(),
-      result: projectNativeEmissions(req.query.scenario === "transition" ? illustrativeScenario : constantScenario),
-    });
+    try {
+      const inputs = resolveEmissionsInputs();
+      res.json({
+        promotion: "blocked-pending-calibration-and-Packages-3-4",
+        inventory: candidateInventory(),
+        inputs,
+        result: projectNativeEmissions(req.query.scenario === "dashboard" ? inputs.diagnostic :
+          req.query.scenario === "transition" ? illustrativeScenario : constantScenario),
+      });
+    } catch (error) {
+      res.status(422).json({ error: error instanceof Error ? error.message : "Invalid candidate inputs" });
+    }
   });
 
   app.post("/api/refresh", async (_req, res) => {

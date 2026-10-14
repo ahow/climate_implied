@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { constantScenario as base, illustrativeScenario as transition, projectNativeEmissions as run, candidateInventory } from "../server/calculation/emissionsCandidate";
+import { resolveEmissionsInputs } from "../server/calculation/emissionsInputs";
+import { HISTORICAL_INDICATORS } from "../server/calculation/historicalIndicators";
 test("source gas/sector inventory reconciles to reporting total within rounding", () => {
   const inv = candidateInventory(), path = run(base);
   assert.ok(Math.abs(path.trajectory[0].reportingGtCO2e - 56.8) < .05);
@@ -59,4 +61,67 @@ test("EV electricity raises power emissions once and only when fossil generation
   assert.ok(electricDemand.trajectory[i].sectorsGtCO2e.power>noPowerDemand.trajectory[i].sectorsGtCO2e.power);
   assert.equal(electricDemand.trajectory[i].sectorsGtCO2e.transport,noPowerDemand.trajectory[i].sectorsGtCO2e.transport);
   assert.ok(electricDemand.trajectory[i].sectorsGtCO2e.transport<electricDemand.trajectory[0].sectorsGtCO2e.transport);
+});
+test("nuclear is separate and energy balances reconcile with growing EV activity", () => {
+  const p = run({...base, nuclearGenerationTWh: 2800, annualActivityGrowth: .02,
+    annualPowerDemandGrowth: .025, evSalesShare: .2});
+  for (const r of p.trajectory) {
+    assert.ok(Math.abs(r.power.fossilTWh + r.power.utilizedRenewableTWh +
+      r.power.utilizedNuclearTWh - r.power.demandTWh) < 1e-8);
+    const t = r.year - 2024;
+    assert.ok(Math.abs(r.power.totalEvTWh - r.evFleetShare * 1.02 ** t * base.fullElectricFleetDemandTWh) < 1e-8);
+  }
+  assert.equal(p.trajectory[0].power.fossilTWh, base.fossilGenerationTWh);
+});
+test("reversal uses the same baseline-relative road denominator as forward adoption", () => {
+  const p = run({...base, reversal: true, evSalesShare: 0, fullElectricFleetDemandTWh: 0});
+  const inv = candidateInventory();
+  const road = inv.cells.filter(c=>c.gas==="CO2"&&c.sector.startsWith("1.A.3.b")).reduce((a,c)=>a+c.nativeMt/1000,0);
+  const a = p.trajectory[0], b = p.trajectory[1];
+  const expected = road * (.04-b.evFleetShare)/(1-.04)*base.passengerTransportFraction;
+  assert.ok(Math.abs(b.sectorsGtCO2e.transport-a.sectorsGtCO2e.transport-expected)<1e-10);
+});
+test("sector-specific native gas pathways stop at their declared year, not output horizon", () => {
+  const s = {...base, sectorPathways: {agriculture: {
+    annualActivityGrowth: .01, residualIntensityImprovement: .002, trendEndYear: 2034,
+  }}};
+  const p=run(s), short=run(s,2050);
+  assert.deepEqual(short.trajectory, p.trajectory.slice(0,27));
+  const b=p.trajectory[0].sectorsGtCO2e.agriculture;
+  assert.ok(Math.abs(p.trajectory[10].sectorsGtCO2e.agriculture/b-(1.01*.998)**10)<1e-10);
+  assert.equal(p.trajectory[10].sectorsGtCO2e.agriculture,p.trajectory[76].sectorsGtCO2e.agriculture);
+  assert.ok(p.trajectory[10].nativeMt.CH4>p.trajectory[0].nativeMt.CH4);
+});
+test("scoped measures affect only eligible native gases and cannot stack duplicates", () => {
+  const measure = {id:"test-only",mechanism:"policy" as const,sectorCodes:["3.A.1"],gases:["CH4"],
+    coverage:.5,implementation:.8,maximumReduction:.3,startYear:2026,deliveryYears:10,
+    evidence:"Synthetic mechanism test; not empirical calibration"};
+  const p=run({...base,measures:[measure]});
+  const doubled=run({...base,measures:[measure,{...measure,id:"overlapping",mechanism:"corporate"}]});
+  assert.deepEqual(p.trajectory,doubled.trajectory);
+  assert.equal(p.trajectory[2].nativeMt.CH4,p.trajectory[0].nativeMt.CH4);
+  assert.ok(p.trajectory[26].nativeMt.CH4<p.trajectory[0].nativeMt.CH4);
+  assert.equal(p.trajectory[26].nativeMt.N2O,p.trajectory[0].nativeMt.N2O);
+  assert.equal(p.trajectory[26].nativeMt.CO2,p.trajectory[0].nativeMt.CO2);
+  assert.throws(()=>run({...base,measures:[{...measure,coverage:1.1}]}),/Invalid/);
+  assert.throws(()=>run({...base,measures:[{...measure,evidence:""}]}),/Invalid/);
+  assert.throws(()=>run({...base,measures:[{...measure,sectorCodes:["invented"]}]}),/Unmatched/);
+  assert.throws(()=>run({...base,measures:[{...measure,sectorCodes:["1.A.1.a"],gases:["CO2"]}]}),/Power abatement/);
+});
+test("target proxies never masquerade as delivered policy; dated drivers change candidate identity", () => {
+  const input=resolveEmissionsInputs(HISTORICAL_INDICATORS);
+  const changed=HISTORICAL_INDICATORS.map(r=>r.year===2024?{...r,renewableCapacityGW:r.renewableCapacityGW+100}:r);
+  const next=resolveEmissionsInputs(changed);
+  assert.notEqual(run(input.diagnostic).key,run(next.diagnostic).key);
+  assert.notEqual(run(input.diagnostic).trajectory[6].reportingGtCO2e,run(next.diagnostic).trajectory[6].reportingGtCO2e);
+  // By 2050 both diagnostic cases exhaust fossil power displacement. Extra
+  // capacity must not invent negative power emissions merely to stay sensitive.
+  assert.equal(run(input.diagnostic).trajectory[26].power.fossilTWh,0);
+  assert.equal(run(next.diagnostic).trajectory[26].power.fossilTWh,0);
+  assert.equal(input.indicators.find(r=>r.key==="policyImplementationRate")?.role,"context");
+  assert.equal(input.readiness.status,"blocked-evidence-required");
+  const later=[...HISTORICAL_INDICATORS,{...HISTORICAL_INDICATORS[0],year:2027,renewableCapacityGW:99999}];
+  assert.deepEqual(resolveEmissionsInputs(later),input);
+  assert.throws(()=>resolveEmissionsInputs([]),/dated/);
+  assert.throws(()=>resolveEmissionsInputs(HISTORICAL_INDICATORS.map(r=>({...r,evSalesSharePct:NaN}))),/Invalid dated/);
 });
