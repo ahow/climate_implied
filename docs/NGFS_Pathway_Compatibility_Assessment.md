@@ -182,6 +182,30 @@ This is an implementation assessment, not legal advice.
 
 ## 8. Concrete work needed to complete Package 2
 
+### Follow-up check: full-commitments alternative
+
+The [CAT November 2025 public workbook](https://climateactiontracker.org/documents/1349/CAT_2025-11_PublicData_GlobalTemperatureEstimates_COP30.xlsx)
+has been downloaded and its sheets inspected. Its “Optimistic scenario
+(net-zero pledges)” includes all target announcements, including proposals
+not formally submitted to the UN. Its policy scope therefore fits the broader
+comparison better than NGFS NDCs.
+
+However, the workbook provides global emissions in **GtCO2eq**, plus temperature
+series, not the sector/native-gas pathways needed for this application.
+The workbook also expressly prohibits commercial reuse and requires attribution
+to Climate Analytics and NewClimate Institute and a copyright notice.
+
+It is therefore not a direct replacement for the missing native-gas comparison.
+Do not infer a unique CO2/CH4/N2O allocation from its aggregate total, import its
+temperature output as a FaIR result, or embed the downloaded data in production
+without checking the intended use and applicable rights. The raw workbook
+remains in ignored local research storage.
+
+Two legitimate next steps are available: explicitly narrow this release's
+comparison to NGFS's dated NDC-delivery scenario, or preserve the full-commitments
+scope and obtain compatible detailed pathways and suitable usage rights.
+No narrowing of the approved scope has yet been authorised.
+
 1. Build a reviewed REMIND-to-inventory crosswalk, with explicit residual buckets
    rather than invented sector splits.
 2. Compare raw, harmonized and infilled emissions before choosing a coherent
