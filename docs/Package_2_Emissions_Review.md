@@ -100,6 +100,12 @@ silently applied to the 2024 inventory.
 
 ## Remaining work before completing Package 2
 
+The pinned NGFS 5.1 archive has now been obtained and assessed. See
+[NGFS pathway compatibility assessment](NGFS_Pathway_Compatibility_Assessment.md)
+for measured baseline differences, native-gas coverage, licensing and the
+adapter-development recommendation. This resolves source acquisition and
+initial assessment, not central-scenario calibration or Package 2 completion.
+
 1. Assess the sector crosswalk and GCB/EDGAR allocation, particularly combined
    combustion categories; retain uncertainty rather than inventing splits.
 2. Establish evidence-based central sector activity, efficiency, electrification,
