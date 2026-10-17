@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { candidateInventory, constantScenario, illustrativeScenario, projectNativeEmissions } from "./calculation/emissionsCandidate";
 import { resolveEmissionsInputs } from "./calculation/emissionsInputs";
+import catReferences from "./calculation/data/catReferences.json";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -192,6 +193,11 @@ export async function registerRoutes(
     } catch (error) {
       res.status(422).json({ error: error instanceof Error ? error.message : "Invalid candidate inputs" });
     }
+  });
+
+  // Published reference information only: never feeds the projection engine.
+  app.get("/api/reference-scenarios", (_req, res) => {
+    res.json(catReferences);
   });
 
   app.post("/api/refresh", async (_req, res) => {

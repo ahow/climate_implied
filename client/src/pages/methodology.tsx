@@ -28,6 +28,43 @@ export default function Methodology() {
             <h2 className="text-base font-bold m-0 text-muted-foreground uppercase tracking-wider" data-testid="text-part1-heading">Part I: Decarbonization Dashboard</h2>
           </div>
 
+          <section aria-labelledby="published-reference-methodology-heading">
+            <div className="flex items-center gap-2 mb-3">
+              <BookOpen className="h-5 w-5 text-primary" />
+              <h2 id="published-reference-methodology-heading" className="text-lg font-semibold m-0">Independent published scenario references</h2>
+            </div>
+            <Card className="p-5 space-y-3">
+              <p className="text-sm text-muted-foreground m-0">
+                Climate Action Tracker (CAT), published 13 November 2025, is the main external reference:
+                “Policies &amp; action” represents current policies; “Optimistic scenario (net-zero pledges)”
+                assumes all announced commitments are delivered. The latter is a conditional optimistic case,
+                not an equally likely forecast. Temperatures are published median warming in 2100 above
+                pre-industrial levels from CAT MAGICC7, not our dashboard calculation or FaIR.
+              </p>
+              <p className="text-sm text-muted-foreground m-0">
+                These read-only references have a different inventory baseline and are not rebased, blended
+                into headline projections, used as calibration inputs, or evidence that Package 2 is complete.
+                Current-policy emissions low–high values are a policy-pathway range, not a probability
+                interval; optimistic emissions are separate single values. Aggregate CO2e must not be used as
+                native-gas input to FaIR.
+              </p>
+              <p className="text-sm text-muted-foreground m-0">
+                IEA World Energy Outlook 2025 supports energy, electricity, transport and industry checks:
+                CPS covers enacted policies, STEPS also considers intentions, and WEO 2025 has no updated
+                Announced Pledges Scenario. NGFS Phase V, version 5.1 supports detailed pathways and model
+                comparisons, but uses a March 2024 policy/pledge cut-off; its NDCs exclude long-term net-zero
+                pledges. Neither source is an additional calculation input or a replacement for CAT’s
+                full-commitments comparison.
+              </p>
+              <p className="text-xs text-muted-foreground m-0">
+                CAT is a pinned release, updated only after manual source review; Re-run Analysis does not
+                refresh it. Source and workbook links, attribution and copyright accompany the dashboard
+                reference. Non-commercial use only; attribution and copyright notice required.
+                Copyright © 2025 Climate Analytics and NewClimate Institute. All rights reserved.
+              </p>
+            </Card>
+          </section>
+
           <section>
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="h-5 w-5 text-primary" />

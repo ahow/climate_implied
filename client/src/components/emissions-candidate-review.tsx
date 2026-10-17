@@ -87,8 +87,8 @@ export function EmissionsCandidateReview() {
       </div>
 
       <p className="rounded-md border p-3 text-sm font-medium">
-        Package 2 remains incomplete; the approved implemented-policy main case and
-        announced-commitment comparison are NOT yet calibrated or available.
+        Package 2 remains incomplete: the native-gas scenarios are not yet calibrated.
+        The published CAT references above are independent comparisons, not outputs of this candidate model.
       </p>
 
       <p className="text-sm text-muted-foreground">
@@ -162,12 +162,12 @@ export function EmissionsCandidateReview() {
             )}
             {data.inputs.readiness?.mainCase && (
               <p className="text-sm text-muted-foreground">
-                Approved main-case basis (not yet available): {data.inputs.readiness.mainCase}
+                Native-gas main-case basis (not yet calibrated): {data.inputs.readiness.mainCase}
               </p>
             )}
             {data.inputs.readiness?.comparisonCase && (
               <p className="text-sm text-muted-foreground">
-                Approved comparison basis (not yet available): {data.inputs.readiness.comparisonCase}
+                Native-gas comparison basis (not yet calibrated): {data.inputs.readiness.comparisonCase}
               </p>
             )}
             {data.inputs.readiness?.missing?.length ? (

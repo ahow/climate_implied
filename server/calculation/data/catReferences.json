@@ -1,0 +1,89 @@
+{
+  "version": "cat-2025-11-13-v1",
+  "source": {
+    "name": "Climate Action Tracker",
+    "publishedAt": "2025-11-13",
+    "url": "https://climateactiontracker.org/global/emissions-pathways/",
+    "workbookUrl": "https://climateactiontracker.org/documents/1349/CAT_2025-11_PublicData_GlobalTemperatureEstimates_COP30.xlsx",
+    "sha256": "44044cda8f851f77d6ca0eeb0750848fb6ee32bab50939df2cc2363e63a8c6c1",
+    "attribution": "Climate Analytics and NewClimate Institute",
+    "copyright": "Copyright © 2025 Climate Analytics and NewClimate Institute. All rights reserved.",
+    "licence": "Non-commercial use only; attribution and copyright notice required."
+  },
+  "status": "published-external-reference",
+  "temperatureMetric": "Published median global mean temperature rise in 2100 above pre-industrial levels",
+  "climateModel": "CAT MAGICC7 — not the dashboard calculation or FaIR",
+  "emissionsUnit": "GtCO2e/year",
+  "comparisonCaveat": "Independent published scenarios, not rebased to the dashboard inventory. Emissions ranges describe CAT's low/high policy pathways, not a probability interval. Do not use aggregate CO2e as native-gas input to FaIR.",
+  "refreshPolicy": "Pinned release; updates require manual source review. Re-run Analysis does not refresh this reference.",
+  "scenarios": [
+    {
+      "id": "current-policies",
+      "label": "Current policies",
+      "publishedName": "Policies & action",
+      "definition": "Published projection of real-world action under current policies; does not assume all announced targets are achieved.",
+      "temperatureMedianC": 2.6,
+      "emissions": [
+        {
+          "year": 2030,
+          "low": 55.944820063190974,
+          "high": 59.051822503311165
+        },
+        {
+          "year": 2035,
+          "low": 52.38469770527068,
+          "high": 57.64813012514783
+        },
+        {
+          "year": 2050,
+          "low": 45.2637326433772,
+          "high": 54.63459982597465
+        },
+        {
+          "year": 2100,
+          "low": 24.35436541120907,
+          "high": 38.867020911652986
+        }
+      ]
+    },
+    {
+      "id": "all-announced-commitments",
+      "label": "All announced commitments delivered",
+      "publishedName": "Optimistic scenario (net-zero pledges)",
+      "definition": "Assumes governments achieve all announced targets, including long-term net-zero announcements and proposals. An optimistic conditional case, not an equally likely forecast.",
+      "temperatureMedianC": 1.9,
+      "emissions": [
+        {
+          "year": 2030,
+          "value": 54.68951435564652
+        },
+        {
+          "year": 2035,
+          "value": 49.04956276863842
+        },
+        {
+          "year": 2050,
+          "value": 30.36514727699612
+        },
+        {
+          "year": 2100,
+          "value": 6.769671324194887
+        }
+      ]
+    }
+  ],
+  "supportingSources": [
+    {
+      "name": "IEA World Energy Outlook 2025",
+      "role": "Sector-level reference checks: energy, electricity, transport and industry.",
+      "url": "https://www.iea.org/commentaries/scenarios-in-the-world-energy-outlook-2025",
+      "caveat": "CPS covers enacted policies; STEPS also assesses policy intentions. WEO 2025 has no updated Announced Pledges Scenario. These are supporting references, not additional model inputs here."
+    },
+    {
+      "name": "NGFS Phase V, version 5.1",
+      "role": "Detailed pathway and model-comparison support.",
+      "url": "https://doi.org/10.5281/zenodo.17901363",
+      "caveat": "March 2024 policy/pledge cut-off; NDCs excludes long-term net-zero pledges. Not the main user-facing reference or a replacement for the full-commitments comparison."
+    }
+  ]
+}
