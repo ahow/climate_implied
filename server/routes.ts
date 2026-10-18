@@ -200,6 +200,18 @@ export async function registerRoutes(
     res.json(catReferences);
   });
 
+  // Deployment readiness: checks DB connectivity and the approved-input table,
+  // without exposing credentials, records or connection error details.
+  app.get("/api/health", async (_req, res) => {
+    res.set("Cache-Control", "no-store");
+    try {
+      await db.execute(sql`SELECT 1 FROM indicator_values LIMIT 1`);
+      res.json({ status: "ok" });
+    } catch {
+      res.status(503).json({ status: "unavailable" });
+    }
+  });
+
   app.post("/api/refresh", async (_req, res) => {
     try {
       projectionResultCache = null;

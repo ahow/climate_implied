@@ -12,6 +12,12 @@ let timer: NodeJS.Timeout | null = null;
  * the persisted last-run timestamp, not an in-process clock.
  */
 export function startScheduler(): void {
+  // Keep the normal cadence unchanged; disable only on a migration/test replica
+  // so two hosting platforms do not both schedule collection against one DB.
+  if (process.env.DATA_SCHEDULER_ENABLED === "false") {
+    console.log("[scheduler] Disabled for this instance");
+    return;
+  }
   if (timer) return;
 
   const check = async () => {
