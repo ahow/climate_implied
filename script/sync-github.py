@@ -16,7 +16,7 @@ ROOT_FILES = {
     ".gitignore", ".replit", ".replitignore", "README.md", "replit.md",
     "components.json", "drizzle.config.ts", "package.json", "package-lock.json",
     "postcss.config.js", "pyproject.toml", "tailwind.config.ts", "tsconfig.json",
-    "uv.lock", "vite.config.ts",
+    "uv.lock", "vite.config.ts", "railpack.json",
 }
 SOURCE_DIRS = {"client", "server", "shared", "script", "docs"}
 

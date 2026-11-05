@@ -39,6 +39,13 @@ the connection string is present.
 
 ## Build and readiness
 
+Railpack must use the explicit Node provider in `railpack.json` (Node 22).
+This mixed-language repository also contains Python analysis tooling; automatic
+detection selected Python alone, leaving the npm build without its required
+Node runtime or dependency installation. Python analysis files are retained,
+but the current web service does not call Python. Revisit runtime provisioning
+when a future physical-model integration actually requires it.
+
 - Build: selected calculation/reference tests followed by `npm run build`.
 - Start: `npm run start`.
 - Bind: `0.0.0.0`, Railway-provided `PORT`.
