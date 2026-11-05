@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { candidateInventory, constantScenario, illustrativeScenario, projectNativeEmissions } from "./calculation/emissionsCandidate";
 import { resolveEmissionsInputs } from "./calculation/emissionsInputs";
 import catReferences from "./calculation/data/catReferences.json";
+import { newsMonthWindow } from "./newsApi/requestOptions";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -855,8 +856,7 @@ export async function registerRoutes(
 
   app.get("/api/news/climate", async (_req, res) => {
     try {
-      const months = parseInt(String(_req.query.months) || "12", 10);
-      const validMonths = Math.min(Math.max(months, 1), 24);
+      const validMonths = newsMonthWindow(_req.query.months);
       const result = await getClimateNewsAnalysis(validMonths);
       res.json(result);
     } catch (error: any) {
