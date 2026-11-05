@@ -100,6 +100,11 @@ silently applied to the 2024 inventory.
 
 ## Remaining work before completing Package 2
 
+The subsequent native-gas adapter and raw/harmonized/infilled comparison are
+documented in [continuation status](Remediation_Continuation_Status.md).
+They make baseline and species-coverage gaps reproducible but do not complete
+the central scenario or change the legacy headline.
+
 The pinned NGFS 5.1 archive has now been obtained and assessed. See
 [NGFS pathway compatibility assessment](NGFS_Pathway_Compatibility_Assessment.md)
 for measured baseline differences, native-gas coverage, licensing and the
