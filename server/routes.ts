@@ -53,6 +53,8 @@ import { INDICATORS, getCuratedValue, getIndicatorDef } from "./dataIngestion/in
 import { calculationKey } from "./calculation/identity";
 import { CALCULATION_VERSION, legacyContext } from "../shared/calculationContract";
 import { checkFinancialProvider, financialProviderStatus } from "./financialData/status";
+import { listFinancialReviews } from "./financialData/reviewStore";
+import { calculationReadiness } from "./calculation/readiness";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -183,6 +185,14 @@ export async function registerRoutes(
       remainingScientificWork: ["inventory reconciliation", "emissions mechanisms", "FaIR",
         "coherent ensemble propagation", "valuation inference", "point-in-time backtesting"],
     });
+  });
+
+  app.get("/api/financial-data/reviews", async (_req, res) => {
+    try { res.set("Cache-Control", "no-store").json(await listFinancialReviews()); }
+    catch { res.status(503).json({ error: "Financial review storage unavailable" }); }
+  });
+  app.get("/api/calculation/readiness", (_req, res) => {
+    res.set("Cache-Control", "no-store").json(calculationReadiness());
   });
 
   app.get("/api/emissions/candidate", (req, res) => {

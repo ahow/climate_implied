@@ -1,7 +1,11 @@
 import { db } from "../server/db";
-import { cvCompanies } from "../shared/schema";
-import { reconcileIdentities } from "../server/financialData/identity";
+import { cvCompanies, financialReviews } from "../shared/schema";
+import { eq } from "drizzle-orm";
+import { reconcileIdentities, reviewedIdentitySchema } from "../server/financialData/identity";
+import { ensureFinancialReviews } from "../server/financialData/reviewStore";
 const inputs = await db.select({ id: cvCompanies.id, isin: cvCompanies.isin }).from(cvCompanies);
-// No accepted issuer reviews existed at rollout. No source records are modified.
-console.log(JSON.stringify(reconcileIdentities(inputs, []), null, 2));
+await ensureFinancialReviews();
+const approved = await db.select().from(financialReviews).where(eq(financialReviews.status, "approved"));
+const identities = approved.map(row => reviewedIdentitySchema.parse((row.payload as { identity: unknown }).identity));
+console.log(JSON.stringify(reconcileIdentities(inputs, identities), null, 2));
 process.exit(0);

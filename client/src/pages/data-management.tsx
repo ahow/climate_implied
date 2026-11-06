@@ -38,6 +38,7 @@ import { useToast } from "@/hooks/use-toast";
 import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { FinancialProviderStatus } from "@/components/financial-provider-status";
+import { FinancialReview, ScientificValidation } from "@/components/financial-review";
 
 interface IndicatorSummary {
   key: string;
@@ -265,6 +266,8 @@ export default function DataManagement() {
       </div>
 
       <FinancialProviderStatus />
+      <FinancialReview />
+      <ScientificValidation />
 
       {isLoading ? (
         <div className="space-y-3">

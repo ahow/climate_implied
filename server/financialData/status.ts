@@ -9,7 +9,7 @@ let status: FinancialProviderStatus = {
   approvedUpdatesEnabled: false,
   limitations: [
     "AAPL is a provider-connectivity sample, not a mapped portfolio or trading recommendation.",
-    "No workbook data or approved company records are modified.",
+    "This connectivity sample modifies no workbook records. Separate financial proposals can be staged and approved by an authorized workspace operator.",
     "Prices are a timestamped snapshot, not a streaming feed.",
     "OpenFIGI/FMP matching still requires issuer and listing review.",
     "FMP ESG ratings are not substitutes for carbon emissions or MSCI SDG scores.",

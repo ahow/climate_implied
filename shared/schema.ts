@@ -139,6 +139,15 @@ export const newsCache = pgTable("news_cache", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Additive operator review journal; original workbook tables remain untouched.
+export const financialReviews = pgTable("financial_reviews", {
+  id: text("id").primaryKey(),
+  status: text("status").notNull(),
+  payload: jsonb("payload").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  reviewedAt: timestamp("reviewed_at", { withTimezone: true }),
+});
+
 export const insertNewsCacheSchema = createInsertSchema(newsCache).omit({ createdAt: true });
 export type NewsCache = typeof newsCache.$inferSelect;
 export type InsertNewsCache = z.infer<typeof insertNewsCacheSchema>;
