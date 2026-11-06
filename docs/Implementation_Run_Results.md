@@ -109,3 +109,12 @@ snapshots enforce matching currencies without guessing conversion factors.
 
 Tests: six valuation/integrity fixtures passed; typecheck passed. Calculation
 identity was bumped to prevent old cached finance outputs bypassing the repairs.
+
+## 8. Distinct climate-signal research
+
+Implemented preregistered train/holdout evaluation against supplied conventional
+controls, nested least squares, incremental out-of-sample MSE and deterministic
+paired-bootstrap uncertainty. Future publications/training outcomes are rejected;
+changing holdout outcomes cannot alter fitted coefficients. This produces a
+restricted go/no-go for the supplied specification, not a claim of investment
+alpha. Real source vintages and time/sector stability still need evidence.

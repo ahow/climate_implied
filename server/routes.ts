@@ -58,6 +58,7 @@ import { calculationReadiness } from "./calculation/readiness";
 import { validateNativePair } from "./calculation/nativePathwayContract";
 import { summarizeEnsemble } from "./calculation/ensemble";
 import { evaluateHoldout } from "./calculation/evaluation";
+import { evaluateSignal } from "./calculation/signalResearch";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -208,6 +209,10 @@ export async function registerRoutes(
   app.post("/api/calculation/evaluate-holdout", (req, res) => {
     try { res.json(evaluateHoldout(req.body?.protocol, req.body?.rows)); }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid holdout" }); }
+  });
+  app.post("/api/calculation/evaluate-signal", (req, res) => {
+    try { res.json(evaluateSignal(req.body)); }
+    catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid research evidence" }); }
   });
   app.use("/api/projection", (req, res, next) => {
     if (req.query.engine !== undefined && req.query.engine !== "legacy") {
