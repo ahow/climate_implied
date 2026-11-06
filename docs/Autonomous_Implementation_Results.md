@@ -95,6 +95,12 @@ valuation prerequisites. No investment alpha is claimed.
   `approvedUpdatesEnabled: false`: the production FMP sample request succeeded.
 - Valuation statistics: GitHub `bd4af1944fa1552c27ac49e86b44b8822a165a0c`;
   Railway `a1f1c457-27ac-4a8e-989e-7c84e3eb6e5f`, SUCCESS.
+- Backtest repair: GitHub `58a628574e11bc80e1449a30ebcf1f6ec0c34ffe`;
+  Railway `9477e092-5450-40d4-91b4-b8d1f6d6406a`, SUCCESS.
+  Production returned 192 monthly observations, exactly benchmark warm-up,
+  `expanding_past_only` risk basis and explicit unavailable SDG history.
+  Requested TE was 2%; realized TE was 2.312472292%, correctly reported
+  `outside_tolerance`. The health endpoint returned `status: ok`.
 
 ## Step 9 / Package 7 — backtest accounting and past-only risk scaling
 
@@ -150,6 +156,25 @@ The old mean and median were both the separate SDG aggregate. The new values
 summarize company peer-relative growth differences. Six additional companies
 are retained after removing the arbitrary P/E >500 exclusion. These are
 heuristic valuation measures, not measured physical emissions declines.
+
+### End-of-pass acceptance matrix
+
+| Step | Outcome |
+| --- | --- |
+| 1 | Handover and release discipline implemented and maintained |
+| 2 | Provider diagnostic deployed; matching coverage gate failed |
+| 3 | Approved financial updates blocked by unresolved identity matching |
+| 4 | Numerical audits pass; complete scenario/calibration acceptance remains open |
+| 5 | Standalone FaIR execution passes; application coupling and independent validation incomplete |
+| 6 | Default scientific promotion blocked by Steps 4–5 |
+| 7 | Cross-sectional valuation statistics repaired; broader valuation package partial |
+| 8 | Existing formula has no distinct climate ranking; new-signal research lacks prerequisites |
+| 9 | Return accounting/past-only risk repaired; full investable backtest criteria not met |
+| 10 | Deployed repairs and production health verified; overall programme not complete |
+
+No routine permission was requested between these steps. Failed/open gates were
+recorded and independent work continued. This matrix is not a claim that every
+planned feature has been implemented.
 
 ## Reproduction
 
