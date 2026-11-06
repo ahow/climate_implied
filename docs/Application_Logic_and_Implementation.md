@@ -1,6 +1,6 @@
 # Application logic, implementation and delivery sequence
 
-Last reviewed: 5 November 2026.
+Last reviewed: 6 November 2026.
 
 This is the primary developer handover for the climate dashboard. Update it in
 the same change as material changes to calculations, data flows, integrations,
@@ -55,7 +55,7 @@ There is no continuous workspace-to-GitHub background synchronization job.
 | NGFS research | Source assessment and raw/harmonized/infilled baseline adapter | Empirically selected harmonization, complete species/sector mappings and all-commitments coverage |
 | FaIR | Pinned standalone reference runner | Application coupling, updated historical validation and production runtime |
 | Company analysis | Workbook ingestion and legacy valuation/backtest calculations | Packages 5–7 corrections and validation |
-| FMP | Replit credential saved; sample quote, income-statement and ESG requests verified | Railway credential, application adapter, persisted refresh proposals and UI |
+| FMP | Replit credential tested; Railway variable presence and successful deployment verified | Production provider request, application adapter, persisted refresh proposals and UI |
 
 The headline near 2.40°C is a legacy result, not an output of the candidate
 inventory, CAT or the FaIR reference runner. It is not an immutable constant:
@@ -282,7 +282,9 @@ dates. The sampled ESG endpoints provide scores/ratings, not Scope 1–3 emissio
 FMP ESG scores must not silently replace MSCI SDG alignment or carbon quantities.
 
 **Not active:** there is no production FMP refresh integration yet. A stored key
-does not make prices live. Railway currently lacks `FMP_API_KEY`.
+does not make prices live. On 6 November 2026, Railway's `FMP_API_KEY` variable
+presence and successful deployment were verified after the user added it.
+This is not yet proof of a successful provider request from the production app.
 
 Set the same key through Railway's secure Variables UI:
 project `climate-implied` → service `dashboard` → environment `production` →
@@ -294,8 +296,11 @@ shared-variable reference.
 
 Planned ingestion:
 
-1. Resolve company/security identifiers, exchange and quote currency; reject
-   ambiguous ticker matches instead of joining on company name.
+1. Resolve company/security identifiers with OpenFIGI as a supporting mapping
+   source, preserving issuer, share-class and listing distinctions. Cross-check
+   the selected FMP symbol, exchange and quote currency; quarantine ambiguous
+   matches instead of joining on company name. See the detailed
+   [matching acceptance criteria](Implementation_Success_Criteria.md).
 2. Fetch financial/pricing fields server-side with timeouts, bounded requests,
    cache/freshness rules and quota-aware error handling.
 3. Retain field source, fetched time, financial period, publication date, units
@@ -309,6 +314,10 @@ Current prices must not be substituted for historical prices in a backtest.
 Unknown profit currency must not be combined with market cap in another currency.
 
 ## 10. Ordered implementation and production release sequence
+
+The [step-by-step success criteria](Implementation_Success_Criteria.md) define
+measurable acceptance checks, required evidence and failure outcomes for all
+ten steps. They are requirements, not statements that the steps already passed.
 
 No routine approval pauses are required. Each numbered step is a separately
 verified release; it may expose diagnostics before a replacement is ready.

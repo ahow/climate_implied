@@ -29,6 +29,9 @@ are not included in this repository.
 This is the maintained developer handover, including current versus planned
 behavior, data flows, mathematical assumptions and production release gates.
 
+[Success criteria for every implementation step](docs/Implementation_Success_Criteria.md)
+define pass/fail checks, evidence and the OpenFIGI-assisted security-matching approach.
+
 - `docs/Dashboard_Purpose_Methodology_and_Implementation.html`
 - `docs/API_Contract.md`
 - `docs/Climate_Model_Remediation_Basis.md`
