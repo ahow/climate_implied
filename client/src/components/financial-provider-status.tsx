@@ -31,7 +31,7 @@ export function FinancialProviderStatus() {
       <CardHeader className="space-y-3">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
-            <CardTitle className="text-lg">FMP / OpenFIGI provider status</CardTitle>
+            <CardTitle className="text-lg">FMP connection diagnostic</CardTitle>
             <p className="text-sm text-muted-foreground">
               Provider verification is not approval to use its data in calculations.
             </p>

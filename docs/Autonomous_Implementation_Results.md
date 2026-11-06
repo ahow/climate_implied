@@ -93,6 +93,63 @@ valuation prerequisites. No investment alpha is claimed.
   Railway `b19a8f89-7112-472f-848c-c32c1c1a8365`, SUCCESS.
   The production status endpoint returned `configured: true`, `state: verified`,
   `approvedUpdatesEnabled: false`: the production FMP sample request succeeded.
+- Valuation statistics: GitHub `bd4af1944fa1552c27ac49e86b44b8822a165a0c`;
+  Railway `a1f1c457-27ac-4a8e-989e-7c84e3eb6e5f`, SUCCESS.
+
+## Step 9 / Package 7 — backtest accounting and past-only risk scaling
+
+Implemented:
+
+- Consecutive-month validation; a missing month is no longer compressed into
+  one ordinary monthly return.
+- Finite return/weight checks, preservation of genuine >50% returns and total
+  losses represented by a zero return index.
+- Expanding risk scaling using only previously realized unit-tilt returns.
+  First 12 observed months hold the benchmark; tilt is capped at 5 and long-only
+  portfolio weights normalize to one. Realized risk is not forced to the target.
+- Quarter-lagged dated financial/emissions observations for value and carbon
+  ranking, without applying the latest observation to the entire history.
+- No dependency on future/current physical projections for within-peer ranks.
+- Missing carbon scopes are not silently interpreted as zero emissions.
+- SDG/target backtests return explicit unavailable warnings rather than applying
+  undated current classifications retrospectively.
+
+Verification: 54 TypeScript tests passed; production build passed. Fixtures
+cover portfolio wealth accounting, future-observation perturbation, extreme
+returns, month gaps, missing historical classification and benchmark warm-up.
+The live-data warm-up check exposed tiny floating-point differences from
+renormalizing an already benchmark-weighted portfolio. The zero-tilt path now
+returns the benchmark exactly, protected by a 2,345-company regression fixture.
+
+**Partial, not point-in-time certification:** original data publication dates,
+historical universes/sector classification, provider revisions, corporate actions,
+missing-company return treatment, transaction costs and full attribution remain
+unresolved. Returns remain gross. The API and UI expose these limitations.
+
+The full TypeScript check still fails on the same eight pre-existing upload/
+schema errors. No new financial-provider or walk-forward type errors remain.
+This failed gate is recorded rather than described as passing.
+
+## Step 10 — reconciliation status
+
+The independent implemented repairs have passing targeted tests and builds.
+Steps 2–9 are not collectively complete: matching coverage, approved financial
+updates, scientific conversion/promotion and broader finance/backtest acceptance
+are explicitly incomplete or blocked. No source database records were edited
+by this work, and no production company data was replaced with FMP samples.
+
+Production valuation comparison (same default sector-relative request):
+
+| Metric | Before statistics repair | After |
+| --- | ---: | ---: |
+| Mean company implied-rate measure | 0.27 | −0.56 |
+| Median company implied-rate measure | 0.27 | 0.00 |
+| Companies scored | 2,345 | 2,351 |
+
+The old mean and median were both the separate SDG aggregate. The new values
+summarize company peer-relative growth differences. Six additional companies
+are retained after removing the arbitrary P/E >500 exclusion. These are
+heuristic valuation measures, not measured physical emissions declines.
 
 ## Reproduction
 

@@ -269,6 +269,19 @@ target progress only where target definitions permit it.
 
 ### Historical portfolios
 
+The API now uses `walkForwardBacktest.ts` and the pure `walkForward.ts` risk/
+portfolio component. Risk scaling uses past realized unit-tilt returns only,
+with a 12-observation benchmark warm-up and a tilt cap of 5. Series points expose
+their actual tilt; the UI reports the latest tilt and initial training window.
+The old full-sample optimizer remains explicitly named as a legacy comparison,
+not the API implementation. Returns are still gross of costs.
+
+Monthly returns require adjacent months and preserve genuine extremes/total
+losses. Value/carbon signals use prior-quarter observations. SDG/target backtests
+are unavailable where historical classifications are absent, instead of
+backfilling today's classifications. These repairs do not supply missing
+publication dates, security histories or corporate-action evidence.
+
 The backtest needs explicit information-availability dates, historical
 classifications/universe membership, correctly aligned returns and training-only
 risk fitting. A date attached to an accounting period is not a publication date.

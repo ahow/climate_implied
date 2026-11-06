@@ -18,7 +18,8 @@ export function BacktestSummary({ data, error, label }: {
       <p>
         {label && <strong>{label}: </strong>}
         Target TE {s.targetTrackingErrorPct.toFixed(2)}% · Realised full-period TE {s.realizedTrackingErrorPct?.toFixed(3) ?? "N/A"}%
-        {" · "}Tilt {s.tiltScale?.toFixed(4) ?? "N/A"}
+        {" · "}{s.calibrationBasis === "expanding_past_only" ? "Latest tilt" : "Tilt"} {s.tiltScale?.toFixed(4) ?? "N/A"}
+        {s.calibrationBasis === "expanding_past_only" && " · Initial training"}
         {s.calibrationPeriod && ` · ${s.calibrationPeriod.start}–${s.calibrationPeriod.end} (${s.calibrationPeriod.months} months)`}
         {" · "}Ranking: {s.method.replaceAll("_", " ")}
       </p>

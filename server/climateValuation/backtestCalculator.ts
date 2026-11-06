@@ -16,7 +16,7 @@ interface CompanyMonthly {
 }
 
 function toMonthKey(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
 export function computeSignalScores(
@@ -45,11 +45,12 @@ export function computeSignalScores(
       if (!series || series.length === 0) continue;
       const sorted = orderCalculationRows(series);
       const latest = sorted[sorted.length - 1];
-      const s1 = latest.scope1Emissions ?? 0;
-      const s2 = latest.scope2Emissions ?? 0;
+      const s1 = latest.scope1Emissions;
+      const s2 = latest.scope2Emissions;
+      if (s1 == null || s2 == null || !Number.isFinite(s1) || !Number.isFinite(s2) || s1 < 0 || s2 < 0) continue;
       const totalEmissions = s1 + s2;
       const mc = latest.marketCap;
-      if (!mc || mc <= 0 || totalEmissions === 0) continue;
+      if (!mc || !Number.isFinite(mc) || mc <= 0) continue;
       rawValues.push({ id: c.id, value: -(totalEmissions / mc) });
     }
   }
@@ -75,7 +76,8 @@ export function computeMonthlyReturns(
   const companyEntries = Array.from(timeSeriesByCompany.entries());
   for (const [companyId, series] of companyEntries) {
     const sorted = series
-      .filter((s: CvTimeSeries) => s.totalReturnIndex !== null && s.marketCap !== null)
+      .filter((s: CvTimeSeries) => s.totalReturnIndex !== null && Number.isFinite(s.totalReturnIndex) &&
+        s.totalReturnIndex >= 0 && s.marketCap !== null && Number.isFinite(s.marketCap) && s.marketCap >= 0)
       .sort((a: CvTimeSeries, b: CvTimeSeries) => a.date!.getTime() - b.date!.getTime());
 
     const monthlyRI = new Map<string, { firstRI: number; lastRI: number; lastMV: number; lastDate: Date }>();
@@ -101,10 +103,12 @@ export function computeMonthlyReturns(
     for (let i = 1; i < monthKeys.length; i++) {
       const prev = monthlyRI.get(monthKeys[i - 1])!;
       const curr = monthlyRI.get(monthKeys[i])!;
-      if (prev.lastRI <= 0) continue;
+      if (prev.lastRI <= 0 || prev.lastMV <= 0) continue;
+      const monthNumber = (key: string) => Number(key.slice(0, 4)) * 12 + Number(key.slice(5));
+      if (monthNumber(monthKeys[i]) - monthNumber(monthKeys[i - 1]) !== 1) continue;
 
       const ret = (curr.lastRI / prev.lastRI) - 1;
-      if (Math.abs(ret) > 0.5) continue;
+      if (!Number.isFinite(ret) || ret < -1) continue;
 
       const mk = monthKeys[i];
       if (!monthlyData.has(mk)) monthlyData.set(mk, []);
@@ -352,7 +356,8 @@ function runBacktestWithTimeVaryingSignal(
   return { results, annualizedTE };
 }
 
-export async function calculateBacktest(
+/** Retained only as an explicit legacy comparison; the API uses walkForwardBacktest. */
+export async function calculateLegacyBacktest(
   signal: SignalType,
   trackingErrorLimit: number,
   scoringMethod: string = "sector_relative",

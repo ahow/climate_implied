@@ -33,7 +33,8 @@ import { calculateDecarbBands } from "./climateValuation/decarbBandCalculator";
 import { calculateDecarbTerciles } from "./climateValuation/decarbTercileCalculator";
 import { eq, and, desc, sql } from "drizzle-orm";
 import { getClimateNewsAnalysis } from "./newsApi/newsService";
-import { calculateBacktest, type SignalType } from "./climateValuation/backtestCalculator";
+import type { SignalType } from "./climateValuation/backtestCalculator";
+import { calculateBacktest } from "./climateValuation/walkForwardBacktest";
 import { validateCvRequest } from "./climateValuation/queryValidation";
 import { calculateDecarbGapSummary, calculateDecarbGapTimeSeries, type ScoringMethod as GapScoringMethod } from "./climateValuation/decarbGapCalculator";
 import { z } from "zod";
@@ -841,18 +842,9 @@ export async function registerRoutes(
       const scoringMethod = (req.query.method as string) || (signal === "decarb_gap" ? "sector_relative" : "absolute");
       const geography = req.query.geography as string | undefined;
 
-      let projectedRate: number | undefined;
-      let projectedRatesByYear: Map<number, number> | undefined;
-      if (signal === "decarb_gap") {
-        projectedRate = await getProjectedRate();
-        const historicalTrend = getRecalculatedHistoricalTrend();
-        projectedRatesByYear = new Map<number, number>();
-        for (const point of historicalTrend) {
-          projectedRatesByYear.set(point.year, point.reductionRate);
-        }
-      }
-
-      const results = await calculateBacktest(signal, trackingErrorLimit, scoringMethod, geography, projectedRate, projectedRatesByYear);
+      // Common physical projections cancel from peer ranks. Do not feed today's
+      // reconstructed physical forecasts into historical portfolio selection.
+      const results = await calculateBacktest(signal, trackingErrorLimit, scoringMethod, geography);
       res.json(req.query.format === "series" ? results.series : results);
     } catch (error) {
       console.error("Backtest calculation error:", error);
