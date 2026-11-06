@@ -136,3 +136,40 @@ not described as a validated corporate-action or delisting treatment.
 Tests: eight accounting/walk-forward tests passed after adding an explicit
 zero-cost query regression; typecheck and production build passed. The original
 numeric-query helper excluded zero, which was corrected for cost inputs only.
+
+## 10. Combined verification and production reconciliation
+
+The combined suite passes: 78 TypeScript tests, 14 Python tests, a clean
+TypeScript check and the production build. Data Management was visually checked.
+Production review/readiness endpoints work; unapproved engine requests return
+409. Production zero-cost wealth reconciles to gross wealth, the ensemble
+summary fixture returns the expected median, and SDG/target-band endpoints
+return valid responses. The production backtest returns 192 periods, gross wealth 6.0033578724,
+net wealth 5.9319051266 at the disclosed 10bps cost assumption, turnover
+6.4860852869 and maximum net drawdown 29.94518%. Initial wealth is 1.
+
+Each step was committed and source-exported separately:
+
+| Step | GitHub commit |
+| --- | --- |
+| 1 | 4e8323ca70b95342496643d59cae135106e27ad8 |
+| 2 | d10746d3130bd80b3e9821dbeb4c5beb6f0b90d8 |
+| 3 | f02ab5cd01a994ac866f8b3018764a1c91a17593 |
+| 4 | 7b555e0a4f573cac2fee1a612c1bcb7f6f49ced1 |
+| 5 | c1bdc18aaf29613b2642f80c3b53bc3257d637ed |
+| 6 | cf92825e036150f3c9b6ec5b844ef33e5cf39944 |
+| 7 | 6cb8627f2bd8cf434c32b8aa5a871275228b4a9d |
+| 8 | 86fea0783c07fe008aa065ce54c19af965ea1447 |
+| 9 | 925284d03dc0e5c99c73603f3276f0f9e59de4ed |
+
+Railway reports step 9 (containing steps 1–9) SUCCESS, deployment
+2cb4b7d0-1784-407f-b178-10af7520eccb. Earlier releases are reported REMOVED after
+supersession; this is not evidence of individual failed deployments. The final
+documentation/copy reconciliation is released separately and its latest SHA is
+reported in the completion response.
+
+Remaining acceptance limitations are explicit: identity coverage is not 95%,
+financial approvals are operator-only, real scientific pathways/reference/
+hindcast evidence is incomplete, FaIR is offline rather than the live default,
+and research/backtest data are not certified point-in-time. Passing engineering
+fixtures is not represented as passing these real-data/scientific gates.

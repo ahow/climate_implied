@@ -2,6 +2,92 @@
 
 Last reviewed: 6 November 2026.
 
+## Resumed implementation: current operational contracts
+
+The implementation/test record is
+[Implementation run results](Implementation_Run_Results.md). This section
+supersedes earlier descriptions of these features as planned or blocked.
+Scientific promotion remains separate from software implementation.
+
+### Financial identities, review and calculation
+
+- `server/financialData/identity.ts` validates evidence-backed security reviews,
+  matches them to provider candidates and prevents duplicate issuer acceptance.
+  `script/financial-coverage.ts` reconciles the entire input universe against
+  currently approved review identities; unresolved securities remain eligible.
+- `script/financial-review.ts stage <review.json>` checks the selected ISIN,
+  exchange/share-class/currency with FMP/OpenFIGI, fetches a quote and last annual
+  statement, then stages a proposal. It requires the actual workbook company ID
+  and source-backed issuer/listing review. Keep review files outside Git.
+- `server/financialData/reviewStore.ts` persists the additive financial_reviews
+  journal. Approval/rejection runs through the authorized workspace CLI, not
+  a public mutation API. PostgreSQL transactions, a transaction-scoped advisory
+  lock, immutable IDs and terminal states make repeated decisions safe and
+  prevent conflicting issuer approvals. New approvals supersede older ones.
+- `server/financialData/review.ts` validates currencies/dates/finite values and
+  derives a SHA-256 input identity independent of repeated fetch time.
+  Price-to-last-annual-earnings = current issuer market capitalization divided
+  by last reported annual net income. Non-positive income gives unavailable,
+  not a zero-growth observation. This is not TTM P/E.
+- `GET /api/financial-data/reviews` supplies the read-only Data Management UI.
+  Quote observation time is separate from fetch time; no streaming/live label is
+  used. The latest 200 reviews are returned. Original workbook financial/carbon
+  histories are never overwritten. No new scheduler owner was introduced.
+
+### Native emissions, FaIR and promotion
+
+- `POST /api/emissions/validate-native-pathways` accepts the two-case schema in
+  `nativePathwayContract.ts`. Units are native Mt gas/year, years are 2024–2100,
+  and every stored inventory gas must be represented. CO2 energy/industry and
+  land-use are separate. Both scenarios must match the same inventory within
+  1e-6 relative numerical tolerance (absolute floor 1e-9 Mt). NDC-only cannot
+  represent all announced commitments. Cumulative comparisons cover 2025–2100.
+- `uv run python script/fair-reference.py --pathway <single-case.json>` replaces
+  the reference template's future emissions using `fair_native_bridge.py`.
+  Native mass units are explicitly converted to template units. Unsupported
+  species or incomplete inputs raise errors; there is no aggregate CO2e shortcut.
+  Pre-2024 template history is preserved, not claimed to be newly validated.
+- The runner exports member-level annual temperature anomalies relative to
+  1850–1900. `ensemble.ts` supplies the same median, quantiles, density and
+  exceedance probabilities to all diagnostic consumers. No 1–5°C clipping or
+  historical offset is added. `summarize-fair.ts` supports an aligned independent
+  numerical comparison at <=0.01°C; source independence is a separate check.
+- `POST /api/calculation/evaluate-holdout` uses a declared protocol, cutoff,
+  baseline and tolerances to measure bias, MAE and interval coverage.
+  Future inputs or contaminated training fail; revised history cannot certify
+  a point-in-time forecast. `GET /api/calculation/readiness` exposes seven
+  unpassed scientific/runtime gates. Explicit `engine=fair` requests fail with
+  HTTP 409 rather than silently returning legacy output.
+
+### Valuation, research and portfolios
+
+- Missing required carbon scopes produce unavailable intensity; observed zeros
+  remain zeros. Invalid P/E is not zero growth. Target annualisation requires
+  an explicit base year and uses signed cumulative change; absent workbook
+  base-year/boundary metadata leaves annualised comparisons unavailable.
+  Legacy physical/carbon-price inference is labelled illustrative on finance
+  pages; workbook currency compatibility is not presumed verified.
+- `POST /api/calculation/evaluate-signal` runs one preregistered specification:
+  controls-only versus controls-plus-candidate least squares on training data,
+  incremental holdout MSE and 500 deterministic paired bootstrap resamples.
+  It verifies supplied publication/outcome dates, not their external provenance.
+  Independent-row bootstrap is not a substitute for time/sector robustness.
+- `walkForward.ts` retains past-only risk scaling and now tracks post-return
+  holdings drift, cash investment, traded notional and turnover.
+  Cost fraction = traded notional × costBps / 10,000; net monthly return =
+  (1 − cost fraction) × (1 + gross return) − 1. Net wealth compounds these returns.
+  Initial investment is charged; a complete loss terminates the portfolio.
+  `costBps=0..100` is supported by the API (default 10, an assumption).
+  The UI reports net/gross cumulative returns, maximum net drawdown and turnover.
+  Existing charts and tracking error remain gross. Missing-return liquidation,
+  historical classification, corporate actions and survivor bias remain caveats.
+
+Validation: `npx tsx --test script/*.test.ts`, `npm run check`, `npm run build`,
+and `uv run python -m unittest discover -s script -p 'test_*.py'`.
+The rollback-only database fixture is `npx tsx script/check-financial-review-db.ts`;
+run it only against development. Source-only releases use
+`bash script/release-source.sh` after an explicit reviewed commit.
+
 This is the primary developer handover for the climate dashboard. Update it in
 the same change as material changes to calculations, data flows, integrations,
 assumptions or deployment. It describes **implemented behavior separately from

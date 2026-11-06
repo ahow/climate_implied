@@ -151,7 +151,8 @@ export function FinancialProviderStatus() {
           <p>
             Startup diagnostic only; no automatic provider-price refresh. Reload status reads
             the saved status and does not fetch paid data, refresh provider prices, or rerun
-            verification. Provider-data approval and updates to calculation inputs are not implemented.
+            verification. Separate financial snapshots can be staged and approved through the authorized
+            operator workflow below; this sample never updates historical workbook inputs.
           </p>
           {!!data?.limitations.length && (
             <ul className="list-disc space-y-1 pl-4">
