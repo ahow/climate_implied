@@ -37,6 +37,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { FinancialProviderStatus } from "@/components/financial-provider-status";
 
 interface IndicatorSummary {
   key: string;
@@ -262,6 +263,8 @@ export default function DataManagement() {
           </CardContent>
         </Card>
       </div>
+
+      <FinancialProviderStatus />
 
       {isLoading ? (
         <div className="space-y-3">

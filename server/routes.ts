@@ -51,6 +51,7 @@ import {
 import { INDICATORS, getCuratedValue, getIndicatorDef } from "./dataIngestion/indicatorRegistry";
 import { calculationKey } from "./calculation/identity";
 import { CALCULATION_VERSION, legacyContext } from "../shared/calculationContract";
+import { checkFinancialProvider, financialProviderStatus } from "./financialData/status";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -79,6 +80,11 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  void checkFinancialProvider();
+  app.get("/api/financial-data/status", (_req, res) => {
+    res.setHeader("Cache-Control", "no-store");
+    res.json(financialProviderStatus());
+  });
   app.use("/api/cv", validateCvRequest);
 
   await db.update(cvDataUploads)

@@ -55,7 +55,7 @@ There is no continuous workspace-to-GitHub background synchronization job.
 | NGFS research | Source assessment and raw/harmonized/infilled baseline adapter | Empirically selected harmonization, complete species/sector mappings and all-commitments coverage |
 | FaIR | Pinned standalone reference runner | Application coupling, updated historical validation and production runtime |
 | Company analysis | Workbook ingestion and legacy valuation/backtest calculations | Packages 5–7 corrections and validation |
-| FMP | Replit credential tested; Railway variable presence and successful deployment verified | Production provider request, application adapter, persisted refresh proposals and UI |
+| FMP | Bounded provider client, startup sample check, read-only Data Management status, OpenFIGI candidate audit | Accepted universe-wide matching, persisted refresh proposals and approval/apply UI |
 
 The headline near 2.40°C is a legacy result, not an output of the candidate
 inventory, CAT or the FaIR reference runner. It is not an immutable constant:
@@ -281,10 +281,18 @@ Income statements provide currency, accounting period and filing/acceptance
 dates. The sampled ESG endpoints provide scores/ratings, not Scope 1–3 emissions.
 FMP ESG scores must not silently replace MSCI SDG alignment or carbon quantities.
 
-**Not active:** there is no production FMP refresh integration yet. A stored key
+**Not active:** there is no approved-company FMP refresh integration yet. A stored key
 does not make prices live. On 6 November 2026, Railway's `FMP_API_KEY` variable
 presence and successful deployment were verified after the user added it.
 This is not yet proof of a successful provider request from the production app.
+
+The diagnostic implementation now exposes `/api/financial-data/status`. Startup
+performs three fixed-symbol sample requests once per process; public GETs only
+read the status. Data Management displays quote observation time separately
+from check time and explicitly states that approved company records are unchanged.
+`script/audit-financial-mappings.ts` is an operator-only bounded mapping pilot,
+not a public paid-data proxy or an approved issuer merge. See
+[autonomous results](Autonomous_Implementation_Results.md) for measured coverage.
 
 Set the same key through Railway's secure Variables UI:
 project `climate-implied` → service `dashboard` → environment `production` →
