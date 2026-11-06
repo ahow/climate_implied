@@ -250,6 +250,14 @@ peer median and subtracts it from a common physical projection. A common
 projection shifts gaps but does not create a new within-peer ranking: the
 ranking is driven by relative earnings yields.
 
+The November 2026 statistics repair calculates the summary mean and median
+from these company-level values, not the separate SDG clean/dirty aggregate.
+Historical quartiles now describe the cross section at each date, not the
+distribution of aggregate values over the entire time series. These are
+descriptive statistics, not uncertainty intervals or validated physical rates.
+Valid high P/E values are retained; nonfinite and invalid positive-profit
+fallback ratios are excluded. Other legacy finance limitations remain.
+
 The legacy finance temperature conversion assumes exponential emissions decline
 and applies a separate aggregate-to-TCRE approximation. The reduction-to-price
 lookup is illustrative, not an empirically identified carbon-price curve.
@@ -284,7 +292,8 @@ FMP ESG scores must not silently replace MSCI SDG alignment or carbon quantities
 **Not active:** there is no approved-company FMP refresh integration yet. A stored key
 does not make prices live. On 6 November 2026, Railway's `FMP_API_KEY` variable
 presence and successful deployment were verified after the user added it.
-This is not yet proof of a successful provider request from the production app.
+Subsequently, the deployed diagnostic endpoint returned `state: verified`,
+confirming the bounded FMP sample requests also succeeded from production.
 
 The diagnostic implementation now exposes `/api/financial-data/status`. Startup
 performs three fixed-symbol sample requests once per process; public GETs only

@@ -56,6 +56,44 @@ of application FaIR integration.
 **Blocked by Steps 4–5.** Do not switch the main dashboard to an incomplete
 gas/forcing model. Continue independent finance work without claiming promotion.
 
+## Step 7 / Package 5 — valuation statistics repair
+
+Implemented independent cross-sectional mean, median and quartiles for Decarb
+Gap. Previously the summary copied an SDG aggregate into both mean and median,
+and historical quartiles were calculated across dates rather than companies.
+The time-series endpoint now computes the selected peer-relative measure at
+each date, without using later dates to construct its quartiles.
+
+Finite positive P/E resolution is centralized for this calculation. Invalid
+profit/market-cap ratios are excluded; valid P/E above 500 is no longer silently
+discarded by an undocumented cutoff. The calculation version changes to
+invalidate old identities.
+
+Verification: 49 TypeScript tests passed and the production build passed.
+Hand-calculated statistics, finite/invalid P/E fixtures and ranking invariance
+are covered. This is **partial Package 5**, not a claim that currency metadata,
+all target semantics, missing-value behavior and every finance interpretation
+are resolved.
+
+## Step 8 / Package 6 — existing-signal interpretation
+
+The algebraic regression fixture confirms that changing the common climate
+projection and common cost of equity leaves the existing within-peer Decarb Gap
+ranking unchanged. The existing formula therefore does not establish a distinct
+climate-related signal beyond its relative valuation inputs.
+
+This is a negative finding for that formula, not a conclusion that no useful
+climate signal can exist. New-signal holdout research remains blocked by
+unverified historical availability/classification data and the remaining
+valuation prerequisites. No investment alpha is claimed.
+
+## Verified release record
+
+- Financial diagnostics: GitHub `16fa6e724e8ac7f4dca49f8f81caf5c17e7873d5`;
+  Railway `b19a8f89-7112-472f-848c-c32c1c1a8365`, SUCCESS.
+  The production status endpoint returned `configured: true`, `state: verified`,
+  `approvedUpdatesEnabled: false`: the production FMP sample request succeeded.
+
 ## Reproduction
 
 ```sh

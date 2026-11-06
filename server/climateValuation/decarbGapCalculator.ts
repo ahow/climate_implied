@@ -1,12 +1,13 @@
 import type { CvCompany, CvTimeSeries } from "@shared/schema";
 import { impliedGrowthFromPE } from "./decarbConversion";
-import { calculateSDGGrowthDifferential } from "./sdgGrowthCalculator";
+import { positivePE, summarizeRates } from "./valuationStatistics";
 import type { ScoringMethod } from "./sharedUtils";
 import {
   getPeerGroupKey,
   filterCompaniesByGeography,
   getLatestTimeSeriesPerCompany,
   loadCompaniesAndTimeSeries,
+  groupTimeSeriesByDate,
 } from "./sharedUtils";
 export type { ScoringMethod } from "./sharedUtils";
 
@@ -68,13 +69,8 @@ export function computePerCompanyImpliedDecarbRates(
     const ts = latestTSByCompany.get(c.id);
     if (!ts) continue;
 
-    let pe: number | null = null;
-    if (ts.priceEarnings && ts.priceEarnings > 0) {
-      pe = ts.priceEarnings;
-    } else if (ts.marketCap && ts.netProfit && ts.netProfit > 0) {
-      pe = ts.marketCap / ts.netProfit;
-    }
-    if (!pe || pe <= 0 || pe > 500) continue;
+    const pe = positivePE(ts);
+    if (pe === null) continue;
 
     const impliedGrowth = impliedGrowthFromPE(pe, costOfEquity);
     const peerKey = getPeerGroupKey(c, method);
@@ -185,14 +181,10 @@ export async function calculateDecarbGapSummary(
     };
   }
 
-  const sdgResults = await calculateSDGGrowthDifferential(costOfEquity, geography);
-  let marketImpliedRate = 0;
-  if (sdgResults.length > 0) {
-    const latest = sdgResults[sdgResults.length - 1];
-    marketImpliedRate = latest.impliedDecarbRate;
-  }
-  const median = marketImpliedRate;
-  const mean = marketImpliedRate;
+  // Previously both values were copied from an unrelated SDG aggregate.
+  const statistics = summarizeRates(perCompany.map(c => c.impliedDecarbRate))!;
+  const median = statistics.median;
+  const mean = statistics.mean;
 
   const gapsWithDetails: CompanyDecarbGap[] = perCompany.map(c => {
     const company = companyMap.get(c.companyId);
@@ -267,22 +259,24 @@ export async function calculateDecarbGapTimeSeries(
   costOfEquity: number = 0.08,
   geography?: string
 ): Promise<DecarbGapTimePoint[]> {
-  const sdgResults = await calculateSDGGrowthDifferential(costOfEquity, geography);
-
-  if (sdgResults.length === 0) return [];
-
-  const impliedRates = sdgResults.map(r => r.impliedDecarbRate);
-  const sortedRates = [...impliedRates].sort((a, b) => a - b);
-  const p25 = percentile(sortedRates, 25);
-  const p75 = percentile(sortedRates, 75);
-
-  return sdgResults.map(r => ({
-    date: r.date.toISOString().slice(0, 10),
-    projectedRate: Math.round(projectedRate * 100) / 100,
-    medianImpliedRate: Math.round(r.impliedDecarbRate * 100) / 100,
-    meanImpliedRate: Math.round(r.impliedDecarbRate * 100) / 100,
-    p25ImpliedRate: Math.round(p25 * 100) / 100,
-    p75ImpliedRate: Math.round(p75 * 100) / 100,
-    companyCount: r.cleanCount + r.dirtyCount,
-  }));
+  const { companies: allCompanies, timeSeries } = await loadCompaniesAndTimeSeries(false);
+  const companies = filterCompaniesByGeography(allCompanies, geography);
+  const ids = new Set(companies.map(c => c.id));
+  const byDate = groupTimeSeriesByDate(timeSeries.filter(r => ids.has(r.companyId)));
+  const result: DecarbGapTimePoint[] = [];
+  for (const [date, records] of Array.from(byDate.entries()).sort(([a], [b]) => a.localeCompare(b))) {
+    const latest = getLatestTimeSeriesPerCompany(records);
+    const rates = computePerCompanyImpliedDecarbRates(companies, latest, method, costOfEquity);
+    const stats = summarizeRates(rates.map(r => r.impliedDecarbRate));
+    if (!stats) continue;
+    result.push({
+      date: date.slice(0, 10), projectedRate: Math.round(projectedRate * 100) / 100,
+      medianImpliedRate: Math.round(stats.median * 100) / 100,
+      meanImpliedRate: Math.round(stats.mean * 100) / 100,
+      p25ImpliedRate: Math.round(stats.p25 * 100) / 100,
+      p75ImpliedRate: Math.round(stats.p75 * 100) / 100,
+      companyCount: stats.count,
+    });
+  }
+  return result;
 }
