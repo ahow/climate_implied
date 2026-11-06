@@ -56,6 +56,7 @@ import { checkFinancialProvider, financialProviderStatus } from "./financialData
 import { listFinancialReviews } from "./financialData/reviewStore";
 import { calculationReadiness } from "./calculation/readiness";
 import { validateNativePair } from "./calculation/nativePathwayContract";
+import { summarizeEnsemble } from "./calculation/ensemble";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -198,6 +199,10 @@ export async function registerRoutes(
   app.post("/api/emissions/validate-native-pathways", (req, res) => {
     try { res.json(validateNativePair(req.body)); }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid pathways" }); }
+  });
+  app.post("/api/calculation/ensemble-summary", (req, res) => {
+    try { res.json(summarizeEnsemble(req.body)); }
+    catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid ensemble" }); }
   });
 
   app.get("/api/emissions/candidate", (req, res) => {

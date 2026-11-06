@@ -63,3 +63,22 @@ Passing this contract means accounting-valid, not scientifically promoted.
 Tests: 15 native/mechanism tests and 12 Python assessment tests passed; typecheck
 passed. The real NGFS adapter still reports four missing HFC pathways, so
 complete scientific scenario acceptance is not claimed.
+
+## 5. FaIR input bridge and shared uncertainty
+
+Added a strict native-Mt-to-FaIR CSV bridge (explicit mass-unit conversions,
+untouched pre-2024 history, unsupported species fail), and `--pathway` candidate
+input to the pinned runner. The runner exports the actual member-level annual
+ensemble. One shared implementation now produces quantiles, exceedance
+probabilities, density and headline from that same ensemble without clipping
+or adding a warming offset. Added aligned-member independent-reference numeric
+comparison at a maximum 0.01°C tolerance.
+
+Tests: three TypeScript ensemble tests and two Python bridge tests passed;
+the real FaIR reference run completed with 841 members. Its submitted-ensemble
+2100 median was 2.80252556°C, NOT the dashboard forecast. No independent
+reference was supplied, so that comparison remains unpassed. Updated historical
+forcing and all native species are still required before scientific promotion.
+Run `uv run python script/fair-reference.py [--pathway file.json]`, then
+`npx tsx script/summarize-fair.ts [ensemble.json] [independent-reference.json]`.
+Outputs stay in ignored generated-artifacts; the live default is unchanged.

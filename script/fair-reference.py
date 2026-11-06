@@ -27,7 +27,7 @@ FILES = [
 ]
 
 
-def main():
+def main(pathway_file=None):
     if fair.__version__ != "2.2.4":
         raise RuntimeError("Reference runner requires FaIR 2.2.4")
     ROOT.mkdir(parents=True, exist_ok=True)
@@ -40,6 +40,19 @@ def main():
         inputs.append({"file": name, "url": BASE + name,
                        "sha256": hashlib.sha256(data).hexdigest()})
     params, species_file, emissions, forcing = [str(ROOT / x) for x in FILES]
+    pathway = None
+    if pathway_file:
+        from fair_native_bridge import apply_native_pathway
+        pathway = json.loads(Path(pathway_file).read_text())
+        inventory = json.loads((Path(__file__).resolve().parents[1] /
+            "server/calculation/data/inventory2024.json").read_text())
+        baseline = {}
+        for cell in inventory["cells"]:
+            gas = ("CO2-LULUCF" if cell["sector"] == "LULUCF" else "CO2-EIP") if cell["gas"] == "CO2" else cell["gas"]
+            baseline[gas] = baseline.get(gas, 0) + cell["nativeMt"]
+        converted = apply_native_pathway(pd.read_csv(emissions), pathway, baseline)
+        emissions = str(ROOT / "candidate-emissions.csv")
+        converted.to_csv(emissions, index=False)
     configs = pd.read_csv(params, index_col=0)
     f = FAIR(ch4_method="Thornhill2021")
     f.define_time(1750, 2101, 1)
@@ -66,11 +79,15 @@ def main():
     anomaly = annual - annual[(years >= 1850) & (years <= 1900)].mean(axis=0)
     if not np.isfinite(anomaly).all():
         raise RuntimeError("Non-finite reference temperatures")
+    # Same ensemble supplies every downstream summary; never add warming offsets.
+    ensemble = {"baseline": "1850-1900", "memberIds": [str(x) for x in configs.index],
+                "years": years.tolist(), "temperature": anomaly.tolist()}
+    (ROOT / "ensemble.json").write_text(json.dumps(ensemble))
     summary = {
         "status": "reference_execution_only_not_validated_for_dashboard",
         "fairVersion": fair.__version__, "upstreamRevision": REVISION,
         "ensembleMembers": len(configs), "inputs": inputs,
-        "scenario": "medium-extension (upstream draft example, not current policy)",
+        "scenario": pathway["scenario"] if pathway else "medium-extension (upstream draft example, not current policy)",
         "temperatureBaseline": "1850–1900 annual mean",
         "annual2100P10P50P90C": np.percentile(anomaly[-1], [10, 50, 90]).tolist(),
         "mean2003to2022P05P50P95C": np.percentile(
@@ -88,4 +105,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pathway", help="Complete native-gas candidate JSON; unsupported species fail explicitly")
+    main(parser.parse_args().pathway)
