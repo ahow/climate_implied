@@ -2,6 +2,20 @@
 
 Last reviewed: 6 November 2026.
 
+## Five-workstream evidence pass
+
+See [Remaining workstreams: results](Remaining_Workstreams_Results.md) for the
+subsequent implementation, actual-data research and acceptance results.
+Identity reviews now validate ISIN checksums; mapping collection is resumable;
+`financial-review.ts refresh-approved` stages new proposals without automatic
+approval or scheduler changes. Native-gas gaps have quantified diagnostic
+sensitivities, not approved infills. Historical ensemble-window validation and
+vintage-evidence auditing are exposed as stateless diagnostic endpoints.
+Signal research supports date-block uncertainty and an explicitly non-certified
+revised-history mode. Passing these diagnostics never changes the model's
+promotion gates. Full mapping coverage and scientific/point-in-time certification
+remain incomplete.
+
 ## Resumed implementation: current operational contracts
 
 The implementation/test record is

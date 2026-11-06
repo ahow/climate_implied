@@ -48,6 +48,8 @@ export function walkForward(
   const series: BacktestPoint[] = [];
   for (const month of months) {
     const rows = monthly.get(month)!;
+    if (new Set(rows.map(r => r.companyId)).size !== rows.length)
+      throw new Error("Duplicate company in a monthly portfolio");
     if (!rows.length || rows.some(r => !Number.isFinite(r.marketCap) || r.marketCap <= 0 ||
       !Number.isFinite(r.monthlyReturn) || r.monthlyReturn < -1)) {
       throw new Error("Invalid monthly return/weight observations");

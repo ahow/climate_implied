@@ -1,6 +1,6 @@
 import { z } from "zod";
 const rowSchema = z.object({
-  date: z.string().date(), publishedAt: z.string().date(), outcomeAvailableAt: z.string().date(),
+  date: z.string().date(), publishedAt: z.string().date().nullable(), outcomeAvailableAt: z.string().date(),
   controls: z.array(z.number().finite()).min(1).max(20),
   signal: z.number().finite(), outcome: z.number().finite(),
 });
@@ -27,9 +27,15 @@ export function evaluateSignal(input: unknown) {
     frozenAt: z.string().date(), splitDate: z.string().date(),
     minimumMseImprovement: z.number().gt(0).lt(1),
     specificationCount: z.literal(1),
+    evidenceMode: z.enum(["point-in-time", "revised-history"]).default("point-in-time"),
+    uncertainty: z.enum(["independent-rows", "date-blocks"]).default("independent-rows"),
+    blockLength: z.number().int().min(1).max(24).default(3),
     rows: z.array(rowSchema).min(30).max(10000),
   }).parse(input);
-  if (p.frozenAt >= p.splitDate || p.rows.some(r => r.publishedAt > r.date ||
+  if ((p.evidenceMode === "point-in-time" && p.frozenAt >= p.splitDate) || p.rows.some(r =>
+    (r.publishedAt !== null && r.publishedAt > r.date) ||
+    (p.evidenceMode === "point-in-time" && r.publishedAt === null) ||
+    r.outcomeAvailableAt <= r.date ||
     r.controls.length !== p.rows[0].controls.length)) throw new Error("Invalid preregistration, availability or controls");
   const train = p.rows.filter(r => r.date < p.splitDate);
   const holdout = p.rows.filter(r => r.date >= p.splitDate);
@@ -46,15 +52,34 @@ export function evaluateSignal(input: unknown) {
   const baselineMSE = mean(losses.map(r => r.baseline)), candidateMSE = mean(losses.map(r => r.extended));
   const delta = losses.map(r => r.baseline - r.extended);
   const improvement = baselineMSE > 1e-12 ? (baselineMSE - candidateMSE) / baselineMSE : 0;
-  // Deterministic paired bootstrap; independent rows assumed, not a time-series certification.
+  const dates = Array.from(new Set(holdout.map(r => r.date))).sort();
+  const dateLosses = dates.map(date => delta.filter((_, i) => holdout[i].date === date));
+  if (p.uncertainty === "date-blocks" && dates.length < Math.max(6, 2 * p.blockLength))
+    throw new Error("At least six dates and two blocks required for date-block uncertainty");
+  // Circular moving blocks preserve all companies on each sampled date together.
+  // Consecutive dates within a block also retain short-range temporal dependence.
   let seed = 1741;
-  const samples = Array.from({ length: 500 }, () => mean(delta.map(() => {
+  const random = (length: number) => {
     seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-    return delta[Math.floor(seed / 4294967296 * delta.length)];
-  }))).sort((a, b) => a - b);
-  return { decision: improvement >= p.minimumMseImprovement && samples[12] > 0 ? "go-for-further-validation" : "no-go-for-this-specification",
+    return Math.floor(seed / 4294967296 * length);
+  };
+  const samples = Array.from({ length: 500 }, () => {
+    if (p.uncertainty === "independent-rows") return mean(delta.map(() => delta[random(delta.length)]));
+    const selected: number[] = [];
+    while (selected.length < dates.length) {
+      const start = random(dates.length);
+      for (let i = 0; i < p.blockLength && selected.length < dates.length; i++) selected.push((start + i) % dates.length);
+    }
+    return mean(selected.flatMap(i => dateLosses[i]));
+  }).sort((a, b) => a - b);
+  const positive = improvement >= p.minimumMseImprovement && samples[12] > 0;
+  return { decision: p.evidenceMode === "revised-history" ? (positive ? "exploratory-positive-not-validated" : "exploratory-no-improvement") :
+      positive ? "go-for-further-validation" : "no-go-for-this-specification",
     baselineMSE, candidateMSE, improvement, pairedLossImprovement95: [samples[12], samples[487]],
     trainingCount: train.length, holdoutCount: holdout.length, coefficients: extended,
+    evidenceMode: p.evidenceMode, uncertainty: p.uncertainty, blockLength: p.blockLength, holdoutDates: dates.length,
     limitations: ["Supplied publication dates and preregistration need independent verification.",
-      "Bootstrap assumes independent rows; time/sector stability and clustered uncertainty remain required before investment claims."] };
+      p.uncertainty === "date-blocks" ? "Date blocks account for contemporaneous dependence and short temporal dependence; sector and block-length stability still require assessment." :
+        "Bootstrap assumes independent rows; time/sector stability and clustered uncertainty remain required before investment claims.",
+      ...(p.evidenceMode === "revised-history" ? ["Historical publication vintages are unavailable; this is retrospective exploration, not a preregistered point-in-time finding."] : [])] };
 }

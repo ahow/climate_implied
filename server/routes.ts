@@ -55,6 +55,8 @@ import { CALCULATION_VERSION, legacyContext } from "../shared/calculationContrac
 import { checkFinancialProvider, financialProviderStatus } from "./financialData/status";
 import { listFinancialReviews } from "./financialData/reviewStore";
 import { calculationReadiness } from "./calculation/readiness";
+import { historicalValidation } from "./calculation/historicalValidation";
+import { auditVintages } from "./calculation/vintageAudit";
 import { validateNativePair } from "./calculation/nativePathwayContract";
 import { summarizeEnsemble } from "./calculation/ensemble";
 import { evaluateHoldout } from "./calculation/evaluation";
@@ -213,6 +215,14 @@ export async function registerRoutes(
   app.post("/api/calculation/evaluate-signal", (req, res) => {
     try { res.json(evaluateSignal(req.body)); }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid research evidence" }); }
+  });
+  app.post("/api/calculation/validate-history", (req, res) => {
+    try { res.json(historicalValidation(req.body)); }
+    catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid historical evidence" }); }
+  });
+  app.post("/api/calculation/audit-vintages", (req, res) => {
+    try { res.json(auditVintages(req.body)); }
+    catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid vintage evidence" }); }
   });
   app.use("/api/projection", (req, res, next) => {
     if (req.query.engine !== undefined && req.query.engine !== "legacy") {

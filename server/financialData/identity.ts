@@ -1,9 +1,10 @@
 import { z } from "zod";
 import type { assessMapping } from "./provider";
+import { validIsin } from "./isin";
 
 export const reviewedIdentitySchema = z.object({
   companyId: z.number().int().positive(),
-  isin: z.string().regex(/^[A-Z]{2}[A-Z0-9]{9}\d$/),
+  isin: z.string().refine(validIsin, "Invalid ISIN checksum"),
   symbol: z.string().min(1),
   currency: z.string().regex(/^[A-Z]{3}$/),
   exchange: z.string().min(1),
