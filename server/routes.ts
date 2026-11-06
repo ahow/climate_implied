@@ -55,6 +55,7 @@ import { CALCULATION_VERSION, legacyContext } from "../shared/calculationContrac
 import { checkFinancialProvider, financialProviderStatus } from "./financialData/status";
 import { listFinancialReviews } from "./financialData/reviewStore";
 import { calculationReadiness } from "./calculation/readiness";
+import { validateNativePair } from "./calculation/nativePathwayContract";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -193,6 +194,10 @@ export async function registerRoutes(
   });
   app.get("/api/calculation/readiness", (_req, res) => {
     res.set("Cache-Control", "no-store").json(calculationReadiness());
+  });
+  app.post("/api/emissions/validate-native-pathways", (req, res) => {
+    try { res.json(validateNativePair(req.body)); }
+    catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid pathways" }); }
   });
 
   app.get("/api/emissions/candidate", (req, res) => {

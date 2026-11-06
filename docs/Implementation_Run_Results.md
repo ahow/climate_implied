@@ -49,3 +49,17 @@ Tests: three review suites passed; the real PostgreSQL rollback-only integration
 passed approval, repeated approval, conflicting rejection and rollback cleanup.
 Typecheck and production build passed. No fixture rows remain. Public approval
 is deliberately unavailable; the UI shows the actual operator workflow.
+
+## 4. Native emissions pathway ingestion
+
+Implemented an executable two-scenario contract/API: correct native units,
+complete gas coverage, contiguous 2024–2100 years, identical inventory anchors,
+signed CO2 removals, rejection of negative non-CO2 values, explicit source/
+processing/infilling metadata and 2030/2050/2100 plus cumulative comparisons.
+An NDC-only source is rejected as an all-commitments scenario. The endpoint
+validates against the real stored inventory, not a client-selected baseline.
+Passing this contract means accounting-valid, not scientifically promoted.
+
+Tests: 15 native/mechanism tests and 12 Python assessment tests passed; typecheck
+passed. The real NGFS adapter still reports four missing HFC pathways, so
+complete scientific scenario acceptance is not claimed.
