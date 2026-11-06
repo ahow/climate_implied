@@ -8,7 +8,7 @@ import { walkForward } from "./walkForward";
 /** Accounting dates are not publication dates; this remains a reconstruction. */
 export async function calculateBacktest(
   signal: SignalType, trackingErrorLimit: number, scoringMethod = "sector_relative",
-  geography?: string, _projectedRate?: number, _projectedRatesByYear?: Map<number, number>,
+  geography?: string, costBps = 10,
 ) {
   if (signal === "sdg_exposure" || signal === "decarb_ambition") {
     const response = buildBacktestResponse([], 0, null, signal, scoringMethod, trackingErrorLimit, "expanding_past_only");
@@ -51,7 +51,13 @@ export async function calculateBacktest(
     }
     scoresByMonth.set(month, scores);
   }
-  const result = walkForward(monthly, scoresByMonth, trackingErrorLimit / 100);
-  return buildBacktestResponse(result.series, result.annualizedTE, result.lastTilt,
+  const result = walkForward(monthly, scoresByMonth, trackingErrorLimit / 100, costBps);
+  const response = buildBacktestResponse(result.series, result.annualizedTE, result.lastTilt,
     signal, scoringMethod, trackingErrorLimit, "expanding_past_only");
+  response.summary.accounting = result.accounting;
+  response.summary.warnings = response.summary.warnings.filter(w => !w.startsWith("Returns are gross"));
+  response.summary.warnings.push(
+    "Charts and tracking error remain gross; net results use the disclosed flat transaction-cost assumption, not an empirical cost estimate.",
+    "Missing-company returns, survivor coverage and corporate actions remain unverified. Removed holdings are assumed liquidated at last available value; this is not a point-in-time investable backtest.");
+  return response;
 }

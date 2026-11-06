@@ -118,3 +118,21 @@ paired-bootstrap uncertainty. Future publications/training outcomes are rejected
 changing holdout outcomes cannot alter fitted coefficients. This produces a
 restricted go/no-go for the supplied specification, not a claim of investment
 alpha. Real source vintages and time/sector stability still need evidence.
+
+Tests: both research suites passed, including a useful synthetic signal, a
+duplicated-value no-go, future-publication rejection and unchanged coefficients
+after holdout outcomes were altered. Typecheck passed.
+
+## 9. Portfolio costs and net accounting
+
+Added drift-aware holdings, initial investment, purchases/sales/liquidations,
+one-way turnover, explicit traded-dollar costs, net wealth and net drawdown.
+The API accepts `costBps=0..100` (default 10, disclosed assumption); the UI
+reports gross and net results. Existing charts/TE remain clearly gross.
+Full loss terminates the portfolio rather than implicitly recapitalizing it.
+Missing-return liquidation uses last available value and remains disclosed,
+not described as a validated corporate-action or delisting treatment.
+
+Tests: eight accounting/walk-forward tests passed after adding an explicit
+zero-cost query regression; typecheck and production build passed. The original
+numeric-query helper excluded zero, which was corrected for cost inputs only.

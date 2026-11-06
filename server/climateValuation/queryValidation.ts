@@ -11,12 +11,12 @@ function scalar(query: Query, key: string): string | undefined {
   return value;
 }
 
-function numeric(query: Query, key: string, min: number, max: number, integer = false): void {
+function numeric(query: Query, key: string, min: number, max: number, integer = false, inclusiveMin = false): void {
   const raw = scalar(query, key);
   if (raw === undefined) return;
   const value = Number(raw);
   if (!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(raw) ||
-      !Number.isFinite(value) || value <= min || value > max || (integer && !Number.isSafeInteger(value))) {
+      !Number.isFinite(value) || (inclusiveMin ? value < min : value <= min) || value > max || (integer && !Number.isSafeInteger(value))) {
     throw new Error(`${key} must be ${integer ? "an integer" : "a finite number"} greater than ${min} and at most ${max}`);
   }
 }
@@ -52,7 +52,8 @@ export function validateCvQuery(path: string, query: Query): void {
     if (query.costOfEquity !== undefined) throw new Error("carbon-price uses a fixed costOfEquity of 0.08; this parameter is not supported");
   }
   if (path === "/backtest") {
-    const allowed = ["signal", "trackingError", "trackingErrorUnit", "method", "geography", "format", "strategy", "costOfEquity"];
+    const allowed = ["signal", "trackingError", "trackingErrorUnit", "method", "geography", "format", "strategy", "costOfEquity", "costBps"];
+    numeric(query, "costBps", 0, 100, false, true);
     for (const key of Object.keys(query)) {
       if (!allowed.includes(key)) throw new Error(`Unsupported backtest parameter: ${key}`);
     }

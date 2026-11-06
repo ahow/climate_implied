@@ -11,6 +11,11 @@ export interface BacktestPoint {
   underweightCount: number;
   /** Actual month-specific tilt; zero during the 12-month training warm-up. */
   tiltScale?: number;
+  portfolioNetReturn?: number;
+  portfolioNetCumulative?: number;
+  turnover?: number;
+  tradedNotional?: number;
+  costFraction?: number;
 }
 
 export type SignalType = "carbon_intensity" | "sdg_exposure" | "decarb_ambition" | "decarb_gap";
@@ -29,6 +34,8 @@ export interface BacktestResponse {
     seriesTrackingErrorUnits: "decimal";
     seriesTrackingErrorWindow: "expanding_from_start";
     warnings: string[];
+    accounting?: { costBps: number; totalTurnover: number; totalCostFraction: number;
+      netCumulative: number; grossCumulative: number; maxNetDrawdown: number };
   };
 }
 

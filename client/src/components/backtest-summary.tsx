@@ -25,6 +25,12 @@ export function BacktestSummary({ data, error, label }: {
       </p>
       {s.calibrationStatus !== "within_tolerance" && <p role="status">Calibration: {s.calibrationStatus.replaceAll("_", " ")}. Target TE is not guaranteed.</p>}
       {s.warnings.map(warning => <p key={warning}>{warning}</p>)}
+      {s.accounting && <p>
+        Cost assumption: {s.accounting.costBps} bps per traded dollar · Gross cumulative return: {((s.accounting.grossCumulative - 1) * 100).toFixed(2)}%
+        {" · "}Net cumulative return: {((s.accounting.netCumulative - 1) * 100).toFixed(2)}%
+        {" · "}Maximum net drawdown: {(s.accounting.maxNetDrawdown * 100).toFixed(2)}%
+        {" · "}Total one-way turnover: {s.accounting.totalTurnover.toFixed(2)}×
+      </p>}
       <p>The TE series is annualised over the expanding history, not a rolling fixed-length window.</p>
     </div>
   );
