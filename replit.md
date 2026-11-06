@@ -14,6 +14,13 @@ each push is a production release, not merely a backup. Preserve the code-only
 export policy. Do not change the live domain until Railway and production-data
 parity are verified; see `docs/Railway_Hosting.md` for the staged setup and cutover.
 
+For each completed implementation step, update
+`docs/Application_Logic_and_Implementation.md`, push the reviewed source export,
+and verify a successful Railway deployment of that exact GitHub commit.
+Maintain this Markdown handover as calculations, data integrations and operations
+change so another developer can follow current logic without the chat history.
+Custom-domain work is currently deferred and must not block calculation work.
+
 ## Overview
 A probabilistic climate projections dashboard using Monte Carlo simulation (10,000 iterations) with sector-specific emissions modeling. Tracks 22 real-world indicators from authoritative sources (IEA, IRENA, Climate Action Tracker, SBTi, Global Carbon Project, NOAA, Gallup, Pew Research, World Bank/IMF, Climate Bonds Initiative, Stand.earth) across six categories: Technology, Policy, Corporate, Socioeconomic, Financial Flows, and Emissions Outcomes. Historical data covers 2010-2025. Financial Flows module (clean energy investment, green bonds, fossil divestment) serves as leading indicator for capital reallocation. Emissions Outcomes module (observed CO2 emissions, atmospheric concentration, remaining 1.5°C carbon budget) provides ground truth validation against projections. Includes indicator sensitivity analysis (tornado chart) showing temperature impact of each indicator. Nowcast extrapolation uses momentum-decay method (50% annual slope decay) to avoid over-extrapolation of stalling trends, with dashed-line visual distinction for estimated values. Includes climate news sentiment analysis via NewsAPI.ai integration.
 

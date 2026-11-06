@@ -1,5 +1,11 @@
 # Global Decarbonization Dashboard — Technical Documentation
 
+> Legacy methodology reference. For current implementation status, limitations,
+> data integration plans and release procedure, start with
+> [Application logic and implementation](Application_Logic_and_Implementation.md).
+> Descriptions of finance-derived climate outcomes below describe exploratory
+> legacy calculations, not validated physical or investment interpretations.
+
 **Live application:** https://climatetracking.live/
 **Purpose:** A probabilistic climate-and-finance analytics platform that projects global decarbonization pathways and translates equity-market valuations into implied decarbonization rates, carbon prices, and temperature outcomes.
 
@@ -23,7 +29,8 @@ The first is a *bottom-up climate model*. The second is a *finance signal* deriv
 ### 2.1 Monte Carlo Emissions Projection
 
 - **10,000 iterations** for the main projection (2,000 for sensitivity analysis, 1,000 for category/regional breakdowns — a deliberate performance/accuracy balance).
-- A **seeded Linear Congruential Generator (LCG)** is used for the random draws so that results are fully **reproducible** — the same inputs always produce the same distribution.
+- A **seeded Mulberry32 generator** replaced the earlier LCG in Package 1.
+  Matching inputs, seeds and calculation versions reproduce the same draws.
 - Each iteration samples plausible trajectories for the indicators and propagates them through a **sector-specific emissions model**.
 - Output is a distribution (p10 / p25 / p50 / p75 / p90) of emissions trajectories and resulting temperature outcomes, rather than a single deterministic number.
 

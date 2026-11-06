@@ -10,7 +10,7 @@ The separate `ahow/climate-implied` repository is an earlier related implementat
 
 ## Run
 
-- Install Node.js 20 and dependencies with `npm ci`.
+- Install Node.js 22 (matching Railway) and dependencies with `npm ci`.
 - Configure PostgreSQL using `DATABASE_URL` through secure environment settings.
 - Supply optional service credentials securely for news and web-search collection.
 - Development: `npm run dev` (port 5000).
@@ -25,6 +25,10 @@ are not included in this repository.
 
 ## Documentation and scientific status
 
+**Start here:** [Application logic, implementation and delivery sequence](docs/Application_Logic_and_Implementation.md).
+This is the maintained developer handover, including current versus planned
+behavior, data flows, mathematical assumptions and production release gates.
+
 - `docs/Dashboard_Purpose_Methodology_and_Implementation.html`
 - `docs/API_Contract.md`
 - `docs/Climate_Model_Remediation_Basis.md`
@@ -32,7 +36,9 @@ are not included in this repository.
 The existing dashboard climate model remains exploratory. The approved FaIR
 replacement is not yet integrated. `uv run python script/fair-reference.py`
 runs the separate reference example, not a validated dashboard forecast.
-Repository synchronization does not certify scientific validity or deploy the app.
+Repository synchronization does not certify scientific validity. GitHub `main`
+is now connected to Railway automatic deployments; verify successful deployment
+of the exact exported commit rather than assuming that a push completed a release.
 
 ## Source synchronization
 
