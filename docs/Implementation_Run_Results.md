@@ -82,3 +82,16 @@ forcing and all native species are still required before scientific promotion.
 Run `uv run python script/fair-reference.py [--pathway file.json]`, then
 `npx tsx script/summarize-fair.ts [ensemble.json] [independent-reference.json]`.
 Outputs stay in ignored generated-artifacts; the live default is unchanged.
+
+## 6. Historical evaluation and promotion
+
+Implemented predeclared holdout protocol validation, availability/training-boundary
+checks, bias/MAE versus persistence or trend, interval coverage and protocol
+hashing. Reconstructed histories cannot pass point-in-time acceptance. Added
+seven explicit promotion prerequisites to Data Management. Requesting an
+unapproved FaIR engine returns an explicit conflict instead of silently serving
+legacy numbers. Production promotion is still disabled, not implied by unit tests.
+
+Tests: all three holdout/promotion suites passed, including deliberate
+future-information and missing-gate failures. Typecheck passed. Real historical
+holdout evidence is still absent; no default scientific promotion was made.

@@ -57,6 +57,7 @@ import { listFinancialReviews } from "./financialData/reviewStore";
 import { calculationReadiness } from "./calculation/readiness";
 import { validateNativePair } from "./calculation/nativePathwayContract";
 import { summarizeEnsemble } from "./calculation/ensemble";
+import { evaluateHoldout } from "./calculation/evaluation";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -203,6 +204,19 @@ export async function registerRoutes(
   app.post("/api/calculation/ensemble-summary", (req, res) => {
     try { res.json(summarizeEnsemble(req.body)); }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid ensemble" }); }
+  });
+  app.post("/api/calculation/evaluate-holdout", (req, res) => {
+    try { res.json(evaluateHoldout(req.body?.protocol, req.body?.rows)); }
+    catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid holdout" }); }
+  });
+  app.use("/api/projection", (req, res, next) => {
+    if (req.query.engine !== undefined && req.query.engine !== "legacy") {
+      return res.status(req.query.engine === "fair" ? 409 : 400).json({
+        error: "Requested engine is not an approved production engine; no silent legacy fallback.",
+        readiness: calculationReadiness(),
+      });
+    }
+    next();
   });
 
   app.get("/api/emissions/candidate", (req, res) => {
