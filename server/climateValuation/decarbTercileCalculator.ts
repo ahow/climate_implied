@@ -142,6 +142,7 @@ export async function calculateDecarbTerciles(
     const bestAvgRate = bestCompanyRates.reduce((s, v) => s + v, 0) / bestCompanyRates.length;
     const worstAvgRate = worstCompanyRates.reduce((s, v) => s + v, 0) / worstCompanyRates.length;
 
+    if (![bestPE, worstPE].every(pe => Number.isFinite(pe) && pe > 0)) continue;
     const bestGrowth = impliedGrowthFromPE(bestPE, costOfEquity);
     const worstGrowth = impliedGrowthFromPE(worstPE, costOfEquity);
     const growthPremium = bestGrowth - worstGrowth;

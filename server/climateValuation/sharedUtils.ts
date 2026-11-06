@@ -13,12 +13,13 @@ export function calculateCarbonIntensity(
   marketCap: number | null,
   includeScope3: boolean
 ): number | null {
-  if (!marketCap || marketCap <= 0) return null;
-  const scope1Val = scope1 || 0;
-  const scope2Val = scope2 || 0;
-  const scope3Val = includeScope3 ? (scope3 || 0) : 0;
+  if (!marketCap || !Number.isFinite(marketCap) || marketCap <= 0) return null;
+  const required = includeScope3 ? [scope1, scope2, scope3] : [scope1, scope2];
+  if (required.some(v => v == null || !Number.isFinite(v) || v < 0)) return null;
+  const scope1Val = scope1!;
+  const scope2Val = scope2!;
+  const scope3Val = includeScope3 ? scope3! : 0;
   const totalEmissions = scope1Val + scope2Val + scope3Val;
-  if (totalEmissions === 0) return null;
   return totalEmissions / marketCap;
 }
 
@@ -87,17 +88,15 @@ export function getLatestTimeSeriesPerCompany(
   return latest;
 }
 
-export function computeAnnualDecarbRate(emissionTarget2050: number | null, baseYear: number = 2024): number | null {
-  if (emissionTarget2050 === null || emissionTarget2050 === undefined) return null;
-
-  let targetReduction = Math.abs(emissionTarget2050);
+export function computeAnnualDecarbRate(emissionTarget2050: number | null, baseYear?: number): number | null {
+  // TARGET_SUMMARY_CUM_CHANGE_2050 is a signed change, not an absolute reduction.
+  // The workbook has no target base-year/boundary metadata: do not assume 2024.
+  if (emissionTarget2050 == null || !Number.isFinite(emissionTarget2050) ||
+      baseYear === undefined || !Number.isInteger(baseYear) ||
+      emissionTarget2050 <= -1) return null;
   const yearsToTarget = 2050 - baseYear;
   if (yearsToTarget <= 0) return null;
-
-  if (targetReduction <= 0) return 0;
-  if (targetReduction >= 1) targetReduction = 0.99;
-
-  const annualRate = 1 - Math.pow(1 - targetReduction, 1 / yearsToTarget);
+  const annualRate = 1 - Math.pow(1 + emissionTarget2050, 1 / yearsToTarget);
   return annualRate * 100;
 }
 

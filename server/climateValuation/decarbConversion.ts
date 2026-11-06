@@ -83,7 +83,9 @@ export function decarbRateToNetZeroYear(annualDecarbRatePercent: number): number
 }
 
 export function impliedGrowthFromPE(pe: number, costOfEquity: number): number {
-  if (pe <= 0) return 0;
+  if (!Number.isFinite(pe) || pe <= 0 || !Number.isFinite(costOfEquity)) {
+    throw new Error("Implied growth requires a finite positive P/E and finite cost of equity");
+  }
   const earningsYield = 1 / pe;
   return costOfEquity - earningsYield;
 }

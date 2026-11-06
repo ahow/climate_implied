@@ -78,6 +78,7 @@ export async function calculateSDGGrowthDifferential(
     const cleanPE = cleanTotalMC / cleanTotalProfit;
     const dirtyPE = dirtyTotalMC / dirtyTotalProfit;
 
+    if (![cleanPE, dirtyPE].every(pe => Number.isFinite(pe) && pe > 0)) continue;
     const cleanGrowth = impliedGrowthFromPE(cleanPE, costOfEquity);
     const dirtyGrowth = impliedGrowthFromPE(dirtyPE, costOfEquity);
 

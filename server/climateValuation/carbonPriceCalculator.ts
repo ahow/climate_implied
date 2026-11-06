@@ -223,6 +223,7 @@ export async function calculateTotalBasedCarbonPrice(
     const profitDifference = highAgg.totalProfit - adjustedHighProfit;
     const impliedCarbonPrice = (profitDifference / highAgg.totalEmissions) * 1_000_000;
 
+    if (![lowAgg.peRatio, highAgg.peRatio].every(pe => Number.isFinite(pe) && pe > 0)) continue;
     const cleanGrowth = impliedGrowthFromPE(lowAgg.peRatio, 0.08);
     const dirtyGrowth = impliedGrowthFromPE(highAgg.peRatio, 0.08);
     const decarbRate = growthDifferentialToDecarbRate(cleanGrowth, dirtyGrowth);

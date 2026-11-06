@@ -95,3 +95,17 @@ legacy numbers. Production promotion is still disabled, not implied by unit test
 Tests: all three holdout/promotion suites passed, including deliberate
 future-information and missing-gate failures. Typecheck passed. Real historical
 holdout evidence is still absent; no default scientific promotion was made.
+
+## 7. Valuation integrity
+
+Required carbon scopes must be present and finite; known zero emissions remain
+zero. Invalid P/E no longer becomes zero growth, and invalid aggregate groups
+are excluded. Signed 2050 cumulative changes are no longer made positive with
+absolute value or capped at 99%. Annualisation requires an explicit base year;
+the existing workbook lacks that metadata, so those comparisons are unavailable.
+The finance screens now explicitly disclose heuristic physical interpretations,
+unverified workbook currencies and unavailable target boundaries. Reviewed FMP
+snapshots enforce matching currencies without guessing conversion factors.
+
+Tests: six valuation/integrity fixtures passed; typecheck passed. Calculation
+identity was bumped to prevent old cached finance outputs bypassing the repairs.
