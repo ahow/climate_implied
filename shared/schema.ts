@@ -139,15 +139,16 @@ export const newsCache = pgTable("news_cache", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const insertNewsCacheSchema = createInsertSchema(newsCache).omit({ id: true, createdAt: true });
+export const insertNewsCacheSchema = createInsertSchema(newsCache).omit({ createdAt: true });
 export type NewsCache = typeof newsCache.$inferSelect;
 export type InsertNewsCache = z.infer<typeof insertNewsCacheSchema>;
 
-export const insertCvCompanySchema = createInsertSchema(cvCompanies).omit({ id: true });
-export const insertCvTimeSeriesSchema = createInsertSchema(cvTimeSeries).omit({ id: true });
-export const insertCvDataUploadSchema = createInsertSchema(cvDataUploads).omit({ id: true, createdAt: true, completedAt: true });
-export const insertCvCompanyTercileSchema = createInsertSchema(cvCompanyTerciles).omit({ id: true });
-export const insertCvCarbonPriceCacheSchema = createInsertSchema(cvCarbonPriceCache).omit({ id: true });
+// generatedAlwaysAsIdentity fields are already excluded by drizzle-zod.
+export const insertCvCompanySchema = createInsertSchema(cvCompanies);
+export const insertCvTimeSeriesSchema = createInsertSchema(cvTimeSeries);
+export const insertCvDataUploadSchema = createInsertSchema(cvDataUploads).omit({ createdAt: true, completedAt: true });
+export const insertCvCompanyTercileSchema = createInsertSchema(cvCompanyTerciles);
+export const insertCvCarbonPriceCacheSchema = createInsertSchema(cvCarbonPriceCache);
 
 export type CvCompany = typeof cvCompanies.$inferSelect;
 export type InsertCvCompany = z.infer<typeof insertCvCompanySchema>;
