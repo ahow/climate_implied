@@ -2,7 +2,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, BookOpen, Database, Calculator, BarChart3, Globe, FlaskConical, TrendingUp, DollarSign, Thermometer, ArrowRightLeft, Layers, Activity, GitCompare, LineChart } from "lucide-react";
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
 import { PublicationMethodologyNotes } from "@/components/publication-methodology-notes";
 
 export default function Methodology() {
@@ -10,10 +9,8 @@ export default function Methodology() {
     <div className="bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center gap-3 mb-6">
-          <Link href="/">
-            <Button variant="ghost" size="icon" data-testid="button-back">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
+          <Link href="/" className="inline-flex items-center rounded-md border p-2" aria-label="Back to dashboard" data-testid="button-back">
+            <ArrowLeft className="h-4 w-4" />
           </Link>
           <div>
             <h1 className="text-xl font-bold tracking-tight" data-testid="text-methodology-title">Methodology</h1>
@@ -21,6 +18,17 @@ export default function Methodology() {
           </div>
         </div>
 
+        <Card className="p-5 mb-6 space-y-3" data-testid="current-claim-boundaries">
+          <h2 className="text-lg font-semibold">Current claim boundaries</h2>
+          <p className="text-sm text-muted-foreground">The dashboard is read-only. Data collection, upload, reset, approvals and manual entry require the operator CLI. Re-run Analysis only invalidates and refetches client queries; it does not run a new model.</p>
+          <p className="text-sm text-muted-foreground">Published references are read from /api/reference-scenarios, with their own sources, release, licence and caveats. They are external references, not our forecasts or proof of model readiness.</p>
+          <p className="text-sm text-muted-foreground">The legacy calculation applies a CO2-only response to aggregate GHG plus a fixed 1.1°C offset. Its fixed-5-Gt milestone may extrapolate beyond 2100 and is not a 5%-of-2024 milestone. Legacy temperatures and milestones are not default outputs.</p>
+          <p className="text-sm text-muted-foreground">Gordon steady-state earnings-growth baselines assume fully distributed earnings and a chosen cost of equity. They are not five-year reverse-DCF growth. Peer-relative earnings-yield gaps are descriptive valuation diagnostics. Emissions intensity uses market cap, not revenue.</p>
+          <p className="text-sm text-muted-foreground">Temperature, carbon-price and net-zero results inferred from valuations are withheld. No defensible valuation-to-activity mapping or identified market climate expectation is established. No new scientific model is ready. Retrospective portfolio research is not validated investment evidence.</p>
+        </Card>
+        <details className="rounded-md border p-4">
+        <summary className="cursor-pointer text-sm font-semibold">Archived legacy methodology — opt in; superseded claims, not current scientific guidance</summary>
+        <p className="my-4 text-sm text-muted-foreground">The historical documentation below records old formulas and interpretations. Claims of climate inference, validation, net-zero, pricing and investment opportunity are unsupported and superseded by the current boundaries above. It is retained for diagnostic audit only.</p>
         <PublicationMethodologyNotes />
         <div className="prose prose-sm dark:prose-invert max-w-none space-y-8">
 
@@ -710,12 +718,11 @@ export default function Methodology() {
 
         </div>
 
+        </details>
         <div className="mt-8 text-center">
-          <Link href="/">
-            <Button variant="outline" data-testid="button-back-to-dashboard">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
-            </Button>
+          <Link href="/" className="inline-flex items-center rounded-md border px-4 py-2 text-sm" data-testid="button-back-to-dashboard">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Dashboard
           </Link>
         </div>
       </div>

@@ -17,6 +17,7 @@ ROOT_FILES = {
     "components.json", "drizzle.config.ts", "package.json", "package-lock.json",
     "postcss.config.js", "pyproject.toml", "tailwind.config.ts", "tsconfig.json",
     "uv.lock", "vite.config.ts", "railpack.json",
+    ".github/workflows/validation.yml",
 }
 SOURCE_DIRS = {"client", "server", "shared", "script", "docs"}
 
@@ -85,7 +86,16 @@ def main():
     message = f"Sync application source from workspace {source[:12]}\n\nWorkspace-Source: {source}\nCode-only export; uploaded data and workspace history excluded.\n"
     commit = git(*args, input=message.encode()).stdout.decode().strip()
     # A concurrent remote change causes a normal non-fast-forward rejection.
-    git("push", REPOSITORY, f"{commit}:refs/heads/main")
+    try:
+        git("push", REPOSITORY, f"{commit}:refs/heads/main")
+    except subprocess.CalledProcessError as error:
+        # Classify without printing remote output that might contain credentials.
+        detail = error.stderr.decode(errors="replace").lower()
+        if "workflow" in detail and ("scope" in detail or "permission" in detail):
+            raise SystemExit("GitHub rejected the workflow file: credential needs permission to update workflows. Nothing was exported.") from None
+        if "permission" in detail or "authentication" in detail:
+            raise SystemExit("GitHub rejected authentication or repository permission. Nothing was exported.") from None
+        raise SystemExit("GitHub rejected the push. No force-push attempted; review remote permissions or concurrent changes.") from None
     pushed = git("ls-remote", REPOSITORY, "refs/heads/main").stdout.decode().split()[0]
     if pushed != commit:
         raise SystemExit("Remote changed during verification; investigate before claiming synchronization.")

@@ -1,5 +1,6 @@
 import { runFetch } from "./orchestrator";
 import { getLastRun } from "./dataStore";
+import { schedulerEnabled } from "../releaseSafety";
 
 const MONTH_MS = 30 * 24 * 60 * 60 * 1000;
 const CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000; // re-check every 6h
@@ -12,9 +13,8 @@ let timer: NodeJS.Timeout | null = null;
  * the persisted last-run timestamp, not an in-process clock.
  */
 export function startScheduler(): void {
-  // Keep the normal cadence unchanged; disable only on a migration/test replica
-  // so two hosting platforms do not both schedule collection against one DB.
-  if (process.env.DATA_SCHEDULER_ENABLED === "false") {
+  // A host must explicitly opt in; the monthly cadence itself is unchanged.
+  if (!schedulerEnabled(process.env.DATA_SCHEDULER_ENABLED)) {
     console.log("[scheduler] Disabled for this instance");
     return;
   }

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { queryClient, apiRequest } from "@/lib/queryClient";
+import { useQuery } from "@tanstack/react-query";
+import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
+import { QueryReadErrors } from "@/components/query-read-errors";
 import {
   LineChart,
   Line,
@@ -11,7 +12,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -34,7 +35,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useToast } from "@/hooks/use-toast";
 import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { FinancialProviderStatus } from "@/components/financial-provider-status";
@@ -161,7 +161,6 @@ function formatDateTime(iso: string | null): string {
 }
 
 export default function DataManagement() {
-  const { toast } = useToast();
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
   const { data, isLoading } = useQuery<IndicatorsResponse>({
@@ -170,28 +169,6 @@ export default function DataManagement() {
 
   const { data: runsData } = useQuery<RunsResponse>({
     queryKey: ["/api/data/runs"],
-  });
-
-  const refreshMutation = useMutation({
-    mutationFn: async () => {
-      const res = await apiRequest("POST", "/api/data/refresh");
-      return res.json();
-    },
-    onSuccess: (result: any) => {
-      queryClient.invalidateQueries({ queryKey: ["/api/data/indicators"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/data/runs"] });
-      toast({
-        title: "Refresh complete",
-        description: `${result?.proposalsCreated ?? 0} new proposals created. Review and approve below.`,
-      });
-    },
-    onError: (err: any) => {
-      toast({
-        title: "Refresh failed",
-        description: String(err?.message ?? err),
-        variant: "destructive",
-      });
-    },
   });
 
   const lastRun = runsData?.runs?.[0];
@@ -208,26 +185,26 @@ export default function DataManagement() {
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-6">
+      <QueryReadErrors prefix="/api/data" />
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2" data-testid="text-page-title">
             <Database className="h-6 w-6 text-primary" />
-            Data Management
+            Reviewed indicators
           </h1>
           <p className="text-sm text-muted-foreground mt-1 max-w-2xl">
-            Fetch the latest values for all 22 indicators, review proposals, and approve them
-            before they feed the projection model. The model always falls back to curated
-            baseline values until you approve a change.
+            Inspect indicator provenance, historical series, pending proposals and operator decision history.
+            Collection and data changes are operator-only; this page is read-only.
           </p>
         </div>
         <div className="flex flex-col items-start md:items-end gap-2">
           <Button
-            onClick={() => refreshMutation.mutate()}
-            disabled={refreshMutation.isPending}
+            disabled
+            title={OPERATOR_ONLY_REASON}
             data-testid="button-refresh-now"
           >
-            <RefreshCw className={`h-4 w-4 ${refreshMutation.isPending ? "animate-spin" : ""}`} />
-            {refreshMutation.isPending ? "Fetching…" : "Refresh now"}
+            <RefreshCw className="h-4 w-4" />
+            Collect data (operator only)
           </Button>
           {lastRun && (
             <p className="text-xs text-muted-foreground flex items-center gap-1" data-testid="text-last-run">
@@ -238,6 +215,7 @@ export default function DataManagement() {
         </div>
       </div>
 
+      <OperatorOnlyNotice />
       <div className="flex flex-wrap gap-3">
         <Card className="flex-1 min-w-[140px]">
           <CardContent className="p-4">
@@ -337,66 +315,13 @@ function IndicatorDetailDialog({
   indicatorKey: string | null;
   onClose: () => void;
 }) {
-  const { toast } = useToast();
   const [manualYear, setManualYear] = useState("");
   const [manualValue, setManualValue] = useState("");
   const [manualNote, setManualNote] = useState("");
 
-  const { data: detail, isLoading } = useQuery<IndicatorDetail>({
+  const { data: detail, isLoading, isError } = useQuery<IndicatorDetail>({
     queryKey: ["/api/data/indicator", indicatorKey],
     enabled: !!indicatorKey,
-  });
-
-  function invalidateAll() {
-    queryClient.invalidateQueries({ queryKey: ["/api/data/indicator", indicatorKey] });
-    queryClient.invalidateQueries({ queryKey: ["/api/data/indicators"] });
-    queryClient.invalidateQueries({ queryKey: ["/api/data/runs"] });
-  }
-
-  const approveMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const res = await apiRequest("POST", `/api/data/proposals/${id}/approve`);
-      return res.json();
-    },
-    onSuccess: () => {
-      invalidateAll();
-      toast({ title: "Approved", description: "Value applied to the model." });
-    },
-    onError: (err: any) =>
-      toast({ title: "Approve failed", description: String(err?.message ?? err), variant: "destructive" }),
-  });
-
-  const rejectMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const res = await apiRequest("POST", `/api/data/proposals/${id}/reject`);
-      return res.json();
-    },
-    onSuccess: () => {
-      invalidateAll();
-      toast({ title: "Rejected", description: "Proposal discarded." });
-    },
-    onError: (err: any) =>
-      toast({ title: "Reject failed", description: String(err?.message ?? err), variant: "destructive" }),
-  });
-
-  const manualMutation = useMutation({
-    mutationFn: async () => {
-      const res = await apiRequest("POST", `/api/data/indicator/${indicatorKey}/manual`, {
-        year: parseInt(manualYear, 10),
-        value: parseFloat(manualValue),
-        note: manualNote || undefined,
-      });
-      return res.json();
-    },
-    onSuccess: () => {
-      invalidateAll();
-      setManualYear("");
-      setManualValue("");
-      setManualNote("");
-      toast({ title: "Saved", description: "Manual value applied to the model." });
-    },
-    onError: (err: any) =>
-      toast({ title: "Save failed", description: String(err?.message ?? err), variant: "destructive" }),
   });
 
   const pending = (detail?.proposals ?? []).filter((p) => p.status === "pending");
@@ -428,16 +353,11 @@ function IndicatorDetailDialog({
     "As Of Date": p.asOfDate ?? "",
   }));
 
-  const manualValid =
-    manualYear.trim() !== "" &&
-    manualValue.trim() !== "" &&
-    !Number.isNaN(parseInt(manualYear, 10)) &&
-    !Number.isNaN(parseFloat(manualValue));
-
   return (
     <Dialog open={!!indicatorKey} onOpenChange={(o) => !o && onClose()}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto" data-testid="dialog-indicator-detail">
-        {isLoading || !detail ? (
+        <QueryReadErrors prefix="/api/data/indicator" />
+        {isError ? <p className="text-sm text-muted-foreground">Indicator details are unavailable. Retry the read above or close this dialog.</p> : isLoading || !detail ? (
           <div className="space-y-3">
             <Skeleton className="h-6 w-1/2" />
             <Skeleton className="h-48 w-full" />
@@ -452,6 +372,7 @@ function IndicatorDetailDialog({
                 {def?.source} · {def?.category} · fetch method: {def?.fetchMethod}
               </DialogDescription>
             </DialogHeader>
+            <OperatorOnlyNotice />
 
             <div className="flex items-center justify-between gap-2 flex-wrap">
               <h3 className="text-sm font-semibold">Time series</h3>
@@ -571,8 +492,8 @@ function IndicatorDetailDialog({
                       <div className="flex items-center gap-2 shrink-0">
                         <Button
                           size="sm"
-                          onClick={() => approveMutation.mutate(p.id)}
-                          disabled={approveMutation.isPending}
+                          disabled
+                          title={OPERATOR_ONLY_REASON}
                           data-testid={`button-approve-${p.id}`}
                         >
                           <Check className="h-4 w-4" /> Approve
@@ -580,8 +501,8 @@ function IndicatorDetailDialog({
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => rejectMutation.mutate(p.id)}
-                          disabled={rejectMutation.isPending}
+                          disabled
+                          title={OPERATOR_ONLY_REASON}
                           data-testid={`button-reject-${p.id}`}
                         >
                           <X className="h-4 w-4" /> Reject
@@ -594,11 +515,10 @@ function IndicatorDetailDialog({
             )}
 
             <Separator />
-            <div className="space-y-2">
+            <fieldset disabled className="space-y-2">
               <h3 className="text-sm font-semibold">Manual entry / edit</h3>
               <p className="text-xs text-muted-foreground">
-                Enter a value to approve directly. This supersedes any existing approved value for
-                that year.
+                Manual entry is unavailable in the dashboard. An operator must review and apply changes using the CLI.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <div>
@@ -626,8 +546,8 @@ function IndicatorDetailDialog({
                 <div className="flex items-end">
                   <Button
                     className="w-full"
-                    disabled={!manualValid || manualMutation.isPending}
-                    onClick={() => manualMutation.mutate()}
+                    disabled
+                    title={OPERATOR_ONLY_REASON}
                     data-testid="button-save-manual"
                   >
                     Save & apply
@@ -641,7 +561,7 @@ function IndicatorDetailDialog({
                 rows={2}
                 data-testid="input-manual-note"
               />
-            </div>
+            </fieldset>
 
             <Separator />
             <div className="space-y-2">

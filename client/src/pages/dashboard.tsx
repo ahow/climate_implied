@@ -15,7 +15,7 @@ import { SensitivityChart } from "@/components/sensitivity-chart";
 import { CategoryTrendChart } from "@/components/category-trend-chart";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
-import { queryClient, apiRequest } from "@/lib/queryClient";
+import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type {
   Category,
@@ -30,22 +30,62 @@ import type {
 } from "@/lib/types";
 
 export default function Dashboard() {
+  const [showLegacy, setShowLegacy] = useState(false);
+  const { toast } = useToast();
+  const reload = useMutation({
+    mutationFn: () => queryClient.invalidateQueries({ refetchType: "active" }, { throwOnError: true }),
+    onSuccess: () => toast({ title: "Views reloaded", description: "Existing server results were read again. No data collection, server recalculation or model promotion was requested." }),
+    onError: () => toast({ title: "Reload failed", description: "Some existing results could not be read. Retry when the service is available.", variant: "destructive" }),
+  });
+  const { data: indicators, isLoading, isError, refetch } = useQuery<HistoricalIndicatorData[]>({
+    queryKey: ["/api/indicators/historical"],
+  });
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 className="text-xl font-bold tracking-tight" data-testid="text-title">Global Decarbonization Dashboard</h1>
+          <p className="text-sm text-muted-foreground">Climate evidence and published scenario references</p>
+        </div>
+        <Button variant="outline" size="sm" onClick={() => reload.mutate()} disabled={reload.isPending} data-testid="button-refresh-analysis">
+          <RefreshCw className="h-4 w-4 mr-1.5" />
+          {reload.isPending ? "Reloading views…" : "Re-run Analysis"}
+        </Button>
+      </div>
+      <p className="text-sm text-muted-foreground">
+        Re-run Analysis reloads client queries only. It does not collect data or recalculate server results.
+        No new scientific model is ready for use; legacy calculations are not validated climate forecasts.
+      </p>
+      <PublishedScenarioReferences />
+      <EmissionsCandidateReview />
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold">Indicator evidence</h2>
+        <p className="text-sm text-muted-foreground">Review source provenance and distinguish observations, curated values and estimates before interpreting these indicators.</p>
+        {isError ? <div role="alert" className="rounded-md border p-4">Indicator evidence could not be loaded. <Button variant="outline" onClick={() => void refetch()}>Retry</Button></div>
+          : !isLoading && !indicators?.length ? <p className="rounded-md border p-4 text-sm text-muted-foreground">No indicator evidence is available. No values have been substituted.</p>
+          : <IndicatorCards historicalData={indicators ?? []} isLoading={isLoading} />}
+      </section>
+      <section className="rounded-md border p-4 space-y-3">
+        <h2 className="text-lg font-semibold">Legacy diagnostic view — opt in</h2>
+        <p className="text-sm text-muted-foreground" id="legacy-warning">
+          The legacy calculation applies a CO2-only response to aggregate GHG (CO2e), plus a fixed 1.1°C offset.
+          Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.
+          The legacy milestone uses a fixed 5 Gt threshold and may extrapolate beyond 2100; it is not a 5% of 2024 milestone.
+          Regional temperatures are not standalone regional warming estimates. Historical recalculations are not forecast validation.
+        </p>
+        <Button variant="outline" aria-expanded={showLegacy} aria-describedby="legacy-warning" onClick={() => setShowLegacy(!showLegacy)} data-testid="button-toggle-legacy">
+          {showLegacy ? "Hide legacy diagnostics" : "Show legacy diagnostics"}
+        </Button>
+        {showLegacy && <LegacyDashboard />}
+      </section>
+    </div>
+  );
+}
+
+function LegacyDashboard() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [metricView, setMetricView] = useState<MetricView>("temperature");
-  const { toast } = useToast();
-
-  const refreshMutation = useMutation({
-    mutationFn: async () => {
-      await apiRequest("POST", "/api/refresh");
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries();
-      toast({ title: "Analysis refreshed", description: "All projections are being recalculated with the latest data." });
-    },
-    onError: () => {
-      toast({ title: "Refresh failed", description: "Could not refresh the analysis. Please try again.", variant: "destructive" });
-    },
-  });
 
   const projectionUrl = activeCategory === "all"
     ? "/api/projection"
@@ -85,37 +125,27 @@ export default function Dashboard() {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-xl font-bold tracking-tight" data-testid="text-title">
-              Global Decarbonization Dashboard
+              Legacy diagnostics
             </h1>
             <p className="text-sm text-muted-foreground">
-              Climate-Implied Temperature Projections
+              Unsupported legacy calculations — not a forecast
             </p>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => refreshMutation.mutate()}
-              disabled={refreshMutation.isPending}
-              data-testid="button-refresh-analysis"
-            >
-              <RefreshCw className={`h-4 w-4 mr-1.5 ${refreshMutation.isPending ? "animate-spin" : ""}`} />
-              {refreshMutation.isPending ? "Refreshing..." : "Re-run Analysis"}
-            </Button>
             <MetricToggle activeMetric={metricView} onMetricChange={setMetricView} />
             <CategoryFilter activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <TemperatureGauge
-            temperature={projection?.temperatureDistribution.median ?? 2.7}
-            p10={projection?.temperatureDistribution.p10 ?? 2.1}
-            p90={projection?.temperatureDistribution.p90 ?? 3.3}
+          {projection ? <TemperatureGauge
+            temperature={projection.temperatureDistribution.median}
+            p10={projection.temperatureDistribution.p10}
+            p90={projection.temperatureDistribution.p90}
             reductionRate={projection?.metrics.reductionRate ?? 0}
             netZeroYear={projection?.metrics.netZeroYear ?? null}
             metricView={metricView}
             isLoading={projectionLoading}
-          />
+          /> : <p role="status" className="rounded-md border p-4 text-sm">Legacy calculation {projectionLoading ? "loading…" : "unavailable. No diagnostic values are substituted."}</p>}
 
           <div className="lg:col-span-2">
             <EmissionsChart
@@ -125,17 +155,13 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <PublishedScenarioReferences />
-
-        <EmissionsCandidateReview />
-
-        <TemperatureHistogram
+        {projection && <TemperatureHistogram
           pdf={projection?.temperatureDistribution.pdf ?? []}
-          median={projection?.temperatureDistribution.median ?? 2.7}
-          p10={projection?.temperatureDistribution.p10 ?? 2.1}
-          p90={projection?.temperatureDistribution.p90 ?? 3.3}
+          median={projection.temperatureDistribution.median}
+          p10={projection.temperatureDistribution.p10}
+          p90={projection.temperatureDistribution.p90}
           isLoading={projectionLoading}
-        />
+        />}
 
         <div>
           <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
@@ -169,7 +195,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
             <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-              <h2 className="text-lg font-semibold">Historical Backtesting</h2>
+              <h2 className="text-lg font-semibold">Legacy historical recalculation — not validation</h2>
             </div>
             <HistoricalTrendChart
               data={historicalTrend ?? []}
@@ -202,7 +228,7 @@ export default function Dashboard() {
               Data sources: IEA, IRENA, Climate Action Tracker, SBTi, Global Carbon Project, NOAA, World Bank, IMF, Gallup, Pew Research, Climate Bonds Initiative, Stand.earth
             </p>
             <p className="text-xs">
-              Projections use Monte Carlo simulation (10,000 iterations) with sector-specific forward modeling.
+              Legacy Monte Carlo simulation does not establish scientific validity.
               See <a href="/methodology" className="underline hover:text-foreground" data-testid="link-methodology">Methodology</a> for details.
             </p>
           </div>

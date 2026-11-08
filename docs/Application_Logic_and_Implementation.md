@@ -1,3 +1,11 @@
+# Current amended workplan implementation
+
+See [workplan amendments](Developer_Workplan_Amendments.md) and the
+[stage execution record](Developer_Workplan_Execution.md) for the 8 November
+2026 increment. The 18-stage programme is **not complete**. Public HTTP writes
+are restricted to authorized shell operations, legacy climate views are
+opt-in, and new research utilities are diagnostics, not promoted models.
+
 # Application logic, implementation and delivery sequence
 
 Last reviewed: 6 November 2026.

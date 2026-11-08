@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/select";
 import { Activity, Globe, Layers, BarChart3, TrendingUp, TrendingDown, ArrowUpDown, Beaker } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic } from "@/lib/valuation-claims";
+import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
 import {
@@ -28,8 +30,6 @@ import {
   ReferenceLine,
   ComposedChart,
   Bar,
-  BarChart,
-  Cell,
 } from "recharts";
 
 interface DecarbGapSummary {
@@ -58,17 +58,9 @@ interface CompanyGap {
   score: number;
 }
 
-interface HistoricalTrendPoint {
-  year: number;
-  median: number;
-  p10: number;
-  p90: number;
-  reductionRate: number;
-  netZeroYear: number | null;
-  isNowcast?: boolean;
-}
-
 interface SDGGrowthPoint {
+  cleanPE: number;
+  dirtyPE: number;
   date: string;
   impliedDecarbRate: number;
   impliedCarbonPrice: number;
@@ -78,6 +70,8 @@ interface SDGGrowthPoint {
 }
 
 interface DecarbTercilePoint {
+  bestTercilePE: number;
+  worstTercilePE: number;
   date: string;
   impliedDecarbRate: number;
   impliedCarbonPrice: number;
@@ -87,6 +81,8 @@ interface DecarbTercilePoint {
 }
 
 interface CarbonPricePoint {
+  bottomTercilePeRatio: number;
+  topTercilePeRatio: number;
   date: string;
   impliedCarbonPrice: number;
   impliedDecarbRate: number;
@@ -148,8 +144,7 @@ const COLORS = {
 interface TimeSeriesDataPoint {
   date: number;
   dateLabel: string;
-  projectedRate?: number;
-  impliedRate?: number;
+  impliedRate?: number | null;
 }
 
 function formatDateLabel(timestamp: number): string {
@@ -181,25 +176,21 @@ export default function DecarbGapSignal() {
 
   const uploadId = uploads?.find((u) => u.status === "completed")?.id;
 
-  const { data: summary, isLoading: loadingSummary } = useQuery<DecarbGapSummary>({
+  const { data: summary } = useQuery<DecarbGapSummary>({
     queryKey: ["/api/cv/decarb-gap/summary", scoringMethod, geography],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/decarb-gap/summary?${methodParam}${geoParam}`);
+      const res = await fetch(`/api/cv/decarb-gap/summary?${methodParam}${geoParam}`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch summary");
       return res.json();
     },
     enabled: !!uploadId,
   });
 
-  const { data: historicalTrend, isLoading: loadingTrend } = useQuery<HistoricalTrendPoint[]>({
-    queryKey: ["/api/projection/historical-trend"],
-  });
-
   const { data: carbonPriceData, isLoading: loadingCP } = useQuery<CarbonPricePoint[]>({
     queryKey: ["/api/cv/carbon-price", scoringMethod, geography, uploadId],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/carbon-price?uploadId=${uploadId}&${methodParam}&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity${geoParam}`);
-      if (!res.ok) return [];
+      const res = await fetch(`/api/cv/carbon-price?uploadId=${uploadId}&${methodParam}&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity${geoParam}`, { credentials: "include" });
+      if (!res.ok) throw new Error("Company valuation groups unavailable");
       return res.json();
     },
     enabled: !!uploadId,
@@ -208,8 +199,8 @@ export default function DecarbGapSignal() {
   const { data: sdgData, isLoading: loadingSDG } = useQuery<SDGGrowthPoint[]>({
     queryKey: ["/api/cv/sdg-growth", geography],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/sdg-growth?costOfEquity=0.08${geoParam}`);
-      if (!res.ok) return [];
+      const res = await fetch(`/api/cv/sdg-growth?costOfEquity=0.08${geoParam}`, { credentials: "include" });
+      if (!res.ok) throw new Error("SDG valuation groups unavailable");
       return res.json();
     },
     enabled: !!uploadId,
@@ -218,8 +209,8 @@ export default function DecarbGapSignal() {
   const { data: decarbTercileData, isLoading: loadingDecarb } = useQuery<DecarbTercilePoint[]>({
     queryKey: ["/api/cv/decarb-terciles", scoringMethod, geography],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/decarb-terciles?${methodParam}&costOfEquity=0.08${geoParam}`);
-      if (!res.ok) return [];
+      const res = await fetch(`/api/cv/decarb-terciles?${methodParam}&costOfEquity=0.08${geoParam}`, { credentials: "include" });
+      if (!res.ok) throw new Error("Target valuation groups unavailable");
       return res.json();
     },
     enabled: !!uploadId,
@@ -259,38 +250,22 @@ export default function DecarbGapSignal() {
   const latestImpliedRate = useMemo(() => {
     if (!selectedMeasureData || selectedMeasureData.length === 0) return null;
     const last = selectedMeasureData[selectedMeasureData.length - 1];
-    return Math.round(last.impliedDecarbRate * 100) / 100;
+    if ("cleanPE" in last) return earningsYieldGapPp(last.cleanPE, last.dirtyPE);
+    if ("bestTercilePE" in last) return earningsYieldGapPp(last.bestTercilePE, last.worstTercilePE);
+    return earningsYieldGapPp(last.bottomTercilePeRatio, last.topTercilePeRatio);
   }, [selectedMeasureData]);
 
-  const latestProjectedRate = useMemo(() => {
-    if (!historicalTrend || historicalTrend.length === 0) return summary?.projectedRate ?? null;
-    const last = historicalTrend[historicalTrend.length - 1];
-    return Math.round(last.reductionRate * 100) / 100;
-  }, [historicalTrend, summary]);
-
-  const gap = latestProjectedRate !== null && latestImpliedRate !== null
-    ? Math.round((latestProjectedRate - latestImpliedRate) * 100) / 100
-    : (summary ? summary.projectedRate - summary.medianImpliedRate : 0);
 
   const chartData = useMemo(() => {
     const dateMap = new Map<number, TimeSeriesDataPoint>();
-
-    if (historicalTrend) {
-      for (const pt of historicalTrend) {
-        const ts = new Date(pt.year, 6, 1).getTime();
-        dateMap.set(ts, {
-          date: ts,
-          dateLabel: `${pt.year}`,
-          projectedRate: Math.round(pt.reductionRate * 100) / 100,
-        });
-      }
-    }
 
     if (selectedMeasureData) {
       for (const pt of selectedMeasureData) {
         const ts = new Date(pt.date).getTime();
         const existing = dateMap.get(ts);
-        const impliedRate = Math.round(pt.impliedDecarbRate * 100) / 100;
+        const impliedRate = "cleanPE" in pt ? earningsYieldGapPp(pt.cleanPE, pt.dirtyPE)
+          : "bestTercilePE" in pt ? earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE)
+          : earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio);
         if (existing) {
           existing.impliedRate = impliedRate;
         } else {
@@ -304,13 +279,13 @@ export default function DecarbGapSignal() {
     }
 
     return Array.from(dateMap.values()).sort((a, b) => a.date - b.date);
-  }, [historicalTrend, selectedMeasureData]);
+  }, [selectedMeasureData]);
 
   const loadingMeasure = (measure === "carbon_intensity" && loadingCP) ||
     (measure === "sdg_alignment" && loadingSDG) ||
     (measure === "decarb_ambition" && loadingDecarb);
-  const loadingTS = loadingTrend || loadingMeasure;
-  const hasChartData = chartData.length > 0 && chartData.some(d => d.impliedRate !== undefined || d.projectedRate !== undefined);
+  const loadingTS = loadingMeasure;
+  const hasChartData = chartData.some(d => d.impliedRate != null);
   const hasData = !!summary && summary.companyCount > 0;
 
   function computeStats(data: BacktestPoint[] | undefined) {
@@ -375,7 +350,7 @@ export default function DecarbGapSignal() {
               <span className="text-muted-foreground">{entry.name}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {entry.value?.toFixed(2)}%/yr
+              {displayDiagnostic(entry.value, " pp")}
             </span>
           </div>
         ))}
@@ -403,37 +378,18 @@ export default function DecarbGapSignal() {
     );
   };
 
-  const DistributionTooltip = ({ active, payload }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
-    const item = payload[0]?.payload;
-    if (!item) return null;
-    return (
-      <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
-        <p className="font-medium text-foreground mb-1">{item.bucket}</p>
-        <p className="text-muted-foreground">{item.count} companies</p>
-      </div>
-    );
-  };
-
   const measureInfo = MEASURE_TYPES.find(m => m.value === measure);
-
-  const distributionDownloadRows = (summary?.distribution || []).map((d) => ({
-    "Gap Bucket": d.bucket,
-    "Midpoint (%)": d.midpoint,
-    "Companies": d.count,
-  }));
 
   const timeseriesDownloadRows = chartData.map((d) => ({
     "Date": formatDateLabel(d.date),
-    "Projected Rate (%/yr)": d.projectedRate,
-    [`Implied Rate - ${measureInfo?.label ?? "Measure"} (%/yr)`]: d.impliedRate,
+    [`Group earnings-yield gap - ${measureInfo?.label ?? "Measure"} (pp)`]: d.impliedRate,
   }));
 
   const cumulativeReturnDownloadRows = backtestChartData.map((d) => ({
     "Date": d.date,
     "Benchmark Cumulative Return (%)": d.benchmark,
     [`${measureInfo?.label ?? "Measure"}-Driven Cumulative Return (%)`]: d.portfolio,
-    ...(compareGap ? { "Decarb Gap Cumulative Return (%)": d.valuation } : {}),
+    ...(compareGap ? { "Legacy peer-yield ranking cumulative return (%)": d.valuation } : {}),
   }));
 
   const activeReturnDownloadRows = backtestChartData.map((d) => ({
@@ -444,13 +400,14 @@ export default function DecarbGapSignal() {
 
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-gap-signal">
+      <QueryReadErrors prefix="/api/cv" />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" data-testid="text-page-title">
-            Decarb Gap Signal
+            Peer-Relative Valuation Diagnostics
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Market-implied vs. projected decarbonization rate gap per company
+            Gordon steady-state baselines and peer-relative earnings-yield gaps — not decarbonization estimates
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
@@ -506,7 +463,7 @@ export default function DecarbGapSignal() {
       {!uploadId && (
         <Card className="p-8 flex flex-col items-center justify-center text-muted-foreground">
           <Activity className="h-10 w-10 mb-3 opacity-40" />
-          <p className="text-sm">No dataset uploaded. Upload a dataset in the Scenario Analyzer to see gap signals.</p>
+          <p className="text-sm">No company dataset is available. Import and review require the operator CLI.</p>
         </Card>
       )}
 
@@ -515,33 +472,33 @@ export default function DecarbGapSignal() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <Card className="p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs text-muted-foreground font-medium">Projected Rate</span>
+                <span className="text-xs text-muted-foreground font-medium">Physical decarbonization rate</span>
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS.projected }} />
               </div>
               <p className="text-2xl font-bold tabular-nums" data-testid="text-projected-rate">
-                {latestProjectedRate !== null ? `${latestProjectedRate.toFixed(2)}%` : "\u2014"}
+                Unavailable
               </p>
-              <p className="text-xs text-muted-foreground">per year (Monte Carlo)</p>
+              <p className="text-xs text-muted-foreground">Not inferred from valuations</p>
             </Card>
             <Card className="p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs text-muted-foreground font-medium">Implied Rate ({measureInfo?.label})</span>
+                <span className="text-xs text-muted-foreground font-medium">Group earnings-yield gap ({measureInfo?.label})</span>
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS.implied }} />
               </div>
               <p className="text-2xl font-bold tabular-nums" data-testid="text-implied-rate">
-                {latestImpliedRate !== null ? `${latestImpliedRate.toFixed(2)}%` : "\u2014"}
+                {displayDiagnostic(latestImpliedRate, " pp")}
               </p>
-              <p className="text-xs text-muted-foreground">per year (GGM, {measureInfo?.label})</p>
+              <p className="text-xs text-muted-foreground">First-minus-second group Gordon baseline gap</p>
             </Card>
             <Card className="p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs text-muted-foreground font-medium">Gap (Proj - Implied)</span>
+                <span className="text-xs text-muted-foreground font-medium">Physical vs. valuation gap</span>
                 <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground" />
               </div>
-              <p className={`text-2xl font-bold tabular-nums ${gap >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-gap">
-                {latestProjectedRate !== null && latestImpliedRate !== null ? `${gap >= 0 ? "+" : ""}${gap.toFixed(2)}%` : "\u2014"}
+              <p className="text-2xl font-bold tabular-nums" data-testid="text-gap">
+                Withheld
               </p>
-              <p className="text-xs text-muted-foreground">positive = underpriced transition</p>
+              <p className="text-xs text-muted-foreground">Definitions are not comparable</p>
             </Card>
             <Card className="p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
@@ -551,13 +508,7 @@ export default function DecarbGapSignal() {
                 {summary ? summary.companyCount : "\u2014"}
               </p>
               <p className="text-xs text-muted-foreground">
-                {summary ? (
-                  <span>
-                    <span className="text-green-600 dark:text-green-400">{summary.positiveSignalCount} positive</span>
-                    {" / "}
-                    <span className="text-red-600 dark:text-red-400">{summary.negativeSignalCount} negative</span>
-                  </span>
-                ) : "signal split"}
+                Legacy eligible-company count; not verified identity coverage
               </p>
             </Card>
           </div>
@@ -566,57 +517,29 @@ export default function DecarbGapSignal() {
             <Card className="p-4" data-testid="card-gap-distribution">
               <div className="flex items-start justify-between gap-2 mb-4">
                 <div>
-                  <h2 className="text-base font-semibold mb-1">Gap Distribution</h2>
+                  <h2 className="text-base font-semibold mb-1">Physical-gap distribution withheld</h2>
                   <p className="text-xs text-muted-foreground">
-                    Distribution of (projected - implied) gap across companies
+                    A global physical reduction rate cannot be subtracted from a valuation earnings-yield gap.
                   </p>
                 </div>
-                <DownloadDataButton
-                  filename="gap-distribution"
-                  sheetName="Gap Distribution"
-                  rows={distributionDownloadRows}
-                  testId="button-download-gap-distribution"
-                />
               </div>
-              {loadingSummary ? (
-                <Skeleton className="w-full h-[300px]" />
-              ) : !hasData ? (
-                <div className="flex items-center justify-center h-[300px] text-muted-foreground text-sm">
-                  No data available
-                </div>
-              ) : (
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={summary?.distribution || []} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                    <XAxis dataKey="bucket" tick={{ fontSize: 9 }} interval={0} angle={-30} textAnchor="end" height={50} />
-                    <YAxis tick={{ fontSize: 10 }} label={{ value: "Companies", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }} />
-                    <Tooltip content={<DistributionTooltip />} />
-                    <ReferenceLine x="-0.5 to 0%" stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.5} />
-                    <Bar dataKey="count" name="Companies" radius={[2, 2, 0, 0]}>
-                      {(summary?.distribution || []).map((entry, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={entry.midpoint >= 0 ? COLORS.positive : COLORS.negative}
-                          fillOpacity={0.7}
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              )}
+              <p className="text-sm text-muted-foreground">
+                Temperature, carbon-price and net-zero outputs are unavailable. No numeric substitutes or physical-gap downloads are provided.
+                Company diagnostics below show only the legacy endpoint&apos;s selected subset, not a full-universe ranking.
+              </p>
             </Card>
 
             <Card className="p-4" data-testid="card-gap-timeseries">
               <div className="flex items-start justify-between gap-2 mb-4">
                 <div>
-                  <h2 className="text-base font-semibold mb-1">Implied vs Projected Over Time</h2>
+                  <h2 className="text-base font-semibold mb-1">Group earnings-yield gap over time</h2>
                   <p className="text-xs text-muted-foreground">
-                    {measureInfo?.description} vs. Monte Carlo projected rate
+                    {measureInfo?.description}. Descriptive valuation difference only.
                   </p>
                 </div>
                 <DownloadDataButton
-                  filename="implied-vs-projected-over-time"
-                  sheetName="Implied vs Projected"
+                  filename="group-earnings-yield-gap-over-time"
+                  sheetName="Group valuation gap"
                   rows={timeseriesDownloadRows}
                   testId="button-download-gap-timeseries"
                 />
@@ -643,23 +566,14 @@ export default function DecarbGapSignal() {
                     <YAxis
                       tick={{ fontSize: 10 }}
                       tickFormatter={(v: number) => `${v.toFixed(1)}%`}
-                      label={{ value: "Decarb Rate (%/yr)", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }}
+                      label={{ value: "Earnings-yield gap (pp)", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }}
                     />
                     <Tooltip content={<TimeSeriesChartTooltip />} />
                     <Legend wrapperStyle={{ fontSize: 11 }} />
                     <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.5} />
                     <Line
-                      dataKey="projectedRate"
-                      name="Projected (Model)"
-                      stroke={COLORS.projected}
-                      strokeWidth={2.5}
-                      dot={false}
-                      type="monotone"
-                      connectNulls
-                    />
-                    <Line
                       dataKey="impliedRate"
-                      name={`Implied (${measureInfo?.label})`}
+                      name={`Earnings-yield gap (${measureInfo?.label})`}
                       stroke={COLORS.implied}
                       strokeWidth={2}
                       dot={false}
@@ -677,7 +591,7 @@ export default function DecarbGapSignal() {
               <Card className="p-4" data-testid="card-top-companies">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
-                  <h2 className="text-sm font-semibold">Largest Positive Gap (Underpriced Transition)</h2>
+                  <h2 className="text-sm font-semibold">Legacy selected companies — first subset</h2>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
@@ -686,8 +600,8 @@ export default function DecarbGapSignal() {
                         <th className="text-left py-1.5 pr-2">Company</th>
                         <th className="text-left py-1.5 pr-2">Sector</th>
                         <th className="text-right py-1.5 pr-2">P/E</th>
-                        <th className="text-right py-1.5 pr-2">Implied</th>
-                        <th className="text-right py-1.5">Gap</th>
+                        <th className="text-right py-1.5 pr-2">Gordon baseline</th>
+                        <th className="text-right py-1.5">Peer earnings-yield gap</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -696,8 +610,8 @@ export default function DecarbGapSignal() {
                           <td className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
                           <td className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
                           <td className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
-                          <td className="py-1.5 pr-2 text-right tabular-nums">{c.impliedDecarbRate.toFixed(2)}%</td>
-                          <td className="py-1.5 text-right tabular-nums text-green-600 dark:text-green-400 font-medium">+{c.gap.toFixed(2)}%</td>
+                          <td className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
+                          <td className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -708,7 +622,7 @@ export default function DecarbGapSignal() {
               <Card className="p-4" data-testid="card-bottom-companies">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
-                  <h2 className="text-sm font-semibold">Largest Negative Gap (Overpriced Transition)</h2>
+                  <h2 className="text-sm font-semibold">Legacy selected companies — second subset</h2>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
@@ -717,8 +631,8 @@ export default function DecarbGapSignal() {
                         <th className="text-left py-1.5 pr-2">Company</th>
                         <th className="text-left py-1.5 pr-2">Sector</th>
                         <th className="text-right py-1.5 pr-2">P/E</th>
-                        <th className="text-right py-1.5 pr-2">Implied</th>
-                        <th className="text-right py-1.5">Gap</th>
+                        <th className="text-right py-1.5 pr-2">Gordon baseline</th>
+                        <th className="text-right py-1.5">Peer earnings-yield gap</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -727,8 +641,8 @@ export default function DecarbGapSignal() {
                           <td className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
                           <td className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
                           <td className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
-                          <td className="py-1.5 pr-2 text-right tabular-nums">{c.impliedDecarbRate.toFixed(2)}%</td>
-                          <td className="py-1.5 text-right tabular-nums text-red-600 dark:text-red-400 font-medium">{c.gap.toFixed(2)}%</td>
+                          <td className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
+                          <td className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -889,43 +803,39 @@ export default function DecarbGapSignal() {
             <h3 className="text-sm font-semibold mb-3">Methodology</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground leading-relaxed">
               <div>
-                <p className="font-medium text-foreground mb-1">Per-Company Implied Decarb Rate</p>
+                <p className="font-medium text-foreground mb-1">Gordon baseline and peer-relative earnings-yield gap</p>
                 <p>
-                  Each company's P/E ratio is converted to an implied growth rate using the
-                  Gordon Growth Model (g = r - 1/PE, where r is cost of equity at 8%).
-                  The company's implied decarbonization rate is the growth premium relative to
-                  its peer group median. Higher growth relative to peers suggests the market is
-                  pricing in transition benefits.
+                  The Gordon steady-state earnings-growth baseline is g = r − 1/PE at r = 8%, assuming fully
+                  distributed earnings. It is not five-year reverse-DCF growth. The displayed peer-relative
+                  earnings-yield gap is 100 × (company g − peer median g), in percentage points:
+                  peer median earnings yield minus company earnings yield. It does not identify climate expectations.
                 </p>
               </div>
               <div>
-                <p className="font-medium text-foreground mb-1">Market-Implied Rate (3 Measures)</p>
+                <p className="font-medium text-foreground mb-1">Group valuation diagnostics</p>
                 <p>
                   <strong>Carbon Intensity:</strong> Compares aggregate P/E of lowest-carbon-intensity
-                  tercile vs highest; the growth differential is the market-implied decarbonization rate.{" "}
+                  tercile vs highest; intensity means emissions per market cap, not revenue.{" "}
                   <strong>SDG Alignment:</strong> Splits companies by SDG alignment score (positive = clean,
-                  negative = dirty); clean vs dirty P/E growth differential.{" "}
+                  negative = dirty); the positive-minus-negative Gordon baseline gap is descriptive.{" "}
                   <strong>Decarb Ambition:</strong> Ranks companies by emission reduction targets
-                  (2050 pathway); best vs worst tercile P/E growth differential.
+                  (2050 pathway); best-minus-worst group Gordon baseline gap. None is a physical decarbonization rate.
                 </p>
               </div>
               <div>
-                <p className="font-medium text-foreground mb-1">Projected Rate</p>
+                <p className="font-medium text-foreground mb-1">Physical outputs unavailable</p>
                 <p>
-                  The global projected decarbonization rate from the Monte Carlo simulation (10,000 iterations),
-                  based on 22 real-world indicators across technology, policy, corporate,
-                  and socioeconomic categories. Varies over time as historical indicator values
-                  change, showing how the model's expectation has evolved from 2015 to present.
+                  Valuation-derived temperature, carbon-price and net-zero outputs are withheld.
+                  A defensible valuation-to-activity mapping has not been established.
                 </p>
               </div>
               <div>
-                <p className="font-medium text-foreground mb-1">Gap Signal</p>
+                <p className="font-medium text-foreground mb-1">Legacy selection, not valuation advice</p>
                 <p>
-                  Gap = Projected Rate - Company Implied Rate. A positive gap means the company
-                  is not yet pricing in the full expected transition (potential upside).
-                  A negative gap means the market is pricing more decarbonization than projected
-                  (potential overvaluation). Companies are ranked within their peer group
-                  ({SCORING_METHODS.find(m => m.value === scoringMethod)?.label}) and scored -1 to +1.
+                  Company subsets come from the legacy endpoint, not a new validated screen.
+                  Its projected-rate offset is common across companies and does not establish an
+                  underpriced or overpriced transition. Peer grouping:
+                  {" "}{SCORING_METHODS.find(m => m.value === scoringMethod)?.label}.
                 </p>
               </div>
             </div>
@@ -938,13 +848,14 @@ export default function DecarbGapSignal() {
                   directly by their {measure === "carbon_intensity" ? "carbon emissions intensity" : measure === "sdg_alignment" ? "SDG alignment score" : "decarbonization target ambition"} and
                   tilts toward the best performers.
                   The <strong style={{ color: COLORS.valuation }}>Decarb Gap</strong> signal (formerly labelled Valuation-Aware) computes each company's
-                  implied decarbonization rate from its P/E ratio (via GGM), compares it to the Monte Carlo projected rate,
-                  and tilts toward companies where the projected rate exceeds the market-implied rate (underpriced transition).
+                  legacy score from a peer-relative Gordon baseline gap and a common global offset.
+                  This is a retrospective ranking experiment, not evidence of underpriced transition or a validated investment signal.
                 </p>
                 <p>
                   <strong>1. Signal Scoring:</strong> For the {measureInfo?.label}-driven strategy, companies are ranked by
                   their {measure === "carbon_intensity" ? "carbon intensity (lower = better)" : measure === "sdg_alignment" ? "SDG exposure score (higher = better)" : "decarb target pathway (more ambitious = better)"}.
-                  For Decarb Gap, the gap = projected rate - company implied rate.
+                  For the legacy Decarb Gap ranking, a common projected-rate offset minus a peer-relative earnings-yield gap is used;
+                  that offset does not supply a physical interpretation.
                   Only Decarb Gap uses the selected peer grouping; other signals use pooled ranking. Companies are assigned a
                   continuous score from -1 to +1 based on percentile rank.
                 </p>

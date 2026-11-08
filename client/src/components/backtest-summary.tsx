@@ -1,7 +1,7 @@
 import type { BacktestResponse } from "@shared/backtest";
 
 export async function fetchBacktest(url: string): Promise<BacktestResponse> {
-  const response = await fetch(url);
+  const response = await fetch(url, { credentials: "include" });
   const body = await response.json();
   if (!response.ok) throw new Error(body.error || "Backtest request failed");
   return body;

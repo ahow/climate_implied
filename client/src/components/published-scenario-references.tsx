@@ -95,8 +95,8 @@ export function PublishedScenarioReferences() {
           <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Independent published references</p>
           <h2 id="published-references-heading" className="text-lg font-semibold">Published climate scenarios</h2>
           <p className="text-sm text-muted-foreground">
-            External context, not dashboard projection outputs. These references do not change the
-            headline calculation or complete Package 2.
+            External published references, not dashboard-generated projections. These references
+            do not validate legacy calculations or establish that a new scientific model is ready.
           </p>
         </div>
         <span className="rounded-md border px-2.5 py-1 text-xs font-medium">Read-only reference</span>

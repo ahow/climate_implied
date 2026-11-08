@@ -5,6 +5,10 @@ import { candidateInventory, constantScenario, illustrativeScenario, projectNati
 import { resolveEmissionsInputs } from "./calculation/emissionsInputs";
 import catReferences from "./calculation/data/catReferences.json";
 import { newsMonthWindow } from "./newsApi/requestOptions";
+import { fcfeFromOperatingCashFlow, fcfeFromEarnings, pairedGrowthGap,
+  summarizeNetZeroYears, valuationScenarioEligibility } from "./calculation/researchCorrections";
+import { equityValue, reverseEquityGrowth } from "./calculation/reverseValuation";
+import { publicValuationResult } from "./calculation/publicValuationContract";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -95,6 +99,12 @@ export async function registerRoutes(
     res.json(financialProviderStatus());
   });
   app.use("/api/cv", validateCvRequest);
+  app.use("/api/cv", (_req, res, next) => {
+    res.set("X-Analytical-Status", "descriptive-valuation-not-physical-inference");
+    const send = res.json.bind(res);
+    res.json = ((body: unknown) => send(publicValuationResult(body))) as typeof res.json;
+    next();
+  });
 
   await db.update(cvDataUploads)
     .set({ status: "failed", errorMessage: "Processing interrupted by server restart", completedAt: new Date() })
@@ -155,6 +165,9 @@ export async function registerRoutes(
   app.use(["/api/projection", "/api/cv"], async (req, res, next) => {
     if (req.method !== "GET") return next();
     try {
+      // CLI decisions must be visible on the next request in every process.
+      // The per-route revision below prevents reuse of an old input cache.
+      await loadApprovedOverrides();
       const revision = currentProjectionRevision();
       res.locals.calculationRevision = revision;
       res.setHeader("X-Calculation-Version", CALCULATION_VERSION);
@@ -199,6 +212,26 @@ export async function registerRoutes(
   });
   app.get("/api/calculation/readiness", (_req, res) => {
     res.set("Cache-Control", "no-store").json(calculationReadiness());
+  });
+  app.post("/api/calculation/research-contracts", (req, res) => {
+    try {
+      const x = req.body;
+      let result: unknown;
+      switch (x?.operation) {
+        case "equity-value": result = equityValue(x.input); break;
+        case "reverse-equity-growth": result = reverseEquityGrowth(x.input); break;
+        case "fcfe-ocf": result = fcfeFromOperatingCashFlow(x.input); break;
+        case "fcfe-earnings": result = fcfeFromEarnings(x.input); break;
+        case "net-zero-summary": result = summarizeNetZeroYears(x.years, x.horizon); break;
+        case "paired-growth-gap": result = pairedGrowthGap(x.projected, x.implied, x.projectedDefinition, x.impliedDefinition); break;
+        case "scenario-eligibility": result = valuationScenarioEligibility(x.input); break;
+        default: return res.status(422).json({ error: "Unknown research operation" });
+      }
+      res.set("Cache-Control", "no-store").json({ result, status: "submitted-input-diagnostic",
+        modelPromoted: false, investmentEvidence: false });
+    } catch {
+      res.status(422).json({ error: "Invalid or incompatible research inputs" });
+    }
   });
   app.post("/api/emissions/validate-native-pathways", (req, res) => {
     try { res.json(validateNativePair(req.body)); }

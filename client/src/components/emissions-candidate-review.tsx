@@ -92,7 +92,7 @@ export function EmissionsCandidateReview() {
       </p>
 
       <p className="text-sm text-muted-foreground">
-        This partial Package 2 review does not change the headline temperature and makes no new
+        This partial Package 2 review does not validate the legacy calculation and makes no new
         temperature claim. Calibration and source assessment are still pending.
       </p>
 

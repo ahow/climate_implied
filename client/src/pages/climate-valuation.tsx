@@ -1,6 +1,7 @@
-import { useState, useCallback } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { queryClient } from "@/lib/queryClient";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
+import { QueryReadErrors } from "@/components/query-read-errors";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -14,9 +15,8 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 import { DownloadDataButton } from "@/components/download-data-button";
-import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Thermometer, Leaf, Target, Factory, Info } from "lucide-react";
+import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
 import {
   LineChart,
   Line,
@@ -26,7 +26,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  ReferenceLine,
 } from "recharts";
 
 interface UploadRecord {
@@ -112,10 +111,8 @@ interface Summary {
 
 
 export default function ClimateValuation() {
-  const { toast } = useToast();
   const [includeScope3, setIncludeScope3] = useState(false);
   const [winsorize, setWinsorize] = useState(true);
-  const [activeUploadId, setActiveUploadId] = useState<number | null>(null);
   const [costOfEquity, setCostOfEquity] = useState(8);
   const [decarbTercileMethod, setDecarbTercileMethod] = useState<"absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative">("sector_relative");
 
@@ -130,8 +127,7 @@ export default function ClimateValuation() {
   });
 
   const latestCompletedUpload = uploads?.find((u) => u.status === "completed");
-  const processingUpload = uploads?.find((u) => u.status === "processing");
-  const uploadId = activeUploadId || latestCompletedUpload?.id;
+  const uploadId = latestCompletedUpload?.id;
   const hasTimeSeriesData = summary && summary.dateRange && Number(summary.dateRange.recordCount) > 0;
 
   const carbonPriceUrl = `/api/cv/carbon-price?uploadId=${uploadId}&method=sector_relative&includeScope3=${includeScope3}&winsorize=${winsorize}&inferenceMethod=carbon_intensity`;
@@ -145,7 +141,7 @@ export default function ClimateValuation() {
   const { data: sdgGrowth, isLoading: sdgGrowthLoading } = useQuery<SDGGrowthPoint[]>({
     queryKey: ["/api/cv/sdg-growth", costOfEquityDecimal],
     queryFn: async () => {
-      const res = await fetch(sdgGrowthUrl);
+      const res = await fetch(sdgGrowthUrl, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch SDG growth data");
       return res.json();
     },
@@ -156,71 +152,12 @@ export default function ClimateValuation() {
   const { data: decarbTerciles, isLoading: decarbTercilesLoading } = useQuery<DecarbTercilePoint[]>({
     queryKey: ["/api/cv/decarb-terciles", decarbTercileMethod, costOfEquityDecimal],
     queryFn: async () => {
-      const res = await fetch(decarbTercileUrl);
+      const res = await fetch(decarbTercileUrl, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch decarb terciles");
       return res.json();
     },
     enabled: !!hasTimeSeriesData,
   });
-
-  const uploadMutation = useMutation({
-    mutationFn: async (file: File) => {
-      const formData = new FormData();
-      formData.append("file", file);
-      let res: Response;
-      try {
-        res = await fetch("/api/cv/upload", { method: "POST", body: formData });
-      } catch (networkError) {
-        throw new Error(`Network error during upload. The file may be too large for the server. Try uploading from the development environment instead.`);
-      }
-      if (!res.ok) {
-        let errorMsg = `Upload failed (HTTP ${res.status})`;
-        try {
-          const err = await res.json();
-          errorMsg = err.error || err.message || errorMsg;
-        } catch (_) {
-          const text = await res.text().catch(() => "");
-          if (text) errorMsg += `: ${text.slice(0, 200)}`;
-        }
-        throw new Error(errorMsg);
-      }
-      return res.json();
-    },
-    onSuccess: () => {
-      toast({ title: "File uploaded", description: `Processing started. This may take a few minutes for large datasets.` });
-      queryClient.invalidateQueries({ queryKey: ["/api/cv/uploads"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/cv/summary"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/cv/dimensions"] });
-    },
-    onError: (error: Error) => {
-      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
-    },
-  });
-
-  const resetMutation = useMutation({
-    mutationFn: async (id: number) => {
-      const res = await fetch(`/api/cv/upload/${id}/reset`, { method: "POST" });
-      if (!res.ok) throw new Error("Failed to reset upload");
-      return res.json();
-    },
-    onSuccess: (data) => {
-      toast({ title: "Upload reset", description: data.message });
-      queryClient.invalidateQueries({ queryKey: ["/api/cv/uploads"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/cv/summary"] });
-    },
-    onError: () => {
-      toast({ title: "Reset failed", variant: "destructive" });
-    },
-  });
-
-  const handleFileSelect = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) uploadMutation.mutate(file);
-      e.target.value = "";
-    },
-    [uploadMutation]
-  );
 
   const formatChartDate = (timestamp: number) => {
     const d = new Date(timestamp);
@@ -233,9 +170,6 @@ export default function ClimateValuation() {
 
   const carbonIntensityChartData = carbonPrices?.map((p) => ({
     date: new Date(p.date).getTime(),
-    impliedCarbonPrice: Math.round(p.impliedCarbonPrice * 100) / 100,
-    impliedDecarbRate: p.impliedDecarbRate,
-    impliedTemperature: p.impliedTemperature,
     cleanPE: Math.round(p.bottomTercilePeRatio * 100) / 100,
     dirtyPE: Math.round(p.topTercilePeRatio * 100) / 100,
     cleanCount: p.bottomTercileCompanyCount,
@@ -244,9 +178,6 @@ export default function ClimateValuation() {
 
   const sdgChartData = sdgGrowth?.map((p) => ({
     date: new Date(p.date).getTime(),
-    impliedCarbonPrice: Math.round(p.impliedCarbonPrice * 100) / 100,
-    impliedDecarbRate: Math.round(p.impliedDecarbRate * 100) / 100,
-    impliedTemperature: Math.round(p.impliedTemperature * 100) / 100,
     cleanPE: Math.round(p.cleanPE * 100) / 100,
     dirtyPE: Math.round(p.dirtyPE * 100) / 100,
     cleanCount: p.cleanCount,
@@ -255,34 +186,22 @@ export default function ClimateValuation() {
 
   const ambitionChartData = decarbTerciles?.map((p) => ({
     date: new Date(p.date).getTime(),
-    impliedCarbonPrice: Math.round(p.impliedCarbonPrice * 100) / 100,
-    impliedDecarbRate: Math.round(p.impliedDecarbRate * 100) / 100,
-    impliedTemperature: Math.round(p.impliedTemperature * 100) / 100,
     bestPE: Math.round(p.bestTercilePE * 100) / 100,
     worstPE: Math.round(p.worstTercilePE * 100) / 100,
     bestCount: p.bestTercileCompanyCount,
     worstCount: p.worstTercileCompanyCount,
   }));
 
-  const latestCarbon = carbonIntensityChartData && carbonIntensityChartData.length > 0
-    ? carbonIntensityChartData[carbonIntensityChartData.length - 1]
-    : null;
-  const latestSDG = sdgChartData && sdgChartData.length > 0
-    ? sdgChartData[sdgChartData.length - 1]
-    : null;
-  const latestAmbition = ambitionChartData && ambitionChartData.length > 0
-    ? ambitionChartData[ambitionChartData.length - 1]
-    : null;
-
   const hasData = !!hasTimeSeriesData;
 
   return (
     <div className="bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <QueryReadErrors prefix="/api/cv" />
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-xl font-bold tracking-tight" data-testid="text-cv-title">
-              Climate Scenario Analyzer
+              Company Valuation Research
             </h1>
             <p className="text-sm text-muted-foreground">
               Corporate Carbon Emissions vs. Market Valuations
@@ -294,30 +213,27 @@ export default function ClimateValuation() {
               id="cv-file-upload"
               accept=".xlsx,.xls"
               className="hidden"
-              onChange={handleFileSelect}
+              disabled
               data-testid="input-file-upload"
             />
             <Button
               variant="default"
-              onClick={() => document.getElementById("cv-file-upload")?.click()}
-              disabled={uploadMutation.isPending}
+              disabled
+              title={OPERATOR_ONLY_REASON}
               data-testid="button-upload"
             >
-              {uploadMutation.isPending ? (
-                <RefreshCw className="h-4 w-4 animate-spin" />
-              ) : (
-                <Upload className="h-4 w-4" />
-              )}
+              <Upload className="h-4 w-4" />
               <span className="ml-2">Upload Excel Data</span>
             </Button>
           </div>
         </div>
+        <OperatorOnlyNotice />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <SummaryCard icon={Building2} label="Companies" value={summary?.companiesCount ?? 0} isLoading={summaryLoading} />
-          <SummaryCard icon={FileSpreadsheet} label="Records" value={summary?.dateRange?.recordCount ?? 0} isLoading={summaryLoading} />
-          <SummaryCard icon={Factory} label="Sectors" value={summary?.sectors ?? 0} isLoading={summaryLoading} />
-          <SummaryCard icon={TrendingUp} label="Geographies" value={summary?.geographies ?? 0} isLoading={summaryLoading} />
+          <SummaryCard icon={Building2} label="Companies" value={summary?.companiesCount ?? null} isLoading={summaryLoading} />
+          <SummaryCard icon={FileSpreadsheet} label="Records" value={summary?.dateRange?.recordCount ?? null} isLoading={summaryLoading} />
+          <SummaryCard icon={Factory} label="Sectors" value={summary?.sectors ?? null} isLoading={summaryLoading} />
+          <SummaryCard icon={TrendingUp} label="Geographies" value={summary?.geographies ?? null} isLoading={summaryLoading} />
         </div>
 
         {summary?.imputation && summary.imputation.imputedRecords > 0 && (
@@ -358,7 +274,7 @@ export default function ClimateValuation() {
                       <span className="text-muted-foreground text-xs">{u.companiesCount} companies</span>
                     )}
                     {(u.status === "processing" || u.status === "failed") && (
-                      <Button size="sm" variant="outline" data-testid={`button-reset-upload-${u.id}`} disabled={resetMutation.isPending} onClick={() => resetMutation.mutate(u.id)}>
+                      <Button size="sm" variant="outline" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>
                         {u.status === "processing" ? "Recover" : "Retry"}
                       </Button>
                     )}
@@ -412,34 +328,12 @@ export default function ClimateValuation() {
             <AnalysisSection
               icon={Factory}
               title="High vs Low Carbon Companies"
-              description={`Companies ranked by carbon intensity (emissions per $ revenue) into terciles. The implied carbon price equalizes P/E ratios between the most and least carbon-intensive groups. The implied decarbonization rate is derived via the Gordon Growth Model (g = ${costOfEquity}% - 1/PE).`}
-              latestDecarbRate={latestCarbon?.impliedDecarbRate ?? null}
-              latestCarbonPrice={latestCarbon?.impliedCarbonPrice ?? null}
-              latestTemperature={latestCarbon?.impliedTemperature ?? null}
+              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}
               chartData={carbonIntensityChartData ?? []}
               isLoading={carbonPricesLoading}
               formatChartDate={formatChartDate}
               formatTooltipDate={formatTooltipDate}
               testIdPrefix="carbon"
-              carbonPriceTooltip={(d) => (
-                <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                  <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                  <div className="font-semibold text-sm">${d.impliedCarbonPrice.toFixed(2)}/tCO2</div>
-                  <div className="border-t pt-1.5 text-muted-foreground">
-                    <div>Clean tercile P/E: {d.cleanPE?.toFixed(1)}x ({d.cleanCount} co.)</div>
-                    <div>Dirty tercile P/E: {d.dirtyPE?.toFixed(1)}x ({d.dirtyCount} co.)</div>
-                  </div>
-                </div>
-              )}
-              decarbRateTooltip={(d) => (
-                <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                  <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                  <div className="font-semibold text-sm">{d.impliedDecarbRate.toFixed(2)}%/yr</div>
-                  <div className="border-t pt-1.5 text-muted-foreground">
-                    <div>Clean P/E: {d.cleanPE?.toFixed(1)}x | Dirty P/E: {d.dirtyPE?.toFixed(1)}x</div>
-                  </div>
-                </div>
-              )}
               peChart={{
                 highKey: "cleanPE",
                 lowKey: "dirtyPE",
@@ -460,34 +354,12 @@ export default function ClimateValuation() {
             <AnalysisSection
               icon={Leaf}
               title="High vs Low SDG-Aligned Companies"
-              description={`Companies classified by SDG alignment (climate revenue). The growth differential between clean and dirty companies (Gordon Growth Model at ${costOfEquity}% cost of equity) reveals the market's implied decarbonization rate.`}
-              latestDecarbRate={latestSDG?.impliedDecarbRate ?? null}
-              latestCarbonPrice={latestSDG?.impliedCarbonPrice ?? null}
-              latestTemperature={latestSDG?.impliedTemperature ?? null}
+              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}
               chartData={sdgChartData ?? []}
               isLoading={sdgGrowthLoading}
               formatChartDate={formatChartDate}
               formatTooltipDate={formatTooltipDate}
               testIdPrefix="sdg"
-              carbonPriceTooltip={(d) => (
-                <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                  <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                  <div className="font-semibold text-sm">${d.impliedCarbonPrice.toFixed(2)}/tCO2</div>
-                  <div className="border-t pt-1.5 text-muted-foreground">
-                    <div>Clean P/E: {d.cleanPE?.toFixed(1)}x ({d.cleanCount} co.)</div>
-                    <div>Dirty P/E: {d.dirtyPE?.toFixed(1)}x ({d.dirtyCount} co.)</div>
-                  </div>
-                </div>
-              )}
-              decarbRateTooltip={(d) => (
-                <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                  <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                  <div className="font-semibold text-sm">{d.impliedDecarbRate.toFixed(2)}%/yr</div>
-                  <div className="border-t pt-1.5 text-muted-foreground">
-                    <div>Clean P/E: {d.cleanPE?.toFixed(1)}x | Dirty P/E: {d.dirtyPE?.toFixed(1)}x</div>
-                  </div>
-                </div>
-              )}
               peChart={{
                 highKey: "cleanPE",
                 lowKey: "dirtyPE",
@@ -508,10 +380,7 @@ export default function ClimateValuation() {
             <AnalysisSection
               icon={Target}
               title="High vs Low Ambition Companies"
-              description={`Companies ranked by announced emission reduction targets into terciles. The P/E differential between the most ambitious and least ambitious terciles implies a decarbonization rate via the Gordon Growth Model (${costOfEquity}% cost of equity).`}
-              latestDecarbRate={latestAmbition?.impliedDecarbRate ?? null}
-              latestCarbonPrice={latestAmbition?.impliedCarbonPrice ?? null}
-              latestTemperature={latestAmbition?.impliedTemperature ?? null}
+              description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}
               chartData={ambitionChartData ?? []}
               isLoading={decarbTercilesLoading}
               formatChartDate={formatChartDate}
@@ -530,25 +399,6 @@ export default function ClimateValuation() {
                   </SelectContent>
                 </Select>
               }
-              carbonPriceTooltip={(d) => (
-                <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                  <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                  <div className="font-semibold text-sm">${d.impliedCarbonPrice.toFixed(2)}/tCO2</div>
-                  <div className="border-t pt-1.5 text-muted-foreground">
-                    <div>Best tercile P/E: {d.bestPE?.toFixed(1)}x ({d.bestCount} co.)</div>
-                    <div>Worst tercile P/E: {d.worstPE?.toFixed(1)}x ({d.worstCount} co.)</div>
-                  </div>
-                </div>
-              )}
-              decarbRateTooltip={(d) => (
-                <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                  <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                  <div className="font-semibold text-sm">{d.impliedDecarbRate.toFixed(2)}%/yr</div>
-                  <div className="border-t pt-1.5 text-muted-foreground">
-                    <div>Best P/E: {d.bestPE?.toFixed(1)}x | Worst P/E: {d.worstPE?.toFixed(1)}x</div>
-                  </div>
-                </div>
-              )}
               peChart={{
                 highKey: "bestPE",
                 lowKey: "worstPE",
@@ -574,13 +424,13 @@ export default function ClimateValuation() {
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>
               <div>
-                <h3 className="text-lg font-medium" data-testid="text-no-data-heading">Upload Data to Get Started</h3>
+                <h3 className="text-lg font-medium" data-testid="text-no-data-heading">No company dataset available</h3>
                 <p className="text-sm text-muted-foreground mt-1 max-w-md mx-auto">
-                  Upload an Excel file with corporate emissions, financial, and ESG data to analyze
-                  implied carbon prices and decarbonization rates across different classification methods.
+                  An operator must import and review company data using the CLI.
+                  Valuation-derived temperature, carbon-price and net-zero outputs remain withheld.
                 </p>
               </div>
-              <Button variant="default" onClick={() => document.getElementById("cv-file-upload")?.click()} disabled={uploadMutation.isPending} data-testid="button-upload-cta">
+              <Button variant="default" disabled title={OPERATOR_ONLY_REASON} data-testid="button-upload-cta">
                 <Upload className="h-4 w-4 mr-2" />
                 Upload Excel File
               </Button>
@@ -596,17 +446,12 @@ interface AnalysisSectionProps {
   icon: React.ElementType;
   title: string;
   description: string;
-  latestDecarbRate: number | null;
-  latestCarbonPrice: number | null;
-  latestTemperature: number | null;
-  chartData: Array<{ date: number; impliedCarbonPrice: number; impliedDecarbRate: number; [k: string]: any }>;
+  chartData: Array<{ date: number; [k: string]: any }>;
   isLoading: boolean;
   formatChartDate: (ts: number) => string;
   formatTooltipDate: (ts: number) => string;
   testIdPrefix: string;
   headerRight?: React.ReactNode;
-  carbonPriceTooltip: (d: any) => React.ReactNode;
-  decarbRateTooltip: (d: any) => React.ReactNode;
   peChart: {
     highKey: string;
     lowKey: string;
@@ -620,33 +465,18 @@ function AnalysisSection({
   icon: Icon,
   title,
   description,
-  latestDecarbRate,
-  latestCarbonPrice,
-  latestTemperature,
   chartData,
   isLoading,
   formatChartDate,
   formatTooltipDate,
   testIdPrefix,
   headerRight,
-  carbonPriceTooltip,
-  decarbRateTooltip,
   peChart,
 }: AnalysisSectionProps) {
   const peDownloadRows = chartData.map((d) => ({
     Date: formatTooltipDate(d.date),
     [`${peChart.highLabel} P/E (x)`]: d[peChart.highKey],
     [`${peChart.lowLabel} P/E (x)`]: d[peChart.lowKey],
-  }));
-
-  const priceDownloadRows = chartData.map((d) => ({
-    Date: formatTooltipDate(d.date),
-    "Implied Carbon Price ($/tCO2)": d.impliedCarbonPrice,
-  }));
-
-  const rateDownloadRows = chartData.map((d) => ({
-    Date: formatTooltipDate(d.date),
-    "Implied Decarb Rate (%/yr)": d.impliedDecarbRate,
   }));
 
   return (
@@ -660,40 +490,12 @@ function AnalysisSection({
       </div>
       <p className="text-sm text-muted-foreground mb-4">{description}</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <Card className="p-4">
-          <div className="flex items-center gap-2 mb-1">
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Implied Decarb Rate</span>
-          </div>
-          <p className="text-xl font-semibold" data-testid={`text-${testIdPrefix}-decarb-rate`}>
-            {latestDecarbRate !== null ? `${latestDecarbRate.toFixed(2)}%` : "-"}
-            <span className="text-sm font-normal text-muted-foreground ml-1">/ yr</span>
-          </p>
-        </Card>
-        <Card className="p-4">
-          <div className="flex items-center gap-2 mb-1">
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Implied Carbon Price</span>
-          </div>
-          <p className="text-xl font-semibold" data-testid={`text-${testIdPrefix}-carbon-price`}>
-            {latestCarbonPrice !== null ? `$${latestCarbonPrice.toFixed(0)}` : "-"}
-            <span className="text-sm font-normal text-muted-foreground ml-1">/ tonne</span>
-          </p>
-        </Card>
-        <Card className="p-4">
-          <div className="flex items-center gap-2 mb-1">
-            <Thermometer className="h-4 w-4 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Implied Temperature</span>
-          </div>
-          <p className="text-xl font-semibold" data-testid={`text-${testIdPrefix}-temperature`}>
-            {latestTemperature !== null ? `${latestTemperature.toFixed(1)}` : "-"}
-            <span className="text-sm font-normal text-muted-foreground ml-1">&deg;C</span>
-          </p>
-        </Card>
-      </div>
+      <Card className="p-4 mb-6 text-sm text-muted-foreground" data-testid={`${testIdPrefix}-withheld`}>
+        Temperature, carbon price, net-zero year and physical decarbonization rates: unavailable.
+        No defensible valuation-to-activity mapping has been established. No numeric substitutes are shown or exported.
+      </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="space-y-6">
         <Card className="p-6">
           <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
             <div>
@@ -729,79 +531,12 @@ function AnalysisSection({
           )}
         </Card>
 
-        <Card className="p-6">
-          <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-            <div>
-              <h3 className="text-sm font-medium" data-testid={`text-${testIdPrefix}-price-chart-heading`}>Implied Carbon Price</h3>
-              <p className="text-xs text-muted-foreground mt-1">Market-implied cost per tonne CO2 over time</p>
-            </div>
-            <DownloadDataButton
-              filename={`${testIdPrefix}-implied-carbon-price`}
-              sheetName="Carbon Price"
-              rows={priceDownloadRows}
-              testId={`button-download-${testIdPrefix}-price`}
-            />
-          </div>
-          {isLoading ? (
-            <Skeleton className="h-[300px] w-full" />
-          ) : chartData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="date" type="number" domain={["dataMin", "dataMax"]} scale="time" tick={{ fontSize: 11 }} tickFormatter={formatChartDate} className="text-muted-foreground" />
-                <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `$${v}`} className="text-muted-foreground" />
-                <Tooltip content={({ active, payload }) => {
-                  if (!active || !payload || payload.length === 0) return null;
-                  return <>{carbonPriceTooltip(payload[0].payload)}</>;
-                }} />
-                <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="3 3" opacity={0.5} />
-                <Line type="monotone" dataKey="impliedCarbonPrice" stroke="hsl(168, 76%, 36%)" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
-              </LineChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="flex items-center justify-center h-[300px] text-sm text-muted-foreground">No data available</div>
-          )}
-        </Card>
-
-        <Card className="p-6">
-          <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-            <div>
-              <h3 className="text-sm font-medium" data-testid={`text-${testIdPrefix}-rate-chart-heading`}>Implied Decarbonization Rate</h3>
-              <p className="text-xs text-muted-foreground mt-1">Annual rate of emissions reduction implied by valuations</p>
-            </div>
-            <DownloadDataButton
-              filename={`${testIdPrefix}-implied-decarbonization-rate`}
-              sheetName="Decarb Rate"
-              rows={rateDownloadRows}
-              testId={`button-download-${testIdPrefix}-rate`}
-            />
-          </div>
-          {isLoading ? (
-            <Skeleton className="h-[300px] w-full" />
-          ) : chartData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="date" type="number" domain={["dataMin", "dataMax"]} scale="time" tick={{ fontSize: 11 }} tickFormatter={formatChartDate} className="text-muted-foreground" />
-                <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `${v.toFixed(1)}%`} className="text-muted-foreground" />
-                <Tooltip content={({ active, payload }) => {
-                  if (!active || !payload || payload.length === 0) return null;
-                  return <>{decarbRateTooltip(payload[0].payload)}</>;
-                }} />
-                <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="3 3" opacity={0.5} />
-                <Line type="monotone" dataKey="impliedDecarbRate" stroke="hsl(262, 80%, 55%)" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
-              </LineChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="flex items-center justify-center h-[300px] text-sm text-muted-foreground">No data available</div>
-          )}
-        </Card>
       </div>
     </section>
   );
 }
 
-function SummaryCard({ icon: Icon, label, value, isLoading }: { icon: React.ElementType; label: string; value: number; isLoading?: boolean }) {
+function SummaryCard({ icon: Icon, label, value, isLoading }: { icon: React.ElementType; label: string; value: number | null; isLoading?: boolean }) {
   if (isLoading) {
     return (
       <Card className="p-4">
@@ -816,7 +551,7 @@ function SummaryCard({ icon: Icon, label, value, isLoading }: { icon: React.Elem
         <Icon className="h-4 w-4 text-muted-foreground" />
         <span className="text-xs text-muted-foreground">{label}</span>
       </div>
-      <p className="text-xl font-semibold">{value.toLocaleString()}</p>
+      <p className="text-xl font-semibold">{value?.toLocaleString() ?? "Unavailable"}</p>
     </Card>
   );
 }

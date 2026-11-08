@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/select";
 import { Activity, TrendingDown, Globe, Layers, BarChart3 } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { earningsYieldGapPp, displayDiagnostic } from "@/lib/valuation-claims";
+import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
 import {
@@ -32,17 +34,9 @@ import {
   Bar,
 } from "recharts";
 
-interface HistoricalTrendPoint {
-  year: number;
-  median: number;
-  p10: number;
-  p90: number;
-  reductionRate: number;
-  netZeroYear: number | null;
-  isNowcast?: boolean;
-}
-
 interface SDGGrowthPoint {
+  cleanPE: number;
+  dirtyPE: number;
   date: string;
   impliedDecarbRate: number;
   impliedCarbonPrice: number;
@@ -52,6 +46,8 @@ interface SDGGrowthPoint {
 }
 
 interface DecarbTercilePoint {
+  bestTercilePE: number;
+  worstTercilePE: number;
   date: string;
   impliedDecarbRate: number;
   impliedCarbonPrice: number;
@@ -61,6 +57,8 @@ interface DecarbTercilePoint {
 }
 
 interface CarbonPricePoint {
+  bottomTercilePeRatio: number;
+  topTercilePeRatio: number;
   date: string;
   impliedCarbonPrice: number;
   impliedDecarbRate: number;
@@ -97,10 +95,9 @@ type BacktestSignal = "carbon_intensity" | "sdg_exposure" | "decarb_ambition";
 interface ChartDataPoint {
   date: number;
   dateLabel: string;
-  expected?: number;
-  carbonIntensity?: number;
-  sdgExposure?: number;
-  decarbAmbition?: number;
+  carbonIntensity?: number | null;
+  sdgExposure?: number | null;
+  decarbAmbition?: number | null;
 }
 
 const SCORING_METHODS: { value: ScoringMethod; label: string }[] = [
@@ -155,15 +152,11 @@ export default function DecarbSignal() {
 
   const uploadId = uploads?.find((u) => u.status === "completed")?.id;
 
-  const { data: historicalTrend, isLoading: loadingTrend } = useQuery<HistoricalTrendPoint[]>({
-    queryKey: ["/api/projection/historical-trend"],
-  });
-
   const { data: carbonPriceData, isLoading: loadingCP } = useQuery<CarbonPricePoint[]>({
     queryKey: ["/api/cv/carbon-price", scoringMethod, geography, uploadId],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/carbon-price?uploadId=${uploadId}&${methodParam}&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity${geoParam}`);
-      if (!res.ok) return [];
+      const res = await fetch(`/api/cv/carbon-price?uploadId=${uploadId}&${methodParam}&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity${geoParam}`, { credentials: "include" });
+      if (!res.ok) throw new Error("Company valuation groups unavailable");
       return res.json();
     },
     enabled: !!uploadId,
@@ -172,8 +165,8 @@ export default function DecarbSignal() {
   const { data: sdgData, isLoading: loadingSDG } = useQuery<SDGGrowthPoint[]>({
     queryKey: ["/api/cv/sdg-growth", geography],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/sdg-growth?costOfEquity=0.08${geoParam}`);
-      if (!res.ok) return [];
+      const res = await fetch(`/api/cv/sdg-growth?costOfEquity=0.08${geoParam}`, { credentials: "include" });
+      if (!res.ok) throw new Error("SDG valuation groups unavailable");
       return res.json();
     },
   });
@@ -181,8 +174,8 @@ export default function DecarbSignal() {
   const { data: decarbTercileData, isLoading: loadingDecarb } = useQuery<DecarbTercilePoint[]>({
     queryKey: ["/api/cv/decarb-terciles", scoringMethod, geography],
     queryFn: async () => {
-      const res = await fetch(`/api/cv/decarb-terciles?${methodParam}&costOfEquity=0.08${geoParam}`);
-      if (!res.ok) return [];
+      const res = await fetch(`/api/cv/decarb-terciles?${methodParam}&costOfEquity=0.08${geoParam}`, { credentials: "include" });
+      if (!res.ok) throw new Error("Target valuation groups unavailable");
       return res.json();
     },
   });
@@ -196,40 +189,28 @@ export default function DecarbSignal() {
   });
   const backtestData = backtestResponse?.series;
 
-  const isLoading = loadingTrend || loadingCP || loadingSDG || loadingDecarb;
+  const isLoading = loadingCP || loadingSDG || loadingDecarb;
   const hasAnyCV = (carbonPriceData && carbonPriceData.length > 0) ||
     (sdgData && sdgData.length > 0) ||
     (decarbTercileData && decarbTercileData.length > 0);
-  const hasTrend = historicalTrend && historicalTrend.length > 0;
-  const hasData = hasAnyCV || hasTrend;
+  const hasData = hasAnyCV;
   const isGeoFiltered = geography !== "all";
-  const expectedLabel = isGeoFiltered ? "Expected (Global)" : "Expected (Model)";
+  const expectedLabel = "Physical comparison withheld";
 
   const chartData = useMemo(() => {
     const dateMap = new Map<number, ChartDataPoint>();
-
-    if (historicalTrend) {
-      for (const pt of historicalTrend) {
-        const ts = new Date(pt.year, 6, 1).getTime();
-        dateMap.set(ts, {
-          date: ts,
-          dateLabel: `${pt.year}`,
-          expected: Math.round(pt.reductionRate * 100) / 100,
-        });
-      }
-    }
 
     if (carbonPriceData) {
       for (const pt of carbonPriceData) {
         const ts = new Date(pt.date).getTime();
         const existing = dateMap.get(ts);
         if (existing) {
-          existing.carbonIntensity = pt.impliedDecarbRate;
+          existing.carbonIntensity = earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio);
         } else {
           dateMap.set(ts, {
             date: ts,
             dateLabel: formatDateLabel(ts),
-            carbonIntensity: pt.impliedDecarbRate,
+            carbonIntensity: earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio),
           });
         }
       }
@@ -240,12 +221,12 @@ export default function DecarbSignal() {
         const ts = new Date(pt.date).getTime();
         const existing = dateMap.get(ts);
         if (existing) {
-          existing.sdgExposure = Math.round(pt.impliedDecarbRate * 100) / 100;
+          existing.sdgExposure = earningsYieldGapPp(pt.cleanPE, pt.dirtyPE);
         } else {
           dateMap.set(ts, {
             date: ts,
             dateLabel: formatDateLabel(ts),
-            sdgExposure: Math.round(pt.impliedDecarbRate * 100) / 100,
+            sdgExposure: earningsYieldGapPp(pt.cleanPE, pt.dirtyPE),
           });
         }
       }
@@ -256,36 +237,34 @@ export default function DecarbSignal() {
         const ts = new Date(pt.date).getTime();
         const existing = dateMap.get(ts);
         if (existing) {
-          existing.decarbAmbition = Math.round(pt.impliedDecarbRate * 100) / 100;
+          existing.decarbAmbition = earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE);
         } else {
           dateMap.set(ts, {
             date: ts,
             dateLabel: formatDateLabel(ts),
-            decarbAmbition: Math.round(pt.impliedDecarbRate * 100) / 100,
+            decarbAmbition: earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE),
           });
         }
       }
     }
 
     return Array.from(dateMap.values()).sort((a, b) => a.date - b.date);
-  }, [historicalTrend, carbonPriceData, sdgData, decarbTercileData]);
+  }, [carbonPriceData, sdgData, decarbTercileData]);
 
   const latestValues = useMemo(() => {
     if (chartData.length === 0) return null;
 
-    let latestExpected: number | undefined;
-    let latestCI: number | undefined;
-    let latestSDG: number | undefined;
-    let latestDA: number | undefined;
+    let latestCI: number | null | undefined;
+    let latestSDG: number | null | undefined;
+    let latestDA: number | null | undefined;
 
     for (let i = chartData.length - 1; i >= 0; i--) {
-      if (latestExpected === undefined && chartData[i].expected !== undefined) latestExpected = chartData[i].expected;
       if (latestCI === undefined && chartData[i].carbonIntensity !== undefined) latestCI = chartData[i].carbonIntensity;
       if (latestSDG === undefined && chartData[i].sdgExposure !== undefined) latestSDG = chartData[i].sdgExposure;
       if (latestDA === undefined && chartData[i].decarbAmbition !== undefined) latestDA = chartData[i].decarbAmbition;
     }
 
-    return { expected: latestExpected, carbonIntensity: latestCI, sdgExposure: latestSDG, decarbAmbition: latestDA };
+    return { carbonIntensity: latestCI, sdgExposure: latestSDG, decarbAmbition: latestDA };
   }, [chartData]);
 
   const backtestStats = useMemo(() => {
@@ -332,7 +311,7 @@ export default function DecarbSignal() {
               <span className="text-muted-foreground">{entry.name}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {entry.value?.toFixed(2)}%/yr
+              {displayDiagnostic(entry.value, " pp")}
             </span>
           </div>
         ))}
@@ -364,10 +343,9 @@ export default function DecarbSignal() {
 
   const comparisonDownloadRows = chartData.map((d) => ({
     Date: d.dateLabel,
-    [`${expectedLabel} (%/yr)`]: d.expected,
-    "Carbon Intensity (%/yr)": d.carbonIntensity,
-    "SDG Exposure (%/yr)": d.sdgExposure,
-    "Decarb Ambition (%/yr)": d.decarbAmbition,
+    "Carbon intensity group earnings-yield gap (pp)": d.carbonIntensity,
+    "SDG group earnings-yield gap (pp)": d.sdgExposure,
+    "Ambition group earnings-yield gap (pp)": d.decarbAmbition,
   }));
 
   const cumulativeReturnDownloadRows = backtestChartData.map((d) => ({
@@ -384,13 +362,14 @@ export default function DecarbSignal() {
 
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-signal">
+      <QueryReadErrors prefix="/api/cv" />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" data-testid="text-page-title">
-            Decarb Signal Comparison
+            Valuation Signal Comparison
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Expected reduction rates vs. market-implied decarbonization signals
+            Descriptive group earnings-yield gaps — not emissions reduction rates
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
@@ -435,9 +414,9 @@ export default function DecarbSignal() {
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: LINE_COLORS.expected }} />
           </div>
           <p className="text-2xl font-bold tabular-nums" data-testid="text-expected-rate">
-            {latestValues?.expected !== undefined ? `${latestValues.expected.toFixed(2)}%` : "\u2014"}
+            Unavailable
           </p>
-          <p className="text-xs text-muted-foreground">per year</p>
+          <p className="text-xs text-muted-foreground">No defensible valuation-to-activity mapping</p>
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -445,9 +424,9 @@ export default function DecarbSignal() {
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: LINE_COLORS.carbonIntensity }} />
           </div>
           <p className="text-2xl font-bold tabular-nums" data-testid="text-ci-rate">
-            {latestValues?.carbonIntensity !== undefined ? `${latestValues.carbonIntensity.toFixed(2)}%` : "\u2014"}
+            {displayDiagnostic(latestValues?.carbonIntensity, " pp")}
           </p>
-          <p className="text-xs text-muted-foreground">per year (market-implied)</p>
+          <p className="text-xs text-muted-foreground">Low-minus-high group Gordon baseline gap</p>
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -455,9 +434,9 @@ export default function DecarbSignal() {
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: LINE_COLORS.sdgExposure }} />
           </div>
           <p className="text-2xl font-bold tabular-nums" data-testid="text-sdg-rate">
-            {latestValues?.sdgExposure !== undefined ? `${latestValues.sdgExposure.toFixed(2)}%` : "\u2014"}
+            {displayDiagnostic(latestValues?.sdgExposure, " pp")}
           </p>
-          <p className="text-xs text-muted-foreground">per year (market-implied)</p>
+          <p className="text-xs text-muted-foreground">Positive-minus-negative group Gordon baseline gap</p>
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -465,9 +444,9 @@ export default function DecarbSignal() {
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: LINE_COLORS.decarbAmbition }} />
           </div>
           <p className="text-2xl font-bold tabular-nums" data-testid="text-da-rate">
-            {latestValues?.decarbAmbition !== undefined ? `${latestValues.decarbAmbition.toFixed(2)}%` : "\u2014"}
+            {displayDiagnostic(latestValues?.decarbAmbition, " pp")}
           </p>
-          <p className="text-xs text-muted-foreground">per year (market-implied)</p>
+          <p className="text-xs text-muted-foreground">Best-minus-worst group Gordon baseline gap</p>
         </Card>
       </div>
 
@@ -475,17 +454,17 @@ export default function DecarbSignal() {
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
           <div>
             <h2 className="text-base font-semibold" data-testid="text-chart-title">
-              Decarbonization Rate Comparison
+              Group Earnings-Yield Gap Comparison
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Annual implied reduction rates from different inference approaches
+              Gordon steady-state baseline differences = earnings yield of second group minus first group (pp), not climate expectations
             </p>
           </div>
           <div className="flex items-center gap-2">
             {isLoading && <Badge variant="secondary">Loading...</Badge>}
             <DownloadDataButton
-              filename="decarbonization-rate-comparison"
-              sheetName="Decarb Rate Comparison"
+              filename="group-earnings-yield-gaps"
+              sheetName="Valuation gaps"
               rows={comparisonDownloadRows}
               testId="button-download-decarb-comparison"
             />
@@ -499,7 +478,7 @@ export default function DecarbSignal() {
             <Activity className="h-10 w-10 mb-3 opacity-40" />
             <p className="text-sm">
               {!uploadId
-                ? "No dataset uploaded yet. Upload a dataset in the Scenario Analyzer to see market-implied signals."
+                ? "No company dataset is available. Import and review require the operator CLI."
                 : isGeoFiltered
                   ? "No results for selected geography. Try a different region or reset to All Geographies."
                   : "No data available."}
@@ -520,22 +499,13 @@ export default function DecarbSignal() {
               <YAxis
                 tick={{ fontSize: 11 }}
                 tickFormatter={(v: number) => `${v}%`}
-                label={{ value: "Decarb Rate (%/yr)", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }}
+                label={{ value: "Earnings-yield gap (pp)", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }}
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend
                 wrapperStyle={{ fontSize: 12 }}
               />
               <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.5} />
-              <Line
-                dataKey="expected"
-                name={expectedLabel}
-                stroke={LINE_COLORS.expected}
-                strokeWidth={2.5}
-                dot={{ r: 3 }}
-                connectNulls
-                type="monotone"
-              />
               <Line
                 dataKey="carbonIntensity"
                 name="Carbon Intensity"
@@ -770,35 +740,33 @@ export default function DecarbSignal() {
         <h3 className="text-sm font-semibold mb-2">Methodology Notes</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground leading-relaxed">
           <div>
-            <p className="font-medium text-foreground mb-1">Expected (Model)</p>
+            <p className="font-medium text-foreground mb-1">Physical comparison withheld</p>
             <p>
-              Derived from Monte Carlo simulation using 14 real-world indicators.
-              Shows the annualized emissions reduction rate implied by current technology,
-              policy, corporate, and socioeconomic trajectories.
+              A valuation earnings-yield gap and a global emissions reduction rate have different definitions.
+              Their subtraction is not a supported climate signal. Temperature, carbon-price and net-zero outputs are unavailable.
             </p>
           </div>
           <div>
             <p className="font-medium text-foreground mb-1">Carbon Intensity (Market)</p>
             <p>
               Compares P/E ratios of high vs. low carbon intensity companies.
-              The differential implies a market-priced decarbonization rate via
-              the Gordon Growth Model (g = r - 1/PE).
+              Intensity is emissions per market cap, not revenue. The low-minus-high Gordon baseline difference
+              equals high-group earnings yield minus low-group earnings yield.
             </p>
           </div>
           <div>
             <p className="font-medium text-foreground mb-1">SDG Exposure (Market)</p>
             <p>
               Splits companies by SDG alignment score (positive = clean, negative = dirty).
-              Growth rate differential between clean and dirty portfolios implies
-              a market-priced transition rate.
+              The positive-minus-negative group Gordon baseline difference is a descriptive earnings-yield gap, not a transition rate.
             </p>
           </div>
           <div>
             <p className="font-medium text-foreground mb-1">Decarb Ambition (Market)</p>
             <p>
               Ranks companies by 2050 emission reduction targets into terciles.
-              P/E premium for ambitious vs. lagging companies translates to
-              an implied decarbonization rate through growth differentials.
+              The best-minus-worst group Gordon baseline difference is not a decarbonization rate.
+              Gordon steady-state growth assumes fully distributed earnings and is not five-year reverse-DCF growth.
             </p>
           </div>
           <div className="md:col-span-2">
