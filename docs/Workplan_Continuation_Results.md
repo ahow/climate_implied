@@ -99,3 +99,29 @@ evidence remain under ignored `generated-artifacts/`; they are not redistributed
 
 Some items need external evidence or managed production actions; others are
 unfinished engineering. They must not all be described as external blockers.
+
+### Subsequent contract repair
+
+Descriptive CV responses now also withhold projected physical reduction rates,
+physical gaps and their summary rates/distributions, including nested cached
+records. The two peer-relative endpoints no longer run a climate simulation to
+obtain a common ranking offset: setting that internal common offset to zero
+leaves ranks unchanged. Their physical outputs remain withheld. The revised
+near-zero milestone is still outstanding. An additional contract test passes.
+
+### Concurrent input isolation
+
+Approved indicator values are now captured once per GET request. Concurrent
+calculations keep separate maps across asynchronous work; duplicate approved
+cells fail explicitly rather than selecting an arbitrary winner. Responses
+include the indicator hash, and company manifests include that hash alongside
+the workbook identity. This is request isolation, **not** persistent historical
+indicator-overlay storage.
+
+Approval/supersession and manual entry now use atomic database transactions
+with per-cell advisory locking. A development acceptance run exercised competing
+proposals, repeated approval and competing manual entries: exactly one approved
+value remained in each case. The test removed only its own synthetic rows.
+A read-only production check found no duplicate approved cells before rollout.
+Two new request-isolation fixtures pass. Total TypeScript coverage is now 115
+tests; the unchanged Python suite has 18 tests.

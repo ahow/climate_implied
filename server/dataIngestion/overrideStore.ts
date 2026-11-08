@@ -1,4 +1,5 @@
 import { getApprovedValues } from "./dataStore";
+import { requestOverrides } from "./requestOverrides";
 
 export interface OverrideMeta {
   value: number;
@@ -43,21 +44,22 @@ export async function loadApprovedOverrides(): Promise<void> {
 }
 
 export function getOverride(key: string, year: number): number | undefined {
-  return overrides.get(cacheKey(key, year))?.value;
+  return (requestOverrides.getStore()?.values ?? overrides).get(cacheKey(key, year))?.value;
 }
 
 export function getOverrideMeta(key: string, year: number): OverrideMeta | undefined {
-  return overrides.get(cacheKey(key, year));
+  const value = (requestOverrides.getStore()?.values ?? overrides).get(cacheKey(key, year));
+  return value ? { ...value } : undefined;
 }
 
 export function getOverrideYears(): number[] {
-  return Array.from(overrideYears).sort((a, b) => a - b);
+  return [...(requestOverrides.getStore()?.years ?? Array.from(overrideYears))].sort((a, b) => a - b);
 }
 
 export function hasOverrides(): boolean {
-  return overrides.size > 0;
+  return (requestOverrides.getStore()?.values ?? overrides).size > 0;
 }
 
 export function isLoaded(): boolean {
-  return loaded;
+  return !!requestOverrides.getStore() || loaded;
 }

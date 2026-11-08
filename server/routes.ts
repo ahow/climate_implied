@@ -16,6 +16,7 @@ import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
 import { createManifest } from "./calculation/analysisManifest";
 import { driverEvidenceRegistry } from "./calculation/driverEvidence";
 import { longShortResearch } from "./climateValuation/longShortResearch";
+import { requestOverrides, runWithOverrideRows } from "./dataIngestion/requestOverrides";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -54,6 +55,7 @@ import { startScheduler } from "./dataIngestion/scheduler";
 import { loadApprovedOverrides, getOverrideMeta } from "./dataIngestion/overrideStore";
 import {
   getPendingValues,
+  getApprovedValues,
   getValuesForKey,
   approveProposal,
   rejectProposal,
@@ -100,6 +102,18 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  app.use("/api", async (req, res, next) => {
+    if (req.method !== "GET" || req.path === "/health") return next();
+    try {
+      const rows = await getApprovedValues();
+      runWithOverrideRows(rows, () => {
+        res.set("X-Indicator-Snapshot", requestOverrides.getStore()!.hash);
+        next();
+      });
+    } catch {
+      res.status(503).json({ error: "Approved indicator inputs unavailable or inconsistent" });
+    }
+  });
   void checkFinancialProvider();
   app.get("/api/financial-data/status", (_req, res) => {
     res.setHeader("Cache-Control", "no-store");
@@ -118,7 +132,8 @@ export async function registerRoutes(
       }
       const manifest = createManifest({
         codeVersion: process.env.RAILWAY_GIT_COMMIT_SHA || "workspace-code-version-unrecorded",
-        modelVersion: CALCULATION_VERSION, snapshotHashes: [header.id],
+        modelVersion: CALCULATION_VERSION,
+        snapshotHashes: [header.id, ...(requestOverrides.getStore() ? [requestOverrides.getStore()!.hash] : [])],
         scenario: `descriptive-valuation:${req.path}`, settings: { ...req.query },
       });
       res.set("X-Analysis-Data-State", "immutable-workbook-snapshot");
@@ -151,10 +166,11 @@ export async function registerRoutes(
       res.set("Cache-Control", "no-store").json({ status: "available", items: rows });
     } catch { res.status(503).json({ error: "Snapshot listing unavailable" }); }
   });
-  app.use("/api/cv", (_req, res, next) => {
+  app.use("/api/cv", (req, res, next) => {
     res.set("X-Analytical-Status", "descriptive-valuation-not-physical-inference");
     const send = res.json.bind(res);
-    res.json = ((body: unknown) => send(publicValuationResult(body))) as typeof res.json;
+    res.json = ((body: unknown) => send(publicValuationResult(body,
+      req.originalUrl.split("?")[0].startsWith("/api/cv/decarb-gap")))) as typeof res.json;
     next();
   });
 
@@ -939,7 +955,9 @@ export async function registerRoutes(
       const method = (req.query.method as GapScoringMethod) || "sector_relative";
       const geography = req.query.geography as string | undefined;
       const costOfEquity = parseFloat(req.query.costOfEquity as string) || 0.08;
-      const projectedRate = await getProjectedRate();
+      // A common offset does not change peer ranks. Descriptive valuation
+      // outputs must not depend on an unsupported physical climate forecast.
+      const projectedRate = 0;
 
       const result = await calculateDecarbGapSummary(projectedRate, method, costOfEquity, geography);
       res.json(result);
@@ -954,7 +972,7 @@ export async function registerRoutes(
       const method = (req.query.method as GapScoringMethod) || "sector_relative";
       const geography = req.query.geography as string | undefined;
       const costOfEquity = parseFloat(req.query.costOfEquity as string) || 0.08;
-      const projectedRate = await getProjectedRate();
+      const projectedRate = 0;
 
       const result = await calculateDecarbGapTimeSeries(projectedRate, method, costOfEquity, geography);
       res.json(result);

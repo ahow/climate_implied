@@ -116,10 +116,13 @@ export async function getProposalById(
 
 /** Approve a pending proposal, superseding any prior approved row for that cell. */
 export async function approveProposal(id: string): Promise<IndicatorValue | undefined> {
-  const proposal = await getProposalById(id);
+  return db.transaction(async tx => {
+  const [proposal] = await tx.select().from(indicatorValues)
+    .where(eq(indicatorValues.id, id)).for("update");
   if (!proposal || proposal.status !== "pending") return undefined;
+  await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext(${`${proposal.indicatorKey}:${proposal.year}`}))`);
 
-  await db
+  await tx
     .update(indicatorValues)
     .set({ status: "superseded", decidedAt: new Date() })
     .where(
@@ -132,13 +135,14 @@ export async function approveProposal(id: string): Promise<IndicatorValue | unde
 
   // Pending-only transition: WHERE status='pending' guards against double-apply
   // if two requests race on the same proposal.
-  const [updated] = await db
+  const [updated] = await tx
     .update(indicatorValues)
     .set({ status: "approved", decidedAt: new Date() })
     .where(and(eq(indicatorValues.id, id), eq(indicatorValues.status, "pending")))
     .returning();
 
   return updated;
+  });
 }
 
 /** Reject a pending proposal. Only pending rows may be rejected. */
@@ -158,7 +162,9 @@ export async function createManualApproved(params: {
   value: number;
   note?: string;
 }): Promise<IndicatorValue> {
-  await db
+  return db.transaction(async tx => {
+  await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext(${`${params.indicatorKey}:${params.year}`}))`);
+  await tx
     .update(indicatorValues)
     .set({ status: "superseded", decidedAt: new Date() })
     .where(
@@ -169,7 +175,7 @@ export async function createManualApproved(params: {
       )
     );
 
-  const [created] = await db
+  const [created] = await tx
     .insert(indicatorValues)
     .values({
       indicatorKey: params.indicatorKey,
@@ -184,6 +190,7 @@ export async function createManualApproved(params: {
     .returning();
 
   return created;
+  });
 }
 
 export async function getRecentRuns(limit = 10): Promise<IndicatorFetchRun[]> {
