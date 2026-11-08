@@ -12,6 +12,7 @@ import { publicValuationResult } from "./calculation/publicValuationContract";
 import { resolveSnapshot, snapshotContext } from "./snapshots/store";
 import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
+import { loadAnalysisResult, saveAnalysisResult } from "./snapshots/results";
 import { cvAnalysisSnapshots } from "@shared/schema";
 import { snapshotsAvailable } from "./snapshots/store";
 import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
@@ -156,10 +157,38 @@ export async function registerRoutes(
       res.set("X-Analysis-Snapshot", header.id);
       res.set("X-Analysis-Manifest", manifest.id);
       res.set("Cache-Control", "no-store");
+      const archivedPaths = new Set(["/summary", "/carbon-price", "/pe-comparison",
+        "/sdg-growth", "/decarb-bands", "/decarb-terciles", "/decarb-gap/summary",
+        "/decarb-gap/timeseries", "/backtest"]);
+      if (archivedPaths.has(req.path)) {
+        const sendJson = res.json.bind(res);
+        let sent = false;
+        res.json = (body: unknown) => {
+          if (res.statusCode >= 400) return sendJson(body);
+          if (sent) return res;
+          sent = true;
+          // Store exactly the JSON response (Dates/optional fields use the
+          // same JSON encoding as Express), before reporting archive success.
+          void Promise.resolve().then(() => saveAnalysisResult(manifest,
+            JSON.parse(JSON.stringify(body)))).then(id => {
+            res.set("X-Analysis-Result", id);
+            res.set("X-Analysis-Result-State", "archived-completed-response");
+            sendJson(body);
+          }).catch(() => {
+            res.status(503);
+            sendJson({ error: "Analysis completed but immutable result recording failed; no archived result was returned" });
+          });
+          return res;
+        };
+      }
       snapshotContext.run(header, next);
     } catch {
       res.status(422).json({ error: "Requested analysis snapshot unavailable or invalid" });
     }
+  });
+  app.get("/api/analysis/results/:id", async (req, res) => {
+    try { res.set("Cache-Control", "no-store").json(await loadAnalysisResult(req.params.id)); }
+    catch { res.status(422).json({ error: "Archived analysis result unavailable or invalid" }); }
   });
   app.get("/api/analysis/snapshot-status", async (_req, res) => {
     try {

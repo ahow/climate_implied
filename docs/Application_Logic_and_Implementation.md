@@ -1,5 +1,9 @@
 # Current amended workplan implementation
 
+For automatic approval snapshots, completed-response storage/retrieval, corrected
+legacy milestone terminology and their actual test results, see
+[Automatic archival and result replay](Automatic_Archive_and_Result_Replay.md).
+
 For the current all-stage implementation/test/conclusion matrix, see
 [Workplan status and conclusions](Workplan_Status_and_Conclusions.md).
 

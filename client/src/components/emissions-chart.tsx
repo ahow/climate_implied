@@ -138,7 +138,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
             stroke="hsl(var(--muted-foreground))"
             strokeDasharray="4 4"
             label={{
-              value: "Net-Zero Threshold (5 Gt)",
+              value: "Legacy threshold (5 GtCO₂e; not net zero)",
               position: "insideTopRight",
               style: { fontSize: 10, fill: "hsl(var(--muted-foreground))" },
             }}

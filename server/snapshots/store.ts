@@ -7,8 +7,8 @@ import { packDataset, unpackDataset, type DatasetChunk } from "./contract";
 export type SnapshotHeader = typeof cvAnalysisSnapshots.$inferSelect;
 export const snapshotContext = new AsyncLocalStorage<SnapshotHeader>();
 
-export async function snapshotsAvailable() {
-  const result = await db.execute(sql`SELECT to_regclass('public.cv_analysis_snapshots') IS NOT NULL
+export async function snapshotsAvailable(connection: Pick<typeof db, "execute"> = db) {
+  const result = await connection.execute(sql`SELECT to_regclass('public.cv_analysis_snapshots') IS NOT NULL
     AND to_regclass('public.cv_analysis_chunks') IS NOT NULL
     AND (SELECT count(*) FROM pg_trigger WHERE tgname IN
       ('cv_snapshot_header_immutable','cv_snapshot_chunk_immutable',

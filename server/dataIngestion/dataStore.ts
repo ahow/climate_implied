@@ -3,6 +3,9 @@ import { indicatorValues, indicatorFetchRuns } from "@shared/schema";
 import type { IndicatorValue, IndicatorFetchRun } from "@shared/schema";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import type { FetchedValue } from "./adapters/types";
+import { archiveApprovedIndicators } from "../snapshots/indicators";
+
+type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
 export async function createFetchRun(
   trigger: "manual" | "scheduled"
@@ -116,7 +119,12 @@ export async function getProposalById(
 
 /** Approve a pending proposal, superseding any prior approved row for that cell. */
 export async function approveProposal(id: string): Promise<IndicatorValue | undefined> {
-  return db.transaction(async tx => {
+  return db.transaction(tx => approveProposalInTransaction(tx, id));
+}
+export async function approveProposalInTransaction(tx: Transaction, id: string): Promise<IndicatorValue | undefined> {
+  // Serialize the complete approved-set capture, including changes to different
+  // cells. READ COMMITTED sees the previous holder's committed complete set.
+  await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext('approved-indicator-archive'))`);
   const [proposal] = await tx.select().from(indicatorValues)
     .where(eq(indicatorValues.id, id)).for("update");
   if (!proposal || proposal.status !== "pending") return undefined;
@@ -141,8 +149,8 @@ export async function approveProposal(id: string): Promise<IndicatorValue | unde
     .where(and(eq(indicatorValues.id, id), eq(indicatorValues.status, "pending")))
     .returning();
 
+  if (updated) await archiveApprovedIndicators(tx);
   return updated;
-  });
 }
 
 /** Reject a pending proposal. Only pending rows may be rejected. */
@@ -162,7 +170,12 @@ export async function createManualApproved(params: {
   value: number;
   note?: string;
 }): Promise<IndicatorValue> {
-  return db.transaction(async tx => {
+  return db.transaction(tx => createManualApprovedInTransaction(tx, params));
+}
+export async function createManualApprovedInTransaction(tx: Transaction, params: {
+  indicatorKey: string; year: number; value: number; note?: string;
+}): Promise<IndicatorValue> {
+  await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext('approved-indicator-archive'))`);
   await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext(${`${params.indicatorKey}:${params.year}`}))`);
   await tx
     .update(indicatorValues)
@@ -189,8 +202,8 @@ export async function createManualApproved(params: {
     })
     .returning();
 
+  await archiveApprovedIndicators(tx);
   return created;
-  });
 }
 
 export async function getRecentRuns(limit = 10): Promise<IndicatorFetchRun[]> {

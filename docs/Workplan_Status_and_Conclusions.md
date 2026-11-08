@@ -2,6 +2,11 @@
 
 ## Overall conclusion
 
+The [automatic archival and completed-result replay increment](Automatic_Archive_and_Result_Replay.md)
+adds transactional approval snapshots, stored company-analysis responses and
+corrected legacy threshold labels. Its actual-data and regression checks pass;
+production archival still depends on database provisioning.
+
 The subsequent [regional inventory and member-metrics increment](Regional_Inventory_and_Member_Metrics.md)
 adds real regional source accounting and coherent member calculations; its
 remaining scientific and integration gaps are explicit.
@@ -19,8 +24,8 @@ predeclared scientific threshold or claim independent validation.
 | Stage | Implemented | Test/evidence | Conclusion and remaining acceptance |
 |---|---|---|---|
 | 0 Safety | Restricted writes, operator CLI, opt-in scheduler, CI/local release checks, no startup mutation | Safety/source-boundary regressions pass; previous release identity verified in live HTTP | Partial: single scheduler, recovery rehearsal and complete remote CI gating remain |
-| 1 Outputs | Published context by default, legacy opt-in, unsupported valuation physical fields removed | Public-response and UI claim tests pass | Partial: exhaustive output/export register and positive-threshold naming remain |
-| 2 Reproducibility | Immutable workbook capture; request isolation; content hashes; indicator archive/replay; historical workbook summary selector; snapshot-aware dimensions and backtest selectors | 2,442 companies / 470,341 observations captured; workbook replay/guards passed previously; actual approved indicator capture/replay passed; archive fixtures reject tampering/duplicates/nonfinite values | Partial: financial/carbon/SDG overlays, automatic approval-time archival, complete run persistence and production snapshot provisioning remain |
+| 1 Outputs | Published context by default, legacy opt-in, unsupported valuation physical fields removed; legacy gauge/chart/toggle explicitly label the positive threshold as not net zero | Public-response and UI claim tests pass | Partial: exhaustive output/export register and remaining legacy consumers |
+| 2 Reproducibility | Immutable workbook capture; request isolation; automatic transactional approval archives; historical summary selector; completed company-analysis response archive/retrieval | Actual 2,442-company summary stored/retrieved exactly; concurrent approval and rollback checks passed; 132 TypeScript and 22 Python regression tests passed | Partial: financial/carbon/SDG overlays, full historical recalculation, other run types and production provisioning remain |
 | 3 Drivers | All 22 indicators classified; evidence disclosure; strict missingness/interpolation | Registry and missingness fixtures pass | Partial: complete source/uncertainty/vintage evidence is not supplied |
 | 4 Calibration | Frozen regional solar/wind holdout study on observed revised history | 1 of 10 fits (EU solar) beat both baselines; nine fail that promotion rule | No central promotion: uncertainty/structural-break checks and remaining technologies incomplete |
 | 5 Emissions | Native-gas candidate mechanisms, power balance, EV turnover and overlap safeguards | Candidate/accounting fixtures pass | Partial: actual regional 10,000-member production ensemble and convergence not built |
@@ -48,7 +53,8 @@ fail explicitly. Request hashes and stored archive identities agree.
 `script/capture-indicator-snapshot.ts` is a development-only operator command.
 It does not approve data, alter collection cadence, migrate production or claim
 publication-vintage evidence. Capture and replay succeeded on the actual current
-approved inputs. Capture is **not yet automatic after approval**.
+approved inputs. Capture is now also automatic inside approval transactions when
+immutable storage is provisioned. A missing production archive is not hidden.
 
 GET requests can select an archived driver set using `indicatorSnapshotId`.
 Company calculations independently select a workbook using `snapshotId`.
@@ -67,7 +73,7 @@ inputs. Production without snapshot tables remains explicitly unavailable.
   not blocked by a missing user instruction or token.**
 - No additional approval to continue ordinary implementation is needed.
 
-The next implementation work is automatic, transactional input/run archival,
-followed by the regional emissions ensemble and the independent company-model
-track. Dependent scientific outputs must remain unavailable until their actual
-acceptance criteria pass.
+Remaining implementation includes complete overlay/run coverage, the regional
+emissions ensemble and the independent company-model track. Dependent
+scientific outputs must remain unavailable until their actual acceptance
+criteria pass.

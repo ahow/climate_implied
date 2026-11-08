@@ -119,7 +119,7 @@ export function TemperatureGauge({
 
         <div className="flex justify-between text-xs text-muted-foreground mb-6">
           <span>0%</span>
-          <span>5% (1.5°C aligned)</span>
+          <span>5% (illustrative)</span>
           <span>10%+</span>
         </div>
 
@@ -137,12 +137,12 @@ export function TemperatureGauge({
           <div className="flex items-start gap-2">
             <Calendar className="h-4 w-4 text-muted-foreground mt-0.5" />
             <div>
-              <p className="text-xs text-muted-foreground">Net-Zero Year</p>
+              <p className="text-xs text-muted-foreground">Legacy 5 Gt milestone</p>
               <p className="text-sm font-semibold tabular-nums" data-testid="text-net-zero-year">
-                {netZeroYear ? netZeroYear : "Never"}
+                {netZeroYear ?? "Not reached"}
               </p>
               <p className="text-xs text-muted-foreground">
-                {netZeroYear && netZeroYear <= 2050 ? "On track" : netZeroYear ? "Delayed" : "Emissions remain high"}
+                Not net zero; may include extrapolation
               </p>
             </div>
           </div>
@@ -156,17 +156,17 @@ export function TemperatureGauge({
       <Card className="p-6" data-testid="card-temperature-gauge">
         <div className="flex items-center gap-2 mb-4">
           <Calendar className="h-5 w-5 text-muted-foreground" />
-          <h3 className="text-sm font-medium text-muted-foreground">Projected Net-Zero Year</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">Legacy 5 GtCO₂e milestone</h3>
         </div>
 
         <div className="flex items-baseline gap-2 mb-1">
           <span className={`text-5xl font-bold tabular-nums tracking-tight ${getNetZeroColor(netZeroYear)}`} data-testid="text-netzero-value">
-            {netZeroYear ? netZeroYear : "Never"}
+            {netZeroYear ?? "Not reached"}
           </span>
         </div>
 
         <div className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium mb-4 ${netZeroLabel.color}`} data-testid="text-netzero-label">
-          {netZeroLabel.label}
+          Positive-emissions threshold, not net zero
         </div>
 
         <div className="relative h-3 bg-muted rounded-full mb-2 overflow-hidden">
@@ -183,7 +183,7 @@ export function TemperatureGauge({
 
         <div className="flex justify-between text-xs text-muted-foreground mb-6">
           <span>2030</span>
-          <span>2050 (target)</span>
+          <span>2050</span>
           <span>2100+</span>
         </div>
 
@@ -280,12 +280,12 @@ export function TemperatureGauge({
         <div className="flex items-start gap-2">
           <Calendar className="h-4 w-4 text-muted-foreground mt-0.5" />
           <div>
-            <p className="text-xs text-muted-foreground">Net-Zero Year</p>
+            <p className="text-xs text-muted-foreground">Legacy 5 Gt milestone</p>
             <p className="text-sm font-semibold tabular-nums" data-testid="text-net-zero-year">
-              {netZeroYear ? netZeroYear : "Never"}
+              {netZeroYear ?? "Not reached"}
             </p>
             <p className="text-xs text-muted-foreground">
-              {netZeroYear && netZeroYear <= 2050 ? "On track" : netZeroYear ? "Delayed" : "Emissions remain high"}
+              Not net zero; may include extrapolation
             </p>
           </div>
         </div>
