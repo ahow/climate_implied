@@ -1,5 +1,8 @@
 # Current amended workplan implementation
 
+Latest numerical and operational evidence:
+[Remaining workplan execution](Remaining_Workplan_Execution.md).
+
 For automatic approval snapshots, completed-response storage/retrieval, corrected
 legacy milestone terminology and their actual test results, see
 [Automatic archival and result replay](Automatic_Archive_and_Result_Replay.md).

@@ -24,3 +24,28 @@ jobs:
       - run: uv run python -m unittest discover -s script -p 'test_*.py'
       - run: npm run check
       - run: npm run build
+  promote:
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: production-promotion
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Advance the validated deployment branch
+        env:
+          VALIDATED_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          # A slow older run must not replace a newer candidate or release.
+          if [ "$(git rev-parse origin/main)" != "$VALIDATED_SHA" ]; then
+            echo "Newer source exists; skipping obsolete promotion"
+            exit 0
+          fi
+          git push origin "$VALIDATED_SHA:refs/heads/production-validated"

@@ -2,6 +2,12 @@
 
 ## Overall conclusion
 
+See [the latest remaining-workplan execution record](Remaining_Workplan_Execution.md)
+for collector locking, CI promotion, actual bootstrap uncertainty, completed
+regional land-use accounting, calibrated FaIR pulse diagnostics and the
+100-company provider root-cause audit. The former regional land-source gap
+is resolved; the projection ensemble is still incomplete.
+
 The [automatic archival and completed-result replay increment](Automatic_Archive_and_Result_Replay.md)
 adds transactional approval snapshots, stored company-analysis responses and
 corrected legacy threshold labels. Its actual-data and regression checks pass;

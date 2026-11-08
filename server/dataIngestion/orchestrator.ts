@@ -1,4 +1,6 @@
 import { ADAPTERS } from "./adapters";
+import { db } from "../db";
+import { withCollectionLock } from "./collectionLock";
 import type { AdapterContext, FetchedValue } from "./adapters/types";
 import { getCuratedValue, LATEST_CURATED_YEAR, type IndicatorKey } from "./indicatorRegistry";
 import {
@@ -37,6 +39,11 @@ function skippedSummary(): FetchRunSummary {
 export async function runFetch(
   trigger: "manual" | "scheduled"
 ): Promise<FetchRunSummary> {
+  const locked = await withCollectionLock(db.$client, () => runFetchLocked(trigger));
+  return locked.acquired ? locked.result : skippedSummary();
+}
+
+async function runFetchLocked(trigger: "manual" | "scheduled"): Promise<FetchRunSummary> {
   // Acquire the in-process lock synchronously BEFORE any await so two
   // near-simultaneous callers cannot both pass the gate. The DB check guards
   // against a run left "running" by a prior crashed process.
