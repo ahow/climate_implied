@@ -119,6 +119,26 @@ Private evidence: `generated-artifacts/fair-reference/pulse-checks.json`.
 
 ## Stage 10 — matching root-cause audit: audit passed, approvals incomplete
 
+### Follow-on venue repair
+
+Added conservative venue joins for ASX (AU/AT), JPX (JP/JT), Shanghai
+(C1) and Shenzhen (C2), using the retained ISIN-first cross-provider audit
+evidence. The shared Chinese CH composite is deliberately not used to merge
+the two exchanges. Existing ADR, inactive-listing and identity-review gates
+are unchanged.
+
+Offline reassessment of the **same 100-case sample**, with no new provider
+requests, recovers 16 candidates: 34 unmatched, 50 ambiguous and 16 awaiting
+review. Zero approvals were created. This is not full-universe coverage.
+The original audit remains unchanged; derived evidence is stored separately
+in `generated-artifacts/financial-data/reassessed-root-causes.json`.
+
+Tests were committed before implementation. Venue-positive, wrong-exchange,
+ADR and Shanghai/Shenzhen separation fixtures pass. Full regression:
+139 TypeScript tests, 24 Python tests, type checking and build pass.
+Remaining matching work includes other venues, ticker aliases, minor-unit
+currencies, primary-listing review and issuer-level approval.
+
 Collected fresh FMP/OpenFIGI evidence for a deterministic hash-sampled 50
 unmatched and 50 ambiguous cases from the completed 2,442-company census.
 All 100 completed; resumable checkpoints retain evidence privately.

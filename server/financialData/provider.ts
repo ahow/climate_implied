@@ -67,6 +67,9 @@ export interface Profile {
 const EXCHANGE_CODES: Record<string, string[]> = {
   NASDAQ: ["US", "UW", "UQ"], NYSE: ["US", "UN"], AMEX: ["US", "UA"],
   LSE: ["LN"], TSX: ["CN", "CT"], XETRA: ["GY", "GR"], EURONEXT: ["FP", "NA", "BB"],
+  // Cross-provider pairs observed in the retained ISIN-first root-cause audit.
+  // Chinese venue-specific codes deliberately exclude the shared CH composite.
+  ASX: ["AU", "AT"], JPX: ["JP", "JT"], SHH: ["C1"], SHZ: ["C2"],
 };
 
 /** Candidate evidence, not an automatic issuer or primary-listing selection. */
