@@ -1,9 +1,9 @@
 import { z } from "zod";
 export const ensembleSchema = z.object({
   baseline: z.literal("1850-1900"),
-  memberIds: z.array(z.string().min(1)).min(2).max(5000),
+  memberIds: z.array(z.string().min(1)).min(2).max(10000),
   years: z.array(z.number().int()).min(1).max(400),
-  temperature: z.array(z.array(z.number().finite()).max(5000)).max(400),
+  temperature: z.array(z.array(z.number().finite()).max(10000)).max(400),
 }).superRefine((e, ctx) => {
   if (new Set(e.memberIds).size !== e.memberIds.length || e.temperature.length !== e.years.length ||
     e.temperature.some(row => row.length !== e.memberIds.length) ||
@@ -20,7 +20,8 @@ export function summarizeEnsemble(input: unknown) {
   const e = ensembleSchema.parse(input);
   const trajectory = e.temperature.map((row, i) => {
     const sorted = [...row].sort((a, b) => a - b);
-    return { year: e.years[i], p10: quantile(sorted, .1), median: quantile(sorted, .5), p90: quantile(sorted, .9),
+    return { year: e.years[i], mean: row.reduce((s, v) => s + v, 0) / row.length,
+      p10: quantile(sorted, .1), median: quantile(sorted, .5), p90: quantile(sorted, .9),
       probabilityAbove1_5: row.filter(v => v > 1.5).length / row.length,
       probabilityAbove2: row.filter(v => v > 2).length / row.length,
       probabilityAbove3: row.filter(v => v > 3).length / row.length };

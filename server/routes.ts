@@ -10,6 +10,7 @@ import { fcfeFromOperatingCashFlow, fcfeFromEarnings, pairedGrowthGap,
 import { equityValue, reverseEquityGrowth } from "./calculation/reverseValuation";
 import { publicValuationResult } from "./calculation/publicValuationContract";
 import { resolveSnapshot, snapshotContext } from "./snapshots/store";
+import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { cvAnalysisSnapshots } from "@shared/schema";
 import { snapshotsAvailable } from "./snapshots/store";
@@ -274,6 +275,7 @@ export async function registerRoutes(
       const x = req.body;
       let result: unknown;
       switch (x?.operation) {
+        case "member-metrics": result = summarizeMemberMetrics(x.input); break;
         case "cash-flow-value": result = cashFlowValue(x.input); break;
         case "reverse-cash-flow-growth": result = reverseCashFlowGrowth(x.input); break;
         case "long-short-research": result = longShortResearch(x.input); break;

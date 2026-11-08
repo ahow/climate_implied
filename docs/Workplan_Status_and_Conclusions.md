@@ -2,6 +2,10 @@
 
 ## Overall conclusion
 
+The subsequent [regional inventory and member-metrics increment](Regional_Inventory_and_Member_Metrics.md)
+adds real regional source accounting and coherent member calculations; its
+remaining scientific and integration gaps are explicit.
+
 The full 18-stage workplan is **not complete**. The sequential check runner
 executes existing implementations; it is not an implementation agent.
 Passing numerical fixtures does not accept real-data research or production
