@@ -38,6 +38,7 @@ import {
 import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { FinancialProviderStatus } from "@/components/financial-provider-status";
+import { AnalysisSnapshotStatus } from "@/components/analysis-snapshot-status";
 import { FinancialReview, ScientificValidation } from "@/components/financial-review";
 
 interface IndicatorSummary {
@@ -244,6 +245,7 @@ export default function DataManagement() {
       </div>
 
       <FinancialProviderStatus />
+      <AnalysisSnapshotStatus />
       <FinancialReview />
       <ScientificValidation />
 

@@ -3,6 +3,7 @@ import { cvCompanies, cvTimeSeries } from "@shared/schema";
 import type { CvCompany, CvTimeSeries } from "@shared/schema";
 import { orderCalculationRows } from "../../shared/calculationContract";
 import { carryForwardEmissions } from "./emissionsCarryForward";
+import { loadSnapshot, snapshotContext } from "../snapshots/store";
 
 export type ScoringMethod = "absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative";
 
@@ -118,8 +119,13 @@ export async function loadCompaniesAndTimeSeries(applyCarryForward: boolean = tr
   companies: CvCompany[];
   timeSeries: CvTimeSeries[];
 }> {
-  const companies = (await db.select().from(cvCompanies)).sort((a, b) => a.id - b.id);
-  const rawTimeSeries = orderCalculationRows(await db.select().from(cvTimeSeries));
+  const header = snapshotContext.getStore();
+  const captured = header ? await loadSnapshot(header) : await db.transaction(async tx => ({
+    companies: await tx.select().from(cvCompanies),
+    timeSeries: await tx.select().from(cvTimeSeries),
+  }), { isolationLevel: "repeatable read", accessMode: "read only" });
+  const companies = captured.companies.sort((a, b) => a.id - b.id);
+  const rawTimeSeries = orderCalculationRows(captured.timeSeries);
   const timeSeries = applyCarryForward ? carryForwardEmissions(rawTimeSeries) : rawTimeSeries;
   return { companies, timeSeries };
 }

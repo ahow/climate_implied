@@ -1,5 +1,8 @@
 # Current amended workplan implementation
 
+The latest implemented changes, empirical results and explicit remaining scope
+are in [Workplan continuation results](Workplan_Continuation_Results.md).
+
 See [workplan amendments](Developer_Workplan_Amendments.md) and the
 [stage execution record](Developer_Workplan_Execution.md) for the 8 November
 2026 increment. The 18-stage programme is **not complete**. Public HTTP writes

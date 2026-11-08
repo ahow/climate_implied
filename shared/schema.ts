@@ -99,6 +99,25 @@ export const cvDataUploads = pgTable("cv_data_uploads", {
   completedAt: timestamp("completed_at"),
 });
 
+/** Append-only source snapshots. Production schema changes use managed Publish. */
+export const cvAnalysisSnapshots = pgTable("cv_analysis_snapshots", {
+  id: varchar("id", { length: 64 }).primaryKey(),
+  kind: text("kind").notNull(),
+  sourceUploadId: integer("source_upload_id"),
+  parentId: varchar("parent_id", { length: 64 }),
+  companyCount: integer("company_count").notNull(),
+  observationCount: integer("observation_count").notNull(),
+  chunkCount: integer("chunk_count").notNull(),
+  sourceNote: text("source_note").notNull(),
+  insertedTx: text("inserted_tx").notNull().default(sql`txid_current()::text`),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+export const cvAnalysisChunks = pgTable("cv_analysis_chunks", {
+  snapshotId: varchar("snapshot_id", { length: 64 }).notNull().references(() => cvAnalysisSnapshots.id),
+  ordinal: integer("ordinal").notNull(),
+  payload: jsonb("payload").notNull(),
+}, table => [uniqueIndex("cv_analysis_chunk_identity").on(table.snapshotId, table.ordinal)]);
+
 export const cvCompanyTerciles = pgTable("cv_company_terciles", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   uploadId: integer("upload_id").notNull(),

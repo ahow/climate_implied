@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, BookOpen, Database, Calculator, BarChart3, Globe, FlaskConical, TrendingUp, DollarSign, Thermometer, ArrowRightLeft, Layers, Activity, GitCompare, LineChart } from "lucide-react";
 import { Link } from "wouter";
 import { PublicationMethodologyNotes } from "@/components/publication-methodology-notes";
+import { DriverEvidenceDisclosure } from "@/components/driver-evidence-disclosure";
 
 export default function Methodology() {
   return (
@@ -26,6 +27,7 @@ export default function Methodology() {
           <p className="text-sm text-muted-foreground">Gordon steady-state earnings-growth baselines assume fully distributed earnings and a chosen cost of equity. They are not five-year reverse-DCF growth. Peer-relative earnings-yield gaps are descriptive valuation diagnostics. Emissions intensity uses market cap, not revenue.</p>
           <p className="text-sm text-muted-foreground">Temperature, carbon-price and net-zero results inferred from valuations are withheld. No defensible valuation-to-activity mapping or identified market climate expectation is established. No new scientific model is ready. Retrospective portfolio research is not validated investment evidence.</p>
         </Card>
+        <DriverEvidenceDisclosure />
         <details className="rounded-md border p-4">
         <summary className="cursor-pointer text-sm font-semibold">Archived legacy methodology — opt in; superseded claims, not current scientific guidance</summary>
         <p className="my-4 text-sm text-muted-foreground">The historical documentation below records old formulas and interpretations. Claims of climate inference, validation, net-zero, pricing and investment opportunity are unsupported and superseded by the current boundaries above. It is retained for diagnostic audit only.</p>

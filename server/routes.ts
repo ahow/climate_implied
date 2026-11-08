@@ -9,6 +9,13 @@ import { fcfeFromOperatingCashFlow, fcfeFromEarnings, pairedGrowthGap,
   summarizeNetZeroYears, valuationScenarioEligibility } from "./calculation/researchCorrections";
 import { equityValue, reverseEquityGrowth } from "./calculation/reverseValuation";
 import { publicValuationResult } from "./calculation/publicValuationContract";
+import { resolveSnapshot, snapshotContext } from "./snapshots/store";
+import { cvAnalysisSnapshots } from "@shared/schema";
+import { snapshotsAvailable } from "./snapshots/store";
+import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
+import { createManifest } from "./calculation/analysisManifest";
+import { driverEvidenceRegistry } from "./calculation/driverEvidence";
+import { longShortResearch } from "./climateValuation/longShortResearch";
 import {
   getCurrentIndicators,
   getCurrentIndicatorsFromHistorical,
@@ -99,6 +106,51 @@ export async function registerRoutes(
     res.json(financialProviderStatus());
   });
   app.use("/api/cv", validateCvRequest);
+  app.use("/api/cv", async (req, res, next) => {
+    if (req.method !== "GET") return next();
+    try {
+      if (req.query.snapshotId !== undefined && typeof req.query.snapshotId !== "string")
+        return res.status(422).json({ error: "Invalid snapshot identity" });
+      const header = await resolveSnapshot(req.query.snapshotId as string | undefined);
+      if (!header) {
+        res.set("X-Analysis-Data-State", "legacy-mutable-source-snapshot-not-provisioned");
+        return next();
+      }
+      const manifest = createManifest({
+        codeVersion: process.env.RAILWAY_GIT_COMMIT_SHA || "workspace-code-version-unrecorded",
+        modelVersion: CALCULATION_VERSION, snapshotHashes: [header.id],
+        scenario: `descriptive-valuation:${req.path}`, settings: { ...req.query },
+      });
+      res.set("X-Analysis-Data-State", "immutable-workbook-snapshot");
+      res.set("X-Analysis-Snapshot", header.id);
+      res.set("X-Analysis-Manifest", manifest.id);
+      res.set("Cache-Control", "no-store");
+      snapshotContext.run(header, next);
+    } catch {
+      res.status(422).json({ error: "Requested analysis snapshot unavailable or invalid" });
+    }
+  });
+  app.get("/api/analysis/snapshot-status", async (_req, res) => {
+    try {
+      const header = await resolveSnapshot();
+      res.set("Cache-Control", "no-store").json(header ? {
+        status: "immutable-workbook-snapshot", snapshotId: header.id, companyCount: header.companyCount,
+        observationCount: header.observationCount, createdAt: header.createdAt, sourceNote: header.sourceNote,
+        currentFinancialOverlaysApplied: false,
+      } : { status: "not-provisioned", snapshotId: null, currentFinancialOverlaysApplied: false });
+    } catch { res.status(503).json({ error: "Snapshot status unavailable" }); }
+  });
+  app.get("/api/analysis/snapshots", async (_req, res) => {
+    try {
+      if (!await snapshotsAvailable()) return res.json({ status: "not-provisioned", items: [] });
+      const rows = await db.select({
+        id: cvAnalysisSnapshots.id, kind: cvAnalysisSnapshots.kind,
+        companyCount: cvAnalysisSnapshots.companyCount, observationCount: cvAnalysisSnapshots.observationCount,
+        createdAt: cvAnalysisSnapshots.createdAt,
+      }).from(cvAnalysisSnapshots).orderBy(desc(cvAnalysisSnapshots.createdAt)).limit(100);
+      res.set("Cache-Control", "no-store").json({ status: "available", items: rows });
+    } catch { res.status(503).json({ error: "Snapshot listing unavailable" }); }
+  });
   app.use("/api/cv", (_req, res, next) => {
     res.set("X-Analytical-Status", "descriptive-valuation-not-physical-inference");
     const send = res.json.bind(res);
@@ -213,11 +265,15 @@ export async function registerRoutes(
   app.get("/api/calculation/readiness", (_req, res) => {
     res.set("Cache-Control", "no-store").json(calculationReadiness());
   });
+  app.get("/api/research/driver-registry", (_req, res) => {
+    res.json({ status: "evidence-gaps-explicit", indicators: driverEvidenceRegistry() });
+  });
   app.post("/api/calculation/research-contracts", (req, res) => {
     try {
       const x = req.body;
       let result: unknown;
       switch (x?.operation) {
+        case "long-short-research": result = longShortResearch(x.input); break;
         case "equity-value": result = equityValue(x.input); break;
         case "reverse-equity-growth": result = reverseEquityGrowth(x.input); break;
         case "fcfe-ocf": result = fcfeFromOperatingCashFlow(x.input); break;
@@ -790,22 +846,20 @@ export async function registerRoutes(
 
   app.get("/api/cv/summary", async (_req, res) => {
     try {
-      const companies = await db.select().from(cvCompanies);
+      const { companies, timeSeries: rawTimeSeries } = await loadCompaniesAndTimeSeries(false);
       const uploads = await db.select().from(cvDataUploads).orderBy(desc(cvDataUploads.id)).limit(1);
-
-      const dateRange = await db.select({
-        minDate: sql<string>`MIN(${cvTimeSeries.date})`,
-        maxDate: sql<string>`MAX(${cvTimeSeries.date})`,
-        recordCount: sql<number>`COUNT(*)`,
-      }).from(cvTimeSeries);
-
-      const rawTimeSeries = await db.select().from(cvTimeSeries);
+      let minDate: Date | null = null, maxDate: Date | null = null;
+      for (const row of rawTimeSeries) {
+        if (!minDate || row.date < minDate) minDate = row.date;
+        if (!maxDate || row.date > maxDate) maxDate = row.date;
+      }
       const imputation = computeImputationStats(carryForwardEmissions(rawTimeSeries));
 
       res.json({
         companiesCount: companies.length,
-        latestUpload: uploads[0] || null,
-        dateRange: dateRange[0] || null,
+        latestUpload: snapshotContext.getStore() ? null : uploads[0] || null,
+        snapshotId: snapshotContext.getStore()?.id ?? null,
+        dateRange: { minDate, maxDate, recordCount: rawTimeSeries.length },
         sectors: Array.from(new Set(companies.map(c => c.sector).filter(Boolean))).length,
         geographies: Array.from(new Set(companies.map(c => c.geography).filter(Boolean))).length,
         imputation,

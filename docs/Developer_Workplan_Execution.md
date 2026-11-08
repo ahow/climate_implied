@@ -2,6 +2,10 @@
 
 Date: 8 November 2026.
 
+**Latest continuation:** see [Workplan_Continuation_Results.md](Workplan_Continuation_Results.md)
+for immutable development snapshots, real regional calibration, the full-universe
+supplementary diagnostic and remaining limitations. Tables below are historical.
+
 **The 18-stage programme is NOT complete.** This is a partial implementation
 record, not a scientific acceptance statement. Permission to continue has
 already been given; remaining engineering is not waiting for routine approval.

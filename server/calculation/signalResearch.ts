@@ -22,7 +22,8 @@ function fit(x: number[][], y: number[]) {
   }
   return a.map(r => r[n]);
 }
-export function evaluateSignal(input: unknown) {
+export function evaluateSignal(input: unknown, maximumRows = 10000) {
+  if (!Number.isInteger(maximumRows) || maximumRows < 30 || maximumRows > 1000000) throw new Error("Invalid research row budget");
   const p = z.object({
     frozenAt: z.string().date(), splitDate: z.string().date(),
     minimumMseImprovement: z.number().gt(0).lt(1),
@@ -30,7 +31,7 @@ export function evaluateSignal(input: unknown) {
     evidenceMode: z.enum(["point-in-time", "revised-history"]).default("point-in-time"),
     uncertainty: z.enum(["independent-rows", "date-blocks"]).default("independent-rows"),
     blockLength: z.number().int().min(1).max(24).default(3),
-    rows: z.array(rowSchema).min(30).max(10000),
+    rows: z.array(rowSchema).min(30).max(maximumRows),
   }).parse(input);
   if ((p.evidenceMode === "point-in-time" && p.frozenAt >= p.splitDate) || p.rows.some(r =>
     (r.publishedAt !== null && r.publishedAt > r.date) ||
@@ -54,6 +55,7 @@ export function evaluateSignal(input: unknown) {
   const improvement = baselineMSE > 1e-12 ? (baselineMSE - candidateMSE) / baselineMSE : 0;
   const dates = Array.from(new Set(holdout.map(r => r.date))).sort();
   const dateLosses = dates.map(date => delta.filter((_, i) => holdout[i].date === date));
+  const dateSums = dateLosses.map(values => ({ sum: values.reduce((a, b) => a + b, 0), count: values.length }));
   if (p.uncertainty === "date-blocks" && dates.length < Math.max(6, 2 * p.blockLength))
     throw new Error("At least six dates and two blocks required for date-block uncertainty");
   // Circular moving blocks preserve all companies on each sampled date together.
@@ -70,7 +72,8 @@ export function evaluateSignal(input: unknown) {
       const start = random(dates.length);
       for (let i = 0; i < p.blockLength && selected.length < dates.length; i++) selected.push((start + i) % dates.length);
     }
-    return mean(selected.flatMap(i => dateLosses[i]));
+    return selected.reduce((sum, i) => sum + dateSums[i].sum, 0) /
+      selected.reduce((sum, i) => sum + dateSums[i].count, 0);
   }).sort((a, b) => a - b);
   const positive = improvement >= p.minimumMseImprovement && samples[12] > 0;
   return { decision: p.evidenceMode === "revised-history" ? (positive ? "exploratory-positive-not-validated" : "exploratory-no-improvement") :
