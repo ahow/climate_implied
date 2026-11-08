@@ -89,3 +89,13 @@ Railway's management API separately required platform approval, so no new
 production deployment or CI gating configuration was verified. These access
 limits do not explain the remaining unimplemented engineering stages; those
 are explicitly recorded above rather than marked complete or data-blocked.
+
+### Release access correction — 8 November 2026
+
+The earlier workflow-scope rejection was traced to the workspace's GitHub URL
+proxy rewrite, not a demonstrated defect in the supplied token. A direct,
+PAT-authenticated source export succeeded, including the workflow, at
+`674b4b009f941b37a006276bfae4941e6420b989`. The release helper now applies a
+process-local exact-repository rewrite, preserving system Git ignore/identity
+settings. This supersedes the earlier unresolved export-permission diagnosis.
+Source synchronization does not itself prove Railway deployment or CI gating.
