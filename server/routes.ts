@@ -16,6 +16,7 @@ import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
 import { createManifest } from "./calculation/analysisManifest";
 import { driverEvidenceRegistry } from "./calculation/driverEvidence";
 import { longShortResearch } from "./climateValuation/longShortResearch";
+import { cashFlowValue, reverseCashFlowGrowth } from "./calculation/cashFlowValuation";
 import { requestOverrides, runWithOverrideRows } from "./dataIngestion/requestOverrides";
 import {
   getCurrentIndicators,
@@ -289,6 +290,8 @@ export async function registerRoutes(
       const x = req.body;
       let result: unknown;
       switch (x?.operation) {
+        case "cash-flow-value": result = cashFlowValue(x.input); break;
+        case "reverse-cash-flow-growth": result = reverseCashFlowGrowth(x.input); break;
         case "long-short-research": result = longShortResearch(x.input); break;
         case "equity-value": result = equityValue(x.input); break;
         case "reverse-equity-growth": result = reverseEquityGrowth(x.input); break;

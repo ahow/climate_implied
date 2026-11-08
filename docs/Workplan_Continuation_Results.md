@@ -125,3 +125,37 @@ value remained in each case. The test removed only its own synthetic rows.
 A read-only production check found no duplicate approved cells before rollout.
 Two new request-isolation fixtures pass. Total TypeScript coverage is now 115
 tests; the unchanged Python suite has 18 tests.
+
+### Annual financial histories and conditional cash-flow valuation
+
+The FMP adapter now supports annual cash-flow and balance-sheet statements.
+Collection verifies the reviewed issuer/listing against the current profile,
+retains raw records privately and does not approve them or replace workbook
+history. The reviewed Bayer identity returned 20 annual periods: all 20
+reconciled on cash-flow/net-debt component checks; 18 had positive calculated
+FCFE. These records remain pending analysis approval, not point-in-time data.
+
+The normalizer uses signed provider capex and net debt issuance:
+FCFE = operating cash flow + signed capex + net borrowing. It does not deduct
+working capital again. Missing values, inconsistent currencies, duplicate
+periods and unexpected capex signs remain explicit. FMP documents that
+international filing dates may be reporting-date proxies; they are not accepted
+as verified historical availability dates.
+
+An additional **conditional cash-flow solver** now distinguishes FCFE/cost of
+equity from FCFF/WACC, including the explicit net-debt/minority/preferred bridge
+only for FCFF. It models five-year cash-flow growth followed by a ten-year fade.
+Financial institutions, non-positive starting cash flow and values outside the
+declared growth interval remain not-modelled. Synthetic perpetuity, repricing,
+bridge and refusal tests pass. This is distinct from the earlier
+earnings/reinvestment model. Neither is empirically selected by the D8 gate.
+
+Five additional tests cover these additions. The actual company-model comparison
+and UI activation remain incomplete; collecting 20 annual records for one company
+does not establish universe coverage or validate a valuation-gap strategy.
+
+Latest verification: **120 TypeScript tests passed**, including a run without
+database credentials; type checking and production build passed. The unchanged
+18-test Python suite remains passing. The running diagnostic API recovered zero
+growth for a 100-per-year, 10%-discount perpetuity priced at 1,000, with relative
+repricing error below 1e-15, and explicitly returned modelPromoted=false.

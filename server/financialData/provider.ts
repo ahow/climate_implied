@@ -1,5 +1,6 @@
 /** Fixed provider hosts/endpoints only; never forward arbitrary public URLs. */
-const FMP_ENDPOINTS = new Set(["quote", "profile", "income-statement", "search-isin"]);
+const FMP_ENDPOINTS = new Set(["quote", "profile", "income-statement", "search-isin",
+  "cash-flow-statement", "balance-sheet-statement"]);
 export async function fmpRequest(endpoint: string, params: Record<string, string>) {
   if (!FMP_ENDPOINTS.has(endpoint)) throw new Error("Unsupported FMP endpoint");
   const key = process.env.FMP_API_KEY;
