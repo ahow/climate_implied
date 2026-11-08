@@ -20,6 +20,10 @@ CI now has a promotion job dependent on successful TypeScript/Python tests,
 type checking and build. It advances `production-validated` without force
 pushing; obsolete source runs cannot promote over a newer main revision.
 Railway must follow that branch for this to be an effective deployment gate.
+The first real CI run successfully promoted source `500c14f4928b5aa8100c8b02209ff5a93d7b42a0`.
+Railway was then switched from `main` to `production-validated`; its source
+configuration was verified through the service API. The same source identity
+was verified through the live application's build-info endpoint, with health 200.
 The workflow structural regression passes; a deliberately failing remote
 commit has not been tested. Recovery rehearsal is still outstanding.
 
@@ -155,3 +159,11 @@ Real-data checks above are additional to those counts.
 These are not all external blockers. Substantial implementation remains.
 No research result above changes headline warming, valuation rankings or
 investment-evidence status.
+
+## Execution limitations
+
+The production database requires supported managed provisioning; independent
+review and identity approvals cannot be supplied by the implementing agent.
+Those are genuine external dependencies. Other uncompleted implementation in
+the table above is not reclassified as externally blocked. Actual per-stage
+effort was not instrumented; no estimate is presented as measured time.
