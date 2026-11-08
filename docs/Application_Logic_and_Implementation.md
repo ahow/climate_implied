@@ -3,6 +3,10 @@
 The latest implemented changes, empirical results and explicit remaining scope
 are in [Workplan continuation results](Workplan_Continuation_Results.md).
 
+The [sequential execution runner](Automated_Workplan_Execution.md) runs available
+stage checks and data audits with saved progress. It does not implement missing
+models or declare the full workplan complete.
+
 See [workplan amendments](Developer_Workplan_Amendments.md) and the
 [stage execution record](Developer_Workplan_Execution.md) for the 8 November
 2026 increment. The 18-stage programme is **not complete**. Public HTTP writes
