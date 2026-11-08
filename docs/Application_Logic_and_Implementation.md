@@ -1,5 +1,8 @@
 # Current amended workplan implementation
 
+For the current all-stage implementation/test/conclusion matrix, see
+[Workplan status and conclusions](Workplan_Status_and_Conclusions.md).
+
 The latest implemented changes, empirical results and explicit remaining scope
 are in [Workplan continuation results](Workplan_Continuation_Results.md).
 

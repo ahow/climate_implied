@@ -10,6 +10,7 @@ import { fcfeFromOperatingCashFlow, fcfeFromEarnings, pairedGrowthGap,
 import { equityValue, reverseEquityGrowth } from "./calculation/reverseValuation";
 import { publicValuationResult } from "./calculation/publicValuationContract";
 import { resolveSnapshot, snapshotContext } from "./snapshots/store";
+import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { cvAnalysisSnapshots } from "@shared/schema";
 import { snapshotsAvailable } from "./snapshots/store";
 import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
@@ -114,13 +115,18 @@ export async function registerRoutes(
   app.use("/api", async (req, res, next) => {
     if (req.method !== "GET" || req.path === "/health") return next();
     try {
-      const rows = await getApprovedValues();
+      if (req.query.indicatorSnapshotId !== undefined && typeof req.query.indicatorSnapshotId !== "string")
+        return res.status(422).json({ error: "Invalid indicator snapshot identity" });
+      const selected = req.query.indicatorSnapshotId as string | undefined;
+      const rows = selected ? await loadIndicatorSnapshot(selected) : await getApprovedValues();
       runWithOverrideRows(rows, () => {
         res.set("X-Indicator-Snapshot", requestOverrides.getStore()!.hash);
+        res.set("X-Indicator-Data-State", selected ? "archived-approved-indicators" : "current-approved-indicators-not-archived-by-request");
         next();
       });
     } catch {
-      res.status(503).json({ error: "Approved indicator inputs unavailable or inconsistent" });
+      res.status(req.query.indicatorSnapshotId === undefined ? 503 : 422)
+        .json({ error: "Approved indicator inputs unavailable or inconsistent" });
     }
   });
   void checkFinancialProvider();
@@ -742,7 +748,7 @@ export async function registerRoutes(
 
   app.get("/api/cv/dimensions", async (_req, res) => {
     try {
-      const companies = await db.select().from(cvCompanies);
+      const { companies } = await loadCompaniesAndTimeSeries(false);
       const sectors = Array.from(new Set(companies.map(c => c.sector).filter(Boolean))).sort() as string[];
       const geographies = Array.from(new Set(companies.map(c => c.geography).filter(Boolean))).sort() as string[];
       res.json({ sectors, geographies });

@@ -52,7 +52,7 @@ export function validateCvQuery(path: string, query: Query): void {
     if (query.costOfEquity !== undefined) throw new Error("carbon-price uses a fixed costOfEquity of 0.08; this parameter is not supported");
   }
   if (path === "/backtest") {
-    const allowed = ["signal", "trackingError", "trackingErrorUnit", "method", "geography", "format", "strategy", "costOfEquity", "costBps"];
+    const allowed = ["signal", "trackingError", "trackingErrorUnit", "method", "geography", "format", "strategy", "costOfEquity", "costBps", "snapshotId", "indicatorSnapshotId"];
     numeric(query, "costBps", 0, 100, false, true);
     for (const key of Object.keys(query)) {
       if (!allowed.includes(key)) throw new Error(`Unsupported backtest parameter: ${key}`);

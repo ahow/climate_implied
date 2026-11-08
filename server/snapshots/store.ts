@@ -27,6 +27,7 @@ export async function resolveSnapshot(id?: string) {
     : await db.select().from(cvAnalysisSnapshots).where(eq(cvAnalysisSnapshots.kind, "workbook-baseline"))
       .orderBy(desc(cvAnalysisSnapshots.createdAt), asc(cvAnalysisSnapshots.id)).limit(1);
   if (id && !row) throw new Error("Snapshot not found");
+  if (row && row.kind !== "workbook-baseline") throw new Error("Requested snapshot is not a workbook");
   return row;
 }
 export async function loadSnapshot(header: SnapshotHeader) {

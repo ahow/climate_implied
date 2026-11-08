@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,6 +27,20 @@ interface SnapshotsResponse {
   }[];
 }
 
+interface HistoricalSummaryPreview {
+  summary: {
+    snapshotId?: string | null;
+    companiesCount?: number | null;
+    dateRange?: { recordCount?: number | null } | null;
+  } | null;
+  snapshotHeader: string | null;
+  manifestHeader: string | null;
+}
+
+function SummaryCount({ value }: { value: number | null | undefined }) {
+  return <>{typeof value === "number" && Number.isFinite(value) ? value.toLocaleString() : "Unavailable — not returned"}</>;
+}
+
 function SnapshotDate({ value }: { value: string | null }) {
   if (!value) return <>Not supplied</>;
   const date = new Date(value);
@@ -33,11 +49,31 @@ function SnapshotDate({ value }: { value: string | null }) {
 }
 
 export function AnalysisSnapshotStatus() {
+  const [selectedSnapshotId, setSelectedSnapshotId] = useState("");
   const current = useQuery<SnapshotStatus>({
     queryKey: ["/api/analysis/snapshot-status"],
   });
   const history = useQuery<SnapshotsResponse>({
     queryKey: ["/api/analysis/snapshots"],
+  });
+  const workbookSnapshots = history.data?.status === "available"
+    ? history.data.items.filter((item) => item.kind === "workbook-baseline")
+    : [];
+  const selectionAvailable = workbookSnapshots.some((item) => item.id === selectedSnapshotId);
+  const preview = useQuery<HistoricalSummaryPreview>({
+    queryKey: ["historical-workbook-summary-preview", selectedSnapshotId],
+    enabled: selectionAvailable,
+    queryFn: async () => {
+      const response = await apiRequest(
+        "GET",
+        `/api/cv/summary?snapshotId=${encodeURIComponent(selectedSnapshotId)}`,
+      );
+      return {
+        summary: await response.json(),
+        snapshotHeader: response.headers.get("X-Analysis-Snapshot"),
+        manifestHeader: response.headers.get("X-Analysis-Manifest"),
+      };
+    },
   });
 
   return (
@@ -118,6 +154,102 @@ export function AnalysisSnapshotStatus() {
           ) : (
             <p className="text-sm text-muted-foreground">Snapshot inventory is unavailable. No inventory response was returned.</p>
           )}
+        </section>
+        <section aria-labelledby="historical-summary-heading" className="border-t pt-3 space-y-3">
+          <div className="space-y-1">
+            <h3 id="historical-summary-heading" className="text-sm font-semibold">
+              Historical workbook summary preview — not a full historical analysis switch
+            </h3>
+            <p id="historical-summary-description" className="text-sm text-muted-foreground">
+              Read-only preview of one immutable workbook baseline. Selection changes only this
+              summary; it does not change the current source or any other page. Reproducible
+              workbook records do not establish validated climate inference.
+            </p>
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="historical-workbook-selection" className="text-sm font-medium">
+              Workbook baseline
+            </label>
+            <select
+              id="historical-workbook-selection"
+              data-testid="historical-workbook-selection"
+              aria-describedby="historical-summary-description"
+              className="flex h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              value={selectedSnapshotId}
+              onChange={(event) => setSelectedSnapshotId(event.target.value)}
+              disabled={history.isLoading || history.isError || workbookSnapshots.length === 0}
+            >
+              <option value="">Select a workbook baseline to preview</option>
+              {selectedSnapshotId && !selectionAvailable && (
+                <option value={selectedSnapshotId}>Previously selected baseline is unavailable</option>
+              )}
+              {workbookSnapshots.map((item) => (
+                <option key={item.id} value={item.id}>{item.id}</option>
+              ))}
+            </select>
+          </div>
+          <div aria-live="polite" aria-busy={selectionAvailable && preview.isFetching}>
+            {history.isLoading ? (
+              <div role="status" aria-label="Loading workbook baseline choices" className="space-y-2">
+                <p className="text-sm text-muted-foreground">Loading workbook baseline choices…</p>
+                <Skeleton className="h-16 w-full" />
+              </div>
+            ) : history.isError ? (
+              <p className="text-sm text-muted-foreground">Preview unavailable because the snapshot inventory could not be loaded. Use Retry snapshot inventory above.</p>
+            ) : !history.data || history.data.status === "not-provisioned" ? (
+              <p className="text-sm text-muted-foreground">Historical workbook summary preview is unavailable: no snapshot inventory is provisioned or supplied.</p>
+            ) : workbookSnapshots.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No workbook-baseline snapshots are available for preview. Other snapshot kinds cannot be selected.</p>
+            ) : !selectedSnapshotId ? (
+              <p className="text-sm text-muted-foreground">Select a workbook baseline to load its summary and response provenance.</p>
+            ) : !selectionAvailable ? (
+              <p className="text-sm text-muted-foreground">The selected workbook baseline is no longer available. Select another baseline.</p>
+            ) : preview.isError ? (
+              <div role="alert" className="space-y-2">
+                <p className="text-sm text-muted-foreground">The selected historical summary could not be loaded. No summary is shown; no current-data fallback is used.</p>
+                <Button size="sm" variant="outline" onClick={() => void preview.refetch()} disabled={preview.isFetching}>Retry historical summary</Button>
+              </div>
+            ) : preview.isFetching || preview.isLoading ? (
+              <div role="status" aria-label="Loading historical workbook summary" className="space-y-2">
+                <p className="text-sm text-muted-foreground">Loading selected historical workbook summary…</p>
+                <Skeleton className="h-20 w-full" />
+              </div>
+            ) : preview.data ? (
+              <div className="space-y-3">
+                {(!preview.data.summary?.snapshotId || !preview.data.snapshotHeader || !preview.data.manifestHeader) && (
+                  <p role="status" className="text-sm text-muted-foreground">Response provenance is incomplete. Missing identifiers are unavailable, not inferred from your selection.</p>
+                )}
+                {((preview.data.summary?.snapshotId && preview.data.summary.snapshotId !== selectedSnapshotId) ||
+                  (preview.data.snapshotHeader && preview.data.snapshotHeader !== selectedSnapshotId)) && (
+                  <p role="alert" className="text-sm font-medium">Snapshot identity mismatch: the response does not confirm the selected baseline. Returned values are shown below; do not treat them as the selected historical summary.</p>
+                )}
+                <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm" data-testid="historical-summary-preview">
+                  <div className="min-w-0 sm:col-span-2">
+                    <dt className="text-xs text-muted-foreground">Returned snapshotId</dt>
+                    <dd className="font-mono break-all">{preview.data.summary?.snapshotId || "Unavailable — not returned"}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-muted-foreground">Total companies (companiesCount)</dt>
+                    <dd><SummaryCount value={preview.data.summary?.companiesCount} /></dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-muted-foreground">Total records (dateRange.recordCount)</dt>
+                    <dd><SummaryCount value={preview.data.summary?.dateRange?.recordCount} /></dd>
+                  </div>
+                  <div className="min-w-0 sm:col-span-2">
+                    <dt className="text-xs text-muted-foreground">Response X-Analysis-Snapshot</dt>
+                    <dd className="font-mono break-all">{preview.data.snapshotHeader || "Unavailable — header not returned"}</dd>
+                  </div>
+                  <div className="min-w-0 sm:col-span-2">
+                    <dt className="text-xs text-muted-foreground">Response X-Analysis-Manifest</dt>
+                    <dd className="font-mono break-all">{preview.data.manifestHeader || "Unavailable — header not returned"}</dd>
+                  </div>
+                </dl>
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground">Historical summary unavailable. No response was returned.</p>
+            )}
+          </div>
         </section>
       </CardContent>
     </Card>
