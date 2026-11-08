@@ -159,3 +159,21 @@ database credentials; type checking and production build passed. The unchanged
 18-test Python suite remains passing. The running diagnostic API recovered zero
 growth for a 100-per-year, 10%-discount perpetuity priced at 1,000, with relative
 repricing error below 1e-15, and explicitly returned modelPromoted=false.
+
+### Startup and read-only safety
+
+Server startup no longer deletes duplicate workbook rows, creates an index,
+changes upload outcomes or clears the legacy carbon-price cache. Listing uploads
+no longer changes their status. Financial-review reads check that their managed
+table exists rather than issuing CREATE TABLE. A read-only production check
+confirmed that this table already exists. The existing monthly collection and
+approval cadence is unchanged.
+
+Two source-contract regression tests cover these read/startup boundaries.
+These repairs do not replace the outstanding production recovery rehearsal or
+single-scheduler ownership verification.
+
+The subsequent full suite passed **122 TypeScript tests**, type checking and
+production build. `/api/build-info` exposes the hosting-provided Git revision
+when available, independently of database availability; missing metadata is
+explicitly null rather than an invented version.

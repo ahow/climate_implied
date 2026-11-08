@@ -3,10 +3,8 @@ import { db } from "../db";
 import { snapshotSchema, snapshotId, financialCalculation, transition, type FinancialSnapshot, type ReviewStatus } from "./review";
 
 export async function ensureFinancialReviews() {
-  await db.execute(sql`CREATE TABLE IF NOT EXISTS financial_reviews (
-    id text PRIMARY KEY, status text NOT NULL CHECK (status IN ('pending','approved','rejected','superseded')),
-    payload jsonb NOT NULL, created_at timestamptz NOT NULL DEFAULT now(), reviewed_at timestamptz
-  )`);
+  const result = await db.execute(sql`SELECT to_regclass('public.financial_reviews') IS NOT NULL AS ready`);
+  if (result.rows[0]?.ready !== true) throw new Error("Financial review storage is not provisioned");
 }
 export async function stageSnapshot(value: unknown) {
   const payload = snapshotSchema.parse(value);

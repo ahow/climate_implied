@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, real, timestamp, jsonb, boolean, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, real, timestamp, jsonb, boolean, uniqueIndex, check } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -165,7 +165,8 @@ export const financialReviews = pgTable("financial_reviews", {
   payload: jsonb("payload").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   reviewedAt: timestamp("reviewed_at", { withTimezone: true }),
-});
+}, table => [check("financial_reviews_status_check",
+  sql`${table.status} IN ('pending','approved','rejected','superseded')`)]);
 
 export const insertNewsCacheSchema = createInsertSchema(newsCache).omit({ createdAt: true });
 export type NewsCache = typeof newsCache.$inferSelect;

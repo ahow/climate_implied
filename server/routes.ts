@@ -103,6 +103,14 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  app.get("/api/build-info", (_req, res) => {
+    const candidate = process.env.RAILWAY_GIT_COMMIT_SHA;
+    res.set("Cache-Control", "no-store").json({
+      sourceCommit: candidate && /^[a-f0-9]{40}$/i.test(candidate) ? candidate : null,
+      calculationVersion: CALCULATION_VERSION,
+      sourceCommitMeaning: "hosting-supplied Git revision; null means not recorded",
+    });
+  });
   app.use("/api", async (req, res, next) => {
     if (req.method !== "GET" || req.path === "/health") return next();
     try {
@@ -175,38 +183,8 @@ export async function registerRoutes(
     next();
   });
 
-  await db.update(cvDataUploads)
-    .set({ status: "failed", errorMessage: "Processing interrupted by server restart", completedAt: new Date() })
-    .where(eq(cvDataUploads.status, "processing"));
-
-  try {
-    const dupCheck = await db.execute(sql`
-      SELECT COUNT(*) as dup_count FROM (
-        SELECT company_id, date FROM cv_time_series GROUP BY company_id, date HAVING COUNT(*) > 1 LIMIT 1
-      ) t
-    `);
-    const hasDuplicates = Number((dupCheck as any).rows?.[0]?.dup_count ?? 0) > 0;
-    if (hasDuplicates) {
-      console.log("[Startup] Duplicate time series records detected, deduplicating...");
-      const delResult = await db.execute(sql`
-        DELETE FROM cv_time_series WHERE id IN (
-          SELECT id FROM (
-            SELECT id, ROW_NUMBER() OVER (PARTITION BY company_id, date ORDER BY id) as rn
-            FROM cv_time_series
-          ) t WHERE rn > 1
-        )
-      `);
-      console.log("[Startup] Deduplication complete");
-    }
-    await db.execute(sql`CREATE UNIQUE INDEX IF NOT EXISTS cv_time_series_company_date_idx ON cv_time_series (company_id, date)`);
-    console.log("[Startup] Unique index on cv_time_series(company_id, date) ensured");
-  } catch (e: any) {
-    console.error("[Startup] Error during dedup/index:", e.message);
-  }
-
-  try {
-    await db.execute(sql`DELETE FROM cv_carbon_price_cache`);
-  } catch (_e) {}
+  // Booting a server must not repair, delete or reclassify source records.
+  // Managed schema changes and authorized operator commands own those actions.
 
   // Live indicator data pipeline: load approved overrides into memory and start
   // the monthly scheduler. Safe no-ops when there are no approved overrides.
@@ -710,13 +688,6 @@ export async function registerRoutes(
 
   app.get("/api/cv/uploads", async (_req, res) => {
     try {
-      await db.update(cvDataUploads)
-        .set({ status: "failed", errorMessage: "Upload timed out (no progress for 15 minutes)", completedAt: new Date() })
-        .where(and(
-          eq(cvDataUploads.status, "processing"),
-          sql`${cvDataUploads.createdAt} < NOW() - INTERVAL '15 minutes'`
-        ));
-
       const uploads = await db.select().from(cvDataUploads).orderBy(desc(cvDataUploads.id));
       res.json(uploads);
     } catch (error) {
