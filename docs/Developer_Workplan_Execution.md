@@ -99,3 +99,23 @@ PAT-authenticated source export succeeded, including the workflow, at
 process-local exact-repository rewrite, preserving system Git ignore/identity
 settings. This supersedes the earlier unresolved export-permission diagnosis.
 Source synchronization does not itself prove Railway deployment or CI gating.
+
+### Live release and immutable-snapshot rehearsal
+
+Railway deployment `cbeb7106-9972-43de-85be-fac45a46b47e` reports SUCCESS for
+GitHub commit `361c72798b41812494dd8c67bd9a8793cc36d0e4`. The published
+health endpoint returned `{"status":"ok"}`.
+
+Stage 2 now has deterministic analytical manifest/hash utilities and two
+passing tests: native values/nulls are preserved, object-key ordering is stable,
+administrative timestamps do not change analytical identity, and changing
+settings does. Ordered snapshot hashes preserve overlay precedence.
+
+The development PostgreSQL rehearsal passed: an older synthetic snapshot
+survived inserting a newer one; UPDATE, DELETE and TRUNCATE were rejected by
+database triggers. The entire rehearsal, including schema and fixture rows,
+was rolled back and absence verified. Type checking passed.
+
+This is **not** the completed immutable importer or consumer migration. No
+production schema changes or licensed-data copies were made. Existing live
+analysis still requires snapshot integration before Stage 2 acceptance.
