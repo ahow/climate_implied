@@ -8,8 +8,9 @@ After reviewing, checking and committing changes, run `python script/sync-github
 and verify its remote-commit result. The public repo uses a code-only export:
 do not push workspace `main` or its full history, which includes uploaded data.
 Never force-push or upload secrets, private attachments, or generated outputs.
-The user has approved migrating web hosting to Railway with automatic
-deployments from this repository's `main` branch. Once that connection is active,
+The user has approved web hosting on Railway with automatic deployments from
+`production-validated`, advanced by CI only after `main` passes validation.
+Once that connection is active,
 each push is a production release, not merely a backup. Preserve the code-only
 export policy. Do not change the live domain until Railway and production-data
 parity are verified; see `docs/Railway_Hosting.md` for the staged setup and cutover.
@@ -20,6 +21,12 @@ and verify a successful Railway deployment of that exact GitHub commit.
 Maintain this Markdown handover as calculations, data integrations and operations
 change so another developer can follow current logic without the chat history.
 Custom-domain work is currently deferred and must not block calculation work.
+
+For the amended workplan, maintain `docs/workplan_completion_ledger.json`,
+its readable `docs/WORKPLAN_COMPLETION_LEDGER.md`, and
+`docs/WORKPLAN_IMPLEMENTATION_REPORT.md`. Retain each requirement, exact actual
+execution evidence, scientific decision, release identity and next action.
+Do not turn test success into empirical acceptance or omit unfinished scope.
 
 ## Overview
 A probabilistic climate projections dashboard using Monte Carlo simulation (10,000 iterations) with sector-specific emissions modeling. Tracks 22 real-world indicators from authoritative sources (IEA, IRENA, Climate Action Tracker, SBTi, Global Carbon Project, NOAA, Gallup, Pew Research, World Bank/IMF, Climate Bonds Initiative, Stand.earth) across six categories: Technology, Policy, Corporate, Socioeconomic, Financial Flows, and Emissions Outcomes. Historical data covers 2010-2025. Financial Flows module (clean energy investment, green bonds, fossil divestment) serves as leading indicator for capital reallocation. Emissions Outcomes module (observed CO2 emissions, atmospheric concentration, remaining 1.5°C carbon budget) provides ground truth validation against projections. Includes indicator sensitivity analysis (tornado chart) showing temperature impact of each indicator. Nowcast extrapolation uses momentum-decay method (50% annual slope decay) to avoid over-extrapolation of stalling trends, with dashed-line visual distinction for estimated values. Includes climate news sentiment analysis via NewsAPI.ai integration.

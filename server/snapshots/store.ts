@@ -4,18 +4,14 @@ import { db } from "../db";
 import { cvAnalysisChunks, cvAnalysisSnapshots, cvCompanies, cvTimeSeries, type CvCompany, type CvTimeSeries } from "../../shared/schema";
 import { packDataset, unpackDataset, type DatasetChunk } from "./contract";
 import { snapshotSelection } from "./requestContract";
+import { snapshotGuardQuery, guardRowsValid } from "./guards";
 
 export type SnapshotHeader = typeof cvAnalysisSnapshots.$inferSelect;
 export const snapshotContext = new AsyncLocalStorage<SnapshotHeader>();
 
 export async function snapshotsAvailable(connection: Pick<typeof db, "execute"> = db) {
-  const result = await connection.execute(sql`SELECT to_regclass('public.cv_analysis_snapshots') IS NOT NULL
-    AND to_regclass('public.cv_analysis_chunks') IS NOT NULL
-    AND (SELECT count(*) FROM pg_trigger WHERE tgname IN
-      ('cv_snapshot_header_immutable','cv_snapshot_chunk_immutable',
-       'cv_snapshot_header_truncate','cv_snapshot_chunk_truncate','cv_snapshot_chunk_insert')
-       AND NOT tgisinternal AND tgenabled='O') = 5 AS ready`);
-  return result.rows[0]?.ready === true;
+  const result = await connection.execute(snapshotGuardQuery);
+  return guardRowsValid(result.rows);
 }
 export async function resolveSnapshot(id?: string) {
   snapshotSelection(id);
@@ -44,11 +40,7 @@ export async function loadSnapshot(header: SnapshotHeader) {
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 async function persist(tx: Transaction, companies: CvCompany[], rows: CvTimeSeries[], sourceNote: string, sourceUploadId?: number) {
   // A schema without immutability guards is not adequate, even if reads work.
-  const guards = await tx.execute(sql`SELECT count(*)::int AS n FROM pg_trigger
-    WHERE tgname IN ('cv_snapshot_header_immutable','cv_snapshot_chunk_immutable',
-      'cv_snapshot_header_truncate','cv_snapshot_chunk_truncate','cv_snapshot_chunk_insert')
-      AND NOT tgisinternal AND tgenabled = 'O'`);
-  if (Number(guards.rows[0]?.n) !== 5) throw new Error("Database immutability guards are not installed");
+  if (!await snapshotsAvailable(tx)) throw new Error("Database immutability guards are not installed");
   const packed = packDataset(companies, rows);
   const inserted = await tx.insert(cvAnalysisSnapshots).values({
     id: packed.id, kind: "workbook-baseline", sourceUploadId: sourceUploadId ?? null,

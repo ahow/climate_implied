@@ -1,3 +1,11 @@
+# Current requirement-level execution record
+
+See [WORKPLAN_COMPLETION_LEDGER.md](WORKPLAN_COMPLETION_LEDGER.md),
+[workplan_completion_ledger.json](workplan_completion_ledger.json) and
+[WORKPLAN_IMPLEMENTATION_REPORT.md](WORKPLAN_IMPLEMENTATION_REPORT.md).
+These retain original scope and distinguish actual execution evidence from
+unverified historical report pointers. Their existence is not workplan completion.
+
 # Latest analytical extension: Kaya accounting
 
 The [analysis-wide historical input selector](Analysis_Wide_Historical_Selection.md)
