@@ -6,6 +6,7 @@ import {
   type IndicatorData,
   type ForwardProjection,
 } from "./forwardProjection";
+import { historicalTrajectoryMetrics } from "./historicalMetrics";
 
 export interface RegionalProjection {
   region: string;
@@ -106,24 +107,6 @@ async function getRegionalCarbonIntensities(): Promise<Record<string, IntensityR
   }
 }
 
-function findNetZeroYear(trajectory: ForwardProjection[]): number | null {
-  for (const point of trajectory) {
-    if (point.p50 <= 5.0) return point.year;
-  }
-  if (trajectory.length > 0) {
-    const finalPoint = trajectory[trajectory.length - 1];
-    const firstPoint = trajectory[0];
-    const yearsElapsed = finalPoint.year - firstPoint.year;
-    const totalReduction = firstPoint.p50 - finalPoint.p50;
-    const avgAnnualReduction = totalReduction / yearsElapsed;
-    if (avgAnnualReduction > 0 && finalPoint.p50 > 5.0) {
-      const yearsToNetZero = (finalPoint.p50 - 5.0) / avgAnnualReduction;
-      return Math.round(finalPoint.year + yearsToNetZero);
-    }
-  }
-  return null;
-}
-
 export async function calculateRegionalProjections(): Promise<RegionalProjection[]> {
   const baseIndicators = getCurrentIndicators();
   const intensities = await getRegionalCarbonIntensities();
@@ -140,23 +123,21 @@ export async function calculateRegionalProjections(): Promise<RegionalProjection
     const tempDist = calculateTemperatureDistribution(trajectory, 1000);
     const tempStats = getTemperatureStats(tempDist, trajectory);
 
-    const emissions2024 = trajectory[0]?.emissions || 60;
-    const emissions2034 = trajectory[10]?.emissions || 55;
-    const reductionRate = -((Math.pow(emissions2034 / emissions2024, 1 / 10) - 1) * 100);
+    const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
 
     return {
       region,
       regionName: config.name,
       temperatureRise: tempStats.median,
       reductionRate,
-      netZeroYear: findNetZeroYear(trajectory),
+      netZeroYear,
       carbonIntensity: intensity.value,
       carbonIntensitySource: intensity.source,
       carbonIntensityBasis: intensity.source === "owid"
         ? "kg CO2 per international dollar GDP (PPP); OWID"
         : "kg CO2 per nominal dollar GDP; legacy static assumption, not comparable to PPP",
       claim: "Legacy global intensity counterfactual; not a regional temperature forecast",
-      milestoneDefinition: "Legacy 5 Gt milestone; not net zero; may extrapolate beyond 2100",
+      milestoneDefinition: "Legacy 5 Gt milestone; not net zero; null means not reached by 2100",
     };
   });
 }

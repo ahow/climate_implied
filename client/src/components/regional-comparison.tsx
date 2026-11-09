@@ -68,7 +68,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           <div>
             <h3 className="text-sm font-medium text-muted-foreground">Global intensity counterfactual</h3>
             <p className="text-xs text-muted-foreground mt-0.5">What if the world followed each region's carbon intensity?</p>
-            <p className="text-xs text-muted-foreground mt-1">Legacy diagnostic, not a regional temperature forecast. The 5 Gt milestone is not net zero and may extrapolate beyond 2100.</p>
+            <p className="text-xs text-muted-foreground mt-1">Legacy diagnostic, not a regional temperature forecast. The 5 Gt milestone is not net zero. No date means not reached by 2100; dates are not extrapolated.</p>
           </div>
         </div>
         <DownloadDataButton

@@ -1,5 +1,10 @@
 # Latest analytical extension: Kaya accounting
 
+See also [projection and historical-request repairs](Projection_and_Historical_Request_Repairs.md):
+all legacy projection consumers now share median-trajectory metrics and preserve
+unreached residual milestones as null. Historical selectors are accepted only by
+explicitly supported routes; unsupported requests fail rather than use current data.
+
 See [Kaya accounting results](Kaya_Results.md) and the
 [fixed protocol](Kaya_Protocol.md). The offline study decomposes historical
 CO2 changes into population, GDP/person, energy/GDP and CO2/energy.

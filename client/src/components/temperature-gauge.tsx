@@ -142,7 +142,7 @@ export function TemperatureGauge({
                 {netZeroYear ?? "Not reached"}
               </p>
               <p className="text-xs text-muted-foreground">
-                Not net zero; may include extrapolation
+                Not net zero; no extrapolation
               </p>
             </div>
           </div>
@@ -285,7 +285,7 @@ export function TemperatureGauge({
               {netZeroYear ?? "Not reached"}
             </p>
             <p className="text-xs text-muted-foreground">
-              Not net zero; may include extrapolation
+              Not net zero; no extrapolation
             </p>
           </div>
         </div>

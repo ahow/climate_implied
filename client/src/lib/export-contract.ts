@@ -3,7 +3,7 @@ export const exportContracts = {
   legacy: {
     status: "Unsupported legacy diagnostic",
     interpretation: "Not a validated climate forecast. Aggregate GHG is passed through a CO2-only response with a fixed warming offset. Regional values are global counterfactuals, not regional temperatures.",
-    limitation: "Positive residual-emissions thresholds are not net zero. Legacy extrapolated years may exceed 2100. Quantile labels do not establish calibrated predictive uncertainty.",
+    limitation: "Positive residual-emissions thresholds are not net zero. No threshold date is extrapolated beyond 2100; null means not reached within the simulated horizon. Quantile labels do not establish calibrated predictive uncertainty.",
   },
   indicators: {
     status: "Source indicator data",

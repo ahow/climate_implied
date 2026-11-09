@@ -17,7 +17,7 @@ import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { loadAnalysisResult, saveAnalysisResult } from "./snapshots/results";
 import { cvAnalysisSnapshots } from "@shared/schema";
 import { snapshotsAvailable } from "./snapshots/store";
-import { snapshotSelection, snapshotInventoryQuery, storedReplayRequest } from "./snapshots/requestContract";
+import { snapshotSelection, snapshotInventoryQuery, storedReplayRequest, historicalRequestPolicy } from "./snapshots/requestContract";
 import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
 import { createManifest } from "./calculation/analysisManifest";
 import { driverEvidenceRegistry } from "./calculation/driverEvidence";
@@ -36,6 +36,7 @@ import { getAllHistoricalIndicatorsWithNowcast } from "./calculation/historicalI
 import { calculateAllCategoryProjections, applyCategoryModifications, type Category } from "./calculation/categoryProjections";
 import { calculateRegionalProjections } from "./calculation/regionalProjections";
 import { getRecalculatedHistoricalTrend } from "./calculation/historicalRecalculation";
+import { historicalTrajectoryMetrics } from "./calculation/historicalMetrics";
 import { getCategoryHistoricalTrend } from "./calculation/categoryHistoricalTrend";
 import multer from "multer";
 import os from "os";
@@ -118,13 +119,22 @@ export async function registerRoutes(
     });
   });
   app.use("/api", async (req, res, next) => {
-    if (req.method !== "GET" || req.path === "/health") return next();
+    if (req.method !== "GET") return next();
+    let policy: ReturnType<typeof historicalRequestPolicy>;
+    try { policy = historicalRequestPolicy(req.path, req.query); }
+    catch (error) {
+      return res.status(422).json({ error: error instanceof Error ? error.message : "Invalid historical selection" });
+    }
     try {
-      const selected = snapshotSelection(req.query.indicatorSnapshotId);
+      const selected = policy.indicators;
       if (storedReplayRequest(req.path)) {
         if (selected !== undefined || req.query.snapshotId !== undefined)
           return res.status(422).json({ error: "Stored-output replay cannot apply input overrides" });
         res.set("X-Indicator-Data-State", "not-read-stored-output-replay");
+        return next();
+      }
+      if (!policy.readsIndicators) {
+        res.set("X-Indicator-Data-State", "not-read-by-endpoint");
         return next();
       }
       const rows = selected ? await loadIndicatorSnapshot(selected) : await getApprovedValues();
@@ -146,6 +156,7 @@ export async function registerRoutes(
   app.use("/api/cv", validateCvRequest);
   app.use("/api/cv", async (req, res, next) => {
     if (req.method !== "GET") return next();
+    if (!historicalRequestPolicy(`/cv${req.path}`, req.query).readsWorkbook) return next();
     try {
       const header = await resolveSnapshot(snapshotSelection(req.query.snapshotId));
       if (!header) {
@@ -454,26 +465,10 @@ export async function registerRoutes(
       const temperatureDistribution = calculateTemperatureDistribution(trajectory, 10000);
       const tempStats = getTemperatureStats(temperatureDistribution, trajectory);
 
-      const emissionsStart = trajectory[0]?.emissions || 60;
-      const emissionsDecadeLater = trajectory[10]?.emissions || 55;
-      const emissions2100 = trajectory[trajectory.length - 1]?.emissions || 20;
-      const reductionRate = -((Math.pow(emissionsDecadeLater / emissionsStart, 1 / 10) - 1) * 100);
-
-      let netZeroYear: number | null = null;
-      const netZeroPoint = trajectory.find(p => p.p50 <= 5.0);
-      if (netZeroPoint) {
-        netZeroYear = netZeroPoint.year;
-      } else if (trajectory.length > 0) {
-        const finalPoint = trajectory[trajectory.length - 1];
-        const firstPoint = trajectory[0];
-        const yearsElapsed = finalPoint.year - firstPoint.year;
-        const totalReduction = firstPoint.p50 - finalPoint.p50;
-        const avgAnnualReduction = totalReduction / yearsElapsed;
-        if (avgAnnualReduction > 0 && finalPoint.p50 > 5.0) {
-          const yearsToNetZero = (finalPoint.p50 - 5.0) / avgAnnualReduction;
-          netZeroYear = Math.round(finalPoint.year + yearsToNetZero);
-        }
-      }
+      const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
+      const emissionsStart = trajectory[0].p50;
+      const emissionsDecadeLater = trajectory[10].p50;
+      const emissions2100 = trajectory[trajectory.length - 1].p50;
 
       const result = {
         calculation: {
@@ -889,7 +884,8 @@ export async function registerRoutes(
   app.get("/api/cv/summary", async (_req, res) => {
     try {
       const { companies, timeSeries: rawTimeSeries } = await loadCompaniesAndTimeSeries(false);
-      const uploads = await db.select().from(cvDataUploads).orderBy(desc(cvDataUploads.id)).limit(1);
+      const uploads = snapshotContext.getStore() ? [] :
+        await db.select().from(cvDataUploads).orderBy(desc(cvDataUploads.id)).limit(1);
       let minDate: Date | null = null, maxDate: Date | null = null;
       for (const row of rawTimeSeries) {
         if (!minDate || row.date < minDate) minDate = row.date;
@@ -934,16 +930,10 @@ export async function registerRoutes(
     const trajectory = calculateEmissionsTrajectory(indicators, startYear, 2100, 10000);
     const temperatureDistribution = calculateTemperatureDistribution(trajectory, 10000);
     const tempStats = getTemperatureStats(temperatureDistribution, trajectory);
-    const emissionsStart = trajectory[0]?.emissions || 60;
-    const emissionsDecadeLater = trajectory[10]?.emissions || 55;
-    const emissions2100 = trajectory[trajectory.length - 1]?.emissions || 20;
-    const reductionRate = -((Math.pow(emissionsDecadeLater / emissionsStart, 1 / 10) - 1) * 100);
-
-    let netZeroYear: number | null = null;
-    const netZeroPoint = trajectory.find(p => p.p50 <= 5.0);
-    if (netZeroPoint) {
-      netZeroYear = netZeroPoint.year;
-    }
+    const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
+    const emissionsStart = trajectory[0].p50;
+    const emissionsDecadeLater = trajectory[10].p50;
+    const emissions2100 = trajectory[trajectory.length - 1].p50;
 
     const result = {
       emissionsTrajectory: trajectory,

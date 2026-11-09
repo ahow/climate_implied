@@ -71,7 +71,7 @@ export default function Dashboard() {
         <p className="text-sm text-muted-foreground" id="legacy-warning">
           The legacy calculation applies a CO2-only response to aggregate GHG (CO2e), plus a fixed 1.1°C offset.
           Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.
-          The legacy milestone uses a fixed 5 Gt threshold and may extrapolate beyond 2100; it is not a 5% of 2024 milestone.
+          The legacy milestone uses a fixed 5 Gt threshold with no extrapolation beyond 2100; it is not a 5% of 2024 milestone. No date means the threshold was not reached within the simulated horizon.
           Regional temperatures are not standalone regional warming estimates. Historical recalculations are not forecast validation.
         </p>
         <Button variant="outline" aria-expanded={showLegacy} aria-describedby="legacy-warning" onClick={() => setShowLegacy(!showLegacy)} data-testid="button-toggle-legacy">

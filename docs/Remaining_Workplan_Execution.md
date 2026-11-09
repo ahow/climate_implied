@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [projection and historical-request repairs](Projection_and_Historical_Request_Repairs.md)
+remove remaining extrapolated milestone dates and fallback emissions from four
+calculation paths, align median-based metrics, and reject unsupported historical
+selectors. Live development endpoint checks and 182 TypeScript/47 Python tests pass.
 The [Kaya accounting report](Kaya_Results.md) adds actual LMDI decomposition
 for three complete historical regional windows, exact missing-cell reports for
 the other eleven windows, and reconciliation tests. It is not causal attribution

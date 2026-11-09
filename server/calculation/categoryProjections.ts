@@ -6,6 +6,7 @@ import {
   type IndicatorData,
   type ForwardProjection,
 } from "./forwardProjection";
+import { historicalTrajectoryMetrics } from "./historicalMetrics";
 
 export type Category = 'technology' | 'policy' | 'corporate' | 'socioeconomic' | 'financial' | 'emissions';
 
@@ -17,29 +18,6 @@ export interface CategoryProjectionResult {
   netZeroYear: number | null;
   trajectory: ForwardProjection[];
   temperatureDistribution: Array<{ temperature: number; probability: number }>;
-}
-
-function calculateReductionRate(emissions2024: number, emissions2034: number): number {
-  const cagr = (Math.pow(emissions2034 / emissions2024, 1 / 10) - 1) * 100;
-  return -cagr;
-}
-
-function findNetZeroYear(trajectory: ForwardProjection[]): number | null {
-  for (const point of trajectory) {
-    if (point.p50 <= 5.0) return point.year;
-  }
-  if (trajectory.length > 0) {
-    const finalPoint = trajectory[trajectory.length - 1];
-    const firstPoint = trajectory[0];
-    const yearsElapsed = finalPoint.year - firstPoint.year;
-    const totalReduction = firstPoint.p50 - finalPoint.p50;
-    const avgAnnualReduction = totalReduction / yearsElapsed;
-    if (avgAnnualReduction > 0 && finalPoint.p50 > 5.0) {
-      const yearsToNetZero = (finalPoint.p50 - 5.0) / avgAnnualReduction;
-      return Math.round(finalPoint.year + yearsToNetZero);
-    }
-  }
-  return null;
 }
 
 /**
@@ -79,8 +57,7 @@ export function calculateCategoryProjection(
   const temperatureDistribution = calculateTemperatureDistribution(projections, 1000);
   const tempStats = getTemperatureStats(temperatureDistribution, projections);
 
-  const emissions2024 = projections[0]?.emissions || 60;
-  const emissions2034 = projections[10]?.emissions || 55;
+  const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(projections);
 
   const categoryNames: Record<Category, string> = {
     technology: 'Technology',
@@ -95,8 +72,8 @@ export function calculateCategoryProjection(
     category,
     categoryName: categoryNames[category],
     temperatureRise: tempStats.median,
-    reductionRate: calculateReductionRate(emissions2024, emissions2034),
-    netZeroYear: findNetZeroYear(projections),
+    reductionRate,
+    netZeroYear,
     trajectory: projections,
     temperatureDistribution: temperatureDistribution.map(t => ({
       temperature: t.temperature,
