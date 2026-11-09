@@ -136,9 +136,14 @@ Large bundles use the offline command; public request limits are unchanged.
 
 ## Corrections, defaults and release
 
-Local full regression: **151 TypeScript tests and 24 Python tests passed**.
+Local full regression: **152 TypeScript tests and 24 Python tests passed**.
 Type checking and production build passed. The real-inventory accounting and
 compressed-stream replay checks above were executed separately.
+
+The readiness response's default-engine label was also corrected to
+`published-scenario-references`, matching the existing homepage. This is a
+presentation correction, not candidate promotion; the scientific checks remain
+unpassed. A separate regression asserts that distinction.
 
 The first regional fixture referenced a nonexistent reporting-total property.
 Before implementing the engine it was corrected to sum the frozen inventory's

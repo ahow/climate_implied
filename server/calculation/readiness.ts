@@ -12,7 +12,7 @@ export function calculationReadiness() {
     "production-runtime": "FaIR runs offline; the production Node service does not execute Python.",
   };
   return {
-    defaultEngine: "legacy-dashboard",
+    defaultEngine: "published-scenario-references",
     candidateEnabled: promotionDecision(verifiedEvidence).canPromote,
     checks: PROMOTION_REQUIREMENTS.map(id => ({ id, label: id.replaceAll("-", " "), passed: verifiedEvidence[id] === true, reason: reasons[id] })),
     limitations: ["A successful build or reference execution does not authorize scientific default promotion."],
