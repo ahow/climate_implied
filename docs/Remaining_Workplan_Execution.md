@@ -1,6 +1,12 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The regional archive now has a read-only streaming verifier, included in Stage 5
+data checks. It checks decompressed content hashes, unique requested/member IDs,
+inventory identity, complete annual trajectories, milestone agreement and the
+accepted/rejected partition. The retained two-member constant control passed;
+corrupted milestone/hash fixtures are rejected. This verifies stored evidence,
+not calibrated ensemble convergence or scientific acceptance.
 Joint parameter sampling now rejects rows with differing regional accounts or
 omitted driver fields. Tests cover missing/substituted regions, omitted fields,
 ordering invariance and deterministic paired draws. Full regression: 183

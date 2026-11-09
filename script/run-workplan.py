@@ -78,6 +78,8 @@ DATA_CHECKS = {
         ["uv", "run", "python", "script/demand_predictive_validation.py"],
         ["uv", "run", "python", "script/ev_sales_calibration.py"],
         ["uv", "run", "python", "script/cost_deployment_calibration.py"]],
+    5: [["uv", "run", "python", "script/verify_regional_archive.py",
+         "generated-artifacts/regional-control-run"]],
     9: [["npx", "tsx", "script/audit-existing-vintages.ts"],
         ["npx", "tsx", "script/short-horizon-emissions.ts"]],
     10: [["npx", "tsx", "script/financial-coverage.ts"]],
