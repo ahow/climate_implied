@@ -1,6 +1,9 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [historical-selection and replay repairs](Historical_Selection_and_Replay_Repairs.md)
+remove empty-ID fallback, decouple stored results from current indicator loading
+and add filtered, paginated workbook inventory in Data Management.
 The [historical repairs and emissions skill report](Historical_Diagnostics_and_Skill_Results.md)
 records origin-restricted intensity fits, corrected annual reduction rates,
 right-censored threshold dates, and 24 actual short-horizon fossil-CO2

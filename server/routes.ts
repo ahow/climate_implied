@@ -17,6 +17,7 @@ import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { loadAnalysisResult, saveAnalysisResult } from "./snapshots/results";
 import { cvAnalysisSnapshots } from "@shared/schema";
 import { snapshotsAvailable } from "./snapshots/store";
+import { snapshotSelection, snapshotInventoryQuery, storedReplayRequest } from "./snapshots/requestContract";
 import { loadCompaniesAndTimeSeries } from "./climateValuation/sharedUtils";
 import { createManifest } from "./calculation/analysisManifest";
 import { driverEvidenceRegistry } from "./calculation/driverEvidence";
@@ -49,7 +50,7 @@ import { computeTercilesOnTheFly } from "./climateValuation/tercileCalculator";
 import { calculateSDGGrowthDifferential } from "./climateValuation/sdgGrowthCalculator";
 import { calculateDecarbBands } from "./climateValuation/decarbBandCalculator";
 import { calculateDecarbTerciles } from "./climateValuation/decarbTercileCalculator";
-import { eq, and, desc, sql } from "drizzle-orm";
+import { eq, and, asc, gt, desc, sql } from "drizzle-orm";
 import { getClimateNewsAnalysis } from "./newsApi/newsService";
 import type { SignalType } from "./climateValuation/backtestCalculator";
 import { calculateBacktest } from "./climateValuation/walkForwardBacktest";
@@ -119,9 +120,13 @@ export async function registerRoutes(
   app.use("/api", async (req, res, next) => {
     if (req.method !== "GET" || req.path === "/health") return next();
     try {
-      if (req.query.indicatorSnapshotId !== undefined && typeof req.query.indicatorSnapshotId !== "string")
-        return res.status(422).json({ error: "Invalid indicator snapshot identity" });
-      const selected = req.query.indicatorSnapshotId as string | undefined;
+      const selected = snapshotSelection(req.query.indicatorSnapshotId);
+      if (storedReplayRequest(req.path)) {
+        if (selected !== undefined || req.query.snapshotId !== undefined)
+          return res.status(422).json({ error: "Stored-output replay cannot apply input overrides" });
+        res.set("X-Indicator-Data-State", "not-read-stored-output-replay");
+        return next();
+      }
       const rows = selected ? await loadIndicatorSnapshot(selected) : await getApprovedValues();
       runWithOverrideRows(rows, () => {
         res.set("X-Indicator-Snapshot", requestOverrides.getStore()!.hash);
@@ -142,9 +147,7 @@ export async function registerRoutes(
   app.use("/api/cv", async (req, res, next) => {
     if (req.method !== "GET") return next();
     try {
-      if (req.query.snapshotId !== undefined && typeof req.query.snapshotId !== "string")
-        return res.status(422).json({ error: "Invalid snapshot identity" });
-      const header = await resolveSnapshot(req.query.snapshotId as string | undefined);
+      const header = await resolveSnapshot(snapshotSelection(req.query.snapshotId));
       if (!header) {
         res.set("X-Analysis-Data-State", "legacy-mutable-source-snapshot-not-provisioned");
         return next();
@@ -202,15 +205,23 @@ export async function registerRoutes(
       } : { status: "not-provisioned", snapshotId: null, currentFinancialOverlaysApplied: false });
     } catch { res.status(503).json({ error: "Snapshot status unavailable" }); }
   });
-  app.get("/api/analysis/snapshots", async (_req, res) => {
+  app.get("/api/analysis/snapshots", async (req, res) => {
+    let filter: ReturnType<typeof snapshotInventoryQuery>;
+    try { filter = snapshotInventoryQuery(req.query); }
+    catch { res.status(422).json({ error: "Invalid snapshot inventory filter or cursor" }); return; }
     try {
-      if (!await snapshotsAvailable()) return res.json({ status: "not-provisioned", items: [] });
+      if (!await snapshotsAvailable()) return res.json({ status: "not-provisioned", items: [], nextCursor: null });
       const rows = await db.select({
         id: cvAnalysisSnapshots.id, kind: cvAnalysisSnapshots.kind,
         companyCount: cvAnalysisSnapshots.companyCount, observationCount: cvAnalysisSnapshots.observationCount,
         createdAt: cvAnalysisSnapshots.createdAt,
-      }).from(cvAnalysisSnapshots).orderBy(desc(cvAnalysisSnapshots.createdAt)).limit(100);
-      res.set("Cache-Control", "no-store").json({ status: "available", items: rows });
+      }).from(cvAnalysisSnapshots).where(and(
+        filter.kind ? eq(cvAnalysisSnapshots.kind, filter.kind) : undefined,
+        filter.after ? gt(cvAnalysisSnapshots.id, filter.after) : undefined,
+      )).orderBy(asc(cvAnalysisSnapshots.id)).limit(101);
+      const items = rows.slice(0, 100);
+      res.set("Cache-Control", "no-store").json({ status: "available", items,
+        nextCursor: rows.length > 100 ? items[items.length - 1].id : null });
     } catch { res.status(503).json({ error: "Snapshot listing unavailable" }); }
   });
   app.use("/api/cv", (req, res, next) => {

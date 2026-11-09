@@ -75,6 +75,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | --- | --- |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshot-status" |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |
+| client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
 | client/src/components/analysis-snapshot-status.tsx | `/api/cv/summary?snapshotId=${encodeURIComponent(selectedSnapshotId)}` |
 | client/src/components/driver-evidence-disclosure.tsx | "/api/research/driver-registry" |
 | client/src/components/emissions-candidate-review.tsx | `/api/emissions/candidate?scenario=${scenario}` |

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +18,7 @@ interface SnapshotStatus {
 
 interface SnapshotsResponse {
   status: "available" | "not-provisioned";
+  nextCursor: string | null;
   items: {
     id: string;
     kind: string;
@@ -53,9 +54,21 @@ export function AnalysisSnapshotStatus() {
   const current = useQuery<SnapshotStatus>({
     queryKey: ["/api/analysis/snapshot-status"],
   });
-  const history = useQuery<SnapshotsResponse>({
-    queryKey: ["/api/analysis/snapshots"],
+  const inventory = useInfiniteQuery({
+    queryKey: ["/api/analysis/snapshots", "workbook-baseline"],
+    initialPageParam: null as string | null,
+    queryFn: async ({ pageParam }): Promise<SnapshotsResponse> => {
+      const query = new URLSearchParams({ kind: "workbook-baseline" });
+      if (pageParam) query.set("after", pageParam);
+      const response = await apiRequest("GET", `/api/analysis/snapshots?${query}`);
+      return response.json();
+    },
+    getNextPageParam: (page) => page.nextCursor ?? undefined,
   });
+  const history = { ...inventory, data: inventory.data ? {
+    status: inventory.data.pages[0].status,
+    items: inventory.data.pages.flatMap(page => page.items),
+  } : undefined };
   const workbookSnapshots = history.data?.status === "available"
     ? history.data.items.filter((item) => item.kind === "workbook-baseline")
     : [];
@@ -121,7 +134,7 @@ export function AnalysisSnapshotStatus() {
           )}
         </section>
         <section aria-labelledby="snapshot-history-heading" className="border-t pt-3 space-y-2">
-          <h3 id="snapshot-history-heading" className="text-sm font-semibold">Historical snapshot inventory</h3>
+          <h3 id="snapshot-history-heading" className="text-sm font-semibold">Historical workbook snapshot inventory</h3>
           {history.isError ? (
             <div role="alert" className="space-y-2">
               <p className="text-sm text-muted-foreground">The snapshot inventory could not be loaded. This does not establish whether snapshots exist.</p>
@@ -149,6 +162,12 @@ export function AnalysisSnapshotStatus() {
                     </li>
                   ))}
                 </ul>
+              )}
+              {inventory.hasNextPage && (
+                <Button size="sm" variant="outline" disabled={inventory.isFetchingNextPage}
+                  onClick={() => void inventory.fetchNextPage()}>
+                  {inventory.isFetchingNextPage ? "Loading more snapshots…" : "Load more workbook snapshots"}
+                </Button>
               )}
             </>
           ) : (

@@ -1,5 +1,9 @@
 # Current output controls
 
+The [historical-selection and replay repairs](Historical_Selection_and_Replay_Repairs.md)
+describe strict snapshot IDs, independent stored-output retrieval and paginated
+workbook selection. This is not yet a dashboard-wide historical mode.
+
 The [historical diagnostic repairs](Historical_Diagnostics_and_Skill_Results.md)
 explain origin-restricted intensity inputs, annualised reduction metrics,
 censored threshold dates and the failed short-horizon fossil-CO2 experiment.

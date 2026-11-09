@@ -30,7 +30,7 @@ STAGES = [
      "Production recovery rehearsal, single scheduler ownership and deliberate failing-commit CI gate test; validated-branch promotion is implemented."),
     ("Output register", [ts("public-valuation-contract", "ui-claims", "export-contract", "output-register")],
      "Complete inventory of all output consumers and exports."),
-    ("Immutable inputs", [ts("snapshot-contract", "analysis-manifest", "request-overrides")],
+    ("Immutable inputs", [ts("snapshot-contract", "analysis-manifest", "request-overrides", "snapshot-request")],
      "Persistent overlays, all reader migration, production provisioning, historical selector and full import/isolation acceptance."),
     ("Driver evidence", [ts("driver-evidence")],
      "Complete source, units, uncertainty and vintage evidence for every intended quantitative driver."),

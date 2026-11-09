@@ -3,6 +3,7 @@ import { asc, desc, eq, sql } from "drizzle-orm";
 import { db } from "../db";
 import { cvAnalysisChunks, cvAnalysisSnapshots, cvCompanies, cvTimeSeries, type CvCompany, type CvTimeSeries } from "../../shared/schema";
 import { packDataset, unpackDataset, type DatasetChunk } from "./contract";
+import { snapshotSelection } from "./requestContract";
 
 export type SnapshotHeader = typeof cvAnalysisSnapshots.$inferSelect;
 export const snapshotContext = new AsyncLocalStorage<SnapshotHeader>();
@@ -17,7 +18,7 @@ export async function snapshotsAvailable(connection: Pick<typeof db, "execute"> 
   return result.rows[0]?.ready === true;
 }
 export async function resolveSnapshot(id?: string) {
-  if (id && !/^[a-f0-9]{64}$/.test(id)) throw new Error("Invalid snapshot identity");
+  snapshotSelection(id);
   if (!await snapshotsAvailable()) {
     if (id) throw new Error("Snapshot storage is not provisioned");
     return undefined;
