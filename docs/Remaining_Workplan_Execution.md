@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [regional and company engine report](Regional_and_Company_Engine_Execution.md)
+adds six-account native projections, joint-parameter sampling, streamed member
+storage and conditional company operating ledgers. Real-data calibration,
+worked companies and downstream validation remain unfinished.
 The subsequent [member analysis and currency report](Member_Analysis_and_Currency_Execution.md)
 covers exact attribution, 5,000/10,000 convergence checks, order-invariant
 member metrics and minor-unit currency handling. Those stages remain partial;

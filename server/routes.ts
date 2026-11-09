@@ -12,6 +12,7 @@ import { publicValuationResult } from "./calculation/publicValuationContract";
 import { resolveSnapshot, snapshotContext } from "./snapshots/store";
 import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { exactMemberAttribution } from "./calculation/memberAttribution";
+import { projectCompanyMembers } from "./calculation/companyProjection";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { loadAnalysisResult, saveAnalysisResult } from "./snapshots/results";
 import { cvAnalysisSnapshots } from "@shared/schema";
@@ -307,6 +308,7 @@ export async function registerRoutes(
       switch (x?.operation) {
         case "member-metrics": result = summarizeMemberMetrics(x.input); break;
         case "member-attribution": result = exactMemberAttribution(x.input); break;
+        case "company-projection": result = projectCompanyMembers(x.input); break;
         case "cash-flow-value": result = cashFlowValue(x.input); break;
         case "reverse-cash-flow-growth": result = reverseCashFlowGrowth(x.input); break;
         case "long-short-research": result = longShortResearch(x.input); break;

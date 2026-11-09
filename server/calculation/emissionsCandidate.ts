@@ -124,7 +124,15 @@ function validate(s: EmissionsScenario, endYear: number) {
   }
 }
 export function projectNativeEmissions(s: EmissionsScenario, endYear = 2100) {
+  return projectInventoryEmissions(s, endYear, inventory.cells);
+}
+export interface NativeInventoryCell { gas: string; sector: string; nativeMt: number; gwp100: number }
+/** Regional callers must reconcile their input against the frozen global inventory. */
+export function projectInventoryEmissions(s: EmissionsScenario, endYear: number, cells: NativeInventoryCell[], includeCells = false) {
   validate(s, endYear);
+  if (!cells.length || cells.some(c => !c.gas || !c.sector || !Number.isFinite(c.nativeMt) ||
+      !Number.isFinite(c.gwp100) || c.gwp100 <= 0 || c.nativeMt < 0 && c.sector !== "LULUCF"))
+    throw new Error("Invalid native regional inventory");
   let capacity = s.renewableCapacityGW, fleet = s.evFleetShare;
   const baseRenewableTWh = capacity * 8.76 * s.capacityFactor;
   const nuclearTWh = s.nuclearGenerationTWh ?? 0;
@@ -166,8 +174,9 @@ export function projectNativeEmissions(s: EmissionsScenario, endYear = 2100) {
     const corporate = s.corporateCoverage * s.corporateDelivery * s.maximumAbatement * delivery;
     const activity = Math.pow((1 + s.annualActivityGrowth) * (1 - s.residualIntensityImprovement), t);
     const nativeMt: Record<string, number> = {}, sectorsGtCO2e: Record<string, number> = {};
+    const nativeCellsMt: number[] = [];
     let reportingGtCO2e = 0, co2FossilMt = 0, co2LandUseMt = 0;
-    for (const c of inventory.cells) {
+    for (const c of cells) {
       const sector = sectorOf(c.sector);
       const pathway = s.sectorPathways?.[sector];
       const years = pathway ? Math.min(t, pathway.trendEndYear - 2024) : 0;
@@ -199,7 +208,9 @@ export function projectNativeEmissions(s: EmissionsScenario, endYear = 2100) {
         factor = Math.min(factor, referenceActivity * (1 - reduction + Math.max(0, -technical)));
       }
       const mt = c.nativeMt * factor;
-      if (!Number.isFinite(mt) || mt < 0) throw new Error("Invalid native inventory output");
+      if (!Number.isFinite(mt) || mt < 0 && sector !== "land")
+        throw new Error("Invalid native inventory output");
+      if (includeCells) nativeCellsMt.push(mt);
       nativeMt[c.gas] = (nativeMt[c.gas] ?? 0) + mt;
       if (c.gas === "CO2") {
         if (sector === "land") co2LandUseMt += mt;
@@ -210,11 +221,13 @@ export function projectNativeEmissions(s: EmissionsScenario, endYear = 2100) {
       reportingGtCO2e += co2e;
     }
     trajectory.push({ year, status: t === 0 ? "inventory" : "scenario-not-observation", nativeMt,
+      ...(includeCells ? { nativeCellsMt } : {}),
       reportingGtCO2e, sectorsGtCO2e, co2FossilMt, co2LandUseMt, evSalesShare: sales, evFleetShare: fleet,
       power: { capacityGW: capacity, renewableTWh, utilizedRenewableTWh, nuclearTWh,
         utilizedNuclearTWh, fossilTWh, demandTWh, evDemandTWh, totalEvTWh } });
   }
-  return { version: EMISSIONS_ENGINE_VERSION, key: calculationKey("native-emissions", inventory, { scenario: s, endYear }, EMISSIONS_ENGINE_VERSION),
+  return { version: EMISSIONS_ENGINE_VERSION, key: calculationKey("native-emissions",
+    cells === inventory.cells ? inventory : { year: 2024, cells }, { scenario: s, endYear }, EMISSIONS_ENGINE_VERSION),
     validation: "mechanism-tests-only", temperature: null, inventoryYear: 2024, scenario: s, trajectory };
 }
 export function candidateInventory() { return inventory; }
