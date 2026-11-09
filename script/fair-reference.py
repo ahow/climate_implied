@@ -27,7 +27,7 @@ FILES = [
 ]
 
 
-def main(pathway_file=None, output_directory=None):
+def main(pathway_file=None, output_directory=None, species_history_file=None):
     if fair.__version__ != "2.2.4":
         raise RuntimeError("Reference runner requires FaIR 2.2.4")
     if pathway_file and not output_directory:
@@ -46,6 +46,7 @@ def main(pathway_file=None, output_directory=None):
                        "sha256": hashlib.sha256(data).hexdigest()})
     params, species_file, emissions, forcing = [str(root / x) for x in FILES]
     pathway = None
+    additional_species_evidence = None
     if pathway_file:
         from fair_native_bridge import apply_native_pathway, native_coverage
         pathway = json.loads(Path(pathway_file).read_text())
@@ -58,12 +59,32 @@ def main(pathway_file=None, output_directory=None):
         template = pd.read_csv(emissions)
         unsupported = native_coverage(template, pathway["gases"])
         if unsupported:
-            failure = {"status": "blocked-native-species-coverage", "unsupportedSpecies": unsupported,
+            from fair_additional_species import PARAMETERS, SOURCE, SOURCE_SHA256, extend_species_configs, add_historical_species
+            additional_species_evidence = {"parameterSource": SOURCE, "parameterSourceSha256": SOURCE_SHA256,
+                "parameters": PARAMETERS, "historicalSourceVerified": False,
+                "assumptions": ["constant lifetime", "unit forcing efficacy", "no lifetime feedback",
+                                "zero preindustrial baseline concentration; historical accumulation uses supplied emissions"]}
+            if species_history_file:
+                history = json.loads(Path(species_history_file).read_text())
+                template = add_historical_species(template, history)
+                custom_species = root / "candidate-species-configs.csv"
+                extend_species_configs(pd.read_csv(species_file, index_col=0)).to_csv(custom_species)
+                species_file = str(custom_species)
+                additional_species_evidence.update({
+                    "historySource": history["source"],
+                    "historySha256": hashlib.sha256(Path(species_history_file).read_bytes()).hexdigest()})
+                unsupported = native_coverage(template, pathway["gases"])
+        if unsupported:
+            history_missing = not species_history_file and set(unsupported).issubset(PARAMETERS)
+            failure = {"status": "blocked-native-species-history" if history_missing else "blocked-native-species-coverage", "unsupportedSpecies": unsupported,
+                       "additionalSpeciesEvidence": additional_species_evidence,
+                       "remainingDependency": "Explicit historical native emissions required; parameters alone do not fill missing history",
                        "pathwaySource": pathway.get("source"), "inputs": inputs,
                        "pathwaySha256": hashlib.sha256(Path(pathway_file).read_bytes()).hexdigest(),
                        "temperatureProduced": False, "productionEligible": False}
             (root / "failure.json").write_text(json.dumps(failure, indent=2))
-            raise ValueError("Unsupported or ambiguous FaIR species: " + ", ".join(unsupported))
+            raise ValueError(("Missing explicit historical emissions for: " if history_missing else
+                              "Unsupported or ambiguous FaIR species: ") + ", ".join(unsupported))
         converted = apply_native_pathway(template, pathway, baseline)
         emissions = str(root / "candidate-emissions.csv")
         converted.to_csv(emissions, index=False)
@@ -103,6 +124,7 @@ def main(pathway_file=None, output_directory=None):
         "ensembleMembers": len(configs), "inputs": inputs,
         "scenario": pathway["scenario"] if pathway else "medium-extension (upstream draft example, not current policy)",
         "pathwaySource": pathway.get("source") if pathway else None,
+        "additionalSpeciesEvidence": additional_species_evidence,
         "temperatureBaseline": "1850–1900 annual mean",
         "annual2100P10P50P90C": np.percentile(anomaly[-1], [10, 50, 90]).tolist(),
         "mean2003to2022P05P50P95C": np.percentile(
@@ -124,5 +146,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--pathway", help="Complete native-gas candidate JSON; unsupported species fail explicitly")
     parser.add_argument("--output-directory", help="New private directory for an isolated candidate run")
+    parser.add_argument("--species-history", help="Explicit sourced 1750–2023 emissions for the three additional species")
     args = parser.parse_args()
-    main(args.pathway, args.output_directory)
+    if args.species_history and not args.pathway:
+        parser.error("--species-history requires --pathway")
+    main(args.pathway, args.output_directory, args.species_history)

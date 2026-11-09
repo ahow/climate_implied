@@ -1,5 +1,11 @@
 # Regional native-gas coupling — 9 November 2026
 
+**Update:** [Additional species implementation](Additional_FaIR_Species.md)
+now supplies final-AR6 physical parameters and passes real FaIR pulse controls
+for the three gases. Explicit historical emissions remain required. The
+coverage failure described below is the original result, not a claim that
+the species can never be modelled.
+
 The regional member stream now has a strict converter into the existing FaIR
 bridge. It verifies the archived stream hash and completed-run marker, rejects
 duplicate/missing member identities, requires all 77 years and every inventory

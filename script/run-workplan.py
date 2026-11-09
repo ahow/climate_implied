@@ -43,7 +43,7 @@ STAGES = [
          "script/test_ngfs_pathway_adapter.py", "script/test_pathway_gap_sensitivity.py"]],
      "Complete compatible policy/commitment source coverage and missing-gas sensitivity."),
     ("Climate response", [ts("ensemble", "workplan-corrections", "member-metrics", "ensemble-convergence"),
-        ["uv", "run", "python", "-m", "unittest", "script/test_fair_native_bridge.py"]],
+        ["uv", "run", "python", "-m", "unittest", "script/test_fair_native_bridge.py", "script/test_fair_additional_species.py"]],
      "Independent modern FaIR reference, updated historical forcing and integrated coherent censored ensemble outputs."),
     ("Regional attribution", [ts("research-blocks", "member-attribution")],
      "Real regional emissions ledgers and warming attribution with error bounds; helper tests are not regional results."),

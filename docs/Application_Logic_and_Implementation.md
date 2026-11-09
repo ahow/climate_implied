@@ -1,5 +1,9 @@
 # Current output controls
 
+The [additional FaIR species implementation](Additional_FaIR_Species.md)
+uses final-AR6 lifetimes/radiative efficiencies with explicit historical-input
+requirements. It does not silently infill missing history or promote a forecast.
+
 The [CI negative-control report](CI_Negative_Control.md) records an actual
 deliberate validation failure, skipped production promotion and unchanged
 deployment branch. This is distinct from disaster recovery or scientific acceptance.
