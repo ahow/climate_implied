@@ -24,6 +24,12 @@ def record(ids, behaviour, files, commands, gaps, status="partial"):
 record(["S00-002"], "Full current-worktree regression executed: 192 TypeScript and 51 Python tests; type check/build passed.",
        ["script/workplan-evidence-run.py"], ["script/*.test.ts", "unittest discover", "npm run check", "npm run build"],
        [], "verified")
+record(["S00-003", "S00-007"],
+       "Two fresh Node processes recomputed fixed-input baseline and all six category trajectories through 2100 (1,000 draws each, seed 123); exact full-payload hash agreement.",
+       ["script/verify-process-baseline.ts"],
+       ["verify-process-baseline"],
+       ["Regional external-input, company valuation, implied-carbon-price and full walk-forward fixtures remain.",
+        "Synthetic/public-number characterization is not scientific validity."])
 record(["S00-004", "S00-008", "S00-009"],
        "All 14 declared mutating routes exercised in isolated Express harness: 7 diagnostics allowed, 7 mutations denied; oversized diagnostic body rejected with HTTP 413. Existing rate-limit test also passes.",
        ["script/privileged-route-inventory.test.ts", "server/releaseSafety.ts"],
@@ -32,7 +38,7 @@ record(["S00-004", "S00-008", "S00-009"],
 record(["S02-001"],
        "Archive readiness now checks exact public table, trigger event mask, function and enabled state, rather than global trigger-name counts.",
        ["server/snapshots/guards.ts:validSnapshotGuards", "server/snapshots/store.ts:snapshotsAvailable,persist", "script/snapshot-guards.test.ts"],
-       ["snapshot-guards", "script/*.test.ts"],
+       ["snapshot-guards", "script/*.test.ts", "verify-workbook-snapshot"],
        ["Complete financial/carbon/SDG overlay archival and readers remain unimplemented.",
         "Production has no archive tables or guards."])
 record(["S02-006", "S02-010"],

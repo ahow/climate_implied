@@ -58,8 +58,44 @@ Recovery protocol and guard tests were committed before their implementation.
 
 ## Release
 
-Pending source export and exact live revision verification; do not infer release
-from the local test results.
+Tested source exported successfully to GitHub as
+`52c03861535cd45c8061288ba2c4b5b3f9d9435f` (workspace
+`c62078bbe0dcf1d0c4d89bc1c200e4f724758b34`).
+Initial production check still reported the preceding revision while Railway
+was building. GitHub validation run 42710316922 succeeded. At 22:19 UTC,
+production build-info reported `52c03861535cd45c8061288ba2c4b5b3f9d9435f`,
+confirming the tested implementation reached production through the existing
+gate. Archive provisioning remains unavailable; no schema changes were made.
+
+## Further baseline execution
+
+Two fresh Node processes independently computed the fixed-input legacy baseline
+and all six category trajectories, 2024–2100, 1,000 draws and seed 123.
+Exact payload hash agreement:
+`1db4085aee9d6b395b54b3412024b26859eb42cfdf9a5a5edd1069336b49cc4e`.
+Evidence is in the corresponding baseline JSON under
+`generated-artifacts/workplan-completion/`; the execution log and repeat type
+check are recorded in the ledger. Regional external inputs and full company/
+walk-forward baseline coverage remain. These are synthetic/public-number
+characterization fixtures, not empirical validation.
+
+## Continuation instructions
+
+This execution is incomplete. The finite agent run has not reconciled or
+implemented all 300 clauses. Most remain explicitly `not-yet-reconciled`, not
+falsely accepted. The ledger contains each open requirement ID and next action.
+No scientific studies were newly completed in this run.
+
+Resume with:
+1. Verify GitHub validation/promotion and Railway release identity.
+2. Complete S00-003/S00-007 fixed-input two-process baseline coverage.
+3. Complete S00-005/S00-010 single scheduler ownership verification.
+4. Exercise corrupt recovery-file rejection; finish full-schema recovery scope.
+5. Continue complete overlay replay and the 22-driver evidence audit, followed
+   by the original dependency-ordered climate and company research requirements.
+
+No agent or research job remains running in the background. The continuation
+callback is a handoff notification, not proof that a receiving agent has started.
 
 ## Remaining work
 

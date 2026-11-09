@@ -3,7 +3,7 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-09T22:15:13.197528+00:00
+Updated: 2026-11-09T22:20:03.336883+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
@@ -27,19 +27,19 @@ Run all TypeScript and Python tests, npm run check and npm run build; record cou
 - Existing evidence: docs/CI_Negative_Control.md
 - Delivered this run: Full current-worktree regression executed: 192 TypeScript and 51 Python tests; type check/build passed.
 - Scientific acceptance: not-applicable-operational
-- Executions: [{"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-09T22:12:20.589269+00:00", "exit_code": 0, "elapsed_seconds": 26.531, "counts": {"tests": 192, "pass": 192, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["uv", "run", "python", "-m", "unittest", "discover", "-s", "script", "-p", "test_*.py"], "executed_at": "2026-11-09T22:12:47.538211+00:00", "exit_code": 0, "elapsed_seconds": 11.427, "counts": {"tests": 51, "pass": 51, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221247538211Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "check"], "executed_at": "2026-11-09T22:12:59.337405+00:00", "exit_code": 0, "elapsed_seconds": 13.085, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221259337405Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "build"], "executed_at": "2026-11-09T22:13:12.812454+00:00", "exit_code": 0, "elapsed_seconds": 19.952, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221312812454Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Executions: [{"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-09T22:12:20.589269+00:00", "exit_code": 0, "elapsed_seconds": 26.531, "counts": {"tests": 192, "pass": 192, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["uv", "run", "python", "-m", "unittest", "discover", "-s", "script", "-p", "test_*.py"], "executed_at": "2026-11-09T22:12:47.538211+00:00", "exit_code": 0, "elapsed_seconds": 11.427, "counts": {"tests": 51, "pass": 51, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221247538211Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "check"], "executed_at": "2026-11-09T22:12:59.337405+00:00", "exit_code": 0, "elapsed_seconds": 13.085, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221259337405Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "build"], "executed_at": "2026-11-09T22:13:12.812454+00:00", "exit_code": 0, "elapsed_seconds": 19.952, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221312812454Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "check"], "executed_at": "2026-11-09T22:19:05.773525+00:00", "exit_code": 0, "elapsed_seconds": 6.571, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221905773525Z.log", "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: 
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
-### S00-003 — not-yet-reconciled
+### S00-003 — partial
 Capture golden fixtures with fixed inputs and seeds: legacy headline temperature and net-zero year, category and regional views, Gordon growth, Decarb Gap, implied carbon price and walk-forward results. Hash only analytical content: exclude timestamps and administrative identifiers, and set numerical tolerances where cross-environment floating-point differences are expected.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/CI_Negative_Control.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Delivered this run: Two fresh Node processes recomputed fixed-input baseline and all six category trajectories through 2100 (1,000 draws each, seed 123); exact full-payload hash agreement.
+- Scientific acceptance: not-applicable-operational
+- Executions: [{"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:18:56.797862+00:00", "exit_code": 0, "elapsed_seconds": 8.229, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221856797862Z.log", "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Gaps: Regional external-input, company valuation, implied-carbon-price and full walk-forward fixtures remain.; Synthetic/public-number characterization is not scientific validity.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
 ### S00-004 — partial
@@ -75,15 +75,15 @@ Add GitHub CI that gates deployment: Railway deploys only commits that have pass
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
-### S00-007 — not-yet-reconciled
+### S00-007 — partial
 Legacy fixtures reproduce in two clean processes: exact hashes for analytical content, declared tolerances elsewhere.
 
-- Section: acceptance; origin: pre-existing-scope
+- Section: acceptance; origin: existing-plus-this-run
 - Existing evidence: docs/CI_Negative_Control.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Delivered this run: Two fresh Node processes recomputed fixed-input baseline and all six category trajectories through 2100 (1,000 draws each, seed 123); exact full-payload hash agreement.
+- Scientific acceptance: not-applicable-operational
+- Executions: [{"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:18:56.797862+00:00", "exit_code": 0, "elapsed_seconds": 8.229, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221856797862Z.log", "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Gaps: Regional external-input, company valuation, implied-carbon-price and full walk-forward fixtures remain.; Synthetic/public-number characterization is not scientific validity.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
 ### S00-008 — partial
@@ -317,7 +317,7 @@ Keep the workbook as an immutable baseline; add ordered, immutable overlays for 
 - Existing evidence: docs/Analysis_Wide_Historical_Selection.md
 - Delivered this run: Archive readiness now checks exact public table, trigger event mask, function and enabled state, rather than global trigger-name counts.
 - Scientific acceptance: not-applicable-operational
-- Executions: [{"command": ["npx", "tsx", "--test", "script/snapshot-guards.test.ts", "script/privileged-route-inventory.test.ts", "script/analysis-selection.test.ts"], "executed_at": "2026-11-09T22:10:05.285355+00:00", "exit_code": 0, "elapsed_seconds": 4.343, "counts": {"tests": 5, "pass": 5, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221005285355Z.log", "workspace_revision": "5b15ce21abcf405e59d4597e0abc59cf05aa70ab", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-09T22:12:20.589269+00:00", "exit_code": 0, "elapsed_seconds": 26.531, "counts": {"tests": 192, "pass": 192, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Executions: [{"command": ["npx", "tsx", "--test", "script/snapshot-guards.test.ts", "script/privileged-route-inventory.test.ts", "script/analysis-selection.test.ts"], "executed_at": "2026-11-09T22:10:05.285355+00:00", "exit_code": 0, "elapsed_seconds": 4.343, "counts": {"tests": 5, "pass": 5, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221005285355Z.log", "workspace_revision": "5b15ce21abcf405e59d4597e0abc59cf05aa70ab", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-09T22:12:20.589269+00:00", "exit_code": 0, "elapsed_seconds": 26.531, "counts": {"tests": 192, "pass": 192, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "npx", "tsx", "script/verify-workbook-snapshot.ts"], "executed_at": "2026-11-09T22:14:43.708712+00:00", "exit_code": 0, "elapsed_seconds": 29.349, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221443708712Z.log", "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: Complete financial/carbon/SDG overlay archival and readers remain unimplemented.; Production has no archive tables or guards.
 - Next: Investigate production database ownership; provision through supported route; implement complete overlay replay.
 
