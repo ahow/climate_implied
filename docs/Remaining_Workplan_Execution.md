@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [electricity-demand calibration report](Electricity_Demand_Calibration_Results.md)
+adds five real-data holdout evaluations and a 225-observation comparison of
+OWID's retired and replacement electricity datasets. Two demand candidates
+beat both baselines; three remain sensitivity-only. No model was promoted.
 The [regional and company engine report](Regional_and_Company_Engine_Execution.md)
 adds six-account native projections, joint-parameter sampling, streamed member
 storage and conditional company operating ledgers. Real-data calibration,

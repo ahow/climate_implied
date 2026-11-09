@@ -34,7 +34,7 @@ STAGES = [
      "Persistent overlays, all reader migration, production provisioning, historical selector and full import/isolation acceptance."),
     ("Driver evidence", [ts("driver-evidence")],
      "Complete source, units, uncertainty and vintage evidence for every intended quantitative driver."),
-    ("Driver calibration", [["uv", "run", "python", "-m", "unittest", "script/test_driver_calibration.py"]],
+    ("Driver calibration", [["uv", "run", "python", "-m", "unittest", "script/test_driver_calibration.py", "script/test_electricity_demand.py"]],
      "Uncertainty, structural-break assessment and remaining driver fits. Existing negative fits cannot be promoted."),
     ("Emissions ensemble", [ts("emissions-candidate", "calculation-foundations", "regional-land", "ensemble-convergence", "regional-engine", "regional-sampling")],
      "Actual region/sector/gas model, overlap accounting and 10,000-member convergence."),

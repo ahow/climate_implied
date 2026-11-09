@@ -549,6 +549,7 @@ Do not expose an unrestricted public FMP proxy or paid refresh endpoint.
 - [Legacy detailed methodology](Climate_Tracking_Dashboard_Documentation.md)
 - [Member analysis and currency handling](Member_Analysis_and_Currency_Execution.md)
 - [Regional and company operating engines](Regional_and_Company_Engine_Execution.md)
+- [Electricity demand calibration and source transition](Electricity_Demand_Calibration_Results.md)
 
 When behavior changes, update the status table, affected equations/data flow,
 source/assumption version, tests and roadmap gate. Do not silently rewrite
