@@ -1,5 +1,18 @@
 # Workplan implementation report
 
+## Continuation: additional baseline coverage
+
+On 2026-11-09 at 22:25 UTC the fresh-process baseline was extended to Gordon
+growth, Decarb Gap scores, four legacy finance-conversion cases and the complete
+30-month walk-forward series (including twelve warm-up months). Two processes
+matched exactly, hash
+`e0dfd93c0089d778d84cb76f5192081d7eac0318f514224ea82cb99b8e0ac2d0`.
+The command was `npx tsx script/verify-process-baseline.ts`; type checking
+also passed. Exact logs are in run_executions. This is characterization only:
+no company research, scientific validation or stage completion is inferred.
+Regional external-input and database-backed grouped company endpoints remain
+outside this fixture's coverage. No application runtime code changed.
+
 ## Scope and evidence rules
 
 Execution began 2026-11-09. The original amended workplan was read in full.

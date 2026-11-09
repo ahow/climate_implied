@@ -25,10 +25,10 @@ record(["S00-002"], "Full current-worktree regression executed: 192 TypeScript a
        ["script/workplan-evidence-run.py"], ["script/*.test.ts", "unittest discover", "npm run check", "npm run build"],
        [], "verified")
 record(["S00-003", "S00-007"],
-       "Two fresh Node processes recomputed fixed-input baseline and all six category trajectories through 2100 (1,000 draws each, seed 123); exact full-payload hash agreement.",
+       "Two fresh Node processes recomputed fixed-input baseline and six category trajectories through 2100 (1,000 draws each, seed 123), Gordon growth, Decarb Gap scores, legacy finance conversions and 30-month walk-forward results; exact full-payload hash agreement.",
        ["script/verify-process-baseline.ts"],
        ["verify-process-baseline"],
-       ["Regional external-input, company valuation, implied-carbon-price and full walk-forward fixtures remain.",
+       ["Regional external-input and database-backed grouped company endpoint fixtures remain.",
         "Synthetic/public-number characterization is not scientific validity."])
 record(["S00-004", "S00-008", "S00-009"],
        "All 14 declared mutating routes exercised in isolated Express harness: 7 diagnostics allowed, 7 mutations denied; oversized diagnostic body rejected with HTTP 413. Existing rate-limit test also passes.",
@@ -70,7 +70,7 @@ ledger["updated_at"] = datetime.now(timezone.utc).isoformat()
 ledger["restart"] = {
     "next_requirement": "S00-003",
     "unfinished_requirement_ids": [r["id"] for r in requirements.values() if r["status"] != "verified"],
-    "instruction": "Do not re-plan or repeat passed checks unless code changes invalidate them. Finish S00-003/S00-007 regional/company/walk-forward process baselines (global and six category cases already verified), then S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation (most 300 clauses remain not-yet-reconciled). Actual-data temporary restore and corrupt-file rejection passed; full production/schema recovery remains. Production archive depends on supported managed schema/guards; no direct DDL. Next independent substantive work: full overlay replay, 22-driver evidence, remaining calibration. Research work is NOT complete.",
+    "instruction": "Do not re-plan or repeat passed checks unless invalidated. Finish S00-003/S00-007 regional external-input and grouped company endpoint baselines. Global/six category, Gordon, gap, legacy finance conversions and complete 30-month walk-forward fresh-process fixtures passed. Then verify S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation: most clauses remain unreconciled. Actual-data temporary restore and corrupt-file rejection passed; full production/schema recovery remains. Production archive requires supported managed schema/guards; no direct DDL. Continue full overlay replay, 22-driver evidence and remaining calibration. No new empirical study or scientific acceptance.",
     "background_tasks": [],
 }
 path.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")

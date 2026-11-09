@@ -8,7 +8,7 @@
     "next_action": "Retain live implementation identity; export subsequent evidence/continuation tooling through the same CI gate."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-09T22:23:29.744935+00:00",
+  "updated_at": "2026-11-09T22:26:00.072016+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -168,6 +168,36 @@
               "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npm",
+                "run",
+                "check"
+              ],
+              "executed_at": "2026-11-09T22:24:50.995599+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 4.573,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222450995599Z.log",
+              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npm",
+                "run",
+                "check"
+              ],
+              "executed_at": "2026-11-09T22:25:26.304421+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 4.409,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222526304421Z.log",
+              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -191,7 +221,7 @@
           "files_functions_changed": [
             "script/verify-process-baseline.ts"
           ],
-          "behaviour_delivered_this_run": "Two fresh Node processes recomputed fixed-input baseline and all six category trajectories through 2100 (1,000 draws each, seed 123); exact full-payload hash agreement.",
+          "behaviour_delivered_this_run": "Two fresh Node processes recomputed fixed-input baseline and six category trajectories through 2100 (1,000 draws each, seed 123), Gordon growth, Decarb Gap scores, legacy finance conversions and 30-month walk-forward results; exact full-payload hash agreement.",
           "inputs_versions_assumptions": [],
           "executions": [
             {
@@ -208,6 +238,36 @@
               "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-process-baseline.ts"
+              ],
+              "executed_at": "2026-11-09T22:24:43.984288+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 6.646,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222443984288Z.log",
+              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-process-baseline.ts"
+              ],
+              "executed_at": "2026-11-09T22:25:18.623328+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 7.269,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222518623328Z.log",
+              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -215,7 +275,7 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Regional external-input, company valuation, implied-carbon-price and full walk-forward fixtures remain.",
+            "Regional external-input and database-backed grouped company endpoint fixtures remain.",
             "Synthetic/public-number characterization is not scientific validity."
           ],
           "next_action": "Inventory privileged routes; rehearse isolated recovery; verify single scheduler.",
@@ -353,7 +413,7 @@
           "files_functions_changed": [
             "script/verify-process-baseline.ts"
           ],
-          "behaviour_delivered_this_run": "Two fresh Node processes recomputed fixed-input baseline and all six category trajectories through 2100 (1,000 draws each, seed 123); exact full-payload hash agreement.",
+          "behaviour_delivered_this_run": "Two fresh Node processes recomputed fixed-input baseline and six category trajectories through 2100 (1,000 draws each, seed 123), Gordon growth, Decarb Gap scores, legacy finance conversions and 30-month walk-forward results; exact full-payload hash agreement.",
           "inputs_versions_assumptions": [],
           "executions": [
             {
@@ -370,6 +430,36 @@
               "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-process-baseline.ts"
+              ],
+              "executed_at": "2026-11-09T22:24:43.984288+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 6.646,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222443984288Z.log",
+              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-process-baseline.ts"
+              ],
+              "executed_at": "2026-11-09T22:25:18.623328+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 7.269,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222518623328Z.log",
+              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -377,7 +467,7 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Regional external-input, company valuation, implied-carbon-price and full walk-forward fixtures remain.",
+            "Regional external-input and database-backed grouped company endpoint fixtures remain.",
             "Synthetic/public-number characterization is not scientific validity."
           ],
           "next_action": "Inventory privileged routes; rehearse isolated recovery; verify single scheduler.",
@@ -8121,6 +8211,66 @@
       "workspace_revision": "22043120d8a90e6c3b1549f420db1649f77c3dec",
       "worktree_dirty": false,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/verify-process-baseline.ts"
+      ],
+      "executed_at": "2026-11-09T22:24:43.984288+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 6.646,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T222443984288Z.log",
+      "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-09T22:24:50.995599+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 4.573,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T222450995599Z.log",
+      "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/verify-process-baseline.ts"
+      ],
+      "executed_at": "2026-11-09T22:25:18.623328+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 7.269,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T222518623328Z.log",
+      "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-09T22:25:26.304421+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 4.409,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T222526304421Z.log",
+      "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -8426,7 +8576,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Do not re-plan or repeat passed checks unless code changes invalidate them. Finish S00-003/S00-007 regional/company/walk-forward process baselines (global and six category cases already verified), then S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation (most 300 clauses remain not-yet-reconciled). Actual-data temporary restore and corrupt-file rejection passed; full production/schema recovery remains. Production archive depends on supported managed schema/guards; no direct DDL. Next independent substantive work: full overlay replay, 22-driver evidence, remaining calibration. Research work is NOT complete.",
+    "instruction": "Do not re-plan or repeat passed checks unless invalidated. Finish S00-003/S00-007 regional external-input and grouped company endpoint baselines. Global/six category, Gordon, gap, legacy finance conversions and complete 30-month walk-forward fresh-process fixtures passed. Then verify S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation: most clauses remain unreconciled. Actual-data temporary restore and corrupt-file rejection passed; full production/schema recovery remains. Production archive requires supported managed schema/guards; no direct DDL. Continue full overlay replay, 22-driver evidence and remaining calibration. No new empirical study or scientific acceptance.",
     "background_tasks": []
   },
   "last_handoff": {

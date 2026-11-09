@@ -9,10 +9,32 @@ import { contentHash } from "../server/calculation/analysisManifest";
 import { calculateEmissionsTrajectory, calculateTemperatureDistribution, getTemperatureStats } from "../server/calculation/forwardProjection";
 import { applyCategoryModifications } from "../server/calculation/categoryProjections";
 import { historicalTrajectoryMetrics } from "../server/calculation/historicalMetrics";
-import { inputs } from "./fixtures/calculationInputs";
+import { inputs, companies, rows } from "./fixtures/calculationInputs";
+import { computeDecarbGapScores, computePerCompanyImpliedDecarbRates } from "../server/climateValuation/decarbGapCalculator";
+import { convertAll } from "../server/climateValuation/decarbConversion";
+import { getLatestTimeSeriesPerCompany } from "../server/climateValuation/sharedUtils";
+import { walkForward, type ReturnObservation } from "../server/climateValuation/walkForward";
 
 const categories = ["technology", "policy", "corporate", "socioeconomic", "financial", "emissions"] as const;
 if (process.argv.includes("--worker")) {
+  const monthly = new Map<string, ReturnObservation[]>();
+  const scores = new Map<string, Map<number, number>>();
+  for (let i = 0; i < 30; i++) {
+    const month = `${2020 + Math.floor(i / 12)}-${String(i % 12 + 1).padStart(2, "0")}`;
+    monthly.set(month, [{ companyId: 1, marketCap: 100, monthlyReturn: i % 2 ? .05 : -.03 },
+      { companyId: 2, marketCap: 100, monthlyReturn: i % 2 ? -.01 : .02 }]);
+    scores.set(month, new Map([[1, 1], [2, -1]]));
+  }
+  const financial = {
+    gordon: computePerCompanyImpliedDecarbRates(companies, getLatestTimeSeriesPerCompany(rows),
+      "sector_relative", .08),
+    legacyFinanceConversions: [-2, 0, 2.5, 5].map(rate => ({ rate, output: convertAll(rate) })),
+    gapScores: [...computeDecarbGapScores(companies, getLatestTimeSeriesPerCompany(rows),
+      2.5, "sector_relative", .08)].sort(([a], [b]) => a - b),
+    walkForward: walkForward(monthly, scores, .02),
+  };
+  assert.equal(financial.walkForward.series.length, 30);
+  assert.ok(financial.walkForward.series.slice(0, 12).every(row => row.activeReturn === 0));
   function compute(indicators: typeof inputs) {
     const trajectory = calculateEmissionsTrajectory(indicators, 2024, 2100, 1000, 123);
     return { trajectory,
@@ -20,7 +42,7 @@ if (process.argv.includes("--worker")) {
       metrics: historicalTrajectoryMetrics(trajectory) };
   }
   const payload = { fixtureHash: contentHash(inputs), seed: 123, runs: 1000,
-    baseline: compute(inputs),
+    baseline: compute(inputs), financial,
     categories: Object.fromEntries(categories.map(category => [category, compute(applyCategoryModifications(inputs, category))])) };
   console.log(JSON.stringify({ hash: contentHash(payload), payload }));
 } else {
@@ -32,7 +54,8 @@ if (process.argv.includes("--worker")) {
   assert.deepEqual(first.payload, second.payload);
   const evidence = { claim: "Fixed-input legacy software characterization; not physical or empirical validation",
     processes: 2, exactHashMatch: true, hash: first.hash, payload: first.payload,
-    exclusions: ["Regional external inputs", "Company valuation and full walk-forward result fixtures"] };
+    exclusions: ["Regional external inputs", "Database-backed grouped company endpoint fixtures"],
+    financialScope: "Synthetic Decarb Gap scores and complete 30-month walk-forward series; not empirical research" };
   await mkdir("generated-artifacts/workplan-completion", { recursive: true });
   const path = `generated-artifacts/workplan-completion/baseline-${first.hash}.json`;
   await writeFile(path, JSON.stringify(evidence, null, 2) + "\n");
