@@ -91,11 +91,41 @@ record(["S11-002", "S11-003", "S11-031"],
        ["No paired historical Gordon/reverse-DCF predictions or rank correlations computed.", "Ten common eligible issuers over six consecutive valuation origins not established.", "Identity approvals, publication vintages and cash-flow classification review incomplete."])
 for identifier in ("S11-002", "S11-003", "S11-031"):
     requirements[identifier]["scientific_acceptance"] = "not-accepted-study-incomplete"
+for identifier in ("S00-005", "S00-010"):
+    r = requirements[identifier]
+    r["status"] = "verified"
+    r["behaviour_delivered_this_run"] = (
+        "Opt-in gate (DATA_SCHEDULER_ENABLED) enforced in server/dataIngestion/scheduler.ts:startScheduler. "
+        "Exactly one environment starts the scheduler: Replit production autoscale logs '[scheduler] Started' "
+        "(fetchDeploymentLogs 2026-10-20..2026-11-09, every cold start); Railway logs 'Disabled for this instance'; "
+        "development disabled. Concurrent autoscale instances of that one environment (e.g. two starts at "
+        "2026-11-07T07:00:31Z) are serialized by pg_try_advisory_lock(126907,1) in "
+        "server/dataIngestion/collectionLock.ts:withCollectionLock plus the running-row check and the persisted "
+        "last-run cadence. Read-only production indicator_fetch_runs: scheduled runs 2026-06-07, 07-07, 08-06, "
+        "09-06, 10-06, one per ~30 days, no duplicate scheduled run.")
+    r["existing_evidence"] = ["docs/WORKPLAN_IMPLEMENTATION_REPORT.md#scheduler-ownership-verified"]
+    r["executions"] = [e for e in executions if "collection-lock" in " ".join(e["command"])]
+    r["remaining_gaps"] = []
+    r["scientific_acceptance"] = "not-applicable-operational"
+    r["next_action"] = "Keep Railway disabled while Replit autoscale remains the collector; any host move must switch both flags in one change."
+record(["S11-007", "S11-008", "S11-009", "S11-010", "S11-012", "S11-014", "S11-030", "S11-031"],
+       "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
+       ["server/financialData/asOfValuation.ts:buildAsOfRows", "script/build-asof-valuation-rows.ts", "script/asof-valuation.test.ts", "docs/AsOf_Valuation_Prediction_Protocol.md", "docs/AsOf_Valuation_Comparison_Results.md"],
+       ["asof-valuation", "build-asof-valuation-rows", "compare-valuation-models"],
+       ["Company-specific beta variant not run (common 8% cost of equity).", "Revised-history statements, not as-first-reported.", "Signal comparison uses implied-growth proxy, not the Stage 14 signal.", "Identities unapproved; 52/53-week fiscal years excluded pending owner review."])
+for identifier in ("S11-007", "S11-008", "S11-009", "S11-010", "S11-012", "S11-014", "S11-030", "S11-031"):
+    requirements[identifier]["scientific_acceptance"] = "negative-DCF-not-promoted"
+record(["S04-001"],
+       "Heat-pump source acquired: AHRI public US air-source heat-pump shipments 2006-2025 (table image SHA-256 e6d5b997...). Frozen diagnostic (commit 7c8121d): eval 2019-2025 MAPE primary 2011-2018 window persistence 21.0%, linear 9.0%, log-linear 11.3%; 2006-2018 sensitivity 21.0/22.7/21.2%. Window-sensitive; no share denominator, so no logistic fit.",
+       ["docs/Heat_Pump_Diffusion_Protocol.md", "docs/Heat_Pump_Diffusion_Results.md", "script/heat_pump_diffusion.py:evaluate", "script/test_heat_pump_diffusion.py"],
+       ["heat_pump_diffusion"],
+       ["No permitted heating-equipment denominator (AHRI furnace/monthly PDFs login-only; EHPA/JRAIA paid) so heat-pump share diffusion is uncalibrated.", "EV, storage and bootstrap-interval diffusion fits remain."])
+requirements["S04-001"]["scientific_acceptance"] = "not-accepted-levels-sensitivity-only"
 ledger["current_release"] = {"workspace_commit": "daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62", "github_main": "1aba6d08e9df2c771722a8d1b301b59477164d93", "ci": "Source validation success; production-validated advanced", "railway_deployment": "620cf31a-d6a3-4a85-827a-11738c0b41f2", "railway_status": "SUCCESS", "verified_at": "2026-11-09"}
 ledger["restart"] = {
-    "next_requirement": "S00-005",
+    "next_requirement": "S11-004",
     "unfinished_requirement_ids": [r["id"] for r in requirements.values() if r["status"] != "verified"],
-    "instruction": "S00-003/S00-007 baseline coverage passed, including actual grouped HTTP endpoints and regional captured inputs across fresh servers. Do not repeat unless invalidated. Verify S00-005/S00-010 legacy Replit autoscale scheduler ownership; Railway and development disabled, no second scheduler. Regional immutable replay now works in development with optional selector, export identity and no live fallback. Continue missing financial/carbon/SDG overlay and result replay, field-level semantics, all 22 driver evidence entries. Company outcome audit expanded to eleven candidates (56 outcomes); next build historical as-of Gordon/reverse-DCF predictions for those origins. Heat-pump source search found IEA 2019–2024 CC BY chart but no downloadable data and direct HTTP403; investigate AHRI/EHPA/JRAIA next, not all-source blocked. Full reconciliation, calibration, 10k ensemble, company and signal/portfolio research remain unfinished. Managed production archive provisioning and independent acceptance remain separate.",
+    "instruction": "UPDATE 2026-11-09 late: S00-005/S00-010 verified (single Replit autoscale scheduler environment + advisory lock + one scheduled run per month in production). D8 as-of study executed: negative for reverse DCF, Gordon stays primary; next run company-specific beta variant (S11-004) and Stage 14 signal. US heat-pump levels diagnostic done (AHRI); share calibration blocked on denominator. Then 22-driver audit, overlay replay, field semantics. Earlier note: S00-003/S00-007 baseline coverage passed, including actual grouped HTTP endpoints and regional captured inputs across fresh servers. Do not repeat unless invalidated. Verify S00-005/S00-010 legacy Replit autoscale scheduler ownership; Railway and development disabled, no second scheduler. Regional immutable replay now works in development with optional selector, export identity and no live fallback. Continue missing financial/carbon/SDG overlay and result replay, field-level semantics, all 22 driver evidence entries. Company outcome audit expanded to eleven candidates (56 outcomes); next build historical as-of Gordon/reverse-DCF predictions for those origins. Heat-pump source search found IEA 2019–2024 CC BY chart but no downloadable data and direct HTTP403; investigate AHRI/EHPA/JRAIA next, not all-source blocked. Full reconciliation, calibration, 10k ensemble, company and signal/portfolio research remain unfinished. Managed production archive provisioning and independent acceptance remain separate.",
     "background_tasks": [],
 }
 path.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")

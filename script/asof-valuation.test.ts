@@ -1,0 +1,44 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { buildAsOfRows } from "../server/financialData/asOfValuation";
+
+const cf = (year: number, filed: string, ocf: number, overrides: Record<string, unknown> = {}) => ({
+  date: `${year}-12-31`, filingDate: filed, period: "FY", reportedCurrency: "USD",
+  operatingCashFlow: ocf, capitalExpenditure: -10, netDebtIssuance: 0, ...overrides });
+const inc = (year: number, filed: string, ni: number) => ({ date: `${year}-12-31`, filingDate: filed, period: "FY", netIncome: ni });
+const years = Array.from({ length: 10 }, (_, i) => 2016 + i);
+const cashFlows = years.map(y => cf(y, `${y + 1}-02-20`, 100 + (y - 2016) * 10));
+const incomes = years.map(y => inc(y, `${y + 1}-02-20`, 80));
+const observations = Array.from({ length: 12 }, (_, i) => ({
+  date: `${2016 + i}-07-22T00:00:00.000Z`, totalReturnIndex: 100 * 1.1 ** i, marketCap: 1000, netProfit: 80 / 1e6 * 1e6 / 1e6 * 1,
+}));
+const base = { companyId: "X", profileCurrency: "USD", cashFlows, incomes, observations };
+
+test("uses only statements filed before the July observation and FY t+1→t+4 outcomes", () => {
+  const { rows } = buildAsOfRows({ ...base, observations: observations.map(o => ({ ...o, netProfit: null })) });
+  const r2017 = rows.find(r => r.origin === "2017-07-31")!;
+  assert.equal(r2017.baseFiscalDate, "2016-12-31");
+  // FY2017 FCFE 100, FY2020 FCFE 130.
+  assert.ok(Math.abs((r2017.actualCashFlowGrowth as number) - ((130 / 100) ** (1 / 3) - 1)) < 1e-12);
+  assert.equal(r2017.outcomeAvailableAt, "2021-02-20");
+  assert.ok(Math.abs((r2017.gordonCashFlowGrowth as number) - (0.08 - 80 / 1e9)) < 1e-15);
+  assert.ok(Math.abs((r2017.validationReturn as number) - 0.1) < 1e-12);
+});
+
+test("a statement filed after the observation is not used (no look-ahead)", () => {
+  const late = cashFlows.map(s => s.date === "2016-12-31" ? { ...s, filingDate: "2017-08-01" } : s);
+  const { rows, exclusions } = buildAsOfRows({ ...base, cashFlows: late, observations: observations.map(o => ({ ...o, netProfit: null })) });
+  assert.ok(!rows.some(r => r.origin === "2017-07-31"));
+  assert.ok(exclusions.some(e => e.origin === "2017-07-31" && /filed before/.test(e.reason)));
+});
+
+test("unit/boundary mismatch, non-USD and non-positive outcome FCFE are excluded, not repaired", () => {
+  const mismatch = buildAsOfRows({ ...base, observations: observations.map(o => ({ ...o, netProfit: 1 })) });
+  assert.equal(mismatch.rows.length, 0);
+  assert.ok(mismatch.exclusions.every(e => /boundary|validation/.test(e.reason)));
+  const fx = buildAsOfRows({ ...base, profileCurrency: "EUR", observations: observations.map(o => ({ ...o, netProfit: null })) });
+  assert.equal(fx.rows.length, 0);
+  const negative = cashFlows.map(s => s.date === "2020-12-31" ? { ...s, operatingCashFlow: 5 } : s);
+  const n = buildAsOfRows({ ...base, cashFlows: negative, observations: observations.map(o => ({ ...o, netProfit: null })) });
+  assert.equal(n.rows.find(r => r.origin === "2017-07-31")!.actualCashFlowGrowth, null);
+});

@@ -1,5 +1,45 @@
 # Workplan implementation report
 
+## Continuation 2026-11-09 (late): first empirical studies
+
+### D8 as-of Gordon vs reverse-DCF — executed, negative for reverse DCF
+Protocol frozen (b5286ea, amendment A1 718b4db) before any prediction. Ex-ante
+expansion by January-2016 market cap to 27 US issuers. 138 origins built, 88
+complete (2017–2022: 14/12/15/18/13/16), so the unchanged gate was eligible.
+DCF-minus-Gordon forecast MAE improvement −0.92 pp [−1.09, −0.70]; IC
+improvement +0.048 [−0.183, +0.279]. Gate fail: reverse DCF not promoted,
+Gordon remains primary. Exclusions are counted in
+`AsOf_Valuation_Comparison_Results.md`. Ledger S11-007/008/009/010/012/014/030/031
+partial, acceptance "negative-DCF-not-promoted".
+
+### Scheduler ownership verified (S00-005/S00-010)
+Replit production autoscale deployment logs `[scheduler] Started` at each cold
+start (2026-10-20 to 2026-11-09); Railway logs disabled; development disabled —
+one scheduling environment. Simultaneous instances (e.g. two starts at
+2026-11-07T07:00:31Z) are serialized by the Postgres advisory lock in
+`server/dataIngestion/collectionLock.ts` plus the running-row check and the
+persisted 30-day cadence. Read-only production `indicator_fetch_runs` shows one
+scheduled run per ~30 days (06-07, 07-07, 08-06, 09-06, 10-06), no duplicates.
+Nothing was toggled. If the collector moves host, switch both flags together.
+
+### Heat-pump primary source and diagnostic (S04-001, partial)
+AHRI publishes US air-source heat-pump shipments 2006–2025 publicly (table
+image, SHA-256 recorded). Frozen protocol 7c8121d. Evaluation 2019–2025 MAPE:
+2011–2018 training — persistence 21.0%, linear 9.0%, log-linear 11.3%;
+2006–2018 sensitivity — 21.0/22.7/21.2%. Window-sensitive. AHRI furnace
+history and most monthly PDFs require login (HTTP 403); EHPA/JRAIA are paid, so
+no share denominator exists and no logistic share model was fitted. Heat-pump
+diffusion remains uncalibrated; the levels trend is sensitivity-only.
+
+### Regression for this continuation
+200 TypeScript and 53 Python tests passed (0 failed/skipped); type check and
+build exit 0. Commands and timestamps are in `run_executions`.
+
+### Next
+Company-specific beta variant (S11-004) and the Stage 14 signal on the D8 rows;
+EV/storage diffusion fits; 22-driver audit; overlay replay; field semantics.
+Production archive provisioning remains blocked on managed schema publish.
+
 ## Release verification for this run (2026-11-09)
 
 Workspace commit `daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62` was exported to

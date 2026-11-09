@@ -9,7 +9,7 @@
     "verified_at": "2026-11-09"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-09T23:10:55.210526+00:00",
+  "updated_at": "2026-11-09T23:28:16.158071+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -471,6 +471,81 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_*.py"
+              ],
+              "executed_at": "2026-11-09T23:26:43.785060+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 8.591,
+              "counts": {
+                "tests": 53,
+                "pass": 53,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232643785060Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npm",
+                "run",
+                "check"
+              ],
+              "executed_at": "2026-11-09T23:26:52.786679+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 4.257,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232652786679Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npm",
+                "run",
+                "build"
+              ],
+              "executed_at": "2026-11-09T23:26:57.433977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 19.356,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232657433977Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -746,6 +821,26 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -762,24 +857,65 @@
           "id": "S00-005",
           "source_section": "implementation",
           "requirement": "Make the scheduler opt-in (DATA_SCHEDULER_ENABLED=true required) and enable it on exactly one host.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
-            "docs/WORKPLAN_IMPLEMENTATION_REPORT.md"
+            "docs/WORKPLAN_IMPLEMENTATION_REPORT.md#scheduler-ownership-verified"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
           "files_functions_changed": [],
-          "behaviour_delivered_this_run": "Read-only Railway logs confirm scheduler disabled; development disabled; Replit still has an active autoscale legacy deployment. No second scheduler enabled.",
+          "behaviour_delivered_this_run": "Opt-in gate (DATA_SCHEDULER_ENABLED) enforced in server/dataIngestion/scheduler.ts:startScheduler. Exactly one environment starts the scheduler: Replit production autoscale logs '[scheduler] Started' (fetchDeploymentLogs 2026-10-20..2026-11-09, every cold start); Railway logs 'Disabled for this instance'; development disabled. Concurrent autoscale instances of that one environment (e.g. two starts at 2026-11-07T07:00:31Z) are serialized by pg_try_advisory_lock(126907,1) in server/dataIngestion/collectionLock.ts:withCollectionLock plus the running-row check and the persisted last-run cadence. Read-only production indicator_fetch_runs: scheduled runs 2026-06-07, 07-07, 08-06, 09-06, 10-06, one per ~30 days, no duplicate scheduled run.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/collection-lock.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:27:55.927273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.559,
+              "counts": {
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232755927273Z.log",
+              "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/collection-lock.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:28:09.418036+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.785,
+              "counts": {
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232809418036Z.log",
+              "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "not-applicable-operational",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Exactly-one scheduler ownership across legacy autoscale instances is not certified."
-          ],
-          "next_action": "Verify Replit production deployment's scheduler instance/configuration ownership through supported controls; retain Railway disabled until ownership is settled.",
+          "remaining_gaps": [],
+          "next_action": "Keep Railway disabled while Replit autoscale remains the collector; any host move must switch both flags in one change.",
           "blockers": []
         },
         {
@@ -1071,6 +1207,26 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -1202,6 +1358,26 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -1218,24 +1394,65 @@
           "id": "S00-010",
           "source_section": "acceptance",
           "requirement": "Exactly one environment logs “scheduler enabled” at startup.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
-            "docs/WORKPLAN_IMPLEMENTATION_REPORT.md"
+            "docs/WORKPLAN_IMPLEMENTATION_REPORT.md#scheduler-ownership-verified"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
           "files_functions_changed": [],
-          "behaviour_delivered_this_run": "Read-only Railway logs confirm scheduler disabled; development disabled; Replit still has an active autoscale legacy deployment. No second scheduler enabled.",
+          "behaviour_delivered_this_run": "Opt-in gate (DATA_SCHEDULER_ENABLED) enforced in server/dataIngestion/scheduler.ts:startScheduler. Exactly one environment starts the scheduler: Replit production autoscale logs '[scheduler] Started' (fetchDeploymentLogs 2026-10-20..2026-11-09, every cold start); Railway logs 'Disabled for this instance'; development disabled. Concurrent autoscale instances of that one environment (e.g. two starts at 2026-11-07T07:00:31Z) are serialized by pg_try_advisory_lock(126907,1) in server/dataIngestion/collectionLock.ts:withCollectionLock plus the running-row check and the persisted last-run cadence. Read-only production indicator_fetch_runs: scheduled runs 2026-06-07, 07-07, 08-06, 09-06, 10-06, one per ~30 days, no duplicate scheduled run.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/collection-lock.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:27:55.927273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.559,
+              "counts": {
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232755927273Z.log",
+              "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/collection-lock.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:28:09.418036+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.785,
+              "counts": {
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232809418036Z.log",
+              "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "not-applicable-operational",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Exactly-one scheduler ownership across legacy autoscale instances is not certified."
-          ],
-          "next_action": "Verify Replit production deployment's scheduler instance/configuration ownership through supported controls; retain Railway disabled until ownership is settled.",
+          "remaining_gaps": [],
+          "next_action": "Keep Railway disabled while Replit autoscale remains the collector; any host move must switch both flags in one change.",
           "blockers": []
         },
         {
@@ -1861,6 +2078,26 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -2148,6 +2385,26 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -2413,6 +2670,26 @@
               },
               "log": "generated-artifacts/workplan-completion/20261109T230624115884Z.log",
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-09T23:26:17.808408+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 25.575,
+              "counts": {
+                "tests": 200,
+                "pass": 200,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -2746,22 +3023,44 @@
           "id": "S04-001",
           "source_section": "implementation",
           "requirement": "Technology diffusion. Fit logistic curves, with Gompertz or Bass as alternatives, to regional adoption data: solar and wind shares of generation, EV share of new car sales, heat-pump sales, battery storage. Estimate saturation (bounded by a sourced prior), midpoint and steepness, with bootstrap intervals. Set a training window per technology: heat pumps and storage may have too little history before 2019, so declare a shorter window or treat them as priors.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/EV_and_Cost_Calibration_Results.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "docs/Heat_Pump_Diffusion_Protocol.md",
+            "docs/Heat_Pump_Diffusion_Results.md",
+            "script/heat_pump_diffusion.py:evaluate",
+            "script/test_heat_pump_diffusion.py"
+          ],
+          "behaviour_delivered_this_run": "Heat-pump source acquired: AHRI public US air-source heat-pump shipments 2006-2025 (table image SHA-256 e6d5b997...). Frozen diagnostic (commit 7c8121d): eval 2019-2025 MAPE primary 2011-2018 window persistence 21.0%, linear 9.0%, log-linear 11.3%; 2006-2018 sensitivity 21.0/22.7/21.2%. Window-sensitive; no share denominator, so no logistic fit.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "script/heat_pump_diffusion.py",
+                "generated-artifacts/heat-pump-sources/ahri_ashp_shipments.json"
+              ],
+              "executed_at": "2026-11-09T23:25:29.166934+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.174,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232529166934Z.log",
+              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "not-accepted-levels-sensitivity-only",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "No permitted heating-equipment denominator (AHRI furnace/monthly PDFs login-only; EHPA/JRAIA paid) so heat-pump share diffusion is uncalibrated.",
+            "EV, storage and bootstrap-interval diffusion fits remain."
           ],
           "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
           "blockers": []
@@ -5134,6 +5433,40 @@
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/collect-company-worked-inputs.ts",
+                "--manifest",
+                "generated-artifacts/company-expansion-2a.json"
+              ],
+              "executed_at": "2026-11-09T23:17:24.962093+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 5.386,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231724962093Z.log",
+              "workspace_revision": "b5286eadb34d02bc75375b90155ba4d9151cf261",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/collect-company-worked-inputs.ts",
+                "--manifest",
+                "generated-artifacts/company-expansion-2b.json"
+              ],
+              "executed_at": "2026-11-09T23:17:30.747246+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 5.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231730747246Z.log",
+              "workspace_revision": "b5286eadb34d02bc75375b90155ba4d9151cf261",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
@@ -5212,6 +5545,40 @@
               "counts": null,
               "log": "generated-artifacts/workplan-completion/20261109T230254854180Z.log",
               "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/collect-company-worked-inputs.ts",
+                "--manifest",
+                "generated-artifacts/company-expansion-2a.json"
+              ],
+              "executed_at": "2026-11-09T23:17:24.962093+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 5.386,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231724962093Z.log",
+              "workspace_revision": "b5286eadb34d02bc75375b90155ba4d9151cf261",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/collect-company-worked-inputs.ts",
+                "--manifest",
+                "generated-artifacts/company-expansion-2b.json"
+              ],
+              "executed_at": "2026-11-09T23:17:30.747246+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 5.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231730747246Z.log",
+              "workspace_revision": "b5286eadb34d02bc75375b90155ba4d9151cf261",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -5304,22 +5671,94 @@
           "id": "S11-007",
           "source_section": "implementation",
           "requirement": "Gordon. g = r − E/P. Loss-makers return “unavailable” and are counted.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5328,22 +5767,94 @@
           "id": "S11-008",
           "source_section": "implementation",
           "requirement": "Reverse DCF. Three stages:",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5352,22 +5863,94 @@
           "id": "S11-009",
           "source_section": "implementation",
           "requirement": "Solve for the stage-1 growth (years 1–5) that equates present value to market value.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5376,22 +5959,94 @@
           "id": "S11-010",
           "source_section": "implementation",
           "requirement": "Fade linearly over years 6–15 to a terminal nominal growth rate (range 2.5–4%). Terminal growth must be below the discount rate.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5424,22 +6079,94 @@
           "id": "S11-012",
           "source_section": "implementation",
           "requirement": "Default (D-9): solve purely from price. An analyst-anchored version using FMP estimates is a sensitivity.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5472,22 +6199,94 @@
           "id": "S11-014",
           "source_section": "implementation",
           "requirement": "Commit the criteria and decision rule (D-8) before computing any results. Then follow the model-selection sequence in Section 4: both models feed Stage 12 and a validation-period Stage 14 run before the choice is made.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5856,22 +6655,94 @@
           "id": "S11-030",
           "source_section": "implementation",
           "requirement": "Forecast validity",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
+          ],
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+              ],
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.986,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+              ],
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.838,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -5887,29 +6758,43 @@
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
           "files_functions_changed": [
-            "script/collect-company-worked-inputs.ts",
-            "server/financialData/completedCashFlow.ts:completedOutcomeCoverage",
-            "script/audit-completed-cash-flow.ts",
-            "docs/Company_Coverage_Expansion_Protocol.md",
-            "docs/Company_Coverage_Expansion_Results.md"
+            "server/financialData/asOfValuation.ts:buildAsOfRows",
+            "script/build-asof-valuation-rows.ts",
+            "script/asof-valuation.test.ts",
+            "docs/AsOf_Valuation_Prediction_Protocol.md",
+            "docs/AsOf_Valuation_Comparison_Results.md"
           ],
-          "behaviour_delivered_this_run": "Eight additional provider-matched candidate histories acquired under a pre-committed protocol. Eleven-candidate completed FCFE outcome audit (OCF already includes working-capital change, plus capex and net borrowing): 56 completed, 54 unavailable. Coverage now derived from inputs; duplicate issuer versions rejected.",
+          "behaviour_delivered_this_run": "First executed D8 as-of comparison: 27 ex-ante issuers, 138 origins built, 88 complete (14/12/15/18/13/16 for 2017-2022), gate met. DCF-minus-Gordon forecast MAE improvement -0.92pp [95% CI -1.09,-0.70]; IC improvement +0.048 [-0.183,0.279]. Gate fail: reverse DCF not promoted; Gordon primary.",
           "inputs_versions_assumptions": [],
           "executions": [
             {
               "command": [
+                "bash",
+                "-c",
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+              ],
+              "executed_at": "2026-11-09T23:19:42.328071+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.15,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
                 "npx",
                 "tsx",
-                "script/collect-company-worked-inputs.ts",
-                "--manifest",
-                "generated-artifacts/company-expansion-plan.json"
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
               ],
-              "executed_at": "2026-11-09T23:00:21.546643+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 6.169,
+              "executed_at": "2026-11-09T23:19:57.894380+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 1.786,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230021546643Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -5917,41 +6802,43 @@
               "command": [
                 "bash",
                 "-c",
-                "npx tsx script/audit-completed-cash-flow.ts generated-artifacts/company-worked-inputs/*.json"
+                "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
               ],
-              "executed_at": "2026-11-09T23:00:48.728600+00:00",
+              "executed_at": "2026-11-09T23:20:20.015696+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 1.886,
+              "elapsed_seconds": 1.986,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230048728600Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
             {
               "command": [
-                "bash",
-                "-c",
-                "npx tsx script/audit-completed-cash-flow.ts generated-artifacts/company-worked-inputs/*.json"
+                "npx",
+                "tsx",
+                "script/compare-valuation-models.ts",
+                "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
               ],
-              "executed_at": "2026-11-09T23:02:54.854180+00:00",
+              "executed_at": "2026-11-09T23:20:27.993295+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 1.947,
+              "elapsed_seconds": 1.838,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230254854180Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+              "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
-          "scientific_acceptance": "not-accepted-study-incomplete",
+          "scientific_acceptance": "negative-DCF-not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No paired historical Gordon/reverse-DCF predictions or rank correlations computed.",
-            "Ten common eligible issuers over six consecutive valuation origins not established.",
-            "Identity approvals, publication vintages and cash-flow classification review incomplete."
+            "Company-specific beta variant not run (common 8% cost of equity).",
+            "Revised-history statements, not as-first-reported.",
+            "Signal comparison uses implied-growth proxy, not the Stage 14 signal.",
+            "Identities unapproved; 52/53-week fiscal years excluded pending owner review."
           ],
           "next_action": "Assemble common-sample historical predictions; complete seven-criterion D8 comparison.",
           "blockers": []
@@ -9729,18 +10616,244 @@
       "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/collect-company-worked-inputs.ts",
+        "--manifest",
+        "generated-artifacts/company-expansion-2a.json"
+      ],
+      "executed_at": "2026-11-09T23:17:24.962093+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.386,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T231724962093Z.log",
+      "workspace_revision": "b5286eadb34d02bc75375b90155ba4d9151cf261",
+      "worktree_dirty": false,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/collect-company-worked-inputs.ts",
+        "--manifest",
+        "generated-artifacts/company-expansion-2b.json"
+      ],
+      "executed_at": "2026-11-09T23:17:30.747246+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.376,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T231730747246Z.log",
+      "workspace_revision": "b5286eadb34d02bc75375b90155ba4d9151cf261",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+      ],
+      "executed_at": "2026-11-09T23:19:42.328071+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.15,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T231942328071Z.log",
+      "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/compare-valuation-models.ts",
+        "generated-artifacts/valuation-comparison/asof-input-708d28092326ebd7bc655c1916d17c7e945ba8beeb6896077fc4da0a0c1b68de.json"
+      ],
+      "executed_at": "2026-11-09T23:19:57.894380+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 1.786,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T231957894380Z.log",
+      "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx script/build-asof-valuation-rows.ts generated-artifacts/company-worked-inputs/*.json"
+      ],
+      "executed_at": "2026-11-09T23:20:20.015696+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 1.986,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T232020015696Z.log",
+      "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/compare-valuation-models.ts",
+        "generated-artifacts/valuation-comparison/asof-input-808e0c6beabda1c795a92035e8546c3e2c98a1f9002510937ad0afa7bf136eca.json"
+      ],
+      "executed_at": "2026-11-09T23:20:27.993295+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 1.838,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T232027993295Z.log",
+      "workspace_revision": "718b4db8ec896de31478a303f2dc6bb48d7dc9bb",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "script/heat_pump_diffusion.py",
+        "generated-artifacts/heat-pump-sources/ahri_ashp_shipments.json"
+      ],
+      "executed_at": "2026-11-09T23:25:29.166934+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.174,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T232529166934Z.log",
+      "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-09T23:26:17.808408+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 25.575,
+      "counts": {
+        "tests": 200,
+        "pass": 200,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+      "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "script",
+        "-p",
+        "test_*.py"
+      ],
+      "executed_at": "2026-11-09T23:26:43.785060+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 8.591,
+      "counts": {
+        "tests": 53,
+        "pass": 53,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261109T232643785060Z.log",
+      "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-09T23:26:52.786679+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 4.257,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T232652786679Z.log",
+      "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-09T23:26:57.433977+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 19.356,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T232657433977Z.log",
+      "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/collection-lock.test.ts"
+      ],
+      "executed_at": "2026-11-09T23:27:55.927273+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.559,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261109T232755927273Z.log",
+      "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
+      "worktree_dirty": false,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/collection-lock.test.ts"
+      ],
+      "executed_at": "2026-11-09T23:28:09.418036+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 1.785,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261109T232809418036Z.log",
+      "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
-    "next_requirement": "S00-005",
+    "next_requirement": "S11-004",
     "unfinished_requirement_ids": [
       "S00-001",
       "S00-004",
-      "S00-005",
       "S00-006",
       "S00-008",
       "S00-009",
-      "S00-010",
       "S00-011",
       "S01-001",
       "S01-002",
@@ -10032,7 +11145,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "S00-003/S00-007 baseline coverage passed, including actual grouped HTTP endpoints and regional captured inputs across fresh servers. Do not repeat unless invalidated. Verify S00-005/S00-010 legacy Replit autoscale scheduler ownership; Railway and development disabled, no second scheduler. Regional immutable replay now works in development with optional selector, export identity and no live fallback. Continue missing financial/carbon/SDG overlay and result replay, field-level semantics, all 22 driver evidence entries. Company outcome audit expanded to eleven candidates (56 outcomes); next build historical as-of Gordon/reverse-DCF predictions for those origins. Heat-pump source search found IEA 2019–2024 CC BY chart but no downloadable data and direct HTTP403; investigate AHRI/EHPA/JRAIA next, not all-source blocked. Full reconciliation, calibration, 10k ensemble, company and signal/portfolio research remain unfinished. Managed production archive provisioning and independent acceptance remain separate.",
+    "instruction": "UPDATE 2026-11-09 late: S00-005/S00-010 verified (single Replit autoscale scheduler environment + advisory lock + one scheduled run per month in production). D8 as-of study executed: negative for reverse DCF, Gordon stays primary; next run company-specific beta variant (S11-004) and Stage 14 signal. US heat-pump levels diagnostic done (AHRI); share calibration blocked on denominator. Then 22-driver audit, overlay replay, field semantics. Earlier note: S00-003/S00-007 baseline coverage passed, including actual grouped HTTP endpoints and regional captured inputs across fresh servers. Do not repeat unless invalidated. Verify S00-005/S00-010 legacy Replit autoscale scheduler ownership; Railway and development disabled, no second scheduler. Regional immutable replay now works in development with optional selector, export identity and no live fallback. Continue missing financial/carbon/SDG overlay and result replay, field-level semantics, all 22 driver evidence entries. Company outcome audit expanded to eleven candidates (56 outcomes); next build historical as-of Gordon/reverse-DCF predictions for those origins. Heat-pump source search found IEA 2019–2024 CC BY chart but no downloadable data and direct HTTP403; investigate AHRI/EHPA/JRAIA next, not all-source blocked. Full reconciliation, calibration, 10k ensemble, company and signal/portfolio research remain unfinished. Managed production archive provisioning and independent acceptance remain separate.",
     "background_tasks": []
   },
   "last_handoff": {
