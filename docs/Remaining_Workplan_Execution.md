@@ -1,6 +1,9 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [regional attribution control report](Regional_Attribution_Controls.md)
+records all 64 actual FaIR coalitions with 841 paired members each and exact
+Shapley reconciliation. Calibrated policy attribution and its UI remain unfinished.
 The [minor-gas history sensitivity report](Minor_Gas_History_Sensitivity.md)
 records actual source-cell gaps and three completed 841-member regional/FaIR
 controls. Conditional coupling works; source assumptions and calibration remain open.

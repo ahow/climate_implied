@@ -27,7 +27,15 @@ FILES = [
 ]
 
 
-def main(pathway_file=None, output_directory=None, species_history_file=None):
+PINNED_HASHES = [
+    "7b6c5d9fa0b0b0d3eb47189bf5d63cbf77e752ddac682947abee5ff529206780",
+    "42d04aa1a8f385cc53eae22beab26f857c535c5aa7dfdb98176d712bfc0c95a0",
+    "fcf994bb97bd08aae04bb4373ee7b8639e007f44055af1aa3d458aefc14b61ae",
+    "621b551dafa6ff0e5a789b94a81a12876d796832c0e15f627545af40d6de58e5",
+]
+
+
+def main(pathway_file=None, output_directory=None, species_history_file=None, inputs_directory=None, retain_ensemble=True):
     if fair.__version__ != "2.2.4":
         raise RuntimeError("Reference runner requires FaIR 2.2.4")
     if pathway_file and not output_directory:
@@ -37,14 +45,18 @@ def main(pathway_file=None, output_directory=None, species_history_file=None):
         raise ValueError("Outputs must remain under generated-artifacts")
     root.mkdir(parents=True, exist_ok=output_directory is None)
     inputs = []
-    for name in FILES:
-        # Always retrieve the immutable source; never silently trust a stale cache.
-        with urlopen(BASE + name, timeout=60) as response:
-            data = response.read()
-        (root / name).write_bytes(data)
+    for name, expected in zip(FILES, PINNED_HASHES):
+        if inputs_directory:
+            data = (Path(inputs_directory) / name).read_bytes()
+        else:
+            with urlopen(BASE + name, timeout=60) as response:
+                data = response.read()
+            (root / name).write_bytes(data)
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise ValueError("Pinned upstream input hash mismatch: " + name)
         inputs.append({"file": name, "url": BASE + name,
                        "sha256": hashlib.sha256(data).hexdigest()})
-    params, species_file, emissions, forcing = [str(root / x) for x in FILES]
+    params, species_file, emissions, forcing = [str(Path(inputs_directory or root) / x) for x in FILES]
     pathway = None
     additional_species_evidence = None
     if pathway_file:
@@ -117,7 +129,8 @@ def main(pathway_file=None, output_directory=None, species_history_file=None):
     # Same ensemble supplies every downstream summary; never add warming offsets.
     ensemble = {"baseline": "1850-1900", "memberIds": [str(x) for x in configs.index],
                 "years": years.tolist(), "temperature": anomaly.tolist()}
-    (root / "ensemble.json").write_text(json.dumps(ensemble))
+    if retain_ensemble:
+        (root / "ensemble.json").write_text(json.dumps(ensemble))
     summary = {
         "status": "reference_execution_only_not_validated_for_dashboard",
         "fairVersion": fair.__version__, "upstreamRevision": REVISION,
@@ -139,6 +152,8 @@ def main(pathway_file=None, output_directory=None, species_history_file=None):
     }
     (root / "result.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps(summary, indent=2))
+    return {"memberIds": [str(c) for c in configs.index],
+            "values": anomaly[-1].tolist(), "summary": summary}
 
 
 if __name__ == "__main__":

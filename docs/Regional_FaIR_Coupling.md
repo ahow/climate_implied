@@ -1,5 +1,9 @@
 # Regional native-gas coupling — 9 November 2026
 
+**Attribution extension:** [All 64 regional coalition controls](Regional_Attribution_Controls.md)
+completed with 841 climate configurations each. All-region reproduction is exact;
+member-level contributions reconcile below 10−15°C. Scientific readiness is unchanged.
+
 **Latest execution:** [Minor-gas history sensitivities](Minor_Gas_History_Sensitivity.md)
 now demonstrate end-to-end coupling with three explicit assumed-history controls,
 841 members each. This is not a calibrated or accepted dashboard forecast.

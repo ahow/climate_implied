@@ -1,5 +1,9 @@
 # Current output controls
 
+The [regional attribution implementation and executed controls](Regional_Attribution_Controls.md)
+describe exact member-level attribution across all six regions. This is conditional
+model accounting, excluded from the headline and not causal responsibility.
+
 The [minor-gas history audit and sensitivity](Minor_Gas_History_Sensitivity.md)
 documents three actual regional/FaIR control runs and the precise assumptions
 that keep their temperature results out of the production headline.
