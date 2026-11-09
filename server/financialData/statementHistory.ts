@@ -1,4 +1,5 @@
 /** Current-provider annual history, never an original-publication vintage. */
+import { majorCurrency } from "./currencies";
 type Row = Record<string, unknown>;
 const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
 function keyed(rows: Row[], symbol: string) {
@@ -21,7 +22,7 @@ export function normalizeStatementHistory(cashFlows: Row[], balanceSheets: Row[]
     if (!b) reasons.push("balance-sheet-missing");
     if (c && b && c.reportedCurrency !== b.reportedCurrency) reasons.push("statement-currency-mismatch");
     const currency = c?.reportedCurrency ?? b?.reportedCurrency;
-    if (currency !== quoteCurrency) reasons.push("quote-statement-currency-mismatch-no-fx-assumed");
+    if (currency !== majorCurrency(quoteCurrency)) reasons.push("quote-statement-currency-mismatch-no-fx-assumed");
     let fcfe: number | null = null, netDebt: number | null = null;
     if (c && finite(c.operatingCashFlow) && finite(c.capitalExpenditure) && finite(c.netDebtIssuance)) {
       if (c.capitalExpenditure > 0) reasons.push("positive-capex-sign-needs-source-review");

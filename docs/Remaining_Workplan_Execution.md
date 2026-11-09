@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The subsequent [member analysis and currency report](Member_Analysis_and_Currency_Execution.md)
+covers exact attribution, 5,000/10,000 convergence checks, order-invariant
+member metrics and minor-unit currency handling. Those stages remain partial;
+synthetic fixtures are not real-data ensemble validation.
 The existing [stage matrix](Workplan_Status_and_Conclusions.md) remains binding.
 No scientific acceptance threshold was relaxed.
 

@@ -1,12 +1,13 @@
 import { z } from "zod";
 import type { assessMapping } from "./provider";
 import { validIsin } from "./isin";
+import { quoteCurrencySchema } from "./currencies";
 
 export const reviewedIdentitySchema = z.object({
   companyId: z.number().int().positive(),
   isin: z.string().refine(validIsin, "Invalid ISIN checksum"),
   symbol: z.string().min(1),
-  currency: z.string().regex(/^[A-Z]{3}$/),
+  currency: quoteCurrencySchema,
   exchange: z.string().min(1),
   shareClassFIGI: z.string().min(1),
   issuerId: z.string().min(3),

@@ -547,6 +547,7 @@ Do not expose an unrestricted public FMP proxy or paid refresh endpoint.
 - [Continuation findings](Remediation_Continuation_Status.md)
 - [Railway operations](Railway_Hosting.md)
 - [Legacy detailed methodology](Climate_Tracking_Dashboard_Documentation.md)
+- [Member analysis and currency handling](Member_Analysis_and_Currency_Execution.md)
 
 When behavior changes, update the status table, affected equations/data flow,
 source/assumption version, tests and roadmap gate. Do not silently rewrite

@@ -26,3 +26,11 @@ test("incomplete years and misaligned member arrays cannot yield a headline", ()
   assert.throws(() => summarizeMemberMetrics({ ...e, ghgGtCO2e: [[1]] }));
   assert.throws(() => summarizeMemberMetrics({ ...e, memberIds: ["a", "a"] }));
 });
+test("member ordering does not change hashes, metrics or saved member pairing", () => {
+  const a = input();
+  const b = { ...a, memberIds: [...a.memberIds].reverse(),
+    temperature: a.temperature.map(r => [...r].reverse()),
+    ghgGtCO2e: a.ghgGtCO2e.map(r => [...r].reverse()),
+    co2Gt: a.co2Gt.map(r => [...r].reverse()) };
+  assert.deepEqual(summarizeMemberMetrics(a), summarizeMemberMetrics(b));
+});

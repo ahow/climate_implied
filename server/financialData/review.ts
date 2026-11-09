@@ -1,11 +1,13 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import { reviewedIdentitySchema } from "./identity";
+import { majorCurrency, normalizeMonetaryValue, quoteCurrencySchema } from "./currencies";
 
 export const snapshotSchema = z.object({
   identity: reviewedIdentitySchema,
   quote: z.object({
     price: z.number().finite().positive(), marketCap: z.number().finite().positive(),
+    marketCapCurrency: quoteCurrencySchema.optional(),
     observedAt: z.string().datetime(),
   }).strict(),
   statement: z.object({
@@ -15,7 +17,12 @@ export const snapshotSchema = z.object({
   }).strict(),
   fetchedAt: z.string().datetime(),
 }).strict().superRefine((v, ctx) => {
-  if (v.identity.currency !== v.statement.currency) ctx.addIssue({
+  const quoteMajor = majorCurrency(v.identity.currency);
+  if (quoteMajor !== v.identity.currency && !v.quote.marketCapCurrency) ctx.addIssue({
+    code: "custom", message: "Minor-unit quotes require an explicit market-cap denomination",
+  });
+  if (quoteMajor !== v.statement.currency ||
+      majorCurrency(v.quote.marketCapCurrency ?? v.identity.currency) !== v.statement.currency) ctx.addIssue({
     code: "custom", message: "Quote and statement currency must match; no implied FX conversion",
   });
   if (v.statement.filingDate < v.statement.period) ctx.addIssue({ code: "custom", message: "Filing precedes reporting period" });
@@ -35,9 +42,12 @@ export function transition(status: ReviewStatus, decision: "approved" | "rejecte
 }
 export function financialCalculation(snapshot: FinancialSnapshot, now = Date.now()) {
   const s = snapshotSchema.parse(snapshot);
+  const normalizedQuotePrice = normalizeMonetaryValue(s.quote.price, s.identity.currency);
+  const normalizedMarketCap = normalizeMonetaryValue(s.quote.marketCap, s.quote.marketCapCurrency ?? s.identity.currency);
   return {
     inputId: snapshotId(s),
-    priceToLastAnnualEarnings: s.statement.netIncome > 0 ? s.quote.marketCap / s.statement.netIncome : null,
+    normalizedQuotePrice, normalizedMarketCap,
+    priceToLastAnnualEarnings: s.statement.netIncome > 0 ? normalizedMarketCap.value / s.statement.netIncome : null,
     reason: s.statement.netIncome > 0 ? null : "Annual earnings are non-positive",
     quoteAgeHours: Math.max(0, (now - new Date(s.quote.observedAt).getTime()) / 3600000),
   };

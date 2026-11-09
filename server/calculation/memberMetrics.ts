@@ -23,7 +23,12 @@ function crossings(values: number[], threshold: number) {
     durable: lastAbove === values.length - 1 ? null : 2024 + lastAbove + 1 };
 }
 export function summarizeMemberMetrics(input: unknown) {
-  const x = schema.parse(input);
+  const parsed = schema.parse(input);
+  const order = parsed.memberIds.map((id, i) => ({ id, i }))
+    .sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  const reorder = (matrix: number[][]) => matrix.map(row => order.map(m => row[m.i]));
+  const x = { ...parsed, memberIds: order.map(m => m.id), temperature: reorder(parsed.temperature),
+    ghgGtCO2e: reorder(parsed.ghgGtCO2e), co2Gt: reorder(parsed.co2Gt) };
   const members = x.memberIds.map((id, m) => {
     const ghg = x.ghgGtCO2e.map(r => r[m]), co2 = x.co2Gt.map(r => r[m]);
     if (ghg[0] <= 0 || co2[0] <= 0) throw new Error("Positive starting annual emissions required");
