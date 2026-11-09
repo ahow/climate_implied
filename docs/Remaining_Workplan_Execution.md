@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [sourced company accounting controls](Company_Accounting_Controls.md)
+reconcile three actual financial baselines and correct omitted operating-ledger
+adjustments. Exxon identity mismatch remains unresolved. These controls are
+not calibrated company climate projections.
 The [output-controls execution report](Output_Controls_Execution.md) records
 mandatory interpretation sheets on all 20 downloads, a tested source-level
 API/consumer/export census, and a passing run of all 18 existing check groups.

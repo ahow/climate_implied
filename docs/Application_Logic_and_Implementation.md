@@ -1,5 +1,9 @@
 # Current output controls
 
+The [company accounting controls](Company_Accounting_Controls.md) document
+required non-operating, attribution and other cash adjustments, actual sourced
+financial controls and remaining climate-projection dependencies.
+
 See [Output controls and full-stage regression](Output_Controls_Execution.md)
 and the generated [system output register](System_Output_Register.md).
 All spreadsheet downloads include evidence/interpretation notes; this does

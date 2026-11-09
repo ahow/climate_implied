@@ -93,7 +93,11 @@ rejected rather than clipped into acceptable margins.
 
 FCFE is:
 
-`EBIT before carbon − carbon drag − interest − cash tax + depreciation − capex − increase in working capital + net borrowing`
+`EBIT before carbon − carbon drag − interest + nonoperating income − cash tax + income attribution adjustment + depreciation + other cash adjustments − capex − increase in working capital + net borrowing`
+
+The [sourced accounting controls](Company_Accounting_Controls.md) added the
+required explicit non-operating, attribution and other-cash bridge terms.
+These are not assumed zero or deemed recurring without source review.
 
 Cash tax is nonnegative; tax losses do not create an assumed immediate refund.
 Positive starting and ending FCFE give five-year CAGR. A nonpositive ending

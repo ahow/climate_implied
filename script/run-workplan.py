@@ -53,7 +53,7 @@ STAGES = [
      "Evidence-reviewed full-universe identities, lifecycle, financial histories and currency reconciliation."),
     ("Valuation comparison", [ts("cash-flow-valuation", "valuation-solver", "valuation-integrity", "valuation-statistics")],
      "Empirical common-sample D8 comparison and actual company model coverage."),
-    ("Company projections", [ts("workplan-corrections", "company-projection")],
+    ("Company projections", [ts("workplan-corrections", "company-projection", "company-baseline")],
      "Evidence-based activity, climate, margin and cost mappings with worked-company validation."),
     ("Scenario identification", [ts("workplan-corrections")],
      "Actual defensible valuation/activity mappings and public assumption registry; market-expectation identification remains unproven."),

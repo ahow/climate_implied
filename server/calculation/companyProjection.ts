@@ -21,6 +21,7 @@ const schema = z.object({
       marketShareMultiplier: finite.positive(), operatingMargin: finite,
       taxRate: fraction, interest: finite.nonnegative(), depreciation: finite.nonnegative(),
       capex: finite.nonnegative(), increaseWorkingCapital: finite, netBorrowing: finite,
+      nonOperatingIncome: finite, incomeAttributionAdjustment: finite, otherCashAdjustments: finite,
       scope1IntensityMultiplier: finite.nonnegative(), scope2IntensityMultiplier: finite.nonnegative(),
       scope3IntensityMultiplier: finite.nonnegative(), scope1LiableFraction: fraction,
       scope2LiableFraction: fraction, effectiveCarbonPrice: finite.nonnegative(), passThrough: fraction,
@@ -71,15 +72,18 @@ export function projectCompanyMembers(input: unknown) {
       const carbonDrag = (emissionsTonnes.scope1 * p.scope1LiableFraction +
         emissionsTonnes.scope2 * p.scope2LiableFraction) * p.effectiveCarbonPrice * (1 - p.passThrough);
       const operatingProfitBeforeCarbon = revenue * p.operatingMargin;
-      const preTaxIncome = operatingProfitBeforeCarbon - carbonDrag - p.interest;
+      const preTaxIncome = operatingProfitBeforeCarbon - carbonDrag - p.interest + p.nonOperatingIncome;
       // No automatic tax refund for losses or unsupported deferred-tax asset.
       const cashTax = Math.max(0, preTaxIncome) * p.taxRate;
-      const netIncome = preTaxIncome - cashTax;
-      const fcfe = netIncome + p.depreciation - p.capex - p.increaseWorkingCapital + p.netBorrowing;
+      const netIncome = preTaxIncome - cashTax + p.incomeAttributionAdjustment;
+      const fcfe = netIncome + p.depreciation + p.otherCashAdjustments -
+        p.capex - p.increaseWorkingCapital + p.netBorrowing;
       if (![revenue, activityRatio, ...Object.values(emissionsTonnes), carbonDrag, fcfe].every(Number.isFinite))
         throw new Error("Nonfinite projected operating ledger");
       return { year: p.year, revenue, activityRatio, emissionsTonnes, operatingProfitBeforeCarbon,
-        carbonDrag, interest: p.interest, cashTax, netIncome, depreciation: p.depreciation,
+        carbonDrag, interest: p.interest, nonOperatingIncome: p.nonOperatingIncome,
+        incomeAttributionAdjustment: p.incomeAttributionAdjustment,
+        otherCashAdjustments: p.otherCashAdjustments, cashTax, netIncome, depreciation: p.depreciation,
         capex: p.capex, increaseWorkingCapital: p.increaseWorkingCapital, netBorrowing: p.netBorrowing, fcfe };
     });
     const final = years[4].fcfe;
@@ -98,5 +102,6 @@ export function projectCompanyMembers(input: unknown) {
       "Scope 3 affects physical emissions only; demand effects must already be in regional activity.",
       "No additional target abatement is stacked on supplied intensity pathways.",
       "Terminal reinvestment, full valuation pairing and empirical model selection remain separate.",
+      "Non-operating income, attribution and other cash adjustments must be explicit; residuals are not assumed recurring evidence.",
     ] };
 }

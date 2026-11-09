@@ -19,6 +19,7 @@ function fixture() {
         ],
         marketShareMultiplier: 1, operatingMargin: .1, taxRate: .2, interest: 0,
         depreciation: 10, capex: 10, increaseWorkingCapital: 0, netBorrowing: 0,
+        nonOperatingIncome: 0, incomeAttributionAdjustment: 0, otherCashAdjustments: 0,
         scope1IntensityMultiplier: 1, scope2IntensityMultiplier: 1, scope3IntensityMultiplier: 1,
         scope1LiableFraction: 1, scope2LiableFraction: 0, effectiveCarbonPrice: 1, passThrough: .5,
       })),
@@ -51,5 +52,22 @@ test("company projection refuses missing mappings, invalid fractions and unsuppo
   assert.equal(projectCompanyMembers({ ...x, businessType: "financial" }).status, "not-modelled");
   const missing = structuredClone(x);
   missing.members[0].years[0].exposures.pop();
+  assert.throws(() => projectCompanyMembers(missing));
+});
+
+test("company ledgers retain explicit accounting bridge items and refuse omissions", () => {
+  const x = fixture();
+  x.members = x.members.slice(0, 2);
+  for (const m of x.members) for (const y of m.years) {
+    y.nonOperatingIncome = 10;
+    y.incomeAttributionAdjustment = 2;
+    y.otherCashAdjustments = 3;
+  }
+  const result = projectCompanyMembers(x);
+  assert.equal(result.status, "conditional-projection");
+  if (result.status !== "conditional-projection") throw new Error("Expected projection");
+  assert.ok(Math.abs(result.members[0].years[0].fcfe - 53.8) < 1e-9);
+  const missing: any = structuredClone(x);
+  delete missing.members[0].years[0].otherCashAdjustments;
   assert.throws(() => projectCompanyMembers(missing));
 });
