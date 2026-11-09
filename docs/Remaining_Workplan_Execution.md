@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [company valuation sensitivity study](Company_Valuation_Sensitivity_Results.md)
+executes 54 actual-input conditional cases. All reprice within tolerance.
+Undated profile market values prevent point-in-time interpretation; this does
+not complete the common-sample historical model comparison or promote outputs.
 The [integrated member analysis](Integrated_Member_Analysis.md) connects
 aligned trajectories, durable-zero metrics and convergence adjudication.
 The actual retained 841-member control correctly reports convergence unavailable,
