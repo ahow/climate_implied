@@ -121,7 +121,7 @@ record(["S04-001"],
        ["heat_pump_diffusion"],
        ["No permitted heating-equipment denominator (AHRI furnace/monthly PDFs login-only; EHPA/JRAIA paid) so heat-pump share diffusion is uncalibrated.", "EV, storage and bootstrap-interval diffusion fits remain."])
 requirements["S04-001"]["scientific_acceptance"] = "not-accepted-levels-sensitivity-only"
-ledger["current_release"] = {"workspace_commit": "daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62", "github_main": "1aba6d08e9df2c771722a8d1b301b59477164d93", "ci": "Source validation success; production-validated advanced", "railway_deployment": "620cf31a-d6a3-4a85-827a-11738c0b41f2", "railway_status": "SUCCESS", "verified_at": "2026-11-09"}
+ledger["current_release"] = {"workspace_commit": "c5b0aa8baf3baf176e40c9fd8d82f33c60e30404", "github_main": "78379362a09d8e8692bc1288bf36c0723ea2fe63", "ci": "Source validation run 42720723531 success; production-validated advanced to same SHA", "railway_deployment": "9071ab3f-abd0-4e6f-8058-2e5837578d76", "railway_status": "SUCCESS", "smoke": "/ 200, /api/build-info sourceCommit 7837936, /api/health 200", "verified_at": "2026-11-09T23:35Z"}
 ledger["restart"] = {
     "next_requirement": "S11-004",
     "unfinished_requirement_ids": [r["id"] for r in requirements.values() if r["status"] != "verified"],

@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
   "current_release": {
-    "workspace_commit": "daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62",
-    "github_main": "1aba6d08e9df2c771722a8d1b301b59477164d93",
-    "ci": "Source validation success; production-validated advanced",
-    "railway_deployment": "620cf31a-d6a3-4a85-827a-11738c0b41f2",
+    "workspace_commit": "c5b0aa8baf3baf176e40c9fd8d82f33c60e30404",
+    "github_main": "78379362a09d8e8692bc1288bf36c0723ea2fe63",
+    "ci": "Source validation run 42720723531 success; production-validated advanced to same SHA",
+    "railway_deployment": "9071ab3f-abd0-4e6f-8058-2e5837578d76",
     "railway_status": "SUCCESS",
-    "verified_at": "2026-11-09"
+    "smoke": "/ 200, /api/build-info sourceCommit 7837936, /api/health 200",
+    "verified_at": "2026-11-09T23:35Z"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-09T23:28:16.158071+00:00",
+  "updated_at": "2026-11-09T23:41:39.744341+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",

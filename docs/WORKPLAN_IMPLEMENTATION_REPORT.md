@@ -35,6 +35,13 @@ diffusion remains uncalibrated; the levels trend is sensitivity-only.
 200 TypeScript and 53 Python tests passed (0 failed/skipped); type check and
 build exit 0. Commands and timestamps are in `run_executions`.
 
+### Release
+Workspace c5b0aa8 exported to GitHub main 7837936; Source validation run
+42720723531 succeeded and advanced production-validated; Railway deployment
+9071ab3f reached SUCCESS; live `/` 200, `/api/health` 200, build-info reports
+7837936. Ledger: 5 verified, 17 partial, 2 blocked, 276 not yet reconciled.
+The following docs-only record commit is pushed but its deployment is not checked.
+
 ### Next
 Company-specific beta variant (S11-004) and the Stage 14 signal on the D8 rows;
 EV/storage diffusion fits; 22-driver audit; overlay replay; field semantics.
