@@ -1,6 +1,9 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [EV and cost/deployment study](EV_and_Cost_Calibration_Results.md) adds
+actual frozen-source diagnostics, parameter uncertainty and missing-window checks.
+No fits are scientifically promoted; source breaks and missing observations remain explicit.
 The [regional attribution control report](Regional_Attribution_Controls.md)
 records all 64 actual FaIR coalitions with 841 paired members each and exact
 Shapley reconciliation. Calibrated policy attribution and its UI remain unfinished.
@@ -219,7 +222,7 @@ Real-data checks above are additional to those counts.
 | 2 | Partial: complete overlays/recalculation; production managed snapshot provisioning |
 | 3 | Partial: per-source uncertainty, vintage and licence evidence |
 | 6 | Partial: complete commitments/native-gas pathways and actual temperature infill comparison |
-| 8 | Partial: regional time paths and member-level attribution require completed ensemble |
+| 8 | Partial: actual 64-coalition controls completed; calibrated joint policy ensemble and attribution integration remain |
 | 9 | Partial: quarterly reconstructions/skill runs not implemented; original vintages cannot be invented |
 | 11 | Partial: complete financial inputs, paired model/projection validation and D8 comparison |
 | 12 | Partial: defensible sector/geography/margin mappings and three actual worked companies |

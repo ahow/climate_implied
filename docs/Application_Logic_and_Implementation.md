@@ -1,5 +1,9 @@
 # Current output controls
 
+[EV and cost/deployment calibration results](EV_and_Cost_Calibration_Results.md)
+document fixed historical tests, source comparability limits, and why even a
+diagnostic improvement does not automatically approve a central-model parameter.
+
 The [regional attribution implementation and executed controls](Regional_Attribution_Controls.md)
 describe exact member-level attribution across all six regions. This is conditional
 model accounting, excluded from the headline and not causal responsibility.
