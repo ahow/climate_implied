@@ -1,5 +1,10 @@
 # Current output controls
 
+The [demand predictive validation](Demand_Predictive_Validation_Results.md)
+documents residual-bootstrap predictive intervals and a family-adjusted
+structural-break diagnostic. These research results do not promote historical
+trends into central projections.
+
 The [company accounting controls](Company_Accounting_Controls.md) document
 required non-operating, attribution and other cash adjustments, actual sourced
 financial controls and remaining climate-projection dependencies.

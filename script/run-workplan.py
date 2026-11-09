@@ -34,8 +34,8 @@ STAGES = [
      "Persistent overlays, all reader migration, production provisioning, historical selector and full import/isolation acceptance."),
     ("Driver evidence", [ts("driver-evidence")],
      "Complete source, units, uncertainty and vintage evidence for every intended quantitative driver."),
-    ("Driver calibration", [["uv", "run", "python", "-m", "unittest", "script/test_driver_calibration.py", "script/test_electricity_demand.py"]],
-     "Uncertainty, structural-break assessment and remaining driver fits. Existing negative fits cannot be promoted."),
+    ("Driver calibration", [["uv", "run", "python", "-m", "unittest", "script/test_driver_calibration.py", "script/test_electricity_demand.py", "script/test_demand_predictive_validation.py"]],
+     "Remaining driver fits and validated joint uncertainty; demand predictive/break diagnostics implemented, not promoted."),
     ("Emissions ensemble", [ts("emissions-candidate", "calculation-foundations", "regional-land", "ensemble-convergence", "regional-engine", "regional-sampling")],
      "Actual region/sector/gas model, overlap accounting and 10,000-member convergence."),
     ("Reference pathways", [ts("reference-scenarios", "native-pathway-contract"),
@@ -71,7 +71,9 @@ STAGES = [
 # These are opt-in read-only data checks, not provider-paid collection,
 # approvals, migrations or production writes.
 DATA_CHECKS = {
-    4: [["uv", "run", "python", "script/driver_calibration.py"]],
+    4: [["uv", "run", "python", "script/driver_calibration.py"],
+        ["uv", "run", "python", "script/electricity_demand_calibration.py"],
+        ["uv", "run", "python", "script/demand_predictive_validation.py"]],
     9: [["npx", "tsx", "script/audit-existing-vintages.ts"]],
     10: [["npx", "tsx", "script/financial-coverage.ts"]],
 }
