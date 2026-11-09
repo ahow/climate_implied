@@ -1,5 +1,5 @@
 /** Versioned definitions. Legacy constants are characterization, not validation. */
-export const CALCULATION_VERSION = "cost-accounting-5";
+export const CALCULATION_VERSION = "historical-diagnostics-6";
 export const RNG_VERSION = "mulberry32-midpoint-v1";
 export const LEGACY_CLIMATE = Object.freeze({
   version: "legacy-physical-v1", baselineYear: 2024, endYear: 2100,

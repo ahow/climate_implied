@@ -3,9 +3,9 @@ import {
   calculateTemperatureDistribution,
   getTemperatureStats,
   type IndicatorData,
-  type ForwardProjection,
 } from "./forwardProjection";
-import { getAllHistoricalIndicatorsWithNowcast } from "./historicalIndicators";
+import { getAllHistoricalIndicatorsWithNowcast, computeEmpiricalCarbonIntensityDeclineRate } from "./historicalIndicators";
+import { historicalTrajectoryMetrics } from "./historicalMetrics";
 import { applyCategoryModifications, type Category } from "./categoryProjections";
 
 export interface CategoryHistoricalTrendPoint {
@@ -32,7 +32,7 @@ function convertToIndicatorData(hist: any): IndicatorData {
     netZeroTargetsCoverage: hist.policyCoveragePct * 0.9,
     globalGDP: hist.gdpTrillionUSD,
     carbonIntensity: hist.carbonIntensityKgPerGDP,
-    carbonIntensityDeclineRate: 2.5,
+    carbonIntensityDeclineRate: computeEmpiricalCarbonIntensityDeclineRate(undefined, hist.year),
     sbtiCompaniesPercent: hist.corporateTargetsPct,
     corporateImplementationRate: hist.corporateImplementationRate,
     cleanEnergyInvestmentTrn: hist.cleanEnergyInvestmentTrn ?? 0.27,
@@ -49,25 +49,7 @@ function computeMetrics(indicators: IndicatorData, year: number, iterations: num
   const tempDist = calculateTemperatureDistribution(trajectory, iterations);
   const tempStats = getTemperatureStats(tempDist, trajectory);
 
-  const emissionsStart = trajectory[0]?.emissions || 60;
-  const emissionsDecadeLater = trajectory[10]?.emissions || 55;
-  const reductionRate = -((Math.pow(emissionsDecadeLater / emissionsStart, 1 / 10) - 1) * 100);
-
-  let netZeroYear: number | null = null;
-  const netZeroPoint = trajectory.find((p: ForwardProjection) => p.p50 <= 5.0);
-  if (netZeroPoint) {
-    netZeroYear = netZeroPoint.year;
-  } else if (trajectory.length > 0) {
-    const finalPoint = trajectory[trajectory.length - 1];
-    const firstPoint = trajectory[0];
-    const yearsElapsed = finalPoint.year - firstPoint.year;
-    const totalReduction = firstPoint.p50 - finalPoint.p50;
-    const avgAnnualReduction = totalReduction / yearsElapsed;
-    if (avgAnnualReduction > 0 && finalPoint.p50 > 5.0) {
-      const yearsToNetZero = (finalPoint.p50 - 5.0) / avgAnnualReduction;
-      netZeroYear = Math.round(finalPoint.year + yearsToNetZero);
-    }
-  }
+  const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
 
   return { median: tempStats.median, reductionRate, netZeroYear };
 }

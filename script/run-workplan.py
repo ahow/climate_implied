@@ -47,7 +47,7 @@ STAGES = [
      "Independent modern FaIR reference, updated historical forcing and integrated coherent censored ensemble outputs."),
     ("Regional attribution", [ts("research-blocks", "member-attribution")],
      "Real regional emissions ledgers and warming attribution with error bounds; helper tests are not regional results."),
-    ("Historical skill", [ts("historical-validation", "vintage-audit")],
+    ("Historical skill", [ts("historical-validation", "vintage-audit", "historical-metrics", "short-horizon-emissions")],
      "Archived-vintage evidence and actual frozen short-horizon climate evaluation."),
     ("Company inputs", [ts("isin", "financial-identity", "financial-mapping", "financial-review", "statement-history", "minor-currencies")],
      "Evidence-reviewed full-universe identities, lifecycle, financial histories and currency reconciliation."),
@@ -74,7 +74,8 @@ DATA_CHECKS = {
     4: [["uv", "run", "python", "script/driver_calibration.py"],
         ["uv", "run", "python", "script/electricity_demand_calibration.py"],
         ["uv", "run", "python", "script/demand_predictive_validation.py"]],
-    9: [["npx", "tsx", "script/audit-existing-vintages.ts"]],
+    9: [["npx", "tsx", "script/audit-existing-vintages.ts"],
+        ["npx", "tsx", "script/short-horizon-emissions.ts"]],
     10: [["npx", "tsx", "script/financial-coverage.ts"]],
 }
 

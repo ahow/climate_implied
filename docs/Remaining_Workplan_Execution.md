@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [historical repairs and emissions skill report](Historical_Diagnostics_and_Skill_Results.md)
+records origin-restricted intensity fits, corrected annual reduction rates,
+right-censored threshold dates, and 24 actual short-horizon fossil-CO2
+predictions. The new candidate failed all three horizon gates; no promotion.
 The [valuation and research continuation](Valuation_and_Research_Completion_Status.md)
 adds paired D8 comparison, 20 actual three-year FCFE outcomes and full-family
 statistical adjudication. It lists all remaining stages and distinguishes

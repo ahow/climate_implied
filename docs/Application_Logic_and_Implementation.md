@@ -1,5 +1,9 @@
 # Current output controls
 
+The [historical diagnostic repairs](Historical_Diagnostics_and_Skill_Results.md)
+explain origin-restricted intensity inputs, annualised reduction metrics,
+censored threshold dates and the failed short-horizon fossil-CO2 experiment.
+
 The [valuation and research continuation](Valuation_and_Research_Completion_Status.md)
 explains the paired D8 evaluator, completed FCFE outcome construction and
 full-family statistical correction, including their uncompleted empirical inputs.

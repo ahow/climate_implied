@@ -435,8 +435,9 @@ export const HISTORICAL_INDICATORS: HistoricalIndicatorData[] = [
  * CAGR of carbon intensity over the available window (optionally trailing N years).
  * Falls back to a conservative 2.0% if data is insufficient.
  */
-export function computeEmpiricalCarbonIntensityDeclineRate(trailingYears?: number): number {
-  const data = resolveSeries();
+export function computeEmpiricalCarbonIntensityDeclineRate(trailingYears?: number, throughYear?: number): number {
+  if (throughYear !== undefined && !Number.isInteger(throughYear)) throw new Error("Integer cutoff year required");
+  const data = resolveSeries().filter(row => throughYear === undefined || row.year <= throughYear);
   if (data.length < 2) return 2.0;
   const series = trailingYears && trailingYears < data.length ? data.slice(-trailingYears) : data;
   const first = series[0].carbonIntensityKgPerGDP;
