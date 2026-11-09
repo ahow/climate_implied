@@ -13,3 +13,12 @@ test("deployment branch advances only after complete CI validation", () => {
   assert.match(ci, /npm run build/);
   assert.doesNotMatch(ci, /--force/);
 });
+test("negative control exercises the same validate dependency without broken source", () => {
+  const ci = readFileSync(".github/workflows/validation.yml", "utf8");
+  assert.match(ci, /workflow_dispatch:[\s\S]*negative_control:[\s\S]*type: boolean/);
+  assert.match(ci, /name: Deliberate negative validation control[\s\S]*inputs\.negative_control\s+run: exit 1/);
+  const promotion = ci.slice(ci.indexOf("  promote:"));
+  assert.match(promotion, /needs: validate/);
+  assert.match(promotion, /github\.event_name == 'workflow_dispatch' && inputs\.negative_control/);
+  assert.doesNotMatch(promotion, /always\(\)|continue-on-error/);
+});

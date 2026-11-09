@@ -1,6 +1,8 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [CI negative-control procedure](CI_Negative_Control.md) exercises a deliberate
+validation failure against the real promotion dependency without breaking source.
 The [historical-selection and replay repairs](Historical_Selection_and_Replay_Repairs.md)
 remove empty-ID fallback, decouple stored results from current indicator loading
 and add filtered, paginated workbook inventory in Data Management.

@@ -1,5 +1,12 @@
 name: Source validation
 on:
+  workflow_dispatch:
+    inputs:
+      negative_control:
+        description: Deliberately fail validation to verify the deployment gate
+        type: boolean
+        required: true
+        default: false
   push:
     branches: [main]
   pull_request:
@@ -10,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
+      - name: Deliberate negative validation control
+        if: github.event_name == 'workflow_dispatch' && inputs.negative_control
+        run: exit 1
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -26,7 +36,7 @@ jobs:
       - run: npm run build
   promote:
     needs: validate
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.negative_control))
     runs-on: ubuntu-latest
     permissions:
       contents: write
