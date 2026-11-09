@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [valuation and research continuation](Valuation_and_Research_Completion_Status.md)
+adds paired D8 comparison, 20 actual three-year FCFE outcomes and full-family
+statistical adjudication. It lists all remaining stages and distinguishes
+unfinished engineering from genuine evidence dependencies.
 The [demand predictive validation](Demand_Predictive_Validation_Results.md)
 adds actual six-year holdout predictive intervals and a prespecified,
 family-adjusted break diagnostic for five regions. Coverage ranges from

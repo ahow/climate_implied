@@ -1,5 +1,9 @@
 # Current output controls
 
+The [valuation and research continuation](Valuation_and_Research_Completion_Status.md)
+explains the paired D8 evaluator, completed FCFE outcome construction and
+full-family statistical correction, including their uncompleted empirical inputs.
+
 The [demand predictive validation](Demand_Predictive_Validation_Results.md)
 documents residual-bootstrap predictive intervals and a family-adjusted
 structural-break diagnostic. These research results do not promote historical
