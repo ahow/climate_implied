@@ -112,6 +112,9 @@ export interface RegionalProjection {
   reductionRate: number;
   netZeroYear: number | null;
   carbonIntensity: number;
+  carbonIntensityBasis: string;
+  claim: string;
+  milestoneDefinition: string;
 }
 
 export interface SensitivityResult {

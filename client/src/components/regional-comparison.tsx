@@ -51,10 +51,13 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
 
   const downloadRows = regions.map((r) => ({
     Region: r.regionName,
-    "Temperature Rise (\u00B0C)": r.temperatureRise,
+    "Legacy global counterfactual warming (\u00B0C)": r.temperatureRise,
     "Reduction Rate (%/yr)": r.reductionRate,
     "Carbon Intensity (kg/$GDP)": r.carbonIntensity,
-    "Net-Zero Year": r.netZeroYear ?? "Never",
+    "Intensity basis": r.carbonIntensityBasis,
+    "Legacy 5 Gt milestone": r.netZeroYear ?? "Not reached",
+    "Milestone definition": r.milestoneDefinition,
+    Claim: r.claim,
   }));
 
   return (
@@ -63,13 +66,14 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
         <div className="flex items-center gap-2">
           <Globe className="h-5 w-5 text-muted-foreground" />
           <div>
-            <h3 className="text-sm font-medium text-muted-foreground">Regional Projections</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">Global intensity counterfactual</h3>
             <p className="text-xs text-muted-foreground mt-0.5">What if the world followed each region's carbon intensity?</p>
+            <p className="text-xs text-muted-foreground mt-1">Legacy diagnostic, not a regional temperature forecast. The 5 Gt milestone is not net zero and may extrapolate beyond 2100.</p>
           </div>
         </div>
         <DownloadDataButton
-          filename="regional-projections"
-          sheetName="Regional Projections"
+          filename="legacy-global-intensity-counterfactual"
+          sheetName="Global Counterfactual"
           rows={downloadRows}
           testId="button-download-regional"
         />
@@ -101,8 +105,8 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
 
               <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
                 <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {region.reductionRate.toFixed(1)}%/yr</span>
-                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {region.carbonIntensity.toFixed(2)} kg/$</span>
-                <span data-testid={`text-region-netzero-${region.region}`}>Net-Zero: {region.netZeroYear || "Never"}</span>
+                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {region.carbonIntensity.toFixed(2)} — {region.carbonIntensityBasis}</span>
+                <span data-testid={`text-region-netzero-${region.region}`}>Legacy 5 Gt milestone: {region.netZeroYear ?? "Not reached"}</span>
               </div>
             </div>
           );

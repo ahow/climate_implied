@@ -15,6 +15,9 @@ export interface RegionalProjection {
   netZeroYear: number | null;
   carbonIntensity: number;
   carbonIntensitySource: "owid" | "static";
+  carbonIntensityBasis: string;
+  claim: string;
+  milestoneDefinition: string;
 }
 
 interface RegionConfig {
@@ -149,6 +152,11 @@ export async function calculateRegionalProjections(): Promise<RegionalProjection
       netZeroYear: findNetZeroYear(trajectory),
       carbonIntensity: intensity.value,
       carbonIntensitySource: intensity.source,
+      carbonIntensityBasis: intensity.source === "owid"
+        ? "kg CO2 per international dollar GDP (PPP); OWID"
+        : "kg CO2 per nominal dollar GDP; legacy static assumption, not comparable to PPP",
+      claim: "Legacy global intensity counterfactual; not a regional temperature forecast",
+      milestoneDefinition: "Legacy 5 Gt milestone; not net zero; may extrapolate beyond 2100",
     };
   });
 }

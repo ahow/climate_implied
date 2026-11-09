@@ -107,9 +107,26 @@ public request-size limits. Result files retain content hashes and claim labels.
 
 ## Release and limitations
 
-Local release verification: **144 TypeScript tests and 24 Python tests passed**;
+Local release verification: **145 TypeScript tests and 24 Python tests passed**;
 TypeScript checking and production build passed. These counts describe software
 regression checks, not scientific acceptance of the unfinished workplan.
+
+## Stages 1 and 16 — legacy regional consumer correction: partial
+
+The optional regional comparison and its download now say **Global intensity
+counterfactual**, not Regional Projections. Its warming value is explicitly a
+legacy global result, not standalone regional warming. The positive residual
+threshold is labelled **Legacy 5 Gt milestone**, not net zero; extrapolation
+beyond 2100 remains disclosed. The API returns the same claim and milestone
+definition, and exports include them.
+
+Intensity metadata distinguishes OWID international-dollar GDP (PPP) from the
+legacy nominal-dollar static assumption. These bases must not be silently
+treated as comparable. No numerical model was changed or promoted. This
+preserves the named legacy comparator; replacement with the new regional
+accounts remains unfinished.
+
+A committed source regression checks the UI/export labels and metadata.
 
 The existing monthly collection/review/approval process is unchanged.
 Raw inputs and generated bundles are excluded from the source export.
