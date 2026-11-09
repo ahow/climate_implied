@@ -1,11 +1,13 @@
-export interface AnalysisSelection { workbook: string; indicators: string }
+export interface AnalysisSelection { workbook: string; indicators: string; regional?: string }
 export const selectionKey = "climate-analysis-selection-v1";
 export function parseSelection(value: unknown): AnalysisSelection {
   const x = value as AnalysisSelection;
   if (!x || typeof x !== "object" || !/^[a-f0-9]{64}$/.test(x.workbook) ||
     !/^[a-f0-9]{64}$/.test(x.indicators))
     throw new Error("Select both a valid workbook and indicator snapshot");
-  return { workbook: x.workbook, indicators: x.indicators };
+  if (x.regional !== undefined && !/^[a-f0-9]{64}$/.test(x.regional))
+    throw new Error("Invalid regional snapshot");
+  return { workbook: x.workbook, indicators: x.indicators, ...(x.regional ? { regional: x.regional } : {}) };
 }
 export function currentSelection(): AnalysisSelection | null {
   if (typeof window === "undefined") return null;
@@ -26,10 +28,12 @@ export function selectedRequest(url: string, selection: AnalysisSelection | null
   const parsed = new URL(url, "https://analysis.invalid");
   if (!selection) return { url, workbook: false, indicators: false };
   parseSelection(selection);
-  if (parsed.pathname === "/api/projection/regions")
+  if (parsed.pathname === "/api/projection/regions" && !selection.regional)
     throw new Error("Historical regional diagnostics unavailable: external intensity is not archived");
   const workbook = companyPaths.has(parsed.pathname);
-  const indicators = workbook || climatePaths.has(parsed.pathname);
+  const indicators = workbook || climatePaths.has(parsed.pathname) || parsed.pathname === "/api/projection/regions";
+  if (parsed.pathname === "/api/projection/regions" && selection.regional)
+    parsed.searchParams.set("regionalSnapshotId", selection.regional);
   if (workbook) {
     const explicit = parsed.searchParams.get("snapshotId");
     if (explicit && explicit !== selection.workbook)
@@ -44,6 +48,9 @@ export async function analysisFetch(url: string, init?: RequestInit) {
   const selection = currentSelection();
   const request = selectedRequest(url, selection);
   const response = await fetch(request.url, init);
+  if (response.ok && new URL(request.url, "https://analysis.invalid").pathname === "/api/projection/regions"
+    && selection?.regional && response.headers.get("X-Regional-Snapshot") !== selection.regional)
+    throw new Error("Response does not confirm the selected regional snapshot");
   if (response.ok && request.workbook &&
     response.headers.get("X-Analysis-Snapshot") !== selection?.workbook)
     throw new Error("Response does not confirm the selected historical workbook");

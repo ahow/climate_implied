@@ -75,6 +75,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | --- | --- |
 | client/src/components/analysis-selection.tsx | `/api/analysis/snapshots?kind=${kind}${after ? `&after=${after}` : ""}` |
 | client/src/components/analysis-selection.tsx | `/api/cv/summary?snapshotId=${selection.workbook}&indicatorSnapshotId=${selection.indicators}` |
+| client/src/components/analysis-selection.tsx | `/api/projection/regions?regionalSnapshotId=${selection.regional}&indicatorSnapshotId=${selection.indicators}` |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshot-status" |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |
 | client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
@@ -103,6 +104,9 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/lib/analysis-selection.ts | "/api/indicators/historical" |
 | client/src/lib/analysis-selection.ts | "/api/calculation-contract" |
 | client/src/lib/analysis-selection.ts | "/api/emissions/candidate" |
+| client/src/lib/analysis-selection.ts | "/api/projection/regions" |
+| client/src/lib/analysis-selection.ts | "/api/projection/regions" |
+| client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/uploads" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/summary" |

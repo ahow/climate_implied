@@ -8,13 +8,14 @@ export function AnalysisSelectionControl() {
   try { active = currentSelection(); } catch { invalid = true; }
   const [workbook, setWorkbook] = useState(active?.workbook ?? "");
   const [indicators, setIndicators] = useState(active?.indicators ?? "");
+  const [regional, setRegional] = useState(active?.regional ?? "");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const inventory = useQuery({
     queryKey: ["analysis-selection-inventory"],
     queryFn: async () => {
       const items: { id: string; kind: string; createdAt: string }[] = [];
-      for (const kind of ["workbook-baseline", "indicator-overrides"]) {
+      for (const kind of ["workbook-baseline", "indicator-overrides", "regional-intensity"]) {
         let after: string | null = null;
         do {
           const r: Response = await fetch(`/api/analysis/snapshots?kind=${kind}${after ? `&after=${after}` : ""}`);
@@ -32,11 +33,17 @@ export function AnalysisSelectionControl() {
   async function apply() {
     setBusy(true); setError("");
     try {
-      const selection = parseSelection({ workbook, indicators });
+      const selection = parseSelection({ workbook, indicators, ...(regional ? { regional } : {}) });
       const r = await fetch(`/api/cv/summary?snapshotId=${selection.workbook}&indicatorSnapshotId=${selection.indicators}`);
       if (!r.ok || r.headers.get("X-Analysis-Snapshot") !== selection.workbook ||
         r.headers.get("X-Indicator-Data-State") !== "archived-approved-indicators")
         throw new Error("Selected archives could not be verified. Current selection was not changed.");
+      if (selection.regional) {
+        const regionResponse = await fetch(`/api/projection/regions?regionalSnapshotId=${selection.regional}&indicatorSnapshotId=${selection.indicators}`);
+        if (!regionResponse.ok || regionResponse.headers.get("X-Regional-Snapshot") !== selection.regional
+          || regionResponse.headers.get("X-Indicator-Data-State") !== "archived-approved-indicators")
+          throw new Error("Regional archive could not be verified. Current selection was not changed.");
+      }
       window.sessionStorage.setItem(selectionKey, JSON.stringify(selection));
       // A new client cache prevents late requests from the prior selection
       // from repopulating newly selected views.
@@ -49,8 +56,9 @@ export function AnalysisSelectionControl() {
       active ? "Archived workbook and indicators selected" : "Current analysis inputs"}</p>
     <p className="text-xs text-muted-foreground">Applies to company diagnostics and supported legacy climate calculations.
       Published references, news, provider status and data-management records remain current.
-      This is input replay with current code, not original-vintage evidence. Regional historical diagnostics are unavailable.</p>
-    {active && <p className="text-xs break-all">Workbook: {active.workbook}<br />Indicators: {active.indicators}</p>}
+      This is input replay with current code, not original-vintage evidence. Regional replay requires the optional external-input archive below.</p>
+    {active && <p className="text-xs break-all">Workbook: {active.workbook}<br />Indicators: {active.indicators}
+      <br />Regional inputs: {active.regional ?? "Not selected — regional history unavailable"}</p>}
     <details>
       <summary className="text-sm cursor-pointer">Change analysis inputs</summary>
       <div className="grid gap-2 mt-2">
@@ -65,6 +73,13 @@ export function AnalysisSelectionControl() {
           <select className="block border rounded p-2 w-full bg-background" value={indicators} onChange={e => setIndicators(e.target.value)}>
             <option value="">Select indicators</option>
             {inventory.data?.filter(x => x.kind === "indicator-overrides").map(x =>
+              <option key={x.id} value={x.id}>{x.createdAt} — {x.id}</option>)}
+          </select>
+        </label>
+        <label className="text-sm">Regional external-input snapshot (optional)
+          <select className="block border rounded p-2 w-full bg-background" value={regional} onChange={e => setRegional(e.target.value)}>
+            <option value="">Regional history unavailable</option>
+            {inventory.data?.filter(x => x.kind === "regional-intensity").map(x =>
               <option key={x.id} value={x.id}>{x.createdAt} — {x.id}</option>)}
           </select>
         </label>

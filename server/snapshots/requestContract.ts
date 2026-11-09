@@ -7,7 +7,7 @@ export function snapshotSelection(value: unknown): string | undefined {
 }
 export function snapshotInventoryQuery(query: Record<string, unknown>) {
   const kind = query.kind;
-  if (kind !== undefined && !["workbook-baseline", "indicator-overrides", "analysis-result"].includes(kind as string))
+  if (kind !== undefined && !["workbook-baseline", "indicator-overrides", "analysis-result", "regional-intensity"].includes(kind as string))
     throw new Error("Invalid snapshot kind");
   const after = snapshotSelection(query.after);
   return { kind: kind as string | undefined, after };
@@ -30,15 +30,20 @@ const indicatorPaths = new Set([
 
 /** Validate selectors before loading data. Unsupported routes must not imply
  * a historical input was applied merely because they returned an identity header.
- * Regional legacy projections use live external intensity, so are excluded.
+ * Regional legacy projections require a paired immutable external-input archive.
  */
 export function historicalRequestPolicy(path: string, query: Record<string, unknown>) {
   const normalized = path.length > 1 ? path.replace(/\/$/, "") : path;
   const workbook = snapshotSelection(query.snapshotId);
   const indicators = snapshotSelection(query.indicatorSnapshotId);
+  const regional = snapshotSelection(query.regionalSnapshotId);
+  if (regional && normalized !== "/projection/regions")
+    throw new Error("Regional snapshot is not supported by this endpoint");
+  if (normalized === "/projection/regions" && !!regional !== !!indicators)
+    throw new Error("Regional historical replay requires indicator and regional snapshots together");
   if (workbook !== undefined && !workbookPaths.has(normalized))
     throw new Error("This endpoint does not support historical workbook selection");
-  if (indicators !== undefined && !indicatorPaths.has(normalized) && !workbookPaths.has(normalized))
+  if (indicators !== undefined && !indicatorPaths.has(normalized) && !workbookPaths.has(normalized) && !regional)
     throw new Error("This endpoint does not support historical indicator selection");
   return { workbook, indicators,
     readsIndicators: indicatorPaths.has(normalized) || workbookPaths.has(normalized) ||

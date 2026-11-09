@@ -1,5 +1,5 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
-import { completedCashFlowOutcomes } from "../server/financialData/completedCashFlow";
+import { completedCashFlowOutcomes, completedOutcomeCoverage } from "../server/financialData/completedCashFlow";
 import { contentHash } from "../server/calculation/analysisManifest";
 
 async function main() {
@@ -14,9 +14,10 @@ async function main() {
     const outcomes = completedCashFlowOutcomes(p.statements["cash-flow-statement"]);
     cases.push({ symbol: p.selection.symbol, sourceHash: source.inputHash, ...outcomes });
   }
-  const result = { cases, empiricalD8Complete: false,
+  const coverage = completedOutcomeCoverage(cases);
+  const result = { cases, coverage, empiricalD8Complete: false,
     blockers: ["Historical model-specific valuation predictions and paired validation signals not assembled",
-      "Only three provider-matched control companies; ten common issuers per origin required",
+      `${coverage.issuers} provider-matched candidates supplied; ten common eligible issuers per valuation origin still must be established`,
       "Independent identity, cash-flow classification and publication-vintage review incomplete"] };
   const folder = "generated-artifacts/valuation-comparison";
   await mkdir(folder, { recursive: true });
@@ -26,7 +27,7 @@ async function main() {
   catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "EEXIST" || await readFile(output, "utf8") !== text) throw error;
   }
-  console.log(JSON.stringify({ output, cases: cases.map(c => ({ symbol: c.symbol,
+  console.log(JSON.stringify({ output, coverage, cases: cases.map(c => ({ symbol: c.symbol,
     supplied: c.results.length, completed: c.results.filter(r => r.status === "completed-outcome").length,
     exclusions: c.results.filter(r => r.status === "unavailable") })), blockers: result.blockers }, null, 2));
 }

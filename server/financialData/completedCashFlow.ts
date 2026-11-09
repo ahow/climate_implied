@@ -1,4 +1,26 @@
 import { z } from "zod";
+
+/** Coverage only: fiscal-end years are not shared valuation/prediction origins. */
+export function completedOutcomeCoverage(cases: {
+  symbol: string; results: { origin: string; status: "completed-outcome" | "unavailable" }[];
+}[]) {
+  if (new Set(cases.map(c => c.symbol)).size !== cases.length)
+    throw new Error("Duplicate issuer inputs; select one retained source version per company");
+  const years = new Map<number, Set<string>>();
+  let completed = 0, unavailable = 0;
+  for (const c of cases) for (const row of c.results) {
+    if (row.status === "unavailable") { unavailable++; continue; }
+    completed++;
+    const year = Number(row.origin.slice(0, 4));
+    if (!Number.isInteger(year)) throw new Error("Invalid fiscal origin");
+    const issuers = years.get(year) ?? new Set<string>();
+    issuers.add(c.symbol); years.set(year, issuers);
+  }
+  return { issuers: cases.length, completed, unavailable,
+    byFiscalEndYear: Array.from(years.entries()).sort(([a], [b]) => a - b)
+      .map(([year, issuers]) => ({ year, issuers: issuers.size })),
+    interpretation: "Outcome availability only; fiscal ends are not common valuation origins; D8 eligibility not established" };
+}
 const statement = z.object({
   date: z.string().date(), symbol: z.string().min(1), period: z.literal("FY"),
   reportedCurrency: z.string().regex(/^[A-Z]{3}$/),

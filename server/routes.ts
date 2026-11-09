@@ -14,6 +14,8 @@ import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { exactMemberAttribution } from "./calculation/memberAttribution";
 import { projectCompanyMembers } from "./calculation/companyProjection";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
+import { loadRegionalInputs } from "./snapshots/regional";
+import { calculateRegionalFromInputs } from "./calculation/regionalProjections";
 import { loadAnalysisResult, saveAnalysisResult } from "./snapshots/results";
 import { cvAnalysisSnapshots } from "@shared/schema";
 import { snapshotsAvailable } from "./snapshots/store";
@@ -545,8 +547,15 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/projection/regions", async (_req, res) => {
+  app.get("/api/projection/regions", async (req, res) => {
     try {
+      const regionalId = snapshotSelection(req.query.regionalSnapshotId);
+      if (regionalId) {
+        const captured = await loadRegionalInputs(regionalId);
+        res.set("X-Regional-Snapshot", regionalId);
+        res.set("Cache-Control", "no-store");
+        return res.json(calculateRegionalFromInputs(getCurrentIndicators(), captured));
+      }
       if (regionalCacheResult && validRouteCache("regions", res) && Date.now() - regionalCacheFetchedAt < REGIONAL_CACHE_TTL_MS) {
         return res.json(regionalCacheResult);
       }
@@ -557,7 +566,7 @@ export async function registerRoutes(
       res.json(result);
     } catch (error) {
       console.error("Regional projections error:", error);
-      res.status(500).json({ error: "Failed to calculate regional projections" });
+      res.status(req.query.regionalSnapshotId ? 422 : 500).json({ error: "Failed to calculate regional projections; requested inputs may be unavailable" });
     }
   });
 

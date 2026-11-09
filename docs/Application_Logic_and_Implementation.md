@@ -1,5 +1,15 @@
 # Current requirement-level execution record
 
+The bounded company research collector accepts private selection manifests and
+requires explicit provider listing/ADR status. Outcome coverage is data-derived
+and rejects duplicate source versions. See
+[Company_Coverage_Expansion_Results.md](Company_Coverage_Expansion_Results.md).
+
+Regional historical diagnostics now support an optional immutable regional-input
+archive paired with an indicator archive. See
+[Regional_Historical_Replay.md](Regional_Historical_Replay.md) for capture,
+request identity, UI selection, export and explicit scope boundaries.
+
 See [WORKPLAN_COMPLETION_LEDGER.md](WORKPLAN_COMPLETION_LEDGER.md),
 [workplan_completion_ledger.json](workplan_completion_ledger.json) and
 [WORKPLAN_IMPLEMENTATION_REPORT.md](WORKPLAN_IMPLEMENTATION_REPORT.md).

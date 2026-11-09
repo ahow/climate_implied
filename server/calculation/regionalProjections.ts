@@ -41,7 +41,7 @@ const OWID_CO2_URL =
 const OWID_FETCH_TIMEOUT_MS = 8000;
 const OWID_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
-type IntensityResult = { value: number; source: "owid" | "static" };
+export type IntensityResult = { value: number; source: "owid" | "static" };
 
 let owidCache: { intensities: Record<string, IntensityResult>; fetchedAt: number } | null = null;
 
@@ -50,7 +50,7 @@ let owidCache: { intensities: Record<string, IntensityResult>; fetchedAt: number
  * `co2_per_gdp` for the latest available year. Any failure (network, parsing,
  * missing data) falls back to the static map so the caller never breaks.
  */
-async function getRegionalCarbonIntensities(): Promise<Record<string, IntensityResult>> {
+export async function getRegionalCarbonIntensities(): Promise<Record<string, IntensityResult>> {
   if (owidCache && Date.now() - owidCache.fetchedAt < OWID_CACHE_TTL_MS) {
     return owidCache.intensities;
   }
@@ -110,9 +110,20 @@ async function getRegionalCarbonIntensities(): Promise<Record<string, IntensityR
 export async function calculateRegionalProjections(): Promise<RegionalProjection[]> {
   const baseIndicators = getCurrentIndicators();
   const intensities = await getRegionalCarbonIntensities();
+  return calculateRegionalFromInputs(baseIndicators, intensities);
+}
 
+/** Pure replay boundary: captured inputs never fall through to live data. */
+export function calculateRegionalFromInputs(baseIndicators: IndicatorData,
+  intensities: Record<string, IntensityResult>): RegionalProjection[] {
+  for (const region of Object.keys(REGIONAL_CARBON_INTENSITIES)) {
+    const value = intensities[region];
+    if (!value || !Number.isFinite(value.value) || value.value <= 0
+      || !["owid", "static"].includes(value.source))
+      throw new Error(`Missing or invalid captured regional intensity: ${region}`);
+  }
   return Object.entries(REGIONAL_CARBON_INTENSITIES).map(([region, config]) => {
-    const intensity = intensities[region] ?? { value: config.carbonIntensity, source: "static" as const };
+    const intensity = intensities[region];
 
     const indicators: IndicatorData = {
       ...baseIndicators,

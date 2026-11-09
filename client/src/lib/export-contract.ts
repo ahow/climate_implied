@@ -36,7 +36,7 @@ export function exportNotes(kind: ExportKind, filename: string, exportedAt: stri
   if (!contract) throw new Error("Unknown export interpretation");
   return [
     { Field: "Analysis input selection", Value: selection
-      ? `Workbook ${selection.workbook}; indicators ${selection.indicators}. Applies only to supported analytical views, not news, published references or provider/data-management records. Current-code replay, not original-vintage evidence.`
+      ? `Workbook ${selection.workbook}; indicators ${selection.indicators}; regional inputs ${selection.regional ?? "not selected"}. Applies only to supported analytical views, not news, published references or provider/data-management records. Current-code replay, not original-vintage evidence.`
       : "Current inputs; no archived analysis selection" },
     { Field: "File", Value: filename },
     { Field: "Export time (not observation or publication date)", Value: exportedAt },
