@@ -11,6 +11,12 @@ def normalized(value):
     return re.sub(r"[^a-z0-9]", "", value.lower())
 
 
+def native_coverage(frame, gases):
+    aliases = {"CO2-EIP": "CO2 FFI", "CO2-LULUCF": "CO2 AFOLU"}
+    names = frame.loc[frame["scenario"] == "medium-extension", "variable"].map(normalized).tolist()
+    return [gas for gas in gases if names.count(normalized(aliases.get(gas, gas))) != 1]
+
+
 def apply_native_pathway(frame, pathway, baseline):
     if pathway.get("unit") != "Mt gas/year" or pathway.get("years") != list(range(2024, 2101)):
         raise ValueError("Native Mt gas/year and contiguous 2024–2100 years required")

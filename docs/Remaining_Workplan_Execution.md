@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [regional-to-FaIR coupling report](Regional_FaIR_Coupling.md) records
+successful conversion of an actual regional control member and a failed
+FaIR coverage check for three unsupported native species. No temperature
+or scientific promotion resulted.
 The [sourced company accounting controls](Company_Accounting_Controls.md)
 reconcile three actual financial baselines and correct omitted operating-ledger
 adjustments. Exxon identity mismatch remains unresolved. These controls are
