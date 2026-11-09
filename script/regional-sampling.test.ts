@@ -21,3 +21,24 @@ test("joint-row bootstrap preserves cross-region dependence and deterministic me
   assert.throws(() => sampleRegionalDrivers({ ...input, members: 10001 }));
   assert.throws(() => sampleRegionalDrivers({ ...input, evidence: [] }));
 });
+test("joint sampling refuses missing regions and omitted driver dimensions", () => {
+  const input = { seed: 1, members: 2, parameterVersion: "fixture",
+    evidence: ["fixture"], rows: [
+      { id: "a", scenarios: [{ region: "US", scenario: { growth: 0 } },
+        { region: "China", scenario: { growth: .01 } }] },
+      { id: "b", scenarios: [{ region: "US", scenario: { growth: .02 } },
+        { region: "China", scenario: { growth: .03 } }] },
+    ] };
+  const missingRegion = structuredClone(input);
+  missingRegion.rows[1].scenarios.pop();
+  assert.throws(() => sampleRegionalDrivers(missingRegion), /same regional accounts/);
+  const replacedRegion = structuredClone(input);
+  replacedRegion.rows[1].scenarios[1].region = "India";
+  assert.throws(() => sampleRegionalDrivers(replacedRegion), /same regional accounts/);
+  const omittedDriver = structuredClone(input);
+  omittedDriver.rows[1].scenarios[1].scenario = {} as { growth: number };
+  assert.throws(() => sampleRegionalDrivers(omittedDriver), /inconsistent driver coverage/);
+  const reversed = structuredClone(input);
+  reversed.rows.forEach(r => r.scenarios.reverse());
+  assert.deepEqual(sampleRegionalDrivers(reversed), sampleRegionalDrivers(input));
+});

@@ -25,6 +25,19 @@ export function sampleRegionalDrivers(input: unknown) {
   if (new Set(rows.map(r => r.id)).size !== rows.length ||
       rows.some(r => new Set(r.scenarios.map(s => s.region)).size !== r.scenarios.length))
     throw new Error("Unique parameter-row and regional identities required");
+  const regions = rows[0].scenarios.map(s => s.region);
+  if (rows.some(r => r.scenarios.length !== regions.length ||
+      r.scenarios.some((s, i) => s.region !== regions[i])))
+    throw new Error("Every joint parameter row must cover the same regional accounts");
+  // A bootstrap row cannot silently omit a driver present in another draw.
+  // Physical validation remains the projection engine's responsibility.
+  for (let i = 0; i < regions.length; i++) {
+    const keys = Object.keys(rows[0].scenarios[i].scenario).sort();
+    if (rows.some(r => {
+      const actual = Object.keys(r.scenarios[i].scenario).sort();
+      return actual.length !== keys.length || actual.some((key, j) => key !== keys[j]);
+    })) throw new Error(`Joint parameter rows have inconsistent driver coverage for ${regions[i]}`);
+  }
   const parameterHash = contentHash({ parameterVersion: x.parameterVersion, evidence: x.evidence, rows });
   const rng = new SeededRandom(x.seed);
   const members = Array.from({ length: x.members }, (_, index) => ({

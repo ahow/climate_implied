@@ -1,6 +1,11 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+Joint parameter sampling now rejects rows with differing regional accounts or
+omitted driver fields. Tests cover missing/substituted regions, omitted fields,
+ordering invariance and deterministic paired draws. Full regression: 183
+TypeScript and 47 Python tests, type checking and build pass. This closes a
+sampler input-contract gap, not empirical calibration or Stage 5 acceptance.
 The [projection and historical-request repairs](Projection_and_Historical_Request_Repairs.md)
 remove remaining extrapolated milestone dates and fallback emissions from four
 calculation paths, align median-based metrics, and reject unsupported historical
