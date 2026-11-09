@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [integrated member analysis](Integrated_Member_Analysis.md) connects
+aligned trajectories, durable-zero metrics and convergence adjudication.
+The actual retained 841-member control correctly reports convergence unavailable,
+with all CO2/GHG zero quantiles censored. No calibrated ensemble is claimed.
 The regional archive now has a read-only streaming verifier, included in Stage 5
 data checks. It checks decompressed content hashes, unique requested/member IDs,
 inventory identity, complete annual trajectories, milestone agreement and the
