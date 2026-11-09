@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [Kaya accounting report](Kaya_Results.md) adds actual LMDI decomposition
+for three complete historical regional windows, exact missing-cell reports for
+the other eleven windows, and reconciliation tests. It is not causal attribution
+or a calibrated forecast; remaining engineering and scientific acceptance stay open.
 The [EV and cost/deployment study](EV_and_Cost_Calibration_Results.md) adds
 actual frozen-source diagnostics, parameter uncertainty and missing-window checks.
 No fits are scientifically promoted; source breaks and missing observations remain explicit.

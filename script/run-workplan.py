@@ -72,7 +72,8 @@ STAGES = [
 # These are opt-in read-only data checks, not provider-paid collection,
 # approvals, migrations or production writes.
 DATA_CHECKS = {
-    4: [["uv", "run", "python", "script/driver_calibration.py"],
+    4: [["uv", "run", "python", "script/kaya_decomposition.py"],
+        ["uv", "run", "python", "script/driver_calibration.py"],
         ["uv", "run", "python", "script/electricity_demand_calibration.py"],
         ["uv", "run", "python", "script/demand_predictive_validation.py"],
         ["uv", "run", "python", "script/ev_sales_calibration.py"],

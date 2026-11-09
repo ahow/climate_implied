@@ -1,3 +1,10 @@
+# Latest analytical extension: Kaya accounting
+
+See [Kaya accounting results](Kaya_Results.md) and the
+[fixed protocol](Kaya_Protocol.md). The offline study decomposes historical
+CO2 changes into population, GDP/person, energy/GDP and CO2/energy.
+It does not change production projections or automatically approve inputs.
+
 # Current output controls
 
 [EV and cost/deployment calibration results](EV_and_Cost_Calibration_Results.md)
