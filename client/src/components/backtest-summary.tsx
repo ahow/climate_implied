@@ -1,3 +1,4 @@
+import { analysisFetch as fetch } from "@/lib/analysis-selection";
 import type { BacktestResponse } from "@shared/backtest";
 
 export async function fetchBacktest(url: string): Promise<BacktestResponse> {

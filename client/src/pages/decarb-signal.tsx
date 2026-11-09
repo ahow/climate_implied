@@ -1,3 +1,4 @@
+import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
@@ -150,7 +151,7 @@ export default function DecarbSignal() {
     queryKey: ["/api/cv/uploads"],
   });
 
-  const uploadId = uploads?.find((u) => u.status === "completed")?.id;
+  const uploadId = hasArchivedSelection() ? "archived" : uploads?.find((u) => u.status === "completed")?.id;
 
   const { data: carbonPriceData, isLoading: loadingCP } = useQuery<CarbonPricePoint[]>({
     queryKey: ["/api/cv/carbon-price", scoringMethod, geography, uploadId],

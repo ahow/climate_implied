@@ -800,11 +800,14 @@ export async function registerRoutes(
 
   app.get("/api/cv/carbon-price", async (req, res) => {
     try {
-      const uploadId = Number(req.query.uploadId);
-      if (isNaN(uploadId)) return res.status(400).json({ error: "uploadId is required and must be a number" });
-      const [dataset] = await db.select().from(cvDataUploads).where(eq(cvDataUploads.id, uploadId));
-      if (!dataset) return res.status(404).json({ error: "Upload not found" });
-      if (dataset.status !== "completed") return res.status(409).json({ error: "Upload is not completed" });
+      const archived = snapshotContext.getStore();
+      const uploadId = archived ? 0 : Number(req.query.uploadId);
+      if (!archived) {
+        if (isNaN(uploadId)) return res.status(400).json({ error: "uploadId is required and must be a number" });
+        const [dataset] = await db.select().from(cvDataUploads).where(eq(cvDataUploads.id, uploadId));
+        if (!dataset) return res.status(404).json({ error: "Upload not found" });
+        if (dataset.status !== "completed") return res.status(409).json({ error: "Upload is not completed" });
+      }
       const method = req.query.method as string;
       if (method !== "absolute" && method !== "sector_relative") return res.status(400).json({ error: "method must be 'absolute' or 'sector_relative'" });
       const includeScope3 = req.query.includeScope3 === "true";

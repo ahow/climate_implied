@@ -42,7 +42,10 @@ export function validateCvQuery(path: string, query: Query): void {
     throw new Error("decarb-bands does not use costOfEquity; it selects a target-rate band by aggregate P/E");
   }
   if (path === "/carbon-price") {
-    if (query.uploadId === undefined) throw new Error("uploadId is required; select a completed dataset from /api/cv/uploads");
+    if (query.snapshotId !== undefined && (typeof query.snapshotId !== "string" || !/^[a-f0-9]{64}$/.test(query.snapshotId)))
+      throw new Error("Invalid workbook snapshot");
+    if (query.uploadId === undefined && query.snapshotId === undefined)
+      throw new Error("uploadId or a valid workbook snapshot is required");
     numeric(query, "uploadId", 0, 2147483647, true);
     choice(query, "method", ["absolute", "sector_relative"], true);
     choice(query, "includeScope3", ["true", "false"]);

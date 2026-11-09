@@ -16,6 +16,7 @@ import DecarbGapSignal from "@/pages/decarb-gap-signal";
 import NewsSentiment from "@/pages/news-sentiment";
 import DataManagement from "@/pages/data-management";
 import { ValuationNotice } from "@/components/valuation-notice";
+import { AnalysisSelectionControl } from "@/components/analysis-selection";
 
 function Router() {
   return (
@@ -51,6 +52,7 @@ function App() {
                   <ThemeToggle />
                 </header>
                 <main className="flex-1 overflow-auto">
+                  <AnalysisSelectionControl />
                   <ValuationNotice />
                   <Router />
                 </main>

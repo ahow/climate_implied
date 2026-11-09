@@ -1,3 +1,4 @@
+import { currentSelection } from "./analysis-selection";
 /** Interpretation travels with downloaded data, rather than only with its page. */
 export const exportContracts = {
   legacy: {
@@ -30,9 +31,13 @@ export const exportContracts = {
 export type ExportKind = keyof typeof exportContracts;
 
 export function exportNotes(kind: ExportKind, filename: string, exportedAt: string) {
+  const selection = currentSelection();
   const contract = exportContracts[kind];
   if (!contract) throw new Error("Unknown export interpretation");
   return [
+    { Field: "Analysis input selection", Value: selection
+      ? `Workbook ${selection.workbook}; indicators ${selection.indicators}. Applies only to supported analytical views, not news, published references or provider/data-management records. Current-code replay, not original-vintage evidence.`
+      : "Current inputs; no archived analysis selection" },
     { Field: "File", Value: filename },
     { Field: "Export time (not observation or publication date)", Value: exportedAt },
     { Field: "Evidence status", Value: contract.status },

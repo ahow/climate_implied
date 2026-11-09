@@ -1,5 +1,9 @@
 # Latest analytical extension: Kaya accounting
 
+The [analysis-wide historical input selector](Analysis_Wide_Historical_Selection.md)
+documents the current browser selection lifecycle, supported routes, response
+identity checks, archive-aware valuation requests and explicit remaining gaps.
+
 The [company sensitivity study](Company_Valuation_Sensitivity_Results.md)
 documents 54 retained-data reverse-DCF controls and their mixed-date limitations.
 Its command-line tool does not supply forecasts or change production outputs.

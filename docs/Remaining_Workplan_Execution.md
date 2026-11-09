@@ -1,6 +1,11 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [analysis-wide historical selector](Analysis_Wide_Historical_Selection.md)
+now propagates paired workbook/indicator archives across supported company and
+climate views, isolates client caches and records selection IDs in exports.
+It removes the current-upload dependency for archived valuation groups.
+Full overlay archival and historical regional external data remain unfinished.
 The [company valuation sensitivity study](Company_Valuation_Sensitivity_Results.md)
 executes 54 actual-input conditional cases. All reprice within tolerance.
 Undated profile market values prevent point-in-time interpretation; this does

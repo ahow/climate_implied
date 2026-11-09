@@ -1,3 +1,4 @@
+import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
@@ -174,7 +175,7 @@ export default function DecarbGapSignal() {
     queryKey: ["/api/cv/uploads"],
   });
 
-  const uploadId = uploads?.find((u) => u.status === "completed")?.id;
+  const uploadId = hasArchivedSelection() ? "archived" : uploads?.find((u) => u.status === "completed")?.id;
 
   const { data: summary } = useQuery<DecarbGapSummary>({
     queryKey: ["/api/cv/decarb-gap/summary", scoringMethod, geography],

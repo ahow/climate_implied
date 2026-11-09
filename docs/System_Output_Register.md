@@ -73,6 +73,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 
 | Consumer | API expression |
 | --- | --- |
+| client/src/components/analysis-selection.tsx | `/api/analysis/snapshots?kind=${kind}${after ? `&after=${after}` : ""}` |
+| client/src/components/analysis-selection.tsx | `/api/cv/summary?snapshotId=${selection.workbook}&indicatorSnapshotId=${selection.indicators}` |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshot-status" |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |
 | client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
@@ -83,6 +85,25 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-review.tsx | "/api/financial-data/reviews" |
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
+| client/src/lib/analysis-selection.ts | "/api/cv/summary" |
+| client/src/lib/analysis-selection.ts | "/api/cv/dimensions" |
+| client/src/lib/analysis-selection.ts | "/api/cv/carbon-price" |
+| client/src/lib/analysis-selection.ts | "/api/cv/pe-comparison" |
+| client/src/lib/analysis-selection.ts | "/api/cv/sdg-growth" |
+| client/src/lib/analysis-selection.ts | "/api/cv/decarb-bands" |
+| client/src/lib/analysis-selection.ts | "/api/cv/decarb-terciles" |
+| client/src/lib/analysis-selection.ts | "/api/cv/decarb-gap/summary" |
+| client/src/lib/analysis-selection.ts | "/api/cv/decarb-gap/timeseries" |
+| client/src/lib/analysis-selection.ts | "/api/cv/backtest" |
+| client/src/lib/analysis-selection.ts | "/api/projection" |
+| client/src/lib/analysis-selection.ts | "/api/projection/categories" |
+| client/src/lib/analysis-selection.ts | "/api/projection/sensitivity" |
+| client/src/lib/analysis-selection.ts | "/api/projection/historical-trend" |
+| client/src/lib/analysis-selection.ts | "/api/projection/categories/historical-trend" |
+| client/src/lib/analysis-selection.ts | "/api/indicators/historical" |
+| client/src/lib/analysis-selection.ts | "/api/calculation-contract" |
+| client/src/lib/analysis-selection.ts | "/api/emissions/candidate" |
+| client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/uploads" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/summary" |
 | client/src/pages/climate-valuation.tsx | `/api/cv/carbon-price?uploadId=${uploadId}&method=sector_relative&includeScope3=${includeScope3}&winsorize=${winsorize}&inferenceMethod=carbon_intensity` |

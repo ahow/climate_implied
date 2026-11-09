@@ -1,3 +1,4 @@
+import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
@@ -127,7 +128,7 @@ export default function ClimateValuation() {
   });
 
   const latestCompletedUpload = uploads?.find((u) => u.status === "completed");
-  const uploadId = latestCompletedUpload?.id;
+  const uploadId = hasArchivedSelection() ? "archived" : latestCompletedUpload?.id;
   const hasTimeSeriesData = summary && summary.dateRange && Number(summary.dateRange.recordCount) > 0;
 
   const carbonPriceUrl = `/api/cv/carbon-price?uploadId=${uploadId}&method=sector_relative&includeScope3=${includeScope3}&winsorize=${winsorize}&inferenceMethod=carbon_intensity`;
