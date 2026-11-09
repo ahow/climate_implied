@@ -1,5 +1,9 @@
 # Current output controls
 
+The [CI negative-control report](CI_Negative_Control.md) records an actual
+deliberate validation failure, skipped production promotion and unchanged
+deployment branch. This is distinct from disaster recovery or scientific acceptance.
+
 The [historical-selection and replay repairs](Historical_Selection_and_Replay_Repairs.md)
 describe strict snapshot IDs, independent stored-output retrieval and paginated
 workbook selection. This is not yet a dashboard-wide historical mode.

@@ -66,8 +66,10 @@ The first real CI run successfully promoted source `500c14f4928b5aa8100c8b02209f
 Railway was then switched from `main` to `production-validated`; its source
 configuration was verified through the service API. The same source identity
 was verified through the live application's build-info endpoint, with health 200.
-The workflow structural regression passes; a deliberately failing remote
-commit has not been tested. Recovery rehearsal is still outstanding.
+The workflow structural regression passes. A real manual failure-injection
+run subsequently verified validation failure, skipped promotion and unchanged
+main/validated branches; see the CI negative-control report. No broken-source
+commit was needed. Recovery rehearsal and single-host verification remain open.
 
 ## Stage 4 — uncertainty: partial, no promotion
 

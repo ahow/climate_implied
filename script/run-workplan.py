@@ -27,7 +27,7 @@ def ts(*names):
 # Do not delete a gap merely because a command exits successfully.
 STAGES = [
     ("Baseline and safety", [ts("release-safety", "read-safety"), ["npm", "run", "check"]],
-     "Production recovery rehearsal, single scheduler ownership and deliberate failing-commit CI gate test; validated-branch promotion is implemented."),
+     "Production recovery rehearsal and single scheduler ownership; actual CI failure-injection gate test passed, not a broken-source commit test."),
     ("Output register", [ts("public-valuation-contract", "ui-claims", "export-contract", "output-register")],
      "Complete inventory of all output consumers and exports."),
     ("Immutable inputs", [ts("snapshot-contract", "analysis-manifest", "request-overrides", "snapshot-request")],
