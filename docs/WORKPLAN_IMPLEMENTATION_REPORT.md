@@ -90,14 +90,39 @@ Resume with:
 1. Verify GitHub validation/promotion and Railway release identity.
 2. Complete S00-003/S00-007 fixed-input two-process baseline coverage.
 3. Complete S00-005/S00-010 single scheduler ownership verification.
-4. Exercise corrupt recovery-file rejection; finish full-schema recovery scope.
+4. Finish full-schema recovery scope; corrupt recovery-file rejection has passed.
 5. Continue complete overlay replay and the 22-driver evidence audit, followed
    by the original dependency-ordered climate and company research requirements.
 
 No agent or research job remains running in the background. The continuation
 callback is a handoff notification, not proof that a receiving agent has started.
 
+## Latest verification before continuation handoff
+
+- Deliberately altered company recovery file was rejected before import, with
+  expected child-process exit 1. The enclosing negative test passed (exit 0);
+  exact command and evidence log are in the ledger.
+- Subsequent source export `f17ba9f5c17dabbfce1c23f5dd9f186ad597acbd` was
+  observed at production build-info, with health HTTP 200.
+- Ledger audit: 300 original clauses retained, plus 14 binding amendments.
+  One clause verified in this reconciliation, eight partial, two production
+  archival clauses blocked, 289 not yet individually reconciled. This does not
+  mean the old implementations for those 289 clauses do not exist; their
+  requirement-level acceptance has not been established in this run.
+- The private callback destination is ignored by Git and absent from exported
+  source. Only checkpoint metadata is sent; no source data or credentials.
+
 ## Remaining work
 
 Every unverified requirement remains open. The ledger's restart entry identifies
 the next concrete action; it is not a claim that work continues while idle.
+
+## Continuation callback
+
+{
+  "checkpoint_id": "1fc69cdf-2073-4faa-a928-46f8f63c9a8d",
+  "ledger_hash": "fbb9d556ad297dca3411099f9b43852944d3d09bdc4f3e0e2348d56371d0c213",
+  "attempted_at": "2026-11-09T22:23:38.344173+00:00",
+  "outcome": "http-success",
+  "http_status": 202
+}

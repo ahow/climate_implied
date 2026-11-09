@@ -45,8 +45,7 @@ record(["S02-006", "S02-010"],
        "Actual development records exported in one read-only repeatable-read transaction, restored from files in a separate process into temporary tables, and exact hashes verified with zero public writes.",
        ["script/rehearse-analytical-recovery.ts:scan", "server/snapshots/recoveryContract.ts", "docs/Recovery_Rehearsal_Protocol.md"],
        ["rehearse-analytical-recovery", "script/*.test.ts"],
-       ["This is not production backup/recovery or a complete schema migration rehearsal.",
-        "Corrupt-file end-to-end rejection remains to be exercised."])
+       ["This is not production backup/recovery or a complete schema migration rehearsal."])
 for identifier in ("S02-006", "S02-010"):
     requirements[identifier]["inputs_versions_assumptions"] = ["Development capture generated-artifacts/recovery/20261109/manifest.json; existing schema supplies column types; no users or secrets captured"]
     requirements[identifier]["numerical_results"] = [
@@ -71,7 +70,7 @@ ledger["updated_at"] = datetime.now(timezone.utc).isoformat()
 ledger["restart"] = {
     "next_requirement": "S00-003",
     "unfinished_requirement_ids": [r["id"] for r in requirements.values() if r["status"] != "verified"],
-    "instruction": "Do not re-plan or repeat passed checks unless code changes invalidate them. Complete frozen baseline two-process capture for all required legacy paths, then S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation (most 300 clauses remain not-yet-reconciled). Recovery data already captured/restored exactly; add corrupt-file negative execution. Production archive depends on supported managed schema/guards; no direct DDL. Next independent substantive work: full overlay replay, 22-driver evidence, remaining calibration. Research work is NOT complete.",
+    "instruction": "Do not re-plan or repeat passed checks unless code changes invalidate them. Finish S00-003/S00-007 regional/company/walk-forward process baselines (global and six category cases already verified), then S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation (most 300 clauses remain not-yet-reconciled). Actual-data temporary restore and corrupt-file rejection passed; full production/schema recovery remains. Production archive depends on supported managed schema/guards; no direct DDL. Next independent substantive work: full overlay replay, 22-driver evidence, remaining calibration. Research work is NOT complete.",
     "background_tasks": [],
 }
 path.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")

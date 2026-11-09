@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "current_release": {
-    "exported_github_revision": "52c03861535cd45c8061288ba2c4b5b3f9d9435f",
-    "observed_production_revision": "52c03861535cd45c8061288ba2c4b5b3f9d9435f",
+    "exported_github_revision": "f17ba9f5c17dabbfce1c23f5dd9f186ad597acbd",
+    "observed_production_revision": "f17ba9f5c17dabbfce1c23f5dd9f186ad597acbd",
     "health_http": 200,
     "new_release_verified": true,
     "next_action": "Retain live implementation identity; export subsequent evidence/continuation tooling through the same CI gate."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-09T22:20:03.336883+00:00",
+  "updated_at": "2026-11-09T22:23:29.744935+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -1240,6 +1240,21 @@
               "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "-c",
+                "import pathlib,shutil,subprocess,os; root=pathlib.Path(\"generated-artifacts/recovery/20261109-corrupt\"); root.mkdir(exist_ok=False); source=pathlib.Path(\"generated-artifacts/recovery/20261109\"); shutil.copyfile(source/\"manifest.json\",root/\"manifest.json\"); shutil.copyfile(source/\"cv_companies.jsonl\",root/\"cv_companies.jsonl\"); f=(root/\"cv_companies.jsonl\").open(\"a\"); f.write(\"{}\\n\"); f.close(); result=subprocess.run([\"npx\",\"tsx\",\"script/rehearse-analytical-recovery.ts\",\"restore\",str(root)],env={**os.environ,\"NODE_ENV\":\"development\"},capture_output=True,text=True); assert result.returncode != 0; assert \"Recovery content mismatch: cv_companies\" in result.stderr; print(\"PASS: deliberately corrupted actual-data file rejected before import; expected nonzero exit:\",result.returncode)"
+              ],
+              "executed_at": "2026-11-09T22:20:26.624330+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.091,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222026624330Z.log",
+              "workspace_revision": "22043120d8a90e6c3b1549f420db1649f77c3dec",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -1278,8 +1293,7 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "This is not production backup/recovery or a complete schema migration rehearsal.",
-            "Corrupt-file end-to-end rejection remains to be exercised."
+            "This is not production backup/recovery or a complete schema migration rehearsal."
           ],
           "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
           "blockers": []
@@ -1433,6 +1447,21 @@
               "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "-c",
+                "import pathlib,shutil,subprocess,os; root=pathlib.Path(\"generated-artifacts/recovery/20261109-corrupt\"); root.mkdir(exist_ok=False); source=pathlib.Path(\"generated-artifacts/recovery/20261109\"); shutil.copyfile(source/\"manifest.json\",root/\"manifest.json\"); shutil.copyfile(source/\"cv_companies.jsonl\",root/\"cv_companies.jsonl\"); f=(root/\"cv_companies.jsonl\").open(\"a\"); f.write(\"{}\\n\"); f.close(); result=subprocess.run([\"npx\",\"tsx\",\"script/rehearse-analytical-recovery.ts\",\"restore\",str(root)],env={**os.environ,\"NODE_ENV\":\"development\"},capture_output=True,text=True); assert result.returncode != 0; assert \"Recovery content mismatch: cv_companies\" in result.stderr; print(\"PASS: deliberately corrupted actual-data file rejected before import; expected nonzero exit:\",result.returncode)"
+              ],
+              "executed_at": "2026-11-09T22:20:26.624330+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 2.091,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261109T222026624330Z.log",
+              "workspace_revision": "22043120d8a90e6c3b1549f420db1649f77c3dec",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -1471,8 +1500,7 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "This is not production backup/recovery or a complete schema migration rehearsal.",
-            "Corrupt-file end-to-end rejection remains to be exercised."
+            "This is not production backup/recovery or a complete schema migration rehearsal."
           ],
           "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
           "blockers": []
@@ -8078,6 +8106,21 @@
       "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-c",
+        "import pathlib,shutil,subprocess,os; root=pathlib.Path(\"generated-artifacts/recovery/20261109-corrupt\"); root.mkdir(exist_ok=False); source=pathlib.Path(\"generated-artifacts/recovery/20261109\"); shutil.copyfile(source/\"manifest.json\",root/\"manifest.json\"); shutil.copyfile(source/\"cv_companies.jsonl\",root/\"cv_companies.jsonl\"); f=(root/\"cv_companies.jsonl\").open(\"a\"); f.write(\"{}\\n\"); f.close(); result=subprocess.run([\"npx\",\"tsx\",\"script/rehearse-analytical-recovery.ts\",\"restore\",str(root)],env={**os.environ,\"NODE_ENV\":\"development\"},capture_output=True,text=True); assert result.returncode != 0; assert \"Recovery content mismatch: cv_companies\" in result.stderr; print(\"PASS: deliberately corrupted actual-data file rejected before import; expected nonzero exit:\",result.returncode)"
+      ],
+      "executed_at": "2026-11-09T22:20:26.624330+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.091,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261109T222026624330Z.log",
+      "workspace_revision": "22043120d8a90e6c3b1549f420db1649f77c3dec",
+      "worktree_dirty": false,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -8383,7 +8426,14 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Do not re-plan or repeat passed checks unless code changes invalidate them. Complete frozen baseline two-process capture for all required legacy paths, then S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation (most 300 clauses remain not-yet-reconciled). Recovery data already captured/restored exactly; add corrupt-file negative execution. Production archive depends on supported managed schema/guards; no direct DDL. Next independent substantive work: full overlay replay, 22-driver evidence, remaining calibration. Research work is NOT complete.",
+    "instruction": "Do not re-plan or repeat passed checks unless code changes invalidate them. Finish S00-003/S00-007 regional/company/walk-forward process baselines (global and six category cases already verified), then S00-005/S00-010 scheduler ownership. Continue clause-by-clause reconciliation (most 300 clauses remain not-yet-reconciled). Actual-data temporary restore and corrupt-file rejection passed; full production/schema recovery remains. Production archive depends on supported managed schema/guards; no direct DDL. Next independent substantive work: full overlay replay, 22-driver evidence, remaining calibration. Research work is NOT complete.",
     "background_tasks": []
+  },
+  "last_handoff": {
+    "checkpoint_id": "1fc69cdf-2073-4faa-a928-46f8f63c9a8d",
+    "ledger_hash": "fbb9d556ad297dca3411099f9b43852944d3d09bdc4f3e0e2348d56371d0c213",
+    "attempted_at": "2026-11-09T22:23:38.344173+00:00",
+    "outcome": "http-success",
+    "http_status": 202
   }
 }
