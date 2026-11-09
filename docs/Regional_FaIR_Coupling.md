@@ -1,5 +1,9 @@
 # Regional native-gas coupling — 9 November 2026
 
+**Latest execution:** [Minor-gas history sensitivities](Minor_Gas_History_Sensitivity.md)
+now demonstrate end-to-end coupling with three explicit assumed-history controls,
+841 members each. This is not a calibrated or accepted dashboard forecast.
+
 **Update:** [Additional species implementation](Additional_FaIR_Species.md)
 now supplies final-AR6 physical parameters and passes real FaIR pulse controls
 for the three gases. Explicit historical emissions remain required. The

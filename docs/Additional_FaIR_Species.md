@@ -1,5 +1,10 @@
 # Additional native species: sourced parameters and FaIR controls
 
+**Follow-on:** [EDGAR history sensitivity](Minor_Gas_History_Sensitivity.md)
+recovered 1970–2024 histories, identified specific missing Mexican cells and
+completed three regional-control FaIR runs under explicit unapproved assumptions.
+The original missing-history failure below remains the record of that earlier run.
+
 ## Published basis
 
 The final IPCC AR6 WGI Chapter 7 Supplementary Material, Table 7.SM.7,

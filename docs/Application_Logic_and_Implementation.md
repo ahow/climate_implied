@@ -1,5 +1,9 @@
 # Current output controls
 
+The [minor-gas history audit and sensitivity](Minor_Gas_History_Sensitivity.md)
+documents three actual regional/FaIR control runs and the precise assumptions
+that keep their temperature results out of the production headline.
+
 The [additional FaIR species implementation](Additional_FaIR_Species.md)
 uses final-AR6 lifetimes/radiative efficiencies with explicit historical-input
 requirements. It does not silently infill missing history or promote a forecast.

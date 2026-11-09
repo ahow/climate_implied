@@ -1,6 +1,9 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [minor-gas history sensitivity report](Minor_Gas_History_Sensitivity.md)
+records actual source-cell gaps and three completed 841-member regional/FaIR
+controls. Conditional coupling works; source assumptions and calibration remain open.
 The [additional FaIR species report](Additional_FaIR_Species.md) resolves physical
 parameter/model support for HFC-41, HFC-134 and HFC-143. Real pulse controls
 passed; missing historical emissions still prevent complete regional coupling.
