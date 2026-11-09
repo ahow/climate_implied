@@ -1,5 +1,24 @@
 # Workplan implementation report
 
+## Release verification for this run (2026-11-09)
+
+Workspace commit `daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62` was exported to
+GitHub main `1aba6d08e9df2c771722a8d1b301b59477164d93`. GitHub "Source
+validation" completed successfully and advanced `production-validated` to the
+same SHA. Railway deployment `620cf31a-d6a3-4a85-827a-11738c0b41f2` reached
+SUCCESS for commit 1aba6d0. Live checks: home page HTTP 200; current regional
+endpoint HTTP 200; a historical regional request naming unavailable archives
+returned HTTP 422 rather than falling back to live inputs. Production has no
+supported archive tables provisioned, so production historical replay remains
+blocked by managed-schema provisioning, as recorded for S02.
+Pre-release: 197 TypeScript and 51 Python tests passed, zero failures/skips;
+type check and build exit 0. An earlier type-check failure in the same run
+(ES5 Map iteration) was fixed and remains recorded.
+
+Ledger status after this run (300 clauses): 3 verified, 11 partial, 2 blocked
+on production provisioning, 284 not yet reconciled. The workplan is NOT
+complete and no scientific efficacy study has been accepted.
+
 ## Continuation: actual company-history expansion
 
 Eight additional cases were collected under a protocol committed before provider

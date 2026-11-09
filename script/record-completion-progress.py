@@ -91,6 +91,7 @@ record(["S11-002", "S11-003", "S11-031"],
        ["No paired historical Gordon/reverse-DCF predictions or rank correlations computed.", "Ten common eligible issuers over six consecutive valuation origins not established.", "Identity approvals, publication vintages and cash-flow classification review incomplete."])
 for identifier in ("S11-002", "S11-003", "S11-031"):
     requirements[identifier]["scientific_acceptance"] = "not-accepted-study-incomplete"
+ledger["current_release"] = {"workspace_commit": "daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62", "github_main": "1aba6d08e9df2c771722a8d1b301b59477164d93", "ci": "Source validation success; production-validated advanced", "railway_deployment": "620cf31a-d6a3-4a85-827a-11738c0b41f2", "railway_status": "SUCCESS", "verified_at": "2026-11-09"}
 ledger["restart"] = {
     "next_requirement": "S00-005",
     "unfinished_requirement_ids": [r["id"] for r in requirements.values() if r["status"] != "verified"],

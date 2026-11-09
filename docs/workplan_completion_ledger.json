@@ -1,14 +1,15 @@
 {
   "schema_version": 1,
   "current_release": {
-    "exported_github_revision": "72a6ae6e66a5c0c391b6436fcecd8e474baeee54",
-    "observed_production_revision": "72a6ae6e66a5c0c391b6436fcecd8e474baeee54",
-    "health_http": 200,
-    "new_release_verified": true,
-    "next_action": "Retain live implementation identity; export subsequent evidence/continuation tooling through the same CI gate."
+    "workspace_commit": "daa136d893bb6f8f4153ec19de8fa9e7f9e6ef62",
+    "github_main": "1aba6d08e9df2c771722a8d1b301b59477164d93",
+    "ci": "Source validation success; production-validated advanced",
+    "railway_deployment": "620cf31a-d6a3-4a85-827a-11738c0b41f2",
+    "railway_status": "SUCCESS",
+    "verified_at": "2026-11-09"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-09T23:07:13.284659+00:00",
+  "updated_at": "2026-11-09T23:10:55.210526+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
