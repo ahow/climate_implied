@@ -503,6 +503,7 @@ function AnalysisSection({
               <p className="text-xs text-muted-foreground mt-1">{peChart.highLabel} vs {peChart.lowLabel} over time</p>
             </div>
             <DownloadDataButton
+              kind="valuation"
               filename={`${testIdPrefix}-pe-ratio-comparison`}
               sheetName="P-E Ratio"
               rows={peDownloadRows}

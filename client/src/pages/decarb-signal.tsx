@@ -464,6 +464,7 @@ export default function DecarbSignal() {
             {isLoading && <Badge variant="secondary">Loading...</Badge>}
             <DownloadDataButton
               filename="group-earnings-yield-gaps"
+              kind="valuation"
               sheetName="Valuation gaps"
               rows={comparisonDownloadRows}
               testId="button-download-decarb-comparison"
@@ -630,6 +631,7 @@ export default function DecarbSignal() {
                   <h3 className="text-xs font-medium text-muted-foreground">Cumulative Return (%)</h3>
                   <DownloadDataButton
                     filename="signal-backtest-cumulative-return"
+                    kind="backtest"
                     sheetName="Cumulative Return"
                     rows={cumulativeReturnDownloadRows}
                     testId="button-download-backtest-cumulative"
@@ -679,6 +681,7 @@ export default function DecarbSignal() {
                   <h3 className="text-xs font-medium text-muted-foreground">Monthly Active Return & Expanding Tracking Error (%)</h3>
                   <DownloadDataButton
                     filename="signal-backtest-active-return"
+                    kind="backtest"
                     sheetName="Active Return & TE"
                     rows={activeReturnDownloadRows}
                     testId="button-download-backtest-active"

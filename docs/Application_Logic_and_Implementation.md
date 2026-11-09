@@ -1,3 +1,10 @@
+# Current output controls
+
+See [Output controls and full-stage regression](Output_Controls_Execution.md)
+and the generated [system output register](System_Output_Register.md).
+All spreadsheet downloads include evidence/interpretation notes; this does
+not turn view exports into immutable archived analyses.
+
 # Current amended workplan implementation
 
 Latest numerical and operational evidence:

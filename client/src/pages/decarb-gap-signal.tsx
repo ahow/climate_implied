@@ -538,6 +538,7 @@ export default function DecarbGapSignal() {
                   </p>
                 </div>
                 <DownloadDataButton
+                  kind="valuation"
                   filename="group-earnings-yield-gap-over-time"
                   sheetName="Group valuation gap"
                   rows={timeseriesDownloadRows}
@@ -734,6 +735,7 @@ export default function DecarbGapSignal() {
                     <h3 className="text-xs font-medium text-muted-foreground">Cumulative Return (%)</h3>
                     <DownloadDataButton
                       filename="backtest-cumulative-return"
+                      kind="backtest"
                       sheetName="Cumulative Return"
                       rows={cumulativeReturnDownloadRows}
                       testId="button-download-cumulative-return"
@@ -767,6 +769,7 @@ export default function DecarbGapSignal() {
                     <h3 className="text-xs font-medium text-muted-foreground">Monthly Active Return & Expanding Tracking Error (%)</h3>
                     <DownloadDataButton
                       filename="backtest-active-return-tracking-error"
+                      kind="backtest"
                       sheetName="Active Return & TE"
                       rows={activeReturnDownloadRows}
                       testId="button-download-active-return"

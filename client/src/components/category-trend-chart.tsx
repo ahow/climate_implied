@@ -153,6 +153,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
           <p className="text-xs text-muted-foreground mt-0.5">{config.subtitle}</p>
         </div>
         <DownloadDataButton
+          kind="legacy"
           filename={`category-trends-${metricView}`}
           sheetName="Category Trends"
           rows={downloadRows}

@@ -121,6 +121,7 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
             ))}
           </div>
           <DownloadDataButton
+            kind="legacy"
             filename="indicator-sensitivity"
             sheetName="Sensitivity"
             rows={downloadRows}

@@ -1,7 +1,8 @@
 /**
  * Stage 1 frontend output register. This is claim containment, not scientific
  * promotion or an inventory of backend/API/export consumers outside client/.
- * DownloadDataButton exports only the rows explicitly supplied by each consumer.
+ * DownloadDataButton exports supplied rows plus a mandatory interpretation sheet.
+ * See docs/System_Output_Register.md for the source-level API/export census.
  */
 export const uiClaimRegister = [
   {

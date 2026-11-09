@@ -56,6 +56,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
             </div>
           </div>
           <DownloadDataButton
+            kind="legacy"
             filename="global-emissions-trajectory"
             sheetName="Emissions Trajectory"
             rows={downloadRows}

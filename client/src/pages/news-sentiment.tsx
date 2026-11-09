@@ -290,6 +290,7 @@ export default function NewsSentiment() {
             <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
               <h3 className="text-sm font-semibold">Weekly News Volume</h3>
               <DownloadDataButton
+                kind="news"
                 filename="weekly-news-volume"
                 sheetName="News Volume"
                 rows={volumeRows}
@@ -339,6 +340,7 @@ export default function NewsSentiment() {
                 <h3 className="text-sm font-semibold">Monthly Sentiment Trend</h3>
                 <DownloadDataButton
                   filename="monthly-sentiment-trend"
+                  kind="news"
                   sheetName="Sentiment Trend"
                   rows={sentimentTrendRows}
                   testId="button-download-sentiment-trend"
@@ -387,6 +389,7 @@ export default function NewsSentiment() {
                 <h3 className="text-sm font-semibold">Monthly Sentiment Breakdown</h3>
                 <DownloadDataButton
                   filename="monthly-sentiment-breakdown"
+                  kind="news"
                   sheetName="Sentiment Breakdown"
                   rows={sentimentBreakdownRows}
                   testId="button-download-sentiment-breakdown"
@@ -422,6 +425,7 @@ export default function NewsSentiment() {
                 <h3 className="text-sm font-semibold">Coverage by Topic</h3>
                 <DownloadDataButton
                   filename="coverage-by-topic"
+                  kind="news"
                   sheetName="Topic Coverage"
                   rows={topicRows}
                   testId="button-download-topic"

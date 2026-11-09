@@ -1,6 +1,10 @@
 # Remaining workplan execution — 8 November 2026
 
 This is an execution record, **not an all-stage completion statement**.
+The [output-controls execution report](Output_Controls_Execution.md) records
+mandatory interpretation sheets on all 20 downloads, a tested source-level
+API/consumer/export census, and a passing run of all 18 existing check groups.
+Field-level semantic acceptance and the unfinished analytical stages remain open.
 The [electricity-demand calibration report](Electricity_Demand_Calibration_Results.md)
 adds five real-data holdout evaluations and a 225-observation comparison of
 OWID's retired and replacement electricity datasets. Two demand candidates

@@ -61,6 +61,7 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
             <span>P90: {p90.toFixed(1)}&deg;C</span>
           </div>
           <DownloadDataButton
+            kind="legacy"
             filename="temperature-distribution"
             sheetName="Temp Distribution"
             rows={downloadRows}

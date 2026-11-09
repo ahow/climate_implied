@@ -379,6 +379,7 @@ function IndicatorDetailDialog({
             <div className="flex items-center justify-between gap-2 flex-wrap">
               <h3 className="text-sm font-semibold">Time series</h3>
               <DownloadDataButton
+                kind="indicators"
                 filename={`indicator-time-series-${def?.key ?? "series"}`}
                 sheetName="Time Series"
                 rows={downloadRows}

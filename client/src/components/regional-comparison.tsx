@@ -72,6 +72,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           </div>
         </div>
         <DownloadDataButton
+          kind="legacy"
           filename="legacy-global-intensity-counterfactual"
           sheetName="Global Counterfactual"
           rows={downloadRows}

@@ -70,6 +70,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
           </p>
         </div>
         <DownloadDataButton
+          kind="legacy"
           filename="category-scenario-analysis"
           sheetName="Category Scenarios"
           rows={downloadRows}

@@ -228,6 +228,7 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
           Latest values with {firstYear}-{lastObservedYear} history{hasNowcast ? `, est. ${latestYear}` : ""}
         </p>
         <DownloadDataButton
+          kind="indicators"
           filename="climate-indicators"
           sheetName="Indicators"
           rows={downloadRows}

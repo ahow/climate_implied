@@ -137,6 +137,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
           </p>
         </div>
         <DownloadDataButton
+          kind="legacy"
           filename={`historical-trend-${metricView}`}
           sheetName="Historical Trend"
           rows={downloadRows}
