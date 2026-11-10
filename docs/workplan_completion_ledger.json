@@ -11,7 +11,7 @@
     "later_local_only": "Expanded9-path verifier and final ledger reconciliation pending source export"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T01:10:59.382383+00:00",
+  "updated_at": "2026-11-10T01:11:22.300050+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -53,7 +53,23 @@
           "files_functions_changed": [],
           "behaviour_delivered_this_run": "Verified GitHub02afe6457d6e20b96e281b43fa76e0fcd462ce26, CI42732701451 success, Railway483ce3e1-33b5-4873-a14a-e3cb5d5fd124 SUCCESS and live build-info matching;80a9315 is not the live revision.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "-c",
+                "import json,urllib.request;u='https://dashboard-production-4d39.up.railway.app/api/build-info';r=urllib.request.urlopen(u,timeout=30);x=json.load(r);print(json.dumps(x));assert x['sourceCommit']=='02afe6457d6e20b96e281b43fa76e0fcd462ce26'"
+              ],
+              "executed_at": "2026-11-10T01:11:21.482890+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.68,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T011121482890Z.log",
+              "workspace_revision": "2f9e7a52fdb63640bf9117c5bf79fb55abd1daf4",
+              "worktree_dirty": false,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
           "scientific_acceptance": "release-identity-only",
           "git_commit": null,
@@ -12933,6 +12949,21 @@
       "log": "generated-artifacts/workplan-completion/20261110T010833914211Z.log",
       "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
       "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-c",
+        "import json,urllib.request;u='https://dashboard-production-4d39.up.railway.app/api/build-info';r=urllib.request.urlopen(u,timeout=30);x=json.load(r);print(json.dumps(x));assert x['sourceCommit']=='02afe6457d6e20b96e281b43fa76e0fcd462ce26'"
+      ],
+      "executed_at": "2026-11-10T01:11:21.482890+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.68,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T011121482890Z.log",
+      "workspace_revision": "2f9e7a52fdb63640bf9117c5bf79fb55abd1daf4",
+      "worktree_dirty": false,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
