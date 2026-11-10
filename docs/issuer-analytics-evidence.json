@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "issuer-analytics-evidence-proposal-1",
+  "purpose": "Bounded parent-review proposal, not acceptance, identity approval, production data, or a central-ledger update",
+  "latestQualification": {
+    "qualifiedOriginalNominalIssuerCases": 0,
+    "qualifiedOriginalNominalMarketPairs": 0,
+    "requiredOriginalNominalTerminalRange": [0.025, 0.04],
+    "v1FslrPairs": "Two separately retained zero-growth, zero-new-credit, maintenance cash benchmarks ONLY; NOT qualified original 2.5–4% terminal/full policy/activity-linked case completion",
+    "fullClimateCaseCannotBeInferredFromRevenueBucket": true
+  },
+  "primaryReconciliationV2": {
+    "version": "issuer-primary-cash-reconciliation-2",
+    "filesAndFunctions": {
+      "server/calculation/issuerCashflowReconciliation.ts": [
+        "extractIssuerCashflowReconciliation: exact CIK/date/USD source claims, full historical income-to-CFO, detailed CFI/CFF, cash movement/balances, NCI income allocation and interest/restricted-cash classification",
+        "calculateIssuerFundingConstraints: source-budget funding constraints, no invented project yield or positive terminal",
+        "reviewIssuerActivityPolicy: separate operating geography, physical activity, policy eligibility, accrual and monetization channels"
+      ],
+      "script/assemble-issuer-cashflow-reconciliation.ts": [
+        "New immutable source-input/code freeze before v2 calculations; independently continue issuers; preserve both earlier experiments"
+      ],
+      "script/issuer-cashflow-reconciliation.test.ts": [
+        "Four additional engineering checks: source-budget deficit without fabricated recovery, no CCS tariff inferred, conditional cash/debt treatment, missing policy locator refusal"
+      ],
+      "script/validate-issuer-cashflow-reconciliation-private.ts": [
+        "Actual retained primary replay, zero residuals, exact source claim counts, tampered-CFO refusal and original qualification withheld"
+      ]
+    },
+    "frozenAt": "2026-11-10T14:06:29.075Z",
+    "calculatedAt": "2026-11-10T14:06:29.300Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/issuer-cashflow-reconciliation-v2/2026-11-10T14-06-29-075Z/report.json",
+    "reportSha256": "37006bc1534ada980f47c3b9484e86611447020e811a8462a303926278100fe8",
+    "freezePath": "generated-artifacts/company-operating-corpus/issuer-cashflow-reconciliation-v2/2026-11-10T14-06-29-075Z/frozen-before-calculation.json",
+    "freezeSha256": "762b5ccae9c10646bd430c1d009673b3b0901477ac2e8fba70529fc87ca48a65",
+    "counts": {
+      "primaryIssuerReports": 3,
+      "exactMonetarySourceFacts": 166,
+      "sourceFactsByIssuer": { "FSLR": 50, "NEE": 70, "XOM": 46 },
+      "completeHistoricalIncomeToCfoReconciliations": 3,
+      "completeDetailedCfiCffReconciliations": 3,
+      "cashChangeAndOpeningClosingBalanceReconciliations": 3,
+      "nciIncomeAllocationReconciliations": 1,
+      "restrictedCashClassificationReconciliations": 1,
+      "cashInterestClassificationReconciliations": 1,
+      "primaryApprovedCapitalBudgetYears": 5,
+      "operatingGeographyActivityPolicyReviews": 3,
+      "residualsAboveOneCent": 0,
+      "newQualifiedOriginalTerminalCases": 0,
+      "newQualifiedOriginalMarketPairs": 0,
+      "newNetworkRequests": 0
+    },
+    "neeActualAccountingProgress": {
+      "sourceLocators": [
+        "FY2024 consolidated income/cash flow/equity statements",
+        "Note 1 Noncontrolling Interests, Redeemable Noncontrolling Interests, Restricted Cash",
+        "Note 15 approved FPL/NEER capital commitments FY2025-2029"
+      ],
+      "closedLinks": [
+        "All CFO adjustments, nuclear amortization versus fuel purchases, equity-method accrual versus distributions, special-use fund flows, debt, related-party sweeps, DMI flows and net other financing reconcile exactly",
+        "Consolidated income allocation reconciles $5.698bn total income less negative $1.248bn NCI allocation to $6.946bn common income; HLBV income is NOT cash",
+        "$10.359bn NCI book balance includes $9.062bn DMI and $1.297bn other NCI; $401m redeemable NCI remains separate",
+        "$1.329bn HLBV DMI accounting income is distinct from $740m cash payments; no automatic common-FCFE addback",
+        "$159m restricted cash less $244m derivative margin receipts explains negative $85m net restricted cash and $1.487bn balance-sheet versus $1.402bn cash-flow total",
+        "Approved budgets are primary future disclosures, not observed future cash; NEER nuclear budgets already include fuel"
+      ],
+      "calculatedSourceBudgetConstraint": {
+        "definition": "Conditional normalized FY2024 operating cash run rate BEFORE cash tax/new-project returns and AFTER broad non-common cash reserve, compared to gross approved budgets plus corporate/fund/other spending; NOT certified future cash shortfalls",
+        "annualBeforeTaxCashRunRateBeforeNewInvestmentUsd": 8457000000,
+        "budgetLessRunRateUsd": {
+          "2025": 11330000000,
+          "2026": 9865000000,
+          "2027": 5605000000,
+          "2028": 3500000000,
+          "2029": 3640000000
+        }
+      },
+      "preciseRemainingSeries": [
+        "Gross other-NCI distributions and contractual cash waterfall/flip/call dates/prices: the $597m financing row is NET and not certified NCI cash. Assigning it entirely to future non-common cash is a declared reserve sensitivity, not an observed allocation.",
+        "Cash conversion of approved capex including AFUDC and construction payables, project commissioning and matched annual operating revenue/cost/tax cash; no source-matched post-2029 schedule is disclosed in Note 15.",
+        "Issuer-wide maintenance/growth and nuclear-fuel funding at original 2.5–4% terminal growth. No FPL allowed-ROE substitution or arbitrary project-return/asset-life coefficient was used to manufacture recovery."
+      ]
+    },
+    "xomActualAccountingProgress": {
+      "sourceLocators": [
+        "FY2024 consolidated income and cash flow statements",
+        "MD&A Cash Capital Expenditures reconciliation",
+        "Note 21 Denbury acquisition valuation",
+        "US Gulf Coast/LCS strategy disclosures"
+      ],
+      "closedLinks": [
+        "Complete net-income-to-CFO cash reconciliation, including deferred tax, pension/long-term obligations, equity-method cash difference, asset gains and separately identified receivable/other-WC movements",
+        "Separate $339.247bn operating sales, $6.194bn equity accrual income and $4.144bn other income; replace affiliate accrual ONCE with $6.385bn cash dividends",
+        "Net cash interest $624m plus capitalized interest $1.276bn equals total $1.900bn; capitalized interest stays in cash PP&E and is not charged twice",
+        "Full cash PP&E, additional investments/advances, advance collections, asset-sale/acquisition cash, short-maturity debt, NCI payments/funding, contingent consideration, dividends and buybacks reconcile to cash change",
+        "Common distributions are not operating costs; $658m NCI dividends and $791m net NCI changes are distinct from common cash, and $32m NCI project inflows are not free common cash"
+      ],
+      "conditionalNormalizedCommonCashBeforeNewGrowthUsd": 24290000000,
+      "normalizedCashMeaning": "Source-level sensitivity from operating-only EBIT, affiliate cash once, actual cash tax/net interest, repeated full PP&E/investment/contingent and NCI cash charges; NOT reported FCFE, a forecast, a CCS cash estimate or original-model completion",
+      "preciseRemainingSeries": [
+        "US Gulf Coast 6.7 Mtpa contracted transport/storage capacity and more than 900 pipeline miles do not disclose annual realized throughput, per-tonne tariff, operating cost or common ownership allocation.",
+        "Note 21 explicitly names pipeline tariff/throughput as Denbury acquisition valuation inputs but publishes no tariff value. No CCS price was fabricated.",
+        "Issuer-wide commodity/production geography, decline replacement and growth reinvestment/tax schedule supporting sustained 2.5–4% nominal terminal growth remains needed.",
+        "Predecessor CIK/class remains separate from successor CIK/ISIN review; source cash reconciliation does not approve succession or security identity."
+      ]
+    },
+    "fslrWholeEquityAudit": {
+      "sourceLocators": [
+        "FY2024 income/cash flow/balance sheet",
+        "Note 9 Government Grants and Visa transfer",
+        "Note 21 operating geography",
+        "Item 7 module volume, backlog and capital spending"
+      ],
+      "benchmarkLimitsFound": [
+        "V1 removed cost-of-sales grant benefit but did not separately strip the $4.186m R&D and $0.484m startup grant benefits. V2 identifies all three; old inputs/results are NOT rewritten.",
+        "The reported $7.613m contingent-consideration/other-financing outflow is absent from v1 recurring cash under its no-future-acquisition assumption. Its future treatment needs an explicit choice/classification, not a clean no-omission certification.",
+        "Recurring pre-credit margin also requires termination-payment normalization and transfer-loss treatment: filing discloses a $115m annual INCREASE in termination revenue and approximately $39m transfer loss, not a source-certified perpetual margin.",
+        "Current $403.759m and noncurrent $157.570m grant receivables and Visa remaining $202.6m expected Q1 proceeds need classified, dated cash collection or explicit impairment assumptions. Do not double add them or treat expected receipt as observed after the valuation date.",
+        "Keeping existing primary trade receivables as operating capital versus assuming an unobserved 30-day opening balance is a substantive stub/working-capital assumption.",
+        "V1 fixed 2025 stub interpolates run-rate cash and reserves noncash PP&E funding once; it is not an observed interim schedule or certified closing liability payment."
+      ],
+      "cashDebtTerminalConventions": {
+        "reportedUnrestrictedCashPlusCurrentSecuritiesUsd": 1792959000,
+        "reserveAnchor": "Customer advances/deferred revenue exceed this liquidity; reserving all liquidity gives zero excess release only CONDITIONALLY, not observed fair-value excess cash",
+        "observedExcessCashUsd": null,
+        "reportedCurrentAndLongTermDebtUsd": 609778000,
+        "secondNetDebtSubtractionUsd": 0,
+        "futureInterestIncomeAssumedByBenchmark": 0,
+        "futureDebtRolloverApprovedOrObserved": false,
+        "cashCompensationTreatment": "No SBC addback; do not deduct common share withholding again as NCI",
+        "terminalMaintenance": "D&A plus identified other investing is a benchmark, not evidence of cash funding for positive nominal growth"
+      },
+      "calculatedFundingConstraint": {
+        "description": "Stripped-grant FY2024 cash run rate with disclosed FY2025 $1.3–1.5bn capex range and other investment/financing charges; BEFORE cash tax and WITHOUT assuming future project returns or future credit receipts",
+        "preTaxCommonCashRangeUsd": [-792424000, -592424000],
+        "notPostExpiryForecast": true
+      },
+      "policyActivityGeography": [
+        "US supply-side 45X is approximately $0.17 per eligible US-manufactured AND third-party-sold watt as disclosed, not all global module revenue or 93% customer-US invoicing.",
+        "Global production/sales, nameplate capacity and 68.5 GW/$20.5bn backlog through 2030 are distinct observations/disclosures; they do not give annual eligible US production or post-backlog prices/costs.",
+        "Visa transfer discount/receipt timing is separate from accrual credit recognition; India PLI and Tamil Nadu six-installment asset subsidy are separate conditional policies.",
+        "FY2024 disclosed law/eligibility and its phase-down are not an updated legal approval after subsequent amendments."
+      ],
+      "qualifiedOriginalTerminalAssessment": "WITHHELD: no source-defensible post-credit 2.5–4% nominal growth, location-specific operating margin and reinvestment/funding schedule; all-solar revenue bucket alone is not a policy/activity model"
+    },
+    "verification": {
+      "assemblyCommand": "npx tsx script/assemble-issuer-cashflow-reconciliation.ts",
+      "assemblyLogSha256": "7b40bf588bcace39f47b4d8166640a890e5d82dd0f68f0c2b57265bad64088ce",
+      "focusedTestCommand": "npx tsx --test script/issuer-cashflow-reconciliation.test.ts script/issuer-cashflow-case.test.ts script/company-case-evidence.test.ts script/company-full-cashflow-case.test.ts script/company-full-cashflow-stub.test.ts script/pinned-company-source.test.ts",
+      "testsPassed": 30,
+      "testsFailed": 0,
+      "testLogSha256": "6713c063c775d53677672df619ebe07ae06a806fba31eb10a645efdfa58170ec",
+      "privateValidationCommand": "npx tsx script/validate-issuer-cashflow-reconciliation-private.ts",
+      "privateValidationExitCode": 0,
+      "privateValidationLogSha256": "149275eb294440d9082b9d8b4a8b27cfd555166319549655e605f1d5baba9aa1",
+      "strictTypecheckCommand": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerCashflowReconciliation.ts script/assemble-issuer-cashflow-reconciliation.ts script/validate-issuer-cashflow-reconciliation-private.ts script/issuer-cashflow-reconciliation.test.ts",
+      "strictTypecheckExitCode": 0,
+      "strictSourceDownlevelCommand": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerCashflowReconciliation.ts",
+      "strictSourceDownlevelExitCode": 0,
+      "successfulEmptyTypecheckLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "preserved": {
+      "originalFslr10Cases50RowsAndPinnedCode": true,
+      "newerV1ZeroGrowthBenchmarksFreezeAndResultsUnchanged": true,
+      "neitherPriorExperimentReexecuted": true,
+      "newOriginalNominalOrZeroGrowthMarketReruns": 0,
+      "privateSourcePayloadsRedistributed": false
+    }
+  },
+  "implementation": {
+    "filesAndFunctions": {
+      "server/calculation/issuerCashflowCase.ts": [
+        "authenticatePrimaryIssuerCashflow",
+        "buildIssuerCashflowScenario"
+      ],
+      "server/calculation/companyFullCashflowCase.ts": [
+        "calculateCompanyFullCashflowCase: optional ten operating continuation years plus explicit terminal operating year; sustainable-field and cash reconciliation",
+        "valueCompanyFullCashflowCase: market-free dated forward PV, shared unchanged cash arithmetic with reverse",
+        "pairCompanyFullCashflowCase: explicit operating-path reverse with fixed stub and identical USD/FCFE/horizon/ACT365.25"
+      ],
+      "server/calculation/companyCaseEvidence.ts": [
+        "assessSourcedCompanyCase: value-bound continuation fields and explicit revised-history cutoff",
+        "pairSourcedCompanyCase: unchanged dependency gate delegates to extended engine"
+      ],
+      "script/assemble-issuer-cashflow-cases.ts": [
+        "assemble: independently review issuers, freeze inputs before outcomes, execute six separate new scenarios",
+        "buildContract: bind every numerical annual/continuation field, stub, terminal topic, primary financial basis, quote and exact primary shares"
+      ],
+      "script/issuer-cashflow-case.test.ts": [
+        "Five engineering tests: revised history, independently calculated dated PV/reverse, once-only collections stress, terminal tampering, primary CIK/class/context/USD checks"
+      ],
+      "script/validate-issuer-cashflow-private.ts": [
+        "Focused actual retained-source and six-case validation, including three archived pinned-code byte assertions"
+      ]
+    },
+    "sharedRoutesLedgersSemanticsCompanyProjectionEdited": false,
+    "legacyAnnualScheduleCompatibility": "Existing annual-only specifications retain their results; no implicit missing-stub zero and no legacy experiment rerun",
+    "newExperimentVersion": "issuer-fy2024-maintenance-1",
+    "privateOutputRoot": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1",
+    "privateOutputsGitIgnored": true
+  },
+  "primaryEvidence": {
+    "selectedFinancialBasis": "FY2024 unchanged for FSLR, NEE and XOM predecessor",
+    "authenticationMethod": "Retained direct SEC accession HTML replaces the mirror as the new experiment source; issuer CIK, FY2024 duration, ISO4217 USD units, selected CFO/capex/debt bridge, registered common class/exchange, exact cover shares and effective date checked. Different-format HTML does not establish byte identity of the old PDF mirror.",
+    "sources": [
+      {
+        "symbol": "FSLR",
+        "accession": "0001274494-25-000010",
+        "primaryUrl": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+        "capturedAt": "2026-11-10T13:35:10.345Z",
+        "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+        "httpStatus": 200
+      },
+      {
+        "symbol": "NEE",
+        "accession": "0000753308-25-000011",
+        "primaryUrl": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000011/nee-20241231.htm",
+        "capturedAt": "2026-11-10T13:35:10.615Z",
+        "sha256": "2a4b8e20c5fe08227924b6af664413bb19db948ff4a25f3171fd84797fa74a83",
+        "httpStatus": 200
+      },
+      {
+        "symbol": "XOM",
+        "accession": "0000034088-25-000010",
+        "primaryUrl": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xom-20241231.htm",
+        "capturedAt": "2026-11-10T13:35:11.056Z",
+        "sha256": "01d1d6f0831e7d4e85727d24cc3b8195c97cff2cd645effed40b58663e79ea41",
+        "httpStatus": 200
+      }
+    ],
+    "currencySecurityBasis": "Primary SEC cover binds registered common class, ticker and exchange; common-equity market-value disclosure uses ISO4217:USD. Its non-affiliate float amount is NOT used as whole equity or shares. Existing FSLR/NEE profile exact CIK, ticker, non-ADR and USD corroborate denomination. No par-value inference or unit conversion.",
+    "exactDatedPricesReused": 3,
+    "newFmpRequests": 0,
+    "sameDatePrimaryShareMatches": 3,
+    "shareSource": "Exact issuer cover outstanding common shares, not weighted-average EPS shares, rounded balance-sheet shares, non-affiliate float or marketCap/price",
+    "boundedNewPublicRequests": {
+      "total": 8,
+      "secAvailabilityProbes": 3,
+      "secPrimaryRetainedCaptures": 3,
+      "nasdaqInfoProbes": 2,
+      "nasdaqConclusion": "Responses omit explicit currency; not used as currency authority or new valuation inputs",
+      "captureCommandMaximumRequests": 3,
+      "captureRetries": 0,
+      "noFurtherRequestsDuringCalculations": true
+    },
+    "xomIdentity": "FY2024 and historical January 2025 quote/share target remain predecessor CIK 0000034088, common without par. Successor CIK 0002115436 and ISIN/class review remain distinct; no current successor profile or ticker-only join qualifies predecessor."
+  },
+  "experiment": {
+    "timing": "REVISED-HISTORY CONDITIONAL. Historical valuation dates are 2025-02-21 for FSLR and 2025-01-31 for NEE/XOM. All selected annual filings were published after those closes. Actual later freeze is disclosed; these are not historically available signals, current market valuations or prospective outcome studies.",
+    "prospectivePriorCloseRule": "Existing prospective conditional prior-close-before-freeze behavior remains valid and tested; not confused with these separately labelled revised-history cases",
+    "frozenAt": "2026-11-10T13:42:04.766Z",
+    "calculatedAt": "2026-11-10T13:42:05.041Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/2026-11-10T13-42-04-766Z/report.json",
+    "reportSha256": "b844765cf9355280455061ad749f7e34c57bbd2716a9f8e23d66a96db80c973c",
+    "freezePath": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/2026-11-10T13-42-04-766Z/frozen-before-outcomes.json",
+    "freezeSha256": "5ca17a644ff63f24d61e83b913e0de1e3ae590f4c414c2b2775a303e7cbcfbe3",
+    "freezeBeforeOutcomes": true,
+    "assumptions": [
+      "Two conditional maintenance/collection-stress cases per issuer, not issuer guidance or fitted forecasts",
+      "Flat nominal FY2024 activity, no identified manufacturing-credit accrual or cash in any future year; no tariffs or CCS prices",
+      "D&A plus identified other investing is a maintenance sensitivity benchmark, NOT independently demonstrated replacement-capital adequacy",
+      "20% positive-income cash-tax sensitivity, no refunds; no net new borrowing or repeated cash/debt balance adjustment",
+      "Explicit uniform run-rate remainder-2025 stub, FSLR disclosed noncash PP&E liability settled once by assumption; no observed interim cash invented",
+      "Once-only 15-day customer collection delay in first full annual year, subsequent steady stressed receivables; other WC changes held zero explicitly",
+      "Five full annual years 2026-2030, ten explicit continuation operating years 2031-2040, explicit terminal operating year 2041",
+      "10% nominal USD equity discount sensitivity and zero nominal terminal growth; all terminal operating fields and FCFE reconcile",
+      "Reverse adjusts the explicit annual FCFE path, including continuation and terminal-year cash, while holding the stub fixed; not constant FCFE CAGR, climate activity growth or a probability"
+    ],
+    "counts": {
+      "selectedIssuers": 3,
+      "distinctHistoricalQuoteDates": 2,
+      "newSeparatelyFrozenCases": 6,
+      "fiveYearRows": 30,
+      "continuationOperatingRows": 60,
+      "terminalOperatingRows": 6,
+      "explicitStubs": 6,
+      "actualConditionalSameBasisPairs": 2,
+      "distinctPairedIssuers": 1,
+      "blockedIssuerCases": 4,
+      "completeApprovedIssuerCases": 0
+    },
+    "calculatedOutcomesUsd": [
+      {
+        "case": "FSLR-maintenance-fy2024-v1",
+        "annualFcfe": 234490600,
+        "wholeEquityForward": 2175151797.89351,
+        "impliedPathAdjustment": 0.20050159400097278,
+        "relativeRepricingError": 1.9984014443252818e-15
+      },
+      {
+        "case": "FSLR-collection-stress-fy2024-v1",
+        "firstYearFcfe": 61629408.21917808,
+        "subsequentAnnualFcfe": 234490600,
+        "wholeEquityForward": 2030320707.6769338,
+        "impliedPathAdjustment": 0.20144114958702708,
+        "relativeRepricingError": 1.3322676295501878e-15
+      }
+    ],
+    "blockedButCalculated": [
+      {
+        "issuer": "NEE",
+        "cases": 2,
+        "baseAnnualFcfeBenchmarkUsd": 2654600000,
+        "firstStressYearFcfeBenchmarkUsd": 1637353424.6575336,
+        "wholeEquityAndReverse": "WITHHELD",
+        "narrowGap": "Issuer-wide differential-membership/remaining NCI cash allocation and NEER/nuclear/noncash-capex maintenance adequacy; not an FPL-only case"
+      },
+      {
+        "issuer": "XOM predecessor",
+        "cases": 2,
+        "baseAnnualFcfeBenchmarkUsd": 31150400000,
+        "firstStressYearFcfeBenchmarkUsd": 16783893150.684937,
+        "wholeEquityAndReverse": "WITHHELD",
+        "narrowGap": "CFO-grossed-up cash-margin benchmark is not complete accrual bridge; deferred tax, equity-company cash, WC, asset sales, contingent/NCI cash classification and reinvestment need reconciliation. No successor/ISIN auto-approval."
+      }
+    ]
+  },
+  "verification": {
+    "focusedTests": {
+      "command": "npx tsx --test script/issuer-cashflow-case.test.ts script/company-case-evidence.test.ts script/company-full-cashflow-case.test.ts script/company-full-cashflow-stub.test.ts script/pinned-company-source.test.ts",
+      "passed": 26,
+      "failed": 0,
+      "logSha256": "61afd06068026a8c7617e2c91f2a7904fc6da7793fb2514c42ba5870286d4974"
+    },
+    "sourceCaptureCommand": "npx tsx script/assemble-issuer-cashflow-cases.ts --capture-primary",
+    "assemblyCommand": "npx tsx script/assemble-issuer-cashflow-cases.ts",
+    "assemblyLogSha256": "12e37e499e596a09e047837bae2133986fbdd752dd1e3ffc0c48ae755b1b5320",
+    "privateValidationCommand": "npx tsx script/validate-issuer-cashflow-private.ts",
+    "privateValidationExitCode": 0,
+    "privateValidationLogSha256": "8a9e92f6108be3b6cef080c3b4d5ad10aac8cdaec325db94381ffd19fb073ea8",
+    "strictTypecheckCommand": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerCashflowCase.ts server/calculation/companyFullCashflowCase.ts server/calculation/companyCaseEvidence.ts script/assemble-issuer-cashflow-cases.ts script/validate-issuer-cashflow-private.ts script/issuer-cashflow-case.test.ts",
+    "strictTypecheckExitCode": 0,
+    "strictSourceDownlevelCommand": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerCashflowCase.ts server/calculation/companyFullCashflowCase.ts server/calculation/companyCaseEvidence.ts",
+    "strictSourceDownlevelExitCode": 0,
+    "emptySuccessfulTypecheckLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "appUiFullSuiteRun": false
+  },
+  "preserved": {
+    "distinctRetainedFslrCases": 10,
+    "distinctRetainedFslrAnnualRows": 50,
+    "distinctRetainedFslrRerun": false,
+    "distinctRetainedFslrReportSha256": "843b8b80d792f407059e633eb5a0d275316f6613d8926c1f0a60a7bbcde04016",
+    "distinctRetainedFslrFreezeSha256": "e26afe2e08595e08012a41ce8f36e0dc6a474bed56335570d1dcb4dea0de98cb",
+    "archivedPinnedSourceByteAssertions": 3,
+    "noCurrentCodeFallbackForOldExperiment": true,
+    "originalNominalEarningsModelUnchanged": true,
+    "originalIndustrialRequirementNotAutomaticallyReplaced": true,
+    "noBillingPurchaseBulkCollectorChangeProductionMutationDDL": true,
+    "noCommitDeployCallbackWorkflowOrCentralLedgerChange": true,
+    "rawProviderPrimaryPayloadsRemainPrivate": true,
+    "identityOwnerScienceApprovals": 0
+  },
+  "remainingAcceptanceLimits": [
+    "FSLR results are explicit conditional sensitivity calculations, not validated company forecasts: engineering maintenance sufficiency, cash-tax realizability and operating assumptions still need owner/scientific review.",
+    "NEE and XOM four scenarios have real operating/stub/terminal ledgers but no qualified whole-equity pair; source and claim gaps are not hidden behind successful price requests.",
+    "No current market valuation, historical point-in-time prediction, prospective study outcome, original-model calendar-stub completion or approved three-issuer completion asserted."
+  ]
+}

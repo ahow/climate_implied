@@ -1,0 +1,282 @@
+{
+  "clause": "S12-018",
+  "version": "company-coverage-evidence-1",
+  "executedDate": "2026-11-10",
+  "status": "Implemented calculator, optimized read-only day-bounded current-workbook adapter, mounted scoped UI, lossless JSON export, exact supplemental census and output-register freshness. Parent registered route and main semantics; focused actual-handler tests pass.",
+  "boundary": {
+    "sourceMutations": 0,
+    "approvals": 0,
+    "ddl": 0,
+    "deployments": 0,
+    "commits": 0,
+    "fullSuiteRuns": 0,
+    "access": "Existing authorized DEVELOPMENT database; repeatable-read READ ONLY transactions; immutable workbook content hash and complete source archives verified",
+    "privateData": "No issuer names, IDs, provider responses, source text, filing payloads, financial review payloads, credentials or connection strings retained in this public evidence. Detailed aggregate reports and logs remain in ignored generated-artifacts/company-coverage."
+  },
+  "implementation": [
+    "server/calculation/companyCoverage.ts",
+    "server/snapshots/companyCoverage.ts",
+    "shared/companyCoverageSemantics.ts",
+    "client/src/components/company-coverage.tsx",
+    "client/src/pages/data-management.tsx",
+    "script/company-coverage.test.ts",
+    "script/company-coverage-review.test.ts",
+    "script/company-coverage-actual.ts",
+    "script/company-coverage-query.test.ts",
+    "script/field-semantics-census.ts",
+    "script/output-register.ts",
+    "script/output-register.test.ts",
+    "docs/field_semantics_census.json",
+    "docs/System_Output_Register.md",
+    "client/src/components/download-data-button.tsx",
+    "client/src/lib/export-contract.ts",
+    "client/src/lib/export-identity.ts",
+    "script/export-contract.test.ts",
+    "script/next-census-accounting.test.ts"
+  ],
+  "inspectionFindings": [
+    "Existing listFinancialReviews is capped at 200; listCompanyOperatingReviews is capped at 100. Neither can define a complete denominator.",
+    "Existing reviewed operating projection invokes an advisory lock; coverage instead verifies the same archive hashes, source claims, financial identity and projection input schema without that getter or any lock.",
+    "Full workbook membership is established before metric availability or eligibility exclusions. Eligibility is explicitly a unique approved valid financial identity, not an approved operating case.",
+    "Operating mapping requires unique approved complete proposal, archived matching approved financial identity and resolved source claims. Source-only or pending packets are unknown, absent packets missing, inconsistent evidence conflicted. No mapping is inferred from headquarters, listing or workbook geography.",
+    "Snapshot monetary schema enforces quote/statement currency compatibility without implied FX. Workbook market cap remains its documented USD-million convention, not independently verified issuer currency; explicit non-USD observation denomination is conflicted and excluded from aggregation.",
+    "All scopes are reported separately. Scope 3 company sums are not a global physical inventory. Exact observation days never use carry-forward."
+  ],
+  "commands": [
+    {
+      "command": "npx tsx --test script/company-coverage.test.ts script/company-coverage-review.test.ts > generated-artifacts/company-coverage/focused-tests.log 2>&1",
+      "completedAt": "2026-11-10T13:43:06.113Z",
+      "exitCode": 0,
+      "tests": 13,
+      "passed": 13,
+      "failed": 0,
+      "logSha256": "74af59cf5a9f575d15a32fe4ffb6db7e608c412eb44a196bb7b32ad099413896",
+      "coverage": [
+        "Full-workbook AND eligible denominators and count/value-weighted shares",
+        "Null versus missing versus invalid versus duplicate-date conflicted records",
+        "Known emissions zero and null/zero-denominator behavior",
+        "No carry-forward or geography inference",
+        "Explicit incompatible currency exclusion",
+        "Actual archive-resolution code exercised on synthetic source fixtures, for both operating geography and explicit headquarters fallback",
+        "Corrupt source hash, future financial review, incompatible snapshot currency, duplicate financial approvals and operating decisions",
+        "Pending source mapping unknown versus absent mapping missing",
+        "Lossless JSON export and exact semantic ID for every new primitive; original1001 cohort unchanged"
+      ]
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false > generated-artifacts/company-coverage/typecheck.log 2>&1",
+      "completedAt": "2026-11-10T13:43:00.341Z",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "npx tsx script/company-coverage-actual.ts > generated-artifacts/company-coverage/actual-aggregates.json 2> generated-artifacts/company-coverage/actual-error.log",
+      "completedAt": "2026-11-10T13:41:14.585Z",
+      "exitCode": 0,
+      "artifactSha256": "b1b3612f9a088101391b897565957a9e25f5b439f5089403ee9ae2dd3fcb8a8d",
+      "source": "current-workbook-unversioned"
+    },
+    {
+      "command": "npx tsx script/company-coverage-actual.ts latest 271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac > generated-artifacts/company-coverage/actual-immutable-aggregates.json 2> generated-artifacts/company-coverage/immutable-error.log",
+      "completedAt": "2026-11-10T13:42:06.119Z",
+      "informationCutoff": "2026-11-10T13:41:45.409Z",
+      "exitCode": 0,
+      "artifactSha256": "92575eabad81434b51717dc16ec2ca3a81ab049366c24df6c971524d304a6abb",
+      "source": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac"
+    },
+    {
+      "command": "npx tsx --test script/company-coverage.test.ts script/company-coverage-review.test.ts script/company-coverage-query.test.ts script/company-coverage-route.test.ts script/output-register.test.ts > generated-artifacts/company-coverage/optimized-tests.log 2>&1",
+      "completedAt": "2026-11-10T14:08:35.316Z",
+      "exitCode": 0,
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "logSha256": "d3733740cc75c9e69944e746fff5d6a1a28d11677d4c8bccd60bd04107bd5440",
+      "additionalCoverage": [
+        "Day-bounded SELECT equivalence to former full-history calculator, including same-day observations after intraday cutoff under the explicit calendar-day observation rule",
+        "Complete company population retained while selecting only one common observation day",
+        "Explicit empty day skips MAX and remains missing, not null or zero",
+        "Future and invalid explicit days reject before any read; no eligible date rejects explicitly",
+        "Actual generated SQL contains MAX/date bounds and only SELECT; production wrapper remains repeatable-read READ ONLY with no mutation/locking helpers",
+        "Supplemental finite API/display/JSON export domains, unchanged frozen original cohort and no removed original slots",
+        "Parent's actual HTTP handler selector validation, exact semantic response header and explicit non-leaking storage failure",
+        "Generated output register freshness, including separately qualified JSON writer"
+      ]
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false > generated-artifacts/company-coverage/optimized-typecheck.log 2>&1",
+      "completedAt": "2026-11-10T14:08:57.876Z",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "npx tsx script/field-semantics-census.ts; npx tsx script/field-semantics-census.ts --check > generated-artifacts/company-coverage/census-check.log 2>&1",
+      "completedAt": "2026-11-10T14:08:44.116Z",
+      "exitCode": 0,
+      "logSha256": "97da7464a7f935daeabc7acabe22804068f05c3fe2be4d4fcbc9d77d7908f130",
+      "boundary": "Regenerated existing census with qualified supplemental inventory and generated source-line freshness; no frozen-cohort regeneration, no original denominator changes."
+    },
+    {
+      "command": "npx tsx script/output-register.ts && npx tsx --test script/output-register.test.ts > generated-artifacts/company-coverage/output-register.log 2>&1",
+      "completedAt": "2026-11-10T14:07:29.456Z",
+      "exitCode": 0,
+      "logSha256": "6daa6c558898f0989b878e28310027662ddd42a59183cf3a06c044136fa6a05c"
+    },
+    {
+      "command": "npx tsx script/company-coverage-actual.ts > generated-artifacts/company-coverage/optimized-actual-aggregates.json 2> generated-artifacts/company-coverage/optimized-actual-error.log",
+      "completedAt": "2026-11-10T14:08:32.774Z",
+      "exitCode": 0,
+      "artifactSha256": "7dc9053d5162e5f89e97f6c2cb23575786a4ed42cb2425c08a27ad6c3d19802c"
+    },
+    {
+      "command": "node inline assert.deepEqual comparison of retained actual-aggregates.json and optimized-actual-aggregates.json, for report/emissionsReferenceReport observationDate, fullWorkbook, eligible, eligibleCompanyShare, eligibleKnownValueCoverage and eligibilityConflicts",
+      "completedAt": "2026-11-10T14:08:32.844Z",
+      "exitCode": 0,
+      "log": "generated-artifacts/company-coverage/optimized-equivalence.log",
+      "logSha256": "4ee8f6ec97d6242a278f1fdfbb4fc1b16a817a6eb017b409b49a314ba0876562",
+      "outcome": "Both actual latest-day and emissions-reference-day reports exactly match former full-history numerical outputs and every observation state. InformationCutoff intentionally differs between executions."
+    }
+  ],
+  "optimizationAndSupplementalInventory": {
+    "currentWorkbookReadPlan": "Within existing repeatable-read READ ONLY transaction: validate day; read ALL cv_companies; if no explicit day SELECT MAX(date) at or before cutoff calendar day; read cv_time_series only in [selected day, next day). Complete unpaginated review/source journal retained.",
+    "immutableWorkbookPath": "Unchanged complete immutable archive loading/content verification, followed by existing exact-day calculator; current DB optimization does not alter archive semantics.",
+    "actualObservationRowsPerSelectedDay": 2437,
+    "fullWorkbookCompanies": 2442,
+    "formerFullHistoryObservationRows": 470341,
+    "newCoverageApiSemanticLeaves": 133,
+    "newCoverageDisplayQualifiedIds": 90,
+    "newCoverageLosslessJsonExportLeaves": 133,
+    "originalPublicDenominatorBeforeAndAfter": 1001,
+    "originalClosedGapSlotsBeforeAndAfter": 571,
+    "originalRemainingUnboundSlotsBeforeAndAfter": 1,
+    "removedOriginalSlots": 0,
+    "originalSlotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+    "scientificAcceptance": false
+  },
+  "centralWriterCorrection": {
+    "trigger": "Parent coherent run generated-artifacts/workplan-completion/20261110T141305050403Z.log: standalone Blob writer rejected by existing export-contract guard and two stale exact census-accounting assertions.",
+    "resolution": "Removed every Blob/object-URL writer from company-coverage.tsx. DownloadJsonButton is implemented in existing central download-data-button.tsx, with mandatory literal coverage evidence kind. Existing no-alternate-writer test is not bypassed or whitelisted; it now enforces literal evidence contracts on both central download components and exact reviewed24 controls (23 spreadsheet +1 JSON).",
+    "format": {
+      "data": "Complete unchanged company-coverage-1 report, retaining both population denominators, all states/nulls/known zero, units/source/cutoff/limitations; no spreadsheet flattening or missing-value normalization.",
+      "interpretation": "Existing central exportNotes rows with dedicated coverage evidence contract; metadata travels inside the JSON file.",
+      "dataIdentity": "SHA-256 of exact UTF-8 JSON.stringify(data, null, 2); hash excludes envelope metadata and export clock, and identifies the complete report payload.",
+      "validation": "Strict complete coverage schema and exact primitive semantic binding run at fetch and again at export. Selected baseline source rechecked at click time; mismatched source, active overlays, invalid version/schema and observation after cutoff reject explicitly."
+    },
+    "accounting": {
+      "definitions": 1703,
+      "typedEntriesIncludingWithheld": 1351,
+      "currentPublicSlots": 1324,
+      "fullyBoundFields": 1323,
+      "addedPublicSlots": 323,
+      "externalTypedApiSlots": 161,
+      "externalTypedApiBoundSlots": 161,
+      "expandedApiAndDownloadPublicSlots": 1485,
+      "expandedApiAndDownloadBoundSlots": 1484,
+      "expandedPublicDeltaFromOriginal": 484,
+      "coverageApiLeaves": 133,
+      "coverageJsonDataLeaves": 133,
+      "originalPublicSlots": 1001,
+      "originalFullyBoundFields": 1000,
+      "originalClosedGapSlots": 571,
+      "originalRemainingUnboundSlots": 1,
+      "removedOriginalSlots": 0,
+      "strictCompleteness": "Both --require-original-complete and --require-complete still fail intentionally, respectively Original cohort incomplete and SEMANTICS INCOMPLETE:1323/1324. Unknown original runs[].summary is not closed by new coverage metadata."
+    },
+    "verification": [
+      {
+        "command": "npx tsx --test script/export-contract.test.ts script/company-coverage.test.ts script/company-coverage-review.test.ts script/company-coverage-query.test.ts script/company-coverage-route.test.ts script/next-census-accounting.test.ts script/output-register.test.ts > generated-artifacts/company-coverage/central-writer-focused-tests.log 2>&1",
+        "completedAt": "2026-11-10T14:18:21.443Z",
+        "exitCode": 0,
+        "tests": 30,
+        "passed": 30,
+        "failed": 0,
+        "logSha256": "86f2657bec8c845a93260ad47071c05456f3d2f3f1a510aa891923844e99d42d",
+        "additionalChecks": "Central JSON envelope readback preserves report exactly, hash recomputed from restored data equals retained identity, evidence metadata travels, invalid schema/source and active overlays reject; original1001 frozen fingerprint and strict-fail tests retained."
+      },
+      {
+        "command": "npx tsc --noEmit --pretty false > generated-artifacts/company-coverage/central-writer-typecheck.log 2>&1",
+        "completedAt": "2026-11-10T14:18:28.143Z",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": "npx tsx script/field-semantics-census.ts --check > generated-artifacts/company-coverage/central-writer-census-check.log 2>&1",
+        "completedAt": "2026-11-10T14:18:27.955Z",
+        "exitCode": 0,
+        "logSha256": "38a4afdf811d4b938f2d028bc4c3ad793be1c3ce43327584dba3ee671945f5b5"
+      }
+    ],
+    "freshness": "Regenerated existing census and System_Output_Register from their generators. Qualified JSON inventory now names central writer, lossless data envelope, exact validator and mandatory evidence kind.",
+    "boundary": "No fullsuite, workflow restart, source approval, DDL or data mutation performed by this correction."
+  },
+  "actualPublicSafeAggregateOutcomes": {
+    "currentAndVerifiedImmutablePopulationsAgree": true,
+    "fullWorkbookCompanies": 2442,
+    "eligibleFinancialIdentities": 1,
+    "eligibilityConflicts": 0,
+    "latestObservation": {
+      "date": "2026-01-22",
+      "fullMarketCapStates": { "present": 2437, "null": 0, "missing": 5, "conflicted": 0, "invalid": 0 },
+      "fullMarketCapAvailabilityFraction": 0.997952497952498,
+      "eachFullEmissionsScopeStates": { "present": 0, "null": 2437, "missing": 5, "conflicted": 0, "invalid": 0 },
+      "eligibleMarketCapAvailabilityFraction": 1,
+      "eachEligibleEmissionsScopeAvailabilityFraction": 0,
+      "eligibleShareOfFullKnownMarketCap": 0.0004156472065213498,
+      "eligibleShareOfFullKnownEmissions": null,
+      "fullMappingCounts": { "operating-geography": 0, "headquarters-fallback": 0, "unknown": 3, "missing": 2439, "conflicted": 0 },
+      "fullMappingFractions": { "operating-geography": 0, "headquarters-fallback": 0, "unknown": 0.0012285012285012285, "missing": 0.9987714987714987, "conflicted": 0 },
+      "eligibleMappingCounts": { "operating-geography": 0, "headquarters-fallback": 0, "unknown": 0, "missing": 1, "conflicted": 0 }
+    },
+    "latestEmissionsReferenceObservation": {
+      "date": "2025-06-22",
+      "selectionReason": "Read-only current-workbook MAX(date) with any reported emissions; selected immutable snapshot independently evaluated at this exact day. No values carried to the latest market-cap date.",
+      "companiesWithAnyDatedEmissionsAcrossCurrentWorkbookHistory": 2429,
+      "fullMarketCapStates": { "present": 2427, "null": 10, "missing": 5, "conflicted": 0, "invalid": 0 },
+      "fullScope1States": { "present": 2000, "null": 437, "missing": 5, "conflicted": 0, "invalid": 0 },
+      "fullScope2States": { "present": 2000, "null": 437, "missing": 5, "conflicted": 0, "invalid": 0 },
+      "fullScope3States": { "present": 1403, "null": 1034, "missing": 5, "conflicted": 0, "invalid": 0 },
+      "fullScope1AvailabilityFraction": 0.819000819000819,
+      "fullScope2AvailabilityFraction": 0.819000819000819,
+      "fullScope3AvailabilityFraction": 0.5745290745290745,
+      "eachEligibleMetricAvailabilityFraction": 1,
+      "eligibleShareOfFullKnownValues": {
+        "marketCap": 0.0002890331729713974,
+        "scope1Emissions": 0.0002497375512515856,
+        "scope2Emissions": 0.0012229022854217233,
+        "scope3Emissions": 0.00023265360293493525
+      },
+      "approvedOperatingAndHqMappingCounts": 0
+    }
+  },
+  "parentPatchInstructions": {
+    "integrationUpdate": "Parent completed the route and main-registry integration below before the bounded-read follow-up. Its actual HTTP handler is included in the 22 passing focused checks. Instructions are retained as an implementation receipt, not outstanding work.",
+    "routes": [
+      "Import getCompanyCoverage from ./snapshots/companyCoverage in server/routes.ts.",
+      "Register GET /api/calculation/company-coverage BEFORE app.use('/api', ...) historical selector middleware: this read-only endpoint performs its own exact immutable snapshot validation and deliberately does not invoke material/result archive writers.",
+      "Allow only scalar observationDate, informationCutoff and snapshotId query parameters. Reject filters, indicatorSnapshotId, overlays, asOf, unknown selectors and repeated/non-string selectors with 422; they must not silently change or pretend to affect the full denominator.",
+      "Pass observationDate when supplied, informationCutoff default new Date().toISOString(), and snapshotId when supplied to getCompanyCoverage. Validate YYYY-MM-DD calendar day, datetime cutoff and 64-hex snapshot identity before invoking; malformed inputs return 422.",
+      "Set Cache-Control: no-store. Return the full report including both populations, separate state counts, known-value coverage, sourceId and limitations. Storage/corruption availability errors return explicit 503, not an empty or zero report.",
+      "No generic request-contract changes are required if this route is registered before the global selector middleware. Alternative placement requires deliberate request-policy registration and must avoid indicator/overlay reads and archive mutations."
+    ],
+    "semantics": [
+      "Import companyCoverageSemantics from ./companyCoverageSemantics in shared/outputFieldSemantics.ts and spread ...companyCoverageSemantics into outputFieldSemantics.",
+      "The focused semantic test verifies every report primitive has an exact companyCoverage.* ID. These are NEW fields, separate from original1001; do not renumber or recensus that frozen cohort."
+    ],
+    "ui": [
+      "Already mounted CompanyCoverage directly after CompanyOperatingReview in data-management.tsx.",
+      "Panel reads the active selected baseline workbook through currentSelection, verifies returned sourceId, rejects overlays explicitly, permits exact observation-day selection and exports lossless complete JSON with both denominators and all limitations.",
+      "The existing running /data-management preview rendered without a page-level crash. Screenshot tool's first-viewport/scroll-container capture did not expose the lower coverage panel. Parent must verify its populated UI after registering the route; the download click itself was not browser-interaction-tested."
+    ]
+  },
+  "exactRemainingGaps": [
+    "Parent-owned HTTP route and central semantics registration are integrated and actual handler-focused tests pass; populated lower-scroll-container UI and download click remain not browser-interaction-verified by this worker.",
+    "No actual approved source-resolved operating or explicit HQ-fallback mappings exist in the inspected population. Reported zero mapped counts are actual absence, not fabricated mapping coverage.",
+    "Three available source-only/pending packets indicate unknown basis, not three accepted operating models.",
+    "Latest workbook day has no reported emissions; missing historical emissions are not carried to that day. A separately dated emissions-reference report is retained.",
+    "Financial eligibility is only one issuer; no claim of broad operating/financial model coverage or calibration is warranted.",
+    "Current approved review status cannot reconstruct superseded historical financial approvals.",
+    "Workbook currency is its declared USD-million convention; original issuer-level currency/FX provenance and source publication vintages are not reconstructed.",
+    "Market-cap value-weighted and each scope-weighted coverage use only known valid observations. Missing universe value is unknowable here; scope3 totals must not be interpreted as global physical emissions.",
+    "Source integrity and administrative approval do not establish source authenticity, original-vintage availability, calibrated coefficients or scientific acceptance."
+  ]
+}

@@ -17,6 +17,7 @@ import { thresholdExportBindings } from "../client/src/lib/threshold-export";
 import { supplementalSheetBindings, supplementalSheetSemantics } from "../shared/supplementalSheetBindings";
 import { fetchSummarySemantics } from "../shared/fetchSummarySemantics";
 import { companyAbatementSemantics } from "../shared/companyAbatementSemantics";
+import { companyCoverageSemantics } from "../shared/companyCoverageSemantics";
 import { gordonBaselineSemantics } from "../shared/gordonBaselineSemantics";
 import { originalNominalAssessmentSemantics } from "../shared/originalNominalAssessmentSemantics";
 import { thresholdDiagnosticSemantics } from "../shared/thresholdDiagnosticSemantics";
@@ -141,7 +142,17 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
       node.expression.expression.getText(source)==="app"&&["get","post","put","patch","delete"].includes(node.expression.name.text))
       surface=`API ${node.expression.name.text.toUpperCase()} ${node.arguments[0]?.getText(source)}`;
     if(surface&&ts.isCallExpression(node)&&node.expression.getText(source)==="res.json"&&node.arguments[0]) {
-      fields(checker.getTypeAtLocation(node.arguments[0]),"",surface,node);
+      if (!baseline && surface === 'API GET "/api/calculation/company-coverage"' &&
+        node.arguments[0].getText(source) === "result") {
+        // Object.fromEntries has a broad TS index signature, but this NEW finite
+        // contract has exact production semantic IDs and primitive-domain/export
+        // readback tests. Keep it supplemental; do not expand the original cohort.
+        supplementalTypedApiEntries.push(...companyCoverageSemantics.map(f => ({
+          surface, field: f.id.replace(/^companyCoverage\./, ""), type: f.unit,
+          source: relativeSource(source.fileName), line: source.getLineAndCharacterOfPosition(node.getStart()).line + 1,
+          resolution: "exact-qualified-production-contract",
+        })));
+      } else fields(checker.getTypeAtLocation(node.arguments[0]),"",surface,node);
       const expression=node.arguments[0].getText(source);
       if(!baseline&&["projectionResultCache","categoryCacheResult","historicalTrendCacheResult","categoryHistoricalTrendCache"].includes(expression)){
         const type=checker.getTypeAtLocation(node.arguments[0]);
@@ -399,12 +410,31 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
       boundary:"31 exact supplemental metadata-sheet column bindings, runtime-certified and XLSX-readback tested; no original cohort closure credit."},
     companyAbatement:{definitions:companyAbatementSemantics.length,ids:companyAbatementSemantics.map(f=>f.id),
       boundary:"43 additive qualified definitions; conditional physical ledger, no observation/scientific/financial validation or original closure credit."},
+    companyCoverage:{
+      definitions:companyCoverageSemantics.length,ids:companyCoverageSemantics.map(f=>f.id),
+      api:{surface:'API GET "/api/calculation/company-coverage"',source:"server/routes.ts",
+        fields:companyCoverageSemantics.map(f=>({field:f.id.replace(/^companyCoverage\./,""),id:f.id,bound:outputFieldSemantics.some(s=>s.id===f.id)}))},
+      display:{source:"client/src/components/company-coverage.tsx",
+        bindings:companyCoverageSemantics.filter(f=>
+          ["sourceId","observationDate","informationCutoff","eligibilityRule","eligibilityConflicts","eligibleCompanyShare","limitations[]","scientificAcceptance"].includes(f.id.replace(/^companyCoverage\./,"")) ||
+          /\.denominator$|\.mapping\..*\.(count|share)$|\.eligibleKnownValueCoverage\.|\.availableShare$|\.states\.(null|missing|conflicted|invalid)$|\.shareOfKnownValue$/.test(f.id))
+          .map(f=>({id:f.id,bound:outputFieldSemantics.some(s=>s.id===f.id)})),
+        limitation:"Exact finite data-field-id template domains; numeric formatting is descriptive, not calibration. Generic display controls/containers are not extra semantic leaves."},
+      jsonExport:{source:"client/src/components/company-coverage.tsx",writer:"DownloadJsonButton -> central download-data-button.tsx -> prepareQualifiedJsonExport",
+        filename:"company-coverage-${observationDate}.json",ids:companyCoverageSemantics.map(f=>f.id),
+        payloadPath:"data",evidenceContract:"coverage",
+        validation:"Strict complete company-coverage-1 schema; exact primitive semantic IDs; active selected source match; reject active overlays; observation<=cutoff",
+        envelopeMetadata:{interpretation:"Existing exportNotes evidence rows: Field/Value; exportedAt is not observation time",
+          dataIdentity:{algorithm:"SHA-256",hash:"hex SHA-256 of UTF-8 JSON.stringify(data,null,2)",serialization:"No normalization, sorting, flattening or null substitution"}},
+        verification:"company-coverage.test.ts and export-contract.test.ts lossless JSON readback, exact primitive semantic domain, metadata inclusion and identity verification; preserves null/zero/all states, both denominators, source/cutoff/units/limitations"},
+      boundary:"NEW complete finite API/display/JSON-export contract inventoried separately. No original1001 closure credit, no original denominator change; known-value coverage is not an estimate of missing values.",
+    },
     gordonBaseline:{definitions:gordonBaselineSemantics.length,ids:gordonBaselineSemantics.map(f=>f.id),
       boundary:"Six additive cost-of-equity metadata leaves; no physical decarbonisation interpretation or original cohort closure credit."},
     originalNominalAssessment:{definitions:originalNominalAssessmentSemantics.length,
       ids:originalNominalAssessmentSemantics.map(f=>f.id),
-      omittedUndefinedBranchProperties:Array.from(new Set(supplementalTypedApiEntries.filter(e=>e.type==="undefined").map(e=>e.field))),
-      typedApiFields:Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined").map(e=>[e.field,e])).values()).map(e=>({
+      omittedUndefinedBranchProperties:Array.from(new Set(supplementalTypedApiEntries.filter(e=>e.surface.includes("original-nominal-assessment")&&e.type==="undefined").map(e=>e.field))),
+      typedApiFields:Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.surface.includes("original-nominal-assessment")&&e.type!=="undefined").map(e=>[e.field,e])).values()).map(e=>({
         ...e,bound:outputFieldSemantics.some(f=>f.id===`originalNominalAssessment.${e.field}`)})),
       boundary:"New read-only explicitly conditional endpoint; typed send-argument domain and input/HTTP metadata inventoried separately, never original cohort closure credit."},
   },
@@ -520,7 +550,7 @@ const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent
 const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
   .map(e=>[`${e.surface}|${e.field}`,e])).values());
 const externalTypedApiBound=externalTypedApiFields.filter(e=>
-  outputFieldSemantics.some(f=>f.id===`originalNominalAssessment.${e.field}`)).length;
+  outputFieldSemantics.some(f=>f.id===`${e.surface.includes("/company-coverage")?"companyCoverage":"originalNominalAssessment"}.${e.field}`)).length;
 const originalCohortFingerprint=frozenCohort?.slotIdentityFingerprint??slotFingerprint;
 const reconciliation = baseline ? {} : {
   originalGapReconciliation: {
@@ -558,6 +588,8 @@ const reconciliation = baseline ? {} : {
     expandedApiAndDownloadBoundSlots:report.fullyBoundFields+externalTypedApiBound,
     expandedPublicDeltaFromOriginal:addedCurrentSlots.filter(e=>e.resolution!=="withheld-public-field").length+externalTypedApiFields.length,
     supplementalMetadataSheetColumns:supplementalSheetSemantics.length,
+    companyCoverageApiLeafSlots:companyCoverageSemantics.length,
+    companyCoverageJsonExportLeafSlots:companyCoverageSemantics.length,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

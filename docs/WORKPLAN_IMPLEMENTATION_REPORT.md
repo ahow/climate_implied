@@ -1453,3 +1453,294 @@ Original1000/1001 remains;1553definitions,current1306/1307,expanded1334/1335.0or
 Stopping at context/resource boundary, not completion. Next: complete qualified company cash/stub/terminal and currency/class pairing; legitimate operator HTTP lifecycle; attributed-model observable/native emissions compatibility; original partial requirements. Preserve frozen negative studies and no source/date substitution.
 
 Complete changed-path index: docs/READY_IMPLEMENTATION_20261110.md (also script/record-ready-release.py and subsequent receipt-only documentation). Current receipt refers to verified30a7884, avoiding self-referencing SHA updates.
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-ready-contracts-30a7884",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T13:29:21.669945+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+
+## Substantive analytics — 2026-11-10
+
+S04-007, S04-008, S04-010: Actual Stage5 CLI consumes source-verified paired distributions; all10 retained distributions remain sensitivity-only. All22 curated central controls reject; legacy comparator is explicitly separate. No accepted real six-region joint registry or calibrated central forecast.
+
+Evidence: `docs/driver-consumption-evidence.json`. Remaining: Complete accepted distributions/dependence and actual eligible central evidence for remaining drivers; legacy diagnostics are not a calibrated replacement.
+
+S04-002: Obtained original publisher wind-cost and capacity PDFs; frozen full-window source gate stopped before fitting. Missing2010–2014 capacity and exact installed-cost table; no window shortening/splicing.
+
+Evidence: `docs/wind-cost-source-evidence.json`. Remaining: Obtain compatible full-window capacity and exact cost table; source vintages and statistical gates remain unpassed.
+
+S07-008: Executed paired fresh FaIR counterfactuals; factual retained reproduction exact, natural forcing unchanged, memberwise baselines retained. Audited64species/53emissions inputs. Implemented source-defined SR1.5 memberwise2011–2025 trend endpoint separately from annual and decade means.
+
+Evidence: `docs/physical-attribution-evidence.json`. Remaining: Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null.
+
+S12-001: Authenticated primary SEC sources and166 monetary facts; all3 historical income/CFO/CFI/CFF/cash bridges reconcile. Six separately frozen operating benchmarks calculated; two FSLR zero-growth maintenance pairs are NOT original2.5–4% terminal or qualified climate-linked cases.
+
+Evidence: `docs/issuer-analytics-evidence.json`. Remaining: 0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval.
+
+S12-018: Actual selected-workbook full/eligible market-cap/emissions/mapping coverage, distinct null/missing/conflict/invalid/zero, exact-day read-only source adapter and complete JSON export. Full2442, financial-eligible1; operating/HQ mappings unavailable rather than inferred.
+
+Evidence: `docs/company-coverage-evidence.json`. Remaining: Scoped engineering delivered; no scientific acceptance.
+
+S12-012 named peer-isolation test delivered; actual source fixtures remain separate. Current release stays the prior verified revision until CI/Railway receipts. Detailed source/date/freeze/results/command/log hashes are retained per changed original criterion.
+
+### Complete changed paths
+
+- `client/src/components/company-coverage.tsx`
+- `client/src/pages/data-management.tsx`
+- `docs/System_Output_Register.md`
+- `docs/WORKPLAN_ACCEPTANCE_MATRIX.md`
+- `docs/WORKPLAN_COMPLETION_LEDGER.md`
+- `docs/company-coverage-evidence.json`
+- `docs/driver-consumption-evidence.json`
+- `docs/driver-consumption-protocol.json`
+- `docs/field_semantics_census.json`
+- `docs/issuer-analytics-evidence.json`
+- `docs/physical-attribution-evidence.json`
+- `docs/wind-cost-source-evidence.json`
+- `docs/wind-cost-source-protocol.json`
+- `docs/workplan_completion_ledger.json`
+- `script/assemble-issuer-cashflow-cases.ts`
+- `script/assemble-issuer-cashflow-reconciliation.ts`
+- `script/audit_physical_counterfactual.py`
+- `script/company-coverage-actual.ts`
+- `script/company-coverage-query.test.ts`
+- `script/company-coverage-review.test.ts`
+- `script/company-coverage-route.test.ts`
+- `script/company-coverage.test.ts`
+- `script/company-projection.test.ts`
+- `script/driver-consumption-evidence.ts`
+- `script/driver-consumption.test.ts`
+- `script/field-semantics-census.ts`
+- `script/issuer-cashflow-case.test.ts`
+- `script/issuer-cashflow-reconciliation.test.ts`
+- `script/output-register.test.ts`
+- `script/output-register.ts`
+- `script/physical_counterfactual_attribution.py`
+- `script/physical_temporal_statistics.py`
+- `script/record-analytics-increment.py`
+- `script/research-field-semantics.test.ts`
+- `script/run-regional-ensemble.ts`
+- `script/test_audit_physical_counterfactual.py`
+- `script/test_physical_counterfactual_attribution.py`
+- `script/test_physical_temporal_statistics.py`
+- `script/test_wind_cost_source_attempt.py`
+- `script/validate-issuer-cashflow-private.ts`
+- `script/validate-issuer-cashflow-reconciliation-private.ts`
+- `script/wind_cost_source_attempt.py`
+- `server/calculation/companyCaseEvidence.ts`
+- `server/calculation/companyCoverage.ts`
+- `server/calculation/companyFullCashflowCase.ts`
+- `server/calculation/driverConsumptionTrace.ts`
+- `server/calculation/driverEvidence.ts`
+- `server/calculation/driverParameterRegistry.ts`
+- `server/calculation/issuerCashflowCase.ts`
+- `server/calculation/issuerCashflowReconciliation.ts`
+- `server/routes.ts`
+- `server/snapshots/companyCoverage.ts`
+- `shared/companyCoverageSemantics.ts`
+- `shared/outputFieldSemantics.ts`
+- `shared/researchFieldSemantics.ts`
+
+### Final analytics integration checks
+
+{
+  "changed_original_ids": [
+    "S04-007",
+    "S04-008",
+    "S04-010",
+    "S04-002",
+    "S07-008",
+    "S12-001",
+    "S12-018",
+    "S12-012"
+  ],
+  "source_contract_hash": "5e1a09aa71c87286779eb444db2e0b0361015b3d1bfb058e320f836ca46b4de5",
+  "boundary": "Actual analytics and scoped engineering; not full original completion. No reindexing, approvals or frozen-study retuning.",
+  "final_typescript": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+    ],
+    "executed_at": "2026-11-10T14:19:37.582903+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 128.763,
+    "counts": {
+      "tests": 484,
+      "pass": 484,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261110T141937582903Z.log",
+    "workspace_revision": "c243326f9f7d49b4298265fce97bef3c1ecd42dd",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "python_private": {
+    "command": [
+      "bash",
+      "-c",
+      "uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npx tsx script/validate-issuer-cashflow-private.ts && npx tsx script/validate-issuer-cashflow-reconciliation-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-10T14:15:41.180337+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 64.309,
+    "counts": {
+      "tests": 121,
+      "pass": 121,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261110T141541180337Z.log",
+    "workspace_revision": "c243326f9f7d49b4298265fce97bef3c1ecd42dd",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "development_http": {
+    "/api/calculation/company-coverage": {
+      "status": 200,
+      "semantics": 133,
+      "keys": [
+        "version",
+        "sourceId",
+        "observationDate",
+        "informationCutoff",
+        "fullWorkbook",
+        "eligible",
+        "eligibleCompanyShare",
+        "eligibleKnownValueCoverage",
+        "eligibilityConflicts",
+        "eligibilityRule",
+        "units",
+        "limitations",
+        "scientificAcceptance"
+      ],
+      "sourceId": "current-workbook-unversioned",
+      "observationDate": "2026-01-22"
+    },
+    "/api/calculation/company-coverage?observationDate=2025-06-22": {
+      "status": 200,
+      "semantics": 133,
+      "keys": [
+        "version",
+        "sourceId",
+        "observationDate",
+        "informationCutoff",
+        "fullWorkbook",
+        "eligible",
+        "eligibleCompanyShare",
+        "eligibleKnownValueCoverage",
+        "eligibilityConflicts",
+        "eligibilityRule",
+        "units",
+        "limitations",
+        "scientificAcceptance"
+      ],
+      "sourceId": "current-workbook-unversioned",
+      "observationDate": "2025-06-22"
+    },
+    "/api/research/driver-registry": {
+      "status": 200,
+      "semantics": 51,
+      "keys": [
+        "status",
+        "indicators"
+      ]
+    },
+    "/api/calculation/company-coverage?overlayIds=fake": {
+      "status": 422
+    },
+    "date": "2026-11-10T14:22:54.255523+00:00"
+  },
+  "coverage": {
+    "original_bound": 1000,
+    "original_total": 1001,
+    "original_closed_this_increment": 0,
+    "definitions": 1703,
+    "current_bound": 1323,
+    "current_total": 1324,
+    "expanded_bound": 1484,
+    "expanded_total": 1485,
+    "withheld": 27,
+    "aliases": 4
+  },
+  "repaired_failures": "Initial479/482: standalone JSON writer rejected; integrated into existing central evidence writer. Updated exact supplemental census counts while preserving both strict-failure guards; no skipped tests.",
+  "original_summary_investigation": "Read five actual development run summaries: perAdapter objects, no producer/version/manifest provenance. Existing Git collector revisions alone cannot identify which code produced a stored run. Raw values and unknown original slot retained.",
+  "operator_gap": "No existing authenticated HTTP principal/role is installed. Owner/auth maintainer must provision the genuine operator contract and disposable DEV principal; no fabricated identity or public write exception added. Supported disposable importer/restore workflow still needs implementation once its authenticated contract exists."
+}
+
+39verified/259partial/2provisioning-blocked/0unreconciled. Original1000/1001 remains; no neworiginalclosure. Definitions1703,current1323/1324,expanded1484/1485; supplemental fields are not oldgapclosure. Full tests484TS/0fail/0skip;121Python separately plus required private validators; typecheck/build passed. Read-only development HTTP coverage200/133semanticIDs; registry200/51IDs; overlays422. Screenshot confirms page renders, not a browser download interaction.0/3qualified original issuer cases; maintenance benchmark pairs are not substitutes.
+
+Published-source wind investigation stopped before fitting; missing exact full-window sources. Qualified FaIR intervention SR1.5 SSP245median1.594030779C, distinct annual1.587760543C/decade1.426113020C; not GMST/historical attribution acceptance. Natural forcing unchanged; baseline residual7.76e-17C. Actual issuer166fact historical bridges reconcile; no ownerapproval/productionactivation.
+
+### Final changed paths
+
+- `client/src/components/company-coverage.tsx`
+- `client/src/components/download-data-button.tsx`
+- `client/src/lib/export-contract.ts`
+- `client/src/lib/export-identity.ts`
+- `client/src/pages/data-management.tsx`
+- `docs/System_Output_Register.md`
+- `docs/WORKPLAN_ACCEPTANCE_MATRIX.md`
+- `docs/WORKPLAN_COMPLETION_LEDGER.md`
+- `docs/WORKPLAN_IMPLEMENTATION_REPORT.md`
+- `docs/company-coverage-evidence.json`
+- `docs/driver-consumption-evidence.json`
+- `docs/driver-consumption-protocol.json`
+- `docs/field_semantics_census.json`
+- `docs/issuer-analytics-evidence.json`
+- `docs/physical-attribution-evidence.json`
+- `docs/wind-cost-source-evidence.json`
+- `docs/wind-cost-source-protocol.json`
+- `docs/workplan_completion_ledger.json`
+- `script/assemble-issuer-cashflow-cases.ts`
+- `script/assemble-issuer-cashflow-reconciliation.ts`
+- `script/audit_physical_counterfactual.py`
+- `script/company-coverage-actual.ts`
+- `script/company-coverage-query.test.ts`
+- `script/company-coverage-review.test.ts`
+- `script/company-coverage-route.test.ts`
+- `script/company-coverage.test.ts`
+- `script/company-projection.test.ts`
+- `script/driver-consumption-evidence.ts`
+- `script/driver-consumption.test.ts`
+- `script/export-contract.test.ts`
+- `script/field-semantics-census.ts`
+- `script/issuer-cashflow-case.test.ts`
+- `script/issuer-cashflow-reconciliation.test.ts`
+- `script/next-census-accounting.test.ts`
+- `script/output-register.test.ts`
+- `script/output-register.ts`
+- `script/physical_counterfactual_attribution.py`
+- `script/physical_temporal_statistics.py`
+- `script/record-analytics-increment.py`
+- `script/record-analytics-validation.py`
+- `script/research-field-semantics.test.ts`
+- `script/run-regional-ensemble.ts`
+- `script/test_audit_physical_counterfactual.py`
+- `script/test_physical_counterfactual_attribution.py`
+- `script/test_physical_temporal_statistics.py`
+- `script/test_wind_cost_source_attempt.py`
+- `script/validate-issuer-cashflow-private.ts`
+- `script/validate-issuer-cashflow-reconciliation-private.ts`
+- `script/wind_cost_source_attempt.py`
+- `server/calculation/companyCaseEvidence.ts`
+- `server/calculation/companyCoverage.ts`
+- `server/calculation/companyFullCashflowCase.ts`
+- `server/calculation/driverConsumptionTrace.ts`
+- `server/calculation/driverEvidence.ts`
+- `server/calculation/driverParameterRegistry.ts`
+- `server/calculation/issuerCashflowCase.ts`
+- `server/calculation/issuerCashflowReconciliation.ts`
+- `server/routes.ts`
+- `server/snapshots/companyCoverage.ts`
+- `shared/companyCoverageSemantics.ts`
+- `shared/outputFieldSemantics.ts`
+- `shared/researchFieldSemantics.ts`

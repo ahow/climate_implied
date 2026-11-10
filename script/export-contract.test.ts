@@ -18,7 +18,7 @@ test("every client download declares a valid evidence contract; no alternate wri
     const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
     function visit(node: ts.Node) {
       if ((ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) &&
-        node.tagName.getText(source) === "DownloadDataButton") {
+        ["DownloadDataButton", "DownloadJsonButton"].includes(node.tagName.getText(source))) {
         count++;
         const kind = node.attributes.properties.find(a => ts.isJsxAttribute(a) && a.name.getText(source) === "kind");
         assert.ok(kind && ts.isJsxAttribute(kind) && kind.initializer && ts.isStringLiteral(kind.initializer), path);
@@ -31,7 +31,7 @@ test("every client download declares a valid evidence contract; no alternate wri
     }
     visit(source);
   }
-  assert.equal(count, 23, "Reviewed source census:21 retained sites plus separate legacy selected2024 and native-mass diagnostic exports");
+  assert.equal(count, 24, "Reviewed source census:23 retained spreadsheet sites plus central qualified company-coverage JSON export");
 });
 
 test("interpretation survives XLSX serialization with missingness and exact data unchanged", () => {

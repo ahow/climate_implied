@@ -21,6 +21,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | --- | --- | --- |
 | GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |
+| GET | "/api/calculation/company-coverage" | server/routes.ts |
 | GET | "/api/financial-data/status" | server/routes.ts |
 | GET | "/api/valuation/original-nominal-assessment" | server/routes.ts |
 | GET | "/api/analysis/results/:id" | server/routes.ts |
@@ -84,6 +85,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |
 | client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
 | client/src/components/analysis-snapshot-status.tsx | `/api/cv/summary?snapshotId=${encodeURIComponent(selectedSnapshotId)}` |
+| client/src/components/company-coverage.tsx | "/api/calculation/company-coverage" |
+| client/src/components/company-coverage.tsx | `/api/calculation/company-coverage?${params}` |
 | client/src/components/company-operating-review.tsx | "/api/calculation/company-operating/reviews" |
 | client/src/components/driver-evidence-disclosure.tsx | "/api/research/driver-registry" |
 | client/src/components/emissions-candidate-review.tsx | `/api/emissions/candidate?scenario=${scenario}` |
@@ -196,8 +199,16 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | client/src/pages/news-sentiment.tsx | "monthly-sentiment-breakdown" | {sentimentBreakdownRows} | "news" |
 | client/src/pages/news-sentiment.tsx | "coverage-by-topic" | {topicRows} | "news" |
 
+## Qualified JSON exports
+
+These are separate supplemental contracts, not additional original1001 spreadsheet slots. Their own source/cutoff/units/limitations remain in the exported payload.
+
+| Consumer | Filename expression | Payload | Semantic contract |
+| --- | --- | --- | --- |
+| client/src/components/company-coverage.tsx | {`company-coverage-${query.data.observationDate}.json`} | {query.data} | Central download-data-button writer; evidence "coverage"; validator {validateCompanyCoverageJson}; lossless data envelope + interpretation + SHA-256 payload identity |
+
 ## Coverage boundaries
 
-This register covers static Express app/router method registrations, frontend API string/template references and DownloadDataButton controls.
+This register covers static Express app/router method registrations, frontend API string/template references, DownloadDataButton controls and qualified DownloadJsonButton controls. Both download formats use the central writer and mandatory evidence contract.
 It does not certify dynamically constructed routes, external operator reports, Python research files or every field in arbitrary API JSON.
 Read the frontend claim register and public valuation contract alongside this census. Full Stage 1 acceptance still requires field-level review of legacy consumers.

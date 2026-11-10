@@ -16,6 +16,7 @@ import { overlaySelection } from "./snapshots/requestContract";
 import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { exactMemberAttribution } from "./calculation/memberAttribution";
 import { projectCompanyMembers } from "./calculation/companyProjection";
+import { getCompanyCoverage } from "./snapshots/companyCoverage";
 import {listCompanyOperatingReviews,projectReviewedCompany} from "./snapshots/companyOperatingReview";
 import {projectionResponseSchema,PROJECTION_RESPONSE_VERSION,type ProjectionResponse} from "../shared/projectionResponse";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
@@ -192,6 +193,26 @@ export async function registerRoutes(
       calculationVersion: CALCULATION_VERSION,
       sourceCommitMeaning: "hosting-supplied Git revision; null means not recorded",
     });
+  });
+  app.get("/api/calculation/company-coverage",async(req,res)=>{
+    const parsed=z.object({
+      observationDate:z.string().date().optional(),
+      informationCutoff:z.string().datetime({offset:true}).optional(),
+      snapshotId:z.string().regex(/^[a-f0-9]{64}$/).optional(),
+    }).strict().safeParse(req.query);
+    res.set("Cache-Control","no-store");
+    if(!parsed.success)return res.status(422).json({error:"Only scalar observationDate, informationCutoff and snapshotId are supported"});
+    const informationCutoff=parsed.data.informationCutoff??new Date().toISOString();
+    if(Date.parse(informationCutoff)>Date.now())return res.status(422).json({error:"Future information cutoff refused"});
+    if(parsed.data.observationDate&&parsed.data.observationDate>new Date(informationCutoff).toISOString().slice(0,10))
+      return res.status(422).json({error:"Observation after information cutoff refused"});
+    try {
+      const result=await getCompanyCoverage({...parsed.data,informationCutoff});
+      res.set("X-Field-Semantics",bindNestedOutput("companyCoverage",result).map(f=>f.id).join(","));
+      return res.json(result);
+    }catch(error){
+      return res.status(503).json({error:"Coverage unavailable: selected workbook/review evidence could not be verified"});
+    }
   });
   app.use("/api", async (req, res, next) => {
     if (req.method !== "GET") return next();

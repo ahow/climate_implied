@@ -1,6 +1,7 @@
 import { INDICATORS, type IndicatorKey } from "../dataIngestion/indicatorRegistry";
 import { HISTORICAL_INDICATORS } from "./historicalIndicators";
 import { contentHash } from "./analysisManifest";
+import { driverConsumerTrace } from "./driverConsumptionTrace";
 
 const mechanisms = new Set<IndicatorKey>(["renewableCapacityGW", "renewableGrowthRate", "evSalesSharePct", "evGrowthRate",
   "gdpTrillionUSD", "carbonIntensityKgPerGDP"]);
@@ -26,6 +27,13 @@ export function driverEvidenceRegistry() {
     transformedUnit: d.unit, geography: "global", category: d.category,
     role: mechanisms.has(d.key) ? "candidate-mechanism-input" : validation.has(d.key) ? "validation-target" : "context",
     centralModelEligible: false,
+    actualConsumers: driverConsumerTrace(d.key),
+    parameterDistribution: {
+      status: "unavailable",
+      registryVersion: "stage4-source-linked-1",
+      loader: "retainedAdoptionParameterRegistry",
+      reason: "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator",
+    },
     reason: mechanisms.has(d.key) ? "Mechanism exists but regional calibration and uncertainty evidence are incomplete"
       : validation.has(d.key) ? "Outcome check, not an independent abatement multiplier"
       : "No identified incremental causal coefficient; target coverage is not delivery",

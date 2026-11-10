@@ -1,0 +1,3681 @@
+{
+  "schemaVersion": 1,
+  "scope": [
+    "S04-007",
+    "S04-008",
+    "S04-010"
+  ],
+  "completedAt": "2026-11-10T13:46:11.731Z",
+  "status": "source-verified sensitivity consumption and native-engine enforcement implemented; scientific acceptance remains incomplete",
+  "originalSource": {
+    "path": "attached_assets/Climate_Dashboard_\u2014_Developer_Work_Plan_(1)_1794135026111.docx",
+    "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+    "verification": [
+      {
+        "clause": "Fallback rule, fixed before fitting. A driver that does not beat both baselines out of sample becomes a bounded sensitivity, not a central-model input. The exception is a separately documented physical or empirical basis for its central role.",
+        "verified": true
+      },
+      {
+        "clause": "Store fitted parameter distributions in the registry as versioned inputs for Stage 5, each tagged calibrated, prior or sensitivity-only.",
+        "verified": true
+      },
+      {
+        "clause": "No driver that failed its baselines remains a central input without a documented justification.",
+        "verified": true
+      }
+    ]
+  },
+  "operationalProtocol": {
+    "path": "docs/driver-consumption-protocol.json",
+    "sha256": "db68dde544372010591a1db29102a4cbab464ca803888dd20fa1d95467295074",
+    "version": "driver-consumption-operational-freeze-2",
+    "scope": [
+      "S04-007",
+      "S04-008",
+      "S04-010"
+    ],
+    "freezeMeaning": "Written before the new consumption evidence execution; does not supersede or re-open any existing scientific protocol or known result",
+    "sourcePolicy": "Retained local bytes only, SHA-256 verified; no paid calls or downloads",
+    "cliIntegrationFreeze": {
+      "meaning": "Additive engineering CLI integration check frozen before CLI executions; source-fit outcomes were already known and are not a new study",
+      "entryPoint": "script/run-regional-ensemble.ts",
+      "registeredModes": [
+        "central",
+        "sensitivity"
+      ],
+      "retainedRegistryId": "retained-adoption-paired-1",
+      "retainedRegistryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+      "positiveControl": "Run all 10 real retained distributions twice through CLI, 256 members each, seed 20261110, compare written member/output hashes and decode written gzip paths",
+      "negativeControls": "CLI central attempt for each of 10 real distributions and each of 22 curated driver ids, plus native central with no accepted pinned six-region registry; every attempt must reject without artifacts",
+      "nativeIntegration": "Separate explicit hash-pinned supplied joint-registry sensitivity CLI exercises actual regional member engine in tests; synthetic registry is engineering-only, never accepted source calibration",
+      "legacySeparation": "Only explicit legacy-diagnostic command accepts unregistered positional parameters; mode flags cannot be ignored or promote legacy parameters"
+    },
+    "studyDecision": "No new fit or acceptance study. Existing complete wind/adoption windows were already evaluated; consume their retained paired uncertainty only. Policy price-times-coverage and nowcast lack a compatible independently dated frozen-window source bundle.",
+    "realConsumption": {
+      "registry": "retainedAdoptionParameterRegistry",
+      "consumer": "consumeRetainedAdoption",
+      "selection": "all ten retained entity-by-solar/wind distributions, no winner selection",
+      "seed": 20261110,
+      "membersPerDriver": 256,
+      "years": [
+        2024,
+        2030,
+        2050,
+        2100
+      ],
+      "use": "sensitivity",
+      "sampling": "uniform complete intercept/slope paired-bootstrap draw per member; never independent marginal draws",
+      "report": "registry/distribution/output hashes, deterministic replay, draw count, min/max per year; do not publish private source rows or member arrays",
+      "centralNegativeControl": "Attempt central use for all ten; every attempt must reject, including EU solar point-metric winner",
+      "failurePolicy": "Fail explicitly on hash mismatch, missing source, invalid window, unknown geography, incomplete registry binding or changed paired draw count",
+      "noAcceptanceClaim": "256 consumption members are engineering replay only; neither 10,000-member acceptance nor emissions/climate/convergence validation"
+    },
+    "legacyCensus": {
+      "count": 22,
+      "consumer": "getCurrentIndicatorsFromHistorical -> calculateEmissionsTrajectory",
+      "baseline": "retained curated 2024 row",
+      "seed": 20261110,
+      "runs": 8,
+      "startYear": 2024,
+      "endYear": 2030,
+      "intervention": "one source field at a time +10%; co2GrowthRatePpm set to 2.0 to cross its explicit threshold",
+      "meaning": "Controlled code-path perturbation, not causal evidence, predictive validation or central eligibility; unchanged unused fields remain explicit"
+    },
+    "preservation": "Hash frozen beta, fleet, EV, storage protocols/results and history protocol before and after; never re-fit, relax windows, suppress failures, or rewrite legacy equations",
+    "tests": [
+      "script/driver-consumption.test.ts",
+      "script/driver-evidence.test.ts",
+      "script/regional-sampling.test.ts",
+      "script/ensemble.test.ts",
+      "script/test_driver_calibration.py",
+      "script/test_driver_uncertainty.py"
+    ]
+  },
+  "sourceInputs": {
+    "report": {
+      "path": "generated-artifacts/driver-calibration/uncertainty.json",
+      "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+    },
+    "observations": {
+      "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+      "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+    },
+    "calibration": {
+      "path": "docs/Driver_Calibration_Protocol.md",
+      "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+    },
+    "uncertainty": {
+      "path": "docs/Driver_Uncertainty_Protocol.md",
+      "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+    }
+  },
+  "registryVersion": "stage4-source-linked-1",
+  "registryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+  "actualRealResults": [
+    {
+      "evidence": {
+        "id": "China:solar_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "solar_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "China",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 23.386347232841544,
+          "persistenceMAE": 2.4471666666666665,
+          "linearMAE": 1.9761388888888884,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "fc59a67ba71ebcbccb3b8493d5da48c8c27abc8f9afd16bfd9c07a8991bfb15b",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "7047a8dac592797fb2e78520730d51c04db2aa810dae4a958c574b98ef28a236",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: China:solar_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.40556594348280156,
+          "maximum": 0.7604015394855391
+        },
+        {
+          "year": 2030,
+          "minimum": 0.9486229546596484,
+          "maximum": 0.9951879689665436
+        },
+        {
+          "year": 2050,
+          "minimum": 0.9999990898365254,
+          "maximum": 0.9999999956772208
+        },
+        {
+          "year": 2100,
+          "minimum": 1,
+          "maximum": 1
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "China:wind_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "wind_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "China",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 2.3821526070428294,
+          "persistenceMAE": 2.7208333333333328,
+          "linearMAE": 1.1887175925925926,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "7621c63519a974eef6f3541141fc656d39c3fb0b872848efdd95010982f4342c",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "681f00445a5364028073bc138cabe600346603540032108a5a15f966ff7aac26",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: China:wind_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.11758798551574297,
+          "maximum": 0.17966375867896198
+        },
+        {
+          "year": 2030,
+          "minimum": 0.25637923094272136,
+          "maximum": 0.4266856892454843
+        },
+        {
+          "year": 2050,
+          "minimum": 0.8912709078746937,
+          "maximum": 0.9783667057744216
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9999557426699177,
+          "maximum": 0.9999992566133311
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "European Union (27):solar_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "solar_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "European Union (27)",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 1.4630422914152623,
+          "persistenceMAE": 3.2848333333333333,
+          "linearMAE": 1.8069537037037036,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "73148c1639cb129819bfd96750d18766b329cbccad4f17b8cc8c05aadd107be2",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "ccb9fd1181a2f5df82c0dbb4d5728b76bff01f24fb080089487d2fe0f2402348",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: European Union (27):solar_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.05028783580567987,
+          "maximum": 0.24822432760647023
+        },
+        {
+          "year": 2030,
+          "minimum": 0.07529200672889307,
+          "maximum": 0.5883908143206906
+        },
+        {
+          "year": 2050,
+          "minimum": 0.2546814190578539,
+          "maximum": 0.995415570620305
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9249764303996311,
+          "maximum": 0.9999999838029823
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "European Union (27):wind_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "wind_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "European Union (27)",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 1.3903970958722762,
+          "persistenceMAE": 4.178333333333333,
+          "linearMAE": 1.2785212962962975,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "c1262c8e8debbb2a255645bddabda9a965b4af271d6ca91a615d86eb0a67d2e6",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "6673f3c580c86a3de5d827074dedab0af471d518d3caf207e654cf718eb2d4dd",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: European Union (27):wind_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.18276687364449964,
+          "maximum": 0.23328397418229904
+        },
+        {
+          "year": 2030,
+          "minimum": 0.28828836596375484,
+          "maximum": 0.3949208206484718
+        },
+        {
+          "year": 2050,
+          "minimum": 0.7412545753771426,
+          "maximum": 0.8948273945460781
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9973827933099856,
+          "maximum": 0.9998084716214602
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "India:solar_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "solar_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "India",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 17.389753897225066,
+          "persistenceMAE": 2.2961666666666667,
+          "linearMAE": 2.0346805555555565,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "40288a8e12477fb4cb817d03a8748edfecab282d39fb16c1a2cb2b5a35462b97",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "6e7a9cb3c7fc084126523e917b039d8f23da7983a5e2cfa5ef82a83a1975be19",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: India:solar_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.1592812506282604,
+          "maximum": 0.8073730747998978
+        },
+        {
+          "year": 2030,
+          "minimum": 0.6851637193735141,
+          "maximum": 0.9968018600126746
+        },
+        {
+          "year": 2050,
+          "minimum": 0.9998533126954331,
+          "maximum": 0.9999999981445826
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9999999999997329,
+          "maximum": 1
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "India:wind_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "wind_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "India",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 0.6528221826656656,
+          "persistenceMAE": 0.16983333333333317,
+          "linearMAE": 0.341865740740741,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "287d3be7d3f39ac613126b6206a35b40b619e6373d1ae9fbc85323ea7a6d72e4",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "47e99f0f1b5c2b9d1b09f16df7bed60c00d554c413997f320b85b7371da32c7b",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: India:wind_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.043510270820550374,
+          "maximum": 0.06527294752290395
+        },
+        {
+          "year": 2030,
+          "minimum": 0.05800359631858372,
+          "maximum": 0.10721997889942449
+        },
+        {
+          "year": 2050,
+          "minimum": 0.14452045206264524,
+          "maximum": 0.4269048002865414
+        },
+        {
+          "year": 2100,
+          "minimum": 0.6780657820077657,
+          "maximum": 0.9864437562903585
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "United States:solar_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "solar_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "United States",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 22.914418041507847,
+          "persistenceMAE": 2.291333333333333,
+          "linearMAE": 1.480763888888889,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "ccf6b2c5b57ea4983594b8b8caae22babab7441259ba4403dbb9ac04de2048c0",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "a921edbe395023aa643368114013784b84dc4efa2fb3ed8f88ffc0adf705e5b7",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: United States:solar_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.2762571696648704,
+          "maximum": 0.8389715202069605
+        },
+        {
+          "year": 2030,
+          "minimum": 0.8681947213786539,
+          "maximum": 0.9974095879363942
+        },
+        {
+          "year": 2050,
+          "minimum": 0.9999885678692092,
+          "maximum": 0.9999999984666965
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9999999999999993,
+          "maximum": 1
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "United States:wind_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "wind_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "United States",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 1.6016676548291737,
+          "persistenceMAE": 2.6600000000000006,
+          "linearMAE": 0.7447777777777781,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "31cca7b1f02c8b7aede3eef9c5ecac64842af23290b342a93785dcb312be1da3",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "8a6ef97c103490a7ed6b88cdbb4cf0594fc044126743248807e16dd083b7932f",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: United States:wind_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.11607691587241896,
+          "maximum": 0.16877397153741547
+        },
+        {
+          "year": 2030,
+          "minimum": 0.20267282328014766,
+          "maximum": 0.33329555673265404
+        },
+        {
+          "year": 2050,
+          "minimum": 0.6959829537155788,
+          "maximum": 0.9112613836281247
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9981574060611007,
+          "maximum": 0.9999494297716991
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "World:solar_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "solar_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "World",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 3.6781315501434357,
+          "persistenceMAE": 2.2721666666666667,
+          "linearMAE": 1.646791666666667,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "f4c2e4d4e6b1c89e4cb3f15f026c8e053270a9a98499401c43f5b54a0ec52964",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "4a43eeeb5fd69509403a110d480bab9af9b1a1a404130bd5116d1578adbe6837",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: World:solar_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.09667621590550447,
+          "maximum": 0.21382017927144634
+        },
+        {
+          "year": 2030,
+          "minimum": 0.35285517424659374,
+          "maximum": 0.7054210344724903
+        },
+        {
+          "year": 2050,
+          "minimum": 0.9920043117134946,
+          "maximum": 0.9997132372402162
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9999999894583472,
+          "maximum": 0.9999999999964528
+        }
+      ]
+    },
+    {
+      "evidence": {
+        "id": "World:wind_share_elec",
+        "version": "retained-adoption-paired-1",
+        "status": "sensitivity-only",
+        "definition": "wind_share_elec: electricity generation share, not capacity or an abatement coefficient",
+        "unit": "fraction of electricity generation",
+        "geography": "World",
+        "sources": [
+          {
+            "path": "generated-artifacts/driver-calibration/uncertainty.json",
+            "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+          },
+          {
+            "path": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+            "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76"
+          },
+          {
+            "path": "docs/Driver_Uncertainty_Protocol.md",
+            "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1"
+          }
+        ],
+        "evaluation": {
+          "candidateMAE": 1.222477804007464,
+          "persistenceMAE": 2.0481666666666665,
+          "linearMAE": 0.7093333333333329,
+          "metricUnit": "percentage points",
+          "trainingYears": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018
+          ],
+          "evaluationYears": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "protocol": {
+            "path": "docs/Driver_Calibration_Protocol.md",
+            "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67"
+          }
+        }
+      },
+      "model": "logistic-generation-share",
+      "distributionHash": "d70e88fe643bcabe1a4f085ce657b44494cd331d9b4728c884da1d3509509126",
+      "pairedDraws": 1000,
+      "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+      "seed": 20261110,
+      "members": 256,
+      "outputHash": "678a06b3ee1bb4aa350d13232932e7453935246a539b453d235371553cc80f5a",
+      "deterministicReplay": true,
+      "centralRejection": "Central consumption blocked without independent physical/empirical basis: World:wind_share_elec",
+      "bounds": [
+        {
+          "year": 2024,
+          "minimum": 0.09623526222672335,
+          "maximum": 0.11992117496888577
+        },
+        {
+          "year": 2030,
+          "minimum": 0.18491557078869358,
+          "maximum": 0.24972426620553828
+        },
+        {
+          "year": 2050,
+          "minimum": 0.7384402138407172,
+          "maximum": 0.8699729667416186
+        },
+        {
+          "year": 2100,
+          "minimum": 0.9993422609245934,
+          "maximum": 0.9999175080780804
+        }
+      ]
+    }
+  ],
+  "allCuratedDrivers": [
+    {
+      "id": "renewableCapacityGW",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "renewableCapacityGW"
+          ],
+          "mechanism": "projectIndicator capacity buildout -> exponential fossil-power displacement",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "84c9c17a8c4086d5142a5977642428c28e8e812017a66822a47e17366752fd3d",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.29066490651903365,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "renewableGrowthRate",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "renewableGrowthRate"
+          ],
+          "mechanism": "fraction/yr multiplied by 100 -> uncertain capacity growth",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "953fb1ee02878ab86488fac2577bbf07f7418e9b24cf42f36df3ec160f1ddfea",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.49900153951452353,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "evSalesSharePct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "evSalesShare"
+          ],
+          "mechanism": "projectIndicator sales share -> 1/15 fleet-turnover EMA -> passenger transport displacement",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "5a8929595bf8c264a6dc523df8257f3a304285c13d9496c9257dba1fdd188714",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.027510493626245136,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "evGrowthRate",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "evGrowthRate"
+          ],
+          "mechanism": "fraction/yr multiplied by 100 -> uncertain sales growth -> fleet turnover",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "75d87f81fb24eb1442055a0561b9913d33bd744d7c3110a1ec45486248ca67c6",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.011568482496720378,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "policyCoveragePct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "policyCoveragePercent",
+            "netZeroTargetsCoverage"
+          ],
+          "mechanism": "coverage * uncertain implementation * elapsed-time heuristic; derived netZeroTargetsCoverage is validated but unused",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "37de4a5b978f3694ecfd981ad8c31367e3e1a319d24fecaef3e8fb9057f54661",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.0043370191076022024,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "policyImplementationRate",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "policyImplementationRate"
+          ],
+          "mechanism": "normal mean -> coverage * implementation elapsed-time subtraction",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "7ad0f60d24279a2c649065a78c32334bda8edc1ca7f0fd342510a6f0670f4bf7",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.003434469301062393,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "gdpTrillionUSD",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "globalGDP"
+          ],
+          "mechanism": "converted and finite-validated only; economic growth uses fixed sampled mean, not observed GDP",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "carbonIntensityKgPerGDP",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "carbonIntensity"
+          ],
+          "mechanism": "baseline intensity scaling; historical intensity series also estimates decline rate",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "06791b1ba12c916652bb2e74be307778c4337accc295f714d3fd0f642f65dce1",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 6.830416401175171,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "climateConcernPct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [],
+          "mechanism": "no observation consumer in emissions; socioeconomic category uses fixed stylized shocks instead",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "policySupportPct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [],
+          "mechanism": "no observation consumer in emissions; category labels are not survey calibration",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "sacrificeWillingnessPct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [],
+          "mechanism": "no observation consumer in emissions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "humanCausationPct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [],
+          "mechanism": "no observation consumer in emissions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "corporateTargetsPct",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "sbtiCompaniesPercent"
+          ],
+          "mechanism": "coverage * corporate delivery * elapsed time -> all-sector heuristic reductions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "fa9eccfd71288ed121c110996733a2cbba86ca5819795404502e3650623c371c",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.11561694504828068,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "corporateImplementationRate",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "corporateImplementationRate"
+          ],
+          "mechanism": "coverage * corporate delivery * elapsed time -> all-sector heuristic reductions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "fa9eccfd71288ed121c110996733a2cbba86ca5819795404502e3650623c371c",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.11561694504828068,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "cleanEnergyInvestmentTrn",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "cleanEnergyInvestmentTrn"
+          ],
+          "mechanism": "clean/fossil investment ratio -> financial-flow heuristic reductions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "3ac9d4e34e86fcf49aca99af5398a24cecd96d5f7d928e742377e541a958d645",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.08334145098402246,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "fossilFuelInvestmentTrn",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "fossilFuelInvestmentTrn"
+          ],
+          "mechanism": "denominator of clean/fossil ratio, floored at 0.1 -> financial-flow heuristic",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ffae05da406372f0c8408b644c93c69c224fea1fcf0a457565b50b14aa16ef14",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.07576495544002171,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "greenBondIssuanceBln",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "greenBondIssuanceBln"
+          ],
+          "mechanism": "bond momentum capped at 1 -> financial-flow heuristic reductions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "0238731c5c8fb838cb0e0f8cbcfdf14a28b8f52bbdd36ddbbecc72722a45b679",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.021877130883311224,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "fossilDivestmentTrn",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [],
+          "mechanism": "no observation consumer in emissions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "fossilCO2GtPerYear",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "fossilCO2GtPerYear"
+          ],
+          "mechanism": "emissionsValidationFactor -> fading stochastic emissions anchor; not independent abatement",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "7967b24b1569c78cea94fa2f56db01e873e29aa76b9e0a227fd3ae721ec26de3",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 2.0532759080501677,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "atmosphericCO2ppm",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "atmosphericCO2ppm"
+          ],
+          "mechanism": "converted and finite-validated only; no trajectory equation reads the value",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "co2GrowthRatePpm",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [
+            "co2GrowthRatePpm"
+          ],
+          "mechanism": "threshold >2.5 -> temporary 0.5% emissions-acceleration heuristic",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "set-to-2.0-threshold-crossing",
+        "outputHash": "04747bcbb0bc5803ef302ed1ce1b602f6980d80b3a41ee0e003b20d773e0bfc3",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": true,
+        "maximumEmissionsDifferenceGt": 0.3398217115012443,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    },
+    {
+      "id": "remainingBudget15C_Gt",
+      "actualConsumers": {
+        "legacy": {
+          "classification": "legacy-diagnostic-not-calibrated-central",
+          "consumer": "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory",
+          "historicalAdapters": [
+            "getCurrentIndicatorsFromHistorical",
+            "categoryHistoricalTrend.convertToIndicatorData"
+          ],
+          "categoryConsumer": "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
+          "fields": [],
+          "mechanism": "accounting/context only; no observation consumer in emissions",
+          "registryGateEnforced": false,
+          "caveat": "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"
+        },
+        "stage5": {
+          "consumer": "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
+          "implicitCuratedIndicatorConsumption": false,
+          "gate": "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+          "directCuratedDistribution": null,
+          "missingBridge": "No approved source-compatible mapping from this curated driver to native regional parameter distributions"
+        }
+      },
+      "parameterDistribution": {
+        "status": "unavailable",
+        "registryVersion": "stage4-source-linked-1",
+        "loader": "retainedAdoptionParameterRegistry",
+        "reason": "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"
+      },
+      "controlledLegacyIntervention": {
+        "rule": "multiply-source-field-by-1.1",
+        "outputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "baselineOutputHash": "ed40006f8024b92a7ab8bb9675a0a55408e76da2f0304f4a292721b15acf532e",
+        "changedTrajectory": false,
+        "maximumEmissionsDifferenceGt": 0,
+        "meaning": "Code-path perturbation only; no causal or calibration interpretation"
+      }
+    }
+  ],
+  "actualStage5Cli": {
+    "entryPoint": "script/run-regional-ensemble.ts",
+    "registeredSensitivityRuns": [
+      {
+        "directory": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-a",
+        "resultPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-a/result.json",
+        "resultSha256": "9f6f3265c2464979583303d9fbafa46f36b65bdc201f10f5f10f8bb990a0d935",
+        "membersPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-a/members.jsonl.gz",
+        "compressedMembersSha256": "fa3f3420c9808f4b35e570a7bf2a94b8a9800155a01450934819d682323e20a0",
+        "decodedMemberCount": 2560,
+        "entryPoint": "script/run-regional-ensemble.ts",
+        "registryId": "retained-adoption-paired-1",
+        "registryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+        "pinnedRegistryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+        "use": "sensitivity",
+        "seed": 20261110,
+        "membersPerDriver": 256,
+        "acceptedMembers": 2560,
+        "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+        "membersSha256": "79df97cccabd471670577ff21e7af2464c5a5d6134b9e6506bfe54e80a419af6",
+        "complete": true,
+        "productionEligible": false,
+        "climateResponse": "not-run",
+        "claim": "registered Stage5 driver sensitivity member paths; not native emissions or calibrated climate forecast",
+        "distributions": [
+          {
+            "driverId": "China:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "fc59a67ba71ebcbccb3b8493d5da48c8c27abc8f9afd16bfd9c07a8991bfb15b",
+            "outputHash": "7047a8dac592797fb2e78520730d51c04db2aa810dae4a958c574b98ef28a236",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "China:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "7621c63519a974eef6f3541141fc656d39c3fb0b872848efdd95010982f4342c",
+            "outputHash": "681f00445a5364028073bc138cabe600346603540032108a5a15f966ff7aac26",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "European Union (27):solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "73148c1639cb129819bfd96750d18766b329cbccad4f17b8cc8c05aadd107be2",
+            "outputHash": "ccb9fd1181a2f5df82c0dbb4d5728b76bff01f24fb080089487d2fe0f2402348",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "European Union (27):wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "c1262c8e8debbb2a255645bddabda9a965b4af271d6ca91a615d86eb0a67d2e6",
+            "outputHash": "6673f3c580c86a3de5d827074dedab0af471d518d3caf207e654cf718eb2d4dd",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "India:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "40288a8e12477fb4cb817d03a8748edfecab282d39fb16c1a2cb2b5a35462b97",
+            "outputHash": "6e7a9cb3c7fc084126523e917b039d8f23da7983a5e2cfa5ef82a83a1975be19",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "India:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "287d3be7d3f39ac613126b6206a35b40b619e6373d1ae9fbc85323ea7a6d72e4",
+            "outputHash": "47e99f0f1b5c2b9d1b09f16df7bed60c00d554c413997f320b85b7371da32c7b",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "United States:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "ccf6b2c5b57ea4983594b8b8caae22babab7441259ba4403dbb9ac04de2048c0",
+            "outputHash": "a921edbe395023aa643368114013784b84dc4efa2fb3ed8f88ffc0adf705e5b7",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "United States:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "31cca7b1f02c8b7aede3eef9c5ecac64842af23290b342a93785dcb312be1da3",
+            "outputHash": "8a6ef97c103490a7ed6b88cdbb4cf0594fc044126743248807e16dd083b7932f",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "World:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "f4c2e4d4e6b1c89e4cb3f15f026c8e053270a9a98499401c43f5b54a0ec52964",
+            "outputHash": "4a43eeeb5fd69509403a110d480bab9af9b1a1a404130bd5116d1578adbe6837",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "World:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "d70e88fe643bcabe1a4f085ce657b44494cd331d9b4728c884da1d3509509126",
+            "outputHash": "678a06b3ee1bb4aa350d13232932e7453935246a539b453d235371553cc80f5a",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          }
+        ]
+      },
+      {
+        "directory": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-b",
+        "resultPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-b/result.json",
+        "resultSha256": "9f6f3265c2464979583303d9fbafa46f36b65bdc201f10f5f10f8bb990a0d935",
+        "membersPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-b/members.jsonl.gz",
+        "compressedMembersSha256": "fa3f3420c9808f4b35e570a7bf2a94b8a9800155a01450934819d682323e20a0",
+        "decodedMemberCount": 2560,
+        "entryPoint": "script/run-regional-ensemble.ts",
+        "registryId": "retained-adoption-paired-1",
+        "registryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+        "pinnedRegistryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+        "use": "sensitivity",
+        "seed": 20261110,
+        "membersPerDriver": 256,
+        "acceptedMembers": 2560,
+        "actualConsumer": "consumeRetainedAdoption/logistic-generation-share",
+        "membersSha256": "79df97cccabd471670577ff21e7af2464c5a5d6134b9e6506bfe54e80a419af6",
+        "complete": true,
+        "productionEligible": false,
+        "climateResponse": "not-run",
+        "claim": "registered Stage5 driver sensitivity member paths; not native emissions or calibrated climate forecast",
+        "distributions": [
+          {
+            "driverId": "China:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "fc59a67ba71ebcbccb3b8493d5da48c8c27abc8f9afd16bfd9c07a8991bfb15b",
+            "outputHash": "7047a8dac592797fb2e78520730d51c04db2aa810dae4a958c574b98ef28a236",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "China:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "7621c63519a974eef6f3541141fc656d39c3fb0b872848efdd95010982f4342c",
+            "outputHash": "681f00445a5364028073bc138cabe600346603540032108a5a15f966ff7aac26",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "European Union (27):solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "73148c1639cb129819bfd96750d18766b329cbccad4f17b8cc8c05aadd107be2",
+            "outputHash": "ccb9fd1181a2f5df82c0dbb4d5728b76bff01f24fb080089487d2fe0f2402348",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "European Union (27):wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "c1262c8e8debbb2a255645bddabda9a965b4af271d6ca91a615d86eb0a67d2e6",
+            "outputHash": "6673f3c580c86a3de5d827074dedab0af471d518d3caf207e654cf718eb2d4dd",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "India:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "40288a8e12477fb4cb817d03a8748edfecab282d39fb16c1a2cb2b5a35462b97",
+            "outputHash": "6e7a9cb3c7fc084126523e917b039d8f23da7983a5e2cfa5ef82a83a1975be19",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "India:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "287d3be7d3f39ac613126b6206a35b40b619e6373d1ae9fbc85323ea7a6d72e4",
+            "outputHash": "47e99f0f1b5c2b9d1b09f16df7bed60c00d554c413997f320b85b7371da32c7b",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "United States:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "ccf6b2c5b57ea4983594b8b8caae22babab7441259ba4403dbb9ac04de2048c0",
+            "outputHash": "a921edbe395023aa643368114013784b84dc4efa2fb3ed8f88ffc0adf705e5b7",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "United States:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "31cca7b1f02c8b7aede3eef9c5ecac64842af23290b342a93785dcb312be1da3",
+            "outputHash": "8a6ef97c103490a7ed6b88cdbb4cf0594fc044126743248807e16dd083b7932f",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "World:solar_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "f4c2e4d4e6b1c89e4cb3f15f026c8e053270a9a98499401c43f5b54a0ec52964",
+            "outputHash": "4a43eeeb5fd69509403a110d480bab9af9b1a1a404130bd5116d1578adbe6837",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          },
+          {
+            "driverId": "World:wind_share_elec",
+            "status": "sensitivity-only",
+            "distributionHash": "d70e88fe643bcabe1a4f085ce657b44494cd331d9b4728c884da1d3509509126",
+            "outputHash": "678a06b3ee1bb4aa350d13232932e7453935246a539b453d235371553cc80f5a",
+            "years": [
+              2024,
+              2030,
+              2050,
+              2100
+            ]
+          }
+        ]
+      }
+    ],
+    "identicalMemberReplay": true,
+    "allDriverCentralControls": [
+      {
+        "driverId": "China:solar_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: China:solar_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-0.log",
+        "logSha256": "66f55533a5d20953ee9099cc08c6f7f65c22183a91477a7b4e967dd76ca5a017"
+      },
+      {
+        "driverId": "China:wind_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: China:wind_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-1.log",
+        "logSha256": "9cbd47453bacb489bed0315548f40eaf921fdf87bf537c0154acc0c54f5ea686"
+      },
+      {
+        "driverId": "European Union (27):solar_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: European Union (27):solar_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-2.log",
+        "logSha256": "d0402c30516854e74e72b7b16cb6be08dae6eecb80c7ea3ff9a098bf486ee670"
+      },
+      {
+        "driverId": "European Union (27):wind_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: European Union (27):wind_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-3.log",
+        "logSha256": "1b2de3ef1f2f7a4eb283ac5c9df1c0d84c8fa7f3621768561f7b507cb3142e94"
+      },
+      {
+        "driverId": "India:solar_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: India:solar_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-4.log",
+        "logSha256": "6c672ef823412a867826a6854adc5bfb34b61408c13f2321d79b204fbf773198"
+      },
+      {
+        "driverId": "India:wind_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: India:wind_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-5.log",
+        "logSha256": "c6f32638e3b5cb103cbc54ed1c8813b03d0b7ebae32730d8220764e056429447"
+      },
+      {
+        "driverId": "United States:solar_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: United States:solar_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-6.log",
+        "logSha256": "f85d7573a85b3ee0b71f8cefe017aefa98a07e5e743684faaff29f4c1e84c54e"
+      },
+      {
+        "driverId": "United States:wind_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: United States:wind_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-7.log",
+        "logSha256": "e21fbeb6e807cf0b69bfbcf05c3b0755677b1d314a68707f22f191e9a2f5da6a"
+      },
+      {
+        "driverId": "World:solar_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: World:solar_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-8.log",
+        "logSha256": "a94a7457dd60125eb0d393ee612ea2651b55a9fda0301b35704c58a0a05b9290"
+      },
+      {
+        "driverId": "World:wind_share_elec",
+        "kind": "retained-real-distribution",
+        "exitCode": 1,
+        "error": "Central consumption blocked without independent physical/empirical basis: World:wind_share_elec",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-9.log",
+        "logSha256": "7906d3854e05459d46e4b931f3014de6b07ef70eb11d423b9adf181e501d1e21"
+      },
+      {
+        "driverId": "renewableCapacityGW",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: renewableCapacityGW; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-10.log",
+        "logSha256": "0e7b1e3e7f0681940f7a1e561d9358b6ca865d87bec533b9b01c13c36876af23"
+      },
+      {
+        "driverId": "renewableGrowthRate",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: renewableGrowthRate; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-11.log",
+        "logSha256": "df15940a69b8c6e60e6a6471730333a75bc18e37d7f7dc74d1edd619134bd945"
+      },
+      {
+        "driverId": "evSalesSharePct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: evSalesSharePct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-12.log",
+        "logSha256": "7d96b094607cc395619ad616e1df666cc6868a698558a8d27ac897555b91f979"
+      },
+      {
+        "driverId": "evGrowthRate",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: evGrowthRate; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-13.log",
+        "logSha256": "699d23e870c8880acb43d1698f079c1a548bf1bef1721fcb9df23bc4585315d7"
+      },
+      {
+        "driverId": "policyCoveragePct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: policyCoveragePct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-14.log",
+        "logSha256": "3be09cb4baaa09914b3963653ec9e888d8c158401ffb49ba4df3462993393a39"
+      },
+      {
+        "driverId": "policyImplementationRate",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: policyImplementationRate; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-15.log",
+        "logSha256": "a58dff8bbe0104adc81dba6a13fe3834b76ef59bd510e4f88a73f7fdec497730"
+      },
+      {
+        "driverId": "gdpTrillionUSD",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: gdpTrillionUSD; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-16.log",
+        "logSha256": "6c23d9f1d0e4d331e9a00403a24e2fa873cdc67ac73bfc2066af99fe89610b8b"
+      },
+      {
+        "driverId": "carbonIntensityKgPerGDP",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: carbonIntensityKgPerGDP; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-17.log",
+        "logSha256": "3b63a63f2da6044992fbf2de206dfa19c7f7b7ca9a1e056704eb9767ffd55ab7"
+      },
+      {
+        "driverId": "climateConcernPct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: climateConcernPct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-18.log",
+        "logSha256": "60e33c01c05a0dba83a59b9cb00e1e3322d0e065b9a9518aa8032d90f905c263"
+      },
+      {
+        "driverId": "policySupportPct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: policySupportPct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-19.log",
+        "logSha256": "99896364db6fc3be09345e8332266f9c8e3462283dd2bbc239b15dddb9eaa161"
+      },
+      {
+        "driverId": "sacrificeWillingnessPct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: sacrificeWillingnessPct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-20.log",
+        "logSha256": "8bae7da47231dda6c7f144ecb4ba14695b1a93bd714c8e4335724c8d7d453cb9"
+      },
+      {
+        "driverId": "humanCausationPct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: humanCausationPct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-21.log",
+        "logSha256": "0683c73a92c582506e9fe435ae09268e89d6940781b344da8ced4b6df9e8f345"
+      },
+      {
+        "driverId": "corporateTargetsPct",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: corporateTargetsPct; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-22.log",
+        "logSha256": "ae4dfded351cdec76598dbe924ce738ade45e5939c4081627ba2ac4ea3d4fe4d"
+      },
+      {
+        "driverId": "corporateImplementationRate",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: corporateImplementationRate; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-23.log",
+        "logSha256": "86c747f7f7f83fd9e14c7dcc3682ea14af1772e838abbb3b276d2aedf4d4064a"
+      },
+      {
+        "driverId": "cleanEnergyInvestmentTrn",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: cleanEnergyInvestmentTrn; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-24.log",
+        "logSha256": "ee65aace05892ac7e1cbb059258512a0561e9de3725fdb147ed296347d6d8b89"
+      },
+      {
+        "driverId": "fossilFuelInvestmentTrn",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: fossilFuelInvestmentTrn; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-25.log",
+        "logSha256": "087f76b5c54f23b08a2c6cbda597152f73d3da41ed1419b0bc53a73ba0e3a796"
+      },
+      {
+        "driverId": "greenBondIssuanceBln",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: greenBondIssuanceBln; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-26.log",
+        "logSha256": "cffda92dcbc2808f5a1a432e7fc6667208a5c7f4aeed35b7b0a7fdb1520296c9"
+      },
+      {
+        "driverId": "fossilDivestmentTrn",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: fossilDivestmentTrn; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-27.log",
+        "logSha256": "b9ac625600b020198d69a130fc8b659fe3aaa2ba52c57c0817ee564851e25164"
+      },
+      {
+        "driverId": "fossilCO2GtPerYear",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: fossilCO2GtPerYear; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-28.log",
+        "logSha256": "04056f363a66d0b28b20a5ed1099515d188a60d93cd609dfe7bc89f2c7ecdf5c"
+      },
+      {
+        "driverId": "atmosphericCO2ppm",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: atmosphericCO2ppm; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-29.log",
+        "logSha256": "fbb840208f6d2155933d0789fb022ce178823edce60358c82ea867952a609284"
+      },
+      {
+        "driverId": "co2GrowthRatePpm",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: co2GrowthRatePpm; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-30.log",
+        "logSha256": "4b5951fc25c1c847353e564c9c405f705796b21284065013730ba2c8de418b9c"
+      },
+      {
+        "driverId": "remainingBudget15C_Gt",
+        "kind": "curated-driver-without-approved-stage5-distribution",
+        "exitCode": 1,
+        "error": "No registered Stage5 distribution for driver: remainingBudget15C_Gt; central use unavailable",
+        "outputArtifactsCreated": false,
+        "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-31.log",
+        "logSha256": "224c3383bcf2fa6a08f5ecb86ad96358c3ce4c289fe3c8e83dd06a8fd4db3fde"
+      }
+    ],
+    "nativeCentralControl": {
+      "exitCode": 1,
+      "error": "Central Stage5 native consumption unavailable: no accepted pinned real six-region joint registry",
+      "outputArtifactsCreated": false,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/native-central-rejection.log",
+      "logSha256": "6f5655ff1674a494f997a6b66b12e7fe3c7b2a45bb66035ac2ef67a048a57397"
+    },
+    "nativeSensitivityTest": "Focused test invokes this same existing CLI from hash-pinned complete synthetic joint registry and decodes real native-engine outputs; engineering fixture only",
+    "centralScientificAcceptance": false,
+    "legacySeparation": "Explicit legacy-diagnostic command; cannot accept central flags or inherit registered mode"
+  },
+  "publicApiEntryProposal": {
+    "implemented": false,
+    "safeRequest": "registryId enum retained-adoption-paired-1, driverId enum from pinned registry, use enum central|sensitivity, bounded seed/member count",
+    "dispatch": "Call existing fixed retained registry consumer; reject central and unavailable driver ids before output",
+    "forbidden": "No caller-controlled source, registry, inventory, output or file paths in public requests",
+    "nativeCentral": "Unavailable until independently accepted real joint registry is retained and pinned"
+  },
+  "executions": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "-c",
+        "import zipfile,xml.etree.ElementTree as E,json,sys; root=E.fromstring(zipfile.ZipFile(sys.argv[1]).read('word/document.xml')); text=' '.join(' '.join(''.join(p.itertext()).split()) for p in root.findall('.//{*}p')); clauses=json.loads(sys.argv[2]); result=[{'clause':c,'verified':c in text} for c in clauses]; print(json.dumps(result)); sys.exit(0 if all(r['verified'] for r in result) else 1)",
+        "attached_assets/Climate_Dashboard_\u2014_Developer_Work_Plan_(1)_1794135026111.docx",
+        "[\"Fallback rule, fixed before fitting. A driver that does not beat both baselines out of sample becomes a bounded sensitivity, not a central-model input. The exception is a separately documented physical or empirical basis for its central role.\",\"Store fitted parameter distributions in the registry as versioned inputs for Stage 5, each tagged calibrated, prior or sensitivity-only.\",\"No driver that failed its baselines remains a central input without a documented justification.\"]"
+      ],
+      "startedAt": "2026-11-10T13:45:26.711Z",
+      "completedAt": "2026-11-10T13:45:26.816Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/original-clause-verification.log",
+      "logSha256": "1f8a5bd61655af1d1b51b4479447b0b28dd22914c6efc0ca032d5b2bae62f9d0"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/driver-consumption.test.ts",
+        "script/driver-evidence.test.ts",
+        "script/regional-sampling.test.ts",
+        "script/ensemble.test.ts"
+      ],
+      "startedAt": "2026-11-10T13:45:26.817Z",
+      "completedAt": "2026-11-10T13:45:33.101Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/typescript-focused-tests.log",
+      "logSha256": "842e9c1203a22c296f9457082831145a886486753b79f756e6ca64a0cc23d2e2"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "script",
+        "-p",
+        "test_driver_calibration.py"
+      ],
+      "startedAt": "2026-11-10T13:45:33.101Z",
+      "completedAt": "2026-11-10T13:45:33.264Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/python-calibration-tests.log",
+      "logSha256": "450553d8e8b1846ace19ab23935c685b7ca0caa0d266267a87c8e0b98a05e3f2"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "script",
+        "-p",
+        "test_driver_uncertainty.py"
+      ],
+      "startedAt": "2026-11-10T13:45:33.265Z",
+      "completedAt": "2026-11-10T13:45:33.460Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/python-uncertainty-tests.log",
+      "logSha256": "e3798321e00d0b0426bcfbb8e8da246b683536ce99ff943cb6791694a9cece4b"
+    },
+    {
+      "command": [
+        "node",
+        "--input-type=module",
+        "-e",
+        "import ts from 'typescript'; const f=ts.readConfigFile('tsconfig.json',ts.sys.readFile); const c=ts.parseJsonConfigFileContent(f.config,ts.sys,'.'); const p=ts.createProgram(c.fileNames,{...c.options,noEmit:true}); const owned=/driverParameterRegistry|driverConsumptionTrace|driverEvidence|driver-consumption/; const all=ts.getPreEmitDiagnostics(p); const d=all.filter(d=>d.file&&owned.test(d.file.fileName)); console.log(JSON.stringify({scope:'owned files only; transitive pre-existing diagnostics excluded',ownedDiagnostics:d.map(x=>({file:x.file.fileName,message:ts.flattenDiagnosticMessageText(x.messageText,' ')})),otherDiagnostics:all.length-d.length})); process.exit(d.length?1:0);"
+      ],
+      "startedAt": "2026-11-10T13:45:33.460Z",
+      "completedAt": "2026-11-10T13:45:53.152Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/owned-typescript-diagnostics.log",
+      "logSha256": "9d82d66eac13cab26aa25f23d827ff31f1ddc04a774851ccc371686ad985e1b5"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "sensitivity",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "all",
+        "--members",
+        "256",
+        "--seed",
+        "20261110",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-a"
+      ],
+      "startedAt": "2026-11-10T13:45:55.655Z",
+      "completedAt": "2026-11-10T13:45:57.703Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-a.log",
+      "logSha256": "e79cbc7a7dbbfddb42e6b50c4277d6ef4f2f997c4b80af525f988b3911fa496d"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "sensitivity",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "all",
+        "--members",
+        "256",
+        "--seed",
+        "20261110",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-b"
+      ],
+      "startedAt": "2026-11-10T13:45:57.758Z",
+      "completedAt": "2026-11-10T13:45:59.125Z",
+      "exitCode": 0,
+      "error": null,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-b.log",
+      "logSha256": "2575a4498896a8b0e132fa4e2dfbae0848ecb604cae6999b19f789243f85b1c2"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "China:solar_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-0"
+      ],
+      "startedAt": "2026-11-10T13:45:59.154Z",
+      "completedAt": "2026-11-10T13:45:59.695Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-0.log",
+      "logSha256": "66f55533a5d20953ee9099cc08c6f7f65c22183a91477a7b4e967dd76ca5a017"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "China:wind_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-1"
+      ],
+      "startedAt": "2026-11-10T13:45:59.695Z",
+      "completedAt": "2026-11-10T13:46:00.147Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-1.log",
+      "logSha256": "9cbd47453bacb489bed0315548f40eaf921fdf87bf537c0154acc0c54f5ea686"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "European Union (27):solar_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-2"
+      ],
+      "startedAt": "2026-11-10T13:46:00.148Z",
+      "completedAt": "2026-11-10T13:46:00.584Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-2.log",
+      "logSha256": "d0402c30516854e74e72b7b16cb6be08dae6eecb80c7ea3ff9a098bf486ee670"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "European Union (27):wind_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-3"
+      ],
+      "startedAt": "2026-11-10T13:46:00.585Z",
+      "completedAt": "2026-11-10T13:46:00.995Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-3.log",
+      "logSha256": "1b2de3ef1f2f7a4eb283ac5c9df1c0d84c8fa7f3621768561f7b507cb3142e94"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "India:solar_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-4"
+      ],
+      "startedAt": "2026-11-10T13:46:00.995Z",
+      "completedAt": "2026-11-10T13:46:01.435Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-4.log",
+      "logSha256": "6c672ef823412a867826a6854adc5bfb34b61408c13f2321d79b204fbf773198"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "India:wind_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-5"
+      ],
+      "startedAt": "2026-11-10T13:46:01.436Z",
+      "completedAt": "2026-11-10T13:46:01.859Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-5.log",
+      "logSha256": "c6f32638e3b5cb103cbc54ed1c8813b03d0b7ebae32730d8220764e056429447"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "United States:solar_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-6"
+      ],
+      "startedAt": "2026-11-10T13:46:01.859Z",
+      "completedAt": "2026-11-10T13:46:02.258Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-6.log",
+      "logSha256": "f85d7573a85b3ee0b71f8cefe017aefa98a07e5e743684faaff29f4c1e84c54e"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "United States:wind_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-7"
+      ],
+      "startedAt": "2026-11-10T13:46:02.258Z",
+      "completedAt": "2026-11-10T13:46:02.673Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-7.log",
+      "logSha256": "e21fbeb6e807cf0b69bfbcf05c3b0755677b1d314a68707f22f191e9a2f5da6a"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "World:solar_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-8"
+      ],
+      "startedAt": "2026-11-10T13:46:02.673Z",
+      "completedAt": "2026-11-10T13:46:03.076Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-8.log",
+      "logSha256": "a94a7457dd60125eb0d393ee612ea2651b55a9fda0301b35704c58a0a05b9290"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "World:wind_share_elec",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-9"
+      ],
+      "startedAt": "2026-11-10T13:46:03.076Z",
+      "completedAt": "2026-11-10T13:46:03.497Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-9.log",
+      "logSha256": "7906d3854e05459d46e4b931f3014de6b07ef70eb11d423b9adf181e501d1e21"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "renewableCapacityGW",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-10"
+      ],
+      "startedAt": "2026-11-10T13:46:03.498Z",
+      "completedAt": "2026-11-10T13:46:03.846Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-10.log",
+      "logSha256": "0e7b1e3e7f0681940f7a1e561d9358b6ca865d87bec533b9b01c13c36876af23"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "renewableGrowthRate",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-11"
+      ],
+      "startedAt": "2026-11-10T13:46:03.847Z",
+      "completedAt": "2026-11-10T13:46:04.200Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-11.log",
+      "logSha256": "df15940a69b8c6e60e6a6471730333a75bc18e37d7f7dc74d1edd619134bd945"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "evSalesSharePct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-12"
+      ],
+      "startedAt": "2026-11-10T13:46:04.201Z",
+      "completedAt": "2026-11-10T13:46:04.556Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-12.log",
+      "logSha256": "7d96b094607cc395619ad616e1df666cc6868a698558a8d27ac897555b91f979"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "evGrowthRate",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-13"
+      ],
+      "startedAt": "2026-11-10T13:46:04.556Z",
+      "completedAt": "2026-11-10T13:46:04.890Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-13.log",
+      "logSha256": "699d23e870c8880acb43d1698f079c1a548bf1bef1721fcb9df23bc4585315d7"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "policyCoveragePct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-14"
+      ],
+      "startedAt": "2026-11-10T13:46:04.890Z",
+      "completedAt": "2026-11-10T13:46:05.248Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-14.log",
+      "logSha256": "3be09cb4baaa09914b3963653ec9e888d8c158401ffb49ba4df3462993393a39"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "policyImplementationRate",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-15"
+      ],
+      "startedAt": "2026-11-10T13:46:05.248Z",
+      "completedAt": "2026-11-10T13:46:05.593Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-15.log",
+      "logSha256": "a58dff8bbe0104adc81dba6a13fe3834b76ef59bd510e4f88a73f7fdec497730"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "gdpTrillionUSD",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-16"
+      ],
+      "startedAt": "2026-11-10T13:46:05.593Z",
+      "completedAt": "2026-11-10T13:46:05.952Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-16.log",
+      "logSha256": "6c23d9f1d0e4d331e9a00403a24e2fa873cdc67ac73bfc2066af99fe89610b8b"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "carbonIntensityKgPerGDP",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-17"
+      ],
+      "startedAt": "2026-11-10T13:46:05.952Z",
+      "completedAt": "2026-11-10T13:46:06.300Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-17.log",
+      "logSha256": "3b63a63f2da6044992fbf2de206dfa19c7f7b7ca9a1e056704eb9767ffd55ab7"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "climateConcernPct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-18"
+      ],
+      "startedAt": "2026-11-10T13:46:06.300Z",
+      "completedAt": "2026-11-10T13:46:06.670Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-18.log",
+      "logSha256": "60e33c01c05a0dba83a59b9cb00e1e3322d0e065b9a9518aa8032d90f905c263"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "policySupportPct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-19"
+      ],
+      "startedAt": "2026-11-10T13:46:06.671Z",
+      "completedAt": "2026-11-10T13:46:07.019Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-19.log",
+      "logSha256": "99896364db6fc3be09345e8332266f9c8e3462283dd2bbc239b15dddb9eaa161"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "sacrificeWillingnessPct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-20"
+      ],
+      "startedAt": "2026-11-10T13:46:07.019Z",
+      "completedAt": "2026-11-10T13:46:07.377Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-20.log",
+      "logSha256": "8bae7da47231dda6c7f144ecb4ba14695b1a93bd714c8e4335724c8d7d453cb9"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "humanCausationPct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-21"
+      ],
+      "startedAt": "2026-11-10T13:46:07.377Z",
+      "completedAt": "2026-11-10T13:46:07.748Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-21.log",
+      "logSha256": "0683c73a92c582506e9fe435ae09268e89d6940781b344da8ced4b6df9e8f345"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "corporateTargetsPct",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-22"
+      ],
+      "startedAt": "2026-11-10T13:46:07.748Z",
+      "completedAt": "2026-11-10T13:46:08.108Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-22.log",
+      "logSha256": "ae4dfded351cdec76598dbe924ce738ade45e5939c4081627ba2ac4ea3d4fe4d"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "corporateImplementationRate",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-23"
+      ],
+      "startedAt": "2026-11-10T13:46:08.108Z",
+      "completedAt": "2026-11-10T13:46:08.462Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-23.log",
+      "logSha256": "86c747f7f7f83fd9e14c7dcc3682ea14af1772e838abbb3b276d2aedf4d4064a"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "cleanEnergyInvestmentTrn",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-24"
+      ],
+      "startedAt": "2026-11-10T13:46:08.463Z",
+      "completedAt": "2026-11-10T13:46:08.841Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-24.log",
+      "logSha256": "ee65aace05892ac7e1cbb059258512a0561e9de3725fdb147ed296347d6d8b89"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "fossilFuelInvestmentTrn",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-25"
+      ],
+      "startedAt": "2026-11-10T13:46:08.841Z",
+      "completedAt": "2026-11-10T13:46:09.214Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-25.log",
+      "logSha256": "087f76b5c54f23b08a2c6cbda597152f73d3da41ed1419b0bc53a73ba0e3a796"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "greenBondIssuanceBln",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-26"
+      ],
+      "startedAt": "2026-11-10T13:46:09.214Z",
+      "completedAt": "2026-11-10T13:46:09.586Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-26.log",
+      "logSha256": "cffda92dcbc2808f5a1a432e7fc6667208a5c7f4aeed35b7b0a7fdb1520296c9"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "fossilDivestmentTrn",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-27"
+      ],
+      "startedAt": "2026-11-10T13:46:09.586Z",
+      "completedAt": "2026-11-10T13:46:09.943Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-27.log",
+      "logSha256": "b9ac625600b020198d69a130fc8b659fe3aaa2ba52c57c0817ee564851e25164"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "fossilCO2GtPerYear",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-28"
+      ],
+      "startedAt": "2026-11-10T13:46:09.943Z",
+      "completedAt": "2026-11-10T13:46:10.323Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-28.log",
+      "logSha256": "04056f363a66d0b28b20a5ed1099515d188a60d93cd609dfe7bc89f2c7ecdf5c"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "atmosphericCO2ppm",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-29"
+      ],
+      "startedAt": "2026-11-10T13:46:10.323Z",
+      "completedAt": "2026-11-10T13:46:10.694Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-29.log",
+      "logSha256": "fbb840208f6d2155933d0789fb022ce178823edce60358c82ea867952a609284"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "co2GrowthRatePpm",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-30"
+      ],
+      "startedAt": "2026-11-10T13:46:10.694Z",
+      "completedAt": "2026-11-10T13:46:11.082Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-30.log",
+      "logSha256": "4b5951fc25c1c847353e564c9c405f705796b21284065013730ba2c8de418b9c"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "retained-adoption-paired-1",
+        "--driver",
+        "remainingBudget15C_Gt",
+        "--members",
+        "2",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-rejected-31"
+      ],
+      "startedAt": "2026-11-10T13:46:11.083Z",
+      "completedAt": "2026-11-10T13:46:11.436Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-31.log",
+      "logSha256": "224c3383bcf2fa6a08f5ecb86ad96358c3ce4c289fe3c8e83dd06a8fd4db3fde"
+    },
+    {
+      "command": [
+        "/nix/store/jfar9wnj6kvr0gr6klh1gk7vgckkfr5j-nodejs-20.20.0/bin/node",
+        "--import",
+        "tsx",
+        "script/run-regional-ensemble.ts",
+        "--mode",
+        "central",
+        "--registry",
+        "native-regional",
+        "--output",
+        "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/native-central-rejected"
+      ],
+      "startedAt": "2026-11-10T13:46:11.436Z",
+      "completedAt": "2026-11-10T13:46:11.699Z",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "logPath": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/native-central-rejection.log",
+      "logSha256": "6f5655ff1674a494f997a6b66b12e7fe3c7b2a45bb66035ac2ef67a048a57397"
+    }
+  ],
+  "logs": [
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-0.log",
+      "sha256": "66f55533a5d20953ee9099cc08c6f7f65c22183a91477a7b4e967dd76ca5a017"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-1.log",
+      "sha256": "9cbd47453bacb489bed0315548f40eaf921fdf87bf537c0154acc0c54f5ea686"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-10.log",
+      "sha256": "0e7b1e3e7f0681940f7a1e561d9358b6ca865d87bec533b9b01c13c36876af23"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-11.log",
+      "sha256": "df15940a69b8c6e60e6a6471730333a75bc18e37d7f7dc74d1edd619134bd945"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-12.log",
+      "sha256": "7d96b094607cc395619ad616e1df666cc6868a698558a8d27ac897555b91f979"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-13.log",
+      "sha256": "699d23e870c8880acb43d1698f079c1a548bf1bef1721fcb9df23bc4585315d7"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-14.log",
+      "sha256": "3be09cb4baaa09914b3963653ec9e888d8c158401ffb49ba4df3462993393a39"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-15.log",
+      "sha256": "a58dff8bbe0104adc81dba6a13fe3834b76ef59bd510e4f88a73f7fdec497730"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-16.log",
+      "sha256": "6c23d9f1d0e4d331e9a00403a24e2fa873cdc67ac73bfc2066af99fe89610b8b"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-17.log",
+      "sha256": "3b63a63f2da6044992fbf2de206dfa19c7f7b7ca9a1e056704eb9767ffd55ab7"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-18.log",
+      "sha256": "60e33c01c05a0dba83a59b9cb00e1e3322d0e065b9a9518aa8032d90f905c263"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-19.log",
+      "sha256": "99896364db6fc3be09345e8332266f9c8e3462283dd2bbc239b15dddb9eaa161"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-2.log",
+      "sha256": "d0402c30516854e74e72b7b16cb6be08dae6eecb80c7ea3ff9a098bf486ee670"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-20.log",
+      "sha256": "8bae7da47231dda6c7f144ecb4ba14695b1a93bd714c8e4335724c8d7d453cb9"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-21.log",
+      "sha256": "0683c73a92c582506e9fe435ae09268e89d6940781b344da8ced4b6df9e8f345"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-22.log",
+      "sha256": "ae4dfded351cdec76598dbe924ce738ade45e5939c4081627ba2ac4ea3d4fe4d"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-23.log",
+      "sha256": "86c747f7f7f83fd9e14c7dcc3682ea14af1772e838abbb3b276d2aedf4d4064a"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-24.log",
+      "sha256": "ee65aace05892ac7e1cbb059258512a0561e9de3725fdb147ed296347d6d8b89"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-25.log",
+      "sha256": "087f76b5c54f23b08a2c6cbda597152f73d3da41ed1419b0bc53a73ba0e3a796"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-26.log",
+      "sha256": "cffda92dcbc2808f5a1a432e7fc6667208a5c7f4aeed35b7b0a7fdb1520296c9"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-27.log",
+      "sha256": "b9ac625600b020198d69a130fc8b659fe3aaa2ba52c57c0817ee564851e25164"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-28.log",
+      "sha256": "04056f363a66d0b28b20a5ed1099515d188a60d93cd609dfe7bc89f2c7ecdf5c"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-29.log",
+      "sha256": "fbb840208f6d2155933d0789fb022ce178823edce60358c82ea867952a609284"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-3.log",
+      "sha256": "1b2de3ef1f2f7a4eb283ac5c9df1c0d84c8fa7f3621768561f7b507cb3142e94"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-30.log",
+      "sha256": "4b5951fc25c1c847353e564c9c405f705796b21284065013730ba2c8de418b9c"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-31.log",
+      "sha256": "224c3383bcf2fa6a08f5ecb86ad96358c3ce4c289fe3c8e83dd06a8fd4db3fde"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-4.log",
+      "sha256": "6c672ef823412a867826a6854adc5bfb34b61408c13f2321d79b204fbf773198"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-5.log",
+      "sha256": "c6f32638e3b5cb103cbc54ed1c8813b03d0b7ebae32730d8220764e056429447"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-6.log",
+      "sha256": "f85d7573a85b3ee0b71f8cefe017aefa98a07e5e743684faaff29f4c1e84c54e"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-7.log",
+      "sha256": "e21fbeb6e807cf0b69bfbcf05c3b0755677b1d314a68707f22f191e9a2f5da6a"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-8.log",
+      "sha256": "a94a7457dd60125eb0d393ee612ea2651b55a9fda0301b35704c58a0a05b9290"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/central-driver-9.log",
+      "sha256": "7906d3854e05459d46e4b931f3014de6b07ef70eb11d423b9adf181e501d1e21"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/native-central-rejection.log",
+      "sha256": "6f5655ff1674a494f997a6b66b12e7fe3c7b2a45bb66035ac2ef67a048a57397"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/original-clause-verification.log",
+      "sha256": "1f8a5bd61655af1d1b51b4479447b0b28dd22914c6efc0ca032d5b2bae62f9d0"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/owned-typescript-diagnostics.log",
+      "sha256": "9d82d66eac13cab26aa25f23d827ff31f1ddc04a774851ccc371686ad985e1b5"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/python-calibration-tests.log",
+      "sha256": "450553d8e8b1846ace19ab23935c685b7ca0caa0d266267a87c8e0b98a05e3f2"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/python-uncertainty-tests.log",
+      "sha256": "e3798321e00d0b0426bcfbb8e8da246b683536ce99ff943cb6791694a9cece4b"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-a.log",
+      "sha256": "e79cbc7a7dbbfddb42e6b50c4277d6ef4f2f997c4b80af525f988b3911fa496d"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/registered-real-b.log",
+      "sha256": "2575a4498896a8b0e132fa4e2dfbae0848ecb604cae6999b19f789243f85b1c2"
+    },
+    {
+      "path": "generated-artifacts/driver-consumption/2026-11-10T13-45-26-710Z/typescript-focused-tests.log",
+      "sha256": "842e9c1203a22c296f9457082831145a886486753b79f756e6ca64a0cc23d2e2"
+    }
+  ],
+  "executionRepairs": [
+    {
+      "previousLog": "generated-artifacts/driver-consumption/2026-11-10T13-37-32-158Z/original-clause-verification.log",
+      "issue": "First verifier inserted spaces between DOCX runs and falsely failed S04-007; corrected to concatenate runs inside each paragraph before whitespace normalization. No source/protocol/outcome changed."
+    }
+  ],
+  "focusedTests": {
+    "typescript": {
+      "passed": 18,
+      "failed": 0
+    },
+    "pythonCalibration": {
+      "passed": 2,
+      "failed": 0
+    },
+    "pythonUncertainty": {
+      "passed": 2,
+      "failed": 0
+    },
+    "ownedTypeDiagnostics": 0,
+    "fullSuiteRun": false,
+    "nativeEngineTestEvidence": "Explicit synthetic unit-test joint registry, not real calibration or accepted regional sources"
+  },
+  "preservation": {
+    "before": {
+      "docs/Driver_Calibration_Protocol.md": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67",
+      "docs/Driver_Uncertainty_Protocol.md": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1",
+      "docs/Company_Beta_Sensitivity_Protocol.md": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b",
+      "docs/Beta_Growth_Sensitivity_Results.md": "ec89cc0d9a728c504416cd1b05e07e43b4d1d54a25665370fe3c5b3ca0171ffc",
+      "docs/EV_Calibration_Protocol.md": "65dc09cba4454efc04059faef3be71d0e93cd47da34f4ab73c43494980b80309",
+      "docs/EV_and_Cost_Calibration_Results.md": "6123263be002a68e2761b7e77b842024f0456adc1ec2a673dd4b24fafe470fa0",
+      "docs/Fleet_Transition_Protocol.md": "e8120793122f1851e9559ff8dcd60a0d4d577b797b2028b5373197adde2a4ca5",
+      "docs/Fleet_Transition_Results.md": "820b206874341c3fe66b25beb94de63f5b2ee641733d8c08d796e9e3c62d8be8",
+      "docs/fleet_transition_results.json": "f6f3e52c399cfc411046ad2d28f2c8c1adb4bc5bf10c22c10c8be653331d4ed4",
+      "docs/Storage_Adoption_Protocol.md": "f821781a1b4b7e1d5ee29a456f02d8986bce6660dbca4e4069d9542f83646b1b",
+      "docs/Storage_Adoption_Results.md": "193b636aa192c0025eed040912accfac457ac123393a7ede0fae4954516584a0",
+      "docs/Historical_Diagnostics_and_Skill_Results.md": "785dbdb25bb1e5db6e3ca8c9ef85a811e3cb59d24cbeff720af1a4774e14ce15",
+      "generated-artifacts/driver-calibration/result.json": "9b3ec4c77c1116dfcdd1fa7638d9ea4f11f51de5d377f7643b0709d227048176",
+      "generated-artifacts/driver-calibration/uncertainty.json": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+    },
+    "after": {
+      "docs/Driver_Calibration_Protocol.md": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67",
+      "docs/Driver_Uncertainty_Protocol.md": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1",
+      "docs/Company_Beta_Sensitivity_Protocol.md": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b",
+      "docs/Beta_Growth_Sensitivity_Results.md": "ec89cc0d9a728c504416cd1b05e07e43b4d1d54a25665370fe3c5b3ca0171ffc",
+      "docs/EV_Calibration_Protocol.md": "65dc09cba4454efc04059faef3be71d0e93cd47da34f4ab73c43494980b80309",
+      "docs/EV_and_Cost_Calibration_Results.md": "6123263be002a68e2761b7e77b842024f0456adc1ec2a673dd4b24fafe470fa0",
+      "docs/Fleet_Transition_Protocol.md": "e8120793122f1851e9559ff8dcd60a0d4d577b797b2028b5373197adde2a4ca5",
+      "docs/Fleet_Transition_Results.md": "820b206874341c3fe66b25beb94de63f5b2ee641733d8c08d796e9e3c62d8be8",
+      "docs/fleet_transition_results.json": "f6f3e52c399cfc411046ad2d28f2c8c1adb4bc5bf10c22c10c8be653331d4ed4",
+      "docs/Storage_Adoption_Protocol.md": "f821781a1b4b7e1d5ee29a456f02d8986bce6660dbca4e4069d9542f83646b1b",
+      "docs/Storage_Adoption_Results.md": "193b636aa192c0025eed040912accfac457ac123393a7ede0fae4954516584a0",
+      "docs/Historical_Diagnostics_and_Skill_Results.md": "785dbdb25bb1e5db6e3ca8c9ef85a811e3cb59d24cbeff720af1a4774e14ce15",
+      "generated-artifacts/driver-calibration/result.json": "9b3ec4c77c1116dfcdd1fa7638d9ea4f11f51de5d377f7643b0709d227048176",
+      "generated-artifacts/driver-calibration/uncertainty.json": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+    },
+    "unchanged": true,
+    "thresholdsOrWindowsChanged": false,
+    "historyAcceptanceRerun": false,
+    "companyOrPhysicalModulesEdited": false
+  },
+  "nextStudyReadiness": [
+    {
+      "candidate": "wind/adoption",
+      "readyForRetainedSensitivityConsumption": true,
+      "newStudyRun": false,
+      "reason": "All ten existing full frozen windows and paired uncertainty distributions source-hash verified; already evaluated outcomes replayed, not selected or re-fit"
+    },
+    {
+      "candidate": "policy-price-times-coverage",
+      "ready": false,
+      "newStudyRun": false,
+      "reason": "Curated net-zero target coverage/implementation are not carbon-price-times-covered-emissions observations; no compatible dated price/coverage source and frozen evaluation bundle identified"
+    },
+    {
+      "candidate": "nowcast",
+      "ready": false,
+      "newStudyRun": false,
+      "reason": "No compatible independently dated original-vintage predictor/target bundle with pre-outcome frozen study found; revised annual histories cannot substitute"
+    }
+  ],
+  "remainingGaps": [
+    "No real calibrated central parameter has been created or promoted; the EU solar point-metric winner also remains sensitivity-only",
+    "Cross-driver/regional joint dependence remains unidentified; adoption paths are separate sensitivities and are never combined as independent calibrated marginal draws",
+    "Existing Stage5 CLI now dispatches real pinned adoption sensitivity member generation and hash-pinned native joint-registry sensitivity; no accepted real six-region joint registry exists, so native central mode explicitly refuses",
+    "Legacy heuristic consumers remain operational and explicitly separately labelled diagnostic; registry flags do not retroactively enforce their equations",
+    "Generation shares cannot calibrate renewable GW displacement; EV sales/fleet, storage saturation/dispatch, policy and corporate causal delivery still require distinct evidence",
+    "Source publication vintages, licensing review, predictive interval coverage and physical/empirical independent central justifications remain unresolved",
+    "No additional next-ready scientific fit is claimed; this is retained-window replay/consumption evidence",
+    "No 10,000-member scientific, climate, convergence or production acceptance; 256 members per sensitivity are engineering replay only"
+  ],
+  "implementation": {
+    "server/calculation/driverParameterRegistry.ts": "c671e53fd55ce723630899b3939933c4569543046bcf870ecd33b24b9ceeac8b",
+    "server/calculation/driverConsumptionTrace.ts": "d6ba734e815b167459a829e09b7d650ba461fa6927b7d568c0dd0d2c3177e96e",
+    "server/calculation/driverEvidence.ts": "5224a5d3f392486b8279019215f3d6e386d52e8dd14956b1490819fc7243a325",
+    "script/driver-consumption.test.ts": "e13d6e08721313c8d97d5f806ae6ed5d3e4b58090dde4bae53295b5ae9cbd0d2",
+    "script/driver-consumption-evidence.ts": "f4a4469b6c5e9c6d252a72c2b98902ccdf2bc24ae21e334494567675e337ab2a",
+    "script/run-regional-ensemble.ts": "5af3c68aba8f5ce2a31fde64e72bb411618fdb0fb37b786fbc5d9468c02ea0b3"
+  },
+  "nextOriginalCandidateInvestigation": {
+    "candidate": "Original global onshore-wind total installed cost versus cumulative installed onshore-wind capacity",
+    "evidencePath": "docs/wind-cost-source-evidence.json",
+    "evidenceSha256": "ed0e0243d364ce7e779faf5f7d214a41aa9e637c4c9421de254a3677ea4aac1d",
+    "attemptCount": 5,
+    "originalReportsObtained": 2,
+    "decision": {
+      "status": "rejected-before-fitting",
+      "missingTrainingYears": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "missingHoldoutYears": [],
+      "matchedTrainingYears": [
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "matchedHoldoutYears": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "reasons": [
+        "Missing matched original training pairs; fixed 2010\u20132018 window cannot be shortened",
+        "Cost series is published rounded figure annotations, not the exact complete original source table required by frozen source-attempt protocol"
+      ],
+      "fitExecuted": false,
+      "mae": null,
+      "centralModelEligible": false
+    },
+    "newFitsOrUnchangedStudiesRerun": false
+  }
+}

@@ -44,6 +44,7 @@ import { FinancialProviderStatus } from "@/components/financial-provider-status"
 import { AnalysisSnapshotStatus } from "@/components/analysis-snapshot-status";
 import { FinancialReview, ScientificValidation } from "@/components/financial-review";
 import {CompanyOperatingReview} from "@/components/company-operating-review";
+import {CompanyCoverage} from "@/components/company-coverage";
 import {CompanyReplayUpload} from "@/components/company-replay-upload";
 import {TargetInputDisclosure} from "@/components/target-input-disclosure";
 
@@ -304,6 +305,7 @@ export default function DataManagement() {
       <AnalysisSnapshotStatus />
       <FinancialReview />
       <CompanyOperatingReview />
+      <CompanyCoverage />
       <CompanyReplayUpload />
       <ScientificValidation />
 

@@ -7,6 +7,7 @@ import { nativeOutputSemantics } from "./nativeOutputSemantics";
 import { companyReviewSemantics } from "./companyReviewSemantics";
 import {companyReplaySemantics} from "./companyReplaySemantics";
 import { companyAbatementSemantics } from "./companyAbatementSemantics";
+import { companyCoverageSemantics } from "./companyCoverageSemantics";
 import { researchFieldSemantics } from "./researchFieldSemantics";
 import { companySummarySemantics } from "./companySummarySemantics";
 import { backtestFieldSemantics } from "./backtestFieldSemantics";
@@ -45,6 +46,7 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...companyReviewSemantics,
   ...companyReplaySemantics,
   ...companyAbatementSemantics,
+  ...companyCoverageSemantics,
   ...researchFieldSemantics,
   ...companySummarySemantics,
   ...backtestFieldSemantics,

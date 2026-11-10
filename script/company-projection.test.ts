@@ -71,3 +71,29 @@ test("company ledgers retain explicit accounting bridge items and refuse omissio
   delete missing.members[0].years[0].otherCashAdjustments;
   assert.throws(() => projectCompanyMembers(missing));
 });
+
+test("S12-012 one issuer's fundamental perturbation changes its growth and leaves every peer output byte-identical", async () => {
+  const issuers = ["engineering-utility", "engineering-energy", "engineering-industrial"].map(companyId => {
+    const x=fixture(); x.companyId=companyId; x.members=x.members.slice(0,4);
+    return x;
+  });
+  const retained=structuredClone(issuers);
+  const baseline=issuers.map(projectCompanyMembers);
+  const changed=structuredClone(issuers);
+  changed[1].baseRevenue*=1.1;
+  const interleaved=await Promise.all([Promise.resolve().then(()=>projectCompanyMembers(changed[1])),
+    Promise.resolve().then(()=>projectCompanyMembers(issuers[0])),
+    Promise.resolve().then(()=>projectCompanyMembers(issuers[2]))]);
+  const after=changed.map(projectCompanyMembers);
+  for(const i of [0,2]) assert.equal(JSON.stringify(after[i]),JSON.stringify(baseline[i]),`peer${i} changed`);
+  const original=baseline[1],perturbed=after[1];
+  assert.equal(original.status,"conditional-projection");assert.equal(perturbed.status,"conditional-projection");
+  if(original.status!=="conditional-projection"||perturbed.status!=="conditional-projection")throw new Error("Expected conditional projections");
+  for(let i=0;i<original.members.length;i++) {
+    assert.notEqual(perturbed.members[i].growth,original.members[i].growth);
+    assert.ok(perturbed.members[i].years[0].revenue>original.members[i].years[0].revenue);
+  }
+  assert.deepEqual(interleaved,[after[1],baseline[0],baseline[2]]);
+  assert.deepEqual(issuers,retained,"Consumer mutated a retained input");
+  assert.deepEqual(issuers.map(projectCompanyMembers),baseline,"Returning to baseline changed peers");
+});

@@ -12,4 +12,7 @@ test("API, consumer and spreadsheet census is current", () => {
     assert.ok(report.includes(required), required);
   }
   assert.ok(!report.includes("| MISSING |"), "Every export needs explicit rows, filename and evidence class");
+  assert.ok(report.includes("## Qualified JSON exports"));
+  assert.ok(report.includes("company-coverage-${query.data.observationDate}.json"));
+  assert.ok(report.includes("Central download-data-button writer"));
 });

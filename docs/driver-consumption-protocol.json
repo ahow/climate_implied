@@ -1,0 +1,52 @@
+{
+  "version": "driver-consumption-operational-freeze-2",
+  "scope": ["S04-007", "S04-008", "S04-010"],
+  "freezeMeaning": "Written before the new consumption evidence execution; does not supersede or re-open any existing scientific protocol or known result",
+  "sourcePolicy": "Retained local bytes only, SHA-256 verified; no paid calls or downloads",
+  "cliIntegrationFreeze": {
+    "meaning": "Additive engineering CLI integration check frozen before CLI executions; source-fit outcomes were already known and are not a new study",
+    "entryPoint": "script/run-regional-ensemble.ts",
+    "registeredModes": ["central", "sensitivity"],
+    "retainedRegistryId": "retained-adoption-paired-1",
+    "retainedRegistryHash": "ceb61f6fc2fcfef7700fabae8e24a03a35f1318aea446d85c9319ca4149afc83",
+    "positiveControl": "Run all 10 real retained distributions twice through CLI, 256 members each, seed 20261110, compare written member/output hashes and decode written gzip paths",
+    "negativeControls": "CLI central attempt for each of 10 real distributions and each of 22 curated driver ids, plus native central with no accepted pinned six-region registry; every attempt must reject without artifacts",
+    "nativeIntegration": "Separate explicit hash-pinned supplied joint-registry sensitivity CLI exercises actual regional member engine in tests; synthetic registry is engineering-only, never accepted source calibration",
+    "legacySeparation": "Only explicit legacy-diagnostic command accepts unregistered positional parameters; mode flags cannot be ignored or promote legacy parameters"
+  },
+  "studyDecision": "No new fit or acceptance study. Existing complete wind/adoption windows were already evaluated; consume their retained paired uncertainty only. Policy price-times-coverage and nowcast lack a compatible independently dated frozen-window source bundle.",
+  "realConsumption": {
+    "registry": "retainedAdoptionParameterRegistry",
+    "consumer": "consumeRetainedAdoption",
+    "selection": "all ten retained entity-by-solar/wind distributions, no winner selection",
+    "seed": 20261110,
+    "membersPerDriver": 256,
+    "years": [2024, 2030, 2050, 2100],
+    "use": "sensitivity",
+    "sampling": "uniform complete intercept/slope paired-bootstrap draw per member; never independent marginal draws",
+    "report": "registry/distribution/output hashes, deterministic replay, draw count, min/max per year; do not publish private source rows or member arrays",
+    "centralNegativeControl": "Attempt central use for all ten; every attempt must reject, including EU solar point-metric winner",
+    "failurePolicy": "Fail explicitly on hash mismatch, missing source, invalid window, unknown geography, incomplete registry binding or changed paired draw count",
+    "noAcceptanceClaim": "256 consumption members are engineering replay only; neither 10,000-member acceptance nor emissions/climate/convergence validation"
+  },
+  "legacyCensus": {
+    "count": 22,
+    "consumer": "getCurrentIndicatorsFromHistorical -> calculateEmissionsTrajectory",
+    "baseline": "retained curated 2024 row",
+    "seed": 20261110,
+    "runs": 8,
+    "startYear": 2024,
+    "endYear": 2030,
+    "intervention": "one source field at a time +10%; co2GrowthRatePpm set to 2.0 to cross its explicit threshold",
+    "meaning": "Controlled code-path perturbation, not causal evidence, predictive validation or central eligibility; unchanged unused fields remain explicit"
+  },
+  "preservation": "Hash frozen beta, fleet, EV, storage protocols/results and history protocol before and after; never re-fit, relax windows, suppress failures, or rewrite legacy equations",
+  "tests": [
+    "script/driver-consumption.test.ts",
+    "script/driver-evidence.test.ts",
+    "script/regional-sampling.test.ts",
+    "script/ensemble.test.ts",
+    "script/test_driver_calibration.py",
+    "script/test_driver_uncertainty.py"
+  ]
+}

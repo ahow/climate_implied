@@ -1,0 +1,42 @@
+{
+  "version": "original-wind-cost-source-attempt-1",
+  "candidate": "Global onshore-wind total installed project cost versus cumulative installed onshore-wind capacity",
+  "selectionReason": "Best compatible next original-source candidate for existing cost/deployment protocol; retained local energy data do not contain compatible cost observations and total wind is not onshore capacity",
+  "originalMethodProtocol": "docs/Cost_Deployment_Protocol.md",
+  "fixedTrainingYears": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
+  "fixedHoldoutYears": [2019, 2020, 2021, 2022, 2023, 2024],
+  "exclude2025And2026": true,
+  "requiredCost": "Original IRENA global capacity-weighted mean onshore-wind total installed cost, one fixed report vintage and one fixed real-dollar base year, USD/kW; not turbine prices or LCOE",
+  "requiredDeployment": "Original IRENA global cumulative installed onshore-wind capacity, MW, complete matching years and source definitions; offshore and additions cannot substitute",
+  "vintageRule": "Record actual publisher report edition, publication date and measurement years separately from fetch time and SHA-256; revised history is not original-vintage prediction",
+  "boundedFetchPlan": [
+    "One official IRENA Renewable power generation costs in 2024 publication page",
+    "Its linked official complete report PDF",
+    "At most one directly linked original machine-readable companion workbook if present",
+    "One official IRENA Renewable Capacity Statistics 2025 publication page and its linked complete report only if deployment is absent from cost report"
+  ],
+  "networkLimits": "Public unauthenticated statistical releases only; no paid calls, credentials, API keys or billing; no general source sweep; at most five fetched resources, each <=40MB and 45 second timeout",
+  "preOutcomeTransferAmendment": {
+    "reason": "Official PDF returned HTTP 200 with Content-Length 51516161 before any bytes or numerical outcomes were downloaded; first curl refused its original 40MB cap. Permit exactly one bounded retry of this same source, capped at 60MB. This changes transport size only, not source selection, scientific methods, windows or compatibility gates.",
+    "maximumRetryBytes": 60000000,
+    "maximumRetrySeconds": 45,
+    "originalFailedAttemptRetained": true
+  },
+  "compatibilityGateBeforeFitting": "All 15 positive finite matched cost/deployment pairs; explicitly sourced exact values and source locations; same technology/geography/denominator and fixed currency basis throughout",
+  "rejections": [
+    "Graph-only rounded or digitized values without exact complete source table",
+    "Missing training or holdout year; no shortened windows, interpolation, splicing or alternative deflator",
+    "Onshore cost paired with all-wind capacity, annual additions or manufactured output",
+    "LCOE paired with installed-cost interpretation, turbine price replacing total project cost, mixed real-dollar base years"
+  ],
+  "ifCompatible": {
+    "candidate": "log cost on log observed cumulative deployment; holdout conditional on observed deployment",
+    "baselines": ["2018 cost persistence", "exponential calendar-time trend on identical training years"],
+    "metrics": ["six-year holdout MAE in source USD/kW", "paired annual absolute-error improvements over each baseline"],
+    "uncertainty": "Existing 1000 circular length-three centred training residual bootstrap, seed 20261109, refit intercept/slope jointly",
+    "dependence": "Retain intercept/slope joint draws; paired 1000 length-three circular holdout-year blocks shared across both baseline comparisons; no independent marginal or technology sampling",
+    "acceptance": "Candidate must strictly beat both MAEs; uncertainty results reported without changing existing acceptance threshold; no central promotion or causal learning-rate claim"
+  },
+  "ifIncompatible": "Do not fit or score; save exact bounded requests, source-version/publication dates, compatible fields and missing or rejected fields with hashes and source locations",
+  "preservation": "No existing study rerun, CLI/core changes, fixed-window changes, company/physical/route edits or scientific promotion"
+}

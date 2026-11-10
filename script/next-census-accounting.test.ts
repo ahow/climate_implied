@@ -28,22 +28,25 @@ test("frozen original1001 cohort stays immutable; supplemental leaves never manu
 
 test("every new typed API/export denominator change is separate and reconciles arithmetically", () => {
   const added = census.supplementalSlotAccounting;
-  assert.equal(added.addedSlots, 306);
-  assert.equal(added.addedPublicSlots, 306);
-  assert.equal(added.addedBoundSlots, 306);
+  assert.equal(added.addedSlots, 323);
+  assert.equal(added.addedPublicSlots, 323);
+  assert.equal(added.addedBoundSlots, 323);
   assert.deepEqual(added.removedOriginalSlots, []);
-  assert.equal(census.fields.length, 1334);
-  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1307);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 306);
-  assert.equal(census.fullyBoundFields, 1306);
+  assert.equal(census.fields.length, 1351);
+  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1324);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 323);
+  assert.equal(census.fullyBoundFields, 1323);
   assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
   assert.equal(census.fields.length, 1028 + added.addedSlots);
-  assert.equal(census.definitions, 1553);
-  assert.equal(added.externalTypedApiSlots, 28);
-  assert.equal(added.externalTypedApiBoundSlots, 28);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 1335);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 1334);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 334);
+  assert.equal(census.definitions, 1703);
+  assert.equal(added.externalTypedApiSlots, 161);
+  assert.equal(added.externalTypedApiBoundSlots, 161);
+  assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots);
+  assert.equal(added.companyCoverageApiLeafSlots, 133);
+  assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 1485);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 1484);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 484);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
 });
 
@@ -84,6 +87,6 @@ test("strict completeness fails on OLD unknown summary JSON, not cured by authen
     assert.equal(result.status, 1, gate);
     assert.doesNotMatch(result.stderr, /Field census stale/);
     assert.match(result.stderr, gate === "--require-original-complete"
-      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1306\/1307/);
+      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1323\/1324/);
   }
 });

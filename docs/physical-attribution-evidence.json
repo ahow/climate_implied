@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "criterion": "S07-008",
+  "recordedAtUTC": "2026-11-10T13:36:54Z",
+  "status": "actual-paired-native-emissions-counterfactual-executed; GMST-and-native-IGCC-acceptance-still-withheld",
+  "scienceScope": "EMISSIONS-INTERVENTION ONLY; qualified partial science, not full human warming or GMST acceptance",
+  "temporalDefinitionEvidence": {
+    "executedAtUTC": "2026-11-10T14:09:27.154219+00:00",
+    "status": "Exact source SR1.5 temporal statistic implemented on retained paired members; spatial/historical/convention acceptance still unavailable",
+    "command": "python3 script/physical_temporal_statistics.py generated-artifacts/physical-attribution/168a0c9331c63025a6a1ca867040967bf8854c02784c96645f3f9ce576be7b46.json",
+    "module": "script/physical_temporal_statistics.py",
+    "codeSha256": "dbfb8561f261b7273c5ce000b5d8b716d148e314b7f4dbbc2519bd55fd60e9f8",
+    "log": "generated-artifacts/physical-attribution/temporal-execution.log",
+    "logSha256": "58aaa639ef71fb348e22669cc1ce513d1280dbaf73c58aa526d7363696a87771",
+    "result": "generated-artifacts/physical-attribution/temporal-statistics-633671f2882b25bbd92992e4211be0ec2e195aa173b339ab8b99bcebe9e8ce80.json",
+    "resultSha256": "705127f4c69f1c9b79477bf3a617de6028a209390ace4d79dedb0e62ff34e053",
+    "memberStatisticsArtifact": "generated-artifacts/physical-attribution/temporal-statistics-633671f2882b25bbd92992e4211be0ec2e195aa173b339ab8b99bcebe9e8ce80.nc",
+    "memberStatisticsArtifactSha256": "4a0624956ce20f58253ca76f2436441be8e30509aa471b73cb238a37f3dcb44a",
+    "normativeSource": {
+      "publication": "Forster et al. (2026), doi:10.5194/essd-18-3889-2026-supplement",
+      "url": "https://essd.copernicus.org/articles/18/3889/2026/essd-18-3889-2026-supplement.pdf",
+      "location": "S8.1.1, PDF pages 29-30; Figure S12 caption, PDF page 43",
+      "retrievedAtUTC": "2026-11-10T14:07:25.490681+00:00",
+      "httpStatus": 200,
+      "sha256": "c533320e534438ef760ac494d2eef030e2b9714d197557a9d6ec4c0d627ecd1d",
+      "license": "CC-BY-4.0",
+      "receipt": "generated-artifacts/physical-attribution/temporal-source-receipt.json",
+      "receiptSha256": "8e7ea5a618395cfce86c6f39dd69f80c1fddce447c33792161b44b2f9554092b",
+      "textExtractionCommand": "pdftotext -layout generated-artifacts/physical-attribution/c533320e534438ef760ac494d2eef030e2b9714d197557a9d6ec4c0d627ecd1d.source generated-artifacts/physical-attribution/igcc2025-supplement.txt",
+      "extractedTextSha256": "0a36b2dfd6a7d4db50f99e7faae32c28ed6cfa699dea0ec38b2bf33b5174499c"
+    },
+    "corroboratingCode": {
+      "repository": "ClimateIndicator/anthropogenic-warming-assessment",
+      "revision": "9633fb45f9bf82b47492f969614568c43f3e5a6f",
+      "path": "src/definitions.py",
+      "function": "final_value_of_trend",
+      "lines": [282, 301],
+      "sha256": "e51f99bcb46afb153b19549b1d97822255371da72702338570d3aaf2146b4a8b",
+      "operation": "Unweighted numpy.polyfit on annual indices, degree 1; evaluate fitted polynomial at the last annual index",
+      "versionCaveat": "This pinned source is older 2024 assessment code, used only to corroborate the exact polynomial implementation. The actual 2025 supplement independently specifies the same operator and memberwise ordering; old extrapolated headlines are not substituted for actual 2025 data.",
+      "codeReceipts": "generated-artifacts/physical-attribution/temporal-code-receipts.json",
+      "codeReceiptsSha256": "d3d8d9b9b9005b877666aacf9ca4362832e192b2e5b19b018cca3ae410cbda9c",
+      "rights": "Privately retained public code; no redistribution licence inferred"
+    },
+    "exactOperator": {
+      "SR15": "Endpoint of unweighted linear trend through the most recent 15 annual-mean attributed values, applied separately to each paired, memberwise-baselined trajectory before ensemble percentiles/median",
+      "yearsInclusive": [2011, 2025],
+      "annualValues": 15,
+      "fittingIndices": [0, 14],
+      "evaluationIndex": 14,
+      "evaluationAnnualLabel": 2025,
+      "equivalentEvaluationAnnualMidpoint": 2025.5,
+      "conceptualDefinition": "30-year centered human-induced warming with future 15 years inferred from the multidecadal linear trend; implement published 15-year endpoint equivalence, not actual future SSP averages",
+      "Annual": "Actual single annual mean for 2025, retained separately",
+      "AR6LaggedDecade": "Mean of each member's 2016-2025 annual values, retained separately",
+      "baseline": "Existing paired-member 1850-1900 baseline, unchanged",
+      "usesFutureSSPValues": false,
+      "ensembleMedianFittedInsteadOfMembers": false,
+      "physicalParameterOrTargetFit": false,
+      "inventedSmoothingOrTargetOffset": false
+    },
+    "conditionalSurfaceMediansNotGMST": [
+      {"scenario": "ssp119", "SR15TrendEndpoint2025C": 1.5818889469455215, "AnnualMean2025C": 1.574340637663176},
+      {"scenario": "ssp126", "SR15TrendEndpoint2025C": 1.5750459731084607, "AnnualMean2025C": 1.5674069658740808},
+      {"scenario": "ssp245", "SR15TrendEndpoint2025C": 1.5940307792748782, "AnnualMean2025C": 1.5877605434132798},
+      {"scenario": "ssp370", "SR15TrendEndpoint2025C": 1.576448502861537, "AnnualMean2025C": 1.5763307716334358},
+      {"scenario": "ssp434", "SR15TrendEndpoint2025C": 1.5851305489055694, "AnnualMean2025C": 1.5814159486437853},
+      {"scenario": "ssp460", "SR15TrendEndpoint2025C": 1.5848389481066048, "AnnualMean2025C": 1.5821464619562071},
+      {"scenario": "ssp534-over", "SR15TrendEndpoint2025C": 1.641910020347618, "AnnualMean2025C": 1.6480972225449344},
+      {"scenario": "ssp585", "SR15TrendEndpoint2025C": 1.6419089602827537, "AnnualMean2025C": 1.648095395521138}
+    ],
+    "pointComparisonGuard": "Do not compare AnnualMean2025C to the SR1.5 1.37 C headline. Temporal definitions are now explicitly distinct. Even source-temporally-compatible trend endpoints are not GMST acceptance results because spatial, historical and attribution-convention gaps remain.",
+    "tests": {
+      "command": "PYTHONPATH=script python3 -m unittest test_physical_temporal_statistics -v",
+      "file": "script/test_physical_temporal_statistics.py",
+      "sha256": "beddcebc0cc3e49b093bf6ecd17ffd14c7c64c1ff5affa1699e345ed0d0c924b",
+      "pass": 3,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/physical-attribution/temporal-tests.log",
+      "logSha256": "04379ba8853f9000a4374c7f1a7580fb9ec7e8d3ba766719f4e23ace0bde2f4c",
+      "coverage": [
+        "Exact source polynomial endpoint and fixed 2011-2025 window",
+        "Temporal member statistics before ensemble summary, not trend of median",
+        "Curved member series distinguishes annual value from fitted endpoint",
+        "Full 2016-2025 decade mean retained separately",
+        "Missing years, nonfinite values and duplicate coordinates rejected",
+        "Future SSP values cannot change the 2025 endpoint",
+        "No scalar spatial conversion or target input"
+      ]
+    },
+    "newSourceRequests": 4,
+    "newSourceRequestKinds": ["Public supplement", "Pinned attribution repository tree", "Pinned definitions code", "Pinned assessment code"],
+    "additionalFaIRModelsRun": 0,
+    "actualGMSTMemberComparisonPerformed": false,
+    "shareMeanMembersInRange": null,
+    "centralEligible": false,
+    "remaining": "Source-justified GMST observation operator and required spatial fields, actual historical 2015-2025 emissions/natural inputs, and independent compatibility of the reference-emissions intervention with the multi-method human-induced attribution convention"
+  },
+  "prescriptionScopeAudit": {
+    "auditedAtUTC": "2026-11-10T13:46:34.005158+00:00",
+    "command": "python3 script/audit_physical_counterfactual.py generated-artifacts/independent-fair-benchmark/physical-retention/physical-b4600684aa23c277272f92ace8d2cdf6e313ba8157e5c2cf91b9e91010e22335.json generated-artifacts/physical-attribution/168a0c9331c63025a6a1ca867040967bf8854c02784c96645f3f9ce576be7b46.json",
+    "module": "script/audit_physical_counterfactual.py",
+    "codeSha256": "1deaaed81c7ef253f27f9a8363a31078addbb7b275d1a783ebf9631cc4d1b34c",
+    "log": "generated-artifacts/physical-attribution/prescription-audit.log",
+    "logSha256": "a382d7f6599b253d03550417c9bb759a6c0dd3c79874c7d07576f1c90a282210",
+    "result": "generated-artifacts/physical-attribution/prescription-audit-01b48af34a757bb4f77db0aadb898a29f1398d8b70a3462c4cbd845180c38dca.json",
+    "resultSha256": "01b48af34a757bb4f77db0aadb898a29f1398d8b70a3462c4cbd845180c38dca",
+    "sourceDefaultPropertiesSha256": "1373c79bc7ee901a8c30341769c890a61022a8a3e35fbf717a4153f3fca4da3c",
+    "speciesInventory": {
+      "total": 64,
+      "emissionsInputs": 53,
+      "calculated": 9,
+      "directlyPrescribedForcing": 2,
+      "directlyPrescribedNaturalForcingSpecies": ["Solar", "Volcanic"],
+      "directlyPrescribedAnthropogenicForcingSpecies": [],
+      "anthropogenicForcingHeldFactual": []
+    },
+    "perSpeciesEvidence": "All 64 rows retain actual input mode/type, natural-versus-anthropogenic/reference-state classification, baseline/source, counterfactual prescription, and actual private prescription-array reference. For each of 53 emissions-input species, all actual counterfactual inputs were checked exactly against that species/member baseline. Both natural forcing arrays were checked exactly against factual and original source arrays.",
+    "calculatedClasses": [
+      "CO2",
+      "Aerosol-radiation interactions",
+      "Aerosol-cloud interactions",
+      "Ozone",
+      "Contrails",
+      "Light absorbing particles on snow and ice",
+      "Stratospheric water vapour",
+      "Land use",
+      "Equivalent effective stratospheric chlorine"
+    ],
+    "landUseAlbedo": "Actual input_mode=calculated: source linear forcing from cumulative CO2 AFOLU, coefficient -0.00028729. Counterfactual AFOLU baseline emissions and initial cumulative emissions are zero, so this pathway recomputes to zero; no factual land-use forcing was held.",
+    "contrails": {
+      "actualInputMode": "calculated",
+      "sourceEquation": "Sum native species emissions times source contrails radiative efficiency, zero forcing-input baseline",
+      "onlyNonzeroCoefficientSpecies": "NOx aviation",
+      "sourceRadiativeEfficiency": 0.014664524,
+      "actualCounterfactualNativeReferenceRate": 0.0,
+      "counterfactualContrailsForcingWm2": 0.0,
+      "notConfusedWith": "Total NOx reference emissions are 12.73521194 but their contrails coefficient is zero; the aviation channel is distinct and is removed."
+    },
+    "otherCalculatedForcing": "ARI/ACI, ozone, LAPSI and stratospheric water vapour are recalculated from counterfactual emissions/concentrations and retained source feedback equations. EESC is recalculated chemistry, not a separate prescribed forcing. Natural/background chemistry and reference-state offsets can remain.",
+    "classificationCorrection": "The first read-only artifact summary counted 54 species by native-unit label; calculated aggregate CO2 also carries a native-unit label. Correct active input_mode=emissions count is 53, with 9 calculated and 2 prescribed natural forcing species. The executed model already selected by input_mode correctly; no physics prescription or numerical result changed.",
+    "additionalModelsRun": 0,
+    "prescriptionChanged": false,
+    "reasonNoRerun": "No directly prescribed anthropogenic forcing input exists in the actual retained/default species configuration. All relevant calculated pathways were already recomputed, including aviation contrails and cumulative-AFOLU land-use albedo. No missed factual forcing requires invalidating the paired run.",
+    "scopeQualification": "This covers all configured forcing pathways under the declared reference-emissions intervention. It still does not independently establish a full historical human-free world, a compatible GMST operator, the source multi-method attribution convention, or actual historical inputs for 2015-2025. Annual versus SR1.5 temporal-statistic equivalence is separately resolved in temporalDefinitionEvidence.",
+    "tests": {
+      "command": "PYTHONPATH=script python3 -m unittest test_audit_physical_counterfactual -v",
+      "testFile": "script/test_audit_physical_counterfactual.py",
+      "testSha256": "e7f1f03514184c4f47a2c050e48664165d483e323e78f89164c02dd6375b97d9",
+      "pass": 3,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/physical-attribution/prescription-audit-tests.log",
+      "logSha256": "78105fa015d7d5723abd978d20c0487d5bffb843307250e176d037d22b10fe8c",
+      "coverage": [
+        "All 64 species classified including calculated land-use albedo and contrails",
+        "Mode/type drift and unsupported directly prescribed anthropogenic forcing fail closed",
+        "Actual altered emissions/natural prescriptions are detected rather than accepting labels"
+      ],
+      "initialFailure": {
+        "pass": 2,
+        "fail": 1,
+        "log": "generated-artifacts/physical-attribution/prescription-audit-tests-first-failure.log",
+        "logSha256": "0e78d4e260a81670362987e4c46b0998cd120c611087a0d6712da3363d741b12",
+        "resolution": "Test exposed the prior count-label mistake: 53 emissions inputs, not 54. Corrected counts using actual input modes. Initial analytic draft also inspected total NOx rather than all nonzero contrail coefficients; final audit enumerates every coefficient and correctly identifies NOx aviation. Superseded draft audit b7cf8927971c85045b0121e7a9daed07908be87820b0128fe02967052eac4d7f is retained only as failed investigation history, not current scientific evidence."
+      }
+    }
+  },
+  "implementation": {
+    "module": "script/physical_counterfactual_attribution.py",
+    "sha256": "31683923b7c972cc92de000187274031aa9279d8e24d9f400de652a4fd0dc98f",
+    "test": "script/test_physical_counterfactual_attribution.py",
+    "testSha256": "8b298da9ce85e8226b76fbf37cdbef0c6008ab1b3a97770a5096a53e9a98d367",
+    "fairVersion": "2.2.4",
+    "fairImplementationSha256": "77d13923cc22d762d3d7aa08a2f484de563e484cb895e32bb4426c35910c89f0",
+    "existingAdaptersPreserved": [
+      "script/physical_source_alignment.py",
+      "script/compare_retained_igcc_physics.py"
+    ]
+  },
+  "experiment": {
+    "executedAtUTC": "2026-11-10T13:35:13.627375+00:00",
+    "command": "python3 script/physical_counterfactual_attribution.py generated-artifacts/independent-fair-benchmark/physical-retention/physical-b4600684aa23c277272f92ace8d2cdf6e313ba8157e5c2cf91b9e91010e22335.json",
+    "exitCode": 0,
+    "log": "generated-artifacts/physical-attribution/execution.log",
+    "logSha256": "59422a987ca5492de455250f0618e03e54ee1b2d9738cf164c2ec895a77db46c",
+    "result": "generated-artifacts/physical-attribution/168a0c9331c63025a6a1ca867040967bf8854c02784c96645f3f9ce576be7b46.json",
+    "resultSha256": "c6ca0e28773d9bc773277024c4b98537b42afb4f22ced6b8ed0c4b06d5c87e25",
+    "arrayArtifact": "generated-artifacts/physical-attribution/168a0c9331c63025a6a1ca867040967bf8854c02784c96645f3f9ce576be7b46.nc",
+    "arrayArtifactSha256": "3edc74099009e3391737add8af638c4d8b982177fbcd405a48205c43fd067c92",
+    "newModelsExecuted": 2,
+    "freshInitializedModelPerRun": true,
+    "timeboundsInclusive": [1750, 2100],
+    "annualInputYearsInclusive": [1750, 2099],
+    "annualInputYears": 350,
+    "configurations": 66,
+    "scenarios": 8,
+    "pairedScenarioConfigurations": 528,
+    "scenarioReplicationIsIndependentMemberReplication": false,
+    "activeNativeEmissionsSpecies": 53,
+    "factualTemperatureExactRetainedMatch": true,
+    "intervention": "Every active native emissions input is set to its own configuration/species FaIR baseline_emissions rate for the full experiment. Both models start from the retained baseline concentrations and zero initial thermal/cumulative/airborne states; Solar and Volcanic boundary arrays, all chemical/temperature feedbacks and original climate parameters are retained.",
+    "baselineMeaning": "FaIR reference-state balancing rates, not a claim that these rates are independently measured natural emission inventories. This is an explicit paired emissions-deviation intervention, not an independently validated historical attribution method or additive emitted-species/Shapley decomposition.",
+    "stochasticControl": "Identical original seed 1355763 + configuration_index * 399 and identical climate configs in both fresh instances",
+    "attributionCalculation": "Annual factual surface minus annual counterfactual surface, minus that same paired member's 1850-1900 inclusive mean. Annual temperature is the mean of adjacent year boundaries. No median is taken before memberwise subtraction/rebasing.",
+    "baselineYears": 51,
+    "memberBaselineValuesRetained": 1056,
+    "retainedProvenanceFields": [
+      "Exact scenario/configuration identities",
+      "Factual and counterfactual annual surface trajectories",
+      "Separate factual, counterfactual and paired 1850-1900 baselines",
+      "Paired attributed annual surface trajectories",
+      "Native emissions in both experiments and source baseline emissions",
+      "Per-species native units and per-member stochastic seeds",
+      "Both original natural forcing boundary arrays"
+    ]
+  },
+  "numericalResults": {
+    "observable": "Conditional SSP FaIR surface-temperature response, NOT human-induced GMST",
+    "2025Statistic": "Annual mean only. These older retained numbers are not the SR1.5 trend endpoints and must not be compared to the 1.37 C SR1.5 headline; see temporalDefinitionEvidence for the source-defined 15-year endpoints.",
+    "unit": "degC anomaly",
+    "baseline": "1850-1900 inclusive, memberwise",
+    "scenarios": [
+      {"scenario": "ssp119", "medianAttributedSurface2025C": 1.574340637663176, "medianAttributedSurface2016to2025C": 1.4191138723952017},
+      {"scenario": "ssp126", "medianAttributedSurface2025C": 1.5674069658740808, "medianAttributedSurface2016to2025C": 1.415221537225451},
+      {"scenario": "ssp245", "medianAttributedSurface2025C": 1.5877605434132798, "medianAttributedSurface2016to2025C": 1.4261130200301988},
+      {"scenario": "ssp370", "medianAttributedSurface2025C": 1.5763307716334358, "medianAttributedSurface2016to2025C": 1.414831010071208},
+      {"scenario": "ssp434", "medianAttributedSurface2025C": 1.5814159486437853, "medianAttributedSurface2016to2025C": 1.420389917004182},
+      {"scenario": "ssp460", "medianAttributedSurface2025C": 1.5821464619562071, "medianAttributedSurface2016to2025C": 1.4202075072533502},
+      {"scenario": "ssp534-over", "medianAttributedSurface2025C": 1.6480972225449344, "medianAttributedSurface2016to2025C": 1.452609764976676},
+      {"scenario": "ssp585", "medianAttributedSurface2025C": 1.648095395521138, "medianAttributedSurface2016to2025C": 1.4526092397729395}
+    ],
+    "actualCompatibleGMSTMemberComparisonPerformed": false,
+    "shareMeanMembersInRange": null,
+    "reasonNoShareComputed": "Computing the GMST interval fraction from these surface-temperature SSP experiments would falsely certify both observable compatibility and historical 2015-2025 inputs."
+  },
+  "artifactVerification": {
+    "verifiedAtUTC": "2026-11-10T13:36:54.123668+00:00",
+    "command": "PYTHONPATH=script python3 - (read-only six-assertion artifact verification; no model rerun)",
+    "output": "generated-artifacts/physical-attribution/verification.json",
+    "outputSha256": "2bcae85ab10f1642fd31176e8fa310105150935d9445b583afcd0fbe571822a7",
+    "checksPassed": 6,
+    "artifactHashMatches": true,
+    "executedCodeStillMatches": true,
+    "maximumPairedNaturalForcingDifferenceWm2": 0.0,
+    "maximumCounterfactualNativeBaselineDifference": 0.0,
+    "maximumAttributedBaselineResidualC": 7.755234363190431e-17,
+    "maximumFactualVsAttributedSurfaceDifferenceC": 1.2295321124392884
+  },
+  "tests": {
+    "command": "PYTHONPATH=script python3 -m unittest test_physical_counterfactual_attribution test_physical_source_alignment test_retained_igcc_physics -v",
+    "completedBeforeUTC": "2026-11-10T13:36:54Z",
+    "pass": 17,
+    "fail": 0,
+    "skip": 0,
+    "newTests": 5,
+    "regressionTests": 12,
+    "log": "generated-artifacts/physical-attribution/tests.log",
+    "logSha256": "2b8452aee3cd5fc86b22ff4a2845f9d36e33abf4abf3a2cff277600e57714d3b",
+    "earlierFailurePreserved": {
+      "command": "python3 -m unittest discover -s script -p 'test_physical_counterfactual_attribution.py' -v",
+      "pass": 4,
+      "fail": 1,
+      "log": "generated-artifacts/physical-attribution/tests-first-failure.log",
+      "logSha256": "dc79b7f735efad272b5b3df7cefb08d76f504e36283fc26d6560eb7586ea895b",
+      "resolution": "Floating arithmetic fixture expected exact zero after different subtraction order; maximum discrepancy 3.55e-15 C. Set fixture-only absolute arithmetic tolerance 1e-13 C; no model parameter, scientific gate or comparison interval changed."
+    },
+    "coverage": [
+      "Fresh instances and nonshared initial state per perturbation",
+      "Exact shared natural forcing, seeds and climate configurations",
+      "Native emissions reference-state intervention, not GHG CO2e or total-warming substitution",
+      "Preserved member identities and separate 51-year baselines before ensemble statistics",
+      "Reordered members, shortened windows, nonfinite data, duplicate identities and wrong units rejected",
+      "GMST certification and member-in-range fraction remain withheld without compatible data",
+      "Previously retained direct-gas change/raw ERF and actual 2025 reference contracts regressions"
+    ],
+    "syntheticFixturesAreEvidenceOfScientificCalibration": false
+  },
+  "sources": {
+    "retainedPhysicalManifestSha256": "a25ad010a39a50d032c3e36f16150d0cf052c40204c6b017d20971b6fc9547d5",
+    "retainedPhysicalSha256": "cc8d4cec090360ffa7fb85f19f754b2a78db3d71e1c1157bb118891aaec1d343",
+    "climateParameterSha256": "aff935fa3108a7c022f7f4ae1445033fd7fd117bbd709c67cc5223e4a712ce0d",
+    "climateSource": "OMS-NetZero/FAIR@ec46fefc8f8c6b560a8b78ab1f4a9a5e04537f79/tests/test_data/4xCO2_cummins_ebm3.csv",
+    "initializationAndSeedSource": "script/independent_fair_benchmark.py:62-95; parameters from existing pinned upstream reproduction, not tuned",
+    "baselineEquationSource": "Installed, hashed FaIR 2.2.4 fair.py uses baseline_emissions in gas cycling and ARI/ACI/ozone/LAPSI calculations; all original nonlinear feedbacks are executed, not replaced by a linear warming proxy",
+    "nativeInputReceipts": "Complete original RCMIP v5.1.0 URLs, upstream MD5 pins and retained-byte SHA256s are inherited in result.compatibility.nativeEmissionIntervention.inputReceipts",
+    "licenseBoundary": "FaIR Apache-2.0. Existing privately retained RCMIP/IGCC author outputs only; no additional ancillary rights asserted or restricted material fetched/redistributed.",
+    "actualHumanGMSTReference": {
+      "repository": "ClimateIndicator/data",
+      "revision": "d9726573dccd9381652432b58b38f670af493c1c",
+      "version": "IGCC-2025a",
+      "path": "data/base/anthropogenic_warming/Assessment-Update-2025_GMST_headlines.csv",
+      "sha256": "d419c3f7d513b42052f5635454853610739d8b5f1749f55b5df03862dfe28879",
+      "license": "CC-BY-4.0",
+      "publication": "Forster et al. (2026), section 8, doi:10.5194/essd-18-3889-2026",
+      "2025SR15C": 1.37,
+      "2025AnnualC": 1.38,
+      "mean2016to2025C": 1.24,
+      "meanRangeC": [1.0, 1.5],
+      "sourceDownloadsRepeated": false
+    }
+  },
+  "exactRemainingRequirements": [
+    {
+      "kind": "observable",
+      "requirement": "A documented land-air/ocean-SST GMST operator, coverage/sea-ice treatment and requisite spatial component fields, or published paired GMST member responses matched to these configurations. The retained global three-layer states lack land-air, ocean-SST, sea-ice and coverage fields, so they cannot identify such an operator. No GSAT-to-GMST scalar is justified by these inputs."
+    },
+    {
+      "kind": "historical-native-emissions",
+      "requirement": "Source-compatible native historical emissions and natural forcing through actual 2025. Current RCMIP inputs are historical only through 2014; later values are SSP scenarios, including 2016-2025. Keep full windows and rerun fresh paired models only when genuine compatible historical data are supplied."
+    },
+    {
+      "kind": "native-gas-boundaries",
+      "requirement": "Document IGCC CEDS/GFED units and biomass/aviation boundaries against RCMIP native totals; reconcile NOx NO/NO2 mass basis and CH4/N2O natural/reference balancing rates versus anthropogenic-only inventory. Missing pre-1970 CH4/N2O source cells cannot be zero-filled. Native source units are checked in the actual intervention, but that identity check is not an independent IGCC reconciliation."
+    },
+    {
+      "kind": "natural-forcing",
+      "requirement": "Resolve source solar reference equivalence and the IGCC volcanic executable 135144-month slice versus described 135000 pre-1750 months using permitted pre-1750 inputs. This experiment proves pairwise natural inputs identical but does not establish their absolute compatibility with IGCC; natural forcing is not re-zeroed."
+    },
+    {
+      "kind": "attribution-convention",
+      "requirement": "Independently validate the reference-emissions intervention against the intended multi-method human-induced attribution convention, including natural-emissions/reference balancing-rate treatment. Annual versus SR1.5 temporal definitions are now resolved: apply the fixed 2011-2025 memberwise trend endpoint for the 1.37 headline, not the annual model value. Only after GMST and actual-history gaps are resolved compare authentic members with that headline and the unchanged 2016-2025 [1.0,1.5] range; do not fit a 0.01 C adjustment."
+    }
+  ],
+  "previousEvidencePreserved": {
+    "document": "docs/next-physical-evidence.json",
+    "rawAndChangeERFResult": "generated-artifacts/physical-source-alignment/fc4e08d52739be2cf4b9be474b2e56e83c9f1e7c9333f0de8756bd169ba91049.json",
+    "unchangedDiagnosticReruns": 0,
+    "previousArraysAndOutputsOverwritten": false
+  },
+  "controls": {
+    "fittedParameters": [],
+    "arbitraryGMSTFactor": null,
+    "windowShortened": false,
+    "centralEligible": false,
+    "calibrated10kEnsembleClaim": false,
+    "syntheticControlCalibratedClaim": false,
+    "newSourceRequests": 4,
+    "newBilling": false,
+    "privateInputBytesPublished": false,
+    "ledgerModified": false,
+    "driverCompanyRoutesModified": false,
+    "fullSuiteRun": false,
+    "commitsDeploymentsCallbacks": false
+  }
+}

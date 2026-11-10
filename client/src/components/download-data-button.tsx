@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { exportNotes, type ExportKind } from "@/lib/export-contract";
+import { exportNotes, prepareQualifiedJsonExport, type ExportKind } from "@/lib/export-contract";
 import { semanticRows, requireOutputSemantic } from "@shared/fieldSemantics";
 import { bindExportColumns,type ExportFieldBinding } from "@shared/outputFieldSemantics";
 import { exportDataIdentity } from "@/lib/export-identity";
@@ -107,4 +107,31 @@ export function DownloadDataButton({
     </details>
     </>
   );
+}
+
+/** JSON uses the SAME central writer and mandatory evidence-contract boundary.
+ * The report remains lossless in envelope.data; interpretation and identity
+ * travel with it instead of being omitted or flattened into spreadsheet rows.
+ */
+export function DownloadJsonButton({ kind, filename, payload, validatePayload, label = "Download JSON" }: {
+  kind: ExportKind; filename: string; payload: unknown; validatePayload: (value: unknown) => unknown; label?: string;
+}) {
+  const [busy, setBusy] = useState(false), [error, setError] = useState<string | null>(null);
+  const download = async () => {
+    setBusy(true); setError(null);
+    let url: string | undefined;
+    try {
+      const prepared = await prepareQualifiedJsonExport(payload, kind, filename, new Date().toISOString(), validatePayload);
+      url = URL.createObjectURL(new Blob([prepared.text], { type: "application/json" }));
+      const link = document.createElement("a");
+      link.href = url; link.download = filename.endsWith(".json") ? filename : `${filename}.json`; link.click();
+    } catch {
+      setError("Export failed validation or serialization. No completed JSON download was produced.");
+    } finally {
+      if (url) URL.revokeObjectURL(url);
+      setBusy(false);
+    }
+  };
+  return <><Button variant="outline" onClick={() => void download()} disabled={busy}>{busy ? "Preparing…" : label}</Button>
+    {error && <span role="alert" className="text-sm text-destructive">{error}</span>}</>;
 }

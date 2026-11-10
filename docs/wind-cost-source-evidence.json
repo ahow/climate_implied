@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-11-10T13:52:51.668306+00:00",
+  "candidate": "Original global onshore-wind total installed cost versus cumulative installed onshore-wind capacity",
+  "selection": "One best-ready original candidate only; no policy/nowcast sweep",
+  "protocol": {
+    "path": "docs/wind-cost-source-protocol.json",
+    "sha256": "d265795ab4ef4d1821789f398092ed1c6f4c58875bdaed9f2819dd2d57e95868"
+  },
+  "existingMethodProtocol": {
+    "path": "docs/Cost_Deployment_Protocol.md",
+    "sha256": "3ac6fe5e25f9d559b8c00942fccadf53c8b71629076595b69b855be5abcca98a"
+  },
+  "retainedFilesFirst": {
+    "source": "generated-artifacts/driver-calibration/owid-energy-data.csv",
+    "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+    "windFields": [
+      "wind_cons_change_pct",
+      "wind_cons_change_twh",
+      "wind_consumption",
+      "wind_elec_per_capita",
+      "wind_electricity",
+      "wind_energy_per_capita",
+      "wind_share_elec",
+      "wind_share_energy"
+    ],
+    "rejection": "Retained wind observations are generation/consumption shares and levels, not onshore cumulative capacity or total installed project cost; retained solar/battery price bases cannot substitute"
+  },
+  "boundedAttempts": [
+    {
+      "url": "https://www.irena.org/Publications/2025/Jul/Renewable-power-generation-costs-in-2024",
+      "httpStatus": 403,
+      "curlExitCode": 0,
+      "requestLog": "generated-artifacts/wind-cost-original/publication-request.log",
+      "requestLogSha256": "8f3a62edf18be563ed949dd3dde52bea17c09ddd5fc3447bf4793addc8e89dd3",
+      "responseHeaders": "generated-artifacts/wind-cost-original/publication.headers",
+      "responseHeadersSha256": "97c31070bd2507dd6c9103a88bafb32b2cbca45702eaadf8dc6f470c19784343",
+      "meaning": "HTTP 403 challenge is not a statistical release"
+    },
+    {
+      "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_TEC_RPGC_in_2024_2025.pdf",
+      "httpStatus": 200,
+      "curlExitCode": 63,
+      "requestLog": "generated-artifacts/wind-cost-original/cost-report-request.log",
+      "requestLogSha256": "42a11c0f46d9861af68f10a0f80a39141972ce0a98cf48cb351febdbde2f4041",
+      "responseHeaders": "generated-artifacts/wind-cost-original/cost-report.headers",
+      "responseHeadersSha256": "76a59313e404c221b144c9014bc201923b8004a78965d9bd737c980c4a304d9e",
+      "meaning": "Original 40MB transport cap refused 51516161-byte PDF before download; bounded same-source retry frozen before numerical inspection"
+    },
+    {
+      "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_TEC_RPGC_in_2024_2025.pdf",
+      "httpStatus": 200,
+      "curlExitCode": 0,
+      "requestLog": "generated-artifacts/wind-cost-original/cost-report-retry-request.log",
+      "requestLogSha256": "34b8049ba6bf65de66ad5495d8b7970911ef4cb9b55f720b604b6b92eb5bb536",
+      "responseHeaders": "generated-artifacts/wind-cost-original/cost-report-retry.headers",
+      "responseHeadersSha256": "39ebd9ed6fcbbd63cd7c226c6bb4520a57c8864f14a855ed9de64b9133205407",
+      "meaning": "Official original report retained successfully"
+    },
+    {
+      "url": "https://www.irena.org/Publications/2025/Mar/Renewable-capacity-statistics-2025",
+      "httpStatus": 403,
+      "curlExitCode": 0,
+      "requestLog": "generated-artifacts/wind-cost-original/capacity-publication-request.log",
+      "requestLogSha256": "e95d549ec7a5154077cc8ab98105e0f5b0cfcf12afcae9a43bc5f5ced5aae830",
+      "responseHeaders": "generated-artifacts/wind-cost-original/capacity-publication.headers",
+      "responseHeadersSha256": "2e61018f86152a6142c3255ebb4ac4b41993a3087c85d79a19b7324b7b8254cd",
+      "meaning": "HTTP 403 challenge is not a statistical release"
+    },
+    {
+      "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Mar/IRENA_DAT_RE_Capacity_Statistics_2025.pdf",
+      "httpStatus": 200,
+      "curlExitCode": 0,
+      "requestLog": "generated-artifacts/wind-cost-original/capacity-report-request.log",
+      "requestLogSha256": "ae4da27c61997e2755c44e5a6b5294292df8ebc76aced4e602c7e12736c782ba",
+      "responseHeaders": "generated-artifacts/wind-cost-original/capacity-report.headers",
+      "responseHeadersSha256": "5c0728162a9bdda4bc893d1b7e5535b788c044c3fc0e17f2333c0341b608a978",
+      "meaning": "Official original report retained successfully"
+    }
+  ],
+  "attemptCount": 5,
+  "paidCalls": 0,
+  "sources": [
+    {
+      "publisher": "IRENA",
+      "edition": "Renewable power generation costs in 2024 (2025 edition)",
+      "isbn": "978-92-9260-669-5",
+      "officialPathPublicationMonth": "2025-07",
+      "verifiedExactPublicationDay": null,
+      "pdfCreationTimestamp": "2025-07-16T09:26:30Z",
+      "pdfModificationTimestamp": "2025-07-31T13:10:18Z",
+      "dateCaveat": "PDF internal timestamps and official URL month do not establish original publication day or availability at historical forecast origins",
+      "observationYears": [
+        2010,
+        2024
+      ],
+      "path": "generated-artifacts/wind-cost-original/cost-report.pdf",
+      "sha256": "ffe8ce4bde29616f3edf9ef1a86dbb6ae2d5381a0ecb9bb1f71bb20204b6bada",
+      "bytes": 51516161,
+      "compatibleFields": {
+        "technology": "onshore wind",
+        "geography": "global",
+        "costMetric": "capacity-weighted mean total installed project cost",
+        "costUnit": "real 2024 USD/kW",
+        "currencyBasisLocation": "Methodology: all costs real 2024 US dollars unless otherwise stated",
+        "valueLocation": "PDF page 69 / printed page 69, Figure 2.5"
+      },
+      "precisionLimitation": "All fifteen years explicitly annotated, rounded to whole USD/kW; no exact underlying full-series source table supplied"
+    },
+    {
+      "publisher": "IRENA",
+      "edition": "Renewable capacity statistics 2025",
+      "isbn": "978-92-9260-652-7",
+      "officialPathPublicationMonth": "2025-03",
+      "verifiedExactPublicationDay": null,
+      "pdfCreationTimestamp": "2025-03-25T10:04:58Z",
+      "pdfModificationTimestamp": "2025-03-25T10:10:16Z",
+      "dateCaveat": "PDF metadata creation date is not proof of publication date",
+      "observationYears": [
+        2015,
+        2024
+      ],
+      "path": "generated-artifacts/wind-cost-original/capacity-report.pdf",
+      "sha256": "5c87b97a4444a8b33c36b250978fcdeb5fa3526d7a62bba4bb392b80d60cbe13",
+      "bytes": 2756210,
+      "compatibleFields": {
+        "technology": "onshore wind",
+        "geography": "World",
+        "deploymentMetric": "cumulative installed electricity capacity",
+        "deploymentUnit": "MW",
+        "valueLocation": "PDF page 29 / printed page 17, World row"
+      },
+      "missingRequiredTrainingYears": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ]
+    }
+  ],
+  "sourceExtraction": {
+    "files": {
+      "generated-artifacts/wind-cost-original/cost-report.pdf": "ffe8ce4bde29616f3edf9ef1a86dbb6ae2d5381a0ecb9bb1f71bb20204b6bada",
+      "generated-artifacts/wind-cost-original/cost-report.txt": "7a806136e30476c9c3cfd38558b81f4742e9716098fe5f40fa013c0f116897ce",
+      "generated-artifacts/wind-cost-original/cost-figure-page69-raw.txt": "f56e59c9edb5df14948843c0a00f0354a2b8291a7d446f6f22928723ab50e43f",
+      "generated-artifacts/wind-cost-original/capacity-report.pdf": "5c87b97a4444a8b33c36b250978fcdeb5fa3526d7a62bba4bb392b80d60cbe13",
+      "generated-artifacts/wind-cost-original/capacity-report.txt": "92f395fa2bc11f7b893d4ec7d285b7517199e3d198ede8b2ee601206542a26c1"
+    },
+    "commands": [
+      "pdftotext -layout cost-report.pdf cost-report.txt",
+      "pdftotext -layout capacity-report.pdf capacity-report.txt",
+      "pdftotext -raw -f 69 -l 69 cost-report.pdf cost-figure-page69-raw.txt"
+    ],
+    "versionCaveat": "Publisher-hosted 2025 statistical editions retrieved in November 2026; current bytes are hashed, but byte identity with first publication release and original historical availability are not independently certified",
+    "annotatedCostOrder": "Raw PDF text-label sequence checked against Figure 2.5 year positions; labels remain rounded graph values and rejected for scoring"
+  },
+  "assembledObservations": [
+    {
+      "year": 2010,
+      "publishedRoundedCostLabel2024USDPerKW": 2324,
+      "originalCumulativeOnshoreCapacityMW": null,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2011,
+      "publishedRoundedCostLabel2024USDPerKW": 2278,
+      "originalCumulativeOnshoreCapacityMW": null,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2012,
+      "publishedRoundedCostLabel2024USDPerKW": 2165,
+      "originalCumulativeOnshoreCapacityMW": null,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2013,
+      "publishedRoundedCostLabel2024USDPerKW": 2234,
+      "originalCumulativeOnshoreCapacityMW": null,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2014,
+      "publishedRoundedCostLabel2024USDPerKW": 2147,
+      "originalCumulativeOnshoreCapacityMW": null,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2015,
+      "publishedRoundedCostLabel2024USDPerKW": 1956,
+      "originalCumulativeOnshoreCapacityMW": 404844,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2016,
+      "publishedRoundedCostLabel2024USDPerKW": 1960,
+      "originalCumulativeOnshoreCapacityMW": 453155,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2017,
+      "publishedRoundedCostLabel2024USDPerKW": 1963,
+      "originalCumulativeOnshoreCapacityMW": 496413,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2018,
+      "publishedRoundedCostLabel2024USDPerKW": 1865,
+      "originalCumulativeOnshoreCapacityMW": 540030,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2019,
+      "publishedRoundedCostLabel2024USDPerKW": 1766,
+      "originalCumulativeOnshoreCapacityMW": 594674,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2020,
+      "publishedRoundedCostLabel2024USDPerKW": 1589,
+      "originalCumulativeOnshoreCapacityMW": 699439,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2021,
+      "publishedRoundedCostLabel2024USDPerKW": 1506,
+      "originalCumulativeOnshoreCapacityMW": 770111,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2022,
+      "publishedRoundedCostLabel2024USDPerKW": 1353,
+      "originalCumulativeOnshoreCapacityMW": 840541,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2023,
+      "publishedRoundedCostLabel2024USDPerKW": 1187,
+      "originalCumulativeOnshoreCapacityMW": 945352,
+      "costUsableUnderFrozenPrecisionGate": false
+    },
+    {
+      "year": 2024,
+      "publishedRoundedCostLabel2024USDPerKW": 1041,
+      "originalCumulativeOnshoreCapacityMW": 1053403,
+      "costUsableUnderFrozenPrecisionGate": false
+    }
+  ],
+  "compatibility": {
+    "status": "rejected-before-fitting",
+    "missingTrainingYears": [
+      2010,
+      2011,
+      2012,
+      2013,
+      2014
+    ],
+    "missingHoldoutYears": [],
+    "matchedTrainingYears": [
+      2015,
+      2016,
+      2017,
+      2018
+    ],
+    "matchedHoldoutYears": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "reasons": [
+      "Missing matched original training pairs; fixed 2010\u20132018 window cannot be shortened",
+      "Cost series is published rounded figure annotations, not the exact complete original source table required by frozen source-attempt protocol"
+    ],
+    "fitExecuted": false,
+    "mae": null,
+    "centralModelEligible": false
+  },
+  "scientificExecution": {
+    "candidateFit": false,
+    "baselineFits": false,
+    "heldoutScoring": false,
+    "uncertaintyOrDependenceFit": false,
+    "reason": "Pre-fit complete-window and precision gates fail; reporting fitted scores or bootstrap intervals would misrepresent the frozen requirements"
+  },
+  "tests": {
+    "command": "uv run python -m unittest discover -s script -p test_wind_cost_source_attempt.py",
+    "exitCode": 0,
+    "passed": 4,
+    "failed": 0,
+    "log": "generated-artifacts/wind-cost-original/focused-source-tests.log",
+    "logSha256": "e73c3805f810fdcf3d0167ced7085c48306c9482a952ffb710551d230cdb3e51"
+  },
+  "preservation": {
+    "priorFrozenFilesUnchanged": {
+      "docs/Driver_Calibration_Protocol.md": true,
+      "docs/Driver_Uncertainty_Protocol.md": true,
+      "docs/Company_Beta_Sensitivity_Protocol.md": true,
+      "docs/Beta_Growth_Sensitivity_Results.md": true,
+      "docs/EV_Calibration_Protocol.md": true,
+      "docs/EV_and_Cost_Calibration_Results.md": true,
+      "docs/Fleet_Transition_Protocol.md": true,
+      "docs/Fleet_Transition_Results.md": true,
+      "docs/fleet_transition_results.json": true,
+      "docs/Storage_Adoption_Protocol.md": true,
+      "docs/Storage_Adoption_Results.md": true,
+      "docs/Historical_Diagnostics_and_Skill_Results.md": true,
+      "generated-artifacts/driver-calibration/result.json": true,
+      "generated-artifacts/driver-calibration/uncertainty.json": true
+    },
+    "priorCliCoreUnchanged": {
+      "server/calculation/driverParameterRegistry.ts": true,
+      "server/calculation/driverConsumptionTrace.ts": true,
+      "server/calculation/driverEvidence.ts": true,
+      "script/driver-consumption.test.ts": true,
+      "script/driver-consumption-evidence.ts": true,
+      "script/run-regional-ensemble.ts": true
+    },
+    "windowsChanged": false,
+    "splicingOrInterpolation": false,
+    "wrongCurrencyOrPriceBasisSubstitution": false,
+    "unchangedStudiesRerun": false
+  },
+  "remainingGap": "Need original same-definition 2010\u20132014 onshore cumulative capacity in one source-version export and exact complete 2010\u20132024 original installed-cost table, not an older-edition splice or mixed-base-year prices",
+  "readiness": "Original sources assembled and scoped; next model run remains honestly blocked before fitting",
+  "extractionRepair": "Initial layout-text parser included a y-axis tick and reordered two labels; it rejected before producing observations. Replaced with pinned page-69 raw-text annotation stream, checked against the published x-axis. No fitting or scoring occurred."
+}

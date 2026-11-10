@@ -10,7 +10,7 @@ function files(dir: string): string[] {
 const clean = (value: string) => value.replace(/\|/g, "\\|").replace(/\s+/g, " ");
 
 export function outputRegister() {
-  const routes: string[][] = [], consumers: string[][] = [], exports: string[][] = [];
+  const routes: string[][] = [], consumers: string[][] = [], exports: string[][] = [], jsonExports: string[][] = [];
   for (const path of [...files("server"), ...files("client/src")]) {
     const source = ts.createSourceFile(path, readFileSync(path, "utf8"), ts.ScriptTarget.Latest, true, path.endsWith("tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
     function visit(node: ts.Node) {
@@ -31,6 +31,15 @@ export function outputRegister() {
           return a && ts.isJsxAttribute(a) ? a.initializer?.getText(source) ?? "MISSING" : "MISSING";
         };
         exports.push([path, attr("filename"), attr("rows"), attr("kind")]);
+      }
+      if (path.startsWith("client/") && (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) &&
+        node.tagName.getText(source) === "DownloadJsonButton") {
+        const attr = (name: string) => {
+          const a = node.attributes.properties.find(p => ts.isJsxAttribute(p) && p.name.getText(source) === name);
+          return a && ts.isJsxAttribute(a) ? a.initializer?.getText(source) ?? "MISSING" : "MISSING";
+        };
+        jsonExports.push([path, attr("filename"), attr("payload"),
+          `Central download-data-button writer; evidence ${attr("kind")}; validator ${attr("validatePayload")}; lossless data envelope + interpretation + SHA-256 payload identity`]);
       }
       node.forEachChild(visit);
     }
@@ -62,8 +71,11 @@ export function outputRegister() {
     "Each export contains an Interpretation worksheet. Its timestamp is not an input vintage. Data rows remain unchanged.",
     "The required evidence class is enforced by TypeScript and an AST coverage test; alternate client writers require review.", "",
     table(["Consumer", "Filename expression", "Rows expression", "Evidence class"], exports),
+    "## Qualified JSON exports", "",
+    "These are separate supplemental contracts, not additional original1001 spreadsheet slots. Their own source/cutoff/units/limitations remain in the exported payload.", "",
+    table(["Consumer", "Filename expression", "Payload", "Semantic contract"], jsonExports),
     "## Coverage boundaries", "",
-    "This register covers static Express app/router method registrations, frontend API string/template references and DownloadDataButton controls.",
+    "This register covers static Express app/router method registrations, frontend API string/template references, DownloadDataButton controls and qualified DownloadJsonButton controls. Both download formats use the central writer and mandatory evidence contract.",
     "It does not certify dynamically constructed routes, external operator reports, Python research files or every field in arbitrary API JSON.",
     "Read the frontend claim register and public valuation contract alongside this census. Full Stage 1 acceptance still requires field-level review of legacy consumers.",
     "",

@@ -34,7 +34,7 @@ const terminalSchema = z.object({
 export const sourcedCompanyCaseSchema = z.object({
   version: z.literal("sourced-company-case-1"),
   facts: filingFactsSchema, referenceAt: z.string().datetime(), frozenAt: z.string().datetime(),
-  assessmentMode: z.enum(["prospective-conditional", "historical-point-in-time"]).optional(),
+  assessmentMode: z.enum(["prospective-conditional", "historical-point-in-time", "revised-history-conditional"]).optional(),
   informationCutoff: z.string().datetime().optional(),
   evidence: z.array(evidenceSchema), financialBasisEvidenceIds: z.array(z.string().min(1)),
   financialCashflow: z.object({
@@ -69,9 +69,9 @@ export function assessSourcedCompanyCase(input: unknown) {
   const registry = new Map(x.evidence.map(e => [e.id, e]));
   if (registry.size !== x.evidence.length) throw new Error("Duplicate evidence identity");
   if (Date.parse(x.frozenAt) > Date.parse(informationCutoff) ||
-      Date.parse(informationCutoff) > Date.parse(x.referenceAt))
+      (x.assessmentMode !== "revised-history-conditional" && Date.parse(informationCutoff) > Date.parse(x.referenceAt)))
     gaps.push("Information cutoff must include actual freeze and not exceed model as-of; never backdate historical evidence.");
-  if (x.facts.documentDate > informationCutoff.slice(0, 10))
+   if (x.facts.documentDate > informationCutoff.slice(0, 10))
     gaps.push("Selected financial disclosure follows reference.");
   const used = new Set<string>();
   const check = (references: string[], path?: string, value?: unknown, visiting = new Set<string>()) => {
@@ -150,6 +150,15 @@ export function assessSourcedCompanyCase(input: unknown) {
       if (!refs?.length) gaps.push(`Missing financial field evidence: ${path}`);
       else check(refs, path, value);
     }
+    if (s.continuation) for (const [i, row] of Array.from(
+      [...s.continuation.years, s.continuation.terminalYear].entries())) {
+      for (const [key, value] of Object.entries(row)) {
+        if (typeof value !== "number") continue;
+        const path = `/financialCashflow/continuation/${i}/${key}`, refs = f.bindings[path];
+        if (!refs?.length) gaps.push(`Missing continuation operating field evidence: ${path}`);
+        else check(refs, path, value);
+      }
+    }
     const basePath = "/financialCashflow/baseFcfe";
     if (!f.bindings[basePath]?.length) gaps.push(`Missing financial field evidence: ${basePath}`);
     else check(f.bindings[basePath], basePath, s.baseFcfe);
@@ -202,7 +211,8 @@ export function assessSourcedCompanyCase(input: unknown) {
       r[k as "symbol" | "cik" | "security" | "currency"] !== x.facts[k as "symbol" | "cik" | "security" | "currency"]))
       gaps.push("Market identity differs from selected financial basis; succession review required.");
     const shares = reviewCompanyShareReference(m.primaryShares, { ...r,
-      informationCutoffDate: x.assessmentMode === "prospective-conditional" ? informationCutoff.slice(0, 10) : undefined });
+      informationCutoffDate: x.assessmentMode !== "historical-point-in-time" && x.assessmentMode !== undefined ?
+        informationCutoff.slice(0, 10) : undefined });
     gaps.push(...shares.gaps);
     if (shares.shares !== r.shares || r.sharesDate !== r.priceDate ||
         (x.assessmentMode === "prospective-conditional" ? r.priceDate > referenceDate : r.priceDate !== referenceDate))

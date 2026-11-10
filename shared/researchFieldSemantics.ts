@@ -1,5 +1,27 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 
+// Exact new driver-registry leaves: none is accepted by a wildcard/default
+// semantic binding. Status distinguishes a code-consumer trace from evidence.
+export const driverConsumerFieldSpecs: [string, string, string, string, string][] = [
+  ["indicators[].actualConsumers.legacy.classification", "Legacy equations are diagnostic, not a calibrated central forecast", 'driverConsumerTrace(key).legacy.classification = "legacy-diagnostic-not-calibrated-central"', "classification label", "Preserved legacy diagnostic; not central calibration"],
+  ["indicators[].actualConsumers.legacy.consumer", "Actual legacy trajectory implementation that reads or validates adapter fields", 'literal "server/calculation/forwardProjection.ts:calculateEmissionsTrajectory"', "qualified source/function path", "Implementation location, not causal evidence"],
+  ["indicators[].actualConsumers.legacy.historicalAdapters[]", "Named transformations from curated indicators into legacy trajectory arguments", 'literal ["getCurrentIndicatorsFromHistorical","categoryHistoricalTrend.convertToIndicatorData"]', "function identifier", "Legacy adapter trace; transformations do not establish calibration"],
+  ["indicators[].actualConsumers.legacy.categoryConsumer", "Separate category comparator applies stylized shocks rather than calibrated observation effects", 'literal "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)"', "qualified source/function path and caveat", "Illustrative category diagnostic, not observed-driver attribution"],
+  ["indicators[].actualConsumers.legacy.fields[]", "Exact legacy IndicatorData argument names reached from this curated key; empty when no adapter/observation field is consumed", "driverConsumptionTrace legacy[key].fields; includes validated-but-unused globalGDP/atmosphericCO2ppm and derived netZeroTargetsCoverage where applicable", "IndicatorData field identifier", "Code-path inventory only; presence does not imply a numerical equation effect"],
+  ["indicators[].actualConsumers.legacy.mechanism", "Driver-specific implemented equation or explicit non-consumption: capacity displacement, sales-to-fleet, policy/corporate/finance heuristics, baseline/anchor/threshold, validation-only or absent observation consumer", "driverConsumptionTrace legacy[key].mechanism; exact keyed equation descriptions for all 22 curated indicators; GDP and atmospheric CO2 validate only, survey/divestment/budget observations have no emissions equation consumer", "equation/non-consumption description", "Actual legacy equation trace; not incremental causal identification"],
+  ["indicators[].actualConsumers.legacy.registryGateEnforced", "Registry eligibility flags do not gate preserved legacy equations", "literal false; legacy calculateEmissionsTrajectory is not dispatched through the registered Stage5 consumer", "boolean", "Explicit enforcement limitation; legacy must not be labelled registered central"],
+  ["indicators[].actualConsumers.legacy.caveat", "Warns that registry flags alone cannot retroactively enforce comparator equations", 'literal "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer"', "limitation text", "Known legacy enforcement boundary, separately labelled diagnostic"],
+  ["indicators[].actualConsumers.stage5.consumer", "Actual registered native regional call chain, dispatched by the existing Stage5 CLI registered-native sensitivity mode", 'literal "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions"', "function call chain", "Registered native conditional-engine consumer; not scientific acceptance"],
+  ["indicators[].actualConsumers.stage5.implicitCuratedIndicatorConsumption", "Curated indicators are not silently copied into native regional scenario parameters", "literal false; native consumption requires exact explicitly bound source-verified joint registry rows", "boolean", "No implicit curated-to-native bridge or default central substitution"],
+  ["indicators[].actualConsumers.stage5.gate", "Every actual scenario parameter leaf must be bound to its exact region/path and verified parameter evidence before member generation", 'literal "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding"; consumeRegionalParameterRegistry checks complete leaf coverage and source SHA-256', "enforcement rule text", "Implemented registered-consumer gate; baseline failure cannot be promoted by flags"],
+  ["indicators[].actualConsumers.stage5.directCuratedDistribution", "No accepted directly compatible native parameter distribution exists for this curated indicator", "literal null; retained generation-share bootstrap distributions are separate sensitivities, not this curated driver's native regional coefficients", "null; unavailable distribution", "Unavailable, not zero, fitted prior or calibrated central parameter"],
+  ["indicators[].actualConsumers.stage5.missingBridge", "Discloses the absent approved source-compatible curated-to-native parameter mapping", 'literal "No approved source-compatible mapping from this curated driver to native regional parameter distributions"', "evidence-gap text", "Unresolved bridge; no accepted real six-region central joint registry"],
+  ["indicators[].parameterDistribution.status", "This curated indicator lacks an approved directly compatible parameter distribution", 'literal "unavailable"; does not relabel the separate retained adoption sensitivity distributions', "availability status label", "Unavailable curated-driver distribution; no central promotion"],
+  ["indicators[].parameterDistribution.registryVersion", "Version identifier of the source-linked Stage4 distribution registry contract", 'literal "stage4-source-linked-1"; returned by retainedAdoptionParameterRegistry', "version identifier", "Versioned registry engineering contract, not a scientific calibration status"],
+  ["indicators[].parameterDistribution.loader", "Fixed retained adoption distribution loader; not a caller-controlled file path", 'literal "retainedAdoptionParameterRegistry"; loader verifies pinned report/source/protocol/registry hashes', "function identifier", "Fixed source-verified loader; separate generation-share sensitivities only"],
+  ["indicators[].parameterDistribution.reason", "Solar/wind generation-share bootstrap distributions cannot be substituted for this curated indicator", 'literal "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator"', "source-compatibility limitation text", "Sensitivity-only retained adoption evidence; curated native distribution unavailable"],
+];
+
 // Each tuple identifies a concrete response leaf and its implemented derivation.
 export const driverFieldSpecs: [string, string, string, string][] = [
   ["status", "Evidence disclosure status", 'literal "evidence-gaps-explicit"', "label"],
@@ -36,6 +58,8 @@ export const driverFieldSpecs: [string, string, string, string][] = [
   ["indicators[].regionalApplicability", "Regional applicability not established", 'literal "not-established"', "label"],
   ["indicators[].missingData", "Declared null/interpolation policy, not interpolation performed here", 'literal "preserve-null; interior interpolation only when explicitly requested and labelled"', "text"],
   ["indicators[].evidenceState", "Evidence remains unavailable", 'literal "Unavailable"', "label"],
+  ...driverConsumerFieldSpecs.map(([field, meaning, formula, unit]): [string, string, string, string] =>
+    [field, meaning, formula, unit]),
 ];
 
 export const referenceFieldSpecs: [string, string, string, string][] = [
@@ -75,7 +99,8 @@ export const researchFieldSemantics: OutputFieldSemantic[] = [
     dependencies:["INDICATORS", "HISTORICAL_INDICATORS", "driverEvidenceRegistry"],
     source:"server/calculation/driverEvidence.ts: driverEvidenceRegistry",
     period:"Retained curated historical row span; not a projection horizon",geography:"Global",
-    status:"Research disclosure only; centralModelEligible=false",
+    status:driverConsumerFieldSpecs.find(spec => spec[0] === field)?.[4] ??
+      "Research disclosure only; centralModelEligible=false",
     missingness:"Original informationAvailableAt is null; absent derivations/studies have empty arrays; unavailable evidence is explicit",
     uncertainty:"Source-specific distributions unavailable; no calibrated causal claim",
     scope:"Retained revised history and research metadata, not original-vintage evidence",
