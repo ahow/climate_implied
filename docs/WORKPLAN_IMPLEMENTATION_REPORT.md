@@ -4,15 +4,16 @@
 
 Baseline HEAD446b909 and original workplan/amendment hashes verified. This is
 implementation, not full semantic/scientific acceptance. Counts remain
-**7 verified /48 partial /2 blocked /243 unreconciled**.
+**7 verified /49 partial /2 blocked /242 unreconciled**.
 
 Before:16 core definitions,953 source slots across64 surfaces,0 precisely
-qualified API bindings under the new census. After:82 definitions (16 original,
-66 qualified),965 slots:921 typed public,27 withheld,6 unresolved types,
-11 dynamic keys.65 API fields bind exactly:SDG11,PE10,indicator24,regional10,sensitivity10.
-SDG3,indicator24,regional8 and sensitivity6 export columns have explicit bindings, transformations
-and an XLSX binding sheet; these are not41 extra mapped census slots.
-**856 typed fields remain unbound, plus17 unresolved/dynamic slots and
+qualified API bindings under the new census. Latest:192 definitions (16 original,
+176 qualified),965 slots:921 typed public,27 withheld,6 unresolved types,
+11 dynamic keys.175 API slots bind across nine semantic response families,
+including65 global projection and45 category/historical leaves.
+67 export columns have explicit bindings, transformations and an XLSX binding
+sheet; these are not67 additional mapped census slots.
+**763 public slots remain unbound (747 typed plus16 unresolved/dynamic), and
 unenumerated display-only expressions.** Full coverage fails explicitly.
 
 Prior paths changed: shared/fieldSemantics.ts (semanticRows);
@@ -85,6 +86,58 @@ earnings yields from physical reductions, and labels legacy gap ranks as
 unvalidated rather than established mispricing. The census does not enumerate
 all display expressions or custom export implementations outside
 DownloadDataButton; these remain explicit exclusions, not completed coverage.
+
+S16-007 is now reconciled as **partial**, using actual registry/XLSX evidence.
+This is not complete methodology generation or all-download manifest coverage.
+No new original clause is verified.
+
+Release validation: full local222/222 passed; final focused11/11, TypeScript and
+build passed. First export4f9c2d9 failed CI42742762217 because compiler absolute
+paths made the census checkout-dependent. Repository-relative source/surface
+paths fixed this; a separate temporary checkout produced an identical census.
+The strict freshness gate remains intact. Corrected workspacebde248c and export
+cff30181 passed CI42743057200; Railway4747905b-90c8-460e-bbab-ee860de9791c
+was building when last checked. Do not equate that state with a live receipt.
+
+Runtime confirmed2026-11-10T02:32:17Z: Railway4747905b SUCCESS,
+live /api/build-info exactly cff30181b4b4b0ded614adf7f158d51831f26b57,
+/api/health returned status=ok; live semantics82 definitions. Earlier /health
+request returned the SPA document and was not treated as an API health receipt.
+This is a coherent intermediate release, not a stopping checkpoint. No callback
+sent at this point; implementation continues on remaining field families.
+
+## Continued implementation after the first release
+
+New shared/projectionFieldSemantics.ts and shared/historicalFieldSemantics.ts
+bind global/category/historical leaves; outputFieldSemantics.ts adds recursive
+unknown-leaf rejection. Cached and fresh API branches are covered. Chart bindings
+include emissions-chart.tsx, temperature-histogram.tsx, historical-trend-chart.tsx,
+category-comparison.tsx and category-trend-chart.tsx. Density is labelled1/°C,
+not point probability; cumulative emissions are median member cumulatives,
+not sums of pointwise medians. Original assumption constants are unchanged.
+
+Historical resolver boundary: server/calculation/historicalIndicators.ts now
+uses validatedCapturedRows in both historical and nowcast getters. Captured
+rows are sorted/detached; duplicate years, nonfinite values and contradictions
+with selected approved overrides reject. Current global overrides cannot
+replace an explicitly captured series. script/historical-input-boundary.test.ts
+checks two concurrent distinct selections, unchanged outside baseline, mutation
+isolation, sorted outputs and invalid/conflicting captures; CAGR tolerance1e-12.
+
+Actual development endpoint /api/cv/decarb-gap/timeseries with costOfEquity0.081
+and minPeers6 archived result9047b582fd405c57992b3403f0dfc7b418aa705f78a7f438157aa2f8842be1b4.
+Fresh-process replay matched public result hash
+e0adf4a8be31fd0eb891e53a55c44769a8349b59b9add9cab46cc35f8924da4b.
+Log: generated-artifacts/workplan-completion/20261110T023823260788Z.log.
+This used existing approved data, no real issuer approval. It is engineering
+replay, not a new scientific study or full nine-path acceptance. The first
+attempt used a nonexistent route and returned SPA HTML; that was not counted.
+
+Final local full suite226/226 and typecheck/build passed at02:49UTC. API checks:
+global65 IDs; category6rows/15IDs; history17rows/7IDs; category-history17rows/23IDs.
+One compiler-unresolved slot (inputRevision) now has explicit runtime semantics;
+its type precision is still unresolved. No new frozen calibration/valuation
+study executed and no scientific gate promoted. Second release receipt follows.
 
 ## Combined refresh continuation
 

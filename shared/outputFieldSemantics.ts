@@ -1,6 +1,8 @@
 import { indicatorFieldSemantics } from "./indicatorFieldSemantics";
 import { regionalFieldSemantics } from "./regionalFieldSemantics";
 import { sensitivityFieldSemantics } from "./sensitivityFieldSemantics";
+import { projectionFieldSemantics } from "./projectionFieldSemantics";
+import { historicalFieldSemantics } from "./historicalFieldSemantics";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
   dependencies:string[]; unit:string; source:string; period:string; geography:string;
@@ -20,6 +22,8 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...indicatorFieldSemantics,
   ...regionalFieldSemantics,
   ...sensitivityFieldSemantics,
+  ...projectionFieldSemantics,
+  ...historicalFieldSemantics,
   {id:"pe.date",meaning:"Date of the compared carbon-intensity terciles",role:"Input",
     formula:"Workbook date grouping key",dependencies:["timeSeries.date"],unit:"ISO-8601 date",...peFinancial},
   ...["top","bottom"].flatMap(group=>[
@@ -74,6 +78,22 @@ export function bindOutputFields(prefix:string,rows:object[]) {
   return fields.map(field=>requireOutputSemantic(`${prefix}.${field}`));
 }
 export type ExportFieldBinding={id:string;transform:string};
+export function bindNestedOutput(prefix:string,value:unknown) {
+  const paths=new Set<string>();
+  function visit(item:unknown,path:string) {
+    if(Array.isArray(item)) {
+      if(!item.length) paths.add(`${path}[]`);
+      for(const row of item) visit(row,`${path}[]`);
+    } else if(item!==null && typeof item==="object") {
+      const children=Object.entries(item);
+      if(!children.length) paths.add(path);
+      for(const [key,child] of children) visit(child,path?`${path}.${key}`:key);
+    } else paths.add(path);
+  }
+  if(Array.isArray(value)) value.forEach(row=>visit(row,""));
+  else visit(value,"");
+  return Array.from(paths).sort().map(path=>requireOutputSemantic(`${prefix}.${path}`));
+}
 export function bindExportColumns(rows:Record<string,unknown>[],bindings:Record<string,ExportFieldBinding>) {
   const columns=Array.from(new Set(rows.flatMap(Object.keys))).sort();
   if(columns.some(c=>!bindings[c]) || Object.keys(bindings).some(c=>!columns.includes(c)))

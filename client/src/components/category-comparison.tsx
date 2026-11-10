@@ -74,6 +74,12 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
           filename="category-scenario-analysis"
           sheetName="Category Scenarios"
           rows={downloadRows}
+          fieldBindings={{
+            Category:{id:"category.categoryName",transform:"Identity"},
+            "Temperature (\u00B0C)":{id:"category.temperatureRise",transform:"Identity"},
+            "Reduction Rate (%/yr)":{id:"category.reductionRate",transform:"Identity"},
+            "First year median emissions reach 5 GtCO2e":{id:"category.netZeroYear",transform:"Identity; null preserved"},
+          }}
           testId="button-download-category-scenarios"
         />
       </div>

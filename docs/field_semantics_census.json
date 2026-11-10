@@ -1,7 +1,7 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 82,
-  "fullyBoundFields": 65,
+  "definitions": 192,
+  "fullyBoundFields": 175,
   "scope": "Direct registered API res.json expressions and all typed DownloadDataButton rows; display-only values and dynamic response builders remain exclusions",
   "exclusions": [
     {
@@ -9,7 +9,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "withheld-public-field"
     },
     {
@@ -17,7 +17,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "withheld-public-field"
     },
     {
@@ -25,7 +25,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "withheld-public-field"
     },
     {
@@ -33,7 +33,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "withheld-public-field"
     },
     {
@@ -41,7 +41,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "withheld-public-field"
     },
     {
@@ -49,7 +49,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "withheld-public-field"
     },
     {
@@ -57,7 +57,7 @@
       "field": "bottomCompanies[].gap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -65,7 +65,7 @@
       "field": "bottomCompanies[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -73,7 +73,7 @@
       "field": "distribution[].bucket",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -81,7 +81,7 @@
       "field": "distribution[].count",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -89,7 +89,7 @@
       "field": "distribution[].midpoint",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -97,7 +97,7 @@
       "field": "meanImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -105,7 +105,7 @@
       "field": "medianImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -113,7 +113,7 @@
       "field": "projectedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -121,7 +121,7 @@
       "field": "topCompanies[].gap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -129,7 +129,7 @@
       "field": "topCompanies[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -137,7 +137,7 @@
       "field": "[].meanImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -145,7 +145,7 @@
       "field": "[].medianImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -153,7 +153,7 @@
       "field": "[].p25ImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -161,7 +161,7 @@
       "field": "[].p75ImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -169,7 +169,7 @@
       "field": "[].projectedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -177,7 +177,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "withheld-public-field"
     },
     {
@@ -185,7 +185,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "withheld-public-field"
     },
     {
@@ -193,7 +193,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "withheld-public-field"
     },
     {
@@ -201,7 +201,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "withheld-public-field"
     },
     {
@@ -209,7 +209,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "withheld-public-field"
     },
     {
@@ -217,7 +217,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "withheld-public-field"
     },
     {
@@ -225,7 +225,7 @@
       "field": "runs[].summary",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "unresolved-type"
     },
     {
@@ -249,7 +249,7 @@
       "field": "$",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 480,
+      "line": 482,
       "resolution": "unresolved-type"
     },
     {
@@ -257,7 +257,7 @@
       "field": "calculation.inputRevision",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "unresolved-type"
     },
     {
@@ -265,7 +265,7 @@
       "field": "$",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 566,
+      "line": 570,
       "resolution": "unresolved-type"
     },
     {
@@ -273,7 +273,7 @@
       "field": "$",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 646,
+      "line": 654,
       "resolution": "unresolved-type"
     },
     {
@@ -281,7 +281,7 @@
       "field": "$",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 631,
+      "line": 637,
       "resolution": "unresolved-type"
     },
     {
@@ -787,7 +787,7 @@
       "field": "[].activeReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -795,7 +795,7 @@
       "field": "[].benchmarkCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -803,7 +803,7 @@
       "field": "[].benchmarkReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -811,7 +811,7 @@
       "field": "[].costFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -819,7 +819,7 @@
       "field": "[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -827,7 +827,7 @@
       "field": "[].overweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -835,7 +835,7 @@
       "field": "[].portfolioCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -843,7 +843,7 @@
       "field": "[].portfolioNetCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -851,7 +851,7 @@
       "field": "[].portfolioNetReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -859,7 +859,7 @@
       "field": "[].portfolioReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -867,7 +867,7 @@
       "field": "[].tiltScale",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -875,7 +875,7 @@
       "field": "[].trackingError",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -883,7 +883,7 @@
       "field": "[].tradedNotional",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -891,7 +891,7 @@
       "field": "[].turnover",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -899,7 +899,7 @@
       "field": "[].underweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -907,7 +907,7 @@
       "field": "series[].activeReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -915,7 +915,7 @@
       "field": "series[].benchmarkCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -923,7 +923,7 @@
       "field": "series[].benchmarkReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -931,7 +931,7 @@
       "field": "series[].costFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -939,7 +939,7 @@
       "field": "series[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -947,7 +947,7 @@
       "field": "series[].overweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -955,7 +955,7 @@
       "field": "series[].portfolioCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -963,7 +963,7 @@
       "field": "series[].portfolioNetCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -971,7 +971,7 @@
       "field": "series[].portfolioNetReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -979,7 +979,7 @@
       "field": "series[].portfolioReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -987,7 +987,7 @@
       "field": "series[].tiltScale",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -995,7 +995,7 @@
       "field": "series[].trackingError",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1003,7 +1003,7 @@
       "field": "series[].tradedNotional",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1011,7 +1011,7 @@
       "field": "series[].turnover",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1019,7 +1019,7 @@
       "field": "series[].underweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1027,7 +1027,7 @@
       "field": "summary.accounting.costBps",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1035,7 +1035,7 @@
       "field": "summary.accounting.grossCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1043,7 +1043,7 @@
       "field": "summary.accounting.maxNetDrawdown",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1051,7 +1051,7 @@
       "field": "summary.accounting.netCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1059,7 +1059,7 @@
       "field": "summary.accounting.totalCostFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1067,7 +1067,7 @@
       "field": "summary.accounting.totalTurnover",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1075,7 +1075,7 @@
       "field": "summary.calibrationBasis",
       "type": "\"expanding_past_only\"",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1083,7 +1083,7 @@
       "field": "summary.calibrationPeriod.end",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1091,7 +1091,7 @@
       "field": "summary.calibrationPeriod.months",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1099,7 +1099,7 @@
       "field": "summary.calibrationPeriod.start",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1107,7 +1107,7 @@
       "field": "summary.calibrationStatus",
       "type": "\"insufficient_data\"",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1115,7 +1115,7 @@
       "field": "summary.method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1123,7 +1123,7 @@
       "field": "summary.realizedTrackingErrorPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1131,7 +1131,7 @@
       "field": "summary.seriesTrackingErrorUnits",
       "type": "\"decimal\"",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1139,7 +1139,7 @@
       "field": "summary.seriesTrackingErrorWindow",
       "type": "\"expanding_from_start\"",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1147,7 +1147,7 @@
       "field": "summary.signal",
       "type": "\"decarb_gap\"",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1155,7 +1155,7 @@
       "field": "summary.targetTrackingErrorPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1163,7 +1163,7 @@
       "field": "summary.tiltScale",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1171,7 +1171,7 @@
       "field": "summary.warnings[]",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1067,
+      "line": 1076,
       "resolution": "typed-field"
     },
     {
@@ -1179,7 +1179,7 @@
       "field": "[].bottomTercileCompanyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1187,7 +1187,7 @@
       "field": "[].bottomTercileEmissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1195,7 +1195,7 @@
       "field": "[].bottomTercileMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1203,7 +1203,7 @@
       "field": "[].bottomTercilePeRatio",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1211,7 +1211,7 @@
       "field": "[].bottomTercileProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1219,7 +1219,7 @@
       "field": "[].date",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1227,7 +1227,7 @@
       "field": "[].highGroupLabel",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1235,7 +1235,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "withheld-public-field"
     },
     {
@@ -1243,7 +1243,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "withheld-public-field"
     },
     {
@@ -1251,7 +1251,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "withheld-public-field"
     },
     {
@@ -1259,7 +1259,7 @@
       "field": "[].inferenceMethod",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1267,7 +1267,7 @@
       "field": "[].lowGroupLabel",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1275,7 +1275,7 @@
       "field": "[].topTercileCompanyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1283,7 +1283,7 @@
       "field": "[].topTercileEmissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1291,7 +1291,7 @@
       "field": "[].topTercileMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1299,7 +1299,7 @@
       "field": "[].topTercilePeRatio",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1307,7 +1307,7 @@
       "field": "[].topTercileProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 871,
+      "line": 880,
       "resolution": "typed-field"
     },
     {
@@ -1315,7 +1315,7 @@
       "field": "[].bands[].companyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1323,7 +1323,7 @@
       "field": "[].bands[].label",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1331,7 +1331,7 @@
       "field": "[].bands[].midpoint",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1339,7 +1339,7 @@
       "field": "[].bands[].pe",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1347,7 +1347,7 @@
       "field": "[].bands[].totalMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1355,7 +1355,7 @@
       "field": "[].bands[].totalProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1363,7 +1363,7 @@
       "field": "[].date",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1371,7 +1371,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "withheld-public-field"
     },
     {
@@ -1379,7 +1379,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "withheld-public-field"
     },
     {
@@ -1387,7 +1387,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "withheld-public-field"
     },
     {
@@ -1395,7 +1395,7 @@
       "field": "[].peakBand",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1403,7 +1403,7 @@
       "field": "[].peakBandMidpoint",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1411,7 +1411,7 @@
       "field": "[].weightedAvgDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 910,
+      "line": 919,
       "resolution": "typed-field"
     },
     {
@@ -1419,7 +1419,7 @@
       "field": "bottomCompanies[].companyId",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1427,7 +1427,7 @@
       "field": "bottomCompanies[].companyName",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1435,7 +1435,7 @@
       "field": "bottomCompanies[].gap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1443,7 +1443,7 @@
       "field": "bottomCompanies[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1451,7 +1451,7 @@
       "field": "bottomCompanies[].impliedGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1459,7 +1459,7 @@
       "field": "bottomCompanies[].industry",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1467,7 +1467,7 @@
       "field": "bottomCompanies[].pe",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1475,7 +1475,7 @@
       "field": "bottomCompanies[].peerMedianGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1483,7 +1483,7 @@
       "field": "bottomCompanies[].score",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1491,7 +1491,7 @@
       "field": "bottomCompanies[].sector",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1499,7 +1499,7 @@
       "field": "bottomCompanies[].subSector",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1507,7 +1507,7 @@
       "field": "companyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1515,7 +1515,7 @@
       "field": "distribution[].bucket",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1523,7 +1523,7 @@
       "field": "distribution[].count",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1531,7 +1531,7 @@
       "field": "distribution[].midpoint",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1539,7 +1539,7 @@
       "field": "meanImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1547,7 +1547,7 @@
       "field": "medianImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1555,7 +1555,7 @@
       "field": "negativeSignalCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1563,7 +1563,7 @@
       "field": "positiveSignalCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1571,7 +1571,7 @@
       "field": "projectedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1579,7 +1579,7 @@
       "field": "topCompanies[].companyId",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1587,7 +1587,7 @@
       "field": "topCompanies[].companyName",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1595,7 +1595,7 @@
       "field": "topCompanies[].gap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1603,7 +1603,7 @@
       "field": "topCompanies[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "withheld-public-field"
     },
     {
@@ -1611,7 +1611,7 @@
       "field": "topCompanies[].impliedGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1619,7 +1619,7 @@
       "field": "topCompanies[].industry",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1627,7 +1627,7 @@
       "field": "topCompanies[].pe",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1635,7 +1635,7 @@
       "field": "topCompanies[].peerMedianGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1643,7 +1643,7 @@
       "field": "topCompanies[].score",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1651,7 +1651,7 @@
       "field": "topCompanies[].sector",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1659,7 +1659,7 @@
       "field": "topCompanies[].subSector",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1027,
+      "line": 1036,
       "resolution": "typed-field"
     },
     {
@@ -1667,7 +1667,7 @@
       "field": "[].companyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "typed-field"
     },
     {
@@ -1675,7 +1675,7 @@
       "field": "[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "typed-field"
     },
     {
@@ -1683,7 +1683,7 @@
       "field": "[].meanImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -1691,7 +1691,7 @@
       "field": "[].medianImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -1699,7 +1699,7 @@
       "field": "[].p25ImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -1707,7 +1707,7 @@
       "field": "[].p75ImpliedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -1715,7 +1715,7 @@
       "field": "[].projectedRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1042,
+      "line": 1051,
       "resolution": "withheld-public-field"
     },
     {
@@ -1723,7 +1723,7 @@
       "field": "[].bestImpliedGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1731,7 +1731,7 @@
       "field": "[].bestTercileAvgDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1739,7 +1739,7 @@
       "field": "[].bestTercileCompanyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1747,7 +1747,7 @@
       "field": "[].bestTercileMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1755,7 +1755,7 @@
       "field": "[].bestTercilePE",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1763,7 +1763,7 @@
       "field": "[].bestTercileProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1771,7 +1771,7 @@
       "field": "[].date",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1779,7 +1779,7 @@
       "field": "[].growthPremium",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1787,7 +1787,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "withheld-public-field"
     },
     {
@@ -1795,7 +1795,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "withheld-public-field"
     },
     {
@@ -1803,7 +1803,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "withheld-public-field"
     },
     {
@@ -1811,7 +1811,7 @@
       "field": "[].worstImpliedGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1819,7 +1819,7 @@
       "field": "[].worstTercileAvgDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1827,7 +1827,7 @@
       "field": "[].worstTercileCompanyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1835,7 +1835,7 @@
       "field": "[].worstTercileMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1843,7 +1843,7 @@
       "field": "[].worstTercilePE",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1851,7 +1851,7 @@
       "field": "[].worstTercileProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 925,
+      "line": 934,
       "resolution": "typed-field"
     },
     {
@@ -1859,7 +1859,7 @@
       "field": "geographies[]",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 840,
+      "line": 849,
       "resolution": "typed-field"
     },
     {
@@ -1867,7 +1867,7 @@
       "field": "sectors[]",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 840,
+      "line": 849,
       "resolution": "typed-field"
     },
     {
@@ -1875,7 +1875,7 @@
       "field": "[].bottomCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1883,7 +1883,7 @@
       "field": "[].bottomTercileAvgPE",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1891,7 +1891,7 @@
       "field": "[].bottomTotalMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1899,7 +1899,7 @@
       "field": "[].bottomTotalProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1907,7 +1907,7 @@
       "field": "[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1915,7 +1915,7 @@
       "field": "[].premium",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1923,7 +1923,7 @@
       "field": "[].topCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1931,7 +1931,7 @@
       "field": "[].topTercileAvgPE",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1939,7 +1939,7 @@
       "field": "[].topTotalMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1947,7 +1947,7 @@
       "field": "[].topTotalProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 885,
+      "line": 894,
       "resolution": "typed-field"
     },
     {
@@ -1955,7 +1955,7 @@
       "field": "[].cleanCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -1963,7 +1963,7 @@
       "field": "[].cleanGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -1971,7 +1971,7 @@
       "field": "[].cleanMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -1979,7 +1979,7 @@
       "field": "[].cleanPE",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -1987,7 +1987,7 @@
       "field": "[].cleanProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -1995,7 +1995,7 @@
       "field": "[].date",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -2003,7 +2003,7 @@
       "field": "[].dirtyCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -2011,7 +2011,7 @@
       "field": "[].dirtyGrowth",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -2019,7 +2019,7 @@
       "field": "[].dirtyMarketCap",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -2027,7 +2027,7 @@
       "field": "[].dirtyPE",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -2035,7 +2035,7 @@
       "field": "[].dirtyProfit",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "typed-field"
     },
     {
@@ -2043,7 +2043,7 @@
       "field": "[].impliedCarbonPrice",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "withheld-public-field"
     },
     {
@@ -2051,7 +2051,7 @@
       "field": "[].impliedDecarbRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "withheld-public-field"
     },
     {
@@ -2059,7 +2059,7 @@
       "field": "[].impliedTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 900,
+      "line": 909,
       "resolution": "withheld-public-field"
     },
     {
@@ -2067,7 +2067,7 @@
       "field": "companiesCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2075,7 +2075,7 @@
       "field": "dateRange.maxDate",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2083,7 +2083,7 @@
       "field": "dateRange.minDate",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2091,7 +2091,7 @@
       "field": "dateRange.recordCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2099,7 +2099,7 @@
       "field": "geographies",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2107,7 +2107,7 @@
       "field": "imputation.imputedByScope.scope1",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2115,7 +2115,7 @@
       "field": "imputation.imputedByScope.scope2",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2123,7 +2123,7 @@
       "field": "imputation.imputedByScope.scope3",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2131,7 +2131,7 @@
       "field": "imputation.imputedFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2139,7 +2139,7 @@
       "field": "imputation.imputedRecords",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2147,7 +2147,7 @@
       "field": "imputation.totalRecords",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2155,7 +2155,7 @@
       "field": "latestUpload.companiesCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2163,7 +2163,7 @@
       "field": "latestUpload.completedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2171,7 +2171,7 @@
       "field": "latestUpload.createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2179,7 +2179,7 @@
       "field": "latestUpload.errorMessage",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2187,7 +2187,7 @@
       "field": "latestUpload.filename",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2195,7 +2195,7 @@
       "field": "latestUpload.id",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2203,7 +2203,7 @@
       "field": "latestUpload.status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2211,7 +2211,7 @@
       "field": "latestUpload.timePeriodsCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2219,7 +2219,7 @@
       "field": "sectors",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2227,7 +2227,7 @@
       "field": "snapshotId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 944,
+      "line": 953,
       "resolution": "typed-field"
     },
     {
@@ -2235,7 +2235,7 @@
       "field": "companiesCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2243,7 +2243,7 @@
       "field": "completedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2251,7 +2251,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2259,7 +2259,7 @@
       "field": "errorMessage",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2267,7 +2267,7 @@
       "field": "filename",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2275,7 +2275,7 @@
       "field": "id",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2283,7 +2283,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2291,7 +2291,7 @@
       "field": "timePeriodsCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 829,
+      "line": 838,
       "resolution": "typed-field"
     },
     {
@@ -2299,7 +2299,7 @@
       "field": "[].companiesCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2307,7 +2307,7 @@
       "field": "[].completedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2315,7 +2315,7 @@
       "field": "[].createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2323,7 +2323,7 @@
       "field": "[].errorMessage",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2331,7 +2331,7 @@
       "field": "[].filename",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2339,7 +2339,7 @@
       "field": "[].id",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2347,7 +2347,7 @@
       "field": "[].status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2355,7 +2355,7 @@
       "field": "[].timePeriodsCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 784,
+      "line": 793,
       "resolution": "typed-field"
     },
     {
@@ -2363,7 +2363,7 @@
       "field": "def.category",
       "type": "\"Emissions Outcomes\"",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2371,7 +2371,7 @@
       "field": "def.decimals",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2379,7 +2379,7 @@
       "field": "def.fetchMethod",
       "type": "\"manual\"",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2387,7 +2387,7 @@
       "field": "def.key",
       "type": "\"remainingBudget15C_Gt\"",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2395,7 +2395,7 @@
       "field": "def.label",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2403,7 +2403,7 @@
       "field": "def.searchHint",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2411,7 +2411,7 @@
       "field": "def.source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2419,7 +2419,7 @@
       "field": "def.tier",
       "type": "\"C\"",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2427,7 +2427,7 @@
       "field": "def.unit",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2435,7 +2435,7 @@
       "field": "proposals[].asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2443,7 +2443,7 @@
       "field": "proposals[].createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2451,7 +2451,7 @@
       "field": "proposals[].decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2459,7 +2459,7 @@
       "field": "proposals[].id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2467,7 +2467,7 @@
       "field": "proposals[].indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2475,7 +2475,7 @@
       "field": "proposals[].method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2483,7 +2483,7 @@
       "field": "proposals[].note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2491,7 +2491,7 @@
       "field": "proposals[].rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2499,7 +2499,7 @@
       "field": "proposals[].runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2507,7 +2507,7 @@
       "field": "proposals[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2515,7 +2515,7 @@
       "field": "proposals[].sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2523,7 +2523,7 @@
       "field": "proposals[].status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2531,7 +2531,7 @@
       "field": "proposals[].value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2539,7 +2539,7 @@
       "field": "proposals[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2547,7 +2547,7 @@
       "field": "series[].asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2555,7 +2555,7 @@
       "field": "series[].isNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2563,7 +2563,7 @@
       "field": "series[].method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2571,7 +2571,7 @@
       "field": "series[].overridden",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2579,7 +2579,7 @@
       "field": "series[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2587,7 +2587,7 @@
       "field": "series[].sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2595,7 +2595,7 @@
       "field": "series[].value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2603,7 +2603,7 @@
       "field": "series[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1175,
+      "line": 1184,
       "resolution": "typed-field"
     },
     {
@@ -2611,7 +2611,7 @@
       "field": "baselineYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2619,7 +2619,7 @@
       "field": "indicators[].appliedIsNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2627,7 +2627,7 @@
       "field": "indicators[].appliedValue",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2635,7 +2635,7 @@
       "field": "indicators[].appliedYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2643,7 +2643,7 @@
       "field": "indicators[].category",
       "type": "\"Emissions Outcomes\"",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2651,7 +2651,7 @@
       "field": "indicators[].curatedLatest",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2659,7 +2659,7 @@
       "field": "indicators[].decimals",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2667,7 +2667,7 @@
       "field": "indicators[].fetchMethod",
       "type": "\"manual\"",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2675,7 +2675,7 @@
       "field": "indicators[].key",
       "type": "\"remainingBudget15C_Gt\"",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2683,7 +2683,7 @@
       "field": "indicators[].label",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2691,7 +2691,7 @@
       "field": "indicators[].pendingCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2699,7 +2699,7 @@
       "field": "indicators[].provenance",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2707,7 +2707,7 @@
       "field": "indicators[].provenanceAsOf",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2715,7 +2715,7 @@
       "field": "indicators[].provenanceSource",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2723,7 +2723,7 @@
       "field": "indicators[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2731,7 +2731,7 @@
       "field": "indicators[].tier",
       "type": "\"C\"",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2739,7 +2739,7 @@
       "field": "indicators[].unit",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2747,7 +2747,7 @@
       "field": "latestYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1139,
+      "line": 1148,
       "resolution": "typed-field"
     },
     {
@@ -2755,7 +2755,7 @@
       "field": "runs[].adaptersFailed",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2763,7 +2763,7 @@
       "field": "runs[].adaptersSucceeded",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2771,7 +2771,7 @@
       "field": "runs[].finishedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2779,7 +2779,7 @@
       "field": "runs[].id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2787,7 +2787,7 @@
       "field": "runs[].proposalsCreated",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2795,7 +2795,7 @@
       "field": "runs[].startedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2803,7 +2803,7 @@
       "field": "runs[].status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -2811,7 +2811,7 @@
       "field": "runs[].summary",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "unresolved-type"
     },
     {
@@ -2819,7 +2819,7 @@
       "field": "runs[].trigger",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1195,
+      "line": 1204,
       "resolution": "typed-field"
     },
     {
@@ -4443,7 +4443,7 @@
       "field": "[].atmosphericCO2ppm",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4451,7 +4451,7 @@
       "field": "[].carbonIntensityKgPerGDP",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4459,7 +4459,7 @@
       "field": "[].cleanEnergyInvestmentTrn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4467,7 +4467,7 @@
       "field": "[].climateConcernPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4475,7 +4475,7 @@
       "field": "[].co2GrowthRatePpm",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4483,7 +4483,7 @@
       "field": "[].corporateImplementationRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4491,7 +4491,7 @@
       "field": "[].corporateTargetsPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4499,7 +4499,7 @@
       "field": "[].evGrowthRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4507,7 +4507,7 @@
       "field": "[].evSalesSharePct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4515,7 +4515,7 @@
       "field": "[].fossilCO2GtPerYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4523,7 +4523,7 @@
       "field": "[].fossilDivestmentTrn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4531,7 +4531,7 @@
       "field": "[].fossilFuelInvestmentTrn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4539,7 +4539,7 @@
       "field": "[].gdpTrillionUSD",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4547,7 +4547,7 @@
       "field": "[].greenBondIssuanceBln",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4555,7 +4555,7 @@
       "field": "[].humanCausationPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4563,7 +4563,7 @@
       "field": "[].isNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4571,7 +4571,7 @@
       "field": "[].policyCoveragePct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4579,7 +4579,7 @@
       "field": "[].policyImplementationRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4587,7 +4587,7 @@
       "field": "[].policySupportPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4595,7 +4595,7 @@
       "field": "[].remainingBudget15C_Gt",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4603,7 +4603,7 @@
       "field": "[].renewableCapacityGW",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4611,7 +4611,7 @@
       "field": "[].renewableGrowthRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4619,7 +4619,7 @@
       "field": "[].sacrificeWillingnessPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4627,7 +4627,7 @@
       "field": "[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 556,
+      "line": 559,
       "resolution": "typed-field"
     },
     {
@@ -4635,7 +4635,7 @@
       "field": "dateRange.end",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4643,7 +4643,7 @@
       "field": "dateRange.start",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4651,7 +4651,7 @@
       "field": "recentArticles[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4659,7 +4659,7 @@
       "field": "recentArticles[].sentiment",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4667,7 +4667,7 @@
       "field": "recentArticles[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4675,7 +4675,7 @@
       "field": "recentArticles[].title",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4683,7 +4683,7 @@
       "field": "recentArticles[].url",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4691,7 +4691,7 @@
       "field": "sentiment[].avgSentiment",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4699,7 +4699,7 @@
       "field": "sentiment[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4707,7 +4707,7 @@
       "field": "sentiment[].negative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4715,7 +4715,7 @@
       "field": "sentiment[].neutral",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4723,7 +4723,7 @@
       "field": "sentiment[].positive",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4731,7 +4731,7 @@
       "field": "sentiment[].total",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4739,7 +4739,7 @@
       "field": "topicBreakdown[].avgSentiment",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4747,7 +4747,7 @@
       "field": "topicBreakdown[].count",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4755,7 +4755,7 @@
       "field": "topicBreakdown[].topic",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4763,7 +4763,7 @@
       "field": "totalArticles",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4771,7 +4771,7 @@
       "field": "volume[].count",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4779,7 +4779,7 @@
       "field": "volume[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1078,
+      "line": 1087,
       "resolution": "typed-field"
     },
     {
@@ -4787,7 +4787,7 @@
       "field": "$",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 480,
+      "line": 482,
       "resolution": "unresolved-type"
     },
     {
@@ -4795,7 +4795,7 @@
       "field": "calculation.assumptionVersion",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4803,7 +4803,7 @@
       "field": "calculation.contractVersion",
       "type": "\"historical-diagnostics-7\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4811,7 +4811,7 @@
       "field": "calculation.endYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4819,7 +4819,7 @@
       "field": "calculation.engine",
       "type": "\"legacy-finance\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4827,7 +4827,7 @@
       "field": "calculation.forecastStartYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4835,7 +4835,7 @@
       "field": "calculation.informationAvailableAt",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4843,7 +4843,7 @@
       "field": "calculation.inputHash",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4851,7 +4851,7 @@
       "field": "calculation.inputRevision",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "unresolved-type"
     },
     {
@@ -4859,7 +4859,7 @@
       "field": "calculation.observationYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4867,7 +4867,7 @@
       "field": "calculation.rngVersion",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4875,7 +4875,7 @@
       "field": "calculation.runs",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4883,7 +4883,7 @@
       "field": "calculation.scenario",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4891,7 +4891,7 @@
       "field": "calculation.seed",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4899,7 +4899,7 @@
       "field": "calculation.seeds.emissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4907,7 +4907,7 @@
       "field": "calculation.seeds.temperaturePdf",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4915,7 +4915,7 @@
       "field": "calculation.seeds.temperatureSummary",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4923,7 +4923,7 @@
       "field": "calculation.uncertainty",
       "type": "\"conditional-legacy-not-validated\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4931,7 +4931,7 @@
       "field": "calculation.units.currency",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4939,7 +4939,7 @@
       "field": "calculation.units.currencyScale",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4947,7 +4947,7 @@
       "field": "calculation.units.emissions",
       "type": "\"GtCO2e-legacy-unreconciled\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4955,7 +4955,7 @@
       "field": "calculation.units.gdpPriceBasis",
       "type": "\"unverified\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4963,7 +4963,7 @@
       "field": "calculation.units.gwpBasis",
       "type": "\"unspecified-legacy\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4971,7 +4971,7 @@
       "field": "calculation.units.nativeGasInputs",
       "type": "\"not-yet-implemented\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4979,7 +4979,7 @@
       "field": "calculation.validation",
       "type": "\"characterization-only\"",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4987,7 +4987,7 @@
       "field": "calculation.warnings[]",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -4995,7 +4995,7 @@
       "field": "emissionsTrajectory[].cumulativeEmissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5003,7 +5003,7 @@
       "field": "emissionsTrajectory[].emissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5011,7 +5011,7 @@
       "field": "emissionsTrajectory[].p10",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5019,7 +5019,7 @@
       "field": "emissionsTrajectory[].p25",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5027,7 +5027,7 @@
       "field": "emissionsTrajectory[].p50",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5035,7 +5035,7 @@
       "field": "emissionsTrajectory[].p75",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5043,7 +5043,7 @@
       "field": "emissionsTrajectory[].p90",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5051,7 +5051,7 @@
       "field": "emissionsTrajectory[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5059,7 +5059,7 @@
       "field": "indicators.atmosphericCO2ppm",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5067,7 +5067,7 @@
       "field": "indicators.carbonIntensity",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5075,7 +5075,7 @@
       "field": "indicators.carbonIntensityDeclineRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5083,7 +5083,7 @@
       "field": "indicators.cleanEnergyInvestmentTrn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5091,7 +5091,7 @@
       "field": "indicators.co2GrowthRatePpm",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5099,7 +5099,7 @@
       "field": "indicators.corporateImplementationRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5107,7 +5107,7 @@
       "field": "indicators.evGrowthRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5115,7 +5115,7 @@
       "field": "indicators.evSalesShare",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5123,7 +5123,7 @@
       "field": "indicators.fossilCO2GtPerYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5131,7 +5131,7 @@
       "field": "indicators.fossilFuelInvestmentTrn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5139,7 +5139,7 @@
       "field": "indicators.globalGDP",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5147,7 +5147,7 @@
       "field": "indicators.greenBondIssuanceBln",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5155,7 +5155,7 @@
       "field": "indicators.netZeroTargetsCoverage",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5163,7 +5163,7 @@
       "field": "indicators.policyCoveragePercent",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5171,7 +5171,7 @@
       "field": "indicators.policyImplementationRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5179,7 +5179,7 @@
       "field": "indicators.renewableAcceleration",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5187,7 +5187,7 @@
       "field": "indicators.renewableCapacityGW",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5195,7 +5195,7 @@
       "field": "indicators.renewableGrowthRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5203,7 +5203,7 @@
       "field": "indicators.sbtiCompaniesPercent",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5211,7 +5211,7 @@
       "field": "metrics.emissions2100",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5219,7 +5219,7 @@
       "field": "metrics.emissionsDecadeLater",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5227,7 +5227,7 @@
       "field": "metrics.emissionsStart",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5235,7 +5235,7 @@
       "field": "metrics.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5243,7 +5243,7 @@
       "field": "metrics.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5251,7 +5251,7 @@
       "field": "metrics.temperatureRise",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5259,7 +5259,7 @@
       "field": "temperatureDistribution.mean",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5267,7 +5267,7 @@
       "field": "temperatureDistribution.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5275,7 +5275,7 @@
       "field": "temperatureDistribution.p10",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5283,7 +5283,7 @@
       "field": "temperatureDistribution.p90",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5291,7 +5291,7 @@
       "field": "temperatureDistribution.pdf[].cumulativeProbability",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5299,7 +5299,7 @@
       "field": "temperatureDistribution.pdf[].probability",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5307,7 +5307,7 @@
       "field": "temperatureDistribution.pdf[].temperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 545,
+      "line": 548,
       "resolution": "typed-field"
     },
     {
@@ -5315,7 +5315,7 @@
       "field": "[].category",
       "type": "\"emissions\"",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5323,7 +5323,7 @@
       "field": "[].categoryName",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5331,7 +5331,7 @@
       "field": "[].netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5339,7 +5339,7 @@
       "field": "[].reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5347,7 +5347,7 @@
       "field": "[].temperatureDistribution[].probability",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5355,7 +5355,7 @@
       "field": "[].temperatureDistribution[].temperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5363,7 +5363,7 @@
       "field": "[].temperatureRise",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5371,7 +5371,7 @@
       "field": "[].trajectory[].cumulativeEmissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5379,7 +5379,7 @@
       "field": "[].trajectory[].emissions",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5387,7 +5387,7 @@
       "field": "[].trajectory[].p10",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5395,7 +5395,7 @@
       "field": "[].trajectory[].p25",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5403,7 +5403,7 @@
       "field": "[].trajectory[].p50",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5411,7 +5411,7 @@
       "field": "[].trajectory[].p75",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5419,7 +5419,7 @@
       "field": "[].trajectory[].p90",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5427,7 +5427,7 @@
       "field": "[].trajectory[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 571,
+      "line": 576,
       "resolution": "typed-field"
     },
     {
@@ -5435,7 +5435,7 @@
       "field": "$",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 566,
+      "line": 570,
       "resolution": "unresolved-type"
     },
     {
@@ -5443,7 +5443,7 @@
       "field": "[].all.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5451,7 +5451,7 @@
       "field": "[].all.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5459,7 +5459,7 @@
       "field": "[].all.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5467,7 +5467,7 @@
       "field": "[].corporate.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5475,7 +5475,7 @@
       "field": "[].corporate.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5483,7 +5483,7 @@
       "field": "[].corporate.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5491,7 +5491,7 @@
       "field": "[].emissions.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5499,7 +5499,7 @@
       "field": "[].emissions.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5507,7 +5507,7 @@
       "field": "[].emissions.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5515,7 +5515,7 @@
       "field": "[].financial.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5523,7 +5523,7 @@
       "field": "[].financial.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5531,7 +5531,7 @@
       "field": "[].financial.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5539,7 +5539,7 @@
       "field": "[].isNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5547,7 +5547,7 @@
       "field": "[].policy.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5555,7 +5555,7 @@
       "field": "[].policy.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5563,7 +5563,7 @@
       "field": "[].policy.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5571,7 +5571,7 @@
       "field": "[].socioeconomic.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5579,7 +5579,7 @@
       "field": "[].socioeconomic.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5587,7 +5587,7 @@
       "field": "[].socioeconomic.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5595,7 +5595,7 @@
       "field": "[].technology.median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5603,7 +5603,7 @@
       "field": "[].technology.netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5611,7 +5611,7 @@
       "field": "[].technology.reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5619,7 +5619,7 @@
       "field": "[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 651,
+      "line": 660,
       "resolution": "typed-field"
     },
     {
@@ -5627,7 +5627,7 @@
       "field": "$",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 646,
+      "line": 654,
       "resolution": "unresolved-type"
     },
     {
@@ -5635,7 +5635,7 @@
       "field": "[].isNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5643,7 +5643,7 @@
       "field": "[].median",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5651,7 +5651,7 @@
       "field": "[].netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5659,7 +5659,7 @@
       "field": "[].p10",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5667,7 +5667,7 @@
       "field": "[].p90",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5675,7 +5675,7 @@
       "field": "[].reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5683,7 +5683,7 @@
       "field": "[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 636,
+      "line": 643,
       "resolution": "typed-field"
     },
     {
@@ -5691,7 +5691,7 @@
       "field": "$",
       "type": "any",
       "source": "server/routes.ts",
-      "line": 631,
+      "line": 637,
       "resolution": "unresolved-type"
     },
     {
@@ -5699,7 +5699,7 @@
       "field": "[].carbonIntensity",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5707,7 +5707,7 @@
       "field": "[].carbonIntensityBasis",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5715,7 +5715,7 @@
       "field": "[].carbonIntensitySource",
       "type": "\"static\"",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5723,7 +5723,7 @@
       "field": "[].claim",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5731,7 +5731,7 @@
       "field": "[].milestoneDefinition",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5739,7 +5739,7 @@
       "field": "[].netZeroYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5747,7 +5747,7 @@
       "field": "[].reductionRate",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5755,7 +5755,7 @@
       "field": "[].region",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5763,7 +5763,7 @@
       "field": "[].regionName",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5771,7 +5771,7 @@
       "field": "[].temperatureRise",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 582,
+      "line": 587,
       "resolution": "typed-field"
     },
     {
@@ -5779,7 +5779,7 @@
       "field": "[].baselineTemperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5787,7 +5787,7 @@
       "field": "[].category",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5795,7 +5795,7 @@
       "field": "[].direction",
       "type": "\"negative\"",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5803,7 +5803,7 @@
       "field": "[].indicator",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5811,7 +5811,7 @@
       "field": "[].label",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5819,7 +5819,7 @@
       "field": "[].p10Temperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5827,7 +5827,7 @@
       "field": "[].p10Value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5835,7 +5835,7 @@
       "field": "[].p90Temperature",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5843,7 +5843,7 @@
       "field": "[].p90Value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -5851,7 +5851,7 @@
       "field": "[].temperatureRange",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 609,
+      "line": 614,
       "resolution": "typed-field"
     },
     {
@@ -6939,7 +6939,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 675,
+      "line": 684,
       "resolution": "typed-field"
     },
     {
@@ -6947,7 +6947,7 @@
       "field": "uploadId",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 675,
+      "line": 684,
       "resolution": "typed-field"
     },
     {
@@ -6955,7 +6955,7 @@
       "field": "companiesCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 809,
+      "line": 818,
       "resolution": "typed-field"
     },
     {
@@ -6963,7 +6963,7 @@
       "field": "message",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 816,
+      "line": 825,
       "resolution": "typed-field"
     },
     {
@@ -6971,7 +6971,7 @@
       "field": "timeSeriesCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 809,
+      "line": 818,
       "resolution": "typed-field"
     },
     {
@@ -6979,7 +6979,7 @@
       "field": "asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -6987,7 +6987,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -6995,7 +6995,7 @@
       "field": "decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7003,7 +7003,7 @@
       "field": "id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7011,7 +7011,7 @@
       "field": "indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7019,7 +7019,7 @@
       "field": "method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7027,7 +7027,7 @@
       "field": "note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7035,7 +7035,7 @@
       "field": "rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7043,7 +7043,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7051,7 +7051,7 @@
       "field": "source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7059,7 +7059,7 @@
       "field": "sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7067,7 +7067,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7075,7 +7075,7 @@
       "field": "value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7083,7 +7083,7 @@
       "field": "year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1248,
+      "line": 1257,
       "resolution": "typed-field"
     },
     {
@@ -7091,7 +7091,7 @@
       "field": "asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7099,7 +7099,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7107,7 +7107,7 @@
       "field": "decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7115,7 +7115,7 @@
       "field": "id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7123,7 +7123,7 @@
       "field": "indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7131,7 +7131,7 @@
       "field": "method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7139,7 +7139,7 @@
       "field": "note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7147,7 +7147,7 @@
       "field": "rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7155,7 +7155,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7163,7 +7163,7 @@
       "field": "source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7171,7 +7171,7 @@
       "field": "sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7179,7 +7179,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7187,7 +7187,7 @@
       "field": "value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7195,7 +7195,7 @@
       "field": "year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1207,
+      "line": 1216,
       "resolution": "typed-field"
     },
     {
@@ -7203,7 +7203,7 @@
       "field": "asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7211,7 +7211,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7219,7 +7219,7 @@
       "field": "decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7227,7 +7227,7 @@
       "field": "id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7235,7 +7235,7 @@
       "field": "indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7243,7 +7243,7 @@
       "field": "method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7251,7 +7251,7 @@
       "field": "note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7259,7 +7259,7 @@
       "field": "rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7267,7 +7267,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7275,7 +7275,7 @@
       "field": "source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7283,7 +7283,7 @@
       "field": "sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7291,7 +7291,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7299,7 +7299,7 @@
       "field": "value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7307,7 +7307,7 @@
       "field": "year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1218,
+      "line": 1227,
       "resolution": "typed-field"
     },
     {
@@ -7315,7 +7315,7 @@
       "field": "adaptersFailed",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7323,7 +7323,7 @@
       "field": "adaptersSucceeded",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7331,7 +7331,7 @@
       "field": "perAdapter[].error",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7339,7 +7339,7 @@
       "field": "perAdapter[].id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7347,7 +7347,7 @@
       "field": "perAdapter[].values",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7355,7 +7355,7 @@
       "field": "proposalsCreated",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7363,7 +7363,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7371,7 +7371,7 @@
       "field": "status",
       "type": "\"skipped\"",
       "source": "server/routes.ts",
-      "line": 1185,
+      "line": 1194,
       "resolution": "typed-field"
     },
     {
@@ -7736,7 +7736,7 @@
     },
     {
       "surface": "XLSX client/src/components/temperature-histogram.tsx:63",
-      "field": "[].Probability Density",
+      "field": "[].Probability density (1/°C)",
       "type": "number",
       "source": "client/src/components/temperature-histogram.tsx",
       "line": 63,

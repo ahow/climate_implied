@@ -153,6 +153,12 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
           filename={`category-trends-${metricView}`}
           sheetName="Category Trends"
           rows={downloadRows}
+          fieldBindings={{
+            Year:{id:"categoryHistory.year",transform:"Identity"},
+            Estimated:{id:"categoryHistory.isNowcast",transform:"true -> yes; false -> no"},
+            ...Object.fromEntries(CATEGORY_KEYS.map(key=>[CATEGORY_NAMES[key],
+              {id:`categoryHistory.${key}.${config.metricKey}`,transform:"Selected metric; null/undefined exported as blank, never2200"}])),
+          }}
           testId="button-download-category-trends"
         />
       </div>

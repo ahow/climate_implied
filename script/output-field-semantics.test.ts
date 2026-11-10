@@ -2,9 +2,28 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
-import { outputFieldSemantics,bindOutputFields,requireOutputSemantic,bindExportColumns } from "../shared/outputFieldSemantics";
+import { outputFieldSemantics,bindOutputFields,requireOutputSemantic,bindExportColumns,bindNestedOutput } from "../shared/outputFieldSemantics";
 import * as XLSX from "xlsx";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
+test("all historical/category response leaves bind, without treating reconstructions as issued forecasts",()=>{
+  const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
+  for(const [path,prefix,count] of [["/api/projection/categories","category",15],["/api/projection/historical-trend","historical",7],["/api/projection/categories/historical-trend","categoryHistory",23]] as const) {
+    const fields=census.fields.filter((e:any)=>e.surface.includes(`"${path}"`)&&e.field.startsWith("[]."));
+    assert.equal(fields.length,count);
+    for(const field of fields) assert.ok(requireOutputSemantic(`${prefix}.${field.field.slice(3)}`));
+  }
+});
+test("all declared global projection leaf fields bind, including nested quantiles and metadata",()=>{
+  const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
+  const fields=census.fields.filter((e:any)=>e.surface.includes('"/api/projection"')&&e.field!=="$");
+  assert.ok(fields.length>60);
+  for(const field of fields) assert.ok(requireOutputSemantic(`projection.${field.field}`),field.field);
+  assert.throws(()=>bindNestedOutput("projection",{metrics:{unknown:0}}),/Unmapped/);
+  assert.throws(()=>bindNestedOutput("projection",{unknown:[]}),/Unmapped/);
+  assert.throws(()=>bindNestedOutput("projection",{unknown:{}}),/Unmapped/);
+  const paths=bindNestedOutput("projection",{metrics:{netZeroYear:null},emissionsTrajectory:[{year:2026,p50:1},{year:2027,p50:2}]});
+  assert.equal(paths.length,3);
+});
 test("all sensitivity response fields bind; bracket medians must not masquerade as calibrated quantiles",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   const fields=census.fields.filter((e:any)=>e.surface.includes('"/api/projection/sensitivity"')&&e.field.startsWith("[]."));

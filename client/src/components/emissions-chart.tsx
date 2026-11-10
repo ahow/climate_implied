@@ -60,6 +60,12 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
             filename="global-emissions-trajectory"
             sheetName="Emissions Trajectory"
             rows={downloadRows}
+          fieldBindings={{
+            Year:{id:"projection.emissionsTrajectory[].year",transform:"Identity"},
+            "P10 (GtCO2e)":{id:"projection.emissionsTrajectory[].p10",transform:"Identity; annual conditional emissions, not calibrated uncertainty"},
+            "Median P50 (GtCO2e)":{id:"projection.emissionsTrajectory[].p50",transform:"Identity"},
+            "P90 (GtCO2e)":{id:"projection.emissionsTrajectory[].p90",transform:"Identity; annual conditional emissions, not calibrated uncertainty"},
+          }}
             testId="button-download-emissions"
           />
         </div>

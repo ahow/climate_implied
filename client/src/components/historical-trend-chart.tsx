@@ -141,6 +141,15 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
           filename={`historical-trend-${metricView}`}
           sheetName="Historical Trend"
           rows={downloadRows}
+          fieldBindings={{
+            Year:{id:"historical.year",transform:"Identity"},
+            "Temperature Median (\u00B0C)":{id:"historical.median",transform:"Identity"},
+            "P10 (\u00B0C)":{id:"historical.p10",transform:"Identity; uncalibrated conditional quantile"},
+            "P90 (\u00B0C)":{id:"historical.p90",transform:"Identity; uncalibrated conditional quantile"},
+            "Reduction Rate (%/yr)":{id:"historical.reductionRate",transform:"Identity"},
+            "Year median emissions reach 5 GtCO2e":{id:"historical.netZeroYear",transform:"Identity; null preserved"},
+            Estimated:{id:"historical.isNowcast",transform:"true -> yes; false -> no, not vintage certification"},
+          }}
           testId="button-download-historical-trend"
         />
       </div>

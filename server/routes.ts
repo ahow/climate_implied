@@ -82,7 +82,7 @@ import { checkFinancialProvider, financialProviderStatus } from "./financialData
 import { listFinancialReviews } from "./financialData/reviewStore";
 import { captureMaterialInputs } from "./snapshots/materialInputs";
 import { fieldSemantics } from "../shared/fieldSemantics";
-import { outputFieldSemantics,bindOutputFields } from "../shared/outputFieldSemantics";
+import { outputFieldSemantics,bindOutputFields,bindNestedOutput } from "../shared/outputFieldSemantics";
 import { calculationReadiness } from "./calculation/readiness";
 import { historicalValidation } from "./calculation/historicalValidation";
 import { auditVintages } from "./calculation/vintageAudit";
@@ -472,11 +472,13 @@ export async function registerRoutes(
       const cacheKey = calculationKey("projection", res.locals.calculationRevision, { category, runs: 10000 });
 
       if (category === "all" && projectionResultCache && validRouteCache("projection", res)) {
+        res.set("X-Field-Semantics",bindNestedOutput("projection",projectionResultCache).map(f=>f.id).join(","));
         return res.json(projectionResultCache);
       }
 
       const cached = await storage.getProjectionCache(cacheKey);
       if (cached) {
+        res.set("X-Field-Semantics",bindNestedOutput("projection",cached.resultData).map(f=>f.id).join(","));
         return res.json(cached.resultData);
       }
 
@@ -529,6 +531,7 @@ export async function registerRoutes(
         },
       };
 
+      res.set("X-Field-Semantics",bindNestedOutput("projection",result).map(f=>f.id).join(","));
       if (category === "all") {
         projectionResultCache = result;
         tagRouteCache("projection", res);
@@ -563,11 +566,13 @@ export async function registerRoutes(
   app.get("/api/projection/categories", async (_req, res) => {
     try {
       if (categoryCacheResult && validRouteCache("categories", res)) {
+        res.set("X-Field-Semantics",bindNestedOutput("category",categoryCacheResult).map(f=>f.id).join(","));
         return res.json(categoryCacheResult);
       }
       const result = calculateAllCategoryProjections();
       categoryCacheResult = result;
       tagRouteCache("categories", res);
+      res.set("X-Field-Semantics",bindNestedOutput("category",result).map(f=>f.id).join(","));
       res.json(result);
     } catch (error) {
       console.error("Category projections error:", error);
@@ -628,11 +633,13 @@ export async function registerRoutes(
   app.get("/api/projection/historical-trend", async (_req, res) => {
     try {
       if (historicalTrendCacheResult && validRouteCache("history", res)) {
+        res.set("X-Field-Semantics",bindNestedOutput("historical",historicalTrendCacheResult).map(f=>f.id).join(","));
         return res.json(historicalTrendCacheResult);
       }
       const result = getRecalculatedHistoricalTrend();
       historicalTrendCacheResult = result;
       tagRouteCache("history", res);
+      res.set("X-Field-Semantics",bindNestedOutput("historical",result).map(f=>f.id).join(","));
       res.json(result);
     } catch (error) {
       console.error("Historical trend error:", error);
@@ -643,11 +650,13 @@ export async function registerRoutes(
   app.get("/api/projection/categories/historical-trend", async (_req, res) => {
     try {
       if (categoryHistoricalTrendCache && validRouteCache("category-history", res)) {
+        res.set("X-Field-Semantics",bindNestedOutput("categoryHistory",categoryHistoricalTrendCache).map(f=>f.id).join(","));
         return res.json(categoryHistoricalTrendCache);
       }
       const result = getCategoryHistoricalTrend();
       categoryHistoricalTrendCache = result;
       tagRouteCache("category-history", res);
+      res.set("X-Field-Semantics",bindNestedOutput("categoryHistory",result).map(f=>f.id).join(","));
       res.json(result);
     } catch (error) {
       console.error("Category historical trend error:", error);

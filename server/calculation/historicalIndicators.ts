@@ -1,5 +1,6 @@
 import { getOverride, getOverrideYears } from "../dataIngestion/overrideStore";
 import { AsyncLocalStorage } from "node:async_hooks";
+import { requestOverrides } from "../dataIngestion/requestOverrides";
 export const historicalInputContext = new AsyncLocalStorage<NowcastIndicatorData[]>();
 
 export interface HistoricalIndicatorData {
@@ -475,7 +476,29 @@ const INDICATOR_FIELD_KEYS: (keyof HistoricalIndicatorData)[] = [
  * future-year overrides are overlaid per-cell onto the nowcast rows instead (see
  * getAllHistoricalIndicatorsWithNowcast).
  */
+function validatedCapturedRows(frozen: NowcastIndicatorData[]): NowcastIndicatorData[] {
+    if (!frozen.some(row=>!row.isNowcast)) throw new Error("Captured historical inputs contain no retained historical rows");
+    const selectedOverrides = requestOverrides.getStore()?.values;
+    const years = new Set<number>();
+    for (const row of frozen) {
+      if (!Number.isInteger(row.year) || years.has(row.year) || typeof row.isNowcast!=="boolean")
+        throw new Error("Conflicting captured historical input years");
+      years.add(row.year);
+      for (const key of INDICATOR_FIELD_KEYS) {
+        if (!Number.isFinite(row[key])) throw new Error(`Invalid captured historical input: ${key}`);
+        const override = selectedOverrides?.get(`${key}:${row.year}`);
+        if (override && override.value !== row[key])
+          throw new Error(`Conflicting captured historical input and approved override: ${key}:${row.year}`);
+      }
+    }
+    return structuredClone(frozen).sort((a,b)=>a.year-b.year);
+}
+
 function resolveSeries(): HistoricalIndicatorData[] {
+  const frozen = historicalInputContext.getStore();
+  if (frozen) {
+    return validatedCapturedRows(frozen).filter(row=>!row.isNowcast).map(({isNowcast,...row})=>row);
+  }
   const rows: HistoricalIndicatorData[] = HISTORICAL_INDICATORS.map((r) => ({ ...r }));
   for (const row of rows) {
     for (const key of INDICATOR_FIELD_KEYS) {
@@ -523,7 +546,7 @@ function clamp(value: number, min: number, max: number): number {
 
 export function getAllHistoricalIndicatorsWithNowcast(): NowcastIndicatorData[] {
   const frozen = historicalInputContext.getStore();
-  if(frozen) return structuredClone(frozen);
+  if(frozen) return validatedCapturedRows(frozen);
   const currentYear = new Date().getFullYear();
   const resolved = resolveSeries();
   const lastDataYear = resolved[resolved.length - 1].year;

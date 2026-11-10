@@ -67,9 +67,10 @@ for(const entry of entries) if(entry.surface.includes("/api/cv/") &&
 const unique=Array.from(new Map(entries.map(e=>[`${e.surface}|${e.field}`,e])).values())
   .sort((a,b)=>a.surface.localeCompare(b.surface)||a.field.localeCompare(b.field)||a.type.localeCompare(b.type));
 const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemantics.length+outputFieldSemantics.length,
-  fullyBoundFields:baseline?0:unique.filter(e=>e.field.startsWith("[].") &&
-    [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"]].some(([path,prefix])=>
-      e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`))).length,
+  fullyBoundFields:baseline?0:unique.filter(e=>(e.surface.includes('"/api/projection"') &&
+      outputFieldSemantics.some(f=>f.id===`projection.${e.field}`)) || (e.field.startsWith("[].") &&
+    [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"]].some(([path,prefix])=>
+      e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`)))).length,
   scope:"Direct registered API res.json expressions and all typed DownloadDataButton rows; display-only values and dynamic response builders remain exclusions",
   exclusions:unique.filter(e=>e.resolution!=="typed-field"),fields:unique,
   completion:false,warning:"A matching bare field name is not a precise semantic binding. No generic formula placeholders counted."};

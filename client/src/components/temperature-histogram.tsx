@@ -44,7 +44,7 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
 
   const downloadRows = pdf.map((d) => ({
     "Temperature (\u00B0C)": d.temperature,
-    "Probability Density": d.probability,
+    "Probability density (1/\u00B0C)": d.probability,
   }));
 
   return (
@@ -65,6 +65,10 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
             filename="temperature-distribution"
             sheetName="Temp Distribution"
             rows={downloadRows}
+          fieldBindings={{
+            "Temperature (\u00B0C)":{id:"projection.temperatureDistribution.pdf[].temperature",transform:"Identity"},
+            "Probability density (1/\u00B0C)":{id:"projection.temperatureDistribution.pdf[].probability",transform:"Identity; density, not point probability"},
+          }}
             testId="button-download-temperature"
           />
         </div>
