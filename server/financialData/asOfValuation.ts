@@ -30,6 +30,7 @@ const shiftYears = (date: string, years: number) => `${Number(date.slice(0, 4)) 
 export function buildAsOfRows(input: {
   companyId: string; profileCurrency: string;
   cashFlows: unknown; incomes: unknown; observations: unknown;
+  costOfEquityByOrigin?: Record<string, number>;
 }) {
   const cfs = z.array(statement).parse(input.cashFlows);
   const incs = z.array(income).parse(input.incomes);
@@ -41,6 +42,10 @@ export function buildAsOfRows(input: {
   for (const year of ASOF_PROTOCOL.originYears) {
     const origin = `${year}-${ASOF_PROTOCOL.originMonthDay}`;
     const exclude = (reason: string) => exclusions.push({ companyId: input.companyId, origin, reason });
+    const rate = input.costOfEquityByOrigin === undefined ? ASOF_PROTOCOL.costOfEquity : input.costOfEquityByOrigin[origin];
+    if (!Number.isFinite(rate) || rate <= ASOF_PROTOCOL.terminalGrowth || rate >= 1) {
+      exclude("Sensitivity discount rate unavailable or outside frozen domain"); continue;
+    }
     const point = [...obs].reverse().find(o => o.day <= origin && o.day.startsWith(`${year}-07`));
     if (!point) { exclude("No July workbook observation"); continue; }
     // Publication lag: only statements filed strictly before the observation.
@@ -69,11 +74,11 @@ export function buildAsOfRows(input: {
     else if (end.filingDate < shiftYears(origin, 3)) exclude("Outcome filed before origin + 3 years; D8 maturity rule");
     else { actual = (fcfe(end) / fcfe(start)) ** (1 / 3) - 1; outcomeAvailableAt = end.filingDate; }
     let gordon: number | null = null;
-    if (baseIncome.netIncome > 0) gordon = ASOF_PROTOCOL.costOfEquity - baseIncome.netIncome / marketCap;
+    if (baseIncome.netIncome > 0) gordon = rate - baseIncome.netIncome / marketCap;
     else exclude("Gordon unavailable: non-positive earnings");
     let dcf: number | null = null;
     const solved = reverseCashFlowGrowth({ baseCashFlow: fcfe(base), marketCap,
-      discountRate: ASOF_PROTOCOL.costOfEquity, terminalGrowth: ASOF_PROTOCOL.terminalGrowth,
+      discountRate: rate, terminalGrowth: ASOF_PROTOCOL.terminalGrowth,
       basis: "FCFE", discountBasis: "cost-of-equity", businessType: "non-financial",
       cashFlowCurrency: "USD", valuationCurrency: "USD",
       minimumGrowth: ASOF_PROTOCOL.minimumGrowth, maximumGrowth: ASOF_PROTOCOL.maximumGrowth });

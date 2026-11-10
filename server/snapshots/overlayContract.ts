@@ -46,8 +46,21 @@ export function applyOverlays(
   z.string().date().parse(cutoff);
   const companies = baseline.companies.map(c => ({ ...c }));
   const timeSeries = baseline.timeSeries.map(r => ({ ...r, date: new Date(r.date) }));
+  if(timeSeries.some(r=>r.date.toISOString().slice(0,10)>cutoff))
+    throw new Error("Workbook observation exceeds information cutoff");
   const companyMap = new Map(companies.map(c => [c.id, c]));
   const observations = new Map(timeSeries.map(r => [`${r.companyId}:${r.date.toISOString().slice(0, 10)}`, r]));
+  let previousApproval = "";
+  for (const overlay of overlays) {
+    const dates = overlay.entries.map(e => /;decidedAt:([^;]+);/.exec(e.approvalEvidence)?.[1]).filter(Boolean) as string[];
+    if (dates.length) {
+      if (new Set(dates).size !== 1 || dates.length !== overlay.entries.length)
+        throw new Error("Conflicting overlay approval evidence");
+      if (dates[0] < previousApproval) throw new Error("Overlay approval order is reversed");
+      if (dates[0].slice(0,10) > cutoff) throw new Error("Approval exceeds cutoff");
+      previousApproval = dates[0];
+    }
+  }
   for (const overlay of overlays) for (const e of schema.parse(overlay).entries) {
     if (e.availableAt > cutoff) throw new Error("Overlay availability exceeds cutoff");
     const company = companyMap.get(e.companyId);

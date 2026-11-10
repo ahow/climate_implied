@@ -1,4 +1,6 @@
 import { getOverride, getOverrideYears } from "../dataIngestion/overrideStore";
+import { AsyncLocalStorage } from "node:async_hooks";
+export const historicalInputContext = new AsyncLocalStorage<NowcastIndicatorData[]>();
 
 export interface HistoricalIndicatorData {
   year: number;
@@ -520,6 +522,8 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 export function getAllHistoricalIndicatorsWithNowcast(): NowcastIndicatorData[] {
+  const frozen = historicalInputContext.getStore();
+  if(frozen) return structuredClone(frozen);
   const currentYear = new Date().getFullYear();
   const resolved = resolveSeries();
   const lastDataYear = resolved[resolved.length - 1].year;

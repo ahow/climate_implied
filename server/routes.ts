@@ -80,6 +80,8 @@ import { calculationKey } from "./calculation/identity";
 import { CALCULATION_VERSION, legacyContext } from "../shared/calculationContract";
 import { checkFinancialProvider, financialProviderStatus } from "./financialData/status";
 import { listFinancialReviews } from "./financialData/reviewStore";
+import { captureMaterialInputs } from "./snapshots/materialInputs";
+import { fieldSemantics } from "../shared/fieldSemantics";
 import { calculationReadiness } from "./calculation/readiness";
 import { historicalValidation } from "./calculation/historicalValidation";
 import { auditVintages } from "./calculation/vintageAudit";
@@ -115,6 +117,10 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  app.get("/api/calculation/field-semantics",(_req,res)=>res.json({
+    version:"core-fields-1",coverage:"Core fields only; additional output fields remain unreconciled",
+    fields:fieldSemantics,
+  }));
   app.get("/api/build-info", (_req, res) => {
     const candidate = process.env.RAILWAY_GIT_COMMIT_SHA;
     res.set("Cache-Control", "no-store").json({
@@ -169,21 +175,24 @@ export async function registerRoutes(
         return next();
       }
       const overlayIds = overlaySelection(req.query);
-      const overlays = await Promise.all(overlayIds.map(loadOverlay));
+      const overlays = await Promise.all(overlayIds.map(id => loadOverlay(id)));
       const cutoff = String(req.query.asOf ?? "");
       if (overlays.some(o => o.entries.some(e => e.availableAt > cutoff)))
         throw new Error("Overlay exceeds information cutoff");
       if (overlays.length) applyOverlays(await loadSnapshot(header), overlays, cutoff);
+      const material = await captureMaterialInputs({ workbook: header.id, overlays: overlayIds,
+        cutoff: cutoff || null, readsIndicators: historicalRequestPolicy(`/cv${req.path}`,req.query).readsIndicators });
       const manifest = createManifest({
-        codeVersion: process.env.RAILWAY_GIT_COMMIT_SHA || "workspace-code-version-unrecorded",
+        codeVersion: material.sourceId,
         modelVersion: CALCULATION_VERSION,
         snapshotHashes: [header.id, ...overlayIds, ...(requestOverrides.getStore() ? [requestOverrides.getStore()!.hash] : [])],
-        scenario: `descriptive-valuation:${req.path}`, settings: { ...req.query },
+        scenario: `descriptive-valuation:${req.path}`, settings: { ...req.query, materialInputsId:material.id },
       });
       res.set("X-Analysis-Data-State", "immutable-workbook-snapshot");
       res.set("X-Analysis-Snapshot", header.id);
       if (overlayIds.length) res.set("X-Analysis-Overlays", overlayIds.join(","));
       res.set("X-Analysis-Manifest", manifest.id);
+      res.set("X-Analysis-Material-Inputs",material.id);
       res.set("Cache-Control", "no-store");
       const archivedPaths = new Set(["/summary", "/carbon-price", "/pe-comparison",
         "/sdg-growth", "/decarb-bands", "/decarb-terciles", "/decarb-gap/summary",

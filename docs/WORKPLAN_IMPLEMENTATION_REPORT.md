@@ -1,6 +1,93 @@
 # Workplan implementation report
 
+## Latest continuation: carbon/SDG lifecycle and material replay
+
+Starting HEAD ac25e9d; preceding checkpoint confirmed matched by owner and
+not resent. This increment implements real transactional carbon/SDG operator
+review helpers, immutable proposal/decision/overlay archives and actual
+rollback-only database tests. Existing workbook upload and collector unchanged.
+See Development_Review_Material_Replay.md for exact paths and boundaries.
+
+Material archives now retain source/config/embedded data/dependency-lock/runtime
+versions and consumed workbook/overlay/indicator identities and values. Real SDG
+response aea13b6b was recalculated identically in two fresh processes:
+JSON hash 9b664a9e2d81e73c9fb8b392d02bdc49680cf9834910ea225d796c8b1f29463e.
+Failed first attempts (missing public withholding filter in the verifier) and
+passing corrected attempts are both retained in run_executions. Later source
+changes intentionally invalidate same-executable replay of that earlier manifest.
+This is one actual endpoint, NOT all-material replay acceptance for the whole app.
+
+16 core field definitions now reach API, expandable UI and XLSX. Export rows
+have a normalized-data SHA-256. All 22 curated driver histories have retained
+series hashes, period coverage and explicit non-original-vintage semantics;
+publication availability and causal calibration gaps are not invented away.
+Stage12 gains an all-leaf input-evidence/cutoff guard around the existing operating
+projection model. This is a dependency, not actual Stage14 research.
+
+Verification at this point: full 212 TypeScript + 63 Python suite passed,
+subsequent Stage12 guard test passed, typecheck/build passed, real carbon/SDG
+rollback tests passed, development workflow healthy and screenshot clean.
+Final source changes and release receipts are recorded below/in the JSON ledger.
+No beta refit, owner approval, central-model promotion, purchase, DDL or production
+data mutation. All remaining original stages continue to be tracked individually.
+
+## Latest continuation: frozen beta comparison and transactional archive
+
+Starting HEAD verified c0f0c36. Owner confirmed the preceding continuation
+checkpoint matched; it was not resent.
+
+Applied the ALREADY-frozen 73095d6 beta protocol/rates to the same 88 completed
+company-origins. Gordon implied growth moved 0.6890 pp on average in absolute
+terms; DCF 1.9557 pp. Outcome MAE improvement vs common 8%: Gordon -0.2137 pp
+[-0.3881,-0.0392]; DCF -0.3734 pp [-0.8777,+0.1308]. Original outcomes,
+availability and filings are asserted unchanged; no return scoring or D8
+reselection. See Beta_Growth_Sensitivity_Results.md. Gordon remains primary.
+
+Existing real financial review transaction now archives approved current input,
+review ID and approval timestamp into existing guarded immutable tables. Archive
+failure rolls back the approval when provisioned; unprovisioned deployments
+retain existing approval behavior with explicit warning. Rejected transitions
+do not create archives; duplicate approval does not create a second archive.
+This current-only archive is NOT silently injected into historical workbook data.
+
+Actual existing review helper exercised in a rollback-only development database
+fixture: approval, repeat approval, conflicting rejection, exactly one immutable
+archive with matching hash, then complete rollback of both review and archive.
+No real issuer approved, no synthetic immutable rows left behind, no DDL.
+Files: server/financialData/approvalArchive.ts:archiveFinancialApproval;
+server/financialData/reviewStore.ts:reviewInTransaction;
+script/check-financial-review-db.ts.
+
+Verification: 207 TypeScript and 63 Python pass, type check/build pass. Exact
+commands/counts/logs retained in run_executions. This increment is local only;
+last verified deployment remains GitHub 3bc1ddf / Railway e2219151.
+
+Still incomplete: complete reviewed carbon/SDG refresh lifecycle; all-material
+manifest and result/export replay; field-level semantics; actionable driver
+metadata repairs; compatible Stage 12 projections and actual Stage 14 signal.
+These are actionable scope, not external blockers or accepted completion.
+
 ## Latest increment — 10 November 2026
+
+### Verified release and subsequent offline sensitivity
+
+Workspace b3b41b78481cd1157e080c0dcc3f33c402c466f1 exported to GitHub
+3bc1ddf5379b5dd3783116c2b19011b97f192c67. Source validation run 42729165070
+succeeded; production-validated matches. Railway deployment
+e2219151-fe29-4711-bf1c-ca3140d7d4fb reached SUCCESS. Live health 200 and
+build-info sourceCommit match. No deployment or approval shortcut was used.
+
+After that release, a distinct beta sensitivity protocol and tests were frozen
+in 73095d6, before fitting. Past-only 60-month leave-one-out peer-proxy betas,
+50% shrinkage to one, assumed 3% risk-free/5% ERP produced 162/162 available
+company-origin rates ranging 4.6092%–9.7954%. Private result hash
+cb928aace43911cad97897d1cbcc5a10e4e7d5b65a1327829f78ad305539d1a4.
+Two additional tests and type checking pass. This is a narrow peer-proxy rate
+diagnostic, not a broad-market CAPM estimate. Implied-growth comparison and the
+actual Stage 14 signal remain unexecuted; no D8 reselection or promotion.
+These subsequent offline files and final evidence records have not been exported
+or deployed. The full released regression remains 204 TypeScript/63 Python;
+the two later focused tests are recorded separately, not claimed as a new full run.
 
 **Still partial, not workplan completion.** Prior chronological entries below
 are retained as history and are superseded where this section states newer evidence.
@@ -324,5 +411,27 @@ the next concrete action; it is not a claim that work continues while idle.
   "ledger_hash": "f8216ebf548790fb4941fc499dafa1c3bbb134f2f9780c8ef4232cda0a791b99",
   "attempted_at": "2026-11-09T22:28:35.686283+00:00",
   "outcome": "http-success",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-beta-overlay-continuation",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T00:37:51.921545+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-frozen-beta-approval-2b04ff6",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T00:44:56.109383+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
   "http_status": 202
 }

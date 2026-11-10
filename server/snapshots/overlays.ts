@@ -23,13 +23,13 @@ export async function captureOverlay(entries: unknown) {
   });
   return packed.id;
 }
-export async function loadOverlay(id: string) {
+export async function loadOverlay(id: string, connection: Pick<typeof db, "execute" | "select"> = db) {
   if (!/^[a-f0-9]{64}$/.test(id)) throw new Error("Invalid overlay ID");
-  if (!await snapshotsAvailable()) throw new Error("Immutable overlay archive not provisioned");
-  const [header] = await db.select().from(cvAnalysisSnapshots).where(and(
+  if (!await snapshotsAvailable(connection)) throw new Error("Immutable overlay archive not provisioned");
+  const [header] = await connection.select().from(cvAnalysisSnapshots).where(and(
     eq(cvAnalysisSnapshots.id, id), eq(cvAnalysisSnapshots.kind, "company-overlay")));
   if (!header || header.chunkCount !== 1) throw new Error("Overlay archive unavailable");
-  const chunks = await db.select().from(cvAnalysisChunks).where(eq(cvAnalysisChunks.snapshotId, id));
+  const chunks = await connection.select().from(cvAnalysisChunks).where(eq(cvAnalysisChunks.snapshotId, id));
   if (chunks.length !== 1 || chunks[0].ordinal !== 0) throw new Error("Incomplete overlay archive");
   const payload = unpackOverlay(id, chunks[0].payload);
   if (payload.entries.length !== header.observationCount) throw new Error("Overlay count mismatch");

@@ -42,3 +42,20 @@ test("unit/boundary mismatch, non-USD and non-positive outcome FCFE are excluded
   const n = buildAsOfRows({ ...base, cashFlows: negative, observations: observations.map(o => ({ ...o, netProfit: null })) });
   assert.equal(n.rows.find(r => r.origin === "2017-07-31")!.actualCashFlowGrowth, null);
 });
+
+test("explicit sensitivity rates change only valuations, never outcome or filing selection", () => {
+  const input = { ...base, observations: observations.map(o => ({ ...o, netProfit: null })) };
+  const original = buildAsOfRows(input);
+  const rates = Object.fromEntries([2017, 2018, 2019, 2020, 2021, 2022].map(y => [`${y}-07-31`, .09]));
+  const changed = buildAsOfRows({ ...input, costOfEquityByOrigin: rates });
+  assert.equal(changed.rows.length, original.rows.length);
+  for (let i = 0; i < original.rows.length; i++) {
+    const a = original.rows[i], b = changed.rows[i];
+    for (const k of ["actualCashFlowGrowth", "outcomeAvailableAt", "validationReturn", "baseFiscalDate", "baseFilingDate"])
+      assert.equal(a[k], b[k], k);
+    assert.ok(Math.abs(Number(b.gordonCashFlowGrowth) - Number(a.gordonCashFlowGrowth) - .01) < 1e-12);
+  }
+  const missing = buildAsOfRows({ ...input, costOfEquityByOrigin: {} });
+  assert.equal(missing.rows.length, 0);
+  assert.ok(missing.exclusions.every(e => /rate/.test(e.reason)));
+});

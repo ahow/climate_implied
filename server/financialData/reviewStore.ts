@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import { db } from "../db";
 import { snapshotSchema, snapshotId, financialCalculation, transition, type FinancialSnapshot, type ReviewStatus } from "./review";
+import { archiveFinancialApproval } from "./approvalArchive";
 
 export async function ensureFinancialReviews() {
   const result = await db.execute(sql`SELECT to_regclass('public.financial_reviews') IS NOT NULL AS ready`);
@@ -34,6 +35,11 @@ export async function reviewInTransaction(tx: Pick<typeof db, "execute">, id: st
       WHERE status='approved' AND payload->'identity'->>'companyId'=${String(payload.identity.companyId)}`);
   }
   await tx.execute(sql`UPDATE financial_reviews SET status=${status},reviewed_at=now() WHERE id=${id}`);
+  if (status === "approved") {
+    const archive = await archiveFinancialApproval(tx, id, payload);
+    if (archive.state === "not-provisioned")
+      console.warn("[financial-archive] not provisioned; existing review retained without archive");
+  }
 }
 export async function reviewSnapshot(id: string, decision: "approved" | "rejected") {
   if (!/^[a-f0-9]{64}$/.test(id)) throw new Error("Invalid proposal ID");

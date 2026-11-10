@@ -51,7 +51,7 @@ async function main() {
   ];
   mkdirSync(dir, { recursive: true });
   const captured = { workbook: packDataset(data.companies, data.timeSeries), overlays,
-    cutoff: date, companyId: row.companyId,
+    cutoff: data.timeSeries.map(r=>r.date.toISOString().slice(0,10)).sort().at(-1)!, companyId: row.companyId,
     codeVersion: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim() };
   const file = `${dir}/inputs-${contentHash(captured)}.json`;
   writeFileSync(file, JSON.stringify(captured));

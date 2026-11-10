@@ -19,6 +19,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 
 | Method | Path expression | Implementation |
 | --- | --- | --- |
+| GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |
 | GET | "/api/financial-data/status" | server/routes.ts |
 | GET | "/api/analysis/results/:id" | server/routes.ts |

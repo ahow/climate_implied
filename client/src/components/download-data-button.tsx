@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { exportNotes, type ExportKind } from "@/lib/export-contract";
+import { semanticRows } from "@shared/fieldSemantics";
+import { exportDataIdentity } from "@/lib/export-identity";
 
 type Cell = string | number | boolean | null | undefined;
 export type DownloadRow = Record<string, Cell>;
@@ -39,12 +41,17 @@ export function DownloadDataButton({
     setError(null);
     try {
       const XLSX = await import("xlsx");
-      const ws = XLSX.utils.json_to_sheet(data);
+      const identity=await exportDataIdentity(data);
+      const ws = XLSX.utils.json_to_sheet(identity.normalized);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, sheetName.slice(0, 31));
       XLSX.utils.book_append_sheet(wb,
-        XLSX.utils.json_to_sheet(exportNotes(kind, filename, new Date().toISOString())),
+        XLSX.utils.json_to_sheet([...exportNotes(kind, filename, new Date().toISOString()),
+          {Field:"Exported data SHA-256",Value:identity.hash},
+          {Field:"Export hash method",Value:"SHA-256 of JSON array in exported row order; object keys sorted; missing cells normalized to null. Identifies exported data, not scientific acceptance."}]),
         sheetName.slice(0, 31) === "Interpretation" ? "Export Notes" : "Interpretation");
+      XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(semanticRows()),
+        sheetName.slice(0,31)==="Field semantics" ? "Semantic definitions" : "Field semantics");
       const name = filename.endsWith(".xlsx") ? filename : `${filename}.xlsx`;
       XLSX.writeFile(wb, name);
     } catch (err) {
@@ -70,6 +77,15 @@ export function DownloadDataButton({
       {busy ? "Preparing\u2026" : label}
     </Button>
     {error && <span role="alert" className="text-sm text-destructive">{error}</span>}
+    <details className="text-xs text-muted-foreground">
+      <summary>Input, calculation and output definitions</summary>
+      <p>Core field definitions; not yet a complete dictionary of every displayed or exported column. Null means unavailable, not zero.</p>
+      <dl>{semanticRows().map(row=><div key={row.Field} className="my-2">
+        <dt className="font-medium">{row.Field} — {row.Classification} ({row.Unit})</dt>
+        <dd>{row.Formula}. Depends on: {row.Dependencies || "source input"}.</dd>
+        <dd>{row.Source}. {row.Vintage}. {row.AsOf}.</dd>
+      </div>)}</dl>
+    </details>
     </>
   );
 }

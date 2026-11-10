@@ -4,6 +4,7 @@ import { sql } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 import { db } from "../server/db";
 import { ensureFinancialReviews, reviewInTransaction } from "../server/financialData/reviewStore";
+import { contentHash } from "../server/calculation/analysisManifest";
 if (process.env.NODE_ENV === "production") throw new Error("Development fixture only");
 await ensureFinancialReviews();
 const id = `rollback-test-${randomUUID()}`;
@@ -24,10 +25,16 @@ try {
     await reviewInTransaction(tx, id, "approved");
     const result = await tx.execute(sql`SELECT status FROM financial_reviews WHERE id=${id}`);
     assert.equal(result.rows[0].status, "approved");
+    const archive = await tx.execute(sql`SELECT s.id,c.payload FROM cv_analysis_snapshots s
+      JOIN cv_analysis_chunks c ON c.snapshot_id=s.id
+      WHERE s.kind='approved-current-financial' AND c.payload->>'reviewId'=${id}`);
+    assert.equal(archive.rows.length, 1, "Approval must archive once in provisioned development");
+    assert.equal(contentHash(archive.rows[0].payload), archive.rows[0].id);
     await assert.rejects(reviewInTransaction(tx, id, "rejected"));
     throw rollback;
   });
 } catch (e) { if (e !== rollback) throw e; }
 assert.equal((await db.execute(sql`SELECT id FROM financial_reviews WHERE id=${id}`)).rows.length, 0);
+assert.equal((await db.execute(sql`SELECT snapshot_id FROM cv_analysis_chunks WHERE payload->>'reviewId'=${id}`)).rows.length, 0);
 console.log("PASS: transactional approval, repeated approval, conflicting rejection, complete rollback");
 process.exit(0);

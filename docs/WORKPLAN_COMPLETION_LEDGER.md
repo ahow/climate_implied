@@ -3,7 +3,7 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T00:32:51.766742+00:00
+Updated: 2026-11-10T01:01:18.899132+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
@@ -25,7 +25,7 @@ Run all TypeScript and Python tests, npm run check and npm run build; record cou
 
 - Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/CI_Negative_Control.md
-- Delivered this run: Latest full regression: 204 TypeScript/63 Python passed, zero failures/skips; type checking and build exit 0.
+- Delivered this run: 212-test TypeScript suite and 63 Python tests pass; subsequent focused Stage12 guard test passes. Typecheck/build pass. CI will separately gate exported source.
 - Scientific acceptance: not-applicable-operational
 - Executions: [{"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_handoff_contract.py"], "executed_at": "2026-11-10T00:21:08.893971+00:00", "exit_code": 0, "elapsed_seconds": 0.376, "counts": {"tests": 4, "pass": 4, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002108893971Z.log", "workspace_revision": "ce36ef8985ba7de26be07fc0b240635246c0ba78", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_storage_adoption.py"], "executed_at": "2026-11-10T00:23:18.237073+00:00", "exit_code": 0, "elapsed_seconds": 0.883, "counts": {"tests": 4, "pass": 4, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log", "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:29:58.796940+00:00", "exit_code": 0, "elapsed_seconds": 26.79, "counts": {"tests": 204, "pass": 204, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_*.py"], "executed_at": "2026-11-10T00:30:26.002081+00:00", "exit_code": 0, "elapsed_seconds": 9.663, "counts": {"tests": 63, "pass": 63, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T003026002081Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "check"], "executed_at": "2026-11-10T00:30:36.080727+00:00", "exit_code": 0, "elapsed_seconds": 10.155, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T003036080727Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "build"], "executed_at": "2026-11-10T00:30:46.670502+00:00", "exit_code": 0, "elapsed_seconds": 19.47, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T003046670502Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: 
@@ -132,13 +132,13 @@ A deliberately broken commit fails CI and is not deployed.
 
 ## Stage 1 — Output register and honest labels
 
-### S01-001 — not-yet-reconciled
+### S01-001 — partial
 Scan all pages, APIs and exports to build docs/output_register with label, equation, unit, population, engine, evidence state and replacement stage for each output.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/Output_Controls_Execution.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: 16 core field semantics shared by API/UI/XLSX; exported data hash. All columns not yet mapped.
+- Scientific acceptance: not-promoted
 - Executions: []
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Audit each response field and export against formula/unit/population register.
@@ -315,9 +315,9 @@ Keep the workbook as an immutable baseline; add ordered, immutable overlays for 
 
 - Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/Analysis_Wide_Historical_Selection.md
-- Delivered this run: Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.
-- Scientific acceptance: engineering-partial-no-vintage-certification
-- Executions: [{"command": ["npx", "tsx", "script/verify-overlay-replay.ts"], "executed_at": "2026-11-10T00:26:39.545205+00:00", "exit_code": 0, "elapsed_seconds": 35.287, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "--test", "script/overlay-replay.test.ts"], "executed_at": "2026-11-10T00:27:14.951125+00:00", "exit_code": 0, "elapsed_seconds": 0.767, "counts": {"tests": 3, "pass": 3, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:29:58.796940+00:00", "exit_code": 0, "elapsed_seconds": 26.79, "counts": {"tests": 204, "pass": 204, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Delivered this run: Carbon and SDG operator review lifecycle archives proposal, decision and approved overlays transactionally; real rollback test includes loader, hash, idempotency, conflicting decisions and immutable-update denial. Workbook upload path unchanged.
+- Scientific acceptance: not-promoted
+- Executions: [{"command": ["npx", "tsx", "script/check-overlay-review-db.ts"], "executed_at": "2026-11-10T00:47:53.868397+00:00", "exit_code": 0, "elapsed_seconds": 4.832, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T004753868397Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/check-overlay-review-db.ts"], "executed_at": "2026-11-10T00:52:30.850645+00:00", "exit_code": 0, "elapsed_seconds": 3.512, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T005230850645Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.; Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.; Production archive schema remains unprovisioned; no DDL attempted.
 - Next: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.
 
@@ -326,8 +326,8 @@ Implement analysis manifests: code SHA, model and assumption versions, dataset h
 
 - Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/Analysis_Wide_Historical_Selection.md
-- Delivered this run: Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.
-- Scientific acceptance: engineering-partial-no-vintage-certification
+- Delivered this run: Material archive records source/config/embedded-data/lock/runtime bundle, workbook/overlay identities, approved values, effective indicators and cutoff; request manifest references content hashes.
+- Scientific acceptance: not-promoted
 - Executions: [{"command": ["npx", "tsx", "script/verify-overlay-replay.ts"], "executed_at": "2026-11-10T00:26:39.545205+00:00", "exit_code": 0, "elapsed_seconds": 35.287, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "--test", "script/overlay-replay.test.ts"], "executed_at": "2026-11-10T00:27:14.951125+00:00", "exit_code": 0, "elapsed_seconds": 0.767, "counts": {"tests": 3, "pass": 3, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:29:58.796940+00:00", "exit_code": 0, "elapsed_seconds": 26.79, "counts": {"tests": 204, "pass": 204, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.; Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.; Production archive schema remains unprovisioned; no DDL attempted.
 - Next: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.
@@ -381,9 +381,9 @@ An earlier manifest reproduces its analytical output hashes (excluding timestamp
 
 - Section: acceptance; origin: existing-plus-this-run
 - Existing evidence: docs/Analysis_Wide_Historical_Selection.md
-- Delivered this run: Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.
-- Scientific acceptance: engineering-partial-no-vintage-certification
-- Executions: [{"command": ["npx", "tsx", "script/verify-overlay-replay.ts"], "executed_at": "2026-11-10T00:26:39.545205+00:00", "exit_code": 0, "elapsed_seconds": 35.287, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "--test", "script/overlay-replay.test.ts"], "executed_at": "2026-11-10T00:27:14.951125+00:00", "exit_code": 0, "elapsed_seconds": 0.767, "counts": {"tests": 3, "pass": 3, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:29:58.796940+00:00", "exit_code": 0, "elapsed_seconds": 26.79, "counts": {"tests": 204, "pass": 204, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Delivered this run: Real SDG API result reproduced in two fresh processes with exact JSON hash after applying the real public withholding filter; old source version now intentionally refused after later source changes. All-endpoint/refresh-type acceptance still unmet.
+- Scientific acceptance: not-promoted
+- Executions: [{"command": ["npx", "tsx", "script/replay-sdg-result.ts", "aea13b6b0c9644d810c75f0bda578f9f0db7a0060cfb70be2ef0dc72365c8b77", "generated-artifacts/material-replay/fresh-1.json"], "executed_at": "2026-11-10T00:56:12.751570+00:00", "exit_code": 1, "elapsed_seconds": 12.65, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T005612751570Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/replay-sdg-result.ts", "aea13b6b0c9644d810c75f0bda578f9f0db7a0060cfb70be2ef0dc72365c8b77", "generated-artifacts/material-replay/fresh-2.json"], "executed_at": "2026-11-10T00:56:25.858488+00:00", "exit_code": 1, "elapsed_seconds": 10.539, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T005625858488Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/replay-sdg-result.ts", "aea13b6b0c9644d810c75f0bda578f9f0db7a0060cfb70be2ef0dc72365c8b77", "generated-artifacts/material-replay/fresh-1.json"], "executed_at": "2026-11-10T00:57:11.800382+00:00", "exit_code": 0, "elapsed_seconds": 11.089, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T005711800382Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/replay-sdg-result.ts", "aea13b6b0c9644d810c75f0bda578f9f0db7a0060cfb70be2ef0dc72365c8b77", "generated-artifacts/material-replay/fresh-2.json"], "executed_at": "2026-11-10T00:57:23.317851+00:00", "exit_code": 0, "elapsed_seconds": 10.367, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T005723317851Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.; Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.; Production archive schema remains unprovisioned; no DDL attempted.
 - Next: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.
 
@@ -550,8 +550,8 @@ Technology diffusion. Fit logistic curves, with Gompertz or Bass as alternatives
 
 - Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/EV_and_Cost_Calibration_Results.md
-- Delivered this run: Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.
-- Scientific acceptance: storage-positive-relative-baselines-not-central; EV unchanged
+- Delivered this run: All 22 curated series receive retained input hashes, period coverage, explicit non-original vintage meaning, derived dependencies and frozen study links; unknown publication dates remain unknown; no calibration promotion.
+- Scientific acceptance: not-promoted
 - Executions: [{"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_storage_adoption.py"], "executed_at": "2026-11-10T00:23:18.237073+00:00", "exit_code": 0, "elapsed_seconds": 0.883, "counts": {"tests": 4, "pass": 4, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log", "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["node", "script/extract-eia-storage.cjs"], "executed_at": "2026-11-10T00:23:19.576851+00:00", "exit_code": 0, "elapsed_seconds": 0.736, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log", "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["python", "script/storage_adoption.py", "generated-artifacts/driver-calibration/eia-storage-2025.json"], "executed_at": "2026-11-10T00:23:20.742704+00:00", "exit_code": 0, "elapsed_seconds": 0.376, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log", "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["python", "script/ev_sales_calibration.py"], "executed_at": "2026-11-10T00:24:27.870546+00:00", "exit_code": 0, "elapsed_seconds": 0.729, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log", "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.; Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete.
 - Next: Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.
@@ -1637,16 +1637,16 @@ Cash flows: operating cash flow less capital expenditure and working-capital inv
 - Gaps: No paired historical Gordon/reverse-DCF predictions or rank correlations computed.; Ten common eligible issuers over six consecutive valuation origins not established.; Identity approvals, publication vintages and cash-flow classification review incomplete.
 - Next: Assemble common-sample historical predictions; complete seven-criterion D8 comparison.
 
-### S11-004 — not-yet-reconciled
+### S11-004 — partial
 Discount rate: company-specific cost of equity, using beta from the workbook return index over 60 months shrunk towards 1, with stated risk-free and equity-risk-premium ranges. WACC uses observed debt costs where available. Keep a common-8% variant.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/Valuation_and_Research_Completion_Status.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
-- Next: Assemble common-sample historical predictions; complete seven-criterion D8 comparison.
+- Delivered this run: Frozen beta rates applied to same 88 pairs. Implied absolute change Gordon .6890pp, DCF 1.9557pp. MAE improvement Gordon -.2137pp [-.3881,-.0392], DCF -.3734pp [-.8777,.1308]. Original lags/outcomes unchanged; no returns scored or D8 reselection.
+- Scientific acceptance: not-promoted
+- Executions: [{"command": ["npx", "tsx", "--test", "script/asof-valuation.test.ts"], "executed_at": "2026-11-10T00:41:30.848904+00:00", "exit_code": 0, "elapsed_seconds": 3.203, "counts": {"tests": 4, "pass": 4, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T004130848904Z.log", "workspace_revision": "e800bb851f8ce823acddf3170dd0b925bf13f231", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/compare-beta-growth.ts"], "executed_at": "2026-11-10T00:41:34.507949+00:00", "exit_code": 0, "elapsed_seconds": 2.342, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T004134507949Z.log", "workspace_revision": "e800bb851f8ce823acddf3170dd0b925bf13f231", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Gaps: Broad-market rate evidence and actual compatible Stage12/14 evaluation remain; no promotion.
+- Next: Complete paired implied-growth sensitivity under existing frozen protocol without changing original failed D8 gate.
 
 ### S11-005 — not-yet-reconciled
 Banks and insurers: standard industrial cash-flow models do not apply. Use an excess-return (residual income) formulation on book equity, or return “not modelled”.
@@ -2189,14 +2189,14 @@ Sample activity, share, margin, carbon price and pass-through across 1,000 membe
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-011 — not-yet-reconciled
+### S12-011 — partial
 Historical projections use Stage 9 runs and carry their labels. They count as retrospective simulations only where all company inputs also meet the cutoff (original filings, contemporaneous classifications); otherwise they are revised history.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: existing-plus-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
-- Executions: []
+- Delivered this run: New all-leaf as-of evidence guard around existing company operating model; hash, source reference, timestamp and declared basis required for every input. Does not certify or resolve source archives.
+- Scientific acceptance: not-promoted
+- Executions: [{"command": ["npx", "tsx", "--test", "script/company-asof.test.ts"], "executed_at": "2026-11-10T00:59:42.837695+00:00", "exit_code": 0, "elapsed_seconds": 3.352, "counts": {"tests": 1, "pass": 1, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T005942837695Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
@@ -3643,6 +3643,6 @@ Production SHA, health and displayed model and data versions agree.
     "S17-014",
     "S17-015"
   ],
-  "instruction": "Continue all stages 0-17. Finish real development approval-to-overlay capture and full all-material-input/result replay (current fixture is private synthetic overlays on real retained workbook, not full acceptance). Complete field-level semantics; use Driver_Evidence_Audit.md for all 22 missing metadata/source-calibration gaps. EV original gate unchanged; storage exponential beats baselines but no saturation prior or central promotion. Owner review packet has 27 issuers/270 periods, no approvals. Freeze distinct company-specific cost-of-equity sensitivity before fitting, then actual Stage 14 signal only with compatible Stage 12 projections; Gordon remains primary. Reconcile remaining original clauses against actual evidence. Use workplan-checkpoint.py --checkpoint-id with stable ID at true end only, continuation_ready and exact tag; 202 is transport only. Preserve scheduler and production restrictions.",
+  "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope.",
   "background_tasks": []
 }

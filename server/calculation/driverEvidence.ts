@@ -1,10 +1,27 @@
 import { INDICATORS, type IndicatorKey } from "../dataIngestion/indicatorRegistry";
+import { HISTORICAL_INDICATORS } from "./historicalIndicators";
+import { contentHash } from "./analysisManifest";
 
 const mechanisms = new Set<IndicatorKey>(["renewableCapacityGW", "renewableGrowthRate", "evSalesSharePct", "evGrowthRate",
   "gdpTrillionUSD", "carbonIntensityKgPerGDP"]);
 const validation = new Set<IndicatorKey>(["fossilCO2GtPerYear", "atmosphericCO2ppm", "co2GrowthRatePpm"]);
 export function driverEvidenceRegistry() {
-  return INDICATORS.map(d => ({
+  return INDICATORS.map(d => {
+    const retained = HISTORICAL_INDICATORS.map(r=>({year:r.year,value:r[d.key]}));
+    const years = retained.map(r=>r.year);
+    const hash = contentHash(retained);
+    const derived: Record<string,{formula:string;dependencies:string[]}> = {
+      renewableGrowthRate:{formula:"(capacity_t / capacity_t-1) - 1",dependencies:["renewableCapacityGW"]},
+      evGrowthRate:{formula:"(salesShare_t / salesShare_t-1) - 1; growth of share, not fleet stock",dependencies:["evSalesSharePct"]},
+      carbonIntensityKgPerGDP:{formula:"fossilCO2GtPerYear / gdpTrillionUSD; Gt/tn USD = kg/USD",dependencies:["fossilCO2GtPerYear","gdpTrillionUSD"]},
+    };
+    const studies: Record<string,string[]> = {
+      evSalesSharePct:["docs/EV_Calibration_Protocol.md","docs/EV_and_Cost_Calibration_Results.md"],
+      evGrowthRate:["docs/EV_Calibration_Protocol.md","docs/EV_and_Cost_Calibration_Results.md"],
+      renewableCapacityGW:["docs/Driver_Calibration_Protocol.md"],
+      renewableGrowthRate:["docs/Driver_Calibration_Protocol.md"],
+    };
+    return ({
     id: d.key, definition: d.label, publisher: d.source, rawUnit: d.unit,
     transformedUnit: d.unit, geography: "global", category: d.category,
     role: mechanisms.has(d.key) ? "candidate-mechanism-input" : validation.has(d.key) ? "validation-target" : "context",
@@ -12,14 +29,27 @@ export function driverEvidenceRegistry() {
     reason: mechanisms.has(d.key) ? "Mechanism exists but regional calibration and uncertainty evidence are incomplete"
       : validation.has(d.key) ? "Outcome check, not an independent abatement multiplier"
       : "No identified incremental causal coefficient; target coverage is not delivery",
-    observationPeriod: null, informationAvailableAt: null, vintage: null,
+    observationPeriod: { firstYear:Math.min(...years),lastYear:Math.max(...years),
+      meaning:"Retained curated row periods; mixed revised observations/estimates, not verification of original observations" },
+    informationAvailableAt: null,
+    vintage: `retained-curated-history:${hash}`,
+    sourceProvenance: {
+      retainedInputHash:hash,recordCount:retained.length,
+      sourceFile:"server/calculation/historicalIndicators.ts",
+      originalPublicationArchive:"unavailable",
+      publicationDateMeaning:"Unknown original release date; neither file time nor fetch time substitutes",
+      derivation:derived[d.key] ?? {formula:"Retained supplied series, no additional causal coefficient inferred",dependencies:[]},
+      frozenStudies:studies[d.key] ?? [],
+      calibrationDecision:studies[d.key] ? "Existing frozen evidence retained; not central promotion" :
+        "No source-compatible frozen causal calibration; context or validation role retained",
+    },
     updateCadence: "existing-monthly-collection-review-approval",
     uncertainty: { status: "unavailable", reason: "Source-specific uncertainty distribution not established" },
     licence: { status: "review-required", publisher: d.source },
     overlapGroup: d.category, regionalApplicability: "not-established",
     missingData: "preserve-null; interior interpolation only when explicitly requested and labelled",
     evidenceState: "Unavailable",
-  }));
+  }); });
 }
 export function interpolateInterior(points: { year: number; value: number | null }[], year: number) {
   if (!Number.isInteger(year)) throw new Error("Integer year required");
