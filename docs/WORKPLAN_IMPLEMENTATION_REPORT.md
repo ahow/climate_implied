@@ -1,5 +1,56 @@
 # Workplan implementation report
 
+## Combined refresh continuation
+
+Starting HEAD c6267fa; preceding checkpoint confirmed matched by owner and not
+resent. Extended script/check-overlay-concurrency-db.ts with
+script/combined-refresh-fixture.ts to execute financial, carbon, SDG and driver
+review helpers in one rollback-only development transaction. The modified
+request observes distinct driver and overlay selections; a suspended request
+retains both baseline SDG result and original driver hash. Repeated decisions,
+opposite decisions, five additional archive records and complete restoration
+of approved driver rows are checked. No real approval or committed fixture.
+Financial current quotes remain separate from historical workbook substitution;
+this is not complete all-nine-path refresh acceptance.
+
+Extended script/verify-overlay-replay.ts with actual XLSX serialization,
+data/manifest/result identities and readback checks inside both fresh processes.
+Passed on2442 companies/470341 observations with unchanged baseline. This remains
+an isolated engineering fixture, not original-vintage or scientific acceptance.
+Result hash afd057b8550c9459397c292ab768b4fc38c7479aaa1d90663d82267dd1425133.
+
+Commands: real combined helper test exit0, fresh-process/XLSX replay exit0,
+typecheck exit0; command-specific dates/logs are in run_executions. No new unit
+test count is claimed for these script assertions. Runtime application code,
+collector and completed scientific studies are unchanged. Full field semantics,
+nonempty targets and requested analytical studies remain actionable/unimplemented.
+
+## Final run boundary and verified release
+
+Stopping at the turn's remaining execution/context budget, not because work is
+complete or a checkpoint was saved. Independent actionable requirements remain.
+Original workplan and amendment SHA-256 values were checked against the retained
+source documents; all300 clauses across stages0–17 remain tracked.
+
+Final runtime source: workspace c1a12f7b1a8ca9a8b4cb98d7a78b86b8551471b8 →
+GitHub66c7782e2fdfb1be20fb420875a7f1afce6d6435. CI42734896982 succeeded.
+Railway6c0ae3e8-47d6-49a9-b239-04988f0fbdd5 reached SUCCESS; live health200
+and build-info confirmed the exact SHA. Subsequent receipt/ledger edits are local
+documentation only. No runtime change is claimed deployed from an unverified SHA.
+
+The final changed gap response has193 rows without unsupported quartiles and
+fresh-process output hash e0adf4a8be31fd0eb891e53a55c44769a8349b59b9add9cab46cc35f8924da4b.
+Earlier9-path replay receipts refer to their exact prior source versions.
+Full local suite:212 TypeScript/63 Python passed; subsequent focused Stage12
+test1/1 and changed public-contract tests2/2 passed; final typecheck/build and CI
+passed. Lifecycle/overlap/fresh-process checks have separate command receipts,
+not fabricated unit-test counts.
+
+Next: combined financial/carbon/SDG/driver refresh and concurrency acceptance,
+nonempty target cases, full export-field mapping, source-publication/calibration
+gaps, resolved reviewed Stage12 inputs and actual Stage14 evaluation.
+The existing9-path replay is not a substitute for those requirements.
+
 ## Latest continuation: carbon/SDG lifecycle and material replay
 
 Additional verified work: real overlapping SDG review/request isolation test passes
@@ -451,6 +502,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-frozen-beta-approval-2b04ff6",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T00:44:56.109383+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-nine-path-review-66c7782",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T01:23:31.144514+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

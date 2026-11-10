@@ -7,6 +7,8 @@ import { contentHash, createManifest } from "../server/calculation/analysisManif
 import { applyOverlays, packOverlay, unpackOverlay } from "../server/snapshots/overlayContract";
 import { packAnalysisResult, unpackAnalysisResult } from "../server/snapshots/resultContract";
 import { packDataset, unpackDataset } from "../server/snapshots/contract";
+import * as XLSX from "xlsx";
+import { exportDataIdentity } from "../client/src/lib/export-identity";
 
 const dir = "generated-artifacts/overlay-replay";
 async function main() {
@@ -29,9 +31,25 @@ async function main() {
     const archived = packAnalysisResult(manifest, result);
     assert.deepEqual(unpackAnalysisResult(archived.id, archived.payload).result, result);
     assert.equal(packDataset(baseline.companies, baseline.timeSeries).id, captured.workbook.id);
+    const exportedRows = [
+      { field:"companyCount",value:result.companyCount },
+      { field:"rowCount",value:result.rowCount },
+      { field:"effectiveInputHash",value:result.effectiveInputHash },
+    ];
+    const identity=await exportDataIdentity(exportedRows);
+    const workbook=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook,XLSX.utils.json_to_sheet(identity.normalized),"Data");
+    XLSX.utils.book_append_sheet(workbook,XLSX.utils.json_to_sheet([
+      {manifestId:manifest.id,resultId:archived.id,exportDataHash:identity.hash,
+        scope:"Isolated engineering replay fixture; not scientific acceptance"},
+    ]),"Identity");
+    const restored=XLSX.read(XLSX.write(workbook,{type:"buffer",bookType:"xlsx"}),{type:"buffer"});
+    assert.deepEqual(XLSX.utils.sheet_to_json(restored.Sheets.Data),identity.normalized);
+    assert.equal((XLSX.utils.sheet_to_json(restored.Sheets.Identity) as any[])[0].resultId,archived.id);
     assert.throws(() => applyOverlays(baseline, overlays, "1900-01-01"), /cutoff/);
     assert.throws(() => unpackOverlay("0".repeat(64), captured.overlays[0].payload), /hash/);
-    writeFileSync(process.argv[4], JSON.stringify({ resultHash: archived.id, result }));
+    writeFileSync(process.argv[4], JSON.stringify({ resultHash: archived.id,exportHash:identity.hash,
+      xlsxRoundtrip:true, result }));
     return;
   }
   const { resolveSnapshot, loadSnapshot } = await import("../server/snapshots/store");

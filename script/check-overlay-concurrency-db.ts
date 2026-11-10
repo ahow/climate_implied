@@ -8,12 +8,18 @@ import { overlayContext,loadOverlay } from "../server/snapshots/overlays";
 import { stageOverlayReviewInTransaction,decideOverlayReviewInTransaction } from "../server/snapshots/overlayReview";
 import { calculateSDGGrowthDifferential } from "../server/climateValuation/sdgGrowthCalculator";
 import { contentHash } from "../server/calculation/analysisManifest";
+import { combinedRefreshFixture } from "./combined-refresh-fixture";
+import { runWithOverrideRows,requestOverrides,type OverrideRow } from "../server/dataIngestion/requestOverrides";
 if(process.env.NODE_ENV==="production") throw new Error("Development only");
 const header=await resolveSnapshot();assert.ok(header);
 const baseline=await snapshotContext.run(header,()=>calculateSDGGrowthDifferential(.08));
 const digest=(x:unknown)=>contentHash(JSON.parse(JSON.stringify(x)));
 const baselineHash=digest(baseline),marker=randomUUID(),rollback=new Error("rollback");
 let proposalId="",decisionId="",overlayId="";
+let extra:Awaited<ReturnType<typeof combinedRefreshFixture>>|undefined;
+const originalDrivers=await db.execute(sql`SELECT indicator_key AS "indicatorKey",year,value,source,
+ source_url AS "sourceUrl",as_of_date AS "asOfDate",method FROM indicator_values WHERE status='approved' ORDER BY indicator_key,year`);
+const originalDriverHash=runWithOverrideRows(originalDrivers.rows as OverrideRow[],()=>requestOverrides.getStore()!.hash);
 try {
   await db.transaction(async tx=>{
     const candidates=await tx.execute(sql`SELECT c.id,t.date FROM cv_companies c JOIN cv_time_series t ON t.company_id=c.id
@@ -24,12 +30,14 @@ try {
     let release!:()=>void;
     const pending=new Promise<void>(resolve=>{release=resolve;});
     // Old request starts before approval, suspends while the reviewed request runs.
-    const oldRequest=snapshotContext.run(header,async()=>{
+    const oldRequest=runWithOverrideRows(originalDrivers.rows as OverrideRow[],()=>snapshotContext.run(header,async()=>{
       await pending;
       assert.equal(overlayContext.getStore(),undefined,"Overlay must not leak across requests");
+      assert.equal(requestOverrides.getStore()!.hash,originalDriverHash,"Current driver refresh must not contaminate suspended request");
       return calculateSDGGrowthDifferential(.08);
-    });
+    }));
     try {
+      extra=await combinedRefreshFixture(tx,marker,Number(row.id),observationDate);
       proposalId=await stageOverlayReviewInTransaction(tx,[{companyId:Number(row.id),
         observationDate,availableAt:observationDate,kind:"sdg",field:"sdgAlignmentScore",
         unit:"score",value:-100,source:`rollback-only:${marker}`,approvalEvidence:"Disposable fixture, not real review",
@@ -37,17 +45,28 @@ try {
       const decision=await decideOverlayReviewInTransaction(tx,proposalId,"approved");
       decisionId=String(decision.id);overlayId=decision.overlayId!;
       const overlay=await loadOverlay(overlayId,tx);
-      const modified=await snapshotContext.run(header,()=>overlayContext.run({
-        ids:[overlayId],cutoff:decision.decidedAt.slice(0,10),overlays:[overlay],
-      },()=>calculateSDGGrowthDifferential(.08)));
+      const carbon=await loadOverlay(extra.carbonOverlayId,tx);
+      const modified=await runWithOverrideRows(extra.driverRows as OverrideRow[],()=>snapshotContext.run(header,()=>overlayContext.run({
+        ids:[extra!.carbonOverlayId,overlayId],cutoff:decision.decidedAt.slice(0,10),overlays:[carbon,overlay],
+      },()=>{
+        assert.notEqual(requestOverrides.getStore()!.hash,originalDriverHash);
+        return calculateSDGGrowthDifferential(.08);
+      })));
       assert.notEqual(digest(modified),baselineHash,"The approved perturbation must affect this request");
     } finally { release(); }
     assert.equal(digest(await oldRequest),baselineHash,"Old in-flight request retains baseline after review");
     throw rollback;
   });
 } catch(e) {if(e!==rollback) throw e;}
-for(const id of [proposalId,decisionId,overlayId])
+for(const id of [proposalId,decisionId,overlayId,...(extra?.archiveIds ?? [])])
   assert.equal((await db.execute(sql`SELECT id FROM cv_analysis_snapshots WHERE id=${id}`)).rows.length,0);
-console.log(JSON.stringify({status:"pass",scope:"Actual SDG review/request overlap only",baselineHash,
+assert.ok(extra);
+assert.equal((await db.execute(sql`SELECT id FROM financial_reviews WHERE id=${extra.financialId}`)).rows.length,0);
+assert.equal((await db.execute(sql`SELECT id FROM indicator_values WHERE id=${extra.driverId}`)).rows.length,0);
+const restoredDrivers=await db.execute(sql`SELECT indicator_key AS "indicatorKey",year,value,source,
+ source_url AS "sourceUrl",as_of_date AS "asOfDate",method FROM indicator_values WHERE status='approved' ORDER BY indicator_key,year`);
+assert.equal(runWithOverrideRows(restoredDrivers.rows as OverrideRow[],()=>requestOverrides.getStore()!.hash),originalDriverHash);
+console.log(JSON.stringify({status:"pass",scope:"Combined financial/carbon/SDG/driver real helper transaction; SDG result and driver-context overlap",
+  limitation:"Current financial review remains separate from historical workbook substitution; not all-nine-path combined-refresh acceptance",baselineHash,
   modifiedRequestChanged:true,oldRequestUnchanged:true,completeRollback:true,realApprovals:0}));
 process.exit(0);
