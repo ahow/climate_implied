@@ -816,6 +816,7 @@ export async function registerRoutes(
   app.get("/api/cv/uploads", async (_req, res) => {
     try {
       const uploads = await db.select().from(cvDataUploads).orderBy(desc(cvDataUploads.id));
+      for (const upload of uploads) bindNestedOutput("upload", upload);
       res.json(uploads);
     } catch (error) {
       console.error("Get uploads error:", error);
@@ -861,6 +862,7 @@ export async function registerRoutes(
       const uploadId = parseInt(req.params.id);
       const [result] = await db.select().from(cvDataUploads).where(eq(cvDataUploads.id, uploadId)).limit(1);
       if (!result) return res.status(404).json({ error: "Upload not found" });
+      bindNestedOutput("upload", result);
       res.json(result);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch upload status" });
@@ -1114,6 +1116,7 @@ export async function registerRoutes(
     try {
       const validMonths = newsMonthWindow(_req.query.months);
       const result = await getClimateNewsAnalysis(validMonths);
+      bindNestedOutput("news", result);
       res.json(result);
     } catch (error: any) {
       console.error("[NewsAPI] Error:", error.message);
@@ -1175,6 +1178,7 @@ export async function registerRoutes(
         };
       });
 
+      bindNestedOutput("indicatorInventory", { indicators, baselineYear: 2024, latestYear: latestRow.year });
       res.json({ indicators, baselineYear: 2024, latestYear: latestRow.year });
     } catch (error) {
       console.error("[data] indicators error:", error);
@@ -1211,6 +1215,7 @@ export async function registerRoutes(
         };
       });
       const proposals = await getValuesForKey(key);
+      bindNestedOutput("indicatorDetail", { def, series, proposals });
       res.json({ def, series, proposals });
     } catch (error) {
       console.error("[data] indicator detail error:", error);

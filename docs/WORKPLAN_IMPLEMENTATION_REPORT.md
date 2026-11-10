@@ -1,6 +1,22 @@
 # Workplan implementation report
 
+## Source investigation and nine-path integration — 2026-11-10
+
+Prior89dd798/live5eb557f retained. NEW138original semantic slots closed(news19,indicator49,upload16,existingtypedXLSX54),724/1001bound,277remaining,cumulative295originalclosed,691definitions. Denominatorunchanged;27withheld/fouraliases/native187+35/replay22 preserved. New shared/newsFieldSemantics.ts,dataManagementSemantics.ts;routes/news/data-management pages;actualtypedexport census matching;operationalcontracttests. Separate replaymetadata-sheet inventory added,notcountedasoriginalclosure;dynamicexpressions remainunverified.
+
+NEW source investigation in kaya_source_assembly.py/kaya_primary_history_sources.py:fixedEU27 missing54GDPcells2023–24;Maddisonprimary131144rowsends2022,release2024-04-26,CC-BY4.0. CurrentWorldBank2021PPP incompatiblewithfrozen2011PPP;no splice/windowshortening/fabrication. IndependentIGCCannualERF275rows1750–2024,GMST175rows1850.5–2024.5 retrieved/pinned;notmatchedFaIRSSP/memberreference orannualtoleranceacceptance. FournewPython tests pass. Exactsourcehashes/URLs/licence/retrievaldates/failedURLattempts inupdatedUserUnitB_Climate_Efficacy_Results.md/privatekaya-source-investigationreports.
+
+NEW actualnine-path development integration reuses replay-sdg-result.ts dispatcher through expandedcheck-overlay-concurrency-db.ts andverify-overlay-replay.ts. Combinedfinancial/carbon/SDG/driverhelpers+selection contexts;baseline/modified/suspendedold/baseline-return allninecalculators run. ActualSDG/backtest/summary outputschange;oldrequestdoesnot. CompleteDBrollback anddriverrestoration verified. Twofreshprocesses identicalactualnineoutputs, resultcontract andchunkedXLSXreadback; missingdependency/sourcepin mismatchreject. Result42353833a2fd14cc0811a2b0247736a0a22a0364f442a328b6beab222d5f4f31 on2442companies/470341observations. Logs generated-artifacts/overlay-replay/{concurrency,replay,tests,typecheck}.log. CanonicalizedexportedJSON afterpropertyorderfailure; correctfinancialfixtureworkflow afterrejection, noapprovalbypass.
+
+Remainingacceptance:nonemptyband/targetterciles needactualtargetbaseyear/overlayfields;neverassume2024. Financialreview isseparatefromsynthetichistoricaloverlay. RetainedworkbookstillloadsDEVDB;notfulloffline/actualHTTPendpoint/current-source-mutation acceptance. No realissuer approvals. FullStage12casesremain0/3;Stage14efficacywithheld. Frozenprotocols/collector/publicPOST403 unchanged.
+
+Finalcoherentcommand `npm run check && npx tsx --test script/*.test.ts && npm run build`,06:19:14Z:293pass/0fail/0skip;loggenerated-artifacts/workplan-completion/20261110T061914813041Z.log. FournewPython testsseparate. Counts10verified/64partial/2blocked/224unreconciled unchanged; these developments advance existingpartials,notcompleteacceptance.
+
 ## Final second-pass integration — 2026-11-10
+
+Exact new functions: forecast_kaya.prepare/evaluate;independent_fair_benchmark.compare/main;reference_gas_infill.harmonise/summarise_stratum/main;prepareProspectiveSignal;captureProspectiveSignalInTransaction/captureProspectiveSignal. Final fullTSsuite includes the existing freshprocess result/XLSX regressions; no standalone unchangedreplay-only run was added. This is notfull9path/nonemptytarget/lifecycle acceptance.
+
+Final release: workspace8faa835be9e552978a02529779b9ed27160c588f,GitHub/exactlive5eb557f063d2ad0473360995c8fabe2708e38b7a,CI42764239015success,Railway90b18c88-2690-4a7e-8623-7841b34dfa3f. At05:49:53Z buildSHA/health200 andaffectedAPIbacktest/peer-summary/peer-history200 with34/21/2boundfields confirmed. TwoAPIformats account for49backtestslots;34headerfields inenvelope are not49simultaneousfields. Workflowrestartclean;capturedUIshowsloading/unavailable withcorrectwithholdinglabels,notpopulatedtable/downloadvisualacceptance. Final289TS/8newPython tests separately; no data/science/ownerpromotion. Run stopsatcontextbudget withremainingoriginalscope actionable; next_action updatedto586/1001,415remaining,528endpointreferenceand12infillrunlimits.
 
 Added23more ORIGINAL semantic slots after first49: NEW72thisrun; cumulative157oforiginal572closed.586/1001bound,415remaining,608definitions,denominator+0,fouraliases separate. New peerValuationSemantics.ts/APIafter-public-filter bindings,peercontracttest and11additional gap-pageannotations;26newdisplayannotations thisrun,59total. Existing10summary+5history unsupportedphysicalfields remainwithheld; no extraexclusion. No currentlyexisting download exports these summary/historyfields, so separate group/backtest downloads were notmisbound. Dynamic/customsheet/replaymetadata census remainsincomplete. Fullstrictgate stillfalse.
 
@@ -964,6 +980,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-sleeves-semantics-43917a6",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T05:17:19.350752+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-infill-semantics-5eb557f",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T05:52:05.664074+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

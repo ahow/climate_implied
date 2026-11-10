@@ -19,15 +19,10 @@ import { runWithOverrideRows } from "../server/dataIngestion/requestOverrides";
 import { historicalInputContext } from "../server/calculation/historicalIndicators";
 import { publicValuationResult } from "../server/calculation/publicValuationContract";
 import { writeFileSync } from "node:fs";
-const [id,out]=process.argv.slice(2);
-const result=await loadAnalysisResult(id);
-const path=result.manifest.scenario.replace("descriptive-valuation:","");
-const material=await loadMaterialArchive(String(result.manifest.settings.materialInputsId),"material-inputs");
-assert.equal(currentSourceArchiveId(),material.sourceArchive,"Replay executable source/config/dependency version differs");
-const header=await resolveSnapshot(material.workbook); assert.ok(header);
-const overlays=await Promise.all(material.overlays.map((id:string)=>loadOverlay(id)));
-const settings=result.manifest.settings;
-const calculate=async()=>{
+import { pathToFileURL } from "node:url";
+export const replayPaths=["/sdg-growth","/pe-comparison","/decarb-bands","/decarb-terciles",
+  "/decarb-gap/summary","/decarb-gap/timeseries","/carbon-price","/backtest","/summary"] as const;
+export async function calculateSelectedResult(path:string,settings:Record<string,any>,header:{id:string}) {
   const rate=Number(settings.costOfEquity ?? .08), geography=settings.geography as string|undefined;
   if(path==="/sdg-growth") return calculateSDGGrowthDifferential(rate,geography);
   if(path==="/pe-comparison") return computeTercilesOnTheFly(settings.method as "absolute"|"sector_relative",settings.includeScope3==="true");
@@ -61,7 +56,17 @@ const calculate=async()=>{
       imputation:computeImputationStats(carryForwardEmissions(timeSeries))};
   }
   throw new Error(`Executable replay not implemented for ${path}; never substitute another calculation`);
-};
+}
+async function main() {
+const [id,out]=process.argv.slice(2);
+const result=await loadAnalysisResult(id);
+const path=result.manifest.scenario.replace("descriptive-valuation:","");
+const material=await loadMaterialArchive(String(result.manifest.settings.materialInputsId),"material-inputs");
+assert.equal(currentSourceArchiveId(),material.sourceArchive,"Replay executable source/config/dependency version differs");
+const header=await resolveSnapshot(material.workbook); assert.ok(header);
+const overlays=await Promise.all(material.overlays.map((id:string)=>loadOverlay(id)));
+const settings=result.manifest.settings;
+const calculate=()=>calculateSelectedResult(path,settings,header);
 const computed=await runWithOverrideRows(material.approvedValues,()=>
   historicalInputContext.run(material.effectiveHistoricalIndicators,()=>
     snapshotContext.run(header,()=>overlays.length ? overlayContext.run({
@@ -73,3 +78,6 @@ writeFileSync(out,JSON.stringify({id,materialInputsId:settings.materialInputsId,
   path,meaning:"Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"}));
 console.log("PASS real result recalculation",path,contentHash(normalized));
 process.exit(0);
+}
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href)
+  main().catch(error=>{console.error(error);process.exit(1);});

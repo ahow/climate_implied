@@ -25,6 +25,32 @@ type Entry={surface:string;field:string;type:string;source:string;line:number;re
 const entries:Entry[]=[];
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
 const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
+const verifiedExportBindings: {surface:string;field:string;id:string;transform:string}[]=[];
+const supplementalWorkbookInventory:{source:string;line:number;sheet:string;rowExpression:string;literalLabels:string[];coverage:string}[]=[];
+// Custom workbook builders are inventoried separately from the frozen original
+// API/DownloadDataButton cohort. Inventory alone never grants semantic closure.
+for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile &&
+  relativeSource(s.fileName)==="server/calculation/companyProjectionReplay.ts")) {
+  function inventory(node:ts.Node) {
+    if(ts.isVariableDeclaration(node)&&node.name.getText(source)==="tables"&&node.initializer&&ts.isObjectLiteralExpression(node.initializer))
+      for(const property of node.initializer.properties) {
+        if(!ts.isPropertyAssignment(property)) continue;
+        const literalLabels:string[]=[];
+        if(ts.isArrayLiteralExpression(property.initializer)) for(const row of property.initializer.elements) {
+          if(ts.isArrayLiteralExpression(row)&&row.elements[0]&&ts.isStringLiteral(row.elements[0]))
+            literalLabels.push(row.elements[0].text);
+        }
+        supplementalWorkbookInventory.push({source:relativeSource(source.fileName),
+          line:source.getLineAndCharacterOfPosition(property.getStart()).line+1,
+          sheet:property.name.getText(source),rowExpression:property.initializer.getText(source),literalLabels,
+          coverage:property.name.getText(source)==="Ledger"
+            ? "Ledger has separate exact 22-column semantic bindings; not counted again here"
+            : "Custom sheet structure inventory only; no original-slot closure or denominator change. Identity metadata is not scientific acceptance; FullResult contains chunked canonical JSON, not additional scalar field coverage"});
+      }
+    ts.forEachChild(node,inventory);
+  }
+  inventory(source);
+}
 if(!baseline) {
   const {companyReplayLedgerColumns}=await import("../shared/companyReplaySemantics");
   for(const column of companyReplayLedgerColumns) entries.push({surface:"XLSX server/calculation/companyProjectionReplay.ts:Ledger",
@@ -89,6 +115,25 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
             rows:prop.initializer.expression.getText(source),
             bindings:binding&&ts.isJsxAttribute(binding)?binding.initializer?.getText(source)??"MISSING":"MISSING",
             coverage:"Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"});
+          // Reconcile literal column bindings against the actual typed row fields,
+          // not merely against a similarly named semantic. Conditional objects,
+          // spreads and computed keys remain explicitly unverified here.
+          if(binding && ts.isJsxAttribute(binding) && binding.initializer &&
+            ts.isJsxExpression(binding.initializer) && binding.initializer.expression &&
+            ts.isObjectLiteralExpression(binding.initializer.expression)) {
+            const object=binding.initializer.expression;
+            if(!object.properties.some(ts.isSpreadAssignment)) for(const property of object.properties) {
+              if(!ts.isPropertyAssignment(property) || ts.isComputedPropertyName(property.name) ||
+                !ts.isObjectLiteralExpression(property.initializer)) continue;
+              const name=ts.isStringLiteral(property.name)?property.name.text:property.name.getText(source);
+              const values=new Map(property.initializer.properties.flatMap(p=>
+                ts.isPropertyAssignment(p)&&ts.isIdentifier(p.name)&&ts.isStringLiteral(p.initializer)
+                  ? [[p.name.text,p.initializer.text] as const]:[]));
+              const id=values.get("id"),transform=values.get("transform");
+              if(id && transform && outputFieldSemantics.some(f=>f.id===id))
+                verifiedExportBindings.push({surface:exportSurface,field:`[].${name}`,id,transform});
+            }
+          }
         }
         // Explicit schema consumed by both the actual row builder and bindings.
         // Do not infer arbitrary Object.fromEntries keys as covered.
@@ -114,13 +159,20 @@ const nativeDynamicDomains={
   "result.trajectory[].sectorsGtCO2e.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].sectorsGtCO2e.")).map(f=>f.id),
 };
 const isBound=(e:typeof unique[number])=>([
+  ['API GET "/api/news/climate"', "news"],
+  ['API GET "/api/data/indicators"', "indicatorInventory"],
+  ['API GET "/api/data/indicator/:key"', "indicatorDetail"],
+  ['API GET "/api/cv/upload/:id/status"', "upload"],
   ['API GET "/api/research/driver-registry"', "driverRegistry"],
   ['API GET "/api/reference-scenarios"', "publishedReference"],
   ['API GET "/api/cv/summary"', "companySummary"],
   ['API GET "/api/cv/dimensions"', "companyDimensions"],
   ['API GET "/api/cv/backtest"', "backtest"],
   ['API GET "/api/cv/decarb-gap/summary"', "peerValuation"],
-].some(([surface,prefix])=>e.surface===surface && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field}`))) || (e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
+ ].some(([surface,prefix])=>e.surface===surface && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field}`))) ||
+   (e.surface==='API GET "/api/cv/uploads"' && outputFieldSemantics.some(f=>f.id===`upload.${e.field.replace(/^\[\]\./,"")}`)) ||
+   verifiedExportBindings.some(b=>b.surface===e.surface&&b.field===e.field&&e.resolution==="typed-field") ||
+   (e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
   outputFieldSemantics.some(f=>f.id===`companyReplay.ledger.${e.field.replace(/^\[\]\./,"")}`)) || (e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
   nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
   Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
@@ -137,6 +189,8 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   fullyBoundFields:baseline?0:unique.filter(isBound).length,
   displayBindings,
   exportBindingMetadata,
+  supplementalWorkbookInventory,
+  verifiedExportBindings:verifiedExportBindings.filter(b=>unique.some(e=>e.surface===b.surface&&e.field===b.field&&e.resolution==="typed-field")),
   displayBindingScope:"Explicit data-field-id JSX elements only; separately counted, not additions to the original API/XLSX slot denominator. Unannotated display expressions remain unenumerated.",
   resolvedDynamicDomains:baseline?{}:nativeDynamicDomains,
   withheldFields:unique.filter(e=>e.resolution==="withheld-public-field"),
@@ -160,8 +214,19 @@ const originalClosureSurfaces = [
   'API GET "/api/cv/summary"', 'API GET "/api/cv/dimensions"',
   'API GET "/api/cv/backtest"',
   'API GET "/api/cv/decarb-gap/summary"', 'API GET "/api/cv/decarb-gap/timeseries"',
+  'API GET "/api/news/climate"', 'API GET "/api/data/indicators"', 'API GET "/api/data/indicator/:key"',
+  'API GET "/api/cv/uploads"', 'API GET "/api/cv/upload/:id/status"',
 ];
-const originalClosedSlots = unique.filter(e=>originalClosureSurfaces.includes(e.surface)&&isBound(e))
+// These existing DownloadDataButton families were present and wholly unbound
+// in the supplied cohort. Line movement does not introduce or remove a slot.
+const originalExportSources=[
+  "category-comparison.tsx","emissions-chart.tsx","historical-trend-chart.tsx",
+  "regional-comparison.tsx","sensitivity-chart.tsx","temperature-histogram.tsx",
+  "decarb-signal.tsx","decarb-gap-signal.tsx","news-sentiment.tsx",
+];
+const originalClosedSlots = unique.filter(e=>(originalClosureSurfaces.includes(e.surface) ||
+  (e.surface.startsWith("XLSX client/") && originalExportSources.some(file=>e.source.endsWith(`/${file}`)) &&
+    verifiedExportBindings.some(b=>b.surface===e.surface&&b.field===e.field)))&&isBound(e))
   .map(e=>({surface:e.surface,field:e.field}));
 const reconciliation = baseline ? {} : {
   originalGapReconciliation: {
@@ -171,7 +236,7 @@ const reconciliation = baseline ? {} : {
     currentPublicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length,
     publicSlotDenominatorDelta:unique.filter(e=>e.resolution!=="withheld-public-field").length-1001,
     reconciledCacheAliases:4,
-    note:"Only explicitly reviewed original response families count as closure here: previous 85, backtest 49, peer valuation summary/history 23. Withheld physical claims are not closure. Definition additions and separately inventoried displays/export binding expressions are not original slot closure.",
+    note:"Only explicitly reviewed original API families and typed literal columns from existing DownloadDataButton families count as closure. Export closures require matching typed row column, qualified semantic ID and literal transformation; spreads/computed/conditional keys remain unverified. Withheld claims, new definitions, displays and unverified binding expressions are not original slot closure.",
   },
 };
 const out=JSON.stringify({...report,...reconciliation},null,2)+"\n";

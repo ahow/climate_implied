@@ -113,3 +113,99 @@ failure logs are retained in that directory. Ephemeral `uv --with` dependencies
 resolved IO without changing package manifests or scientific thresholds. No
 retuning followed any outcomes. No UI changed or signed-in UI verification
 performed; app-level checks belong to the owning agent.
+
+## Primary-source and annual-history investigation, 2026-11-10 UTC
+
+The new `script/kaya_source_assembly.py` verifies frozen hashes, inventories both
+retained energy alternatives, and audits explicit fixed EU27 membership for all
+four fields over 2010–2024. **54 member GDP cells are missing: all 27 countries
+in 2023 and 2024.** Other member/year/field cells are present. Candidate sums are
+private, not substituted for the frozen published region. Any missing member
+produces a missing sum, never a partial aggregate.
+
+World still lacks GDP 2011–2014 and 2023–2024; China, India and US lack GDP
+2023–2024; published EU27 lacks GDP throughout. Rest of World lacks an authorized
+disjoint fixed partition reconciled to energy/CO2 bunker boundaries.
+International transport has no source-defined GDP/population account. Neither
+has the required published series. No subtraction from unmatched World totals,
+interpolation, shortened window or incompatible splice was used. **Zero ready
+entities:** original forecast gates cannot yet run, and no fitted winner or
+statistical reject is claimed.
+
+Exact gaps, fixed membership, country inventory, retained-source hashes and
+dated HTTP receipts are private:
+`generated-artifacts/kaya-source-investigation/f19cb32dc224480f8cf03c972386390c2c200ed411b61155af7063731cacea86.json`.
+
+### GDP investigation beyond the retained seven-entity failure
+
+The Groningen MPD 2023 primary release page explicitly states **169 countries
+through 2022**, and CC BY 4.0. Its release index lists editions through 2023.
+The linked [Dataverse dataset](https://doi.org/10.34894/INZBF2) supplied real
+XLSX and Stata files; actual Stata inspection confirms 131,144 rows, years
+1–2022. Neither format fills 2023–2024. Dataset metadata records release time
+2024-04-26T08:43:37Z and CC-BY-4.0; that is not observation-specific vintage
+evidence. World Bank NY.GDP.MKTP.PP.KD metadata explicitly uses **constant 2021
+international dollars**, not constant 2011 PPP. It cannot fill frozen GDP cells.
+Energy alternatives remain inadmissible under the no-splice protocol.
+
+| Evidence | SHA256 |
+|---|---|
+| Groningen MPD page | `78318c9dbce08b616d205a9c1fe5d6583cb207c9b8add3b90238204b137614d2` |
+| Groningen release index | `a3a254dfea1a4574d8a5c02b256ab07e99a212473aafb7048b4b3dcbf82eadc6` |
+| MPD XLSX, datafile 421302 | `ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6` |
+| MPD Stata, datafile 421303 | `2bc62ccbd795d4d330ef9ead6dc29c39e956922b43264640eba52d2c244841cb` |
+| Dataverse metadata | `85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669` |
+| World Bank metadata | `8fa44ef12f5d906067ccfa55468a6c55446b483df84db42ef5788fc300e8e64c` |
+
+### Independent annual-history fallback advanced
+
+`script/kaya_primary_history_sources.py` follows discovered primary links and
+retains independent histories from
+[ClimateIndicator/forcing-timeseries](https://github.com/ClimateIndicator/forcing-timeseries)
+revision `852f4f7b0733fa4d573c145cdfaf556da5589231`.
+Published `output/ERF_best_1750-2024.csv` passes a strict **275 annual rows**
+and finite-cell inventory. Published `data/gmst/IGCC_GMST_1850-2024.csv` passes
+**175 annual rows**, preserving explicit half-year coordinates 1850.5–2024.5.
+These are physical histories, **not matched annual SSP/member FaIR numerical
+references**. No endpoint interpolation or self-comparison was performed.
+The original annual ≤0.01°C gate remains unavailable. Baseline, forcing
+definition, calibration independence and matched-trajectory validation remain
+open; source acquisition alone is not historical calibration validation.
+
+| Evidence | SHA256 |
+|---|---|
+| Independent annual ERF | `be4020f78361563fc215cc71d169e3d3800d0cf677c5d1174653098c82618331` |
+| Independent annual GMST | `94cbfe9c7a6024412aeba8e0be934417bc9ca78cf0a73bcd12a2261a6138e7f0` |
+| Repository README | `146c15d6c2e6553db07de734f4bcf018e1972115dac1332d37c0b93584b3ed3c` |
+| MIT licence | `7930d540ce08efbd63edde879dbe8ff46df8bd0dcbb66678a8f6649058cb9f71` |
+
+The README warns six ancillary datasets require registration or are not public
+domain, with some offline radiative-transfer inputs. MIT code licensing is not
+blanket third-party redistribution permission. No restricted inputs were
+accessed; retained histories remain private. Its preliminary-2025 warning does
+not establish contemporaneous vintages for the explicit 2024 files.
+
+The pinned FAIR tree was inspected without rerunning the 528 endpoint cells:
+published SSP NetCDF references are endpoint-only. OMS-NetZero/fair-calibrate
+repository and main-tree requests returned retained HTTP 404 receipts, not proof
+that no annual reference exists elsewhere.
+
+Follow-up evidence:
+`generated-artifacts/kaya-source-investigation/c2069b4c5534b9e08e50a85003669f85337241849203e658ce5ae373231217e8.json`.
+The receipt label `maddisonDocumentation` denotes the actual Stata file; the code
+now calls it `maddisonStata`. An initial integer-coordinate inventory rejected
+GMST; the final inventory explicitly preserves its .5 coordinate offset.
+All retrieval timestamps are retrieval dates, not information-availability dates.
+These remain current-revision/revised-history sources; central eligibility false.
+
+```
+python3 script/kaya_source_assembly.py
+python3 script/kaya_primary_history_sources.py
+python3 -m unittest discover -s script -p test_kaya_source_assembly.py -v
+```
+
+Four focused tests pass: fixed/full membership; missing-cell/partial-sum
+rejection; duplicate/nonfinite rejection; and annual gap/coordinate validation.
+Completed 528 endpoint/12 infill/EV/fleet/beta results were preserved without
+reruns or promotion. No production writes, central ledger changes, collector,
+approval, dashboard or release changes were made.

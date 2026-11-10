@@ -58,10 +58,10 @@ test("23 additional original slots close while all 15 existing withheld peer cla
     const family=census.families.find((f:{surface:string})=>f.surface===`API GET "/api/cv/decarb-gap/${path}"`);
     assert.equal(family.total,total); assert.equal(family.bound,bound); assert.equal(family.withheld.length,withheld);
   }
-  assert.equal(census.fullyBoundFields,586);
+  assert.equal(census.fullyBoundFields,724);
   assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,157);
-  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,415);
+  assert.equal(census.originalGapReconciliation.closedOriginalSlots,295);
+  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,277);
   assert.equal(census.displayBindings.filter((b:{id:string})=>b.id.startsWith("peerValuation.")).length,11);
   assert.equal(census.completion,false);
 });

@@ -286,6 +286,12 @@ export default function NewsSentiment() {
             </Card>
           </div>
 
+          <p className="text-sm text-muted-foreground" data-field-id="news.sentiment[].positive">
+            Sentiment counts are allocated estimates from up to 200 recent articles, not observed monthly classifications.
+            Months with fewer than five scored articles use the pooled mean. No scored articles triggers legacy
+            defaults (40% positive, 15% negative, zero mean). Topic counts extrapolate title matches with a 5% floor;
+            topics overlap. The six-hour cache is not original-vintage evidence.
+          </p>
           <Card className="p-4" data-testid="card-volume-chart">
             <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
               <h3 className="text-sm font-semibold">Weekly News Volume</h3>
@@ -294,6 +300,10 @@ export default function NewsSentiment() {
                 filename="weekly-news-volume"
                 sheetName="News Volume"
                 rows={volumeRows}
+                fieldBindings={{
+                  "Week Of":{id:"news.volume[].date",transform:"Group daily dates by Sunday: local setDate(getDate() - getDay()), then toISOString().split('T')[0]"},
+                  "Article Count":{id:"news.volume[].count",transform:"Sum daily provider counts in Sunday week bucket"},
+                }}
                 testId="button-download-volume"
               />
             </div>
@@ -343,6 +353,14 @@ export default function NewsSentiment() {
                   kind="news"
                   sheetName="Sentiment Trend"
                   rows={sentimentTrendRows}
+                  fieldBindings={{
+                    Month:{id:"news.sentiment[].date",transform:"Identity"},
+                    "Avg Sentiment":{id:"news.sentiment[].avgSentiment",transform:"Identity; sampled mean or pooled fallback"},
+                    "Positive Articles":{id:"news.sentiment[].positive",transform:"Identity; allocated estimate, not observed classifications"},
+                    "Neutral Articles":{id:"news.sentiment[].neutral",transform:"Identity; allocated estimate"},
+                    "Negative Articles":{id:"news.sentiment[].negative",transform:"Identity; allocated estimate"},
+                    "Total Articles":{id:"news.sentiment[].total",transform:"Identity; provider monthly volume"},
+                  }}
                   testId="button-download-sentiment-trend"
                 />
               </div>
@@ -392,6 +410,12 @@ export default function NewsSentiment() {
                   kind="news"
                   sheetName="Sentiment Breakdown"
                   rows={sentimentBreakdownRows}
+                  fieldBindings={{
+                    Month:{id:"news.sentiment[].date",transform:"Identity"},
+                    "Positive (%)":{id:"news.sentiment[].positive",transform:"total > 0 ? Math.round(positive / total * 100) : 0"},
+                    "Neutral (%)":{id:"news.sentiment[].neutral",transform:"total > 0 ? Math.round(neutral / total * 100) : 0"},
+                    "Negative (%)":{id:"news.sentiment[].negative",transform:"total > 0 ? Math.round(negative / total * 100) : 0"},
+                  }}
                   testId="button-download-sentiment-breakdown"
                 />
               </div>
@@ -428,6 +452,11 @@ export default function NewsSentiment() {
                   kind="news"
                   sheetName="Topic Coverage"
                   rows={topicRows}
+                  fieldBindings={{
+                    Topic:{id:"news.topicBreakdown[].topic",transform:"Identity"},
+                    "Article Count":{id:"news.topicBreakdown[].count",transform:"Identity; extrapolated with 5% floor"},
+                    "Avg Sentiment":{id:"news.topicBreakdown[].avgSentiment",transform:"Identity; matched sample mean or pooled fallback"},
+                  }}
                   testId="button-download-topic"
                 />
               </div>

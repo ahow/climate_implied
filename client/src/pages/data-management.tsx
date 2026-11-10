@@ -290,10 +290,10 @@ export default function DataManagement() {
                       )}
                       {provenanceBadge(ind.provenance)}
                       <div className="text-right w-28">
-                        <p className="font-mono font-semibold" data-testid={`text-value-${ind.key}`}>
+                        <p className="font-mono font-semibold" data-field-id="indicatorInventory.indicators[].appliedValue" data-testid={`text-value-${ind.key}`}>
                           {formatValue(ind.appliedValue, ind.decimals)}
                         </p>
-                        <p className="text-[10px] text-muted-foreground">
+                        <p className="text-[10px] text-muted-foreground" data-field-id="indicatorInventory.indicators[].unit">
                           {ind.unit} · {ind.appliedYear}
                         </p>
                       </div>
