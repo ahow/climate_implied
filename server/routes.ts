@@ -418,13 +418,19 @@ export async function registerRoutes(
     }
     try {
       const inputs = resolveEmissionsInputs();
-      res.json({
+      const response = {
         promotion: "blocked-pending-calibration-and-Packages-3-4",
         inventory: candidateInventory(),
         inputs,
         result: projectNativeEmissions(req.query.scenario === "dashboard" ? inputs.diagnostic :
           req.query.scenario === "transition" ? illustrativeScenario : constantScenario),
-      });
+      };
+      const fields=bindNestedOutput("native",response);
+      // Avoid oversized headers: exact bindings are available in the registry;
+      // discriminator-specific gas/sector IDs remain distinct there.
+      res.set("X-Field-Semantics-Family","native");
+      res.set("X-Field-Semantics-Count",String(fields.length));
+      res.json(response);
     } catch (error) {
       res.status(422).json({ error: error instanceof Error ? error.message : "Invalid candidate inputs" });
     }

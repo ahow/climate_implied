@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
+import { DownloadDataButton } from "./download-data-button";
+import { nativeExportRow,nativeExportBindings } from "@shared/nativeExport";
 
 type CandidateResponse = {
   inputs?: {
@@ -30,6 +32,7 @@ type CandidateResponse = {
       year: number;
       reportingGtCO2e: number;
       nativeMt: Record<string, number>;
+      sectorsGtCO2e: Record<string,number>;
     }[];
   };
 };
@@ -124,8 +127,8 @@ export function EmissionsCandidateReview() {
             </caption>
             <thead>
               <tr className="border-b text-muted-foreground">
-                <th scope="col" className="py-2 text-left font-medium">Year</th>
-                <th scope="col" className="py-2 text-right font-medium">Emissions (GtCO2e)</th>
+                <th scope="col" data-field-id="native.result.trajectory[].year" className="py-2 text-left font-medium">Year</th>
+                <th scope="col" data-field-id="native.result.trajectory[].reportingGtCO2e" className="py-2 text-right font-medium">Reporting emissions (GtCO2e, AR6 GWP100)</th>
               </tr>
             </thead>
             <tbody>
@@ -144,6 +147,12 @@ export function EmissionsCandidateReview() {
               })}
             </tbody>
           </table>
+          <DownloadDataButton
+            kind="native"
+            filename={`native-emissions-${scenario}`}
+            rows={data.result.trajectory.map(nativeExportRow)}
+            fieldBindings={nativeExportBindings}
+          />
         </div>
       )}
 
@@ -173,7 +182,7 @@ export function EmissionsCandidateReview() {
             {data.inputs.readiness?.missing?.length ? (
               <ul aria-label="Missing readiness requirements" className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
                 {data.inputs.readiness.missing.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li data-field-id="native.inputs.readiness.missing[]" key={index}>{item}</li>
                 ))}
               </ul>
             ) : (
@@ -196,10 +205,10 @@ export function EmissionsCandidateReview() {
                   </caption>
                   <thead>
                     <tr className="border-b text-muted-foreground">
-                      <th scope="col" className="py-2 pr-4 text-left font-medium">Indicator</th>
-                      <th scope="col" className="py-2 pr-4 text-left font-medium">2024 value / unit</th>
-                      <th scope="col" className="py-2 pr-4 text-left font-medium">Role</th>
-                      <th scope="col" className="py-2 text-left font-medium">Reason</th>
+                      <th scope="col" data-field-id="native.inputs.indicators[].label" className="py-2 pr-4 text-left font-medium">Indicator</th>
+                      <th scope="col" data-field-id="native.inputs.indicators[].value" className="py-2 pr-4 text-left font-medium">2024 value / unit</th>
+                      <th scope="col" data-field-id="native.inputs.indicators[].role" className="py-2 pr-4 text-left font-medium">Role</th>
+                      <th scope="col" data-field-id="native.inputs.indicators[].reason" className="py-2 text-left font-medium">Reason</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -240,7 +249,7 @@ export function EmissionsCandidateReview() {
             {data.inputs.assumptions?.length ? (
               <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
                 {data.inputs.assumptions.map((assumption, index) => (
-                  <li key={index}>{assumption}</li>
+                  <li data-field-id="native.inputs.assumptions[]" key={index}>{assumption}</li>
                 ))}
               </ul>
             ) : (

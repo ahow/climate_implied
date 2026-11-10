@@ -1,6 +1,11 @@
 import { currentSelection } from "./analysis-selection";
 /** Interpretation travels with downloaded data, rather than only with its page. */
 export const exportContracts = {
+  native: {
+    status:"Uncalibrated native-emissions candidate",
+    interpretation:"Global deterministic conditional emissions using native gas masses and AR6 GWP100 reporting. No temperature, regional climate or ensemble probability claim.",
+    limitation:"Control/illustrative/dashboard inputs are not approved calibrated policy forecasts. Published inventory uncertainty is not forecast uncertainty; retained hashes are not publication-vintage proof.",
+  },
   legacy: {
     status: "Unsupported legacy diagnostic",
     interpretation: "Not a validated climate forecast. Aggregate GHG is passed through a CO2-only response with a fixed warming offset. Regional values are global counterfactuals, not regional temperatures.",

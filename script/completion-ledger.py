@@ -6,6 +6,7 @@ requirements, not licensed analytical inputs. Existing reports are pointers,
 not automatically treated as verified test executions.
 """
 import argparse
+from collections import Counter
 import hashlib
 import json
 import re
@@ -142,8 +143,17 @@ def validate(ledger):
     return len(ids)
 
 
+def refresh_summary(ledger):
+    ledger["stage_status_counts"] = {
+        str(stage["stage"]): dict(Counter(r["status"] for r in stage["requirements"]))
+        for stage in ledger["stages"]
+    }
+
+
 def render(ledger):
     validate(ledger)
+    refresh_summary(ledger)
+    JSON_PATH.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")
     lines = ["# Workplan completion ledger", "",
              "Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.",
              "**Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.",

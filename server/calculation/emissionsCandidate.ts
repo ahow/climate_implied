@@ -169,6 +169,9 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
     const utilizedNuclearTWh = Math.min(nuclearTWh, demandTWh);
     const utilizedRenewableTWh = Math.min(renewableTWh, Math.max(0, demandTWh - utilizedNuclearTWh));
     const fossilTWh = Math.max(0, demandTWh - utilizedRenewableTWh - utilizedNuclearTWh);
+    if (![capacity,renewableTWh,nuclearTWh,totalEvTWh,evDemandTWh,demandTWh,
+      utilizedNuclearTWh,utilizedRenewableTWh,fossilTWh].every(Number.isFinite))
+      throw new Error("Nonfinite electricity balance");
     const delivery = 1 - Math.exp(-Math.max(0, t - s.deliveryLagYears) / s.deliveryTimeYears);
     const policy = s.incrementalPolicyCoverage * s.policyImplementation * s.maximumAbatement * delivery;
     const corporate = s.corporateCoverage * s.corporateDelivery * s.maximumAbatement * delivery;
@@ -220,6 +223,8 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
       sectorsGtCO2e[sector] = (sectorsGtCO2e[sector] ?? 0) + co2e;
       reportingGtCO2e += co2e;
     }
+    if (![reportingGtCO2e,co2FossilMt,co2LandUseMt,...Object.values(nativeMt),...Object.values(sectorsGtCO2e)].every(Number.isFinite))
+      throw new Error("Nonfinite native/reporting aggregate");
     trajectory.push({ year, status: t === 0 ? "inventory" : "scenario-not-observation", nativeMt,
       ...(includeCells ? { nativeCellsMt } : {}),
       reportingGtCO2e, sectorsGtCO2e, co2FossilMt, co2LandUseMt, evSalesShare: sales, evFleetShare: fleet,

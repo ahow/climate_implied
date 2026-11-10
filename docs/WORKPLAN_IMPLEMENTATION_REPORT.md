@@ -139,6 +139,95 @@ One compiler-unresolved slot (inputRevision) now has explicit runtime semantics;
 its type precision is still unresolved. No new frozen calibration/valuation
 study executed and no scientific gate promoted. Second release receipt follows.
 
+Second release verified2026-11-10T03:01:57Z:
+workspace b6a646e34c7a851603d6b76cc05928cbede140cb;
+GitHub/live90049c3303474bd28153c5aa8bc4fd4f9fbc2e6e;
+CI42746035384 success; Railway c562a981-f5e0-4fd2-a9b9-8879606812f6 SUCCESS.
+Live build-info matched exactly, health returned ok, semantics registry192.
+Strict completeness still explicitly fails175/938. Development dashboard
+screenshot renders correctly without console errors.
+
+The largest next unbound schema is /api/emissions/candidate (187 slots),
+including paired diagnostic/selected scenario parameters, native-gas balances,
+inventory provenance and readiness. Its current code was inspected; it remains
+explicitly uncalibrated, temperature=null and promotion blocked. No candidate
+promotion or scientific result is implied by semantic coverage.
+
+### Run boundary
+The boundary below belongs to the previous run. New continuation work follows.
+Stopping at this run's context capacity, not completion or exhaustion of
+actionable work. All original stages0–17 and amendments remain targets.
+Counts:7 verified/49 partial/2 blocked-production-provisioning/242 unreconciled.
+No checkpoint was sent during active work. A single new idempotent
+continuation_ready checkpoint follows this evidence save; HTTP202 alone is not
+listener matching.
+
+Final logs under generated-artifacts/workplan-completion/:
+20261110T024912254845Z.log (226 passed,0failed,0skipped);
+20261110T024946134593Z.log (npm run check);
+20261110T024959092585Z.log (npm run build);
+20261110T025710528175Z.log (strict completeness intentionally failed175/938).
+All full commands, timestamps, dirty-worktree/source revision context and
+outcomes are also retained in JSON run_executions and the generated ledger.
+
+Next: native-candidate schema187 slots, remaining CV/research/reference and
+administrative outputs, actual display/custom-export enumeration. Then frozen
+driver/reference/FaIR studies and compatible actual Stage12 cases/Stage14–15,
+without proxy substitutions. Nine-path combined refresh, nonempty targets and
+full export replay remain unmet; the one fresh-process replay is not full
+acceptance. Owner review, provisioning and heat-pump restrictions remain narrow
+external blockers, not explanations for the remaining implementable work.
+
+## Native semantics and substantive fleet study continuation
+
+Starting HEAD b216d46; previously verified live90049c3. No old checkpoint resend.
+New shared/nativeScenarioSemantics.ts and nativeOutputSemantics.ts trace
+projectInventoryEmissions equations, overlap, units and rejection rules.
+API /api/emissions/candidate validates emitted field IDs; each of constant,
+transition and dashboard returned77 years,152 bindings, temperature=null.
+187/187 schema slots bind (185 fixed plus2 explicitly resolved dynamic domains);
+26 gas and7 sector IDs are distinct. Optional schema fields are not asserted
+to be emitted in current scenarios.
+
+Coverage410 definitions,397/973 public source slots bound,576 unbound
+(362 API bindings plus35 census-bound native export columns).
+27 physical fields remain withheld. Census now reports every family separately,
+including unresolved fields and named dynamic domains.102 export columns bind,
+including35 native columns. New shared/nativeExport.ts drives actual row
+generation, bindings and explicit census expansion for all35 columns.
+Remaining display-only/custom-export enumeration is incomplete.
+
+Changed existing paths: shared/outputFieldSemantics.ts; server/routes.ts;
+client/src/components/emissions-candidate-review.tsx; client/src/lib/export-contract.ts
+and ui-claim-register.ts; script/field-semantics-census.ts and export-contract.test.ts;
+generated output register/census; all three ledgers/report.
+New paths: shared/nativeScenarioSemantics.ts, shared/nativeOutputSemantics.ts,
+script/native-semantics.test.ts, script/fleet_transition.py,
+script/test_fleet_transition.py, docs/Fleet_Transition_Protocol.md,
+docs/Fleet_Transition_Results.md and docs/fleet_transition_results.json.
+
+Initial full TS suite226pass/2fail: new download count required20=>21 and output
+register regeneration, not weakened checks. Census syntax typo and missing
+download kind were corrected. Focused17/17 passed including corrected checks,
+all native scenarios/unknown-gas rejection and XLSX native-mass roundtrip.
+Typecheck/build pass; dated command logs in run_executions. No production
+mutation, owner approval, collector change or scientific gate change.
+
+Substantive new fleet study was frozen at941df06 before evaluation. Four
+point-MAE winners, India fails, Rest of World unavailable; parameter interval
+coverage0/6 exceptUS1/6. NO promotion, lifetime or emissions-displacement claim.
+Exact metrics, sources/hashes/thresholds/logs: Fleet_Transition_Results.md and
+fleet_transition_results.json. Existing beta/EV/storage outcomes untouched.
+S05-004 reconciled to partial based on actual existing mechanism code plus
+this new evidence, not verified: totals7verified/50partial/2blocked/241unreconciled.
+New release remains pending; current_release still refers to90049c3.
+
+Final local full TS suite229passed/0failed/0skipped at03:23–03:24UTC,
+typecheck/build pass. Additional Python fleet tests3/3 passed. Uncertainty
+and source eligibility gates were not weakened. Family report now separates
+27 withheld fields,6 unresolved compiler types (including one semantically
+bound field) and9 unresolved dynamic keys; native gas/sector domains are resolved.
+
 ## Combined refresh continuation
 
 Final source export ec2eaa1fcadb9da2239f2f2ba8b70dbd5acd2072 passed CI42736058106.
@@ -672,6 +761,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-combined-refresh-ec2eaa1",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T01:32:33.289490+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-semantics-captured-inputs-90049c3",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T03:04:40.349895+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

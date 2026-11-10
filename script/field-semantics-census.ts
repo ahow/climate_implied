@@ -2,6 +2,7 @@ import ts from "typescript";
 import { readFileSync,writeFileSync } from "node:fs";
 import { fieldSemantics } from "../shared/fieldSemantics";
 import { outputFieldSemantics } from "../shared/outputFieldSemantics";
+import { nativeExportColumns } from "../shared/nativeExport";
 import { publicValuationResult } from "../server/calculation/publicValuationContract";
 import { execFileSync,spawnSync } from "node:child_process";
 import { relative,resolve } from "node:path";
@@ -53,7 +54,15 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
       if(prop&&ts.isJsxAttribute(prop)&&prop.initializer&&ts.isJsxExpression(prop.initializer)&&prop.initializer.expression) {
         let type=checker.getTypeAtLocation(prop.initializer.expression);
         const signature=type.getCallSignatures()[0];if(signature) type=checker.getReturnTypeOfSignature(signature);
-        fields(type,"",`XLSX ${relativeSource(source.fileName)}:${source.getLineAndCharacterOfPosition(node.getStart()).line+1}`,node);
+        const line=source.getLineAndCharacterOfPosition(node.getStart()).line+1;
+        const exportSurface=`XLSX ${relativeSource(source.fileName)}:${line}`;
+        // Explicit schema consumed by both the actual row builder and bindings.
+        // Do not infer arbitrary Object.fromEntries keys as covered.
+        if(!baseline && relativeSource(source.fileName)==="client/src/components/emissions-candidate-review.tsx"
+          && prop.initializer.expression.getText(source)==="data.result.trajectory.map(nativeExportRow)"
+          && node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&p.initializer?.getText(source)==="{nativeExportBindings}"))
+          for(const column of nativeExportColumns) entries.push({surface:exportSurface,field:`[].${column.column}`,type:"number | null",source:relativeSource(source.fileName),line,resolution:"typed-field"});
+        else fields(type,"",exportSurface,node);
       }
     }
     ts.forEachChild(node,child=>visit(child,surface));
@@ -66,11 +75,31 @@ for(const entry of entries) if(entry.surface.includes("/api/cv/") &&
   entry.resolution="withheld-public-field";
 const unique=Array.from(new Map(entries.map(e=>[`${e.surface}|${e.field}`,e])).values())
   .sort((a,b)=>a.surface.localeCompare(b.surface)||a.field.localeCompare(b.field)||a.type.localeCompare(b.type));
-const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemantics.length+outputFieldSemantics.length,
-  fullyBoundFields:baseline?0:unique.filter(e=>(e.surface.includes('"/api/projection"') &&
+const nativeDynamicDomains={
+  "result.trajectory[].nativeMt.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].nativeMt.")).map(f=>f.id),
+  "result.trajectory[].sectorsGtCO2e.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].sectorsGtCO2e.")).map(f=>f.id),
+};
+const isBound=(e:typeof unique[number])=>(e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
+  nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
+  Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
+  outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
       outputFieldSemantics.some(f=>f.id===`projection.${e.field}`)) || (e.field.startsWith("[].") &&
     [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"]].some(([path,prefix])=>
-      e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`)))).length,
+      e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`)));
+const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemantics.length+outputFieldSemantics.length,
+  fullyBoundFields:baseline?0:unique.filter(isBound).length,
+  resolvedDynamicDomains:baseline?{}:nativeDynamicDomains,
+  withheldFields:unique.filter(e=>e.resolution==="withheld-public-field"),
+  unresolvedTypes:unique.filter(e=>e.resolution==="unresolved-type"),
+  unresolvedDynamicKeys:unique.filter(e=>e.resolution==="dynamic-key-needs-explicit-binding"&&!isBound(e)),
+  families:Array.from(new Set(unique.map(e=>e.surface))).map(surface=>{
+    const fields=unique.filter(e=>e.surface===surface);
+    return {surface,total:fields.length,bound:baseline?0:fields.filter(isBound).length,
+      unbound:fields.filter(e=>!isBound(e)),
+      unresolvedTypes:fields.filter(e=>e.resolution==="unresolved-type"),
+      unresolvedDynamicKeys:fields.filter(e=>e.resolution==="dynamic-key-needs-explicit-binding"&&!isBound(e)),
+      withheld:fields.filter(e=>e.resolution==="withheld-public-field")};
+  }),
   scope:"Direct registered API res.json expressions and all typed DownloadDataButton rows; display-only values and dynamic response builders remain exclusions",
   exclusions:unique.filter(e=>e.resolution!=="typed-field"),fields:unique,
   completion:false,warning:"A matching bare field name is not a precise semantic binding. No generic formula placeholders counted."};

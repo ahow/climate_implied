@@ -9,7 +9,7 @@ export const uiClaimRegister = [
     route: "/",
     consumers: ["PublishedScenarioReferences", "EmissionsCandidateReview", "IndicatorCards"],
     policy: "Published references retain source/version/licence/caveats; indicators and candidate evidence are not physical forecasts.",
-    exports: "IndicatorCards: source indicator rows. EmissionsCandidateReview: no download control.",
+    exports: "IndicatorCards: source indicator rows. EmissionsCandidateReview: deterministic native-gas mass and AR6 GWP100 sector/reporting totals; no temperature or probability output.",
   },
   {
     route: "/ (explicit legacy opt-in)",
