@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import * as XLSX from "xlsx";
+import {companyReplaySemantics,companyReplayLedgerColumns} from "../../shared/companyReplaySemantics";
 import { canonicalJson, contentHash } from "./analysisManifest";
 import { projectCompanyAsOf } from "./companyProjectionAsOf";
 import { resolveCompanySourceEvidence, unpackCompanySource } from "./companySourceArchive";
@@ -16,6 +17,7 @@ const codePaths = [
   "server/calculation/companySourceArchive.ts",
   "server/calculation/companyProjectionReplay.ts",
   "script/replay-company-projection.ts",
+  "shared/companyReplaySemantics.ts",
   "package.json", "package-lock.json",
 ] as const;
 const model = "companyProjection/conditional-operating-ledger-1";
@@ -121,12 +123,7 @@ type Replay = Awaited<ReturnType<typeof replayCompanyProjection>>;
 export function exportCompanyProjectionReplay(replay: Replay) {
   if (contentHash(replay.result) !== replay.resultHash ||
       replay.result.replayManifestId !== replay.manifestId) throw new Error("Conflicting replay result identity");
-  const ledger: (string | number | null)[][] = [[
-    "member", "year", "revenue", "activityRatio", "scope1Tonnes", "scope2Tonnes", "scope3Tonnes",
-    "operatingProfitBeforeCarbon", "carbonDrag", "interest", "nonOperatingIncome",
-    "incomeAttributionAdjustment", "otherCashAdjustments", "cashTax", "netIncome",
-    "depreciation", "capex", "increaseWorkingCapital", "netBorrowing", "fcfe", "growth", "growthStatus",
-  ]];
+  const ledger: (string | number | null)[][] = [[...companyReplayLedgerColumns]];
   if (replay.result.status === "conditional-projection") {
     for (const member of replay.result.members) for (const y of member.years) ledger.push([
       member.id, y.year, y.revenue, y.activityRatio, y.emissionsTonnes.scope1, y.emissionsTonnes.scope2,
@@ -136,10 +133,13 @@ export function exportCompanyProjectionReplay(replay: Replay) {
       member.growth, member.growthStatus,
     ]);
   }
+  if(ledger.some(row=>row.length!==companyReplayLedgerColumns.length)) throw new Error("Unmapped company ledger export column");
   const json = canonicalJson(replay.result);
   const chunks = Array.from({ length: Math.ceil(json.length / 16000) }, (_, i) =>
     [i, json.slice(i * 16000, (i + 1) * 16000)]);
   const tables = {
+    Semantics:[["fieldId","meaning","unit","formula","source","period","geography","status","missingness","uncertainty","scope","asOfRule"],
+      ...companyReplaySemantics.map(f=>[f.id,f.meaning,f.unit,f.formula,f.source,f.period,f.geography,f.status,f.missingness,f.uncertainty,f.scope,f.asOfRule])],
     Identity: [["contract", exportContract], ["manifestId", replay.manifestId], ["resultHash", replay.resultHash],
       ["status", replay.result.status], ["scientificAcceptance", "false"], ["productionEligible", "false"]],
     Ledger: ledger, FullResult: [["chunk", "canonicalResultJson"], ...chunks],

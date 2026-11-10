@@ -2,7 +2,83 @@
 
 ## Result
 
-This preparation now produces **an executable FPL solar-cohort capital-recovery ledger with actual annual dollar outputs**, alongside the XOM CCS operating-channel sensitivity. It does not claim three completed issuer forecasts. The FPL calculation connects a specified solar build to capital spend, financing assumptions, depreciating asset balances, allowed equity earnings and partial capital revenue requirements. XOM computes annual delivered contracted tonnes and service-revenue/variable-cost sensitivities. These are climate-linked operating mechanisms, not historical accounting controls. **No complete issuer FCFE/CAGR calculation is defensible from the evidence collected.** There remain zero full-company engine runs, approvals, probability distributions or production-eligible results.
+This preparation now produces **an executable, conditional FPL solar-cohort FCFE bridge**, alongside the XOM CCS operating-channel sensitivity. It does not claim three completed issuer forecasts. The FPL bridge explicitly connects the sourced solar build/regulatory parameters and frozen hypothetical cost/collection/tax/funding assumptions to annual revenue, collections, operating margin, working capital and incremental FCFE. **Allowed ROE is never used as realized cash.** XOM computes annual delivered contracted tonnes and service-revenue/variable-cost sensitivities, not invented economics. **No complete issuer FCFE/CAGR calculation is defensible from the evidence collected.** There remain zero full-company engine runs, approvals, probability distributions or production-eligible results.
+
+## Unit 1 implementation: cash bridge and exact completion limit
+
+The new `server/calculation/companyCashflowBridge.ts` recalculates the validated solar asset ledger and supplies the missing **conditional** cash mechanics. The older capital-only discussion below remains a record of the original source work; its “not calculated” statements describe that original ledger, not the new conditional extension. The original source facts and assumptions are unchanged. New assumptions have a separate version/hash.
+
+**Complete:** one incremental FPL operating mechanism with a five-year, two-route FCFE reconciliation. **Partial:** XOM physical CCS channel, without a monetized cash case. **Blocked:** CAT causal mapping and supported industrial replacement. Thus **1 incremental cash-flow channel, 1 physical-only channel, 0 complete issuer cases versus the target of 3**. Six FPL sensitivity combinations are not six issuers or three actual company cases. Historical accounting controls are not counted.
+
+### Frozen economic assumptions, not measured parameters
+
+The two new hypothetical points are deliberately not calibrated or claimed to bracket likely outcomes:
+
+| Input | Lower-cost / prompt collection | Higher-cost / delayed collection | Provenance |
+|---|---:|---:|---|
+| Annual cash O&M, USD/kW | 10 | 30 | Analyst what-if; triples operating-cost burden, not FPL guidance |
+| Annual nominal debt cost | 4% | 8% | Analyst what-if; doubles financing cost, not observed debt yield |
+| Cash tax rate | 20% | 30% | Analyst what-if; +10 percentage points, not statutory/effective FPL rate |
+| Current revenue deferred into next year's collection | 0% | 25% | Analyst liquidity stress; quarter-year-equivalent receivables, not observed payment terms |
+
+These are finite scenario points, not source-supported margin bounds, fitted estimates, probabilities or confidence intervals. Validation limits in the API are numerical guardrails, not empirical ranges. The purpose is to make the unresolved economics explicit and executable rather than to smuggle them in as sourced facts. Same nominal USD values are used in each year without escalation. No new source release date or retrieval timestamp is fabricated for these analyst choices. Existing fact cutoff remains 2026-11-10T04:29:45Z.
+
+Source traceability: capacity/allowed ROE/equity share trace to `fpsc-staff-2025-11-14` and `fpl-earnings-script-2026-01-27`; capex proxy traces to `eia-2024-construction-costs`; legal conditionality traces to `fpsc-reconsideration-2026-04-27`. Their existing publication dates, URLs, raw hashes and locators are included in the output. These documents were **not newly downloaded or independently authenticated in this extension**. O&M, debt cost, cash tax, collection and amortization are explicitly analyst assumptions; there is no sourced actual project tariff, margin, approved revenue requirement or cash forecast.
+
+### Equations, financing and valuation boundary
+
+For each original admission/lag/renewal scenario and each cash-assumption point:
+
+* Annual O&M = installed kW × assumed USD/kW, paid even if revenue recovery fails.
+* Debt is drawn at commissioning, with year-end principal amortization over the assumed book life; annual interest = average opening/closing debt × debt rate.
+* Conditional recognized revenue = admitted depreciation recovery + allowed equity earnings + equity-earnings tax gross-up + admitted O&M + admitted debt return. Gross-up = allowed equity earnings × tax rate / (1 − tax rate). Recovery is zero when the original recovery switch is inactive. This is hypothetical cost-of-service recognition, **not a claim that a regulator has approved these bills**.
+* Closing receivables = recognized revenue × deferred-collection fraction. Collections = revenue + opening receivables − closing receivables. The opening balance is zero; prior-year receivables are collected once. Remaining 2031 receivables are retained, not released as a fictional terminal cash inflow.
+* EBIT = revenue − O&M − book depreciation; reported operating margin = EBIT/revenue, or `null` if revenue is zero. Pretax income = EBIT − interest. Cash tax = max(pretax income, 0) × assumed tax rate, with no automatic loss refund.
+* FCFE = net income + depreciation − capex − increase in working capital + net borrowing.
+* Independent cash route = collections − O&M − interest − cash tax − capex + debt draws − principal repayments.
+
+Every row asserts the two FCFE routes agree within $0.00001. Equity issuance is **not** added to FCFE, and allowed equity earnings are **not** substituted for either cash collections or FCFE. Debt remains outstanding after 2031; neither that liability nor remaining asset life is silently converted into terminal value.
+
+The accounting basis matches `companyProjection.ts`: **nominal USD FCFE, five annual years 2027–2031, interest deducted and net borrowing included**, not FCFF discounted at WACC. This is only an incremental FPL cohort, not consolidated NEE equity cash. No issuer growth is calculated from the negative initial cohort flow, no arbitrary cost of equity is supplied and no terminal valuation or complete valuation pairing is claimed. A valuation integration still needs a same-boundary nominal equity discount rate, correct intrayear capex timing, the remaining asset/debt/receivables cash flows and the complete issuer baseline. It must not discount January 1 commissioning expenditure as though it were year-end spending.
+
+Book/tax depreciation are equated by assumption. ITC/PTC, ADIT, AFUDC, customer credit sharing, other working capital, other income/attribution and other cash adjustments are excluded from this **incremental hypothetical boundary**, not asserted zero for FPL or NEE. Those exclusions plus actual order/cost evidence are substantive adoption blockers. No emissions or causal climate-only counterfactual is invented.
+
+### Actual calculated results
+
+Annual incremental FCFE, nominal USD millions:
+
+| Original recovery scenario / cash point | 2027 | 2028 | 2029 | 2030 | 2031 | Five-year sum |
+|---|---:|---:|---:|---:|---:|---:|
+| Timely full / lower cost | −1,138.125888 | 181.993704 | 177.157616 | 172.321527 | 167.485439 | −439.167601 |
+| Timely full / higher cost | −1,234.206310 | 184.319628 | 179.483540 | 174.647451 | 169.811363 | −525.944328 |
+| One-year lag, 75% / lower cost | −1,402.139381 | 123.506297 | 120.118731 | 116.731164 | 113.343598 | −928.439590 |
+| One-year lag, 75% / higher cost | −1,461.305604 | 46.049681 | 114.902057 | 111.694115 | 108.486174 | −1,080.173577 |
+| No post-2029 recovery / lower cost | −1,138.125888 | 181.993704 | 177.157616 | −73.591203 | −72.393704 | −924.959476 |
+| No post-2029 recovery / higher cost | −1,234.206310 | 184.319628 | 179.483540 | −37.736355 | −126.769931 | −1,034.909429 |
+
+In the timely/full lower-cost point, 2027 recognized revenue and collections are both **$299.679643m**, while allowed equity earnings are **$142.664603m** and FCFE is **−$1,138.125888m**. In the higher-cost point, revenue is **$384.321689m** but collections only **$288.241266m**. This directly demonstrates why allowed return, revenue and cash are different. Higher later-year FCFE in the higher-cost full-recovery point reflects the hypothetical recovery gross-up and receivables run-off, not evidence that higher costs improve economics.
+
+New cash-assumption hash: `f13ed7f7b815d2a4cb4b6e15a0b9ec19a77f87f06155c12bd0c164a6c9120e46`. Each combination also carries a canonical input hash and an evidence hash.
+
+### XOM and industrial search: no invented bridge
+
+The builder again verifies retained NEE/XOM/CAT archives against the receipts, including source identity, content hashes, dates and XOM's disclosed contractual-volume wording. No new evidence of XOM tariffs, owned cash costs, capex schedules, taxes or credit ownership was established. Numerical pricing would require either unsupported invention or explicitly arbitrary economics with no defensible project allocation. XOM therefore remains physical throughput and monetary derivatives only; the $20bn multi-business investment plan is not repurposed as CCS capex and 45Q is not assigned to ExxonMobil.
+
+Bounded industrial replacement search re-inspected the retained GE and UNP worked-input packets: both contain selection/company/observation/profile/statement records, revised financial history and candidate identity, but neither provides the necessary transition-order/contract, tariff, annual conversion and climate-counterfactual mapping. CAT's retained source describes quarterly sales/dealer trends, not identified climate-caused orders. This is a search of available retained candidates, **not a claim of exhaustive external research**. GE is not recast as a renewable company based on historical corporate naming; UNP accounting is not recast as a modal-shift climate case.
+
+Retained candidate raw-file SHA-256 identities (no provider financial values reproduced):
+
+* GE, fetched 2026-11-09T23:17:29.279Z: `2c309bd2698cda67f4c73538f2b07ae0fd1d205780e5dbd8c795624ea12a948c`.
+* UNP, fetched 2026-11-09T23:00:27.288Z: `3bd3d2194cde88878e65f1a47e01913157f353d50f39484f9e34e70aeeac92a5`.
+
+### Executed verification and retained artifacts
+
+* `npx tsx --test script/company-cashflow-bridge.test.ts script/company-conditional-cases.test.ts script/company-projection.test.ts script/company-baseline.test.ts`: **16/16 passed**. New tests cover both FCFE routes, debt and receivable continuity, allowed earnings versus cash, retained terminal receivables, losses/no tax refund, cost persistence after recovery stops, invalid/missing inputs and deterministic hashes.
+* `npx tsx script/build-company-conditional-cases.ts`: completed; retained archive checks passed, printed all six cash bridges with full annual accounting components; still **0 full-company engine runs**.
+* Targeted strict TypeScript check of bridge, tests and builder with ES2022/ESNext/bundler resolution: **passed**.
+* Output retained locally in `generated-artifacts/unit1-cash-bridge/report.json`, `tests.log`, `typecheck.log`, and `verification.log`. These are derived offline artifacts, not production records. The standalone builder still only prints to stdout; shell redirection retained the outputs.
+
+No application/UI changes or preview verification belong to this calculation-only extension. No routes, central ledgers, shared semantics, database, collectors, package manifest, approval, commits or release actions were changed/performed.
 
 Run `npx tsx script/build-company-conditional-cases.ts` to print the reproducible derived report. The script reads the three existing primary-source packets and receipts plus the new pinned FPL fact/assumption constants; it does not write files, call collectors, connect to a database, stage proposals or approve anything. It verifies the three retained archives' identity, content hashes, issuer ISIN, URL, dates and contracted-volume claim. The newly fetched public FPL/EIA facts are explicitly transcribed with raw-document hashes and locators; the offline builder does not redownload or independently verify those documents. Source text and provider statements are not emitted.
 

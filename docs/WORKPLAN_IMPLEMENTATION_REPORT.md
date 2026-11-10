@@ -1,6 +1,20 @@
 # Workplan implementation report
 
+## Dated orchestration and incremental cash-flow integration — 2026-11-10
+
+Prior verified HEAD3d7e3d0/live d75a72d. NEW `companyCashflowBridge.ts` implements incremental FPL revenue recognition/collection/O&M/interest/cash tax/WC/capex/debt funding and amortization, independently reconciling accrual and cash FCFE within USD0.00001. Six hypothetical frozen stresses, not six issuers or probability draws. Timely/lower-cost annual FCFE USDm: −1138.125888,181.993704,177.157616,172.321527,167.485439; sum−439.167601. Assumption hashf13ed7f7b815d2a4cb4b6e15a0b9ec19a77f87f06155c12bd0c164a6c9120e46. Source/assumption register and refusal limits in `Conditional_Company_Climate_Cases.md`; derived evidence/logs in `generated-artifacts/unit1-cash-bridge/`. This is one incremental FPL channel, XOM remains physical-only, CAT causal mapping refused: zero complete issuer cases versus three required.
+
+NEW `pairedResearchCorpus.ts`, `pairedResearchPipeline.ts`, `run-paired-research-pipeline.ts`, `paired-research-pipeline.test.ts`: hash-bound paired archives; declared origins/specifications; execution after information cutoff; dated holdings/cash/drift;25bp one-way-notional costs; financing/borrow/short-dividend liabilities, FX/splits and supported terminal settlement; cost/borrow/terminal sensitivities; controls-v-gapR2,IC,ablation and factor-alpha estimates. Existing longonly/family kernels unchanged. Engineering fixture36monthly origins/16synthetic IDs/24evaluation periods, six declared family cells including unavailable model. Efficacy remains WITHHELD. `Paired_Research_Pipeline_Engineering_Report.md` enumerates missing historical fields/origins and unimplemented overlapping12month sleeves, payment-dateFX/merger-successor/collateral events, longonly constraint/rebalance variants,50price reconciliation,sector/prospective records. No blanket historical-data completion claim.
+
+Integration: `company-replay-upload.tsx`/data-management is a read-only operator-workflow explanation. Attempted public POST/direct download violated existing client/export gates; removed rather than weakening CI. HTTP403 operator-only was confirmed. No eligible public replay API activation claimed. Existing CLI now exports22header-bound exact ledger semantics and a Semantics sheet via `companyReplaySemantics.ts`/`companyProjectionReplay.ts`; pinned code includes the new semantics source. Census/register regenerated:442definitions;429/1001actual public slots bound;1028total including27withheld,4prior aliases separately reconciled (1032comparabletotal).572previous substantive slots remain, plus incomplete metadata-sheet/display census. Native187/187+35columns unchanged.
+
+Final coherent checks at04:49:52Z: `npm run check && npx tsx --test script/*.test.ts && npm run build` passed **264/264,0fail/skip**; log `generated-artifacts/workplan-completion/20261110T044952437277Z.log`. Earlier260/264 attempt retained with4failures (public writer/clientPOST and stalecensus/register), corrected without relaxing gates. Fresh subprocess/export tests reran against new pinned source; prior XLSX hash is historical, not current output. Additional actual new paths: `company-cashflow-bridge.test.ts`, updated `build-company-conditional-cases.ts`, shared output registry and all three central ledgers. No scientific promotion/owner approval/production data change/collector change/DDL/purchase or unchanged beta/fleet/EV study rerun.
+
+Conservative clause counts remain7verified/51partial/2blocked/240unreconciled; implemented partial pipeline is not whole-stage acceptance. Latest next_action must preserve incremental cash/replay/orchestration progress, not restart from source-only/same-process wording.
+
 ## Conditional operating calculations and fresh-process replay — 2026-11-10
+
+Release receipt: workspace `efc0082a8c1a71446871289185180c300ee1ced5`, GitHub/verified live `d75a72d27c3b97f9f3c2fe3e6f1d8ab2a69e9403`; CI42756553333 succeeded; Railway deploymentfbec0eeb-89d4-4bb7-9d28-67bb16f8ec61. Exact live build-info and healthok confirmed; new behavior is offline CLI/calculation, not production review activation. Development workflow restarted cleanly and unchanged page shell checked. Stop at run context budget, not exhausted actionable scope. All remaining work above remains original scope, not separate follow-up proposals.
 
 Prior verified HEAD1712805/livef9c74d7; production review503 is NOT activation. New exact paths/functions: `server/calculation/companyConditionalCases.ts` calculateFplSolarCohort/calculateCcsOperatingChannel; `script/build-company-conditional-cases.ts`; `script/company-conditional-cases.test.ts`; detailed sources/assumptions/results `docs/Conditional_Company_Climate_Cases.md`. FPL1192MW solar cohort at explicitly conditional national1865USD/kW cost proxy yields2.223080bn capex. Regulator-summary10.95% ROE/59.6% equity plus explicit30year life/2027 commissioning/no escalation/renewal assumptions yield five-year allowed equity earnings664.962132m timely/full,391.723147m lagged75% admission,413.485544m no-post2029 recovery. Partial capital-revenue components1035.475465m in timely case are NOT full revenue/cash/FCFE. Full issuer FY2025 cash baseline extracted, not repeated as future assumptions. XOM approximately9Mt/year contracted CCS supports delivery sensitivities0/31.5/45Mt cumulative; no invented tariffs/profit/tax-credit ownership or avoided emissions. CAT climate-causality mapping refused. Alternative issuers screened without manufacturing replacements. Three full issuer cases still incomplete.
 
@@ -881,6 +895,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-company-source-f9c74d7",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T04:10:56.539268+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-operating-replay-d75a72d",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T04:35:47.734977+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

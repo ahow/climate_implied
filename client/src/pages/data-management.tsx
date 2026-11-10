@@ -41,6 +41,7 @@ import { FinancialProviderStatus } from "@/components/financial-provider-status"
 import { AnalysisSnapshotStatus } from "@/components/analysis-snapshot-status";
 import { FinancialReview, ScientificValidation } from "@/components/financial-review";
 import {CompanyOperatingReview} from "@/components/company-operating-review";
+import {CompanyReplayUpload} from "@/components/company-replay-upload";
 
 interface IndicatorSummary {
   key: string;
@@ -249,6 +250,7 @@ export default function DataManagement() {
       <AnalysisSnapshotStatus />
       <FinancialReview />
       <CompanyOperatingReview />
+      <CompanyReplayUpload />
       <ScientificValidation />
 
       {isLoading ? (

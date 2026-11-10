@@ -5,6 +5,7 @@
 import { readFile } from "node:fs/promises";
 import { contentHash } from "../server/calculation/analysisManifest";
 import { unpackCompanySource } from "../server/calculation/companySourceArchive";
+import { buildFplCashCases } from "../server/calculation/companyCashflowBridge";
 import {
   calculateCcsOperatingChannel, ccsDeliveryAssumptions, issuerCaseDecisions, buildFplSolarCases,
 } from "../server/calculation/companyConditionalCases";
@@ -39,14 +40,14 @@ async function main() {
   };
   const result = calculateCcsOperatingChannel(assumptions);
   console.log(JSON.stringify({
-    version: "conditional-climate-channel-2",
+    version: "conditional-climate-channel-3",
     evidence, assumptions, assumptionHash: contentHash(assumptions),
     measuredVsAssumed: {
       contractedAnnualTonnes: "Dated approximate issuer contractual claim; not measured annual injection.",
       deliveryFractions: "Frozen analyst stress assumptions, not observed or calibrated.",
       monetarySensitivity: "Algebraic derivative in nominal USD per USD/tonne; no assumed tariff, margin or credit.",
     },
-    result, fplSolarCases: buildFplSolarCases(), issuerCaseDecisions,
+    result, fplSolarCases: buildFplSolarCases(), fplCashCases: buildFplCashCases(), issuerCaseDecisions,
     fullCompanyEngineRuns: 0,
     refusal: "No complete, defensible companyProjection input exists in these packets. Missing scope/operating fields are not zero-filled or replaced by accounting controls.",
     productionEligible: false, approvalsIssued: 0,

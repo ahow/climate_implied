@@ -1,0 +1,37 @@
+import type {OutputFieldSemantic} from "./outputFieldSemantics";
+const specs=[
+ ["member","Member identity","identifier","input.members.id"],
+ ["year","Projection calendar year","year","baseYear + annual offset"],
+ ["revenue","Conditional revenue","nominal currency","baseRevenue * activityRatio"],
+ ["activityRatio","Cumulative weighted operating activity","ratio","sum(mapping.weight * cumulative exposure growth) * marketShareMultiplier"],
+ ["scope1Tonnes","Direct emissions","tonnes/year","base.scope1 * activityRatio * scope1IntensityMultiplier"],
+ ["scope2Tonnes","Purchased-energy emissions","tonnes/year","base.scope2 * activityRatio * scope2IntensityMultiplier"],
+ ["scope3Tonnes","Value-chain emissions; no direct tax","tonnes/year","base.scope3 * activityRatio * scope3IntensityMultiplier"],
+ ["operatingProfitBeforeCarbon","Operating profit before explicit carbon drag","nominal currency","revenue * operatingMargin"],
+ ["carbonDrag","Unpassed liable-emissions charge","nominal currency","(scope1*liable1 + scope2*liable2) * effectiveCarbonPrice * (1-passThrough)"],
+ ["interest","Explicit interest charge","nominal currency","input.member.year.interest"],
+ ["nonOperatingIncome","Explicit non-operating income","nominal currency","input.member.year.nonOperatingIncome"],
+ ["incomeAttributionAdjustment","Explicit income attribution adjustment","nominal currency","input.member.year.incomeAttributionAdjustment"],
+ ["otherCashAdjustments","Explicit noncash/cash bridge adjustments","nominal currency","input.member.year.otherCashAdjustments"],
+ ["cashTax","Conditional tax without automatic loss refund","nominal currency","max(0,operatingProfitBeforeCarbon-carbonDrag-interest+nonOperatingIncome)*taxRate"],
+ ["netIncome","Conditional attributed income","nominal currency","operatingProfitBeforeCarbon-carbonDrag-interest+nonOperatingIncome-cashTax+incomeAttributionAdjustment"],
+ ["depreciation","Explicit depreciation addback","nominal currency","input.member.year.depreciation"],
+ ["capex","Explicit capital expenditure","nominal currency","input.member.year.capex"],
+ ["increaseWorkingCapital","Explicit working-capital cash use","nominal currency","input.member.year.increaseWorkingCapital"],
+ ["netBorrowing","Explicit net financing inflow","nominal currency","input.member.year.netBorrowing"],
+ ["fcfe","Conditional equity cash flow","nominal currency","netIncome+depreciation+otherCashAdjustments-capex-increaseWorkingCapital+netBorrowing"],
+ ["growth","Positive-endpoint five-year FCFE CAGR","fraction/year","(finalFCFE/baseFCFE)^(1/5)-1; null if finalFCFE<=0"],
+ ["growthStatus","Availability of endpoint CAGR","enum","positive-endpoint-five-year-CAGR or unavailable-nonpositive-final-FCFE"],
+];
+export const companyReplayLedgerColumns=specs.map(([key])=>key);
+export const companyReplaySemantics:OutputFieldSemantic[]=specs.map(([key,meaning,unit,formula])=>({
+ id:`companyReplay.ledger.${key}`,meaning,unit,formula,role:["member","year","interest","nonOperatingIncome","incomeAttributionAdjustment","otherCashAdjustments","depreciation","capex","increaseWorkingCapital","netBorrowing"].includes(key)?"Input":"Output",
+ dependencies:[formula],source:"Pinned companyProjection.ts and exact material manifest/source archives; currency from result.definition.currency",
+ period:"Five annual projected periods; growth repeated per member, not annual realized return",
+ geography:"Input operating-geography mapping; not security domicile",
+ status:"Conditional engineering replay; not approved or scientifically validated",
+ missingness:"Absent required inputs reject; nonpositive endpoint growth remains null; no zero fill",
+ uncertainty:"User-supplied paired members, no calibrated probability or interval claim",
+ scope:"Exact pinned executable/settings/source selection only",
+ asOfRule:"Every material source claim available by explicit cutoff; this does not establish genuine original vintage",
+}));

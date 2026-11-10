@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 420,
+  "definitions": 442,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -32,11 +32,11 @@
     }
   ],
   "comparableSlotAccounting": {
-    "actualUniqueSlots": 1006,
+    "actualUniqueSlots": 1028,
     "previouslyUnresolvedAliasSlots": 4,
-    "slotsIncludingReconciledAliases": 1010
+    "slotsIncludingReconciledAliases": 1032
   },
-  "fullyBoundFields": 407,
+  "fullyBoundFields": 429,
   "resolvedDynamicDomains": {
     "result.trajectory[].nativeMt.*": [
       "native.result.trajectory[].nativeMt.C2F6",
@@ -354,11 +354,11 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].*",
       "type": "string | number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -5682,67 +5682,67 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "total": 6,
       "bound": 0,
       "unbound": [
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].*",
           "type": "string | number",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "dynamic-key-needs-explicit-binding"
         },
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].As Of Date",
           "type": "string",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].Method",
           "type": "string",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].Source",
           "type": "string",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].Type",
           "type": "string",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].Year",
           "type": "number",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "typed-field"
         }
       ],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [
         {
-          "surface": "XLSX client/src/pages/data-management.tsx:383",
+          "surface": "XLSX client/src/pages/data-management.tsx:385",
           "field": "[].*",
           "type": "string | number",
           "source": "client/src/pages/data-management.tsx",
-          "line": 383,
+          "line": 385,
           "resolution": "dynamic-key-needs-explicit-binding"
         }
       ],
@@ -6129,6 +6129,15 @@
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
       "withheld": []
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "total": 22,
+      "bound": 22,
+      "unbound": [],
+      "unresolvedTypes": [],
+      "unresolvedDynamicKeys": [],
+      "withheld": []
     }
   ],
   "scope": "Direct registered API res.json expressions and all typed DownloadDataButton rows; display-only values and dynamic response builders remain exclusions",
@@ -6422,11 +6431,11 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].*",
       "type": "string | number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -14184,51 +14193,51 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].*",
       "type": "string | number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].As Of Date",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].Method",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].Source",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].Type",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:383",
+      "surface": "XLSX client/src/pages/data-management.tsx:385",
       "field": "[].Year",
       "type": "number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 383,
+      "line": 385,
       "resolution": "typed-field"
     },
     {
@@ -14493,6 +14502,182 @@
       "type": "string",
       "source": "client/src/pages/news-sentiment.tsx",
       "line": 426,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].activityRatio",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].capex",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].carbonDrag",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].cashTax",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].depreciation",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].fcfe",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].growth",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].growthStatus",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].incomeAttributionAdjustment",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].increaseWorkingCapital",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].interest",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].member",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].netBorrowing",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].netIncome",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].nonOperatingIncome",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].operatingProfitBeforeCarbon",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].otherCashAdjustments",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].revenue",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].scope1Tonnes",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].scope2Tonnes",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].scope3Tonnes",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+      "field": "[].year",
+      "type": "string | number | null",
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 1,
       "resolution": "typed-field"
     }
   ],

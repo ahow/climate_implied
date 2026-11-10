@@ -221,7 +221,7 @@ export function calculateCcsOperatingChannel(input: unknown) {
 /** Public source facts and exact requirements, without private provider payloads. */
 export const issuerCaseDecisions = [
   {
-    symbol: "NEE", status: "executable-partial-solar-capital-recovery-full-company-blocked",
+    symbol: "NEE", status: "executable-conditional-incremental-solar-FCFE-full-company-blocked",
     mechanism: "Solar/storage construction can change asset base and allowed utility revenue; contracted renewable generation can change NEER sales.",
     rejectedMappings: [
       "30 GW mixed generation/storage backlog is not solar generation, annual commissioning, revenue or climate-caused demand.",

@@ -23,6 +23,11 @@ if(baseline) {
 const program=ts.createProgram(parsed.fileNames,parsed.options,host),checker=program.getTypeChecker();
 type Entry={surface:string;field:string;type:string;source:string;line:number;resolution:string};
 const entries:Entry[]=[];
+if(!baseline) {
+  const {companyReplayLedgerColumns}=await import("../shared/companyReplaySemantics");
+  for(const column of companyReplayLedgerColumns) entries.push({surface:"XLSX server/calculation/companyProjectionReplay.ts:Ledger",
+    field:`[].${column}`,type:"string | number | null",source:"server/calculation/companyProjectionReplay.ts",line:1,resolution:"typed-field"});
+}
 const resolvedResponseAliases: {surface:string;source:string;line:number;expression:string;replacement:string}[]=[];
 function fields(type:ts.Type,path:string,surface:string,node:ts.Node,depth=0) {
   const source=node.getSourceFile(),where={source:relativeSource(source.fileName),line:source.getLineAndCharacterOfPosition(node.getStart()).line+1};
@@ -89,7 +94,8 @@ const nativeDynamicDomains={
   "result.trajectory[].nativeMt.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].nativeMt.")).map(f=>f.id),
   "result.trajectory[].sectorsGtCO2e.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].sectorsGtCO2e.")).map(f=>f.id),
 };
-const isBound=(e:typeof unique[number])=>(e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
+const isBound=(e:typeof unique[number])=>(e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
+  outputFieldSemantics.some(f=>f.id===`companyReplay.ledger.${e.field.replace(/^\[\]\./,"")}`)) || (e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
   nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
   Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
   outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
