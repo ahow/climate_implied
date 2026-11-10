@@ -1,6 +1,22 @@
 # Workplan implementation report
 
+## Conditional operating calculations and fresh-process replay — 2026-11-10
+
+Prior verified HEAD1712805/livef9c74d7; production review503 is NOT activation. New exact paths/functions: `server/calculation/companyConditionalCases.ts` calculateFplSolarCohort/calculateCcsOperatingChannel; `script/build-company-conditional-cases.ts`; `script/company-conditional-cases.test.ts`; detailed sources/assumptions/results `docs/Conditional_Company_Climate_Cases.md`. FPL1192MW solar cohort at explicitly conditional national1865USD/kW cost proxy yields2.223080bn capex. Regulator-summary10.95% ROE/59.6% equity plus explicit30year life/2027 commissioning/no escalation/renewal assumptions yield five-year allowed equity earnings664.962132m timely/full,391.723147m lagged75% admission,413.485544m no-post2029 recovery. Partial capital-revenue components1035.475465m in timely case are NOT full revenue/cash/FCFE. Full issuer FY2025 cash baseline extracted, not repeated as future assumptions. XOM approximately9Mt/year contracted CCS supports delivery sensitivities0/31.5/45Mt cumulative; no invented tariffs/profit/tax-credit ownership or avoided emissions. CAT climate-causality mapping refused. Alternative issuers screened without manufacturing replacements. Three full issuer cases still incomplete.
+
+`server/calculation/companyProjectionReplay.ts`, `script/replay-company-projection.ts`, `script/company-projection-replay.test.ts`: eight code/config files plus runtime, settings, input, mapping and sources pinned; current executable mismatches fail closed. Two fresh subprocesses produced identical full results and35133byte XLSX;20 interleaved replay selections,8members/40rows/1029material leaves. Result hash0efe687c5949a9ef02e82e1412522b39dcdefd52d520e50cad5f0ed52629155f; XLSX SHA2561ec926a8c98c4eec07442aa935cd80e342f61fcfeeb6b93a7b7e5e63d0a5eac6. Evidence `generated-artifacts/company-projection-replay/report.json`, `test.log`, `subprocess.log`. Exact equality, not numerical tolerance. This is isolated engineering replay, NOT all-nine-path production/result acceptance, publisher authentication, original-vintage proof or hermetic dependency-image proof.
+
+`server/calculation/pairedCompanyGap.ts`, `script/paired-company-gap.test.ts`: median of paired member differences; definition/origin guards; missing pairs and incomplete peer groups withhold scores; average-rank ties and additive invariance checked. No old-intensity substitution, actual historical signal score or portfolio study claimed. Archive authentication/frozen-family orchestration/portfolio reconciliation remain.
+
+Checks: typecheck04:18:35Z passed; full suite246pass/0fail/0skip before final FPL extension; final changed-case6tests passed and build passed. The extension adds2tests; no248-test full-run claim. All logs retained in central run_executions. Counts remain7verified/51partial/2blocked/240unreconciled; semantics420definitions,407/979actual slots plus4resolved aliases remain unchanged. New offline XLSX exporter has22ledger columns plus Identity/FullResult sheets and is an additional custom-export census obligation, NOT silently covered by the old count. Existing full completeness gate remains false.
+
+Remaining: full issuer revenue/O&M/tax/debt-return/ADIT-credit/working-capital/financing bridges and valuation pairing; CAT causal channel or supported replacement; genuine review; actual Stage14/15 historical orchestration; new export semantics and572previously unbound slots; independent frozen studies and full9path isolation. No selfapproval, production mutation, DDL, purchases, collector changes or scientific gate changes. No unchanged beta/fleet/EV study reruns.
+
 ## Operating-source/review continuation — 2026-11-10, current increment
+
+**Final release receipt,04:09:31Z:** implementation workspace `ebebaa66f46907b64b19d2575c36df7f4e23e27a` (main adapter `a86cb23`); GitHub and live `f9c74d785729520ae38f6fe654198094953400de`; CI `42753637788` validate/promote success; Railway `3e007539-f98f-4400-a338-3567c6c7d2b1` SUCCESS. Exact build-info SHA, health200, global75rows/characterization-only and404qualified+16core definitions verified. Production review endpoint returns503, failing closed on unavailable/inconsistent archive storage; do not claim production review functionality or copy development records into production. Final metadata dependencies are exact source paths, verified by17/17focused semantics tests at04:05:47Z; durable log `generated-artifacts/workplan-completion/company-review-final-semantics.log`. Documentation receipt commits after this implementation are local-only.
+
+**Stop reason:** run-end context budget after implementation, public-source assembly, tests and gated release—not exhausted scope and not approval. Ready work remains. In particular, pinning all model/code versions and fresh-process full result/export identity are still required; the helper's same-process deterministic roundtrip is not full replay acceptance.
 
 Prior verified: workspace HEAD0eb0589, implementation1c903c6, GitHub/liveb4b8391. This increment does not rerun/refit beta73095d6/88pairs, EV or fleet941df06, or promote storage/control ensembles.
 
@@ -854,6 +870,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-native-fleet-b4b8391",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T03:38:52.469640+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-company-source-f9c74d7",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T04:10:56.539268+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202
