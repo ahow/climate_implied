@@ -1,22 +1,30 @@
 import assert from "node:assert/strict";
-import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { buildCompanyFilingPair } from "../server/calculation/companyFilingPair";
 
-const root = "generated-artifacts/company-operating-corpus/primary-filings";
-const report = JSON.parse(readFileSync(`${root}/readiness-report.json`, "utf8"));
-assert.equal(report.cases.length, 3);
-assert.equal(report.executedWholeEquityPairs, 0);
-for (const c of report.cases) {
-  const digest = createHash("sha256").update(readFileSync(`${root}/${c.facts.symbol}-2024.pdf`)).digest("hex");
-  assert.equal(digest, c.facts.sourceHash);
-  assert.equal(buildCompanyFilingPair(c.facts).status, "blocked");
-  assert.equal(c.bridge.workingCapitalDeductedAgain, false);
-  assert.equal(c.bridge.manufacturingCreditsAddedAgain, false);
+// Entirely synthetic source-only CI fixtures; no issuer facts or private files.
+const source = "SYNTHETIC TEST DOCUMENT: not a filing or observed market data";
+const digest = (s: string) => createHash("sha256").update(s).digest("hex");
+const facts = {
+  symbol: "SYNTH", issuer: "Synthetic test issuer", security: "Synthetic common",
+  cik: "0000000001", currency: "USD", fiscalEnd: "2024-12-31",
+  documentDate: "2025-02-01", observedAt: "2025-03-02T00:00:00.000Z",
+  sourceUrl: "https://example.invalid/synthetic-filing", sourceHash: digest(source),
+  textHash: digest(source), operatingCashFlow: 60e9, capitalSpend: 25e9,
+  debtProceeds: 2e9, debtRepayments: 5e9, accountingCaveats: [] as string[],
+};
+assert.equal(facts.sourceHash, digest(source));
+assert.notEqual(facts.sourceHash, digest(source + "tampered"));
+for (const [operatingCashFlow, expected] of [[60e9, 32e9], [20e9, -8e9], [28e9, 0]]) {
+  const result = buildCompanyFilingPair({ ...facts, operatingCashFlow });
+  assert.equal(result.baseFcfe, expected);
+  assert.equal(result.status, "blocked");
+  assert.equal(result.pairs.length, 0);
+  assert.equal(result.bridge.workingCapitalDeductedAgain, false);
+  assert.equal(result.bridge.manufacturingCreditsAddedAgain, false);
+  assert.equal(result.bridge.debtSubtractedFromEquityAgain, false);
+  assert.equal(result.bridge.cashAddedToEquity, 0);
 }
-assert.deepEqual(report.cases.map((c: any) => c.baseFcfe), [-255437000, 169000000, 25722000000]);
-// Synthetic market fixture tests algebra/guards only, never saved as a real observation.
-const facts = { ...report.cases[2].facts, accountingCaveats: [] };
 const market = {
   symbol: facts.symbol, cik: facts.cik, security: facts.security, currency: "USD",
   referenceDate: "2025-03-01", priceDate: "2025-03-01", sharesDate: "2025-03-01",
@@ -34,24 +42,16 @@ for (const p of pair.pairs) {
 }
 assert.throws(() => buildCompanyFilingPair(facts, { ...market, sharesDate: "2025-02-28" }), /reference date/);
 assert.throws(() => buildCompanyFilingPair(facts, { ...market, cik: "0000000000" }), /identity/);
-assert.equal(buildCompanyFilingPair(report.cases[2].facts, market).status, "blocked");
+assert.equal(buildCompanyFilingPair({ ...facts, accountingCaveats: ["Synthetic unresolved NCI claim"] }, market).status, "blocked");
 assert.equal(buildCompanyFilingPair({ ...facts, operatingCashFlow: 1 }, market).status, "blocked");
-console.log("Company filing integrity, missing-link gates and nine synthetic paired repricings passed; actual executed pairs remain zero.");
-if (existsSync(`${root}/market-reference-attempt.json`)) {
-  const attempt = JSON.parse(readFileSync(`${root}/market-reference-attempt.json`, "utf8"));
-  assert.equal(attempt.attempts.length, 3);
-  assert.equal(attempt.maximumRequests, 9);
-  assert.equal(attempt.executedActualPairs, 0);
-  assert.equal(attempt.unchangedAssumptions, true);
-  for (const c of attempt.attempts) {
-    assert.equal(c.requests.length, 3);
-    assert.equal(c.executedActualPairs, 0);
-    for (const r of c.requests) {
-      assert.ok(["/stable/profile", "/stable/quote", "/stable/balance-sheet-statement"].includes(r.endpoint));
-      assert.ok(!JSON.stringify(r).includes("apikey"));
-      if (r.retainedFieldsHash) assert.equal(r.retainedFieldsHash,
-        createHash("sha256").update(JSON.stringify(r.selectedRows)).digest("hex"));
-    }
-  }
-  console.log("Bounded authorized-provider attempt report gates passed.");
-}
+assert.equal(buildCompanyFilingPair({ ...facts, operatingCashFlow: 28e9 }, market).status, "blocked");
+assert.throws(() => buildCompanyFilingPair({ ...facts, sourceHash: "invalid" }, market));
+assert.throws(() => buildCompanyFilingPair(facts, { ...market, sourceHash: "invalid" }));
+assert.throws(() => buildCompanyFilingPair({ ...facts, textHash: "invalid" }, market));
+assert.throws(() => buildCompanyFilingPair({ ...facts, currency: "EUR" }, market));
+assert.throws(() => buildCompanyFilingPair(facts, { ...market, currency: "EUR" }));
+assert.throws(() => buildCompanyFilingPair(facts, { ...market, referenceDate: "2025-01-01",
+  priceDate: "2025-01-01", sharesDate: "2025-01-01" }), /predates filing/);
+assert.throws(() => buildCompanyFilingPair(facts, { ...market, sharesBasis: "float" }));
+assert.throws(() => buildCompanyFilingPair(facts, { ...market, usageAuthorization: "" }));
+console.log("Self-contained synthetic CI: accounting, source/date/currency/identity/refusal gates and nine paired repricings passed.");

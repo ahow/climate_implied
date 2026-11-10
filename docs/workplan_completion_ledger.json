@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "latest_increment": {
+    "ci_failure_fixed_without_bypass": "GitHubf6123fe80b57db9862903a941a501addc96086dd/CI42784658327FAILED because newcompany-filing-pair.test.tsreadprivateunexportedreadiness-report.json;promotionskipped,notlive. ReplacedhiddendependencywithexplicitsyntheticCIcasescoveringsameaccounting/source/date/currency/refusal/9repricinggatesplusadditionalnegativecases. ActualprivateassertionsretainedinNEWvalidate-company-filing-private.ts,requiresprivateinputsandchecks3actualsourcehashes/bridges/refusals/9providerreceipts;no skips. Bothpassed,CItestalsofrom/tmp. No privateexport/auth/science/CIrelaxation.",
     "final_reconciliation_and_checks": "AfterunitA12clauseaudit,mainalsoadvancedS07-008topartial foractualIGCChistorydiagnostic;forcing/emissions/GSAT-GMST/2025attributioncriteriaremainunmet. FINALcounts11verified/76partial/2blocked/211unreconciled. Finalcoherentnpm run check && npx tsx --test script/*.test.ts && npm run build at2026-11-10T08:30:52Z:310pass/0fail/0skip;loggenerated-artifacts/workplan-completion/20261110T083052610508Z.log. Earlier08:04checkpredatesboundedmarketattempt;Python1test+actualIGCCanalysisseparate. Allreadyremainingworkwithinoriginalscope,no duplicativefollowup tasks.",
     "market_attempt_and_history_scope": "ActualexistingFMPclient9readonlycalls(profile/quote/balance-sheet forFSLR/NEE/XOM) allsuccess,captured2026-11-10T08:20:05Z. ThreeNov9datedquotesretainedPRIVATELY;licensedvalues/identifiersnotredistributedinGit. NoexplicitdatedsharesOutstanding;marketCap/priceNOTreverseengineered. XOMprovideridentitydiffersretainedfiling/financialidentity:successionreviewrequired,notjoinedbyticker. LatestFY2025balancesnotquote-dateshares,nofrozenFY2024replacement. Private market-reference-attempt.json retainsstatuses/params/hashes/fields. Actualadmissiblepairs0;nextneedsdatedshares+XOMidentity+accountinggaps. IGCCrawtemperaturedifference alsohasunresolvedGSAT/GMSTobservablecompatibility;notacceptedaccuracy,conversionfactororannualgatepass.",
     "actual_igcc_history": "NEW reconcile_igcc_history.py/test/protocol/results: executedretainedFaIR annualsurfacehistory vsindependentIGCCGMST1850-2014,midpointconversion,both1850-1900baseline. Bias+.0064422683C,RMSE.1210392023C,maxannualdiscrepancy.3172782516C;8scenariohistoricalmediansidentical,not8independentsamples. IGCCanthroERF2014=2.3524887920,2024=2.9740364178W/m2;natural1750nonzero .3012700292 so protocolrelative1750shorthand clarified,notre-zeroed. Modelannualforcing/emissionsnotretained:fullforcingreconciliation unavailable. NOTmatchedSSPannualreference/attribution/.01Cgate/centralpromotion. Frozenprotocol1fa60cb7;onePython test+actualanalysis pass08:12:46Z,log20261110T081246321430Z.log;initialBOMparsefailurelog081222 retained. Result5b579d7e... JSONunderigcc-history-reconciliation. Detailedsourcehashes/numericaloutcomes/limits inIGCC_History_Reconciliation_Results.md.",
@@ -206,7 +207,7 @@
     "later_local_only": "Final documentation/receipt updates"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T08:32:00.456699+00:00",
+  "updated_at": "2026-11-10T08:48:53.830964+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -15464,6 +15465,26 @@
       },
       "log": "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
       "workspace_revision": "7df45ee87df1d0b2cfd530f8299ef0e73f525918",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && npx tsx --test script/*.test.ts && npx tsx script/validate-company-filing-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-10T08:47:50.976675+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 62.696,
+      "counts": {
+        "tests": 310,
+        "pass": 310,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T084750976675Z.log",
+      "workspace_revision": "5bb021c5534a2b11ca19a3209ca1565251457d8a",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
