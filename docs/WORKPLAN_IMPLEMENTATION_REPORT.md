@@ -2,6 +2,29 @@
 
 ## Clause-complete reconciliation and implementation — 2026-11-10
 
+**Integrated status:**31verified engineering criteria,267partial,2production-
+provisioning blocked,0unreconciled. All300 retained. This is not scientific,
+whole-stage or independent owner acceptance.
+
+**Restored final check:**2026-11-10T11:12:37Z,344TS/0fail/0skip,
+95Python/0fail/0skip, typecheck/build, private filing validator and355required
+private receipt assertions pass. Log:
+generated-artifacts/workplan-completion/20261110T111237055931Z.log.
+The source-only exported Python checkout also passed95tests.
+
+**Source-control gate:**CI42804603247 on801120ba2f9822745d0c969f2b279f7b853dc52f
+failed solely on the deliberate source test:345tests,344pass,1expectedfail;
+promotion skipped and both validated branch/live remainedda140f2. The temporary
+test is removed in the restored source. The first control's two unintended
+private-log dependencies were fixed without exporting private bytes: all original
+private-file assertions remain mandatory in validate-clause-private-evidence.ts.
+
+Bounded proposal JSON files retain their pre-parent audit state. The canonical
+ledger and acceptance matrix incorporate later merged checks/control outcomes.
+See Implementation_Change_Index_20261110.md for the full changed-path index.
+Package-manager additions h5netcdf/h5py and native hdf5/openssh are declared;
+no collector flags/cadence or workflow/promotion gates were changed.
+
 All300 canonical clauses now have individual reconciliation records, with
 unchanged protected contract hash
 `5e1a09aa71c87286779eb444db2e0b0361015b3d1bfb058e320f836ca46b4de5`.

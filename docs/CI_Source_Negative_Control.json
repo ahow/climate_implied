@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-10",
+  "control": "deliberately broken source commit, not workflow-only failure injection",
+  "source": "801120ba2f9822745d0c969f2b279f7b853dc52f",
+  "workspace": "eacd02a5aaba9b14ce5b678217370fe7416b5433",
+  "run": 42804603247,
+  "validate": "failure",
+  "promote": "skipped",
+  "tests": 345,
+  "pass": 344,
+  "fail": 1,
+  "soleFailure": "WORKPLAN_S00_011_DELIBERATELY_BROKEN_SOURCE",
+  "productionBefore": "da140f272a058d093662530e48c66dbc2266c9dc",
+  "productionAfter": "da140f272a058d093662530e48c66dbc2266c9dc",
+  "liveAfter": "da140f272a058d093662530e48c66dbc2266c9dc",
+  "log": "generated-artifacts/ci-source-negative/final-validate.log",
+  "probeReceipt": "generated-artifacts/ci-source-negative/final-receipt.json",
+  "firstAttempt": {
+    "source": "871671a0fa3f8cd26b206f8e176d9e508ce472c2",
+    "run": 42804003954,
+    "failures": 3,
+    "limit": "Expected failing marker plus two unintended private-receipt dependencies; corrected before isolated control."
+  },
+  "restoration": "Temporary failing test removed in a subsequent commit; no history rewrite or gate change."
+}
