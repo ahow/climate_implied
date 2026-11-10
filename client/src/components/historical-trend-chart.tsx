@@ -73,13 +73,13 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
         };
       case "netZero":
         return {
-          title: "Historical Net-Zero Year Projections",
+          title: "Historical 5 GtCO2e Threshold Diagnostics",
           subtitle: hasNowcast
             ? `Observed data with nowcast extrapolation to ${new Date().getFullYear()}`
-            : "When emissions would reach near-zero at each projection point",
+            : "When median emissions reach 5 GtCO2e; this is not net zero",
           dataKey: "netZeroYear",
-          yLabel: "Net-Zero Year",
-          yDomain: [2050, 2150] as [number, number],
+          yLabel: "5 GtCO2e threshold year",
+          yDomain: [2024, 2100] as [number, number],
           color: "hsl(43, 86%, 42%)",
           referenceLines: [
             { y: 2050, label: "2050 Target", color: "hsl(168, 76%, 36%)" },
@@ -98,12 +98,12 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     "P10 (\u00B0C)": d.p10,
     "P90 (\u00B0C)": d.p90,
     "Reduction Rate (%/yr)": d.reductionRate,
-    "Net-Zero Year": d.netZeroYear ?? "Never",
+    "Year median emissions reach 5 GtCO2e": d.netZeroYear ?? null,
     Estimated: d.isNowcast ? "yes" : "no",
   }));
 
   const chartData = data.map((d) => {
-    const rawValue = metricView === "netZero" ? (d.netZeroYear || 2200) : d[config.dataKey as keyof HistoricalTrendPoint];
+    const rawValue = metricView === "netZero" ? d.netZeroYear : d[config.dataKey as keyof HistoricalTrendPoint];
     return {
       ...d,
       displayValue: d.isNowcast ? undefined : rawValue,

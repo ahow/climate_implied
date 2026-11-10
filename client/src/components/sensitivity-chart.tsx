@@ -100,8 +100,8 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
     Indicator: d.label,
     Category: d.category,
     "Baseline (\u00B0C)": d.baselineTemperature ?? baseline,
-    "Low Scenario P10 (\u00B0C)": d.p10Temperature,
-    "High Scenario P90 (\u00B0C)": d.p90Temperature,
+    "Lower scenario median (\u00B0C)": d.p10Temperature,
+    "Upper scenario median (\u00B0C)": d.p90Temperature,
     "Impact Range (\u00B0C)": d.temperatureRange,
   }));
 
@@ -125,6 +125,14 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
             filename="indicator-sensitivity"
             sheetName="Sensitivity"
             rows={downloadRows}
+            fieldBindings={{
+              Indicator:{id:"sensitivity.label",transform:"Identity"},
+              Category:{id:"sensitivity.category",transform:"Identity"},
+              "Baseline (\u00B0C)":{id:"sensitivity.baselineTemperature",transform:"Row baseline, or shared chart baseline if row field missing"},
+              "Lower scenario median (\u00B0C)":{id:"sensitivity.p10Temperature",transform:"Identity; not a probability quantile"},
+              "Upper scenario median (\u00B0C)":{id:"sensitivity.p90Temperature",transform:"Identity; not a probability quantile"},
+              "Impact Range (\u00B0C)":{id:"sensitivity.temperatureRange",transform:"Identity"},
+            }}
             testId="button-download-sensitivity"
           />
         </div>

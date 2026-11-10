@@ -76,6 +76,16 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           filename="legacy-global-intensity-counterfactual"
           sheetName="Global Counterfactual"
           rows={downloadRows}
+          fieldBindings={{
+            Region:{id:"regional.regionName",transform:"Identity"},
+            "Legacy global counterfactual warming (\u00B0C)":{id:"regional.temperatureRise",transform:"Identity"},
+            "Reduction Rate (%/yr)":{id:"regional.reductionRate",transform:"Identity"},
+            "Carbon Intensity (kg/$GDP)":{id:"regional.carbonIntensity",transform:"Identity; read companion basis column"},
+            "Intensity basis":{id:"regional.carbonIntensityBasis",transform:"Identity"},
+            "Legacy 5 Gt milestone":{id:"regional.netZeroYear",transform:"null -> Not reached; finite year unchanged"},
+            "Milestone definition":{id:"regional.milestoneDefinition",transform:"Identity"},
+            Claim:{id:"regional.claim",transform:"Identity"},
+          }}
           testId="button-download-regional"
         />
       </div>

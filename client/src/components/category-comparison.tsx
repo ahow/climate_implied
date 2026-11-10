@@ -55,7 +55,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
     Category: c.categoryName,
     "Temperature (\u00B0C)": c.temperatureRise,
     "Reduction Rate (%/yr)": c.reductionRate,
-    "Net-Zero Year": c.netZeroYear ?? "Never",
+    "First year median emissions reach 5 GtCO2e": c.netZeroYear,
   }));
 
   return (

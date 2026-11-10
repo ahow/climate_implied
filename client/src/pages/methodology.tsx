@@ -459,15 +459,15 @@ export default function Methodology() {
           <section>
             <div className="flex items-center gap-2 mb-3">
               <Calculator className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-semibold m-0" data-testid="text-netzero-heading">Step 4: Net Zero Year</h2>
+              <h2 className="text-lg font-semibold m-0" data-testid="text-netzero-heading">Retired 5% Residual-Emissions Diagnostic</h2>
             </div>
             <Card className="p-5">
               <p className="text-sm text-muted-foreground mb-3">
-                The net zero year is the year when cumulative emission reductions reach 95% of the baseline,
-                derived from the annual decarbonization rate:
+                This retired formula estimates when annual emissions fall to 5% of a fixed baseline.
+                A positive residual is not net zero, and the valuation-derived physical claim is withheld:
               </p>
               <div className="bg-muted/50 rounded-md p-3 mb-3 font-mono text-xs">
-                <div>Net zero year = 2024 + ln(0.05) / ln(1 - r)</div>
+                <div>Legacy 5% residual-emissions threshold = 2024 + ln(0.05) / ln(1 - r)</div>
                 <div className="mt-1 text-muted-foreground">where r = annual decarb rate (decimal), 0.05 = 5% residual threshold</div>
               </div>
               <div className="overflow-x-auto">
@@ -578,9 +578,9 @@ export default function Methodology() {
                 <div>implied_decarb_rate = (g_company - g_peer_median) &times; 100 %/yr</div>
               </div>
               <p className="text-sm text-muted-foreground mb-3">
-                Companies whose P/E ratios imply growth rates above their peer group median are interpreted as
-                having positive market-implied decarbonization rates &mdash; the market assigns them a
-                &ldquo;transition premium.&rdquo; Companies below the median receive negative implied rates.
+                Above-peer P/E ratios produce a positive peer-relative Gordon growth comparator under
+                the shared cost-of-equity assumption. This is an earnings-yield comparison, not a
+                physical decarbonization rate or identified climate transition premium.
               </p>
               <p className="text-sm text-muted-foreground m-0">
                 The peer group classification follows the same four methods described in the Tercile Classification
@@ -594,12 +594,13 @@ export default function Methodology() {
           <section>
             <div className="flex items-center gap-2 mb-3">
               <GitCompare className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-semibold m-0" data-testid="text-gap-signal-heading">Gap Signal Construction</h2>
+              <h2 className="text-lg font-semibold m-0" data-testid="text-gap-signal-heading">Legacy Gap Diagnostic — Not Validated Climate Mispricing</h2>
             </div>
             <Card className="p-5">
               <p className="text-sm text-muted-foreground mb-3">
-                The gap for each company is the difference between the projected global decarbonization rate
-                and the company&apos;s market-implied rate:
+                The legacy diagnostic subtracts a peer-relative earnings-yield comparator from a
+                reconstructed global emissions-reduction rate. These are different quantities;
+                the subtraction does not identify company climate expectations or mispricing:
               </p>
               <div className="bg-muted/50 rounded-md p-3 mb-3 font-mono text-xs">
                 <div>gap = projected_rate - implied_decarb_rate</div>
@@ -607,7 +608,7 @@ export default function Methodology() {
                 <div>1. Sort companies by gap within each peer group</div>
                 <div>2. Assign percentile rank: pctile = rank / (N - 1)</div>
                 <div>3. Convert to score: score = (pctile - 0.5) &times; 2</div>
-                <div className="mt-1 text-muted-foreground">Score range: -1 (most overpriced) to +1 (most underpriced)</div>
+                <div className="mt-1 text-muted-foreground">Score range: -1 to +1 in legacy diagnostic rank; not established overpricing or underpricing</div>
               </div>
               <p className="text-sm text-muted-foreground mb-3">
                 The scoring uses continuous rank-based percentiles rather than discrete terciles. This preserves
@@ -615,10 +616,9 @@ export default function Methodology() {
                 centred at zero (median company) and ranges symmetrically from -1 to +1.
               </p>
               <p className="text-sm text-muted-foreground m-0">
-                The <strong>projected rate</strong> comes from the dashboard&apos;s historical trend analysis, which
-                back-calculates a decarbonization rate for each year (2015&ndash;2025) based on the Monte Carlo model
-                applied to historical indicator values. This rate evolves over time as real-world policy, technology,
-                and investment data change.
+                The <strong>legacy reference rate</strong> is a current-code reconstruction from historical
+                indicator values, not a forecast issued at the original date. It cannot substitute for
+                compatible company operating projections in the actual climate-gap evaluation.
               </p>
             </Card>
           </section>

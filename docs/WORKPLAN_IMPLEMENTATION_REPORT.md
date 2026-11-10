@@ -1,6 +1,101 @@
 # Workplan implementation report
 
+## Field semantics continuation — 2026-11-10
+
+Baseline HEAD446b909 and original workplan/amendment hashes verified. This is
+implementation, not full semantic/scientific acceptance. Counts remain
+**7 verified /48 partial /2 blocked /243 unreconciled**.
+
+Before:16 core definitions,953 source slots across64 surfaces,0 precisely
+qualified API bindings under the new census. After:82 definitions (16 original,
+66 qualified),965 slots:921 typed public,27 withheld,6 unresolved types,
+11 dynamic keys.65 API fields bind exactly:SDG11,PE10,indicator24,regional10,sensitivity10.
+SDG3,indicator24,regional8 and sensitivity6 export columns have explicit bindings, transformations
+and an XLSX binding sheet; these are not41 extra mapped census slots.
+**856 typed fields remain unbound, plus17 unresolved/dynamic slots and
+unenumerated display-only expressions.** Full coverage fails explicitly.
+
+Prior paths changed: shared/fieldSemantics.ts (semanticRows);
+server/routes.ts (qualified response headers/unknown-field rejection);
+download-data-button.tsx (bindExportColumns and workbook metadata);
+historical-trend-chart.tsx/category-trend-chart.tsx (5Gt threshold, null retention);
+indicator-cards.tsx and pages/climate-valuation.tsx (qualified export bindings).
+New: shared/outputFieldSemantics.ts, shared/indicatorFieldSemantics.ts,
+script/field-semantics-census.ts, script/output-field-semantics.test.ts,
+docs/field_semantics_baseline.json and docs/field_semantics_census.json.
+The ledger renderer now includes latest_increment so all three records
+preserve these details. Output register and existing semantics test updated.
+
+Actual formulas document aggregate-not-average PE, exact Gordon group growth,
+positive-profit PE eligibility versus SDG's different eligibility, all22 retained
+indicator/nowcast formulas and existing clamps. Survey coverage and corporate
+denominators remain unverified. EV growth means relative sales-share growth,
+not fleet growth; divestment is committed AUM, not realised withdrawal.
+Existing clamps are engineering bounds, NOT new calibrated saturation priors.
+Original publication vintages remain unknown. No historical archive rewritten.
+
+Validation commands: `npx tsx --test script/*.test.ts`, `npm run check`,
+`npm run build`, and the census `--check --require-complete`.
+Dated pass/fail counts and full logs are in JSON run_executions. First focused
+test attempt failed2 assertions (withheld raw fields and test regex), then
+passed; a later index-signature type mismatch was corrected using object[].
+The complete-coverage gate correctly exits1; this is not a passed full-scope gate.
+Development SDG returned193 rows/11 fields and the exact qualified header;
+PE returned its10-field header. Initial header omission revealed Express
+mount-path restoration; originalUrl fixed it. Scenario Analyzer screenshot had
+no browser errors. Final indicator runtime and release receipts follow below.
+
+No new analytical study was run. Beta73095d6/88pairs and failed common8%
+comparison untouched; Gordon primary, EV failures and storage sensitivity-only
+retained. No approvals, purchases, collector changes, DDL or licence changes.
+Remaining scope includes all other fields/display census, nine-path combined
+refresh/targets, substantive frozen studies, actual compatible Stage12 cases,
+and Stage14/15. These are actionable unfinished work, not external blockers.
+Last verified deployment remains ec2eaa1 until an exact new receipt is recorded.
+
+Final regional addition: shared/regionalFieldSemantics.ts and
+client/src/components/regional-comparison.tsx bind all10 regional response fields
+and8 export columns. Current and archived response branches use the same binding;
+PPP and nominal intensities are expressly noninterchangeable and warming is a
+global counterfactual, not a local forecast. A typed response helper removes one
+previously unresolved cache-response slot from the census.
+server/calculation/forwardProjection.ts now throws for missing/nonfinite
+temperature inputs and invalid run/sensitivity arguments rather than generating
+zero summaries/NaN densities. Valid model equations and results are unchanged.
+Full suite220/220 passed before the regional addition; final focused10/10 passed,
+typecheck/build passed at02:09UTC, with exact logs in run_executions. Dev indicator
+response17 rows/24 fields returned the exact semantic header. Exploratory failures
+described above were not separately timestamped by the evidence runner.
+
+Sensitivity addition: shared/sensitivityFieldSemantics.ts and
+sensitivity-chart.tsx bind10 API fields/6 columns. The legacy P10/P90 output
+names are min/max scenario medians, NOT probability quantiles; export labels
+corrected without changing data or fixed scenario multipliers. Final focused
+tests11/11, typecheck/build passed at02:17UTC. Complete-coverage gate failed
+explicitly65/938 public slots, with display-only expressions still unenumerated.
+Development regional4 rows/10 fields and sensitivity15 rows/10 fields returned
+exact semantic headers. This is functional binding evidence, not scientific
+calibration or full replay acceptance. Expandable column-binding UI avoids
+placing long ID lists directly in card headers.
+
+Further label fixes: category-comparison.tsx no longer exports a positive5Gt
+threshold as net zero or substitutes Never for null. methodology.tsx calls the
+old5% residual formula retired/not-net-zero, distinguishes peer-relative
+earnings yields from physical reductions, and labels legacy gap ranks as
+unvalidated rather than established mispricing. The census does not enumerate
+all display expressions or custom export implementations outside
+DownloadDataButton; these remain explicit exclusions, not completed coverage.
+
 ## Combined refresh continuation
+
+Final source export ec2eaa1fcadb9da2239f2f2ba8b70dbd5acd2072 passed CI42736058106.
+Railway99566562-63d3-43f2-8291-330f76d88eb0 SUCCESS; live build-info and health
+verified. Workspace source commit869eced. Changes are engineering diagnostic
+scripts, not a new analytical model or application behavior.
+The turn execution budget ended with actionable work remaining. No new original
+requirement is marked verified: counts remain7 verified/48 partial/2 blocked/
+243 unreconciled. Full combined nine-path/export acceptance and the requested
+semantic/analytical work are not claimed complete.
 
 Starting HEAD c6267fa; preceding checkpoint confirmed matched by owner and not
 resent. Extended script/check-overlay-concurrency-db.ts with
@@ -513,6 +608,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-nine-path-review-66c7782",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T01:23:31.144514+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-combined-refresh-ec2eaa1",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T01:32:33.289490+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

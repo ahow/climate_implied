@@ -3,12 +3,14 @@ import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { exportNotes, type ExportKind } from "@/lib/export-contract";
 import { semanticRows } from "@shared/fieldSemantics";
+import { bindExportColumns,type ExportFieldBinding } from "@shared/outputFieldSemantics";
 import { exportDataIdentity } from "@/lib/export-identity";
 
 type Cell = string | number | boolean | null | undefined;
 export type DownloadRow = Record<string, Cell>;
 
 interface DownloadDataButtonProps {
+  fieldBindings?:Record<string,ExportFieldBinding>;
   kind: ExportKind;
   filename: string;
   rows: DownloadRow[] | (() => DownloadRow[]);
@@ -20,6 +22,7 @@ interface DownloadDataButtonProps {
 }
 
 export function DownloadDataButton({
+  fieldBindings,
   kind,
   filename,
   rows,
@@ -52,6 +55,9 @@ export function DownloadDataButton({
         sheetName.slice(0, 31) === "Interpretation" ? "Export Notes" : "Interpretation");
       XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(semanticRows()),
         sheetName.slice(0,31)==="Field semantics" ? "Semantic definitions" : "Field semantics");
+      if(fieldBindings) XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(
+        bindExportColumns(identity.normalized,fieldBindings).map(row=>({...row,dependencies:row.dependencies.join(", ")}))
+      ),"Column bindings");
       const name = filename.endsWith(".xlsx") ? filename : `${filename}.xlsx`;
       XLSX.writeFile(wb, name);
     } catch (err) {
@@ -77,6 +83,12 @@ export function DownloadDataButton({
       {busy ? "Preparing\u2026" : label}
     </Button>
     {error && <span role="alert" className="text-sm text-destructive">{error}</span>}
+    {fieldBindings && <details className="basis-full text-xs text-muted-foreground">
+      <summary className="cursor-pointer">Export column bindings ({Object.keys(fieldBindings).length})</summary>
+      <ul className="space-y-1 py-2">{Object.entries(fieldBindings).map(([column,binding])=>
+        <li key={column}><strong>{column}</strong>: <code>{binding.id}</code> — {binding.transform}</li>
+      )}</ul>
+    </details>}
     <details className="text-xs text-muted-foreground">
       <summary>Input, calculation and output definitions</summary>
       <p>Core field definitions; not yet a complete dictionary of every displayed or exported column. Null means unavailable, not zero.</p>

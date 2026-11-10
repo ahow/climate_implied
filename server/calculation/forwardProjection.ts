@@ -354,7 +354,10 @@ export function calculateTemperatureDistribution(
   const rng = createRNG(42 * 12345);
   const temperatureOutcomes: number[] = [];
   const finalProjection = trajectory[trajectory.length - 1];
-  if (!finalProjection) return [];
+  if (!finalProjection || !Number.isFinite(finalProjection.cumulativeEmissions) || finalProjection.cumulativeEmissions < 0)
+    throw new Error("Temperature distribution requires a finite nonnegative cumulative-emissions trajectory");
+  if (!Number.isInteger(runs) || runs <= 0 || !Number.isFinite(climateSensitivity) || climateSensitivity <= 0)
+    throw new Error("Temperature distribution requires positive runs and climate sensitivity");
 
   const tcreBase = LEGACY_CLIMATE.tcreCPerGt;
   const baselineWarming = LEGACY_CLIMATE.warmingOffsetC;
@@ -395,7 +398,8 @@ export function calculateTemperatureDistribution(
 
 export function getTemperatureStats(pdf: TemperatureProjection[], trajectory: ForwardProjection[]) {
   const finalProjection = trajectory[trajectory.length - 1];
-  if (!finalProjection) return { median: 0, mean: 0, p10: 0, p90: 0 };
+  if (!finalProjection || !Number.isFinite(finalProjection.cumulativeEmissions) || finalProjection.cumulativeEmissions < 0)
+    throw new Error("Temperature summary requires a finite nonnegative cumulative-emissions trajectory");
 
   const tcreBase = LEGACY_CLIMATE.tcreCPerGt;
   const baselineWarming = LEGACY_CLIMATE.warmingOffsetC;

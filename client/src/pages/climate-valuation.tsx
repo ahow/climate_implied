@@ -508,6 +508,11 @@ function AnalysisSection({
               filename={`${testIdPrefix}-pe-ratio-comparison`}
               sheetName="P-E Ratio"
               rows={peDownloadRows}
+          fieldBindings={testIdPrefix==="sdg" ? {
+            Date:{id:"sdg.date",transform:"Workbook ISO date -> millisecond chart timestamp -> formatTooltipDate display string"},
+            [`${peChart.highLabel} P/E (x)`]:{id:"sdg.cleanPE",transform:"Identity; aggregate P/E already rounded to two decimals"},
+            [`${peChart.lowLabel} P/E (x)`]:{id:"sdg.dirtyPE",transform:"Identity; aggregate P/E already rounded to two decimals"},
+          } : undefined}
               testId={`button-download-${testIdPrefix}-pe`}
             />
           </div>

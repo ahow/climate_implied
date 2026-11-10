@@ -1,17 +1,54 @@
 {
   "schema_version": 1,
+  "latest_increment": {
+    "scope": "2026-11-10 field semantics increment; stages 1/3/16 remain incomplete. Original plan/amendment hashes rechecked unchanged.",
+    "baseline": "HEAD446b909; 16 core definitions, 953 census slots across64 surfaces, 0 precisely qualified API bindings tracked by this census. The earlier core dictionary/UI notes existed and are not counted as runtime field binding.",
+    "after": "82 definitions: original16 plus66 qualified definitions.965 source slots:921 typed public,27 withheld,6 unresolved types,11 dynamic keys.65 bound API fields across SDG11/PE10/indicators24/regional10/sensitivity10.41 explicit export column bindings across SDG3/indicator24/regional8/sensitivity6; not41 additional census slots. Display-only expressions remain unenumerated. Full semantic coverage NOT achieved.",
+    "prior_paths": [
+      "shared/fieldSemantics.ts semanticRows",
+      "server/routes.ts public response filter",
+      "client/src/components/download-data-button.tsx",
+      "client/src/components/historical-trend-chart.tsx",
+      "client/src/components/category-trend-chart.tsx",
+      "client/src/components/indicator-cards.tsx",
+      "client/src/pages/climate-valuation.tsx"
+    ],
+    "new_paths_functions": [
+      "shared/outputFieldSemantics.ts requireOutputSemantic/bindOutputFields/bindExportColumns",
+      "shared/indicatorFieldSemantics.ts indicatorFieldSpecs/indicatorFieldSemantics",
+      "script/field-semantics-census.ts compiler-derived source census and failing completeness gate",
+      "script/output-field-semantics.test.ts",
+      "docs/field_semantics_baseline.json",
+      "docs/field_semantics_census.json"
+    ],
+    "behaviour": "Reject unknown fields in three bound API families and unknown/conflicting columns in bound exports; XLSX column bindings retain IDs/formulas/transforms. Legacy5Gt threshold labels no longer say net zero; missing threshold years no longer become2200. Explicit source-publication unknowns, survey/issuer denominator uncertainty, EV-share versus fleet growth, and committed AUM versus realised divestment. No change to historical archives or model equations.",
+    "tests": "2026-11-10 npx tsx --test script/*.test.ts; npm run check; npm run build via evidence runner; exact dated results/logs in run_executions. Earlier focused run had2 failures (withheld raw fields and test regex), corrected; one TypeScript Record index-signature mismatch corrected. Completeness --require-complete intentionally exits1: remaining field coverage is not accepted. Initial runtime header omission exposed Express mount-path restoration and was fixed using originalUrl.",
+    "runtime": "Development SDG193 rows/11 fields, PE10 fields, indicator17 rows/24 fields, regional4 rows/10 fields, sensitivity15 rows/10 fields; all exact semantic headers observed. Scenario Analyzer screenshot had no browser errors. Release receipt pending.",
+    "label_update": "category-comparison export now preserves null and names the5Gt threshold. Methodology retires the5% residual formula as not-net-zero and identifies earnings-yield/legacy-gap comparisons as not physical expectations or validated mispricing. Also changed client/src/pages/methodology.tsx and category-comparison.tsx.",
+    "scientific_decisions": "No new frozen scientific study executed. Preserve beta73095d6/88pairs and common8% failure, Gordon primary, EV failures/storage sensitivity-only. Existing nowcast clamps documented as engineering clamps, not new saturation priors. Retained hashes not original-publication proof. No issuer approval, collector or licence changes.",
+    "release": "Local implementation not yet a verified deployment; last verified live ec2eaa1/CI42736058106/Railway99566562-63d3-43f2-8291-330f76d88eb0.",
+    "additional_paths": [
+      "shared/regionalFieldSemantics.ts: PPP/nominal and global-counterfactual scope",
+      "client/src/components/regional-comparison.tsx:8 column bindings",
+      "server/calculation/forwardProjection.ts:empty/nonfinite/invalid temperature inputs throw instead of zero summaries or NaN densities"
+    ],
+    "validation_update": "Full suite220/220 passed before final regional/sensitivity additions; final focused suite11/11 passed, TypeScript/build passed at02:17UTC. Development indicator17 rows/24 fields, regional4 rows/10 fields, sensitivity15 rows/10 fields with exact headers. Workflow running; scheduler remains disabled here. Full coverage gate exits1 at65/938 public slots, plus unenumerated displays. No scientific study rerun.",
+    "sensitivity_update": "shared/sensitivityFieldSemantics.ts and sensitivity-chart.tsx bind10 API fields/6 export columns. Legacy P10/P90 temperatures are min/max scenario medians, not probability quantiles; export labels corrected. Fixed scenario multipliers documented, not refitted or treated as calibrated priors. Download bindings now expand on demand rather than placing long ID lists in card headers.",
+    "remaining": "856 typed slots unbound plus17 unresolved/dynamic slots and display-only census; full source/formula verification, all API/UI/export families, nine-path refresh/nonempty targets, frozen driver/reference studies, Stage12 actual compatible cases and Stage14/15. Provisioning/heat-pump/owner-review restrictions are narrow blockers, not a halt-all reason.",
+    "counts": "7 verified /48 partial /2 blocked /243 unreconciled; no original requirement promoted on this partial evidence"
+  },
   "current_release": {
-    "workspace_commit": "c1a12f7b1a8ca9a8b4cb98d7a78b86b8551471b8",
-    "github_main": "66c7782e2fdfb1be20fb420875a7f1afce6d6435",
-    "ci": "42734896982 success",
-    "railway_deployment": "6c0ae3e8-47d6-49a9-b239-04988f0fbdd5",
+    "workspace_commit": "869eced8751b25e5a3ddbd3e530212aba9360352",
+    "github_main": "ec2eaa1fcadb9da2239f2f2ba8b70dbd5acd2072",
+    "ci": "42736058106 success",
+    "railway_deployment": "99566562-63d3-43f2-8291-330f76d88eb0",
     "railway_status": "SUCCESS",
-    "smoke": "Live health200 and build-info exact source SHA; prior16-field semantics check passes",
-    "verified_at": "2026-11-10T01:23:30.438712+00:00",
-    "later_local_only": "Final receipt/ledger documentation; runtime changes are deployed"
+    "smoke": "live build-info exact source SHA and health200",
+    "verified_at": "2026-11-10T01:31:56.711277+00:00",
+    "later_local_only": "Final documentation/receipt updates"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T01:28:39.742754+00:00",
+  "updated_at": "2026-11-10T02:25:33.180575+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -13468,10 +13505,487 @@
       "workspace_revision": "c6267fadfcf0d3684c4299c5137434e75001a0e4",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-c",
+        "import urllib.request,json;b='https://dashboard-production-4d39.up.railway.app';x=json.load(urllib.request.urlopen(b+'/api/build-info',timeout=30));assert x['sourceCommit']=='ec2eaa1fcadb9da2239f2f2ba8b70dbd5acd2072';assert json.load(urllib.request.urlopen(b+'/api/health',timeout=30))['status']=='ok';print(json.dumps(x))"
+      ],
+      "executed_at": "2026-11-10T01:31:54.039027+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.342,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T013154039027Z.log",
+      "workspace_revision": "869eced8751b25e5a3ddbd3e530212aba9360352",
+      "worktree_dirty": false,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/output-field-semantics.test.ts",
+        "script/semantics-provenance.test.ts"
+      ],
+      "executed_at": "2026-11-10T01:39:42.586152+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 3.585,
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T013942586152Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T01:42:43.133351+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 7.927,
+      "counts": {
+        "tests": 217,
+        "pass": 217,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T014243133351Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T01:42:51.147361+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.019,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T014251147361Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T01:42:53.248943+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 9.007,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T014253248943Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/output-field-semantics.test.ts",
+        "script/semantics-provenance.test.ts"
+      ],
+      "executed_at": "2026-11-10T01:44:57.578792+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 9.276,
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T014457578792Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T01:45:07.239031+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.525,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T014507239031Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T01:45:13.163655+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 18.57,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T014513163655Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T01:48:29.714578+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 31.783,
+      "counts": {
+        "tests": 218,
+        "pass": 218,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T014829714578Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T01:49:02.336447+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.877,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T014902336447Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T01:49:08.597372+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 18.323,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T014908597372Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/field-semantics-census.ts",
+        "--check",
+        "--require-complete"
+      ],
+      "executed_at": "2026-11-10T01:51:39.640302+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 5.099,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T015139640302Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T01:58:51.906154+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 31.45,
+      "counts": {
+        "tests": 219,
+        "pass": 219,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T015851906154Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T01:59:24.530874+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 11.457,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T015924530874Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T01:59:36.377196+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 19.043,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T015936377196Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T02:04:51.820555+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 33.427,
+      "counts": {
+        "tests": 220,
+        "pass": 220,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T020451820555Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T02:05:25.707952+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.11,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T020525707952Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T02:05:38.205025+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 17.742,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T020538205025Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/output-field-semantics.test.ts",
+        "script/semantics-provenance.test.ts"
+      ],
+      "executed_at": "2026-11-10T02:09:39.244752+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 10.276,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T020939244752Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T02:09:50.379442+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.877,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T020950379442Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T02:10:03.678403+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 19.133,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T021003678403Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/output-field-semantics.test.ts",
+        "script/semantics-provenance.test.ts"
+      ],
+      "executed_at": "2026-11-10T02:17:38.477755+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.23,
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T021738477755Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T02:17:51.496217+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 11.871,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T021751496217Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T02:18:03.747306+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 18.637,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T021803747306Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/field-semantics-census.ts",
+        "--check",
+        "--require-complete"
+      ],
+      "executed_at": "2026-11-10T02:18:22.828426+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 7.844,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T021822828426Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T02:24:37.035781+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 32.173,
+      "counts": {
+        "tests": 222,
+        "pass": 222,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T022437035781Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T02:25:09.595646+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.462,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T022509595646Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T02:25:15.436607+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 17.613,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T022515436607Z.log",
+      "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
-    "next_requirement": "S02-007",
+    "next_requirement": "S01-001",
     "unfinished_requirement_ids": [
       "S00-004",
       "S00-006",
@@ -13767,17 +14281,16 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope. Expanded replay verifier now matches9 actual CV result paths, not justSDG; do not rerun the same settings unnecessarily. Test refresh/concurrency/nonempty targets and finish per-column mappings. Release core02afe645 verified live. Latest operator/ledger additions pending export. Actual overlapping SDG review/request test now passes with complete rollback; other refresh combinations pending. Current response filter additionally withholds p25/p75ImpliedRate; preserve historical archives. Source workplan/amendment hashes verified unchanged. Do not treat retained-curated driver hashes as original-vintage proof. Final runtime66c7782 verified deployed after CI; local final receipts are documentation only. Resume combined refresh acceptance and all-field semantic mappings next. Final changed gap endpoint193 rows has no p25/p75 unsupported fields and fresh-process replay passes. Preserve recorded scientific failures and zero owner approvals. Combined4-helper rollback overlap test and isolated XLSX roundtrip now pass. Do not rerun unchanged cases. Financial current quotes still not historical substitution; next nonempty target cases/all-nine-path combined refresh/export binding, full field mappings and substantive frozen studies.",
+    "instruction": "Continue implementation, stages0-17/amendments not complete. PRIORITY full field semantics:82 definitions but only65 bound API fields and41 export columns;856 typed slots plus17 unresolved/dynamic slots remain, and display-only/custom-export census is incomplete. Extend actual schemas/bindings/formulas, not generic placeholders. Then substantive dependency-ready frozen driver/reference/FaIR studies and actual compatible Stage12 cases/Stage14-15, never proxies. Preserve beta73095d6/88pairs and common8% failure, Gordon primary, EV failures/storage sensitivity-only. No new scientific study this increment. All22 curated source hashes are not original-vintage proof. Real carbon/SDG review transactions and prior combined4-helper/nine-path diagnostics remain engineering evidence, not full replay acceptance; finish nonempty targets/all-nine-path refresh/export isolation without rerunning identical settings. Preserve withheld p25/p75 physical fields and historical archives. No owner approvals, collector changes, purchases, DDL or licence bypass. Provisioning/heat-pump/owner-review limitations are narrow blockers. Continue through ready work, checkpoint only at genuine run end; use latest current_release rather than older historical receipts.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261110-nine-path-review-66c7782",
+    "checkpoint_id": "ckpt-20261110-combined-refresh-ec2eaa1",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-10T01:23:31.144514+00:00",
+    "attempted_at": "2026-11-10T01:32:33.289490+00:00",
     "outcome": "transport-accepted",
-    "continuation_matched": "owner-confirmed",
-    "http_status": 202,
-    "matching_evidence": "Owner confirms preceding checkpoint matched; not resent."
+    "continuation_matched": "unverified",
+    "http_status": 202
   },
   "handoff_contract": {
     "prior_callback": "2026-11-09 23:41:55 HTTP 202 received but NOT MATCHED, owner-confirmed wrong event run-end",
@@ -13861,7 +14374,7 @@
     "conclusion": "failure",
     "reason": "Verified ledger row lacked attached execution evidence; corrected by attaching actual executed receipt, not bypassing validation"
   },
-  "stopping_reason": "Remaining turn execution/context budget; not completion or exhausted actionable work. Checkpoint is recovery only.",
+  "stopping_reason": "Turn execution budget reached; actionable scope remains, not completion.",
   "stage_status_counts": {
     "0": {
       "verified": 6,

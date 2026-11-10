@@ -71,11 +71,11 @@ function getConfig(metricView: MetricView) {
       };
     case "netZero":
       return {
-        title: "Category Scenario Net-Zero Year",
-        subtitle: "Projected net-zero year under each scenario",
+        title: "Category Scenario 5 GtCO2e Threshold",
+        subtitle: "First year median emissions reach 5 GtCO2e; not net zero",
         metricKey: "netZeroYear" as const,
-        yLabel: "Net-Zero Year",
-        yDomain: [2050, 2200] as [number, number],
+        yLabel: "5 GtCO2e threshold year",
+        yDomain: [2024, 2100] as [number, number],
         formatter: (v: number) => `${Math.round(v)}`,
         referenceLines: [
           { y: 2050, label: "2050 Target", color: "hsl(168, 76%, 36%)" },
@@ -106,7 +106,6 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
     };
     for (const key of CATEGORY_KEYS) {
       let value: number | null | undefined = d[key][config.metricKey];
-      if (config.metricKey === "netZeroYear" && value === null) value = 2200;
       row[CATEGORY_NAMES[key]] = value ?? undefined;
     }
     return row;
@@ -117,9 +116,6 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
     for (const key of CATEGORY_KEYS) {
       const metrics = d[key];
       let value = metrics[config.metricKey];
-      if (config.metricKey === "netZeroYear" && value === null) {
-        value = 2200;
-      }
       row[key] = d.isNowcast ? undefined : (value ?? undefined);
       row[`${key}_nowcast`] = d.isNowcast ? (value ?? undefined) : undefined;
     }

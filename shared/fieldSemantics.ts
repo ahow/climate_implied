@@ -1,3 +1,5 @@
+export { outputFieldSemantics,requireOutputSemantic,bindOutputFields } from "./outputFieldSemantics";
+import { outputFieldSemantics } from "./outputFieldSemantics";
 export type FieldSemantic = {
   field:string; role:"Input"|"Calculated"|"Output"; unit:string; formula:string;
   dependencies:string[]; source:string; vintage:string; asOf:string;
@@ -24,6 +26,10 @@ export const fieldSemantics: FieldSemantic[] = [
   {field:"companyProjectedGrowth",role:"Output",unit:"fraction/year",formula:"(finalYearFCFE / baseFCFE)^(1/5) - 1; nonpositive endpoint unavailable",dependencies:["fcfe","baseFCFE"],...calculated},
 ];
 export function semanticRows() {
-  return fieldSemantics.map(f=>({Field:f.field,Classification:f.role,Unit:f.unit,Formula:f.formula,
-    Dependencies:f.dependencies.join(", "),Source:f.source,Vintage:f.vintage,AsOf:f.asOf}));
+  return [...fieldSemantics.map(f=>({Field:f.field,Classification:f.role,Unit:f.unit,Formula:f.formula,
+    Dependencies:f.dependencies.join(", "),Source:f.source,Vintage:f.vintage,AsOf:f.asOf})),
+    ...outputFieldSemantics.map(f=>({Field:f.id,Classification:f.role,Unit:f.unit,Formula:f.formula,
+      Dependencies:f.dependencies.join(", "),Source:f.source,Vintage:f.source,AsOf:f.asOfRule,
+      Meaning:f.meaning,Period:f.period,Geography:f.geography,Status:f.status,
+      Missingness:f.missingness,Uncertainty:f.uncertainty}))];
 }

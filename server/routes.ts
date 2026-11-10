@@ -82,6 +82,7 @@ import { checkFinancialProvider, financialProviderStatus } from "./financialData
 import { listFinancialReviews } from "./financialData/reviewStore";
 import { captureMaterialInputs } from "./snapshots/materialInputs";
 import { fieldSemantics } from "../shared/fieldSemantics";
+import { outputFieldSemantics,bindOutputFields } from "../shared/outputFieldSemantics";
 import { calculationReadiness } from "./calculation/readiness";
 import { historicalValidation } from "./calculation/historicalValidation";
 import { auditVintages } from "./calculation/vintageAudit";
@@ -119,7 +120,7 @@ export async function registerRoutes(
 ): Promise<Server> {
   app.get("/api/calculation/field-semantics",(_req,res)=>res.json({
     version:"core-fields-1",coverage:"Core fields only; additional output fields remain unreconciled",
-    fields:fieldSemantics,
+    fields:fieldSemantics,qualifiedFields:outputFieldSemantics,
   }));
   app.get("/api/build-info", (_req, res) => {
     const candidate = process.env.RAILWAY_GIT_COMMIT_SHA;
@@ -260,8 +261,14 @@ export async function registerRoutes(
   app.use("/api/cv", (req, res, next) => {
     res.set("X-Analytical-Status", "descriptive-valuation-not-physical-inference");
     const send = res.json.bind(res);
-    res.json = ((body: unknown) => send(publicValuationResult(body,
-      req.originalUrl.split("?")[0].startsWith("/api/cv/decarb-gap")))) as typeof res.json;
+    res.json = ((body: unknown) => {
+      const filtered=publicValuationResult(body,req.originalUrl.split("?")[0].startsWith("/api/cv/decarb-gap"));
+      if(req.originalUrl.split("?")[0]==="/api/cv/sdg-growth" && res.statusCode<400 && Array.isArray(filtered))
+        res.set("X-Field-Semantics",bindOutputFields("sdg",filtered).map(f=>f.id).join(","));
+      if(req.originalUrl.split("?")[0]==="/api/cv/pe-comparison" && res.statusCode<400 && Array.isArray(filtered))
+        res.set("X-Field-Semantics",bindOutputFields("pe",filtered).map(f=>f.id).join(","));
+      return send(filtered);
+    }) as typeof res.json;
     next();
   });
 
@@ -545,6 +552,7 @@ export async function registerRoutes(
   app.get("/api/indicators/historical", async (_req, res) => {
     try {
       const data = getAllHistoricalIndicatorsWithNowcast();
+      res.set("X-Field-Semantics",bindOutputFields("indicator",data).map(f=>f.id).join(","));
       res.json(data);
     } catch (error) {
       console.error("Historical indicators error:", error);
@@ -569,21 +577,25 @@ export async function registerRoutes(
 
   app.get("/api/projection/regions", async (req, res) => {
     try {
+      const respond=(rows:Awaited<ReturnType<typeof calculateRegionalProjections>>)=>{
+        res.set("X-Field-Semantics",bindOutputFields("regional",rows).map(f=>f.id).join(","));
+        return res.json(rows);
+      };
       const regionalId = snapshotSelection(req.query.regionalSnapshotId);
       if (regionalId) {
         const captured = await loadRegionalInputs(regionalId);
         res.set("X-Regional-Snapshot", regionalId);
         res.set("Cache-Control", "no-store");
-        return res.json(calculateRegionalFromInputs(getCurrentIndicators(), captured));
+        return respond(calculateRegionalFromInputs(getCurrentIndicators(), captured));
       }
       if (regionalCacheResult && validRouteCache("regions", res) && Date.now() - regionalCacheFetchedAt < REGIONAL_CACHE_TTL_MS) {
-        return res.json(regionalCacheResult);
+        return respond(regionalCacheResult);
       }
       const result = await calculateRegionalProjections();
       regionalCacheResult = result;
       regionalCacheFetchedAt = Date.now();
       tagRouteCache("regions", res);
-      res.json(result);
+      respond(result);
     } catch (error) {
       console.error("Regional projections error:", error);
       res.status(req.query.regionalSnapshotId ? 422 : 500).json({ error: "Failed to calculate regional projections; requested inputs may be unavailable" });
@@ -592,8 +604,12 @@ export async function registerRoutes(
 
   app.get("/api/projection/sensitivity", async (_req, res) => {
     try {
+      const respond=(rows:ReturnType<typeof calculateSensitivityAnalysis>)=>{
+        res.set("X-Field-Semantics",bindOutputFields("sensitivity",rows).map(f=>f.id).join(","));
+        return res.json(rows);
+      };
       if (sensitivityCacheResult && validRouteCache("sensitivity", res)) {
-        return res.json(sensitivityCacheResult);
+        return respond(sensitivityCacheResult);
       }
       const allNowcast = getAllHistoricalIndicatorsWithNowcast();
       const latestData = allNowcast[allNowcast.length - 1];
@@ -602,7 +618,7 @@ export async function registerRoutes(
       const result = calculateSensitivityAnalysis(indicators, startYear);
       sensitivityCacheResult = result;
       tagRouteCache("sensitivity", res);
-      res.json(result);
+      respond(result);
     } catch (error) {
       console.error("Sensitivity analysis error:", error);
       res.status(500).json({ error: "Failed to calculate sensitivity analysis" });

@@ -232,6 +232,12 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
           filename="climate-indicators"
           sheetName="Indicators"
           rows={downloadRows}
+          fieldBindings={{
+            Year:{id:"indicator.year",transform:"Identity"},
+            Estimated:{id:"indicator.isNowcast",transform:"true -> yes; false -> no. False does not certify original-vintage observations"},
+            ...Object.fromEntries(INDICATORS.map(ind=>[`${ind.label} (${ind.unit})`,
+              {id:`indicator.${ind.key}`,transform:"Identity; display-unit label resolved by qualified semantic definition"}])),
+          }}
           testId="button-download-indicators"
         />
       </div>

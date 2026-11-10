@@ -1,12 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fieldSemantics,semanticRows } from "../shared/fieldSemantics";
+import { outputFieldSemantics } from "../shared/outputFieldSemantics";
 import { driverEvidenceRegistry } from "../server/calculation/driverEvidence";
 test("core field semantics retain input/calculation/output units, formula and as-of distinctions",()=>{
   assert.equal(new Set(fieldSemantics.map(f=>f.field)).size,fieldSemantics.length);
   assert.ok(fieldSemantics.every(f=>f.formula&&f.unit&&f.source&&f.vintage&&f.asOf));
   assert.deepEqual(new Set(fieldSemantics.map(f=>f.role)),new Set(["Input","Calculated","Output"]));
-  assert.equal(semanticRows().length,fieldSemantics.length);
+  assert.equal(semanticRows().length,fieldSemantics.length+outputFieldSemantics.length);
   assert.match(fieldSemantics.find(f=>f.field==="carbonIntensity")!.unit,/market cap/);
 });
 test("22 retained driver histories have deterministic provenance without invented publication dates",()=>{
