@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "latest_increment": {
+    "final_operational_binding_check": "Runtime review found newoperationalroutes validatedIDs butdidnotpublishconsistentX-Field-Semantics headers. Addedheadersfornews/indicatorinventory/detail/uploadlist/status withoutcalculationchanges. InitialTypeScript Setspread compilefailure retainedat20261110T062645318927Z.log;fixedArray.from withoutcompilerweakening. Finalcombinedcheck/typecheck/293TS/build/actual9freshprocessreplay PASS2026-11-10T06:27:00Z,loggenerated-artifacts/workplan-completion/20261110T062700183724Z.log,elapsed298.248s. Finalreplayresultc2430b53306f788d977fe672461aefda9a45183eef15752e5c95443a8a852fb4 replacespreviouscodepinresult,all9paths2freshprocesses/XLSXactualreadback/missingdependency/codepinrejection passed;2targetpathsremainempty/notaccepted. Exactnewfunctions calculateSelectedResult,membership_audit,retrieve,annual_inventory;versionedsourceonly,nosciencepromotion.",
     "new_semantics_source_lifecycle": "2026-11-10 prior89dd798/live5eb557f preserved. NEW138original slots closed:news19+indicator49+uploads16+existingtypedXLSX54.724/1001bound,277remaining,295originalcumulativeclosed,691definitions,denominatorunchanged1028actual/1001public,27withheld,4aliases. Separate replaySemantics/Identity/Ledger/FullResult customsheetinventory added;dynamicexpressions stillunverified. Actualnews/data-management UI/GETbindings; publicPOST403 unchanged. NewnewsFieldSemantics/dataManagementSemantics andoperationaltests.",
     "new_kaya_source_evidence": "NEW kaya_source_assembly.py andkaya_primary_history_sources.py executed;4newPython tests pass. FixedEU27 audit54missingGDPcells(27*2023-24); primaryMaddison131144rows ends2022,release2024-04-26 CC-BY4.0; WorldBankconstant2021PPP incompatiblewithfrozen2011PPP. No splice/shortenedwindow/fittedwinner. RetrievedindependentIGCCannualERF275rows1750-2024 andGMST175rows1850.5-2024.5,revision852f4f7b0733fa4d573c145cdfaf556da5589231; notmatchedFaIRannualSSPmemberreference. ExactURLs/license/hash/retrievaldates/404attempts inUserUnitB_Climate_Efficacy_Results.md andprivatekaya-source-investigationreports. No unchangedstudy reruns.",
     "new_ninepath_execution": "Extended check-overlay-concurrency-db.ts/verify-overlay-replay.ts/replay-sdg-result.ts actualdispatcher:9calculators baseline+combinedfinancial/carbon/SDG/drivercontext+suspendedoldrequest+baseline-return. SDG/backtest/summary actuallychanged;oldrequestunchanged,driverrowsrestored,transactionarchives/reviewsrolledback.2freshprocesses actual9results identical, resultcontract+chunkedXLSXreadback; missinghistoricaldependency/sourcepinmismatch reject. Result42353833a2fd14cc0811a2b0247736a0a22a0364f442a328b6beab222d5f4f31;2442companies/470341observations. Logs generated-artifacts/overlay-replay/{concurrency,replay,tests,typecheck}.log. Nonemptybands/targetterciles remainblockedby missingmandatorytargetbaseyear atcalculatorcall andnooverlaytargetfields; no inventedbaseyear/relaxedeligibility. Financialreviewtransaction separatefromsynthetichistoricalfinancialoverlay. DBworkbookstillrequired;notfulloffline/APIacceptance/current-workbookmutationproof. Initialworkflowfixture rejection/exportpropertyorder failures fixedwithoutgaterelaxation.",
@@ -192,7 +193,7 @@
     "later_local_only": "Final documentation/receipt updates"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T06:20:21.861621+00:00",
+  "updated_at": "2026-11-10T06:31:58.573655+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -15267,6 +15268,41 @@
       "workspace_revision": "89dd7983785600984749fa583bd47512fb4af71f",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && npx tsx --test script/*.test.ts && npm run build && NODE_ENV=development DATA_SCHEDULER_ENABLED=false npx tsx script/verify-overlay-replay.ts"
+      ],
+      "executed_at": "2026-11-10T06:26:45.318927+00:00",
+      "exit_code": 2,
+      "elapsed_seconds": 5.479,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T062645318927Z.log",
+      "workspace_revision": "df439d9763abeab98f3ad288cae480f21435b3bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && npx tsx --test script/*.test.ts && npm run build && NODE_ENV=development DATA_SCHEDULER_ENABLED=false npx tsx script/verify-overlay-replay.ts"
+      ],
+      "executed_at": "2026-11-10T06:27:00.183724+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 298.248,
+      "counts": {
+        "tests": 293,
+        "pass": 293,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T062700183724Z.log",
+      "workspace_revision": "df439d9763abeab98f3ad288cae480f21435b3bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -15566,7 +15602,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue IMPLEMENTATION all0-17/amendments; verify current_release. Preserve586/1001bound,415originalremaining,cumulative157closed,608definitions,4aliases/native187+35/replay22; finish originalfamilies/dynamic/customsheet/replaymetadata census. Transactional prospectiveSignal capture/DBclock/conflict/repeat/rollback nowexists; genuine monthlysignal/sourceauthentication stillpending. Finish sourced simultaneoussleeve marks/frozenfrequencyalignedinference/lifecyclecollateral/50returns,not isolatedkernelrestart. ForecastKaya7entities unavailable: assemble compatible missingGDP/regionseries withoutwindowshortening. FaIR528publishedSSPendpoint comparisons passed;annualreference stillunavailable. New12NGFSderivedgasinfillruns passedconditionalspread<.01C andanchor1e-6 gates; othergases/aerosols/historypinned,notfullNGFSreproduction/acceptedempiricalinfill/joint10kcalibration. Preserve results,do notrerun unchanged. Proceed missingannual/history/empiricalinfill/source requirements. FPLcashbridge/XOMphysicalCCS/FirstSolar45Xsensitivity/CATrefusal preserved;0/3fullissuer cases. Complete defensible5year cashflow/valuationpairing,notmore source-onlypackets. Full9path/nonemptytargetintegration remainsactionable. Counts10verified/64partial/2blocked/224unreconciled. Preserve beta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06 failures,EVfailure/storage sensitivityonly. No collectorchange/purchases/DDL/destruction/secretlicenseleak/gateweakening;publicPOST403. OneNEWcheckpoint onlyactualrunend afterevidence.",
+    "instruction": "Continue IMPLEMENTATION all0-17/amendments;verify current_release. Preserve724/1001bound,277originalremaining,cumulative295closed,691definitions,4aliases/native187+35/replay22. Finish remainingoriginalsemantics/dynamicexports/customsheetinventory,notnewdenominatorgaming. Actual9calculator combinedreview/context/suspendedrequest/baseline-return and2freshprocess result/XLSX tests nowpassed;do not rerun unchanged. Finish explicit source-evidenced targetbaseyear input/overlay plumbing fornonemptyband/terciles without2024default,eligibilityrelaxation orrealissuerapproval. RemainingAPI/current-source-mutation/fullyoffline/versioneddependency/lifecycle acceptance unproven. PreserveprospectiveDBclockcapture;genuineeligiblemonthlyinputs,sourcedsleevefrequencybridge/50returns/lifecyclecollateral stillpending. Maddisonprimaryends2022;EU27missing54GDPcells2023-24;WB2021PPP incompatiblefrozen2011PPP. Do notsplice orshorten. IndependentIGCCannualERF/GMSTretrieved,pinned;implementcompatiblehistoryreconciliation withoutclaimingmatchedSSPannualreference. Preserve528endpoint/12infillresults,not10kcalibration. Stage12completecases0/3:finishreal5yearcashflows+samebasisvaluation,notmoreisolatedsensitivities. Preservebeta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06failures,EVfailure/storage sensitivityonly. Counts10verified/64partial/2blocked/224unreconciled. No collectorchanges/purchases/DDL/destruction/leaks/approval-science-auth weakening;publicPOST403. OneNEWcheckpoint onlytrueend afterevidence.",
     "background_tasks": []
   },
   "last_handoff": {
