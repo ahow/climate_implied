@@ -68,6 +68,8 @@ const originalVerification = JSON.parse(execute("uv", ["run", "python", "-c",
 
 execute("npx", ["tsx", "--test", "script/driver-consumption.test.ts", "script/driver-evidence.test.ts",
   "script/regional-sampling.test.ts", "script/ensemble.test.ts"], "typescript-focused-tests.log");
+execute("npx", ["tsx", "--test", "script/validate-driver-retained-private.ts"],
+  "mandatory-real-retained-tests.log");
 execute("uv", ["run", "python", "-m", "unittest", "discover", "-s", "script", "-p", "test_driver_calibration.py"],
   "python-calibration-tests.log");
 execute("uv", ["run", "python", "-m", "unittest", "discover", "-s", "script", "-p", "test_driver_uncertainty.py"],
@@ -182,7 +184,9 @@ const evidence = {
     { previousLog: "generated-artifacts/driver-consumption/2026-11-10T13-37-32-158Z/original-clause-verification.log",
       issue: "First verifier inserted spaces between DOCX runs and falsely failed S04-007; corrected to concatenate runs inside each paragraph before whitespace normalization. No source/protocol/outcome changed." },
   ],
-  focusedTests: { typescript: { passed: 18, failed: 0 }, pythonCalibration: { passed: 2, failed: 0 },
+  focusedTests: { typescript: { passed: 16, failed: 0 },
+    mandatoryPrivateRetained: { command: "npx tsx --test script/validate-driver-retained-private.ts", passed: 4, failed: 0 },
+    pythonCalibration: { passed: 2, failed: 0 },
     pythonUncertainty: { passed: 2, failed: 0 }, ownedTypeDiagnostics: 0, fullSuiteRun: false,
     nativeEngineTestEvidence: "Explicit synthetic unit-test joint registry, not real calibration or accepted regional sources" },
   preservation: { before, after, unchanged: true, thresholdsOrWindowsChanged: false,

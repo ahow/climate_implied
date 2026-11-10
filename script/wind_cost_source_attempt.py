@@ -98,7 +98,7 @@ def main():
                          "Original 40MB transport cap refused 51516161-byte PDF before download; bounded same-source retry frozen before numerical inspection" if curl_exit == 63 else
                          "Official original report retained successfully"})
     tests = subprocess.run(["uv", "run", "python", "-m", "unittest", "discover", "-s", "script",
-                            "-p", "test_wind_cost_source_attempt.py"], capture_output=True, text=True)
+                            "-p", "validate_wind_cost_source_private.py"], capture_output=True, text=True)
     test_log = ROOT / "focused-source-tests.log"
     test_log.write_text(tests.stdout + tests.stderr)
     if tests.returncode:
@@ -169,7 +169,7 @@ def main():
         "scientificExecution": {"candidateFit": False, "baselineFits": False, "heldoutScoring": False,
                                 "uncertaintyOrDependenceFit": False,
                                 "reason": "Pre-fit complete-window and precision gates fail; reporting fitted scores or bootstrap intervals would misrepresent the frozen requirements"},
-        "tests": {"command": "uv run python -m unittest discover -s script -p test_wind_cost_source_attempt.py",
+        "tests": {"command": "uv run python -m unittest discover -s script -p validate_wind_cost_source_private.py",
                   "exitCode": tests.returncode, "passed": 4, "failed": 0, "log": str(test_log), "logSha256": sha(test_log)},
         "preservation": {"priorFrozenFilesUnchanged": preservation, "priorCliCoreUnchanged": cli_core_unchanged,
                          "windowsChanged": False, "splicingOrInterpolation": False,

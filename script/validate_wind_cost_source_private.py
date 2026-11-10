@@ -1,5 +1,5 @@
+"""MANDATORY private original-source tests; explicitly invoked, never skipped."""
 import unittest
-from pathlib import Path
 from wind_cost_source_attempt import ROOT, cost_labels, capacity_table, compatibility
 
 

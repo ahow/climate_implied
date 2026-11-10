@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "reason": "Code-only CI must exercise synthetic engineering inputs without depending on ignored private retained source artifacts. All real retained assertions remain mandatory in explicitly invoked private validators.",
+  "productionCodeChanged": false,
+  "scientificStudiesRerun": false,
+  "privateSourcesRedistributed": false,
+  "conditionalExistsSkipsAdded": false,
+  "preservedAssertions": [
+    "All ten real distributions, one diagnostic point winner, sensitivity-only status, 1000 paired draws and deterministic registry hash",
+    "Real wind deterministic exact replay, prefix stability, draw-to-logistic equality, central rejection, missing-geography rejection and ordered-year rejection",
+    "Real existing CLI successful generation, decoded member count, pinned registry identity, exact gzip content hash, exact distribution hash and member equality",
+    "Original retained CLI central failures and no artifacts; strengthened to all ten retained plus all22 curated drivers",
+    "All four original wind-cost source assertions moved intact to an explicitly invoked private Python validator"
+  ],
+  "publicValidation": {
+    "command": "node --import tsx --test script/driver-consumption.test.ts script/driver-evidence.test.ts script/regional-sampling.test.ts script/ensemble.test.ts",
+    "environment": "Isolated temporary code-only working directory, symlinking code/dependencies only; no preexisting generated-artifacts or retained calibration sources",
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0,
+    "syntheticCoverage": "Explicit six-region engineering joint registry: deterministic replay and prefix stability, complete paired rows, exact consumed-value receipts, central gates, scope/path/source-pin failures, actual native CLI generation and preserved separately labelled legacy CLI",
+    "log": "generated-artifacts/driver-validation-separation/public-focused.log",
+    "logSha256": "73ce6ae7800d13fa97cbe4eb16b57b26c460d80a91287fa28486addb5d93d49f"
+  },
+  "mandatoryRealRetainedValidation": {
+    "command": "npx tsx --test script/validate-driver-retained-private.ts",
+    "discoveryBoundary": "Explicit mandatory validator, not *.test.ts; missing files/hash mismatches fail rather than skip",
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "cliCentralRejections": 32,
+    "log": "generated-artifacts/driver-validation-separation/mandatory-real-retained.log",
+    "logSha256": "62180c8db0049479a4c00bc295fe1d41806d7ce0163844a0496428c0ceb04f5b"
+  },
+  "mandatoryOriginalSourceValidation": {
+    "command": "uv run python -m unittest discover -s script -p validate_wind_cost_source_private.py",
+    "discoveryBoundary": "Explicit mandatory validator, not test_*.py; retains every original-source assertion",
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "log": "generated-artifacts/driver-validation-separation/mandatory-original-source.log",
+    "logSha256": "f260b934ce0649c1c72a6ab8b524db4b0a81ee2f281f8b71ea110c500614eb17"
+  },
+  "mandatoryMissingSourceNegativeControl": {
+    "command": "node --import tsx --test script/validate-driver-retained-private.ts",
+    "environment": "Same isolated working directory without retained sources",
+    "expectedExitCode": 1,
+    "actualExitCode": 1,
+    "passed": 0,
+    "failedAsRequired": 4,
+    "skipped": 0,
+    "log": "generated-artifacts/driver-validation-separation/private-absent-required-failure.log",
+    "logSha256": "1d0ada4b2e320d2c419e4f6b4d86197e1b05dffe005afbc22686f3edff23cc8c"
+  },
+  "currentValidationImplementationHashes": {
+    "script/driver-consumption.test.ts": "a6f2424989e9a405bea6ea822ef738c1534ad67708e07543eba110a213783155",
+    "script/validate-driver-retained-private.ts": "1b534fdee3f0cb49ca4a627c3de2b515363689a7314070ae6bbcf3ae5ab602a5",
+    "script/validate_wind_cost_source_private.py": "377914d166de8cf674e7d4cdfdfac256dd0c2f9960346cfb5f1ed56bb2fc67df",
+    "script/wind_cost_source_attempt.py": "1fa27eb14d7ea45db08008d53e5a119edccdbeb36f54e4e540f4407636d3b6ea",
+    "script/driver-consumption-evidence.ts": "022a703e338fd09c054e77565861fe6ac8c2755e00207c837d07cbdf15337e9e"
+  },
+  "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
+}

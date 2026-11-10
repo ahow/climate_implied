@@ -1,5 +1,16 @@
 {
   "schemaVersion": 1,
+  "postExecutionValidationSeparation": {
+    "evidencePath": "docs/driver-validation-separation-evidence.json",
+    "publicFocusedPassed": 16,
+    "mandatoryRealRetainedCommand": "npx tsx --test script/validate-driver-retained-private.ts",
+    "mandatoryRealRetainedPassed": 4,
+    "mandatoryOriginalSourceCommand": "uv run python -m unittest discover -s script -p validate_wind_cost_source_private.py",
+    "mandatoryOriginalSourcePassed": 4,
+    "skipped": 0,
+    "missingPrivateArtifactsCauseFailure": true,
+    "historicalCountsBelowDescribeTheirOriginalExecutions": true
+  },
   "scope": [
     "S04-007",
     "S04-008",
