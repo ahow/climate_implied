@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-11-10T22:43:11.561263+00:00",
+  "protocol": {
+    "path": "docs/driver-source-continuation-protocol.json",
+    "sha256": "82c000f36d69473cc1323a654ac1724efdc0d5975c805209ed5bcc45c3e1cd91"
+  },
+  "bounds": {
+    "windRequests": 6,
+    "policyRequests": 5,
+    "paidCalls": 0,
+    "sourceSelection": "Original wind completion attempt, then one original World Bank policy release; no nowcast sweep"
+  },
+  "requests": [
+    {
+      "url": "https://pxweb.irena.org/api/v1/en/IRENASTAT/Power%20Capacity%20and%20Generation/",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/irena-capacity-catalog-request.log",
+      "requestLogSha256": "25dea58fbcedc53ec049571a9e9b28e23380274936ec4a7aa28e2cec5fc5d9d9",
+      "headers": "generated-artifacts/driver-source-continuation/irena-capacity-catalog.headers",
+      "headersSha256": "68ea663dcb849a9f0e505c7e47d0b1dbfd7a7aec8f4782833254d79f1c48d105",
+      "postBody": null
+    },
+    {
+      "url": "https://pxweb.irena.org/api/v1/en/IRENASTAT/Power%20Capacity%20and%20Generation/Region_ELECSTAT_2026_H2_PX.px",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/irena-capacity-schema-request.log",
+      "requestLogSha256": "ed5fe267e173c8b8cd79d5457b4a8decd09dec6ce103db38b476d4b12bbe313d",
+      "headers": "generated-artifacts/driver-source-continuation/irena-capacity-schema.headers",
+      "headersSha256": "962c08acca665dd9201b63f71e01619d314fb2cba534182b5f4ac241acf5d87f",
+      "postBody": null
+    },
+    {
+      "url": "https://www.irena.org/Data/View-data-by-topic/Costs/Global-Trends",
+      "httpStatus": 403,
+      "contentType": "text/html",
+      "requestLog": "generated-artifacts/driver-source-continuation/irena-cost-data-request.log",
+      "requestLogSha256": "e436c272d4dfe72b649a5894dfafb64f407a7aba6257bab960a0b3d46bb79561",
+      "headers": "generated-artifacts/driver-source-continuation/irena-cost-data.headers",
+      "headersSha256": "3a3230165a06181f6dc57c8231f7066994ea27cf475ae9fbc20e17b7fbc97c58",
+      "postBody": null
+    },
+    {
+      "url": "https://pxweb.irena.org/api/v1/en/IRENASTAT/Power%20Capacity%20and%20Generation/Country_ELECSTAT_2026_H2_PX.px",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/irena-country-schema-request.log",
+      "requestLogSha256": "5c2a88825bcd603e5550f2a5b61d92fe08cd3a1aa623994b4fb00893afe5498b",
+      "headers": "generated-artifacts/driver-source-continuation/irena-country-schema.headers",
+      "headersSha256": "f5c136be299d29171a79e7fe8df602acc31d074558547245612b650ff18f2bb5",
+      "postBody": null
+    },
+    {
+      "url": "https://pxweb.irena.org/api/v1/en/IRENASTAT/Power%20Capacity%20and%20Generation/Country_ELECSTAT_2026_H2_PX.px",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/irena-onshore-data-request.log",
+      "requestLogSha256": "482ca229b0708c54eeee3d1c4bbc9154ae91992c59ac6bd4e13483afb2c4aa25",
+      "headers": "generated-artifacts/driver-source-continuation/irena-onshore-data.headers",
+      "headersSha256": "c161a2f34a8b4ea780d19d679b81be1603c2a4681cceac5176deed67186b02d2",
+      "postBody": {
+        "path": "generated-artifacts/driver-source-continuation/irena-onshore-query.json",
+        "sha256": "aba4957aa8170251aa17fd6909c295009f6b210fbd601a507e2bb33c2bc0ca65"
+      }
+    },
+    {
+      "url": "https://pxweb.irena.org/api/v1/en/IRENASTAT/",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/irena-pxweb-request.log",
+      "requestLogSha256": "aa08bf499d1462d75ba12dd66af662074d9676c746d8c9d693e83b148422c0dc",
+      "headers": "generated-artifacts/driver-source-continuation/irena-pxweb.headers",
+      "headersSha256": "e0eddd872a5634c8c74ebb295f1a513165254a6fcfff1969d48ed096ac03914f",
+      "postBody": null
+    },
+    {
+      "url": "https://openknowledge.worldbank.org/server/api/core/bitstreams/3f651ad5-e39c-4a7c-8837-273624e5b7b5/content",
+      "httpStatus": 200,
+      "contentType": "application/pdf;charset=UTF-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/worldbank-2025-content-request.log",
+      "requestLogSha256": "a4b74e466e496f0430fabcecbcd49b6a9bc53ad4e03378b972737bd616c5ae04",
+      "headers": "generated-artifacts/driver-source-continuation/worldbank-2025-content.headers",
+      "headersSha256": "52d2ab7df97cc5231448e7075d7bd90c2b15de8d40d12f5d1aacb042faa7cee3",
+      "postBody": null
+    },
+    {
+      "url": "https://openknowledge.worldbank.org/entities/publication/e5f6e755-e6a6-4d2c-927a-23b5cc8a9b03",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/worldbank-2025-release-request.log",
+      "requestLogSha256": "6445b71e340c853f6fe47fe439f4f8e1619cee1768497d4b9187b548e16ab172",
+      "headers": "generated-artifacts/driver-source-continuation/worldbank-2025-release.headers",
+      "headersSha256": "53f21d8ca3b44069c8a4a93504ed1de63f87106d0f53a5866876a4ca3a2021f7",
+      "postBody": null
+    },
+    {
+      "url": "https://openknowledge.worldbank.org/bitstreams/3f651ad5-e39c-4a7c-8837-273624e5b7b5/download",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/worldbank-2025-report-request.log",
+      "requestLogSha256": "45200f9c4e519ef4839c00ba003a6dbf0568f37d39d9f3088019224cb44330d2",
+      "headers": "generated-artifacts/driver-source-continuation/worldbank-2025-report.headers",
+      "headersSha256": "f28507efbefc503ba10c65345a9b6c35ce74605c4df58ce1c32e88cb4d852ba7",
+      "postBody": null
+    },
+    {
+      "url": "https://carbonpricingdashboard.worldbank.org/",
+      "httpStatus": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/worldbank-carbon-dashboard-request.log",
+      "requestLogSha256": "07ed04c9d784ee5a1ca41b828d5a6bb76887fded8927bdcb6051b599294625fb",
+      "headers": "generated-artifacts/driver-source-continuation/worldbank-carbon-dashboard.headers",
+      "headersSha256": "8a7775043d9a027dde33bd4dbbc7dfa547b8b1695d6ab9313cc50f4bcac69cfd",
+      "postBody": null
+    },
+    {
+      "url": "https://www.worldbank.org/en/publication/state-and-trends-of-carbon-pricing",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=utf-8",
+      "requestLog": "generated-artifacts/driver-source-continuation/worldbank-carbon-publication-request.log",
+      "requestLogSha256": "5de63e9d140703d14f27d7cbd93766b5cf2ce852c4aab72f1a5e4a6381ad1b26",
+      "headers": "generated-artifacts/driver-source-continuation/worldbank-carbon-publication.headers",
+      "headersSha256": "b1e8e39b079d113943e40d48fe77a4dfbc4953f2a3a205da4da2ba055b921710",
+      "postBody": null
+    }
+  ],
+  "wind": {
+    "originalRequest": "Exact global onshore cumulative2010\u20132024 plus exact constant-dollar installed-cost table",
+    "newSource": {
+      "publisher": "IRENA",
+      "edition": "Renewable Energy Statistics2026, H2 PxWeb table",
+      "tableId": "Country_ELECSTAT_2026_H2_PX.px",
+      "catalogUpdated": "2026-09-28T17:56:28",
+      "dateMeaning": "Publisher catalogue revision timestamp; not original annual observation availability",
+      "path": "generated-artifacts/driver-source-continuation/irena-onshore-data.json",
+      "sha256": "46033dca04850738f2d1bf6ff0b4dd9da9dc6ab9df5012ae03d58f8d9ec36a41"
+    },
+    "taxonomyFinding": "Original regional API exposes total Wind energy only; rejected as onshore substitute. Original country/area API exposes exact onshore capacity and all-grid stock in MW.",
+    "audit": {
+      "source": "IRENA (2026), Renewable Energy Statistics 2026, International Renewable Energy Agency (IRENA), Abu Dhabi.",
+      "reportedUpdatedRaw": "9999-12-31T23:59:59Z",
+      "usableUpdatedTimestamp": null,
+      "invalidTimestampReason": "9999-12-31 sentinel is not source publication or observation availability",
+      "coverage": [
+        {
+          "year": 2010,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 105,
+          "missingCountryCells": 119,
+          "explicitSourceZeroCells": 2,
+          "observedCountrySubtotalMW": 177784.63,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2011,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 111,
+          "missingCountryCells": 113,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 216391.04,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2012,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 120,
+          "missingCountryCells": 104,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 261592.63,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2013,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 128,
+          "missingCountryCells": 96,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 292574.95,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2014,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 133,
+          "missingCountryCells": 91,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 340990.69,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2015,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 137,
+          "missingCountryCells": 87,
+          "explicitSourceZeroCells": 2,
+          "observedCountrySubtotalMW": 404651.58,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2016,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 139,
+          "missingCountryCells": 85,
+          "explicitSourceZeroCells": 2,
+          "observedCountrySubtotalMW": 452938.59,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2017,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 144,
+          "missingCountryCells": 80,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 496167.03,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2018,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 148,
+          "missingCountryCells": 76,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 539956.38,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2019,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 151,
+          "missingCountryCells": 73,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 594812.77,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2020,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 154,
+          "missingCountryCells": 70,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 698931.33,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2021,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 157,
+          "missingCountryCells": 67,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 769922.2,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2022,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 157,
+          "missingCountryCells": 67,
+          "explicitSourceZeroCells": 1,
+          "observedCountrySubtotalMW": 840469.08,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2023,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 156,
+          "missingCountryCells": 68,
+          "explicitSourceZeroCells": 0,
+          "observedCountrySubtotalMW": 943828.14,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        },
+        {
+          "year": 2024,
+          "countryAreaCount": 224,
+          "finiteCountryCells": 156,
+          "missingCountryCells": 68,
+          "explicitSourceZeroCells": 0,
+          "observedCountrySubtotalMW": 1049826.58,
+          "strictCompleteGlobalOnshoreMW": null,
+          "globalReconciliation": "not-established; missing country cells are not zeros"
+        }
+      ],
+      "missingCells": 1264,
+      "explicitZeroCells": 16,
+      "strictGlobalSeriesReady": false,
+      "missingEarlierYearsSilentlyFilled": false
+    },
+    "exactCostTable": {
+      "ready": false,
+      "officialCostPageStatus": 403,
+      "originalReportLinksInspected": true,
+      "machineReadableCompleteCostTableDiscovered": false,
+      "rounded2025ReportLabelsRemainRejected": true
+    },
+    "fitOrBaselineOrHoldoutRerun": false,
+    "decision": "Blocked. Full detailed-year source exists, but null country cells prevent certified global reconstruction; exact installed-cost table still unavailable. No older-edition splice, zero-fill, chart digitisation or shortened window."
+  },
+  "retainedPolicyInputRejection": {
+    "path": "attached_assets/CarbonData2301a_(1)_1770595242257.xlsx",
+    "sha256": "a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+    "sheetNames": [
+      "Descriptive",
+      "RI",
+      "MV",
+      "S1",
+      "S2",
+      "S3",
+      "Sales",
+      "PE",
+      "Profit",
+      "GreenRev",
+      "EmissionTargets"
+    ],
+    "reason": "Retained CarbonData workbook is a company financial/emissions workbook, not an original World Bank price/coverage/exemption series. No company rows were used or redistributed."
+  },
+  "policy": {
+    "sourceTitle": "World Bank State and Trends of Carbon Pricing2025",
+    "originalRepositoryIssuedDate": "2025-06-10",
+    "policySnapshotDate": "2025-04-01",
+    "coverageInventoryYear": 2023,
+    "currentLandingPageEdition": 2026,
+    "editionDecision": "Followed explicit2025 release link; did not substitute2026 price or coverage observations",
+    "downloadValidation": "First public /download route returned200 text/html and was rejected; same original bitstream /content returned verified PDF magic and was used",
+    "result": {
+      "version": "source-policy-exposure-1",
+      "scope": "Global implemented direct carbon-pricing instruments",
+      "policySnapshotDate": "2025-04-01",
+      "coverageInventoryYear": 2023,
+      "priceBasis": {
+        "currency": "USD",
+        "realBaseYear": 2025,
+        "inputDenominator": "covered-emissions",
+        "outputDenominator": "same-scope-total-GHG"
+      },
+      "inputs": {
+        "reportedMeanPrice": 19,
+        "coveredFraction": 0.28,
+        "sourceValuesRounded": true,
+        "sourceId": "7fc7bfcb3b8bd70778be7a4c2a5c70e90ee5c1299dbbf813b6e2b6a189aa2c8c"
+      },
+      "grossExposureUSDPerTotalTCO2e": 5.32,
+      "netEffectiveExposureUSDPerTotalTCO2e": null,
+      "exemptionsAdjustment": null,
+      "freeAllocationAdjustment": null,
+      "enforcementAdjustment": null,
+      "behaviouralElasticity": null,
+      "status": "sensitivity-only",
+      "centralModelEligible": false,
+      "parameterDistribution": {
+        "status": "unavailable",
+        "reason": "No identified causal elasticity, original uncertainty distribution or cross-policy dependence; a descriptive product is not a fitted parameter distribution"
+      },
+      "limitations": [
+        "Rounded publisher snapshot; output precision and source/process uncertainty are not quantified",
+        "Coverage scope estimates do not necessarily reflect all exemptions or free allocations",
+        "Free allocation, net fiscal burden and marginal abatement incentives are distinct; no net adjustment is inferred",
+        "Global exposure masks sector/jurisdiction heterogeneity and is not an implementation or emissions-response coefficient"
+      ],
+      "outputHash": "30e50ccaffac57acb7b1eda1b23da7ee212f5f323eecb84cd2f660114179d4f4",
+      "sources": {
+        "report": {
+          "path": "generated-artifacts/driver-source-continuation/worldbank-2025-content.pdf",
+          "sha256": "7fc7bfcb3b8bd70778be7a4c2a5c70e90ee5c1299dbbf813b6e2b6a189aa2c8c"
+        },
+        "text": {
+          "path": "generated-artifacts/driver-source-continuation/worldbank-2025-content.txt",
+          "sha256": "c6c06106b2b0fa251af1e59049c2a552d378d71a24fa7144ec3dedea5ddcdc2a"
+        },
+        "originalRelease": {
+          "path": "generated-artifacts/driver-source-continuation/worldbank-2025-release.html",
+          "sha256": "054e0bb40f6eb3e4434536b2f084bd47d0f3b6e6ccd92e7c67451f043fb76e73"
+        }
+      },
+      "originalRelease": {
+        "publisher": "World Bank",
+        "title": "State and Trends of Carbon Pricing 2025",
+        "issuedDate": "2025-06-10",
+        "doi": "10.1596/978-1-4648-2255-1",
+        "location": "Coverage p20; covered/global mean price p33; coverage/currency methodology pp78\u201379",
+        "timing": "Publication date from original repository metadata; policy snapshot and emissions inventory year are distinct, not fetch timestamps"
+      },
+      "publisherRoundedGlobalPriceUSDPerTotalTCO2e": 5,
+      "comparisonMeaning": "Contextual rounding consistency only, not held-out predictive accuracy or an acceptance gate"
+    },
+    "execution": {
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "--input-type=module",
+        "-e",
+        "import{retainedPolicyExposureSnapshot}from'./server/calculation/driverParameterRegistry.ts';console.log(JSON.stringify(await retainedPolicyExposureSnapshot()));"
+      ],
+      "exitCode": 0,
+      "log": "generated-artifacts/driver-source-continuation/policy-source-accounting-execution.log",
+      "logSha256": "086ae1525f8619b72bd3ef34f9c709f7c67b8ae85a762c43447cb82da51dd6c7"
+    },
+    "classification": "New original-source-backed descriptive policy exposure; sensitivity-only context, NOT a fitted causal policy parameter, prior or calibrated distribution",
+    "candidateBothBaselinesHeldoutStudy": "Not run: no compatible frozen policy predictive outcome protocol or identified elasticity; a descriptive snapshot does not create an eligible learning-curve study",
+    "uncertaintyAndDependence": "Unavailable; no invented source precision, rounding interval, cross-instrument covariance or distribution",
+    "missing": [
+      "net exemption/free-allocation adjustment",
+      "enforcement and behavioural elasticity",
+      "instrument-specific annual price-times-coverage with heterogeneous scope and double-counting controls",
+      "compatible original full-window causal/predictive outcomes"
+    ]
+  },
+  "tests": [
+    {
+      "command": "npx tsx --test script/policy-exposure.test.ts",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "path": "generated-artifacts/driver-source-continuation/public-policy-code-only-tests.log",
+      "sha256": "66e3a6ebb3e5189883ae26294e7ee5d718772ac8cecb19d6d575d2ea1ef7e762",
+      "basis": "synthetic engineering fixtures only, isolated source-absent code-only working directory"
+    },
+    {
+      "command": "npx tsx --test script/validate-driver-source-continuation-private.ts",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "path": "generated-artifacts/driver-source-continuation/mandatory-source-tests.log",
+      "sha256": "8765b0ab08bea40bf8a856266794d1f35095856ce8e1073204e1804d6d0bb045",
+      "basis": "MANDATORY real original retained source validation; not public test glob"
+    }
+  ],
+  "ownedTypeDiagnostics": {
+    "count": 0,
+    "log": "generated-artifacts/driver-source-continuation/owned-typescript-diagnostics.log",
+    "logSha256": "93609b5358abb8ce7df8f6b582dc5eeab2c81096bfaeab97c72c3e5d62e1d041"
+  },
+  "executionRepair": {
+    "log": "generated-artifacts/driver-source-continuation/public-policy-missing-temp-attempt.log",
+    "reason": "A pre-credit-stop temporary cwd no longer existed. It failed before running tests; created a fresh code-only cwd and executed all3 public assertions successfully. No skip/fallback or source/study change."
+  },
+  "preservation": {
+    "unchangedStudiesRerun": false,
+    "oldAdoptionRegistryEntriesChanged": false,
+    "oldCliChanged": false,
+    "oldCliSha256": "5af3c68aba8f5ce2a31fde64e72bb411618fdb0fb37b786fbc5d9468c02ea0b3",
+    "frozenFileHashChecks": {
+      "docs/Driver_Calibration_Protocol.md": true,
+      "docs/Driver_Uncertainty_Protocol.md": true,
+      "docs/Company_Beta_Sensitivity_Protocol.md": true,
+      "docs/Beta_Growth_Sensitivity_Results.md": true,
+      "docs/EV_Calibration_Protocol.md": true,
+      "docs/EV_and_Cost_Calibration_Results.md": true,
+      "docs/Fleet_Transition_Protocol.md": true,
+      "docs/Fleet_Transition_Results.md": true,
+      "docs/fleet_transition_results.json": true,
+      "docs/Storage_Adoption_Protocol.md": true,
+      "docs/Storage_Adoption_Results.md": true,
+      "docs/Historical_Diagnostics_and_Skill_Results.md": true,
+      "generated-artifacts/driver-calibration/result.json": true,
+      "generated-artifacts/driver-calibration/uncertainty.json": true
+    },
+    "oldAdoptionSourceReportUnchanged": true,
+    "sharedSemanticsRoutesLedgersChanged": false,
+    "priorBaselineFailuresPromoted": false,
+    "scientificAcceptance": false,
+    "parameterStatus": "Existing10 sensitivity-only paired distributions unchanged; new policy parameterDistribution unavailable, not fabricated"
+  },
+  "implementationHashes": {
+    "server/calculation/driverParameterRegistry.ts": "9ba3dcc2b3c2e4ad6cf1563595b44f0cc8c0b137c4bc7c79a88d2102178f696f",
+    "script/policy-exposure.test.ts": "19f71478d42390d10c8129c7c348d5203b5c1edd7a93ce8f099e23a3808a7e05",
+    "script/validate-driver-source-continuation-private.ts": "904de080ff98aaa81117312d594d53ca1053f283c262edeb544c444c0663e4bc",
+    "script/driver_source_continuation.py": "b883ab2ff8ea0b5bd3611fd03148887c245d94d80791ade02fda024c66902ba4"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "status": "engineering-contract-only; historical efficacy WITHHELD",
+  "operationalContractVersion": "simultaneous-monthly-sleeves-v1",
+  "immutableProtocolBoundary": {
+    "optIn": "A new protocol hash must explicitly freeze portfolioFrequency.version, calendar-month frequency, entry-cost timing, return convention, and specification-to-stream/schedule/factor-definition bindings.",
+    "legacy": "Existing sleeveSchedule/sleeveMarks accounting remains separate. Old unbound 12-month observations cannot supply primary factor inference, even if their endpoints could be repeated or relabelled as monthly.",
+    "family": "The existing frozen specifications, three endpoints, complete-origin refusal, Holm denominator and missing-as-nonrejections remain unchanged. The bridge does not add tests to or remove tests from the family.",
+    "acceptance": "authenticityVerified=false, scientificAcceptance=false, investmentEvidence=false and efficacy=WITHHELD remain unconditional. Caller payload hashes and source declarations do not establish original publication, independent authenticity or positive historical results."
+  },
+  "implementation": {
+    "files": [
+      "server/calculation/pairedResearchFrequency.ts",
+      "server/calculation/pairedResearchPipeline.ts",
+      "server/calculation/pairedResearchCorpus.ts",
+      "server/calculation/pairedResearchSleeves.ts",
+      "script/paired-research-frequency.test.ts"
+    ],
+    "frozenInputs": [
+      "Every declared 12-month origin must have exactly one deployment in its cell schedule and a complete paired origin period from which the existing sector quantile weights are recomputed.",
+      "A stream cannot bind multiple specifications. Entry notional must equal ranked weights times that cohort's contributed capital, and each trade identity, price and FX must match that selected origin period's execution quotes; no full-portfolio capital is reinvested at each origin.",
+      "Factor names/dimensions, construction payload hash, provider, decimal-monthly convention and currency-conversion description are frozen separately for Kenneth French regional developed-market and workbook-universe factors.",
+      "The protocol's existing 25bp one-way traded-notional cost remains primary. The bridge is not a synthetic rerun of historical sensitivity portfolios."
+    ],
+    "monthlyEvidence": [
+      "Complete simultaneous post-deployment/post-settlement marks from the first deployment to the last maturity, at exact UTC first-of-month boundaries; no skipped months.",
+      "Every previous live cohort has an exact monthly event book carrying opening units, cash and restricted cash forward. Dated dividends, splits, mergers, delistings and borrow/collateral events use the existing unchanged event engine.",
+      "Explicit financing and interest coverage, including zero; observed borrow or an explicit hypothetical fee assumption and short collateral coverage; maturity liquidation trades and released collateral; explicit entry/exit cost receipts. Missing costs/rates do not default to zero.",
+      "Unknown borrow preserves reconciled accounting and monthly inference with a hypothetical-research label on the stream, affected monthly rows and attribution. Explicit assumptions are retained, including the nonzero .02 fee in the focused case. Known unavailable borrow and missing both observed and assumed fees still refuse. Hypothetical research never establishes investability, authenticity, positive family acceptance or scientific acceptance.",
+      "Reserve-rate receipts, including zero, must be known at the opening boundary and reconcile opening unallocated capital and elapsed time.",
+      "Every mark, entry receipt, monthly book, event, dated factor row and risk-free row resolves to a retained payload hash within corpus cutoff. Entry execution receipts may become available after signal origin, but must be known by execution; this does not relax the existing origin-relative signal gates. Monthly payload checks also apply to engineering fixtures.",
+      "One row per actual monthly NAV interval joins both geography/currency-matched factor sets and a dated risk-free return. Duplicate events within a sleeve are refused. Annual endpoint returns never enter the monthly row builder.",
+      "The same date-block bootstrap settings are applied to the monthly rows, with the existing >=12 block-length requirement for declared 12-month cells. Alpha and intervals are monthly, not silently annualized. Evaluation boundaries must be retained monthly boundaries."
+    ],
+    "entryCostTiming": {
+      "legacyIssue": "The old invariant initial sleeve NAV=capital cannot represent an entry expense in a post-trade mark. It is preserved for old callers and is not treated as evidence of zero entry costs.",
+      "versionedResolution": "The optional explicit deployment-cost argument reconciles initial post-entry sleeve NAV + entry cost = contributed capital. The first monthly return uses original initialCapital as opening NAV, so initial entry expense is charged in that first month rather than discarded. Later entry expenses reduce simultaneous NAV at their actual deployment boundary.",
+      "noDoubleCounting": "Only bridge.rows are monthly return observations. bridge.accounting is a boundary/capital audit including the post-entry initial boundary; its initial netReturn is not an additional monthly observation. Settled cash funds later deployments once and is excluded from live sleeve assets."
+    },
+    "payloadBindings": {
+      "entry": "entry receipt excluding sourceHash, plus origin and executionAt",
+      "mark": "at plus each sleeve's fields excluding sourceHashes",
+      "reserveRate": "annualRate and availableAt; receipt must predate fromAt",
+      "event": "at and action",
+      "eventBook": "entire book excluding coverageSourceHash",
+      "factor": "fromAt, toAt, frequency, currency, geography, frozen definition, values",
+      "riskFree": "fromAt, toAt, currency, return",
+      "month": "entire month excluding sourceHash"
+    }
+  },
+  "handReconciledEngineeringCases": [
+    {
+      "case": "Two adjacent overlapping cohorts, 120 initial capital, 10 contributed each, long 10 and short 10 per cohort",
+      "inputs": "Entry notional 20 costs .05 at 25bp. Five collateral is transferred, not expensed. Each monthly long price gains 1; dividends +.2 long and -.1 short; observed borrow expense .02; explicit financing/interest/reserve rate zero. At month 12, each cohort liquidates long 22 and covers short 10, costing .08.",
+      "expected": {
+        "initialPostEntryNAV": 119.95,
+        "firstMonthlyClosingNAV": 120.98,
+        "firstMonthTradingCostIncludingBothEntries": 0.1,
+        "firstMonthlyOpeningNAV": 120,
+        "firstMonthlyRestrictedCash": 10,
+        "finalNAV": 145.66,
+        "allTradingCosts": 0.26,
+        "finalRestrictedCash": 0
+      }
+    },
+    {
+      "case": "Same path at explicit zero trading costs",
+      "expected": {
+        "finalNAVBeforeObservedBorrowExpenses": 146.4,
+        "observedBorrowExpenses": 0.48,
+        "finalNAV": 145.92,
+        "differenceFrom25bp": 0.26
+      },
+      "meaning": "Zero trading costs recover gross-of-trading returns, not free borrow or free financing."
+    },
+    {
+      "case": "25 monthly deployments with 12-month maturities",
+      "expected": "36 distinct monthly NAV/factor observations with monthly alpha intervals for both factor sets, even though sequential annual full-NAV accounting refuses overlapping periods. All three family hypotheses still remain unavailable for scientific acceptance."
+    }
+  ],
+  "verification": {
+    "focusedTestCommandForIntegrator": "npx tsx --test script/paired-research-frequency.test.ts script/paired-research-accounting.test.ts script/paired-research-pipeline.test.ts",
+    "authorCheck": "Focused strict TypeScript no-emit check of the four implementation files and new test file completed without diagnostics.",
+    "executionBoundary": "The parent explicitly authorized the focused runtime rerun after its initial 32-pass/1-fail run. All 36 focused tests now pass. Full integration checks remain with the parent; no app restart or deployment was performed.",
+    "focusedRuntimeReceipt": {
+      "command": "npx tsx --test script/paired-research-frequency.test.ts script/paired-research-accounting.test.ts script/paired-research-pipeline.test.ts",
+      "logPath": "/tmp/paired-research-frequency-followup-tests.log",
+      "logSha256": "00f3fd77f483d0d3854f9f11ccea0264ab25090425e3c31eddabc02e71fa1f63",
+      "logLastModifiedAt": "2026-11-10T22:41:20.123021050Z",
+      "exitCode": 0,
+      "tests": 36,
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Engineering regressions only, not actual historical observations, positive efficacy or independent acceptance."
+    },
+    "refusalsCovered": [
+      "Hash substitution, unresolved source, source beyond cutoff and future reserve-rate source",
+      "Wrong frequency, nonmonthly boundaries, missing monthly mark/factor coverage and non-retained evaluation boundaries",
+      "Missing frozen origin, specification/schedule mismatch and duplicate/reused stream binding",
+      "Source-bound entry trade price/FX substitutions preserving dollar weights, unknown execution identities and receipts first available after execution",
+      "Missing explicit zero rate, entry expense mismatch, disappearing units, missing financing/borrow/collateral coverage and duplicate lifecycle outcome",
+      "Wrong currency/geography or factor provider, changed factor values and shorter-than-horizon blocks",
+      "Old unbound annual streams and unknown operational versions"
+    ]
+  },
+  "originalClauseProposalsNotAcceptance": [
+    {
+      "id": "S14-010",
+      "proposal": "Retain partial: existing 12-month outcome IC and >=12 date blocks are preserved; no real historical IC or efficacy is supplied by this bridge."
+    },
+    {
+      "id": "S14-012",
+      "proposal": "Retain partial; add operational evidence that an explicitly frozen 12-month cell can infer monthly factor-adjusted after-cost spread returns from simultaneous reconciled capital rather than overlapping annual full-NAV outcomes."
+    },
+    {
+      "id": "S14-014",
+      "proposal": "Retain partial; add operational dated two-source factor joins, frozen conversion/construction definitions, dimension and geography/currency/source checks. Real reviewed regional and workbook factor histories remain absent."
+    },
+    {
+      "id": "S15-008",
+      "proposal": "Retain partial: unchanged lifecycle/event engine is reconciled into the monthly sleeve bridge; no invented terminal flags or rerun of authentic flagged-terminal stress scenarios. Existing stresses remain restricted to flagged terminals."
+    },
+    {
+      "id": "S15-010",
+      "proposal": "Retain partial; add monthly alpha/interval caller-contract path with explicit frequency, retained dates and two factor sets. Do not promote fixture output to historical inference."
+    },
+    {
+      "id": "S15-011",
+      "proposal": "Retain partial: the complete actual 0/10/25/50/100bp x monthly/quarterly x subperiod sensitivity, drawdown and liquidity-capacity report is not delivered by a primary 25bp monthly bridge."
+    },
+    {
+      "id": "S15-013",
+      "proposal": "Retain partial; add independently hand-calculated entry/exit notional, gross-of-trading versus net, collateral, short dividends, borrow, settlement and first-month entry-cost cases. Full authentic stored-series independent recomputation remains outstanding."
+    }
+  ],
+  "remainingRealInputs": [
+    "Independently retained original/revised origin archives, complete historical membership, paired projections/valuations/covariates and independently reviewed provenance; engineering payloads are not substitutes.",
+    "Actual dated execution and intermediate monthly price/FX/action/settlement records for every live cohort, observed borrow availability/fees, collateral requirements, financing, dividends and cash/reserve rates including zero coverage.",
+    "Reviewed Kenneth French regional-developed factor downloads/version and geography/currency conversion lineage; workbook factor membership/formation methodology, retained construction payload and actual dated factor observations.",
+    "A separately frozen new operational protocol hash with all origins, complete lifecycle coverage, factor definitions, frequency, inference dates and bootstrap settings; no retrospective refitting of old protocols.",
+    "Actual flagged delisting/terminal stress scenarios, full cost/rebalance/subperiod/capacity sensitivity reports and independent stored-series accounting audit.",
+    "Independent authenticity review and scientific/owner acceptance before any historical efficacy conclusion. No callbacks, approvals, archive creation, provider purchases, database mutation or publication was performed."
+  ]
+}

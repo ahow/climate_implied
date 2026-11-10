@@ -1,0 +1,40 @@
+{
+  "version": "driver-source-continuation-1",
+  "purpose": "New user-authorised bounded source-completion attempt; prior studies and source/core CLI remain frozen",
+  "windOriginalProtocol": "docs/wind-cost-source-protocol.json",
+  "windCriteriaUnchanged": "Exact original full2010–2024 installed-cost table in one constant-dollar basis and global onshore cumulative capacity; training2010–2018 and holdout2019–2024; no rounded chart values, interpolation, old-edition splicing or source substitution",
+  "windBoundedRequests": [
+    "Official IRENA PxWeb API subject catalogue",
+    "At most one selected official capacity-table schema and one exact annual World/onshore/capacity2010–2024 query, only if discoverable from returned catalogue",
+    "Official IRENA Global Trends costs data page and at most one explicitly linked machine-readable original cost table"
+  ],
+  "windNetworkMaximum": 5,
+  "preQueryTaxonomyAmendment": "The returned regional-table schema exposes Wind energy only, not onshore. Do not query or relabel total wind. Allow one additional metadata/query request (six total maximum) to select the already catalogue-listed country table if it exposes exact onshore technology; aggregate countries only if all country/area identities and coverage reconcile. This precedes numerical data, preserves the onshore gate, and is not a new source sweep.",
+  "limitsPerRequest": {"timeoutSeconds": 45, "maximumBytes": 20000000},
+  "sourceDateRule": "Publisher edition/revision/publication fields and HTTP retrieval dates are recorded separately; a hash or HTTP date never supplies original publication vintage",
+  "fallbackIfWindBlocked": {
+    "selection": "Original policy price-times-covered-emissions/exemption measure, starting with the retained CarbonData2301a workbook before any new source request",
+    "boundedRequests": "At most one official World Bank State and Trends of Carbon Pricing2025 publication/data page and one directly linked original machine-readable data release; no generic research sweep",
+    "discoveredReleaseRouting": "The dashboard landing request returned403. The official publication page returned200 but now describes the2026 report and explicitly links the2025 release. Permit that exact2025 entity metadata request and, only if a concrete original file is returned, one linked original release file. At most four policy HTTP requests total; do not substitute current2026 observations for2025.",
+    "sameBitstreamContentRouting": "The discovered2025 /bitstreams/.../download URL returned HTTP200 text/html, not a PDF. The same original entity embeds its public server/api/core/bitstreams/.../content link. Permit one final same-bitstream content request (five policy requests maximum), reject unless actual PDF magic/content-type matches. No alternate source or numerical outcomes have been inspected.",
+    "retainedInspection": "Record workbook provenance, original timestamp metadata, sheet schemas, units, currency basis, annual price/coverage availability and exemption/free-allocation fields before deciding readiness",
+    "compatibility": "Same jurisdiction/instrument/year, implemented carbon price in explicit original currency/price basis, denominator-specific covered-emissions fraction and exemption/free-allocation limitations; no net-zero target coverage or corporate commitments substitution",
+    "implementationIfReady": "Source-linked deterministic instrument exposure ledger: original price * matching covered-emissions fraction, explicitly nominal/non-comparable currencies when applicable; exemptions/free allocation remain explicit unknown/observed fields, never imputed to zero. No causal elasticity or calibrated distribution is invented.",
+    "fullWindowFitRule": "A frozen cost-study window cannot be repurposed for policy. If no already frozen compatible policy predictive protocol/outcome exists, do not fit or score; report the dependency-ready accounting measure only with source/status limitations."
+  },
+  "classification": "Any assembled non-estimated policy exposure is descriptive empirical accounting, not a calibrated causal elasticity. Unidentified elasticity is unavailable, not an invented prior. Existing sensitivity-only distributions stay sensitivity-only.",
+  "policyOperationalFreezeBeforeProduct": {
+    "source": "World Bank State and Trends of Carbon Pricing2025, original repository publication id e5f6e755-e6a6-4d2c-927a-23b5cc8a9b03; issued2025-06-10",
+    "selection": "Complete single global2025 snapshot, not selectively chosen jurisdictions or a price ranking",
+    "inputs": "Publisher's rounded global implemented-instrument covered-emissions-weighted mean price, and publisher's rounded fraction of global GHG covered. Both refer to policy situation2025-04-01; source coverage uses latest2023 GHG inventories. Keep these dates distinct.",
+    "formula": "gross descriptive policy exposure = reported mean price per covered tCO2e * reported covered fraction of total GHG",
+    "priceBasis": "Real2025 USD/tCO2e, publisher's CPI conversion; do not reuse revenue values in real2024 USD, mix exchange-rate bases, or multiply the already-global-weighted price by coverage again",
+    "crossCheck": "Record publisher's independently stated rounded global-weighted price as contextual consistency only; no fitted accuracy or acceptance test",
+    "exemptionsAndFreeAllocation": "Both explicitly unknown/not fully adjusted in source scope estimate; no zero substitution, no assumption that free allocation erases marginal allowance incentive, no estimate of net effective tax/enforcement/behaviour",
+    "uncertainty": "Unknown rounding/source/process uncertainty; no invented probability distribution, standard error, interval or literature elasticity",
+    "status": "Sensitivity-only descriptive accounting snapshot, not calibrated prior/central coefficient, and not a predictive study",
+    "centralNegativeControl": "Any central request for this context snapshot must reject"
+  },
+  "privateValidation": "Real original source assertions remain explicitly invoked outside public test globs; missing sources fail. Public tests use synthetic engineering fixtures only.",
+  "prohibited": "Paid calls, credentials, billing/approval/scheduler changes, commits, deploys, shared semantics/routes/ledgers edits, old-study reruns or false full-window acceptance"
+}

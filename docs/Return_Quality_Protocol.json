@@ -1,0 +1,23 @@
+{
+  "version": "full-workbook-return-quality-1",
+  "purpose": "S15-009: sample quality check, not verification of full history or portfolio efficacy",
+  "freezeTiming": "Runner records actual UTC time and immutable protocol hash before reading observations; no backdated freeze time.",
+  "dataEnd": "2026-01-22",
+  "sampleSize": 50,
+  "seed": 20261110,
+  "population": "All adjacent nonmissing return-index observations per ISIN in the selected immutable full workbook through dataEnd; invalid observed values remain sampled and explicitly fail rather than disappearing.",
+  "ordering": "ISIN ascending, end-date ascending; deterministic Fisher-Yates using unsigned LCG1664525/1013904223 modulo2^32",
+  "indexReturn": "RI_end / RI_start - 1; only finite strictly positive levels permit arithmetic",
+  "providerReturn": "Daily unadjusted closing prices, multiplicative splits and ex-date raw cash dividends reinvested at the same daily close. Same-day split/dividend requires explicit share-basis evidence; otherwise unavailable.",
+  "boundaries": "Exact workbook dates only. No previous-close substitution, date relabelling, FX substitution or interpolation. Nontrading or ambiguous workbook dates remain unavailable.",
+  "identity": "Exact ISIN and common-share/listing/currency evidence required. Candidate or ambiguous identity remains unavailable, never self-approved. The random sample is not restricted to the 27 reviewed candidates.",
+  "breakThresholds": {
+    "numericalAbsoluteReturn": 0.0001,
+    "materialAbsoluteReturn": 0.001,
+    "rationale": "Predeclared1bp numerical and10bp material diagnostic flags; report both. Neither is a scientific efficacy gate or a fitted tolerance."
+  },
+  "denominators": "Report requested50, computed, unavailable, invalid, numerical-break/computed and material-break/computed separately. No unavailable-as-pass or substitution of sampled rows.",
+  "sources": "Private retained workbook and authorized FMP source responses with exact capture timestamps/hashes; current retrieval of revised history is not genuine original-vintage evidence.",
+  "approvals": "No owner or production approval is implied by source matching or a numerical agreement.",
+  "protocolChanges": "No result-conditioned threshold, sample, window or identity substitution."
+}

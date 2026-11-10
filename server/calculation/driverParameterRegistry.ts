@@ -275,3 +275,99 @@ export async function consumeRegionalParameterRegistry(input: {
     use, productionEligible: false,
     claim: "registered conditional native emissions; not calibrated climate or convergence acceptance" };
 }
+
+const policyExposureSchema = z.object({
+  scope: z.string().min(1),
+  priceSnapshotDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  coverageSnapshotDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  coverageInventoryYear: z.number().int().min(1900).max(2100),
+  reportedMeanPrice: z.number().finite().nonnegative(),
+  coveredFraction: z.number().finite().min(0).max(1),
+  priceDenominator: z.literal("covered-emissions"),
+  coverageDenominator: z.literal("same-scope-total-GHG"),
+  priceCurrency: z.literal("USD"),
+  realPriceBaseYear: z.number().int().min(1900).max(2100),
+  priceSourceId: z.string().min(1),
+  coverageSourceId: z.string().min(1),
+  sourceValuesRounded: z.boolean(),
+  exemptionsAdjustment: z.null(),
+  freeAllocationAdjustment: z.null(),
+}).strict();
+
+/** Descriptive price-times-coverage accounting, not a causal response or fitted
+ * distribution. In particular, never multiply an already-global-weighted
+ * price by coverage, or treat unknown exemptions as zero. No source files are
+ * read through this pure boundary. */
+export function evaluatePolicyExposure(input: unknown, use: DriverUse = "sensitivity") {
+  driverUseSchema.parse(use);
+  if (use === "central") throw new Error("Central policy consumption blocked: descriptive exposure has no identified causal elasticity or calibrated joint distribution");
+  const x = policyExposureSchema.parse(input);
+  if (!Number.isFinite(Date.parse(x.priceSnapshotDate)) ||
+      new Date(x.priceSnapshotDate).toISOString().slice(0, 10) !== x.priceSnapshotDate ||
+      x.priceSnapshotDate !== x.coverageSnapshotDate ||
+      x.priceSourceId !== x.coverageSourceId ||
+      x.coverageInventoryYear > Number(x.coverageSnapshotDate.slice(0, 4)))
+    throw new Error("Policy source, snapshot and emissions-inventory timing must be explicitly compatible");
+  const result = {
+    version: "source-policy-exposure-1", scope: x.scope,
+    policySnapshotDate: x.priceSnapshotDate, coverageInventoryYear: x.coverageInventoryYear,
+    priceBasis: { currency: x.priceCurrency, realBaseYear: x.realPriceBaseYear,
+      inputDenominator: x.priceDenominator, outputDenominator: "same-scope-total-GHG" },
+    inputs: { reportedMeanPrice: x.reportedMeanPrice, coveredFraction: x.coveredFraction,
+      sourceValuesRounded: x.sourceValuesRounded, sourceId: x.priceSourceId },
+    grossExposureUSDPerTotalTCO2e: x.reportedMeanPrice * x.coveredFraction,
+    netEffectiveExposureUSDPerTotalTCO2e: null,
+    exemptionsAdjustment: null, freeAllocationAdjustment: null,
+    enforcementAdjustment: null, behaviouralElasticity: null,
+    status: "sensitivity-only", centralModelEligible: false,
+    parameterDistribution: { status: "unavailable",
+      reason: "No identified causal elasticity, original uncertainty distribution or cross-policy dependence; a descriptive product is not a fitted parameter distribution" },
+    limitations: [
+      "Rounded publisher snapshot; output precision and source/process uncertainty are not quantified",
+      "Coverage scope estimates do not necessarily reflect all exemptions or free allocations",
+      "Free allocation, net fiscal burden and marginal abatement incentives are distinct; no net adjustment is inferred",
+      "Global exposure masks sector/jurisdiction heterogeneity and is not an implementation or emissions-response coefficient",
+    ],
+  };
+  return { ...result, outputHash: contentHash(result) };
+}
+
+export const RETAINED_POLICY_INPUTS = {
+  report: { path: "generated-artifacts/driver-source-continuation/worldbank-2025-content.pdf",
+    sha256: "7fc7bfcb3b8bd70778be7a4c2a5c70e90ee5c1299dbbf813b6e2b6a189aa2c8c" },
+  text: { path: "generated-artifacts/driver-source-continuation/worldbank-2025-content.txt",
+    sha256: "c6c06106b2b0fa251af1e59049c2a552d378d71a24fa7144ec3dedea5ddcdc2a" },
+  originalRelease: { path: "generated-artifacts/driver-source-continuation/worldbank-2025-release.html",
+    sha256: "054e0bb40f6eb3e4434536b2f084bd47d0f3b6e6ccd92e7c67451f043fb76e73" },
+} as const;
+
+/** Fixed original-publisher snapshot. No caller paths, downloads, substitution,
+ * study refits, net-zero coverage proxies or calibrated policy promotion. */
+export async function retainedPolicyExposureSnapshot(use: DriverUse = "sensitivity") {
+  for (const ref of Object.values(RETAINED_POLICY_INPUTS)) {
+    if (createHash("sha256").update(await readFile(ref.path)).digest("hex") !== ref.sha256)
+      throw new Error(`Retained policy source hash mismatch: ${ref.path}`);
+  }
+  const text = (await readFile(RETAINED_POLICY_INPUTS.text.path, "utf8")).replace(/\s+/g, " ");
+  for (const quote of ["Carbon pricing now covers around 28% of global GHG",
+    "USD 19 per tCO2e in 2025", "around USD 5 per tCO2e",
+    "Carbon prices are converted from nominal to real (2025 USD)",
+    "not necessarily factor in all exemptions and/or free allocations"])
+    if (!text.includes(quote)) throw new Error(`Required original policy source statement absent: ${quote}`);
+  const exposure = evaluatePolicyExposure({
+    scope: "Global implemented direct carbon-pricing instruments",
+    priceSnapshotDate: "2025-04-01", coverageSnapshotDate: "2025-04-01", coverageInventoryYear: 2023,
+    reportedMeanPrice: 19, coveredFraction: .28,
+    priceDenominator: "covered-emissions", coverageDenominator: "same-scope-total-GHG",
+    priceCurrency: "USD", realPriceBaseYear: 2025,
+    priceSourceId: RETAINED_POLICY_INPUTS.report.sha256, coverageSourceId: RETAINED_POLICY_INPUTS.report.sha256,
+    sourceValuesRounded: true, exemptionsAdjustment: null, freeAllocationAdjustment: null,
+  }, use);
+  return { ...exposure, sources: RETAINED_POLICY_INPUTS,
+    originalRelease: { publisher: "World Bank", title: "State and Trends of Carbon Pricing 2025",
+      issuedDate: "2025-06-10", doi: "10.1596/978-1-4648-2255-1",
+      location: "Coverage p20; covered/global mean price p33; coverage/currency methodology pp78–79",
+      timing: "Publication date from original repository metadata; policy snapshot and emissions inventory year are distinct, not fetch timestamps" },
+    publisherRoundedGlobalPriceUSDPerTotalTCO2e: 5,
+    comparisonMeaning: "Contextual rounding consistency only, not held-out predictive accuracy or an acceptance gate" };
+}

@@ -7,6 +7,7 @@ import { adaptPairedResearchCorpus, specificationKey, specificationSchema, type 
 import { accountOverlappingSleeves, sleeveScheduleSchema } from "./pairedResearchSleeves";
 import { accountResearchEvents } from "./pairedResearchEvents";
 import { constrainedLongOnly, longOnlyVariantSchema } from "./pairedResearchLongOnly";
+import { portfolioFrequencySchema, reconcilePortfolioFrequency } from "./pairedResearchFrequency";
 
 const time = z.string().datetime();
 const protocolSchema = z.object({
@@ -25,6 +26,7 @@ const protocolSchema = z.object({
   disclosure: z.literal("locked retrospective evaluation (prior exposure: 2020 onward)"),
   sleeveSchedule: sleeveScheduleSchema.optional(),
   longOnlyVariants: z.array(longOnlyVariantSchema).optional(),
+  portfolioFrequency: portfolioFrequencySchema.optional(),
 }).strict();
 export type PairedResearchProtocol = z.infer<typeof protocolSchema>;
 const mean = (v: number[]) => v.reduce((s, x) => s + x, 0) / v.length;
@@ -141,6 +143,16 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
   if (new Set(p.expectedOrigins.map(Date.parse)).size !== p.expectedOrigins.length) throw new Error("Duplicate frozen origin");
   if (p.specifications.some(s => s.target === "12-month") && p.blockLength < 12) throw new Error("Blocks shorter than outcome horizon");
   const c = adaptPairedResearchCorpus(corpusInput);
+  const frequencyCells = p.portfolioFrequency?.cells ?? [];
+  if (p.portfolioFrequency && p.sleeveSchedule) throw new Error("Legacy and v1 sleeve ledgers cannot share primary capital");
+  if (new Set(frequencyCells.map(cell => specificationKey(cell.specification))).size !== frequencyCells.length ||
+      new Set(frequencyCells.map(cell => cell.streamId)).size !== frequencyCells.length ||
+      new Set((c.portfolioStreams ?? []).map(s => s.id)).size !== (c.portfolioStreams ?? []).length)
+    throw new Error("Duplicate frequency cell or reused portfolio stream");
+  if (frequencyCells.some(cell => !p.specifications.some(s => specificationKey(s) === specificationKey(cell.specification))) ||
+      (c.portfolioStreams ?? []).some(s => !frequencyCells.some(cell => cell.streamId === s.id &&
+        specificationKey(cell.specification) === specificationKey(s.specification))))
+    throw new Error("Portfolio stream outside frozen specification binding");
   if (!!p.sleeveSchedule !== !!c.sleeveMarks) throw new Error("Sleeve schedule and complete marks must be supplied together");
   if (p.sleeveSchedule?.deployments.some(d => !p.expectedOrigins.some(o => Date.parse(o) === Date.parse(d.origin))))
     throw new Error("Sleeve origin outside frozen schedule");
@@ -273,7 +285,37 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
       return interval(rows, r => sum(r.map(x => x[0])) / sum(r.map(x => x[1])), p);
     });
     const attribution: Record<string, unknown> = {};
+    let portfolioEvidence: ReturnType<typeof reconcilePortfolioFrequency> | { unavailable: string } =
+      { unavailable: "Requires explicit simultaneous-monthly-sleeves-v1 frozen specification binding" };
     attempt("after-cost-long-short", () => {
+      if (spec.target === "12-month") {
+        const cell = frequencyCells.find(cell => specificationKey(cell.specification) === specificationKey(spec));
+        const stream = cell && c.portfolioStreams?.find(s => s.id === cell.streamId);
+        if (!cell || !stream) throw new Error("12-month factor inference requires explicitly bound monthly simultaneous sleeves; legacy unbound streams are unavailable");
+        const bridge = reconcilePortfolioFrequency(cell, stream, {
+          artifacts: c.artifacts, dataEnd: c.dataEnd, mode: c.mode, currency: p.currency, geography: p.geography,
+          costBps: p.costBps, expectedOrigins: p.expectedOrigins,
+          selections: observations.map(o => ({
+            origin: o.t.origin, executionAt: o.t.executionAt, endAt: o.t.endAt, weights: weightsFor(o),
+            executionQuotes: Object.fromEntries(o.t.securities.map(s => [s.companyId, { price: s.executionPrice, fx: s.executionFx }])),
+          })),
+        });
+        portfolioEvidence = bridge;
+        if (!bridge.rows.some(r => Date.parse(r.fromAt) === Date.parse(p.evaluationStart)) ||
+            !bridge.rows.some(r => Date.parse(r.toAt) === Date.parse(p.evaluationEnd)))
+          throw new Error("Monthly inference requires exact retained evaluation boundaries");
+        const monthly = bridge.rows.filter(r => Date.parse(r.fromAt) >= Date.parse(p.evaluationStart) &&
+          Date.parse(r.toAt) <= Date.parse(p.evaluationEnd));
+        for (const source of ["regionalDeveloped", "workbookUniverse"] as const) {
+          attribution[source] = { ...interval(monthly.map(r => [r.excessReturn, ...r[source]]),
+            rows => fit(rows.map(r => [1, ...r.slice(1)]), rows.map(r => r[0]))[0], p),
+            frequency: "calendar-month", returnConvention: p.portfolioFrequency!.returnConvention,
+            hypothetical: bridge.hypothetical, accountingLabel: bridge.label,
+            investmentEvidence: false, authenticityVerified: false,
+            dates: monthly.map(r => ({ fromAt: r.fromAt, toAt: r.toAt })), observations: monthly.length };
+        }
+        return attribution.regionalDeveloped as ReturnType<typeof interval>;
+      }
       if (primary.error || primary.accounting.length !== evaluation.length) throw new Error(primary.error ?? "Incomplete accounting");
       if (primary.accounting.some(r => r.hypothetical)) throw new Error("Borrow history absent: hypothetical only");
       for (const source of ["regionalDeveloped", "workbookUniverse"] as const) {
@@ -284,6 +326,8 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
       }
       return attribution.regionalDeveloped as ReturnType<typeof interval>;
     });
+    if (spec.target === "12-month" && "unavailable" in (endpoints["after-cost-long-short"] as object))
+      portfolioEvidence = endpoints["after-cost-long-short"] as { unavailable: string };
     // Preserve the existing kernel unchanged; its output is NOT the spread test.
     let longOnly: unknown = { unavailable: "Requires complete next-month rows" };
     const longOnlyVariants: unknown[] = [];
@@ -331,7 +375,8 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
       }
     }
     return { ...spec, missing, originCount: periods.length, trainingDates: training.length, evaluationDates: evaluation.length,
-      endpoints, ablations, attribution, trajectories, longOnly, longOnlyVariants };
+      endpoints, ablations, attribution, trajectories, longOnly, longOnlyVariants,
+      portfolioEvidence: portfolioEvidence as ReturnType<typeof reconcilePortfolioFrequency> | { unavailable: string } };
   });
   return { protocolId: expectedProtocolHash, corpusHash: c.corpusHash, disclosure: p.disclosure, mode: c.mode,
     sleeveAccounting, eventAccounting,
@@ -343,6 +388,6 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
     limitations: ["Caller-supplied origin and provenance claims are not authenticated.",
       "Historical efficacy requires independent archive verification and review; engineering fixtures never adjudicate positively.",
       "Long-only output preserves the existing kernel, whose accounting is separate from the explicit long-short cash ledger.",
-      "Overlapping sleeves have a separate frozen capital ledger; primary factor inference still requires compatible frequency-aligned returns and factors.",
+      "Legacy overlapping sleeves remain separate and unavailable for primary inference. Explicit simultaneous-monthly-sleeves-v1 cells reconcile monthly NAV and dated factors, but do not authenticate historical evidence.",
       "Dated event books and constrained long-only overlays are separate research accounting, not replacements for the unchanged primary hypothesis."] };
 }

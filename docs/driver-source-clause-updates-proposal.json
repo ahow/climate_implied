@@ -1,0 +1,26 @@
+{
+  "kind": "source-evidence-clause-proposal-not-canonical-ledger",
+  "evidencePath": "docs/driver-source-continuation-evidence.json",
+  "evidenceSha256": "d1dc92983cac3cbd8f94e227c0bde90f059932ff6f69dddc5b63fdea30294f1c",
+  "records": [
+    {
+      "id": "S04-002",
+      "proposedStatus": "partial",
+      "newEvidence": "Original IRENA2026 detailed onshore-capacity source/schema queried over unchanged2010\u20132024; regional total-wind substitution rejected;1264 missing country-year cells preserved. Exact installed-cost table remains missing; no learning-curve fit claimed.",
+      "remainingGap": "Original exact installed-cost table and complete reconciled global onshore capacity; frozen full-window baseline/uncertainty/dependence study not ready"
+    },
+    {
+      "id": "S04-004",
+      "proposedStatus": "partial",
+      "newEvidence": "New original2025 World Bank price-times-coverage gross snapshot executed from compatible policy-snapshot/currency/denominator definitions; exemptions/free allocation/enforcement/elasticity unknowns preserved and central use rejected.",
+      "remainingGap": "No instrument-specific exemption-adjusted elasticity or full-window policy predictive study; not central/calibrated"
+    },
+    {
+      "id": "S04-008",
+      "proposedStatus": "partial",
+      "newEvidence": "New policy source exposure explicitly sensitivity-only descriptive context, with parameter distribution unavailable; no scalar product misrepresented as a calibrated joint distribution.",
+      "remainingGap": "No new real calibrated/prior joint policy distribution; existing paired adoption sensitivity distributions unchanged"
+    }
+  ],
+  "scientificOrProductionPromotion": false
+}

@@ -8,6 +8,205 @@
     "v1FslrPairs": "Two separately retained zero-growth, zero-new-credit, maintenance cash benchmarks ONLY; NOT qualified original 2.5–4% terminal/full policy/activity-linked case completion",
     "fullClimateCaseCannotBeInferredFromRevenueBucket": true
   },
+  "originalOperatingFundingV3": {
+    "version": "issuer-original-operating-funding-3",
+    "scope": "Substantive original-range conditional operating FCFE calculations, NOT maintenance benchmarks, original earnings/ROE adapter completion, current-law certification or scientific acceptance",
+    "technicalQualifiedIssuerCount": 0,
+    "technicalTargetIssuerCount": 3,
+    "qualifiedOriginalPairs": 0,
+    "sourceObservationBoundary": "FY2024 actuals remain selected. SEC exhibits supply explicitly forward 2025 guidance and NEE 2025-2027 EPS expectations. Revised-history conditional information context retains original actual share/price dates; no historical knowledge backdating.",
+    "filesAndFunctions": {
+      "server/calculation/issuerOriginalOperatingCase.ts": [
+        "extractOriginalIssuerInputs: 39 exact USD/CIK/date funding claim bindings, including primary maturities and NEE cash credit sales; these bindings overlap some of the earlier 166 facts and are NOT claimed as 39 disjoint additional facts",
+        "buildOriginalIssuerOperatingCase: whole-common-equity 2025 stub, five operating years, ten explicit growth-fade years, terminal, accrual/cash, asset/debt/WC/minimum-cash, non-common claims, policy/activity schedules and common contribution requirements",
+        "assessOriginalIssuerOperatingCase: canonical positive-path pair or certified signed-path same-cash comparison, explicit funding, no positive-terminal or positive-value fabrication"
+      ],
+      "script/capture-issuer-original-supplements.ts": [
+        "Bounded private SEC 8-K/exhibit and two issuer funding-source attempts; immutable receipts; refuses recapture"
+      ],
+      "script/run-issuer-original-operating-cases.ts": [
+        "Explicit private-primary flag, source/class/date/currency checks, actual input/code/assumption freeze before outcomes, eighteen complete original-range conditional paths"
+      ],
+      "script/issuer-original-operating-case.test.ts": [
+        "Five code-only engineering tests; no private files, network, skipped source checks or production fixture data"
+      ],
+      "script/validate-issuer-original-private.ts": [
+        "Separate MANDATORY actual-private validation: source hashes, source extraction replay, frozen outcomes replay, all annual accrual/FCFE and asset/debt funding residuals, policy runoff, independent dated PV and nine repricings, prior artifacts unchanged"
+      ]
+    },
+    "primarySourceAttempts": {
+      "newFreePublicRequests": 8,
+      "newProviderRequests": 0,
+      "successfulSecRequests": 6,
+      "secScope": "One authenticated same-accession 8-K cover plus its primary FY2024 result/outlook exhibit per issuer",
+      "fslrExhibit": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000009/ex991pressreleaseq4-2024fi.htm",
+      "neeExhibit": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000003/neeq42024exhibit99.htm",
+      "xomExhibit": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000006/f8k4q24991.htm",
+      "boundedAdditionalAttempts": [
+        {
+          "issuer": "XOM",
+          "url": "https://corporate.exxonmobil.com/news/news-releases/2024/1211_exxonmobil-announces-2030-corporate-plan",
+          "outcome": "Fetch failed; no corporate-plan value or tariff inferred"
+        },
+        {
+          "issuer": "NEE",
+          "url": "https://www.investor.nexteraenergy.com/financial-information/quarterly-results",
+          "outcome": "HTTP 404; no nonexistent presentation/project-return data asserted"
+        }
+      ],
+      "retainedPrimaryPolicy": "Previously captured 2024 Federal Register 45X final regulation; PDF hash and 75/50/25% phase-down text verified without new requests",
+      "privateReceipts": [
+        "generated-artifacts/company-operating-corpus/issuer-original-v3/supplements/receipts.json",
+        "generated-artifacts/company-operating-corpus/issuer-original-v3/funding-sources/receipts.json"
+      ]
+    },
+    "frozenAt": "2026-11-10T23:02:42.669Z",
+    "calculatedAt": "2026-11-10T23:02:43.029Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/issuer-original-v3/2026-11-10T23-02-42-669Z/report.json",
+    "reportSha256": "26e7e0a228b318e199f7a8969d9a8c006a8daaefa9450bbed53a70f820159c2d",
+    "freezePath": "generated-artifacts/company-operating-corpus/issuer-original-v3/2026-11-10T23-02-42-669Z/frozen-before-outcomes.json",
+    "freezeSha256": "5926cf421a4f25734673d6cfd5cc0f821bf359eb4cd2dc10076277090cde8ff2",
+    "executedCounts": {
+      "issuers": 3,
+      "nominalTerminalGrowthPoints": [0.025, 0.0325, 0.04],
+      "baseConstraintMembersPerGrowthPoint": 2,
+      "fullOperatingCases": 18,
+      "fiveYearRows": 90,
+      "tenYearFadeRows": 180,
+      "terminalRows": 18,
+      "datedStubs": 18,
+      "fixedCapitalDebtFundingRowsIncluding2025AndTerminal": 306,
+      "canonicalPositivePathPairs": 6,
+      "certifiedSignedPathPairs": 3,
+      "mathematicalSameCashCandidatePairs": 9,
+      "originalQualifiedIssuerCases": 0,
+      "originalQualifiedPairs": 0,
+      "calculationErrors": 0,
+      "privateValidationExitCode": 0
+    },
+    "fundingAndReverseConventions": [
+      "Cash fixed-capital spending after disclosed budgets is D&A plus full nominal growth of opening net PP&E, not D&A maintenance alone. XOM additionally retains a source gross cash-investment floor.",
+      "Debt/net PP&E and effective D&A/net PP&E are frozen FULL source ratios, not arbitrary half-turnover or invented economic life. Source cash interest follows debt. Published maturities and recurring rollovers are funded explicitly; future access and par issuance/no extra fees are labelled conditions.",
+      "Actual operating AR, inventories, other current assets, trade payables and FSLR customer advances are retained. Minimum-cash growth consumes common cash. No cash release or second net-debt subtraction.",
+      "Every negative annual FCFE is recorded as a required voluntary pro-rata current-owner contribution with zero post-funding residual, not unmodelled outside capital, guaranteed compulsory calls or constant future share count.",
+      "FSLR and NEE signed-path comparison uses a separately certified finite polynomial, not a silent relaxation of shared legacy controls. FSLR has positive derivative lower bounds across 512 intervals; NEE proofs exclude roots in the below-target prefix then certify the crossing region. Independent dated-PV repricing passes.",
+      "Reverse output remains a path-preserving FCFE adjustment, NOT an observed/projected operating-growth estimate, g_CAT, causal climate coefficient or probability. The original earnings/ROE namespace is unchanged."
+    ],
+    "issuerOutcomes": {
+      "FSLR": {
+        "substantiveChanges": [
+          "2025 issuer guidance midpoints supply global 19 GW sales/ASP and forecast 45X credit. US eligibility uses forecast-credit-equivalent watts, NOT US customer revenue share or invented observed US production.",
+          "Separate fixed-nominal credit rate, 75/50/25/0% runoff, historical Visa cash discount/collection lag and zero India/R&D/startup grant benefits.",
+          "Strip forecast credits, $4.670m ancillary grant reserve and $115m termination normalization reserve; source-conditioned member removes ONLY separately classified $65m temporary startup cost after planned commissioning. All ramp/underutilization stays charged; constraint member retains startup too.",
+          "Full cash-reserve, customer advance, PP&E replacement/growth, debt/interest and operating-WC funding are charged. Legacy grant/Visa distributions are explicitly zero in this downside funding model, not omitted or represented as observed writeoffs/collections."
+        ],
+        "sourceConditioned2Point5PercentTerminal": {
+          "forwardUsd": 5728534207.448781,
+          "terminalAnnualFcfeUsd": 30136785.583735228,
+          "requiredCommonContributions": "Negative years 2034-2036 retained, explicitly funded pro rata; no recovery cash invented",
+          "signedReverseRepricingError": 2.220446049250313e-16
+        },
+        "failedSustainabilityPoints": "3.25% and 4% source-conditioned terminal cash is negative; all startup-retaining members fail positive-terminal funding. No higher growth forced.",
+        "narrowResiduals": [
+          "The $115m source figure is termination-revenue INCREASE, not a total recurring normalization. The forward reserve and startup cessation are declared conditions; an independently defensible recurring margin can replace them without refitting market price.",
+          "Current-law 45X changes/eligibility, future prepayment terms and rollover access are not certified by a FY2024-law conditional case.",
+          "A full original operating-driver reverse must recalculate revenue/capital/WC/policy funding if the authoritative clause requires implied climate/activity growth rather than a cash-path adjustment."
+        ]
+      },
+      "NEE": {
+        "substantiveChanges": [
+          "Consolidated source EPS midpoint growth is a declared operating-return PROXY, not NEER IRR or management cash EBIT guidance; comparison member uses requested nominal growth only.",
+          "All five approved capital budgets are converted conditionally using disclosed equity AFUDC, nuclear fuel and corporate/fund investment exactly once, followed by explicit full capital growth/replacement funding.",
+          "Future $740m DMI plus $597m non-common cash reserve is labelled allocation, not observed gross NCI cash; no new DMI inflows or HLBV cash addback.",
+          "Source-conditioned cash-policy support is capped at actual FY2024 $1.304bn nominal annual transfer proceeds through 2029, then retires uniformly over the source ten-year PTC horizon to zero by 2039. No perpetual terminal credit, inflated credit rate or actual future eligibility asserted. Constraint removes policy cash."
+        ],
+        "sourceConditionedForwardUsd": {
+          "terminal2.5Percent": 4157875720.991308,
+          "terminal3.25Percent": 918512668.6800437
+        },
+        "sourceConditioned4Percent": "Positive terminal cash but negative funded-plan signed NPV (-$3.119944bn); pair refused. No abandonment option, positive value or return recovery invented.",
+        "constraintMembers": "All three have negative terminal cash and refuse a pair.",
+        "narrowResiduals": [
+          "EPS→consolidated cash return proxy and uniform credit-cohort runoff are explicit source-anchored forward assumptions, not disclosed annual project return, tax-credit ownership or legal cash waterfalls.",
+          "Required negative-year common funding is calculated and exposed; no actual subscription commitments are claimed.",
+          "Next evidence refinement is cash-return/FFO and project tax-equity/credit-cohort schedules replacing these proxies, not future observations as a blanket prerequisite."
+        ]
+      },
+      "XOM": {
+        "substantiveChanges": [
+          "Full operating EBIT, affiliate cash once, actual pension/obligation cash drains, tax, NCI, investments, capitalization and cash reserve are carried through replacement/growth funding.",
+          "Gross up source 2025 NET Cash Capex outlook for excluded advance collections/project NCI inflows before imposing the no-new-inflow gross floor; full growth capital may require more.",
+          "Source-conditioned and zero-future-affiliate-remittance members both fund all three terminal growth points without common capital calls.",
+          "Forward allocation from source Other/total Capex is only a declared lower-emission investment memo within total spending; source Other is PRIMARILY LCS, not an authenticated CCS cash budget. Incremental CCS cash/45Q is zero; no tariff invented."
+        ],
+        "sourceConditionedForwardUsd": {
+          "terminal2.5Percent": 249910667593.80963,
+          "terminal3.25Percent": 249454811317.08386,
+          "terminal4Percent": 248886652558.3495
+        },
+        "mathematicalPairs": 6,
+        "narrowResiduals": [
+          "Denbury valuation note and third-party contracted 6.7 Mtpa do not disclose realized annual throughput, tariff, common cash margin or exact CCS capex allocation.",
+          "These are funded whole-issuer no-incremental-CCS-upside conditional cases, NOT completed positive CCS economics, a causal climate-growth estimate or original-industrial acceptance.",
+          "Operating geography and activity-specific climate cash need a sourced economic driver before interpreting reverse output as climate/activity growth; source attempts are retained, not replaced by arbitrary fees."
+        ]
+      }
+    },
+    "originalClauseProposalsForParentMapping": [
+      {
+        "clauseDescription": "Actual issuer whole-common-equity cash bridge with original nominal terminal range and sustainable funding",
+        "proposal": "18 executed conditional full operating/funding paths, nine mathematical price comparisons; do not promote 0/3 technical completion from arithmetic alone"
+      },
+      {
+        "clauseDescription": "Five explicit years, ten-year fade, terminal, dated stub and exact actual price/common shares on the same currency and cash basis",
+        "proposal": "Implemented and independently checked for all dependency-ready cases, preserving failure states where terminal cash or funded-plan value is nonpositive"
+      },
+      {
+        "clauseDescription": "Distinguish physical activity, geography and policy channels; no fabricated observed facts or CCS tariffs",
+        "proposal": "FSLR manufacturing eligibility and cash-credit runoff are separate from invoicing geography; NEE tax/DMI channels are separately conditional; XOM unknown CCS economics remains an explicit narrow residual"
+      },
+      {
+        "clauseDescription": "Original interpretable forward/reverse model rather than unlabelled benchmark substitution",
+        "proposal": "Original-range forward work is substantive; FCFE-path reverse is explicitly NOT an original earnings/ROE or implied physical climate-driver assessment"
+      }
+    ],
+    "readyNextEngineeringBlock": [
+      "Issuer-specific operating-driver reverse adapter: rebuild the entire funded cash path for each candidate activity/policy driver, retaining signed-path uniqueness/branch checks. Do not relabel the existing cash-shape adjustment as g_CAT.",
+      "FSLR: replace conditional recurring-margin reserve/current-law eligibility with bounded primary clarification; rerun the source-backed 2.5% candidate and retain higher-growth failures.",
+      "NEE: replace the exposed EPS cash-return/credit-cohort proxy with primary FFO/project-financing/cash-allocation guidance if available; no need to wait for actual future outcomes.",
+      "XOM: only add CCS upside after public primary annual tariff/throughput/margin/ownership evidence; otherwise retain the full funded no-upside case or choose a workbook-verified eligible alternative with the parent-provided exact identity/price/share boundary."
+    ],
+    "verification": {
+      "captureCommandsAlreadyExecutedDoNotRepeat": [
+        "npx tsx script/capture-issuer-original-supplements.ts",
+        "npx tsx script/capture-issuer-original-supplements.ts --funding"
+      ],
+      "codeOnlyCommand": "npx tsx --test script/issuer-original-operating-case.test.ts",
+      "codeOnlyPassed": 5,
+      "codeOnlyFailed": 0,
+      "codeOnlyLogSha256": "8859cb8a353d73ab973ddc66ba2fe7e771b335046021343322d4e83ce9cf5b11",
+      "assemblyCommand": "npx tsx script/run-issuer-original-operating-cases.ts --private-primary",
+      "assemblyLogSha256": "92ceb030f2cd44a5cc3d5d0544a5f6204014feff1bffa7ec4a5c6532dfc7b7a3",
+      "mandatoryPrivateCommand": "npx tsx script/validate-issuer-original-private.ts --private-primary",
+      "mandatoryPrivateExitCode": 0,
+      "privateLogSha256": "7299d28c67570e3794c9729b9f3b1e0f7aadba54a7b410800a1bfc32dee3203e",
+      "strictCommand": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerOriginalOperatingCase.ts script/run-issuer-original-operating-cases.ts script/validate-issuer-original-private.ts script/issuer-original-operating-case.test.ts script/capture-issuer-original-supplements.ts",
+      "strictExitCode": 0,
+      "sourceEs5Command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerOriginalOperatingCase.ts",
+      "sourceEs5ExitCode": 0,
+      "noTsconfigRelaxation": true,
+      "emptyTypecheckLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "unchanged": {
+      "originalPrivateFslr10Cases50RowsAndPinnedCode": true,
+      "zeroGrowthBenchmarks": true,
+      "prior166FactReconciliation": true,
+      "priorControlsNotReexecuted": true,
+      "sharedLedgerRoutesSemanticsProjectionAndOriginalRoeAdapter": true,
+      "privateRawPayloadExports": 0,
+      "commitsDeployCallbacksApprovalsPurchases": 0
+    }
+  },
   "primaryReconciliationV2": {
     "version": "issuer-primary-cash-reconciliation-2",
     "filesAndFunctions": {
@@ -353,5 +552,169 @@
     "FSLR results are explicit conditional sensitivity calculations, not validated company forecasts: engineering maintenance sufficiency, cash-tax realizability and operating assumptions still need owner/scientific review.",
     "NEE and XOM four scenarios have real operating/stub/terminal ledgers but no qualified whole-equity pair; source and claim gaps are not hidden behind successful price requests.",
     "No current market valuation, historical point-in-time prediction, prospective study outcome, original-model calendar-stub completion or approved three-issuer completion asserted."
-  ]
+  ],
+  "operatingDriverRebuildV4": {
+    "version": "issuer-operating-driver-rebuild-4",
+    "scope": "New frozen operational reverse experiment, NOT an FCFE-path rescaling, maintenance benchmark, old-v3 retune, qualified original case, or globally unique activity-growth estimate",
+    "technicalQualifiedIssuers": 0,
+    "technicalRequiredIssuers": 3,
+    "qualifiedOriginalPairs": 0,
+    "files": [
+      "server/calculation/issuerOperatingDriverReverse.ts",
+      "script/run-issuer-operating-driver-reverse.ts",
+      "script/issuer-operating-driver-reverse.test.ts",
+      "script/validate-issuer-operating-driver-private.ts"
+    ],
+    "freeze": {
+      "path": "generated-artifacts/company-operating-corpus/issuer-operating-driver-v4/2026-11-10T23-24-00-575Z/frozen-before-scoring.json",
+      "sha256": "57eb9e0ae8cac4a9878984a948304c1640b702f391af01803992fcf1a8385d34",
+      "frozenAt": "2026-11-10T23:24:00.575Z",
+      "scoredAt": "2026-11-10T23:24:00.788Z",
+      "reportPath": "generated-artifacts/company-operating-corpus/issuer-operating-driver-v4/2026-11-10T23-24-00-575Z/report.json",
+      "reportSha256": "829fd316764c59b7f43b99afa2892aaaaf69042e7185531922d9a2c3fc7714a7",
+      "earlierDiagnosticV4FreezesRetainedNotAccepted": [
+        "2026-11-10T23-18-40-322Z",
+        "2026-11-10T23-20-20-037Z"
+      ],
+      "diagnosticCorrection": "First candidate explicitly recorded four terminal-WC rebuild failures. Corrected XOM procurement-WC sensitivity to the fixed actual FY2024 cash-cost/revenue denominator: noncash D&A fade timing must not reprice supplier inventory/payables. No source bounds or observed facts changed and no positive pair was forced."
+    },
+    "primaryEvidence": {
+      "newNetworkRequests": 0,
+      "newProviderRequests": 0,
+      "retainedAuthenticatedHistoricalCashFacts": 166,
+      "xomExactHistoricalMarginClaimBindings": 15,
+      "xomClaimScope": "Same authenticated FY2024 SEC primary annual report: exact FY2022/2023/2024 annual contexts for sales, pretax income, interest and segmented equity-company/other revenue. Fifteen claim bindings are not claimed to be fifteen disjoint new facts relative to earlier reconciliations.",
+      "xomOperatingOnlyMargins": [
+        { "year": 2022, "margin": 0.15939298927698 },
+        { "year": 2023, "margin": 0.1307062806060407 },
+        { "year": 2024, "margin": 0.11652571725026309 }
+      ],
+      "fslrCapacityAssertions": "Retained primary states approximately 21 GW and approximately 4 GW planned additional capacity in second half 2025; retained source guidance midpoint is 19 GW. Planned completion and full nameplate availability are explicit forward conditions, not observed future facts.",
+      "equityReference": "Same actual security, USD, shares/price date and dated quote receipts retained from v3. Revised-history conditional information context is explicit; no historical information cutoff backdating.",
+      "statutory45xEligibilityVerified": false,
+      "post2025LawAndFeoc": "UNRESOLVED. Existing inherited source-law credit schedule is a conditional scenario, never current-law certification."
+    },
+    "fundedOperatingDrivers": {
+      "FSLR": {
+        "kind": "real global module volume growth perturbation",
+        "firstFiveYearAnnualPerturbationBracket": [0, 0.02923517698995651],
+        "tenYearFade": "Annual volume-growth increments fade to zero; attained real units remain constant in terminal while original nominal 2.5/3.25/4% price/revenue growth and funded reinvestment remain.",
+        "capacityEnvelopeGw": [19, 25],
+        "capacityScope": "Growth-only tested scenario, not a guaranteed demand floor. Negative demand/idle-capacity/disposal scenarios are outside the bracket, not ruled out.",
+        "cashRebuild": "Rebuild revenue/core profit, full source-average PP&E intensity, D&A, new net investment, leverage/net borrowing, gross matched rollover, cash interest, AR/inventory/AP/advances, minimum-cash build, cash tax and whole-common FCFE. Full capital intensity is a conservative conditional assumption even within spare nameplate, not a statement that every extra unit requires a new plant.",
+        "policy": "Extra global module units receive NO new US-eligible 45X allocation. Inherited recognized/cash-credit amounts and runoff remain separately frozen; not all solar revenue is called climate cash.",
+        "growthRejection": "Selected actual FY2024 FCFE is nonpositive, so actual-to-year-five CAGR is rejected in all six FSLR paths even though forecast year-five cash can be positive.",
+        "outcome": "One source-conditioned 2.5% path: interval no-root exclusion over the formal cash-sum superset, hence no funded-subset root. Five other paths: nonpositive terminal throughout frozen bracket. No qualifying original pair.",
+        "fundingCertificateLimit": "For the 2.5% source-conditioned path, interval covariance prevents certification that every point in the whole bracket has positive terminal cash. This is disclosed, not ignored; the stronger cash-sum envelope already excludes the equity target.",
+        "wholeEquityBridgeCheck": "Private checks reconcile zero-perturbation cash to all sixteen stored original forecast/fade/terminal rows, independently rebuild nonzero endpoint cash/PV and stock investment, keep original stub once, include interest and net debt cash once, hold all selected cash/securities as an explicit future reserve with zero initial excess release, retain legacy grant/uncertain Visa reserves, and add only cash credits once. No second initial-debt subtraction or terminal reserve release."
+      },
+      "XOM": {
+        "kind": "annual operating COST-SPREAD margin change, not production growth or CCS revenue",
+        "firstFiveYearAnnualMarginPerturbationBracket": [0, 0.004512344423413704],
+        "terminalCumulativeMarginChange": "9.5 times annual perturbation: at upper bound the final operating-only EBIT margin remains within FY2022-2024 source envelope 11.6526%-15.9393%; historical range is a scenario bound, not a future observation or economic impossibility outside that range.",
+        "cashRebuild": "Physical activity/revenue and source-funded PP&E/replacement plan remain fixed. Rebuild core profit, cash taxes at source cash-tax/core-pretax burden, inventory/AP from incremental cash spread against fixed FY2024 cash-procurement share, full cash reserve and debt/rollover/interest cash. Full frozen non-common cash reserve remains; no new NCI waterfall or ownership fact inferred.",
+        "ccsTariffsInvented": 0,
+        "incrementalCcsRevenueInvented": 0,
+        "outcome": "All six paths have interval-certified no root inside frozen historical-margin scenario bounds. Source-conditioned whole-equity upper envelopes are approximately USD350.718bn/358.781bn/368.839bn at terminal growth 2.5/3.25/4%, each below the retained actual equity reference. No extrapolated margin or tariff manufactured to match.",
+        "actualFcfeGrowthReporting": "All implied operating perturbations and implied FCFE CAGRs are null because no target root exists. Baseline diagnostics, NOT implied growth: source-conditioned actual-FY2024-to-year-five five-step CAGR -5.1936608%, constraint -14.1926159%. Six-calendar-year CAGRs are separately labelled, not silently conflated with five forecast steps."
+      },
+      "NEE": {
+        "kind": "unsupported consolidated operating driver",
+        "outcome": "Six explicit refusals. The EPS-to-EBIT forward proxy does not define a source-bounded whole-issuer activity/tariff/cost/capacity driver with cash allocation. FPL ROE cannot be imposed on NEE/NEER. Historical funding/NCI reconciliations remain intact; no new NCI fact or unsupported positive terminal is invented.",
+        "preciseMissingLink": "Consolidated-to-FPL/NEER physical activity or operating-margin driver plus source-linked project/non-common cash allocation; EPS expectations alone do not identify this mapping."
+      }
+    },
+    "rootAndGrowthContract": {
+      "method": "True outward-rounded interval automatic differentiation over 128 contiguous cells covering the ENTIRE frozen bracket. Derivative bounds or interval value exclusions are certificates, not sampled-grid uniqueness.",
+      "eligibleMatch": "Require feasible capital/cost/capacity, positive terminal over bracket, strict derivative sign and target bracket; only then bisection and full funded cash rebuild/reprice.",
+      "refusals": [
+        "no-root-certified-range",
+        "rejected-nonpositive-terminal-throughout-bracket",
+        "uncertified-funded-terminal-domain",
+        "uncertified-operating-feasibility-domain",
+        "uncertified-monotonicity-or-multiple-roots-not-excluded",
+        "unsupported-operating-driver",
+        "operating-target-match-rejected-undefined-fcfe-growth"
+      ],
+      "actualGrowth": "Use selected actual base FCFE and rebuilt year-five FCFE, with explicit nonpositive/undefined rejection. Report five forecast steps and FY2024-to-FY2030 SIX calendar years separately. Never rename the operating perturbation or old FCFE adjustment as activity growth.",
+      "actualRootCount": 0,
+      "actualImpliedFcfeGrowthCount": 0
+    },
+    "counts": {
+      "frozenActualCases": 18,
+      "supportedCashRebuildCases": 12,
+      "rebuiltCashRowsPerSupportedPath": 16,
+      "certifiedNoRootCases": 7,
+      "nonpositiveTerminalBracketRejections": 5,
+      "unsupportedNeeDriverCases": 6,
+      "actualTargetMatches": 0,
+      "qualifiedOriginalIssuers": 0,
+      "qualifiedOriginalPairs": 0,
+      "oldV3PairsPreservedNotRerun": 9,
+      "oldFslrCasesPreservedNotRerun": 10,
+      "oldFslrAnnualRowsPreservedNotRerun": 50
+    },
+    "verification": {
+      "codeOnly": {
+        "command": "npx tsx --test script/issuer-operating-driver-reverse.test.ts",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "privateFilesOrNetwork": false,
+        "independence": "Separate synthetic plain-number cash/PP&E/debt/WC/tax/dated-PV loops produce forward values and known operating reverse targets without graph helpers or v3 builders; both volume and cost-spread roots reprice, actual cash growth differs from driver, nonpositive actual/year-five cash rejects, and no-root/capacity/unsupported statuses are tested.",
+        "logPath": "generated-artifacts/company-operating-corpus/issuer-operating-driver-v4/code-only-tests.log",
+        "logSha256": "ac6d042f5bdcb5c8672d7bd886f2d5db5c90e4151603e61887633123b3102149"
+      },
+      "assembly": {
+        "command": "npx tsx script/run-issuer-operating-driver-reverse.ts --private-primary",
+        "exitCode": 0,
+        "logSha256": "37f7a081948cb5b1648d71a15c83015b8422f8b36014dc51076a24b841fee5b9"
+      },
+      "mandatoryPrivatePrimary": {
+        "command": "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary",
+        "exitCode": 0,
+        "checks": "Actual source/code/prior-preserve hashes; exact fifteen historical source bindings; eighteen new outcome replays; twelve zero-driver comparisons to STORED v3 rows, NOT old builder execution; twelve independent nonzero source-bound cash/PP&E/tax/credit/capacity/dated-PV reconciliations; six nonpositive FSLR actual-growth rejections; actual target repricings zero because actual roots zero.",
+        "logSha256": "8ac41b208a329dde1fb173fc9ad54f82bdcdb6d098ba04738e6f6d8f29a2151a"
+      },
+      "strictTypecheck": {
+        "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerOperatingDriverReverse.ts script/run-issuer-operating-driver-reverse.ts script/validate-issuer-operating-driver-private.ts script/issuer-operating-driver-reverse.test.ts",
+        "exitCode": 0,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "es5SourceTypecheck": {
+        "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerOperatingDriverReverse.ts",
+        "exitCode": 0,
+        "tsconfigRelaxed": false,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "appWorkflowFullSuiteOrUiRun": false,
+      "rawPrivateExport": false,
+      "oldOriginalV3SourceOrResultsModified": false,
+      "oldOriginalFslrSourceOrResultsModified": false,
+      "sharedLedgerRoutesSemanticsChanged": false
+    },
+    "originalClauseProposals": [
+      {
+        "clause": "Use actual issuers, original 2.5-4% nominal terminal, full sustainable funding, original five years plus ten-year fade and dated stub",
+        "proposedStatus": "Engineering implemented conditionally for source-bounded FSLR/XOM operating rebuilds; NEE explicit unsupported driver. Original issuer qualification stays 0/3."
+      },
+      {
+        "clause": "Operating reverse must rebuild funded cash, not relabel a path adjustment as activity growth",
+        "proposedStatus": "New graph rebuilds operating drivers and all cash/financing consequences; independent engineering forward/reverse tests pass. Actual source-bounded reverse results honestly yield zero targets."
+      },
+      {
+        "clause": "Policy channels and geography must be distinguished; no all-solar revenue climate bucket, no invented XOM CCS tariffs",
+        "proposedStatus": "No incremental eligible-US credit from global module growth, separate fixed source-law cash credits, unresolved FEOC/current-law explicit, XOM cost spread not CCS tariff; full original climate-linked completion NOT asserted."
+      },
+      {
+        "clause": "Do not claim sampled-grid uniqueness; reject undefined actual FCFE growth",
+        "proposedStatus": "Whole-bracket outward interval certificates/refusals implemented; actual-root and implied-growth counts both zero; negative FSLR actual baseline explicitly rejects CAGR."
+      }
+    ],
+    "readyNextEngineeringBlock": {
+      "FSLR": "Separate NEW capacity-utilization experiment can test already-paid/planned-completion-conditioned spare capacity versus conservative full average capital intensity, with tranche PP&E/maintenance and 25 GW ceiling explicitly reconciled to retained 2025 funding. Do not mutate v3/v4 or assume new current-law 45X eligibility.",
+      "XOM": "Source-component cost/volume or separately justified forward-margin experiment would need a prospectively supported bound outside the FY2022-2024 scenario envelope to investigate the retained target. Existing envelope does not imply such margins are impossible, but do not extrapolate solely to force a pair or invent CCS tariffs.",
+      "NEE": "Build FPL/NEER component activity-to-cash allocation adapter using component rate-base/capacity/operating-income and full non-common cash reserves; retain explicit unsupported consolidated reverse until that source mapping is identified."
+    }
+  }
 }

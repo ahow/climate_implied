@@ -27,7 +27,12 @@ export const sleeveMarksSchema = z.array(z.object({
  * Marks are after deployment/settlement. All live cohorts must be marked at every
  * observation; endpoint returns cannot masquerade as intermediate valuations.
  */
-export function accountOverlappingSleeves(scheduleInput: unknown, marksInput: unknown, dataEnd?: string) {
+export function accountOverlappingSleeves(
+  scheduleInput: unknown, marksInput: unknown, dataEnd?: string,
+  // Explicit v1 bridge expenses: post-entry marks are below contributed capital.
+  // Undefined preserves the immutable legacy accounting contract.
+  deploymentCosts?: Record<string, number>,
+) {
   const schedule = sleeveScheduleSchema.parse(scheduleInput);
   const marks = sleeveMarksSchema.parse(marksInput);
   const ids = new Set<string>();
@@ -80,7 +85,9 @@ export function accountOverlappingSleeves(scheduleInput: unknown, marksInput: un
     for (const d of active.filter(d => Date.parse(d.executionAt) === at)) {
       const s = mark.sleeves.find(s => s.id === d.id)!;
       const initialNav = s.cash + s.restrictedCash + Object.values(s.positions).reduce((a, b) => a + b, 0);
-      if (Math.abs(initialNav - d.capital) > 1e-9)
+      const entryCost = deploymentCosts === undefined ? 0 : deploymentCosts[d.id];
+      if (!Number.isFinite(entryCost) || entryCost < 0) throw new Error("Missing explicit deployment cost");
+      if (Math.abs(initialNav + entryCost - d.capital) > 1e-9)
         throw new Error("Initial sleeve mark must reconcile deployed capital");
       reserve -= d.capital;
     }

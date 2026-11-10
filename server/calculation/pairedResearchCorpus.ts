@@ -3,6 +3,7 @@ import { contentHash } from "./analysisManifest";
 import { pairedCompanyGap } from "./pairedCompanyGap";
 import { sleeveMarksSchema } from "./pairedResearchSleeves";
 import { eventBookSchema } from "./pairedResearchEvents";
+import { portfolioStreamsSchema } from "./pairedResearchFrequency";
 
 const timestamp = z.string().datetime();
 const digest = z.string().regex(/^[a-f0-9]{64}$/);
@@ -48,6 +49,7 @@ export const corpusSchema = z.object({
   dataEnd: timestamp, artifacts: z.array(artifactSchema), periods: z.array(periodSchema),
   sleeveMarks: sleeveMarksSchema.optional(),
   eventBooks: z.array(eventBookSchema).optional(),
+  portfolioStreams: portfolioStreamsSchema.optional(),
 }).strict();
 export type ResearchCorpus = z.infer<typeof corpusSchema>;
 export type ResearchPeriod = ResearchCorpus["periods"][number];
@@ -75,6 +77,27 @@ export function adaptPairedResearchCorpus(input: unknown) {
       throw new Error("Artifact beyond corpus cutoff");
     return a;
   };
+  // Stream receipts are optional only for the old, unbound contract. Once
+  // supplied, all used monthly evidence must be retained by the cutoff, even
+  // when later family inference is unavailable for a missing origin.
+  if (new Set((corpus.portfolioStreams ?? []).map(s => s.id)).size !== (corpus.portfolioStreams ?? []).length)
+    throw new Error("Duplicate portfolio stream");
+  for (const stream of corpus.portfolioStreams ?? []) {
+    stream.entries.forEach(e => resolveWithinCutoff(e.sourceHash));
+    for (const m of stream.marks) {
+      if (Date.parse(m.at) > Date.parse(corpus.dataEnd)) throw new Error("Future monthly sleeve mark");
+      m.sleeves.forEach(s => s.sourceHashes.forEach(resolveWithinCutoff));
+      if (m.reserveAccrual) resolveWithinCutoff(m.reserveAccrual.sourceHash);
+    }
+    for (const m of stream.months) {
+      if (Date.parse(m.toAt) > Date.parse(corpus.dataEnd)) throw new Error("Future portfolio month");
+      [m.sourceHash, m.factors.regionalSourceHash, m.factors.workbookSourceHash, m.factors.riskFreeSourceHash].forEach(resolveWithinCutoff);
+      m.books.forEach(b => {
+        resolveWithinCutoff(b.book.coverageSourceHash);
+        b.book.events.forEach(e => resolveWithinCutoff(e.sourceHash));
+      });
+    }
+  }
   for (const mark of corpus.sleeveMarks ?? []) {
     if (Date.parse(mark.at) > Date.parse(corpus.dataEnd)) throw new Error("Future sleeve mark");
     mark.sleeves.forEach(s => s.sourceHashes.forEach(resolveWithinCutoff));

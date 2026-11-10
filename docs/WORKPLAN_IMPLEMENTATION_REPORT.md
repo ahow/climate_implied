@@ -1854,3 +1854,209 @@ Published-source wind investigation stopped before fitting; missing exact full-w
 }
 
 Prior484/121 local combined receipts retained, not substituted for final split counts:482publicTS+4mandatoryprivateTS;117publicPython+4mandatoryprivatePython, allzero failures/skips. Mandatory private issuer and historical-code checks passed separately. Tests moved intact, not removed; missing private sources demonstrably fail their required validator. No raw retained inputs exported.
+
+## Verified substantive-analytics release
+
+{
+  "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+  "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+  "ci": "42835210133 validate/promote success",
+  "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+  "railway_status": "SUCCESS",
+  "verified_at": "2026-11-10T14:38:54.473498+00:00",
+  "smoke": {
+    "/api/build-info": {
+      "status": 200,
+      "semantic_ids": 1,
+      "body": {
+        "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      }
+    },
+    "/api/health": {
+      "status": 200,
+      "semantic_ids": 1
+    },
+    "/api/research/driver-registry": {
+      "status": 200,
+      "semantic_ids": 51,
+      "drivers": 22
+    },
+    "/api/calculation/company-coverage": {
+      "status": 503
+    },
+    "/api/calculation/company-coverage?overlayIds=fake": {
+      "status": 422
+    },
+    "publicReplayPost": {
+      "status": 403
+    },
+    "verified_at": "2026-11-10T14:38:54.473498+00:00"
+  },
+  "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
+}
+
+Stopping at context boundary, not completion.39verified259partial2blocked0unreconciled. Full0–17/amendments remain. Code-onlyCI42833772416 initially failed on private-source dependencies; repaired by mandatory explicit private validators, not export/skips. CI42835210133 and Railway then succeeded. Final counts:482publicTS+4privateTS;117publicPython+4privatePython. Allzero fail/skip, plus mandatoryprivateissuer/history assertions. Data activation and independent acceptance unclaimed.
+
+Safe published source/report is under https://github.com/ahow/climate_implied/tree/f814fb21269fa867f4b400f032678bc289ff9338 ; this later receipt records that verified runtime and is not self-referencing. Fullchangedpaths are above; subsequent integration files include script/record-analytics-gates.py, script/record-analytics-release.py, script/validate-driver-retained-private.ts and script/validate_wind_cost_source_private.py. Private raw inputs remain outside source export.
+
+## Resumed substantive analytics after credit interruption
+
+{
+  "recordedAt": "2026-11-10T23:33:08.781732+00:00",
+  "scope": "Continuation after credit interruption; not full completion",
+  "evidence": [
+    {
+      "path": "docs/issuer-analytics-evidence.json",
+      "sha256": "af90ee0c45b3992802178b46ebcc2cc7a96f8cda0dfc166de6d2686d60156c93",
+      "originalClauses": [
+        "S12-001"
+      ]
+    },
+    {
+      "path": "docs/physical-attribution-evidence.json",
+      "sha256": "02665682302b3ef982cb19edc68e3fbf16bb7118e878ce21f06d0ea7730a7ccf",
+      "originalClauses": [
+        "S07-008"
+      ]
+    },
+    {
+      "path": "docs/driver-source-continuation-evidence.json",
+      "sha256": "d1dc92983cac3cbd8f94e227c0bde90f059932ff6f69dddc5b63fdea30294f1c",
+      "originalClauses": [
+        "S04-002",
+        "S04-004",
+        "S04-008"
+      ]
+    },
+    {
+      "path": "docs/portfolio-frequency-evidence.json",
+      "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+      "originalClauses": [
+        "S14-010",
+        "S14-012",
+        "S14-014",
+        "S15-008",
+        "S15-010",
+        "S15-011",
+        "S15-013"
+      ]
+    },
+    {
+      "path": "docs/Return_Quality_Protocol.json",
+      "sha256": "7aa80134ce0bf68ba39d9404eaac0b7be75ffbc98556df51fe71128870b144bd",
+      "originalClauses": [
+        "S15-009",
+        "S01-001"
+      ]
+    }
+  ],
+  "quality": {
+    "protocolHash": "1cff730fd30647e4bc10de0371353ab7f6a265a51d72f66436a008a7b37d6052",
+    "population": 411339,
+    "sampled": 50,
+    "sourceRequests": 50,
+    "exactIsinCandidates": 50,
+    "computedReturns": 0,
+    "unavailableReturns": 50,
+    "weekendBoundaries": 24,
+    "allSampleLabelsDayOfMonth": 22,
+    "breakRates": null,
+    "sampleHash": "56f4fc0469a3669d8337b43deda20f6383e737093703b2bee06d29007efa492e",
+    "resultHash": "f150fb2bbac73557d52d71569cb245dfcb2dfc03e756b62dc515b1a5a8c2bd78",
+    "remaining": "Exact common-share/listing/currency/history evidence and prices/dividends/splits/share basis. No sample replacements, owner approval, nearest-close substitution or actual50-return reconciliation.",
+    "softwareCorrection": "First attempt completed and retained all50 source requests, then console hashing rejected undefined optional fields. Explicit null handling fixed; retained data and calls were not repeated.",
+    "newPaths": [
+      "server/calculation/returnQuality.ts",
+      "script/return-quality.test.ts",
+      "script/prepare-return-quality-sample.ts",
+      "script/attempt-return-quality-identities.ts",
+      "script/validate-return-quality-private.ts",
+      "shared/fieldSemantics.ts"
+    ]
+  },
+  "finalExecution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-10T23:28:34.244700+00:00",
+    "exit_code": 1,
+    "elapsed_seconds": 125.984,
+    "counts": {
+      "tests": 511,
+      "pass": 511,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+    "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "recoveryExecution": {
+    "command": [
+      "bash",
+      "-c",
+      "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+    ],
+    "executed_at": "2026-11-10T23:30:47.634739+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 29.08,
+    "counts": null,
+    "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+    "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "changedPaths": [
+    "docs/Return_Quality_Protocol.json",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/driver-source-clause-updates-proposal.json",
+    "docs/driver-source-continuation-evidence.json",
+    "docs/driver-source-continuation-protocol.json",
+    "docs/issuer-analytics-evidence.json",
+    "docs/physical-attribution-evidence.json",
+    "docs/portfolio-frequency-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "script/attempt-return-quality-identities.ts",
+    "script/capture-issuer-original-supplements.ts",
+    "script/driver_source_continuation.py",
+    "script/igcc_observation_operator.py",
+    "script/issuer-operating-driver-reverse.test.ts",
+    "script/issuer-original-operating-case.test.ts",
+    "script/paired-research-frequency.test.ts",
+    "script/policy-exposure.test.ts",
+    "script/prepare-return-quality-sample.ts",
+    "script/record-resumed-analytics.py",
+    "script/return-quality.test.ts",
+    "script/run-issuer-operating-driver-reverse.ts",
+    "script/run-issuer-original-operating-cases.ts",
+    "script/test_igcc_observation_operator.py",
+    "script/test_igcc_official_sources.py",
+    "script/validate-driver-source-continuation-private.ts",
+    "script/validate-issuer-operating-driver-private.ts",
+    "script/validate-issuer-original-private.ts",
+    "script/validate-return-quality-private.ts",
+    "script/validate_igcc_official_sources.py",
+    "server/calculation/driverParameterRegistry.ts",
+    "server/calculation/issuerOperatingDriverReverse.ts",
+    "server/calculation/issuerOriginalOperatingCase.ts",
+    "server/calculation/pairedResearchCorpus.ts",
+    "server/calculation/pairedResearchFrequency.ts",
+    "server/calculation/pairedResearchPipeline.ts",
+    "server/calculation/pairedResearchSleeves.ts",
+    "server/calculation/returnQuality.ts",
+    "shared/fieldSemantics.ts"
+  ],
+  "finalCheckOutcome": "511publicTS/0fail/0skip;123publicPython passed;3new mandatoryprivate policy tests passed; return-quality and original-issuer private validators passed. Initial shell then refused because operator-driver validator lacked explicit --private-primary flag. Recovery used required flag (no guard change), passed new validator plus primary-file/pinned355-assertion validators and build. Typecheck passed. Existing4driver/4wind private receipts preserved, not recounted as new.",
+  "priorVerified": "482 publicTS+4mandatoryprivate-driver;117Python+4mandatoryprivate-wind. Older484/121 historical. S12-012/018 not rerun for completion.",
+  "remaining": "Original0\u201317 and amendments remain. 0/3 qualified issuer cases until original criteria pass; historical attributedGMST unavailable; no calibrated10k/family efficacy. Genuine operator principal and supported provisioning remain narrow owner dependencies.",
+  "releaseBoundary": "Recovered f814fb21269fa867f4b400f032678bc289ff9338 with successful CI42835210133 and Railway4b2d87aa-b434-4e68-9440-f2c89f2725a3. New source not yet claimed deployed."
+}
+
+No original clause/source/amendment reindexing. Existing39verified259partial2provisioning-blocked remain; all300 retained. Source hashes are not publication vintages; tests are not science acceptance. Owner-approved/public data were not activated. Existing scheduler/cadence/auth/approval boundaries preserved.

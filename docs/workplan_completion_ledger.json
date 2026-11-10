@@ -720,7 +720,202 @@
           },
           "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
         }
-      }
+      },
+      "release": {
+        "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+        "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+        "ci": "42835210133 validate/promote success",
+        "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+        "railway_status": "SUCCESS",
+        "verified_at": "2026-11-10T14:38:54.473498+00:00",
+        "smoke": {
+          "/api/build-info": {
+            "status": 200,
+            "semantic_ids": 1,
+            "body": {
+              "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+              "calculationVersion": "historical-diagnostics-7",
+              "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+            }
+          },
+          "/api/health": {
+            "status": 200,
+            "semantic_ids": 1
+          },
+          "/api/research/driver-registry": {
+            "status": 200,
+            "semantic_ids": 51,
+            "drivers": 22
+          },
+          "/api/calculation/company-coverage": {
+            "status": 503
+          },
+          "/api/calculation/company-coverage?overlayIds=fake": {
+            "status": 422
+          },
+          "publicReplayPost": {
+            "status": 403
+          },
+          "verified_at": "2026-11-10T14:38:54.473498+00:00"
+        },
+        "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
+      },
+      "stop_reason": "Context boundary after substantive analytical implementation and verified gated release; ready original work remains."
+    },
+    "credit_resumed_analytics": {
+      "recordedAt": "2026-11-10T23:33:08.781732+00:00",
+      "scope": "Continuation after credit interruption; not full completion",
+      "evidence": [
+        {
+          "path": "docs/issuer-analytics-evidence.json",
+          "sha256": "af90ee0c45b3992802178b46ebcc2cc7a96f8cda0dfc166de6d2686d60156c93",
+          "originalClauses": [
+            "S12-001"
+          ]
+        },
+        {
+          "path": "docs/physical-attribution-evidence.json",
+          "sha256": "02665682302b3ef982cb19edc68e3fbf16bb7118e878ce21f06d0ea7730a7ccf",
+          "originalClauses": [
+            "S07-008"
+          ]
+        },
+        {
+          "path": "docs/driver-source-continuation-evidence.json",
+          "sha256": "d1dc92983cac3cbd8f94e227c0bde90f059932ff6f69dddc5b63fdea30294f1c",
+          "originalClauses": [
+            "S04-002",
+            "S04-004",
+            "S04-008"
+          ]
+        },
+        {
+          "path": "docs/portfolio-frequency-evidence.json",
+          "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+          "originalClauses": [
+            "S14-010",
+            "S14-012",
+            "S14-014",
+            "S15-008",
+            "S15-010",
+            "S15-011",
+            "S15-013"
+          ]
+        },
+        {
+          "path": "docs/Return_Quality_Protocol.json",
+          "sha256": "7aa80134ce0bf68ba39d9404eaac0b7be75ffbc98556df51fe71128870b144bd",
+          "originalClauses": [
+            "S15-009",
+            "S01-001"
+          ]
+        }
+      ],
+      "quality": {
+        "protocolHash": "1cff730fd30647e4bc10de0371353ab7f6a265a51d72f66436a008a7b37d6052",
+        "population": 411339,
+        "sampled": 50,
+        "sourceRequests": 50,
+        "exactIsinCandidates": 50,
+        "computedReturns": 0,
+        "unavailableReturns": 50,
+        "weekendBoundaries": 24,
+        "allSampleLabelsDayOfMonth": 22,
+        "breakRates": null,
+        "sampleHash": "56f4fc0469a3669d8337b43deda20f6383e737093703b2bee06d29007efa492e",
+        "resultHash": "f150fb2bbac73557d52d71569cb245dfcb2dfc03e756b62dc515b1a5a8c2bd78",
+        "remaining": "Exact common-share/listing/currency/history evidence and prices/dividends/splits/share basis. No sample replacements, owner approval, nearest-close substitution or actual50-return reconciliation.",
+        "softwareCorrection": "First attempt completed and retained all50 source requests, then console hashing rejected undefined optional fields. Explicit null handling fixed; retained data and calls were not repeated.",
+        "newPaths": [
+          "server/calculation/returnQuality.ts",
+          "script/return-quality.test.ts",
+          "script/prepare-return-quality-sample.ts",
+          "script/attempt-return-quality-identities.ts",
+          "script/validate-return-quality-private.ts",
+          "shared/fieldSemantics.ts"
+        ]
+      },
+      "finalExecution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+        ],
+        "executed_at": "2026-11-10T23:28:34.244700+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 125.984,
+        "counts": {
+          "tests": 511,
+          "pass": 511,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+        "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "recoveryExecution": {
+        "command": [
+          "bash",
+          "-c",
+          "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+        ],
+        "executed_at": "2026-11-10T23:30:47.634739+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 29.08,
+        "counts": null,
+        "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+        "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "changedPaths": [
+        "docs/Return_Quality_Protocol.json",
+        "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+        "docs/WORKPLAN_COMPLETION_LEDGER.md",
+        "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+        "docs/driver-source-clause-updates-proposal.json",
+        "docs/driver-source-continuation-evidence.json",
+        "docs/driver-source-continuation-protocol.json",
+        "docs/issuer-analytics-evidence.json",
+        "docs/physical-attribution-evidence.json",
+        "docs/portfolio-frequency-evidence.json",
+        "docs/workplan_completion_ledger.json",
+        "script/attempt-return-quality-identities.ts",
+        "script/capture-issuer-original-supplements.ts",
+        "script/driver_source_continuation.py",
+        "script/igcc_observation_operator.py",
+        "script/issuer-operating-driver-reverse.test.ts",
+        "script/issuer-original-operating-case.test.ts",
+        "script/paired-research-frequency.test.ts",
+        "script/policy-exposure.test.ts",
+        "script/prepare-return-quality-sample.ts",
+        "script/record-resumed-analytics.py",
+        "script/return-quality.test.ts",
+        "script/run-issuer-operating-driver-reverse.ts",
+        "script/run-issuer-original-operating-cases.ts",
+        "script/test_igcc_observation_operator.py",
+        "script/test_igcc_official_sources.py",
+        "script/validate-driver-source-continuation-private.ts",
+        "script/validate-issuer-operating-driver-private.ts",
+        "script/validate-issuer-original-private.ts",
+        "script/validate-return-quality-private.ts",
+        "script/validate_igcc_official_sources.py",
+        "server/calculation/driverParameterRegistry.ts",
+        "server/calculation/issuerOperatingDriverReverse.ts",
+        "server/calculation/issuerOriginalOperatingCase.ts",
+        "server/calculation/pairedResearchCorpus.ts",
+        "server/calculation/pairedResearchFrequency.ts",
+        "server/calculation/pairedResearchPipeline.ts",
+        "server/calculation/pairedResearchSleeves.ts",
+        "server/calculation/returnQuality.ts",
+        "shared/fieldSemantics.ts"
+      ],
+      "finalCheckOutcome": "511publicTS/0fail/0skip;123publicPython passed;3new mandatoryprivate policy tests passed; return-quality and original-issuer private validators passed. Initial shell then refused because operator-driver validator lacked explicit --private-primary flag. Recovery used required flag (no guard change), passed new validator plus primary-file/pinned355-assertion validators and build. Typecheck passed. Existing4driver/4wind private receipts preserved, not recounted as new.",
+      "priorVerified": "482 publicTS+4mandatoryprivate-driver;117Python+4mandatoryprivate-wind. Older484/121 historical. S12-012/018 not rerun for completion.",
+      "remaining": "Original0–17 and amendments remain. 0/3 qualified issuer cases until original criteria pass; historical attributedGMST unavailable; no calibrated10k/family efficacy. Genuine operator principal and supported provisioning remain narrow owner dependencies.",
+      "releaseBoundary": "Recovered f814fb21269fa867f4b400f032678bc289ff9338 with successful CI42835210133 and Railway4b2d87aa-b434-4e68-9440-f2c89f2725a3. New source not yet claimed deployed."
     }
   },
   "prior_native_fleet_increment": {
@@ -805,86 +1000,46 @@
     }
   },
   "current_release": {
-    "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
-    "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
-    "ci": "42824006487 validate/promote success",
-    "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+    "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+    "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+    "ci": "42835210133 validate/promote success",
+    "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
     "railway_status": "SUCCESS",
-    "verified_at": "2026-11-10T13:28:22.378259+00:00",
+    "verified_at": "2026-11-10T14:38:54.473498+00:00",
     "smoke": {
       "/api/build-info": {
         "status": 200,
-        "keys": [
-          "sourceCommit",
-          "calculationVersion",
-          "sourceCommitMeaning"
-        ],
+        "semantic_ids": 1,
         "body": {
-          "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
           "calculationVersion": "historical-diagnostics-7",
           "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
         }
       },
       "/api/health": {
         "status": 200,
-        "keys": [
-          "status"
-        ]
+        "semantic_ids": 1
       },
-      "/api/emissions/candidate?scenario=current_policies": {
-        "status": 400
-      },
-      "/api/projection": {
+      "/api/research/driver-registry": {
         "status": 200,
-        "keys": [
-          "calculation",
-          "emissionsTrajectory",
-          "temperatureDistribution",
-          "indicators",
-          "metrics"
-        ],
-        "diagnostic": {
-          "version": "selected-2024-five-percent-v2",
-          "label": "Year emissions reach 5% of 2024",
-          "year": null,
-          "status": "withheld",
-          "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
-          "baselineYear": 2024,
-          "baselineValue": null,
-          "baselineEvidenceId": null,
-          "thresholdFraction": 0.05,
-          "thresholdValue": null,
-          "horizonYear": 2100,
-          "basis": {
-            "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
-            "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
-            "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
-            "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
-            "unit": "GtCO2e-legacy-unreconciled"
-          },
-          "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
-          "notNetZero": true
-        }
+        "semantic_ids": 51,
+        "drivers": 22
       },
-      "public_replay_post": {
+      "/api/calculation/company-coverage": {
+        "status": 503
+      },
+      "/api/calculation/company-coverage?overlayIds=fake": {
+        "status": 422
+      },
+      "publicReplayPost": {
         "status": 403
       },
-      "verified_at": "2026-11-10T13:28:22.378259+00:00",
-      "native_constant": {
-        "status": 200,
-        "records": 27,
-        "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
-      },
-      "nominal": {
-        "status": 200,
-        "rows": 4,
-        "productionEligible": false
-      }
+      "verified_at": "2026-11-10T14:38:54.473498+00:00"
     },
-    "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+    "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T14:31:55.636097+00:00",
+  "updated_at": "2026-11-10T23:31:16.898307+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -4619,6 +4774,41 @@
               "workspace_revision": "c3bc94940099aa22feddd56f382c5a6d2a25d1bf",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -5174,6 +5364,63 @@
             "fail": 0,
             "skipped": 0,
             "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/Return_Quality_Protocol.json",
+                "sha256": "7aa80134ce0bf68ba39d9404eaac0b7be75ffbc98556df51fe71128870b144bd",
+                "originalClauses": [
+                  "S15-009",
+                  "S01-001"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": {
+              "protocolHash": "1cff730fd30647e4bc10de0371353ab7f6a265a51d72f66436a008a7b37d6052",
+              "population": 411339,
+              "sampled": 50,
+              "sourceRequests": 50,
+              "exactIsinCandidates": 50,
+              "computedReturns": 0,
+              "unavailableReturns": 50,
+              "weekendBoundaries": 24,
+              "allSampleLabelsDayOfMonth": 22,
+              "breakRates": null,
+              "sampleHash": "56f4fc0469a3669d8337b43deda20f6383e737093703b2bee06d29007efa492e",
+              "resultHash": "f150fb2bbac73557d52d71569cb245dfcb2dfc03e756b62dc515b1a5a8c2bd78",
+              "remaining": "Exact common-share/listing/currency/history evidence and prices/dividends/splits/share basis. No sample replacements, owner approval, nearest-close substitution or actual50-return reconciliation.",
+              "softwareCorrection": "First attempt completed and retained all50 source requests, then console hashing rejected undefined optional fields. Explicit null handling fixed; retained data and calls were not repeated.",
+              "newPaths": [
+                "server/calculation/returnQuality.ts",
+                "script/return-quality.test.ts",
+                "script/prepare-return-quality-sample.ts",
+                "script/attempt-return-quality-identities.ts",
+                "script/validate-return-quality-private.ts",
+                "shared/fieldSemantics.ts"
+              ]
+            },
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -19599,6 +19846,41 @@
               "workspace_revision": "b945a72535bf2f42796ada1f8aa1437acedabc39",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -19932,8 +20214,8 @@
             "extractionRepair": "Initial layout-text parser included a y-axis tick and reordered two labels; it rejected before producing observations. Replaced with pinned page-69 raw-text annotation stream, checked against the published x-axis. No fitting or scoring occurred."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [
             "Obtain compatible full-window capacity and exact cost table; source vintages and statistical gates remain unpassed."
           ],
@@ -20261,6 +20543,80 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "live_release_observation": {
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "semantic_ids": 1,
+                "body": {
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "semantic_ids": 1
+              },
+              "/api/research/driver-registry": {
+                "status": 200,
+                "semantic_ids": 51,
+                "drivers": 22
+              },
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
+            },
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/driver-source-continuation-evidence.json",
+                "sha256": "d1dc92983cac3cbd8f94e227c0bde90f059932ff6f69dddc5b63fdea30294f1c",
+                "originalClauses": [
+                  "S04-002",
+                  "S04-004",
+                  "S04-008"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -20484,7 +20840,43 @@
             },
             "No accepted calibration promotion; current-revision histories are not original publication vintages"
           ],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [
             {
               "result": "Direct source and named focused fixture evidence only; no accepted real full-ensemble result established",
@@ -20617,6 +21009,41 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/driver-source-continuation-evidence.json",
+                "sha256": "d1dc92983cac3cbd8f94e227c0bde90f059932ff6f69dddc5b63fdea30294f1c",
+                "originalClauses": [
+                  "S04-002",
+                  "S04-004",
+                  "S04-008"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -28998,8 +29425,8 @@
             }
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [
             "Complete accepted distributions/dependence and actual eligible central evidence for remaining drivers; legacy diagnostics are not a calibrated replacement."
           ],
@@ -29552,6 +29979,45 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "live_release_observation": {
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "semantic_ids": 1,
+                "body": {
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "semantic_ids": 1
+              },
+              "/api/research/driver-registry": {
+                "status": 200,
+                "semantic_ids": 51,
+                "drivers": 22
+              },
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
+            },
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
           }
         },
         {
@@ -33348,6 +33814,41 @@
               "workspace_revision": "b945a72535bf2f42796ada1f8aa1437acedabc39",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -37032,8 +37533,8 @@
             }
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [
             "Complete accepted distributions/dependence and actual eligible central evidence for remaining drivers; legacy diagnostics are not a calibrated replacement."
           ],
@@ -37490,6 +37991,80 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "live_release_observation": {
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "semantic_ids": 1,
+                "body": {
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "semantic_ids": 1
+              },
+              "/api/research/driver-registry": {
+                "status": 200,
+                "semantic_ids": 51,
+                "drivers": 22
+              },
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
+            },
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/driver-source-continuation-evidence.json",
+                "sha256": "d1dc92983cac3cbd8f94e227c0bde90f059932ff6f69dddc5b63fdea30294f1c",
+                "originalClauses": [
+                  "S04-002",
+                  "S04-004",
+                  "S04-008"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -45561,8 +46136,8 @@
             }
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [
             "Complete accepted distributions/dependence and actual eligible central evidence for remaining drivers; legacy diagnostics are not a calibrated replacement."
           ],
@@ -46115,6 +46690,45 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "live_release_observation": {
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "semantic_ids": 1,
+                "body": {
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "semantic_ids": 1
+              },
+              "/api/research/driver-registry": {
+                "status": 200,
+                "semantic_ids": 51,
+                "drivers": 22
+              },
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
+            },
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
           }
         },
         {
@@ -56983,6 +57597,41 @@
               "workspace_revision": "b945a72535bf2f42796ada1f8aa1437acedabc39",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -57423,8 +58072,8 @@
             }
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [
             "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null."
           ],
@@ -57767,83 +58416,43 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
-            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
-            "ci": "42824006487 validate/promote success",
-            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
             "railway_status": "SUCCESS",
-            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
             "smoke": {
               "/api/build-info": {
                 "status": 200,
-                "keys": [
-                  "sourceCommit",
-                  "calculationVersion",
-                  "sourceCommitMeaning"
-                ],
+                "semantic_ids": 1,
                 "body": {
-                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
                   "calculationVersion": "historical-diagnostics-7",
                   "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
                 }
               },
               "/api/health": {
                 "status": 200,
-                "keys": [
-                  "status"
-                ]
+                "semantic_ids": 1
               },
-              "/api/emissions/candidate?scenario=current_policies": {
-                "status": 400
-              },
-              "/api/projection": {
+              "/api/research/driver-registry": {
                 "status": 200,
-                "keys": [
-                  "calculation",
-                  "emissionsTrajectory",
-                  "temperatureDistribution",
-                  "indicators",
-                  "metrics"
-                ],
-                "diagnostic": {
-                  "version": "selected-2024-five-percent-v2",
-                  "label": "Year emissions reach 5% of 2024",
-                  "year": null,
-                  "status": "withheld",
-                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
-                  "baselineYear": 2024,
-                  "baselineValue": null,
-                  "baselineEvidenceId": null,
-                  "thresholdFraction": 0.05,
-                  "thresholdValue": null,
-                  "horizonYear": 2100,
-                  "basis": {
-                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
-                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
-                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
-                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
-                    "unit": "GtCO2e-legacy-unreconciled"
-                  },
-                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
-                  "notNetZero": true
-                }
+                "semantic_ids": 51,
+                "drivers": 22
               },
-              "public_replay_post": {
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
                 "status": 403
               },
-              "verified_at": "2026-11-10T13:28:22.378259+00:00",
-              "native_constant": {
-                "status": 200,
-                "records": 27,
-                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
-              },
-              "nominal": {
-                "status": 200,
-                "rows": 4,
-                "productionEligible": false
-              }
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
             },
-            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -58070,6 +58679,39 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/physical-attribution-evidence.json",
+                "sha256": "02665682302b3ef982cb19edc68e3fbf16bb7118e878ce21f06d0ea7730a7ccf",
+                "originalClauses": [
+                  "S07-008"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -88806,6 +89448,41 @@
               "workspace_revision": "b945a72535bf2f42796ada1f8aa1437acedabc39",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -89176,8 +89853,8 @@
             ]
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [
             "0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval."
           ],
@@ -89420,83 +90097,43 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
-            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
-            "ci": "42824006487 validate/promote success",
-            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
             "railway_status": "SUCCESS",
-            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
             "smoke": {
               "/api/build-info": {
                 "status": 200,
-                "keys": [
-                  "sourceCommit",
-                  "calculationVersion",
-                  "sourceCommitMeaning"
-                ],
+                "semantic_ids": 1,
                 "body": {
-                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
                   "calculationVersion": "historical-diagnostics-7",
                   "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
                 }
               },
               "/api/health": {
                 "status": 200,
-                "keys": [
-                  "status"
-                ]
+                "semantic_ids": 1
               },
-              "/api/emissions/candidate?scenario=current_policies": {
-                "status": 400
-              },
-              "/api/projection": {
+              "/api/research/driver-registry": {
                 "status": 200,
-                "keys": [
-                  "calculation",
-                  "emissionsTrajectory",
-                  "temperatureDistribution",
-                  "indicators",
-                  "metrics"
-                ],
-                "diagnostic": {
-                  "version": "selected-2024-five-percent-v2",
-                  "label": "Year emissions reach 5% of 2024",
-                  "year": null,
-                  "status": "withheld",
-                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
-                  "baselineYear": 2024,
-                  "baselineValue": null,
-                  "baselineEvidenceId": null,
-                  "thresholdFraction": 0.05,
-                  "thresholdValue": null,
-                  "horizonYear": 2100,
-                  "basis": {
-                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
-                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
-                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
-                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
-                    "unit": "GtCO2e-legacy-unreconciled"
-                  },
-                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
-                  "notNetZero": true
-                }
+                "semantic_ids": 51,
+                "drivers": 22
               },
-              "public_replay_post": {
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
                 "status": 403
               },
-              "verified_at": "2026-11-10T13:28:22.378259+00:00",
-              "native_constant": {
-                "status": 200,
-                "records": 27,
-                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
-              },
-              "nominal": {
-                "status": 200,
-                "rows": 4,
-                "productionEligible": false
-              }
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
             },
-            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -89726,6 +90363,39 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/issuer-analytics-evidence.json",
+                "sha256": "af90ee0c45b3992802178b46ebcc2cc7a96f8cda0dfc166de6d2686d60156c93",
+                "originalClauses": [
+                  "S12-001"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -92707,8 +93377,8 @@
             }
           ],
           "scientific_acceptance": "Synthetic engineering isolation fixture, not actual issuer/scientific acceptance.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [],
           "next_action": "Preserve named independence regression; continue actual issuer qualification.",
           "blockers": [],
@@ -93117,6 +93787,45 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "live_release_observation": {
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "semantic_ids": 1,
+                "body": {
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "semantic_ids": 1
+              },
+              "/api/research/driver-registry": {
+                "status": 200,
+                "semantic_ids": 51,
+                "drivers": 22
+              },
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
+            },
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
           }
         },
         {
@@ -96030,8 +96739,8 @@
             ]
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "pending integrated commit",
-          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "git_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+          "deployment_revision": "f814fb21269fa867f4b400f032678bc289ff9338",
           "remaining_gaps": [],
           "next_action": "Preserve scoped engineering check; continue remaining original requirements.",
           "blockers": [],
@@ -96461,6 +97170,45 @@
               },
               "historicalEvidenceRule": "Earlier study and execution hashes/counts remain records of their original runs. This additive evidence records the current public/private split; it does not overwrite historical scientific results."
             }
+          },
+          "live_release_observation": {
+            "workspace_commit": "c387b2ac4c4daf5e3d820ed32ed6775abf551f28",
+            "github_main": "f814fb21269fa867f4b400f032678bc289ff9338",
+            "ci": "42835210133 validate/promote success",
+            "railway_deployment": "4b2d87aa-b434-4e68-9440-f2c89f2725a3",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T14:38:54.473498+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "semantic_ids": 1,
+                "body": {
+                  "sourceCommit": "f814fb21269fa867f4b400f032678bc289ff9338",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "semantic_ids": 1
+              },
+              "/api/research/driver-registry": {
+                "status": 200,
+                "semantic_ids": 51,
+                "drivers": 22
+              },
+              "/api/calculation/company-coverage": {
+                "status": 503
+              },
+              "/api/calculation/company-coverage?overlayIds=fake": {
+                "status": 422
+              },
+              "publicReplayPost": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T14:38:54.473498+00:00"
+            },
+            "boundary": "Verified implementation revision, not this later documentation commit. Production coverage503 reflects unavailable review/archive dependencies; development coverage200. No data or scientific activation."
           }
         }
       ]
@@ -103947,6 +104695,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -104007,6 +104790,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -104162,6 +104984,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -104232,6 +105089,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -104416,6 +105312,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -104481,6 +105412,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -106705,6 +107675,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -106775,6 +107780,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -106799,7 +107843,43 @@
             "Historical market/return data cutoff required by original plan: 2026-01-22. Paired projections and valuations require matching growth basis, currency, horizon and nominal definition.",
             "Synthetic ENGINEERING fixtures are explicitly labelled and never original issuer evidence, actual historical efficacy or owner review."
           ],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [
             "Required n=50 quality check is not full-history verification; observed completed n=0 in this receipt."
           ],
@@ -106861,6 +107941,63 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/Return_Quality_Protocol.json",
+                "sha256": "7aa80134ce0bf68ba39d9404eaac0b7be75ffbc98556df51fe71128870b144bd",
+                "originalClauses": [
+                  "S15-009",
+                  "S01-001"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": {
+              "protocolHash": "1cff730fd30647e4bc10de0371353ab7f6a265a51d72f66436a008a7b37d6052",
+              "population": 411339,
+              "sampled": 50,
+              "sourceRequests": 50,
+              "exactIsinCandidates": 50,
+              "computedReturns": 0,
+              "unavailableReturns": 50,
+              "weekendBoundaries": 24,
+              "allSampleLabelsDayOfMonth": 22,
+              "breakRates": null,
+              "sampleHash": "56f4fc0469a3669d8337b43deda20f6383e737093703b2bee06d29007efa492e",
+              "resultHash": "f150fb2bbac73557d52d71569cb245dfcb2dfc03e756b62dc515b1a5a8c2bd78",
+              "remaining": "Exact common-share/listing/currency/history evidence and prices/dividends/splits/share basis. No sample replacements, owner approval, nearest-close substitution or actual50-return reconciliation.",
+              "softwareCorrection": "First attempt completed and retained all50 source requests, then console hashing rejected undefined optional fields. Explicit null handling fixed; retained data and calls were not repeated.",
+              "newPaths": [
+                "server/calculation/returnQuality.ts",
+                "script/return-quality.test.ts",
+                "script/prepare-return-quality-sample.ts",
+                "script/attempt-return-quality-identities.ts",
+                "script/validate-return-quality-private.ts",
+                "shared/fieldSemantics.ts"
+              ]
+            },
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -106907,6 +108044,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -106972,6 +108144,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -107020,6 +108231,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -107090,6 +108336,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -107254,6 +108539,41 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:30:47.634739+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 29.08,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -107329,6 +108649,45 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "resumed_analytics": {
+            "evidence": [
+              {
+                "path": "docs/portfolio-frequency-evidence.json",
+                "sha256": "eb5e1fcc5dd37292746611bafeddcdb357c17c769be4db5432692be6dbd051d4",
+                "originalClauses": [
+                  "S14-010",
+                  "S14-012",
+                  "S14-014",
+                  "S15-008",
+                  "S15-010",
+                  "S15-011",
+                  "S15-013"
+                ]
+              }
+            ],
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-10T23:28:34.244700+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 125.984,
+              "counts": {
+                "tests": 511,
+                "pass": 511,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+              "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "quality": null,
+            "acceptance": "Partial; new engineering/source diagnostics do not establish original scientific acceptance."
           }
         },
         {
@@ -115564,6 +116923,41 @@
       "workspace_revision": "b945a72535bf2f42796ada1f8aa1437acedabc39",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx --test script/validate-driver-source-continuation-private.ts && npx tsx script/validate-return-quality-private.ts && npx tsx script/validate-issuer-original-private.ts --private-primary && npx tsx script/validate-issuer-operating-driver-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-10T23:28:34.244700+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 125.984,
+      "counts": {
+        "tests": 511,
+        "pass": 511,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T232834244700Z.log",
+      "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx script/validate-issuer-operating-driver-private.ts --private-primary && npx tsx script/validate-company-filing-private.ts && npx tsx script/validate-clause-private-evidence.ts && npm run build"
+      ],
+      "executed_at": "2026-11-10T23:30:47.634739+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 29.08,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T233047634739Z.log",
+      "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -115738,9 +117132,7 @@
       "S12-009",
       "S12-010",
       "S12-011",
-      "S12-012",
       "S12-017",
-      "S12-018",
       "S13-001",
       "S13-002",
       "S13-003",
@@ -115833,7 +117225,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue alloriginal0–17/amendments. Preserve new actualStage5 registeredCLI and sensitivity-only distributions; pairedFaIR emissions-intervention/memberbaseline and exact15yearSR1.5temporaloperator (NOTGMST acceptance); actual3issuer166fact reconciliations andseparatezero-growthmaintenancebenchmarks (0/3qualifiedoriginalcases); actualcoverage/API/JSON/full2442eligible1 andpeerisolation. Windcostsourcegate missing2010–14capacity/exactcosttable, not fitted. Next complete defensible climate-linked operating/reinvestment/stub/terminal/currency/class inputs, real joint-driver evidence and historical2015–25/GMSToperator; authenticoperatorHTTPidentity remainsnarrowowner dependency. Preserve frozenbeta/fleet/EV/storage/Gordonprimary, original1001gap1 and immutableprivateFSLR10cases50rows. Neverresend matchedcheckpoint.",
+    "instruction": "Continue original0–17/amendments from resumed analytics evidence. Preserve new operating funded-case and reverse findings; monthly sleeve/factor integration; source-backed policy exposure5.32 conditionalonly; actualIGCC history/operator diagnostics; fixed50sample with50candidateISINmatches but0qualifiedreturncomparisons. Complete remaining source-qualified operating-growth/terminal/identity links, compatiblehistoricalGMST/nativeinputs/jointdistributions and actual dated portfolio outcomes. No unchanged reruns/refits/proxy efficacy/selfapproval. Originalunknownsummary1 remains. Genuine authenticatedoperator identity/provisioning owner actions narrowonly. Refresh release receipts; callback onlytrueend.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -116015,6 +117407,85 @@
       "timestamp_precision": "Verification date; no invented second for the completed HTTP probe.",
       "smoke": "Exact d843960 build source/health200/1141registrydefinitions/raw run summaries preserved/publicPOST403; development data-management screenshot renders22indicators/read-only controls.344TS+95Python, typecheck/build, privatefilingvalidator and355privateReceiptAssertions pass. No data/scientific activation.",
       "later_local_only": "This final receipt/checkpoint documentation is not deployed; published implementation/report is d843960."
+    },
+    {
+      "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+      "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+      "ci": "42824006487 validate/promote success",
+      "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+      "railway_status": "SUCCESS",
+      "verified_at": "2026-11-10T13:28:22.378259+00:00",
+      "smoke": {
+        "/api/build-info": {
+          "status": 200,
+          "keys": [
+            "sourceCommit",
+            "calculationVersion",
+            "sourceCommitMeaning"
+          ],
+          "body": {
+            "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "calculationVersion": "historical-diagnostics-7",
+            "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+          }
+        },
+        "/api/health": {
+          "status": 200,
+          "keys": [
+            "status"
+          ]
+        },
+        "/api/emissions/candidate?scenario=current_policies": {
+          "status": 400
+        },
+        "/api/projection": {
+          "status": 200,
+          "keys": [
+            "calculation",
+            "emissionsTrajectory",
+            "temperatureDistribution",
+            "indicators",
+            "metrics"
+          ],
+          "diagnostic": {
+            "version": "selected-2024-five-percent-v2",
+            "label": "Year emissions reach 5% of 2024",
+            "year": null,
+            "status": "withheld",
+            "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+            "baselineYear": 2024,
+            "baselineValue": null,
+            "baselineEvidenceId": null,
+            "thresholdFraction": 0.05,
+            "thresholdValue": null,
+            "horizonYear": 2100,
+            "basis": {
+              "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+              "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+              "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+              "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+              "unit": "GtCO2e-legacy-unreconciled"
+            },
+            "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+            "notNetZero": true
+          }
+        },
+        "public_replay_post": {
+          "status": 403
+        },
+        "verified_at": "2026-11-10T13:28:22.378259+00:00",
+        "native_constant": {
+          "status": 200,
+          "records": 27,
+          "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+        },
+        "nominal": {
+          "status": 200,
+          "rows": 4,
+          "productionEligible": false
+        }
+      },
+      "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
     }
   ]
 }
