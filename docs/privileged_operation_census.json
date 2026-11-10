@@ -1,0 +1,3452 @@
+{
+  "version": "privileged-source-discovery-1",
+  "limits": [
+    "Static candidate census, not whole-program reachability proof.",
+    "Python/shell and dynamic indirection require separate review.",
+    "GET cache fills and paid read-provider calls are privileged candidates too.",
+    "No code executed, network called, credentials read, or permission changed by this inventory."
+  ],
+  "files": [
+    {
+      "path": "script/adjudicate-research-family.ts",
+      "sourceSha256": "761a52556c4cbd27a8db570f7d5d8f954a7922d7e0f62b398d39e37469f894e8",
+      "operations": [
+        {
+          "path": "script/adjudicate-research-family.ts",
+          "line": 6,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/adjudicate-research-family.ts",
+          "line": 7,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/adjudicate-research-family.ts",
+          "line": 11,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/analyze-member-ensemble.ts",
+      "sourceSha256": "f3150dce19c4d08185e18ce79c8757dd2949bf603ce5c47d8e9df28a0c0f3b29",
+      "operations": [
+        {
+          "path": "script/analyze-member-ensemble.ts",
+          "line": 10,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/analyze-saved-members.ts",
+      "sourceSha256": "955c0c1fb383e616bc38db86c3a52f07db01438b800dd1f2d3fd35b4f5eef85b",
+      "operations": [
+        {
+          "path": "script/analyze-saved-members.ts",
+          "line": 10,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/audit-completed-cash-flow.ts",
+      "sourceSha256": "63b1b113686cad35e4d2104759a2638524b51324e3f97fcc1567632c1ba252e5",
+      "operations": [
+        {
+          "path": "script/audit-completed-cash-flow.ts",
+          "line": 6,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/audit-completed-cash-flow.ts",
+          "line": 8,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/audit-driver-evidence.ts",
+      "sourceSha256": "918774effd5421fc756f4ce5c7576f453fc12e543f75f6552689851a56f8f6d6",
+      "operations": []
+    },
+    {
+      "path": "script/audit-existing-vintages.ts",
+      "sourceSha256": "5bb7dda87e868976488bd18263d284ab017a9c53a72c129fc9c58c9e758fd200",
+      "operations": [
+        {
+          "path": "script/audit-existing-vintages.ts",
+          "line": 5,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/audit-existing-vintages.ts",
+          "line": 18,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/audit-financial-mappings.ts",
+      "sourceSha256": "ae4d6ac2f25f4c20340c60a0839b0f02ecd4822477b2ea8a843da50df9fb96ac",
+      "operations": [
+        {
+          "path": "script/audit-financial-mappings.ts",
+          "line": 10,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/audit-financial-mappings.ts",
+          "line": 48,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/audit-financial-mappings.ts",
+          "line": 61,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/audit-mapping-root-causes.ts",
+      "sourceSha256": "7c343fe4e90930a01d0feaa5695bb2ee46fbf1fb16d81196ad466f8986347b14",
+      "operations": [
+        {
+          "path": "script/audit-mapping-root-causes.ts",
+          "line": 33,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/audit-mapping-root-causes.ts",
+          "line": 51,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/build-asof-valuation-rows.ts",
+      "sourceSha256": "f0cc979816f027425a6b0cd30aaeb07e1f106c00e43e2e9abacfd51c188e6517",
+      "operations": [
+        {
+          "path": "script/build-asof-valuation-rows.ts",
+          "line": 7,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/build-cat-references.ts",
+      "sourceSha256": "13a0cbf4d7327f3a0dfaa6df97b6dbcca2596005f44c228b3a7f44cff969a2b3",
+      "operations": [
+        {
+          "path": "script/build-cat-references.ts",
+          "line": 10,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/build-cat-references.ts",
+          "line": 12,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/build-company-conditional-cases.ts",
+      "sourceSha256": "c24aabb5bcbd7acf7bfab6c81500e05572fd1ce58ffd651fcabb07b77ef53ffc",
+      "operations": []
+    },
+    {
+      "path": "script/build-emissions-inventory.ts",
+      "sourceSha256": "03debb183a33a8f5ad12c56db427d769b1fc77c3b997bcb5e0299768c7e0f31a",
+      "operations": [
+        {
+          "path": "script/build-emissions-inventory.ts",
+          "line": 11,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/build-emissions-inventory.ts",
+          "line": 41,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/build-emissions-inventory.ts",
+          "line": 44,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/build-emissions-inventory.ts",
+          "line": 93,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/build-emissions-inventory.ts",
+          "line": 94,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/build-minor-gas-histories.ts",
+      "sourceSha256": "50e9f927ed9ec9168ebdd01675b9b569ffa0af68409bb5d28d8e5e2329f9b4b5",
+      "operations": [
+        {
+          "path": "script/build-minor-gas-histories.ts",
+          "line": 12,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/build-regional-inventory.ts",
+      "sourceSha256": "e1c1209c26844aad786baf19b2bbc059ebb92cc92f827f9bfadf414d6e5290c9",
+      "operations": [
+        {
+          "path": "script/build-regional-inventory.ts",
+          "line": 13,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/build-regional-inventory.ts",
+          "line": 17,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/build.ts",
+      "sourceSha256": "35df8bf9d4c1aad8cdff54df8108bbc964a853bbc29538ec0ec6e1b1a9b0d54f",
+      "operations": []
+    },
+    {
+      "path": "script/capture-calculation-baseline.ts",
+      "sourceSha256": "cfe38791f762289799a572b15aff6a2230aca1c7675aa402c4b72a00276749fc",
+      "operations": [
+        {
+          "path": "script/capture-calculation-baseline.ts",
+          "line": 6,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/capture-calculation-baseline.ts",
+          "line": 9,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/capture-calculation-baseline.ts",
+          "line": 16,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/capture-climate-baseline.ts",
+      "sourceSha256": "2315bda1229ecdd38e0a13b535b2efa07faa55cff01b8561846f7826b1bebdf9",
+      "operations": [
+        {
+          "path": "script/capture-climate-baseline.ts",
+          "line": 11,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/capture-climate-baseline.ts",
+          "line": 42,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/capture-climate-baseline.ts",
+          "line": 52,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/capture-climate-baseline.ts",
+          "line": 59,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/capture-indicator-snapshot.ts",
+      "sourceSha256": "5381c25c32cb19c48c2f373ee555b9a2c5eed428dd18d0663156690f0575e049",
+      "operations": []
+    },
+    {
+      "path": "script/capture-prospective-signal.ts",
+      "sourceSha256": "28869647932865c744398febdf0ec5e2dc2ae15ad93fa4d99ec3d935be9ceb73",
+      "operations": [
+        {
+          "path": "script/capture-prospective-signal.ts",
+          "line": 3,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/capture-regional-snapshot.ts",
+      "sourceSha256": "4ded62f13c0fab66453b3077089367bd64b5c47e0492729e83bb8d0e0f44e595",
+      "operations": []
+    },
+    {
+      "path": "script/capture-workbook-snapshot.ts",
+      "sourceSha256": "0b58b6f73b2eb4f88df8f1e82ad9ec9c6169e880a2903767f8263b0a7725458a",
+      "operations": []
+    },
+    {
+      "path": "script/check-calculation-api.ts",
+      "sourceSha256": "b867256e733e4bf3c9e46ba491b7d75c079888e1910cfa9a4cdbac5e98f37ecc",
+      "operations": [
+        {
+          "path": "script/check-calculation-api.ts",
+          "line": 5,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/check-company-operating-db.ts",
+      "sourceSha256": "bfb7db051969564b8944e33cb00e2d0548ca0dee9d7f58672e83f29dffe39ba0",
+      "operations": [
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 15,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 45,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 45,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 58,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 59,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-company-operating-db.ts",
+          "line": 60,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/check-financial-review-db.ts",
+      "sourceSha256": "00cb523723c03de759ef7a1bc049d581afa73d300b7841627fd8cc764e4345dd",
+      "operations": [
+        {
+          "path": "script/check-financial-review-db.ts",
+          "line": 23,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-financial-review-db.ts",
+          "line": 23,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-financial-review-db.ts",
+          "line": 26,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-financial-review-db.ts",
+          "line": 28,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-financial-review-db.ts",
+          "line": 37,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-financial-review-db.ts",
+          "line": 38,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/check-nine-http-recovery.ts",
+      "sourceSha256": "ff2c0200e46a1cbaff478bdb0598348562e7a0b201264e7f37d26898501da702",
+      "operations": [
+        {
+          "path": "script/check-nine-http-recovery.ts",
+          "line": 10,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/check-overlay-concurrency-db.ts",
+      "sourceSha256": "0cfd050dc852f358188ddf2533e4ec5ea8e85128efdd26118489c7f35c498c2b",
+      "operations": [
+        {
+          "path": "script/check-overlay-concurrency-db.ts",
+          "line": 29,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-concurrency-db.ts",
+          "line": 37,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-concurrency-db.ts",
+          "line": 100,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-concurrency-db.ts",
+          "line": 102,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-concurrency-db.ts",
+          "line": 103,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-concurrency-db.ts",
+          "line": 104,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/check-overlay-review-db.ts",
+      "sourceSha256": "d091fb3361805d45a38dd94bb9870db126badfd0295f08c694efbce82bcafa36",
+      "operations": [
+        {
+          "path": "script/check-overlay-review-db.ts",
+          "line": 13,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-review-db.ts",
+          "line": 25,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-review-db.ts",
+          "line": 31,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-review-db.ts",
+          "line": 31,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/check-overlay-review-db.ts",
+          "line": 42,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/check-prospective-signal-db.ts",
+      "sourceSha256": "f323d5d38ab37b497e4c545467bae8d533bed34c12b2792312399e408558d946",
+      "operations": [
+        {
+          "path": "script/check-prospective-signal-db.ts",
+          "line": 27,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/collect-company-worked-inputs.ts",
+      "sourceSha256": "1a28acc64053c9e7abe82fc9f78a12b9e89ca19d556b3eb7bc1c29defe9663ee",
+      "operations": [
+        {
+          "path": "script/collect-company-worked-inputs.ts",
+          "line": 21,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/collect-financial-history.ts",
+      "sourceSha256": "b9838631a64a9a3401ff3bbd9a79f94d091b11b40906af9e62c15ff7cf68d80a",
+      "operations": [
+        {
+          "path": "script/collect-financial-history.ts",
+          "line": 7,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/combined-refresh-fixture.ts",
+      "sourceSha256": "0c46d821b757d98ddc8c022c48f6ae16b8512eb27adc6f7ad52cc6f75e13a93a",
+      "operations": [
+        {
+          "path": "script/combined-refresh-fixture.ts",
+          "line": 11,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/combined-refresh-fixture.ts",
+          "line": 23,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/combined-refresh-fixture.ts",
+          "line": 23,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/combined-refresh-fixture.ts",
+          "line": 29,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/combined-refresh-fixture.ts",
+          "line": 33,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/combined-refresh-fixture.ts",
+          "line": 44,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/company-operating-review.ts",
+      "sourceSha256": "16a7472b85884daf9a646d693803a470531184f355737e5e84b1ad85b0ae6d11",
+      "operations": [
+        {
+          "path": "script/company-operating-review.ts",
+          "line": 5,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/company-valuation-sensitivity.ts",
+      "sourceSha256": "0c64058d1848339e3a001e7cf400897d12bb0468a7156cb0adef5b1facb8d872",
+      "operations": [
+        {
+          "path": "script/company-valuation-sensitivity.ts",
+          "line": 13,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/company-valuation-sensitivity.ts",
+          "line": 50,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/compare-beta-growth.ts",
+      "sourceSha256": "6587a2571f1137acc04aaa96ae573129b5675a12d11e106b9cdc2727d9ab5482",
+      "operations": [
+        {
+          "path": "script/compare-beta-growth.ts",
+          "line": 16,
+          "kind": "database-or-executor-candidate",
+          "callee": "delete",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/compare-valuation-models.ts",
+      "sourceSha256": "2cd1c17ae89c4cb64c105009e2159797d11adb546d543801b26efcd2940a2e65",
+      "operations": [
+        {
+          "path": "script/compare-valuation-models.ts",
+          "line": 7,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/compare-valuation-models.ts",
+          "line": 8,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/compare-valuation-models.ts",
+          "line": 11,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/complete-regional-land.ts",
+      "sourceSha256": "e1fdc134400d7ba94ef55e2d8bb0750aa062f85d9aa9dcb96b5172b7404fb900",
+      "operations": [
+        {
+          "path": "script/complete-regional-land.ts",
+          "line": 12,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/complete-regional-land.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/evaluate-company-beta.ts",
+      "sourceSha256": "c06163ab51809d5be42d80d4f72d9e034e8b27cd50b66c379f7977ba112df9f2",
+      "operations": []
+    },
+    {
+      "path": "script/extract-eia-storage.cjs",
+      "sourceSha256": "2569885e1015e727e195b520c446057a75f6781de628bbae94292e6c8d7a4937",
+      "operations": [
+        {
+          "path": "script/extract-eia-storage.cjs",
+          "line": 17,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/field-semantics-census.ts",
+      "sourceSha256": "865d5db39d065834dfe831cb08e502fce8558c180eb5ef84f12e2fe8beb66cb4",
+      "operations": [
+        {
+          "path": "script/field-semantics-census.ts",
+          "line": 19,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/field-semantics-census.ts",
+          "line": 373,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/field-semantics-census.ts",
+          "line": 393,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/field-semantics-census.ts",
+          "line": 403,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/field-semantics-gates.ts",
+      "sourceSha256": "b49cd13acc9e71b77c785d9f0e79b794257173f34bd0217d73f8a091fa6aa56d",
+      "operations": []
+    },
+    {
+      "path": "script/financial-coverage.ts",
+      "sourceSha256": "6345555417b61055a2ee3275d893f145ba43b15e327c65b1f78710c4081e8787",
+      "operations": []
+    },
+    {
+      "path": "script/financial-review.ts",
+      "sourceSha256": "0692977e6937c6c7b4ee17f65a813f66fb1d7f95733b75a45627123a4373cee1",
+      "operations": [
+        {
+          "path": "script/financial-review.ts",
+          "line": 26,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/financial-review.ts",
+          "line": 32,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/financial-review.ts",
+          "line": 42,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/fixtures/calculationExpected.ts",
+      "sourceSha256": "8299adfa1983b884842617c8d394ea2e2ad7633db300b461a647d636ffcb6f7b",
+      "operations": []
+    },
+    {
+      "path": "script/fixtures/calculationInputs.ts",
+      "sourceSha256": "82b91151d10e51ed3c1a8d246133af99304cc82a1cbf807b583cf04fe6053b86",
+      "operations": []
+    },
+    {
+      "path": "script/import-approved-workbook.ts",
+      "sourceSha256": "7e2f1629bdec43c6976c0e9c072a98dad1abe42c077b2194b179e914368107e0",
+      "operations": [
+        {
+          "path": "script/import-approved-workbook.ts",
+          "line": 14,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/import-approved-workbook.ts",
+          "line": 15,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/operator-indicators.ts",
+      "sourceSha256": "100c3a45c6f1a0b16250e0b27d66b0f9c897fcb8a009c52fbed35c5e383da76b",
+      "operations": [
+        {
+          "path": "script/operator-indicators.ts",
+          "line": 12,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/operator-lifecycle-preflight.ts",
+      "sourceSha256": "08fd6ddacfd63930e09826c226b9ccbad12ede5a1da90f2b434c17b1db6aafcb",
+      "operations": []
+    },
+    {
+      "path": "script/operator-news.ts",
+      "sourceSha256": "532a010553fe375910db0382735bbefd3b648fd0f2e70cf706acb195ef07a223",
+      "operations": [
+        {
+          "path": "script/operator-news.ts",
+          "line": 3,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/operator-news.ts",
+          "line": 4,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/output-register.ts",
+      "sourceSha256": "66a94877dac9d42393dbfab7ce318c6277e87250876701fc2df1c20e1b35ec28",
+      "operations": [
+        {
+          "path": "script/output-register.ts",
+          "line": 73,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/output-register.ts",
+          "line": 73,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/overlay-review.ts",
+      "sourceSha256": "a907b7da153e4f8dcac65842f6c797d98e2156cdd3cb91d3363118b220e7229a",
+      "operations": [
+        {
+          "path": "script/overlay-review.ts",
+          "line": 4,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/prepare-company-operating-corpus.ts",
+      "sourceSha256": "e2904f1148ba85380a88aa17bc149120c75230c8558ec3e7dc78d2734cc5a85f",
+      "operations": []
+    },
+    {
+      "path": "script/prepare-company-primary-filings.ts",
+      "sourceSha256": "c1959af3ebbe80a25d0dae7716638b6f7a2d1e0e71e4be39b0a86ea573ba715a",
+      "operations": [
+        {
+          "path": "script/prepare-company-primary-filings.ts",
+          "line": 10,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/prepare-company-primary-filings.ts",
+          "line": 11,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/prepare-company-review.ts",
+      "sourceSha256": "a3e5bb992b2227648776a685a01de0c52871b6b664e8609058581d06552944f7",
+      "operations": []
+    },
+    {
+      "path": "script/privileged-operation-inventory.ts",
+      "sourceSha256": "831d5a3b2b9f0d22d2b919929c68ba087a790f01f2d9d485fa6014e0e1cea4a2",
+      "operations": [
+        {
+          "path": "script/privileged-operation-inventory.ts",
+          "line": 33,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/privileged-operation-inventory.ts",
+          "line": 49,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/privileged-operation-inventory.ts",
+          "line": 51,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/profile-replay-workbook.ts",
+      "sourceSha256": "20fb500ca8b33ca45cc1a67eeb04b49fbed861cdd6dac1844fa1072b3bc7e7cd",
+      "operations": [
+        {
+          "path": "script/profile-replay-workbook.ts",
+          "line": 8,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/profile-replay-workbook.ts",
+          "line": 27,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/project-company-members.ts",
+      "sourceSha256": "db3a17e9a634b383165621b35466411071b56a094ff0743c32e2364fe4d31750",
+      "operations": [
+        {
+          "path": "script/project-company-members.ts",
+          "line": 4,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/reassess-mapping-audit.ts",
+      "sourceSha256": "22c2a67ac419ee3c1dbc76869f15e14df8b2cfe4d2a5c29d74f4011b2861bc9b",
+      "operations": []
+    },
+    {
+      "path": "script/reconcile-company-stages-10-13.ts",
+      "sourceSha256": "1c920bd36158d2b681ff3044ac8932fc548e6a27a65df0fe3b7ae3fe86443379",
+      "operations": [
+        {
+          "path": "script/reconcile-company-stages-10-13.ts",
+          "line": 7,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/reconcile-stages-00-03.ts",
+      "sourceSha256": "df21bd086d2f8a116ba730e918eccb937f7d8f0ef640178d8beb9ae7486d41e1",
+      "operations": [
+        {
+          "path": "script/reconcile-stages-00-03.ts",
+          "line": 13,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/reconcile-stages-14-17.mjs",
+      "sourceSha256": "4f5ff8a5aac7995d1d3f3c9ec30767462be5331c002ec58685dea926b3a65763",
+      "operations": [
+        {
+          "path": "script/reconcile-stages-14-17.mjs",
+          "line": 10,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/reconcile-stages-14-17.mjs",
+          "line": 309,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/regional-attribution.ts",
+      "sourceSha256": "393857813d5bc6abcfc3fd716993d16f4a46dab1d6dbd43c6547e2c947ce8467",
+      "operations": [
+        {
+          "path": "script/regional-attribution.ts",
+          "line": 6,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/regional-attribution.ts",
+          "line": 22,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/regional-attribution.ts",
+          "line": 29,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/rehearse-analytical-recovery.ts",
+      "sourceSha256": "16d0e1b6dc651dec59fdc630e30cc717221d4977435a0e1e8d1c95f825971055",
+      "operations": [
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 13,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 24,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 27,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 31,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 36,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 44,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 56,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 66,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 69,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 73,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 78,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 92,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-analytical-recovery.ts",
+          "line": 97,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/rehearse-immutable-snapshots.ts",
+      "sourceSha256": "c3ba9742e4d98e16a5778151ef4f266840d2dde4ce59a494c04eac90e33e3d00",
+      "operations": [
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 13,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 14,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 18,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 20,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 22,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 26,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 28,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 29,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 35,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 37,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 39,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 44,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/rehearse-immutable-snapshots.ts",
+          "line": 45,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/replay-company-projection.ts",
+      "sourceSha256": "ffd86cd4d78e38e2f20959c51e51b8ee844c1102ed988dbf22bba78390d80d90",
+      "operations": [
+        {
+          "path": "script/replay-company-projection.ts",
+          "line": 4,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/replay-sdg-result.ts",
+      "sourceSha256": "ddab10d1602883d3ba4bcc7cc522acf87c2610c96804d0f22c5a278d5e940638",
+      "operations": [
+        {
+          "path": "script/replay-sdg-result.ts",
+          "line": 61,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/replay-sdg-result.ts",
+          "line": 82,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/replay-sdg-result.ts",
+          "line": 82,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/research-existing-data.ts",
+      "sourceSha256": "12775a39aa8232f9fce97f6daaf5a086991832ed86277880db2e30fdefdde4a1",
+      "operations": [
+        {
+          "path": "script/research-existing-data.ts",
+          "line": 6,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/research-full-universe.ts",
+      "sourceSha256": "cd4116c0b170861c68f9cfa4baf252fa091c882f205cc2a834f547d81bfffa2f",
+      "operations": [
+        {
+          "path": "script/research-full-universe.ts",
+          "line": 8,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/research-full-universe.ts",
+          "line": 34,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/review-company-primary-shares.ts",
+      "sourceSha256": "b32e6fd83687740d51131dd6e3d71e366328e46f2d8dd37f7035a7d84ed980f9",
+      "operations": [
+        {
+          "path": "script/review-company-primary-shares.ts",
+          "line": 11,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/run-company-worked-controls.ts",
+      "sourceSha256": "5e3c824566672a488f86843814bdc62696e3354635cad0ff3dbbdc2b3556cd85",
+      "operations": [
+        {
+          "path": "script/run-company-worked-controls.ts",
+          "line": 8,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/run-company-worked-controls.ts",
+          "line": 10,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/run-fslr-full-cashflow-case.ts",
+      "sourceSha256": "7f4316d80e2dc0483b611e5fcc441008de51e50bb7db10aedef73c6909172758",
+      "operations": [
+        {
+          "path": "script/run-fslr-full-cashflow-case.ts",
+          "line": 43,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/run-fslr-full-cashflow-case.ts",
+          "line": 55,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/run-fslr-full-cashflow-case.ts",
+          "line": 59,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/run-issuer-conditional-five-year.ts",
+      "sourceSha256": "c79ae2a1bb598421feb634c4be16e5745930e85cc1d3a42028c526e686f4e412",
+      "operations": []
+    },
+    {
+      "path": "script/run-paired-research-pipeline.ts",
+      "sourceSha256": "ce389c19e0ba940368731d591225ba4be0a32be22683efd1596d53d2cd899d98",
+      "operations": [
+        {
+          "path": "script/run-paired-research-pipeline.ts",
+          "line": 6,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/run-paired-research-pipeline.ts",
+          "line": 7,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/run-regional-ensemble.ts",
+      "sourceSha256": "bea5219c6a2649fe47d7b0f932c0b06d4c2454912d5a4dd836300a308f1a8413",
+      "operations": [
+        {
+          "path": "script/run-regional-ensemble.ts",
+          "line": 17,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/run-regional-ensemble.ts",
+          "line": 49,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/run-solar-manufacturing-case.ts",
+      "sourceSha256": "4cba2083c24d2221b39d5fc07981951eb8a45836cd92fdb5b12b55d15fe3adc0",
+      "operations": []
+    },
+    {
+      "path": "script/short-horizon-emissions.ts",
+      "sourceSha256": "d3cacb1599a651b3ade3cf2c3737990d907617b07ac574c94bc6b0d0cf889a4c",
+      "operations": [
+        {
+          "path": "script/short-horizon-emissions.ts",
+          "line": 7,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/summarize-fair.ts",
+      "sourceSha256": "fb90452cc046a81674c3a4b87b0c232326ade3d0272ec01e90c814ca603e7a60",
+      "operations": [
+        {
+          "path": "script/summarize-fair.ts",
+          "line": 3,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/summarize-fair.ts",
+          "line": 6,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/summarize-member-ensemble.ts",
+      "sourceSha256": "99161c3464d702eeb293b9a15fda22c553d97adafff656bb3fcfc5ddbc02924b",
+      "operations": [
+        {
+          "path": "script/summarize-member-ensemble.ts",
+          "line": 5,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/summarize-member-ensemble.ts",
+          "line": 12,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/threshold-api-smoke.ts",
+      "sourceSha256": "a19bab0bd9aaf61a7c414e9038d1b309e9088559a0ea974cd779a84160cfd758",
+      "operations": [
+        {
+          "path": "script/threshold-api-smoke.ts",
+          "line": 10,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/validate-clause-private-evidence.ts",
+      "sourceSha256": "265cf5b80a7055f2608b3311fbb8a69ee01bd8b7b000793a7de6f80d46b46f35",
+      "operations": [
+        {
+          "path": "script/validate-clause-private-evidence.ts",
+          "line": 14,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-clause-private-evidence.ts",
+          "line": 23,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/validate-company-filing-private.ts",
+      "sourceSha256": "38851ff11c9fd9f3c070e28d8815b1d9b554c95de097cebcfa38a3cd34575490",
+      "operations": [
+        {
+          "path": "script/validate-company-filing-private.ts",
+          "line": 14,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-company-filing-private.ts",
+          "line": 33,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-company-filing-private.ts",
+          "line": 49,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-company-filing-private.ts",
+          "line": 62,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-company-filing-private.ts",
+          "line": 68,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-company-filing-private.ts",
+          "line": 69,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/validate-fair-history.ts",
+      "sourceSha256": "dd4334600cd37c6e71f012585fbd7096a2f9ea6d868442bc685028afa3851a90",
+      "operations": [
+        {
+          "path": "script/validate-fair-history.ts",
+          "line": 11,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/validate-fair-history.ts",
+          "line": 11,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/verify-collection-lock.ts",
+      "sourceSha256": "9095c87306c5b6e392d75794780970043162394d4904f58e7a3e250f894e1ede",
+      "operations": []
+    },
+    {
+      "path": "script/verify-indicator-approval.ts",
+      "sourceSha256": "95529ea0b0c7fce40a531d36b986ce832a592f6d9c27943c76de865649551aa6",
+      "operations": [
+        {
+          "path": "script/verify-indicator-approval.ts",
+          "line": 19,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-indicator-approval.ts",
+          "line": 20,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-indicator-approval.ts",
+          "line": 43,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-indicator-approval.ts",
+          "line": 44,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/verify-overlay-replay.ts",
+      "sourceSha256": "83a0a34b1e16f5a0b80aca007554e2e7abb453af91d40f2fce4e2a2c2bda1351",
+      "operations": [
+        {
+          "path": "script/verify-overlay-replay.ts",
+          "line": 25,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-overlay-replay.ts",
+          "line": 30,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-overlay-replay.ts",
+          "line": 95,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-overlay-replay.ts",
+          "line": 139,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/verify-portable-overlay-recovery.ts",
+      "sourceSha256": "9187724f1a4dd76f0fab09914df7dd6496ff0bc66a99c7b5fefb0feef25cfb39",
+      "operations": [
+        {
+          "path": "script/verify-portable-overlay-recovery.ts",
+          "line": 12,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-portable-overlay-recovery.ts",
+          "line": 12,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-portable-overlay-recovery.ts",
+          "line": 16,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/verify-process-baseline.ts",
+      "sourceSha256": "d59b70cf41215100c70958172d97c572cccf465dd0fedd072a80c7c54a59ce4e",
+      "operations": [
+        {
+          "path": "script/verify-process-baseline.ts",
+          "line": 19,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/verify-regional-accounting.ts",
+      "sourceSha256": "8550d3f716ea5747b76c617f9ca33e24200fc6d0d0c769c3a07034a89451ed8b",
+      "operations": []
+    },
+    {
+      "path": "script/verify-remaining-baselines.ts",
+      "sourceSha256": "6e53e9f0b575456c678f808c2ddcee90b10b438e791bdaa574d52377e8bacb4a",
+      "operations": [
+        {
+          "path": "script/verify-remaining-baselines.ts",
+          "line": 22,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-remaining-baselines.ts",
+          "line": 24,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-remaining-baselines.ts",
+          "line": 44,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-remaining-baselines.ts",
+          "line": 50,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-remaining-baselines.ts",
+          "line": 57,
+          "kind": "cli-entry-candidate",
+          "callee": "process.argv",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "script/verify-workbook-snapshot.ts",
+      "sourceSha256": "88b56bcb49dc31d6dd364afb2dfd64ed8b5c353f33df2bd6cefdfebc3bdea298",
+      "operations": [
+        {
+          "path": "script/verify-workbook-snapshot.ts",
+          "line": 23,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-workbook-snapshot.ts",
+          "line": 24,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-workbook-snapshot.ts",
+          "line": 25,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "script/verify-workbook-snapshot.ts",
+          "line": 28,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/analysisManifest.ts",
+      "sourceSha256": "3f7c57b93fca064303d4c4fc47a5e1fb630433ee13f23a1743c181b4fe6b4ff1",
+      "operations": [
+        {
+          "path": "server/calculation/analysisManifest.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/cashFlowValuation.ts",
+      "sourceSha256": "dcb0b8185fb6b6f25003cf8de46446f2b5195a15bd5ea10fd82cb9823318c3a2",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/categoryHistoricalTrend.ts",
+      "sourceSha256": "4ff47ac245d6ca58c02998924756ed98e664e09f33108cfb6e6e6e495beb7bd7",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/categoryProjections.ts",
+      "sourceSha256": "7ddadc162a4c72bb6de3890a002c3efecb75c5dd10946b842633dcc48fd7a40c",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyCashflowBridge.ts",
+      "sourceSha256": "cb8c92ca92e6b25ab189f7d09b945b218f2d7829166683d4f36d241665d5fe7e",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyConditionalCases.ts",
+      "sourceSha256": "b2978b5af1f43f3e1131eaa1500ecc3a27e1e4f453088ee0b827b66c20cf3ebd",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyFilingPair.ts",
+      "sourceSha256": "d974dc55bcb1bdd3ec6c8d4e678aae739c88c7a897d684beccede70433c2e0e7",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyFullCashflowCase.ts",
+      "sourceSha256": "6cf7a9e40ca7216c5916768f48ef4a04802d79b9e7890b39b2fd7c29c0ff936b",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyProjection.ts",
+      "sourceSha256": "d4fc453b7ea40283bf439be822f2747e8ab6a06d7f4d3b15952e7cd5a9e8ec3a",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyProjectionAsOf.ts",
+      "sourceSha256": "2469f82e4de5c82fb38dda05960f1786a210a89eb66973da1b1c2daad5cc7cce",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companyProjectionReplay.ts",
+      "sourceSha256": "db7af4ed9e6ff2b871b79127e50c489cf33b75d4d5c5460fe94f2bff1334aa70",
+      "operations": [
+        {
+          "path": "server/calculation/companyProjectionReplay.ts",
+          "line": 187,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/companyShareEvidence.ts",
+      "sourceSha256": "26856814835353aa3d857d66027b9ad746a1d1ca1fb06387c9b7ee12f897b09e",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/companySourceArchive.ts",
+      "sourceSha256": "c4db7c393027483bb2639784753fbc0401db25edbb74d9f4c404ed505d529de0",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/driverEvidence.ts",
+      "sourceSha256": "27c0f7679f72ebdea5d03a0ca703ee4da31d5a81983eb9e7bb3129b90f415eec",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/emissionsCandidate.ts",
+      "sourceSha256": "d53b1c79e13588dcd9570942fd70c22892ccc6df75707fa35908cc27f2f08218",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/emissionsInputs.ts",
+      "sourceSha256": "7fec8f4acf5c47cdef0defbe789049560573d80366a525e4353f78d3124ac70c",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/ensemble.ts",
+      "sourceSha256": "55dc5e9c9fb54f40b9d8f1855c7544b8378fd73a21e90346b3cf2656a9098de7",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/evaluation.ts",
+      "sourceSha256": "15e68627a5f68821bb85994430c3620293eebd3482b1f8ec93ebe68e553074f8",
+      "operations": [
+        {
+          "path": "server/calculation/evaluation.ts",
+          "line": 30,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/forwardProjection.ts",
+      "sourceSha256": "ae9b8759ba782bd1f8b4de08476b3a2aa4d9da991e8e9d76914929797d3d76f1",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/fslrFullCashflowCase.ts",
+      "sourceSha256": "e0752dd04de8599c5c3056b6e2ab50720c400ca089045d0a53355dc8c43354b2",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/historicalIndicators.ts",
+      "sourceSha256": "e716ce9997bc28d490189a25fc45cf553318328eb12f7e46f830651a2e73705b",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/historicalMetrics.ts",
+      "sourceSha256": "d03a05caa41da571d86cdf82444338b39683da73b073b4429967acf21c4de95e",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/historicalRecalculation.ts",
+      "sourceSha256": "b21417bdbd49e9d9545d718dcfff77193615a80e8e140f495565a0b1b4cbc4a9",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/historicalValidation.ts",
+      "sourceSha256": "3bd60107252b4a5e4031228e6624e3411c6f2bca531b8872efbbb78a490a2964",
+      "operations": [
+        {
+          "path": "server/calculation/historicalValidation.ts",
+          "line": 31,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/identity.ts",
+      "sourceSha256": "2269cd86b1f74ea698a3417da804fc45225ce57e29807efdec00c7465ca08cb6",
+      "operations": [
+        {
+          "path": "server/calculation/identity.ts",
+          "line": 19,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/issuerConditionalFiveYear.ts",
+      "sourceSha256": "b847f77eddb93dbfc897cd911c63ce3b61f898e4cee0c3deef2055895b9720f6",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/memberAnalysis.ts",
+      "sourceSha256": "3d90884d3069053b97d3a93e004edde3479f7379203707fc8fae87d3b99fc903",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/memberAttribution.ts",
+      "sourceSha256": "2780f751b82ff11f19f1f3086564f7c6674676b459219bfe0389ba9880ac3bd1",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/memberConvergence.ts",
+      "sourceSha256": "eda2f362d75abdd69df77213eb2a2a0bfae3a8087c1f37872e7cba364ca79eee",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/memberMetrics.ts",
+      "sourceSha256": "de597bf66bb9ccf0985ecbb51884466b7e20dc88c98d4c431f2060740d32e280",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/minorGasHistory.ts",
+      "sourceSha256": "9edd4b84ca879c45f8eb21976909773be0c29aae9170998cb6c7bb4915744044",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/nativePathwayContract.ts",
+      "sourceSha256": "dbb3d34924b122925a0ed0c8ebf9cd2dab300e67c4e15fa9fde41a929799023d",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/originalNominalAssessmentHandler.ts",
+      "sourceSha256": "227a7e9b5de36175e5ee8708fb284cd58a474c942ed60c8c793800a968266310",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/pairedCompanyGap.ts",
+      "sourceSha256": "fd2e48ce63a56f47ca253ff04ed14e57cd6a8f8e76005901f655e19dca241ebd",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/pairedResearchCorpus.ts",
+      "sourceSha256": "e258fb8b1b18b41a4a2d25e226aa0411b91c6cfedd32047e44a648dafe648359",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/pairedResearchEvents.ts",
+      "sourceSha256": "9f70b3af8af8dceb0553c79ff068c64da0559cb7251b9a96a14129709016ef47",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/pairedResearchLongOnly.ts",
+      "sourceSha256": "0b2a7fe977a3ce51fcdae336bcda239e6add0c222b9ecf34381d40d8f64c522a",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/pairedResearchPipeline.ts",
+      "sourceSha256": "6fc5d940bd2540ec061eecb1a33b4af8037683e03e5693098f9be746dd6da55c",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/pairedResearchSleeves.ts",
+      "sourceSha256": "e5c181f70c6d96a4f97a98f95725b0e4abd7ef595852aaa40f2f83477ac4f74e",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/prospectiveSignal.ts",
+      "sourceSha256": "636e032662825414e6dee9bb1a2c1b968b8b3529efe8753a36cc147db88b3103",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/publicValuationContract.ts",
+      "sourceSha256": "43e5757c505baffba4eea6b4962946f072511bdb0cf5930b052e0e08c9d9644a",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/random.ts",
+      "sourceSha256": "4dcdbee541936229654d6d82fe32843a1104c4ba4f2e0897df3f5c03b713fc41",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/readiness.ts",
+      "sourceSha256": "453b87ee60eee6c19d8d340ef1841c2f5a1bc2ec66a35d92411d36ded820d0d2",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/regionalEngine.ts",
+      "sourceSha256": "a030163eee28cebf2804151c483089ab1244d37d73b204cb3fff18eb4970c63a",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/regionalInventory.ts",
+      "sourceSha256": "4429cece8c041885d8aa6eba07e21d082e4af9e23af9829f5c2ab579213926a8",
+      "operations": [
+        {
+          "path": "server/calculation/regionalInventory.ts",
+          "line": 34,
+          "kind": "database-or-executor-candidate",
+          "callee": "delete",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/regionalLandUse.ts",
+      "sourceSha256": "323d6decf0e75a89d02eba8724962bbb96fe39223dcf63227a8d031384ba5b7e",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/regionalProjections.ts",
+      "sourceSha256": "2cc2272b7103dc2c2cae1c0bb3ae6ad438700eb75a741d7502fc5892ab98a676",
+      "operations": [
+        {
+          "path": "server/calculation/regionalProjections.ts",
+          "line": 70,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/calculation/regionalProjections.ts",
+          "line": 71,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/calculation/regionalSampling.ts",
+      "sourceSha256": "96b5c29a5489e935c9eda82891f4bea85ed76c51b38fbc6aa2713f60cc7a59a9",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/researchCorrections.ts",
+      "sourceSha256": "d44ed7824ba6f23859a5da603b40d6cdabb3159957ced8df99365d3917460340",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/researchFamily.ts",
+      "sourceSha256": "179ff9d5bd1aad1027b21de1f40718181d2a8197248aec3a6170e13cef40fce5",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/reverseValuation.ts",
+      "sourceSha256": "0fce324af40986222546b5b0d03191b15382a58fb7fe29fa983b9fcbabc4c953",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/shortHorizonEmissions.ts",
+      "sourceSha256": "1275e44a3f07251b45f0ee8db49f6d5e8794972f3eb2ee604b954c5c0f5fa317",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/signalResearch.ts",
+      "sourceSha256": "b864a37bfd9f08a54a1d14ce818dc4c686018f2930ce41058bc0514ef22f30d3",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/solarManufacturingCase.ts",
+      "sourceSha256": "ae409ab9e4a3dd35e4a23bdaf6a1820d3950f1b4a4407b8878c2df2c26191e2f",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/thresholdDiagnostic.ts",
+      "sourceSha256": "6b9d7721e60b35ff5290894127344481e054c8ad0d2d0b64d2ee75b77cc91b05",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/valuationComparison.ts",
+      "sourceSha256": "20417ca43a73e299c8527b8eb72e9b192a274fb6a6823dcd06ec47ad5a54c435",
+      "operations": []
+    },
+    {
+      "path": "server/calculation/vintageAudit.ts",
+      "sourceSha256": "92fd6f24d02050283a514421e59e47010a4fc8f14e4b18197c68a93772b6564a",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/backtestCalculator.ts",
+      "sourceSha256": "6cc760c1e4249a58f540238f4e5d06141f788d6b165b796f641c5d8731621d2a",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/carbonPriceCalculator.ts",
+      "sourceSha256": "7a27f7b8e7862cbc457a66dc364d673996e0739bcb30fbb0432d2a5f2a1f6aa9",
+      "operations": [
+        {
+          "path": "server/climateValuation/carbonPriceCalculator.ts",
+          "line": 257,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/climateValuation/dataProcessor.ts",
+      "sourceSha256": "264a7cd799b828d4a03dea1b94a25ec5477611021c60118cf711f62345ce7eb3",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/decarbBandCalculator.ts",
+      "sourceSha256": "c8bb14c2b40d0efc069d5c4797eef0d43ac57d3a440b3b4c3fd80972f765b54e",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/decarbConversion.ts",
+      "sourceSha256": "9f5420029eba8200c45c273eb899b9f219b428b23650eaf8b67071328d65d4f5",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/decarbGapCalculator.ts",
+      "sourceSha256": "4fd66b436abd8ece8bdadea8494cb9cf2752d3e72383bd6ff30c0204f0d88e68",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/decarbTercileCalculator.ts",
+      "sourceSha256": "a3e77f0567d9e50d46c0fd093b3fa34fa684226001f606f4673ebb65b8350a26",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/emissionsCarryForward.ts",
+      "sourceSha256": "d286f4d4f2b27b49dffdb281b5273681ec4f6668c11c7d1dec383eb4aed51866",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/longShortResearch.ts",
+      "sourceSha256": "912f0a90469c6aabd18e196de2dd0b97208a6e014a9f719dfe58e3dc298c3567",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/queryValidation.ts",
+      "sourceSha256": "8e6acfaaa70ee3a2e7d037bb573d1b036c17512832b6aa2689a4bf59088c9355",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/sdgGrowthCalculator.ts",
+      "sourceSha256": "c78107a8f9a54228afed6b690dd9df96c434372655a66f2c51e52bbf0e043776",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/sharedUtils.ts",
+      "sourceSha256": "c405d4fdbbad1a0278739d40dd73b32fea58be940b65720cbe96648e86d38b49",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/tercileCalculator.ts",
+      "sourceSha256": "02f0b19d205514b6849781691515805d91c711668339f62bc4b31a3e2f853ae4",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/valuationStatistics.ts",
+      "sourceSha256": "75172b8a62b97c977bdb2c10defb6f3e9f8b4238ee75f2f5339499a0d6f284f9",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/walkForward.ts",
+      "sourceSha256": "83d1fe11de2ef80fed5261972066e8b4efba25f3ba7319f7909a8cb5a10efbd3",
+      "operations": []
+    },
+    {
+      "path": "server/climateValuation/walkForwardBacktest.ts",
+      "sourceSha256": "b5c5efa6c64c071237ba18b4188412bdc88d2ce6d75e1d384af5f36f7817fd5e",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/adapters/derived.ts",
+      "sourceSha256": "fd675f63e28f989d5de158bfef3a8728da72de3196d3701877e76a9a28e0f708",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/adapters/index.ts",
+      "sourceSha256": "00f13033bd85f0ae678ad6694ad89e613cc5e6c71d5309f4f6f67ad51a0045b3",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/adapters/noaa.ts",
+      "sourceSha256": "f384d7d1ac5e4242a59170eaaf741abe006d49dbb5d09e1c808bb7a17438686c",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/adapters/owid.ts",
+      "sourceSha256": "63e878c020d62520f65a344534d7b01e60f7a69693f32fa7b284dcdce3e92924",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/adapters/perplexity.ts",
+      "sourceSha256": "1a29636d918345651502ec1532c988927d1b87ef1c75dde82dae274a0d376f68",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/adapters/types.ts",
+      "sourceSha256": "03214b937773be92084c4433403423d0d82873ec23df470776bd53df77ba236c",
+      "operations": [
+        {
+          "path": "server/dataIngestion/adapters/types.ts",
+          "line": 37,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/adapters/types.ts",
+          "line": 39,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/dataIngestion/adapters/worldBank.ts",
+      "sourceSha256": "0006bed0739dfbc5509eebc3853f01d573d8fdceaae141a3adcdab521b2d56df",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/collectionLock.ts",
+      "sourceSha256": "16298a7a0616163a849199ea0ed7d7dba209719068e9d22e7cc4460c37362600",
+      "operations": [
+        {
+          "path": "server/dataIngestion/collectionLock.ts",
+          "line": 13,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/collectionLock.ts",
+          "line": 19,
+          "kind": "database-or-executor-candidate",
+          "callee": "query",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/dataIngestion/dataStore.ts",
+      "sourceSha256": "752843b7ecece91b5e44236bfc43ca7e5324c57082747a3fb7a8353157491964",
+      "operations": [
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 35,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 60,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 72,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 133,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 137,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 139,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 152,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 164,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 184,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 185,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 186,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/dataStore.ts",
+          "line": 197,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/dataIngestion/indicatorRegistry.ts",
+      "sourceSha256": "333ce1f17e89bad3a50ed9018e36848655fc735597be2bc11fe40885b72689c3",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/orchestrator.ts",
+      "sourceSha256": "955b69a111c641108ca3fe1f80e706340fabaabc923447040ea95c1a498b3c16",
+      "operations": [
+        {
+          "path": "server/dataIngestion/orchestrator.ts",
+          "line": 81,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/dataIngestion/overrideStore.ts",
+      "sourceSha256": "e6f8a15eff1786cb0ea134e87f10039c2a04c8636567050d55fb6c4329ccac0b",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/requestOverrides.ts",
+      "sourceSha256": "80c86502b80fff11cbecbdfb5aff6a1783253c356b533e1eddd7884d7c387f52",
+      "operations": []
+    },
+    {
+      "path": "server/dataIngestion/scheduler.ts",
+      "sourceSha256": "3b04cc42ecfe1cbcfc69d1b6c7ad05d04a14539fa47aea6014d7d4484c407117",
+      "operations": [
+        {
+          "path": "server/dataIngestion/scheduler.ts",
+          "line": 37,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/scheduler.ts",
+          "line": 38,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setInterval",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/dataIngestion/summaryArchive.ts",
+      "sourceSha256": "94ea9d33f55f0c30e2a44ccf4648ab0348cbc9c1f9103d877241cc024b065907",
+      "operations": [
+        {
+          "path": "server/dataIngestion/summaryArchive.ts",
+          "line": 25,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/dataIngestion/summaryArchive.ts",
+          "line": 30,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/dataIngestion/summaryContract.ts",
+      "sourceSha256": "1022fabc6f412cd11ba07716108955c242c8236e0aa6448c4c871c3b083eb129",
+      "operations": [
+        {
+          "path": "server/dataIngestion/summaryContract.ts",
+          "line": 74,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/db.ts",
+      "sourceSha256": "6dbe1201aa87e2e896a32c37a51181fdb19e4a0d1584be2f7344e4536f3bf28a",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/approvalArchive.ts",
+      "sourceSha256": "2d45ef9bbb4a636e954781f7179151f66c6d420321d5a4e84a2ae728364c4240",
+      "operations": [
+        {
+          "path": "server/financialData/approvalArchive.ts",
+          "line": 10,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/approvalArchive.ts",
+          "line": 12,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/approvalArchive.ts",
+          "line": 21,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/approvalArchive.ts",
+          "line": 21,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/approvalArchive.ts",
+          "line": 25,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/approvalArchive.ts",
+          "line": 25,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/financialData/asOfValuation.ts",
+      "sourceSha256": "2079093ebee1aa5a39c1391dfadd07671193c5f442d384c24cfab90c38bda0ac",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/companyBaseline.ts",
+      "sourceSha256": "16eeb0a19615f30c152522cdf7795d4826838dc6d834514139a1d0fc80348d11",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/completedCashFlow.ts",
+      "sourceSha256": "12adba80d5fc784b763be2597746214a4750da1d3de8d72708fc31582543c80f",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/currencies.ts",
+      "sourceSha256": "e33a16920980c4c408be0bab5f72dc8ed522290e96c1d73fe6381c7ecc4db135",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/historicalBeta.ts",
+      "sourceSha256": "c2dc28f28d4f5393396c89d88287838d7b99d1dfd0ef739930a37d2ddc978d02",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/identity.ts",
+      "sourceSha256": "44054325c69f073595f5a61e36a5d4bbdf124422be02a6677cb24e87cf3d4ff5",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/isin.ts",
+      "sourceSha256": "b31c37d72462279a57d84b628258a672c5196ab9f4307402c327a02217b20856",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/mappingDiagnostics.ts",
+      "sourceSha256": "d5225cdb6ba3231bec2b366c55487e818656651fc94991d17fd22fe466ce1b5c",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/provider.ts",
+      "sourceSha256": "0b56a23412c624130b1b9f9bbad97db04c7ef46da5860448146c6e52d10ad851",
+      "operations": [
+        {
+          "path": "server/financialData/provider.ts",
+          "line": 13,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/provider.ts",
+          "line": 31,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/financialData/review.ts",
+      "sourceSha256": "3b1c2d72aea41b4f25e700fc82b74595953a56a6712191d9bcf2056c84ab2214",
+      "operations": [
+        {
+          "path": "server/financialData/review.ts",
+          "line": 36,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/financialData/reviewStore.ts",
+      "sourceSha256": "b8ee0b923eb0d7b1a084884abc8a26986120176dc9521c8049a79eac9dff7620",
+      "operations": [
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 7,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 12,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 16,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 16,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 22,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 23,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 23,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 30,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 34,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 34,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 37,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 37,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/financialData/reviewStore.ts",
+          "line": 51,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/financialData/statementHistory.ts",
+      "sourceSha256": "8c0cac24904bd5c37491ece7cc514221b94a7ec0508a77f5dcdeb4dcc70415eb",
+      "operations": []
+    },
+    {
+      "path": "server/financialData/status.ts",
+      "sourceSha256": "31c2466aed41b5121029e84e50dda5e6fe96132497472b54cc711f1e6beb9f50",
+      "operations": []
+    },
+    {
+      "path": "server/index.ts",
+      "sourceSha256": "0fd005ea315e9351fcde1cb3004db697f8f46c64d930222493c7e65a3ddc3eb8",
+      "operations": []
+    },
+    {
+      "path": "server/newsApi/newsService.ts",
+      "sourceSha256": "e278edecbd95ac584767bd298af31580cfa93ae3f820e832e646752675daed9b",
+      "operations": [
+        {
+          "path": "server/newsApi/newsService.ts",
+          "line": 89,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "setTimeout",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/newsApi/newsService.ts",
+          "line": 94,
+          "kind": "provider-or-network-candidate",
+          "callee": "fetch",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/newsApi/newsService.ts",
+          "line": 136,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/newsApi/newsService.ts",
+          "line": 140,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/newsApi/providerAccess.ts",
+      "sourceSha256": "af9c6287c1658b575a0b09c8ac15d5cdf1bfeed20dd4adfde01f51e0353c9943",
+      "operations": []
+    },
+    {
+      "path": "server/newsApi/requestOptions.ts",
+      "sourceSha256": "7e622e238a528803ec1f82599054d7eb5a10005ceaf882b2476e1b5f92da40e4",
+      "operations": []
+    },
+    {
+      "path": "server/operatorContract.ts",
+      "sourceSha256": "da083b3ce11d1e1b537aea8230efb27c53e3b33568398a000ca450213ebd5f28",
+      "operations": []
+    },
+    {
+      "path": "server/releaseSafety.ts",
+      "sourceSha256": "e55aa553a2b794000f0c2f0de6660efebb0efc22becaaaeac448a03bab4644e4",
+      "operations": []
+    },
+    {
+      "path": "server/routes.ts",
+      "sourceSha256": "a9cb75632cf54e43778ff7e0f2bd978ccb6e1d380996bb5a1bc954d3653b99c3",
+      "operations": [
+        {
+          "path": "server/routes.ts",
+          "line": 352,
+          "kind": "scheduler-or-timer-candidate",
+          "callee": "startScheduler",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 361,
+          "kind": "cache-mutation-candidate",
+          "callee": "clear",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 377,
+          "kind": "cache-mutation-candidate",
+          "callee": "clearProjectionCaches",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 378,
+          "kind": "cache-mutation-candidate",
+          "callee": "clearProjectionCaches",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 379,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 379,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 556,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 572,
+          "kind": "cache-mutation-candidate",
+          "callee": "clearProjectionCaches",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 573,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 573,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 802,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 826,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 846,
+          "kind": "database-or-executor-candidate",
+          "callee": "delete",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 847,
+          "kind": "database-or-executor-candidate",
+          "callee": "delete",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 858,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 870,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 889,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 901,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 938,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 945,
+          "kind": "database-or-executor-candidate",
+          "callee": "update",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 1236,
+          "kind": "cache-mutation-candidate",
+          "callee": "clearProjectionCaches",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 1237,
+          "kind": "cache-mutation-candidate",
+          "callee": "clearProjectionCaches",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 1239,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/routes.ts",
+          "line": 1239,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/companyOperatingReview.ts",
+      "sourceSha256": "0ca53e8809d5a06bda76ab55e15358ff96446725522a556851ad9ef0e3cf6d9e",
+      "operations": [
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 10,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 14,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 14,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 18,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 18,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 25,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 35,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 51,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 69,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 81,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 86,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 125,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/companyOperatingReview.ts",
+          "line": 130,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/contract.ts",
+      "sourceSha256": "f371dc33bd84612432bc930a81e9796294e8436c3347b9ec298ba7eb1c3e8127",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/guards.ts",
+      "sourceSha256": "7576fb6a5b73f773c695e00f7423753acd20d3a843df1221fb3524ba9531a778",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/indicatorContract.ts",
+      "sourceSha256": "1b03e9ffaed4cff1226c740f1c865a42c171c95dc998c0a0c4918345ea01ca3c",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/indicators.ts",
+      "sourceSha256": "2f735e625563d838c209a93337bf9a26935b1ae7a5c12bd46a2d6365c9b90629",
+      "operations": [
+        {
+          "path": "server/snapshots/indicators.ts",
+          "line": 20,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/indicators.ts",
+          "line": 25,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/indicators.ts",
+          "line": 35,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/materialInputs.ts",
+      "sourceSha256": "f14af409356d893b8be1edf3238970f5be72a55311d7bbb8d680dea91afe874b",
+      "operations": [
+        {
+          "path": "server/snapshots/materialInputs.ts",
+          "line": 34,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/materialInputs.ts",
+          "line": 34,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/materialInputs.ts",
+          "line": 38,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/materialInputs.ts",
+          "line": 38,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/materialInputs.ts",
+          "line": 64,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/overlayContract.ts",
+      "sourceSha256": "8d50235e50140706ccdcb7bad6299efc8d4fabace5133f14ed89aafa55d0f053",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/overlayReview.ts",
+      "sourceSha256": "bd628a7bed4343eda550ff105e1bdfa26ae9a70e0895370b7a2b7f814daa63f0",
+      "operations": [
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 12,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 12,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 16,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 16,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 22,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 32,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 40,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 43,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 57,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlayReview.ts",
+          "line": 67,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/overlays.ts",
+      "sourceSha256": "19b13fea88924d076d78afd5b3ef675548b2d1385aaa6ddd0a116de910487df2",
+      "operations": [
+        {
+          "path": "server/snapshots/overlays.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/overlays.ts",
+          "line": 20,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/prospectiveSignal.ts",
+      "sourceSha256": "259a0e7580abcdd8febf6b1a609c3425c2947c4664d123ef9e27e038e850b413",
+      "operations": [
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 9,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 11,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 20,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 23,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 23,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 25,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/prospectiveSignal.ts",
+          "line": 25,
+          "kind": "mutating-sql-candidate",
+          "callee": "tagged-template",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/recoveryContract.ts",
+      "sourceSha256": "efba03e0afa71c4e11fec5a4377502edd5b25eb86adf306b0e984528bbc775e1",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/regional.ts",
+      "sourceSha256": "4f7991fbd47e7edc41e06e91a61eb614217085323be30fe374793caf8c21cc4c",
+      "operations": [
+        {
+          "path": "server/snapshots/regional.ts",
+          "line": 11,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/regional.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/regionalContract.ts",
+      "sourceSha256": "45909e1b72da3112ab7f05dc20228955bbf72d1a9390e883ea0578f3908241b1",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/requestContract.ts",
+      "sourceSha256": "5efeb9af302e7b58501c1a0dc4d9b41f260c73fec3a06cbe759491246883ca74",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/resultContract.ts",
+      "sourceSha256": "e418e37e52b31ef0fdb024408bda12ad25580db9ac94fdbbbda88fe18e564fdb",
+      "operations": []
+    },
+    {
+      "path": "server/snapshots/results.ts",
+      "sourceSha256": "bad5511ca0cbe78691a9fd80ec3b7465e699ca56b46cc85e940f32e3049a71f5",
+      "operations": [
+        {
+          "path": "server/snapshots/results.ts",
+          "line": 15,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/results.ts",
+          "line": 20,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/snapshots/store.ts",
+      "sourceSha256": "916d962f691d263400f1a80872b32d708016efb8bb95109d7de110e28ed6ef8c",
+      "operations": [
+        {
+          "path": "server/snapshots/store.ts",
+          "line": 26,
+          "kind": "database-or-executor-candidate",
+          "callee": "execute",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/store.ts",
+          "line": 71,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/snapshots/store.ts",
+          "line": 77,
+          "kind": "database-or-executor-candidate",
+          "callee": "insert",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/static.ts",
+      "sourceSha256": "7ad68ceb8da0fe0b29af6d517e66cfc14f106a641de845aac4f1bd995ad24f4a",
+      "operations": []
+    },
+    {
+      "path": "server/storage.ts",
+      "sourceSha256": "15eef82304b5c50a64b1857b8aa4036328dedea19e52ada36cb72ff532a95791",
+      "operations": [
+        {
+          "path": "server/storage.ts",
+          "line": 55,
+          "kind": "database-or-executor-candidate",
+          "callee": "delete",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        },
+        {
+          "path": "server/storage.ts",
+          "line": 62,
+          "kind": "cache-mutation-candidate",
+          "callee": "clear",
+          "review": "Candidate requiring caller/authorization review; discovery is not permission or proof of safe execution."
+        }
+      ]
+    },
+    {
+      "path": "server/vite.ts",
+      "sourceSha256": "b95341d19c1b83bb314467283568d9d6e72b02e21d6aff0037689c6b6be0528c",
+      "operations": []
+    }
+  ]
+}

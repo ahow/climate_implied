@@ -2,9 +2,11 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { dirname } from "node:path";
 import { buildCompanyFilingPair } from "../server/calculation/companyFilingPair";
 import { contentHash } from "../server/calculation/analysisManifest";
 import { calculateFslrFrozenFullCashflow } from "../server/calculation/fslrFullCashflowCase";
+import { loadPinnedFslrCode, pinnedSourceSha256 } from "./pinned-company-source";
 
 const root = "generated-artifacts/company-operating-corpus/primary-filings";
 const report = JSON.parse(readFileSync(`${root}/readiness-report.json`, "utf8"));
@@ -62,14 +64,40 @@ const frozen = JSON.parse(frozenBytes.toString("utf8"));
 assert.equal(createHash("sha256").update(frozenBytes).digest("hex"), full.freezeReceipt.sha256);
 assert.equal(contentHash(frozen), full.frozenAssumptionHash);
 assert.equal(full.freezeReceipt.persistedBeforeCalculation, true);
+assert.deepEqual(JSON.parse(readFileSync(`${dirname(latest.freezePath)}/freeze-receipt-before-calculation.json`, "utf8")),
+  full.freezeReceipt, "Separately retained pre-calculation receipt must equal report's frozen receipt");
 assert.ok(full.freezeReceipt.frozenAt <= full.calculatedAt);
 assert.deepEqual(frozen.scenarios, full.cases.map((c: any) => c.assumptions));
-for (const source of full.freezeReceipt.codeSources)
-  assert.equal(createHash("sha256").update(readFileSync(source.path)).digest("hex"), source.sha256);
+const pinned = await loadPinnedFslrCode(full.freezeReceipt.codeSources);
+for (const source of pinned.record.sources)
+  assert.equal(pinnedSourceSha256(readFileSync(source.archivedPath)), source.sha256);
 assert.equal(createHash("sha256").update(readFileSync(full.policySource.pdf)).digest("hex"), full.policySource.sha256);
 assert.equal(contentHash(readFileSync(full.source.path, "utf8")), full.source.sourceHash);
-const rebuilt = calculateFslrFrozenFullCashflow(frozen);
+// Historical reproduction MUST execute the exact source bytes pinned by the
+// old receipt, never the current stub-enhanced engine under an unchanged label.
+const rebuilt = pinned.entry.calculateFslrFrozenFullCashflow(frozen);
 assert.deepEqual(rebuilt.cases, full.cases);
+for (const [field, value] of Object.entries(rebuilt))
+  assert.deepEqual(value, full[field], `Pinned historical output field differs: ${field}`);
+// Separate compatibility check: preserve every old case/ledger field exactly.
+// Current-only additive status metadata is not misrepresented as frozen output.
+const currentCompatibility = calculateFslrFrozenFullCashflow(frozen);
+assert.equal(currentCompatibility.cases.length, full.cases.length);
+for (let i = 0; i < full.cases.length; i++) {
+  const old = full.cases[i], current = currentCompatibility.cases[i];
+  for (const key of Object.keys(old)) {
+    if (key === "ledger") {
+      for (const field of Object.keys(old.ledger))
+        assert.deepEqual((current.ledger as Record<string, unknown>)[field], old.ledger[field]);
+      assert.equal(current.ledger.stubStatus, "missing-stub-not-assumed-zero-legacy-schedule-only");
+    } else assert.deepEqual((current as Record<string, unknown>)[key], old[key]);
+  }
+}
+const currentCodeComparisons = full.freezeReceipt.codeSources.map((source: { path: string; sha256: string }) => ({
+  path: source.path, frozenSha256: source.sha256, currentSha256: pinnedSourceSha256(readFileSync(source.path)),
+}));
+assert.notEqual(currentCodeComparisons[0].currentSha256, currentCodeComparisons[0].frozenSha256,
+  "Current stub-enhanced engine must not be described as the old frozen code");
 assert.equal(full.cashSchedulesExecuted, 10);
 assert.equal(full.annualRowsExecuted, 50);
 assert.equal(full.actualMarketPairs, 0);
@@ -79,4 +107,10 @@ assert.deepEqual(full.cases[0].diagnostics.map((d: any) => d.statutoryCreditPhas
 assert.ok(full.cases[1].ledger.years[0].fcfe < 0);
 assert.ok(full.cases[1].ledger.years[4].fcfe < 0);
 for (const c of full.cases) for (const r of c.reconciliations) assert.ok(Math.abs(r.residual) <= 1e-5);
-console.log("Private validation passed: three filing hashes, nine successful FMP calls/three dated quotes, four primary share observations, review-only XOM succession, frozen primary-input FSLR schedules (10 scenarios/50 annual rows) with statutory phase-down; actual pairs and complete cases remain zero.");
+// Recheck original retained bytes after verification; never rewrite the freeze.
+assert.equal(pinnedSourceSha256(readFileSync(latest.freezePath)), full.freezeReceipt.sha256);
+console.log(JSON.stringify({ status: "passed", historicalReplay: "Exact pinned-source retained-case equality",
+  recoveryRevision: pinned.record.revision, archive: pinned.record.archive,
+  historicalScenarios: 10, historicalAnnualRows: 50, currentCodeComparisons,
+  currentCompatibility: "All historical case and ledger fields equal; new missing-stub status checked separately",
+  originalFreezeModified: false, researchRerunsOrRefits: 0, actualPairs: 0, completeCases: 0 }));

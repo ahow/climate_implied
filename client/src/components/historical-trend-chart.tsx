@@ -15,6 +15,8 @@ import {
 } from "recharts";
 import type { HistoricalTrendPoint, MetricView } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
+import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
 
 interface HistoricalTrendChartProps {
   data: HistoricalTrendPoint[];
@@ -73,17 +75,13 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
         };
       case "netZero":
         return {
-          title: "Historical 5 GtCO2e Threshold Diagnostics",
-          subtitle: hasNowcast
-            ? `Observed data with nowcast extrapolation to ${new Date().getFullYear()}`
-            : "When median emissions reach 5 GtCO2e; this is not net zero",
+          title: THRESHOLD_DIAGNOSTIC_LABEL,
+          subtitle: "Selected trajectory's evidenced 2024 baseline only; missing baseline withheld. Not net zero.",
           dataKey: "netZeroYear",
-          yLabel: "5 GtCO2e threshold year",
+          yLabel: "5% of 2024 threshold year",
           yDomain: [2024, 2100] as [number, number],
           color: "hsl(43, 86%, 42%)",
-          referenceLines: [
-            { y: 2050, label: "2050 Target", color: "hsl(168, 76%, 36%)" },
-          ],
+          referenceLines: [],
           formatter: (v: number) => `${Math.round(v)}`,
           showRange: false,
         };
@@ -98,12 +96,14 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     "P10 (\u00B0C)": d.p10,
     "P90 (\u00B0C)": d.p90,
     "Reduction Rate (%/yr)": d.reductionRate,
-    "Year median emissions reach 5 GtCO2e": d.netZeroYear ?? null,
+    "Legacy fixed-5gt-v1 year (5 GtCO2e)": d.netZeroYear ?? null,
+    [THRESHOLD_DIAGNOSTIC_LABEL]: d.thresholdDiagnostic?.year ?? null,
+    "5% diagnostic status": d.thresholdDiagnostic?.status ?? "withheld",
     Estimated: d.isNowcast ? "yes" : "no",
   }));
 
   const chartData = data.map((d) => {
-    const rawValue = metricView === "netZero" ? d.netZeroYear : d[config.dataKey as keyof HistoricalTrendPoint];
+    const rawValue = metricView === "netZero" ? d.thresholdDiagnostic?.year ?? null : d[config.dataKey as keyof HistoricalTrendPoint];
     return {
       ...d,
       displayValue: d.isNowcast ? undefined : rawValue,
@@ -147,12 +147,20 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
             "P10 (\u00B0C)":{id:"historical.p10",transform:"Identity; uncalibrated conditional quantile"},
             "P90 (\u00B0C)":{id:"historical.p90",transform:"Identity; uncalibrated conditional quantile"},
             "Reduction Rate (%/yr)":{id:"historical.reductionRate",transform:"Identity"},
-            "Year median emissions reach 5 GtCO2e":{id:"historical.netZeroYear",transform:"Identity; null preserved"},
+            "Legacy fixed-5gt-v1 year (5 GtCO2e)":{id:"historical.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
+            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:"historical.thresholdDiagnostic.year",transform:"Identity; null preserved; not fixed 5 Gt"},
+            "5% diagnostic status":{id:"historical.thresholdDiagnostic.status",transform:"Identity; missing archived diagnostic -> withheld"},
             Estimated:{id:"historical.isNowcast",transform:"true -> yes; false -> no, not vintage certification"},
           }}
           testId="button-download-historical-trend"
         />
       </div>
+      {metricView === "netZero" && <ul className="text-xs text-muted-foreground mb-3" data-testid="historical-threshold-statuses">
+        {data.map(d => <li key={d.year}>{d.year}: {thresholdDiagnosticDisplay(d.thresholdDiagnostic)}</li>)}
+      </ul>}
+      {metricView === "netZero" && <ThresholdDiagnosticDownload diagnostics={
+        data.flatMap(d => d.thresholdDiagnostic ? [d.thresholdDiagnostic] : [])
+      } contextLabels={data.flatMap(d => d.thresholdDiagnostic ? [`Historical reference input year ${d.year}`] : [])} />}
 
       <ResponsiveContainer width="100%" height={280}>
         <ComposedChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>

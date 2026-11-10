@@ -3,8 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { DownloadDataButton } from "./download-data-button";
 import { nativeExportRow,nativeExportBindings } from "@shared/nativeExport";
+import type { NativeResidualDiagnostics } from "@shared/nativeThresholdDiagnostics";
+import { thresholdDiagnosticDisplay, THRESHOLD_DIAGNOSTIC_LABEL } from "@shared/thresholdDiagnostic";
+import { nativeThresholdExportRows, nativeThresholdExportBindings } from "@/lib/native-threshold-export";
+import { nativeResidualDiagnosticsSchema } from "@shared/nativeThresholdSchema";
 
 type CandidateResponse = {
+  residualDiagnostics?: NativeResidualDiagnostics;
   inputs?: {
     inventoryYear?: number;
     indicatorYear?: number;
@@ -54,6 +59,10 @@ export function EmissionsCandidateReview() {
   const [scenario, setScenario] = useState<ReviewScenario>("constant");
   const { data, isLoading, isError, refetch, isFetching } = useQuery<CandidateResponse>({
     queryKey: [`/api/emissions/candidate?scenario=${scenario}`],
+    select: response => {
+      if (response.residualDiagnostics) nativeResidualDiagnosticsSchema.parse(response.residualDiagnostics);
+      return response;
+    },
   });
 
   return (
@@ -98,6 +107,28 @@ export function EmissionsCandidateReview() {
         This partial Package 2 review does not validate the legacy calculation and makes no new
         temperature claim. Calibration and source assessment are still pending.
       </p>
+      {!isError && data?.result && !data.residualDiagnostics &&
+        <p role="status" className="text-xs text-muted-foreground">Native residual diagnostics are unavailable in this response. No default or legacy baseline is substituted.</p>}
+      {!isError && data?.residualDiagnostics && <section className="rounded-md border p-3 space-y-2" data-testid="native-residual-diagnostics">
+        <h3 className="text-sm font-semibold">{THRESHOLD_DIAGNOSTIC_LABEL} · native-mass diagnostics</h3>
+        <p className="text-xs text-muted-foreground">{data.residualDiagnostics.qualification}</p>
+        <p className="text-xs text-muted-foreground break-words">Baseline input: {data.residualDiagnostics.baselineInputId}. {data.residualDiagnostics.sourceEvidence}</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead><tr><th className="text-left">Region / gas</th><th className="text-right">2024 baseline (native mass/year)</th><th className="text-right">5% threshold (same unit)</th><th className="text-right">{THRESHOLD_DIAGNOSTIC_LABEL}</th></tr></thead>
+            <tbody>{data.residualDiagnostics.records.map(r => <tr key={`${r.region}:${r.memberId}:${r.gas}`}>
+              <th className="text-left font-normal py-1">{r.region} / {r.gas}</th>
+              <td data-field-id="native.residualDiagnostics.records[].diagnostic.baselineValue" className="text-right">{r.diagnostic.baselineValue?.toPrecision(6) ?? "Withheld"} {r.diagnostic.basis?.unit}</td>
+              <td data-field-id="native.residualDiagnostics.records[].diagnostic.thresholdValue" className="text-right">{r.diagnostic.thresholdValue?.toPrecision(6) ?? "Withheld"}</td>
+              <td data-field-id="native.residualDiagnostics.records[].diagnostic.year" className="text-right">{thresholdDiagnosticDisplay(r.diagnostic)}</td>
+            </tr>)}</tbody>
+          </table>
+        </div>
+        <DownloadDataButton kind="native" filename="native-mass-five-percent-2024-diagnostics"
+          sheetName="Native residual diagnostic" label="Download separate native threshold diagnostics"
+          rows={nativeThresholdExportRows(data.residualDiagnostics.records)}
+          fieldBindings={nativeThresholdExportBindings} testId="button-download-native-thresholds" />
+      </section>}
 
       {isLoading ? (
         <div role="status" aria-label="Loading candidate emissions" className="space-y-3">

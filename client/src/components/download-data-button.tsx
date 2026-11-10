@@ -2,14 +2,16 @@ import { useState } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { exportNotes, type ExportKind } from "@/lib/export-contract";
-import { semanticRows } from "@shared/fieldSemantics";
+import { semanticRows, requireOutputSemantic } from "@shared/fieldSemantics";
 import { bindExportColumns,type ExportFieldBinding } from "@shared/outputFieldSemantics";
 import { exportDataIdentity } from "@/lib/export-identity";
+import { certifySupplementalSheetRows } from "@shared/supplementalSheetBindings";
 
 type Cell = string | number | boolean | null | undefined;
 export type DownloadRow = Record<string, Cell>;
 
 interface DownloadDataButtonProps {
+  interpretationNotes?: Array<{ Field: string; Value: string; SemanticField?: string }>;
   fieldBindings?:Record<string,ExportFieldBinding>;
   kind: ExportKind;
   filename: string;
@@ -22,6 +24,7 @@ interface DownloadDataButtonProps {
 }
 
 export function DownloadDataButton({
+  interpretationNotes = [],
   fieldBindings,
   kind,
   filename,
@@ -43,6 +46,8 @@ export function DownloadDataButton({
     setBusy(true);
     setError(null);
     try {
+      for (const note of interpretationNotes)
+        if (note.SemanticField) requireOutputSemantic(note.SemanticField);
       const XLSX = await import("xlsx");
       const identity=await exportDataIdentity(data);
       const ws = XLSX.utils.json_to_sheet(identity.normalized);
@@ -50,13 +55,15 @@ export function DownloadDataButton({
       XLSX.utils.book_append_sheet(wb, ws, sheetName.slice(0, 31));
       XLSX.utils.book_append_sheet(wb,
         XLSX.utils.json_to_sheet([...exportNotes(kind, filename, new Date().toISOString()),
+          ...interpretationNotes,
           {Field:"Exported data SHA-256",Value:identity.hash},
           {Field:"Export hash method",Value:"SHA-256 of JSON array in exported row order; object keys sorted; missing cells normalized to null. Identifies exported data, not scientific acceptance."}]),
         sheetName.slice(0, 31) === "Interpretation" ? "Export Notes" : "Interpretation");
-      XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(semanticRows()),
+      XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(certifySupplementalSheetRows("Field semantics",semanticRows())),
         sheetName.slice(0,31)==="Field semantics" ? "Semantic definitions" : "Field semantics");
       if(fieldBindings) XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(
-        bindExportColumns(identity.normalized,fieldBindings).map(row=>({...row,dependencies:row.dependencies.join(", ")}))
+        certifySupplementalSheetRows("Column bindings",
+          bindExportColumns(identity.normalized,fieldBindings).map(row=>({...row,dependencies:row.dependencies.join(", ")})))
       ),"Column bindings");
       const name = filename.endsWith(".xlsx") ? filename : `${filename}.xlsx`;
       XLSX.writeFile(wb, name);

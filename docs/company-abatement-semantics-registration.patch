@@ -1,0 +1,19 @@
+diff --git a/shared/outputFieldSemantics.ts b/shared/outputFieldSemantics.ts
+--- a/shared/outputFieldSemantics.ts
++++ b/shared/outputFieldSemantics.ts
+@@ -6,6 +6,7 @@
+ import { nativeOutputSemantics } from "./nativeOutputSemantics";
+ import { companyReviewSemantics } from "./companyReviewSemantics";
+ import {companyReplaySemantics} from "./companyReplaySemantics";
++import { companyAbatementSemantics } from "./companyAbatementSemantics";
+ import { researchFieldSemantics } from "./researchFieldSemantics";
+ import { companySummarySemantics } from "./companySummarySemantics";
+ import { backtestFieldSemantics } from "./backtestFieldSemantics";
+@@ -41,6 +42,7 @@
+   ...nativeOutputSemantics,
+   ...companyReviewSemantics,
+   ...companyReplaySemantics,
++  ...companyAbatementSemantics,
+   ...researchFieldSemantics,
+   ...companySummarySemantics,
+   ...backtestFieldSemantics,

@@ -10,16 +10,17 @@ import ts from "typescript";
 
 const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
 test("134 original slots close; unknown historical summary remains unresolved without denominator changes",()=>{
-  assert.equal(census.fullyBoundFields,1000);
+  assert.equal(census.originalGapReconciliation.originalFullyBoundFields,1000);
   assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
-  assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
+  assert.equal(census.originalGapReconciliation.originalPublicSlots,1001);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,census.supplementalSlotAccounting.addedPublicSlots);
+  assert.deepEqual(census.supplementalSlotAccounting.removedOriginalSlots,[]);
   assert.equal(census.withheldFields.length,27);
   assert.equal(census.resolvedResponseAliases.length,4);
-  assert.equal(census.fields.length,1028);
+  assert.equal(census.originalGapReconciliation.originalSlots.length,1028);
   for(const [surface,prefix] of remainingApiBindings) {
-    const family=census.families.find((f:{surface:string})=>f.surface===surface);
+    const family=census.originalGapReconciliation.families.find((f:{surface:string})=>f.surface===surface);
     assert.ok(family,prefix);
     assert.deepEqual(family.unbound.filter((f:{resolution:string})=>f.resolution!=="withheld-public-field").map((f:{field:string})=>f.field),
        prefix==="fetchRuns"?["runs[].summary"]:[],prefix);

@@ -4,7 +4,7 @@ export const exportContracts = {
   native: {
     status:"Uncalibrated native-emissions candidate",
     interpretation:"Global deterministic conditional emissions using native gas masses and AR6 GWP100 reporting. No temperature, regional climate or ensemble probability claim.",
-    limitation:"Control/illustrative/dashboard inputs are not approved calibrated policy forecasts. Published inventory uncertainty is not forecast uncertainty; retained hashes are not publication-vintage proof.",
+    limitation:"Control/illustrative/dashboard inputs are not approved calibrated policy forecasts. Published inventory uncertainty is not forecast uncertainty; retained hashes are not publication-vintage proof. Separate residual diagnostics use5% of the same captured2024 native-gas baseline, not CO2e or physical net zero; no crossing is censored at the actual simulated horizon.",
   },
   legacy: {
     status: "Unsupported legacy diagnostic",

@@ -87,3 +87,7 @@ Baseline workspace40c524b. This index covers the integrated changes, not private
 - uv.lock
 
 The deliberate-source-control test was introduced and then removed in separate commits; see CI_Source_Negative_Control.json. Original criterion IDs/text/source hashes are unchanged.
+
+Final local receipt-only changes after d843960:
+- docs/Implementation_Change_Index_20261110.md (this footer; the original index is published)
+- script/save-release-receipt-20261110.py

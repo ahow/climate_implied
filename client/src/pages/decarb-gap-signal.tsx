@@ -16,7 +16,7 @@ import {
 import { Activity, Globe, Layers, BarChart3, TrendingUp, TrendingDown, ArrowUpDown, Beaker } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,groupGapExportColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic } from "@/lib/valuation-claims";
+import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -604,7 +604,7 @@ export default function DecarbGapSignal() {
                         <th className="text-left py-1.5 pr-2">Company</th>
                         <th className="text-left py-1.5 pr-2">Sector</th>
                         <th className="text-right py-1.5 pr-2">P/E</th>
-                        <th className="text-right py-1.5 pr-2">Gordon baseline</th>
+                        <th className="text-right py-1.5 pr-2">{gordonBaselineLabel(8)}</th>
                         <th className="text-right py-1.5">Peer earnings-yield gap</th>
                       </tr>
                     </thead>
@@ -635,7 +635,7 @@ export default function DecarbGapSignal() {
                         <th className="text-left py-1.5 pr-2">Company</th>
                         <th className="text-left py-1.5 pr-2">Sector</th>
                         <th className="text-right py-1.5 pr-2">P/E</th>
-                        <th className="text-right py-1.5 pr-2">Gordon baseline</th>
+                        <th className="text-right py-1.5 pr-2">{gordonBaselineLabel(8)}</th>
                         <th className="text-right py-1.5">Peer earnings-yield gap</th>
                       </tr>
                     </thead>
@@ -737,6 +737,7 @@ export default function DecarbGapSignal() {
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <h3 className="text-xs font-medium text-muted-foreground">Cumulative Return (%)</h3>
                     <DownloadDataButton
+                  interpretationNotes={gordonExportNotes(8)}
                       filename="backtest-cumulative-return"
                       kind="backtest"
                       sheetName="Cumulative Return"

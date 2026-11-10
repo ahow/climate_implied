@@ -39,6 +39,7 @@ import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,indicatorValueColumn } from "@shared/finiteExportSchemas";
 import { describePersistedSummary } from "@shared/dataManagementSemantics";
+import type { FetchSummaryEvidence } from "@shared/fetchSummarySemantics";
 import { FinancialProviderStatus } from "@/components/financial-provider-status";
 import { AnalysisSnapshotStatus } from "@/components/analysis-snapshot-status";
 import { FinancialReview, ScientificValidation } from "@/components/financial-review";
@@ -114,14 +115,18 @@ interface FetchRun {
   adaptersFailed: number;
   summary: unknown;
 }
-function runSummaryClaimLabel(value:unknown):string {
-  return describePersistedSummary(value).availability==="available"
-    ? "Known producer claims schema-validated; not source or scientific acceptance"
+function runSummaryClaimLabel(value:unknown,evidence?:FetchSummaryEvidence):string {
+  const interpretation=describePersistedSummary(value,evidence);
+  return interpretation.availability==="available"
+    ? interpretation.provenance==="verified"
+      ? "Prospective producer manifest verified; not source or scientific acceptance"
+      : "Schema-compatible JSON only; producer provenance unverified; raw JSON remains available unchanged"
     : "Typed summary claims unavailable; raw historical JSON remains available unchanged";
 }
 
 interface RunsResponse {
   runs: FetchRun[];
+  summaryEvidence?: Record<string,FetchSummaryEvidence>;
 }
 
 const CATEGORY_ORDER = [
@@ -184,6 +189,9 @@ export default function DataManagement() {
   });
 
   const lastRun = runsData?.runs?.[0];
+  const lastSummaryEvidence = lastRun ? runsData?.summaryEvidence?.[lastRun.id] : undefined;
+  const lastSummaryInterpretation = lastRun
+    ? describePersistedSummary(lastRun.summary,lastSummaryEvidence) : undefined;
 
   const grouped = (data?.indicators ?? []).reduce<Record<string, IndicatorSummary[]>>(
     (acc, ind) => {
@@ -222,9 +230,38 @@ export default function DataManagement() {
             <>
             <p className="text-xs text-muted-foreground flex items-center gap-1" data-testid="text-last-run">
               <Clock className="h-3 w-3" />
-              Last run: {formatDateTime(lastRun.startedAt)} ({lastRun.trigger}, {lastRun.status})
+              Last run: <span data-field-id="fetchRuns.runs[].startedAt">{formatDateTime(lastRun.startedAt)}</span>
+              {" ("}<span data-field-id="fetchRuns.runs[].trigger">{lastRun.trigger}</span>
+              {", "}<span data-field-id="fetchRuns.runs[].status">{lastRun.status}</span>{")"}
             </p>
-            <p className="text-xs text-muted-foreground">{runSummaryClaimLabel(lastRun.summary)}</p>
+            <p className="text-xs text-muted-foreground" data-field-id="fetchSummaryDisplay.claim">
+              {runSummaryClaimLabel(lastRun.summary,lastSummaryEvidence)}
+            </p>
+            {lastSummaryEvidence?.availability==="unverified" && (
+              <p className="text-xs text-muted-foreground" data-field-id="fetchSummaryEvidence.reason">
+                {lastSummaryEvidence.reason}
+              </p>
+            )}
+            {lastSummaryEvidence?.availability==="verified" && lastSummaryInterpretation?.availability==="available" && (
+              <div className="text-xs space-y-1" data-testid="verified-run-summary">
+                <p>
+                  Producer contract: <span data-field-id="fetchSummaryEvidence.manifest.version">{lastSummaryEvidence.manifest.version}</span>
+                  {" · manifest "}<span className="break-all" data-field-id="fetchSummaryEvidence.manifestId">{lastSummaryEvidence.manifestId}</span>
+                </p>
+                {lastSummaryInterpretation.claims.perAdapter.map((adapter,index)=>(
+                  <p key={`${adapter.id}-${index}`}>
+                    <span data-field-id="fetchSummaryProducer.perAdapter[].id">{adapter.id}</span>
+                    {": "}<span data-field-id="fetchSummaryProducer.perAdapter[].values">{adapter.values}</span>{" fetched rows"}
+                    {adapter.error!==undefined && (
+                      <span data-field-id="fetchSummaryProducer.perAdapter[].error">{" · error: "}{adapter.error}</span>
+                    )}
+                  </p>
+                ))}
+                {lastSummaryInterpretation.claims.error!==undefined && (
+                  <p data-field-id="fetchSummaryProducer.error">Run error: {lastSummaryInterpretation.claims.error}</p>
+                )}
+              </div>
+            )}
             <details className="text-xs text-muted-foreground">
               <summary>Retained raw run summary</summary>
               <pre className="whitespace-pre-wrap break-all" data-field-id="fetchRuns.runs[].summary">{JSON.stringify(lastRun.summary,null,2)}</pre>

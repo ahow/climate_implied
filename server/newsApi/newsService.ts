@@ -80,9 +80,10 @@ export interface ClimateNewsResult {
   dateRange: { start: string; end: string };
 }
 
+import {requireNewsRefreshAccess,matchingNewsCache,type NewsAccess} from "./providerAccess";
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 
-let memoryCache: { data: ClimateNewsResult; fetchedAt: number } | null = null;
+let memoryCache: { cacheKey:string; data: ClimateNewsResult; fetchedAt: number } | null = null;
 
 function delay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -115,11 +116,11 @@ async function getFromDbCache(cacheKey: string): Promise<ClimateNewsResult | nul
 
     const row = rows[0];
     const fetchedAt = new Date(row.fetchedAt).getTime();
-    if (Date.now() - fetchedAt > CACHE_TTL_MS) {
+    if (!matchingNewsCache({cacheKey,fetchedAt},cacheKey,Date.now(),CACHE_TTL_MS)) {
       return null;
     }
 
-    memoryCache = { data: row.resultData as ClimateNewsResult, fetchedAt };
+    memoryCache = { cacheKey, data: row.resultData as ClimateNewsResult, fetchedAt };
     console.log(`[NewsAPI] Loaded from database cache (fetched ${Math.round((Date.now() - fetchedAt) / 60000)}m ago)`);
     return row.resultData as ClimateNewsResult;
   } catch (e) {
@@ -258,10 +259,11 @@ function getMonthlyBuckets(dateStart: string, dateEnd: string): { start: string;
 
 export async function getClimateNewsAnalysis(
   months: number = 12,
+  access: NewsAccess = "cached-only",
 ): Promise<ClimateNewsResult> {
   const cacheKey = `climate_news_${months}m`;
 
-  if (memoryCache && Date.now() - memoryCache.fetchedAt < CACHE_TTL_MS) {
+  if (memoryCache && matchingNewsCache(memoryCache,cacheKey,Date.now(),CACHE_TTL_MS)) {
     console.log(`[NewsAPI] Serving from memory cache`);
     return memoryCache.data;
   }
@@ -270,6 +272,7 @@ export async function getClimateNewsAnalysis(
   if (dbCached) {
     return dbCached;
   }
+  requireNewsRefreshAccess(access);
 
   const now = new Date();
   const dateEnd = now.toISOString().split("T")[0];
@@ -352,7 +355,7 @@ export async function getClimateNewsAnalysis(
     dateRange: { start: dateStart, end: dateEnd },
   };
 
-  memoryCache = { data: result, fetchedAt: Date.now() };
+  memoryCache = { cacheKey, data: result, fetchedAt: Date.now() };
   await saveToDbCache(cacheKey, result);
 
   console.log(`[NewsAPI] Analysis complete: ${totalArticles} articles, ${sentiment.length} monthly sentiment points`);

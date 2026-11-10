@@ -1,3 +1,5 @@
+import type { ThresholdDiagnostic } from "@shared/thresholdDiagnostic";
+
 export interface IndicatorData {
   renewableCapacityGW: number;
   renewableGrowthRate: number;
@@ -79,6 +81,8 @@ export interface ProjectionResult {
     reductionRate: number;
     temperatureRise: number;
     netZeroYear: number | null;
+    legacyFixed5Gt?: { version: "fixed-5gt-v1"; year: number | null; thresholdValue: 5; unit: "GtCO2e"; notNetZero: true };
+    thresholdDiagnostic?: ThresholdDiagnostic;
     emissions2024: number;
     emissions2034: number;
     emissions2100: number;
@@ -92,6 +96,7 @@ export interface HistoricalTrendPoint {
   p90: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic?: ThresholdDiagnostic;
   isNowcast?: boolean;
 }
 
@@ -101,6 +106,7 @@ export interface CategoryProjectionResult {
   temperatureRise: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic?: ThresholdDiagnostic;
   trajectory: ForwardProjection[];
   temperatureDistribution: TemperatureProjection[];
 }
@@ -111,6 +117,7 @@ export interface RegionalProjection {
   temperatureRise: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic?: ThresholdDiagnostic;
   carbonIntensity: number;
   carbonIntensityBasis: string;
   claim: string;
@@ -134,6 +141,7 @@ export interface CategoryMetrics {
   median: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic?: ThresholdDiagnostic;
 }
 
 export interface CategoryHistoricalTrendPoint {

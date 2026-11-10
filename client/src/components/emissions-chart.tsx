@@ -42,7 +42,8 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
           <h3 className="text-sm font-medium text-muted-foreground">Global Emissions Trajectory</h3>
-          <p className="text-xs text-muted-foreground mt-0.5">GtCO2e with P10-P90 uncertainty range</p>
+          <p className="text-xs text-muted-foreground mt-0.5">GtCO2e with a model-conditional P10-P90 range, not calibrated forecast uncertainty.</p>
+          <p className="text-xs text-muted-foreground mt-1">The legacy fixed-5gt-v1 comparator is a positive-emissions threshold, not net zero or a 5%-of-2024 threshold. The default 60.3 anchor is an unverified model assumption, not a source-evidenced inventory.</p>
         </div>
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -145,7 +146,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
             stroke="hsl(var(--muted-foreground))"
             strokeDasharray="4 4"
             label={{
-              value: "Legacy threshold (5 GtCO₂e; not net zero)",
+              value: "Legacy fixed-5gt-v1 (5 GtCO₂e; not 5% of 2024 or net zero)",
               position: "insideTopRight",
               style: { fontSize: 10, fill: "hsl(var(--muted-foreground))" },
             }}

@@ -50,7 +50,14 @@ for (const clause of canonical) {
   assert.ok(record.check_scope.startsWith(`${clause.id} ONLY:`), "Every review is criterion-scoped");
   assert.ok(record.behaviour_delivered_this_run && record.numerical_results[0].criterion === clause.id);
   assert.equal(record.status_review.criterion_regression_evidenced, false);
-  if (clause.status === "verified") assert.equal(record.status, "verified", "No unproved prior verified downgrade");
+  // This proposal predates the parent's newly implemented criteria. Compare
+  // its status to that retained pre-increment state, not future verification.
+  const priorStatus=clause.before_ready_implementation_20261110?.status ?? clause.status;
+  if (priorStatus === "verified") assert.equal(record.status, "verified", "No unproved prior verified downgrade");
+  if(priorStatus!=="verified"&&clause.status==="verified"){
+    assert.ok(clause.executions.length>0,"New parent verification needs actual executions");
+    assert.ok(clause.files_functions_changed.length>0,"New parent verification needs implementation");
+  }
   const inspectedCode = record.existing_evidence.filter((p: string) => /^(server|script)\//.test(p));
   assert.ok(inspectedCode.length >= 2 && inspectedCode.some((p: string) => p.endsWith(".test.ts")));
   for (const path of inspectedCode) readFileSync(new URL(`../${path}`, import.meta.url));

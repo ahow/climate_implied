@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "kind": "physical-evidence-proposal-and-executed-source-diagnostic",
+  "originalCriterionProposal": {
+    "id": "S07-008",
+    "priorStatus": "partial",
+    "proposedStatus": "partial",
+    "scope": "Evidence proposal for the original historical emissions/forcing and 2025 human-warming criterion, not a new criterion or ledger promotion.",
+    "frozenTargetsPreserved": {
+      "2025HumanWarmingC": 1.37,
+      "mean2016to2025HumanWarmingC": 1.24,
+      "mean2016to2025RangeC": [1.0, 1.5]
+    },
+    "newEvidence": [
+      "Actual 2025 GMST source now pinned in human_warming_reference_contract(), with version IGCC-2025a, revision, byte hashes, date, licence and SR15-labelled row; distinct Annual 1.38 target is metadata, not a replacement for frozen 1.37.",
+      "human_warming_check() cannot treat caller observable/reference strings or raw arrays as independent attribution/GMST verification. Even matching GSAT strings are rejected against the immutable GMST reference.",
+      "Matching GMST strings still yield unavailable because no genuine attributed-GMST member artifact, definition reconciliation or memberwise baseline provenance exists.",
+      "Synthetic fixture interval math is isolated in _conditional_human_warming_math(), labelled conditional-math-only, and never invoked by the actual comparison adapter.",
+      "Previously executed source-justified raw/change ERF diagnostics and original-source investigations remain separately identified below; no model rerun for this contract change."
+    ],
+    "stillUnmet": [
+      "Fully compatible historical native emissions reconciliation and unresolved species/natural forcing conventions",
+      "Genuinely attributed model GMST member histories with verified SR1.5 definition, actual 2016-2025 coordinates and memberwise 1850-1900 baseline",
+      "Actual model-member comparison against 2025 1.37 and 2016-2025 1.24 [1.0,1.5], including an authentic share of members in range"
+    ],
+    "actualMemberComparisonPerformed": false,
+    "shareMeanMembersInRange": null,
+    "centralEligible": false,
+    "ledgerModified": false
+  },
+  "referenceContractHardening": {
+    "implementation": "script/compare_retained_igcc_physics.py",
+    "functions": ["human_warming_reference_contract", "human_warming_check", "_conditional_human_warming_math"],
+    "codeSha256": "27c527b753990fbd5dccf13b91284a683ecd3f147d4105662c7a089b9f80dd9d",
+    "tests": "script/test_retained_igcc_physics.py",
+    "testSha256": "8739a6e59d4419432e3a8a8b0b68d3739737359e0ee6276cc89e110161619450",
+    "finalChangedTestCommand": "python3 -m unittest discover -s script -p test_retained_igcc_physics.py -v",
+    "finalChangedTestsPassed": 5,
+    "coverage": [
+      "GSAT pretending to match a caller-supplied GSAT reference is rejected",
+      "Actual source version, revision, SR1.5 definition and frozen numerical targets are pinned",
+      "Mutating returned metadata cannot redefine subsequent reference contracts",
+      "Caller-supplied matching GMST labels remain insufficient to accept actual members",
+      "Conditional fixture arithmetic remains explicitly separate from actual member acceptance",
+      "Missing actual data-year coordinates and total temperature cannot replace attribution"
+    ],
+    "executionNote": "Only the changed test file was run for this hardening; no source downloads, physical comparison rerun or app/workflow tests. Earlier executed result below predates this adapter hardening and remains immutable."
+  },
+  "executedAtUTC": "2026-11-10T12:09:03.411350+00:00",
+  "status": "new-source-justified-direct-gas-ERF-change-comparison-executed; human-reference-located; attribution-and-independent-annual-acceptance-unavailable",
+  "implementation": "script/physical_source_alignment.py",
+  "tests": {
+    "file": "script/test_physical_source_alignment.py",
+    "command": "python3 -m unittest discover -s script -p test_physical_source_alignment.py -v",
+    "passed": 7,
+    "coverage": [
+      "Memberwise annual-origin subtraction precedes median and preserves raw arrays",
+      "Wrong units, nonfinite values and missing reference years fail explicitly",
+      "Duplicate source coordinates rejected",
+      "Annual versus SR1.5 headline definitions remain separate",
+      "Publication year cannot replace actual annual coordinates",
+      "Base versus standardized headline disagreement rejected",
+      "Truncated upstream file tree cannot establish absence"
+    ]
+  },
+  "execution": {
+    "command": "python3 script/physical_source_alignment.py generated-artifacts/independent-fair-benchmark/physical-retention/physical-b4600684aa23c277272f92ace8d2cdf6e313ba8157e5c2cf91b9e91010e22335.json",
+    "result": "generated-artifacts/physical-source-alignment/fc4e08d52739be2cf4b9be474b2e56e83c9f1e7c9333f0de8756bd169ba91049.json",
+    "resultSha256": "fc4e08d52739be2cf4b9be474b2e56e83c9f1e7c9333f0de8756bd169ba91049",
+    "codeSha256": "086ca3be5df94fe71b505589f5c3456fde6692fc7e7d723753039f935631cbb0",
+    "physicalManifestSha256": "a25ad010a39a50d032c3e36f16150d0cf052c40204c6b017d20971b6fc9547d5",
+    "physicalSha256": "cc8d4cec090360ffa7fb85f19f754b2a78db3d71e1c1157bb118891aaec1d343",
+    "retainedDimensions": {
+      "annualYears": 350,
+      "scenarios": 8,
+      "configurations": 66,
+      "species": 64
+    },
+    "sourceAttempts": 22,
+    "successfulHTTP200": 22,
+    "receipts": "Each source URL, retrieval date, licence qualification, SHA256, HTTP status and private content-addressed byte path is recorded in result.sourceReceipts.",
+    "modelsRerun": 0,
+    "fittedParameters": [],
+    "scope": "Reads already-retained physical matrices only. Eight historical scenario medians are identical, not eight independent samples. This is not a calibrated 10k ensemble."
+  },
+  "sourceBaselineFindings": {
+    "sourceProducingRevision": "ClimateIndicator/forcing-timeseries@6e5a0e0fe4525ad77bbdd47da8ebc01b43a06cc1",
+    "exactERFByteMatchToExistingPin": "be4020f78361563fc215cc71d169e3d3800d0cf677c5d1174653098c82618331",
+    "forcingCodeSha256": "b067808e644a584dd96144d26f06aeab046a39552bc33a5775d31449fe80bdbb",
+    "forcingCodeLocation": "notebooks/12_make-forcing.py:727-762",
+    "sourceOperation": "Meinshausen2020 GHG forcing uses reference concentrations 277.15 ppm CO2, 731.41 ppb CH4 and 273.87 ppb N2O, then explicitly subtracts the evaluated 1750 ghg_forcing_offset.",
+    "actualSource1750Concentrations": {
+      "CO2ppm": 278.37785700000006,
+      "CH4ppb": 729.2,
+      "N2Oppb": 270.1
+    },
+    "actualModelBaselineConcentrations": {
+      "CO2ppm": 278.3,
+      "CH4ppb": 729.2,
+      "N2Oppb": 270.1
+    },
+    "modelForcingReferenceConcentrations": {
+      "CO2ppm": 277.15,
+      "CH4ppb": 731.41,
+      "N2Oppb": 273.87
+    },
+    "time": "IGCC integer-labelled annual ERF versus retained FaIR boundary-pair annual means; compare only 1750-2014, not post-2014 SSP years as historical observations.",
+    "unit": "Both are W m-2; verified identity multiplier 1. No unit scaling estimated.",
+    "allowedAlignment": "For CO2/CH4/N2O only, subtract each series' own actual annual-1750 ERF; subtract model baselines memberwise before median. Report raw and changes separately.",
+    "interpretationLimit": "Annual-origin ERF change diagnostic, not exact conversion between nonlinear concentration-reference states, chemistry reconciliation or an acceptance score. This alignment does not improve the CO2 RMSE and no adjustment was optimized.",
+    "naturalTermsNotAltered": {
+      "solarComment": "Mean TSI over complete solar cycles 6755 BCE-1750 CE.",
+      "volcanicComment": "Background sAOD mean over 9500 BCE-1749 CE.",
+      "volcanicExecutableDiscrepancy": "notebooks/10_volcanic-forcing.py:196 concatenates 135000 pre-1750 HolVol months, but line 235 subtracts mean(aod[:11262*12]), or 135144 months. The slice extends 144 months beyond the described pre-1750 block. No assumption that comment and executable reference are equivalent; no source correction invented.",
+      "volcanicCodeSha256": "00e60e9cb5c8e6b5e3d5479b16dda71f8e4ac093ed6642bd6098b202f8f700ed",
+      "missing": "Compatible retained-model natural-reference periods/pre-1750 histories and resolution of the source comment/code discrepancy.",
+      "action": "Preserve natural terms as delivered; do not force 1750 solar or volcanic forcing to zero."
+    }
+  },
+  "directGasResults": {
+    "yearsInclusive": [1750, 2014],
+    "units": "W m-2",
+    "scenarioMedianSpread": 0,
+    "CO2": {
+      "rawBias": -0.06730628927981265,
+      "rawRMSE": 0.08707977129266885,
+      "alignedChangeBias": -0.06762442532430468,
+      "alignedChangeRMSE": 0.0873259004660596,
+      "removedModelAnnual1750Median": 0.00031813604449203343,
+      "removedReferenceAnnual1750": 0,
+      "rawModel2014": 2.0233777835481837,
+      "alignedModel2014Change": 2.0230596475036915,
+      "reference2014": 1.979575237427303
+    },
+    "CH4": {
+      "rawBias": 0.005873336714066177,
+      "rawRMSE": 0.014336304288384484,
+      "alignedChangeBias": 0.005873336714304801,
+      "alignedChangeRMSE": 0.014336304288482248,
+      "rawModel2014": 0.5679277594221877,
+      "alignedModel2014Change": 0.5679277594224263,
+      "reference2014": 0.5278986327049378
+    },
+    "N2O": {
+      "rawBias": -0.005789615082349429,
+      "rawRMSE": 0.011081606370971026,
+      "alignedChangeBias": -0.005789635349885472,
+      "alignedChangeRMSE": 0.01108161695981327,
+      "rawModel2014": 0.2019929693278636,
+      "alignedModel2014Change": 0.20199294906032755,
+      "reference2014": 0.19421071699021544
+    },
+    "aggregateRawValues": "All four existing aggregate component diagnostics remain separately available in result.rawForcing; no natural baseline alignment or old gate retuning."
+  },
+  "actual2025HumanWarmingReference": {
+    "status": "located and independently cross-checked across author base CSV, standardized CSV and source NetCDF metadata",
+    "repository": "ClimateIndicator/data",
+    "revision": "d9726573dccd9381652432b58b38f670af493c1c",
+    "retrievedAtUTC": "2026-11-10T12:09:00.306870+00:00",
+    "basePath": "data/base/anthropogenic_warming/Assessment-Update-2025_GMST_headlines.csv",
+    "baseSha256": "d419c3f7d513b42052f5635454853610739d8b5f1749f55b5df03862dfe28879",
+    "standardizedPath": "data/CDS/csv/temperature-attribution_global_igcc-assessment_synthesis_headline_IGCC-2025a.csv",
+    "standardizedSha256": "da1641bc9d57b7129c1c7742935c646754ec250632f9d291c5287d4b2a9bc9fc",
+    "metadataPath": "data/CDS/nc/temperature-attribution_global_igcc-assessment_synthesis_headline_IGCC-2025a.nc",
+    "metadataSha256": "875c60fa3609ff1e1af6964fd3061d0bb69cea927cc97fa9576f79263dec75da",
+    "metadataDateCreated": "2026-07-22T10:13:14Z",
+    "license": "CC-BY-4.0, explicitly in both repository LICENSE and NetCDF metadata",
+    "credit": "Christopher Smith and Tristram Walsh; multi-method ROF/Gillett, KCC/Ribes and GWI/Walsh synthesis; Forster et al. (2026), section 8, doi:10.5194/essd-18-3889-2026",
+    "publicationURL": "https://essd.copernicus.org/articles/18/3889/2026/",
+    "publicationRetrievedSha256": "00660b26365826f90a440e51e3e344b85154d84e7b00de6da1704eb6933e7d3a",
+    "observable": "human-induced GMST",
+    "baseline": "1850-1900",
+    "units": "degC anomaly",
+    "dataYear": 2025,
+    "annualTimeBoundsHalfOpen": [2025, 2026],
+    "annualDefinitionP50": 1.38,
+    "SR15DefinitionP50": 1.37,
+    "annualBothDefinitionP05P95": [1.1, 1.7],
+    "decadeYearsInclusive": [2016, 2025],
+    "decadeTimeBoundsHalfOpen": [2016, 2026],
+    "decadeP05P50P95": [1.0, 1.24, 1.5],
+    "definitionWarning": "1.37 is explicitly the SR15-definition row; Annual is 1.38. They are not interchangeable targets. No invented SR1.5-to-Annual adjustment.",
+    "methodSeries": "All three actual method CSVs have annual midpoint/bounds coordinates through 2025 and every 2016-2025 year. These are marginal quantiles, not matched retained FaIR members; do not infer member joint trajectories or decade ranges by averaging quantiles.",
+    "rejectedAlternate": "ClimateIndicator/anthropogenic-warming-assessment@9633fb45f9bf82b47492f969614568c43f3e5a6f/results/Assessment-Extrapolation-2025_GMST_headlines.csv is an extrapolation from the older assessment, not the located actual 2025 update.",
+    "modelComparisonStatus": "unavailable",
+    "shareMeanMembersInRange": null,
+    "missingFields": [
+      "Paired human-only/counterfactual or independently source-compatible attribution member trajectories for retained FaIR, through 2025",
+      "Verified GMST observable and selected Annual versus SR1.5 definition for those trajectories",
+      "Memberwise 1850-1900 baseline and joint member identities across 2016-2025"
+    ],
+    "notSubstituted": ["total FaIR surface temperature", "observed total GMST", "GMST/GSAT conversion factor", "publication year as observation year"]
+  },
+  "speciesAndEmissionsActualAttempts": {
+    "status": "actual source inputs inspected; emissions scoring withheld for explicit compatibility gaps",
+    "sourceConcentrationSha256": "beb007b963047f23e4fc8b4e56c608c1f8084f22c8a34a802a4b434cc274ee3a",
+    "concentrationInputRows": 176,
+    "concentrationInputMissingYears": "1751-1849 inclusive; actual upstream make-forcing code interpolates these, not independent annual observations",
+    "sourceSLCFCodeSha256": "a40bd0f79895dbfcd9232a105528b4625dd22b8464e92ad9185fedafe73ad583",
+    "sourceSLCFOutputSha256": "fcb40a70464b4c6ff6c94e0e05d2e8e6cc681f6ff5f91705d3bcbbb3e3140897",
+    "slcfRows": 275,
+    "slcfYearsInclusive": [1750, 2024],
+    "actualSpecies": ["BC", "OC", "SO2", "NOx", "CO", "NMVOC", "NH3", "CH4", "N2O"],
+    "CH4N2OFirstFiniteYear": 1970,
+    "CH4N2OBlankRowsEach": 220,
+    "sourceMappings": ["SO2 -> RCMIP Sulfur", "NMVOC -> RCMIP VOC"],
+    "sourceBoundaryFindings": [
+      "Executable CEDS input is v20250318, while its earlier prose comment still names v2024.07.08",
+      "CEDS multiplied by 0.001; biomass terms added from RCMIP before 1997 and GFED from 1997",
+      "NOx biomass multiplier 46.006/30.006 is explicitly declared NO -> NO2 in source",
+      "Aviation retained in CEDS; source CSV columns lack explicit units and natural/anthropogenic boundaries"
+    ],
+    "missingBeforeAnyEmissionsComparison": ["Verified CEDS/GFED units", "Biomass and aviation boundary equivalence to retained RCMIP totals", "NOx mass basis consistency", "CH4/N2O natural baseline treatment"],
+    "modelGasNamesWithoutExactReferenceColumn": ["C4F10", "C5F12", "C6F14", "HFC-4310mee", "Halon-1202"],
+    "speciesHandling": "Complete model/reference name inventory is retained in result.speciesAndInputAudit. No guessed isomer aliases, unsupported indirect/emitted-species mapping, double-counted aerosol, or missing-gas zero-fill."
+  },
+  "independentAnnualHistoryFollowup": {
+    "status": "unavailable after actual public original-source tree and reproduction-source inspection",
+    "originalRevision": "OMS-NetZero/FAIR@ec46fefc8f8c6b560a8b78ab1f4a9a5e04537f79",
+    "originalTreeSha256": "6ea1ba137e807251ed1132c2973f29e4aeee1414b16017203e380d02ffff0954",
+    "reproductionSourceSha256": "77ba8748ea1fbcd708b9b3047d264105507a40d895217a2ad4a006ddb0f63677",
+    "followupRevision": "OMS-NetZero/FAIR@95c9051eed6a3d423689a81b9db171b8064005a6",
+    "followupTreeSha256": "d4476873a5e6573a8e1acd913b7b6b92e0482f5c3ae124605e83ff3478e78af7",
+    "finding": "Both complete upstream trees expose only three SSP NetCDF reference files, all labelled 2100. Original reproduction source saves and compares the final [-1,...] timebound, not annual histories.",
+    "notClaimed": "No conclusion that annual references do not exist anywhere; only these exact checked source trees lack them.",
+    "nextRequiredEvidence": ["Published independent annual temperature array for matched 1750-2100 timebounds", "All eight SSP scenario and all 66 configuration identities", "Matched configuration/calibration/native-input provenance and permitted-use terms"],
+    "doNotDo": "Do not rerun this execution to manufacture its own reference; do not promote endpoint agreement to an annual <=0.01 C gate."
+  },
+  "controls": {
+    "historyBasis": "current-revision diagnostic, not original publication vintage or an as-of test",
+    "purchases": 0,
+    "restrictedAncillaryDownloads": 0,
+    "ledgersCentralTSCensusModified": false,
+    "deploymentCallbackSchedulerChanges": false,
+    "unchanged52812FleetBetaEVReruns": false,
+    "centralEligible": false,
+    "annualReferenceGatePassed": false,
+    "calibrated10kEnsembleClaim": false,
+    "threshold": null
+  }
+}

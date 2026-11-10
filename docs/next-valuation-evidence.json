@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "next-valuation-evidence-proposal-1",
+  "recordedAt": "2026-11-10T12:09:29Z",
+  "purpose": "Clause-specific engineering evidence proposal only; not a canonical ledger update or scientific/owner approval",
+  "clausesRead": [
+    {
+      "id": "S01-004",
+      "canonicalPointer": "docs/reconciliation-stages-00-03.json",
+      "requirement": "Relabel the implied decarbonisation rate as Gordon baseline (r = 8%).",
+      "scopedInterpretation": "Use the exact 8% wording for fixed8 consumers; show the actual requested r for variable-rate SDG/target consumers rather than falsely applying 8%."
+    },
+    {
+      "id": "S11-010",
+      "canonicalPointer": "docs/reconciliation-stages-10-13.json",
+      "requirement": "Fade linearly over years 6–15 to a terminal nominal growth rate (range 2.5–4%). Terminal growth must be below the discount rate.",
+      "scopedInterpretation": "Separate original nominal-range assessment from the unchanged 1–3% cash-flow diagnostic. Make reinvestment fundability and missing-evidence refusal explicit."
+    }
+  ],
+  "execution": {
+    "command": "npx tsx --test script/next-valuation-evidence.test.ts script/valuation-solver.test.ts script/cash-flow-valuation.test.ts script/public-valuation-contract.test.ts script/ui-claims.test.ts script/valuation-comparison.test.ts script/asof-valuation.test.ts",
+    "startedAt": "2026-11-10T11:57:24Z",
+    "finishedAt": "2026-11-10T11:57:27Z",
+    "log": "generated-artifacts/next-valuation/20261110T115724Z-tests.log",
+    "logSha256": "76c181e423da2757945906ca6f228518bf6f656f9f2d6fdeb070665a12eb1ba5",
+    "exitCode": 0,
+    "passed": 28,
+    "failed": 0,
+    "scope": "Deterministic engineering fixtures and frozen-contract regression tests; no actual-company study, fitting, D8 scoring or beta research rerun",
+    "syntaxCheck": "Nine owned source files transpiled with TypeScript transpileModule, zero syntax errors. Full integrated typecheck/build remain parent-owned."
+  },
+  "authorizedFollowup": {
+    "scope": "Register exactly six SDG/target metadata leaves, add precise UI/XLSX semantic references, test nonempty actual target filtering, prepare a strictly read-only original nominal assessment handler. No census regeneration before parent combined-source freeze.",
+    "semanticRegistration": {
+      "module": "shared/gordonBaselineSemantics.ts",
+      "importedBy": "shared/remainingFieldSemantics.ts",
+      "fieldSemanticsExposure": "Existing outputFieldSemantics -> fieldSemantics.semanticRows pipeline automatically includes the six definitions; no duplicate fieldSemantics registration",
+      "ids": [
+        "sdg.costOfEquity",
+        "sdg.gordonBaselineLabel",
+        "sdg.gordonDefinition",
+        "targetTerciles.costOfEquity",
+        "targetTerciles.gordonBaselineLabel",
+        "targetTerciles.gordonDefinition"
+      ],
+      "additionalExportBindings": "gordonExportNotes(percent, semanticPrefix) adds SemanticField IDs to each Interpretation note; DownloadDataButton validates optional IDs with requireOutputSemantic before export. Variable-r visible labels use the same prefix.gordonBaselineLabel in data-field-id. Fixed8 notes remain unbound to nonexistent API metadata rather than fabricating an ID.",
+      "newCensusCredit": 0
+    },
+    "endpointPreparation": {
+      "handler": "server/calculation/originalNominalAssessmentHandler.ts:originalNominalAssessmentHandler",
+      "registered": true,
+      "reason": "Parent registered the GET route; no central route was edited by this valuation worker. The supplemental endpoint semantics followup verifies the actual registration statement with request fixtures.",
+      "requestedParentRoutePatch": {
+        "import": "import { originalNominalAssessmentHandler } from \"./calculation/originalNominalAssessmentHandler\";",
+        "registration": "app.get(\"/api/valuation/original-nominal-assessment\", originalNominalAssessmentHandler);",
+        "placement": "Inside registerRoutes, outside /api/cv snapshot/archive middleware. Parent should apply any deployment-specific authorization policy.",
+        "guardrails": "Handler independently rejects non-GET methods; sets Cache-Control:no-store; requires strict scalar explicit nominal assumptions, evidence references, total-equity basis and acknowledgeConditionalModel=true; rejects unknown/array fields; has no DB, dataset, collector, research, approval or write callbacks.",
+        "requiredQueryKeys": [
+          "baseEarnings", "discountRate", "returnOnEquity", "stageOneGrowth",
+          "sharesBasis=total-equity", "rateBasis=nominal",
+          "returnOnEquityEvidence", "discountRateEvidence",
+          "acknowledgeConditionalModel=true"
+        ],
+        "responses": "200 conditional assessment with four explicit values/refusals; 400 invalid/missing request fields; 422 invalid economic/nonfinite inputs; 405 direct handler non-GET invocation.",
+        "notClaimed": "Parent registration is verified by a no-provider registration/request-fixture harness, not a live HTTP transport test or a scientifically validated issuer valuation."
+      }
+    },
+    "verification": {
+      "valuationOnlyFinalRun": {
+        "command": "npx tsx --test script/next-valuation-evidence.test.ts script/valuation-solver.test.ts script/cash-flow-valuation.test.ts script/public-valuation-contract.test.ts script/valuation-comparison.test.ts script/asof-valuation.test.ts script/remaining-field-semantics.test.ts",
+        "finishedAt": "2026-11-10T12:05:56Z",
+        "log": "generated-artifacts/next-valuation/20261110T120554Z-valuation-only-tests.log",
+        "logSha256": "1568881cbdf763bebc332d06cf3275d6f0a6732da3df14b2478a76b102bf7c71",
+        "exitCode": 0,
+        "passed": 28,
+        "failed": 0
+      },
+      "standalone": "npx tsx --test script/next-valuation-evidence.test.ts: all7 tests passed after nonempty target and endpoint-handler additions.",
+      "expandedCommand": "npx tsx --test script/next-valuation-evidence.test.ts script/valuation-solver.test.ts script/cash-flow-valuation.test.ts script/public-valuation-contract.test.ts script/ui-claims.test.ts script/valuation-comparison.test.ts script/asof-valuation.test.ts script/remaining-field-semantics.test.ts script/output-field-semantics.test.ts",
+      "finishedAt": "2026-11-10T12:05:02Z",
+      "log": "generated-artifacts/next-valuation/20261110T120455Z-bindings-tests.log",
+      "logSha256": "ea9b46a5365a6c9836d384629662e1876715b11857740cc19d333528f8343b2b",
+      "exitCode": 1,
+      "passed": 44,
+      "failed": 2,
+      "failures": [
+        {
+          "test": "API and download type census must be regenerated when source fields change",
+          "reason": "Expected stale-census --check failure during combined edits. No census regeneration performed, per explicit instruction."
+        },
+        {
+          "test": "default dashboard mounts no legacy model consumers; diagnostics require explicit opt-in",
+          "reason": "Existing ui-claims assertion expects literal fixed 5 Gt threshold, absent after concurrent threshold-worker dashboard changes. Outside valuation ownership; no threshold code/test edited here."
+        }
+      ],
+      "allSevenValuationTestsPassedInExpandedRun": true,
+      "targetFilteringEvidence": "Nonempty six-company engineering-only replay calls actual calculateDecarbTerciles at r9.375%; publicValuationResult strips physical claims; bindNestedOutput accepts all targetTerciles leaves including new metadata. Same check covers actual SDG output.",
+      "preciseEqualityEvidence": "Actual public target/SDG metadata, visible label helper and XLSX Interpretation notes agree exactly on r, label and definition. XLSX notes carry registered SemanticField IDs and their six definitions survive XLSX round trip. Annual growth numeric comparisons separately respect existing API rounding; labels are not treated as new growth values.",
+      "endpointEvidence": "Direct RequestHandler tests, not a live HTTP server: explicit valid inputs, missing acknowledgement, array/unknown fields, real-rate refusal, negative earnings, non-GET405 and all-terminal-below-discount refusals.",
+      "notExecuted": "No live HTTP endpoint request, browser interaction, census regeneration, company/beta/D8 study rerun or workflow start/restart."
+    }
+  },
+  "supplementalEndpointSemanticsFollowup": {
+    "scope": "Supplemental endpoint input/output metadata and pure request-fixture efficacy only. No original-gap, original-leaf or stage closure claim.",
+    "module": "shared/originalNominalAssessmentSemantics.ts",
+    "registration": "Additive import/spread in shared/remainingFieldSemantics.ts; existing outputFieldSemantics/fieldSemantics pipeline exposes all definitions",
+    "supplementalIds": 40,
+    "inputIds": 9,
+    "outputAndHttpIds": 31,
+    "originalGapClosureCredit": 0,
+    "censusRegenerated": false,
+    "handlerChanges": "Every400/405/422/200 response adds X-Field-Semantics for actual response leaves, supplied recognized input fields and HTTP status/cache-control/Allow where applicable. Result bodies and numerical schedules are unchanged.",
+    "unitsCurrencyAndSource": {
+      "currency": "Currency and scale are unspecified by the API. All monetary model values remain in nominal units of caller-supplied baseEarnings; never assume USD, USD million, per-share units or implicit FX.",
+      "source": "Explicit caller query and pure earnings/ROE calculation. Evidence-reference strings remain unverified caller assertions, not new sourced data, vintage proof or real approvals.",
+      "horizon": "Year0 base and PV; stage growth years1–5; ten linear-fade years6–15; terminal growth reached in year15; first terminal distribution year16; perpetuity value at year15 discounted to year0.",
+      "reinvestment": "max(0,annualGrowth)/ROE retained fraction; terminal gT/ROE; earnings minus reinvestment distributed. No invented capital release on negative growth, implicit external funding, debt change or WC double subtraction.",
+      "status": "HTTP200 means conditional assessment computed, including mixed/all per-point refusals; body/row statuses remain distinct. HTTP400 invalid request,422 invalid economic/nonfinite result, direct handler non-GET405 with Allow GET.",
+      "conditionality": "Production/investment/identity flags remain false. Four terminal values are not probability bounds or continuous-range extrema."
+    },
+    "boundedOperation": {
+      "terminalPoints": 4,
+      "annualIterationsPerEligiblePoint": 15,
+      "maximumAnnualRows": 60,
+      "userConfigurableIterationsOrGrid": false,
+      "rootSearchCollectorDatabaseResearchCallbacks": false
+    },
+    "requestFixtureTest": {
+      "file": "script/original-nominal-endpoint.test.ts",
+      "actualRegistration": "AST locates exactly one GET /api/valuation/original-nominal-assessment registration and its real handler import in server/routes.ts. The actual registration expression executes in a fixture router with that imported handler; fixture requests exercise it. Full registerRoutes/provider boot is never invoked.",
+      "noNetworkProvider": true,
+      "notClaimed": "No running HTTP server, socket transport, provider request or browser interaction is claimed.",
+      "coverage": [
+        "Existing pure conditional result body equality; four terminal points and exactly60 annual rows",
+        "All actual nested result/input/http paths have registered X-Field-Semantics IDs",
+        "Missing acknowledgement, array-valued rates, unknown currency key, real-rate request and oversized source-reference refusal",
+        "Negative earnings422 and nonfinite projection422",
+        "Mixed and all-terminal refusals retain HTTP200 with explicit per-point reasons and omitted projections",
+        "Supplemental definitions survive existing semanticRows export and explicitly declare nominal source units/currency, years0/15/16, conditionality and HTTP/body statuses"
+      ]
+    },
+    "execution": {
+      "command": "npx tsx --test script/original-nominal-endpoint.test.ts script/next-valuation-evidence.test.ts script/valuation-solver.test.ts script/cash-flow-valuation.test.ts script/public-valuation-contract.test.ts script/valuation-comparison.test.ts script/asof-valuation.test.ts script/remaining-field-semantics.test.ts",
+      "finishedAt": "2026-11-10T12:09:21Z",
+      "log": "generated-artifacts/next-valuation/20261110T120919Z-endpoint-semantics-tests.log",
+      "logSha256": "31aa03f0b6078a3b30a64cc4ac82d629ff26c80a79af1359ba9a5b649bda613b",
+      "exitCode": 0,
+      "passed": 31,
+      "failed": 0,
+      "researchOrCompanyReruns": 0
+    }
+  },
+  "records": [
+    {
+      "id": "S01-004",
+      "proposedStatus": "engineering-implemented-six-metadata-leaves-registered-pending-combined-freeze-and-live-verification",
+      "functions": [
+        "server/calculation/publicValuationContract.ts:gordonBaselineMetadata",
+        "server/climateValuation/sdgGrowthCalculator.ts:calculateSDGGrowthDifferential",
+        "server/climateValuation/decarbTercileCalculator.ts:calculateDecarbTerciles",
+        "client/src/lib/valuation-claims.ts:gordonBaselineLabel",
+        "client/src/lib/valuation-claims.ts:gordonExportNotes",
+        "client/src/lib/valuation-claims.ts:verifyGordonBaselineRows",
+        "client/src/components/download-data-button.tsx:DownloadDataButton",
+        "client/src/pages/climate-valuation.tsx:AnalysisSection"
+      ],
+      "delivered": [
+        "Variable-r API rows carry effective decimal costOfEquity, exact gordonBaselineLabel and definition.",
+        "Variable-r queries explicitly reject missing or mismatched API assumptions rather than silently relabel data.",
+        "SDG and target sections use selected actual r for visible labels and XLSX Interpretation notes.",
+        "Carbon-intensity section remains fixed8 because its API rejects a costOfEquity parameter; it no longer incorrectly describes itself with the variable SDG/ambition r.",
+        "Fixed8 signal and peer-gap views retain exact Gordon baseline (r = 8%) wording; valuation group-gap downloads carry fixed8 interpretation notes.",
+        "DownloadDataButton adds only an optional interpretationNotes prop, defaulting to an empty array; no generic default-r claims or changes to existing data/hash/column bindings.",
+        "No unsupported physical outputs are reintroduced."
+      ],
+      "tests": [
+        "S01-004 actual custom-r calculator/API, rendered label and XLSX notes agree; fixed8 retained",
+        "S01-004 actual page and download paths wire additive notes without a generic default-r claim"
+      ],
+      "numericalEvidence": {
+        "costOfEquityPercents": [8, 9.25, 6.125],
+        "fixture": "Two explicitly engineering-only workbook companies with P/E 20 and 10; private replay injection, no database writes or issuer inference",
+        "apiPathTested": "Actual SDG calculator output passed through publicValuationResult, not a live Express request",
+        "uiPathTested": "React-rendered label helper plus actual caller wiring source assertions, not browser interaction with the control",
+        "xlsxPathTested": "Actual XLSX buffer write/read of gordonExportNotes; label, definition and decimal r match the public calculator row",
+        "guard": "Stale or missing API assumptions refuse with an explicit error"
+      },
+      "remainingGaps": [
+        "Six metadata IDs are now registered and actual nonempty target filtering/binding passes. Live HTTP/browser integration still requires parent verification.",
+        "Combined census regeneration is intentionally deferred until parent source freeze. No census/ledger completion credit is asserted here.",
+        "Browser screenshot captured the running page shell/loading viewport only; custom-r interaction, live HTTP API and actual browser download were not exercised."
+      ],
+      "parentOwnedSemanticPatchProposal": {
+        "prefixes": ["sdg", "targetTerciles"],
+        "leaves": [
+          {
+            "field": "costOfEquity",
+            "unit": "decimal annual cost of equity assumption",
+            "formula": "Effective validated calculator argument costOfEquity, default0.08 only when omitted",
+            "meaning": "Actual r used to compute this row's Gordon comparator"
+          },
+          {
+            "field": "gordonBaselineLabel",
+            "unit": "label",
+            "formula": "Gordon baseline (r = Number((costOfEquity*100).toPrecision(12))%)",
+            "meaning": "Actual-r descriptive steady-state Gordon label, never a physical decarbonisation rate"
+          },
+          {
+            "field": "gordonDefinition",
+            "unit": "text",
+            "formula": "g = r - 1/PE; fully distributable earnings; steady-state comparator, not five-year reverse-DCF growth or a physical decarbonisation rate",
+            "meaning": "Interpretation shared by API and XLSX notes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "S11-010",
+      "proposedStatus": "original-range-engineering-verified-on-explicit-fixtures-only",
+      "functions": [
+        "server/calculation/reverseValuation.ts:equityProjection",
+        "server/calculation/reverseValuation.ts:originalNominalEquityProjection",
+        "server/calculation/reverseValuation.ts:originalNominalEquityAssessment"
+      ],
+      "delivered": [
+        "Original-specific projection accepts the closed nominal terminal interval [0.025,0.04]; rates outside it refuse explicitly.",
+        "Original assessment evaluates terminal 2.5%,3%,3.5%,4% and returns each eligible projection or an explicit refusal, without replacing the retained 1–3% cash-flow diagnostic.",
+        "Years1–5 hold stage-one growth constant; years6–15 linearly interpolate with fraction (year-5)/10; year15 reaches the terminal rate.",
+        "Annual output exposes earnings, growth, reinvestment fraction, reinvestment, distributed cash and present value, including terminal reinvestment fraction.",
+        "Reinvestment fraction=max(0,g)/ROE. Terminal reinvestment=gT/ROE. Stage or terminal growth above supported ROE refuses; terminal growth equal to or above discount refuses.",
+        "Positive comparable earnings, total-equity basis, explicitly nominal rates and nonblank ROE/discount evidence references are required. Missing/real-rate inputs refuse; references themselves are not independently authenticated.",
+        "No capital release is assumed on negative growth; no implicit external funding, debt changes, acquisitions or dilution.",
+        "Existing equityValue delegates to the exposed projection; existing reverse solver retains its bounded root/refusal behavior."
+      ],
+      "tests": [
+        "S11-010 original nominal 2.5–4% grid has exact years6–15 fade and sustainable reinvestment",
+        "S11-010 terminal boundaries, unsustainable growth and unsupported nominal assumptions refuse explicitly",
+        "S11-010 separate original nominal assessment leaves the 1–3% diagnostic and D8 frozen"
+      ],
+      "numericalEvidence": {
+        "fixture": "Engineering-only base earnings100, r8%, ROE20%, stage growth6%; explicit nominal basis and engineering evidence strings",
+        "terminalGrid": [0.025, 0.03, 0.035, 0.04],
+        "fadeTolerance": 1e-14,
+        "cashConservationTolerance": 1e-12,
+        "independentPresentValueAccumulationTolerance": 1e-10,
+        "closedFormPerpetuityTolerance": 1e-9,
+        "discountBoundaryFixture": "r3.5% accepts2.5/3%, refuses3.5/4%",
+        "fundabilityBoundaryFixture": "ROE3%, stage growth2% accepts2.5/3%, refuses3.5/4%"
+      },
+      "remainingGaps": [
+        "Four grid points plus explicit closed-range domain validation are not a proof of continuous-range valuation extrema.",
+        "No actual-company original-range projection was run: same-date earnings/equity claim, nominal discount evidence, defensible sustainable ROE, and issuer-specific stage/terminal reinvestment support are not ready as a single verified bundle.",
+        "The retained CAT/CVX/NEE sensitivity pairs FY2024 statements with undated profile market caps; those cannot be silently promoted into sourced original-range valuations.",
+        "The conditional FPL allowed regulatory ROE is not realized issuer cash ROE and was not substituted as sustainable issuer return evidence.",
+        "The earnings/ROE projection is not interchangeable with the existing FCFE-growth solver, which embeds financing/reinvestment composition.",
+        "Parent registered the guarded GET endpoint; actual registration/request fixtures and supplemental header bindings now pass. No live HTTP transport, dashboard promotion, owner approval or scientific acceptance is claimed."
+      ]
+    }
+  ],
+  "visualCheck": {
+    "path": "/climate-valuation",
+    "artifact": "generated-artifacts/next-valuation/climate-valuation-preview.jpg",
+    "observed": "Running application shell and valuation interpretation notice render; first viewport contains loading summary cards.",
+    "notVerified": "Interactive custom-r state, loaded lower-page labels and browser workbook download"
+  },
+  "preserved": {
+    "GordonPrimary": true,
+    "completedBetaPairs": 88,
+    "common8D8Failure": true,
+    "researchReruns": 0,
+    "originalDiagnosticTerminalPercentGrid": [1, 2, 3],
+    "d8GateOrSampleEdits": false,
+    "readOnlyRetainedResults": [
+      {
+        "path": "docs/Beta_Growth_Sensitivity_Results.md",
+        "sha256": "ec89cc0d9a728c504416cd1b05e07e43b4d1d54a25665370fe3c5b3ca0171ffc"
+      },
+      {
+        "path": "docs/AsOf_Valuation_Comparison_Results.md",
+        "sha256": "00b97249b6f09c3db49a0344f59e42edadad791e1f7a919bed63ecbef3c2e7b5"
+      }
+    ]
+  },
+  "boundaries": {
+    "centralRoutesEdited": false,
+    "sharedSemanticsEdited": "Authorized followups only: six-leaf Gordon metadata module plus40 supplemental original-nominal endpoint definitions imported additively by remainingFieldSemantics; no original gap-closure credit",
+    "censusOrLedgersEdited": false,
+    "commitsReleasesCallbacksApprovalsDDL": false,
+    "privateDataExported": false,
+    "thresholdSummaryOrAllScopeAccountingChanges": false,
+    "scientificAcceptance": "not-conferred"
+  }
+}

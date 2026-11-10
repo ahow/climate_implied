@@ -29,14 +29,20 @@ test("native gas and sector columns survive XLSX without aggregate/unit substitu
  assert.equal(actualExport["CO2 (Mt gas/year)"],point.nativeMt.CO2);
  assert.equal(nativeExportRow({year:2024})["CO2 (Mt gas/year)"],null);
  const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
- const exportFields=census.fields.filter((e:any)=>e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:"));
+ const oldSite=census.exportBindingMetadata.find((m:any)=>m.source==="client/src/components/emissions-candidate-review.tsx"&&m.rows==="data.result.trajectory.map(nativeExportRow)");
+ assert.ok(oldSite,"Original35-column native workbook site retained separately");
+ const exportFields=census.fields.filter((e:any)=>e.surface===`XLSX ${oldSite.source}:${oldSite.line}`);
  assert.equal(exportFields.length,35);
+ assert.equal(census.fields.filter((e:any)=>e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:")).length,56,"35 original +21 distinct native threshold columns");
  assert.deepEqual(exportFields.map((f:any)=>f.field.slice(3)).sort(),Object.keys(actualExport).sort());
 });
 test("native schema has exact definitions except declared dynamic gas/sector keys",()=>{
  const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
- const entries=census.fields.filter((e:any)=>e.surface.includes('"/api/emissions/candidate"'));
+ const allEntries=census.fields.filter((e:any)=>e.surface.includes('"/api/emissions/candidate"'));
+ const entries=allEntries.filter((e:any)=>!e.field.startsWith("residualDiagnostics."));
  assert.equal(entries.length,187);
+ assert.equal(allEntries.length,213,"Original187 native fields plus26 supplemental conditional diagnostic leaves");
+ assert.equal(allEntries.length-entries.length,26);
  const absent=entries.filter((e:any)=>!nativeOutputSemantics.some(f=>f.id===`native.${e.field}`)).map((e:any)=>e.field);
  assert.deepEqual(absent.sort(),["result.trajectory[].nativeMt.*","result.trajectory[].sectorsGtCO2e.*"]);
  assert.equal(new Set(nativeOutputSemantics.map(f=>f.id)).size,nativeOutputSemantics.length);

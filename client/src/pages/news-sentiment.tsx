@@ -185,16 +185,19 @@ export default function NewsSentiment() {
   }));
 
   if (error) {
-    const isKeyMissing = (error as any).status === 503 || (error as Error).message.includes("not configured");
+    const requiresRefresh = (error as Error).message.includes("operator-news-refresh-required");
+    const isKeyMissing = (error as Error).message.includes("not configured");
     return (
       <div className="p-6 max-w-7xl mx-auto">
         <Card className="p-8 text-center">
           <Newspaper className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
           <h2 className="text-lg font-semibold mb-2" data-testid="text-news-error-title">
-            {isKeyMissing ? "News API Not Configured" : "Unable to Load News Data"}
+            {requiresRefresh ? "Awaiting Operator News Refresh" : isKeyMissing ? "News API Not Configured" : "Unable to Load News Data"}
           </h2>
           <p className="text-sm text-muted-foreground" data-testid="text-news-error-message">
-            {isKeyMissing
+            {requiresRefresh
+              ? "No current cached news is available for this window. An authorized operator must refresh it; this page does not make provider calls."
+              : isKeyMissing
               ? "A NewsAPI.ai API key is required. Add NEWSAPI_KEY to your environment secrets."
               : "There was a problem fetching climate news data. Please try again later."}
           </p>

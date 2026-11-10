@@ -1,4 +1,6 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
+import { gordonBaselineSemantics } from "./gordonBaselineSemantics";
+import { originalNominalAssessmentSemantics } from "./originalNominalAssessmentSemantics";
 
 type Spec = [string,string,string,string];
 const financial = {
@@ -117,6 +119,8 @@ const operations:[string,Spec[]][] = [
   ]],
 ];
 export const remainingFieldSemantics:OutputFieldSemantic[] = [
+  ...gordonBaselineSemantics,
+  ...originalNominalAssessmentSemantics,
   ...([["carbonGroups",carbon],["targetBands",bands],["targetTerciles",terciles]] as [string,Spec[]][]).flatMap(([prefix,specs])=>
     specs.map(([field,meaning,formula,unit])=>({...financial,id:`${prefix}.${field}`,meaning,formula,unit,
       scope:financial.scope+(prefix==="carbonGroups" ? ` ${grouping}` :

@@ -1,0 +1,204 @@
+{
+  "version": "next-accounting-evidence-proposal-1",
+  "recordedAt": "2026-11-10T12:01:52Z",
+  "proposalOnly": true,
+  "criterion": {
+    "id": "S12-014",
+    "originalRequirement": "Company emissions reconcile to activity × intensity (× any separate abatement) by scope, and a double-counting check passes.",
+    "source": "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "relatedRequirementNotClaimedComplete": "S12-009: regional technology intensity trajectories and target-delivery credibility require actual evidence, not engineering fixtures."
+  },
+  "engineering": {
+    "receiptScope": "Initial implementation snapshot retained as historical evidence; current integration source hashes and executions appear below.",
+    "proposedDisposition": "Dedicated all-scope numerical and declared-measure no-double-counting checks demonstrated; owner review required before any ledger status change.",
+    "implementation": "server/calculation/companyProjection.ts",
+    "dedicatedTests": "script/company-projection-abatement.test.ts",
+    "sourceSha256": {
+      "server/calculation/companyProjection.ts": "ea1547d1bb40f7f365e1324f17006cf0490973094fbc091df710d1ad884e1dc2",
+      "script/company-projection-abatement.test.ts": "1f917bcd96f28d1670a0ecb7f70ad78f1761d2a07ca7135589361fca65e46f7f"
+    },
+    "execution": {
+      "startedAt": "2026-11-10T11:56:38Z",
+      "log": "generated-artifacts/company-projection-abatement/20261110T115638Z.log",
+      "logSha256": "efc432502c35ed194247c140416334017259ac8a76f2f1445e65a04f790179be",
+      "commands": [
+        {
+          "command": "npx tsx --test script/company-projection-abatement.test.ts script/company-projection.test.ts",
+          "exitCode": 0,
+          "tests": 12,
+          "pass": 12,
+          "fail": 0,
+          "skipped": 0
+        },
+        {
+          "command": "npx tsc --noEmit --pretty false",
+          "exitCode": 0
+        }
+      ],
+      "scope": "Synthetic engineering controls and type checking only; no app workflow, deployment, data approval or actual issuer qualification."
+    },
+    "coverage": [
+      "Three members × five years × all three scopes: 45 physical reconciliation rows with independently calculated activity, intensity and separate factors.",
+      "Embedded measures do not reduce supplied intensity again; multiple separate factors apply exactly once.",
+      "Embedded/separate overlap rejected for all nine scope pairings, including late member-years; duplicate separate IDs rejected within and across scopes.",
+      "Complete scope accounting, explicit factors, source, intensity, delivery and disjointness evidence required; invalid or ambiguous inputs rejected.",
+      "Scope 3 physical changes leave carbon drag, FCFE and growth unchanged for all member-years.",
+      "Scope 2 explicitly supplied electricity-price liability fractions and pass-through tested at zero, partial and full values.",
+      "Old-contract complete output identity pinned against a pre-change output hash; unsupported blanket target abatement remains rejected.",
+      "Measure ordering canonicalized; changed intensity evidence changes input identity."
+    ]
+  },
+  "newInputSemantics": {
+    "location": "members[].years[].abatementAccounting (optional)",
+    "completeAllScopeBlockRequiredWhenPresent": true,
+    "scopeFields": [
+      "intensityEvidence: nonempty source-reference strings for the supplied intensity path",
+      "measures: explicitly declared list, which may be empty"
+    ],
+    "embeddedMeasure": {
+      "requiredFields": ["measureId", "treatment", "evidence"],
+      "treatment": "embedded-in-intensity",
+      "effect": "No extra emissions multiplier. Separate-factor fields are rejected."
+    },
+    "separateMeasure": {
+      "requiredFields": [
+        "measureId", "treatment", "evidence", "remainingEmissionsMultiplier",
+        "deliveryEvidence", "disjointnessEvidence"
+      ],
+      "treatment": "separate-abatement",
+      "remainingEmissionsMultiplier": "Explicit finite residual fraction in [0,1], not a target percentage inferred by the engine.",
+      "effect": "Scope emissions = base scope tonnes × cumulative activity ratio × supplied scope intensity multiplier × product of explicit separate remaining-emissions factors.",
+      "timeBasis": "Factors apply to the stated year relative to its supplied intensity path; they are not annual improvements compounded across projection years.",
+      "factorBasis": "Factors compose multiplicatively. Evidence must justify their residual-fraction basis and physical disjointness; standalone reductions cannot silently be reinterpreted as incremental factors."
+    },
+    "doubleCountBoundary": "Trimmed measure IDs must be unique across all three scopes within each member-year, and no separate measure may occur in any scope's embedded list. Reuse across different years or ensemble members is allowed.",
+    "crossScopeAllocation": "A repeated cross-scope measure is rejected conservatively. Distinct physical allocations need distinct evidence-supported identities; renaming the same physical intervention is not proof of disjointness.",
+    "noInventedFacts": "No intensity, measure, delivery probability, credibility score, pass-through or liability input is defaulted. An explicit empty measure list has mathematical neutral product 1, not inferred issuer evidence.",
+    "legacyAbsence": "Omitting the entire optional block retains the old contract: supplied intensity is final and there is no extra abatement."
+  },
+  "newOutputSemantics": {
+    "location": "members[].years[].abatementReconciliation, only for opt-in years",
+    "perScopeFields": [
+      "baseEmissionsTonnes", "activityRatio", "intensityMultiplier",
+      "beforeSeparateAbatementTonnes", "remainingEmissionsMultiplier", "emissionsTonnes"
+    ],
+    "noDoubleCountingCheck": "passed-declared-disjoint-measure-ids",
+    "declaredAccounting": "Validated and canonically ordered all-scope declarations are retained alongside reconciliation in opt-in years. This binds exported intensity, measure, delivery and disjointness references to the same result/input identity.",
+    "qualification": "A declared-ID consistency result, not proof of actual physical disjointness or issuer delivery credibility.",
+    "identity": "Optional declarations, factors and evidence are included in inputHash; measure lists canonicalized by identity. Old inputs retain their previous result identity and limitations.",
+    "liability": "Unchanged: (post-abatement Scope 1 tonnes × explicit Scope 1 liable fraction + post-abatement Scope 2 tonnes × explicit electricity-price liability fraction) × effective carbon price × (1 − explicit pass-through). Scope 3 never contributes a direct charge.",
+    "legacyFullOutputSha256": "2aa4418de391a94726f7d140c3136cc791bf4ad494c28dc872356210487e6233"
+  },
+  "integrationNeeds": [
+    "No caller change is required for existing inputs. Do not populate new accounting blocks from arbitrary defaults or unsupported targets.",
+    "Before an actual issuer opts in, supply all-scope intensity provenance, embedded-measure inventories, separate-measure source references, physical disjointness evidence and explicit delivered residual factors backed by credibility evidence.",
+    "Implemented: the existing content-hashed input/material manifest and source-claim resolution pin every new material leaf, with no approval prerequisite for this engineering integration. Existing source archives/input receipts are not rewritten.",
+    "Implemented: opt-in replay additionally pins shared/companyAbatementSemantics.ts; legacy selection retains its existing nine-path allowlist. Model and export labels remain backward-compatible; exact source bytes distinguish the implementation.",
+    "Implemented: existing export adapter exposes opt-in numerical reconciliation and exact declarations in XLSX, with precise local semantics and complete FullResult JSON readback.",
+    "Provided central registration patch at docs/company-abatement-semantics-registration.patch; shared/outputFieldSemantics.ts and shared/fieldSemantics.ts were not edited. Export semantics already consume the dedicated module without waiting for central registration.",
+    "No new UI, route, private function export, source approval, deployment or callback was added."
+  ],
+  "integrationResults": {
+    "recordedAt": "2026-11-10T12:01:52Z",
+    "status": "Implemented and directly tested; not deferred pending owner approval.",
+    "implementation": [
+      "server/calculation/companyProjection.ts",
+      "server/calculation/companyProjectionReplay.ts",
+      "shared/companyAbatementSemantics.ts"
+    ],
+    "dedicatedTests": [
+      "script/company-projection-abatement.test.ts",
+      "script/company-projection-abatement-replay.test.ts"
+    ],
+    "sourceSha256": {
+      "server/calculation/companyProjection.ts": "d4fc453b7ea40283bf439be822f2747e8ab6a06d7f4d3b15952e7cd5a9e8ec3a",
+      "server/calculation/companyProjectionReplay.ts": "db7af4ed9e6ff2b871b79127e50c489cf33b75d4d5c5460fe94f2bff1334aa70",
+      "shared/companyAbatementSemantics.ts": "7d5384396259386689257f0f59bdf53cfb676751aab2db8df736b774423dac43",
+      "script/company-projection-abatement.test.ts": "da1242be0cd8aa8db2809cbc0ff075e250512a4a3e8dc0e1b1643b4294e9d512",
+      "script/company-projection-abatement-replay.test.ts": "1558f1115e491d10bed8edcaaac73e12c73d93e715b5e1d20825eb2ed85239dc",
+      "docs/company-abatement-semantics-registration.patch": "69285e4e0683efdc014d518d8a7872cd2c8e7f566b3aad33a9d782d80ac5775a"
+    },
+    "execution": {
+      "log": "generated-artifacts/company-projection-abatement-replay/20261110T120152Z.log",
+      "logSha256": "7e44a9f577a28f101ea6604b1c26f485cdfc3093fe0d7f5b943f30d3bc53463b",
+      "commands": [
+        {
+          "command": "npx tsx --test script/company-projection-abatement.test.ts script/company-projection-abatement-replay.test.ts",
+          "exitCode": 0,
+          "tests": 14,
+          "pass": 14,
+          "fail": 0,
+          "skipped": 0
+        },
+        {
+          "command": "npx tsc --noEmit --pretty false",
+          "exitCode": 0
+        },
+        {
+          "command": "git apply --check docs/company-abatement-semantics-registration.patch",
+          "exitCode": 0
+        }
+      ],
+      "unchangedNinePathReplaySuiteRerun": false,
+      "scope": "Focused opt-in integration and legacy golden controls only; no app workflow or production access."
+    },
+    "actualReplay": {
+      "report": "generated-artifacts/company-projection-abatement-replay/report.json",
+      "reportSha256": "26df2a5405bce6043eb0267c099399c5080688bc8a4d508a37aaf71434278919",
+      "freshSubprocesses": 1,
+      "members": 2,
+      "yearsPerMember": 5,
+      "physicalScopeRows": 30,
+      "newMaterialEvidenceLeaves": 300,
+      "preciseNewSemanticFields": 43,
+      "manifestId": "96cfcdd0c98ac4cd90feb72f8572a5dd544ef35c63cddc6cb08513a18b4e35f6",
+      "resultHash": "24b4785b3133ebc0eb79adbd8586b4eac0cfb547a2e521ca5fcdf041cfbd1eb2",
+      "inputHash": "9bf36b1eb20d155803bfa0a877e9957e556594271558525903c8b08fc3890ff7",
+      "evidenceHash": "2e3b74ad6a0a2bd5cd73d2d771b354f295b14c2cf1a8314ca3416439aea665e3",
+      "codeId": "291b6f8443ab1bd34d5e0950debfdcb639787e9c617de0af4c4e08842c8f6e30",
+      "xlsxBinaryHash": "c9d81514d4a969403d4b51b32a40e567d68257ea2e54b4f85a1bbaa402048e8c",
+      "xlsxCellsHash": "3e7412dc1cd2dc90757c1e3575741d524c137fa2c1806ec75512827ce35a733d",
+      "xlsxReadback": "Every numerical scope reconciliation and all declaration chunks match complete result. Actual fresh CLI process matches result, manifest, worksheet and byte identities.",
+      "xlsxSheets": ["Semantics", "Identity", "Ledger", "FullResult", "Abatement", "AbatementInputs"],
+      "largeDeclarationControl": "A 17000-character evidence reference exercises safe bounded declaration JSON chunking and exact readback.",
+      "mixedContractControl": "Only explicitly opt-in member-years appear in new worksheets; no declarations are invented for legacy years.",
+      "tamperControls": "Missing new material leaves, changed factors with a rehashed input manifest, and a removed/rehashed dedicated code pin all reject."
+    },
+    "legacyGolden": {
+      "engineFullOutputSha256": "2aa4418de391a94726f7d140c3136cc791bf4ad494c28dc872356210487e6233",
+      "adapterResultHash": "387dcba5ea84eb17aae6a39c55e6b21054c9cb8e023541fd430c871786026ebb",
+      "xlsxBinaryHash": "e3435be2c86e8494595dfa4087014e678c5efd7d80a196dd74c463c2d1b0bcd2",
+      "xlsxCellsHash": "1f9fa2a8c084e47ffd332ec13b9948b7d768f5f122cc42780fac7ac17d413a74",
+      "scope": "Captured before adapter changes. Engine output exact; legacy adapter comparison normalizes only the code-dependent replayManifestId to a fixed synthetic ID, preserving every other actual result/evidence/source value and complete workbook bytes.",
+      "qualification": "Not a claim that changed executable code preserves an earlier codeId/manifestId. Existing archives remain untouched and exact-current-executable replay checks remain enforced."
+    },
+    "identityNamespaceAssessment": {
+      "default": "Repeated raw project/measure ID across scopes remains rejected. No automatic scope-prefixing or identity namespace is inferred.",
+      "distinctMeasurements": "Genuinely distinct physical measurements can already use explicit globally unique measureId values such as fuel-meter-A/project42 and electricity-meter-B/project42, with their own disjointnessEvidence.",
+      "separateNamespaceField": "Not added: namespacing convenience would not establish physical disjointness and is unnecessary because measureId already supports explicit namespaced identifiers.",
+      "proofBoundary": "Namespaced IDs remain source assertions. The engine cannot infer that different strings describe different physical projects; issuer evidence review remains necessary for qualification, not a prerequisite to implementing this requested engineering integration.",
+      "dedicatedControl": "Shared raw project ID rejection and explicitly named distinct measurement acceptance are tested without changing the conditional/no-scientific-acceptance status."
+    }
+  },
+  "actualIssuerQualification": {
+    "status": "not-established",
+    "scientificAcceptance": "not-conferred",
+    "productionEligible": false,
+    "remainingEvidence": [
+      "Issuer-specific regional technology intensity trajectories with embedded-measure coverage.",
+      "Reviewed evidence that each separate measure is additional to intensity and disjoint from every other declared physical measure across scopes.",
+      "Evidence-backed delivered factors, target-delivery credibility and year-specific applicability.",
+      "Explicit, reviewed Scope 2 electricity-price channel and pass-through assumptions."
+    ]
+  },
+  "boundaries": {
+    "ledgerEdited": false,
+    "valuationThresholdSummaryRoutesCentralFieldSemanticsEditedByThisTask": false,
+    "dedicatedSharedSemanticModuleAdded": true,
+    "dataApproved": false,
+    "deployed": false,
+    "callbackInvoked": false,
+    "ciWeakened": false,
+    "privateExportsAdded": false
+  }
+}

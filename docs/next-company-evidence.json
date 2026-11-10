@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "next-company-evidence-proposal-1",
+  "purpose": "Parent-owned review proposal only; no central ledger or acceptance changes",
+  "clauses": ["S11-010", "S12-008", "S12-016", "S12-017"],
+  "implementation": {
+    "helper": "server/calculation/companyCaseEvidence.ts",
+    "tests": "script/company-case-evidence.test.ts",
+    "privateAssembly": "script/assemble-next-company-evidence.ts",
+    "proposal": "docs/Next_Company_Evidence_Proposal.md",
+    "existingModelsUsed": [
+      "companyFilingPair.filingFactsSchema",
+      "companyFilingPair.marketReferenceSchema",
+      "companyShareEvidence.reviewCompanyShareReference",
+      "companyFullCashflowCase.calculateCompanyFullCashflowCase",
+      "companyFullCashflowCase.pairCompanyFullCashflowCase",
+      "reverseValuation.originalNominalEquityAssessment"
+    ],
+    "reverseValuationEdited": false,
+    "publicRoutesAdded": false,
+    "delivered": "Value-bound evidence contract plus existing FCFE engine explicit dated-stub forward/reverse valuation and sourced-ready pairing adapter",
+    "notDelivered": "No authentic issuer pair has all dependencies ready; no actual firm forecast or original earnings-model stub fabricated",
+    "fcfeStubImplementation": {
+      "engine": "server/calculation/companyFullCashflowCase.ts",
+      "tests": "script/company-full-cashflow-stub.test.ts",
+      "cashBasis": "FCFE-whole-issuer-common-equity",
+      "timing": "Explicit dated stub, annual and terminal cash, ACT/365.25 from model reference in both directions",
+      "reverseTreatment": "Sourced stub remains fixed; solved adjustment starts with first full annual forecast year",
+      "legacyCompatibility": "Annual schedules still calculate unchanged; missing stub status explicit and whole-equity pair withheld",
+      "explicitZeroRequiresEvidence": true,
+      "originalEarningsModelUnchanged": true
+    },
+    "informationTimingCorrection": "Prospective conditional comparisons may use last close available by actual freeze. Model-as-of/information cutoff are distinct from quote observation/retrieval. Freeze-after-price alone is not a blocker; historical point-in-time cutoff remains strict.",
+    "downlevelIterationRepair": "Array.from for Set and iterator iteration; no compiler weakening"
+  },
+  "publicPrimaryAttempts": {
+    "requests": 3,
+    "retries": 0,
+    "provider": "Public SEC data.sec.gov submissions",
+    "results": [
+      {
+        "symbol": "FSLR",
+        "url": "https://data.sec.gov/submissions/CIK0001274494.json",
+        "httpStatus": 200,
+        "capturedAt": "2026-11-10T12:07:44.577Z",
+        "sha256": "268bb77dc7fc19088577320366d73da301ce5d332d085227432077f1dbd0cf4e",
+        "selectedAccession": "0001274494-25-000010",
+        "selectedAcceptanceAt": "2025-02-25T21:11:24.000Z"
+      },
+      {
+        "symbol": "NEE",
+        "url": "https://data.sec.gov/submissions/CIK0000753308.json",
+        "httpStatus": 200,
+        "capturedAt": "2026-11-10T12:07:44.620Z",
+        "sha256": "9693784cd74acfce477c1b90aa036fc4f1e72f0c177b79ee09b758cce332aa1c",
+        "selectedAccession": "0000753308-25-000011",
+        "selectedAcceptanceAt": "2025-02-14T19:23:43.000Z"
+      },
+      {
+        "symbol": "XOM",
+        "url": "https://data.sec.gov/submissions/CIK0000034088.json",
+        "httpStatus": 200,
+        "capturedAt": "2026-11-10T12:07:44.660Z",
+        "sha256": "79aacad669ef044bf654934b659b9fda89514e0ba5514838dbfb787d53e48773",
+        "selectedAccession": "0000034088-25-000010",
+        "selectedAcceptanceAt": "2025-02-19T21:39:37.000Z"
+      }
+    ],
+    "conclusion": "Primary metadata publication links located for all selected FY2024 filings; mirrored annual-report byte authentication and claim review are separate pending work",
+    "priorArchive403NotGeneralized": true
+  },
+  "retainedSourceWork": {
+    "selectedFinancialBasis": "FY2024 unchanged for FSLR, NEE and XOM predecessor",
+    "primaryShareObservationsRead": 4,
+    "existingProviderRequests": 9,
+    "existingProviderSuccesses": 9,
+    "newFmpRequests": 0,
+    "existingProviderSpecificMissingFields": ["sharesOutstanding", "sharesDate"],
+    "datedExistingQuotes": 3,
+    "sameDatePrimaryQuoteShareMatches": 0,
+    "additionalHistoricalPrimaryRowsLocated": {
+      "FSLR": 1,
+      "NEE": 4,
+      "XOM": 3
+    },
+    "distinctFslr": {
+      "basis": "Unaudited FY2025 release plus 2026 guidance",
+      "sourcePublishedDate": "2026-02-24",
+      "sourceActuallyCapturedAt": "2026-11-10T06:49:43.667Z",
+      "retainedAnnualRows": 50,
+      "retainedScenarios": 10,
+      "reexecuted": false,
+      "retainedReportSha256": "843b8b80d792f407059e633eb5a0d275316f6613d8926c1f0a60a7bbcde04016",
+      "retainedFreezeSha256": "e26afe2e08595e08012a41ce8f36e0dc6a474bed56335570d1dcb4dea0de98cb",
+      "missingStub": "Reference-to-2026-12-31; first full annual row is 2027",
+      "sustainableTerminal": null
+    }
+  },
+  "remainingDependencies": [
+    "Authenticate retained mirror contents against selected SEC accession before promoting financial-basis evidence",
+    "Explicit issuer-wide prospective financial schedules and field-level sources/justified frozen assumptions",
+    "Reference-to-first-full-year dated stub cash and complete coverage, including separately evidenced zero if appropriate",
+    "Sustainable post-expiry terminal reinvestment, working capital, tax, financing and non-common-claim basis",
+    "Authorized same-date quote and exact all-common-class primary outstanding shares",
+    "Declared model-as-of/information cutoff and labelled prior-close quote comparison, without backdating or future information",
+    "NEE issuer-wide differential-membership/NCI allocation, not FPL-only extrapolation",
+    "XOM predecessor/successor CIK, class and ISIN review without automatic ticker join",
+    "Original nominal model requires separately bound primary earnings, nominal return/rate support and calendar-stub integration"
+  ],
+  "verification": {
+    "testCommand": "npx tsx --test script/company-case-evidence.test.ts script/company-full-cashflow-case.test.ts script/company-full-cashflow-stub.test.ts script/company-share-evidence.test.ts",
+    "passed": 16,
+    "failed": 0,
+    "testLogSha256": "9c8fd9ac5df11aa55e33b061ece16461afa86930849135df71ae80dc468b2e98",
+    "strictTypecheckExitCode": 0,
+    "privateAssemblyReportSha256": "24d5bca9396cc84b6e3dda63c7c263755f3e5ef1e67d8ce3111c4056d41731bd",
+    "privateValidationCommand": "npx tsx script/validate-next-company-evidence-private.ts",
+    "privateValidationExitCode": 0,
+    "privateValidationLogSha256": "255365f6935e610168a62687e54b4cf30433bf4c6fde74708397453ee95b74c7",
+    "privateValidationScope": "Actual retained primary metadata/filing bytes: 3 CIK/acceptance identities, 8 exact filing rows, unchanged FY2024 bridges and separate retained FSLR50 rows; no forecast rerun",
+    "strictOwnedScriptTypecheck": "ES2022 strict check passed including assembler, private validator and new/modified tests; source modules also pass ES5 strict check with no downlevelIteration or target weakening",
+    "scope": "Engineering contract fixtures only, no issuer forecasts or empirical studies rerun",
+    "strictTypecheckCommand": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/companyCaseEvidence.ts server/calculation/companyFullCashflowCase.ts server/calculation/companyShareEvidence.ts",
+    "privateOutputDirectory": "generated-artifacts/company-operating-corpus/next-company-evidence",
+    "privateOutputsIgnored": true,
+    "appOrBrowserVerification": "Not performed: no UI/routes changed; parent owns integrated application checks"
+  },
+  "completion": {
+    "requestedSourcedCases": 3,
+    "actualMarketPairs": 0,
+    "completeApprovedIssuerCases": 0,
+    "identityApprovals": 0,
+    "scientificAcceptance": false,
+    "originalIndustrialRequirementAutomaticallyReplacedByFslr": false
+  },
+  "preserved": {
+    "gordonPrimary": true,
+    "completedBetaAndCommon8Failure": true,
+    "diagnosticTerminalRange": "1–3% unchanged",
+    "originalNominalRange": "2.5–4% separate assessment",
+    "rawLicencesAndPrivateRetention": true,
+    "noAllowlistExpansionBillingPurchase": true,
+    "noWorkflowRunRestart": true,
+    "noProductionWritesCommitDeployCallbackCentralLedgerEdits": true
+  }
+}

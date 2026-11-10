@@ -43,10 +43,11 @@ test("read-only disclosure uses existing actual registry; definitions and displa
   assert.match(ui,/queryKey:\["\/api\/calculation\/field-semantics"\]/);
   assert.doesNotMatch(ui,/useMutation|<Input|<Button|method:\s*["']POST/);
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
-  assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
+  assert.equal(census.originalGapReconciliation.originalPublicSlots,1001);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,census.supplementalSlotAccounting.addedPublicSlots);
+  assert.deepEqual(census.supplementalSlotAccounting.removedOriginalSlots,[]);
    assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
-   assert.equal(census.fullyBoundFields,1000);
+   assert.equal(census.originalGapReconciliation.originalFullyBoundFields,1000);
   assert.ok(census.displayBindings.some((f:{id:string})=>f.id==="targetInput.value"));
   assert.equal(census.resolvedResponseAliases.length,4);
   assert.equal(census.withheldFields.length,27);

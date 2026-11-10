@@ -1,8 +1,18 @@
 /** Fixed provider hosts/endpoints only; never forward arbitrary public URLs. */
 const FMP_ENDPOINTS = new Set(["quote", "profile", "income-statement", "search-isin",
-  "cash-flow-statement", "balance-sheet-statement"]);
-export async function fmpRequest(endpoint: string, params: Record<string, string>) {
+  "cash-flow-statement", "balance-sheet-statement", "historical-price-eod/non-split-adjusted"]);
+export async function fmpRequest(endpoint: string, params: Record<string, string>,
+  privateRawCapture?: (body: string) => void) {
   if (!FMP_ENDPOINTS.has(endpoint)) throw new Error("Unsupported FMP endpoint");
+  if (endpoint === "historical-price-eod/non-split-adjusted") {
+    const validDate = (value: string | undefined) => typeof value === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(Date.parse(value)) &&
+      new Date(value).toISOString().slice(0, 10) === value;
+    if (Object.keys(params).sort().join(",") !== "from,symbol,to" ||
+        !/^[A-Z][A-Z0-9.-]{0,15}$/.test(params.symbol ?? "") ||
+        !validDate(params.from) || params.from !== params.to)
+      throw new Error("Historical unadjusted access requires one exact symbol/date with from=to and no extra parameters");
+  } else if (privateRawCapture) throw new Error("Private raw capture is restricted to the fixed historical unadjusted endpoint");
   const key = process.env.FMP_API_KEY;
   if (!key) throw new Error("FMP credential is not configured");
   const url = new URL(`https://financialmodelingprep.com/stable/${endpoint}`);
@@ -17,7 +27,14 @@ export async function fmpRequest(endpoint: string, params: Record<string, string
   }
   if (!response.ok) throw new Error(`FMP HTTP ${response.status}`);
   let data: unknown;
-  try { data = await response.json(); } catch { throw new Error("FMP returned invalid JSON"); }
+  try {
+    if (privateRawCapture) {
+      const body = await response.text();
+      // Do not persist a credential if a provider unexpectedly echoes it.
+      privateRawCapture(body.split(key).join("[REDACTED-FMP-CREDENTIAL]"));
+      data = JSON.parse(body);
+    } else data = await response.json();
+  } catch { throw new Error("FMP returned invalid JSON"); }
   if (!Array.isArray(data)) throw new Error("FMP returned an unexpected response");
   return data as Record<string, unknown>[];
 }

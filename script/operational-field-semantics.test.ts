@@ -10,13 +10,14 @@ test("operational GET families bind all actual typed leaves without new public s
     ["/api/news/climate",19],["/api/data/indicators",18],["/api/data/indicator/:key",31],
     ["/api/cv/uploads",8],["/api/cv/upload/:id/status",8],
   ] as const) {
-    const family=census.families.find((f:{surface:string})=>f.surface===`API GET "${path}"`);
+    const family=census.originalGapReconciliation.families.find((f:{surface:string})=>f.surface===`API GET "${path}"`);
     assert.equal(family.total,count,path);
     assert.equal(family.bound,count,path);
     assert.deepEqual(family.unbound,[]);
   }
-  assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
+  assert.equal(census.originalGapReconciliation.originalPublicSlots,1001);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,census.supplementalSlotAccounting.addedPublicSlots);
+  assert.deepEqual(census.supplementalSlotAccounting.removedOriginalSlots,[]);
    assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
    assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(new Set(outputFieldSemantics.map(f=>f.id)).size,outputFieldSemantics.length);
@@ -52,7 +53,7 @@ test("news definitions disclose estimator defaults rather than relabel estimates
 });
 
 test("export closure requires exact literal binding or certified production finite schema, never mere wildcard inventory",()=>{
-  assert.equal(census.verifiedExportBindings.length,59);
+  assert.equal(census.verifiedExportBindings.length,103,"59 retained reviewed bindings +19 standalone threshold +4 companions +21 separate native-mass diagnostic columns");
   for(const binding of census.verifiedExportBindings) {
     assert.ok(binding.transform.length>0);
     assert.ok(requireOutputSemantic(binding.id));

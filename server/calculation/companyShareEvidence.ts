@@ -23,6 +23,7 @@ export const primaryCommonSharesSchema = z.object({
  * cover count never authorize a dated market reference or an identity merge. */
 export function reviewCompanyShareReference(input: unknown, quote: {
   symbol: string; cik: string; security: string; priceDate: string;
+  informationCutoffDate?: string;
 }) {
   const x = primaryCommonSharesSchema.parse(input);
   const gaps: string[] = [];
@@ -33,7 +34,8 @@ export function reviewCompanyShareReference(input: unknown, quote: {
   if (!x.allCommonClassesCovered) gaps.push("All common classes are not evidenced.");
   if (x.classes.some(c => c.precision !== "exact")) gaps.push("Rounded shares cannot establish exact dated common equity.");
   if (x.effectiveDate !== quote.priceDate) gaps.push("Primary share effective date does not equal quote date; no carry-forward or interpolation.");
-  if (x.evidence.publishedDate > quote.priceDate) gaps.push("Share disclosure was published after the proposed reference date.");
+  if (x.evidence.publishedDate > (quote.informationCutoffDate ?? quote.priceDate))
+    gaps.push("Share disclosure was published after the information cutoff for the proposed reference.");
   if (x.evidence.publicationBasis !== "issuer-filing-index")
     gaps.push("Signed report date is not independently verified public availability.");
   for (const c of x.classes) {

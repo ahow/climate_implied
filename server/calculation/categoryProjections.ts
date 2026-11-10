@@ -7,6 +7,10 @@ import {
   type ForwardProjection,
 } from "./forwardProjection";
 import { historicalTrajectoryMetrics } from "./historicalMetrics";
+import type { ThresholdDiagnostic } from "../../shared/thresholdDiagnostic";
+import { selectedTrajectoryThresholdContext, type ThresholdContext } from "./thresholdDiagnostic";
+import { calculationKey } from "./identity";
+import { getAllHistoricalIndicators } from "./historicalIndicators";
 
 export type Category = 'technology' | 'policy' | 'corporate' | 'socioeconomic' | 'financial' | 'emissions';
 
@@ -16,6 +20,7 @@ export interface CategoryProjectionResult {
   temperatureRise: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic: ThresholdDiagnostic;
   trajectory: ForwardProjection[];
   temperatureDistribution: Array<{ temperature: number; probability: number }>;
 }
@@ -48,7 +53,8 @@ export function applyCategoryModifications(indicators: IndicatorData, category: 
 
 export function calculateCategoryProjection(
   category: Category,
-  year: number = 2024
+  year: number = 2024,
+  thresholdContext?: ThresholdContext,
 ): CategoryProjectionResult {
   const indicators = getCurrentIndicators();
   const modifiedIndicators = applyCategoryModifications(indicators, category);
@@ -57,7 +63,12 @@ export function calculateCategoryProjection(
   const temperatureDistribution = calculateTemperatureDistribution(projections, 1000);
   const tempStats = getTemperatureStats(temperatureDistribution, projections);
 
-  const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(projections);
+  const selected2024InputAvailable = getAllHistoricalIndicators().some(row => row.year === 2024);
+  const selectedContext = thresholdContext ?? selectedTrajectoryThresholdContext(
+    selected2024InputAvailable ? projections : [],
+    calculationKey("selected-category-inputs", indicators, { category, year }),
+    calculationKey("selected-category-trajectory", modifiedIndicators, { category, year, runs: 1000 }));
+  const { reductionRate, netZeroYear, thresholdDiagnostic } = historicalTrajectoryMetrics(projections, selectedContext);
 
   const categoryNames: Record<Category, string> = {
     technology: 'Technology',
@@ -74,6 +85,7 @@ export function calculateCategoryProjection(
     temperatureRise: tempStats.median,
     reductionRate,
     netZeroYear,
+    thresholdDiagnostic,
     trajectory: projections,
     temperatureDistribution: temperatureDistribution.map(t => ({
       temperature: t.temperature,
@@ -82,7 +94,8 @@ export function calculateCategoryProjection(
   };
 }
 
-export function calculateAllCategoryProjections(year: number = 2024): CategoryProjectionResult[] {
+export function calculateAllCategoryProjections(year: number = 2024,
+  thresholdContextForCategory?: (category: Category) => ThresholdContext | undefined): CategoryProjectionResult[] {
   const categories: Category[] = ['technology', 'policy', 'corporate', 'socioeconomic', 'financial', 'emissions'];
-  return categories.map(category => calculateCategoryProjection(category, year));
+  return categories.map(category => calculateCategoryProjection(category, year, thresholdContextForCategory?.(category)));
 }

@@ -1,8 +1,12 @@
 import type { CvTimeSeries } from "@shared/schema";
+import { gordonBaselineMetadata } from "../calculation/publicValuationContract";
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
 import { loadCompaniesAndTimeSeries, groupTimeSeriesByDate, filterCompaniesByGeography } from "./sharedUtils";
 
 export interface SDGGrowthResult {
+  costOfEquity: number;
+  gordonBaselineLabel: string;
+  gordonDefinition: string;
   date: Date;
   cleanPE: number;
   dirtyPE: number;
@@ -23,6 +27,7 @@ export async function calculateSDGGrowthDifferential(
   costOfEquity: number = 0.08,
   geography?: string
 ): Promise<SDGGrowthResult[]> {
+  const baseline = gordonBaselineMetadata(costOfEquity);
   const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(false);
 
   const filteredCompanies = filterCompaniesByGeography(allCompanies, geography);
@@ -86,6 +91,7 @@ export async function calculateSDGGrowthDifferential(
     const conversion = convertAll(impliedDecarbRate);
 
     results.push({
+      ...baseline,
       date,
       cleanPE: Math.round(cleanPE * 100) / 100,
       dirtyPE: Math.round(dirtyPE * 100) / 100,

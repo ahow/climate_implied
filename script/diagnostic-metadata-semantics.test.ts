@@ -12,14 +12,15 @@ import { diagnosticMetadataBindings } from "../shared/diagnosticMetadataSemantic
 test("65 existing metadata leaves close without denominator or withheld changes",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   for(const [index,count] of [27,24,14].entries()) {
-    const family=census.families.find((f:{surface:string})=>f.surface===diagnosticMetadataBindings[index].surface);
+    const family=census.originalGapReconciliation.families.find((f:{surface:string})=>f.surface===diagnosticMetadataBindings[index].surface);
     assert.equal(family.total,count);
     assert.equal(family.bound,count);
   }
-   assert.equal(census.fullyBoundFields,1000);
+   assert.equal(census.originalGapReconciliation.originalFullyBoundFields,1000);
    assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
    assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,census.supplementalSlotAccounting.addedPublicSlots);
+  assert.deepEqual(census.supplementalSlotAccounting.removedOriginalSlots,[]);
   assert.equal(census.withheldFields.length,27);
   assert.equal(census.resolvedResponseAliases.length,4);
   assert.equal(census.completion,false);

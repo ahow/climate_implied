@@ -1,8 +1,8 @@
 import ts from "typescript";
-import { readFileSync,writeFileSync } from "node:fs";
+import { existsSync,readFileSync,writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fieldSemantics } from "../shared/fieldSemantics";
-import { outputFieldSemantics } from "../shared/outputFieldSemantics";
+import { outputFieldSemantics, bindExportColumns } from "../shared/outputFieldSemantics";
 import { evidenceApiBindings } from "../shared/evidenceFieldSemantics";
 import { diagnosticMetadataBindings } from "../shared/diagnosticMetadataSemantics";
 import { remainingApiBindings } from "../shared/remainingFieldSemantics";
@@ -13,6 +13,17 @@ import { publicValuationResult } from "../server/calculation/publicValuationCont
 import { execFileSync,spawnSync } from "node:child_process";
 import { relative,resolve } from "node:path";
 import { semanticsCompletionGateError,type SemanticsCompletionGate } from "./field-semantics-gates";
+import { thresholdExportBindings } from "../client/src/lib/threshold-export";
+import { supplementalSheetBindings, supplementalSheetSemantics } from "../shared/supplementalSheetBindings";
+import { fetchSummarySemantics } from "../shared/fetchSummarySemantics";
+import { companyAbatementSemantics } from "../shared/companyAbatementSemantics";
+import { gordonBaselineSemantics } from "../shared/gordonBaselineSemantics";
+import { originalNominalAssessmentSemantics } from "../shared/originalNominalAssessmentSemantics";
+import { thresholdDiagnosticSemantics } from "../shared/thresholdDiagnosticSemantics";
+import { nativeThresholdSemantics } from "../shared/nativeThresholdSemantics";
+import { nativeThresholdExportBindings, nativeThresholdExportRows } from "../client/src/lib/native-threshold-export";
+import { nativeCandidateResidualDiagnostics } from "../server/calculation/nativeThresholdDiagnostics";
+import { projectNativeEmissions, constantScenario } from "../server/calculation/emissionsCandidate";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -30,6 +41,7 @@ if(baseline) {
 const program=ts.createProgram(parsed.fileNames,parsed.options,host),checker=program.getTypeChecker();
 type Entry={surface:string;field:string;type:string;source:string;line:number;resolution:string};
 const entries:Entry[]=[];
+const supplementalTypedApiEntries:Entry[]=[];
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
 const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
 const verifiedExportBindings: {surface:string;field:string;id:string;transform:string}[]=[];
@@ -226,11 +238,19 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
              const properties=literalProperties(object);
              // Reject duplicate keys, including possible conditional-spread
              // overwrites. Computed keys remain unverified, never wildcard proof.
-             const names=properties?.filter(p=>!ts.isComputedPropertyName(p.name)).map(p=>p.name.getText(source));
+              const literalColumnName=(name:ts.PropertyName):string|null=>{
+                if(ts.isComputedPropertyName(name)) {
+                  const type=checker.getTypeAtLocation(name.expression);
+                  return type.isStringLiteral()?type.value:null;
+                }
+                return ts.isStringLiteral(name)?name.text:name.getText(source);
+              };
+              const names=properties?.map(p=>literalColumnName(p.name));
              if(properties && new Set(names).size===names?.length) for(const property of properties) {
-              if(!ts.isPropertyAssignment(property) || ts.isComputedPropertyName(property.name) ||
+               if(!ts.isPropertyAssignment(property) ||
                 !ts.isObjectLiteralExpression(property.initializer)) continue;
-              const name=ts.isStringLiteral(property.name)?property.name.text:property.name.getText(source);
+               const name=literalColumnName(property.name);
+               if(name===null) continue;
               const values=new Map(property.initializer.properties.flatMap(p=>
                 ts.isPropertyAssignment(p)&&ts.isIdentifier(p.name)&&ts.isStringLiteral(p.initializer)
                   ? [[p.name.text,p.initializer.text] as const]:[]));
@@ -238,6 +258,24 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
               if(id && transform && outputFieldSemantics.some(f=>f.id===id))
                 verifiedExportBindings.push({surface:exportSurface,field:`[].${name}`,id,transform});
             }
+          }
+          if(relativeSource(source.fileName)==="client/src/components/threshold-diagnostic-details.tsx" &&
+            prop.initializer.expression.getText(source)==="diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))" &&
+            node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&
+              p.initializer?.getText(source)==="{thresholdExportBindings}"))
+            for(const [column,binding] of Object.entries(thresholdExportBindings))
+              verifiedExportBindings.push({surface:exportSurface,field:`[].${column}`,...binding});
+          if(relativeSource(source.fileName)==="client/src/components/emissions-candidate-review.tsx" &&
+            prop.initializer.expression.getText(source)==="nativeThresholdExportRows(data.residualDiagnostics.records)" &&
+            node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&
+              p.initializer?.getText(source)==="{nativeThresholdExportBindings}")) {
+            // Verify actual builder keys/bindings against captured real inventory;
+            // only2024 is evaluated, not a study or forecast rerun.
+            const rows=nativeThresholdExportRows(nativeCandidateResidualDiagnostics(
+              projectNativeEmissions(constantScenario,2024)).records);
+            bindExportColumns(rows,nativeThresholdExportBindings);
+            for(const [column,binding] of Object.entries(nativeThresholdExportBindings))
+              verifiedExportBindings.push({surface:exportSurface,field:`[].${column}`,...binding});
           }
         }
         // Explicit schema consumed by both the actual row builder and bindings.
@@ -251,6 +289,21 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
     }
     ts.forEachChild(node,child=>visit(child,surface));
   }
+  visit(source);
+}
+// External route handler's actual typed send arguments are supplemental API
+// inventory, never additions to the frozen original direct-res.json cohort.
+if(!baseline) for(const source of program.getSourceFiles().filter(s=>
+  relativeSource(s.fileName)==="server/calculation/originalNominalAssessmentHandler.ts")) {
+  const visit=(node:ts.Node):void=>{
+    if(ts.isCallExpression(node)&&node.expression.getText(source)==="send"&&node.arguments[1]) {
+      const start=entries.length;
+      fields(checker.getTypeAtLocation(node.arguments[1]),"",
+        'API GET "/api/valuation/original-nominal-assessment"',node);
+      supplementalTypedApiEntries.push(...entries.splice(start));
+    }
+    ts.forEachChild(node,visit);
+  };
   visit(source);
 }
 for(const entry of entries) if(entry.surface.includes("/api/cv/") &&
@@ -267,6 +320,9 @@ const isBound=(e:typeof unique[number])=>
   // Raw historical JSON stays on the wire. Known producer/container metadata is
   // not exhaustive historical leaf coverage and cannot close this original slot.
   !(e.surface==='API GET "/api/data/runs"'&&e.field==="runs[].summary")&&(
+   // Exact typed SIDE-CAR map domain only. Never bind the adjacent raw summary.
+   (e.surface==='API GET "/api/data/runs"'&&e.field==="summaryEvidence.*"&&
+     fetchSummarySemantics.every(f=>outputFieldSemantics.some(registered=>registered.id===f.id))) ||
   certifiedFiniteExports.some(schema=>schema.surface===e.surface&&(
     e.field==="[].*" || (e.field.startsWith("[].") &&
       schema.domainCases.every(c=>Object.hasOwn(c.columns,e.field.slice(3)))))) ||
@@ -294,7 +350,9 @@ const isBound=(e:typeof unique[number])=>
   outputFieldSemantics.some(f=>f.id===`companyReplay.ledger.${e.field.replace(/^\[\]\./,"")}`)) || (e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
   nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
   Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
-  outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
+  outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) ||
+  (e.surface==='API POST "/api/emissions/regional-residual-diagnostics"' &&
+    outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
       outputFieldSemantics.some(f=>f.id===`projection.${e.field}`)) || (e.field.startsWith("[].") &&
     [["/api/cv/decarb-gap/timeseries","peerValuationHistory"],["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"],["/api/calculation/company-operating/reviews","companyReview"]].some(([path,prefix])=>
       e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`))) ||
@@ -319,6 +377,37 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
     persistedSummary:"/api/data/runs returns each original summary JSON VALUE unchanged, including all unknown historical values. Known producer container/leaf metadata is supplemental; the original opaque summary slot remains unresolved and is not completion credit.",
   },
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
+  supplementalQualifiedChanges:{
+    nativeResidualDiagnostics:{
+      definitions:nativeThresholdSemantics.length,ids:nativeThresholdSemantics.map(f=>f.id),
+      originalNativeApiFields:187,originalNativeWorkbookColumns:35,
+      addedCandidateApiFields:unique.filter(e=>e.surface==='API GET "/api/emissions/candidate"'&&e.field.startsWith("residualDiagnostics.")).length,
+      addedRegionalSubmittedInputApiFields:unique.filter(e=>e.surface==='API POST "/api/emissions/regional-residual-diagnostics"').length,
+      separateNativeDiagnosticWorkbookColumns:Object.keys(nativeThresholdExportBindings).length,
+      qualification:"Captured source-derived global2024 inventory; explicit supplied regional MODEL inputs only. No regional2024 land-use allocation fabricated; existing engine/results/archives unchanged. Not source revalidation, calibration, publication-vintage proof or physical net zero.",
+      boundary:"All new typed API/export quantities are supplemental; none closes or reduces the original1001 cohort.",
+    },
+    thresholdDiagnostic:{definitions:thresholdDiagnosticSemantics.length,ids:thresholdDiagnosticSemantics.map(f=>f.id),
+      boundary:"246 standalone/nested diagnostic and separately versioned fixed5Gt definitions. New5%-of2024 leaves never replace old fixed5Gt quantities in the frozen cohort."},
+    summarySidecar:{definitions:fetchSummarySemantics.length,ids:fetchSummarySemantics.map(f=>f.id),
+      typedMapDomain:{surface:'API GET "/api/data/runs"',field:"summaryEvidence.*",
+        keys:"Existing fetch-run IDs",value:"FetchSummaryEvidence discriminated union; verified manifests are strict parsed/content-authenticated; unverified has null manifest and explicit reason",
+        enforcement:"summaryArchive.loadFetchSummaryEvidence + bindFetchSummaryEvidence on each map value; fetch-summary-provenance tests"},
+      boundary:"Run-ID-keyed authenticated sidecar has its own typed contract; all unknown/legacy raw runs[].summary JSON remains opaque and unclosed."},
+    metadataSheets:{definitions:supplementalSheetSemantics.length,
+      sheets:Object.fromEntries((["Field semantics","Column bindings"] as const).map(sheet=>[sheet,supplementalSheetBindings(sheet)])),
+      boundary:"31 exact supplemental metadata-sheet column bindings, runtime-certified and XLSX-readback tested; no original cohort closure credit."},
+    companyAbatement:{definitions:companyAbatementSemantics.length,ids:companyAbatementSemantics.map(f=>f.id),
+      boundary:"43 additive qualified definitions; conditional physical ledger, no observation/scientific/financial validation or original closure credit."},
+    gordonBaseline:{definitions:gordonBaselineSemantics.length,ids:gordonBaselineSemantics.map(f=>f.id),
+      boundary:"Six additive cost-of-equity metadata leaves; no physical decarbonisation interpretation or original cohort closure credit."},
+    originalNominalAssessment:{definitions:originalNominalAssessmentSemantics.length,
+      ids:originalNominalAssessmentSemantics.map(f=>f.id),
+      omittedUndefinedBranchProperties:Array.from(new Set(supplementalTypedApiEntries.filter(e=>e.type==="undefined").map(e=>e.field))),
+      typedApiFields:Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined").map(e=>[e.field,e])).values()).map(e=>({
+        ...e,bound:outputFieldSemantics.some(f=>f.id===`originalNominalAssessment.${e.field}`)})),
+      boundary:"New read-only explicitly conditional endpoint; typed send-argument domain and input/HTTP metadata inventoried separately, never original cohort closure credit."},
+  },
    displayBindingScope:"Explicit data-field-id bindings and all direct JSX expression children inventoried separately; expressions include non-value controls/containers and are not claimed semantically covered. Attributes, chart callback payloads and nested component rendering still require runtime review. No original denominator additions.",
   resolvedDynamicDomains:baseline?{}:nativeDynamicDomains,
   nativePathwayDynamicDomains:baseline?{}:{years:[2030,2050,2100],gases:nativePathwayGasIds,
@@ -361,7 +450,7 @@ const originalExportSources=[
   "data-management.tsx",
   "category-trend-chart.tsx","indicator-cards.tsx","climate-valuation.tsx",
 ];
-const originalClosedSlots = unique.filter(e=>(originalClosureSurfaces.includes(e.surface) ||
+const candidateOriginalClosedSlots = unique.filter(e=>(originalClosureSurfaces.includes(e.surface) ||
   (e.surface.startsWith("XLSX client/") && originalExportSources.some(file=>e.source.endsWith(`/${file}`)) &&
      (verifiedExportBindings.some(b=>b.surface===e.surface&&b.field===e.field)||
        certifiedFiniteExports.some(s=>s.surface===e.surface))))&&isBound(e))
@@ -372,6 +461,67 @@ const slotSignatures=unique.map(e=>{
 }).sort();
 const slotFingerprint=createHash("sha256").update(JSON.stringify(slotSignatures)).digest("hex");
 const frozenOriginalSlotFingerprint="34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79";
+type FrozenSlot={key:string;surface:string;field:string;role:"originally-bound"|"original-gap"|"withheld"};
+type FrozenCohort={version:string;sourceSha256:string;slotIdentityFingerprint:string;slots:FrozenSlot[]};
+const cohortPath="docs/field_semantics_original_cohort.json";
+const normalizedKey=(entry:{surface:string;field:string},metadata:typeof exportBindingMetadata)=>{
+  const m=metadata.find(m=>entry.surface===`XLSX ${m.source}:${m.line}`);
+  return `${m?`XLSX ${m.source}:${m.rows}`:entry.surface}|${entry.field}`;
+};
+let frozenCohort:FrozenCohort|undefined;
+if(!baseline) {
+  if(existsSync(cohortPath)) frozenCohort=JSON.parse(readFileSync(cohortPath,"utf8"));
+  else {
+    const previousText=readFileSync("docs/field_semantics_census.json","utf8");
+    const previous=JSON.parse(previousText);
+    if(previous.originalGapReconciliation?.slotIdentityFingerprint!==frozenOriginalSlotFingerprint ||
+      previous.originalGapReconciliation?.originalPublicSlots!==1001 || previous.fields.length!==1028)
+      throw new Error("Cannot initialize frozen original cohort from a changed census; restore exact reviewed original census first");
+    const closed=new Set(previous.originalGapReconciliation.closedSlots.map((e:Entry)=>
+      normalizedKey(e,previous.exportBindingMetadata)));
+    frozenCohort={version:"original-1001-cohort-v1",sourceSha256:createHash("sha256").update(previousText).digest("hex"),
+      slotIdentityFingerprint:frozenOriginalSlotFingerprint,
+      slots:previous.fields.map((e:Entry)=>({
+        key:normalizedKey(e,previous.exportBindingMetadata),surface:e.surface,field:e.field,
+        role:e.resolution==="withheld-public-field"?"withheld":
+          closed.has(normalizedKey(e,previous.exportBindingMetadata)) ||
+          (e.surface==='API GET "/api/data/runs"'&&e.field==="runs[].summary")?"original-gap":"originally-bound",
+      }))};
+    writeFileSync(cohortPath,JSON.stringify(frozenCohort,null,2)+"\n");
+  }
+  if(!frozenCohort || frozenCohort.slotIdentityFingerprint!==frozenOriginalSlotFingerprint ||
+    frozenCohort.slots.filter(s=>s.role!=="withheld").length!==1001 ||
+    frozenCohort.slots.filter(s=>s.role==="original-gap").length!==572 ||
+    frozenCohort.slots.filter(s=>s.role==="originally-bound").length!==429)
+    throw new Error("Frozen original cohort identities/denominators changed");
+}
+// These exact label aliases preserve the OLD fixed5Gt quantity and semantic ID.
+// They do not alias new5%-of2024 columns into the original fixed5Gt slots.
+const quantityPreservingExportAliases=[
+  {source:"client/src/components/category-comparison.tsx",oldField:"[].First year median emissions reach 5 GtCO2e"},
+  {source:"client/src/components/historical-trend-chart.tsx",oldField:"[].Year median emissions reach 5 GtCO2e"},
+  {source:"client/src/components/regional-comparison.tsx",oldField:"[].Legacy 5 Gt milestone"},
+].map(alias=>({...alias,currentField:"[].Legacy fixed-5gt-v1 year (5 GtCO2e)"}));
+const originalKeyForCurrent=(entry:Entry)=>{
+  const alias=quantityPreservingExportAliases.find(a=>a.source===entry.source&&a.currentField===entry.field);
+  return normalizedKey(alias?{...entry,field:alias.oldField}:entry,exportBindingMetadata);
+};
+const currentByOriginalKey=new Map(unique.map(e=>[originalKeyForCurrent(e),e]));
+const originalSlots=(frozenCohort?.slots??[]).map(slot=>{
+  const current=currentByOriginalKey.get(slot.key);
+  return {...slot,present:!!current,bound:!!current&&isBound(current),
+    resolution:slot.role==="withheld"?"withheld-public-field":current?.resolution??"missing-original-slot"};
+});
+const originalClosedSlots=baseline?candidateOriginalClosedSlots:
+  originalSlots.filter(s=>s.role==="original-gap"&&s.bound).map(s=>({surface:s.surface,field:s.field}));
+const originalFullyBound=originalSlots.filter(s=>s.role!=="withheld"&&s.bound).length;
+const originalKeys=new Set(frozenCohort?.slots.map(s=>s.key));
+const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent(e)));
+const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
+  .map(e=>[`${e.surface}|${e.field}`,e])).values());
+const externalTypedApiBound=externalTypedApiFields.filter(e=>
+  outputFieldSemantics.some(f=>f.id===`originalNominalAssessment.${e.field}`)).length;
+const originalCohortFingerprint=frozenCohort?.slotIdentityFingerprint??slotFingerprint;
 const reconciliation = baseline ? {} : {
   originalGapReconciliation: {
     originalPublicSlots:1001, originalBoundSlots:429, originalUnboundSlots:572,
@@ -379,12 +529,36 @@ const reconciliation = baseline ? {} : {
     closedSlots:originalClosedSlots,
     currentPublicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length,
     publicSlotDenominatorDelta:unique.filter(e=>e.resolution!=="withheld-public-field").length-1001,
-     originalCohortComplete:originalClosedSlots.length===572&&unique.filter(isBound).length===1001,
-     slotIdentityFingerprint:slotFingerprint,
+      originalCohortComplete:originalClosedSlots.length===572&&originalFullyBound===1001,
+      originalFullyBoundFields:originalFullyBound,
+      originalSlots:originalSlots,
+      families:Array.from(new Set(originalSlots.map(s=>s.surface))).map(surface=>{
+        const fields=originalSlots.filter(s=>s.surface===surface);
+        return {surface,total:fields.length,bound:fields.filter(s=>s.bound).length,
+          unbound:fields.filter(s=>!s.bound),withheld:fields.filter(s=>s.role==="withheld")};
+      }),
+      missingOriginalSlots:originalSlots.filter(s=>!s.present),
+      quantityPreservingExportAliases,
+      slotIdentityFingerprint:originalCohortFingerprint,
+      currentInventorySlotIdentityFingerprint:slotFingerprint,
      frozenOriginalSlotFingerprint,
-     originalSlotIdentitiesUnchanged:slotFingerprint===frozenOriginalSlotFingerprint,
+      originalSlotIdentitiesUnchanged:originalSlots.every(s=>s.present),
     reconciledCacheAliases:4,
      note:"Only reviewed original API families and existing DownloadDataButton slots count as closure. Literal columns require exact qualified bindings; finite dynamic slots require actual production row-builder certification, matching settings/bindings and an explicit finite concrete column domain with runtime rejection. New concrete columns, definitions, supplemental response/JSON claims and displays are separately inventoried, never original closure additions.",
+  },
+  supplementalSlotAccounting:{
+    addedSlots:addedCurrentSlots.length,addedPublicSlots:addedCurrentSlots.filter(e=>e.resolution!=="withheld-public-field").length,
+    addedBoundSlots:addedCurrentSlots.filter(isBound).length,
+    addedFields:addedCurrentSlots.map(e=>({...e,bound:isBound(e)})),
+    removedOriginalSlots:originalSlots.filter(s=>!s.present),
+    originalPublicDenominator:1001,
+    externalTypedApiSlots:externalTypedApiFields.length,
+    externalTypedApiBoundSlots:externalTypedApiBound,
+    expandedApiAndDownloadPublicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length+externalTypedApiFields.length,
+    expandedApiAndDownloadBoundSlots:report.fullyBoundFields+externalTypedApiBound,
+    expandedPublicDeltaFromOriginal:addedCurrentSlots.filter(e=>e.resolution!=="withheld-public-field").length+externalTypedApiFields.length,
+    supplementalMetadataSheetColumns:supplementalSheetSemantics.length,
+    boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };
 const out=JSON.stringify({...report,...reconciliation},null,2)+"\n";
@@ -397,14 +571,16 @@ console.log(JSON.stringify({definitions:report.definitions,typedEntries:unique.l
   unresolved:report.unresolvedTypes.length+report.unresolvedDynamicKeys.length,
   nonScalarOrWithheldInventory:report.exclusions.length,
   surfaces:new Set(unique.map(e=>e.surface)).size,fullyBoundFields:report.fullyBoundFields,
-  originalCohortComplete:!baseline&&originalClosedSlots.length===572&&report.fullyBoundFields===1001&&slotFingerprint===frozenOriginalSlotFingerprint,
+   originalCohortComplete:!baseline&&originalClosedSlots.length===572&&originalFullyBound===1001&&originalSlots.every(s=>s.present),
   completion:false}));
 for(const gate of ["--require-original-complete","--require-complete"] as SemanticsCompletionGate[]) {
   if(!process.argv.includes(gate)) continue;
   const error=semanticsCompletionGateError(gate,{
-    baseline:!!baseline,closedOriginalSlots:originalClosedSlots.length,fullyBoundFields:report.fullyBoundFields,
-    publicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length,
-    slotFingerprint,frozenOriginalSlotFingerprint,resolvedResponseAliases:report.resolvedResponseAliases.length,
+     baseline:!!baseline,closedOriginalSlots:originalClosedSlots.length,
+     fullyBoundFields:gate==="--require-original-complete"?originalFullyBound:report.fullyBoundFields,
+     publicSlots:gate==="--require-original-complete"?1001:unique.filter(e=>e.resolution!=="withheld-public-field").length,
+     slotFingerprint:gate==="--require-original-complete"?originalCohortFingerprint:slotFingerprint,
+     frozenOriginalSlotFingerprint,resolvedResponseAliases:report.resolvedResponseAliases.length,
     withheldFields:report.withheldFields.length,
   });
   if(error) throw new Error(error);

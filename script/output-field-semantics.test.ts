@@ -7,9 +7,10 @@ import * as XLSX from "xlsx";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
 test("all historical/category response leaves bind, without treating reconstructions as issued forecasts",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
-  for(const [path,prefix,count] of [["/api/projection/categories","category",15],["/api/projection/historical-trend","historical",7],["/api/projection/categories/historical-trend","categoryHistory",23]] as const) {
+  for(const [path,prefix,count,originalCount] of [["/api/projection/categories","category",33,15],["/api/projection/historical-trend","historical",25,7],["/api/projection/categories/historical-trend","categoryHistory",149,23]] as const) {
     const fields=census.fields.filter((e:any)=>e.surface.includes(`"${path}"`)&&e.field.startsWith("[]."));
     assert.equal(fields.length,count);
+    assert.equal(census.originalGapReconciliation.families.find((f:any)=>f.surface===`API GET "${path}"`).total,originalCount);
     for(const field of fields) assert.ok(requireOutputSemantic(`${prefix}.${field.field.slice(3)}`));
   }
 });
@@ -37,7 +38,8 @@ import { calculateTemperatureDistribution,getTemperatureStats } from "../server/
 test("all regional response fields bind with explicit PPP/nominal and nonregional-warming qualifications",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   const fields=census.fields.filter((e:any)=>e.surface.includes('"/api/projection/regions"')&&e.field.startsWith("[]."));
-  assert.equal(fields.length,10);
+  assert.equal(fields.length,28);
+  assert.equal(census.originalGapReconciliation.families.find((f:any)=>f.surface==='API GET "/api/projection/regions"').total,10);
   for(const field of fields) assert.ok(requireOutputSemantic(`regional.${field.field.slice(3)}`));
   assert.match(requireOutputSemantic("regional.carbonIntensityBasis").meaning,/not interchangeable/);
   assert.match(requireOutputSemantic("regional.netZeroYear").meaning,/NOT net zero/);
@@ -76,7 +78,8 @@ test("API and download type census must be regenerated when source fields change
 test("every actual typed SDG response field has a complete qualified definition",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   const fields=census.fields.filter((e:any)=>e.surface.includes('"/api/cv/sdg-growth"')&&e.field.startsWith("[].")&&e.resolution==="typed-field");
-  assert.equal(fields.length,11);
+  assert.equal(fields.length,14);
+  assert.equal(census.originalGapReconciliation.families.find((f:any)=>f.surface==='API GET "/api/cv/sdg-growth"').bound,11);
   for(const entry of fields) {
     const semantic=requireOutputSemantic(`sdg.${entry.field.slice(3)}`);
     for(const key of ["meaning","formula","unit","source","period","geography","status","missingness","uncertainty","scope","asOfRule"] as const)

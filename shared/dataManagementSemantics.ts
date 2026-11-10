@@ -1,6 +1,9 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { companySummarySemantics } from "./companySummarySemantics";
 import { z } from "zod";
+import type { FetchSummaryEvidence } from "./fetchSummarySemantics";
+import { fetchSummarySemantics } from "./fetchSummarySemantics";
+import { supplementalSheetSemantics } from "./supplementalSheetBindings";
 export const FETCH_SUMMARY_CONTRACT="indicator-fetch-producer-schema-v1";
 export const persistedSummarySchema=z.object({
   perAdapter:z.array(z.object({
@@ -9,11 +12,15 @@ export const persistedSummarySchema=z.object({
   error:z.string().optional(),
 }).strict();
 /** Optional interpretation only. Never substitutes for the retained raw JSON value. */
-export function describePersistedSummary(value:unknown) {
+export function describePersistedSummary(value:unknown, evidence?:FetchSummaryEvidence) {
   const result=persistedSummarySchema.safeParse(value);
   return result.success
-    ? {contract:FETCH_SUMMARY_CONTRACT,availability:"available" as const,claims:result.data,reason:null}
+    ? {contract:FETCH_SUMMARY_CONTRACT,availability:"available" as const,claims:result.data,
+      provenance:evidence?.availability==="verified" ? "verified" as const : "unverified" as const,
+      reason:evidence?.availability==="verified" ? null :
+        "Schema-compatible only; no verified prospective producer manifest. Raw JSON remains available unchanged"}
     : {contract:FETCH_SUMMARY_CONTRACT,availability:"unavailable" as const,claims:null,
+      provenance:"unverified" as const,
       reason:"Unknown historical or absent summary schema; raw JSON remains available unchanged"};
 }
 
@@ -87,6 +94,8 @@ const context = {
   asOfRule:"Current stored approved overrides and static history/nowcast. Proposal createdAt/decidedAt are ingestion/decision timestamps; asOfDate is a nullable declaration, not verified source publication.",
 };
 export const dataManagementSemantics:OutputFieldSemantic[] = [
+  ...fetchSummarySemantics,
+  ...supplementalSheetSemantics,
   ...proposals.map(([field,meaning,formula,unit])=>({
     id:`indicatorProposal.${field}`,meaning,formula,unit,...context,
     source:"server/routes.ts operator approve/reject/manual responses; server/dataIngestion/dataStore.ts; shared/schema.ts",

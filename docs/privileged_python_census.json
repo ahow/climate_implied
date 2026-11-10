@@ -1,0 +1,971 @@
+{
+  "version": "python-privileged-discovery-1",
+  "files": [
+    {
+      "path": "script/amend-developer-workplan.py",
+      "sourceSha256": "7ce3f22ecaea92e64ad927898574bcb2df700cbc3a179b2f640639fcd4bf6936",
+      "operations": []
+    },
+    {
+      "path": "script/assess-ngfs.py",
+      "sourceSha256": "e8429be9cdde23fb2b50892d87fe4ec4712b6b4e3996b7deb915784bdd96ca27",
+      "operations": [
+        {
+          "line": 61,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 68,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 69,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 70,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 70,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 71,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 87,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 120,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 124,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/capture-scheduler-host-evidence.py",
+      "sourceSha256": "5822d993a6495438e55a6c98d189c197f7b812832129607de79a2acb131d9c94",
+      "operations": []
+    },
+    {
+      "path": "script/compare_energy_sources.py",
+      "sourceSha256": "c4b6e512d519499a3a09c3fcbad911b9eb7e6a8030249cde7e1b5cf42cec3264",
+      "operations": [
+        {
+          "line": 20,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 51,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 62,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 62,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/compare_fair_histories.py",
+      "sourceSha256": "d85539247e7d66e8edfaa1ea7509fad90eea0949c9a07cd473e9356df73f5a3f",
+      "operations": [
+        {
+          "line": 11,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 11,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/compare_retained_igcc_physics.py",
+      "sourceSha256": "27c527b753990fbd5dccf13b91284a683ecd3f147d4105662c7a089b9f80dd9d",
+      "operations": []
+    },
+    {
+      "path": "script/completion-ledger.py",
+      "sourceSha256": "f9166172abe3e018b8e1388e0cceafed34cfd8746f79d5a9b9d2d2ea36034132",
+      "operations": [
+        {
+          "line": 162,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/cost_deployment_calibration.py",
+      "sourceSha256": "98b59fadb90f142df7de6a85d055b962b1cfbbbaaab3fc62a0841dbd763799fd",
+      "operations": []
+    },
+    {
+      "path": "script/demand_predictive_validation.py",
+      "sourceSha256": "90d02c555a15a36af1efcb4503f4d9632b035b78c6e3d53102c6ff6e59348703",
+      "operations": [
+        {
+          "line": 40,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 99,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/driver_calibration.py",
+      "sourceSha256": "b494746b79ae4c757decc0ea1a23135f7215d4b08fbac27e3af20c6e59150167",
+      "operations": [
+        {
+          "line": 54,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 68,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/driver_uncertainty.py",
+      "sourceSha256": "5d85944866326d81e37f21a40cf72d59dde98800170c4a23b05ec9c2dd4026d6",
+      "operations": [
+        {
+          "line": 64,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/electricity_demand_calibration.py",
+      "sourceSha256": "93a481d9a7a35d0368d5ce52d8fa7cf11ca9ab1cfc451433bed9fb2b93613fe9",
+      "operations": [
+        {
+          "line": 40,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/ev_sales_calibration.py",
+      "sourceSha256": "7bdc47c1be755bed3ed669a3cacdf79d5c251e75b5d7703370df275481803b10",
+      "operations": [
+        {
+          "line": 36,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fair-reference.py",
+      "sourceSha256": "60d67597fc6918033932d60978e34fd352eef75ca43659ddc609f73bb4103b80",
+      "operations": [
+        {
+          "line": 52,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 70,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 94,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 121,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 145,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fair_additional_species.py",
+      "sourceSha256": "546a1983d77ce32621f6ac9a5866974f54e538b9ed911eda27e754380695626a",
+      "operations": [
+        {
+          "line": 45,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 45,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 47,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 49,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 50,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 50,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fair_minor_gas_controls.py",
+      "sourceSha256": "fe4ec43e9a35f3b57e3ea23bedccbce994fef4560a7fb105c121c83dc43023c3",
+      "operations": [
+        {
+          "line": 44,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fair_native_bridge.py",
+      "sourceSha256": "8c75fcaecf5e51c0e2c8fcc0bbbe789e312707a4a68fe616bab210fd6a155e70",
+      "operations": [
+        {
+          "line": 17,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 21,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 21,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 23,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 26,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 26,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 26,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 38,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fair_physical_retention.py",
+      "sourceSha256": "b38715a0384041c20c6843863639259aaeb6350da23d9b1a26d7249a487dbc38",
+      "operations": [
+        {
+          "line": 47,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 61,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fair_pulse_checks.py",
+      "sourceSha256": "c25537955a8b76ef6035c0dd043a3c9eeb682ea53974bb83f615bb8431e4ed48",
+      "operations": [
+        {
+          "line": 48,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/finalize-clause-evidence.py",
+      "sourceSha256": "c894f80778da2b22a0ea032f53444e827089ae1afe2737867c19db56731efac0",
+      "operations": [
+        {
+          "line": 38,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/fleet_transition.py",
+      "sourceSha256": "a9850f45ed554fa1ecf9a50f24c260255d3ee6267a645484ede2bdc40a4478b9",
+      "operations": [
+        {
+          "line": 115,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 115,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/forecast_kaya.py",
+      "sourceSha256": "b2e5d401571bc342f351f274ddf7bb922e1911afde7bd0f12b4611e2c21fe981",
+      "operations": [
+        {
+          "line": 26,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 32,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 32,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 137,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 137,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 137,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/handoff_contract.py",
+      "sourceSha256": "ac6a28793e64b5eb6894b48e9dc2bf599b2d84830b9ba143a444514033586c7c",
+      "operations": [
+        {
+          "line": 7,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 9,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 11,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 29,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/heat_pump_diffusion.py",
+      "sourceSha256": "309b497da39a04d2c425f20f326df58018f57f571d3f8b4a55d474e46af41c5e",
+      "operations": []
+    },
+    {
+      "path": "script/independent_fair_benchmark.py",
+      "sourceSha256": "eed27e4c09f2b8a7efa6aa598fd905b65d9592c44fa2149151df01ac51e79cf7",
+      "operations": [
+        {
+          "line": 77,
+          "callee": "patch",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 95,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/kaya_decomposition.py",
+      "sourceSha256": "5465a84470a6bc3bdd0e039d7e0ae964ea1099b2be03ac2b59be049e4bb9e9b3",
+      "operations": [
+        {
+          "line": 19,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 50,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 50,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/kaya_primary_history_sources.py",
+      "sourceSha256": "764c6d46327a3d997416e183e2223c8a8762a269f51a5250277c662c13c2972e",
+      "operations": []
+    },
+    {
+      "path": "script/kaya_source_assembly.py",
+      "sourceSha256": "ebbab983f49ff98e73ec86d1bb82c8752b0a5a2b4c3adf75bba3ae1613d72b6a",
+      "operations": [
+        {
+          "line": 50,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 54,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 55,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 64,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 67,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 68,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 82,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 84,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 106,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 106,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 162,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/merge-clause-reconciliation.py",
+      "sourceSha256": "d2b03b407f70116813fb25dec9ac1284c3a8b82b34f140c702f4455a5c67ce62",
+      "operations": [
+        {
+          "line": 14,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 30,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 32,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 34,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 36,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 38,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 45,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 47,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 48,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 49,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 60,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 60,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 75,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 75,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 76,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 76,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 78,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 79,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 80,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 80,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 81,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 83,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/ngfs_pathway_adapter.py",
+      "sourceSha256": "98bfd1916efcb71508cacdc1274ef49ba41ef91cff5f4ec1d66922fe13fa7c8d",
+      "operations": [
+        {
+          "line": 99,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 123,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/pathway_gap_sensitivity.py",
+      "sourceSha256": "092f6eba52493710e0ed41188435c22c653c2124cdac59f7c53b2a3da9edb596",
+      "operations": []
+    },
+    {
+      "path": "script/physical_source_alignment.py",
+      "sourceSha256": "086ca3be5df94fe71b505589f5c3456fde6692fc7e7d723753039f935631cbb0",
+      "operations": [
+        {
+          "line": 72,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 81,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 82,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 126,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 275,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 275,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/privileged_python_census.py",
+      "sourceSha256": "144700464f90428f530d299261f8f12cb029a73784f418146704537c3b50829f",
+      "operations": []
+    },
+    {
+      "path": "script/reconcile_igcc_history.py",
+      "sourceSha256": "2250019b867854c3586753deac458f32915950f9cf157ce944869eefe9ed0b16",
+      "operations": []
+    },
+    {
+      "path": "script/reconcile_stages_04_09.py",
+      "sourceSha256": "15d088c14b876795df8500bf0563ce9f6465e83feddc596c48c002006e18250e",
+      "operations": [
+        {
+          "line": 347,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 348,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 349,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 353,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 372,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 377,
+          "callee": "check_output",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 421,
+          "callee": "check_output",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 512,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 529,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/record-completion-progress.py",
+      "sourceSha256": "1248e66ef8dc45d83b4217082f0ba9823a523f4b4539e148c95149db8334cdcc",
+      "operations": []
+    },
+    {
+      "path": "script/record-nov10-progress.py",
+      "sourceSha256": "90ca0de829b3a754c8a258351b199fc2675be7d495c1288a15ca96d702230159",
+      "operations": [
+        {
+          "line": 20,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/reference_gas_infill.py",
+      "sourceSha256": "62b7c5f13977ca6724a229ed8c6b46a5e043e91953de0c50c22b45cc89672c9b",
+      "operations": []
+    },
+    {
+      "path": "script/regional_coalition_controls.py",
+      "sourceSha256": "155e5e1d7e0caaefc3075a52a927878cc95803557c3d15f82aa96ddf76a0907f",
+      "operations": [
+        {
+          "line": 36,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/regional_fair_pathway.py",
+      "sourceSha256": "43f73bd3824ce92ab9a765d1930b0d9c6f27db82ba9fcb846a725cb190d6d7a7",
+      "operations": [
+        {
+          "line": 14,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/run-workplan.py",
+      "sourceSha256": "9de88532d6478a37b9bbeb80a7da0f9c048eeea97c4ab86397a3f334fb787422",
+      "operations": [
+        {
+          "line": 115,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 118,
+          "callee": "Popen",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 145,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 161,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 162,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 170,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/save-release-receipt-20261110.py",
+      "sourceSha256": "0045103fae20b4cb887d85b8808c1428f52ea05e4b693dffee68e29b22b0ce6f",
+      "operations": []
+    },
+    {
+      "path": "script/storage_adoption.py",
+      "sourceSha256": "20d8dffb1e44be3a9bed3a923d4f0742133d629673317b630d9887bdacd8469a",
+      "operations": [
+        {
+          "line": 33,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/sync-github.py",
+      "sourceSha256": "d66e860ed5b04048bfdfa0c376a14147a24f838e29b4d998f9698332b0affd03",
+      "operations": [
+        {
+          "line": 26,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/verify-ci-negative-control.py",
+      "sourceSha256": "0e0c4b6345daa3fd00bcef726559a0d35f262e6e22a135339c1f6d455c759e9e",
+      "operations": [
+        {
+          "line": 14,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 21,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 32,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 33,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/verify_regional_archive.py",
+      "sourceSha256": "008872ca6b018b3b274c0e30e52b2b74089e13d3a4012a53abd06d3cd453cc40",
+      "operations": [
+        {
+          "line": 34,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/workplan-checkpoint.py",
+      "sourceSha256": "b9503b8f0cd6ef8c2aba89a555d86d6f95b8e6f2dde0a84b14750455495cae97",
+      "operations": [
+        {
+          "line": 17,
+          "callee": "urlopen",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 38,
+          "callee": "get",
+          "kind": "network-provider-candidate"
+        },
+        {
+          "line": 39,
+          "callee": "check_output",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 49,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        }
+      ]
+    },
+    {
+      "path": "script/workplan-evidence-run.py",
+      "sourceSha256": "83a9781a1e00137a3d4d91a5f3fd42a17e1b7e5ba652651d32f260727d525919",
+      "operations": [
+        {
+          "line": 49,
+          "callee": "run",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 59,
+          "callee": "check_output",
+          "kind": "subprocess-candidate"
+        },
+        {
+          "line": 60,
+          "callee": "check_output",
+          "kind": "subprocess-candidate"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Candidate calls, not authorization or whole-program proof.",
+    "Arguments/URL literals/credential values are deliberately not exported.",
+    "Dynamic Python and shell invocation targets require individual review."
+  ]
+}

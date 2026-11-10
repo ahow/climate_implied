@@ -22,6 +22,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |
 | GET | "/api/financial-data/status" | server/routes.ts |
+| GET | "/api/valuation/original-nominal-assessment" | server/routes.ts |
 | GET | "/api/analysis/results/:id" | server/routes.ts |
 | GET | "/api/analysis/snapshot-status" | server/routes.ts |
 | GET | "/api/analysis/snapshots" | server/routes.ts |
@@ -38,6 +39,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | POST | "/api/calculation/validate-history" | server/routes.ts |
 | POST | "/api/calculation/audit-vintages" | server/routes.ts |
 | GET | "/api/emissions/candidate" | server/routes.ts |
+| POST | "/api/emissions/regional-residual-diagnostics" | server/routes.ts |
 | GET | "/api/reference-scenarios" | server/routes.ts |
 | GET | "/api/health" | server/routes.ts |
 | POST | "/api/refresh" | server/routes.ts |
@@ -171,7 +173,8 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | Consumer | Filename expression | Rows expression | Evidence class |
 | --- | --- | --- | --- |
 | client/src/components/category-comparison.tsx | "category-scenario-analysis" | {downloadRows} | "legacy" |
-| client/src/components/category-trend-chart.tsx | {`category-trends-${metricView==="netZero"?"5gt-threshold":metricView}`} | {downloadRows} | "legacy" |
+| client/src/components/category-trend-chart.tsx | {`category-trends-${metricView==="netZero"?"legacy-fixed-5gt-v1":metricView}`} | {downloadRows} | "legacy" |
+| client/src/components/emissions-candidate-review.tsx | "native-mass-five-percent-2024-diagnostics" | {nativeThresholdExportRows(data.residualDiagnostics.records)} | "native" |
 | client/src/components/emissions-candidate-review.tsx | {`native-emissions-${scenario}`} | {data.result.trajectory.map(nativeExportRow)} | "native" |
 | client/src/components/emissions-chart.tsx | "global-emissions-trajectory" | {downloadRows} | "legacy" |
 | client/src/components/historical-trend-chart.tsx | {`historical-trend-${metricView}`} | {downloadRows} | "legacy" |
@@ -179,6 +182,7 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | client/src/components/regional-comparison.tsx | "legacy-global-intensity-counterfactual" | {downloadRows} | "legacy" |
 | client/src/components/sensitivity-chart.tsx | "indicator-sensitivity" | {downloadRows} | "legacy" |
 | client/src/components/temperature-histogram.tsx | "temperature-distribution" | {downloadRows} | "legacy" |
+| client/src/components/threshold-diagnostic-details.tsx | "selected-2024-five-percent-diagnostic-v2" | {diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))} | "legacy" |
 | client/src/pages/climate-valuation.tsx | {`${testIdPrefix}-pe-ratio-comparison`} | {peDownloadRows} | "valuation" |
 | client/src/pages/data-management.tsx | {`indicator-time-series-${def?.key ?? "series"}`} | {downloadRows} | "indicators" |
 | client/src/pages/decarb-gap-signal.tsx | "group-earnings-yield-gap-over-time" | {timeseriesDownloadRows} | "valuation" |

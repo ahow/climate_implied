@@ -4,6 +4,55 @@ import { contentHash } from "./analysisManifest";
 const finite = z.number().finite(), fraction = finite.min(0).max(1);
 const evidence = z.array(z.string().min(1)).min(1);
 const exposure = z.object({ region: z.string().min(1), sector: z.string().min(1) });
+const scopes = ["scope1", "scope2", "scope3"] as const;
+const abatementEvidence = z.array(z.string().trim().min(1)).min(1);
+const measureIdentity = { measureId: z.string().trim().min(1), evidence: abatementEvidence };
+const scopeAbatement = z.object({
+  intensityEvidence: abatementEvidence,
+  measures: z.array(z.discriminatedUnion("treatment", [
+    z.object({ ...measureIdentity, treatment: z.literal("embedded-in-intensity") }).strict(),
+    z.object({ ...measureIdentity, treatment: z.literal("separate-abatement"),
+      remainingEmissionsMultiplier: fraction, deliveryEvidence: abatementEvidence,
+      disjointnessEvidence: abatementEvidence }).strict(),
+  ])).max(100),
+}).strict();
+// Opt-in, complete all-scope accounting. Absence preserves the old contract:
+// supplied intensity is final, with no additional target abatement.
+const abatementAccounting = z.object({
+  scope1: scopeAbatement, scope2: scopeAbatement, scope3: scopeAbatement,
+}).strict();
+
+function reconcileAbatement(accounting: z.infer<typeof abatementAccounting>,
+  base: Record<typeof scopes[number], number>, activityRatio: number,
+  intensity: Record<typeof scopes[number], number>) {
+  const embedded = new Set<string>(), separate = new Set<string>();
+  for (const scope of scopes) {
+    for (const measure of accounting[scope].measures) {
+      const own = measure.treatment === "embedded-in-intensity" ? embedded : separate;
+      if (own.has(measure.measureId))
+        throw new Error(`Duplicate abatement measure across scopes: ${measure.measureId}`);
+      own.add(measure.measureId);
+    }
+  }
+  for (const id of Array.from(separate)) if (embedded.has(id))
+    throw new Error(`Double-counted abatement already embedded in intensity: ${id}`);
+  // Identifiers denote disjoint physical measures, not merely differently named
+  // targets. Evidence review must establish that fact; IDs cannot prove it.
+  // Reuse across years/members is valid; stacking occurs within a member-year.
+  // Factors are explicit residual fractions for this year relative to the base
+  // intensity path, not annual improvements compounded from the prior year.
+  const reconcile = (scope: typeof scopes[number]) => {
+    const remainingEmissionsMultiplier = accounting[scope].measures.reduce((product, measure) =>
+      measure.treatment === "separate-abatement" ? product * measure.remainingEmissionsMultiplier : product, 1);
+    const beforeSeparateAbatementTonnes = base[scope] * activityRatio * intensity[scope];
+    return { baseEmissionsTonnes: base[scope], activityRatio, intensityMultiplier: intensity[scope],
+      beforeSeparateAbatementTonnes, remainingEmissionsMultiplier,
+      emissionsTonnes: beforeSeparateAbatementTonnes * remainingEmissionsMultiplier };
+  };
+  return { noDoubleCountingCheck: "passed-declared-disjoint-measure-ids" as const, declaredAccounting: accounting,
+    scope1: reconcile("scope1"), scope2: reconcile("scope2"), scope3: reconcile("scope3") };
+}
+
 const schema = z.object({
   companyId: z.string().min(1), manifestId: z.string().min(1),
   currency: z.string().regex(/^[A-Z]{3}$/), businessType: z.enum(["non-financial", "financial"]),
@@ -25,6 +74,7 @@ const schema = z.object({
       scope1IntensityMultiplier: finite.nonnegative(), scope2IntensityMultiplier: finite.nonnegative(),
       scope3IntensityMultiplier: finite.nonnegative(), scope1LiableFraction: fraction,
       scope2LiableFraction: fraction, effectiveCarbonPrice: finite.nonnegative(), passThrough: fraction,
+      abatementAccounting: abatementAccounting.optional(),
     }).strict()).length(5),
   }).strict()).min(2).max(1000),
 }).strict();
@@ -49,6 +99,11 @@ export function projectCompanyMembers(input: unknown) {
   const sourceMembers = [...x.members].sort((a, b) => a.id.localeCompare(b.id)).map(m => ({
     ...m, years: [...m.years].sort((a, b) => a.year - b.year).map(y => ({
       ...y, exposures: [...y.exposures].sort((a, b) => key(a).localeCompare(key(b))),
+      ...(y.abatementAccounting ? { abatementAccounting: {
+        scope1: { ...y.abatementAccounting.scope1, measures: [...y.abatementAccounting.scope1.measures].sort((a, b) => a.measureId.localeCompare(b.measureId)) },
+        scope2: { ...y.abatementAccounting.scope2, measures: [...y.abatementAccounting.scope2.measures].sort((a, b) => a.measureId.localeCompare(b.measureId)) },
+        scope3: { ...y.abatementAccounting.scope3, measures: [...y.abatementAccounting.scope3.measures].sort((a, b) => a.measureId.localeCompare(b.measureId)) },
+      } } : {}),
     })),
   }));
   const members = sourceMembers.map(member => {
@@ -64,7 +119,15 @@ export function projectCompanyMembers(input: unknown) {
       for (const s of shares) activity.set(key(s), activity.get(key(s))! * (1 + byExposure.get(key(s))!));
       const activityRatio = shares.reduce((sum, s) => sum + s.weight * activity.get(key(s))!, 0) * p.marketShareMultiplier;
       const revenue = x.baseRevenue * activityRatio;
-      const emissionsTonnes = {
+      const abatementReconciliation = p.abatementAccounting ?
+        reconcileAbatement(p.abatementAccounting, x.baseEmissionsTonnes, activityRatio, {
+          scope1: p.scope1IntensityMultiplier, scope2: p.scope2IntensityMultiplier, scope3: p.scope3IntensityMultiplier,
+        }) : undefined;
+      const emissionsTonnes = abatementReconciliation ? {
+        scope1: abatementReconciliation.scope1.emissionsTonnes,
+        scope2: abatementReconciliation.scope2.emissionsTonnes,
+        scope3: abatementReconciliation.scope3.emissionsTonnes,
+      } : {
         scope1: x.baseEmissionsTonnes.scope1 * activityRatio * p.scope1IntensityMultiplier,
         scope2: x.baseEmissionsTonnes.scope2 * activityRatio * p.scope2IntensityMultiplier,
         scope3: x.baseEmissionsTonnes.scope3 * activityRatio * p.scope3IntensityMultiplier,
@@ -81,6 +144,7 @@ export function projectCompanyMembers(input: unknown) {
       if (![revenue, activityRatio, ...Object.values(emissionsTonnes), carbonDrag, fcfe].every(Number.isFinite))
         throw new Error("Nonfinite projected operating ledger");
       return { year: p.year, revenue, activityRatio, emissionsTonnes, operatingProfitBeforeCarbon,
+        ...(abatementReconciliation ? { abatementReconciliation } : {}),
         carbonDrag, interest: p.interest, nonOperatingIncome: p.nonOperatingIncome,
         incomeAttributionAdjustment: p.incomeAttributionAdjustment,
         otherCashAdjustments: p.otherCashAdjustments, cashTax, netIncome, depreciation: p.depreciation,
@@ -100,7 +164,9 @@ export function projectCompanyMembers(input: unknown) {
       "Supplied operating exposure, margin bounds and policy assumptions require source review.",
       "Scope 2 charge represents an explicit electricity-price channel, not a duplicate direct tax.",
       "Scope 3 affects physical emissions only; demand effects must already be in regional activity.",
-      "No additional target abatement is stacked on supplied intensity pathways.",
+      ...(sourceMembers.some(m => m.years.some(y => y.abatementAccounting)) ?
+        ["Separate abatement uses explicit remaining-emissions factors and delivery evidence; declared measure IDs are disjoint across all scopes within each member-year. Source review must verify physical disjointness and delivery credibility."] :
+        ["No additional target abatement is stacked on supplied intensity pathways."]),
       "Terminal reinvestment, full valuation pairing and empirical model selection remain separate.",
       "Non-operating income, attribution and other cash adjustments must be explicit; residuals are not assumed recurring evidence.",
     ] };

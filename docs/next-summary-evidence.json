@@ -1,0 +1,169 @@
+{
+  "criterion": "S01-001",
+  "scope": "Prospective ingestion-summary producer provenance, integrated run response/middleware, data-management displays and concrete supplemental metadata-sheet bindings; not historical opaque-slot closure",
+  "implementation_state": "Summary write path, GET /api/data/runs and its summary middleware are integrated and tested. Central census regeneration remains deferred to parent freeze.",
+  "original_accounting": {
+    "public_slots": 1001,
+    "bound_original_slots": 1000,
+    "remaining_original_opaque_slots": 1,
+    "closed_of_original_572_gaps": 571,
+    "new_original_slots_closed_by_this_change": 0,
+    "original_public_denominator_delta": 0,
+    "retained_raw_summary_slot": "runs[].summary",
+    "historical_untagged_runs": "Unverified, including JSON values compatible with the current producer schema",
+    "strict_original_complete": false,
+    "strict_full_complete": false
+  },
+  "supplemental_accounting": {
+    "new_definitions": 47,
+    "new_summary_definitions": 16,
+    "new_evidence_definitions": 15,
+    "new_display_disclosure_definitions": 1,
+    "new_metadata_worksheet_definitions_and_concrete_bindings": 31,
+    "metadata_worksheet_binding_breakdown": {
+      "Field semantics": 14,
+      "Column bindings": 17
+    },
+    "metadata_worksheet_runtime_guards": "Existing DownloadDataButton metadata row builders now call certifySupplementalSheetRows before SheetJS conversion. Shared finite maps bind every supported concrete metadata column to a registered ID; unknown/missing columns, non-text values, mismatched FieldID/id and empty transformations reject.",
+    "metadata_worksheet_value_identity": "Certification returns the same arrays and objects. XLSX in-memory readback confirms preserved cells and the existing six qualified-only metadata omissions on legacy core rows. No replay workbook or pinned executable was changed.",
+    "existing_producer_definitions_retained": 5,
+    "new_data_management_data_field_id_attributes": 11,
+    "new_original_completion_credit": 0,
+    "summary_custom_sheets_added": 0,
+    "summary_custom_sheet_explanation": "No existing summary download or custom sheet is present in data-management. The existing finite indicator time-series export is unchanged. No invented summary export was added to manufacture coverage.",
+    "broader_display_customsheet_closure_claimed": false
+  },
+  "producer_evidence": {
+    "producer": "server/dataIngestion/orchestrator.ts",
+    "kind": "indicator-fetch-summary",
+    "version": "indicator-fetch-summary-1",
+    "raw_success_shape_preserved": "{perAdapter}",
+    "raw_failure_shape_preserved": "{perAdapter,error?}",
+    "write_path": "Both existing orchestrator finish calls supply ADAPTERS and INDICATOR_KEYS to finishFetchRun. The existing run-row update and optional manifest archive occur in one transaction.",
+    "archive_reuse": "Existing append-only cv_analysis_snapshots and cv_analysis_chunks, guarded by snapshotsAvailable; no DDL or new table",
+    "binding": "Manifest content ID binds producer/kind/version, run ID, canonical run hash, canonical raw-summary hash, allowlisted source byte digests and captured ordered adapter/key declarations.",
+    "source_privacy": "Only allowlisted source-file paths and SHA-256 digests are stored in this manifest. No source contents, environment variables, secrets, uploads, credentials or private fixtures are exported.",
+    "unprovisioned_policy": "Original summary is retained with an explicit warning; no manifest or verified claim is manufactured.",
+    "corruption_policy": "Read sidecar returns explicit unverified reason. A corrupt/conflicting archive in the prospective finishing transaction throws and rolls back that transaction.",
+    "historical_policy": "GET never writes or backfills. Missing manifests, unknown producer/version/kind, changed run/summary/source hashes, incomplete chunks and conflicting headers yield no verified summary leaf bindings.",
+    "scientific_boundary": "Manifest provenance proves producer identity binding only, never source truth, approved values, scientific acceptance or original publication vintage."
+  },
+  "verification": [
+    {
+      "command": "npx tsx --test script/fetch-summary-provenance.test.ts script/supplemental-sheet-bindings.test.ts",
+      "exit_code": 0,
+      "actual_log": [
+        "✔ actual runs handler and summary middleware preserve JSON identity and bind only the owning verified run",
+        "✔ actual finishing function shares its transaction with archive and rolls back archive failures",
+        "✔ actual orchestrator does not hide a persistent prospective archive failure as completed collection",
+        "✔ actual archive writer and loader reuse immutable chunks without modifying the retained run",
+        "✔ actual archive read path fails closed for missing, conflicting, incomplete and unprovisioned storage",
+        "✔ real source registry and allowlisted file bytes produce a prospective versioned run-bound manifest",
+        "✔ untagged compatible and opaque historical JSON earn zero verified leaf bindings",
+        "✔ changed run, counts, raw JSON, source, kind, producer, version and archive identity all fail closed",
+        "✔ failure prefixes and genuine zero results are retained; unknown extensions are not silently stripped",
+        "✔ supplemental definitions and explicit sidecar/display bindings stay separate from the original opaque slot",
+        "✔ prospective write path reuses immutable storage, preserves producer JSON, and does not add collection activation or DDL",
+        "✔ actual metadata row builders have 31 concrete registered supplemental worksheet bindings",
+        "✔ supplemental metadata guards preserve actual workbook cells and explicit core-row omissions",
+        "✔ unsupported metadata columns, missing required cells, wrong identity and empty transforms fail closed",
+        "ℹ tests 14",
+        "ℹ pass 14",
+        "ℹ fail 0",
+        "ℹ skipped 0"
+      ],
+      "boundary": "Actual route, middleware, finishFetchRun and orchestrator functions are extracted/transpiled and executed with controlled read-only/synthetic dependencies. Archive and rollback behavior uses in-memory transaction doubles, not a live database rollback fixture. Worksheet tests run actual semanticRows/bindExportColumns builders and in-memory XLSX conversion/readback, without writing a download or exporting private files."
+    },
+    {
+      "command": "npx tsx --test --test-name-pattern='actual runs handler' script/finite-export-schemas.test.ts",
+      "exit_code": 0,
+      "actual_log": [
+        "✔ actual runs handler preserves every raw summary JSON value; optional known-producer interpretation never replaces it",
+        "ℹ tests 5",
+        "ℹ pass 1",
+        "ℹ fail 0",
+        "ℹ skipped 4"
+      ],
+      "boundary": "Post-integration actual central handler test with a read-only sidecar-loader stub and retained original raw run-array/value identity assertions. Unchanged strict-gate diagnostics are excluded by this exact filter."
+    },
+    {
+      "command": "npx tsx --test script/fetch-summary-provenance.test.ts",
+      "exit_code": 0,
+      "actual_log": [
+        "✔ actual archive writer and loader reuse immutable chunks without modifying the retained run",
+        "✔ actual archive read path fails closed for missing, conflicting, incomplete and unprovisioned storage",
+        "✔ real source registry and allowlisted file bytes produce a prospective versioned run-bound manifest",
+        "✔ untagged compatible and opaque historical JSON earn zero verified leaf bindings",
+        "✔ changed run, counts, raw JSON, source, kind, producer, version and archive identity all fail closed",
+        "✔ failure prefixes and genuine zero results are retained; unknown extensions are not silently stripped",
+        "✔ supplemental definitions and explicit sidecar/display bindings stay separate from the original opaque slot",
+        "✔ prospective write path reuses immutable storage, preserves producer JSON, and does not add collection activation or DDL",
+        "ℹ tests 8",
+        "ℹ pass 8",
+        "ℹ fail 0",
+        "ℹ skipped 0"
+      ],
+      "boundary": "Synthetic contract fixtures and in-memory archive doubles exercise the actual production archive functions extracted/transpiled from source. Real registry declarations and actual allowlisted source bytes are used. No live database, network fetch, collector or production archive write is invoked."
+    },
+    {
+      "command": "npx tsc --noEmit --incremental false --pretty false",
+      "exit_code": 0,
+      "actual_stdout": "",
+      "boundary": "Type check, not runtime or production verification"
+    },
+    {
+      "command": "npx tsx --test --test-name-pattern='summary' script/finite-export-schemas.test.ts",
+      "exit_code": 0,
+      "actual_log": [
+        "✔ actual runs handler preserves every raw summary JSON value; optional known-producer interpretation never replaces it",
+        "✔ 134 of135 original gaps close; raw opaque summary stays unresolved and both strict gates still fail",
+        "ℹ tests 5",
+        "ℹ pass 2",
+        "ℹ fail 0",
+        "ℹ skipped 3"
+      ],
+      "boundary": "The first test was updated to reject shape-only provenance. The second existing strict-gate assertion also matched the test-name filter; it is NOT new progress or a new passed diagnostic claim. This run precedes central route integration."
+    },
+    {
+      "command": "git diff --check -- server/dataIngestion/summaryContract.ts server/dataIngestion/dataStore.ts server/dataIngestion/orchestrator.ts shared/dataManagementSemantics.ts client/src/pages/data-management.tsx script/finite-export-schemas.test.ts",
+      "exit_code": 0,
+      "actual_stdout": ""
+    },
+    {
+      "command": "git diff -- client/src/pages/data-management.tsx | grep '^+' | grep -o 'data-field-id=' | wc -l",
+      "exit_code": 0,
+      "actual_stdout": "11"
+    },
+    {
+      "tool": "Screenshot",
+      "source": "already-running preview /data-management",
+      "saved_to": "generated-artifacts/next-summary/data-management.jpg",
+      "observed": "Read-only page renders. Existing scheduled run is labelled Schema-compatible JSON only; producer provenance unverified; raw JSON remains available unchanged. Collect control remains disabled.",
+      "boundary": "The verified prospective-manifest branch was not visually observed because no collection was activated and no prospective production manifest was created."
+    }
+  ],
+  "central_integration_delivered": {
+    "routes_imports": [
+      "loadFetchSummaryEvidence from server/dataIngestion/summaryArchive",
+      "bindFetchSummaryEvidence from server/dataIngestion/summaryContract"
+    ],
+    "runs_handler": "Read existing runs once; return the identical original runs array plus a separate summaryEvidence run-ID map from await loadFetchSummaryEvidence(runs). Never replace or add fields inside a retained summary.",
+    "middleware_summary": "Carry the owning run ID while walking runs[]; call bindKnownPersistedSummary(value, body.summaryEvidence[owningRunId]). No sidecar means no verified leaf header.",
+    "middleware_sidecar": "Handle summaryEvidence explicitly as a run-ID map and bind each value through bindFetchSummaryEvidence. This helper treats sourceFiles as a declared path-to-digest map, not invented dynamic semantic field IDs.",
+    "registry": "All 47 new summary/metadata-sheet definitions are registered through dataManagementSemantics; no direct outputFieldSemantics edit was required.",
+    "census_parent_freeze_pending": "Inventory the new sidecar, 11 display attributes and 31 concrete metadata-sheet bindings as supplemental. Keep the frozen original 1001 public slots and original opaque summary unresolved. Do not count manifest definitions, source hashes, new response fields, metadata columns or shape-compatible JSON as historical leaf closure. Central census was not regenerated.",
+    "existing_tests": "Updated actual handler test supplies a read-only loadFetchSummaryEvidence stub. Frozen raw run-array and raw summary-value identity assertions remain.",
+    "broader_gaps": "Arbitrary Interpretation note meanings, replay FullResult nested JSON leaves, other supplemental chained responses/charts/custom sheets and replacement-stage mappings are not claimed complete."
+  },
+  "execution_boundaries": {
+    "collection_activated": false,
+    "cadence_or_trigger_changed": false,
+    "ddl_executed": false,
+    "production_writes_performed": false,
+    "historical_backfill_performed": false,
+    "private_files_exported": false,
+    "workflows_started_or_restarted": false,
+    "commits_or_release_operations": false,
+    "live_database_archive_transaction_verified": false
+  }
+}

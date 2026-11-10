@@ -30,6 +30,18 @@ const specification = z.object({
   discountRate: positive.max(1).optional(), terminalGrowth: n.min(0).max(.2).optional(),
   continuationGrowthAtYear5: n.gt(-1).max(1).optional(),
   terminalEvidenceIds: z.array(z.string()).min(1).optional(),
+  informationContext: z.object({
+    mode: z.enum(["prospective-conditional", "historical-point-in-time"]),
+    modelAsOf: z.string().datetime(), informationCutoff: z.string().datetime(),
+  }).strict().optional(),
+  stub: z.object({
+    cashBasis: z.literal("FCFE-whole-issuer-common-equity"), currency: z.literal("USD"),
+    throughDate: z.string().date(), rationale: z.string().trim().min(1),
+    completenessEvidenceIds: z.array(z.string().min(1)).min(1),
+    cashFlows: z.array(z.object({
+      date: z.string().date(), fcfe: n, evidenceIds: z.array(z.string().min(1)).min(1),
+    }).strict()),
+  }).strict().optional(),
 }).strict();
 
 /**
@@ -52,9 +64,27 @@ export function calculateCompanyFullCashflowCase(input: unknown) {
     if (list.some(id => !ids.has(id))) throw new Error("Unknown evidence or assumption");
   };
   if (x.terminalEvidenceIds) checkIds(x.terminalEvidenceIds);
-  if (x.evidence.some(e => e.availableAt.slice(0, 10) > x.referenceDate ||
+  const context = x.informationContext;
+  if (context && (context.modelAsOf.slice(0, 10) !== x.referenceDate ||
+      Date.parse(x.frozenAt) > Date.parse(context.informationCutoff) ||
+      Date.parse(context.informationCutoff) > Date.parse(context.modelAsOf)))
+    throw new Error("Information cutoff must include actual freeze and not exceed model as-of; referenceDate is model valuation date");
+  if (x.evidence.some(e => (context ? Date.parse(e.availableAt) > Date.parse(context.informationCutoff) :
+      e.availableAt.slice(0, 10) > x.referenceDate) ||
       Date.parse(e.availableAt) > Date.parse(x.frozenAt)))
     throw new Error("Evidence/assumption unavailable at reference or freeze; no backdating");
+  if (x.stub) {
+    if (x.stub.throughDate !== `${x.firstYear - 1}-12-31` || x.stub.throughDate < x.referenceDate)
+      throw new Error("Stub must cover from model reference through the day before the first full annual year");
+    checkIds(x.stub.completenessEvidenceIds);
+    let previous = x.referenceDate;
+    for (const row of x.stub.cashFlows) {
+      checkIds(row.evidenceIds);
+      if (row.date <= previous || row.date > x.stub.throughDate)
+        throw new Error("Stub cash dates must be ordered after reference and within explicit coverage");
+      previous = row.date;
+    }
+  }
   const years = x.years.map((y, i) => {
     checkIds(y.evidenceIds);
     if (y.year !== x.firstYear + i) throw new Error("Five consecutive ordered annual years required");
@@ -84,6 +114,8 @@ export function calculateCompanyFullCashflowCase(input: unknown) {
   return { status: gaps.length ? "blocked" as const : "conditional-full-cashflow-case" as const,
     specification: x, years, gaps, productionEligible: false, identityApproved: false,
     completeApprovedIssuerCases: 0,
+    stubStatus: x.stub ? (x.stub.cashFlows.length ? "explicit-dated-fcfe-stub" : "explicit-evidenced-zero-stub") :
+      "missing-stub-not-assumed-zero-legacy-schedule-only",
     terminalModelStatus: hasTerminal ? "explicit-conditional-continuation" : "withheld-no-justified-terminal-basis",
     cashConventions: {
       wcExcludes: ["trade receivables already in collections", "policy credit receivables separately scheduled"],
@@ -106,6 +138,7 @@ export function pairCompanyFullCashflowCase(input: unknown, market: {
   referenceDate: string; priceDate: string; sharesDate: string;
   price: number; shares: number;
   datedReferenceReviewed: boolean;
+  quoteAt?: string; observedAt?: string;
 }) {
   const ledger = calculateCompanyFullCashflowCase(input);
   const x = ledger.specification;
@@ -114,19 +147,43 @@ export function pairCompanyFullCashflowCase(input: unknown, market: {
     return { ...ledger, pairing: "blocked", pairGaps: ["Full five-year cash schedule computed; no justified terminal/continuation model supplied."] };
   const discountRate = x.discountRate, terminalGrowth = x.terminalGrowth;
   const continuationGrowthAtYear5 = x.continuationGrowthAtYear5;
+  if (!x.stub) return { ...ledger, pairing: "blocked",
+    pairGaps: ["Explicit dated FCFE stub and coverage evidence required; legacy annual schedule remains available, no implicit zero stub."] };
   if (["symbol", "cik", "security", "currency", "referenceDate"].some(k =>
     market[k as keyof typeof market] !== x[k as keyof typeof x]))
     throw new Error("Market and full operating case identity/basis mismatch");
-  if (market.referenceDate !== market.priceDate || market.referenceDate !== market.sharesDate)
-    throw new Error("Same-date price and primary common shares required");
+  const prospective = x.informationContext?.mode === "prospective-conditional";
+  if (market.priceDate !== market.sharesDate || (prospective ?
+      market.priceDate > market.referenceDate : market.referenceDate !== market.priceDate))
+    throw new Error("Same-date price and primary common shares required; prospective last-close date cannot exceed model reference");
+  if (market.quoteAt) {
+    z.string().datetime().parse(market.quoteAt);
+    if (market.quoteAt.slice(0, 10) !== market.priceDate ||
+        Date.parse(market.quoteAt) > Date.parse(x.informationContext?.informationCutoff ??
+          `${x.referenceDate}T23:59:59.999Z`))
+      throw new Error("Quote observation exceeds information cutoff or differs from price date");
+  }
+  if (market.observedAt) {
+    z.string().datetime().parse(market.observedAt);
+    if (market.quoteAt && Date.parse(market.observedAt) < Date.parse(market.quoteAt))
+      throw new Error("Quote retrieval cannot precede quote observation");
+  }
   if (!market.datedReferenceReviewed) return { ...ledger, pairing: "blocked",
     pairGaps: ["Primary share/classes/actions, quote authority and publication basis require review."] };
   if (![market.price, market.shares].every(v => Number.isFinite(v) && v > 0))
     throw new Error("Positive dated price and explicit common shares required");
   const discountTime = (date: string) => (Date.parse(`${date}T00:00:00Z`) -
     Date.parse(`${x.referenceDate}T00:00:00Z`)) / (86400000 * 365.25);
+  // Stub FCFE is already net cash to common equity. Do not subtract working
+  // capital/debt again. Hold the sourced stub FIXED in both directions: the
+  // solved adjustment affects only full forecast years and continuation.
+  const stubCashFlows = x.stub.cashFlows.map(row => ({ ...row,
+    discountYears: discountTime(row.date),
+    presentValue: row.fcfe / (1 + discountRate) ** discountTime(row.date) }));
+  const stubPresentValue = stubCashFlows.reduce((sum, row) => sum + row.presentValue, 0);
+  if (!Number.isFinite(stubPresentValue)) throw new Error("Nonfinite dated stub present value");
   const value = (adjustment: number) => {
-    let pv = ledger.years.reduce((s, y, i) =>
+    let pv = stubPresentValue + ledger.years.reduce((s, y, i) =>
       s + y.fcfe * (1 + adjustment) ** (i + 1) / (1 + discountRate) ** discountTime(y.cashFlowDate), 0);
     let cash = ledger.years[4].fcfe * (1 + adjustment) ** 5;
     const continuationGrowth = (1 + continuationGrowthAtYear5) * (1 + adjustment) - 1;
@@ -135,16 +192,27 @@ export function pairCompanyFullCashflowCase(input: unknown, market: {
       cash *= 1 + g;
       pv += cash / (1 + discountRate) ** discountTime(`${x.firstYear + t - 1}-12-31`);
     }
-    return pv + cash * (1 + terminalGrowth) / (discountRate - terminalGrowth) /
+    const total = pv + cash * (1 + terminalGrowth) / (discountRate - terminalGrowth) /
       (1 + discountRate) ** discountTime(`${x.firstYear + 14}-12-31`);
+    if (!Number.isFinite(total)) throw new Error("Nonfinite full-path value including dated stub");
+    return total;
   };
   const forwardWholeEquity = value(0), target = market.price * market.shares;
+  const valuationDetails = { stubCashFlows, stubPresentValue,
+    stubAdjustmentTreatment: "Fixed sourced stub FCFE in forward and reverse; annual adjustment starts at first full forecast year",
+    modelAsOf: x.informationContext?.modelAsOf ?? x.referenceDate,
+    informationCutoff: x.informationContext?.informationCutoff ?? null,
+    comparisonMode: x.informationContext?.mode ?? "legacy-same-date",
+    quoteDate: market.priceDate, quoteAt: market.quoteAt ?? null,
+    quoteObservedAt: market.observedAt ?? null,
+    priceTiming: prospective ? "Explicit last available dated quote; conditional comparison at model as-of, not historical point-in-time attribution" :
+      "Same-date historical reference" };
   if (ledger.years.some(y => y.fcfe <= 0)) return { ...ledger,
-    forwardWholeEquity, pairing: "reverse-unavailable",
+    ...valuationDetails, forwardWholeEquity, pairing: "reverse-unavailable",
     pairGaps: ["Non-positive annual FCFE: no monotonic reverse guarantee; forward retains losses, recovery not invented."] };
   let lo = -.5, hi = .5;
   if (value(lo) > target || value(hi) < target) return { ...ledger,
-    forwardWholeEquity, pairing: "reverse-unavailable", pairGaps: ["Target outside fixed [-50%,50%] annual adjustment bracket; no extrapolation."] };
+    ...valuationDetails, forwardWholeEquity, pairing: "reverse-unavailable", pairGaps: ["Target outside fixed [-50%,50%] annual adjustment bracket; no extrapolation."] };
   for (let i = 0; i < 100; i++) {
     const mid = (lo + hi) / 2;
     if (value(mid) < target) lo = mid; else hi = mid;
@@ -153,9 +221,9 @@ export function pairCompanyFullCashflowCase(input: unknown, market: {
   const relativeRepricingError = Math.abs(value(impliedAnnualFcfeAdjustment) / target - 1);
   if (relativeRepricingError > 1e-8) throw new Error("Same-basis full-path repricing tolerance failed");
   return { ...ledger, pairing: "conditional-same-basis-whole-equity",
-    forwardWholeEquity, marketWholeEquity: target, impliedAnnualFcfeAdjustment, relativeRepricingError,
+    ...valuationDetails, forwardWholeEquity, marketWholeEquity: target, impliedAnnualFcfeAdjustment, relativeRepricingError,
     definition: "Path-preserving annual FCFE growth adjustment to five explicit years with ten-year fade and terminal at year 15; zero is the frozen forward case.",
-    discountTiming: "Explicit calendar year-end cash flows; actual days from market reference /365.25. This convention is identical in forward and reverse.",
+    discountTiming: "Explicit stub cash dates and annual year-end cash flows; actual days from model reference /365.25, identical in forward and reverse. Stub is fixed, not growth-adjusted.",
     growthComparison: "Not a comparison of endpoint CAGR with a constant-growth reverse DCF; no climate expectation or activity inversion inferred.",
     terminalAssumptions: { discountRate: x.discountRate, terminalGrowth: x.terminalGrowth,
       continuationGrowthAtYear5: x.continuationGrowthAtYear5, evidenceIds: x.terminalEvidenceIds } };

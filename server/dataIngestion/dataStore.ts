@@ -4,6 +4,8 @@ import type { IndicatorValue, IndicatorFetchRun } from "@shared/schema";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import type { FetchedValue } from "./adapters/types";
 import { archiveApprovedIndicators } from "../snapshots/indicators";
+import { archiveFetchSummary } from "./summaryArchive";
+import type { SummaryProducer } from "./summaryContract";
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
@@ -25,11 +27,12 @@ export async function finishFetchRun(
     adaptersSucceeded: number;
     adaptersFailed: number;
     summary?: unknown;
+    /** Present only for future calls from the actual versioned orchestrator. */
+    summaryProducer?: SummaryProducer;
   }
 ): Promise<void> {
-  await db
-    .update(indicatorFetchRuns)
-    .set({
+  await db.transaction(async tx => {
+    const [run] = await tx.update(indicatorFetchRuns).set({
       status: fields.status,
       proposalsCreated: fields.proposalsCreated,
       adaptersSucceeded: fields.adaptersSucceeded,
@@ -37,7 +40,10 @@ export async function finishFetchRun(
       summary: fields.summary ?? null,
       finishedAt: new Date(),
     })
-    .where(eq(indicatorFetchRuns.id, id));
+    .where(eq(indicatorFetchRuns.id, id)).returning();
+    if(!run) throw new Error("Ingestion run not found while finishing");
+    if(fields.summaryProducer) await archiveFetchSummary(tx,run,fields.summaryProducer);
+  });
 }
 
 /**

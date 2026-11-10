@@ -11,4 +11,7 @@ test("legacy positive-emissions thresholds are not advertised as net zero or Par
   assert.doesNotMatch(toggle, /label: "Net-Zero Year"/);
   assert.match(gauge, /Positive-emissions threshold, not net zero/);
   assert.match(chart, /not net zero/);
+  assert.match(chart, /fixed-5gt-v1 comparator is a positive-emissions threshold/);
+  assert.match(chart, /not net zero or a 5%-of-2024 threshold/);
+  assert.match(chart, /unverified model assumption, not a source-evidenced inventory/);
 });

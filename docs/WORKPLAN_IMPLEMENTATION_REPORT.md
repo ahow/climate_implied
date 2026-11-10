@@ -1174,3 +1174,191 @@ the next concrete action; it is not a claim that work continues while idle.
   "continuation_matched": "unverified",
   "http_status": 202
 }
+
+## Final observed release — d843960 (local receipt)
+
+{
+  "workspace_commit": "978a5994c7d195017cc074d53bae155aa61facee",
+  "github_main": "d8439602674d880ee5007f25463f72906de67a1b",
+  "ci": "42806902864 validate/promote success",
+  "railway_deployment": "e0278526-15fb-476f-a1a5-045e861b6d2e",
+  "railway_status": "SUCCESS",
+  "verified_at": "2026-11-10",
+  "recorded_at": "2026-11-10T11:35:45.092174+00:00",
+  "timestamp_precision": "Verification date; no invented second for the completed HTTP probe.",
+  "smoke": "Exact d843960 build source/health200/1141registrydefinitions/raw run summaries preserved/publicPOST403; development data-management screenshot renders22indicators/read-only controls.344TS+95Python, typecheck/build, privatefilingvalidator and355privateReceiptAssertions pass. No data/scientific activation.",
+  "later_local_only": "This final receipt/checkpoint documentation is not deployed; published implementation/report is d843960."
+}
+
+Published report/matrix/full300-clause ledger: GitHub ahow/climate_implied at d8439602674d880ee5007f25463f72906de67a1b, docs/. This dated local receipt is not a claim of another deployment. Full changed paths: docs/Implementation_Change_Index_20261110.md.
+
+Remaining engineering: opaque historical-summary leaves and supplemental display/export inventory; legitimate HTTP operator identity/import/restore contract; exact dated share/identity/reference/terminal/reinvestment/stub reconciliation and full NEE/XOM operating bridges; compatible physical baselines/observables and2025source criteria; qualified historical company projections, sourced outcomes and full frozen research family. Owner/provisioning and missing statistical series are narrow constraints, not blanket implementation blockers.0/3completecases; no new historical efficacy or calibratedensemble acceptance.
+
+Conversation context boundary after implementation, all300-clause integration, actual negative-source CI control and verified release. Actionable original scope remains; checkpoint is not the reason for stopping.
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-clause-physical-d843960",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T11:38:53.643044+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+
+## Ready implementation integration — 2026-11-10
+
+Original clause counts: {'verified': 37, 'partial': 261, 'blocked-production-provisioning': 2}. Original contract hash unchanged. Independent acceptance unclaimed.
+
+439/439 TypeScript;0 failures/skips.106/106 Python separately. Typecheck/build, mandatory private validators, pinned historical FSLR10cases/50rows and changed running threshold API smoke passed. Logs: `generated-artifacts/workplan-completion/20261110T130707160540Z.log` and `generated-artifacts/workplan-completion/20261110T130141147616Z.log`. Prior failed attempts retained above/in canonical records.
+
+Original semantics1000/1001, no original closure this increment;1 opaque historical summary remains.1553 definitions; current1306/1307 and expanded1334/1335.27 withheld/4aliases separate;23downloadsites/103concretebindings. Added333 current-public slots since1001 cohort; expanded adds28 nominal-output leaves, not original closure. Strict unknown-summary gate intentionally fails.
+
+New: producer/version/source-manifest summary sidecars; actual-r Gordon labels; exact selected2024 5% diagnostics with legacy-default withholding and27conditional native accounts; original2.5–4% nominal terminal/fade endpoint; all-scope abatement/replay; operator-only news refresh and read-only scheduler census; dated FCFE stubs and3exact-date price candidates; actual2025 human-GMST source, retained forcing reconciliation. No new empirical model accepted, no three qualified issuer cases or historical new-gap efficacy.
+
+Per-clause evidence: S00-004/005/010,S01-001/004/007,S07-008,S11-010,S12-001/014. Detailed proposal files: docs/next-{summary,threshold,valuation,accounting,company,physical}-evidence.json and docs/Privileged_Operation_Execution_20261110.md. Actual outcomes and narrow gaps are in each canonical clause, not only this increment.
+
+### Complete changed-path index
+
+- `.agents/memory/workplan-evidence-reconciliation.md`
+- `client/src/components/category-comparison.tsx`
+- `client/src/components/category-trend-chart.tsx`
+- `client/src/components/download-data-button.tsx`
+- `client/src/components/emissions-candidate-review.tsx`
+- `client/src/components/emissions-chart.tsx`
+- `client/src/components/historical-trend-chart.tsx`
+- `client/src/components/metric-toggle.tsx`
+- `client/src/components/regional-comparison.tsx`
+- `client/src/components/temperature-gauge.tsx`
+- `client/src/components/threshold-diagnostic-details.tsx`
+- `client/src/lib/export-contract.ts`
+- `client/src/lib/native-threshold-export.ts`
+- `client/src/lib/threshold-export.ts`
+- `client/src/lib/types.ts`
+- `client/src/lib/valuation-claims.ts`
+- `client/src/pages/climate-valuation.tsx`
+- `client/src/pages/dashboard.tsx`
+- `client/src/pages/data-management.tsx`
+- `client/src/pages/decarb-gap-signal.tsx`
+- `client/src/pages/decarb-signal.tsx`
+- `client/src/pages/methodology.tsx`
+- `client/src/pages/news-sentiment.tsx`
+- `docs/Next_Company_Evidence_Proposal.md`
+- `docs/Privileged_Operation_Execution_20261110.md`
+- `docs/System_Output_Register.md`
+- `docs/WORKPLAN_ACCEPTANCE_MATRIX.md`
+- `docs/WORKPLAN_COMPLETION_LEDGER.md`
+- `docs/company-abatement-semantics-registration.patch`
+- `docs/field_semantics_census.json`
+- `docs/field_semantics_original_cohort.json`
+- `docs/next-accounting-evidence.json`
+- `docs/next-company-evidence.json`
+- `docs/next-physical-evidence.json`
+- `docs/next-summary-evidence.json`
+- `docs/next-threshold-evidence.json`
+- `docs/next-valuation-evidence.json`
+- `docs/privileged_operation_census.json`
+- `docs/privileged_python_census.json`
+- `docs/workplan_completion_ledger.json`
+- `script/assemble-company-dated-market-sources.ts`
+- `script/assemble-next-company-evidence.ts`
+- `script/attempt-company-fmp-dated-prices.ts`
+- `script/backtest-field-semantics.test.ts`
+- `script/capture-scheduler-host-evidence.py`
+- `script/company-case-evidence.test.ts`
+- `script/company-dated-market-source-contract.ts`
+- `script/company-dated-market-sources.test.ts`
+- `script/company-full-cashflow-case.test.ts`
+- `script/company-full-cashflow-stub.test.ts`
+- `script/company-projection-abatement-replay.test.ts`
+- `script/company-projection-abatement.test.ts`
+- `script/company-stage-reconciliation.test.ts`
+- `script/compare_retained_igcc_physics.py`
+- `script/diagnostic-metadata-semantics.test.ts`
+- `script/evidence-field-semantics.test.ts`
+- `script/export-contract.test.ts`
+- `script/fetch-summary-provenance.test.ts`
+- `script/field-semantics-census.ts`
+- `script/finite-export-schemas.test.ts`
+- `script/fmp-dated-price-endpoint.test.ts`
+- `script/integrate-ready-clauses.py`
+- `script/legacy-milestone-labels.test.ts`
+- `script/native-semantics.test.ts`
+- `script/native-threshold-integration.test.ts`
+- `script/news-provider-boundary.test.ts`
+- `script/news-public-service.test.ts`
+- `script/next-census-accounting.test.ts`
+- `script/next-valuation-evidence.test.ts`
+- `script/operational-field-semantics.test.ts`
+- `script/operator-news.ts`
+- `script/original-nominal-endpoint.test.ts`
+- `script/output-field-semantics.test.ts`
+- `script/peer-valuation-semantics.test.ts`
+- `script/physical_source_alignment.py`
+- `script/pinned-company-source.test.ts`
+- `script/pinned-company-source.ts`
+- `script/privileged-operation-census.test.ts`
+- `script/privileged-operation-inventory.ts`
+- `script/privileged_python_census.py`
+- `script/record-ready-increment.py`
+- `script/regional-counterfactual-labels.test.ts`
+- `script/remaining-field-semantics.test.ts`
+- `script/supplemental-sheet-bindings.test.ts`
+- `script/target-input-semantics.test.ts`
+- `script/test_physical_source_alignment.py`
+- `script/test_privileged_python_census.py`
+- `script/test_retained_igcc_physics.py`
+- `script/threshold-api-smoke.ts`
+- `script/threshold-diagnostic.test.ts`
+- `script/threshold-route-integration.test.ts`
+- `script/ui-claims.test.ts`
+- `script/validate-company-dated-market-sources-private.ts`
+- `script/validate-company-filing-private.ts`
+- `script/validate-company-fmp-dated-prices-private.ts`
+- `script/validate-next-company-evidence-private.ts`
+- `server/calculation/categoryHistoricalTrend.ts`
+- `server/calculation/categoryProjections.ts`
+- `server/calculation/companyCaseEvidence.ts`
+- `server/calculation/companyFullCashflowCase.ts`
+- `server/calculation/companyProjection.ts`
+- `server/calculation/companyProjectionReplay.ts`
+- `server/calculation/companyShareEvidence.ts`
+- `server/calculation/historicalMetrics.ts`
+- `server/calculation/historicalRecalculation.ts`
+- `server/calculation/nativeThresholdDiagnostics.ts`
+- `server/calculation/originalNominalAssessmentHandler.ts`
+- `server/calculation/publicValuationContract.ts`
+- `server/calculation/regionalProjections.ts`
+- `server/calculation/reverseValuation.ts`
+- `server/calculation/thresholdDiagnostic.ts`
+- `server/climateValuation/decarbTercileCalculator.ts`
+- `server/climateValuation/sdgGrowthCalculator.ts`
+- `server/dataIngestion/dataStore.ts`
+- `server/dataIngestion/orchestrator.ts`
+- `server/dataIngestion/summaryArchive.ts`
+- `server/dataIngestion/summaryContract.ts`
+- `server/financialData/provider.ts`
+- `server/newsApi/newsService.ts`
+- `server/newsApi/providerAccess.ts`
+- `server/operatorContract.ts`
+- `server/releaseSafety.ts`
+- `server/routes.ts`
+- `shared/companyAbatementSemantics.ts`
+- `shared/dataManagementSemantics.ts`
+- `shared/fetchSummarySemantics.ts`
+- `shared/gordonBaselineSemantics.ts`
+- `shared/nativeThresholdDiagnostics.ts`
+- `shared/nativeThresholdSchema.ts`
+- `shared/nativeThresholdSemantics.ts`
+- `shared/originalNominalAssessmentSemantics.ts`
+- `shared/outputFieldSemantics.ts`
+- `shared/projectionResponse.ts`
+- `shared/remainingFieldSemantics.ts`
+- `shared/supplementalSheetBindings.ts`
+- `shared/thresholdDiagnostic.ts`
+- `shared/thresholdDiagnosticSchema.ts`
+- `shared/thresholdDiagnosticSemantics.ts`
+
+Release boundary: implementation pending existing Git/CI/Railway gates; prior verified runtime d843960. A later receipt records exact promotion; local documentation is not itself a deployment.

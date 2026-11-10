@@ -7,6 +7,10 @@ import {
   type ForwardProjection,
 } from "./forwardProjection";
 import { historicalTrajectoryMetrics } from "./historicalMetrics";
+import type { ThresholdDiagnostic } from "../../shared/thresholdDiagnostic";
+import { selectedTrajectoryThresholdContext, type ThresholdContext } from "./thresholdDiagnostic";
+import { calculationKey } from "./identity";
+import { getAllHistoricalIndicators } from "./historicalIndicators";
 
 export interface RegionalProjection {
   region: string;
@@ -14,6 +18,7 @@ export interface RegionalProjection {
   temperatureRise: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic: ThresholdDiagnostic;
   carbonIntensity: number;
   carbonIntensitySource: "owid" | "static";
   carbonIntensityBasis: string;
@@ -110,12 +115,16 @@ export async function getRegionalCarbonIntensities(): Promise<Record<string, Int
 export async function calculateRegionalProjections(): Promise<RegionalProjection[]> {
   const baseIndicators = getCurrentIndicators();
   const intensities = await getRegionalCarbonIntensities();
-  return calculateRegionalFromInputs(baseIndicators, intensities);
+  const inputAvailable = getAllHistoricalIndicators().some(row => row.year === 2024);
+  return calculateRegionalFromInputs(baseIndicators, intensities, inputAvailable ? undefined :
+    region => selectedTrajectoryThresholdContext([], calculationKey("selected-regional-inputs", { baseIndicators, intensities }),
+      calculationKey("selected-regional-trajectory", baseIndicators, { region, runs: 1000 })));
 }
 
 /** Pure replay boundary: captured inputs never fall through to live data. */
 export function calculateRegionalFromInputs(baseIndicators: IndicatorData,
-  intensities: Record<string, IntensityResult>): RegionalProjection[] {
+  intensities: Record<string, IntensityResult>,
+  thresholdContextForRegion?: (region: string) => ThresholdContext | undefined): RegionalProjection[] {
   for (const region of Object.keys(REGIONAL_CARBON_INTENSITIES)) {
     const value = intensities[region];
     if (!value || !Number.isFinite(value.value) || value.value <= 0
@@ -134,7 +143,10 @@ export function calculateRegionalFromInputs(baseIndicators: IndicatorData,
     const tempDist = calculateTemperatureDistribution(trajectory, 1000);
     const tempStats = getTemperatureStats(tempDist, trajectory);
 
-    const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
+    const selectedContext = thresholdContextForRegion?.(region) ?? selectedTrajectoryThresholdContext(trajectory,
+      calculationKey("selected-regional-inputs", { baseIndicators, intensities }),
+      calculationKey("selected-regional-trajectory", indicators, { region, runs: 1000 }));
+    const { reductionRate, netZeroYear, thresholdDiagnostic } = historicalTrajectoryMetrics(trajectory, selectedContext);
 
     return {
       region,
@@ -142,6 +154,7 @@ export function calculateRegionalFromInputs(baseIndicators: IndicatorData,
       temperatureRise: tempStats.median,
       reductionRate,
       netZeroYear,
+      thresholdDiagnostic,
       carbonIntensity: intensity.value,
       carbonIntensitySource: intensity.source,
       carbonIntensityBasis: intensity.source === "owid"

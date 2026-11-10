@@ -1,4 +1,5 @@
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
+import { gordonBaselineMetadata } from "../calculation/publicValuationContract";
 import type { CvCompany, CvTimeSeries } from "@shared/schema";
 import {
   computeCompanyAnnualDecarbRate,
@@ -10,6 +11,9 @@ import {
 } from "./sharedUtils";
 
 export interface DecarbTercileResult {
+  costOfEquity: number;
+  gordonBaselineLabel: string;
+  gordonDefinition: string;
   date: Date;
   bestTercilePE: number;
   worstTercilePE: number;
@@ -87,6 +91,7 @@ export async function calculateDecarbTerciles(
   costOfEquity: number = 0.08,
   geography?: string
 ): Promise<DecarbTercileResult[]> {
+  const baseline = gordonBaselineMetadata(costOfEquity);
   const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
 
   const filteredCompanies = filterCompaniesByGeography(allCompanies, geography);
@@ -151,6 +156,7 @@ export async function calculateDecarbTerciles(
     const conversion = convertAll(impliedDecarbRate);
 
     results.push({
+      ...baseline,
       date,
       bestTercilePE: Math.round(bestPE * 100) / 100,
       worstTercilePE: Math.round(worstPE * 100) / 100,

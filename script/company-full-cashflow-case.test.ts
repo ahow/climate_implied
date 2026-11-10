@@ -9,6 +9,9 @@ const input = {
     availableAt: "2026-11-09T00:00:00.000Z", sha256: "a".repeat(64) }],
   discountRate: .08, terminalGrowth: .02, continuationGrowthAtYear5: .02,
   terminalEvidenceIds: ["synthetic"],
+  stub: { cashBasis: "FCFE-whole-issuer-common-equity", currency: "USD",
+    throughDate: "2026-12-31", rationale: "Synthetic explicit zero stub for algebra regression only",
+    completenessEvidenceIds: ["synthetic"], cashFlows: [] },
   years: Array.from({ length: 5 }, (_, i) => ({
     year: 2027 + i, cashFlowDate: `${2027 + i}-12-31`,
     evidenceIds: ["synthetic"], nonClimateRevenue: 100, climateRevenue: 10,

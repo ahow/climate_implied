@@ -3,6 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Globe, MapPin } from "lucide-react";
 import type { RegionalProjection } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
 
 interface RegionalComparisonProps {
   regions: RegionalProjection[];
@@ -55,7 +56,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
     "Reduction Rate (%/yr)": r.reductionRate,
     "Carbon Intensity (kg/$GDP)": r.carbonIntensity,
     "Intensity basis": r.carbonIntensityBasis,
-    "Legacy 5 Gt milestone": r.netZeroYear ?? "Not reached",
+    "Legacy fixed-5gt-v1 year (5 GtCO2e)": r.netZeroYear,
     "Milestone definition": r.milestoneDefinition,
     Claim: r.claim,
   }));
@@ -68,7 +69,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           <div>
             <h3 className="text-sm font-medium text-muted-foreground">Global intensity counterfactual</h3>
             <p className="text-xs text-muted-foreground mt-0.5">What if the world followed each region's carbon intensity?</p>
-            <p className="text-xs text-muted-foreground mt-1">Legacy diagnostic, not a regional temperature forecast. The 5 Gt milestone is not net zero. No date means not reached by 2100; dates are not extrapolated.</p>
+            <p className="text-xs text-muted-foreground mt-1">Legacy diagnostic, not a regional temperature forecast. The Legacy 5 Gt milestone (fixed-5gt-v1) is a positive-emissions comparator, not net zero or the 5%-of-2024 diagnostic. These values are global intensity counterfactuals, not source-evidenced regional inventories. No date means not reached by 2100; dates are not extrapolated.</p>
           </div>
         </div>
         <DownloadDataButton
@@ -82,7 +83,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
             "Reduction Rate (%/yr)":{id:"regional.reductionRate",transform:"Identity"},
             "Carbon Intensity (kg/$GDP)":{id:"regional.carbonIntensity",transform:"Identity; read companion basis column"},
             "Intensity basis":{id:"regional.carbonIntensityBasis",transform:"Identity"},
-            "Legacy 5 Gt milestone":{id:"regional.netZeroYear",transform:"null -> Not reached; finite year unchanged"},
+            "Legacy fixed-5gt-v1 year (5 GtCO2e)":{id:"regional.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
             "Milestone definition":{id:"regional.milestoneDefinition",transform:"Identity"},
             Claim:{id:"regional.claim",transform:"Identity"},
           }}
@@ -117,8 +118,9 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
               <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
                 <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {region.reductionRate.toFixed(1)}%/yr</span>
                 <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {region.carbonIntensity.toFixed(2)} — {region.carbonIntensityBasis}</span>
-                <span data-testid={`text-region-netzero-${region.region}`}>Legacy 5 Gt milestone: {region.netZeroYear ?? "Not reached"}</span>
+                <span data-testid={`text-region-netzero-${region.region}`}>Separate legacy fixed-5gt-v1: {region.netZeroYear ?? "Not reached by 2100"}</span>
               </div>
+              <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={region.regionName} />
             </div>
           );
         })}

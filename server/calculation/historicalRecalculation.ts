@@ -5,6 +5,9 @@ import {
   type IndicatorData,
 } from "./forwardProjection";
 import { historicalTrajectoryMetrics } from "./historicalMetrics";
+import type { ThresholdDiagnostic } from "../../shared/thresholdDiagnostic";
+import { selectedTrajectoryThresholdContext, type ThresholdContext } from "./thresholdDiagnostic";
+import { calculationKey } from "./identity";
 import { getAllHistoricalIndicators, getAllHistoricalIndicatorsWithNowcast, computeEmpiricalCarbonIntensityDeclineRate } from "./historicalIndicators";
 
 export interface HistoricalTrendPoint {
@@ -14,6 +17,7 @@ export interface HistoricalTrendPoint {
   p90: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic: ThresholdDiagnostic;
   isNowcast?: boolean;
 }
 
@@ -41,7 +45,9 @@ function convertToIndicatorData(hist: ReturnType<typeof getAllHistoricalIndicato
   };
 }
 
-export function getRecalculatedHistoricalTrend(): HistoricalTrendPoint[] {
+export function getRecalculatedHistoricalTrend(
+  thresholdContextForYear?: (year: number) => ThresholdContext | undefined,
+): HistoricalTrendPoint[] {
   const allData = getAllHistoricalIndicatorsWithNowcast();
 
   return allData.map((data) => {
@@ -50,7 +56,12 @@ export function getRecalculatedHistoricalTrend(): HistoricalTrendPoint[] {
     const tempDist = calculateTemperatureDistribution(trajectory, 1000);
     const tempStats = getTemperatureStats(tempDist, trajectory);
 
-    const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
+    const selected2024InputsPresent = allData.some(row => row.year === 2024 && !row.isNowcast);
+    const selectedContext = thresholdContextForYear?.(data.year) ?? selectedTrajectoryThresholdContext(
+      selected2024InputsPresent ? trajectory : [],
+      calculationKey("selected-history-inputs", allData),
+      calculationKey("selected-history-trajectory", indicators, { year: data.year, runs: 1000 }));
+    const { reductionRate, netZeroYear, thresholdDiagnostic } = historicalTrajectoryMetrics(trajectory, selectedContext);
 
     return {
       year: data.year,
@@ -59,6 +70,7 @@ export function getRecalculatedHistoricalTrend(): HistoricalTrendPoint[] {
       p90: tempStats.p90,
       reductionRate,
       netZeroYear,
+      thresholdDiagnostic,
       isNowcast: (data as any).isNowcast || false,
     };
   });

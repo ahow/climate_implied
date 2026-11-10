@@ -72,7 +72,7 @@ export default function Dashboard() {
         <p className="text-sm text-muted-foreground" id="legacy-warning">
           The legacy calculation applies a CO2-only response to aggregate GHG (CO2e), plus a fixed 1.1°C offset.
           Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.
-          The legacy milestone uses a fixed 5 Gt threshold with no extrapolation beyond 2100; it is not a 5% of 2024 milestone. No date means the threshold was not reached within the simulated horizon.
+          “Year emissions reach 5% of 2024” uses only the same selected trajectory's evidenced 2024 baseline; if it is missing the diagnostic is withheld. No crossing means not reached by the actual simulated horizon. The separate fixed-5gt-v1 legacy comparator is not 5% of 2024. Neither residual diagnostic is net zero.
           Regional temperatures are not standalone regional warming estimates. Historical recalculations are not forecast validation.
         </p>
         <Button variant="outline" aria-expanded={showLegacy} aria-describedby="legacy-warning" onClick={() => setShowLegacy(!showLegacy)} data-testid="button-toggle-legacy">
@@ -144,6 +144,7 @@ function LegacyDashboard() {
             p90={projection.temperatureDistribution.p90}
             reductionRate={projection?.metrics.reductionRate ?? 0}
             netZeroYear={projection?.metrics.netZeroYear ?? null}
+            thresholdDiagnostic={projection.metrics.thresholdDiagnostic}
             metricView={metricView}
             isLoading={projectionLoading}
           /> : <p role="status" className="rounded-md border p-4 text-sm">Legacy calculation {projectionLoading ? "loading…" : "unavailable. No diagnostic values are substituted."}</p>}

@@ -16,6 +16,7 @@ export const operatorContract = Object.freeze({
     overlayDecision: "npx tsx script/overlay-review.ts approve <proposal-id> | reject <proposal-id>",
     indicatorDecision: "npx tsx script/operator-indicators.ts approve <proposal-id> | reject <proposal-id>",
     financialReview: "npx tsx script/financial-review.ts stage <review.json> | approve <id> | reject <id>",
+    newsRefresh: "npx tsx script/operator-news.ts refresh <months1-24>",
   },
 } as const);
 

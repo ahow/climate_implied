@@ -31,7 +31,7 @@ test("every client download declares a valid evidence contract; no alternate wri
     }
     visit(source);
   }
-  assert.equal(count, 21, "Review export census when adding or removing a download");
+  assert.equal(count, 23, "Reviewed source census:21 retained sites plus separate legacy selected2024 and native-mass diagnostic exports");
 });
 
 test("interpretation survives XLSX serialization with missingness and exact data unchanged", () => {

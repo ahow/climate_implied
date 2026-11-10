@@ -1,0 +1,413 @@
+{
+  "criterion": "S01-007",
+  "recordedAt": "2026-11-10T11:57:38Z",
+  "updatedAt": "2026-11-10T12:57:29Z",
+  "scope": "Trajectory diagnostic with authorized projection/history/category/regional route/schema/cache integration, threshold semantics and now-authorized central census regeneration after core source freeze. Not deployment or scientific acceptance.",
+  "canonicalSource": {
+    "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+    "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+    "locator": "Stage 1, Developer plan, Interim actions",
+    "clause": "Rename “Projected Net-Zero Year” to “Year emissions reach 5% of 2024” and drop the On track/Delayed verdict.",
+    "reconciledRecord": "docs/reconciliation-stages-00-03.json:S01-007",
+    "reviewed": true
+  },
+  "implementation": {
+    "diagnosticVersion": "selected-2024-five-percent-v2",
+    "label": "Year emissions reach 5% of 2024",
+    "formula": "thresholdValue = 0.05 * baseline2024.value; year = first selected annual trajectory year >= 2024 with p50 <= thresholdValue",
+    "basisChecks": ["selectionId", "trajectoryId", "memberId", "gasBasis", "unit"],
+    "evidenceChecks": "Explicit positive finite year-2024 baseline with genuine selected source/captured-input lineage; exact equality with selected trajectory's2024 point if present. A generated/default modeled point or output self-hash is NOT baseline input evidence. Current legacy API inputs contain no qualifying emissions-baseline source/capture record and therefore withhold the primary diagnostic. Explicit valid same-basis source/captured-model input contexts remain usable at the trusted pure-calculation boundary; they are not inferred or fabricated by API callers.",
+    "missingness": "Missing/invalid/mismatched baseline withholds year, baselineValue and thresholdValue. No current-data read, default, interpolation, extrapolation or baseline borrowing.",
+    "censoring": "No crossing means year=null, status=right-censored, horizonYear=actual last annual row; equality counts including final simulated year.",
+    "crossingMeaning": "First reach, not durable crossing. Existing frozen memberMetrics durable nearZero5Percent2024 research output is untouched.",
+    "legacy": "Existing fixed-5-Gt netZeroYear numerical result is preserved separately as fixed-5gt-v1, never reused as the new 5% diagnostic.",
+    "entryPoints": {
+      "pure": "server/calculation/thresholdDiagnostic.ts:calculateThresholdDiagnostic(rows, context?)",
+      "historicalMetrics": "server/calculation/historicalMetrics.ts:historicalTrajectoryMetrics(rows, context?)",
+      "category": "calculateCategoryProjection(category, year, thresholdContext?); calculateAllCategoryProjections(year, thresholdContextForCategory?)",
+      "history": "getRecalculatedHistoricalTrend(thresholdContextForYear?)",
+      "categoryHistory": "getCategoryHistoricalTrend(thresholdContextForCase?)",
+      "regional": "calculateRegionalFromInputs(baseIndicators, intensities, thresholdContextForRegion?)",
+      "types": "shared/thresholdDiagnostic.ts",
+      "export": "client/src/lib/threshold-export.ts:thresholdExportRow and thresholdExportBindings",
+      "ui": "client/src/components/threshold-diagnostic-details.tsx"
+    }
+  },
+  "initialIntegrationPlanNowDeliveredExceptCensus": [
+    {
+      "file": "server/routes.ts",
+      "location": "GET /api/projection around historicalTrajectoryMetrics(trajectory) and result.metrics",
+      "change": "Destructure thresholdDiagnostic from historicalTrajectoryMetrics(trajectory, selectedThresholdContext); include result.metrics.thresholdDiagnostic. Do not derive selectedThresholdContext from current/default inputs. When no evidenced matching 2024 baseline exists, omit the context and return the explicitly withheld diagnostic. Preserve finance-projected-rate and valuation/company-cashflow withholding boundaries.",
+      "cache": "Version the projection response/calculation cache key so pre-change cached responses cannot silently omit the new field or misrepresent a fixed5Gt year as 5%."
+    },
+    {
+      "file": "shared/projectionResponse.ts",
+      "change": "Add strict thresholdDiagnostic schema to metrics matching shared/thresholdDiagnostic.ts. All nullable fields must remain nullable; status must distinguish reached/right-censored/withheld. Label/version/fraction/crossingRule/notNetZero should be literals. Preserve the existing netZeroYear only as legacy fixed-5gt-v1."
+    },
+    {
+      "files": ["shared/outputFieldSemantics.ts", "shared/projectionFieldSemantics.ts", "shared/historicalFieldSemantics.ts", "shared/regionalFieldSemantics.ts"],
+      "change": "Register the diagnostic fields below for standalone thresholdDiagnostic plus projection.metrics.thresholdDiagnostic, historical.thresholdDiagnostic, category.thresholdDiagnostic, regional.thresholdDiagnostic, and categoryHistory.{all,technology,policy,corporate,socioeconomic,financial,emissions}.thresholdDiagnostic. Category/history modules now emit these nested diagnostic objects, so bindNestedOutput must cover their leaves before API acceptance.",
+      "fields": [
+        "version", "label", "year", "status", "reason", "baselineYear", "baselineValue",
+        "baselineEvidenceId", "thresholdFraction", "thresholdValue", "horizonYear",
+        "basis", "basis.selectionId", "basis.trajectoryId", "basis.memberId", "basis.gasBasis",
+        "basis.unit", "crossingRule", "notNetZero"
+      ],
+      "nullBasis": "Null basis is a legitimate withheld object; ensure nested binder handles it explicitly.",
+      "exportBindings": "Exact standalone binding IDs are declared in client/src/lib/threshold-export.ts; chart extra binding IDs are historical.thresholdDiagnostic.year/status and category.thresholdDiagnostic.year/status."
+    },
+    {
+      "files": ["script/field-semantics-census.ts", "script/export-contract.test.ts", "related original-slot ledgers"],
+      "change": "Reconcile one new DownloadDataButton source site in threshold-diagnostic-details.tsx (reviewed AST count is now 22, previously 21), new standalone 19-column threshold export including authentic source-row context label, added year/status columns on historical/category exports, and renamed explicitly versioned legacy headers. Do not erase the old original slots or historical acceptance records.",
+      "observedTest": "script/export-contract.test.ts currently has one expected census failure: 22 !== 21; its XLSX interpretation test passes. Parent owns census updates."
+    },
+    {
+      "change": "Run read-only actual API/selected replay tests after route/schema/semantics integration; do not claim them from the pure-function JSON roundtrip or selection transport unit test."
+    }
+  ],
+  "integrationDelivered": {
+    "routes": "GET /api/projection emits strict metrics.thresholdDiagnostic. Global/category/history/category-history/regional legacy callers provide no qualifying source/captured-input emissions baseline and now withhold the primary diagnostic, even if a generated2024 output exists. Global and historical selectors explicitly guard missing selected2024 inputs as well. Legitimate explicitly supplied matching baseline contexts remain usable, not unconditionally withheld.",
+    "responseSchema": "shared/thresholdDiagnosticSchema.ts validates all literal/status/null/threshold/evidence/censoring invariants; shared/projectionResponse.ts requires the new nested field and rejects old cached response shapes. Separate metrics.legacyFixed5Gt explicitly versions the unchanged fixed5Gt comparator; netZeroYear remains its compatibility alias, not a physical claim.",
+    "cacheVersion": "selected-2024-five-percent-response-v2 is included in persistent projection cache key and memory cache tags for projection/category/history/category-history/regions. Version2 prevents old incorrectly self-authenticated model-output baseline responses from being served as current. No global scientific calculation-version or frozen-research contract change.",
+    "semantics": "Dedicated shared/thresholdDiagnosticSemantics.ts plus threshold-only import/spread insertion in shared/outputFieldSemantics.ts. Standalone export and all nested API diagnostic leaves bind; no dataManagement semantics edits.",
+    "selectedEvidence": "selectedTrajectoryThresholdContext now only supplies selected basis identity and forwards an explicitly supplied qualifying baseline record, if one actually exists. It never derives baseline evidence from trajectory rows/hashes. Old selected-model-trajectory-sha256 evidence IDs are explicitly rejected. Current production callers do not invent a qualifying record.",
+    "newsRoute": "Parent's news route changes retained.",
+    "census": "Regenerated after parent core-source freeze. Original1001 cohort separately frozen and preserved; all new typed API/export denominator changes and qualified supplements are separately reported."
+  },
+  "checks": [
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-focused-tests.log",
+      "startedAt": "2026-11-10T11:56:41Z",
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "scope": "Diagnostic calculator, exact boundary/censoring, first versus durable crossing, basis mismatch/missingness, selected-request transport, numeric/null XLSX roundtrip, rendered SSR gauge, preserved historical and category metric checks."
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-typecheck.log",
+      "startedAt": "2026-11-10T11:56:46Z",
+      "command": "npm run check",
+      "exitCode": 0
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-focused-tests-final.log",
+      "startedAt": "2026-11-10T11:57:38Z",
+      "tests": 16,
+      "pass": 15,
+      "fail": 1,
+      "failure": "Expected parent-owned export-site census update: 22 !== 21.",
+      "additionalCoverage": "Exact final2100 boundary and right-censoring; immutable selected indicator request/response checks; existing export interpretation XLSX test."
+    },
+    {
+      "screenshot": "generated-artifacts/threshold-diagnostic/20261110-dashboard.jpg",
+      "scope": "Already-running public dashboard initial viewport rendered normally. Optional legacy controls/diagnostic require interaction and were verified by SSR test, not by this screenshot."
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-integrated-tests.log",
+      "startedAt": "2026-11-10T12:00:55Z",
+      "command": "npm run check; npx tsx --test script/threshold-diagnostic.test.ts script/historical-metrics.test.ts script/projection-metric-consistency.test.ts script/analysis-selection.test.ts",
+      "typecheckExitCode": 0,
+      "tests": 14,
+      "pass": 14,
+      "fail": 0
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-route-integration-tests.log",
+      "startedAt": "2026-11-10T12:03:09Z",
+      "command": "npm run check; npx tsx --test script/threshold-route-integration.test.ts script/threshold-diagnostic.test.ts",
+      "typecheckExitCode": 0,
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "scope": "Actual main GET handler extracted from server/routes.ts and executed with production calculators/schema/semantics, isolated in-memory cache/transport only. Selected2024 and later-start withheld behavior, exact cache reuse and old-key rejection, all other trajectory calculator bindings, real selected-baseline XLSX serialization, and SSR/UI checks. No running app or DB mutation in this harness."
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-integration-final.log",
+      "startedAt": "2026-11-10T12:05:13Z",
+      "command": "npm run check; npx tsx --test script/threshold-route-integration.test.ts script/threshold-diagnostic.test.ts script/historical-metrics.test.ts script/projection-metric-consistency.test.ts script/analysis-selection.test.ts",
+      "typecheckExitCode": 0,
+      "tests": 18,
+      "pass": 18,
+      "fail": 0,
+      "scope": "Final local source checks, including actual source-row context labels in the 19-column XLSX export. Does not assert running HTTP server is updated."
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-integration-final-with-schema.log",
+      "startedAt": "2026-11-10T12:06:35Z",
+      "tests": 19,
+      "pass": 19,
+      "fail": 0,
+      "typecheck": "Found legacy descriptor literal widening in historicalMetrics; subsequently fixed with const literals."
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-integration-final-verified.log",
+      "startedAt": "2026-11-10T12:07:06Z",
+      "command": "npm run check",
+      "exitCode": 2,
+      "scope": "Threshold literal-type issue resolved. Remaining global typecheck errors are parallel-owned companyCaseEvidence.ts downlevel Set/ArrayIterator iteration at lines90,109,127,160; not edited by this subtask."
+    },
+    {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-final-tests.log",
+      "startedAt": "2026-11-10T12:07:25Z",
+      "tests": 19,
+      "pass": 19,
+      "fail": 0,
+      "scope": "Final current-source threshold/actual-handler/selection/strict-schema/XLSX/SSR and preserved metric tests."
+    }
+  ],
+  "runningHttpProbe": {
+    "log": "generated-artifacts/threshold-diagnostic/20261110-running-api-probe.log",
+    "executedAt": "2026-11-10T12:05:39Z",
+    "exitCode": 1,
+    "observed": "Already-running localhost GET /api/projection returned200 but omitted metrics.thresholdDiagnostic; server still had pre-change backend loaded. No restart performed by subagent.",
+    "readyCommand": "npx tsx script/threshold-api-smoke.ts",
+    "scope": "Localhost GET-only probe; strict main/category/history/category-history validation, selected immutable-indicator replay and pre-existing archived regional replay, no captures/approvals/provider triggers.",
+    "blocker": "Parent must restart the development workflow before integrated HTTP verification. Script intentionally fails if an old response is still served or required existing archives are unavailable."
+  },
+  "census20261110": {
+    "frozenOriginalCohort": "docs/field_semantics_original_cohort.json",
+    "regeneratedCensus": "docs/field_semantics_census.json",
+    "original": {
+      "publicSlots": 1001,
+      "originallyBound": 429,
+      "originallyUnbound": 572,
+      "closedOriginalGaps": 571,
+      "boundNow": 1000,
+      "remainingUnbound": 1,
+      "withheld": 27,
+      "removedOriginalSlots": 0,
+      "frozenIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+      "quantityPreservingLabelAliases": "Three old fixed5Gt export headers now explicitly say legacy fixed-5gt-v1; these preserve the fixed5Gt quantity/IDs, not new5%-of2024 substitution."
+    },
+    "currentDirectScanner": {
+      "definitions": 1523,
+      "typedInventoryEntriesIncludingWithheld": 1261,
+      "publicSlots": 1234,
+      "boundPublicSlots": 1233,
+      "surfaces": 68,
+      "newPublicSlotsOutsideOriginal": 233,
+      "newBoundSlotsOutsideOriginal": 233,
+      "downloadCallSites": 22,
+      "verifiedConcreteDownloadBindings": 82
+    },
+    "externalHandlerSupplement": {
+      "endpoint": "GET /api/valuation/original-nominal-assessment",
+      "qualifiedDefinitions": 40,
+      "actualTypedOutputFields": 28,
+      "boundTypedOutputFields": 28,
+      "omittedUndefinedBranchProperties": 14,
+      "expandedApiAndDownloadPublicSlots": 1262,
+      "expandedApiAndDownloadBoundSlots": 1261,
+      "expandedPublicDeltaFromOriginal": 261,
+      "boundary": "External handler is outside original direct-res.json scanner. Its28 distinct actual typed send-argument fields are explicitly supplemental, not hidden in or credited to original1001."
+    },
+    "supplementalQualifiedDefinitions": {
+      "thresholdDiagnosticAndVersionedLegacy": 246,
+      "allNewModuleDefinitions": 382,
+      "otherRetainedDefinitions": 1141,
+      "authenticatedSummarySidecar": 16,
+      "metadataWorksheetBindings": 31,
+      "fieldSemanticsWorksheetColumns": 14,
+      "columnBindingsWorksheetColumns": 17,
+      "companyAbatement": 43,
+      "gordonCostOfEquityMetadata": 6,
+      "originalNominalEndpoint": 40
+    },
+    "strictState": {
+      "originalComplete": false,
+      "complete": false,
+      "unresolvedOriginalField": "API GET /api/data/runs: runs[].summary",
+      "unresolvedType": "unknown",
+      "sidecarMap": "New summaryEvidence.* map has an explicit strict authenticated/unverified typed-value domain; this is supplemental and does not inspect or close raw historical summary JSON.",
+      "originalGateExitCode": 1,
+      "expandedGateExitCode": 1,
+      "expandedGateMessage": "SEMANTICS INCOMPLETE: 1233/1234 public field slots bound",
+      "noClosureClaim": true
+    },
+    "tests": [
+      {
+        "log": "generated-artifacts/threshold-diagnostic/20261110-census-all-final-tests.log",
+        "startedAt": "2026-11-10T12:20:21Z",
+        "censusRegeneration": "passed",
+        "censusFreshnessCheck": "passed",
+        "tests": 92,
+        "pass": 92,
+        "fail": 0,
+        "scope": "Combined final focused and regression suites on current regenerated census, including strict-gate expected failures, exact original/additive count assertions, all supplements and current threshold API-handler/UI/XLSX checks."
+      },
+      {
+        "log": "generated-artifacts/threshold-diagnostic/20261110-census-final-focused-tests.log",
+        "startedAt": "2026-11-10T12:15:55Z",
+        "tests": 64,
+        "pass": 64,
+        "fail": 0,
+        "scope": "Census freshness, immutable original identities, exact additive accounting, both expected-failing strict gates, actual strengthened UI label assertions, exports/finite schema, sidecar provenance,31 sheet bindings, Gordon and nominal endpoint semantics."
+      },
+      {
+        "log": "generated-artifacts/threshold-diagnostic/20261110-census-regression-final.log",
+        "startedAt": "2026-11-10T12:18:07Z",
+        "tests": 28,
+        "pass": 28,
+        "fail": 0,
+        "scope": "Current expanded historical/category/regional/SDG exact field counts with original counts still separately asserted, full output binding regressions, native/research checks, actual threshold route/schema/cache/SSR/XLSX tests."
+      },
+      {
+        "log": "generated-artifacts/threshold-diagnostic/20261110-original-strict-gate.log",
+        "expectedExitCode": 1,
+        "actualExitCode": 1
+      },
+      {
+        "log": "generated-artifacts/threshold-diagnostic/20261110-expanded-strict-gate.log",
+        "expectedExitCode": 1,
+        "actualExitCode": 1
+      },
+      {
+        "log": "generated-artifacts/threshold-diagnostic/20261110-census-typecheck.log",
+        "exitCode": 2,
+        "scope": "Only parallel-owned companyCaseEvidence.ts downlevel Set/ArrayIterator iteration errors at95/127/145/195; no census/threshold implementation type errors reported."
+      }
+    ],
+    "runtime": "Awaiting parent's later workflow restart as directed; no subagent restart. Existing strict localhost GET-only smoke script remains ready. No running-HTTP-success claim."
+  },
+  "baselineLineageAudit20261110": {
+    "supersedes": "All earlier version1 activation claims in this evidence record. Historical software-test receipts are retained but do not authenticate the baseline assumptions those tests formerly allowed.",
+    "reviewedMemory": ".agents/memory/climate-model-calibration.md",
+    "finding": "The legacy emissions anchor is an unverified model assumption, not an observed inventory. Earlier version1 auto-activation by hashing modeled2024 output was insufficient input lineage and has been removed.",
+    "exactEvidenceChain": [
+      "shared/calculationContract.ts: LEGACY_CLIMATE.baselineEmissionsGt=60.3 and intensityNormalizer=0.32 are legacy characterization constants, not sourced inventory observations.",
+      "server/calculation/forwardProjection.ts: baselineEmissions=60.3*(selected indicators.carbonIntensity/0.32); sector shares and legacy scenario mechanisms/sampling then produce annual p50 emissions.",
+      "A selected2024 carbon-intensity indicator row, or an approved override for it, does not supply a same-gas/GWP2024 aggregate emissions inventory and does not explicitly capture/select the emissions initial condition.",
+      "getCurrentIndicators falls back to BASELINE_FALLBACK when selected historical2024 inputs are absent; that manufactured/default path cannot qualify a primary2024 residual baseline.",
+      "Historical reconstructions beginning before2024 can manufacture a modeled2024 output even when their selected history lacks2024. That modeled output is not historical-source or captured-initial-condition evidence.",
+      "Existing indicator snapshots archive indicator overrides, not an explicit selected emissions-initial-condition record with source/model-input lineage. No qualifying archived baseline is fabricated from them.",
+      "Version2 requires trusted caller-resolved explicit same-selection/trajectory/member/gas/unit baseline input evidence; consistency validation alone is not external source authentication. Pure arithmetic/source-capture fixtures prove positive support without claiming real observational data."
+    ],
+    "behavior": {
+      "globalDefaultAnchor2024": "withheld",
+      "globalMissingSelected2024InputsEvenIfModelProduces2024Output": "withheld",
+      "historicalAndCategoryHistoricalMissingSelected2024Inputs": "withheld",
+      "generatedOutputHashAlone": "withheld",
+      "oldVersion1SelfHashContext": "withheld",
+      "explicitValidMatchingSourceOrCapturedModelInput": "calculated conditionally with exact0.05 threshold and unchanged censoring",
+      "legacyFixed5Gt": "Unchanged, separately named fixed-5gt-v1 comparator; not a5%-of2024 or physical-net-zero result"
+    },
+    "conditionalModelBaseline": "An explicitly selected/captured model initial condition may support a conditional model-baseline result only with genuine input lineage. None is inferred from the legacy hardcoded/default anchor. No extra self-authenticating model-control percentage variant was introduced.",
+    "version": "selected-2024-five-percent-v2",
+    "responseCacheVersion": "selected-2024-five-percent-response-v2",
+    "tests": {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-baseline-lineage-audit-tests.log",
+      "startedAt": "2026-11-10T12:25:48Z",
+      "tests": 95,
+      "pass": 95,
+      "fail": 0,
+      "newNegativeCoverage": "Actual global handler with selected2024 indicators but hardcoded emissions anchor; global selected2023 with manufactured2024 output; both historical selectors with missing selected2024 inputs; generated/self-hash baseline denial.",
+      "positiveCoverage": "Explicit valid selected baseline input/captured-model fixtures still calculate, including category calculator context injection and pure same-basis threshold boundary.",
+      "census": "Regenerated for changed source lines/version literals and freshness passes; all field/definition/cohort counts unchanged. Both strict gates still fail on the original unknown raw summary slot."
+    },
+    "typecheck": {
+      "log": "generated-artifacts/threshold-diagnostic/20261110-baseline-lineage-typecheck.log",
+      "startedAt": "2026-11-10T12:26:40Z",
+      "exitCode": 0
+    },
+    "screenshot": {
+      "path": "generated-artifacts/threshold-diagnostic/20261110-baseline-lineage-methodology.jpg",
+      "scope": "Already-running public Methodology initial viewport renders normally with version2 diagnostic text. This verifies frontend rendering, not a reloaded backend or hidden below-fold text."
+    },
+    "runtime": "Parent must load version2 backend before strict HTTP smoke. No subagent workflow restart or live-runtime-success claim."
+  },
+  "preserved": [
+    "No commits, deploys, external callbacks, workflow starts/restarts or production-data mutations.",
+    "No edits to frozen research memberMetrics or studies, archives, valuation/company cashflow/summary calculations.",
+    "No scientific/model readiness promotion; valuation-derived physical outputs remain withheld.",
+    "No new source observations or fabricated baseline evidence in production code; synthetic values occur only in engineering tests."
+  ],
+  "nativeCapturedBaselineIntegration20261110": {
+    "finding": "Unlike the unsupported legacy60.3 anchor, native engine initial conditions actually read a versioned captured2024 source-derived inventory cell artifact. This supplies genuine captured INPUT lineage for a conditional native-mass residual diagnostic, without reclassifying it as a calibrated/independently verified observation or forecast.",
+    "exactChain": [
+      "script/build-emissions-inventory.ts reads pinned ClimateIndicator/GHG-Emissions-Assessment revision e81bb760b66ab182f9052d8d4218d42a97acbd75, EDGAR native2024 Gg cells converted to Mt, and the retained IGCC2024 report; it retains missing/signed-source-cell quality counts and reconciles source components.",
+      "CO2-FFI uses GCB global total allocated by EDGAR sector weights (not independent sector observations); net CO2-LULUCF is a separately identified GCB net land-use term. Non-CO2 species remain native mass. GWP100 is reporting-only and is never multiplied into residual diagnostic baselines or trajectories.",
+      "server/calculation/data/inventory2024.json is the actual captured engine input, not a manufactured output row. It carries source URL/revision, four EDGAR workbook SHA256 values, report and metrics URLs/hashes, per-cell origin, source boundary and allocations.",
+      "projectNativeEmissions directly calls projectInventoryEmissions with inventory.cells. Diagnostics separately sum those actual INPUT cells and select the corresponding same-species/account annual outputs. Generated2024 output is only consistency-checked, never used as its own input provenance.",
+      "Native baseline content identity is pinned to the exact audited captured artifact. Any changed input metadata/cells/year fails qualification, even if a model output can be generated. Retained provenance was inspected; upstream files/studies were not independently redownloaded or rerun.",
+      "Regional engine supplied cells are actual explicit MODEL initial conditions, reconciled to global inventory. The new bounded diagnostic request additionally requires explicit baselineYear2024; absent or other year rejects. The adapter without a selected2024 declaration withholds, even with modeled2024 outputs.",
+      "No source-backed regional2024 land-use allocation is fabricated: existing regional source reconstruction omits that term. Complete regional-member tests use explicitly labeled engineering MODEL-input fixtures, not observed regional source data."
+    ],
+    "unchangedArtifactHashes": {
+      "inventory2024RawFileSha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+      "inventory2024CanonicalInputContentSha256": "1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29",
+      "emissionsCandidateTsSha256": "d53b1c79e13588dcd9570942fd70c22892ccc6df75707fa35908cc27f2f08218",
+      "regionalEngineTsSha256": "a030163eee28cebf2804151c483089ab1244d37d73b204cb3fff18eb4970c63a"
+    },
+    "quantityBoundaries": {
+      "existingNativeApiFields": 187,
+      "existingNativeWorkbookColumns": 35,
+      "existingNativeEngineAndRegionalEngineMath": "unchanged",
+      "rawStudyArchives": "untouched; no unchanged studies rerun",
+      "qualifiedGlobalNativeAccounts": 27,
+      "accountRule": "26 existing native gas species with CO2 split into CO2-FFI and net CO2-LULUCF; all27 are independent same-species mass residual diagnostics, never an aggregate of unlike gas masses",
+      "nativeMember": "Deterministic scenario, explicitly not an ensemble member or median quantile",
+      "negativeOrMissingBaseline": "withheld; no clipping, default substitution, source borrowing or output self-authentication",
+      "crossing": "Exact0.05*actual captured2024 same-basis input; first annual value at/below threshold; actual-horizon right censoring; not physical net zero"
+    },
+    "apiAndUi": {
+      "candidate": "GET /api/emissions/candidate?scenario=constant|transition|dashboard adds strict residualDiagnostics beside unchanged inventory/inputs/result",
+      "regional": "POST /api/emissions/regional-residual-diagnostics accepts strict {baselineYear:2024,input:<existing strict regional-member contract>} and returns only strict supplemental residualDiagnostics, not modified engine output",
+      "releaseSafety": "Added only this bounded pure diagnostic to existing POST allowlist; shares process30/minute budget and body/engine limits. No storage writes, new operator privileges, provider callbacks or scheduler operations.",
+      "ui": "Existing native candidate review now shows qualified per-region/gas native-mass baselines, thresholds and reached/right-censored/withheld results. Missing response fragment explicitly unavailable; malformed fragment rejected. Legacy primary branch remains withheld.",
+      "export": "Separate21-column native diagnostic workbook with explicit Gas/Region and all19 diagnostic/basis/evidence/status fields; existing35-column native workbook preserved",
+      "runtime": "Actual production handler source, calculators, strict schemas, field binder, release-safety boundary, SSR UI and XLSX serialization tested in isolation. Parent must load backend before live strict GET smoke; no app/workflow restart by subagent."
+    },
+    "supplementalCensus": {
+      "definitionsAdded": 30,
+      "definitionComposition": "26 response leaves, two container definitions, one export-only context and one explicit baselineYear INPUT definition",
+      "newCandidateResponseLeaves": 26,
+      "newRegionalResponseLeaves": 26,
+      "newSeparateExportColumns": 21,
+      "newDirectPublicSlotDeltaThisIncrement": 73,
+      "totalDefinitions": 1553,
+      "currentFieldsIncluding27Withheld": 1334,
+      "currentPublic": 1307,
+      "currentBound": 1306,
+      "allDirectAddedPublicSlotsFromOriginal": 306,
+      "externalNominalTypedLeaves": 28,
+      "expandedPublic": 1335,
+      "expandedBound": 1334,
+      "expandedPublicDeltaFromOriginal": 334,
+      "downloadSourceSites": 23,
+      "verifiedConcreteBindings": 103,
+      "originalCohort": "1000/1001 unchanged;571/572 original gaps closed; old runs[].summary remains unknown, no new source/capture output or authenticated sidecar closes it",
+      "otherSupplements": "Existing246 threshold,16 summary,31 sheets,43 abatement,6 Gordon and40 nominal definitions retained separately",
+      "strict": "Both strict original and full gates remain expected failures; full1306/1307, caused solely by original unknown runs[].summary"
+    },
+    "tests": {
+      "newIntegrationTests": 6,
+      "targetedRegressionTests": 56,
+      "pass": 56,
+      "fail": 0,
+      "startedAt": "2026-11-10T12:48:49Z",
+      "log": "generated-artifacts/threshold-diagnostic/20261110-native-targeted-integration.log",
+      "finalFreshness": "After moving native qualification text into the current-claims card: npm run check and regenerated census freshness pass; native/UI13/13 recheck passes. Log: generated-artifacts/threshold-diagnostic/20261110-native-final-freshness.log",
+      "screenshot": "generated-artifacts/threshold-diagnostic/20261110-native-baseline-methodology.jpg shows both current legacy withholding/source limits and separate conditional native qualification. Actual native candidate UI states are verified by SSR; live loaded backend remains parent-owned.",
+      "sourceFreeze": "All subagent-owned implementation code frozen at this handoff; final census and tests reflect it. Parent may rerun final integrated checks after independent quote-discovery job completes.",
+      "coverage": "All three real native candidate cases qualify27 captured-source mass baselines; actual GET/POST handlers; missing/changed source/2024 inputs; required regional declaration; species/unit/member/region consistency; negative land sinks; reached final-year sensitivity; strict unknown JSON rejection; real SSR valid/missing/malformed states; separate21-column XLSX roundtrip and unchanged187/35 original native quantities.",
+      "finalIntegratedChecks": "Parent awaits independent quote-discovery job before final integrated checks. No unchanged studies rerun and no live backend success claim."
+    }
+  },
+  "integrationBoundaryLabelFix20261110": {
+    "scope": "No new feature or formula changes. Fixed actual visible legacy chart/regional disclaimers, retained all existing label/source assertions and added stronger separation/source assertions.",
+    "chart": "Visible positive-emissions fixed-5gt-v1 comparator disclaimer now explicitly says not net zero or a5%-of2024 threshold; default60.3 anchor identified as unverified model assumption, not source-evidenced inventory. P10-P90 described as model-conditional, not calibrated forecast uncertainty.",
+    "regional": "Visible Legacy5Gt milestone disclaimer explicitly versions fixed-5gt-v1, distinguishes the separate5%-of2024 diagnostic, retains not-a-regional-temperature-forecast and identifies global intensity counterfactuals as not source-evidenced regional inventories. Precise versioned export header and original Claim/Intensity basis bindings retained.",
+    "affectedTests": [
+      "script/legacy-milestone-labels.test.ts",
+      "script/regional-counterfactual-labels.test.ts",
+      "script/next-census-accounting.test.ts"
+    ],
+    "testResult": "6/6 affected tests pass, including both original/expanded strict completeness gates remaining expected failures on OLD unknown runs[].summary.",
+    "census": "Regenerated after final parent/news/source CLI changes and final visible-label edits; freshness passes. Counts unchanged:1553 definitions;1334 fields including27 withheld;1306/1307 current bound;1334/1335 expanded bound;original1000/1001.",
+    "log": "generated-artifacts/threshold-diagnostic/20261110-final-label-integration-boundary.log",
+    "startedAt": "2026-11-10T12:57:29Z",
+    "screenshot": "generated-artifacts/threshold-diagnostic/20261110-final-label-dashboard.jpg verifies public root still renders normally. Optional legacy detail states are checked by source-contract assertions, not visible in that initial viewport.",
+    "scopeBoundary": "Parent owns historical-proposal test fix and final coherent run; no unchanged studies or full suite rerun here. No workflow restart."
+  },
+  "status": "Final integration-boundary label fixes complete; all existing assertions retained and strengthened.6 affected tests and final regenerated census freshness pass, with original unknown-summary strict failure preserved. Native captured-input diagnostic integration remains conditional and separate; engine quantities/archives unchanged. Parent owns historical-proposal fix and final coherent/runtime verification; no source/scientific acceptance promotion."
+}

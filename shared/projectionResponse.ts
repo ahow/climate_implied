@@ -1,5 +1,7 @@
 import {z} from "zod";
 import {CALCULATION_VERSION} from "./calculationContract";
+import { thresholdDiagnosticSchema } from "./thresholdDiagnosticSchema";
+export const PROJECTION_RESPONSE_VERSION = "selected-2024-five-percent-response-v2";
 const n=z.number().finite(),year=n.int();
 const indicatorShape={
  renewableCapacityGW:n,renewableGrowthRate:n,renewableAcceleration:n,evSalesShare:n,evGrowthRate:n,
@@ -25,6 +27,9 @@ export const projectionResponseSchema=z.object({
  temperatureDistribution:z.object({median:n,mean:n,p10:n,p90:n,
   pdf:z.array(z.object({temperature:n,probability:n,cumulativeProbability:n}).strict()).min(1)}).strict(),
  indicators:z.object(indicatorShape).strict(),
- metrics:z.object({reductionRate:n,temperatureRise:n,netZeroYear:year.nullable(),emissionsStart:n,emissionsDecadeLater:n,emissions2100:n}).strict(),
+ metrics:z.object({reductionRate:n,temperatureRise:n,netZeroYear:year.nullable(),
+  legacyFixed5Gt:z.object({version:z.literal("fixed-5gt-v1"),year:year.nullable(),
+   thresholdValue:z.literal(5),unit:z.literal("GtCO2e"),notNetZero:z.literal(true)}).strict(),
+  thresholdDiagnostic:thresholdDiagnosticSchema,emissionsStart:n,emissionsDecadeLater:n,emissions2100:n}).strict(),
 }).strict();
 export type ProjectionResponse=z.infer<typeof projectionResponseSchema>;

@@ -17,7 +17,7 @@ import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { exactMemberAttribution } from "./calculation/memberAttribution";
 import { projectCompanyMembers } from "./calculation/companyProjection";
 import {listCompanyOperatingReviews,projectReviewedCompany} from "./snapshots/companyOperatingReview";
-import {projectionResponseSchema,type ProjectionResponse} from "../shared/projectionResponse";
+import {projectionResponseSchema,PROJECTION_RESPONSE_VERSION,type ProjectionResponse} from "../shared/projectionResponse";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { loadRegionalInputs } from "./snapshots/regional";
 import { calculateRegionalFromInputs } from "./calculation/regionalProjections";
@@ -39,11 +39,15 @@ import {
   getTemperatureStats,
   calculateSensitivityAnalysis,
 } from "./calculation/forwardProjection";
-import { getAllHistoricalIndicatorsWithNowcast } from "./calculation/historicalIndicators";
+import { getAllHistoricalIndicators, getAllHistoricalIndicatorsWithNowcast } from "./calculation/historicalIndicators";
 import { calculateAllCategoryProjections, applyCategoryModifications, type Category } from "./calculation/categoryProjections";
 import { calculateRegionalProjections } from "./calculation/regionalProjections";
 import { getRecalculatedHistoricalTrend } from "./calculation/historicalRecalculation";
 import { historicalTrajectoryMetrics } from "./calculation/historicalMetrics";
+import { selectedTrajectoryThresholdContext } from "./calculation/thresholdDiagnostic";
+import { nativeCandidateResidualDiagnostics, regionalNativeResidualDiagnostics } from "./calculation/nativeThresholdDiagnostics";
+import { projectRegionalMember } from "./calculation/regionalEngine";
+import { nativeResidualDiagnosticsSchema, regionalNativeResidualRequestSchema } from "@shared/nativeThresholdSchema";
 import { getCategoryHistoricalTrend } from "./calculation/categoryHistoricalTrend";
 import multer from "multer";
 import os from "os";
@@ -60,6 +64,7 @@ import { calculateDecarbBands } from "./climateValuation/decarbBandCalculator";
 import { calculateDecarbTerciles } from "./climateValuation/decarbTercileCalculator";
 import { eq, and, asc, gt, desc, sql } from "drizzle-orm";
 import { getClimateNewsAnalysis } from "./newsApi/newsService";
+import { originalNominalAssessmentHandler } from "./calculation/originalNominalAssessmentHandler";
 import type { SignalType } from "./climateValuation/backtestCalculator";
 import { calculateBacktest } from "./climateValuation/walkForwardBacktest";
 import { validateCvRequest } from "./climateValuation/queryValidation";
@@ -90,7 +95,8 @@ import { historicalValidation } from "./calculation/historicalValidation";
 import { auditVintages } from "./calculation/vintageAudit";
 import { validateNativePair } from "./calculation/nativePathwayContract";
 import { remainingApiBindings } from "../shared/remainingFieldSemantics";
-import { bindKnownPersistedSummary } from "./dataIngestion/summaryContract";
+import { bindKnownPersistedSummary, bindFetchSummaryEvidence } from "./dataIngestion/summaryContract";
+import { loadFetchSummaryEvidence } from "./dataIngestion/summaryArchive";
 import { summarizeEnsemble } from "./calculation/ensemble";
 import { evaluateHoldout } from "./calculation/evaluation";
 import { evaluateSignal } from "./calculation/signalResearch";
@@ -135,16 +141,28 @@ export async function registerRoutes(
     res.json=((body:unknown)=>{
       if(res.statusCode<400 || (match[1]==="health" && body && typeof body==="object" && "status" in body)) {
         const prefix=match[1],ids=new Set<string>();
-        const visit=(value:unknown,path:string):void => {
+        const summaryEvidence=prefix==="fetchRuns" && body && typeof body==="object" && "summaryEvidence" in body
+          ? body.summaryEvidence as Awaited<ReturnType<typeof loadFetchSummaryEvidence>> : {};
+        const visit=(value:unknown,path:string,owningRunId?:string):void => {
+           if(prefix==="fetchRuns"&&path==="summaryEvidence") {
+             // Supplemental run-ID map: source paths are identifiers, not new
+             // semantic leaves. Never traverse arbitrary historical raw JSON.
+             for(const evidence of Object.values(summaryEvidence))
+               for(const field of bindFetchSummaryEvidence(evidence)) ids.add(field.id);
+             return;
+           }
            if(prefix==="fetchRuns"&&path==="runs[].summary") {
              // Container documentation does NOT certify arbitrary historical leaves.
              ids.add("fetchRuns.runs[].summary");
-             for(const claim of bindKnownPersistedSummary(value)) ids.add(claim.id);
+             for(const claim of bindKnownPersistedSummary(value,owningRunId ? summaryEvidence[owningRunId] : undefined))
+               ids.add(claim.id);
              return;
            }
-          if(Array.isArray(value)) { for(const row of value) visit(row,`${path}[]`); return; }
+          if(Array.isArray(value)) { for(const row of value) visit(row,`${path}[]`,owningRunId); return; }
           if(value!==null && typeof value==="object" && !(value instanceof Date)) {
-            for(const [key,child] of Object.entries(value)) visit(child,path?`${path}.${key}`:key);
+            const runId=prefix==="fetchRuns" && path==="runs[]" && "id" in value && typeof value.id==="string"
+              ? value.id : owningRunId;
+            for(const [key,child] of Object.entries(value)) visit(child,path?`${path}.${key}`:key,runId);
             return;
           }
           // Root response arrays use row-relative IDs, matching the census.
@@ -212,6 +230,7 @@ export async function registerRoutes(
     res.set("X-Field-Semantics",bindNestedOutput("financialProvider",response).map(f=>f.id).join(","));
     res.json(response);
   });
+  app.get("/api/valuation/original-nominal-assessment", originalNominalAssessmentHandler);
   app.use("/api/cv", validateCvRequest);
   app.use("/api/cv", async (req, res, next) => {
     if (req.method !== "GET") return next();
@@ -510,12 +529,14 @@ export async function registerRoutes(
     }
     try {
       const inputs = resolveEmissionsInputs();
+      const nativeResult = projectNativeEmissions(req.query.scenario === "dashboard" ? inputs.diagnostic :
+        req.query.scenario === "transition" ? illustrativeScenario : constantScenario);
       const response = {
         promotion: "blocked-pending-calibration-and-Packages-3-4",
         inventory: candidateInventory(),
         inputs,
-        result: projectNativeEmissions(req.query.scenario === "dashboard" ? inputs.diagnostic :
-          req.query.scenario === "transition" ? illustrativeScenario : constantScenario),
+        result: nativeResult,
+        residualDiagnostics: nativeResidualDiagnosticsSchema.parse(nativeCandidateResidualDiagnostics(nativeResult)),
       };
       const fields=bindNestedOutput("native",response);
       // Avoid oversized headers: exact bindings are available in the registry;
@@ -525,6 +546,24 @@ export async function registerRoutes(
       res.json(response);
     } catch (error) {
       res.status(422).json({ error: error instanceof Error ? error.message : "Invalid candidate inputs" });
+    }
+  });
+
+  // Submitted-input arithmetic only; no stored inventory/approval mutation or source collection.
+  app.post("/api/emissions/regional-residual-diagnostics", (req, res) => {
+    try {
+      const capture = regionalNativeResidualRequestSchema.parse(req.body);
+      const member = projectRegionalMember(capture.input);
+      const response = {
+        residualDiagnostics: nativeResidualDiagnosticsSchema.parse(regionalNativeResidualDiagnostics(member, capture.baselineYear)),
+      };
+      const fields = bindNestedOutput("native", response);
+      res.set("Cache-Control", "no-store");
+      res.set("X-Field-Semantics-Family", "native");
+      res.set("X-Field-Semantics-Count", String(fields.length));
+      res.json(response);
+    } catch (error) {
+      res.status(422).json({ error: error instanceof Error ? error.message : "Invalid captured regional native inputs" });
     }
   });
 
@@ -568,9 +607,11 @@ export async function registerRoutes(
   app.get("/api/projection", async (req, res) => {
     try {
       const category = (req.query.category as string) || "all";
-      const cacheKey = calculationKey("projection", res.locals.calculationRevision, { category, runs: 10000 });
+      const cacheKey = calculationKey("projection", res.locals.calculationRevision, {
+        category, runs: 10000, responseVersion: PROJECTION_RESPONSE_VERSION,
+      });
 
-      if (category === "all" && projectionResultCache && validRouteCache("projection", res)) {
+      if (category === "all" && projectionResultCache && validRouteCache(`projection:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("projection",projectionResultCache).map(f=>f.id).join(","));
         return res.json(projectionResultCache);
       }
@@ -596,7 +637,11 @@ export async function registerRoutes(
       const temperatureDistribution = calculateTemperatureDistribution(trajectory, 10000);
       const tempStats = getTemperatureStats(temperatureDistribution, trajectory);
 
-      const { reductionRate, netZeroYear } = historicalTrajectoryMetrics(trajectory);
+      const selected2024InputsPresent = getAllHistoricalIndicators().some(row => row.year === 2024);
+      const selectedContext = selectedTrajectoryThresholdContext(selected2024InputsPresent ? trajectory : [],
+        String(res.locals.calculationRevision),
+        calculationKey("effective-projection", indicators, { startYear, endYear: 2100, runs: 10000, category }));
+      const { reductionRate, netZeroYear, legacyFixed5Gt, thresholdDiagnostic } = historicalTrajectoryMetrics(trajectory, selectedContext);
       const emissionsStart = trajectory[0].p50;
       const emissionsDecadeLater = trajectory[10].p50;
       const emissions2100 = trajectory[trajectory.length - 1].p50;
@@ -625,6 +670,8 @@ export async function registerRoutes(
           reductionRate,
           temperatureRise: tempStats.median,
           netZeroYear,
+          legacyFixed5Gt,
+          thresholdDiagnostic,
           emissionsStart,
           emissionsDecadeLater,
           emissions2100,
@@ -635,7 +682,7 @@ export async function registerRoutes(
       res.set("X-Field-Semantics",bindNestedOutput("projection",result).map(f=>f.id).join(","));
       if (category === "all") {
         projectionResultCache = result;
-        tagRouteCache("projection", res);
+        tagRouteCache(`projection:${PROJECTION_RESPONSE_VERSION}`, res);
       }
 
       await storage.setProjectionCache({
@@ -666,13 +713,13 @@ export async function registerRoutes(
 
   app.get("/api/projection/categories", async (_req, res) => {
     try {
-      if (categoryCacheResult && validRouteCache("categories", res)) {
+      if (categoryCacheResult && validRouteCache(`categories:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("category",categoryCacheResult).map(f=>f.id).join(","));
         return res.json(categoryCacheResult);
       }
       const result = calculateAllCategoryProjections();
       categoryCacheResult = result;
-      tagRouteCache("categories", res);
+      tagRouteCache(`categories:${PROJECTION_RESPONSE_VERSION}`, res);
       res.set("X-Field-Semantics",bindNestedOutput("category",result).map(f=>f.id).join(","));
       res.json(result);
     } catch (error) {
@@ -684,7 +731,7 @@ export async function registerRoutes(
   app.get("/api/projection/regions", async (req, res) => {
     try {
       const respond=(rows:Awaited<ReturnType<typeof calculateRegionalProjections>>)=>{
-        res.set("X-Field-Semantics",bindOutputFields("regional",rows).map(f=>f.id).join(","));
+        res.set("X-Field-Semantics",bindNestedOutput("regional",rows).map(f=>f.id).join(","));
         return res.json(rows);
       };
       const regionalId = snapshotSelection(req.query.regionalSnapshotId);
@@ -692,15 +739,18 @@ export async function registerRoutes(
         const captured = await loadRegionalInputs(regionalId);
         res.set("X-Regional-Snapshot", regionalId);
         res.set("Cache-Control", "no-store");
-        return respond(calculateRegionalFromInputs(getCurrentIndicators(), captured));
+        const baselineInputAvailable = getAllHistoricalIndicators().some(row => row.year === 2024);
+        return respond(calculateRegionalFromInputs(getCurrentIndicators(), captured,
+          baselineInputAvailable ? undefined : region => selectedTrajectoryThresholdContext([],
+            String(res.locals.calculationRevision), calculationKey("selected-regional-trajectory", captured, { region }))));
       }
-      if (regionalCacheResult && validRouteCache("regions", res) && Date.now() - regionalCacheFetchedAt < REGIONAL_CACHE_TTL_MS) {
+      if (regionalCacheResult && validRouteCache(`regions:${PROJECTION_RESPONSE_VERSION}`, res) && Date.now() - regionalCacheFetchedAt < REGIONAL_CACHE_TTL_MS) {
         return respond(regionalCacheResult);
       }
       const result = await calculateRegionalProjections();
       regionalCacheResult = result;
       regionalCacheFetchedAt = Date.now();
-      tagRouteCache("regions", res);
+      tagRouteCache(`regions:${PROJECTION_RESPONSE_VERSION}`, res);
       respond(result);
     } catch (error) {
       console.error("Regional projections error:", error);
@@ -733,13 +783,13 @@ export async function registerRoutes(
 
   app.get("/api/projection/historical-trend", async (_req, res) => {
     try {
-      if (historicalTrendCacheResult && validRouteCache("history", res)) {
+      if (historicalTrendCacheResult && validRouteCache(`history:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("historical",historicalTrendCacheResult).map(f=>f.id).join(","));
         return res.json(historicalTrendCacheResult);
       }
       const result = getRecalculatedHistoricalTrend();
       historicalTrendCacheResult = result;
-      tagRouteCache("history", res);
+      tagRouteCache(`history:${PROJECTION_RESPONSE_VERSION}`, res);
       res.set("X-Field-Semantics",bindNestedOutput("historical",result).map(f=>f.id).join(","));
       res.json(result);
     } catch (error) {
@@ -750,13 +800,13 @@ export async function registerRoutes(
 
   app.get("/api/projection/categories/historical-trend", async (_req, res) => {
     try {
-      if (categoryHistoricalTrendCache && validRouteCache("category-history", res)) {
+      if (categoryHistoricalTrendCache && validRouteCache(`category-history:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("categoryHistory",categoryHistoricalTrendCache).map(f=>f.id).join(","));
         return res.json(categoryHistoricalTrendCache);
       }
       const result = getCategoryHistoricalTrend();
       categoryHistoricalTrendCache = result;
-      tagRouteCache("category-history", res);
+      tagRouteCache(`category-history:${PROJECTION_RESPONSE_VERSION}`, res);
       res.set("X-Field-Semantics",bindNestedOutput("categoryHistory",result).map(f=>f.id).join(","));
       res.json(result);
     } catch (error) {
@@ -1195,7 +1245,10 @@ export async function registerRoutes(
       res.json(result);
     } catch (error: any) {
       console.error("[NewsAPI] Error:", error.message);
-      if (error.message.includes("NEWSAPI_KEY")) {
+      if (error.message === "operator-news-refresh-required") {
+        res.status(503).json({error:"operator-news-refresh-required",
+          message:"No current cached news for this window. An authorized operator must refresh it; public reads do not call the provider."});
+      } else if (error.message.includes("NEWSAPI_KEY")) {
         res.status(503).json({ error: "News API key not configured" });
       } else {
         res.status(500).json({ error: "Failed to fetch climate news analysis" });
@@ -1312,7 +1365,8 @@ export async function registerRoutes(
     try {
       // Preserve every original summary JSON value, including unknown historical shapes.
       const runs = await getRecentRuns(10);
-      res.json({ runs });
+      const summaryEvidence = await loadFetchSummaryEvidence(runs);
+      res.json({ runs, summaryEvidence });
     } catch (error) {
       console.error("[data] runs error:", error);
       res.status(500).json({ error: "Failed to load runs" });

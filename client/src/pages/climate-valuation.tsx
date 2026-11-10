@@ -17,6 +17,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows } from "@/lib/valuation-claims";
 import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
 import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
 import {
@@ -145,7 +146,9 @@ export default function ClimateValuation() {
     queryFn: async () => {
       const res = await fetch(sdgGrowthUrl, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch SDG growth data");
-      return res.json();
+      const rows = await res.json();
+      verifyGordonBaselineRows(rows, costOfEquity);
+      return rows;
     },
     enabled: !!hasTimeSeriesData,
   });
@@ -156,7 +159,9 @@ export default function ClimateValuation() {
     queryFn: async () => {
       const res = await fetch(decarbTercileUrl, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch decarb terciles");
-      return res.json();
+      const rows = await res.json();
+      verifyGordonBaselineRows(rows, costOfEquity);
+      return rows;
     },
     enabled: !!hasTimeSeriesData,
   });
@@ -329,8 +334,9 @@ export default function ClimateValuation() {
 
             <AnalysisSection
               icon={Factory}
+              costOfEquityPct={8}
               title="High vs Low Carbon Companies"
-              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}
+              description="Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. This endpoint uses fixed r = 8%; changing the SDG/ambition cost-of-equity control does not change it. Gordon steady-state g = r − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth."
               chartData={carbonIntensityChartData ?? []}
               isLoading={carbonPricesLoading}
               formatChartDate={formatChartDate}
@@ -355,6 +361,8 @@ export default function ClimateValuation() {
 
             <AnalysisSection
               icon={Leaf}
+              costOfEquityPct={costOfEquity}
+              gordonSemanticPrefix="sdg"
               title="High vs Low SDG-Aligned Companies"
               description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}
               chartData={sdgChartData ?? []}
@@ -381,6 +389,8 @@ export default function ClimateValuation() {
 
             <AnalysisSection
               icon={Target}
+              costOfEquityPct={costOfEquity}
+              gordonSemanticPrefix="targetTerciles"
               title="High vs Low Ambition Companies"
               description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}
               chartData={ambitionChartData ?? []}
@@ -445,6 +455,8 @@ export default function ClimateValuation() {
 }
 
 interface AnalysisSectionProps {
+  costOfEquityPct: number;
+  gordonSemanticPrefix?: "sdg" | "targetTerciles";
   icon: React.ElementType;
   title: string;
   description: string;
@@ -464,6 +476,8 @@ interface AnalysisSectionProps {
 }
 
 function AnalysisSection({
+  costOfEquityPct,
+  gordonSemanticPrefix,
   icon: Icon,
   title,
   description,
@@ -491,6 +505,10 @@ function AnalysisSection({
         {headerRight}
       </div>
       <p className="text-sm text-muted-foreground mb-4">{description}</p>
+      <p className="text-sm font-medium mb-4" data-testid={`${testIdPrefix}-gordon-baseline-label`}
+        data-field-id={gordonSemanticPrefix ? `${gordonSemanticPrefix}.gordonBaselineLabel` : undefined}>
+        {gordonBaselineLabel(costOfEquityPct)}
+      </p>
 
       <Card className="p-4 mb-6 text-sm text-muted-foreground" data-testid={`${testIdPrefix}-withheld`}>
         Temperature, carbon price, net-zero year and physical decarbonization rates: unavailable.
@@ -506,6 +524,7 @@ function AnalysisSection({
             </div>
             <DownloadDataButton
               kind="valuation"
+              interpretationNotes={gordonExportNotes(costOfEquityPct, gordonSemanticPrefix)}
               filename={`${testIdPrefix}-pe-ratio-comparison`}
               sheetName="P-E Ratio"
               rows={peDownloadRows}

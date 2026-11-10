@@ -185,7 +185,8 @@ test("actual runs handler preserves every raw summary JSON value; optional known
   assert.equal(envelope.availability,"available");
   assert.deepEqual(envelope.claims,input);
   assert.equal(envelope.claims.perAdapter[0].values,0);
-  assert.ok(bindKnownPersistedSummary(input).some(f=>f.id==="fetchSummaryProducer.perAdapter[].values"));
+  assert.equal(envelope.provenance,"unverified","Matching JSON shape alone does not establish producer provenance");
+  assert.deepEqual(bindKnownPersistedSummary(input),[]);
   assert.equal(describePersistedSummary({perAdapter:[]}).availability,"available");
   const historical=[null,0,false,"old format",[],{}, {perAdapter:[],extra:"unrecognised"},
     {perAdapter:[{id:"x",values:-1}]},{perAdapter:[{id:"x",values:.5}]},
@@ -210,7 +211,7 @@ test("actual runs handler preserves every raw summary JSON value; optional known
     if(ts.isFunctionDeclaration(node)&&node.name?.text==="runSummaryClaimLabel") labelExpression=node.getText(ui);
   });
   const label=evaluate(labelExpression,{describePersistedSummary});
-  assert.match(label(input),/schema-validated/);
+  assert.match(label(input),/Schema-compatible.*unverified/);
   assert.match(label({legacy:"unrecognised"}),/unavailable.*raw.*unchanged/);
   assert.match(label("invalid JSON"),/unavailable.*raw.*unchanged/);
   const file=readFileSync("server/routes.ts","utf8");
@@ -224,6 +225,11 @@ test("actual runs handler preserves every raw summary JSON value; optional known
   });
   const handler=evaluate(handlerExpression,{getRecentRuns:async(limit:number)=>{
     assert.equal(limit,10);return runs;
+  },loadFetchSummaryEvidence:async(selected:typeof runs)=>{
+    assert.strictEqual(selected,runs);
+    return Object.fromEntries(runs.map(run=>[run.id,{
+      availability:"unverified",manifestId:null,manifest:null,reason:"No prospective fixture manifest",
+    }]));
   }});
   let wire:{runs:typeof runs}|undefined;
   await handler({}, {json:(body:{runs:typeof runs})=>{wire=body;}});
@@ -236,17 +242,15 @@ test("actual runs handler preserves every raw summary JSON value; optional known
 
 test("134 of135 original gaps close; raw opaque summary stays unresolved and both strict gates still fail",()=>{
   const c=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
-  const signatures=c.fields.map((e:{surface:string;field:string})=>{
-    const m=c.exportBindingMetadata.find((m:{source:string;line:number})=>e.surface===`XLSX ${m.source}:${m.line}`);
-    return `${m?`XLSX ${m.source}:${m.rows}`:e.surface}|${e.field}`;
-  }).sort();
+   const signatures=c.originalGapReconciliation.originalSlots.map((e:{key:string})=>e.key).sort();
   assert.equal(signatures.length,1028);
   assert.equal(createHash("sha256").update(JSON.stringify(signatures)).digest("hex"),
     "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79","Frozen40c524b original slot identities, not merely equal totals");
-  assert.equal(c.fullyBoundFields,1000);
+   assert.equal(c.originalGapReconciliation.originalFullyBoundFields,1000);
   assert.equal(c.originalGapReconciliation.closedOriginalSlots,571);
   assert.equal(c.originalGapReconciliation.remainingOriginalUnboundSlots,1);
-  assert.equal(c.originalGapReconciliation.publicSlotDenominatorDelta,0);
+   assert.equal(c.originalGapReconciliation.publicSlotDenominatorDelta,c.supplementalSlotAccounting.addedPublicSlots);
+   assert.deepEqual(c.supplementalSlotAccounting.removedOriginalSlots,[]);
   assert.equal(c.originalGapReconciliation.originalCohortComplete,false);
   assert.equal(c.withheldFields.length,27);
   assert.equal(c.resolvedResponseAliases.length,4);
@@ -259,7 +263,7 @@ test("134 of135 original gaps close; raw opaque summary stays unresolved and bot
   assert.match(c.supplementalConcreteExportChanges.indicatorCardColumns,/eight newly concrete/);
   const evidence:SemanticsGateEvidence={
     baseline:false,closedOriginalSlots:c.originalGapReconciliation.closedOriginalSlots,
-    fullyBoundFields:c.fullyBoundFields,publicSlots:c.fields.filter((e:{resolution:string})=>e.resolution!=="withheld-public-field").length,
+     fullyBoundFields:c.originalGapReconciliation.originalFullyBoundFields,publicSlots:c.originalGapReconciliation.originalPublicSlots,
     slotFingerprint:c.originalGapReconciliation.slotIdentityFingerprint,
     frozenOriginalSlotFingerprint:c.originalGapReconciliation.frozenOriginalSlotFingerprint,
     resolvedResponseAliases:c.resolvedResponseAliases.length,withheldFields:c.withheldFields.length,
@@ -292,6 +296,10 @@ test("registry-derived22 counts and honest band labels do not change any numeric
   assert.match(BAND_LABELS[0],/<1%.*0%/);
   assert.match(BAND_LABELS[7],/Unused/);
   assert.match(BAND_LABELS[8],/12%/);
-  assert.match(readFileSync("client/src/pages/dashboard.tsx","utf8"),/not a 5% of 2024 milestone/);
+   const dashboard=readFileSync("client/src/pages/dashboard.tsx","utf8");
+   assert.match(dashboard,/Year emissions reach 5% of 2024/);
+   assert.match(dashboard,/same selected trajectory's evidenced 2024 baseline/);
+   assert.match(dashboard,/separate fixed-5gt-v1 legacy comparator is not 5% of 2024/);
+   assert.match(dashboard,/Neither residual diagnostic is net zero/);
   assert.match(readFileSync("client/src/pages/methodology.tsx","utf8"),/5% residual is not physical net zero/);
 });

@@ -2,6 +2,7 @@ import type { RequestHandler } from "express";
 
 export const publicDiagnostics = new Set([
   "/api/emissions/validate-native-pathways",
+  "/api/emissions/regional-residual-diagnostics",
   "/api/calculation/ensemble-summary",
   "/api/calculation/evaluate-holdout",
   "/api/calculation/evaluate-signal",

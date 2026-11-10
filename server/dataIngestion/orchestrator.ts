@@ -2,7 +2,7 @@ import { ADAPTERS } from "./adapters";
 import { db } from "../db";
 import { withCollectionLock } from "./collectionLock";
 import type { AdapterContext, FetchedValue } from "./adapters/types";
-import { getCuratedValue, LATEST_CURATED_YEAR, type IndicatorKey } from "./indicatorRegistry";
+import { getCuratedValue, LATEST_CURATED_YEAR, INDICATOR_KEYS, type IndicatorKey } from "./indicatorRegistry";
 import {
   createFetchRun,
   finishFetchRun,
@@ -101,6 +101,7 @@ async function runFetchLocked(trigger: "manual" | "scheduled"): Promise<FetchRun
       adaptersSucceeded: succeeded,
       adaptersFailed: failed,
       summary: { perAdapter },
+      summaryProducer: { adapters:ADAPTERS, indicatorKeys:INDICATOR_KEYS },
     });
 
     console.log(
@@ -123,6 +124,7 @@ async function runFetchLocked(trigger: "manual" | "scheduled"): Promise<FetchRun
       adaptersSucceeded: succeeded,
       adaptersFailed: failed,
       summary: { perAdapter, error: (e as Error).message },
+      summaryProducer: { adapters:ADAPTERS, indicatorKeys:INDICATOR_KEYS },
     });
     return {
       runId: run.id,

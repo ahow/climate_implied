@@ -16,7 +16,7 @@ import {
 import { Activity, TrendingDown, Globe, Layers, BarChart3 } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,signalCumulativeColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, displayDiagnostic } from "@/lib/valuation-claims";
+import { earningsYieldGapPp, displayDiagnostic, gordonBaselineLabel, gordonExportNotes } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -459,12 +459,13 @@ export default function DecarbSignal() {
               Group Earnings-Yield Gap Comparison
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Gordon steady-state baseline differences = earnings yield of second group minus first group (pp), not climate expectations
+              {gordonBaselineLabel(8)} differences = earnings yield of second group minus first group (pp), not climate expectations
             </p>
           </div>
           <div className="flex items-center gap-2">
             {isLoading && <Badge variant="secondary">Loading...</Badge>}
             <DownloadDataButton
+              interpretationNotes={gordonExportNotes(8)}
               filename="group-earnings-yield-gaps"
               kind="valuation"
               sheetName="Valuation gaps"

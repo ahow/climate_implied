@@ -3,6 +3,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Zap, Shield, Building2, Users } from "lucide-react";
 import type { CategoryProjectionResult } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
+import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
 
 interface CategoryComparisonProps {
   categories: CategoryProjectionResult[];
@@ -55,7 +57,9 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
     Category: c.categoryName,
     "Temperature (\u00B0C)": c.temperatureRise,
     "Reduction Rate (%/yr)": c.reductionRate,
-    "First year median emissions reach 5 GtCO2e": c.netZeroYear,
+    "Legacy fixed-5gt-v1 year (5 GtCO2e)": c.netZeroYear,
+    [THRESHOLD_DIAGNOSTIC_LABEL]: c.thresholdDiagnostic?.year ?? null,
+    "5% diagnostic status": c.thresholdDiagnostic?.status ?? "withheld",
   }));
 
   return (
@@ -78,7 +82,9 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
             Category:{id:"category.categoryName",transform:"Identity"},
             "Temperature (\u00B0C)":{id:"category.temperatureRise",transform:"Identity"},
             "Reduction Rate (%/yr)":{id:"category.reductionRate",transform:"Identity"},
-            "First year median emissions reach 5 GtCO2e":{id:"category.netZeroYear",transform:"Identity; null preserved"},
+            "Legacy fixed-5gt-v1 year (5 GtCO2e)":{id:"category.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
+            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:"category.thresholdDiagnostic.year",transform:"Identity; null preserved; not fixed 5 Gt"},
+            "5% diagnostic status":{id:"category.thresholdDiagnostic.status",transform:"Identity; missing archived diagnostic -> withheld"},
           }}
           testId="button-download-category-scenarios"
         />
@@ -118,11 +124,13 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">Net-Zero</span>
+                  <span className="text-xs text-muted-foreground">{THRESHOLD_DIAGNOSTIC_LABEL}</span>
                   <span className="text-sm font-semibold tabular-nums" data-testid={`text-category-netzero-${cat.category}`}>
-                    {cat.netZeroYear || "Never"}
+                    {thresholdDiagnosticDisplay(cat.thresholdDiagnostic)}
                   </span>
                 </div>
+                <ThresholdDiagnosticDetails diagnostic={cat.thresholdDiagnostic} contextLabel={cat.categoryName} />
+                <p className="text-xs text-muted-foreground">Separate legacy fixed-5gt-v1: {cat.netZeroYear ?? "Not reached within trajectory horizon"}; not net zero.</p>
               </div>
             </Card>
           );

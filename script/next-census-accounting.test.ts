@@ -1,0 +1,89 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
+const census = JSON.parse(readFileSync("docs/field_semantics_census.json", "utf8"));
+const frozen = JSON.parse(readFileSync("docs/field_semantics_original_cohort.json", "utf8"));
+
+test("frozen original1001 cohort stays immutable; supplemental leaves never manufacture old closure", () => {
+  assert.equal(frozen.slots.length, 1028);
+  assert.equal(frozen.slots.filter((s: { role: string }) => s.role === "withheld").length, 27);
+  assert.equal(frozen.slots.filter((s: { role: string }) => s.role === "original-gap").length, 572);
+  assert.equal(frozen.slots.filter((s: { role: string }) => s.role === "originally-bound").length, 429);
+  const fingerprint = createHash("sha256").update(JSON.stringify(frozen.slots.map((s: { key: string }) => s.key).sort())).digest("hex");
+  assert.equal(fingerprint, "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79");
+  const old = census.originalGapReconciliation;
+  assert.equal(old.originalPublicSlots, 1001);
+  assert.equal(old.originalFullyBoundFields, 1000);
+  assert.equal(old.closedOriginalSlots, 571);
+  assert.equal(old.remainingOriginalUnboundSlots, 1);
+  assert.deepEqual(old.missingOriginalSlots, []);
+  assert.equal(old.slotIdentityFingerprint, fingerprint);
+  assert.equal(old.originalCohortComplete, false);
+  assert.equal(old.quantityPreservingExportAliases.length, 3);
+  assert.ok(old.quantityPreservingExportAliases.every((a: { currentField: string }) =>
+    a.currentField === "[].Legacy fixed-5gt-v1 year (5 GtCO2e)"));
+});
+
+test("every new typed API/export denominator change is separate and reconciles arithmetically", () => {
+  const added = census.supplementalSlotAccounting;
+  assert.equal(added.addedSlots, 306);
+  assert.equal(added.addedPublicSlots, 306);
+  assert.equal(added.addedBoundSlots, 306);
+  assert.deepEqual(added.removedOriginalSlots, []);
+  assert.equal(census.fields.length, 1334);
+  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1307);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 306);
+  assert.equal(census.fullyBoundFields, 1306);
+  assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
+  assert.equal(census.fields.length, 1028 + added.addedSlots);
+  assert.equal(census.definitions, 1553);
+  assert.equal(added.externalTypedApiSlots, 28);
+  assert.equal(added.externalTypedApiBoundSlots, 28);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 1335);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 1334);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 334);
+  assert.equal(added.supplementalMetadataSheetColumns, 31);
+});
+
+test("sidecar16, sheets31, abatement43, Gordon6 and nominal40 remain qualified supplements", () => {
+  const changes = census.supplementalQualifiedChanges;
+  assert.equal(changes.thresholdDiagnostic.definitions, 246);
+  assert.equal(changes.nativeResidualDiagnostics.definitions, 30);
+  assert.equal(changes.nativeResidualDiagnostics.originalNativeApiFields, 187);
+  assert.equal(changes.nativeResidualDiagnostics.originalNativeWorkbookColumns, 35);
+  assert.equal(changes.nativeResidualDiagnostics.addedCandidateApiFields, 26);
+  assert.equal(changes.nativeResidualDiagnostics.addedRegionalSubmittedInputApiFields, 26);
+  assert.equal(changes.nativeResidualDiagnostics.separateNativeDiagnosticWorkbookColumns, 21);
+  assert.equal(changes.summarySidecar.definitions, 16);
+  assert.equal(changes.metadataSheets.definitions, 31);
+  assert.equal(Object.keys(changes.metadataSheets.sheets["Field semantics"]).length, 14);
+  assert.equal(Object.keys(changes.metadataSheets.sheets["Column bindings"]).length, 17);
+  assert.equal(changes.companyAbatement.definitions, 43);
+  assert.equal(changes.gordonBaseline.definitions, 6);
+  assert.equal(changes.originalNominalAssessment.definitions, 40);
+  assert.equal(changes.originalNominalAssessment.typedApiFields.length, 28);
+  assert.ok(changes.originalNominalAssessment.typedApiFields.every((f: { bound: boolean }) => f.bound));
+  assert.equal(changes.originalNominalAssessment.omittedUndefinedBranchProperties.length, 14);
+  assert.equal(census.verifiedExportBindings.filter((b: { surface: string }) =>
+    b.surface.includes("threshold-diagnostic-details")).length, 19);
+});
+
+test("strict completeness fails on OLD unknown summary JSON, not cured by authenticated new sidecar", () => {
+  const unresolved = census.unresolvedTypes;
+  assert.equal(unresolved.length, 1);
+  assert.equal(unresolved[0].surface, 'API GET "/api/data/runs"');
+  assert.equal(unresolved[0].field, "runs[].summary");
+  assert.equal(unresolved[0].type, "unknown");
+  assert.deepEqual(census.unresolvedDynamicKeys, []);
+  assert.equal(census.completion, false);
+  for (const gate of ["--require-original-complete", "--require-complete"]) {
+    const result = spawnSync("npx", ["tsx", "script/field-semantics-census.ts", "--check", gate],
+      { encoding: "utf8", timeout: 120000 });
+    assert.equal(result.status, 1, gate);
+    assert.doesNotMatch(result.stderr, /Field census stale/);
+    assert.match(result.stderr, gate === "--require-original-complete"
+      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1306\/1307/);
+  }
+});

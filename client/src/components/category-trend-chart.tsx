@@ -14,6 +14,8 @@ import {
 import type { CategoryHistoricalTrendPoint, MetricView } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,categoryExportNames,categoryExportKeys } from "@shared/finiteExportSchemas";
+import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
+import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
 
 interface CategoryTrendChartProps {
   data: CategoryHistoricalTrendPoint[];
@@ -64,15 +66,13 @@ function getConfig(metricView: MetricView) {
       };
     case "netZero":
       return {
-        title: "Category Scenario 5 GtCO2e Threshold",
-        subtitle: "First year median emissions reach 5 GtCO2e; not net zero",
+        title: THRESHOLD_DIAGNOSTIC_LABEL,
+        subtitle: "Each scenario uses its own evidenced 2024 baseline; missing baseline withheld. Not net zero.",
         metricKey: "netZeroYear" as const,
-        yLabel: "5 GtCO2e threshold year",
+        yLabel: "5% of 2024 threshold year",
         yDomain: [2024, 2100] as [number, number],
         formatter: (v: number) => `${Math.round(v)}`,
-        referenceLines: [
-          { y: 2050, label: "2050 Target", color: "hsl(168, 76%, 36%)" },
-        ],
+        referenceLines: [],
       };
   }
 }
@@ -108,7 +108,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
     const row: Record<string, number | string | boolean | undefined> = { year: d.year, isNowcast: d.isNowcast };
     for (const key of CATEGORY_KEYS) {
       const metrics = d[key];
-      let value = metrics[config.metricKey];
+      let value = metricView === "netZero" ? metrics.thresholdDiagnostic?.year : metrics[config.metricKey];
       row[key] = d.isNowcast ? undefined : (value ?? undefined);
       row[`${key}_nowcast`] = d.isNowcast ? (value ?? undefined) : undefined;
     }
@@ -143,13 +143,24 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
         </div>
         <DownloadDataButton
           kind="legacy"
-          filename={`category-trends-${metricView==="netZero"?"5gt-threshold":metricView}`}
+          filename={`category-trends-${metricView==="netZero"?"legacy-fixed-5gt-v1":metricView}`}
           sheetName="Category Trends"
           rows={downloadRows}
           fieldBindings={finiteExportBindings("categoryTrend",{metric:config.metricKey})}
           testId="button-download-category-trends"
+          label={metricView === "netZero" ? "Download separate legacy fixed-5gt-v1" : "Download data"}
         />
       </div>
+      {metricView === "netZero" && <details className="text-xs text-muted-foreground mb-3" data-testid="category-threshold-statuses">
+        <summary>Selected 5%-of-2024 diagnostic status by year and scenario</summary>
+        <ul>{data.flatMap(d => CATEGORY_KEYS.map(key =>
+          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key].thresholdDiagnostic)}</li>
+        ))}</ul>
+      </details>}
+      {metricView === "netZero" && <ThresholdDiagnosticDownload diagnostics={
+        data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key].thresholdDiagnostic ? [d[key].thresholdDiagnostic!] : []))
+      } contextLabels={data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key].thresholdDiagnostic
+        ? [`Reference input year ${d.year}: ${CATEGORY_NAMES[key]}`] : []))} />}
 
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>

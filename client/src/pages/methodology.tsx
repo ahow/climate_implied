@@ -27,6 +27,8 @@ export default function Methodology() {
           <p className="text-sm text-muted-foreground">The legacy calculation applies a CO2-only response to aggregate GHG plus a fixed 1.1°C offset. Its fixed-5-Gt milestone is not extrapolated beyond 2100 and is not a 5%-of-2024 milestone. No date means the threshold was not reached within the simulated horizon. Legacy temperatures and milestones are not default outputs.</p>
           <p className="text-sm text-muted-foreground">Gordon steady-state earnings-growth baselines assume fully distributed earnings and a chosen cost of equity. They are not five-year reverse-DCF growth. Peer-relative earnings-yield gaps are descriptive valuation diagnostics. Emissions intensity uses market cap, not revenue.</p>
           <p className="text-sm text-muted-foreground">Temperature, carbon-price and net-zero results inferred from valuations are withheld. No defensible valuation-to-activity mapping or identified market climate expectation is established. No new scientific model is ready. Retrospective portfolio research is not validated investment evidence.</p>
+          <p className="mt-3 text-sm text-muted-foreground">“Year emissions reach 5% of 2024” is a separate diagnostic (selected-2024-five-percent-v2), not net zero or a policy verdict. Its threshold is 0.05 times the evidenced 2024 baseline for the same selected trajectory, member, gas basis and unit. Missing or mismatched baseline evidence withholds the diagnostic; current inputs and another selection are never substituted. The legacy engine's60.3×carbon-intensity scaling is an unverified model assumption, not a source-evidenced inventory or an explicitly captured emissions initial condition. Hashing a generated2024 point does not authenticate that assumption. An explicitly selected/captured model initial condition may support a clearly conditional model-baseline diagnostic only when its own input lineage is supplied. The first annual value at or below the exact threshold counts, including the final simulated year. No crossing means “Not reached by [horizon]”, with no interpolation or extrapolation. The older fixed 5 GtCO₂e result is separately retained as legacy fixed-5gt-v1, not relabelled as a percentage.</p>
+          <p className="mt-3 text-sm text-muted-foreground">The separate native candidate review can use its pinned, captured source-derived2024 inventory cells as a conditional baseline: species masses remain in Mt of that same gas, with fossil/industrial CO2 and net land-use CO2 separated. These are not GWP-weighted CO2e residuals, a calibrated forecast or physical net zero. Supplied regional-member diagnostics use explicit captured MODEL initial conditions; no missing regional2024 land-use observation is fabricated.</p>
         </Card>
         <DriverEvidenceDisclosure />
         <details className="rounded-md border p-4">
@@ -51,7 +53,7 @@ export default function Methodology() {
                 assumes all announced commitments are delivered. The latter is a conditional optimistic case,
                 not an equally likely forecast. Temperatures are published median warming in 2100 above
                 pre-industrial levels from CAT MAGICC7, not our dashboard calculation or FaIR.
-              </p>
+          </p>
               <p className="text-sm text-muted-foreground m-0">
                 These read-only references have a different inventory baseline and are not rebased, blended
                 into headline projections, used as calibration inputs, or evidence that Package 2 is complete.

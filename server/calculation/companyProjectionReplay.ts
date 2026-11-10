@@ -5,6 +5,8 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import * as XLSX from "xlsx";
 import {companyReplaySemantics,companyReplayLedgerColumns} from "../../shared/companyReplaySemantics";
+import { companyAbatementSemantics, companyAbatementColumns, companyAbatementInputColumns,
+  companyAbatementLedgerSemantics } from "../../shared/companyAbatementSemantics";
 import { canonicalJson, contentHash } from "./analysisManifest";
 import { projectCompanyAsOf } from "./companyProjectionAsOf";
 import { resolveCompanySourceEvidence, unpackCompanySource } from "./companySourceArchive";
@@ -46,9 +48,15 @@ export type CompanyReplaySettings = z.infer<typeof settingsSchema>;
 
 /** Explicit non-secret allowlist, read afresh (never a process-wide cached identity).
  * Pins source bytes and lockfile, not a hermetic installed dependency/container image. */
-export function companyReplayCode(root = process.cwd()) {
-  const files = Object.fromEntries(codePaths.map(path => [path, readFileSync(`${root}/${path}`, "utf8")]));
+export function companyReplayCode(root = process.cwd(), includeAbatement = false) {
+  const paths: readonly string[] = includeAbatement ? [...codePaths, "shared/companyAbatementSemantics.ts"] : codePaths;
+  const files = Object.fromEntries(paths.map(path => [path, readFileSync(`${root}/${path}`, "utf8")]));
   return codeSchema.parse({ model, node: process.version, files, filesHash: contentHash(files) });
+}
+function hasAbatementAccounting(input: unknown): boolean {
+  const members = (input as { members?: { years?: { abatementAccounting?: unknown }[] }[] } | null)?.members;
+  return Array.isArray(members) && members.some(m => Array.isArray(m.years) &&
+    m.years.some(y => y.abatementAccounting !== undefined));
 }
 function detached<T>(value: T): T { return JSON.parse(canonicalJson(value)); }
 function mappingOf(input: unknown) {
@@ -73,7 +81,7 @@ export async function pinCompanyProjection(input: unknown, evidence: unknown,
     throw new Error("Pinned input company identity mismatch");
   const resolved = await resolve(snapshot.input, snapshot.evidence, settings, snapshot.sources);
   projectCompanyAsOf(snapshot.input, snapshot.evidence, settings.informationCutoff);
-  const code = companyReplayCode();
+  const code = companyReplayCode(process.cwd(), hasAbatementAccounting(snapshot.input));
   const manifest = manifestSchema.parse({
     version: "company-projection-material-manifest-1", codeId: contentHash(code), model, settings,
     settingsHash: contentHash(settings), inputHash: contentHash(snapshot.input),
@@ -93,7 +101,7 @@ export async function replayCompanyProjection(value: unknown) {
   if (contentHash(m) !== bundle.manifestId) throw new Error("Corrupt company material manifest");
   if (contentHash(code.files) !== code.filesHash || contentHash(code) !== m.codeId)
     throw new Error("Corrupt pinned model code archive");
-  if (canonicalJson(code) !== canonicalJson(companyReplayCode()))
+  if (canonicalJson(code) !== canonicalJson(companyReplayCode(process.cwd(), hasAbatementAccounting(input))))
     throw new Error("Pinned model code/runtime mismatch; current executable substitution forbidden");
   if (contentHash(m.settings) !== m.settingsHash || contentHash(input) !== m.inputHash ||
       contentHash(mappingOf(input)) !== m.mappingHash)
@@ -124,25 +132,46 @@ export function exportCompanyProjectionReplay(replay: Replay) {
   if (contentHash(replay.result) !== replay.resultHash ||
       replay.result.replayManifestId !== replay.manifestId) throw new Error("Conflicting replay result identity");
   const ledger: (string | number | null)[][] = [[...companyReplayLedgerColumns]];
+  const abatement: (string | number)[][] = [[...companyAbatementColumns]];
+  const abatementInputs: (string | number)[][] = [[...companyAbatementInputColumns]];
   if (replay.result.status === "conditional-projection") {
-    for (const member of replay.result.members) for (const y of member.years) ledger.push([
-      member.id, y.year, y.revenue, y.activityRatio, y.emissionsTonnes.scope1, y.emissionsTonnes.scope2,
-      y.emissionsTonnes.scope3, y.operatingProfitBeforeCarbon, y.carbonDrag, y.interest,
-      y.nonOperatingIncome, y.incomeAttributionAdjustment, y.otherCashAdjustments, y.cashTax,
-      y.netIncome, y.depreciation, y.capex, y.increaseWorkingCapital, y.netBorrowing, y.fcfe,
-      member.growth, member.growthStatus,
-    ]);
+    for (const member of replay.result.members) for (const y of member.years) {
+      ledger.push([
+        member.id, y.year, y.revenue, y.activityRatio, y.emissionsTonnes.scope1, y.emissionsTonnes.scope2,
+        y.emissionsTonnes.scope3, y.operatingProfitBeforeCarbon, y.carbonDrag, y.interest,
+        y.nonOperatingIncome, y.incomeAttributionAdjustment, y.otherCashAdjustments, y.cashTax,
+        y.netIncome, y.depreciation, y.capex, y.increaseWorkingCapital, y.netBorrowing, y.fcfe,
+        member.growth, member.growthStatus,
+      ]);
+      if (y.abatementReconciliation) {
+        const check = y.abatementReconciliation;
+        for (const scope of ["scope1", "scope2", "scope3"] as const) {
+          const s = check[scope];
+          abatement.push([member.id, y.year, scope, s.baseEmissionsTonnes, s.activityRatio, s.intensityMultiplier,
+            s.beforeSeparateAbatementTonnes, s.remainingEmissionsMultiplier, s.emissionsTonnes, check.noDoubleCountingCheck]);
+        }
+        const declarations = canonicalJson(check.declaredAccounting);
+        for (let i = 0; i < Math.ceil(declarations.length / 16000); i++)
+          abatementInputs.push([member.id, y.year, i, declarations.slice(i * 16000, (i + 1) * 16000)]);
+      }
+    }
   }
   if(ledger.some(row=>row.length!==companyReplayLedgerColumns.length)) throw new Error("Unmapped company ledger export column");
   const json = canonicalJson(replay.result);
   const chunks = Array.from({ length: Math.ceil(json.length / 16000) }, (_, i) =>
     [i, json.slice(i * 16000, (i + 1) * 16000)]);
+  const optIn = abatement.length > 1;
+  const semantics = optIn ? [
+    ...companyReplaySemantics.map(f => ({ ...f, ...companyAbatementLedgerSemantics[f.id] })),
+    ...companyAbatementSemantics,
+  ] : companyReplaySemantics;
   const tables = {
     Semantics:[["fieldId","meaning","unit","formula","source","period","geography","status","missingness","uncertainty","scope","asOfRule"],
-      ...companyReplaySemantics.map(f=>[f.id,f.meaning,f.unit,f.formula,f.source,f.period,f.geography,f.status,f.missingness,f.uncertainty,f.scope,f.asOfRule])],
+      ...semantics.map(f=>[f.id,f.meaning,f.unit,f.formula,f.source,f.period,f.geography,f.status,f.missingness,f.uncertainty,f.scope,f.asOfRule])],
     Identity: [["contract", exportContract], ["manifestId", replay.manifestId], ["resultHash", replay.resultHash],
       ["status", replay.result.status], ["scientificAcceptance", "false"], ["productionEligible", "false"]],
     Ledger: ledger, FullResult: [["chunk", "canonicalResultJson"], ...chunks],
+    ...(optIn ? { Abatement: abatement, AbatementInputs: abatementInputs } : {}),
   };
   const workbook = XLSX.utils.book_new();
   for (const [name, rows] of Object.entries(tables))

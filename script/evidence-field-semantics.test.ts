@@ -84,7 +84,8 @@ test("original API cohort closure is exact and backed by real route bindings",()
     assert.deepEqual(family.unbound,[]);
     assert.ok(routes.includes(`bindNestedOutput("${prefix}",response)`));
   }
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,census.supplementalSlotAccounting.addedPublicSlots);
+  assert.deepEqual(census.supplementalSlotAccounting.removedOriginalSlots,[]);
   assert.equal(census.resolvedResponseAliases.length,4);
   assert.equal(census.withheldFields.length,27);
 });

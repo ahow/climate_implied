@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Thermometer, TrendingDown, Calendar } from "lucide-react";
 import type { MetricView } from "@/lib/types";
+import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay, type ThresholdDiagnostic } from "@shared/thresholdDiagnostic";
+import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
 
 interface TemperatureGaugeProps {
   temperature: number;
@@ -9,6 +11,7 @@ interface TemperatureGaugeProps {
   p90: number;
   reductionRate: number;
   netZeroYear: number | null;
+  thresholdDiagnostic?: ThresholdDiagnostic;
   metricView: MetricView;
   isLoading?: boolean;
 }
@@ -45,28 +48,13 @@ function getReductionLabel(rate: number): { label: string; color: string; badgeC
   return { label: "Insufficient Action", color: "text-red-600 dark:text-red-400", badgeColor: "bg-red-500/10 text-red-600 dark:text-red-400" };
 }
 
-function getNetZeroColor(year: number | null): string {
-  if (!year) return "text-red-500";
-  if (year <= 2050) return "text-emerald-500";
-  if (year <= 2070) return "text-amber-500";
-  if (year <= 2100) return "text-orange-500";
-  return "text-red-500";
-}
-
-function getNetZeroLabel(year: number | null): { label: string; color: string } {
-  if (!year) return { label: "Emissions remain high", color: "bg-red-500/10 text-red-600 dark:text-red-400" };
-  if (year <= 2050) return { label: "On Track", color: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" };
-  if (year <= 2070) return { label: "Delayed", color: "bg-amber-500/10 text-amber-600 dark:text-amber-400" };
-  if (year <= 2100) return { label: "Significantly Delayed", color: "bg-orange-500/10 text-orange-600 dark:text-orange-400" };
-  return { label: "Beyond 2100", color: "bg-red-500/10 text-red-600 dark:text-red-400" };
-}
-
 export function TemperatureGauge({
   temperature,
   p10,
   p90,
   reductionRate,
   netZeroYear,
+  thresholdDiagnostic,
   metricView,
   isLoading,
 }: TemperatureGaugeProps) {
@@ -82,7 +70,6 @@ export function TemperatureGauge({
 
   const tempLabel = getTemperatureLabel(temperature);
   const reductionLabel = getReductionLabel(reductionRate);
-  const netZeroLabel = getNetZeroLabel(netZeroYear);
 
   const gaugePercent = Math.min(100, Math.max(0, ((temperature - 1.0) / 4.0) * 100));
   const p10Percent = Math.min(100, Math.max(0, ((p10 - 1.0) / 4.0) * 100));
@@ -137,9 +124,9 @@ export function TemperatureGauge({
           <div className="flex items-start gap-2">
             <Calendar className="h-4 w-4 text-muted-foreground mt-0.5" />
             <div>
-              <p className="text-xs text-muted-foreground">Legacy 5 Gt milestone</p>
+              <p className="text-xs text-muted-foreground">{THRESHOLD_DIAGNOSTIC_LABEL}</p>
               <p className="text-sm font-semibold tabular-nums" data-testid="text-net-zero-year">
-                {netZeroYear ?? "Not reached"}
+                 {thresholdDiagnosticDisplay(thresholdDiagnostic)}
               </p>
               <p className="text-xs text-muted-foreground">
                 Not net zero; no extrapolation
@@ -156,36 +143,24 @@ export function TemperatureGauge({
       <Card className="p-6" data-testid="card-temperature-gauge">
         <div className="flex items-center gap-2 mb-4">
           <Calendar className="h-5 w-5 text-muted-foreground" />
-          <h3 className="text-sm font-medium text-muted-foreground">Legacy 5 GtCO₂e milestone</h3>
+          <h3 className="text-sm font-medium text-muted-foreground">{THRESHOLD_DIAGNOSTIC_LABEL}</h3>
         </div>
 
         <div className="flex items-baseline gap-2 mb-1">
-          <span className={`text-5xl font-bold tabular-nums tracking-tight ${getNetZeroColor(netZeroYear)}`} data-testid="text-netzero-value">
-            {netZeroYear ?? "Not reached"}
+          <span className="text-3xl font-bold tabular-nums tracking-tight" data-testid="text-netzero-value">
+            {thresholdDiagnosticDisplay(thresholdDiagnostic)}
           </span>
         </div>
 
-        <div className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium mb-4 ${netZeroLabel.color}`} data-testid="text-netzero-label">
+        <div className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium mb-4 bg-muted text-muted-foreground" data-testid="text-netzero-label">
           Positive-emissions threshold, not net zero
         </div>
 
-        <div className="relative h-3 bg-muted rounded-full mb-2 overflow-hidden">
-          {netZeroYear && (
-            <div
-              className="absolute inset-y-0 left-0 rounded-full"
-              style={{
-                width: `${Math.min(100, Math.max(0, ((2200 - netZeroYear) / (2200 - 2030)) * 100))}%`,
-                background: `linear-gradient(90deg, hsl(168, 76%, 36%), hsl(43, 86%, 42%), hsl(0, 84%, 35%))`,
-              }}
-            />
-          )}
-        </div>
-
-        <div className="flex justify-between text-xs text-muted-foreground mb-6">
-          <span>2030</span>
-          <span>2050</span>
-          <span>2100+</span>
-        </div>
+        <ThresholdDiagnosticDetails diagnostic={thresholdDiagnostic} contextLabel="Selected main trajectory" />
+        <p className="my-4 text-xs text-muted-foreground">
+          Separate legacy diagnostic (fixed-5gt-v1): {netZeroYear ?? "Not reached within trajectory horizon"}.
+          Fixed 5 GtCO₂e is not 5% of 2024 and is not net zero.
+        </p>
 
         <div className="grid grid-cols-2 gap-4 pt-4 border-t">
           <div className="flex items-start gap-2">
@@ -280,9 +255,9 @@ export function TemperatureGauge({
         <div className="flex items-start gap-2">
           <Calendar className="h-4 w-4 text-muted-foreground mt-0.5" />
           <div>
-            <p className="text-xs text-muted-foreground">Legacy 5 Gt milestone</p>
+            <p className="text-xs text-muted-foreground">{THRESHOLD_DIAGNOSTIC_LABEL}</p>
             <p className="text-sm font-semibold tabular-nums" data-testid="text-net-zero-year">
-              {netZeroYear ?? "Not reached"}
+              {thresholdDiagnosticDisplay(thresholdDiagnostic)}
             </p>
             <p className="text-xs text-muted-foreground">
               Not net zero; no extrapolation

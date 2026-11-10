@@ -10,7 +10,7 @@ interface MetricToggleProps {
 const METRICS: { value: MetricView; label: string; icon: React.ElementType }[] = [
   { value: "temperature", label: "Temperature", icon: Thermometer },
   { value: "reductionRate", label: "Reduction Rate", icon: TrendingDown },
-  { value: "netZero", label: "Legacy 5 Gt milestone", icon: Calendar },
+  { value: "netZero", label: "Year emissions reach 5% of 2024", icon: Calendar },
 ];
 
 export function MetricToggle({ activeMetric, onMetricChange }: MetricToggleProps) {

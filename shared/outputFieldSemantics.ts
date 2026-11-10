@@ -6,6 +6,7 @@ import { historicalFieldSemantics } from "./historicalFieldSemantics";
 import { nativeOutputSemantics } from "./nativeOutputSemantics";
 import { companyReviewSemantics } from "./companyReviewSemantics";
 import {companyReplaySemantics} from "./companyReplaySemantics";
+import { companyAbatementSemantics } from "./companyAbatementSemantics";
 import { researchFieldSemantics } from "./researchFieldSemantics";
 import { companySummarySemantics } from "./companySummarySemantics";
 import { backtestFieldSemantics } from "./backtestFieldSemantics";
@@ -17,6 +18,8 @@ import { targetInputSemantics } from "./targetInputSemantics";
 import { diagnosticMetadataSemantics, signalComparisonSemantics } from "./diagnosticMetadataSemantics";
 import { remainingFieldSemantics } from "./remainingFieldSemantics";
 import { nativePathwaySemantics } from "./nativePathwaySemantics";
+import { thresholdDiagnosticSemantics } from "./thresholdDiagnosticSemantics";
+import { nativeThresholdSemantics } from "./nativeThresholdSemantics";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
   dependencies:string[]; unit:string; source:string; period:string; geography:string;
@@ -41,6 +44,7 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...nativeOutputSemantics,
   ...companyReviewSemantics,
   ...companyReplaySemantics,
+  ...companyAbatementSemantics,
   ...researchFieldSemantics,
   ...companySummarySemantics,
   ...backtestFieldSemantics,
@@ -53,6 +57,8 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...signalComparisonSemantics,
   ...remainingFieldSemantics,
   ...nativePathwaySemantics,
+  ...thresholdDiagnosticSemantics,
+  ...nativeThresholdSemantics,
   {id:"pe.date",meaning:"Date of the compared carbon-intensity terciles",role:"Input",
     formula:"Workbook date grouping key",dependencies:["timeSeries.date"],unit:"ISO-8601 date",...peFinancial},
   ...["top","bottom"].flatMap(group=>[
