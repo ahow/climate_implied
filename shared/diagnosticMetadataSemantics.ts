@@ -100,12 +100,12 @@ export const signalComparisonSemantics: OutputFieldSemantic[] = [
 ].map(([field,meaning,formula,unit])=>({
   id:`signalComparison.${field}`,meaning,formula,unit,role:"Calculated",
   dependencies:field==="date"?["carbonPrice.date","sdg.date","decarbTercile.date"]:[formula],
-  source:"client/src/pages/decarb-signal.tsx:chartData/comparisonDownloadRows; client/src/lib/valuation-claims.ts:earningsYieldGapPp",
+  source:"client/src/pages/decarb-signal.tsx:chartData/comparisonDownloadRows; client/src/pages/decarb-gap-signal.tsx:chartData/timeseriesDownloadRows; client/src/lib/valuation-claims.ts:earningsYieldGapPp; shared/finiteExportSchemas.ts",
   period:"Monthly dates from union of selected response series",
   geography:"Selected workbook/company filter population",
   status:"Descriptive valuation comparison, not physical emissions inference",
   missingness:"Gap null when either P/E is not finite and positive; absent group/date remains undefined and exports blank, not zero.",
   uncertainty:"No interval or calibrated causal interpretation; the common 8% comparator cancels algebraically.",
-  scope:"Existing comparison chart and XLSX only; not carbon price or decarbonisation rate",
+  scope:"Existing comparison and selected group-gap charts/XLSX only; not carbon price or decarbonisation rate",
   asOfRule:"Selected response observation dates; current/revised workbook and overlays are not authenticated original vintages",
 }));

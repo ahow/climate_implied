@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import type { CategoryHistoricalTrendPoint, MetricView } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { certifyFiniteExport,finiteExportBindings,categoryExportNames,categoryExportKeys } from "@shared/finiteExportSchemas";
 
 interface CategoryTrendChartProps {
   data: CategoryHistoricalTrendPoint[];
@@ -20,7 +21,7 @@ interface CategoryTrendChartProps {
   isLoading?: boolean;
 }
 
-const CATEGORY_KEYS = ["all", "technology", "policy", "corporate", "socioeconomic", "financial", "emissions"] as const;
+const CATEGORY_KEYS = categoryExportKeys;
 
 const CATEGORY_COLORS: Record<string, string> = {
   all: "hsl(var(--muted-foreground))",
@@ -32,15 +33,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   emissions: "hsl(0, 65%, 50%)",
 };
 
-const CATEGORY_NAMES: Record<string, string> = {
-  all: "All (Baseline)",
-  technology: "Technology",
-  policy: "Policy",
-  corporate: "Corporate",
-  socioeconomic: "Socioeconomic",
-  financial: "Financial Flows",
-  emissions: "Emissions",
-};
+const CATEGORY_NAMES = categoryExportNames;
 
 function getConfig(metricView: MetricView) {
   switch (metricView) {
@@ -99,7 +92,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
   const config = getConfig(metricView);
   const hasNowcast = data.some((d) => d.isNowcast);
 
-  const downloadRows = data.map((d) => {
+  const downloadRows = certifyFiniteExport("categoryTrend",data.map((d) => {
     const row: Record<string, string | number | boolean | undefined> = {
       Year: d.year,
       Estimated: d.isNowcast ? "yes" : "no",
@@ -109,7 +102,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
       row[CATEGORY_NAMES[key]] = value ?? undefined;
     }
     return row;
-  });
+  }),{metric:config.metricKey});
 
   const chartData = data.map((d) => {
     const row: Record<string, number | string | boolean | undefined> = { year: d.year, isNowcast: d.isNowcast };
@@ -150,15 +143,10 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
         </div>
         <DownloadDataButton
           kind="legacy"
-          filename={`category-trends-${metricView}`}
+          filename={`category-trends-${metricView==="netZero"?"5gt-threshold":metricView}`}
           sheetName="Category Trends"
           rows={downloadRows}
-          fieldBindings={{
-            Year:{id:"categoryHistory.year",transform:"Identity"},
-            Estimated:{id:"categoryHistory.isNowcast",transform:"true -> yes; false -> no"},
-            ...Object.fromEntries(CATEGORY_KEYS.map(key=>[CATEGORY_NAMES[key],
-              {id:`categoryHistory.${key}.${config.metricKey}`,transform:"Selected metric; null/undefined exported as blank, never2200"}])),
-          }}
+          fieldBindings={finiteExportBindings("categoryTrend",{metric:config.metricKey})}
           testId="button-download-category-trends"
         />
       </div>

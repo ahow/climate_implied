@@ -83,6 +83,14 @@ Uniform cost of equity cancels in `g_clean − g_dirty` and company-minus-peer-m
 
 ## Publication caveats
 
+### Ingestion summary: original raw JSON wire contract preserved
+
+`GET /api/data/runs` returns every `runs[].summary` as its **original JSON value**, unchanged. Objects remain objects, arrays remain arrays, and null, numbers, booleans, strings and unknown historical properties remain available. There is no JSON-text conversion, replacement envelope, hash substitution, schema-based filtering, or archive rewrite. Existing consumers need no extra parsing step.
+
+The current orchestrator producer uses `{perAdapter: [{id: nonempty string, values: nonnegative integer, error?: string}], error?: string}`. Its known leaves have precise metadata and strict optional interpretation, separate from the raw response. `values` counts fetched rows (or the producer's caught-failure0), not approved observations. Unknown historical shapes have unavailable typed interpretation **without losing any raw data**. Data Management exposes the raw retained summary beside that interpretation. Container documentation and known producer leaves do not establish exhaustive historical coverage: this original opaque slot stays unresolved, so achieved original coverage is **1000/1001**, not1001/1001.
+
+Computed XLSX labels now use finite, runtime-enforced column schemas. Every actual row must match its selected schema and each concrete column has a qualified semantic ID and exact transform. Unknown columns/settings, missing columns, nonfinite cells and schema disagreement reject export rather than silently exporting an unbound column. Indicator workbook headers state native dictionary units; display percent scaling is not applied to exported fractions. Eight additional registered columns (including two growth-rate columns) complete the formerly14 configured cards to the22-key registry. These concrete columns and all concrete-domain inventories are supplemental changes, not additional original semantic-slot closures.
+
 Non-gap backtests use fixed scores retrospectively. Decarb Gap uses quarter-lagged records but not verified release-date vintages. All tilt calibration is full-sample/ex-post and returns exclude transaction costs. These are not validated investable-performance claims.
 
 Historical climate projections are retrospective reconstructions using current methodology. Category temperatures are illustrative input-shock scenarios, not category contributions. See the main methodology document for exact shocks and unresolved baseline differences.

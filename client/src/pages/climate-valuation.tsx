@@ -17,6 +17,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
 import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
 import {
   LineChart,
@@ -474,11 +475,11 @@ function AnalysisSection({
   headerRight,
   peChart,
 }: AnalysisSectionProps) {
-  const peDownloadRows = chartData.map((d) => ({
+  const peDownloadRows = certifyFiniteExport("valuationPE",chartData.map((d) => ({
     Date: formatTooltipDate(d.date),
     [`${peChart.highLabel} P/E (x)`]: d[peChart.highKey],
     [`${peChart.lowLabel} P/E (x)`]: d[peChart.lowKey],
-  }));
+  })),{case:testIdPrefix});
 
   return (
     <section>
@@ -508,11 +509,7 @@ function AnalysisSection({
               filename={`${testIdPrefix}-pe-ratio-comparison`}
               sheetName="P-E Ratio"
               rows={peDownloadRows}
-          fieldBindings={testIdPrefix==="sdg" ? {
-            Date:{id:"sdg.date",transform:"Workbook ISO date -> millisecond chart timestamp -> formatTooltipDate display string"},
-            [`${peChart.highLabel} P/E (x)`]:{id:"sdg.cleanPE",transform:"Identity; aggregate P/E already rounded to two decimals"},
-            [`${peChart.lowLabel} P/E (x)`]:{id:"sdg.dirtyPE",transform:"Identity; aggregate P/E already rounded to two decimals"},
-          } : undefined}
+              fieldBindings={finiteExportBindings("valuationPE",{case:testIdPrefix})}
               testId={`button-download-${testIdPrefix}-pe`}
             />
           </div>

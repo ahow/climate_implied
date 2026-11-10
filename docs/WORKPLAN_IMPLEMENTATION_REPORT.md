@@ -1,6 +1,91 @@
 # Workplan implementation report
 
+## Clause-complete reconciliation and implementation — 2026-11-10
+
+All300 canonical clauses now have individual reconciliation records, with
+unchanged protected contract hash
+`5e1a09aa71c87286779eb444db2e0b0361015b3d1bfb058e320f836ca46b4de5`.
+See WORKPLAN_ACCEPTANCE_MATRIX.md and the four disjoint reconciliation-stages
+JSON files. This is evidence reconciliation, not completion or owner acceptance.
+Parent review corrected extra issuer paragraph IDs, generic check classifications,
+blanket fixture downgrades and legacy receipt-key mismatches. Unknown original
+execution timestamps/exit codes remain explicitly unknown.
+
+### New implementation and executed evidence
+- Semantics:134/135 original gaps closed;1000/1001 public slots,1141definitions,
+  cumulative571/572. Last unresolved original slot: arbitrary historical
+  runs[].summary leaf meanings. Raw JSON values remain unchanged and available;
+  no replacement envelope hides them. Both strict completion gates still fail.
+  Six real export builders enforce finite key/cell schemas;35 XLSX domains
+  round-trip. Original denominator/fingerprint,4aliases,27withheld and
+  native187+35/replay22 remain separate.675 JSX expressions/14 workbook sites/
+  74 chained JSON branches are inventories, not blanket semantic acceptance.
+- Physical: fair_physical_retention.py retains actual annual native emissions,
+  species forcing and natural/anthropogenic/aerosol components with identities,
+  units and baselines. Reconstructed temperature equals the frozen trajectory.
+  Historical forcing bias/RMSE W/m²: total+.029661/.385989;
+  natural+.069773/.395026; anthropogenic−.040112/.061559;
+  aerosol+.006371/.025841. Baseline/observable/emissions compatibility gaps
+  remain. No annual-reference,2025 attribution or calibrated-ensemble acceptance.
+- Company: primary XOM successor disclosure acquired for REVIEW ONLY; no
+  automatic identity approval. New FSLR FY2025-unaudited-release/2026-guidance
+  experiment is distinct from the unchanged selected FY2024 case. Frozen
+  assumptions produce50 annual rows for2027–2031; cash/earnings reconciliation
+  toleranceUSD0.00001. Undiscounted five-year FCFE totals: baseUSD4.573401bn,
+  combined stress−USD1.235694bn.45X phase-down is explicit. Terminal, exact
+  shares/identity and stub/horizon gaps still withhold whole-equity pairing;
+  complete cases remain0/3. Prior-close information is not itself a blocker.
+- Operator: no authenticated HTTP operator identity/role contract exists;
+  actual mutable-source/suspended-HTTP/fullrestore remains unproven. Read-only
+  preflight and eight boundary tests preserve public403. No token/identity bypass.
+- Research: exact complete-family3/2/<2 decisions implemented; missing endpoints
+  remain incomplete, not fabricated nonzero evidence. No historical efficacy run.
+- Replay: fixed private-scope repeated hashing of the102MB workbook without
+  raising timeouts. Validate/detach once, independent rows/dates per read.
+  Fresh workers74693/73947ms; bundled71112ms; isolated68801ms; allnine/XLSX
+  matched, TCP ENETUNREACH. Initial outer300s cutoff resumed the SAME bundle,
+  not recaptured. Result63062fa1305c96c005fd3f78f69f48c79e73f808de403ce7bcff039a50049317;
+  exportd551a24112baa4222f889202367c03c552adf0bff071bd7a4e26a200058d5c40.
+
+Final merged check10:53:24Z:344TS/0fail/0skip,95Python/0fail/0skip,
+typecheck, private filing validator and build pass.
+Log generated-artifacts/workplan-completion/20261110T105324322430Z.log.
+Earlier integration failures are retained: receipt schema, parent-added metadata
+test, undeclared h5netcdf/h5py dependencies, minimal merger fixture, stale census
+and duplicate whole-program gate-test timeout. Fixes preserve assertions/gates.
+Dependencies are now locked; pure strict-gate tests share the actual CLI predicate
+while the existing fresh-census CLI check remains.
+
+Private evidence: generated-artifacts/physical-retention-checks/,
+semantics-original135/,company-operating-corpus/,operator-contract/,
+replay-performance-fix/report.json and portable-resume-final.log.
+Public sources, assumptions and per-clause limitations are in the individual
+records. Raw provider quotes/documents/workbooks stay private and unexported.
+The previous runtime receipt below is dated, not a claim that this new source
+has already deployed. The deliberately broken-source control is pending here;
+later receipts will distinguish implementation, GitHub, live and local docs.
+
 ## Portable network-denied recovery, HTTP reads and primary filings — 2026-11-10
+
+### Final corrected release receipt
+
+Workspace code `cd175ee7e7093997b142907e348fc52c2a93ca65`;
+GitHub/live `da140f272a058d093662530e48c66dbc2266c9dc`.
+CI42785612350 validate/promote succeeded. Railway
+`d1a94087-c6a3-4d7c-8a4b-3a21325babe3` SUCCESS.
+08:54:10Z runtime verification: exact build SHA, health200,
+financial-status semantic header, registry852; public mutation403 separately.
+Log `generated-artifacts/workplan-completion/20261110T085410274732Z.log`.
+Final corrected full check at08:47:50Z:310TS pass/0fail/0skip,
+typecheck/build and required private filing validator passed;
+log `generated-artifacts/workplan-completion/20261110T084750976675Z.log`.
+Python history test/actual analysis remain separate. Earlier failed CI did not
+promote. Final documentation/continuation receipts are LOCAL ONLY, not deployed.
+Stopping at the context-budget boundary after integration/release—not completion
+or exhausted scope. Remaining scope:135original semantic slots, privileged HTTP
+current-source mutation/restore, dated shares/issuer succession/accounting and
+full three cases, physical observable/forcing reconciliation, and other original
+clauses. No production data/scientific activation or independent acceptance.
 
 CIfailure retained:GitHubf6123fe80b57db9862903a941a501addc96086dd/run42784658327failed because thenewfilingtestreadprivategenerated-artifacts/readiness-report.json. Promotioncorrectlyskipped;notlive. Fixedtestwithself-containedsyntheticaccounting/source/date/currency/refusal/9repricingcases,noskips. Actualprivateassertionsmovedtorequired-inputvalidate-company-filing-private.ts andexecuted(3sourcehashes/bridges/refusals/9providerreceipts);notdeletedorexported. CItestalsoexecutedfrom/tmp. ExistingCIgateunchanged.
 
@@ -1051,6 +1136,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-target-offline-e338c8c",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T07:31:17.895093+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-portable-igcc-da140f2",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T08:58:11.872095+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

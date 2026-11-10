@@ -17,8 +17,8 @@ test("operational GET families bind all actual typed leaves without new public s
   }
   assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
   assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,437);
-  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,135);
+   assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
+   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(new Set(outputFieldSemantics.map(f=>f.id)).size,outputFieldSemantics.length);
 });
 
@@ -51,8 +51,8 @@ test("news definitions disclose estimator defaults rather than relabel estimates
   assert.match(bindings[0].Transformation,/100/);
 });
 
-test("export closure requires actual typed column and complete literal binding, never wildcard inventory",()=>{
-  assert.equal(census.verifiedExportBindings.length,58);
+test("export closure requires exact literal binding or certified production finite schema, never mere wildcard inventory",()=>{
+  assert.equal(census.verifiedExportBindings.length,59);
   for(const binding of census.verifiedExportBindings) {
     assert.ok(binding.transform.length>0);
     assert.ok(requireOutputSemantic(binding.id));
@@ -60,7 +60,9 @@ test("export closure requires actual typed column and complete literal binding, 
       field.surface===binding.surface&&field.field===binding.field&&field.resolution==="typed-field"));
     assert.notEqual(binding.field,"[].*");
   }
-  assert.ok(census.unresolvedDynamicKeys.length>0);
+  assert.deepEqual(census.unresolvedDynamicKeys,[]);
+  assert.equal(census.certifiedFiniteExports.length,6);
+  assert.equal(census.originalGapReconciliation.originalSlotIdentitiesUnchanged,true);
   assert.deepEqual(census.supplementalWorkbookInventory.map((s:{sheet:string})=>s.sheet),
     ["Semantics","Identity","Ledger","FullResult"]);
   assert.equal(census.families.find((f:{surface:string})=>f.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger").bound,22);

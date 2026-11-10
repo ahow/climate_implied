@@ -89,6 +89,8 @@ import { calculationReadiness } from "./calculation/readiness";
 import { historicalValidation } from "./calculation/historicalValidation";
 import { auditVintages } from "./calculation/vintageAudit";
 import { validateNativePair } from "./calculation/nativePathwayContract";
+import { remainingApiBindings } from "../shared/remainingFieldSemantics";
+import { bindKnownPersistedSummary } from "./dataIngestion/summaryContract";
 import { summarizeEnsemble } from "./calculation/ensemble";
 import { evaluateHoldout } from "./calculation/evaluation";
 import { evaluateSignal } from "./calculation/signalResearch";
@@ -120,6 +122,43 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Exact route-qualified metadata for remaining original response slots.
+  // No authorization, mutation or run-summary wire-value changes.
+  app.use((req, res, next) => {
+    const match=remainingApiBindings.find(([surface])=>{
+      const [method,...parts]=surface.replace(/^API /,"").split(" ");
+      const pattern=parts.join(" ").slice(1,-1).split("/").map(p=>p.startsWith(":")?"[^/]+":p).join("/");
+      return req.method===method && new RegExp(`^${pattern}$`).test(req.path);
+    });
+    if(!match) return next();
+    const send=res.json.bind(res);
+    res.json=((body:unknown)=>{
+      if(res.statusCode<400 || (match[1]==="health" && body && typeof body==="object" && "status" in body)) {
+        const prefix=match[1],ids=new Set<string>();
+        const visit=(value:unknown,path:string):void => {
+           if(prefix==="fetchRuns"&&path==="runs[].summary") {
+             // Container documentation does NOT certify arbitrary historical leaves.
+             ids.add("fetchRuns.runs[].summary");
+             for(const claim of bindKnownPersistedSummary(value)) ids.add(claim.id);
+             return;
+           }
+          if(Array.isArray(value)) { for(const row of value) visit(row,`${path}[]`); return; }
+          if(value!==null && typeof value==="object" && !(value instanceof Date)) {
+            for(const [key,child] of Object.entries(value)) visit(child,path?`${path}.${key}`:key);
+            return;
+          }
+          // Root response arrays use row-relative IDs, matching the census.
+          const id=`${prefix}.${path.replace(/^\[\]\./,"")}`;
+          if(!outputFieldSemantics.some(f=>f.id===id)) throw new Error(`Unmapped response semantic: ${id}`);
+          ids.add(id);
+        };
+        visit(body,"");
+        res.set("X-Field-Semantics",Array.from(ids).sort().join(","));
+      }
+      return send(body);
+    }) as typeof res.json;
+    next();
+  });
   app.get("/api/calculation/field-semantics",(_req,res)=>{
     const response = {
       version:"core-fields-1",coverage:"Core fields only; additional output fields remain unreconciled",
@@ -404,7 +443,15 @@ export async function registerRoutes(
     }
   });
   app.post("/api/emissions/validate-native-pathways", (req, res) => {
-    try { res.json(validateNativePair(req.body)); }
+    try {
+      const response=validateNativePair(req.body);
+      const fields=bindNestedOutput("nativePathway",response);
+      // Full species-qualified IDs exceed common proxy header limits; the
+      // family/count identifies the exact dictionary used by this binder.
+      res.set("X-Field-Semantics-Family","nativePathway");
+      res.set("X-Field-Semantics-Count",String(fields.length));
+      res.json(response);
+    }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid pathways" }); }
   });
   app.post("/api/calculation/ensemble-summary", (req, res) => {
@@ -1263,6 +1310,7 @@ export async function registerRoutes(
 
   app.get("/api/data/runs", async (_req, res) => {
     try {
+      // Preserve every original summary JSON value, including unknown historical shapes.
       const runs = await getRecentRuns(10);
       res.json({ runs });
     } catch (error) {

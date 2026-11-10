@@ -171,7 +171,7 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | Consumer | Filename expression | Rows expression | Evidence class |
 | --- | --- | --- | --- |
 | client/src/components/category-comparison.tsx | "category-scenario-analysis" | {downloadRows} | "legacy" |
-| client/src/components/category-trend-chart.tsx | {`category-trends-${metricView}`} | {downloadRows} | "legacy" |
+| client/src/components/category-trend-chart.tsx | {`category-trends-${metricView==="netZero"?"5gt-threshold":metricView}`} | {downloadRows} | "legacy" |
 | client/src/components/emissions-candidate-review.tsx | {`native-emissions-${scenario}`} | {data.result.trajectory.map(nativeExportRow)} | "native" |
 | client/src/components/emissions-chart.tsx | "global-emissions-trajectory" | {downloadRows} | "legacy" |
 | client/src/components/historical-trend-chart.tsx | {`historical-trend-${metricView}`} | {downloadRows} | "legacy" |

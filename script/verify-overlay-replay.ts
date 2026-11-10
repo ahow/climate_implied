@@ -23,6 +23,10 @@ const dir = "generated-artifacts/overlay-replay";
 async function main() {
   if(process.env.NODE_ENV==="production") throw new Error("Development only");
   if (process.argv[2] === "--worker") {
+    const started = performance.now();
+    const phase = (name: string) => console.log(JSON.stringify({
+      replayPhase: name, elapsedMs: Math.round(performance.now() - started),
+    }));
     const captured = JSON.parse(readFileSync(process.argv[3], "utf8"));
     assert.equal(currentSourceArchiveId(),captured.sourceArchive,"Replay executable source/config/dependency version differs");
     assert.ok(Array.isArray(captured.approvedValues),"Missing captured driver dependency");
@@ -40,11 +44,15 @@ async function main() {
       scenario: "development-revised-history-fixture", settings: { cutoff: captured.cutoff },
     });
     const actualResults:Record<string,unknown>={};
+    phase("validated-inputs-and-effective-workbook");
     await runWithReplayWorkbook(captured.workbook,()=>runWithOverrideRows(captured.approvedValues,()=>historicalInputContext.run(captured.historicalIndicators,()=>
       snapshotContext.run(header,()=>overlayContext.run({ids:captured.overlays.map((o:any)=>o.id),
         cutoff:captured.cutoff,overlays},async()=>{
-        for(const path of replayPaths) actualResults[path]=JSON.parse(JSON.stringify(publicValuationResult(
-          await calculateSelectedResult(path,{method:"absolute"},header),path.startsWith("/decarb-gap"))));
+        for(const path of replayPaths) {
+          actualResults[path]=JSON.parse(JSON.stringify(publicValuationResult(
+            await calculateSelectedResult(path,{method:"absolute"},header),path.startsWith("/decarb-gap"))));
+          phase(path);
+        }
       })))));
     for (const path of ["/decarb-bands", "/decarb-terciles"])
       assert.ok(Array.isArray(actualResults[path]) && (actualResults[path] as unknown[]).length > 0,
@@ -86,6 +94,7 @@ async function main() {
     assert.throws(() => unpackOverlay("0".repeat(64), captured.overlays[0].payload), /hash/);
     writeFileSync(process.argv[4], JSON.stringify({ resultHash: archived.id,exportHash:identity.hash,
       xlsxRoundtrip:true, result }));
+    phase("all-nine-and-xlsx-complete");
     return;
   }
   const { loadSnapshot } = await import("../server/snapshots/store");
@@ -149,13 +158,23 @@ async function main() {
   }
   const results = [1, 2].map(n => {
     const out = `${dir}/worker-${n}.json`;
-    execFileSync(process.execPath, ["--import", "tsx", "script/verify-overlay-replay.ts", "--worker", file, out],
-      { env: { ...process.env, DATABASE_URL: "", DATA_SCHEDULER_ENABLED: "false" }, timeout: 120000 });
+    try {
+      const trace = execFileSync(process.execPath, ["--import", "tsx", "script/verify-overlay-replay.ts", "--worker", file, out],
+        { env: { ...process.env, DATABASE_URL: "", DATA_SCHEDULER_ENABLED: "false" },
+          timeout: 120000, encoding: "utf8" });
+      writeFileSync(`${dir}/worker-${n}.log`, trace, { mode: 0o600 });
+    } catch (error: any) {
+      writeFileSync(`${dir}/worker-${n}.log`, String(error.stdout ?? "") + String(error.stderr ?? ""), { mode: 0o600 });
+      throw error;
+    }
     return JSON.parse(readFileSync(out, "utf8"));
   });
   assert.deepEqual(results[0], results[1]);
   assert.notEqual(results[0].result.effectiveInputHash, header.id);
   console.log(JSON.stringify({ file, resultHash: results[0].resultHash,
+    sourceArchive: captured.sourceArchive, workbookId: captured.workbook.id,
+    workerElapsedMs: [1, 2].map(n => JSON.parse(readFileSync(`${dir}/worker-${n}.log`, "utf8")
+      .trim().split("\n").at(-1)!).elapsedMs),
     companyCount: results[0].result.companyCount, rowCount: results[0].result.rowCount,
     unchangedBaseline: true, overlays: overlays.length, freshProcesses: 2,
     actualPaths:replayPaths,xlsxActualResultReadback:true,missingDependencyRejected:true,codePinRejected:true,

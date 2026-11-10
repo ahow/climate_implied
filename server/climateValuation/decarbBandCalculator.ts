@@ -3,7 +3,9 @@ import { convertAll } from "./decarbConversion";
 import { computeCompanyAnnualDecarbRate, groupTimeSeriesByDate, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
 const BAND_EDGES = [0, 1, 2, 3, 4, 5, 7, 10];
-const BAND_LABELS = ["0%", "0-1%", "1-2%", "2-3%", "3-4%", "4-5%", "5-7%", "7-10%", "10%+"];
+// Text describes the existing indexing and representatives honestly. Neither
+// edges, assignments nor numeric representatives are changed by this relabel.
+export const BAND_LABELS = ["<1% (rep. 0%)", "1-2%", "2-3%", "3-4%", "4-5%", "5-7%", "7-10%", "Unused legacy index 7", "10%+ (rep. 12%)"];
 
 export interface DecarbBandResult {
   date: Date;
@@ -25,7 +27,7 @@ export interface BandData {
   totalProfit: number;
 }
 
-function getBandIndex(annualRatePercent: number): number {
+export function getBandIndex(annualRatePercent: number): number {
   for (let i = 0; i < BAND_EDGES.length; i++) {
     if (annualRatePercent < BAND_EDGES[i]) {
       return Math.max(0, i - 1);
@@ -34,7 +36,7 @@ function getBandIndex(annualRatePercent: number): number {
   return BAND_LABELS.length - 1;
 }
 
-function getBandMidpoint(bandIndex: number): number {
+export function getBandMidpoint(bandIndex: number): number {
   if (bandIndex === 0) return 0;
   if (bandIndex >= BAND_LABELS.length - 1) return 12;
   const lower = BAND_EDGES[bandIndex];

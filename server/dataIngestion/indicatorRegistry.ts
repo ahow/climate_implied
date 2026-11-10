@@ -2,6 +2,7 @@ import {
   HISTORICAL_INDICATORS,
   type HistoricalIndicatorData,
 } from "../calculation/historicalIndicators";
+import { indicatorFieldSpecs } from "../../shared/indicatorFieldSemantics";
 
 export type FetchTier = "A" | "B" | "C";
 export type FetchMethod = "api" | "websearch" | "derived" | "manual";
@@ -28,7 +29,7 @@ export interface IndicatorDef {
   searchHint?: string;
 }
 
-export const INDICATORS: IndicatorDef[] = [
+const REGISTERED_DEFINITIONS: IndicatorDef[] = [
   // Technology
   { key: "renewableCapacityGW", label: "Renewable Capacity", unit: "GW", category: "Technology", source: "IRENA", tier: "C", fetchMethod: "websearch", decimals: 0, searchHint: "global total installed renewable electricity capacity in gigawatts (GW) for the most recent year, per IRENA Renewable Capacity Statistics" },
   { key: "renewableGrowthRate", label: "Renewable Growth Rate", unit: "fraction/yr", category: "Technology", source: "Derived (IRENA)", tier: "C", fetchMethod: "derived", decimals: 3 },
@@ -58,6 +59,13 @@ export const INDICATORS: IndicatorDef[] = [
   { key: "co2GrowthRatePpm", label: "CO2 Growth Rate", unit: "ppm/yr", category: "Emissions Outcomes", source: "NOAA Mauna Loa", tier: "A", fetchMethod: "api", decimals: 2 },
   { key: "remainingBudget15C_Gt", label: "Remaining 1.5°C Budget", unit: "Gt", category: "Emissions Outcomes", source: "Derived (IPCC − emissions)", tier: "A", fetchMethod: "derived", decimals: 0 },
 ];
+// One browser-safe key registry drives cards, methodology counts, operational
+// inventory and export domains. Publisher/acquisition metadata stays here.
+export const INDICATORS:IndicatorDef[]=indicatorFieldSpecs.map(([key])=>{
+  const definition=REGISTERED_DEFINITIONS.find(d=>d.key===key);
+  if(!definition) throw new Error(`Missing registered indicator acquisition definition: ${key}`);
+  return definition;
+});
 
 export const INDICATOR_KEYS: IndicatorKey[] = INDICATORS.map((d) => d.key);
 

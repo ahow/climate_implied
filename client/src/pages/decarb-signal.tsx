@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Activity, TrendingDown, Globe, Layers, BarChart3 } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { certifyFiniteExport,finiteExportBindings,signalCumulativeColumn } from "@shared/finiteExportSchemas";
 import { earningsYieldGapPp, displayDiagnostic } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
@@ -349,11 +350,11 @@ export default function DecarbSignal() {
     "Ambition group earnings-yield gap (pp)": d.decarbAmbition,
   }));
 
-  const cumulativeReturnDownloadRows = backtestChartData.map((d) => ({
+  const cumulativeReturnDownloadRows = certifyFiniteExport("signalCumulative",backtestChartData.map((d) => ({
     Date: d.date,
     "Benchmark Cumulative Return (%)": d.benchmark,
-    [`${signalLabel} Portfolio Cumulative Return (%)`]: d.portfolio,
-  }));
+    [signalCumulativeColumn(backtestSignal)]: d.portfolio,
+  })),{signal:backtestSignal});
 
   const activeReturnDownloadRows = backtestChartData.map((d) => ({
     Date: d.date,
@@ -641,11 +642,7 @@ export default function DecarbSignal() {
                     kind="backtest"
                     sheetName="Cumulative Return"
                     rows={cumulativeReturnDownloadRows}
-                    fieldBindings={{
-                      Date:{id:"backtest.date",transform:"Identity UTC YYYY-MM"},
-                      "Benchmark Cumulative Return (%)":{id:"backtest.benchmarkCumulative",transform:"Math.round((wealth-1)*10000)/100"},
-                      [`${signalLabel} Portfolio Cumulative Return (%)`]:{id:"backtest.portfolioCumulative",transform:"Math.round((wealth-1)*10000)/100; selected signal label"},
-                    }}
+                    fieldBindings={finiteExportBindings("signalCumulative",{signal:backtestSignal})}
                     testId="button-download-backtest-cumulative"
                   />
                 </div>

@@ -43,7 +43,7 @@ def compare(actual, expected, temperature=False):
             "cells": int(delta.size)}
 
 
-def main():
+def main(retain_only=False):
     if fair.__version__ != "2.2.4":
         raise ValueError("Pinned FaIR 2.2.4 required")
     for name, sha in HASHES.items():
@@ -95,6 +95,25 @@ def main():
     f.run(progress=False)
     if not np.isfinite(f.temperature.values).all():
         raise ValueError("Nonfinite full temperature trajectory")
+    if retain_only:
+        # One necessary deterministic regeneration: old artifacts omitted forcing
+        # and emissions. Do not rerun endpoint acceptance or alter its receipt.
+        frozen = ROOT / "result-120b305e686161e327b619ed1c293547ada46d7d407aa2ecdf14d8315012efa9.json"
+        trajectory = frozen.with_name(frozen.stem + "-temperature.nc")
+        if digest(trajectory) != "bbb0b84db4050fa619dcddb413ff91d9d9aaa1fa37d8e72b2ffe6d257e8f5b1d":
+            raise ValueError("Frozen trajectory hash mismatch")
+        with xr.open_dataarray(trajectory) as original:
+            xr.testing.assert_equal(f.temperature, original)
+        from fair_physical_retention import retain_physical
+        print(json.dumps(retain_physical(f, ROOT / "physical-retention", {
+            "frozenResultSha256": digest(frozen), "frozenTemperatureSha256": digest(trajectory),
+            "regenerationTemperatureExactMatch": True, "rcmipReceipts": receipts,
+            "sourceHashes": HASHES, "fairVersion": fair.__version__,
+            "codeSha256": digest(__file__),
+            "retentionCodeSha256": digest(Path(__file__).with_name("fair_physical_retention.py")),
+            "scope": "Missing physical matrices only; frozen endpoint acceptance not repeated"
+        }), indent=2))
+        return
     actuals = {"temperature": f.temperature[-1, ..., 0],
                "co2_concentration": f.concentration[-1, ..., 2],
                "forcing_sum": f.forcing_sum[-1, ...]}
@@ -125,4 +144,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--retain-physical-only", action="store_true")
+    main(parser.parse_args().retain_physical_only)

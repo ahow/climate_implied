@@ -42,9 +42,18 @@ export function adjudicateResearchFamily(input: unknown) {
     unavailableHypotheses: tests.length - scored.size, tests: corrected,
     specifications: p.specifications.map(s => {
       const matched = corrected.filter(t => specKey(t) === specKey(s));
-      return { ...s, supported: matched.every(t => t.passed),
-        label: matched.every(t => t.passed) ? "supported locked retrospective revised-history research" :
-          matched.some(t => !t.score) ? "incomplete evidence" : "not supported for this specification" };
+      const passedHypotheses = matched.filter(t => t.passed).length;
+      const complete = matched.every(t => t.score !== null);
+      // The two-of-three label is permission for further research only, never
+      // support for the primary claim. Missing tests cannot earn a decision.
+      const decision = !complete ? "incomplete evidence" :
+        passedHypotheses === 3 ? "supported" :
+        passedHypotheses === 2 ? "supported for further research" :
+        "no demonstrated improvement";
+      return { ...s, supported: complete && passedHypotheses === 3,
+        passedHypotheses, decision,
+        label: !complete ? "incomplete evidence" :
+          `${decision} — locked retrospective revised-history research` };
     }),
     investmentEvidence: false, automaticPromotionAllowed: false,
     limitations: ["This adjudicates supplied paired estimates, intervals and p-values; it does not compute or verify them.",

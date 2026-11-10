@@ -15,6 +15,8 @@ import { dataManagementSemantics } from "./dataManagementSemantics";
 import { evidenceFieldSemantics } from "./evidenceFieldSemantics";
 import { targetInputSemantics } from "./targetInputSemantics";
 import { diagnosticMetadataSemantics, signalComparisonSemantics } from "./diagnosticMetadataSemantics";
+import { remainingFieldSemantics } from "./remainingFieldSemantics";
+import { nativePathwaySemantics } from "./nativePathwaySemantics";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
   dependencies:string[]; unit:string; source:string; period:string; geography:string;
@@ -49,6 +51,8 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...targetInputSemantics,
   ...diagnosticMetadataSemantics,
   ...signalComparisonSemantics,
+  ...remainingFieldSemantics,
+  ...nativePathwaySemantics,
   {id:"pe.date",meaning:"Date of the compared carbon-intensity terciles",role:"Input",
     formula:"Workbook date grouping key",dependencies:["timeSeries.date"],unit:"ISO-8601 date",...peFinancial},
   ...["top","bottom"].flatMap(group=>[

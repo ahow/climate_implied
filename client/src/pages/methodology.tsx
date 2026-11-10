@@ -4,6 +4,7 @@ import { ArrowLeft, BookOpen, Database, Calculator, BarChart3, Globe, FlaskConic
 import { Link } from "wouter";
 import { PublicationMethodologyNotes } from "@/components/publication-methodology-notes";
 import { DriverEvidenceDisclosure } from "@/components/driver-evidence-disclosure";
+import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 
 export default function Methodology() {
   return (
@@ -100,7 +101,7 @@ export default function Methodology() {
             </div>
             <Card className="p-5">
               <p className="text-sm text-muted-foreground mb-4">
-                The dashboard tracks 22 primary indicators across six categories, sourced from publicly available datasets:
+                The dashboard tracks {indicatorFieldSpecs.length} registered indicators across six categories. Retained values include observations, curated estimates and nowcasts; source labels alone do not certify evidence:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
@@ -496,7 +497,7 @@ export default function Methodology() {
                 </table>
               </div>
               <p className="text-xs text-muted-foreground mt-3 m-0">
-                For negative or zero decarb rates, net zero is undefined (emissions never decline to near zero).
+                For a nonpositive assumed rate, this retired positive-residual threshold is never reached under the exponential formula. A 5% residual is not physical net zero.
               </p>
             </Card>
           </section>

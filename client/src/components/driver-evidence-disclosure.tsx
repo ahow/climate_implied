@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -48,7 +49,7 @@ export function DriverEvidenceDisclosure() {
         <>
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="break-all" data-field-id="driverRegistry.status">{registry.data.status}</Badge>
-            <p className="text-xs text-muted-foreground" data-testid="driver-registry-coverage">{uniqueCount} of 22 indicators accounted for</p>
+            <p className="text-xs text-muted-foreground" data-testid="driver-registry-coverage">{uniqueCount} of {indicatorFieldSpecs.length} registered indicators accounted for</p>
           </div>
           {!complete && (
             <p role="alert" className="text-sm text-muted-foreground">

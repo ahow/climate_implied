@@ -5,6 +5,8 @@ import { LineChart, Line, ResponsiveContainer } from "recharts";
 import { Zap, Car, Shield, Building2, Users, Factory, Leaf, Globe, Banknote, Landmark, Wind, Activity, Thermometer, Gauge } from "lucide-react";
 import type { HistoricalIndicatorData } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { certifyFiniteExport,finiteExportBindings,indicatorExportColumn } from "@shared/finiteExportSchemas";
+import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 
 interface IndicatorCardsProps {
   historicalData: HistoricalIndicatorData[];
@@ -23,7 +25,39 @@ interface IndicatorConfig {
   inverted?: boolean;
 }
 
-const INDICATORS: IndicatorConfig[] = [
+const CARD_CONFIG: IndicatorConfig[] = [
+  {
+    key:"policyImplementationRate",label:"Target Law/Policy Status",unit:"fraction",category:"Policy",
+    icon:Shield,format:(v)=>`${(v*100).toFixed(1)}%`,source:"Climate Action Tracker reference; not measured delivery",color:"hsl(43, 86%, 42%)",
+  },
+  {
+    key:"corporateImplementationRate",label:"Estimated Company Target Progress",unit:"fraction",category:"Corporate",
+    icon:Building2,format:(v)=>`${(v*100).toFixed(1)}%`,source:"SBTi retained estimate; not realised emissions reduction",color:"hsl(27, 87%, 48%)",
+  },
+  {
+    key:"sacrificeWillingnessPct",label:"Willingness to Sacrifice",unit:"percent",category:"Socioeconomic",
+    icon:Users,format:(v)=>`${v.toFixed(0)}%`,source:"Pew/UN survey references; coverage unverified",color:"hsl(340, 65%, 50%)",
+  },
+  {
+    key:"humanCausationPct",label:"Human Causation Belief",unit:"percent",category:"Socioeconomic",
+    icon:Users,format:(v)=>`${v.toFixed(0)}%`,source:"Retained survey reference; coverage unverified",color:"hsl(340, 65%, 50%)",
+  },
+  {
+    key:"fossilDivestmentTrn",label:"Divestment Commitments (AUM)",unit:"USD trillion",category:"Financial Flows",
+    icon:Banknote,format:(v)=>`$${v.toFixed(1)}T`,source:"Stand.earth reference; cumulative commitments, not withdrawn capital",color:"hsl(150, 65%, 40%)",
+  },
+  {
+    key:"remainingBudget15C_Gt",label:"Retained 1.5°C Budget Diagnostic",unit:"Gt CO2",category:"Emissions Outcomes",
+    icon:Gauge,format:(v)=>`${v.toFixed(0)} Gt CO2`,source:"Retained IPCC-minus-emissions estimate; not a new assessed budget",color:"hsl(350, 60%, 48%)",
+  },
+  {
+    key:"renewableGrowthRate",label:"Renewable Capacity Growth",unit:"fraction/year",category:"Technology",
+    icon:Zap,format:(v)=>`${(v*100).toFixed(1)}%/yr`,source:"Derived (IRENA)",color:"hsl(168, 76%, 36%)",
+  },
+  {
+    key:"evGrowthRate",label:"EV Sales-share Growth",unit:"fraction/year",category:"Technology",
+    icon:Car,format:(v)=>`${(v*100).toFixed(1)}%/yr`,source:"Derived (IEA)",color:"hsl(197, 71%, 38%)",
+  },
   {
     key: "renewableCapacityGW",
     label: "Renewable Capacity",
@@ -170,6 +204,11 @@ const INDICATORS: IndicatorConfig[] = [
     inverted: true,
   },
 ];
+const INDICATORS:IndicatorConfig[]=indicatorFieldSpecs.map(([key])=>{
+  const config=CARD_CONFIG.find(c=>c.key===key);
+  if(!config) throw new Error(`Missing registered indicator card configuration: ${key}`);
+  return config;
+});
 
 function getCategoryColor(category: string): string {
   switch (category) {
@@ -210,16 +249,16 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
   const lastObservedYear = historicalData.filter((d) => !d.isNowcast).at(-1)?.year ?? 2024;
   const latestYear = historicalData[historicalData.length - 1]?.year ?? 2024;
 
-  const downloadRows = historicalData.map((d) => {
+  const downloadRows = certifyFiniteExport("indicatorCards",historicalData.map((d) => {
     const row: Record<string, string | number | undefined> = {
       Year: d.year,
       Estimated: d.isNowcast ? "yes" : "no",
     };
     for (const ind of INDICATORS) {
-      row[`${ind.label} (${ind.unit})`] = d[ind.key] as number | undefined;
+      row[indicatorExportColumn(ind.key)] = d[ind.key] as number | undefined;
     }
     return row;
-  });
+  }),{keys:INDICATORS.map(ind=>ind.key)});
 
   return (
     <div data-testid="section-indicator-cards">
@@ -232,12 +271,7 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
           filename="climate-indicators"
           sheetName="Indicators"
           rows={downloadRows}
-          fieldBindings={{
-            Year:{id:"indicator.year",transform:"Identity"},
-            Estimated:{id:"indicator.isNowcast",transform:"true -> yes; false -> no. False does not certify original-vintage observations"},
-            ...Object.fromEntries(INDICATORS.map(ind=>[`${ind.label} (${ind.unit})`,
-              {id:`indicator.${ind.key}`,transform:"Identity; display-unit label resolved by qualified semantic definition"}])),
-          }}
+          fieldBindings={finiteExportBindings("indicatorCards",{keys:INDICATORS.map(ind=>ind.key)})}
           testId="button-download-indicators"
         />
       </div>
@@ -258,8 +292,11 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
 
         const latestValue = historicalData[historicalData.length - 1]?.[indicator.key] as number;
         const firstValue = historicalData[0]?.[indicator.key] as number;
-        const change = latestValue && firstValue ? ((latestValue - firstValue) / firstValue) * 100 : 0;
-        const isPositive = indicator.inverted ? change < 0 : change > 0;
+        const available=typeof latestValue==="number"&&Number.isFinite(latestValue);
+        const relativeChange = available&&typeof firstValue==="number"&&Number.isFinite(firstValue)&&firstValue!==0
+          ? ((latestValue-firstValue)/firstValue)*100 : null;
+        const change=relativeChange!==null&&Number.isFinite(relativeChange)?relativeChange:null;
+        const isPositive = change!==null&&(indicator.inverted ? change < 0 : change > 0);
         const latestIsNowcast = historicalData[historicalData.length - 1]?.isNowcast;
 
         const Icon = indicator.icon;
@@ -278,10 +315,10 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
 
             <div className="flex items-baseline gap-2 mb-1">
               <span className="text-xl font-bold tabular-nums" data-testid={`text-indicator-value-${indicator.key}`}>
-                {latestValue !== undefined ? indicator.format(latestValue) : "N/A"}
+                {available ? indicator.format(latestValue) : "Unavailable"}
               </span>
-              <span className={`text-xs font-medium ${isPositive ? "text-emerald-500" : "text-red-500"}`} data-testid={`text-indicator-change-${indicator.key}`}>
-                {change >= 0 ? "+" : ""}{change.toFixed(1)}%
+              <span className={`text-xs font-medium ${change===null ? "text-muted-foreground" : isPositive ? "text-emerald-500" : "text-red-500"}`} data-testid={`text-indicator-change-${indicator.key}`}>
+                {change===null ? "Change unavailable" : `${change>=0?"+":""}${change.toFixed(1)}%`}
               </span>
               {latestIsNowcast && (
                 <span className="text-[10px] text-muted-foreground italic">est.</span>

@@ -16,9 +16,9 @@ test("65 existing metadata leaves close without denominator or withheld changes"
     assert.equal(family.total,count);
     assert.equal(family.bound,count);
   }
-  assert.equal(census.fullyBoundFields,866);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,437);
-  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,135);
+   assert.equal(census.fullyBoundFields,1000);
+   assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
+   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
   assert.equal(census.withheldFields.length,27);
   assert.equal(census.resolvedResponseAliases.length,4);

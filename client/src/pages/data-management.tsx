@@ -37,6 +37,8 @@ import {
 } from "@/components/ui/table";
 import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { certifyFiniteExport,finiteExportBindings,indicatorValueColumn } from "@shared/finiteExportSchemas";
+import { describePersistedSummary } from "@shared/dataManagementSemantics";
 import { FinancialProviderStatus } from "@/components/financial-provider-status";
 import { AnalysisSnapshotStatus } from "@/components/analysis-snapshot-status";
 import { FinancialReview, ScientificValidation } from "@/components/financial-review";
@@ -110,6 +112,12 @@ interface FetchRun {
   proposalsCreated: number;
   adaptersSucceeded: number;
   adaptersFailed: number;
+  summary: unknown;
+}
+function runSummaryClaimLabel(value:unknown):string {
+  return describePersistedSummary(value).availability==="available"
+    ? "Known producer claims schema-validated; not source or scientific acceptance"
+    : "Typed summary claims unavailable; raw historical JSON remains available unchanged";
 }
 
 interface RunsResponse {
@@ -211,10 +219,17 @@ export default function DataManagement() {
             Collect data (operator only)
           </Button>
           {lastRun && (
+            <>
             <p className="text-xs text-muted-foreground flex items-center gap-1" data-testid="text-last-run">
               <Clock className="h-3 w-3" />
               Last run: {formatDateTime(lastRun.startedAt)} ({lastRun.trigger}, {lastRun.status})
             </p>
+            <p className="text-xs text-muted-foreground">{runSummaryClaimLabel(lastRun.summary)}</p>
+            <details className="text-xs text-muted-foreground">
+              <summary>Retained raw run summary</summary>
+              <pre className="whitespace-pre-wrap break-all" data-field-id="fetchRuns.runs[].summary">{JSON.stringify(lastRun.summary,null,2)}</pre>
+            </details>
+            </>
           )}
         </div>
       </div>
@@ -225,7 +240,7 @@ export default function DataManagement() {
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Indicators tracked</p>
             <p className="text-2xl font-bold" data-testid="text-count-indicators">
-              {data?.indicators?.length ?? 0}
+              {data?.indicators ? data.indicators.length : "Unavailable"}
             </p>
           </CardContent>
         </Card>
@@ -233,7 +248,7 @@ export default function DataManagement() {
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Pending review</p>
             <p className="text-2xl font-bold" data-testid="text-count-pending">
-              {totalPending}
+              {data ? totalPending : "Unavailable"}
             </p>
           </CardContent>
         </Card>
@@ -352,14 +367,14 @@ function IndicatorDetailDialog({
   }));
   const hasEstimated = firstNowcastIdx !== -1;
 
-  const downloadRows = series.map((p) => ({
+  const downloadRows = certifyFiniteExport("indicatorDetail",series.map((p) => ({
     Year: p.year,
-    [`Value (${def?.unit ?? ""})`]: p.value,
-    Type: p.isNowcast ? "Estimated (nowcast)" : "Sourced (observed)",
+    [indicatorValueColumn(def?.key)]: p.value,
+    Type: p.isNowcast ? "Estimated (nowcast)" : "Retained (not nowcast)",
     Source: p.source,
     Method: p.method,
     "As Of Date": p.asOfDate ?? "",
-  }));
+  })),{key:def?.key});
 
   return (
     <Dialog open={!!indicatorKey} onOpenChange={(o) => !o && onClose()}>
@@ -389,6 +404,7 @@ function IndicatorDetailDialog({
                 filename={`indicator-time-series-${def?.key ?? "series"}`}
                 sheetName="Time Series"
                 rows={downloadRows}
+                fieldBindings={finiteExportBindings("indicatorDetail",{key:def?.key})}
                 testId="button-download-timeseries"
               />
             </div>

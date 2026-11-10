@@ -1,5 +1,21 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { companySummarySemantics } from "./companySummarySemantics";
+import { z } from "zod";
+export const FETCH_SUMMARY_CONTRACT="indicator-fetch-producer-schema-v1";
+export const persistedSummarySchema=z.object({
+  perAdapter:z.array(z.object({
+    id:z.string().min(1),values:z.number().int().nonnegative(),error:z.string().optional(),
+  }).strict()),
+  error:z.string().optional(),
+}).strict();
+/** Optional interpretation only. Never substitutes for the retained raw JSON value. */
+export function describePersistedSummary(value:unknown) {
+  const result=persistedSummarySchema.safeParse(value);
+  return result.success
+    ? {contract:FETCH_SUMMARY_CONTRACT,availability:"available" as const,claims:result.data,reason:null}
+    : {contract:FETCH_SUMMARY_CONTRACT,availability:"unavailable" as const,claims:null,
+      reason:"Unknown historical or absent summary schema; raw JSON remains available unchanged"};
+}
 
 type Spec = [string,string,string,string];
 const definitions: Spec[] = [
@@ -71,6 +87,10 @@ const context = {
   asOfRule:"Current stored approved overrides and static history/nowcast. Proposal createdAt/decidedAt are ingestion/decision timestamps; asOfDate is a nullable declaration, not verified source publication.",
 };
 export const dataManagementSemantics:OutputFieldSemantic[] = [
+  ...proposals.map(([field,meaning,formula,unit])=>({
+    id:`indicatorProposal.${field}`,meaning,formula,unit,...context,
+    source:"server/routes.ts operator approve/reject/manual responses; server/dataIngestion/dataStore.ts; shared/schema.ts",
+  })),
   ...specs.flatMap(([prefix,rows])=>rows.map(([field,meaning,formula,unit])=>({
     id:`${prefix}.${field}`,meaning,formula,unit,...context,
   }))),

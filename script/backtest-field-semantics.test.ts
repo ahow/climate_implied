@@ -60,10 +60,10 @@ test("49 original backtest slots close without denominator reduction or changing
   assert.equal(family.total,49);
   assert.equal(family.bound,49);
   assert.deepEqual(family.unbound,[]);
-  assert.equal(census.fullyBoundFields,866);
+   assert.equal(census.fullyBoundFields,1000);
   assert.equal(census.comparableSlotAccounting.actualUniqueSlots,1028);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,437);
-  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,135);
+   assert.equal(census.originalGapReconciliation.closedOriginalSlots,571);
+   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(census.displayBindings.filter((b:{id:string})=>b.id.startsWith("backtest.")).length,15);
   assert.equal(census.completion,false);
 });

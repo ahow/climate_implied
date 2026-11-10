@@ -14,6 +14,7 @@ import { CategoryComparison } from "@/components/category-comparison";
 import { SensitivityChart } from "@/components/sensitivity-chart";
 import { CategoryTrendChart } from "@/components/category-trend-chart";
 import { Button } from "@/components/ui/button";
+import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { RefreshCw } from "lucide-react";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -167,7 +168,7 @@ function LegacyDashboard() {
           <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
             <div>
               <h2 className="text-lg font-semibold" data-testid="text-indicators-heading">Key Indicators</h2>
-              <p className="text-sm text-muted-foreground">20 real-world indicators across 6 categories from authoritative sources</p>
+              <p className="text-sm text-muted-foreground">{indicatorFieldSpecs.length} registered indicators across 6 categories; retained observations and estimates have distinct evidence limitations</p>
             </div>
           </div>
           <IndicatorCards

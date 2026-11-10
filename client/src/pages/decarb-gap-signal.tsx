@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Activity, Globe, Layers, BarChart3, TrendingUp, TrendingDown, ArrowUpDown, Beaker } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { certifyFiniteExport,finiteExportBindings,groupGapExportColumn } from "@shared/finiteExportSchemas";
 import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
@@ -381,10 +382,10 @@ export default function DecarbGapSignal() {
 
   const measureInfo = MEASURE_TYPES.find(m => m.value === measure);
 
-  const timeseriesDownloadRows = chartData.map((d) => ({
+  const timeseriesDownloadRows = certifyFiniteExport("groupGap",chartData.map((d) => ({
     "Date": formatDateLabel(d.date),
-    [`Group earnings-yield gap - ${measureInfo?.label ?? "Measure"} (pp)`]: d.impliedRate,
-  }));
+    [groupGapExportColumn(measure)]: d.impliedRate,
+  })),{measure});
 
   const cumulativeReturnDownloadRows = backtestChartData.map((d) => ({
     "Date": d.date,
@@ -543,6 +544,7 @@ export default function DecarbGapSignal() {
                   filename="group-earnings-yield-gap-over-time"
                   sheetName="Group valuation gap"
                   rows={timeseriesDownloadRows}
+                  fieldBindings={finiteExportBindings("groupGap",{measure})}
                   testId="button-download-gap-timeseries"
                 />
               </div>

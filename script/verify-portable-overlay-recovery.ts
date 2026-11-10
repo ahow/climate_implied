@@ -114,6 +114,12 @@ writeFileSync(join(root, "network-probe.log"), String(probe.stdout ?? "") + Stri
 const networkDenied = network.status === 0 && probe.status === 0;
 if (networkDenied) assert.deepEqual(JSON.parse(readFileSync(join(stage, "result.json"), "utf8")), actual);
 const summary = { stage, allNineAndXlsxMatch: true, missingRejected: true, corruptRejected: true,
+  sourceArchive: report.sourceArchive, workbookId: report.workbookId,
+  inputSha256: files["inputs.json"], resultHash: actual.resultHash, exportHash: actual.exportHash,
+  companyCount: report.companyCount, rowCount: report.rowCount, overlays: report.overlays,
+  actualPaths: report.actualPaths, freshWorkerElapsedMs: report.workerElapsedMs,
+  nonemptyTargets: !report.emptyTargetPaths?.includes("/decarb-bands") &&
+    !report.emptyTargetPaths?.includes("/decarb-terciles"),
   versionRejected: true, noCheckoutOrNodeModulesResolution: true, networkDenied,
   limits: ["Private synthetic engineering inputs; not scientific acceptance.",
     "Bundled dependencies and copied exact Node executable; requires compatible host OS/ABI/shared libraries.",

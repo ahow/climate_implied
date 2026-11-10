@@ -131,6 +131,12 @@ def main(pathway_file=None, output_directory=None, species_history_file=None, in
                 "years": years.tolist(), "temperature": anomaly.tolist()}
     if retain_ensemble:
         (root / "ensemble.json").write_text(json.dumps(ensemble))
+        from fair_physical_retention import retain_physical
+        retain_physical(f, root / "physical-retention", {
+            "inputs": inputs, "fairVersion": fair.__version__, "upstreamRevision": REVISION,
+            "pathwaySha256": hashlib.sha256(Path(pathway_file).read_bytes()).hexdigest() if pathway_file else None,
+            "speciesHistorySha256": hashlib.sha256(Path(species_history_file).read_bytes()).hexdigest() if species_history_file else None,
+            "claim": "Actual model arrays; not calibrated or validated"})
     summary = {
         "status": "reference_execution_only_not_validated_for_dashboard",
         "fairVersion": fair.__version__, "upstreamRevision": REVISION,

@@ -10,10 +10,16 @@ export type SnapshotHeader = typeof cvAnalysisSnapshots.$inferSelect;
 export const snapshotContext = new AsyncLocalStorage<SnapshotHeader>();
 // Private replay injection: same immutable contract/calculators, no database fallback.
 // Not bound to any HTTP input or public control.
-const replayWorkbookContext = new AsyncLocalStorage<{ id: string; chunks: DatasetChunk[] }>();
+const replayWorkbookContext = new AsyncLocalStorage<{
+  id: string; data: ReturnType<typeof unpackDataset>;
+}>();
 export function runWithReplayWorkbook<T>(bundle: { id: string; chunks: DatasetChunk[] }, work: () => T): T {
-  unpackDataset(bundle.id, bundle.chunks);
-  return replayWorkbookContext.run(bundle, work);
+  // Validate and detach ONCE at the private replay boundary, not once per
+  // calculator. A retained workbook can exceed 100 MB; repeatedly cloning and
+  // canonical-hashing all its chunks dominates a nine-calculator recovery.
+  // Never cache by ID globally: concurrent replay scopes may not share state.
+  const data = unpackDataset(bundle.id, structuredClone(bundle.chunks));
+  return replayWorkbookContext.run({ id: bundle.id, data }, work);
 }
 
 export async function snapshotsAvailable(connection: Pick<typeof db, "execute"> = db) {
@@ -38,7 +44,12 @@ export async function loadSnapshot(header: SnapshotHeader) {
   const replay = replayWorkbookContext.getStore();
   if (replay) {
     if (replay.id !== header.id) throw new Error("Replay workbook selection mismatch");
-    const result = unpackDataset(replay.id, structuredClone(replay.chunks));
+    // Each consumer still gets detached mutable rows/dates; sorting, overlay
+    // application or carry-forward cannot poison subsequent reads.
+    const result = {
+      companies: structuredClone(replay.data.companies),
+      timeSeries: replay.data.timeSeries.map(row => ({ ...row, date: new Date(row.date) })),
+    };
     if (result.companies.length !== header.companyCount || result.timeSeries.length !== header.observationCount)
       throw new Error("Replay snapshot population mismatch");
     return result;
