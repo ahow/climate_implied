@@ -4,6 +4,7 @@ import { sensitivityFieldSemantics } from "./sensitivityFieldSemantics";
 import { projectionFieldSemantics } from "./projectionFieldSemantics";
 import { historicalFieldSemantics } from "./historicalFieldSemantics";
 import { nativeOutputSemantics } from "./nativeOutputSemantics";
+import { companyReviewSemantics } from "./companyReviewSemantics";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
   dependencies:string[]; unit:string; source:string; period:string; geography:string;
@@ -26,6 +27,7 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...projectionFieldSemantics,
   ...historicalFieldSemantics,
   ...nativeOutputSemantics,
+  ...companyReviewSemantics,
   {id:"pe.date",meaning:"Date of the compared carbon-intensity terciles",role:"Input",
     formula:"Workbook date grouping key",dependencies:["timeSeries.date"],unit:"ISO-8601 date",...peFinancial},
   ...["top","bottom"].flatMap(group=>[

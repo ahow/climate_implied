@@ -1,6 +1,17 @@
 {
   "schema_version": 1,
   "latest_increment": {
+    "scope": "2026-11-10 Stage12 immutable operating source/review adapter and three incomplete real issuer evidence packets; no scientific promotion",
+    "prior_verified": "Read HEAD0eb0589 and current_release: implementation1c903c6/GitHub+liveb4b8391. Preserve native187/187,35 export columns, fleet941df06 failures of uncertainty/causal gates, beta73095d6/88pairs/common8%failure.",
+    "new_paths_functions": "companySourceArchive.ts pack/unpack/resolveCompanySourceEvidence; companyOperatingReview.ts stage/source-packet/decide/project/list transaction helpers; operator CLI; read-only API/UI; companyReviewSemantics.ts; projectionResponse.ts strict cache schema; census alias reconciliation; three public-source receipts.",
+    "sources": "NEE 2026-01-27 FY2025 release: FPL approximate USD8.9bn capital investments. XOM 2025-12-09 plan: USD35bn corporate cash-flow growth2030 versus2024 at constant prices/margins, NOT FCFE. CAT 2025-10-29 Q3 release: power-generation quarterly sales USD2.634bn, not climate-attributable growth. Exact URLs/hashes/pending IDs/gaps in docs/company_operating_source_receipts.json. Publication day known, exact timestamp null; retained-text availability timestamp conservative. Partial extraction explicitly disclosed.",
+    "actual_workflow": "Three DEVELOPMENT source-only packets staged pending; no real issuer approved. Rollback-only helpers exercise source-only non-executability, repeated staging, full proposal, financial approval requirement, synthetic-only approval/repeat/conflict, cutoff rejection, deterministic replay, rollback of company/review/source/proposal/decision/financial-identity archives.",
+    "coverage": "420 definitions;407/979 actual public schema/export slots bound;1006 actual slots including27 withheld. Four former unknown cache-response aliases replaced with typed/validated leaves and retained separately in comparable accounting:1010 total slots including aliases,983 public,407 semantic bindings plus4 reconciled aliases;572 substantive unbound. New review family10/10. No denominator silently dropped. Native187/187 and35columns unchanged. One unresolved compiler type and9 unresolved dynamic keys remain; full gate remains false.",
+    "verification": "233/233 TS tests,0fail/skip at03:56:07Z; tsc03:56:42Z; build03:56:53Z pass. Final publication-conflict focused2/2 at04:00:55Z. Extended rollback pass04:01:30Z after fixing synthetic ISIN random terminal-letter error; failed attempt04:00:52Z retained. Earlier TS2802 fixed using Array.from. Dev review API3pending/nonexecutables; global projection75rows characterization-only; page shell screenshot/no browser errors.",
+    "scientific_outcomes": "No new efficacy score or scientific acceptance. Three source packets are NOT three end-to-end climate-linked worked cases. Missing annual operating-geography/activity/policy-to-revenue/margin/capex/WC/financing bridges and justified joint uncertainty are itemized per issuer; no coefficients fabricated. Source hashes do not prove original vintages.",
+    "remaining": "Complete three executable reviewed conditional cases and compatible Stage11/13 pairing; Stage14/15 actual frozen historical pipeline/studies; remaining572 semantic slots plus display/custom exports; independent policy/demand/Kaya/reference/FaIR work and all9path/nonempty-target isolation. Narrow provisioning/denominator/owner gates unchanged; no claim of exhausted scope."
+  },
+  "prior_native_fleet_increment": {
     "scope": "2026-11-10 field semantics increment; stages 1/3/16 remain incomplete. Original plan/amendment hashes rechecked unchanged.",
     "baseline": "HEAD446b909; 16 core definitions, 953 census slots across64 surfaces, 0 precisely qualified API bindings tracked by this census. The earlier core dictionary/UI notes existed and are not counted as runtime field binding.",
     "after": "410 definitions;1000 API/export slots across65 surfaces;397/973 public slots bound (362 API plus35 native-export). Native candidate187/187 schema slots:185 fixed and2 dynamic domains resolved to26 gas IDs and7 sectors;152 leaves emitted by each current scenario, optional fields not falsely described as emitted.102 explicit export-column bindings including35 native columns now enumerated from the shared row/binding schema.576 public slots unbound; remaining display/custom-export enumeration incomplete.27 physical fields withheld;6 unresolved compiler types and9 unresolved dynamic keys listed separately. Full semantic coverage NOT achieved.",
@@ -38,7 +49,31 @@
     "counts": "7 verified /50 partial /2 blocked /241 unreconciled. S05-004 reconciled partial from traced native mechanisms and frozen fleet study; S16-007 remains partial. No new verified requirement.",
     "ci_portability": "First export4f9c2d9 failed CI42742762217 at census freshness; absolute compiler paths differed across checkout directories. Fixed repository-relative source/surface paths without weakening the gate; identical census proved in a separate /tmp checkout. Corrected workspacebde248c/exportcff30181 passed CI42743057200. Final local full suite222/222 and focused11/11; release build awaited.",
     "source_commit": "bde248c5dadefb201a47c3a697f61e151d44ec43",
-    "github_candidate": "90049c3303474bd28153c5aa8bc4fd4f9fbc2e6e",
+    "github_candidate": "b4b839174dda800faa8d1320971e5330a71849f3",
+    "native_fleet_increment": {
+      "prior": "b216d46 workspace;90049c3 verified live.187 native schema slots previously unbound; company controls remain unapproved accounting controls, not climate-linked worked cases.",
+      "new_paths_functions": [
+        "shared/nativeScenarioSemantics.ts",
+        "shared/nativeOutputSemantics.ts",
+        "shared/nativeExport.ts:nativeExportRow/nativeExportBindings",
+        "server/routes.ts:native response binding",
+        "server/calculation/emissionsCandidate.ts:nonfinite electricity/native aggregate rejection",
+        "client/src/components/emissions-candidate-review.tsx",
+        "client/src/lib/export-contract.ts",
+        "client/src/lib/ui-claim-register.ts",
+        "script/native-semantics.test.ts",
+        "script/field-semantics-census.ts:explicit export expansion/per-family counts",
+        "script/export-contract.test.ts",
+        "script/fleet_transition.py",
+        "script/test_fleet_transition.py",
+        "script/completion-ledger.py:refresh_summary",
+        "script/test_completion_ledger_summary.py"
+      ],
+      "science": "Frozen941df06 before evaluation. Complete2010-2018/2019-2024 windows, six entities; no heldout sales/stock inputs in predictions.1000 block3 seed20261109 parameter bootstrap.4 point-MAE winners, India fails linear, Rest of World unavailable. Coverage0/6 exceptUS1/6; no promotion or lifetime/causal-emissions interpretation. Exact sources/hashes/outcomes in Fleet_Transition_Results.md and fleet_transition_results.json.",
+      "verification": "229/229 full local TS suite before overflow guard;16/16 affected tests after guard;3/3 fleet Python tests plus1/1 ledger-summary test; typecheck/build passed. CI42749964947 validate/promote success. Strict completeness remains failing397/973. Screenshot shows native AR6 GWP100 labels; no browser errors.",
+      "release": "Workspace1c903c688b6b4244867fb6491ad312043316c060; source/live b4b839174dda800faa8d1320971e5330a71849f3; Railway1176cb31-189c-434e-929e-e2e8ec037d8d SUCCESS. At2026-11-10T03:35:21Z build-info matched, health ok, native dashboard response77years/152bindings/temperature=null/promotion blocked; registry410.",
+      "remaining": "576 inventoried public slots unbound, other company/valuation/research/system semantics, remaining display/custom-export census; actual Stage12 climate-linked cases and upstream source/archive/review assembly, Stage14/15 actual compatible study, independent climate/reference evidence and all-nine-path/nonempty-target replay remain. These are not all external blockers."
+    },
     "run_boundary": "Stopping at this run's context capacity, not completion/exhausted actionable scope. All original stages0-17/amendments remain targets. Next implement native-candidate187-slot semantics and other unbound families with exact formulas/units/conditional status, then dependency-ready frozen studies/Stage12/14/15. No checkpoint sent earlier in this run.",
     "second_increment": {
       "paths": [
@@ -58,17 +93,17 @@
     }
   },
   "current_release": {
-    "workspace_commit": "b6a646e34c7a851603d6b76cc05928cbede140cb",
-    "github_main": "90049c3303474bd28153c5aa8bc4fd4f9fbc2e6e",
-    "ci": "42746035384 success",
-    "railway_deployment": "c562a981-f5e0-4fd2-a9b9-8879606812f6",
+    "workspace_commit": "1c903c688b6b4244867fb6491ad312043316c060",
+    "github_main": "b4b839174dda800faa8d1320971e5330a71849f3",
+    "ci": "42749964947 validate/promote success",
+    "railway_deployment": "1176cb31-189c-434e-929e-e2e8ec037d8d",
     "railway_status": "SUCCESS",
     "smoke": "live build-info exact source SHA and health200",
-    "verified_at": "2026-11-10T03:01:57Z",
+    "verified_at": "2026-11-10T03:35:21Z",
     "later_local_only": "Final documentation/receipt updates"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T03:30:59.898040+00:00",
+  "updated_at": "2026-11-10T04:01:33.627481+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -9263,14 +9298,19 @@
           "id": "S12-017",
           "source_section": "acceptance",
           "requirement": "Three worked companies are documented end to end: a utility, an oil and gas producer and an industrial.",
-          "status": "not-yet-reconciled",
+          "status": "partial",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
-          "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "evidence_caveat": "Three actual issuer source-only packets now retained pending review; still NOT three executable end-to-end climate-linked cases. No financial identity or operating assumption self-approved.",
+          "files_functions_changed": [
+            "server/calculation/companySourceArchive.ts",
+            "server/snapshots/companyOperatingReview.ts",
+            "script/prepare-company-operating-corpus.ts",
+            "docs/company_operating_source_receipts.json"
+          ],
+          "behaviour_delivered_this_run": "NEE/XOM/CAT permitted issuer disclosure claims, exact source hashes/calendar publication dates, conservative retained-text availability and issuer-specific missing operating bridges. All records incomplete/non-executable/pending.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
@@ -14610,6 +14650,137 @@
       "workspace_revision": "941df069c7c0fb4d04eb632f01affa498065387c",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/check-company-operating-db.ts"
+      ],
+      "executed_at": "2026-11-10T03:45:12.692299+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 3.467,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T034512692299Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/prepare-company-operating-corpus.ts"
+      ],
+      "executed_at": "2026-11-10T03:49:55.975300+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 4.465,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T034955975300Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T03:56:07.554483+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 34.031,
+      "counts": {
+        "tests": 233,
+        "pass": 233,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T035607554483Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T03:56:42.004991+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 11.405,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T035642004991Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T03:56:53.809226+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 18.479,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T035653809226Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/check-company-operating-db.ts"
+      ],
+      "executed_at": "2026-11-10T04:00:52.013375+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 3.049,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T040052013375Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/company-source-archive.test.ts"
+      ],
+      "executed_at": "2026-11-10T04:00:55.616437+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.041,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T040055616437Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/check-company-operating-db.ts"
+      ],
+      "executed_at": "2026-11-10T04:01:30.439142+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 3.049,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T040130439142Z.log",
+      "workspace_revision": "0eb058940d15009644e6a31c88c3d68a8ecf25ca",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -14909,13 +15080,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue implementation, stages0-17/amendments not complete. PRIORITY full field semantics:192 definitions but only175 bound API slots and67 export columns;763 public slots remain unbound, and display-only/custom-export census is incomplete. Extend actual schemas/bindings/formulas, not generic placeholders. Historical and nowcast getters now share validated captured rows; fresh-process actual dev gap result matched, not full replay acceptance. Then substantive dependency-ready frozen driver/reference/FaIR studies and actual compatible Stage12 cases/Stage14-15, never proxies. Preserve beta73095d6/88pairs and common8% failure, Gordon primary, EV failures/storage sensitivity-only. No new scientific study this increment. All22 curated source hashes are not original-vintage proof. Real carbon/SDG review transactions and prior combined4-helper/nine-path diagnostics remain engineering evidence, not full replay acceptance; finish nonempty targets/all-nine-path refresh/export isolation without rerunning identical settings. Preserve withheld p25/p75 physical fields and historical archives. No owner approvals, collector changes, purchases, DDL or licence bypass. Provisioning/heat-pump/owner-review limitations are narrow blockers. Continue through ready work, checkpoint only at genuine run end; use latest current_release rather than older historical receipts.",
+    "instruction": "Continue implementation, all stages0-17/amendments unmet. Latest live b4b8391, not90049c3. Native187-slot schema and35-column export now bound;410 definitions,397/973 inventoried public API/export slots bound;576 remain plus display/custom-export gaps. Finish other company/valuation/research/system families using exact formulas, not placeholders. New frozen fleet transition study completed:4 point-MAE winners, India fails, ROW unavailable; poor parameter-interval coverage, zero promotions. Do not rerun unchanged. Continue independent reference/FaIR and qualified driver evidence, actual3 climate-linked Stage12 cases and compatible Stage14/15; existing worked controls are NOT those cases. Source archive resolution/review and operating corpus assembly remain engineering work, not external blockers. Preserve beta73095d6/88pairs/common8% failure; Gordon primary; EV failures/storage sensitivity-only; publication dates unknown. All-nine-path/nonempty-target refresh and result/export isolation remain unmet. No selfapproval, collector changes, purchases, direct DDL, licence leakage or gate weakening. One new checkpoint only at genuine run end.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261110-semantics-captured-inputs-90049c3",
+    "checkpoint_id": "ckpt-20261110-native-fleet-b4b8391",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-10T03:04:40.349895+00:00",
+    "attempted_at": "2026-11-10T03:38:52.469640+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -15051,8 +15222,8 @@
       "partial": 11
     },
     "12": {
-      "partial": 13,
-      "not-yet-reconciled": 4,
+      "partial": 14,
+      "not-yet-reconciled": 3,
       "verified": 1
     },
     "13": {

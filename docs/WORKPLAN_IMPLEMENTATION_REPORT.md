@@ -1,5 +1,41 @@
 # Workplan implementation report
 
+## Operating-source/review continuation — 2026-11-10, current increment
+
+Prior verified: workspace HEAD0eb0589, implementation1c903c6, GitHub/liveb4b8391. This increment does not rerun/refit beta73095d6/88pairs, EV or fleet941df06, or promote storage/control ensembles.
+
+### New implementation
+- `server/calculation/companySourceArchive.ts`: strict content/value/identity/date checks; every consumed input leaf must resolve to an immutable source claim. Missing/corrupt/conflicting/future archives reject. Calendar publication dates do not become fabricated midnight timestamps; hashes do not prove original publication.
+- `server/snapshots/companyOperatingReview.ts`: transactional source/full-input proposals, idempotent decisions, conflicting-decision rejection, prerequisite approved financial identity, immutable financial identity archive, origin-cutoff replay and read-only listing. No DDL or public approval route.
+- `script/company-operating-review.ts`: explicit operator stage/source-stage/decision/project commands. `script/check-company-operating-db.ts` exercises real helpers solely in a disposable rollback transaction; synthetic approvals never escape rollback.
+- `script/prepare-company-operating-corpus.ts` and `docs/company_operating_source_receipts.json`: three actual issuer **source-only pending packets**, not executable worked cases. NEE utility, XOM oil/gas, CAT industrial identities matched workbook ISINs. Private extracted source text remains excluded from code export.
+- `server/routes.ts`, `client/src/components/company-operating-review.tsx`, `client/src/pages/data-management.tsx`: read-only review API/UI and approved-record projection operation. UI exposes gaps, no approval buttons.
+- `shared/companyReviewSemantics.ts`, `shared/outputFieldSemantics.ts`: ten exact administrative output meanings/formulas/status/missingness/as-of rules, bound to API/UI.
+- `shared/projectionResponse.ts`, `server/routes.ts`: strict cached-global-response schema rejects absent/extra/nonfinite values instead of casts/defaults. Three other cached response aliases now use actual inferred engine return types.
+- `script/company-source-archive.test.ts`, `script/projection-response.test.ts`, `script/field-semantics-census.ts`; regenerated census/register/ledgers.
+
+### Actual source evidence and limitations
+NEE January27,2026 FY2025 release reports approximately USD8.9bn FPL capital investment and discusses solar/storage and Florida rate agreement. XOM December9,2025 plan reports USD35bn corporate cash-flow growth2030 versus2024 under constant prices/margins: **not FCFE and not a climate-attributable increment**. CAT October29,2025 Q3 release reports USD2.634bn quarterly power-generation sales; data-center exposure is **not proof of climate-policy causality**. Exact URLs, retained-text hashes, calendar publication dates, archive/proposal IDs and missing series are in the receipts. Text extraction for NEE/CAT is partial and explicitly requires original-document review. Retained-text availability is conservatively recorded at packet preparation; it is not claimed as exact HTTP retrieval or original publication time.
+
+All three records remain pending/non-executable. Missing annual activity/geographic weights, revenue transmission, margins, capex/WC/financing/tax bridges, liability/Scope3 overlap and justified joint uncertainty cannot be replaced with arbitrary coefficients. These are specific remaining engineering/evidence/owner inputs, not a halt-all external blocker. No real issuer approved, no production data mutation, no purchases or licence bypass.
+
+### Verification and scientific status
+Actual executions are retained in JSON run_executions with commands, dates and logs:
+- `npx tsx --test script/*.test.ts`: **233pass/0fail/0skip**,2026-11-10T03:56:07Z, `generated-artifacts/workplan-completion/20261110T035607554483Z.log`.
+- `npm run check`: pass03:56:42Z; `npm run build`: pass03:56:53Z. An earlier ES5 iterable error was corrected using Array.from, not by relaxing compiler settings.
+- After publication consistency guards: focused archive tests **2/2pass**,04:00:55Z.
+- Extended rollback helper run failed04:00:52Z because the random synthetic ISIN sometimes ended with a letter. Fixture now always has the required terminal digit; production identity validation unchanged. **Pass04:01:30Z**, log `20261110T040130439142Z.log`: source-only non-execution/idempotency, complete staged projection, missing financial approval/conflicting decision/pre-approval cutoff rejection, deterministic result and complete rollback.
+- Dev API:3pending records, all non-executable/scientificAcceptancefalse; `/api/projection`75annual rows and characterization-only status. Workflow clean; screenshot verifies page shell/no browser errors, not an interactive approval journey.
+
+No actual Stage14 score, calibrated uncertainty, three end-to-end cases, independent FaIR benchmark or new driver efficacy is claimed. Previously failed gates remain unchanged.
+
+### Coverage/count reconciliation
+**420 definitions;407/979 actual public slots bound**,1006actual slots including27withheld. New review family10/10. Four former untyped cache-response `$` aliases now expand to known leaves; they remain explicitly listed in `resolvedResponseAliases`, not silently removed from comparable accounting. Comparable total is1010 (=prior1000+10new review fields),983public:407semantic bindings +4resolved aliases +572substantive unbound. Native187/187 and35exportcolumns unchanged. One unresolved compiler type (`runs[].summary`) and9dynamic keys remain; full completeness=false. Display-only/custom-export census remains incomplete.
+
+S12-017 moves unreconciled→partial solely because three real issuer corpora are now assembled. Overall **7verified/51partial/2blocked/240unreconciled**, not completion. Other stages unchanged; Stage12 now1verified/14partial/0blocked/3unreconciled.
+
+Next substantive work remains complete climate-linked operating bridges and owner review, corresponding company/valuation/research semantics, actual compatible Stage14/15 historical pipeline and independent frozen policy/demand/Kaya/reference/FaIR work. Keep all nine result-path/nonempty-target isolation in scope. Release receipt and stopping reason below must distinguish code, docs and live revisions.
+
 ## Field semantics continuation — 2026-11-10
 
 Baseline HEAD446b909 and original workplan/amendment hashes verified. This is
@@ -221,12 +257,47 @@ fleet_transition_results.json. Existing beta/EV/storage outcomes untouched.
 S05-004 reconciled to partial based on actual existing mechanism code plus
 this new evidence, not verified: totals7verified/50partial/2blocked/241unreconciled.
 New release remains pending; current_release still refers to90049c3.
+The pending statement above is superseded by the verified receipt below.
 
 Final local full TS suite229passed/0failed/0skipped at03:23–03:24UTC,
 typecheck/build pass. Additional Python fleet tests3/3 passed. Uncertainty
 and source eligibility gates were not weakened. Family report now separates
 27 withheld fields,6 unresolved compiler types (including one semantically
 bound field) and9 unresolved dynamic keys; native gas/sector domains are resolved.
+
+### Verified release and end-of-run evidence
+Workspace1c903c688b6b4244867fb6491ad312043316c060 exported to
+b4b839174dda800faa8d1320971e5330a71849f3. CI42749964947 validate/promote passed.
+Railway1176cb31-189c-434e-929e-e2e8ec037d8d SUCCESS. Verified03:35:21UTC:
+build-info exact SHA, health ok, dashboard native response77 annual rows,
+152 bound emitted leaves, temperature=null, promotion blocked; registry410.
+Documentation/receipt commits after this source revision are not new deployments.
+
+Underlying engine fix: projectInventoryEmissions now rejects overflowing power
+balances and native/reporting aggregates before JSON could silently turn
+Infinity into null. Valid model coefficients/results are unchanged.
+After this change, affected native tests16/16 passed; typecheck/build passed.
+Ledger summary generation now derives counts from individual clauses rather
+than retaining stale cached totals; regression test1/1 passes.
+
+Exact logs in generated-artifacts/workplan-completion/:
+-20261110T032849773748Z.log:16/16 affected native tests
+-20261110T032855868294Z.log:typecheck
+-20261110T032910121802Z.log:build
+-20261110T033059718547Z.log:ledger-summary test1/1
+-20261110T032701004778Z.log:strict completeness intentionally fails397/973
+The full229-test run and earlier failed/corrected runs remain in run_executions.
+Python scientific study/tests and numerical decisions are in Fleet_Transition_Results.md.
+
+At this run's context boundary, actionable scope remains. No full-completion
+claim:7verified/50partial/2blocked/241unreconciled. Next: remaining semantics
+families/display census, traceable actual company operating corpus and source
+archive/review integration, compatible actual Stage14/15, independent climate
+benchmarks, and full nine-path/nonempty-target replay. No new company approvals,
+no alteration of collector cadence, and no scientific gate promotions.
+The prior checkpoint was user-confirmed matched and was not resent.
+One new continuation_ready checkpoint follows evidence saving at true run end;
+HTTP202 alone is not listener matching.
 
 ## Combined refresh continuation
 
@@ -772,6 +843,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-semantics-captured-inputs-90049c3",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T03:04:40.349895+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-native-fleet-b4b8391",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T03:38:52.469640+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

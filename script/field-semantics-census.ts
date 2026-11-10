@@ -23,6 +23,7 @@ if(baseline) {
 const program=ts.createProgram(parsed.fileNames,parsed.options,host),checker=program.getTypeChecker();
 type Entry={surface:string;field:string;type:string;source:string;line:number;resolution:string};
 const entries:Entry[]=[];
+const resolvedResponseAliases: {surface:string;source:string;line:number;expression:string;replacement:string}[]=[];
 function fields(type:ts.Type,path:string,surface:string,node:ts.Node,depth=0) {
   const source=node.getSourceFile(),where={source:relativeSource(source.fileName),line:source.getLineAndCharacterOfPosition(node.getStart()).line+1};
   if(type.isUnion()) {for(const t of type.types) if(!(t.flags&(ts.TypeFlags.Null|ts.TypeFlags.Undefined))) fields(t,path,surface,node,depth);return;}
@@ -47,8 +48,17 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
     if(ts.isCallExpression(node)&&ts.isPropertyAccessExpression(node.expression)&&
       node.expression.expression.getText(source)==="app"&&["get","post","put","patch","delete"].includes(node.expression.name.text))
       surface=`API ${node.expression.name.text.toUpperCase()} ${node.arguments[0]?.getText(source)}`;
-    if(surface&&ts.isCallExpression(node)&&node.expression.getText(source)==="res.json"&&node.arguments[0])
+    if(surface&&ts.isCallExpression(node)&&node.expression.getText(source)==="res.json"&&node.arguments[0]) {
       fields(checker.getTypeAtLocation(node.arguments[0]),"",surface,node);
+      const expression=node.arguments[0].getText(source);
+      if(!baseline&&["projectionResultCache","categoryCacheResult","historicalTrendCacheResult","categoryHistoricalTrendCache"].includes(expression)){
+        const type=checker.getTypeAtLocation(node.arguments[0]);
+        if(type.flags&(ts.TypeFlags.Any|ts.TypeFlags.Unknown)) throw new Error("Cache response alias regressed to unknown");
+        resolvedResponseAliases.push({surface,source:relativeSource(source.fileName),
+          line:source.getLineAndCharacterOfPosition(node.getStart()).line+1,expression,
+          replacement:"Typed cached response expands to the same qualified leaves as fresh response; former $ placeholder retained in reconciliation, not silently discarded"});
+      }
+    }
     if((ts.isJsxSelfClosingElement(node)||ts.isJsxOpeningElement(node))&&node.tagName.getText(source)==="DownloadDataButton") {
       const prop=node.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="rows");
       if(prop&&ts.isJsxAttribute(prop)&&prop.initializer&&ts.isJsxExpression(prop.initializer)&&prop.initializer.expression) {
@@ -84,9 +94,12 @@ const isBound=(e:typeof unique[number])=>(e.surface.startsWith("XLSX client/src/
   Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
   outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
       outputFieldSemantics.some(f=>f.id===`projection.${e.field}`)) || (e.field.startsWith("[].") &&
-    [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"]].some(([path,prefix])=>
+    [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"],["/api/calculation/company-operating/reviews","companyReview"]].some(([path,prefix])=>
       e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`)));
 const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemantics.length+outputFieldSemantics.length,
+  resolvedResponseAliases,
+  comparableSlotAccounting:{actualUniqueSlots:unique.length,previouslyUnresolvedAliasSlots:resolvedResponseAliases.length,
+    slotsIncludingReconciledAliases:unique.length+resolvedResponseAliases.length},
   fullyBoundFields:baseline?0:unique.filter(isBound).length,
   resolvedDynamicDomains:baseline?{}:nativeDynamicDomains,
   withheldFields:unique.filter(e=>e.resolution==="withheld-public-field"),

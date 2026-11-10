@@ -1,0 +1,66 @@
+[
+  {
+    "symbol": "NEE",
+    "isin": "US65339F1012",
+    "sourceArchiveId": "20da4e216b849068b293300ddff6d09c5b11124256a75c4169a68c24636865c1",
+    "proposalId": "4672242b3a20c375cefa5c3b99ca893d6d2af2306c0cd3c0c69785bf112a8f27",
+    "url": "https://www.investor.nexteraenergy.com/~/media/Files/N/NEE-IR/reports-and-fillings/quarterly-earnings/2025/Q4%202025/2026-0127%20NEEQ42025News%20Release%20vF.pdf",
+    "reportedPublicationDate": "2026-01-27",
+    "availableAt": "2026-11-10T03:49:59.988Z",
+    "sourceTextHash": "20dc8240527b691a483e90ab66c241e70cfae5478076583a12672567a9d52bcd",
+    "status": "pending-source-review; not executable climate-linked case",
+    "remainingGaps": [
+      "Operating-geography revenue weights separating FPL/NEER",
+      "Approved rate-order revenue mechanics and annual solar/storage commissioning schedule",
+      "Five annual segment margins, capex, working capital, financing and tax bridge",
+      "Scope1/2 liability/pass-through allocation and Scope3 non-duplication",
+      "Owner identity/fiscal approval; no issuer is approved by this preparation",
+      "Same-horizon nominal currency and FCFE/FCFF pairing; no historical origin claimed",
+      "Source extraction may be partial; validate full original. Only publication calendar date known; no midnight timestamp fabricated",
+      "Justified joint uncertainty is missing; no invented probability distribution"
+    ]
+  },
+  {
+    "symbol": "XOM",
+    "isin": "US30231G1022",
+    "sourceArchiveId": "374fb269119f68c9c39c07e130fecc959a8d6814240945347d1c16096f067fd3",
+    "proposalId": "27734670f3b09dd97c4f1dcbdf94b38d565c5a2f75616aaa477c0ce1a3e80772",
+    "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1198/exxonmobil-raises-its-2030-plan-transformation",
+    "reportedPublicationDate": "2025-12-09",
+    "availableAt": "2026-11-10T03:50:00.323Z",
+    "sourceTextHash": "ae48fb31f3cebc747ded8c9e106b41bacfaa856a5f53b6768452db89ca52d968",
+    "status": "pending-source-review; not executable climate-linked case",
+    "remainingGaps": [
+      "Original definition and reconciliation of corporate cash flow to FCFE/FCFF",
+      "Annual geographic/segment activity and climate-attributable revenue bridge",
+      "Capex allocation between ordinary operations and lower-emission projects",
+      "Policy-dependent CCS volumes/prices/costs and Scope1/2/3 overlap",
+      "Annual working capital/financing and nominal currency conversion",
+      "Owner identity/fiscal approval; no issuer is approved by this preparation",
+      "Same-horizon nominal currency and FCFE/FCFF pairing; no historical origin claimed",
+      "Source extraction may be partial; validate full original. Only publication calendar date known; no midnight timestamp fabricated",
+      "Justified joint uncertainty is missing; no invented probability distribution"
+    ]
+  },
+  {
+    "symbol": "CAT",
+    "isin": "US1491231015",
+    "sourceArchiveId": "f922e3c77263ebb168faa40ecee9a3506af1e11077abe3d03c1f854e24c27ac6",
+    "proposalId": "ce481619f6e99a14ada521d70ab2dbc51b80c9404a87ce304f3985b495b1cce0",
+    "url": "https://investors.caterpillar.com/news/news-details/2025/Caterpillar-Reports-Third-Quarter-2025-Results/default.aspx",
+    "reportedPublicationDate": "2025-10-29",
+    "availableAt": "2026-11-10T03:50:00.348Z",
+    "sourceTextHash": "941bc38716cd19344e85dabf29e41deec468f3130b4bb6548a5373802afedd1f",
+    "status": "pending-source-review; not executable climate-linked case",
+    "remainingGaps": [
+      "Separate data-center demand from climate-policy effects using a dated causal scenario",
+      "Segment/geography exposure weights and annual order-to-revenue conversion",
+      "Five-year margins/capex/working-capital/financing assumptions",
+      "Product-use Scope3 treatment distinct from direct Scope1/2 carbon costs",
+      "Owner identity/fiscal approval; no issuer is approved by this preparation",
+      "Same-horizon nominal currency and FCFE/FCFF pairing; no historical origin claimed",
+      "Source extraction may be partial; validate full original. Only publication calendar date known; no midnight timestamp fabricated",
+      "Justified joint uncertainty is missing; no invented probability distribution"
+    ]
+  }
+]

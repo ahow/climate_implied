@@ -16,6 +16,8 @@ import { overlaySelection } from "./snapshots/requestContract";
 import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { exactMemberAttribution } from "./calculation/memberAttribution";
 import { projectCompanyMembers } from "./calculation/companyProjection";
+import {listCompanyOperatingReviews,projectReviewedCompany} from "./snapshots/companyOperatingReview";
+import {projectionResponseSchema,type ProjectionResponse} from "../shared/projectionResponse";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { loadRegionalInputs } from "./snapshots/regional";
 import { calculateRegionalFromInputs } from "./calculation/regionalProjections";
@@ -99,14 +101,14 @@ const upload = multer({
   limits: { fileSize: 50 * 1024 * 1024 },
 });
 
-let projectionResultCache: any = null;
-let categoryCacheResult: any = null;
+let projectionResultCache: ProjectionResponse | null = null;
+let categoryCacheResult: ReturnType<typeof calculateAllCategoryProjections> | null = null;
 let regionalCacheResult: any = null;
 let regionalCacheFetchedAt = 0;
 const REGIONAL_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
-let historicalTrendCacheResult: any = null;
+let historicalTrendCacheResult: ReturnType<typeof getRecalculatedHistoricalTrend> | null = null;
 let sensitivityCacheResult: any = null;
-let categoryHistoricalTrendCache: any = null;
+let categoryHistoricalTrendCache: ReturnType<typeof getCategoryHistoricalTrend> | null = null;
 let projectionInputRevision = "";
 const routeCacheRevisions = new Map<string, string>();
 
@@ -352,7 +354,15 @@ export async function registerRoutes(
   app.get("/api/research/driver-registry", (_req, res) => {
     res.json({ status: "evidence-gaps-explicit", indicators: driverEvidenceRegistry() });
   });
-  app.post("/api/calculation/research-contracts", (req, res) => {
+  app.get("/api/calculation/company-operating/reviews",async(_req,res)=>{
+    try{
+      const rows=await listCompanyOperatingReviews();
+      res.set("Cache-Control","no-store");
+      res.set("X-Field-Semantics",bindNestedOutput("companyReview",rows).map(f=>f.id).join(","));
+      res.json(rows);
+    }catch{res.status(503).json({error:"Operating review storage unavailable or inconsistent"});}
+  });
+  app.post("/api/calculation/research-contracts", async (req, res) => {
     try {
       const x = req.body;
       let result: unknown;
@@ -360,6 +370,7 @@ export async function registerRoutes(
         case "member-metrics": result = summarizeMemberMetrics(x.input); break;
         case "member-attribution": result = exactMemberAttribution(x.input); break;
         case "company-projection": result = projectCompanyMembers(x.input); break;
+        case "reviewed-company-projection": result = await projectReviewedCompany(x.decisionId,x.cutoff); break;
         case "cash-flow-value": result = cashFlowValue(x.input); break;
         case "reverse-cash-flow-growth": result = reverseCashFlowGrowth(x.input); break;
         case "long-short-research": result = longShortResearch(x.input); break;
@@ -484,8 +495,9 @@ export async function registerRoutes(
 
       const cached = await storage.getProjectionCache(cacheKey);
       if (cached) {
-        res.set("X-Field-Semantics",bindNestedOutput("projection",cached.resultData).map(f=>f.id).join(","));
-        return res.json(cached.resultData);
+        const validatedCache=projectionResponseSchema.parse(cached.resultData);
+        res.set("X-Field-Semantics",bindNestedOutput("projection",validatedCache).map(f=>f.id).join(","));
+        return res.json(validatedCache);
       }
 
       const allNowcast = getAllHistoricalIndicatorsWithNowcast();
@@ -507,11 +519,11 @@ export async function registerRoutes(
       const emissionsDecadeLater = trajectory[10].p50;
       const emissions2100 = trajectory[trajectory.length - 1].p50;
 
-      const result = {
+      const result:ProjectionResponse = {
         calculation: {
           ...legacyContext(startYear, category),
           inputHash: calculationKey("effective-projection", indicators, { startYear, endYear: 2100, runs: 10000, category }),
-          inputRevision: res.locals.calculationRevision,
+          inputRevision: projectionResponseSchema.shape.calculation.shape.inputRevision.parse(res.locals.calculationRevision),
           runs: 10000,
           seeds: { emissions: startYear * 12345, temperaturePdf: 42 * 12345, temperatureSummary: 99 * 12345 },
           warnings: ["Legacy scientific assumptions retained; RNG corrected only. Not scientifically validated.",
@@ -537,6 +549,7 @@ export async function registerRoutes(
         },
       };
 
+      projectionResponseSchema.parse(result);
       res.set("X-Field-Semantics",bindNestedOutput("projection",result).map(f=>f.id).join(","));
       if (category === "all") {
         projectionResultCache = result;
