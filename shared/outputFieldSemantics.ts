@@ -9,6 +9,7 @@ import {companyReplaySemantics} from "./companyReplaySemantics";
 import { researchFieldSemantics } from "./researchFieldSemantics";
 import { companySummarySemantics } from "./companySummarySemantics";
 import { backtestFieldSemantics } from "./backtestFieldSemantics";
+import { peerValuationSemantics } from "./peerValuationSemantics";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
   dependencies:string[]; unit:string; source:string; period:string; geography:string;
@@ -36,6 +37,7 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...researchFieldSemantics,
   ...companySummarySemantics,
   ...backtestFieldSemantics,
+  ...peerValuationSemantics,
   {id:"pe.date",meaning:"Date of the compared carbon-intensity terciles",role:"Input",
     formula:"Workbook date grouping key",dependencies:["timeSeries.date"],unit:"ISO-8601 date",...peFinancial},
   ...["top","bottom"].flatMap(group=>[

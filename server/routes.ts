@@ -269,6 +269,10 @@ export async function registerRoutes(
         res.set("X-Field-Semantics",bindOutputFields("sdg",filtered).map(f=>f.id).join(","));
       if(req.originalUrl.split("?")[0]==="/api/cv/pe-comparison" && res.statusCode<400 && Array.isArray(filtered))
         res.set("X-Field-Semantics",bindOutputFields("pe",filtered).map(f=>f.id).join(","));
+      if(req.originalUrl.split("?")[0]==="/api/cv/decarb-gap/summary" && res.statusCode<400)
+        res.set("X-Field-Semantics",bindNestedOutput("peerValuation",filtered).map(f=>f.id).join(","));
+      if(req.originalUrl.split("?")[0]==="/api/cv/decarb-gap/timeseries" && res.statusCode<400 && Array.isArray(filtered))
+        res.set("X-Field-Semantics",bindOutputFields("peerValuationHistory",filtered).map(f=>f.id).join(","));
       return send(filtered);
     }) as typeof res.json;
     next();

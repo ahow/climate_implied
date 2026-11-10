@@ -3,12 +3,15 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T05:30:26.654877+00:00
+Updated: 2026-11-10T05:45:31.687934+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
 ## Latest implementation evidence
 
+- **final_additional_progress:** "Second bounded pass:23more ORIGINAL slots closed (21peer-summary+2historymetadata),totalNEW72thisrun,157oforiginal572closed;586/1001bound,415remaining,608actualdefinitions,denominator+0,4aliases.26newdisplaybindings thisrun;59total.10summary+5history physicalfields remainwithheld unchanged. Fullstrictgate stillfalse; dynamic/customsheet/replaymetadata gaps remain. No pinnedreplaycode changed."
+- **final_reference_infill:** "Executed12freshFaIR2.2.4 runs:NGFS5.1REMIND CurrentPolicies/NDC*2050/2030convergence*3existingmissinggasalternatives,each841members. All4conditionalmedian2100spreadgates<.01C:CP2050 .000838400,CP2030 .000838264,NDC2050 .000749905,NDC2030 .000749874C.27inventoryaccounts;worstanchorrelativeerror7.373e-14<=1e-6. Frozenprotocol/source/code/loghashes inReference_Gas_Infill_Results.md. ThesearecontrolledNGFS-derived gas sensitivities,notfullNGFSclimate reproduction oracceptedempiricalinfill:othergases/aerosols/history heldpinned,EDGARmissing/pre1970assumptionsremain,NDCMarch2024/2030scope NOTallcommitments.12*841 notjointcalibrated10k.3additionalPython tests pass;8newPython total."
+- **final_coherent_checks:** "npm run check && npx tsx --test script/*.test.ts && npm run build at2026-11-10T05:44:28Z:289pass/0fail/0skip;loggenerated-artifacts/workplan-completion/20261110T054428254673Z.log. Earlier285checks/intermediatef53a423 release notfinalhead. Exactfuture finalrelease receipt updated separately. Counts10verified/64partial/2blocked/224unreconciled afterS06-003/004/007/008partial; no fullcase/scienceacceptance claimed."
 - **current_independent_climate_and_original_gap:** "2026-11-10: prior8e646db/live43917a6/full280pass preserved. NEW49original /api/cv/backtest slots closed,563/1001bound; originalremaining487->438,cumulative134of572,denominator+0; definitions actual579(previous report527offbyone versus generated528),4aliases unchanged.15displayannotations and4actualdownload bindings added with percent/wealth/dynamiccomparison blanks explicit; full dynamic/customsheet/replaymetadata census still incomplete. Exact inventory in field_semantics_census.json; shared/backtestFieldSemantics.ts,BacktestSummary,route and two signalpages changed. No pinned companyreplaycode changed; no unchanged replay rerun."
 - **current_climate_execution:** "NEW forecastKaya protocolab7da56d frozen before scoring retainedOWID realseries:7/7unavailable,0fits/0promotions, complete2010-18training and2019-24holdout unchanged; exactmissingcells andsources in UserUnitB_Climate_Efficacy_Results.md. Immediately executed FaIR2.2.4 independentpublished upstream SSPbenchmark:8SSPs*66calibrations=528endpointcells pass,temperaturemax1.206335e-6C<=.01C,concentration5.880952e-5ppm,forcing2.983487e-7W/m2; originalannualcriterion unavailable because referencesonly2100endpoints. No10kcalibration/centralpromotion.5focusedPython tests pass;2missingbackend failures retained before ephemeral h5netcdf+h5py resolution. No EV/storage/fleet/beta reruns."
 - **current_prospective_engineering:** "NEW prospectiveSignal calculation/requesthash and DEVELOPMENTtransactional immutable capture helper+operatorCLI: databaseclock before execution/outcome, exactuniverse/order normalization, conflicting sameorigin/protocol/universe reject, repeats retainoriginal timestamp evenafterexecution, noapproval. Hashes are not sourceauthenticity; still submitted unreviewed signals. Actualrollback-onlyDBexercise passed05:27:31Z,loggenerated-artifacts/workplan-completion/20261110T052731877325Z.log, rowsconfirmedabsentafterrollback. No genuine live month captured. Existing sleeve/corporateevent code untouched; sourcedmarks/inference/lifecycleintegration still pending. Stage12fullcases remain0/3; no newcase claimed."
@@ -882,7 +885,7 @@ Commitments case: evaluate candidate sources, including Climate Resource's NDC +
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Locate compatible commitments inputs; run missing-gas and harmonisation sensitivities.
 
-### S06-003 — not-yet-reconciled
+### S06-003 — partial
 Harmonise each pathway to the 2024 inventory, converging by 2050, with a 2030-convergence sensitivity.
 
 - Section: implementation; origin: pre-existing-scope
@@ -893,7 +896,7 @@ Harmonise each pathway to the 2024 inventory, converging by 2050, with a 2030-co
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Locate compatible commitments inputs; run missing-gas and harmonisation sensitivities.
 
-### S06-004 — not-yet-reconciled
+### S06-004 — partial
 Infill the four missing gases (HFC-134, HFC-143, HFC-245fa, HFC-41) with a documented method and at least two alternatives.
 
 - Section: implementation; origin: pre-existing-scope
@@ -926,7 +929,7 @@ Build the pathway adapter so NGFS Phase VI can be swapped in when released.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Locate compatible commitments inputs; run missing-gas and harmonisation sensitivities.
 
-### S06-007 — not-yet-reconciled
+### S06-007 — partial
 Both cases match the 2024 inventory within 1e-6 relative.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -937,7 +940,7 @@ Both cases match the 2024 inventory within 1e-6 relative.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Locate compatible commitments inputs; run missing-gas and harmonisation sensitivities.
 
-### S06-008 — not-yet-reconciled
+### S06-008 — partial
 All required gases present. The 2100 warming spread across infill alternatives is reported against a 0.01°C materiality threshold. If it exceeds the threshold, it is reported as a material uncertainty; the infill is never adjusted to pass.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -3677,6 +3680,6 @@ Production SHA, health and displayed model and data versions agree.
     "S17-014",
     "S17-015"
   ],
-  "instruction": "Continue IMPLEMENTATION all0-17/amendments; verify current_release. Preserve563/1001bound,438originalremaining,cumulative134closed,579definitions,4aliases/native187+35/replay22; finish originalfamilies anddynamic/customsheet/replaymetadata census. Preserve new transactional prospectiveSignal capture/clock/conflict/idempotency and realdevrollback proof; not genuine monthlysignals or sourceauthentication. Finish sourced simultaneoussleeve marks/frequencyalignedoriginalinference/lifecyclecollateral/50returns, no kernelrestart or proxy efficacy. ForecastKaya7entities unavailable under unchangedwindows: assemble missing GDP/region series only with compatibledefinitions/vintages. Independent FaIR528upstreamSSPendpoint comparisons passed, butannualreference unavailable; proceed annual/history/referenceinfill requirements without unchangedendpoint rerun or10kcentralpromotion. Preserve FPLcashbridge/XOMphysicalCCS/FirstSolar45Xsensitivity/CATrefusal;0/3fullissuer cases still. Complete defensible5year operatingcashflow/valuationpairing, not more source-only packets. Full9path/nonemptytargets stillactionable. Counts10verified/60partial/2blocked/228unreconciled. Preserve beta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06 failures,EVfailure/storage sensitivityonly. No collectorchange/purchases/DDL/destruction/secretlicenseleak/gateweakening; publicPOST403. OneNEWcheckpoint onlyactualrunend afterevidence.",
+  "instruction": "Continue IMPLEMENTATION all0-17/amendments; verify current_release. Preserve586/1001bound,415originalremaining,cumulative157closed,608definitions,4aliases/native187+35/replay22; finish originalfamilies/dynamic/customsheet/replaymetadata census. Transactional prospectiveSignal capture/DBclock/conflict/repeat/rollback nowexists; genuine monthlysignal/sourceauthentication stillpending. Finish sourced simultaneoussleeve marks/frozenfrequencyalignedinference/lifecyclecollateral/50returns,not isolatedkernelrestart. ForecastKaya7entities unavailable: assemble compatible missingGDP/regionseries withoutwindowshortening. FaIR528publishedSSPendpoint comparisons passed;annualreference stillunavailable. New12NGFSderivedgasinfillruns passedconditionalspread<.01C andanchor1e-6 gates; othergases/aerosols/historypinned,notfullNGFSreproduction/acceptedempiricalinfill/joint10kcalibration. Preserve results,do notrerun unchanged. Proceed missingannual/history/empiricalinfill/source requirements. FPLcashbridge/XOMphysicalCCS/FirstSolar45Xsensitivity/CATrefusal preserved;0/3fullissuer cases. Complete defensible5year cashflow/valuationpairing,notmore source-onlypackets. Full9path/nonemptytargetintegration remainsactionable. Counts10verified/64partial/2blocked/224unreconciled. Preserve beta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06 failures,EVfailure/storage sensitivityonly. No collectorchange/purchases/DDL/destruction/secretlicenseleak/gateweakening;publicPOST403. OneNEWcheckpoint onlyactualrunend afterevidence.",
   "background_tasks": []
 }

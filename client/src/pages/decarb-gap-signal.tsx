@@ -505,7 +505,7 @@ export default function DecarbGapSignal() {
               <div className="flex items-center justify-between gap-2 mb-2">
                 <span className="text-xs text-muted-foreground font-medium">Companies Scored</span>
               </div>
-              <p className="text-2xl font-bold tabular-nums" data-testid="text-company-count">
+              <p className="text-2xl font-bold tabular-nums" data-testid="text-company-count" data-field-id="peerValuation.companyCount">
                 {summary ? summary.companyCount : "\u2014"}
               </p>
               <p className="text-xs text-muted-foreground">
@@ -609,11 +609,11 @@ export default function DecarbGapSignal() {
                     <tbody>
                       {summary?.topCompanies.map((c) => (
                         <tr key={c.companyId} className="border-b border-border/50">
-                          <td className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
-                          <td className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
-                          <td className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
-                          <td className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
-                          <td className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
+                          <td data-field-id="peerValuation.topCompanies[].companyName" className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
+                          <td data-field-id="peerValuation.topCompanies[].sector" className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
+                          <td data-field-id="peerValuation.topCompanies[].pe" className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
+                          <td data-field-id="peerValuation.display.topCompanies.gordonBaselinePct" className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
+                          <td data-field-id="peerValuation.display.topCompanies.peerGapPp" className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -640,11 +640,11 @@ export default function DecarbGapSignal() {
                     <tbody>
                       {summary?.bottomCompanies.map((c) => (
                         <tr key={c.companyId} className="border-b border-border/50">
-                          <td className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
-                          <td className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
-                          <td className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
-                          <td className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
-                          <td className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
+                          <td data-field-id="peerValuation.bottomCompanies[].companyName" className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
+                          <td data-field-id="peerValuation.bottomCompanies[].sector" className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
+                          <td data-field-id="peerValuation.bottomCompanies[].pe" className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
+                          <td data-field-id="peerValuation.display.bottomCompanies.gordonBaselinePct" className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
+                          <td data-field-id="peerValuation.display.bottomCompanies.peerGapPp" className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
                         </tr>
                       ))}
                     </tbody>

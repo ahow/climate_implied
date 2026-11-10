@@ -119,13 +119,14 @@ const isBound=(e:typeof unique[number])=>([
   ['API GET "/api/cv/summary"', "companySummary"],
   ['API GET "/api/cv/dimensions"', "companyDimensions"],
   ['API GET "/api/cv/backtest"', "backtest"],
+  ['API GET "/api/cv/decarb-gap/summary"', "peerValuation"],
 ].some(([surface,prefix])=>e.surface===surface && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field}`))) || (e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
   outputFieldSemantics.some(f=>f.id===`companyReplay.ledger.${e.field.replace(/^\[\]\./,"")}`)) || (e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
   nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
   Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
   outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
       outputFieldSemantics.some(f=>f.id===`projection.${e.field}`)) || (e.field.startsWith("[].") &&
-    [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"],["/api/calculation/company-operating/reviews","companyReview"]].some(([path,prefix])=>
+    [["/api/cv/decarb-gap/timeseries","peerValuationHistory"],["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"],["/api/calculation/company-operating/reviews","companyReview"]].some(([path,prefix])=>
       e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`))) ||
       (e.surface==='API GET "/api/cv/backtest"' && e.field.startsWith("[].") &&
         outputFieldSemantics.some(f=>f.id===`backtest.${e.field.slice(3)}`));
@@ -158,6 +159,7 @@ const originalClosureSurfaces = [
   'API GET "/api/research/driver-registry"', 'API GET "/api/reference-scenarios"',
   'API GET "/api/cv/summary"', 'API GET "/api/cv/dimensions"',
   'API GET "/api/cv/backtest"',
+  'API GET "/api/cv/decarb-gap/summary"', 'API GET "/api/cv/decarb-gap/timeseries"',
 ];
 const originalClosedSlots = unique.filter(e=>originalClosureSurfaces.includes(e.surface)&&isBound(e))
   .map(e=>({surface:e.surface,field:e.field}));
@@ -169,7 +171,7 @@ const reconciliation = baseline ? {} : {
     currentPublicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length,
     publicSlotDenominatorDelta:unique.filter(e=>e.resolution!=="withheld-public-field").length-1001,
     reconciledCacheAliases:4,
-    note:"Only explicitly reviewed original response families count as closure here, including 49 backtest slots after the previously closed 85. Definition additions and separately inventoried displays/export binding expressions are not original slot closure.",
+    note:"Only explicitly reviewed original response families count as closure here: previous 85, backtest 49, peer valuation summary/history 23. Withheld physical claims are not closure. Definition additions and separately inventoried displays/export binding expressions are not original slot closure.",
   },
 };
 const out=JSON.stringify({...report,...reconciliation},null,2)+"\n";
