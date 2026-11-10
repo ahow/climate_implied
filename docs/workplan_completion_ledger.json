@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "current_release": {
-    "workspace_commit": "fca066b799bc64ae4f160411a2e4db8c729e6494",
-    "github_main": "02afe6457d6e20b96e281b43fa76e0fcd462ce26",
-    "ci": "42732701451 validation and promotion success",
-    "railway_deployment": "483ce3e1-33b5-4873-a14a-e3cb5d5fd124",
+    "workspace_commit": "f05650406618371f77fb0d42d11043aefc5a07bc",
+    "github_main": "e1067d986e26dc6ecb854504372c14ad7a56fd5a",
+    "ci": "42733997496 success",
+    "railway_deployment": "8de8fa40-d05f-452e-98ed-fd406ea2b8fc",
     "railway_status": "SUCCESS",
     "smoke": "health/build-info/field-semantics200;source SHA matches;16fields",
-    "verified_at": "2026-11-10T01:10:59.382320+00:00",
-    "later_local_only": "Expanded9-path verifier and final ledger reconciliation pending source export"
+    "verified_at": "2026-11-10T01:18:48.345848+00:00",
+    "later_local_only": "Subsequent response quartile withholding/concurrency evidence pending final source export"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T01:11:22.300050+00:00",
+  "updated_at": "2026-11-10T01:18:48.345921+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -1463,22 +1463,47 @@
           "id": "S01-013",
           "source_section": "acceptance",
           "requirement": "Withheld fields absent from API responses, the UI bundle and exports.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Output_Controls_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/publicValuationContract.ts",
+            "script/public-valuation-contract.test.ts"
+          ],
+          "behaviour_delivered_this_run": "Removed leaked p25ImpliedRate/p75ImpliedRate from public current-response filter; no client consumers found; regression includes both. Historical immutable output records untouched.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/public-valuation-contract.test.ts"
+              ],
+              "executed_at": "2026-11-10T01:16:51.020989+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 1.941,
+              "counts": {
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T011651020989Z.log",
+              "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
           "scientific_acceptance": "not-assessed",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Complete field-level API/UI/export inventory and historical-archive interpretation remains open."
           ],
           "next_action": "Audit each response field and export against formula/unit/population register.",
           "blockers": []
@@ -2839,22 +2864,40 @@
           "id": "S02-008",
           "source_section": "acceptance",
           "requirement": "A concurrent-write test shows no request mixes data versions.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "implemented-this-run",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/check-overlay-concurrency-db.ts"
+          ],
+          "behaviour_delivered_this_run": "Real SDG baseline request suspended across rollback-only overlay approval; modified request changes, old baseline hash unchanged, full synthetic rollback confirmed. Other refresh combinations remain untested.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/check-overlay-concurrency-db.ts"
+              ],
+              "executed_at": "2026-11-10T01:12:45.057766+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 20.04,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T011245057766Z.log",
+              "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
           "scientific_acceptance": "not-assessed",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Concurrent financial/carbon/driver refresh combinations and output/export identity across those changes."
           ],
           "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
           "blockers": []
@@ -12965,6 +13008,87 @@
       "workspace_revision": "2f9e7a52fdb63640bf9117c5bf79fb55abd1daf4",
       "worktree_dirty": false,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/check-overlay-concurrency-db.ts"
+      ],
+      "executed_at": "2026-11-10T01:12:45.057766+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 20.04,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T011245057766Z.log",
+      "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-c",
+        "import json,urllib.request;b='https://dashboard-production-4d39.up.railway.app';x=json.load(urllib.request.urlopen(b+'/api/build-info',timeout=30));assert x['sourceCommit']=='e1067d986e26dc6ecb854504372c14ad7a56fd5a';assert json.load(urllib.request.urlopen(b+'/api/health',timeout=30))['status']=='ok';assert len(json.load(urllib.request.urlopen(b+'/api/calculation/field-semantics',timeout=30))['fields'])==16;print(json.dumps(x));print('PASS health and16 field semantics')"
+      ],
+      "executed_at": "2026-11-10T01:15:04.261818+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 2.996,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T011504261818Z.log",
+      "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/public-valuation-contract.test.ts"
+      ],
+      "executed_at": "2026-11-10T01:16:51.020989+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 1.941,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T011651020989Z.log",
+      "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T01:16:53.333630+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.449,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T011653333630Z.log",
+      "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T01:17:06.178259+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 21.342,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T011706178259Z.log",
+      "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -13264,7 +13388,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope. Expanded replay verifier now matches9 actual CV result paths, not justSDG; do not rerun the same settings unnecessarily. Test refresh/concurrency/nonempty targets and finish per-column mappings. Release core02afe645 verified live. Latest operator/ledger additions pending export.",
+    "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope. Expanded replay verifier now matches9 actual CV result paths, not justSDG; do not rerun the same settings unnecessarily. Test refresh/concurrency/nonempty targets and finish per-column mappings. Release core02afe645 verified live. Latest operator/ledger additions pending export. Actual overlapping SDG review/request test now passes with complete rollback; other refresh combinations pending. Current response filter additionally withholds p25/p75ImpliedRate; preserve historical archives. Source workplan/amendment hashes verified unchanged. Do not treat retained-curated driver hashes as original-vintage proof.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -13351,5 +13475,11 @@
       "resultHash": "9b664a9e2d81e73c9fb8b392d02bdc49680cf9834910ea225d796c8b1f29463e",
       "meaning": "Fresh-process actual SDG calculator replay; not acceptance of other endpoints or original vintages"
     }
-  ]
+  ],
+  "release_gate_observation": {
+    "rejected_source": "79c76efb7d6609ff1c75ed840a66d19e19ea086c",
+    "run": "42733921736",
+    "conclusion": "failure",
+    "reason": "Verified ledger row lacked attached execution evidence; corrected by attaching actual executed receipt, not bypassing validation"
+  }
 }

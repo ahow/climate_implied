@@ -3,7 +3,7 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T01:11:22.300050+00:00
+Updated: 2026-11-10T01:18:48.345921+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
@@ -264,15 +264,15 @@ Zero API or export fields absent from the register; zero register entries lackin
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Audit each response field and export against formula/unit/population register.
 
-### S01-013 — not-yet-reconciled
+### S01-013 — partial
 Withheld fields absent from API responses, the UI bundle and exports.
 
-- Section: acceptance; origin: pre-existing-scope
+- Section: acceptance; origin: existing-plus-this-run
 - Existing evidence: docs/Output_Controls_Execution.md
-- Delivered this run: None recorded
+- Delivered this run: Removed leaked p25ImpliedRate/p75ImpliedRate from public current-response filter; no client consumers found; regression includes both. Historical immutable output records untouched.
 - Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Executions: [{"command": ["npx", "tsx", "--test", "script/public-valuation-contract.test.ts"], "executed_at": "2026-11-10T01:16:51.020989+00:00", "exit_code": 0, "elapsed_seconds": 1.941, "counts": {"tests": 2, "pass": 2, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T011651020989Z.log", "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Gaps: Complete field-level API/UI/export inventory and historical-archive interpretation remains open.
 - Next: Audit each response field and export against formula/unit/population register.
 
 ### S01-014 — not-yet-reconciled
@@ -387,15 +387,15 @@ An earlier manifest reproduces its analytical output hashes (excluding timestamp
 - Gaps: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.; Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.; Production archive schema remains unprovisioned; no DDL attempted.
 - Next: Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.
 
-### S02-008 — not-yet-reconciled
+### S02-008 — partial
 A concurrent-write test shows no request mixes data versions.
 
-- Section: acceptance; origin: pre-existing-scope
+- Section: acceptance; origin: implemented-this-run
 - Existing evidence: docs/Analysis_Wide_Historical_Selection.md
-- Delivered this run: None recorded
+- Delivered this run: Real SDG baseline request suspended across rollback-only overlay approval; modified request changes, old baseline hash unchanged, full synthetic rollback confirmed. Other refresh combinations remain untested.
 - Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Executions: [{"command": ["npx", "tsx", "script/check-overlay-concurrency-db.ts"], "executed_at": "2026-11-10T01:12:45.057766+00:00", "exit_code": 0, "elapsed_seconds": 20.04, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T011245057766Z.log", "workspace_revision": "f05650406618371f77fb0d42d11043aefc5a07bc", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Gaps: Concurrent financial/carbon/driver refresh combinations and output/export identity across those changes.
 - Next: Investigate production database ownership; provision through supported route; implement complete overlay replay.
 
 ### S02-009 — not-yet-reconciled
@@ -3641,6 +3641,6 @@ Production SHA, health and displayed model and data versions agree.
     "S17-014",
     "S17-015"
   ],
-  "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope. Expanded replay verifier now matches9 actual CV result paths, not justSDG; do not rerun the same settings unnecessarily. Test refresh/concurrency/nonempty targets and finish per-column mappings. Release core02afe645 verified live. Latest operator/ledger additions pending export.",
+  "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope. Expanded replay verifier now matches9 actual CV result paths, not justSDG; do not rerun the same settings unnecessarily. Test refresh/concurrency/nonempty targets and finish per-column mappings. Release core02afe645 verified live. Latest operator/ledger additions pending export. Actual overlapping SDG review/request test now passes with complete rollback; other refresh combinations pending. Current response filter additionally withholds p25/p75ImpliedRate; preserve historical archives. Source workplan/amendment hashes verified unchanged. Do not treat retained-curated driver hashes as original-vintage proof.",
   "background_tasks": []
 }

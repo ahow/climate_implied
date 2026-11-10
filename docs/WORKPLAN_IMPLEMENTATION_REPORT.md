@@ -2,6 +2,15 @@
 
 ## Latest continuation: carbon/SDG lifecycle and material replay
 
+Additional verified work: real overlapping SDG review/request isolation test passes
+with complete synthetic rollback. New request changes; suspended baseline request
+retains its exact hash. See script/check-overlay-concurrency-db.ts.
+Field audit also found and removed p25ImpliedRate/p75ImpliedRate from the current
+public response filter; the two focused withholding tests pass.
+The later verifier/evidence export e1067d9 passed CI42733997496 and deployed as
+Railway8de8fa40 SUCCESS, with matching live build-info. The withholding change
+and concurrency script are a subsequent increment, tracked by later release receipts.
+
 **Expanded evidence:** all nine archived company-analysis result paths now have
 actual API-to-fresh-process matching JSON hashes at tested settings. Bands and
 terciles are empty due to absent targets, not calibrated predictions. No refresh

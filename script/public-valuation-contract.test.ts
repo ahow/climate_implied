@@ -9,6 +9,7 @@ test("public valuation contract removes unsupported values even from cached nest
 test("physical gap fields and their distribution cannot leak through descriptive endpoints", () => {
   assert.deepEqual(publicValuationResult({
     projectedRate: 3, gap: 1, medianImpliedRate: 2, meanImpliedRate: 2,
+    p25ImpliedRate:1,p75ImpliedRate:4,
     distribution: [{ bucket: "physical gap", count: 5 }], pe: 12,
     nested: { gap: -1, impliedGrowth: .02 },
   }, true), { pe: 12, nested: { impliedGrowth: .02 } });

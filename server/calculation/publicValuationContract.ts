@@ -1,6 +1,7 @@
 const unsupported = new Set([
   "impliedTemperature", "impliedCarbonPrice", "impliedDecarbRate", "netZeroYear",
   "projectedRate", "gap", "medianImpliedRate", "meanImpliedRate",
+  "p25ImpliedRate", "p75ImpliedRate",
 ]);
 /** Keep descriptive input rows, but never publish unsupported physical claims. */
 export function publicValuationResult(value: unknown, stripPhysicalDistribution = false): unknown {

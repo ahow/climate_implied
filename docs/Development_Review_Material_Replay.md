@@ -2,6 +2,26 @@
 
 ## Final expanded replay and release observations
 
+Further real lifecycle test: script/check-overlay-concurrency-db.ts suspends an
+actual baseline SDG request, approves a disposable SDG overlay inside a transaction,
+runs a modified request, then resumes the baseline request. The modified result
+changes; baseline hash stays ed45b0f16d8860e67d366fa6e5739405e442e459ebdc95e43f229fa657ace21f.
+All synthetic proposals/decisions/overlays roll back. This verifies SDG request
+isolation across an overlapping review, not all combinations of refresh types.
+
+The output audit found unwithheld p25ImpliedRate/p75ImpliedRate fields in gap
+timeseries. Both were added to the existing public response filter and its
+regression test. No client consumers exist; calculations and immutable historical
+records are unchanged. Earlier replay hashes remain evidence of their recorded
+source versions, not the changed response-filter version.
+
+The expanded verifier/evidence export e1067d986e26dc6ecb854504372c14ad7a56fd5a
+passed CI42733997496 and Railway8de8fa40-d05f-452e-98ed-fd406ea2b8fc reached
+SUCCESS. Live build identity/health/16-field semantics checks passed.
+An intervening ledger-only source79c76ef failed CI42733921736 because a verified
+row lacked attached execution evidence. The actual executed receipt was attached,
+validation then passed; no CI or approval bypass occurred.
+
 The verifier was subsequently extended to all nine archived CV result paths.
 Actual API requests followed by fresh-process calculation matched exact JSON
 hashes for summary, P/E comparison, carbon-price diagnostic, SDG growth,
