@@ -34,7 +34,11 @@ test("every proposed clause has exact check type, real execution array, gaps and
     for (const execution of record.executions) {
       assert.ok(execution.command);
       assert.ok(execution.log);
-      assert.ok(readFileSync(execution.log, "utf8").length > 0);
+      // Private bytes are required by validate-clause-private-evidence.ts,
+      // not exported to the source-only CI checkout.
+      assert.equal(typeof execution.log,"string");
+      assert.ok(execution.log.startsWith("generated-artifacts/"));
+      if(execution.log_sha256!==undefined)assert.match(execution.log_sha256,/^[a-f0-9]{64}$/);
     }
     assert.ok(Array.isArray(record.remaining_gaps));
     assert.ok(record.next_action && record.ready_action.owner && record.ready_action.action);
