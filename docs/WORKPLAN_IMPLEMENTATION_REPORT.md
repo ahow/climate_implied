@@ -2060,3 +2060,98 @@ Safe published source/report is under https://github.com/ahow/climate_implied/tr
 }
 
 No original clause/source/amendment reindexing. Existing39verified259partial2provisioning-blocked remain; all300 retained. Source hashes are not publication vintages; tests are not science acceptance. Owner-approved/public data were not activated. Existing scheduler/cadence/auth/approval boundaries preserved.
+
+## Resumed run: final verified release and clause-level outcomes
+
+{
+  "workspace_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
+  "github_main": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+  "ci": "42924327747 validate/promote success",
+  "railway_deployment": "8b3f1d05-ce55-4047-931b-bcdfd543817f",
+  "railway_status": "SUCCESS",
+  "verified_at": "2026-11-10T23:38:19.839443+00:00",
+  "smoke": {
+    "/api/build-info": {
+      "status": 200,
+      "body": {
+        "sourceCommit": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      }
+    },
+    "/api/health": {
+      "status": 200
+    },
+    "/api/calculation/field-semantics": {
+      "status": 200,
+      "returnIndex": {
+        "field": "totalReturnIndex",
+        "role": "Input",
+        "unit": "index",
+        "formula": "Reported cumulative total-return index; period return = ending index / starting index - 1 for finite strictly positive levels",
+        "dependencies": [],
+        "source": "Selected workbook plus ordered approved overlays",
+        "vintage": "Revised history; original publication vintage not certified",
+        "asOf": "Selected workbook observation label, not independently verified exchange-close time. Exact market-calendar and cash-dividend/split conventions require source evidence; no nearest-trading-date substitution or original-vintage claim."
+      }
+    },
+    "/api/calculation/company-coverage": {
+      "status": 503
+    },
+    "publicReplayPost": {
+      "status": 403
+    },
+    "verifiedAt": "2026-11-10T23:38:19.839443+00:00"
+  },
+  "receipt_boundary": "Verified implementation, not the later documentation receipt. Production coverage503 remains unavailable; no production data/science activation."
+}
+
+### S12-001
+Implemented and executed source-bound funded five-year/fade/terminal/stub operating paths and interval-certified operating-driver reverse; no FCFE-path adjustment relabelled activity growth.
+
+18 v4 assessments:7 certified no-root,5 nonpositive-terminal bracket refusals,6 unsupported NEE driver refusals;0 actual operating target matches;0/3qualified original cases. V3 nine mathematical pairs remain separate.
+
+Next: Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.
+
+Evidence: `docs/issuer-analytics-evidence.json`; changed: `server/calculation/issuerOriginalOperatingCase.ts`, `server/calculation/issuerOperatingDriverReverse.ts`
+
+### S07-008
+Implemented source GWI observational-constraint operator and actual official history comparisons; no arbitrary GSAT conversion or old SSP rerun.
+
+2015–25 SSP245/actual ERF RMSE:CO2 .06038374,CH4 .04022194,N2O .00448006,solar .03448956,volcanic .09825245 W/m2. Qualified GMST share null.
+
+Next: Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025.
+
+Evidence: `docs/physical-attribution-evidence.json`; changed: `script/igcc_observation_operator.py`, `script/validate_igcc_official_sources.py`
+
+### S04-002, S04-004, S04-008
+Added evaluatePolicyExposure/retainedPolicyExposureSnapshot with hash/source/denominator/status guards; inspected full-window original IRENA source, retaining missing cells.
+
+2025 covered-price≈19 ×coverage≈.28 gives5.32USD2025/total tCO2e descriptive gross exposure only.1264 null capacity cells not zeros; no wind fit or calibration promotion.
+
+Next: Resolve compatible complete capacity/exact cost table; evidence exemptions/enforcement and real policy response distributions before forecast consumption.
+
+Evidence: `docs/driver-source-continuation-evidence.json`; changed: `server/calculation/driverParameterRegistry.ts`, `script/driver_source_continuation.py`
+
+### S14-010, S14-012, S14-014, S15-008, S15-010, S15-011, S15-013
+Connected source-bound simultaneous monthly sleeve NAVs, entry/exit costs, cash/collateral/lifecycle and dated regional/workbook factors to declared12month inference cells; retained hypothetical borrow accounting separately from investability.
+
+36 focused tests passed including hand-reconciled accounting, actual pipeline inference and price/FX substitution refusals; source-only engineering, not historical efficacy.
+
+Next: Assemble genuine source-qualified monthly holdings/lifecycle/factors and reviewed paired projections, then actual frozen-family evaluation; no synthetic acceptance.
+
+Evidence: `docs/portfolio-frequency-evidence.json`; changed: `server/calculation/pairedResearchFrequency.ts`, `server/calculation/pairedResearchCorpus.ts`, `server/calculation/pairedResearchPipeline.ts`, `server/calculation/pairedResearchSleeves.ts`
+
+### S15-009, S01-001
+Froze full-workbook random sample, implemented independent split/dividend reinvestment reconciliation and retained bounded FMP identity attempts. Clarified observation-label versus exchange-close semantics.
+
+411339 population;50 sampled;50/50 exactISIN candidates;24 weekend-boundary intervals;0 qualified return comparisons;break rates null, not zero.
+
+Next: Verify original listing/currency/class history and exact price/dividend/split/calendar conventions; retain all50 denominator and do not substitute dates or sampled rows.
+
+Evidence: `docs/Return_Quality_Protocol.json`; changed: `server/calculation/returnQuality.ts`, `script/return-quality.test.ts`, `script/prepare-return-quality-sample.ts`, `script/attempt-return-quality-identities.ts`, `script/validate-return-quality-private.ts`, `shared/fieldSemantics.ts`
+
+511publicTS/0fail/0skip;123publicPython passed;3new mandatoryprivate policy tests passed; return-quality and original-issuer private validators passed. Initial shell then refused because operator-driver validator lacked explicit --private-primary flag. Recovery used required flag (no guard change), passed new validator plus primary-file/pinned355-assertion validators and build. Typecheck passed. Existing4driver/4wind private receipts preserved, not recounted as new.
+
+Context limit after recovered release, substantive parallel implementation/studies, integrated checks and verified new gated release; ready work remains, not completion.
+Originalcoverage1000/1001 unchanged;1703definitions/current1323/1324/expanded1484/1485 are supplemental, not originalclosure.39verified259partial2blocked0unreconciled;0/3qualifiedoriginalissuer cases and efficacy withheld. Independent owner/audit acceptance unclaimed.
