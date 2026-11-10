@@ -36,6 +36,9 @@ test("Unverified recovery bytes are never written; archived fallback cannot mask
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 test("Historical loader refuses arbitrary, missing and duplicate source paths before recovery/execution", async () => {
+  const old=process.env.NODE_ENV;
+  process.env.NODE_ENV="test";
+  try {
   await assert.rejects(loadPinnedFslrCode([]), /exactly the three/);
   await assert.rejects(loadPinnedFslrCode(Array.from({ length: 3 }, () => ({
     path: "server/calculation/companyFullCashflowCase.ts", sha256: "a".repeat(64),
@@ -45,6 +48,17 @@ test("Historical loader refuses arbitrary, missing and duplicate source paths be
     { path: "server/calculation/fslrFullCashflowCase.ts", sha256: "a".repeat(64) },
     { path: "server/calculation/issuerConditionalFiveYear.ts", sha256: "a".repeat(64) },
   ]), /exactly the three/);
+  } finally { if(old===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=old; }
+});
+test("Production refuses even structurally valid private replay before Git or file recovery", async()=>{
+  const old=process.env.NODE_ENV;process.env.NODE_ENV="production";
+  try {
+    await assert.rejects(loadPinnedFslrCode([
+      "server/calculation/companyFullCashflowCase.ts",
+      "server/calculation/fslrFullCashflowCase.ts",
+      "server/calculation/issuerConditionalFiveYear.ts",
+    ].map(path=>({path,sha256:"a".repeat(64)}))),/Private historical replay only/);
+  } finally { if(old===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=old; }
 });
 test("Recovered source mismatching frozen hashes fails closed, with no current-code fallback", () => {
   assert.throws(()=>verifyRecoveredSources([

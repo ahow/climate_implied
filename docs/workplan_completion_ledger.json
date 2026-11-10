@@ -497,7 +497,7 @@
     "later_local_only": "This final receipt/checkpoint documentation is not deployed; published implementation/report is d843960."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T13:13:38.367786+00:00",
+  "updated_at": "2026-11-10T13:22:51.362967+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -88074,6 +88074,26 @@
       },
       "log": "generated-artifacts/workplan-completion/20261110T131333325228Z.log",
       "workspace_revision": "ac1fb00f470cc1ec56d0574c877db1aca5e11211",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "NODE_ENV=production npx tsx --test script/*.test.ts && npx tsx script/validate-company-filing-private.ts"
+      ],
+      "executed_at": "2026-11-10T13:22:19.284556+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 31.332,
+      "counts": {
+        "tests": 440,
+        "pass": 440,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log",
+      "workspace_revision": "2381f1f5b14c7121bc4635caa877a6df8c86cfca",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
