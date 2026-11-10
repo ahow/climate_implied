@@ -48,7 +48,7 @@
     "later_local_only": "Final documentation/receipt updates"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T02:25:33.180575+00:00",
+  "updated_at": "2026-11-10T02:28:49.116245+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -13980,6 +13980,28 @@
       "counts": null,
       "log": "generated-artifacts/workplan-completion/20261110T022515436607Z.log",
       "workspace_revision": "446b90986df329f554e4ae71b714da4060094536",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/output-field-semantics.test.ts",
+        "script/semantics-provenance.test.ts"
+      ],
+      "executed_at": "2026-11-10T02:28:43.960012+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.081,
+      "counts": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T022843960012Z.log",
+      "workspace_revision": "1327e9793811b5294f5693b0aad784b240f1a24d",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }

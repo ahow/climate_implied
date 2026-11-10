@@ -3,7 +3,9 @@ import { readFileSync,writeFileSync } from "node:fs";
 import { fieldSemantics } from "../shared/fieldSemantics";
 import { outputFieldSemantics } from "../shared/outputFieldSemantics";
 import { publicValuationResult } from "../server/calculation/publicValuationContract";
-import { execFileSync } from "node:child_process";
+import { execFileSync,spawnSync } from "node:child_process";
+import { relative,resolve } from "node:path";
+const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
 const baseline=process.argv.find(x=>x.startsWith("--baseline="))?.split("=")[1];
@@ -11,14 +13,17 @@ const host=ts.createCompilerHost(parsed.options),read=host.readFile.bind(host);
 if(baseline) {
   if(!/^[a-f0-9]{7,40}$/.test(baseline)) throw new Error("Explicit baseline Git revision required");
   const changed=execFileSync("git",["diff","--name-only",baseline],{encoding:"utf8"}).trim().split("\n").filter(p=>/\.(ts|tsx)$/.test(p));
-  const sources=new Map(changed.map(path=>[path,execFileSync("git",["show",`${baseline}:${path}`],{encoding:"utf8"})]));
+  const sources=new Map(changed.flatMap(path=>{
+    const result=spawnSync("git",["show",`${baseline}:${path}`],{encoding:"utf8"});
+    return result.status===0?[[path,result.stdout] as const]:[];
+  }));
   host.readFile=path=>sources.get(path.replace(`${process.cwd()}/`,"").replace(/^\.\//,"")) ?? read(path);
 }
 const program=ts.createProgram(parsed.fileNames,parsed.options,host),checker=program.getTypeChecker();
 type Entry={surface:string;field:string;type:string;source:string;line:number;resolution:string};
 const entries:Entry[]=[];
 function fields(type:ts.Type,path:string,surface:string,node:ts.Node,depth=0) {
-  const source=node.getSourceFile(),where={source:source.fileName,line:source.getLineAndCharacterOfPosition(node.getStart()).line+1};
+  const source=node.getSourceFile(),where={source:relativeSource(source.fileName),line:source.getLineAndCharacterOfPosition(node.getStart()).line+1};
   if(type.isUnion()) {for(const t of type.types) if(!(t.flags&(ts.TypeFlags.Null|ts.TypeFlags.Undefined))) fields(t,path,surface,node,depth);return;}
   if(type.flags&(ts.TypeFlags.Any|ts.TypeFlags.Unknown) || depth>8) {
     entries.push({surface,field:path||"$",type:checker.typeToString(type),...where,resolution:"unresolved-type"});return;
@@ -48,7 +53,7 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
       if(prop&&ts.isJsxAttribute(prop)&&prop.initializer&&ts.isJsxExpression(prop.initializer)&&prop.initializer.expression) {
         let type=checker.getTypeAtLocation(prop.initializer.expression);
         const signature=type.getCallSignatures()[0];if(signature) type=checker.getReturnTypeOfSignature(signature);
-        fields(type,"",`XLSX ${source.fileName}:${source.getLineAndCharacterOfPosition(node.getStart()).line+1}`,node);
+        fields(type,"",`XLSX ${relativeSource(source.fileName)}:${source.getLineAndCharacterOfPosition(node.getStart()).line+1}`,node);
       }
     }
     ts.forEachChild(node,child=>visit(child,surface));
