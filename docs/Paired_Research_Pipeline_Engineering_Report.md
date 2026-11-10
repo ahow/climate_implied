@@ -1,5 +1,126 @@
 # Paired Stage 14/15 orchestration — engineering receipt
 
+## Bounded accounting extension (supersedes remaining-engineering statements below)
+
+Historical efficacy remains **WITHHELD**. No historical positive family result,
+investability, independent review, approval, release or production mutation is
+asserted. Existing report sections below describe the preceding implementation.
+
+### Implemented clauses and boundaries
+
+* **S14-004/010, S15-002:** `pairedResearchSleeves.ts` adds an explicitly frozen
+  origin/deployment/maturity/capital schedule for overlapping exact 12-month
+  cohorts. Unallocated capital is held separately; all live cohorts require
+  simultaneous marks. Settlement releases cash once, including same-boundary
+  redeployment. Cash, restricted cash, signed issuer values, gross/net exposure
+  and aggregate NAV/return are reconciled without adding sleeve NAV twice.
+  Insufficient deployment capital, missing marks and unsettled maturity fail.
+  This is a marked capital ledger, **not** interpolated monthly performance
+  from annual endpoints. Primary 12-month spread-factor inference still rejects
+  overlapping endpoint rows: it needs a reviewed monthly sleeve-return/factor
+  mapping and a frozen choice of that estimand. No inference silently changes.
+* **S15-001/003/011/014/015:** a separate constrained-long-only overlay consumes
+  the unchanged kernel's past-only tilt (12-row warm-up, 2% target, cap 5).
+  Frozen variants support sector-neutral totals, maximum active weights,
+  explicit trailing-liquidity participation limits and monthly/quarterly
+  rebalancing. Eligibility/liquidity must be provided at origin. Quarterly
+  off-months retain drifted positions; costs use actual weight changes. The
+  overlay intersects feasible constraints along the benchmark-to-tilt line,
+  rather than claiming a general optimizer; infeasible cases are unavailable.
+  No arbitrary liquidity, cost or eligibility value is supplied. Constraints
+  are enforced at rebalances, not asserted continuously between rebalances.
+* **S15-008/013 and amendment 13:** `pairedResearchEvents.ts` implements ordered
+  split, payment-date-FX dividend (including short liability), cash/stock merger,
+  cash delisting, collateral transfer/release, explicit borrow fee, financing
+  expense and cash-interest events. Coverage receipts and retained source hashes
+  are required; missing successor marks, borrow coverage, financing for negative
+  cash, and invalid collateral releases fail closed. Missing observed borrow
+  requires an explicit hypothetical fee; forbidden borrow fails. Event books
+  are separate from the legacy period-end aggregate convention, preventing
+  automatic double application of dividend/split events.
+* **S14-005/016/025 and S15-006:** original-corpus assembly selects only supplied
+  retained candidates with exact original archives and origin-bound covariate
+  payloads. Unknown/non-original vintage, future availability/capture, missing
+  payload binding and incompatible pairs reject with origin-specific reasons.
+  Supplemental historical event books and sleeve marks must bind their values
+  to retained payloads. Family results now remain unavailable for **all**
+  unauthenticated corpora, not only fixtures; computed diagnostics remain
+  visible. Full frozen family cardinality and deterministic paired block
+  uncertainty are unchanged.
+
+### New checks and verification status
+
+Added `script/paired-research-accounting.test.ts`: two overlapping cohorts
+  hand-reconcile NAV 120 → 121 → 123 → 124 and reserve/issuer exposures;
+  missing marks and overdeployment reject; concurrent/repeated requests are
+  isolated; split/dividend/merger/short/collateral/expenses reconcile cash 75,
+  collateral 20 and NAV 110; cash delisting gives NAV 98; missing marks,
+  borrow and financing reject; unknown borrow stays hypothetical; sector/active
+  constraints and quarterly holds are checked; no original candidates become
+  invented evidence. Existing pipeline tests gain repeated/concurrent full
+  family/uncertainty checks and missing eligibility/liquidity checks.
+
+`npx tsc --noEmit --incremental false` passed after correcting target-level
+iteration errors. After the owning agent's full-suite check identified two
+failures, the bounded follow-up fixed the numerical test assertion (absolute
+tolerance 1e-12, without rounding model weights) and cutoff semantics.
+`npx tsx --test script/paired-research-accounting.test.ts script/paired-research-pipeline.test.ts`
+then passed **23/23 tests**; TypeScript passed again. No full-suite rerun is
+claimed by this bounded follow-up.
+No app/UI work or screenshot was needed.
+
+The corrected cutoff invariant applies availability/capture limits to every
+artifact actually used by a **complete** date, and to supplemental sleeve/event
+records. Future archives belonging only to incomplete periods do not invalidate
+earlier dates; those periods remain unavailable and cannot enter estimation.
+Hash/vintage checks and origin-relative future-input restrictions still apply
+to all periods, including incomplete ones. New tests exercise both sides.
+
+Every cohort's deployment mark must now equal its declared capital in cash,
+restricted cash and signed assets, including cohorts launched after the first
+mark. This boundary convention permits no instant unexplained profit or loss;
+execution expenses must be represented after that funding boundary, not
+silently deducted from a mismatching first mark. Reserve interest cannot appear
+at the initial mark. A nonzero amount requires an explicit accrual interval
+matching the previous/current marks, the previous unallocated reserve, a rate
+known by the interval start and a source hash. It reconciles using ACT/365.25,
+before any current-boundary settlements or deployments, so newly settled funds
+cannot retroactively earn interest. The pipeline passes its cutoff into the
+sleeve ledger. Historical nonzero reserve interest remains unavailable until
+the retained cash-rate lineage is independently reviewed.
+
+### Retained real-source examination and precise remaining blockers
+
+Inspected the existing company-operating source bundles, without altering them:
+
+* CAT's original publisher URL is the 2025-10-29 Q3 release; its retained
+  `publishedAt` is null and retrieval is 2026-11-10T03:50:00.348Z.
+* XOM's original publisher URL is the 2025-12-09 plan release; `publishedAt`
+  is null and retrieval is 2026-11-10T03:50:00.323Z.
+* NEE's retained release is dated **2026-01-27**, after the workplan's
+  **2026-01-22** cutoff; `publishedAt` is null and retrieval is
+  2026-11-10T03:49:59.988Z.
+
+These authentic publisher documents are not original-at-origin archives for the
+historical monthly panel. No eligible paired research periods were assembled
+from them: CAT/XOM lack exact original availability/capture at the required
+origins; NEE additionally fails the cutoff. A published calendar date is not
+silently promoted to a publication timestamp. Their issuer operating facts
+also do not provide complete historical universe manifests, matched projection
+and valuation member archives, seven origin controls, return/action records,
+borrow/collateral terms or geographically matched factors. No current-universe
+substitution, old-intensity proxy, synthetic efficacy or assumed cost fills
+these fields.
+
+Still required: independently reviewed original monthly issuer/universe and
+paired-member inputs; dated eligibility/trailing liquidity; full live-sleeve
+marks plus cash-flow/rate lineage; actual event/collateral/borrow records; a
+reviewed monthly sleeve-factor inference bridge; the 50-observation return-index
+reconciliation with break rates; full cost/subperiod/drawdown/capacity reporting;
+secondary sector research and a genuine prospective archive. The added modules
+implement the stated accounting/constraint contracts, not those missing
+empirical evaluations or independent approvals.
+
 ## Scope and status
 
 **Historical efficacy: WITHHELD. Scientific acceptance: false.**

@@ -58,6 +58,43 @@ function fixture(months = 36) {
 }
 const run = (f: ReturnType<typeof fixture>) => runPairedResearchPipeline(f.p, contentHash(f.p), f.c);
 
+test("concurrent/repeated frozen requests retain incomplete family cells and paired uncertainty", async () => {
+  const f = fixture(), before = contentHash(f);
+  const results = await Promise.all(Array.from({ length: 3 }, async () => run(f)));
+  results.forEach(r => {
+    assert.deepEqual(r, results[0]);
+    assert.equal(r.family.familySize, 6);
+    assert.equal(r.family.unavailableHypotheses, 6);
+  });
+  assert.equal(contentHash(f), before);
+});
+
+test("frozen long-only variants require origin eligibility and liquidity, never defaults", () => {
+  const f = fixture();
+  f.p.longOnlyVariants = [{ sectorNeutral: true, maxActiveWeight: .1, participation: .1, capital: 100, rebalanceMonths: 3 }];
+  const r = run(f).specifications[0].longOnlyVariants[0] as { unavailable: string };
+  assert.match(r.unavailable, /Missing origin eligibility/);
+});
+test("cutoff ignores unused future archives but rejects future artifacts used by complete dates", () => {
+  const f = fixture();
+  f.c.dataEnd = f.c.periods[20].endAt;
+  const baseline = run(f);
+  const future = f.c.artifacts.find(a => a.hash === f.c.periods[30].securities[0].sourceHashes[0])!;
+  future.availableAt = "2030-01-01T00:00:00Z";
+  future.capturedAt = future.availableAt;
+  assert.deepEqual(run(f), { ...baseline, corpusHash: contentHash(f.c) });
+  const used = f.c.artifacts.find(a => a.hash === f.c.periods[15].securities[0].sourceHashes[0])!;
+  used.capturedAt = "2030-01-01T00:00:00Z";
+  assert.throws(() => run(f), /Artifact beyond corpus cutoff/);
+});
+test("incomplete outcomes do not relax origin-relative future signal gates", () => {
+  const f = fixture(); f.c.dataEnd = f.c.periods[20].endAt;
+  const raw = f.c.periods[30].securities[0].pair as { projectionManifest: string };
+  const a = f.c.artifacts.find(a => a.hash === raw.projectionManifest)!;
+  a.availableAt = f.c.periods[30].executionAt;
+  assert.throws(() => run(f), /Future origin artifact/);
+});
+
 test("orchestrates frozen full family, ranks, dated accounting, inference, ablations and separate kernel without fixture acceptance", () => {
   const r = run(fixture());
   assert.equal(r.family.familySize, 6);

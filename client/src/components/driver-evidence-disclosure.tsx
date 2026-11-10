@@ -47,7 +47,7 @@ export function DriverEvidenceDisclosure() {
       ) : registry.data ? (
         <>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline" className="break-all">{registry.data.status}</Badge>
+            <Badge variant="outline" className="break-all" data-field-id="driverRegistry.status">{registry.data.status}</Badge>
             <p className="text-xs text-muted-foreground" data-testid="driver-registry-coverage">{uniqueCount} of 22 indicators accounted for</p>
           </div>
           {!complete && (
@@ -63,15 +63,15 @@ export function DriverEvidenceDisclosure() {
               <ul className="mt-3 divide-y">
                 {indicators.map((indicator, index) => (
                   <li key={`${indicator.id}-${index}`} className="py-3 first:pt-0 space-y-2" data-testid={`driver-evidence-${indicator.id}`}>
-                    <h3 className="text-sm font-semibold font-mono break-all">{indicator.id}</h3>
-                    <p className="text-sm text-muted-foreground break-words">{indicator.definition}</p>
+                    <h3 className="text-sm font-semibold font-mono break-all" data-field-id="driverRegistry.indicators[].id">{indicator.id}</h3>
+                    <p className="text-sm text-muted-foreground break-words" data-field-id="driverRegistry.indicators[].definition">{indicator.definition}</p>
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2 text-xs">
-                      <div><dt className="text-muted-foreground">Publisher</dt><dd className="break-words">{indicator.publisher || "Not supplied"}</dd></div>
-                      <div><dt className="text-muted-foreground">Raw unit</dt><dd className="break-words">{indicator.rawUnit || "Not supplied"}</dd></div>
-                      <div><dt className="text-muted-foreground">Research role</dt><dd className="break-words">{indicator.role || "Not supplied"}</dd></div>
-                      <div><dt className="text-muted-foreground">Evidence state</dt><dd className="break-words">{indicator.evidenceState || "Not supplied"}</dd></div>
-                      <div><dt className="text-muted-foreground">Central model eligible</dt><dd>{indicator.centralModelEligible === false ? "No" : "Not verified"}</dd></div>
-                      <div className="sm:col-span-2"><dt className="text-muted-foreground">Reason</dt><dd className="whitespace-pre-wrap break-words">{indicator.reason || "Not supplied"}</dd></div>
+                      <div><dt className="text-muted-foreground">Publisher</dt><dd className="break-words" data-field-id="driverRegistry.indicators[].publisher">{indicator.publisher || "Not supplied"}</dd></div>
+                      <div><dt className="text-muted-foreground">Raw unit</dt><dd className="break-words" data-field-id="driverRegistry.indicators[].rawUnit">{indicator.rawUnit || "Not supplied"}</dd></div>
+                      <div><dt className="text-muted-foreground">Research role</dt><dd className="break-words" data-field-id="driverRegistry.indicators[].role">{indicator.role || "Not supplied"}</dd></div>
+                      <div><dt className="text-muted-foreground">Evidence state</dt><dd className="break-words" data-field-id="driverRegistry.indicators[].evidenceState">{indicator.evidenceState || "Not supplied"}</dd></div>
+                      <div><dt className="text-muted-foreground">Central model eligible</dt><dd data-field-id="driverRegistry.indicators[].centralModelEligible">{indicator.centralModelEligible === false ? "No" : "Not verified"}</dd></div>
+                      <div className="sm:col-span-2"><dt className="text-muted-foreground">Reason</dt><dd className="whitespace-pre-wrap break-words" data-field-id="driverRegistry.indicators[].reason">{indicator.reason || "Not supplied"}</dd></div>
                     </dl>
                   </li>
                 ))}

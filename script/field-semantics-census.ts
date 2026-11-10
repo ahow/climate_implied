@@ -23,6 +23,8 @@ if(baseline) {
 const program=ts.createProgram(parsed.fileNames,parsed.options,host),checker=program.getTypeChecker();
 type Entry={surface:string;field:string;type:string;source:string;line:number;resolution:string};
 const entries:Entry[]=[];
+const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
+const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
 if(!baseline) {
   const {companyReplayLedgerColumns}=await import("../shared/companyReplaySemantics");
   for(const column of companyReplayLedgerColumns) entries.push({surface:"XLSX server/calculation/companyProjectionReplay.ts:Ledger",
@@ -50,6 +52,16 @@ function fields(type:ts.Type,path:string,surface:string,node:ts.Node,depth=0) {
 }
 for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /(?:server\/routes|client\/src\/)/.test(s.fileName))) {
   function visit(node:ts.Node,surface="") {
+    if(!baseline && ts.isJsxElement(node)) {
+      const attribute=node.openingElement.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="data-field-id");
+      if(attribute&&ts.isJsxAttribute(attribute)&&attribute.initializer&&ts.isStringLiteral(attribute.initializer)) {
+        const id=attribute.initializer.text;
+        const bound=outputFieldSemantics.some(f=>f.id===id);
+        if(!bound) throw new Error(`Unmapped display semantic: ${id}`);
+        displayBindings.push({source:relativeSource(source.fileName),line:source.getLineAndCharacterOfPosition(node.getStart()).line+1,
+          id,expression:node.children.map(child=>child.getText(source)).join(""),bound});
+      }
+    }
     if(ts.isCallExpression(node)&&ts.isPropertyAccessExpression(node.expression)&&
       node.expression.expression.getText(source)==="app"&&["get","post","put","patch","delete"].includes(node.expression.name.text))
       surface=`API ${node.expression.name.text.toUpperCase()} ${node.arguments[0]?.getText(source)}`;
@@ -71,6 +83,13 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
         const signature=type.getCallSignatures()[0];if(signature) type=checker.getReturnTypeOfSignature(signature);
         const line=source.getLineAndCharacterOfPosition(node.getStart()).line+1;
         const exportSurface=`XLSX ${relativeSource(source.fileName)}:${line}`;
+        if(!baseline) {
+          const binding=node.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings");
+          exportBindingMetadata.push({source:relativeSource(source.fileName),line,
+            rows:prop.initializer.expression.getText(source),
+            bindings:binding&&ts.isJsxAttribute(binding)?binding.initializer?.getText(source)??"MISSING":"MISSING",
+            coverage:"Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"});
+        }
         // Explicit schema consumed by both the actual row builder and bindings.
         // Do not infer arbitrary Object.fromEntries keys as covered.
         if(!baseline && relativeSource(source.fileName)==="client/src/components/emissions-candidate-review.tsx"
@@ -94,7 +113,12 @@ const nativeDynamicDomains={
   "result.trajectory[].nativeMt.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].nativeMt.")).map(f=>f.id),
   "result.trajectory[].sectorsGtCO2e.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].sectorsGtCO2e.")).map(f=>f.id),
 };
-const isBound=(e:typeof unique[number])=>(e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
+const isBound=(e:typeof unique[number])=>([
+  ['API GET "/api/research/driver-registry"', "driverRegistry"],
+  ['API GET "/api/reference-scenarios"', "publishedReference"],
+  ['API GET "/api/cv/summary"', "companySummary"],
+  ['API GET "/api/cv/dimensions"', "companyDimensions"],
+].some(([surface,prefix])=>e.surface===surface && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field}`))) || (e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
   outputFieldSemantics.some(f=>f.id===`companyReplay.ledger.${e.field.replace(/^\[\]\./,"")}`)) || (e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
   nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
   Object.hasOwn(nativeDynamicDomains,e.field)) || (e.surface.includes('"/api/emissions/candidate"') &&
@@ -107,6 +131,9 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   comparableSlotAccounting:{actualUniqueSlots:unique.length,previouslyUnresolvedAliasSlots:resolvedResponseAliases.length,
     slotsIncludingReconciledAliases:unique.length+resolvedResponseAliases.length},
   fullyBoundFields:baseline?0:unique.filter(isBound).length,
+  displayBindings,
+  exportBindingMetadata,
+  displayBindingScope:"Explicit data-field-id JSX elements only; separately counted, not additions to the original API/XLSX slot denominator. Unannotated display expressions remain unenumerated.",
   resolvedDynamicDomains:baseline?{}:nativeDynamicDomains,
   withheldFields:unique.filter(e=>e.resolution==="withheld-public-field"),
   unresolvedTypes:unique.filter(e=>e.resolution==="unresolved-type"),
@@ -122,7 +149,26 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   scope:"Direct registered API res.json expressions and all typed DownloadDataButton rows; display-only values and dynamic response builders remain exclusions",
   exclusions:unique.filter(e=>e.resolution!=="typed-field"),fields:unique,
   completion:false,warning:"A matching bare field name is not a precise semantic binding. No generic formula placeholders counted."};
-const out=JSON.stringify(report,null,2)+"\n";
+// The original cohort is the supplied 429/1001 census, not definition count.
+// These four pre-existing response families were wholly unbound in that cohort.
+const originalClosureSurfaces = [
+  'API GET "/api/research/driver-registry"', 'API GET "/api/reference-scenarios"',
+  'API GET "/api/cv/summary"', 'API GET "/api/cv/dimensions"',
+];
+const originalClosedSlots = unique.filter(e=>originalClosureSurfaces.includes(e.surface)&&isBound(e))
+  .map(e=>({surface:e.surface,field:e.field}));
+const reconciliation = baseline ? {} : {
+  originalGapReconciliation: {
+    originalPublicSlots:1001, originalBoundSlots:429, originalUnboundSlots:572,
+    closedOriginalSlots:originalClosedSlots.length, remainingOriginalUnboundSlots:572-originalClosedSlots.length,
+    closedSlots:originalClosedSlots,
+    currentPublicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length,
+    publicSlotDenominatorDelta:unique.filter(e=>e.resolution!=="withheld-public-field").length-1001,
+    reconciledCacheAliases:4,
+    note:"Only the four explicitly reviewed original response families count as closure here. Definition additions and separately inventoried displays/export binding expressions are not original slot closure.",
+  },
+};
+const out=JSON.stringify({...report,...reconciliation},null,2)+"\n";
 if(baseline) {
   writeFileSync("docs/field_semantics_baseline.json",out);
 } else if(process.argv.includes("--check")) {

@@ -4,6 +4,9 @@ import { rankPairedCompanyGaps } from "./pairedCompanyGap";
 import { adjudicateResearchFamily } from "./researchFamily";
 import { walkForward } from "../climateValuation/walkForward";
 import { adaptPairedResearchCorpus, specificationKey, specificationSchema, type ResearchPeriod } from "./pairedResearchCorpus";
+import { accountOverlappingSleeves, sleeveScheduleSchema } from "./pairedResearchSleeves";
+import { accountResearchEvents } from "./pairedResearchEvents";
+import { constrainedLongOnly, longOnlyVariantSchema } from "./pairedResearchLongOnly";
 
 const time = z.string().datetime();
 const protocolSchema = z.object({
@@ -20,6 +23,8 @@ const protocolSchema = z.object({
   borrowRateMultipliers: z.array(z.number().nonnegative()).min(1),
   terminalStresses: z.tuple([z.literal(0), z.literal(-.3), z.literal(-1)]),
   disclosure: z.literal("locked retrospective evaluation (prior exposure: 2020 onward)"),
+  sleeveSchedule: sleeveScheduleSchema.optional(),
+  longOnlyVariants: z.array(longOnlyVariantSchema).optional(),
 }).strict();
 export type PairedResearchProtocol = z.infer<typeof protocolSchema>;
 const mean = (v: number[]) => v.reduce((s, x) => s + x, 0) / v.length;
@@ -136,6 +141,15 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
   if (new Set(p.expectedOrigins.map(Date.parse)).size !== p.expectedOrigins.length) throw new Error("Duplicate frozen origin");
   if (p.specifications.some(s => s.target === "12-month") && p.blockLength < 12) throw new Error("Blocks shorter than outcome horizon");
   const c = adaptPairedResearchCorpus(corpusInput);
+  if (!!p.sleeveSchedule !== !!c.sleeveMarks) throw new Error("Sleeve schedule and complete marks must be supplied together");
+  if (p.sleeveSchedule?.deployments.some(d => !p.expectedOrigins.some(o => Date.parse(o) === Date.parse(d.origin))))
+    throw new Error("Sleeve origin outside frozen schedule");
+  const sleeveAccounting = p.sleeveSchedule ? {
+    label: "separate-overlapping-12-month-capital-ledger-not-primary-factor-evidence",
+    accounting: accountOverlappingSleeves(p.sleeveSchedule, c.sleeveMarks, c.dataEnd),
+    investmentEvidence: false,
+  } : { unavailable: "Requires frozen deployments and complete simultaneous live-cohort marks" };
+  const eventAccounting = (c.eventBooks ?? []).map(accountResearchEvents);
   const declared = new Set(p.specifications.map(specificationKey));
   if (c.periods.some(t => !declared.has(specificationKey(t.specification)))) throw new Error("Corpus outside frozen family");
   if (c.periods.some(t => !p.expectedOrigins.some(o => Date.parse(o) === Date.parse(t.origin))))
@@ -227,7 +241,9 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
         if (missing.length) throw new Error("Incomplete declared corpus");
         const result = calculate(); endpoints[endpoint] = result;
         // Fixtures exercise inference but can NEVER become scientific evidence.
-        if (c.mode !== "engineering-fixture") results.push({ ...spec, endpoint, ...result });
+        // Hash consistency is not independent review. No caller-supplied corpus
+        // currently satisfies an authenticated review gate for family evidence.
+        if (c.authenticityVerified) results.push({ ...spec, endpoint, ...result });
       } catch (e) { endpoints[endpoint] = { unavailable: (e as Error).message }; }
     };
     attempt("signal-ic", () => interval(evaluation.map(o => {
@@ -270,6 +286,7 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
     });
     // Preserve the existing kernel unchanged; its output is NOT the spread test.
     let longOnly: unknown = { unavailable: "Requires complete next-month rows" };
+    const longOnlyVariants: unknown[] = [];
     if (spec.target === "next-month" && !missing.length && observations.length) {
       for (let i = 1; i < observations.length; i++) {
         if (Date.parse(observations[i - 1].t.outcomeAvailableAt) > Date.parse(observations[i].t.executionAt))
@@ -279,13 +296,45 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
         ({ companyId: s.numericId, marketCap: s.marketCap, monthlyReturn: o.returns[i] }))]));
       if (monthly.size !== observations.length) throw new Error("Duplicate kernel month");
       const scores = new Map(observations.map(o => [o.t.executionAt.slice(0, 7), new Map(o.t.securities.map(s => [s.numericId, o.scores[s.companyId]!]))]));
-      longOnly = { label: "existing-long-only-tilt-kernel-not-long-short-evidence",
-        result: walkForward(monthly, scores, .02, p.costBps) };
+      const kernel = walkForward(monthly, scores, .02, p.costBps);
+      longOnly = { label: "existing-long-only-tilt-kernel-not-long-short-evidence", result: kernel };
+      for (const variant of p.longOnlyVariants ?? []) {
+        const accounting: ReturnType<typeof accountResearchPeriod>[] = [];
+        let prior: Record<string, number> = {};
+        try {
+          for (let i = 0; i < evaluation.length; i++) {
+            const o = evaluation[i];
+            const last = accounting.at(-1);
+            if (last && Date.parse(last.endAt) !== Date.parse(o.t.executionAt))
+              throw new Error("Constraint variants require contiguous monthly observations");
+            if (last) for (const h of last.holdings.filter(h => h.endUnits !== 0)) {
+              const s = o.t.securities.find(s => s.companyId === h.companyId);
+              if (!s || Math.abs(h.endUnits * s.executionPrice * s.executionFx - h.endValue) > 1e-8)
+                throw new Error("Constraint variant execution mark discontinuity");
+            }
+            const tilt = kernel.series.find(r => r.date === o.t.executionAt.slice(0, 7))?.tiltScale;
+            if (tilt === undefined) throw new Error("Missing past-only kernel tilt");
+            const rows = o.t.securities.map(s => {
+              if (!s.longOnlyInputs) throw new Error(`Missing origin eligibility/liquidity: ${s.companyId}`);
+              return { companyId: s.companyId, sector: s.sector, marketCap: s.marketCap, score: o.scores[s.companyId],
+                eligible: s.longOnlyInputs.eligible, liquidity: s.longOnlyInputs.liquidity, availableAt: s.longOnlyInputs.availableAt };
+            });
+            const selection = constrainedLongOnly(rows, variant, tilt, o.t.executionAt, i, prior);
+            const row = accountResearchPeriod(o.t, selection.weights, prior, p.costBps, 1);
+            accounting.push(row); prior = row.drifted;
+            if (row.insolvent) throw new Error("Terminal insolvency; no restart");
+          }
+          longOnlyVariants.push({ variant, accounting, label: "constrained-long-only-not-spread-evidence" });
+        } catch (e) {
+          longOnlyVariants.push({ variant, accounting, unavailable: (e as Error).message });
+        }
+      }
     }
     return { ...spec, missing, originCount: periods.length, trainingDates: training.length, evaluationDates: evaluation.length,
-      endpoints, ablations, attribution, trajectories, longOnly };
+      endpoints, ablations, attribution, trajectories, longOnly, longOnlyVariants };
   });
   return { protocolId: expectedProtocolHash, corpusHash: c.corpusHash, disclosure: p.disclosure, mode: c.mode,
+    sleeveAccounting, eventAccounting,
     specifications, family: adjudicateResearchFamily({ protocolId: expectedProtocolHash, specifications: p.specifications, results }),
     efficacy: "WITHHELD", scientificAcceptance: false, investmentEvidence: false, authenticityVerified: false,
     tracks: { A: c.mode === "revised-history" ? "conditional revised-history" : "unavailable",
@@ -294,5 +343,6 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
     limitations: ["Caller-supplied origin and provenance claims are not authenticated.",
       "Historical efficacy requires independent archive verification and review; engineering fixtures never adjudicate positively.",
       "Long-only output preserves the existing kernel, whose accounting is separate from the explicit long-short cash ledger.",
-      "12-month overlapping cohort portfolios require a separately frozen sleeve schedule; this runner rejects overlapping execution windows."] };
+      "Overlapping sleeves have a separate frozen capital ledger; primary factor inference still requires compatible frequency-aligned returns and factors.",
+      "Dated event books and constrained long-only overlays are separate research accounting, not replacements for the unchanged primary hypothesis."] };
 }

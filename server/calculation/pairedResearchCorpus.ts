@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { contentHash } from "./analysisManifest";
 import { pairedCompanyGap } from "./pairedCompanyGap";
+import { sleeveMarksSchema } from "./pairedResearchSleeves";
+import { eventBookSchema } from "./pairedResearchEvents";
 
 const timestamp = z.string().datetime();
 const digest = z.string().regex(/^[a-f0-9]{64}$/);
@@ -25,6 +27,10 @@ const securitySchema = z.object({
   lifecycle: z.enum(["continuing", "delisted", "unexplained-terminal"]),
   borrowAvailable: z.boolean().nullable(), borrowAnnualRate: finite.nonnegative().nullable(),
   assumedBorrowAnnualRate: finite.nonnegative(),
+  longOnlyInputs: z.object({
+    eligible: z.boolean(), liquidity: finite.nonnegative(), availableAt: timestamp,
+    sourceHashes: z.array(digest).min(1),
+  }).strict().optional(),
   sourceHashes: z.array(digest).min(1),
 }).strict();
 const periodSchema = z.object({
@@ -40,6 +46,8 @@ const periodSchema = z.object({
 export const corpusSchema = z.object({
   mode: z.enum(["engineering-fixture", "revised-history", "point-in-time"]),
   dataEnd: timestamp, artifacts: z.array(artifactSchema), periods: z.array(periodSchema),
+  sleeveMarks: sleeveMarksSchema.optional(),
+  eventBooks: z.array(eventBookSchema).optional(),
 }).strict();
 export type ResearchCorpus = z.infer<typeof corpusSchema>;
 export type ResearchPeriod = ResearchCorpus["periods"][number];
@@ -61,7 +69,52 @@ export function adaptPairedResearchCorpus(input: unknown) {
     if (!artifact) throw new Error(`Unresolved retained artifact ${hash}`);
     return artifact;
   };
+  const resolveWithinCutoff = (hash: string) => {
+    const a = resolve(hash);
+    if (Date.parse(a.availableAt) > Date.parse(corpus.dataEnd) || Date.parse(a.capturedAt) > Date.parse(corpus.dataEnd))
+      throw new Error("Artifact beyond corpus cutoff");
+    return a;
+  };
+  for (const mark of corpus.sleeveMarks ?? []) {
+    if (Date.parse(mark.at) > Date.parse(corpus.dataEnd)) throw new Error("Future sleeve mark");
+    mark.sleeves.forEach(s => s.sourceHashes.forEach(resolveWithinCutoff));
+    if (mark.reserveAccrual) {
+      const a = resolveWithinCutoff(mark.reserveAccrual.sourceHash);
+      if (Date.parse(a.availableAt) > Date.parse(mark.reserveAccrual.fromAt))
+        throw new Error("Future reserve interest source");
+    }
+    if (corpus.mode !== "engineering-fixture") {
+      for (const s of mark.sleeves) {
+        const { sourceHashes, ...values } = s;
+        if (!sourceHashes.some(h => contentHash(resolve(h).payload) === contentHash({ at: mark.at, ...values })))
+          throw new Error("Sleeve marks not bound to retained payload");
+      }
+      if (mark.reserveInterest !== 0) throw new Error("Historical reserve interest requires reviewed dated cash-rate lineage");
+    }
+  }
+  for (const book of corpus.eventBooks ?? []) {
+    if (Date.parse(book.endAt) > Date.parse(corpus.dataEnd)) throw new Error("Future event book");
+    resolveWithinCutoff(book.coverageSourceHash);
+    book.events.forEach(e => resolveWithinCutoff(e.sourceHash));
+    if (corpus.mode !== "engineering-fixture") {
+      const { coverageSourceHash, ...values } = book;
+      if (contentHash(resolve(coverageSourceHash).payload) !== contentHash(values))
+        throw new Error("Event book not bound to retained coverage payload");
+    }
+  }
   const periods = corpus.periods.map(p => {
+    const complete = Date.parse(p.outcomeAvailableAt) <= Date.parse(corpus.dataEnd);
+    // Future/incomplete outcomes remain coverage failures, not a reason to
+    // invalidate earlier dates. Every artifact USED by a complete date must
+    // nevertheless be retained by the cutoff. Origin-relative gates below
+    // apply to incomplete dates too, so future signal inputs never slip through.
+    if (complete) {
+      [p.universeHash, ...p.factors.sourceHashes, ...p.securities.flatMap(s => {
+        const pair = s.pair as { projectionManifest: string; valuationManifest: string };
+        return [pair.projectionManifest, pair.valuationManifest, ...s.sourceHashes,
+          ...(s.longOnlyInputs?.sourceHashes ?? [])];
+      })].forEach(resolveWithinCutoff);
+    }
     const key = `${specificationKey(p.specification)}:${p.origin}`;
     if (keys.has(key)) throw new Error("Duplicate origin/specification");
     keys.add(key);
@@ -104,10 +157,53 @@ export function adaptPairedResearchCorpus(input: unknown) {
           throw new Error("Point-in-time requires original retained origin archives, not current substitutions");
       }
       s.sourceHashes.forEach(resolve);
+      if (s.longOnlyInputs) {
+        if (Date.parse(s.longOnlyInputs.availableAt) > Date.parse(p.origin)) throw new Error("Future eligibility/liquidity");
+        s.longOnlyInputs.sourceHashes.forEach(h => {
+          const a = resolve(h);
+          if (Date.parse(a.availableAt) > Date.parse(p.origin)) throw new Error("Future liquidity source");
+        });
+      }
       return pair;
     });
     p.factors.sourceHashes.forEach(resolve);
     return { ...p, pairs, missing, complete: Date.parse(p.outcomeAvailableAt) <= Date.parse(corpus.dataEnd) };
   });
   return { ...corpus, periods, corpusHash: contentHash(corpus), authenticityVerified: false as const };
+}
+
+/** Select from retained candidate periods only; never manufacture historical
+ * origins from current issuers. Rejections are explicit and origin-specific.
+ * This is contract eligibility, not independent authenticity review. */
+export function assembleOriginalResearchCorpus(input: unknown) {
+  const corpus = corpusSchema.parse(input);
+  const accepted: ResearchPeriod[] = [];
+  const rejected: Array<{ origin: string; specification: string; reason: string }> = [];
+  for (const period of corpus.periods) {
+    try {
+      const pairHashes = period.securities.flatMap(s => {
+        const raw = s.pair as { projectionManifest?: string; valuationManifest?: string };
+        return [raw.projectionManifest, raw.valuationManifest];
+      });
+      const originHashes = [period.universeHash, ...pairHashes];
+      const allHashes = [...originHashes, ...period.securities.flatMap(s => s.sourceHashes), ...period.factors.sourceHashes];
+      const artifacts = corpus.artifacts.filter(a => allHashes.includes(a.hash));
+      if (artifacts.some(a => a.vintage !== "original")) throw new Error("Non-original/unknown vintage");
+      // Mixed non-pair source lists cannot certify which fields were known at
+      // origin. Require an original retained input bundle explicitly binding them.
+      for (const s of period.securities) {
+        const payload = { companyId: s.companyId, origin: period.origin, marketCap: s.marketCap,
+          sector: s.sector, controls: s.controls, baselineGrowth: s.baselineGrowth,
+          transitionDemand: s.transitionDemand, carbonDrag: s.carbonDrag, intensity: s.intensity };
+        if (!artifacts.some(a => s.sourceHashes.includes(a.hash) && a.hash === contentHash(payload) &&
+            Date.parse(a.availableAt) <= Date.parse(period.origin) && Date.parse(a.capturedAt) <= Date.parse(period.origin)))
+          throw new Error(`Missing original origin-bound covariates: ${s.companyId}`);
+      }
+      adaptPairedResearchCorpus({ mode: "point-in-time", dataEnd: corpus.dataEnd, artifacts, periods: [period] });
+      accepted.push(period);
+    } catch (e) {
+      rejected.push({ origin: period.origin, specification: specificationKey(period.specification), reason: (e as Error).message });
+    }
+  }
+  return { accepted, rejected, efficacy: "WITHHELD", authenticityVerified: false as const };
 }

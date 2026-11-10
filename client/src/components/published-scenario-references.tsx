@@ -135,14 +135,14 @@ export function PublishedScenarioReferences() {
             {[policies, commitments].map((scenario) => (
               <div key={scenario.id} className="rounded-md border p-4 space-y-3">
                 <div>
-                  <h3 className="text-sm font-semibold">{scenario.label}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">CAT: {scenario.publishedName}</p>
+                  <h3 className="text-sm font-semibold" data-field-id="publishedReference.scenarios[].label">{scenario.label}</h3>
+                  <p className="text-xs text-muted-foreground mt-1" data-field-id="publishedReference.scenarios[].publishedName">CAT: {scenario.publishedName}</p>
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-semibold tracking-tight tabular-nums">{scenario.temperatureMedianC.toFixed(1)}°C</span>
+                  <span className="text-3xl font-semibold tracking-tight tabular-nums" data-field-id="publishedReference.scenarios[].temperatureMedianC">{scenario.temperatureMedianC.toFixed(1)}°C</span>
                   <span className="text-xs text-muted-foreground">published median · 2100</span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">{scenario.definition}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed" data-field-id="publishedReference.scenarios[].definition">{scenario.definition}</p>
               </div>
             ))}
           </div>

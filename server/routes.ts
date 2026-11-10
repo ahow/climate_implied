@@ -352,7 +352,9 @@ export async function registerRoutes(
     res.set("Cache-Control", "no-store").json(calculationReadiness());
   });
   app.get("/api/research/driver-registry", (_req, res) => {
-    res.json({ status: "evidence-gaps-explicit", indicators: driverEvidenceRegistry() });
+    const response = { status: "evidence-gaps-explicit", indicators: driverEvidenceRegistry() };
+    res.set("X-Field-Semantics", bindNestedOutput("driverRegistry", response).map(f => f.id).join(","));
+    res.json(response);
   });
   app.get("/api/calculation/company-operating/reviews",async(_req,res)=>{
     try{
@@ -449,6 +451,7 @@ export async function registerRoutes(
 
   // Published reference information only: never feeds the projection engine.
   app.get("/api/reference-scenarios", (_req, res) => {
+    res.set("X-Field-Semantics", bindNestedOutput("publishedReference", catReferences).map(f => f.id).join(","));
     res.json(catReferences);
   });
 
@@ -865,6 +868,7 @@ export async function registerRoutes(
       const { companies } = await loadCompaniesAndTimeSeries(false);
       const sectors = Array.from(new Set(companies.map(c => c.sector).filter(Boolean))).sort() as string[];
       const geographies = Array.from(new Set(companies.map(c => c.geography).filter(Boolean))).sort() as string[];
+      res.set("X-Field-Semantics", bindNestedOutput("companyDimensions", { sectors, geographies }).map(f => f.id).join(","));
       res.json({ sectors, geographies });
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch dimensions" });
@@ -969,7 +973,7 @@ export async function registerRoutes(
       }
       const imputation = computeImputationStats(carryForwardEmissions(rawTimeSeries));
 
-      res.json({
+      const response = {
         companiesCount: companies.length,
         latestUpload: snapshotContext.getStore() ? null : uploads[0] || null,
         snapshotId: snapshotContext.getStore()?.id ?? null,
@@ -977,7 +981,9 @@ export async function registerRoutes(
         sectors: Array.from(new Set(companies.map(c => c.sector).filter(Boolean))).length,
         geographies: Array.from(new Set(companies.map(c => c.geography).filter(Boolean))).length,
         imputation,
-      });
+      };
+      res.set("X-Field-Semantics", bindNestedOutput("companySummary", response).map(f => f.id).join(","));
+      res.json(response);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch summary" });
     }

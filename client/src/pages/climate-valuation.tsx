@@ -244,9 +244,9 @@ export default function ClimateValuation() {
           >
             <Info className="h-3.5 w-3.5 mt-0.5 shrink-0" />
             <span>
-              {summary.imputation.imputedRecords.toLocaleString()} of{" "}
-              {summary.imputation.totalRecords.toLocaleString()} records (
-              {(summary.imputation.imputedFraction * 100).toFixed(1)}%) use carried-forward
+              <span data-field-id="companySummary.imputation.imputedRecords">{summary.imputation.imputedRecords.toLocaleString()}</span> of{" "}
+              <span data-field-id="companySummary.imputation.totalRecords">{summary.imputation.totalRecords.toLocaleString()}</span> records (
+              <span data-field-id="companySummary.imputation.imputedFraction">{(summary.imputation.imputedFraction * 100).toFixed(1)}%</span>) use carried-forward
               (imputed) emissions where a reporting gap exists. Carbon-intensity and pricing
               for these periods rely on the most recent observed scope 1/2/3 values.
             </span>

@@ -3,12 +3,18 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T04:50:58.685173+00:00
+Updated: 2026-11-10T05:08:57.308709+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
 ## Latest implementation evidence
 
+- **current_sleeves_semantics_source_work:** "2026-11-10 priorHEADe16d789/live8492353/full264pass preserved. NEW sleeve/event/longonly modules extend pairedResearchCorpus/Pipeline: capital reconciliation at every deployment, simultaneous marks/cash/collateral, prior-reserve source/rate/timing interest proof, no capital doublecount; dividend/split/cash-stock merger/delisting/borrow/financing events; monthly/quarterly constraint variants. Unknown/future source fields reject. Complete dates reject future artifacts; incomplete-outcome-only artifacts do not kill valid earlier dates, but future signals still reject. Real retained NEE/XOM/CAT November2026 captures/null original timestamps cannot support historical cutoffJanuary22,2026. Historical efficacy remains withheld; source mark derivation/overlapping primary factor-frequency bridge/prospective records/50returns remain incomplete. Detailed exactclause/field boundaries in Paired_Research_Pipeline_Engineering_Report.md."
+- **current_original_semantic_closure:** "85 ORIGINAL slots closed,572->487; denominator unchanged1001public,514bound. Driver registry34,reference scenarios28,company summary21,dimensions2 now actual typed/APIbindings.527definitions;16newUI annotations;33explicit displayIDs and21download binding expressions separately inventoried, not added to originalclosure count. Native187/187+35,companyreplay22columns,4cachealiases preserved. Dynamic/customsheet/display gaps explicit; strictcompletionfalse. Detailed BoundedUnitB_Semantics_Report.md."
+- **current_industrial_source:** "NEW First Solar issuer2026-02-24 disclosure retained/hash-recorded; no historical backdating. 2025OCF2057.105m-PPE869.875m+netdebt(370.470m-473.363m)=1084.337m USD candidate cash convention, not approvedFCFE. 2026guidance includes45X credits2.10-2.19bn in grossprofit2.4-2.6bn. Explicit0/50/100% retention fixed-other-economics stress yields operatingprofit corners[-425,-110]/[670,940]/[1765,1990]m USD; no probabilities/cashcredit timing/avoidedemissions invented. One-year real policy channel, not fullfiveyear case. Sources/date/limitations in Solar_Manufacturing_Alternative.md; actualresults FSLR-policy-results.json. Fullissuer cases remain0/3."
+- **current_final_tests:** "npm run check && npx tsx --test script/*.test.ts && npm run build:280pass/0fail/0skip at2026-11-10T05:07:51Z; log generated-artifacts/workplan-completion/20261110T050751969512Z.log. Earlier276tests/274pass/2fail retained; float comparison corrected to1e-12 tolerance and cutoff semantics corrected without permitting future signals. Final sleeve initial/deployment capital and reserve-interest safeguards included. FSLRbuilder executed05:01:18Z,log20261110T050118211114Z.log. No unchanged empirical study reruns."
+- **current_clause_reconciliation:** "Pre-existing engineering evidence now reconciled: S14-022 pairedmedian fixture0 vs differenceofmedians9 andS14-024 additive invariance verified by actualfullsuite. S14-001/002/025,S15-001/002/013 partial with pipeline evidence; actualhistorical/completevariant gaps remain. Counts9verified/57partial/2blocked/232unreconciled. Engineering verification is not scientific/owner acceptance."
+- **latest_release_receipt:** "Workspace18d9076ab5a349396e2861ecf9ad21624c6c0eb2; GitHub/verifiedlive8492353cd6419adff4bad45851dd012f6f3f39e0; CI42758520997 success; Railwayf8c71112-c979-417f-bb9c-cfb2e95747aa.2026-11-10T04:55:50Z exact build-info,healthok,426qualified+16core definitions including22company replay fields verified. New computation stays operatorCLI/engineering; no production data activation. Final full264pass/0fail/skip before release; no weaker gates. Run context budget ending with ready scope remaining. next_action updated to actual partial FPL cash/fresh-process replay/dated pipeline state, not obsolete source-only wording."
 - **dated_cash_orchestration_increment:** "2026-11-10 priorHEAD3d7e3d0/live d75a72d. NEW companyCashflowBridge.ts reconciles incremental FPL recognition/collection/O&M/interest/tax/WC/capex/financing FCFE routes within1e-5USD under6 explicitly hypothetical frozen stress combinations, not6issuers or empirical uncertainty. Timely/lower-cost annual FCFE USDm -1138.125888,181.993704,177.157616,172.321527,167.485439; five-year sum-439.167601. Assumptionhash f13ed7f7b815d2a4cb4b6e15a0b9ec19a77f87f06155c12bd0c164a6c9120e46. Full sources/boundaries in Conditional_Company_Climate_Cases.md. XOM physical only, CAT refused;0complete issuer cases/3target."
 - **dated_pipeline:** "NEW pairedResearchCorpus.ts/pairedResearchPipeline.ts/run-paired-research-pipeline.ts: hash-bound matched member archives; declared origin/spec membership; later execution; paired ranks; sector longshort holdings/cash/drift, explicit25bp traded-notional costs, financing/borrow/shortdividends/FX/splits/terminal settlement; sensitivities, controls-only/gapR2,IC,ablation,two factor alpha estimates; invokes existing longonly/family engines unchanged.36synthetic origins/16IDs/24evaluation periods; all6declared cells retained including missingmodel. Efficacy WITHHELD. Exact remaining fields/origins in Paired_Research_Pipeline_Engineering_Report.md; overlapping12month sleeves, payment-dateFX/merger-successor/collateral events, longonly constraints/rebalance variants,50price checks,secondarysector/prospectivearchive remain engineering."
 - **current_integration_semantics:** "New read-only company-replay-upload.tsx panel explains operator replay; no browserPOST/download bypass. Existing operator-only HTTP403 confirmed, attempted public replay route/parser removed. CLI XLSX now has22actual header-bound ledger semantics and Semantics sheet; shared/companyReplaySemantics.ts,companyProjectionReplay.ts,census updated.442definitions;429/1001actual public slots bound,1028total incl27withheld;4aliases separately retained,1032comparabletotal;572previous substantive slots remain. Identity/FullResult/Semantics sheet metadata and display census still need exhaustive coverage. Native187/187+35columns unchanged."
@@ -2548,7 +2554,7 @@ The valuation–emissions association is reported with sign, interval and units,
 
 ## Stage 14 — Valuation-gap research signal and locked evaluation
 
-### S14-001 — not-yet-reconciled
+### S14-001 — partial
 Compute the gap from paired member differences. Each member m carries matched projection and valuation inputs; the gap is the median of the paired differences, not a difference of medians. Keep the full distribution. A positive gap gives a positive score.
 
 - Section: implementation; origin: pre-existing-scope
@@ -2559,7 +2565,7 @@ Compute the gap from paired member differences. Each member m carries matched pr
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
 
-### S14-002 — not-yet-reconciled
+### S14-002 — partial
 Score: within-peer rank mapped to [−1, +1], with sector peers as primary and absolute and sub-industry peers as variants.
 
 - Section: implementation; origin: pre-existing-scope
@@ -2779,14 +2785,14 @@ The prior-exposure disclosure appears on every output of this evaluation.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
 
-### S14-022 — not-yet-reconciled
+### S14-022 — verified
 The gap is computed from paired member differences (fixture checks against a known joint distribution).
 
 - Section: acceptance; origin: pre-existing-scope
-- Existing evidence: docs/Valuation_and_Research_Completion_Status.md
-- Delivered this run: None recorded
+- Existing evidence: script/paired-company-gap.test.ts
+- Delivered this run: Reconciled pre-existing pairedCompanyGap implementation and direct fixture evidence; not new empirical result.
 - Scientific acceptance: not-assessed
-- Executions: []
+- Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T05:07:51.969512Z", "exit_code": 0, "counts": {"tests": 280, "pass": 280, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T050751969512Z.log"}]
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
 
@@ -2801,18 +2807,18 @@ Perturbing one company's gap moves its score in the expected direction.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
 
-### S14-024 — not-yet-reconciled
+### S14-024 — verified
 A common additive change cannot reorder within-peer ranks.
 
 - Section: acceptance; origin: pre-existing-scope
-- Existing evidence: docs/Valuation_and_Research_Completion_Status.md
-- Delivered this run: None recorded
+- Existing evidence: script/paired-company-gap.test.ts
+- Delivered this run: Reconciled pre-existing rankPairedCompanyGaps invariance fixture; no historical result inferred.
 - Scientific acceptance: not-assessed
-- Executions: []
+- Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T05:07:51.969512Z", "exit_code": 0, "counts": {"tests": 280, "pass": 280, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T050751969512Z.log"}]
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
 
-### S14-025 — not-yet-reconciled
+### S14-025 — partial
 Every declared specification appears in the results.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -2836,7 +2842,7 @@ The prospective archive records at least one month's signal before its outcome i
 
 ## Stage 15 — Backtests
 
-### S15-001 — not-yet-reconciled
+### S15-001 — partial
 Long-only tilt (existing engine): market-cap benchmark, weight = benchmark weight × max(0, 1 + tilt × score), normalised. Keep past-only risk scaling (2% target tracking error), the 12-observation warm-up, tilt cap of 5, drift, turnover, costs and terminal-loss handling.
 
 - Section: implementation; origin: pre-existing-scope
@@ -2847,7 +2853,7 @@ Long-only tilt (existing engine): market-cap benchmark, weight = benchmark weigh
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Execute actual new-gap portfolios and full cost/rebalance/lifecycle sensitivity family.
 
-### S15-002 — not-yet-reconciled
+### S15-002 — partial
 Long–short research portfolio (separate definition): top versus bottom quantile within sectors, equal- or cap-weighted as declared, used for the Stage 14 spread test.
 
 - Section: implementation; origin: pre-existing-scope
@@ -2968,7 +2974,7 @@ Issue the research decision under the locked protocol.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Execute actual new-gap portfolios and full cost/rebalance/lifecycle sensitivity family.
 
-### S15-013 — not-yet-reconciled
+### S15-013 — partial
 Zero cost recovers gross returns, and costs reconcile to traded notional in an independent recomputation, using the stated cost and turnover definitions.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -3666,6 +3672,6 @@ Production SHA, health and displayed model and data versions agree.
     "S17-014",
     "S17-015"
   ],
-  "instruction": "Continue IMPLEMENTATION all stages0-17/amendments; read current_release for exact code/live receipts. New immutable operating-source/review adapters and NEE/XOM/CAT source-only pending records exist; these are NOT three executable climate-linked cases. Complete per-issuer activity/geographic/policy-to-revenue/margin/capex/WC/financing inputs and owner review without fabricated coefficients or selfapproval. Pin model/code versions and prove fresh-process full result/export identity; current same-process helper determinism is not complete material replay. Coverage407/979 actual public slots plus4 explicitly reconciled cache aliases;572 substantive slots remain,420 definitions. Native187/187 and35columns unchanged. Preserve fleet941df06 uncertainty/causal failures, beta73095d6/88pairs/common8%failure, Gordon primary, EV failures/storage sensitivity-only. Implement compatible actual Stage14/15 pipeline and independent frozen policy/demand/Kaya/reference/FaIR work. All9path/nonempty targets remain actionable. Source hashes are not original vintages; day-level publication dates are not exact timestamps. No collector changes, purchases, directDDL, licence leakage or weakened gates. One new callback only at true run end.",
+  "instruction": "Continue IMPLEMENTATION all0-17/amendments; verify current_release. Preserve incremental FPL cashbridge, XOM physicalCCS, new FirstSolar45X industrial policy sensitivity and CAT refusal:0/3complete issuer cases. Finish actual5year consolidated/segment FCFE/valuation pairing without invented economics/approval or backdating2026sources. Preserve freshprocess pinned replay. Sleeve deployment/capital/reserve-interest, dated corporate-event and constrained monthly/quarterly longonly modules now exist; do not restart isolated kernels. Remaining overlap work is actual simultaneous sourced marks and frozen frequency-aligned primary inference, full lifecycle/collateral integration, genuine eligible origins,50returnchecks/prospective records; engineering fixtures are not efficacy. Original semanticgap reduced85:514/1001bound,487remaining,527definitions,4aliases. Finish other original families and dynamic/customsheet/display census; do not countnewcolumns as originalclosure. Native187/187+35 and22replaycolumns remain. Full9path/nonemptytarget integration and frozenpolicy/demand/Kaya/reference/FaIR studies remain actionable. Reconciled S14-022/024 engineering criteria; counts9verified/57partial/2blocked/232unreconciled. Public replay remainsoperator-only403. Preserve beta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06 uncertainty/causal failure,EVfailure/storage sensitivityonly. No collectorchanges/purchases/destructiveaction/directDDL/licence-secretleakage/gateweakening. One NEW callback only at genuine runend after evidence.",
   "background_tasks": []
 }

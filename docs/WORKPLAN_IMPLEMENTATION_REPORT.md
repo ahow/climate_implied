@@ -1,6 +1,20 @@
 # Workplan implementation report
 
+## Overlapping sleeves, original semantic gap and industrial source — 2026-11-10
+
+Prior HEADe16d789/live8492353,264tests. NEW `pairedResearchSleeves.ts`, `pairedResearchEvents.ts`, `pairedResearchLongOnly.ts`, modified `pairedResearchCorpus.ts`/`pairedResearchPipeline.ts`, accounting/pipeline tests and engineering report: sleeve capital bookkeeping with deployment-capital equality, simultaneous signed marks, reserve/collateral and no doublecount; prior-reserve interest requires sourced start-known rate and exact accrual boundaries; dated distributions/FX/splits/merger/delisting/borrow/financing and monthly/quarterly constrained holdings. Historical source inspection rejects November2026 captures/unknown original timestamps for January22,2026 evaluation. Sleeve marks still require actual sourced paths; overlapping primary inference needs frozen frequency-aligned bridging, not annual-endpoint invention. Efficacy withheld. Exact limitations in existing engineering report.
+
+NEW `researchFieldSemantics.ts`, `companySummarySemantics.ts`, `research-field-semantics.test.ts`, route bindings, driver/reference/valuation UI annotations and census changes close **85 ORIGINAL slots**, leaving487of572. Actual coverage514/1001, unchanged denominator;527definitions. Families34driver+28reference+21summary+2dimensions.16newUI bindings;33explicit displayIDs and21download binding expressions separately inventoried, not falsely counted as original closure. Native187/187+35,replay22columns,4aliases preserved. Strictfullgate still fails; dynamic/customsheet/display census remains incomplete. Details `BoundedUnitB_Semantics_Report.md`.
+
+Main-agent source work: `solarManufacturingCase.ts`, `run-solar-manufacturing-case.ts`, `solar-manufacturing-case.test.ts`, `Solar_Manufacturing_Alternative.md`. First Solar primary release February24,2026 supports an industrial45X/manufacturing sensitivity instead of invented CAT attribution. Retained text/hash/availability in private generated-artifacts/company-operating-corpus/FSLR-*; no raw source redistribution. OCF−PPE+listednetdebt2025=1084.337m USD candidate convention, not approvedFCFE. Explicit credit-retention0/50/100% corners yield operatingprofit−425to−110m /670to940m /1765to1990m USD while holding other economics fixed. Credits already in grossprofit are subtracted once; no cash transfer timing/probabilities/avoided emissions. This is one-year guidance sensitivity, not a full2027–31issuer projection. Three fullcases remain0/3.
+
+Final command `npm run check && npx tsx --test script/*.test.ts && npm run build`,05:07:51Z: **280pass/0fail/0skip**; log generated-artifacts/workplan-completion/20261110T050751969512Z.log. Prior274/276 failed float equality and cutoff behavior; fixes use1e-12test tolerance and preserve future-input rejection while withholding incomplete outcomes. New safeguards prevent unearned initialmark gains and retroactive reserve interest. FSLRbuilder pass05:01:18Z,log20261110T050118211114Z.log. No beta/fleet/EV empirical reruns or promotions.
+
+Reconciled actual pre-existing fixtures: S14-022 pairedmedian andS14-024 common-additive invariance verified as engineering only. S14-001/002/025 andS15-001/002/013 moved to partial using actual pipeline/tests, not whole-stage completion. Totals **9verified/57partial/2blocked/232unreconciled**. Stage14=2verified/3partial/21unreconciled; Stage15=3partial/16unreconciled; other stagecounts unchanged. No owner/scientific approval implied.
+
 ## Dated orchestration and incremental cash-flow integration — 2026-11-10
+
+Latest release: workspace18d9076ab5a349396e2861ecf9ad21624c6c0eb2; GitHub/verifiedlive8492353cd6419adff4bad45851dd012f6f3f39e0; CI42758520997 success; Railwayf8c71112-c979-417f-bb9c-cfb2e95747aa. At04:55:50Z exact build SHA/healthok/426qualified+16core definitions including22new replay fields confirmed. CLI computations/export tests establish the changed offline behavior, not production data activation. Final264pass/0fail/0skip, typecheck/build passed. Ending at run context budget, not exhausted ready work. Updated restart instruction reflects partial FPL cash bridge, fresh-process replay and dated orchestration with specific remaining limits; no obsolete source-only/same-process next_action.
 
 Prior verified HEAD3d7e3d0/live d75a72d. NEW `companyCashflowBridge.ts` implements incremental FPL revenue recognition/collection/O&M/interest/cash tax/WC/capex/debt funding and amortization, independently reconciling accrual and cash FCFE within USD0.00001. Six hypothetical frozen stresses, not six issuers or probability draws. Timely/lower-cost annual FCFE USDm: −1138.125888,181.993704,177.157616,172.321527,167.485439; sum−439.167601. Assumption hashf13ed7f7b815d2a4cb4b6e15a0b9ec19a77f87f06155c12bd0c164a6c9120e46. Source/assumption register and refusal limits in `Conditional_Company_Climate_Cases.md`; derived evidence/logs in `generated-artifacts/unit1-cash-bridge/`. This is one incremental FPL channel, XOM remains physical-only, CAT causal mapping refused: zero complete issuer cases versus three required.
 
@@ -906,6 +920,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-operating-replay-d75a72d",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T04:35:47.734977+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-cash-orchestration-8492353",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T04:56:49.331145+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202
