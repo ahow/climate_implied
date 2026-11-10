@@ -17,8 +17,8 @@ test("operational GET families bind all actual typed leaves without new public s
   }
   assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
   assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,368);
-  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,204);
+  assert.equal(census.originalGapReconciliation.closedOriginalSlots,437);
+  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,135);
   assert.equal(new Set(outputFieldSemantics.map(f=>f.id)).size,outputFieldSemantics.length);
 });
 
@@ -52,7 +52,7 @@ test("news definitions disclose estimator defaults rather than relabel estimates
 });
 
 test("export closure requires actual typed column and complete literal binding, never wildcard inventory",()=>{
-  assert.equal(census.verifiedExportBindings.length,54);
+  assert.equal(census.verifiedExportBindings.length,58);
   for(const binding of census.verifiedExportBindings) {
     assert.ok(binding.transform.length>0);
     assert.ok(requireOutputSemantic(binding.id));

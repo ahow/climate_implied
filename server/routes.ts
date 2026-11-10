@@ -120,10 +120,14 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  app.get("/api/calculation/field-semantics",(_req,res)=>res.json({
-    version:"core-fields-1",coverage:"Core fields only; additional output fields remain unreconciled",
-    fields:fieldSemantics,qualifiedFields:outputFieldSemantics,
-  }));
+  app.get("/api/calculation/field-semantics",(_req,res)=>{
+    const response = {
+      version:"core-fields-1",coverage:"Core fields only; additional output fields remain unreconciled",
+      fields:fieldSemantics,qualifiedFields:outputFieldSemantics,
+    };
+    res.set("X-Field-Semantics",bindNestedOutput("semanticRegistry",response).map(f=>f.id).join(","));
+    res.json(response);
+  });
   app.get("/api/build-info", (_req, res) => {
     const candidate = process.env.RAILWAY_GIT_COMMIT_SHA;
     res.set("Cache-Control", "no-store").json({
@@ -165,7 +169,9 @@ export async function registerRoutes(
   void checkFinancialProvider();
   app.get("/api/financial-data/status", (_req, res) => {
     res.setHeader("Cache-Control", "no-store");
-    res.json(financialProviderStatus());
+    const response = financialProviderStatus();
+    res.set("X-Field-Semantics",bindNestedOutput("financialProvider",response).map(f=>f.id).join(","));
+    res.json(response);
   });
   app.use("/api/cv", validateCvRequest);
   app.use("/api/cv", async (req, res, next) => {
@@ -332,7 +338,7 @@ export async function registerRoutes(
   app.get("/api/calculation-contract", (_req, res) => {
     const history = getAllHistoricalIndicatorsWithNowcast();
     const latest = history[history.length - 1];
-    res.json({
+    const response = {
       ...legacyContext(latest?.year ?? new Date().getFullYear(), "all"),
       inputRevision: currentProjectionRevision(),
       indicatorUnits: INDICATORS.map(({ key, unit }) => ({ key, unit })),
@@ -345,7 +351,9 @@ export async function registerRoutes(
       },
       remainingScientificWork: ["inventory reconciliation", "emissions mechanisms", "FaIR",
         "coherent ensemble propagation", "valuation inference", "point-in-time backtesting"],
-    });
+    };
+    res.set("X-Field-Semantics",bindNestedOutput("calculationContract",response).map(f=>f.id).join(","));
+    res.json(response);
   });
 
   app.get("/api/financial-data/reviews", async (_req, res) => {

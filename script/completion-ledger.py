@@ -173,7 +173,7 @@ def render(ledger):
                       f"- Delivered this run: {r['behaviour_delivered_this_run'] or 'None recorded'}",
                       f"- Scientific acceptance: {r['scientific_acceptance']}",
                       f"- Executions: {json.dumps(r['executions'], ensure_ascii=False)}",
-                      f"- Gaps: {'; '.join(r['remaining_gaps'])}",
+                      f"- Gaps: {'; '.join(r['remaining_gaps']) or 'None at this declared requirement scope.'}",
                       f"- Next: {r['next_action']}", ""]
     lines += ["## Restart", json.dumps(ledger["restart"], indent=2), ""]
     (ROOT / "docs/WORKPLAN_COMPLETION_LEDGER.md").write_text("\n".join(lines))

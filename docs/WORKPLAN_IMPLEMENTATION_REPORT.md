@@ -1,6 +1,26 @@
 # Workplan implementation report
 
+## Portable network-denied recovery, HTTP reads and primary filings — 2026-11-10
+
+FINALcoherentchecks08:30:52Z afterboundedmarketattempt:310pass/0fail/0skip+typecheck/build;loggenerated-artifacts/workplan-completion/20261110T083052610508Z.log. Python1test+actualhistoryanalysis separate. MainadditionallyreconciledS07-008aspartial foractualIGCCdiagnostic,notforcing/emissions/observable-equivalence/2025attributionacceptance. Finalcounts11verified/76partial/2blocked/211unreconciled;unitA's12-clauseauditbelowisitsownboundedsubtotal. Allremainingworkisoriginalscope,notnewfollowuptasks.
+
+Additionalauthorizedmarketattempt:existingFMPclient9readonlyprofile/quote/balance-sheetcalls succeeded,capture2026-11-10T08:20:05Z;threeNov9datedquotesretainedprivately,notredistributedinGit. Noexplicitdatedshares;neverinferobservedsharesfrommarketcap/price. XOMprovideridentityconflictsretainedfiling/financialidentity;requiresprimarysuccessionreview,notautomaticjoinbyticker. FY2025balance-sheet datesarenotquote-datecommonshares. Privateprimary-filings/market-reference-attempt.json recordsactualstatuses/hashes/fields. Zeroqualifiedpairsstill;missingdatedshares/identity/accounting—notblanketproviderfailure. IGCCrawalignedtemperaturecomparisonalsohasunresolvedGSAT/GMSTobservabledefinitioncompatibility,notmodelaccuracy/annual-referencevalidation;nocorrectionfactorinvented.
+
+Main-agent additional actualclimateanalysis: reconcile_igcc_history.py/test plusIGCC_History_Reconciliation_Protocol/Results.md compare retainedFaIRsurfacehistory withindependentIGCCGMST1850–2014 usingmidpoints and1850–1900baseline. Bias+.0064422683°C,RMSE.1210392023°C,maxdifference.3172782516°C. Eightscenariohistoricalmediansidentical,notindependentsamples. IGCCanthroERF2014/2024=2.3524887920/2.9740364178W/m2. Natural1750termisnonzero;protocolshorthand clarified withoutalteringvalues. No modelannualforcing/emissioncomparison becauseartifactlacksthosematrices;notmatchedSSPannualreference/attribution/.01°Cgate/centralpromotion. Frozenprotocolhash1fa60cb7;actualrun+1Python test pass08:12:46Z,loggenerated-artifacts/workplan-completion/20261110T081246321430Z.log. EarlierBOMfailure retained;fixedUTF-8-sig,nooutcome retuning.
+
+NEW check-nine-http-recovery.ts executesactualnineHTTPreadpaths:repeated/concurrentdefault-explicitretainedselections,storedretrieval,return-default,invalidsnapshot andpublicPOST403 pass. Evidence generated-artifacts/nine-http-recovery/{test-final.log,report.json}. PrivilegedHTTP loader/review/capture unavailable onreadonlysurface;actualcurrentworkbook+approvedsource mutation/suspendedrefresh/restore remainsUNPROVEN. Noauthweakening/newpublicwrites.
+
+NEW verify-portable-overlay-recovery.ts bundlesexactNode/dependencycode/lock/source-config/inputs/builtinonlyintegrityverifier into freshprivatedirectory. No existingcheckout/node_modulesresolution. Allnine/XLSXmatch;missing/corrupt/version negativespass. EnforcedLinuxunshareuser+networknamespace recoveryPASS;separateTCPprobe ENETUNREACH. Evidence generated-artifacts/portable-overlay-recovery/{final.log,report.json,recovery.log,network-denial.log,network-probe.log},bundle recovery-pQu8fR. CompatibleLinux/architecture/hostsharedlibraryABIrequired—notarbitraryhost/signedauthenticity. Syntheticinputs notscience. Initialsourcepin failuresduringconcurrenteditsretained;frozenbundlesuccessdistinct.
+
+NEW69originalsemanticclosures(contract27,dictionary24,provider14,comparisonXLSX4):866/1001bound,135remaining,cumulative437of572closed,852definitions,denominatorunchanged.11providerUIannotations,signedpp/nullXLSXreadback. Fouraliases/27withheld/native/replaypreserved. ParallelA_Semantics_Clause_Audit.md reconciles12exactoldclauses: S11-005verifieddeclaredfinancialrefusalcontract,11partial,212unaudited. Counts11verified/75partial/2blocked/212unreconciled;notwhole-modelscienceacceptance.
+
+NEW companyFilingPair.ts/prepare-company-primary-filings.ts/test:primaryFY2024Form10K-containingannualreportsforFSLR/NEE/XOMfrompublicmirrors,privatehashes/identities/currency/fiscal/locators. SECcompanyfacts403 meansnotindependentlySEC-authenticated. Historicalqualifiedbridges−255.437m/169m/25.722bnUSD respectively,notfullforecastFCFE. XOMold115.12priceexplicitlyrefusedagainstlaternonmatchingdates. Adapterusesexisting5yeargrowth/10yearfade/perpetualsolver;missingmarketreferences/accountinggaps failclosed.9syntheticalgebrarepricingsarenotrealpairs. Realwholeequitypairs0,completecases0;noinventedprice/terminal/approval/refit. Privateprimary-filings/readiness-report.json containsactualextractions.
+
+Finalcoherentchecks08:04:08Z:310pass/0fail/0skip+typecheck/build;loggenerated-artifacts/workplan-completion/20261110T080408524982Z.log. ActualHTTP/recoveryrunsseparatefromTSfixtures. Allremainingoriginalscope retained.
+
 ## Explicit targets, nonempty offline replay and company cash-flow model — 2026-11-10
+
+Finalreceipt:workspace585c272bf9af3801df9668eaa4dba0ebf2031b2c,GitHub/exactlivee338c8c990536a3f54714dec507d12522a95249d,CI42774269468success,Railway454cf113-fddf-4f98-b1a2-1311ea2f6f51SUCCESS. At07:22:29Z exactbuildSHA/health/registry/bands/terciles200,18targetdefinitions andpublicPOST403 verified;readonlytargetpanel rendered. FINALcommitted-source replay07:24:35Z PASS250.882s,loggenerated-artifacts/workplan-completion/20261110T072435435450Z.log,resultcad9d450d4100345df4701fefba92d62c4eb6cb12f1ff43c4abbe6ccc6ab0a3b,twoDB-freeworkers/fouroverlays/nonemptytargets/allnine/XLSX/pin+missingdependencychecks. Earlierb5bdfbdevelopmentreceipt remainshistorical,notfinalsourcepin. Codeonly—not owner/data/scienceactivation. Contextbudgetstop withremainingoriginalscope actionable;no redundantfollowuptasks.
 
 Priorliveaa92e79/localca2e6fa preserved. NEWtargetEvidence passes existingtypedoverlay/review/capture/archive/hash/selectors:baseYear,2050targetYear,scope1+scope2,fractional-change,signedtarget>-1,publicationday/sourceLocator/sourceExcerpt. Rejectmissing/conflicting/future/unsupportedmetadata;no2024default/oldarchiveedits. Band/tercile calculators nowuseexplicit evidence. SnapshotcarbonpricebypassesmutableDBcache. Readonlydata-managementdisclosure consumes18newtargetregistrydefinitions;no publiceditor/approval/authweakening.
 
@@ -1018,6 +1038,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-nine-path-operational-aa92e79",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T06:39:50.196742+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-target-offline-e338c8c",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T07:31:17.895093+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

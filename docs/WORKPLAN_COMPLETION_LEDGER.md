@@ -3,12 +3,19 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T07:14:56.546113+00:00
+Updated: 2026-11-10T08:32:00.456699+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
 ## Latest implementation evidence
 
+- **final_reconciliation_and_checks:** "AfterunitA12clauseaudit,mainalsoadvancedS07-008topartial foractualIGCChistorydiagnostic;forcing/emissions/GSAT-GMST/2025attributioncriteriaremainunmet. FINALcounts11verified/76partial/2blocked/211unreconciled. Finalcoherentnpm run check && npx tsx --test script/*.test.ts && npm run build at2026-11-10T08:30:52Z:310pass/0fail/0skip;loggenerated-artifacts/workplan-completion/20261110T083052610508Z.log. Earlier08:04checkpredatesboundedmarketattempt;Python1test+actualIGCCanalysisseparate. Allreadyremainingworkwithinoriginalscope,no duplicativefollowup tasks."
+- **market_attempt_and_history_scope:** "ActualexistingFMPclient9readonlycalls(profile/quote/balance-sheet forFSLR/NEE/XOM) allsuccess,captured2026-11-10T08:20:05Z. ThreeNov9datedquotesretainedPRIVATELY;licensedvalues/identifiersnotredistributedinGit. NoexplicitdatedsharesOutstanding;marketCap/priceNOTreverseengineered. XOMprovideridentitydiffersretainedfiling/financialidentity:successionreviewrequired,notjoinedbyticker. LatestFY2025balancesnotquote-dateshares,nofrozenFY2024replacement. Private market-reference-attempt.json retainsstatuses/params/hashes/fields. Actualadmissiblepairs0;nextneedsdatedshares+XOMidentity+accountinggaps. IGCCrawtemperaturedifference alsohasunresolvedGSAT/GMSTobservablecompatibility;notacceptedaccuracy,conversionfactororannualgatepass."
+- **actual_igcc_history:** "NEW reconcile_igcc_history.py/test/protocol/results: executedretainedFaIR annualsurfacehistory vsindependentIGCCGMST1850-2014,midpointconversion,both1850-1900baseline. Bias+.0064422683C,RMSE.1210392023C,maxannualdiscrepancy.3172782516C;8scenariohistoricalmediansidentical,not8independentsamples. IGCCanthroERF2014=2.3524887920,2024=2.9740364178W/m2;natural1750nonzero .3012700292 so protocolrelative1750shorthand clarified,notre-zeroed. Modelannualforcing/emissionsnotretained:fullforcingreconciliation unavailable. NOTmatchedSSPannualreference/attribution/.01Cgate/centralpromotion. Frozenprotocol1fa60cb7;onePython test+actualanalysis pass08:12:46Z,log20261110T081246321430Z.log;initialBOMparsefailurelog081222 retained. Result5b579d7e... JSONunderigcc-history-reconciliation. Detailedsourcehashes/numericaloutcomes/limits inIGCC_History_Reconciliation_Results.md."
+- **portable_http_progress:** "NEW check-nine-http-recovery.ts actual9HTTPreads PASS repeated/concurrent retained selections/storedretrieval/defaultreturn/invalidsnapshot/POST403;generated-artifacts/nine-http-recovery/{test-final.log,report.json}. PrivilegedHTTP loader/review/capture unavailable;currentworkbook ANDapprovedsource mutation/suspendedrefresh/restore UNPROVEN,noauthweakening. NEW verify-portable-overlay-recovery.ts privatefreshdirectory exactNode/bundleddependencies/lock/source-config/input/integrityverifier:all9/XLSXmatch,no checkout/node_modulesresolution,missing/corrupt/versionreject. EnforcedLinuxunshareuser+networknamespace recoveryPASS,TCP ENETUNREACH. Logs generated-artifacts/portable-overlay-recovery/{final.log,report.json,recovery.log,network-denial.log,network-probe.log};bundle recovery-pQu8fR. CompatibleLinux/architecture/sharedlibraryABIrequired;notarbitraryhost/signedauthenticity/science. Sourcepin failuresduringconcurrentedits retained."
+- **portable_semantics_and_primary_filings:** "69ORIGINALclosures contract27/dictionary24/provider14/comparisonXLSX4:866/1001bound,135remaining,cumulative437of572closed,852definitions,denominator+0,4aliases27withheld/native/replaypreserved.11providerUIannotations andexactpp/nullXLSXreadback. ParallelA_Semantics_Clause_Audit.md audits12clauses,proposes1declaredfinancialrefusalverified+11partial. NEW companyFilingPair.ts/prepare-company-primary-filings.ts/test primaryFY2024FSLR/NEE/XOM10K-containingreportsfrompublicmirrors,privatehashes/identities/locators;SECcompanyfacts403,notSEC-authenticated. Qualifiedhistoricalbridges-255.437m/169m/25.722bnUSD notfullforecastFCFE. OldXOM115.12pricewrongdateexplicitlyrefused. Actualwholeequitypairs0/cases0,9syntheticalgebrarepricingsonly;existing5yr/10yrfade/terminaladapterfailsclosedonmarket/accountinggaps. No arbitraryprice/terminal/approval/refit."
+- **portable_final_checks:** "npm run check && npx tsx --test script/*.test.ts && npm run build at2026-11-10T08:04:08Z:310pass/0fail/0skip;loggenerated-artifacts/workplan-completion/20261110T080408524982Z.log. SeparateHTTP/recoveryexecutionsabove. Detailednewpaths/functions/sourceandclauses inParallelA_Semantics_Clause_Audit.md andWORKPLAN_IMPLEMENTATION_REPORT.md."
+- **final_target_release_receipt:** "Workspace585c272bf9af3801df9668eaa4dba0ebf2031b2c;GitHub/exactlivee338c8c990536a3f54714dec507d12522a95249d;CI42774269468success;Railway454cf113-fddf-4f98-b1a2-1311ea2f6f51SUCCESS. ExactSHA/health/registry/bands/terciles200 at07:22:29Z;18targetdefinitions live;harmless publicPOST upload0/reset403. Readonlytargetpanel visuallyrendered. Codeonly,nodata/scienceapproval. FINALcommitted-source ninepathreplay07:24:35Z PASS250.882s,loggenerated-artifacts/workplan-completion/20261110T072435435450Z.log;resultcad9d450d4100345df4701fefba92d62c4eb6cb12f1ff43c4abbe6ccc6ab0a3b;2workers/noDBcredentials/4overlays/nonemptytargets/XLSX/missingdependency/codepin checks. Earlierb5bdfb target-development receipt preserved,notfinalcodepin. Contextbudgetstop;remainingoriginalscope actionable/no duplicativefollowup tasks."
 - **target_contract_implementation:** "NEW explicit targetEvidence in existing targetoverlay/capture/archive/selectors: baseYear integer,2050targetYear,scope1+scope2,fractional-change,signedtarget>-1,publicationday/sourceLocator/sourceExcerpt. Missing/conflicting/future/unsupportedmetadata rejects; no2024default,oldarchives remainunavailable/unchanged. Exactevidencehash travels snapshots; band/tercile calculators consume it. Snapshot-selected carbonprice bypasses mutableDBcache. Readonlydata-managementtargetdisclosure reads18newregistrydefinitions (17inputleaves+annualformula),noeditableapprovalUI/publicmutation."
 - **target_actual_acceptance:** "ActualDEVrollback check-overlay-concurrency-db.ts passes all9baseline/modified/suspended/current-baseline contexts withNONEMPTYbands/terciles,financial/carbon/SDG/driver/targethelper recordsrollback. Twofresh verify-overlay-replay workers DATABASE_URLremoved:2442companies/470341rows,all9actualoutputs/XLSXreadback,pin/missingdependencyrejection;hashb5bdfb3a3ebc620093972de26ba42cc49652b538be184959af70c41f5e84a254. Privatebundlegenerated-artifacts/overlay-replay/inputs-dd85bcfa0a6aa2d4da5c09a5157a8a626ee6d05b8b3e4d8a507ecbe25233b36a.json. Logs copieddurably togenerated-artifacts/target-contract/{target-db,target-replay-final,target-unit,target-tsc-final}.log. CapturestillneedsDEVDB;installedmatchingruntime/source/depsrequired;notnetwork-denial/portableexecutable/actualHTTPcurrentworkbookmutationacceptance."
 - **target_semantics_counts:** "73ORIGINAL closures:ensemble-summary23,holdout9,signal13,history14,vintages14.797/1001bound,204remaining,cumulative368/572closed.764definitionsbefore18newtargetdefinitions,782final;newtargetdefs+0originalclosure/+0existingAPI-XLSXdenominator.4aliases27withheld/native187+35/replay22 unchanged. Dynamic/custominventorystillpartial."
@@ -69,7 +76,7 @@ Confirm the GitHub main SHA and Railway deployment identity; record whether 80a9
 - Delivered this run: Final source66c7782e2fdfb1be20fb420875a7f1afce6d6435 passed CI42734896982 and Railway6c0ae3e8-47d6-49a9-b239-04988f0fbdd5 SUCCESS; live health/build-info exact SHA confirmed. Original80a9315 is not live.
 - Scientific acceptance: release-identity-only
 - Executions: [{"command": ["python", "-c", "import json,urllib.request;b='https://dashboard-production-4d39.up.railway.app';x=json.load(urllib.request.urlopen(b+'/api/build-info',timeout=30));assert x['sourceCommit']=='66c7782e2fdfb1be20fb420875a7f1afce6d6435';assert json.load(urllib.request.urlopen(b+'/api/health',timeout=30))['status']=='ok';print(json.dumps(x));print('PASS live release identity and health')"], "executed_at": "2026-11-10T01:22:29.667445+00:00", "exit_code": 0, "elapsed_seconds": 2.402, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T012229667445Z.log", "workspace_revision": "c1a12f7b1a8ca9a8b4cb98d7a78b86b8551471b8", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
 ### S00-002 — verified
@@ -80,7 +87,7 @@ Run all TypeScript and Python tests, npm run check and npm run build; record cou
 - Delivered this run: 212-test TypeScript suite and 63 Python tests pass; subsequent focused Stage12 guard test passes. Typecheck/build pass. CI will separately gate exported source.
 - Scientific acceptance: not-applicable-operational
 - Executions: [{"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_handoff_contract.py"], "executed_at": "2026-11-10T00:21:08.893971+00:00", "exit_code": 0, "elapsed_seconds": 0.376, "counts": {"tests": 4, "pass": 4, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002108893971Z.log", "workspace_revision": "ce36ef8985ba7de26be07fc0b240635246c0ba78", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_storage_adoption.py"], "executed_at": "2026-11-10T00:23:18.237073+00:00", "exit_code": 0, "elapsed_seconds": 0.883, "counts": {"tests": 4, "pass": 4, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log", "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:29:58.796940+00:00", "exit_code": 0, "elapsed_seconds": 26.79, "counts": {"tests": 204, "pass": 204, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["python", "-m", "unittest", "discover", "-s", "script", "-p", "test_*.py"], "executed_at": "2026-11-10T00:30:26.002081+00:00", "exit_code": 0, "elapsed_seconds": 9.663, "counts": {"tests": 63, "pass": 63, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T003026002081Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "check"], "executed_at": "2026-11-10T00:30:36.080727+00:00", "exit_code": 0, "elapsed_seconds": 10.155, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T003036080727Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npm", "run", "build"], "executed_at": "2026-11-10T00:30:46.670502+00:00", "exit_code": 0, "elapsed_seconds": 19.47, "counts": null, "log": "generated-artifacts/workplan-completion/20261110T003046670502Z.log", "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
 ### S00-003 — verified
@@ -91,7 +98,7 @@ Capture golden fixtures with fixed inputs and seeds: legacy headline temperature
 - Delivered this run: Fresh-process fixtures match global/category trajectories, Gordon/gap/legacy finance and walk-forward. Additional fresh HTTP servers match four captured OWID regional results and real archived-workbook grouped endpoints: 187 valuation groups, 193 SDG rows, 187 tercile rows. Headers confirm frozen identities.
 - Scientific acceptance: not-applicable-operational
 - Executions: [{"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:18:56.797862+00:00", "exit_code": 0, "elapsed_seconds": 8.229, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221856797862Z.log", "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:24:43.984288+00:00", "exit_code": 0, "elapsed_seconds": 6.646, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T222443984288Z.log", "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:25:18.623328+00:00", "exit_code": 0, "elapsed_seconds": 7.269, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T222518623328Z.log", "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "npx", "tsx", "script/verify-remaining-baselines.ts"], "executed_at": "2026-11-09T22:37:15.542531+00:00", "exit_code": 1, "elapsed_seconds": 40.078, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T223715542531Z.log", "workspace_revision": "94f6e34d33453ca4541cae48fb43cc9b0f1cf80e", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "npx", "tsx", "script/verify-remaining-baselines.ts"], "executed_at": "2026-11-09T22:38:10.700705+00:00", "exit_code": 0, "elapsed_seconds": 66.034, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T223810700705Z.log", "workspace_revision": "94f6e34d33453ca4541cae48fb43cc9b0f1cf80e", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "DATA_SCHEDULER_ENABLED=false", "npx", "tsx", "script/verify-remaining-baselines.ts"], "executed_at": "2026-11-09T22:51:02.647958+00:00", "exit_code": 0, "elapsed_seconds": 71.166, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T225102647958Z.log", "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
 ### S00-004 — partial
@@ -113,7 +120,7 @@ Make the scheduler opt-in (DATA_SCHEDULER_ENABLED=true required) and enable it o
 - Delivered this run: Opt-in gate (DATA_SCHEDULER_ENABLED) enforced in server/dataIngestion/scheduler.ts:startScheduler. Exactly one environment starts the scheduler: Replit production autoscale logs '[scheduler] Started' (fetchDeploymentLogs 2026-10-20..2026-11-09, every cold start); Railway logs 'Disabled for this instance'; development disabled. Concurrent autoscale instances of that one environment (e.g. two starts at 2026-11-07T07:00:31Z) are serialized by pg_try_advisory_lock(126907,1) in server/dataIngestion/collectionLock.ts:withCollectionLock plus the running-row check and the persisted last-run cadence. Read-only production indicator_fetch_runs: scheduled runs 2026-06-07, 07-07, 08-06, 09-06, 10-06, one per ~30 days, no duplicate scheduled run.
 - Scientific acceptance: not-applicable-operational
 - Executions: [{"command": ["npx", "tsx", "--test", "script/collection-lock.test.ts"], "executed_at": "2026-11-09T23:27:55.927273+00:00", "exit_code": 0, "elapsed_seconds": 2.559, "counts": {"tests": 2, "pass": 2, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T232755927273Z.log", "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0", "worktree_dirty": false, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "--test", "script/collection-lock.test.ts"], "executed_at": "2026-11-09T23:28:09.418036+00:00", "exit_code": 0, "elapsed_seconds": 1.785, "counts": {"tests": 2, "pass": 2, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T232809418036Z.log", "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Keep Railway disabled while Replit autoscale remains the collector; any host move must switch both flags in one change.
 
 ### S00-006 — not-yet-reconciled
@@ -135,7 +142,7 @@ Legacy fixtures reproduce in two clean processes: exact hashes for analytical co
 - Delivered this run: Fresh-process fixtures match global/category trajectories, Gordon/gap/legacy finance and walk-forward. Additional fresh HTTP servers match four captured OWID regional results and real archived-workbook grouped endpoints: 187 valuation groups, 193 SDG rows, 187 tercile rows. Headers confirm frozen identities.
 - Scientific acceptance: not-applicable-operational
 - Executions: [{"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:18:56.797862+00:00", "exit_code": 0, "elapsed_seconds": 8.229, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T221856797862Z.log", "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:24:43.984288+00:00", "exit_code": 0, "elapsed_seconds": 6.646, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T222443984288Z.log", "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "script/verify-process-baseline.ts"], "executed_at": "2026-11-09T22:25:18.623328+00:00", "exit_code": 0, "elapsed_seconds": 7.269, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T222518623328Z.log", "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "npx", "tsx", "script/verify-remaining-baselines.ts"], "executed_at": "2026-11-09T22:37:15.542531+00:00", "exit_code": 1, "elapsed_seconds": 40.078, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T223715542531Z.log", "workspace_revision": "94f6e34d33453ca4541cae48fb43cc9b0f1cf80e", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "npx", "tsx", "script/verify-remaining-baselines.ts"], "executed_at": "2026-11-09T22:38:10.700705+00:00", "exit_code": 0, "elapsed_seconds": 66.034, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T223810700705Z.log", "workspace_revision": "94f6e34d33453ca4541cae48fb43cc9b0f1cf80e", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["env", "NODE_ENV=development", "DATA_SCHEDULER_ENABLED=false", "npx", "tsx", "script/verify-remaining-baselines.ts"], "executed_at": "2026-11-09T22:51:02.647958+00:00", "exit_code": 0, "elapsed_seconds": 71.166, "counts": null, "log": "generated-artifacts/workplan-completion/20261109T225102647958Z.log", "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Inventory privileged routes; rehearse isolated recovery; verify single scheduler.
 
 ### S00-008 — partial
@@ -168,7 +175,7 @@ Exactly one environment logs “scheduler enabled” at startup.
 - Delivered this run: Opt-in gate (DATA_SCHEDULER_ENABLED) enforced in server/dataIngestion/scheduler.ts:startScheduler. Exactly one environment starts the scheduler: Replit production autoscale logs '[scheduler] Started' (fetchDeploymentLogs 2026-10-20..2026-11-09, every cold start); Railway logs 'Disabled for this instance'; development disabled. Concurrent autoscale instances of that one environment (e.g. two starts at 2026-11-07T07:00:31Z) are serialized by pg_try_advisory_lock(126907,1) in server/dataIngestion/collectionLock.ts:withCollectionLock plus the running-row check and the persisted last-run cadence. Read-only production indicator_fetch_runs: scheduled runs 2026-06-07, 07-07, 08-06, 09-06, 10-06, one per ~30 days, no duplicate scheduled run.
 - Scientific acceptance: not-applicable-operational
 - Executions: [{"command": ["npx", "tsx", "--test", "script/collection-lock.test.ts"], "executed_at": "2026-11-09T23:27:55.927273+00:00", "exit_code": 0, "elapsed_seconds": 2.559, "counts": {"tests": 2, "pass": 2, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T232755927273Z.log", "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0", "worktree_dirty": false, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}, {"command": ["npx", "tsx", "--test", "script/collection-lock.test.ts"], "executed_at": "2026-11-09T23:28:09.418036+00:00", "exit_code": 0, "elapsed_seconds": 1.785, "counts": {"tests": 2, "pass": 2, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261109T232809418036Z.log", "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Keep Railway disabled while Replit autoscale remains the collector; any host move must switch both flags in one change.
 
 ### S00-011 — not-yet-reconciled
@@ -294,7 +301,7 @@ Create a shared constants module for the inventory basis and base year. Store 1.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Audit each response field and export against formula/unit/population register.
 
-### S01-011 — not-yet-reconciled
+### S01-011 — partial
 Replace general warning banners with concise metadata beside each value, except where a specific, known limitation needs a direct warning (as in step 3).
 
 - Section: implementation; origin: pre-existing-scope
@@ -305,7 +312,7 @@ Replace general warning banners with concise metadata beside each value, except 
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Audit each response field and export against formula/unit/population register.
 
-### S01-012 — not-yet-reconciled
+### S01-012 — partial
 Zero API or export fields absent from the register; zero register entries lacking equation or unit.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -327,7 +334,7 @@ Withheld fields absent from API responses, the UI bundle and exports.
 - Gaps: Complete field-level API/UI/export inventory and historical-archive interpretation remains open.
 - Next: Audit each response field and export against formula/unit/population register.
 
-### S01-014 — not-yet-reconciled
+### S01-014 — partial
 Each renamed label is identical across UI, API descriptions and exports.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -808,7 +815,7 @@ Global emissions equal the sum of regional, international-transport and sector a
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Connect qualified distributions; run actual 10,000-member ensemble and convergence.
 
-### S05-008 — not-yet-reconciled
+### S05-008 — partial
 Same manifest and seed give identical member hashes; reordered inputs make no difference.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -975,7 +982,7 @@ No NDC-only pathway is labelled “all commitments”.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Locate compatible commitments inputs; run missing-gas and harmonisation sensitivities.
 
-### S06-010 — not-yet-reconciled
+### S06-010 — partial
 Displayed reference values match hashed, verified source files.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -988,7 +995,7 @@ Displayed reference values match hashed, verified source files.
 
 ## Stage 7 — Climate response and the four headline measures
 
-### S07-001 — not-yet-reconciled
+### S07-001 — partial
 Use pinned FaIR 2.2.4 with its calibrated ensemble, a native-unit bridge and validation of supported gases.
 
 - Section: implementation; origin: pre-existing-scope
@@ -1062,10 +1069,10 @@ Independent reference: reproduce a published FaIR calibration output for a stand
 - Delivered this run: Executed 8SSPs by66upstream calibrations against published expected endpoints.
 - Scientific acceptance: reference-endpoint-reproduction-only; no central/calibrated-ensemble acceptance
 - Executions: [{"command": "uv run --with h5netcdf --with h5py python script/independent_fair_benchmark.py", "executed_at": "2026-11-10", "exit_code": 0, "counts": {"cases": 528, "pass": 528, "fail": 0}, "log": "generated-artifacts/independent-fair-benchmark/execution.log"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Do not rerun unchangedendpoint benchmark; annualreference/history/coupling are separate incomplete requirements.
 
-### S07-008 — not-yet-reconciled
+### S07-008 — partial
 Reconcile historical emissions and forcing to the IGCC 2025 dataset. Compare 2025 human-induced warming with the dated 1.37°C reference, and 2016–2025 with 1.24 [1.0–1.5]°C. Report the share of members in range; do not tune to a point.
 
 - Section: implementation; origin: pre-existing-scope
@@ -1219,7 +1226,7 @@ Convergence between 5,000 and 10,000 members: warming quantiles move < 0.01°C. 
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Reproduce independent SSP benchmark; reconcile history; couple accepted ensemble.
 
-### S07-022 — not-yet-reconciled
+### S07-022 — partial
 UI, API and exports return identical headline values and the same claim label.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -1632,7 +1639,7 @@ Re-running creates no duplicates, and no issuer exposure is counted twice in agg
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Audit lifecycle/identity census; assemble review batches and broader financial coverage.
 
-### S10-013 — not-yet-reconciled
+### S10-013 — partial
 Currency fixtures pass; no aggregate mixes currencies without conversion.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -1700,16 +1707,16 @@ Discount rate: company-specific cost of equity, using beta from the workbook ret
 - Gaps: Broad-market rate evidence and actual compatible Stage12/14 evaluation remain; no promotion.
 - Next: Complete paired implied-growth sensitivity under existing frozen protocol without changing original failed D8 gate.
 
-### S11-005 — not-yet-reconciled
+### S11-005 — verified
 Banks and insurers: standard industrial cash-flow models do not apply. Use an excess-return (residual income) formulation on book equity, or return “not modelled”.
 
 - Section: implementation; origin: pre-existing-scope
-- Existing evidence: docs/Valuation_and_Research_Completion_Status.md
-- Delivered this run: None recorded
+- Existing evidence: server/calculation/cashFlowValuation.ts:model, script/cash-flow-valuation.test.ts, docs/ParallelA_Semantics_Clause_Audit.md
+- Delivered this run: Reconciled pre-existing permitted not-modelled branch and direct financial/loss/unbracketed refusal test.
 - Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
-- Next: Assemble common-sample historical predictions; complete seven-criterion D8 comparison.
+- Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T08:04:08Z", "exit_code": 0, "counts": {"tests": 310, "pass": 310, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T080408524982Z.log"}]
+- Gaps: None at this declared requirement scope.
+- Next: Preserve refusal; independent classification and full valuation research remain separate.
 
 ### S11-006 — not-yet-reconciled
 Loss-makers: use revenue × a normalised margin only where a margin can be identified from company history or close peers. Otherwise return “no defensible solution”.
@@ -2074,7 +2081,7 @@ Lower
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Assemble common-sample historical predictions; complete seven-criterion D8 comparison.
 
-### S11-039 — not-yet-reconciled
+### S11-039 — partial
 For well-posed cases (positive, identifiable cash flows; terminal growth below the discount rate), the solver converges reliably and reproduces a textbook fixture to 0.01 pp. Cases without a defensible solution are returned as such and counted, not forced.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -2293,7 +2300,7 @@ Carbon drag uses only liable emissions; a fixture confirms Scope 3 creates no di
 - Delivered this run: Executed numerical fixture confirms carbonDrag51 from liable Scope1 and no change to growth when Scope3 changes1000 to999999. Only this explicit fixture criterion is verified, not empirical company calibration.
 - Scientific acceptance: numerical-fixture-only
 - Executions: [{"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:54:54.859644+00:00", "exit_code": 0, "elapsed_seconds": 26.801, "counts": {"tests": 212, "pass": 212, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T005454859644Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
 ### S12-016 — partial
@@ -2562,7 +2569,7 @@ No output is labelled “market-implied” unless its segment passed identificat
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Implement evidenced sector mappings and assumption registry; locate confirmed identification thresholds.
 
-### S13-022 — not-yet-reconciled
+### S13-022 — partial
 The valuation–emissions association is reported with sign, interval and units, and is not labelled a carbon price unless the translation model is documented.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -2814,7 +2821,7 @@ The gap is computed from paired member differences (fixture checks against a kno
 - Delivered this run: Reconciled pre-existing pairedCompanyGap implementation and direct fixture evidence; not new empirical result.
 - Scientific acceptance: not-assessed
 - Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T05:07:51.969512Z", "exit_code": 0, "counts": {"tests": 280, "pass": 280, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T050751969512Z.log"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Preserve verified engineering fixture; actual historical efficacy remains a separate requirement.
 
 ### S14-023 — not-yet-reconciled
@@ -2836,7 +2843,7 @@ A common additive change cannot reorder within-peer ranks.
 - Delivered this run: Reconciled pre-existing rankPairedCompanyGaps invariance fixture; no historical result inferred.
 - Scientific acceptance: not-assessed
 - Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T05:07:51.969512Z", "exit_code": 0, "counts": {"tests": 280, "pass": 280, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T050751969512Z.log"}]
-- Gaps: 
+- Gaps: None at this declared requirement scope.
 - Next: Preserve verified engineering invariance; actual historical efficacy remains separate.
 
 ### S14-025 — partial
@@ -3162,7 +3169,7 @@ Remove a Stage 1 interim warning only when its underlying limitation is resolved
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Integrate remaining analyses and verify UI/API/export/approval consistency.
 
-### S16-009 — not-yet-reconciled
+### S16-009 — partial
 UI, API and exports return identical values and claim labels for every headline measure.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -3693,6 +3700,6 @@ Production SHA, health and displayed model and data versions agree.
     "S17-014",
     "S17-015"
   ],
-  "instruction": "Continue IMPLEMENTATION all0-17/amendments;verify current_release. Preserve797/1001bound,204originalremaining,cumulative368closed,782definitions incl18newtargetdefinitions notoriginalclosure;4aliases27withheld/native187+35/replay22. Explicit source-evidenced targetbaseYear/2050/scope1+2 contract nowimplemented acrossreview/capture/hash/selectors/calculators;NONEMPTYbands/terciles andall9pathDEVrollback isolation pass.2freshDB-freeworkers/XLSXactualreadback pass; do not restartmissingbaseyearkernel. Finish actualHTTP/current-workbook-currentapprovedsource mutation/restore,network-denied andportableexecutable recovery;matchinginstalledsource/runtime/deps currentlyrequired. Complete remainingsemantics/dynamicexports. NewFSLR5yearconditionalcash/accrualFCFE+finitehorizonPV executed,notwholeequitypair/filingverified/3cases;0/3qualifiedcases. Finish actualfilingverifiedNEE/XOM/eligiblealternatives andsamebasiswholevaluation,notmore isolatedsensitivities. PreserveprospectiveDBclock/sourcedsleeve/frequencyinference/50return/lifecycle pendingwork. IGCCannualhistoriespinned needactualcompatiblereconciliation;Maddison2022/EU27missing54/WBPPP mismatch unchanged,nowindowsplicing. Preserve528endpoint/12infill/beta73095d6/88pairs/common8failure/Gordonprimary/fleetfailures/EVfailure/storage sensitivityonly. Counts10verified/64partial/2blocked/224unreconciled. No collectorchange/purchase/DDL/destruction/leak/gateweakening;publicPOST403. OneNEWcallback onlytrueend afterevidence.",
+  "instruction": "Continue IMPLEMENTATION all0-17/amendments;verify current_release. Preserve866/1001bound,135originalremaining,cumulative437closed,852definitions,4aliases27withheld/native/replay. Target/nonempty9path andNEWprivatefreshdirectory copiedNode/bundleddeps/lock recovery pass all9/XLSX underLinuxnetworknamespace withENETUNREACH;compatiblehostABIrequired,notarbitraryhost/signedprovenance. Actual9HTTPreads/storedretrieval/concurrentretainedselection/refusals pass,privilegedHTTPsource loader unavailable. Finish isolatedsupported currentworkbook+approvedsource mutation/suspendedHTTP/restore withoutauthweakening. FY2024FSLR/NEE/XOMprimarydocuments+existingpairedsolver adapter assembled;actualFMP9calls obtained3datedquotes,notdatedcommonshares;XOMprovider/predecessoridentityconflict needsprimarysuccessionreview. Do notrepeatblanketmarket-unavailableclaim orjoinbyticker. Historicalaccountinggapsremain,realwholeequitypairs0/cases0;getmatchedshares/financialbasis anddefensibleoperatingcase. IGCCraw1850-2014temperaturediagnosticdone(bias.006442C,RMSE.121039C),notacceptedGSAT-GMSTequivalence/forcing-emissions/2025attribution/SSPannualgate. Preservewithoutunchangedrerun. Counts11verified/76partial/2blocked/211unreconciled. Stage11common-sample/13-15,sourcedsleeve/frequency/50returns remain. Preserve528endpoint/12infill/beta73095d6/88pairs/common8failure/Gordonprimary/fleetfailures/EVfailure/storage sensitivityonly. No collector/purchase/DDL/destruction/leak/gateweakening. OneNEWcallback onlytrueend afterevidence.",
   "background_tasks": []
 }

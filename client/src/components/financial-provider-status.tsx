@@ -52,12 +52,13 @@ export function FinancialProviderStatus() {
           <Badge variant="secondary">Read-only diagnostics</Badge>
           {data && (
             <>
-              <Badge variant="outline" data-testid="badge-financial-configured">
+              <Badge variant="outline" data-testid="badge-financial-configured" data-field-id="financialProvider.configured">
                 {data.configured ? "Configured" : "Not configured"}
               </Badge>
               <Badge
                 variant={data.state === "error" ? "destructive" : "outline"}
                 data-testid="badge-financial-provider-state"
+                data-field-id="financialProvider.state"
               >
                 {stateLabels[data.state]}
               </Badge>
@@ -97,39 +98,41 @@ export function FinancialProviderStatus() {
                     : "The startup diagnostic reported an error. Provider access is not verified."}
             </p>
             {data.error && (
-              <p role="alert" className="break-words text-sm text-destructive">
+              <p role="alert" className="break-words text-sm text-destructive" data-field-id="financialProvider.error">
                 {data.error}
               </p>
             )}
             <dl className="grid grid-cols-1 gap-x-6 gap-y-4 rounded-md border p-4 text-sm md:grid-cols-2">
               <div>
                 <dt className="text-xs text-muted-foreground">Diagnostic checked at</dt>
-                <dd className="mt-1" data-testid="text-financial-checked-at">
+                <dd className="mt-1" data-testid="text-financial-checked-at" data-field-id="financialProvider.checkedAt">
                   {dateTime(data.checkedAt)}
                 </dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Diagnostic symbol</dt>
-                <dd className="mt-1 font-mono">{data.symbol || "Not available"}</dd>
+                <dd className="mt-1 font-mono" data-field-id="financialProvider.symbol">{data.symbol || "Not available"}</dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Observed quote / currency</dt>
                 <dd className="mt-1 font-mono" data-testid="text-financial-quote">
-                  {data.quote
-                    ? `${data.quote.price.toLocaleString(undefined, { maximumFractionDigits: 8 })} ${data.quote.currency || "(currency unavailable)"}`
-                    : "Not available"}
+                  {data.quote ? <>
+                    <span data-field-id="financialProvider.quote.price">{data.quote.price.toLocaleString(undefined, { maximumFractionDigits: 8 })}</span>{" "}
+                    <span data-field-id="financialProvider.quote.currency">{data.quote.currency || "(currency unavailable)"}</span>
+                  </> : "Not available"}
                 </dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Quote observation time (not diagnostic check time)</dt>
-                <dd className="mt-1" data-testid="text-financial-quote-time">
+                <dd className="mt-1" data-testid="text-financial-quote-time" data-field-id="financialProvider.quote.timestamp">
                   {data.quote ? dateTime(data.quote.timestamp * 1000) : "Not available"}
                 </dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Financial period / reported currency</dt>
                 <dd className="mt-1">
-                  {data.financialPeriod || "Not available"} / {data.reportedCurrency || "Not available"}
+                  <span data-field-id="financialProvider.financialPeriod">{data.financialPeriod || "Not available"}</span>{" / "}
+                  <span data-field-id="financialProvider.reportedCurrency">{data.reportedCurrency || "Not available"}</span>
                 </dd>
               </div>
               <div>
@@ -157,7 +160,7 @@ export function FinancialProviderStatus() {
           {!!data?.limitations.length && (
             <ul className="list-disc space-y-1 pl-4">
               {data.limitations.map((limitation, index) => (
-                <li key={`${index}-${limitation}`}>{limitation}</li>
+                <li key={`${index}-${limitation}`} data-field-id="financialProvider.limitations[]">{limitation}</li>
               ))}
             </ul>
           )}

@@ -468,6 +468,12 @@ export default function DecarbSignal() {
               kind="valuation"
               sheetName="Valuation gaps"
               rows={comparisonDownloadRows}
+              fieldBindings={{
+                Date:{id:"signalComparison.date",transform:"Identity of chart dateLabel; en-US short month and numeric year in browser timezone"},
+                "Carbon intensity group earnings-yield gap (pp)":{id:"signalComparison.carbonIntensity",transform:"Identity; null or absent month preserved as blank"},
+                "SDG group earnings-yield gap (pp)":{id:"signalComparison.sdgExposure",transform:"Identity; null or absent month preserved as blank"},
+                "Ambition group earnings-yield gap (pp)":{id:"signalComparison.decarbAmbition",transform:"Identity; null or absent month preserved as blank"},
+              }}
               testId="button-download-decarb-comparison"
             />
           </div>

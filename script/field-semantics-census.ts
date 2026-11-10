@@ -3,6 +3,7 @@ import { readFileSync,writeFileSync } from "node:fs";
 import { fieldSemantics } from "../shared/fieldSemantics";
 import { outputFieldSemantics } from "../shared/outputFieldSemantics";
 import { evidenceApiBindings } from "../shared/evidenceFieldSemantics";
+import { diagnosticMetadataBindings } from "../shared/diagnosticMetadataSemantics";
 import { nativeExportColumns } from "../shared/nativeExport";
 import { publicValuationResult } from "../server/calculation/publicValuationContract";
 import { execFileSync,spawnSync } from "node:child_process";
@@ -160,6 +161,7 @@ const nativeDynamicDomains={
   "result.trajectory[].sectorsGtCO2e.*":outputFieldSemantics.filter(f=>f.id.startsWith("native.result.trajectory[].sectorsGtCO2e.")).map(f=>f.id),
 };
 const isBound=(e:typeof unique[number])=>([
+  ...diagnosticMetadataBindings.map(({surface,prefix})=>[surface,prefix]),
   ...evidenceApiBindings.map(({surface,prefix})=>[surface,prefix]),
   ['API GET "/api/news/climate"', "news"],
   ['API GET "/api/data/indicators"', "indicatorInventory"],
@@ -212,6 +214,7 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
 // The original cohort is the supplied 429/1001 census, not definition count.
 // These pre-existing response families were wholly unbound in that cohort.
 const originalClosureSurfaces = [
+  ...diagnosticMetadataBindings.map(({surface})=>surface),
   ...evidenceApiBindings.map(({surface})=>surface),
   'API GET "/api/research/driver-registry"', 'API GET "/api/reference-scenarios"',
   'API GET "/api/cv/summary"', 'API GET "/api/cv/dimensions"',

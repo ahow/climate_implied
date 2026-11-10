@@ -45,8 +45,8 @@ test("read-only disclosure uses existing actual registry; definitions and displa
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
   assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,368);
-  assert.equal(census.fullyBoundFields,797);
+  assert.equal(census.originalGapReconciliation.closedOriginalSlots,437);
+  assert.equal(census.fullyBoundFields,866);
   assert.ok(census.displayBindings.some((f:{id:string})=>f.id==="targetInput.value"));
   assert.equal(census.resolvedResponseAliases.length,4);
   assert.equal(census.withheldFields.length,27);
