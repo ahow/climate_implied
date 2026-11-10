@@ -118,6 +118,7 @@ const isBound=(e:typeof unique[number])=>([
   ['API GET "/api/reference-scenarios"', "publishedReference"],
   ['API GET "/api/cv/summary"', "companySummary"],
   ['API GET "/api/cv/dimensions"', "companyDimensions"],
+  ['API GET "/api/cv/backtest"', "backtest"],
 ].some(([surface,prefix])=>e.surface===surface && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field}`))) || (e.surface==="XLSX server/calculation/companyProjectionReplay.ts:Ledger" &&
   outputFieldSemantics.some(f=>f.id===`companyReplay.ledger.${e.field.replace(/^\[\]\./,"")}`)) || (e.surface.startsWith("XLSX client/src/components/emissions-candidate-review.tsx:") &&
   nativeExportColumns.some(c=>e.field===`[].${c.column}`)) || (e.surface.includes('"/api/emissions/candidate"') &&
@@ -125,7 +126,9 @@ const isBound=(e:typeof unique[number])=>([
   outputFieldSemantics.some(f=>f.id===`native.${e.field}`)) || (e.surface.includes('"/api/projection"') &&
       outputFieldSemantics.some(f=>f.id===`projection.${e.field}`)) || (e.field.startsWith("[].") &&
     [["/api/cv/sdg-growth","sdg"],["/api/cv/pe-comparison","pe"],["/api/indicators/historical","indicator"],["/api/projection/regions","regional"],["/api/projection/sensitivity","sensitivity"],["/api/projection/categories","category"],["/api/projection/historical-trend","historical"],["/api/projection/categories/historical-trend","categoryHistory"],["/api/calculation/company-operating/reviews","companyReview"]].some(([path,prefix])=>
-      e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`)));
+      e.surface.includes(`"${path}"`) && outputFieldSemantics.some(f=>f.id===`${prefix}.${e.field.slice(3)}`))) ||
+      (e.surface==='API GET "/api/cv/backtest"' && e.field.startsWith("[].") &&
+        outputFieldSemantics.some(f=>f.id===`backtest.${e.field.slice(3)}`));
 const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemantics.length+outputFieldSemantics.length,
   resolvedResponseAliases,
   comparableSlotAccounting:{actualUniqueSlots:unique.length,previouslyUnresolvedAliasSlots:resolvedResponseAliases.length,
@@ -150,10 +153,11 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   exclusions:unique.filter(e=>e.resolution!=="typed-field"),fields:unique,
   completion:false,warning:"A matching bare field name is not a precise semantic binding. No generic formula placeholders counted."};
 // The original cohort is the supplied 429/1001 census, not definition count.
-// These four pre-existing response families were wholly unbound in that cohort.
+// These pre-existing response families were wholly unbound in that cohort.
 const originalClosureSurfaces = [
   'API GET "/api/research/driver-registry"', 'API GET "/api/reference-scenarios"',
   'API GET "/api/cv/summary"', 'API GET "/api/cv/dimensions"',
+  'API GET "/api/cv/backtest"',
 ];
 const originalClosedSlots = unique.filter(e=>originalClosureSurfaces.includes(e.surface)&&isBound(e))
   .map(e=>({surface:e.surface,field:e.field}));
@@ -165,7 +169,7 @@ const reconciliation = baseline ? {} : {
     currentPublicSlots:unique.filter(e=>e.resolution!=="withheld-public-field").length,
     publicSlotDenominatorDelta:unique.filter(e=>e.resolution!=="withheld-public-field").length-1001,
     reconciledCacheAliases:4,
-    note:"Only the four explicitly reviewed original response families count as closure here. Definition additions and separately inventoried displays/export binding expressions are not original slot closure.",
+    note:"Only explicitly reviewed original response families count as closure here, including 49 backtest slots after the previously closed 85. Definition additions and separately inventoried displays/export binding expressions are not original slot closure.",
   },
 };
 const out=JSON.stringify({...report,...reconciliation},null,2)+"\n";

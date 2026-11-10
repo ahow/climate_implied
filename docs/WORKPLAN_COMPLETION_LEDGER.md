@@ -3,12 +3,17 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T05:08:57.308709+00:00
+Updated: 2026-11-10T05:30:26.654877+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
 ## Latest implementation evidence
 
+- **current_independent_climate_and_original_gap:** "2026-11-10: prior8e646db/live43917a6/full280pass preserved. NEW49original /api/cv/backtest slots closed,563/1001bound; originalremaining487->438,cumulative134of572,denominator+0; definitions actual579(previous report527offbyone versus generated528),4aliases unchanged.15displayannotations and4actualdownload bindings added with percent/wealth/dynamiccomparison blanks explicit; full dynamic/customsheet/replaymetadata census still incomplete. Exact inventory in field_semantics_census.json; shared/backtestFieldSemantics.ts,BacktestSummary,route and two signalpages changed. No pinned companyreplaycode changed; no unchanged replay rerun."
+- **current_climate_execution:** "NEW forecastKaya protocolab7da56d frozen before scoring retainedOWID realseries:7/7unavailable,0fits/0promotions, complete2010-18training and2019-24holdout unchanged; exactmissingcells andsources in UserUnitB_Climate_Efficacy_Results.md. Immediately executed FaIR2.2.4 independentpublished upstream SSPbenchmark:8SSPs*66calibrations=528endpointcells pass,temperaturemax1.206335e-6C<=.01C,concentration5.880952e-5ppm,forcing2.983487e-7W/m2; originalannualcriterion unavailable because referencesonly2100endpoints. No10kcalibration/centralpromotion.5focusedPython tests pass;2missingbackend failures retained before ephemeral h5netcdf+h5py resolution. No EV/storage/fleet/beta reruns."
+- **current_prospective_engineering:** "NEW prospectiveSignal calculation/requesthash and DEVELOPMENTtransactional immutable capture helper+operatorCLI: databaseclock before execution/outcome, exactuniverse/order normalization, conflicting sameorigin/protocol/universe reject, repeats retainoriginal timestamp evenafterexecution, noapproval. Hashes are not sourceauthenticity; still submitted unreviewed signals. Actualrollback-onlyDBexercise passed05:27:31Z,loggenerated-artifacts/workplan-completion/20261110T052731877325Z.log, rowsconfirmedabsentafterrollback. No genuine live month captured. Existing sleeve/corporateevent code untouched; sourcedmarks/inference/lifecycleintegration still pending. Stage12fullcases remain0/3; no newcase claimed."
+- **current_coherent_checks:** "FinalchangedHEADcheck npm run check && npx tsx --test script/*.test.ts && npm run build at2026-11-10T05:29:21Z:285pass/0fail/0skip; loggenerated-artifacts/workplan-completion/20261110T052921582361Z.log. Earlier285run at05:25preceded finalrepeat-idempotency refinement, not finalreceipt. Python5tests separate; actualFaIR528cells notTSfixturecount."
+- **latest_release:** "Workspace9e48e9fa7fe1192007642d115591dedb6fa751af; GitHub/live43917a67e28ecbaecd8326c7cc5c2f1a13965242; CI42760535873 success; Railway3aa13a51-b003-4b0e-ba92-50576d66c5f2. Exact livebuild/health confirmed05:15:25Z; driver/reference/summary API200 with34/28/21bound headers. Dimensions initially30s timeout, subsequent60s-bounded retry200 with2bound headers; initialtimeout not hidden. New computation engineering/CLI, not production data/scientific promotion. Final280/280 plus typecheck/build. Context-budget end, actionable originalscope remains; no separate follow-up proposals duplicate it."
 - **current_sleeves_semantics_source_work:** "2026-11-10 priorHEADe16d789/live8492353/full264pass preserved. NEW sleeve/event/longonly modules extend pairedResearchCorpus/Pipeline: capital reconciliation at every deployment, simultaneous marks/cash/collateral, prior-reserve source/rate/timing interest proof, no capital doublecount; dividend/split/cash-stock merger/delisting/borrow/financing events; monthly/quarterly constraint variants. Unknown/future source fields reject. Complete dates reject future artifacts; incomplete-outcome-only artifacts do not kill valid earlier dates, but future signals still reject. Real retained NEE/XOM/CAT November2026 captures/null original timestamps cannot support historical cutoffJanuary22,2026. Historical efficacy remains withheld; source mark derivation/overlapping primary factor-frequency bridge/prospective records/50returns remain incomplete. Detailed exactclause/field boundaries in Paired_Research_Pipeline_Engineering_Report.md."
 - **current_original_semantic_closure:** "85 ORIGINAL slots closed,572->487; denominator unchanged1001public,514bound. Driver registry34,reference scenarios28,company summary21,dimensions2 now actual typed/APIbindings.527definitions;16newUI annotations;33explicit displayIDs and21download binding expressions separately inventoried, not added to originalclosure count. Native187/187+35,companyreplay22columns,4cachealiases preserved. Dynamic/customsheet/display gaps explicit; strictcompletionfalse. Detailed BoundedUnitB_Semantics_Report.md."
 - **current_industrial_source:** "NEW First Solar issuer2026-02-24 disclosure retained/hash-recorded; no historical backdating. 2025OCF2057.105m-PPE869.875m+netdebt(370.470m-473.363m)=1084.337m USD candidate cash convention, not approvedFCFE. 2026guidance includes45X credits2.10-2.19bn in grossprofit2.4-2.6bn. Explicit0/50/100% retention fixed-other-economics stress yields operatingprofit corners[-425,-110]/[670,940]/[1765,1990]m USD; no probabilities/cashcredit timing/avoidedemissions invented. One-year real policy channel, not fullfiveyear case. Sources/date/limitations in Solar_Manufacturing_Alternative.md; actualresults FSLR-policy-results.json. Fullissuer cases remain0/3."
@@ -1000,7 +1005,7 @@ Keep three evidence strands separate, each with its own status:
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Reproduce independent SSP benchmark; reconcile history; couple accepted ensemble.
 
-### S07-004 — not-yet-reconciled
+### S07-004 — partial
 Physical-response verification: an independent reference run, historical forcing reconciliation and pulse tests.
 
 - Section: implementation; origin: pre-existing-scope
@@ -1033,16 +1038,16 @@ Scenario interpretation: what the pathway assumes and represents.
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Reproduce independent SSP benchmark; reconcile history; couple accepted ensemble.
 
-### S07-007 — not-yet-reconciled
+### S07-007 — verified
 Independent reference: reproduce a published FaIR calibration output for a standard SSP case.
 
 - Section: implementation; origin: pre-existing-scope
-- Existing evidence: docs/Minor_Gas_History_Sensitivity.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
-- Next: Reproduce independent SSP benchmark; reconcile history; couple accepted ensemble.
+- Existing evidence: docs/UserUnitB_Climate_Efficacy_Results.md, docs/Independent_FaIR_Benchmark_Protocol.md
+- Delivered this run: Executed 8SSPs by66upstream calibrations against published expected endpoints.
+- Scientific acceptance: reference-endpoint-reproduction-only; no central/calibrated-ensemble acceptance
+- Executions: [{"command": "uv run --with h5netcdf --with h5py python script/independent_fair_benchmark.py", "executed_at": "2026-11-10", "exit_code": 0, "counts": {"cases": 528, "pass": 528, "fail": 0}, "log": "generated-artifacts/independent-fair-benchmark/execution.log"}]
+- Gaps: 
+- Next: Do not rerun unchangedendpoint benchmark; annualreference/history/coupling are separate incomplete requirements.
 
 ### S07-008 — not-yet-reconciled
 Reconcile historical emissions and forcing to the IGCC 2025 dataset. Compare 2025 human-induced warming with the dated 1.37°C reference, and 2016–2025 with 1.24 [1.0–1.5]°C. Report the share of members in range; do not tune to a point.
@@ -1154,7 +1159,7 @@ Code audit and perturbation tests find no 1–5°C clipping, no 1.1°C offset an
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Reproduce independent SSP benchmark; reconcile history; couple accepted ensemble.
 
-### S07-018 — not-yet-reconciled
+### S07-018 — partial
 Independent reference: maximum annual difference ≤ 0.01°C.
 
 - Section: acceptance; origin: pre-existing-scope
@@ -2730,7 +2735,7 @@ Define the multiple-testing family before testing. The family is the set of prim
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
 
-### S14-017 — not-yet-reconciled
+### S14-017 — partial
 Prospective archive: from this stage onwards, store every month's live signal, with its manifest, before outcomes are known. This becomes the genuine out-of-sample record.
 
 - Section: implementation; origin: pre-existing-scope
@@ -2793,8 +2798,8 @@ The gap is computed from paired member differences (fixture checks against a kno
 - Delivered this run: Reconciled pre-existing pairedCompanyGap implementation and direct fixture evidence; not new empirical result.
 - Scientific acceptance: not-assessed
 - Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T05:07:51.969512Z", "exit_code": 0, "counts": {"tests": 280, "pass": 280, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T050751969512Z.log"}]
-- Gaps: Reconcile this exact requirement with code and direct evidence.
-- Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
+- Gaps: 
+- Next: Preserve verified engineering fixture; actual historical efficacy remains a separate requirement.
 
 ### S14-023 — not-yet-reconciled
 Perturbing one company's gap moves its score in the expected direction.
@@ -2815,8 +2820,8 @@ A common additive change cannot reorder within-peer ranks.
 - Delivered this run: Reconciled pre-existing rankPairedCompanyGaps invariance fixture; no historical result inferred.
 - Scientific acceptance: not-assessed
 - Executions: [{"command": "npm run check && npx tsx --test script/*.test.ts && npm run build", "executed_at": "2026-11-10T05:07:51.969512Z", "exit_code": 0, "counts": {"tests": 280, "pass": 280, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T050751969512Z.log"}]
-- Gaps: Reconcile this exact requirement with code and direct evidence.
-- Next: Freeze complete research protocol before scoring; generate actual paired new-gap histories.
+- Gaps: 
+- Next: Preserve verified engineering invariance; actual historical efficacy remains separate.
 
 ### S14-025 — partial
 Every declared specification appears in the results.
@@ -3672,6 +3677,6 @@ Production SHA, health and displayed model and data versions agree.
     "S17-014",
     "S17-015"
   ],
-  "instruction": "Continue IMPLEMENTATION all0-17/amendments; verify current_release. Preserve incremental FPL cashbridge, XOM physicalCCS, new FirstSolar45X industrial policy sensitivity and CAT refusal:0/3complete issuer cases. Finish actual5year consolidated/segment FCFE/valuation pairing without invented economics/approval or backdating2026sources. Preserve freshprocess pinned replay. Sleeve deployment/capital/reserve-interest, dated corporate-event and constrained monthly/quarterly longonly modules now exist; do not restart isolated kernels. Remaining overlap work is actual simultaneous sourced marks and frozen frequency-aligned primary inference, full lifecycle/collateral integration, genuine eligible origins,50returnchecks/prospective records; engineering fixtures are not efficacy. Original semanticgap reduced85:514/1001bound,487remaining,527definitions,4aliases. Finish other original families and dynamic/customsheet/display census; do not countnewcolumns as originalclosure. Native187/187+35 and22replaycolumns remain. Full9path/nonemptytarget integration and frozenpolicy/demand/Kaya/reference/FaIR studies remain actionable. Reconciled S14-022/024 engineering criteria; counts9verified/57partial/2blocked/232unreconciled. Public replay remainsoperator-only403. Preserve beta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06 uncertainty/causal failure,EVfailure/storage sensitivityonly. No collectorchanges/purchases/destructiveaction/directDDL/licence-secretleakage/gateweakening. One NEW callback only at genuine runend after evidence.",
+  "instruction": "Continue IMPLEMENTATION all0-17/amendments; verify current_release. Preserve563/1001bound,438originalremaining,cumulative134closed,579definitions,4aliases/native187+35/replay22; finish originalfamilies anddynamic/customsheet/replaymetadata census. Preserve new transactional prospectiveSignal capture/clock/conflict/idempotency and realdevrollback proof; not genuine monthlysignals or sourceauthentication. Finish sourced simultaneoussleeve marks/frequencyalignedoriginalinference/lifecyclecollateral/50returns, no kernelrestart or proxy efficacy. ForecastKaya7entities unavailable under unchangedwindows: assemble missing GDP/region series only with compatibledefinitions/vintages. Independent FaIR528upstreamSSPendpoint comparisons passed, butannualreference unavailable; proceed annual/history/referenceinfill requirements without unchangedendpoint rerun or10kcentralpromotion. Preserve FPLcashbridge/XOMphysicalCCS/FirstSolar45Xsensitivity/CATrefusal;0/3fullissuer cases still. Complete defensible5year operatingcashflow/valuationpairing, not more source-only packets. Full9path/nonemptytargets stillactionable. Counts10verified/60partial/2blocked/228unreconciled. Preserve beta73095d6/88pairs/common8%failure/Gordonprimary,fleet941df06 failures,EVfailure/storage sensitivityonly. No collectorchange/purchases/DDL/destruction/secretlicenseleak/gateweakening; publicPOST403. OneNEWcheckpoint onlyactualrunend afterevidence.",
   "background_tasks": []
 }

@@ -18,19 +18,25 @@ export function BacktestSummary({ data, error, label }: {
     <div className="text-xs text-muted-foreground space-y-1 mb-3" data-testid="backtest-calibration-summary">
       <p>
         {label && <strong>{label}: </strong>}
-        Target TE {s.targetTrackingErrorPct.toFixed(2)}% · Realised full-period TE {s.realizedTrackingErrorPct?.toFixed(3) ?? "N/A"}%
-        {" · "}{s.calibrationBasis === "expanding_past_only" ? "Latest tilt" : "Tilt"} {s.tiltScale?.toFixed(4) ?? "N/A"}
-        {s.calibrationBasis === "expanding_past_only" && " · Initial training"}
-        {s.calibrationPeriod && ` · ${s.calibrationPeriod.start}–${s.calibrationPeriod.end} (${s.calibrationPeriod.months} months)`}
-        {" · "}Ranking: {s.method.replaceAll("_", " ")}
+        <span data-field-id="backtest.summary.targetTrackingErrorPct">Target TE {s.targetTrackingErrorPct.toFixed(2)}%</span>
+        {" · "}<span data-field-id="backtest.summary.realizedTrackingErrorPct">Realised full-period TE {s.realizedTrackingErrorPct?.toFixed(3) ?? "N/A"}%</span>
+        {" · "}<span data-field-id="backtest.summary.tiltScale">{s.calibrationBasis === "expanding_past_only" ? "Latest tilt" : "Tilt"} {s.tiltScale?.toFixed(4) ?? "N/A"}</span>
+        <span data-field-id="backtest.summary.calibrationBasis">{s.calibrationBasis === "expanding_past_only" && " · Initial training"}</span>
+        {s.calibrationPeriod && <>
+          {" · "}<span data-field-id="backtest.summary.calibrationPeriod.start">{s.calibrationPeriod.start}</span>–
+          <span data-field-id="backtest.summary.calibrationPeriod.end">{s.calibrationPeriod.end}</span>
+          {" ("}<span data-field-id="backtest.summary.calibrationPeriod.months">{s.calibrationPeriod.months}</span> months)
+        </>}
+        {" · "}Ranking: <span data-field-id="backtest.summary.method">{s.method.replaceAll("_", " ")}</span>
       </p>
-      {s.calibrationStatus !== "within_tolerance" && <p role="status">Calibration: {s.calibrationStatus.replaceAll("_", " ")}. Target TE is not guaranteed.</p>}
-      {s.warnings.map(warning => <p key={warning}>{warning}</p>)}
+      {s.calibrationStatus !== "within_tolerance" && <p role="status" data-field-id="backtest.summary.calibrationStatus">Calibration: {s.calibrationStatus.replaceAll("_", " ")}. Target TE is not guaranteed.</p>}
+      {s.warnings.map(warning => <p key={warning} data-field-id="backtest.summary.warnings[]">{warning}</p>)}
       {s.accounting && <p>
-        Cost assumption: {s.accounting.costBps} bps per traded dollar · Gross cumulative return: {((s.accounting.grossCumulative - 1) * 100).toFixed(2)}%
-        {" · "}Net cumulative return: {((s.accounting.netCumulative - 1) * 100).toFixed(2)}%
-        {" · "}Maximum net drawdown: {(s.accounting.maxNetDrawdown * 100).toFixed(2)}%
-        {" · "}Total one-way turnover: {s.accounting.totalTurnover.toFixed(2)}×
+        <span data-field-id="backtest.summary.accounting.costBps">Cost assumption: {s.accounting.costBps} bps per traded dollar</span>
+        {" · "}<span data-field-id="backtest.summary.accounting.grossCumulative">Gross cumulative return: {((s.accounting.grossCumulative - 1) * 100).toFixed(2)}%</span>
+        {" · "}<span data-field-id="backtest.summary.accounting.netCumulative">Net cumulative return: {((s.accounting.netCumulative - 1) * 100).toFixed(2)}%</span>
+        {" · "}<span data-field-id="backtest.summary.accounting.maxNetDrawdown">Maximum net drawdown: {(s.accounting.maxNetDrawdown * 100).toFixed(2)}%</span>
+        {" · "}<span data-field-id="backtest.summary.accounting.totalTurnover">Total one-way turnover: {s.accounting.totalTurnover.toFixed(2)}×</span>
       </p>}
       <p>The TE series is annualised over the expanding history, not a rolling fixed-length window.</p>
     </div>

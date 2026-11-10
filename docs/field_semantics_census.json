@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 528,
+  "definitions": 579,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -36,7 +36,7 @@
     "previouslyUnresolvedAliasSlots": 4,
     "slotsIncludingReconciledAliases": 1032
   },
-  "fullyBoundFields": 514,
+  "fullyBoundFields": 563,
   "displayBindings": [
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
@@ -207,6 +207,111 @@
       "bound": true
     },
     {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 21,
+      "id": "backtest.summary.targetTrackingErrorPct",
+      "expression": "Target TE {s.targetTrackingErrorPct.toFixed(2)}%",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 22,
+      "id": "backtest.summary.realizedTrackingErrorPct",
+      "expression": "Realised full-period TE {s.realizedTrackingErrorPct?.toFixed(3) ?? \"N/A\"}%",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 23,
+      "id": "backtest.summary.tiltScale",
+      "expression": "{s.calibrationBasis === \"expanding_past_only\" ? \"Latest tilt\" : \"Tilt\"}{s.tiltScale?.toFixed(4) ?? \"N/A\"}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 24,
+      "id": "backtest.summary.calibrationBasis",
+      "expression": "{s.calibrationBasis === \"expanding_past_only\" && \" · Initial training\"}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 26,
+      "id": "backtest.summary.calibrationPeriod.start",
+      "expression": "{s.calibrationPeriod.start}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 27,
+      "id": "backtest.summary.calibrationPeriod.end",
+      "expression": "{s.calibrationPeriod.end}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 28,
+      "id": "backtest.summary.calibrationPeriod.months",
+      "expression": "{s.calibrationPeriod.months}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 30,
+      "id": "backtest.summary.method",
+      "expression": "{s.method.replaceAll(\"_\", \" \")}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 32,
+      "id": "backtest.summary.calibrationStatus",
+      "expression": "Calibration: {s.calibrationStatus.replaceAll(\"_\", \" \")}. Target TE is not guaranteed.",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 33,
+      "id": "backtest.summary.warnings[]",
+      "expression": "{warning}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 35,
+      "id": "backtest.summary.accounting.costBps",
+      "expression": "Cost assumption: {s.accounting.costBps}bps per traded dollar",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 36,
+      "id": "backtest.summary.accounting.grossCumulative",
+      "expression": "Gross cumulative return: {((s.accounting.grossCumulative - 1) * 100).toFixed(2)}%",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 37,
+      "id": "backtest.summary.accounting.netCumulative",
+      "expression": "Net cumulative return: {((s.accounting.netCumulative - 1) * 100).toFixed(2)}%",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 38,
+      "id": "backtest.summary.accounting.maxNetDrawdown",
+      "expression": "Maximum net drawdown: {(s.accounting.maxNetDrawdown * 100).toFixed(2)}%",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/backtest-summary.tsx",
+      "line": 39,
+      "id": "backtest.summary.accounting.totalTurnover",
+      "expression": "Total one-way turnover: {s.accounting.totalTurnover.toFixed(2)}×",
+      "bound": true
+    },
+    {
       "source": "client/src/components/company-operating-review.tsx",
       "line": 15,
       "id": "companyReview.isin",
@@ -352,14 +457,14 @@
       "source": "client/src/pages/decarb-signal.tsx",
       "line": 633,
       "rows": "cumulativeReturnDownloadRows",
-      "bindings": "MISSING",
+      "bindings": "{{\n                      Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                      \"Benchmark Cumulative Return (%)\":{id:\"backtest.benchmarkCumulative\",transform:\"Math.round((wealth-1)*10000)/100\"},\n                      [`${signalLabel} Portfolio Cumulative Return (%)`]:{id:\"backtest.portfolioCumulative\",transform:\"Math.round((wealth-1)*10000)/100; selected signal label\"},\n                    }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/pages/decarb-signal.tsx",
-      "line": 683,
+      "line": 688,
       "rows": "activeReturnDownloadRows",
-      "bindings": "MISSING",
+      "bindings": "{{\n                      Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                      \"Active Return (%)\":{id:\"backtest.activeReturn\",transform:\"Math.round(fraction*10000)/100\"},\n                      \"Tracking Error (ann.) (%)\":{id:\"backtest.trackingError\",transform:\"Math.round(fraction*10000)/100\"},\n                    }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
@@ -373,14 +478,14 @@
       "source": "client/src/pages/decarb-gap-signal.tsx",
       "line": 737,
       "rows": "cumulativeReturnDownloadRows",
-      "bindings": "MISSING",
+      "bindings": "{{\n                        Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                        \"Benchmark Cumulative Return (%)\":{id:\"backtest.benchmarkCumulative\",transform:\"Math.round((wealth-1)*10000)/100; primary response month or comparison response fallback; absent month remains blank\"},\n                        [`${measureInfo?.label ?? \"Measure\"}-Driven Cumulative Return (%)`]:{id:\"backtest.portfolioCumulative\",transform:\"Math.round((wealth-1)*10000)/100; selected measure signal; absent primary month remains blank\"},\n                        ...(compareGap ? {\"Legacy peer-yield ranking cumulative return (%)\":{id:\"backtest.portfolioCumulative\",transform:\"Comparison decarb_gap response: Math.round((wealth-1)*10000)/100; absent comparison month remains blank\"}} : {}),\n                      }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/pages/decarb-gap-signal.tsx",
-      "line": 771,
+      "line": 777,
       "rows": "activeReturnDownloadRows",
-      "bindings": "MISSING",
+      "bindings": "{{\n                        Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                        \"Active Return (%)\":{id:\"backtest.activeReturn\",transform:\"Math.round(fraction*10000)/100; absent primary month remains blank\"},\n                        \"Tracking Error (ann. %)\":{id:\"backtest.trackingError\",transform:\"Math.round(fraction*10000)/100; absent primary month remains blank\"},\n                      }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
@@ -683,7 +788,7 @@
       "field": "runs[].summary",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "unresolved-type"
     }
   ],
@@ -1228,401 +1333,8 @@
     {
       "surface": "API GET \"/api/cv/backtest\"",
       "total": 49,
-      "bound": 0,
-      "unbound": [
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].activeReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].benchmarkCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].benchmarkReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].costFraction",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].date",
-          "type": "string",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].overweightCount",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].portfolioCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].portfolioNetCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].portfolioNetReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].portfolioReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].tiltScale",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].trackingError",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].tradedNotional",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].turnover",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "[].underweightCount",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].activeReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].benchmarkCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].benchmarkReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].costFraction",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].date",
-          "type": "string",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].overweightCount",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].portfolioCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].portfolioNetCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].portfolioNetReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].portfolioReturn",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].tiltScale",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].trackingError",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].tradedNotional",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].turnover",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "series[].underweightCount",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.accounting.costBps",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.accounting.grossCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.accounting.maxNetDrawdown",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.accounting.netCumulative",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.accounting.totalCostFraction",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.accounting.totalTurnover",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.calibrationBasis",
-          "type": "\"expanding_past_only\"",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.calibrationPeriod.end",
-          "type": "string",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.calibrationPeriod.months",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.calibrationPeriod.start",
-          "type": "string",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.calibrationStatus",
-          "type": "\"insufficient_data\"",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.method",
-          "type": "string",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.realizedTrackingErrorPct",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.seriesTrackingErrorUnits",
-          "type": "\"decimal\"",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.seriesTrackingErrorWindow",
-          "type": "\"expanding_from_start\"",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.signal",
-          "type": "\"decarb_gap\"",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.targetTrackingErrorPct",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.tiltScale",
-          "type": "number",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        },
-        {
-          "surface": "API GET \"/api/cv/backtest\"",
-          "field": "summary.warnings[]",
-          "type": "string",
-          "source": "server/routes.ts",
-          "line": 1101,
-          "resolution": "typed-field"
-        }
-      ],
+      "bound": 49,
+      "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
       "withheld": []
@@ -2798,7 +2510,7 @@
           "field": "def.category",
           "type": "\"Emissions Outcomes\"",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2806,7 +2518,7 @@
           "field": "def.decimals",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2814,7 +2526,7 @@
           "field": "def.fetchMethod",
           "type": "\"manual\"",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2822,7 +2534,7 @@
           "field": "def.key",
           "type": "\"remainingBudget15C_Gt\"",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2830,7 +2542,7 @@
           "field": "def.label",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2838,7 +2550,7 @@
           "field": "def.searchHint",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2846,7 +2558,7 @@
           "field": "def.source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2854,7 +2566,7 @@
           "field": "def.tier",
           "type": "\"C\"",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2862,7 +2574,7 @@
           "field": "def.unit",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2870,7 +2582,7 @@
           "field": "proposals[].asOfDate",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2878,7 +2590,7 @@
           "field": "proposals[].createdAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2886,7 +2598,7 @@
           "field": "proposals[].decidedAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2894,7 +2606,7 @@
           "field": "proposals[].id",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2902,7 +2614,7 @@
           "field": "proposals[].indicatorKey",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2910,7 +2622,7 @@
           "field": "proposals[].method",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2918,7 +2630,7 @@
           "field": "proposals[].note",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2926,7 +2638,7 @@
           "field": "proposals[].rawContext",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2934,7 +2646,7 @@
           "field": "proposals[].runId",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2942,7 +2654,7 @@
           "field": "proposals[].source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2950,7 +2662,7 @@
           "field": "proposals[].sourceUrl",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2958,7 +2670,7 @@
           "field": "proposals[].status",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2966,7 +2678,7 @@
           "field": "proposals[].value",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2974,7 +2686,7 @@
           "field": "proposals[].year",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2982,7 +2694,7 @@
           "field": "series[].asOfDate",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2990,7 +2702,7 @@
           "field": "series[].isNowcast",
           "type": "true",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -2998,7 +2710,7 @@
           "field": "series[].method",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -3006,7 +2718,7 @@
           "field": "series[].overridden",
           "type": "true",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -3014,7 +2726,7 @@
           "field": "series[].source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -3022,7 +2734,7 @@
           "field": "series[].sourceUrl",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -3030,7 +2742,7 @@
           "field": "series[].value",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         },
         {
@@ -3038,7 +2750,7 @@
           "field": "series[].year",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1209,
+          "line": 1210,
           "resolution": "typed-field"
         }
       ],
@@ -3056,7 +2768,7 @@
           "field": "baselineYear",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3064,7 +2776,7 @@
           "field": "indicators[].appliedIsNowcast",
           "type": "true",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3072,7 +2784,7 @@
           "field": "indicators[].appliedValue",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3080,7 +2792,7 @@
           "field": "indicators[].appliedYear",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3088,7 +2800,7 @@
           "field": "indicators[].category",
           "type": "\"Emissions Outcomes\"",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3096,7 +2808,7 @@
           "field": "indicators[].curatedLatest",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3104,7 +2816,7 @@
           "field": "indicators[].decimals",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3112,7 +2824,7 @@
           "field": "indicators[].fetchMethod",
           "type": "\"manual\"",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3120,7 +2832,7 @@
           "field": "indicators[].key",
           "type": "\"remainingBudget15C_Gt\"",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3128,7 +2840,7 @@
           "field": "indicators[].label",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3136,7 +2848,7 @@
           "field": "indicators[].pendingCount",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3144,7 +2856,7 @@
           "field": "indicators[].provenance",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3152,7 +2864,7 @@
           "field": "indicators[].provenanceAsOf",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3160,7 +2872,7 @@
           "field": "indicators[].provenanceSource",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3168,7 +2880,7 @@
           "field": "indicators[].source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3176,7 +2888,7 @@
           "field": "indicators[].tier",
           "type": "\"C\"",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3184,7 +2896,7 @@
           "field": "indicators[].unit",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         },
         {
@@ -3192,7 +2904,7 @@
           "field": "latestYear",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1173,
+          "line": 1174,
           "resolution": "typed-field"
         }
       ],
@@ -3210,7 +2922,7 @@
           "field": "runs[].adaptersFailed",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3218,7 +2930,7 @@
           "field": "runs[].adaptersSucceeded",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3226,7 +2938,7 @@
           "field": "runs[].finishedAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3234,7 +2946,7 @@
           "field": "runs[].id",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3242,7 +2954,7 @@
           "field": "runs[].proposalsCreated",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3250,7 +2962,7 @@
           "field": "runs[].startedAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3258,7 +2970,7 @@
           "field": "runs[].status",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         },
         {
@@ -3266,7 +2978,7 @@
           "field": "runs[].summary",
           "type": "unknown",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "unresolved-type"
         },
         {
@@ -3274,7 +2986,7 @@
           "field": "runs[].trigger",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "typed-field"
         }
       ],
@@ -3284,7 +2996,7 @@
           "field": "runs[].summary",
           "type": "unknown",
           "source": "server/routes.ts",
-          "line": 1229,
+          "line": 1230,
           "resolution": "unresolved-type"
         }
       ],
@@ -3459,7 +3171,7 @@
           "field": "dateRange.end",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3467,7 +3179,7 @@
           "field": "dateRange.start",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3475,7 +3187,7 @@
           "field": "recentArticles[].date",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3483,7 +3195,7 @@
           "field": "recentArticles[].sentiment",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3491,7 +3203,7 @@
           "field": "recentArticles[].source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3499,7 +3211,7 @@
           "field": "recentArticles[].title",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3507,7 +3219,7 @@
           "field": "recentArticles[].url",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3515,7 +3227,7 @@
           "field": "sentiment[].avgSentiment",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3523,7 +3235,7 @@
           "field": "sentiment[].date",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3531,7 +3243,7 @@
           "field": "sentiment[].negative",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3539,7 +3251,7 @@
           "field": "sentiment[].neutral",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3547,7 +3259,7 @@
           "field": "sentiment[].positive",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3555,7 +3267,7 @@
           "field": "sentiment[].total",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3563,7 +3275,7 @@
           "field": "topicBreakdown[].avgSentiment",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3571,7 +3283,7 @@
           "field": "topicBreakdown[].count",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3579,7 +3291,7 @@
           "field": "topicBreakdown[].topic",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3587,7 +3299,7 @@
           "field": "totalArticles",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3595,7 +3307,7 @@
           "field": "volume[].count",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         },
         {
@@ -3603,7 +3315,7 @@
           "field": "volume[].date",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1112,
+          "line": 1113,
           "resolution": "typed-field"
         }
       ],
@@ -4387,7 +4099,7 @@
           "field": "asOfDate",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4395,7 +4107,7 @@
           "field": "createdAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4403,7 +4115,7 @@
           "field": "decidedAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4411,7 +4123,7 @@
           "field": "id",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4419,7 +4131,7 @@
           "field": "indicatorKey",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4427,7 +4139,7 @@
           "field": "method",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4435,7 +4147,7 @@
           "field": "note",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4443,7 +4155,7 @@
           "field": "rawContext",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4451,7 +4163,7 @@
           "field": "runId",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4459,7 +4171,7 @@
           "field": "source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4467,7 +4179,7 @@
           "field": "sourceUrl",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4475,7 +4187,7 @@
           "field": "status",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4483,7 +4195,7 @@
           "field": "value",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         },
         {
@@ -4491,7 +4203,7 @@
           "field": "year",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1282,
+          "line": 1283,
           "resolution": "typed-field"
         }
       ],
@@ -4509,7 +4221,7 @@
           "field": "asOfDate",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4517,7 +4229,7 @@
           "field": "createdAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4525,7 +4237,7 @@
           "field": "decidedAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4533,7 +4245,7 @@
           "field": "id",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4541,7 +4253,7 @@
           "field": "indicatorKey",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4549,7 +4261,7 @@
           "field": "method",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4557,7 +4269,7 @@
           "field": "note",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4565,7 +4277,7 @@
           "field": "rawContext",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4573,7 +4285,7 @@
           "field": "runId",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4581,7 +4293,7 @@
           "field": "source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4589,7 +4301,7 @@
           "field": "sourceUrl",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4597,7 +4309,7 @@
           "field": "status",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4605,7 +4317,7 @@
           "field": "value",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         },
         {
@@ -4613,7 +4325,7 @@
           "field": "year",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1241,
+          "line": 1242,
           "resolution": "typed-field"
         }
       ],
@@ -4631,7 +4343,7 @@
           "field": "asOfDate",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4639,7 +4351,7 @@
           "field": "createdAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4647,7 +4359,7 @@
           "field": "decidedAt",
           "type": "Date",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4655,7 +4367,7 @@
           "field": "id",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4663,7 +4375,7 @@
           "field": "indicatorKey",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4671,7 +4383,7 @@
           "field": "method",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4679,7 +4391,7 @@
           "field": "note",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4687,7 +4399,7 @@
           "field": "rawContext",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4695,7 +4407,7 @@
           "field": "runId",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4703,7 +4415,7 @@
           "field": "source",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4711,7 +4423,7 @@
           "field": "sourceUrl",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4719,7 +4431,7 @@
           "field": "status",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4727,7 +4439,7 @@
           "field": "value",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         },
         {
@@ -4735,7 +4447,7 @@
           "field": "year",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1252,
+          "line": 1253,
           "resolution": "typed-field"
         }
       ],
@@ -4753,7 +4465,7 @@
           "field": "adaptersFailed",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4761,7 +4473,7 @@
           "field": "adaptersSucceeded",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4769,7 +4481,7 @@
           "field": "perAdapter[].error",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4777,7 +4489,7 @@
           "field": "perAdapter[].id",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4785,7 +4497,7 @@
           "field": "perAdapter[].values",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4793,7 +4505,7 @@
           "field": "proposalsCreated",
           "type": "number",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4801,7 +4513,7 @@
           "field": "runId",
           "type": "string",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         },
         {
@@ -4809,7 +4521,7 @@
           "field": "status",
           "type": "\"skipped\"",
           "source": "server/routes.ts",
-          "line": 1219,
+          "line": 1220,
           "resolution": "typed-field"
         }
       ],
@@ -5517,32 +5229,32 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
       "total": 3,
       "bound": 0,
       "unbound": [
         {
-          "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+          "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
           "field": "[].Active Return (%)",
           "type": "number",
           "source": "client/src/pages/decarb-gap-signal.tsx",
-          "line": 771,
+          "line": 777,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+          "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
           "field": "[].Date",
           "type": "string",
           "source": "client/src/pages/decarb-gap-signal.tsx",
-          "line": 771,
+          "line": 777,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+          "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
           "field": "[].Tracking Error (ann. %)",
           "type": "number",
           "source": "client/src/pages/decarb-gap-signal.tsx",
-          "line": 771,
+          "line": 777,
           "resolution": "typed-field"
         }
       ],
@@ -5636,32 +5348,32 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+      "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
       "total": 3,
       "bound": 0,
       "unbound": [
         {
-          "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+          "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
           "field": "[].Active Return (%)",
           "type": "number",
           "source": "client/src/pages/decarb-signal.tsx",
-          "line": 683,
+          "line": 688,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+          "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
           "field": "[].Date",
           "type": "string",
           "source": "client/src/pages/decarb-signal.tsx",
-          "line": 683,
+          "line": 688,
           "resolution": "typed-field"
         },
         {
-          "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+          "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
           "field": "[].Tracking Error (ann.) (%)",
           "type": "number",
           "source": "client/src/pages/decarb-signal.tsx",
-          "line": 683,
+          "line": 688,
           "resolution": "typed-field"
         }
       ],
@@ -6062,7 +5774,7 @@
       "field": "runs[].summary",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "unresolved-type"
     },
     {
@@ -6664,7 +6376,7 @@
       "field": "[].activeReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6672,7 +6384,7 @@
       "field": "[].benchmarkCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6680,7 +6392,7 @@
       "field": "[].benchmarkReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6688,7 +6400,7 @@
       "field": "[].costFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6696,7 +6408,7 @@
       "field": "[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6704,7 +6416,7 @@
       "field": "[].overweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6712,7 +6424,7 @@
       "field": "[].portfolioCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6720,7 +6432,7 @@
       "field": "[].portfolioNetCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6728,7 +6440,7 @@
       "field": "[].portfolioNetReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6736,7 +6448,7 @@
       "field": "[].portfolioReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6744,7 +6456,7 @@
       "field": "[].tiltScale",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6752,7 +6464,7 @@
       "field": "[].trackingError",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6760,7 +6472,7 @@
       "field": "[].tradedNotional",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6768,7 +6480,7 @@
       "field": "[].turnover",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6776,7 +6488,7 @@
       "field": "[].underweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6784,7 +6496,7 @@
       "field": "series[].activeReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6792,7 +6504,7 @@
       "field": "series[].benchmarkCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6800,7 +6512,7 @@
       "field": "series[].benchmarkReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6808,7 +6520,7 @@
       "field": "series[].costFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6816,7 +6528,7 @@
       "field": "series[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6824,7 +6536,7 @@
       "field": "series[].overweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6832,7 +6544,7 @@
       "field": "series[].portfolioCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6840,7 +6552,7 @@
       "field": "series[].portfolioNetCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6848,7 +6560,7 @@
       "field": "series[].portfolioNetReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6856,7 +6568,7 @@
       "field": "series[].portfolioReturn",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6864,7 +6576,7 @@
       "field": "series[].tiltScale",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6872,7 +6584,7 @@
       "field": "series[].trackingError",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6880,7 +6592,7 @@
       "field": "series[].tradedNotional",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6888,7 +6600,7 @@
       "field": "series[].turnover",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6896,7 +6608,7 @@
       "field": "series[].underweightCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6904,7 +6616,7 @@
       "field": "summary.accounting.costBps",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6912,7 +6624,7 @@
       "field": "summary.accounting.grossCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6920,7 +6632,7 @@
       "field": "summary.accounting.maxNetDrawdown",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6928,7 +6640,7 @@
       "field": "summary.accounting.netCumulative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6936,7 +6648,7 @@
       "field": "summary.accounting.totalCostFraction",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6944,7 +6656,7 @@
       "field": "summary.accounting.totalTurnover",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6952,7 +6664,7 @@
       "field": "summary.calibrationBasis",
       "type": "\"expanding_past_only\"",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6960,7 +6672,7 @@
       "field": "summary.calibrationPeriod.end",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6968,7 +6680,7 @@
       "field": "summary.calibrationPeriod.months",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6976,7 +6688,7 @@
       "field": "summary.calibrationPeriod.start",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6984,7 +6696,7 @@
       "field": "summary.calibrationStatus",
       "type": "\"insufficient_data\"",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -6992,7 +6704,7 @@
       "field": "summary.method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7000,7 +6712,7 @@
       "field": "summary.realizedTrackingErrorPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7008,7 +6720,7 @@
       "field": "summary.seriesTrackingErrorUnits",
       "type": "\"decimal\"",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7016,7 +6728,7 @@
       "field": "summary.seriesTrackingErrorWindow",
       "type": "\"expanding_from_start\"",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7024,7 +6736,7 @@
       "field": "summary.signal",
       "type": "\"decarb_gap\"",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7032,7 +6744,7 @@
       "field": "summary.targetTrackingErrorPct",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7040,7 +6752,7 @@
       "field": "summary.tiltScale",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -7048,7 +6760,7 @@
       "field": "summary.warnings[]",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1101,
+      "line": 1102,
       "resolution": "typed-field"
     },
     {
@@ -8240,7 +7952,7 @@
       "field": "def.category",
       "type": "\"Emissions Outcomes\"",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8248,7 +7960,7 @@
       "field": "def.decimals",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8256,7 +7968,7 @@
       "field": "def.fetchMethod",
       "type": "\"manual\"",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8264,7 +7976,7 @@
       "field": "def.key",
       "type": "\"remainingBudget15C_Gt\"",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8272,7 +7984,7 @@
       "field": "def.label",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8280,7 +7992,7 @@
       "field": "def.searchHint",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8288,7 +8000,7 @@
       "field": "def.source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8296,7 +8008,7 @@
       "field": "def.tier",
       "type": "\"C\"",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8304,7 +8016,7 @@
       "field": "def.unit",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8312,7 +8024,7 @@
       "field": "proposals[].asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8320,7 +8032,7 @@
       "field": "proposals[].createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8328,7 +8040,7 @@
       "field": "proposals[].decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8336,7 +8048,7 @@
       "field": "proposals[].id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8344,7 +8056,7 @@
       "field": "proposals[].indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8352,7 +8064,7 @@
       "field": "proposals[].method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8360,7 +8072,7 @@
       "field": "proposals[].note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8368,7 +8080,7 @@
       "field": "proposals[].rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8376,7 +8088,7 @@
       "field": "proposals[].runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8384,7 +8096,7 @@
       "field": "proposals[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8392,7 +8104,7 @@
       "field": "proposals[].sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8400,7 +8112,7 @@
       "field": "proposals[].status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8408,7 +8120,7 @@
       "field": "proposals[].value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8416,7 +8128,7 @@
       "field": "proposals[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8424,7 +8136,7 @@
       "field": "series[].asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8432,7 +8144,7 @@
       "field": "series[].isNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8440,7 +8152,7 @@
       "field": "series[].method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8448,7 +8160,7 @@
       "field": "series[].overridden",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8456,7 +8168,7 @@
       "field": "series[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8464,7 +8176,7 @@
       "field": "series[].sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8472,7 +8184,7 @@
       "field": "series[].value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8480,7 +8192,7 @@
       "field": "series[].year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1209,
+      "line": 1210,
       "resolution": "typed-field"
     },
     {
@@ -8488,7 +8200,7 @@
       "field": "baselineYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8496,7 +8208,7 @@
       "field": "indicators[].appliedIsNowcast",
       "type": "true",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8504,7 +8216,7 @@
       "field": "indicators[].appliedValue",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8512,7 +8224,7 @@
       "field": "indicators[].appliedYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8520,7 +8232,7 @@
       "field": "indicators[].category",
       "type": "\"Emissions Outcomes\"",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8528,7 +8240,7 @@
       "field": "indicators[].curatedLatest",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8536,7 +8248,7 @@
       "field": "indicators[].decimals",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8544,7 +8256,7 @@
       "field": "indicators[].fetchMethod",
       "type": "\"manual\"",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8552,7 +8264,7 @@
       "field": "indicators[].key",
       "type": "\"remainingBudget15C_Gt\"",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8560,7 +8272,7 @@
       "field": "indicators[].label",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8568,7 +8280,7 @@
       "field": "indicators[].pendingCount",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8576,7 +8288,7 @@
       "field": "indicators[].provenance",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8584,7 +8296,7 @@
       "field": "indicators[].provenanceAsOf",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8592,7 +8304,7 @@
       "field": "indicators[].provenanceSource",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8600,7 +8312,7 @@
       "field": "indicators[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8608,7 +8320,7 @@
       "field": "indicators[].tier",
       "type": "\"C\"",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8616,7 +8328,7 @@
       "field": "indicators[].unit",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8624,7 +8336,7 @@
       "field": "latestYear",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1173,
+      "line": 1174,
       "resolution": "typed-field"
     },
     {
@@ -8632,7 +8344,7 @@
       "field": "runs[].adaptersFailed",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8640,7 +8352,7 @@
       "field": "runs[].adaptersSucceeded",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8648,7 +8360,7 @@
       "field": "runs[].finishedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8656,7 +8368,7 @@
       "field": "runs[].id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8664,7 +8376,7 @@
       "field": "runs[].proposalsCreated",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8672,7 +8384,7 @@
       "field": "runs[].startedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8680,7 +8392,7 @@
       "field": "runs[].status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -8688,7 +8400,7 @@
       "field": "runs[].summary",
       "type": "unknown",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "unresolved-type"
     },
     {
@@ -8696,7 +8408,7 @@
       "field": "runs[].trigger",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1229,
+      "line": 1230,
       "resolution": "typed-field"
     },
     {
@@ -10512,7 +10224,7 @@
       "field": "dateRange.end",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10520,7 +10232,7 @@
       "field": "dateRange.start",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10528,7 +10240,7 @@
       "field": "recentArticles[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10536,7 +10248,7 @@
       "field": "recentArticles[].sentiment",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10544,7 +10256,7 @@
       "field": "recentArticles[].source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10552,7 +10264,7 @@
       "field": "recentArticles[].title",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10560,7 +10272,7 @@
       "field": "recentArticles[].url",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10568,7 +10280,7 @@
       "field": "sentiment[].avgSentiment",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10576,7 +10288,7 @@
       "field": "sentiment[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10584,7 +10296,7 @@
       "field": "sentiment[].negative",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10592,7 +10304,7 @@
       "field": "sentiment[].neutral",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10600,7 +10312,7 @@
       "field": "sentiment[].positive",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10608,7 +10320,7 @@
       "field": "sentiment[].total",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10616,7 +10328,7 @@
       "field": "topicBreakdown[].avgSentiment",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10624,7 +10336,7 @@
       "field": "topicBreakdown[].count",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10632,7 +10344,7 @@
       "field": "topicBreakdown[].topic",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10640,7 +10352,7 @@
       "field": "totalArticles",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10648,7 +10360,7 @@
       "field": "volume[].count",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -10656,7 +10368,7 @@
       "field": "volume[].date",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1112,
+      "line": 1113,
       "resolution": "typed-field"
     },
     {
@@ -12824,7 +12536,7 @@
       "field": "asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12832,7 +12544,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12840,7 +12552,7 @@
       "field": "decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12848,7 +12560,7 @@
       "field": "id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12856,7 +12568,7 @@
       "field": "indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12864,7 +12576,7 @@
       "field": "method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12872,7 +12584,7 @@
       "field": "note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12880,7 +12592,7 @@
       "field": "rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12888,7 +12600,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12896,7 +12608,7 @@
       "field": "source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12904,7 +12616,7 @@
       "field": "sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12912,7 +12624,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12920,7 +12632,7 @@
       "field": "value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12928,7 +12640,7 @@
       "field": "year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1282,
+      "line": 1283,
       "resolution": "typed-field"
     },
     {
@@ -12936,7 +12648,7 @@
       "field": "asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12944,7 +12656,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12952,7 +12664,7 @@
       "field": "decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12960,7 +12672,7 @@
       "field": "id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12968,7 +12680,7 @@
       "field": "indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12976,7 +12688,7 @@
       "field": "method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12984,7 +12696,7 @@
       "field": "note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -12992,7 +12704,7 @@
       "field": "rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13000,7 +12712,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13008,7 +12720,7 @@
       "field": "source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13016,7 +12728,7 @@
       "field": "sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13024,7 +12736,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13032,7 +12744,7 @@
       "field": "value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13040,7 +12752,7 @@
       "field": "year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1241,
+      "line": 1242,
       "resolution": "typed-field"
     },
     {
@@ -13048,7 +12760,7 @@
       "field": "asOfDate",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13056,7 +12768,7 @@
       "field": "createdAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13064,7 +12776,7 @@
       "field": "decidedAt",
       "type": "Date",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13072,7 +12784,7 @@
       "field": "id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13080,7 +12792,7 @@
       "field": "indicatorKey",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13088,7 +12800,7 @@
       "field": "method",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13096,7 +12808,7 @@
       "field": "note",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13104,7 +12816,7 @@
       "field": "rawContext",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13112,7 +12824,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13120,7 +12832,7 @@
       "field": "source",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13128,7 +12840,7 @@
       "field": "sourceUrl",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13136,7 +12848,7 @@
       "field": "status",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13144,7 +12856,7 @@
       "field": "value",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13152,7 +12864,7 @@
       "field": "year",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1252,
+      "line": 1253,
       "resolution": "typed-field"
     },
     {
@@ -13160,7 +12872,7 @@
       "field": "adaptersFailed",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13168,7 +12880,7 @@
       "field": "adaptersSucceeded",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13176,7 +12888,7 @@
       "field": "perAdapter[].error",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13184,7 +12896,7 @@
       "field": "perAdapter[].id",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13192,7 +12904,7 @@
       "field": "perAdapter[].values",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13200,7 +12912,7 @@
       "field": "proposalsCreated",
       "type": "number",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13208,7 +12920,7 @@
       "field": "runId",
       "type": "string",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13216,7 +12928,7 @@
       "field": "status",
       "type": "\"skipped\"",
       "source": "server/routes.ts",
-      "line": 1219,
+      "line": 1220,
       "resolution": "typed-field"
     },
     {
@@ -13980,27 +13692,27 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
       "field": "[].Active Return (%)",
       "type": "number",
       "source": "client/src/pages/decarb-gap-signal.tsx",
-      "line": 771,
+      "line": 777,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
       "field": "[].Date",
       "type": "string",
       "source": "client/src/pages/decarb-gap-signal.tsx",
-      "line": 771,
+      "line": 777,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:771",
+      "surface": "XLSX client/src/pages/decarb-gap-signal.tsx:777",
       "field": "[].Tracking Error (ann. %)",
       "type": "number",
       "source": "client/src/pages/decarb-gap-signal.tsx",
-      "line": 771,
+      "line": 777,
       "resolution": "typed-field"
     },
     {
@@ -14060,27 +13772,27 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+      "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
       "field": "[].Active Return (%)",
       "type": "number",
       "source": "client/src/pages/decarb-signal.tsx",
-      "line": 683,
+      "line": 688,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+      "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
       "field": "[].Date",
       "type": "string",
       "source": "client/src/pages/decarb-signal.tsx",
-      "line": 683,
+      "line": 688,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/decarb-signal.tsx:683",
+      "surface": "XLSX client/src/pages/decarb-signal.tsx:688",
       "field": "[].Tracking Error (ann.) (%)",
       "type": "number",
       "source": "client/src/pages/decarb-signal.tsx",
-      "line": 683,
+      "line": 688,
       "resolution": "typed-field"
     },
     {
@@ -14386,9 +14098,205 @@
     "originalPublicSlots": 1001,
     "originalBoundSlots": 429,
     "originalUnboundSlots": 572,
-    "closedOriginalSlots": 85,
-    "remainingOriginalUnboundSlots": 487,
+    "closedOriginalSlots": 134,
+    "remainingOriginalUnboundSlots": 438,
     "closedSlots": [
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].activeReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].benchmarkCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].benchmarkReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].costFraction"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].date"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].overweightCount"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].portfolioCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].portfolioNetCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].portfolioNetReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].portfolioReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].tiltScale"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].trackingError"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].tradedNotional"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].turnover"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "[].underweightCount"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].activeReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].benchmarkCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].benchmarkReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].costFraction"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].date"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].overweightCount"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].portfolioCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].portfolioNetCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].portfolioNetReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].portfolioReturn"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].tiltScale"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].trackingError"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].tradedNotional"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].turnover"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "series[].underweightCount"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.accounting.costBps"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.accounting.grossCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.accounting.maxNetDrawdown"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.accounting.netCumulative"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.accounting.totalCostFraction"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.accounting.totalTurnover"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.calibrationBasis"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.calibrationPeriod.end"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.calibrationPeriod.months"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.calibrationPeriod.start"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.calibrationStatus"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.method"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.realizedTrackingErrorPct"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.seriesTrackingErrorUnits"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.seriesTrackingErrorWindow"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.signal"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.targetTrackingErrorPct"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.tiltScale"
+      },
+      {
+        "surface": "API GET \"/api/cv/backtest\"",
+        "field": "summary.warnings[]"
+      },
       {
         "surface": "API GET \"/api/cv/dimensions\"",
         "field": "geographies[]"
@@ -14733,6 +14641,6 @@
     "currentPublicSlots": 1001,
     "publicSlotDenominatorDelta": 0,
     "reconciledCacheAliases": 4,
-    "note": "Only the four explicitly reviewed original response families count as closure here. Definition additions and separately inventoried displays/export binding expressions are not original slot closure."
+    "note": "Only explicitly reviewed original response families count as closure here, including 49 backtest slots after the previously closed 85. Definition additions and separately inventoried displays/export binding expressions are not original slot closure."
   }
 }

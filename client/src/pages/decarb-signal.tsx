@@ -635,6 +635,11 @@ export default function DecarbSignal() {
                     kind="backtest"
                     sheetName="Cumulative Return"
                     rows={cumulativeReturnDownloadRows}
+                    fieldBindings={{
+                      Date:{id:"backtest.date",transform:"Identity UTC YYYY-MM"},
+                      "Benchmark Cumulative Return (%)":{id:"backtest.benchmarkCumulative",transform:"Math.round((wealth-1)*10000)/100"},
+                      [`${signalLabel} Portfolio Cumulative Return (%)`]:{id:"backtest.portfolioCumulative",transform:"Math.round((wealth-1)*10000)/100; selected signal label"},
+                    }}
                     testId="button-download-backtest-cumulative"
                   />
                 </div>
@@ -685,6 +690,11 @@ export default function DecarbSignal() {
                     kind="backtest"
                     sheetName="Active Return & TE"
                     rows={activeReturnDownloadRows}
+                    fieldBindings={{
+                      Date:{id:"backtest.date",transform:"Identity UTC YYYY-MM"},
+                      "Active Return (%)":{id:"backtest.activeReturn",transform:"Math.round(fraction*10000)/100"},
+                      "Tracking Error (ann.) (%)":{id:"backtest.trackingError",transform:"Math.round(fraction*10000)/100"},
+                    }}
                     testId="button-download-backtest-active"
                   />
                 </div>

@@ -1098,6 +1098,7 @@ export async function registerRoutes(
       // reconstructed physical forecasts into historical portfolio selection.
       const results = await calculateBacktest(signal, trackingErrorLimit, scoringMethod, geography,
         req.query.costBps === undefined ? 10 : Number(req.query.costBps));
+      res.set("X-Field-Semantics", bindNestedOutput("backtest", req.query.format === "series" ? results.series : results).map(f => f.id).join(","));
       res.json(req.query.format === "series" ? results.series : results);
     } catch (error) {
       console.error("Backtest calculation error:", error);

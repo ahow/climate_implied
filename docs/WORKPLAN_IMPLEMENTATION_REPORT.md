@@ -1,6 +1,20 @@
 # Workplan implementation report
 
+## Original49-slot closure and independent climate execution — 2026-11-10
+
+Priorlive43917a6/full280pass retained. NEW original backtest family49slots bound in both actualAPIresponse shapes;563/1001bound,438remaining,134of original572closed,denominator+0. Four aliases separate/native187+35/replay22 preserved. Actualregistry579definitions; generated pre-edit registry was528 rather than prior narrative527.15BacktestSummary annotations and4existing downloads now explicitly bind transforms/percent/wealth/dynamiccomparison/missingmonths. Changed shared/backtestFieldSemantics.ts,outputFieldSemantics.ts,routes.ts,backtest-summary.tsx,two signalpages,census and contracttest. Dynamic/customsheet/replaymetadata scope remains incomplete; no falseclaimfullclosure. No pinned companyreplay code changed.
+
+NEW actualforecastKaya study: pre-score frozen protocolab7da56d,unchanged2010–18train/2019–24completeholdout;7/7entities unavailable because missingGDP/region accounts. No fit/winner/centralpromotion; exactmissingseries/sourcehashes in UserUnitB_Climate_Efficacy_Results.md. Narrowmissingseries did not stop independentwork: executed upstreampublished FaIR2.2.4/RCMIP5.1.0 reference benchmark,8SSPs×66calibrations=528endpointcomparisons pass. Maxtemperaturedifference1.206335e-6°C<=.01°C; concentration5.880952e-5ppm andforcing2.983487e-7W/m2 withinfrozen tolerances. Annualreference missing: upstream onlycontains2100endpoints. No annualacceptance/10kcalibration/centralpromotion claimed.5Python focusedtests pass;initial2optionalbackend failures retained. Newprotocols/scripts/tests/resultreport listexactsource/code/protocolhashes/logs. No completedEV/storage/fleet/beta reruns.
+
+NEW prospectiveSignal purecontract+immutableDBtransaction+operatorCLI+unit/DBchecks. Databaseclock/exactuniverse/inputhash/order/late-repeat/conflict guards; no publicPOST orapproval. Realdevrollbackexercise passed05:27:31Z,log20261110T052731877325Z.log; no genuineprospectivemonthrecord claimed. Sourceauthenticity/genuineeligibleprojections stillrequired. Details Prospective_Signal_Engineering.md. Existing sleeves/corporateevents unchanged; remaining actualsourcedmarks/frequencybridge/lifecycleintegration andfull9path/nonemptytargets remain. Stage12completecases still0/3.
+
+Final changed-code command `npm run check && npx tsx --test script/*.test.ts && npm run build`,05:29:21Z:285pass/0fail/0skip; loggenerated-artifacts/workplan-completion/20261110T052921582361Z.log. Python5tests andFaIR528realcomparisons separate fromTSsuite. Engineering tests do not validate science.
+
+Reconciliation: S07-007 now verified for publishedstandardSSPendpoint reproduction,not the separateannualcriterion. S07-004/018partial;S14-017partial for actualDBcaptureinfrastructure,not genuine monthlysignals. Totals10verified/60partial/2blocked/228unreconciled. Fullremainingoriginalscope retained; no duplicate follow-up tasks proposed.
+
 ## Overlapping sleeves, original semantic gap and industrial source — 2026-11-10
+
+Latest release receipt: workspace9e48e9fa7fe1192007642d115591dedb6fa751af; GitHub/verifiedlive43917a67e28ecbaecd8326c7cc5c2f1a13965242; CI42760535873 success; Railway3aa13a51-b003-4b0e-ba92-50576d66c5f2. Exact live SHA/health confirmed05:15:25Z; affected driver/reference/summary APIs200with34/28/21bound headers. Dimensions initially timed out at30s, then returned200with2headers on bounded60s retry. Page shell rendered; populated summary not visually established by initial screenshot. Final280pass/0fail/skip plus typecheck/build. No production review/data/scientific activation claimed. Ending at context budget with actionable work retained in current scope; next_action reflects latest sleeves/85originalslots/FirstSolar progress.
 
 Prior HEADe16d789/live8492353,264tests. NEW `pairedResearchSleeves.ts`, `pairedResearchEvents.ts`, `pairedResearchLongOnly.ts`, modified `pairedResearchCorpus.ts`/`pairedResearchPipeline.ts`, accounting/pipeline tests and engineering report: sleeve capital bookkeeping with deployment-capital equality, simultaneous signed marks, reserve/collateral and no doublecount; prior-reserve interest requires sourced start-known rate and exact accrual boundaries; dated distributions/FX/splits/merger/delisting/borrow/financing and monthly/quarterly constrained holdings. Historical source inspection rejects November2026 captures/unknown original timestamps for January22,2026 evaluation. Sleeve marks still require actual sourced paths; overlapping primary inference needs frozen frequency-aligned bridging, not annual-endpoint invention. Efficacy withheld. Exact limitations in existing engineering report.
 
@@ -931,6 +945,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-cash-orchestration-8492353",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T04:56:49.331145+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-sleeves-semantics-43917a6",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T05:17:19.350752+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

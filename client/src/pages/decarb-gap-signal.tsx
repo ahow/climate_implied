@@ -739,6 +739,12 @@ export default function DecarbGapSignal() {
                       kind="backtest"
                       sheetName="Cumulative Return"
                       rows={cumulativeReturnDownloadRows}
+                      fieldBindings={{
+                        Date:{id:"backtest.date",transform:"Identity UTC YYYY-MM"},
+                        "Benchmark Cumulative Return (%)":{id:"backtest.benchmarkCumulative",transform:"Math.round((wealth-1)*10000)/100; primary response month or comparison response fallback; absent month remains blank"},
+                        [`${measureInfo?.label ?? "Measure"}-Driven Cumulative Return (%)`]:{id:"backtest.portfolioCumulative",transform:"Math.round((wealth-1)*10000)/100; selected measure signal; absent primary month remains blank"},
+                        ...(compareGap ? {"Legacy peer-yield ranking cumulative return (%)":{id:"backtest.portfolioCumulative",transform:"Comparison decarb_gap response: Math.round((wealth-1)*10000)/100; absent comparison month remains blank"}} : {}),
+                      }}
                       testId="button-download-cumulative-return"
                     />
                   </div>
@@ -773,6 +779,11 @@ export default function DecarbGapSignal() {
                       kind="backtest"
                       sheetName="Active Return & TE"
                       rows={activeReturnDownloadRows}
+                      fieldBindings={{
+                        Date:{id:"backtest.date",transform:"Identity UTC YYYY-MM"},
+                        "Active Return (%)":{id:"backtest.activeReturn",transform:"Math.round(fraction*10000)/100; absent primary month remains blank"},
+                        "Tracking Error (ann. %)":{id:"backtest.trackingError",transform:"Math.round(fraction*10000)/100; absent primary month remains blank"},
+                      }}
                       testId="button-download-active-return"
                     />
                   </div>
