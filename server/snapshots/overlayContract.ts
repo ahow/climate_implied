@@ -2,16 +2,34 @@ import { z } from "zod";
 import type { CvCompany, CvTimeSeries } from "../../shared/schema";
 import { contentHash } from "../calculation/analysisManifest";
 
+/** Explicit source assertions, not inferred workbook metadata or original vintages. */
+export const targetEvidenceSchema = z.object({
+  baseYear: z.number().int().min(1900).max(2099),
+  targetYear: z.literal(2050),
+  accountingScope: z.literal("scope1+scope2"),
+  unit: z.literal("fractional-change"),
+  publishedAt: z.string().date(),
+  sourceLocator: z.string().trim().min(1),
+  sourceExcerpt: z.string().trim().min(1),
+}).strict().superRefine((e, ctx) => {
+  if (e.baseYear >= e.targetYear || e.baseYear > Number(e.publishedAt.slice(0, 4)))
+    ctx.addIssue({ code: "custom", message: "Target base year contradicts target year or publication" });
+});
+export type TargetEvidence = z.infer<typeof targetEvidenceSchema>;
+export type TargetCompany = CvCompany & { targetEvidence?: TargetEvidence };
+
 const fieldUnits: Record<string, [string, string]> = {
   marketCap: ["financial", "USD million"], netProfit: ["financial", "USD million"],
   priceEarnings: ["financial", "ratio"], totalReturnIndex: ["financial", "index"],
   scope1Emissions: ["carbon", "tCO2e"], scope2Emissions: ["carbon", "tCO2e"],
   scope3Emissions: ["carbon", "tCO2e"], sdgAlignmentScore: ["sdg", "score"],
+  emissionTarget2050: ["target", "fractional-change"],
 };
 const entry = z.object({
   companyId: z.number().int().positive(), observationDate: z.string().date(),
   availableAt: z.string().date(), field: z.string(), value: z.number().finite().nullable(),
-  kind: z.enum(["financial", "carbon", "sdg"]), unit: z.string(),
+  kind: z.enum(["financial", "carbon", "sdg", "target"]), unit: z.string(),
+  targetEvidence: targetEvidenceSchema.optional(),
   source: z.string().min(1), approvalEvidence: z.string().min(1),
   historyBasis: z.literal("revised-history"),
 }).strict().superRefine((e, ctx) => {
@@ -22,6 +40,15 @@ const entry = z.object({
     ctx.addIssue({ code: "custom", message: "Availability precedes observation" });
   if (e.kind === "carbon" && e.value !== null && e.value < 0)
     ctx.addIssue({ code: "custom", message: "Negative emissions unavailable" });
+  if (e.kind === "target") {
+    if (!e.targetEvidence || e.value === null || e.value <= -1)
+      ctx.addIssue({ code: "custom", message: "Target requires explicit evidence and signed fractional change greater than -1" });
+    if (e.targetEvidence && (e.targetEvidence.publishedAt > e.availableAt ||
+        e.targetEvidence.publishedAt > e.observationDate))
+      ctx.addIssue({ code: "custom", message: "Target publication exceeds observation or availability" });
+  } else if (e.targetEvidence) {
+    ctx.addIssue({ code: "custom", message: "Target evidence on non-target field" });
+  }
 });
 const schema = z.object({ version: z.literal("company-overlay-1"), entries: z.array(entry).min(1) }).strict();
 export type CompanyOverlay = z.infer<typeof schema>;
@@ -30,6 +57,8 @@ export function packOverlay(input: unknown) {
     a.companyId - b.companyId || a.observationDate.localeCompare(b.observationDate) || a.field.localeCompare(b.field));
   const keys = entries.map(e => `${e.companyId}:${e.observationDate}:${e.field}`);
   if (new Set(keys).size !== keys.length) throw new Error("Duplicate overlay cell");
+  const targets = entries.filter(e => e.kind === "target").map(e => e.companyId);
+  if (new Set(targets).size !== targets.length) throw new Error("Contradictory company targets in one overlay");
   const payload = schema.parse({ version: "company-overlay-1", entries });
   return { id: contentHash(payload), payload };
 }
@@ -44,7 +73,7 @@ export function applyOverlays(
   overlays: CompanyOverlay[], cutoff: string,
 ) {
   z.string().date().parse(cutoff);
-  const companies = baseline.companies.map(c => ({ ...c }));
+  const companies: TargetCompany[] = baseline.companies.map(c => ({ ...c }));
   const timeSeries = baseline.timeSeries.map(r => ({ ...r, date: new Date(r.date) }));
   if(timeSeries.some(r=>r.date.toISOString().slice(0,10)>cutoff))
     throw new Error("Workbook observation exceeds information cutoff");
@@ -67,9 +96,10 @@ export function applyOverlays(
     if (!company) throw new Error("Orphan overlay company");
     // SDG is current static metadata in the existing engine. Never use this
     // contract to certify point-in-time SDG histories or enable SDG backtests.
-    const target = e.kind === "sdg" ? company : observations.get(`${e.companyId}:${e.observationDate}`);
+    const target = e.kind === "sdg" || e.kind === "target" ? company : observations.get(`${e.companyId}:${e.observationDate}`);
     if (!target) throw new Error("Overlay observation is absent from baseline");
     (target as unknown as Record<string, unknown>)[e.field] = e.value;
+    if (e.kind === "target") company.targetEvidence = e.targetEvidence;
   }
   return { companies, timeSeries };
 }

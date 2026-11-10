@@ -1,7 +1,7 @@
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
 import type { CvCompany, CvTimeSeries } from "@shared/schema";
 import {
-  computeAnnualDecarbRate,
+  computeCompanyAnnualDecarbRate,
   groupTimeSeriesByDate,
   loadCompaniesAndTimeSeries,
   filterCompaniesByGeography,
@@ -37,7 +37,7 @@ function assignDecarbTerciles(
   const companyRates: Array<{ id: number; rate: number; group: string }> = [];
 
   for (const c of companies) {
-    const rate = computeAnnualDecarbRate(c.emissionTarget2050);
+    const rate = computeCompanyAnnualDecarbRate(c);
     if (rate !== null) {
       rateMap.set(c.id, rate);
       companyRates.push({ id: c.id, rate, group: getPeerGroupKey(c, method) });

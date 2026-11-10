@@ -1,6 +1,6 @@
 import type { CvTimeSeries } from "@shared/schema";
 import { convertAll } from "./decarbConversion";
-import { computeAnnualDecarbRate, groupTimeSeriesByDate, loadCompaniesAndTimeSeries } from "./sharedUtils";
+import { computeCompanyAnnualDecarbRate, groupTimeSeriesByDate, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
 const BAND_EDGES = [0, 1, 2, 3, 4, 5, 7, 10];
 const BAND_LABELS = ["0%", "0-1%", "1-2%", "2-3%", "3-4%", "4-5%", "5-7%", "7-10%", "10%+"];
@@ -51,7 +51,7 @@ export async function calculateDecarbBands(): Promise<DecarbBandResult[]> {
   let companiesWithTargets = 0;
   let companiesWithoutTargets = 0;
   for (const c of allCompanies) {
-    const annualRate = computeAnnualDecarbRate(c.emissionTarget2050);
+    const annualRate = computeCompanyAnnualDecarbRate(c);
     if (annualRate === null) {
       companiesWithoutTargets++;
       continue;

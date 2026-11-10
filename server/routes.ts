@@ -400,23 +400,43 @@ export async function registerRoutes(
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid pathways" }); }
   });
   app.post("/api/calculation/ensemble-summary", (req, res) => {
-    try { res.json(summarizeEnsemble(req.body)); }
+    try {
+      const response=summarizeEnsemble(req.body);
+      res.set("X-Field-Semantics",bindNestedOutput("ensembleSummary",response).map(f=>f.id).join(","));
+      res.json(response);
+    }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid ensemble" }); }
   });
   app.post("/api/calculation/evaluate-holdout", (req, res) => {
-    try { res.json(evaluateHoldout(req.body?.protocol, req.body?.rows)); }
+    try {
+      const response=evaluateHoldout(req.body?.protocol, req.body?.rows);
+      res.set("X-Field-Semantics",bindNestedOutput("holdoutEvaluation",response).map(f=>f.id).join(","));
+      res.json(response);
+    }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid holdout" }); }
   });
   app.post("/api/calculation/evaluate-signal", (req, res) => {
-    try { res.json(evaluateSignal(req.body)); }
+    try {
+      const response=evaluateSignal(req.body);
+      res.set("X-Field-Semantics",bindNestedOutput("signalEvaluation",response).map(f=>f.id).join(","));
+      res.json(response);
+    }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid research evidence" }); }
   });
   app.post("/api/calculation/validate-history", (req, res) => {
-    try { res.json(historicalValidation(req.body)); }
+    try {
+      const response=historicalValidation(req.body);
+      res.set("X-Field-Semantics",bindNestedOutput("historyValidation",response).map(f=>f.id).join(","));
+      res.json(response);
+    }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid historical evidence" }); }
   });
   app.post("/api/calculation/audit-vintages", (req, res) => {
-    try { res.json(auditVintages(req.body)); }
+    try {
+      const response=auditVintages(req.body);
+      res.set("X-Field-Semantics",bindNestedOutput("vintageAudit",response).map(f=>f.id).join(","));
+      res.json(response);
+    }
     catch (e) { res.status(422).json({ error: e instanceof Error ? e.message : "Invalid vintage evidence" }); }
   });
   app.use("/api/projection", (req, res, next) => {

@@ -17,8 +17,8 @@ test("operational GET families bind all actual typed leaves without new public s
   }
   assert.equal(census.originalGapReconciliation.currentPublicSlots,1001);
   assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta,0);
-  assert.equal(census.originalGapReconciliation.closedOriginalSlots,295);
-  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,277);
+  assert.equal(census.originalGapReconciliation.closedOriginalSlots,368);
+  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,204);
   assert.equal(new Set(outputFieldSemantics.map(f=>f.id)).size,outputFieldSemantics.length);
 });
 

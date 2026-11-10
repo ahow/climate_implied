@@ -8,6 +8,13 @@ import { snapshotGuardQuery, guardRowsValid } from "./guards";
 
 export type SnapshotHeader = typeof cvAnalysisSnapshots.$inferSelect;
 export const snapshotContext = new AsyncLocalStorage<SnapshotHeader>();
+// Private replay injection: same immutable contract/calculators, no database fallback.
+// Not bound to any HTTP input or public control.
+const replayWorkbookContext = new AsyncLocalStorage<{ id: string; chunks: DatasetChunk[] }>();
+export function runWithReplayWorkbook<T>(bundle: { id: string; chunks: DatasetChunk[] }, work: () => T): T {
+  unpackDataset(bundle.id, bundle.chunks);
+  return replayWorkbookContext.run(bundle, work);
+}
 
 export async function snapshotsAvailable(connection: Pick<typeof db, "execute"> = db) {
   const result = await connection.execute(snapshotGuardQuery);
@@ -28,6 +35,14 @@ export async function resolveSnapshot(id?: string) {
   return row;
 }
 export async function loadSnapshot(header: SnapshotHeader) {
+  const replay = replayWorkbookContext.getStore();
+  if (replay) {
+    if (replay.id !== header.id) throw new Error("Replay workbook selection mismatch");
+    const result = unpackDataset(replay.id, structuredClone(replay.chunks));
+    if (result.companies.length !== header.companyCount || result.timeSeries.length !== header.observationCount)
+      throw new Error("Replay snapshot population mismatch");
+    return result;
+  }
   const chunks = await db.select().from(cvAnalysisChunks)
     .where(eq(cvAnalysisChunks.snapshotId, header.id)).orderBy(asc(cvAnalysisChunks.ordinal));
   if (chunks.length !== header.chunkCount || chunks.some((c, i) => c.ordinal !== i))

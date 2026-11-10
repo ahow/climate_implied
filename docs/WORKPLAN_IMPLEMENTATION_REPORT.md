@@ -1,6 +1,20 @@
 # Workplan implementation report
 
+## Explicit targets, nonempty offline replay and company cash-flow model — 2026-11-10
+
+Priorliveaa92e79/localca2e6fa preserved. NEWtargetEvidence passes existingtypedoverlay/review/capture/archive/hash/selectors:baseYear,2050targetYear,scope1+scope2,fractional-change,signedtarget>-1,publicationday/sourceLocator/sourceExcerpt. Rejectmissing/conflicting/future/unsupportedmetadata;no2024default/oldarchiveedits. Band/tercile calculators nowuseexplicit evidence. SnapshotcarbonpricebypassesmutableDBcache. Readonlydata-managementdisclosure consumes18newtargetregistrydefinitions;no publiceditor/approval/authweakening.
+
+ActualDEVrollbackhelperrun passes all9paths,NONEMPTYbands/terciles, suspendedselectionisolation andbaseline-return;archives/reviews/driversrollback. Twofreshworkers withDATABASE_URLremoved reproduceall9actualresults andXLSXreadback;pin/missingdependencyreject. Resultb5bdfb3a3ebc620093972de26ba42cc49652b538be184959af70c41f5e84a254;2442companies/470341observations. Privateinputbundleunder generated-artifacts/overlay-replay/inputs-dd85bcfa0a6aa2d4da5c09a5157a8a626ee6d05b8b3e4d8a507ecbe25233b36a.json;notGit. Durablelogs generated-artifacts/target-contract/{target-db,target-replay-final,target-unit,target-tsc-final}.log. CapturestillneedsDEVDB;offlineworkersrequirematchinginstalledsource/runtime/deps. Notnetwork-denial/portableexecutable oractualHTTP/current-workbookmutationacceptance.
+
+Semantics NEW73originalslots:ensemble23,holdout9,signal13,history14,vintages14.797/1001bound,204remaining,cumulative368of572closed;782definitions(finalincludes18targetdefs notcountedasoriginalclosure). Denominator+0,fouraliases/27withheld/native187+35/replay22preserved. Conditional diagnostic/exportchecks pass;fullinventorynotcomplete.
+
+NEWFSLRfiveyearconsolidated-boundaryconditionalFCFE in issuerConditionalFiveYear.ts andrunner/tests:revenue/margins/collections/cashtax/WC/D&A/capex/debtrollover/financing;cash/accrualresidual<=1e-5USD,noWCdoublecharge. Explicitfrozenhypothetical20%tax/10%equitydiscount,30vs60daycollections andconstantguidancelevels,notempiricalestimates. BasefiveyearPV4.240bnUSD/stress.854bn/difference-3.386bn. FinitehorizonPV isnotwholeequity/impliedvaluationpair. Unauditedissuerrelease,nofilingverifiedorapprovedcases;0/3qualifiedcompletecases. NEE/XOMfullbridges remainmissing;CATunsupportedmappingrefused.
+
+Final `npm run check && npx tsx --test script/*.test.ts && npm run build`,07:13:53Z:305pass/0fail/0skip;loggenerated-artifacts/workplan-completion/20261110T071353091222Z.log. Prior304/305failedstaleconsumerregister;regeneratedactualregister,no CIweakening. Stagecounts10verified/64partial/2blocked/224unreconciled remain;fullendpoint/currentmutation/recovery/valuation/scientificacceptance gaps explicit.
+
 ## Source investigation and nine-path integration — 2026-11-10
+
+Final release/runtime: workspace7c839fcb90a1f8a58bdec0353a5d1488275a8319;GitHub/exactliveaa92e7972af79b6b0fd7bb4af14c7b4476c9c3ce;CI42769252376success;Railway94318d97-1028-44cd-bf96-049725b62ac5SUCCESS. ExactSHA/health200 verified06:36:04Z. News/indicatorinventory/uploads200with15/18/8observedfieldIDs;actualresponseheadercounts are notfullschema denominators. LoadednewsUI shows explicitallocation/default/cache limitations;no browserdownloadinteraction claimed. Collector unchanged;no data/science/owneractivation. Final293TS/typecheck/build plusninepathfreshprocess replay underfinalcodepin,4newPython separately. Contextbudgetstop withremainingoriginalscope actionable; no redundantfollowup tasks. Safe code locator https://github.com/ahow/climate_implied/commit/aa92e7972af79b6b0fd7bb4af14c7b4476c9c3ce ; finalreceipt documents subsequently committed locally,not falsely calleddeployed.
 
 Final refinement: operationalroutes now expose validated IDs through X-Field-Semantics,matchingexistingAPIcontract. InitialSetspread TypeScript failure retained(log20261110T062645318927Z.log); fixedArray.from withoutchangingtarget/gates. Finalcoherent `npm run check && npx tsx --test script/*.test.ts && npm run build && NODE_ENV=development DATA_SCHEDULER_ENABLED=false npx tsx script/verify-overlay-replay.ts` passed06:27:00Z,293/0/0,298.248seconds;loggenerated-artifacts/workplan-completion/20261110T062700183724Z.log. Newcodepinreplayresultc2430b53306f788d977fe672461aefda9a45183eef15752e5c95443a8a852fb4;allnineactualpaths/twofreshprocesses/XLSXreadback plusmissingdependency/codepinrejection. Emptytargetpathsremainunaccepted. Newexactfunctions calculateSelectedResult,membership_audit,retrieve,annual_inventory. Earlier293check/replayhash are earliercodepinreceipts,notfinal.
 
@@ -993,6 +1007,17 @@ the next concrete action; it is not a claim that work continues while idle.
   "checkpoint_id": "ckpt-20261110-infill-semantics-5eb557f",
   "event": "continuation_ready",
   "attempted_at": "2026-11-10T05:52:05.664074+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261110-nine-path-operational-aa92e79",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-10T06:39:50.196742+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

@@ -5,7 +5,7 @@ import { orderCalculationRows } from "../../shared/calculationContract";
 import { carryForwardEmissions } from "./emissionsCarryForward";
 import { loadSnapshot, snapshotContext } from "../snapshots/store";
 import { overlayContext } from "../snapshots/overlays";
-import { applyOverlays } from "../snapshots/overlayContract";
+import { applyOverlays, targetEvidenceSchema, type TargetCompany } from "../snapshots/overlayContract";
 
 export type ScoringMethod = "absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative";
 
@@ -103,6 +103,12 @@ export function computeAnnualDecarbRate(emissionTarget2050: number | null, baseY
   return annualRate * 100;
 }
 
+export function computeCompanyAnnualDecarbRate(company: TargetCompany): number | null {
+  const evidence = targetEvidenceSchema.safeParse(company.targetEvidence);
+  if (!evidence.success) return null;
+  return computeAnnualDecarbRate(company.emissionTarget2050, evidence.data.baseYear);
+}
+
 export function getPeerGroupKey(company: CvCompany, method: ScoringMethod): string {
   switch (method) {
     case "sector_relative":
@@ -118,7 +124,7 @@ export function getPeerGroupKey(company: CvCompany, method: ScoringMethod): stri
 }
 
 export async function loadCompaniesAndTimeSeries(applyCarryForward: boolean = true): Promise<{
-  companies: CvCompany[];
+  companies: TargetCompany[];
   timeSeries: CvTimeSeries[];
 }> {
   const header = snapshotContext.getStore();

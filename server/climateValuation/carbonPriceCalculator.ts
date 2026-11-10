@@ -3,6 +3,7 @@ import { projectionCache } from "@shared/schema";
 import type { CvTimeSeries, CvCompany } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { calculationKey } from "../calculation/identity";
+import { snapshotContext } from "../snapshots/store";
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
 import { calculateCarbonIntensity, assignTerciles, groupTimeSeriesByDate, filterCompaniesByGeography, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
@@ -133,7 +134,7 @@ export async function calculateTotalBasedCarbonPrice(
 
   const groupLabels = getGroupLabels(inferenceMethod);
 
-  if (!geography) {
+  if (!geography && !snapshotContext.getStore()) {
     const [cached] = await db.select().from(projectionCache)
       .where(eq(projectionCache.cacheKey, cacheMethod));
     if (cached) {
@@ -252,7 +253,7 @@ export async function calculateTotalBasedCarbonPrice(
 
   }
 
-  if (!geography && results.length > 0) {
+  if (!geography && !snapshotContext.getStore() && results.length > 0) {
     await db.insert(projectionCache).values({
       cacheKey: cacheMethod, projectionYear: 2024, category: "finance", region: null,
       resultData: results,

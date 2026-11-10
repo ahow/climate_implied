@@ -42,6 +42,7 @@ import { AnalysisSnapshotStatus } from "@/components/analysis-snapshot-status";
 import { FinancialReview, ScientificValidation } from "@/components/financial-review";
 import {CompanyOperatingReview} from "@/components/company-operating-review";
 import {CompanyReplayUpload} from "@/components/company-replay-upload";
+import {TargetInputDisclosure} from "@/components/target-input-disclosure";
 
 interface IndicatorSummary {
   key: string;
@@ -246,6 +247,7 @@ export default function DataManagement() {
         </Card>
       </div>
 
+      <TargetInputDisclosure />
       <FinancialProviderStatus />
       <AnalysisSnapshotStatus />
       <FinancialReview />

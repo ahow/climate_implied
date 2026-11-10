@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { sql } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 import { db } from "../server/db";
-import { resolveSnapshot,snapshotContext } from "../server/snapshots/store";
+import { resolveSnapshot,snapshotContext,loadSnapshot } from "../server/snapshots/store";
 import { overlayContext,loadOverlay } from "../server/snapshots/overlays";
 import { stageOverlayReviewInTransaction,decideOverlayReviewInTransaction } from "../server/snapshots/overlayReview";
 import { contentHash } from "../server/calculation/analysisManifest";
@@ -14,6 +14,7 @@ import { publicValuationResult } from "../server/calculation/publicValuationCont
 import { packOverlay } from "../server/snapshots/overlayContract";
 if(process.env.NODE_ENV==="production") throw new Error("Development only");
 const header=await resolveSnapshot();assert.ok(header);
+const workbook=await loadSnapshot(header);
 const calculateAll=async()=>{
   const results:Record<string,unknown>={};
   for(const path of replayPaths) results[path]=publicValuationResult(
@@ -23,6 +24,7 @@ const calculateAll=async()=>{
 const digest=(x:unknown)=>contentHash(JSON.parse(JSON.stringify(x)));
 const marker=randomUUID(),rollback=new Error("rollback");
 let proposalId="",decisionId="",overlayId="";
+let targetProposalId="",targetDecisionId="",targetOverlayId="";
 let extra:Awaited<ReturnType<typeof combinedRefreshFixture>>|undefined;
 const originalDrivers=await db.execute(sql`SELECT indicator_key AS "indicatorKey",year,value,source,
  source_url AS "sourceUrl",as_of_date AS "asOfDate",method FROM indicator_values WHERE status='approved' ORDER BY indicator_key,year`);
@@ -56,6 +58,22 @@ try {
       decisionId=String(decision.id);overlayId=decision.overlayId!;
       const overlay=await loadOverlay(overlayId,tx);
       const carbon=await loadOverlay(extra.carbonOverlayId,tx);
+      const targetDate=decision.decidedAt.slice(0,10);
+      const targetCompanies=workbook.companies.filter(c=>workbook.timeSeries.some(r=>
+        r.companyId===c.id && r.marketCap!>0 && r.netProfit!>0)).slice(0,30);
+      assert.ok(targetCompanies.length>=3);
+      targetProposalId=await stageOverlayReviewInTransaction(tx,targetCompanies.map((c,i)=>({
+        companyId:c.id,observationDate:targetDate,availableAt:targetDate,kind:"target",
+        field:"emissionTarget2050",unit:"fractional-change",value:-.2-(i%3)*.3,
+        source:`rollback-only:${marker}`,approvalEvidence:"Synthetic ONLY; rolled back, not issuer approval",
+        historyBasis:"revised-history",targetEvidence:{baseYear:2015,targetYear:2050,
+          accountingScope:"scope1+scope2",unit:"fractional-change",publishedAt:targetDate,
+          sourceLocator:`private:rollback:${marker}`,
+          sourceExcerpt:"Synthetic signed cumulative 2015 to 2050 change; Scope 1 plus Scope 2."},
+      })));
+      const targetDecision=await decideOverlayReviewInTransaction(tx,targetProposalId,"approved");
+      targetDecisionId=String(targetDecision.id);targetOverlayId=targetDecision.overlayId!;
+      const targets=await loadOverlay(targetOverlayId,tx);
       // Financial review intentionally cannot enter the SDG/carbon review workflow.
       // Its actual helper ran above; historical substitution is a private engineering overlay.
       const financial=packOverlay([{companyId:Number(row.id),
@@ -63,19 +81,22 @@ try {
         unit:"USD million",value:1000000,source:`rollback-only:${marker}`,
         approvalEvidence:"Synthetic engineering only; rollback",historyBasis:"revised-history"}]);
       const modified=await runWithOverrideRows(extra.driverRows as OverrideRow[],()=>snapshotContext.run(header,()=>overlayContext.run({
-        ids:[extra!.carbonOverlayId,overlayId,financial.id],cutoff:decision.decidedAt.slice(0,10),overlays:[carbon,overlay,financial.payload],
+        ids:[extra!.carbonOverlayId,overlayId,financial.id,targetOverlayId],cutoff:decision.decidedAt.slice(0,10),overlays:[carbon,overlay,financial.payload,targets],
       },()=>{
         assert.notEqual(requestOverrides.getStore()!.hash,originalDriverHash);
         return calculateAll();
       })));
       assert.notEqual(digest(modified),baselineHash,"The approved perturbation must affect this request");
       changedPaths=replayPaths.filter(path=>digest(modified[path])!==digest(baseline[path]));
+      for(const path of ["/decarb-bands","/decarb-terciles"])
+        assert.ok(Array.isArray(modified[path]) && (modified[path] as unknown[]).length>0,
+          `Reviewed explicit target fixture must populate ${path}`);
     } finally { release(); }
     assert.equal(digest(await oldRequest),baselineHash,"Old in-flight request retains baseline after review");
     throw rollback;
   });
 } catch(e) {if(e!==rollback) throw e;}
-for(const id of [proposalId,decisionId,overlayId,...(extra?.archiveIds ?? [])])
+for(const id of [proposalId,decisionId,overlayId,targetProposalId,targetDecisionId,targetOverlayId,...(extra?.archiveIds ?? [])])
   assert.equal((await db.execute(sql`SELECT id FROM cv_analysis_snapshots WHERE id=${id}`)).rows.length,0);
 assert.ok(extra);
 assert.equal((await db.execute(sql`SELECT id FROM financial_reviews WHERE id=${extra.financialId}`)).rows.length,0);
@@ -91,6 +112,7 @@ assert.equal(digest(returned),baselineHash,"Returning to baseline selection afte
 console.log(JSON.stringify({status:"pass",scope:"Combined financial/carbon/SDG/driver real helper transaction; all nine actual calculator paths",
   actualPaths:replayPaths,changedPaths,currentSelectionReturned:true,
   emptyTargetPaths:replayPaths.filter(path=>Array.isArray(baseline[path])&&(baseline[path] as unknown[]).length===0),
-  limitation:"Target calculators lack base-year metadata and remain empty; no nonempty-target acceptance. Current financial review is separate from explicit historical financial overlay. No production or real issuer approvals.",baselineHash,
+  nonemptyTargetFixture:true,
+  limitation:"Synthetic explicit target fixture only; old workbook targets without base years remain unavailable. Current financial review is separate from explicit historical financial overlay. No production or real issuer approvals.",baselineHash,
   modifiedRequestChanged:true,oldRequestUnchanged:true,completeRollback:true,realApprovals:0}));
 process.exit(0);

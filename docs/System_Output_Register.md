@@ -89,6 +89,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-review.tsx | "/api/financial-data/reviews" |
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
+| client/src/components/target-input-disclosure.tsx | "/api/calculation/field-semantics" |
 | client/src/lib/analysis-selection.ts | "/api/cv/summary" |
 | client/src/lib/analysis-selection.ts | "/api/cv/dimensions" |
 | client/src/lib/analysis-selection.ts | "/api/cv/carbon-price" |

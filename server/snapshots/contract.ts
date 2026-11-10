@@ -1,8 +1,11 @@
 import type { CvCompany, CvTimeSeries } from "../../shared/schema";
 import { contentHash } from "../calculation/analysisManifest";
+import { targetEvidenceSchema, type TargetCompany } from "./overlayContract";
 
 export interface DatasetChunk { entity: "companies" | "timeSeries"; rows: unknown[] }
-export function packDataset(companies: CvCompany[], timeSeries: CvTimeSeries[]) {
+export function packDataset(companies: TargetCompany[], timeSeries: CvTimeSeries[]) {
+  for (const company of companies) if (company.targetEvidence !== undefined)
+    targetEvidenceSchema.parse(company.targetEvidence);
   const cs = [...companies].sort((a, b) => a.id - b.id);
   const ids = new Set(cs.map(c => c.id)), isins = new Set(cs.map(c => c.isin));
   if (ids.size !== cs.length || isins.size !== cs.length) throw new Error("Duplicate company identity");
@@ -23,7 +26,9 @@ export function packDataset(companies: CvCompany[], timeSeries: CvTimeSeries[]) 
 }
 export function unpackDataset(id: string, chunks: DatasetChunk[]) {
   if (contentHash({ version: "workbook-snapshot-1", chunks }) !== id) throw new Error("Snapshot content hash mismatch");
-  const companies = chunks.filter(c => c.entity === "companies").flatMap(c => c.rows) as CvCompany[];
+  const companies = chunks.filter(c => c.entity === "companies").flatMap(c => c.rows) as TargetCompany[];
+  for (const company of companies) if (company.targetEvidence !== undefined)
+    targetEvidenceSchema.parse(company.targetEvidence);
   const timeSeries = chunks.filter(c => c.entity === "timeSeries").flatMap(c => c.rows)
     .map(row => ({ ...(row as CvTimeSeries), date: new Date((row as CvTimeSeries).date) }));
   return { companies, timeSeries };

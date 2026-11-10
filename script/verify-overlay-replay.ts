@@ -10,7 +10,7 @@ import { packDataset, unpackDataset } from "../server/snapshots/contract";
 import * as XLSX from "xlsx";
 import { exportDataIdentity } from "../client/src/lib/export-identity";
 import { calculateSelectedResult,replayPaths } from "./replay-sdg-result";
-import { snapshotContext,resolveSnapshot } from "../server/snapshots/store";
+import { snapshotContext,resolveSnapshot,runWithReplayWorkbook } from "../server/snapshots/store";
 import { overlayContext } from "../server/snapshots/overlays";
 import { currentSourceArchiveId } from "../server/snapshots/materialInputs";
 import { runWithOverrideRows } from "../server/dataIngestion/requestOverrides";
@@ -27,7 +27,9 @@ async function main() {
     assert.equal(currentSourceArchiveId(),captured.sourceArchive,"Replay executable source/config/dependency version differs");
     assert.ok(Array.isArray(captured.approvedValues),"Missing captured driver dependency");
     assert.ok(Array.isArray(captured.historicalIndicators),"Missing captured historical dependency");
-    const header=await resolveSnapshot(captured.workbook.id);assert.ok(header);
+    assert.ok(captured.header, "Missing captured workbook header");
+    const header=captured.header;
+    assert.equal(header.id,captured.workbook.id,"Captured header identity mismatch");
     const baseline = unpackDataset(captured.workbook.id, captured.workbook.chunks);
     const overlays = captured.overlays.map((o: any) => unpackOverlay(o.id, o.payload));
     const effective = applyOverlays(baseline, overlays, captured.cutoff);
@@ -38,12 +40,15 @@ async function main() {
       scenario: "development-revised-history-fixture", settings: { cutoff: captured.cutoff },
     });
     const actualResults:Record<string,unknown>={};
-    await runWithOverrideRows(captured.approvedValues,()=>historicalInputContext.run(captured.historicalIndicators,()=>
+    await runWithReplayWorkbook(captured.workbook,()=>runWithOverrideRows(captured.approvedValues,()=>historicalInputContext.run(captured.historicalIndicators,()=>
       snapshotContext.run(header,()=>overlayContext.run({ids:captured.overlays.map((o:any)=>o.id),
         cutoff:captured.cutoff,overlays},async()=>{
         for(const path of replayPaths) actualResults[path]=JSON.parse(JSON.stringify(publicValuationResult(
           await calculateSelectedResult(path,{method:"absolute"},header),path.startsWith("/decarb-gap"))));
-      }))));
+      })))));
+    for (const path of ["/decarb-bands", "/decarb-terciles"])
+      assert.ok(Array.isArray(actualResults[path]) && (actualResults[path] as unknown[]).length > 0,
+        `Explicit target fixture must populate ${path}`);
     const result = { companyCount: packed.companyCount, rowCount: packed.observationCount,actualResults,
       effectiveInputHash: packed.id,
       selectedCompany: effective.companies.find(c => c.id === captured.companyId),
@@ -98,10 +103,33 @@ async function main() {
     packOverlay([{ ...common, field: "scope1Emissions", value: 0, kind: "carbon", unit: "tCO2e" }]),
     packOverlay([{ ...common, field: "sdgAlignmentScore", value: 3, kind: "sdg", unit: "score" }]),
   ];
+  const targetCompanies = data.companies.filter(c => data.timeSeries.some(r =>
+    r.companyId === c.id && r.marketCap! > 0 && r.netProfit! > 0)).slice(0, 30);
+  assert.ok(targetCompanies.length >= 3, "At least three profitable target fixture companies required");
+  const targetDate = data.timeSeries.map(r => r.date.toISOString().slice(0,10)).sort().at(-1)!;
+  const targetEntries = targetCompanies.map((c, i) => ({
+    ...common, companyId: c.id, observationDate: targetDate, availableAt: targetDate,
+    kind: "target", field: "emissionTarget2050", unit: "fractional-change", value: -.2 - (i % 3) * .3,
+    targetEvidence: { baseYear: 2015, targetYear: 2050, accountingScope: "scope1+scope2",
+      unit: "fractional-change", publishedAt: targetDate,
+      sourceLocator: "private:synthetic-engineering-fixture",
+      sourceExcerpt: "Synthetic ONLY: signed cumulative change from 2015 to 2050, Scope 1 plus Scope 2." },
+  }));
+  const targetOverlay = packOverlay(targetEntries);
+  overlays.push(targetOverlay);
+  for (const patch of [
+    { targetEvidence: undefined }, { unit: "percent" }, { value: -100 },
+    { targetEvidence: { ...targetEntries[0].targetEvidence, baseYear: 2050 } },
+    { targetEvidence: { ...targetEntries[0].targetEvidence, targetYear: 2040 } },
+    { targetEvidence: { ...targetEntries[0].targetEvidence, accountingScope: "scope3" } },
+    { targetEvidence: { ...targetEntries[0].targetEvidence, publishedAt: "2099-01-01" } },
+  ]) assert.throws(() => packOverlay([{ ...targetEntries[0], ...patch }]));
+  assert.notEqual(packOverlay(targetEntries.map(e => ({ ...e,
+    targetEvidence: { ...e.targetEvidence, baseYear: 2016 } }))).id, targetOverlay.id);
   mkdirSync(dir, { recursive: true });
   const drivers=await db.execute(sql`SELECT indicator_key AS "indicatorKey",year,value,source,
     source_url AS "sourceUrl",as_of_date AS "asOfDate",method FROM indicator_values WHERE status='approved' ORDER BY indicator_key,year`);
-  const captured = { workbook: packDataset(data.companies, data.timeSeries), overlays,
+  const captured = { header:JSON.parse(JSON.stringify(header)),workbook: packDataset(data.companies, data.timeSeries), overlays,
     approvedValues:drivers.rows,sourceArchive:currentSourceArchiveId(),
     historicalIndicators:runWithOverrideRows(drivers.rows as any,()=>getAllHistoricalIndicatorsWithNowcast()),
     cutoff: data.timeSeries.map(r=>r.date.toISOString().slice(0,10)).sort().at(-1)!, companyId: row.companyId,
@@ -122,17 +150,18 @@ async function main() {
   const results = [1, 2].map(n => {
     const out = `${dir}/worker-${n}.json`;
     execFileSync(process.execPath, ["--import", "tsx", "script/verify-overlay-replay.ts", "--worker", file, out],
-      { env: { ...process.env, DATA_SCHEDULER_ENABLED: "false" }, timeout: 120000 });
+      { env: { ...process.env, DATABASE_URL: "", DATA_SCHEDULER_ENABLED: "false" }, timeout: 120000 });
     return JSON.parse(readFileSync(out, "utf8"));
   });
   assert.deepEqual(results[0], results[1]);
   assert.notEqual(results[0].result.effectiveInputHash, header.id);
   console.log(JSON.stringify({ file, resultHash: results[0].resultHash,
     companyCount: results[0].result.companyCount, rowCount: results[0].result.rowCount,
-    unchangedBaseline: true, overlays: 3, freshProcesses: 2,
+    unchangedBaseline: true, overlays: overlays.length, freshProcesses: 2,
     actualPaths:replayPaths,xlsxActualResultReadback:true,missingDependencyRejected:true,codePinRejected:true,
     emptyTargetPaths:replayPaths.filter(path=>Array.isArray(results[0].result.actualResults[path]) &&
       results[0].result.actualResults[path].length===0),
-    caveat: "Synthetic engineering only; retained immutable workbook dependency still requires DEV DB. Target base-year metadata is unavailable: target paths can be empty, not nonempty-target acceptance." }));
+    offlineWorkersWithoutDatabaseCredentials:true,
+    caveat: "Synthetic engineering only. Private input capture requires DEV DB; worker uses captured workbook/driver inputs without DB credentials. Matching installed runtime/source required, not a portable executable bundle. Explicit fixture target evidence is not issuer approval or scientific acceptance." }));
 }
 main().then(() => process.exit(0)).catch(e => { console.error(e); process.exit(1); });
