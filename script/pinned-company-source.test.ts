@@ -3,7 +3,7 @@ import test from "node:test";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { pinnedSourceSha256, verifyPinnedSourceBytes, retainVerifiedPinnedSource, loadPinnedFslrCode } from "./pinned-company-source";
+import { pinnedSourceSha256, verifyPinnedSourceBytes, retainVerifiedPinnedSource, loadPinnedFslrCode, verifyRecoveredSources } from "./pinned-company-source";
 
 test("Pinned byte verification refuses changed/current bytes and invalid digests", () => {
   const old = Buffer.from("engineering pinned source fixture\n"), current = Buffer.from("engineering changed fixture\n");
@@ -46,10 +46,12 @@ test("Historical loader refuses arbitrary, missing and duplicate source paths be
     { path: "server/calculation/issuerConditionalFiveYear.ts", sha256: "a".repeat(64) },
   ]), /exactly the three/);
 });
-test("Known recovery revision mismatching frozen hashes fails closed, with no current-code fallback", async () => {
-  await assert.rejects(loadPinnedFslrCode([
+test("Recovered source mismatching frozen hashes fails closed, with no current-code fallback", () => {
+  assert.throws(()=>verifyRecoveredSources([
     { path: "server/calculation/companyFullCashflowCase.ts", sha256: "a".repeat(64) },
     { path: "server/calculation/fslrFullCashflowCase.ts", sha256: "a".repeat(64) },
     { path: "server/calculation/issuerConditionalFiveYear.ts", sha256: "a".repeat(64) },
-  ]), /Pinned source hash mismatch/);
+  ],()=>Buffer.from("Explicit engineering recovered-source fixture")), /Pinned source hash mismatch/);
+  assert.throws(()=>verifyRecoveredSources([{path:"missing.ts",sha256:"a".repeat(64)}],
+    ()=>{throw new Error("Missing pinned source");}),/Missing pinned source/);
 });

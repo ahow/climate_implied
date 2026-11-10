@@ -31,6 +31,11 @@ export function retainVerifiedPinnedSource(path: string, expectedSha256: string,
   return path;
 }
 
+export function verifyRecoveredSources(codeSources: {path:string;sha256:string}[], readSource:(path:string)=>Buffer) {
+  return codeSources.map(source=>({...source,
+    bytes:verifyPinnedSourceBytes(source.path,source.sha256,readSource(source.path))}));
+}
+
 export async function loadPinnedFslrCode(codeSources: { path: string; sha256: string }[]) {
   if (process.env.NODE_ENV === "production") throw new Error("Private historical replay only");
   if (codeSources.length !== directPaths.length ||
@@ -41,8 +46,7 @@ export async function loadPinnedFslrCode(codeSources: { path: string; sha256: st
   if (resolvedRevision !== revision) throw new Error("Known historical recovery revision is unavailable");
   const fromGit = (path: string) => execFileSync("git", ["show", `${revision}:${path}`], { maxBuffer: 4 * 1024 * 1024 });
   // Verify ALL original frozen digests before writing/recovering any code.
-  const recovered = codeSources.map(source => ({ ...source,
-    bytes: verifyPinnedSourceBytes(source.path, source.sha256, fromGit(source.path)) }));
+  const recovered = verifyRecoveredSources(codeSources,fromGit);
   const lockBytes = fromGit("package-lock.json"), lockHash = pinnedSourceSha256(lockBytes);
   if (pinnedSourceSha256(readFileSync("package-lock.json")) !== lockHash)
     throw new Error("Runtime dependency lock differs from known recovery revision; historical replay refused");
