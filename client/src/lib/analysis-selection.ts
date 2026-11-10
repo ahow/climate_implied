@@ -1,4 +1,4 @@
-export interface AnalysisSelection { workbook: string; indicators: string; regional?: string }
+export interface AnalysisSelection { workbook: string; indicators: string; regional?: string; overlays?: string[]; asOf?: string }
 export const selectionKey = "climate-analysis-selection-v1";
 export function parseSelection(value: unknown): AnalysisSelection {
   const x = value as AnalysisSelection;
@@ -7,7 +7,16 @@ export function parseSelection(value: unknown): AnalysisSelection {
     throw new Error("Select both a valid workbook and indicator snapshot");
   if (x.regional !== undefined && !/^[a-f0-9]{64}$/.test(x.regional))
     throw new Error("Invalid regional snapshot");
-  return { workbook: x.workbook, indicators: x.indicators, ...(x.regional ? { regional: x.regional } : {}) };
+  if (x.overlays !== undefined || x.asOf !== undefined) {
+    if (!Array.isArray(x.overlays) || !x.overlays.length || x.overlays.length > 20 ||
+      x.overlays.some(id => typeof id !== "string" || !/^[a-f0-9]{64}$/.test(id)) ||
+      new Set(x.overlays).size !== x.overlays.length || typeof x.asOf !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(x.asOf) || !Number.isFinite(Date.parse(x.asOf)) ||
+      new Date(x.asOf).toISOString().slice(0, 10) !== x.asOf)
+      throw new Error("Select unique ordered overlay IDs and a valid information cutoff");
+  }
+  return { workbook: x.workbook, indicators: x.indicators, ...(x.regional ? { regional: x.regional } : {}),
+    ...(x.overlays ? { overlays: x.overlays, asOf: x.asOf } : {}) };
 }
 export function currentSelection(): AnalysisSelection | null {
   if (typeof window === "undefined") return null;
@@ -40,6 +49,15 @@ export function selectedRequest(url: string, selection: AnalysisSelection | null
       throw new Error("Requested workbook conflicts with active analysis selection");
     parsed.searchParams.set("snapshotId", selection.workbook);
     parsed.searchParams.delete("uploadId");
+    if (selection.overlays) {
+      const explicitOverlays = parsed.searchParams.get("overlaySnapshotIds");
+      const explicitCutoff = parsed.searchParams.get("asOf");
+      if (explicitOverlays && explicitOverlays !== selection.overlays.join(",") ||
+          explicitCutoff && explicitCutoff !== selection.asOf)
+        throw new Error("Requested overlays conflict with active selection");
+      parsed.searchParams.set("overlaySnapshotIds", selection.overlays.join(","));
+      parsed.searchParams.set("asOf", selection.asOf!);
+    }
   }
   if (indicators) parsed.searchParams.set("indicatorSnapshotId", selection.indicators);
   return { url: indicators ? parsed.pathname + parsed.search : url, workbook, indicators };
@@ -48,6 +66,9 @@ export async function analysisFetch(url: string, init?: RequestInit) {
   const selection = currentSelection();
   const request = selectedRequest(url, selection);
   const response = await fetch(request.url, init);
+  if (response.ok && request.workbook && selection?.overlays &&
+      response.headers.get("X-Analysis-Overlays") !== selection.overlays.join(","))
+    throw new Error("Response does not confirm selected overlays");
   if (response.ok && new URL(request.url, "https://analysis.invalid").pathname === "/api/projection/regions"
     && selection?.regional && response.headers.get("X-Regional-Snapshot") !== selection.regional)
     throw new Error("Response does not confirm the selected regional snapshot");

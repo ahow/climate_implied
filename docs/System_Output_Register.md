@@ -74,7 +74,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | Consumer | API expression |
 | --- | --- |
 | client/src/components/analysis-selection.tsx | `/api/analysis/snapshots?kind=${kind}${after ? `&after=${after}` : ""}` |
-| client/src/components/analysis-selection.tsx | `/api/cv/summary?snapshotId=${selection.workbook}&indicatorSnapshotId=${selection.indicators}` |
+| client/src/components/analysis-selection.tsx | "/api/cv/summary" |
 | client/src/components/analysis-selection.tsx | `/api/projection/regions?regionalSnapshotId=${selection.regional}&indicatorSnapshotId=${selection.indicators}` |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshot-status" |
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |

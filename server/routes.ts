@@ -9,7 +9,10 @@ import { fcfeFromOperatingCashFlow, fcfeFromEarnings, pairedGrowthGap,
   summarizeNetZeroYears, valuationScenarioEligibility } from "./calculation/researchCorrections";
 import { equityValue, reverseEquityGrowth } from "./calculation/reverseValuation";
 import { publicValuationResult } from "./calculation/publicValuationContract";
-import { resolveSnapshot, snapshotContext } from "./snapshots/store";
+import { resolveSnapshot, snapshotContext, loadSnapshot } from "./snapshots/store";
+import { applyOverlays } from "./snapshots/overlayContract";
+import { loadOverlay, overlayContext } from "./snapshots/overlays";
+import { overlaySelection } from "./snapshots/requestContract";
 import { summarizeMemberMetrics } from "./calculation/memberMetrics";
 import { exactMemberAttribution } from "./calculation/memberAttribution";
 import { projectCompanyMembers } from "./calculation/companyProjection";
@@ -165,14 +168,21 @@ export async function registerRoutes(
         res.set("X-Analysis-Data-State", "legacy-mutable-source-snapshot-not-provisioned");
         return next();
       }
+      const overlayIds = overlaySelection(req.query);
+      const overlays = await Promise.all(overlayIds.map(loadOverlay));
+      const cutoff = String(req.query.asOf ?? "");
+      if (overlays.some(o => o.entries.some(e => e.availableAt > cutoff)))
+        throw new Error("Overlay exceeds information cutoff");
+      if (overlays.length) applyOverlays(await loadSnapshot(header), overlays, cutoff);
       const manifest = createManifest({
         codeVersion: process.env.RAILWAY_GIT_COMMIT_SHA || "workspace-code-version-unrecorded",
         modelVersion: CALCULATION_VERSION,
-        snapshotHashes: [header.id, ...(requestOverrides.getStore() ? [requestOverrides.getStore()!.hash] : [])],
+        snapshotHashes: [header.id, ...overlayIds, ...(requestOverrides.getStore() ? [requestOverrides.getStore()!.hash] : [])],
         scenario: `descriptive-valuation:${req.path}`, settings: { ...req.query },
       });
       res.set("X-Analysis-Data-State", "immutable-workbook-snapshot");
       res.set("X-Analysis-Snapshot", header.id);
+      if (overlayIds.length) res.set("X-Analysis-Overlays", overlayIds.join(","));
       res.set("X-Analysis-Manifest", manifest.id);
       res.set("Cache-Control", "no-store");
       const archivedPaths = new Set(["/summary", "/carbon-price", "/pe-comparison",
@@ -199,7 +209,8 @@ export async function registerRoutes(
           return res;
         };
       }
-      snapshotContext.run(header, next);
+      snapshotContext.run(header, () => overlayIds.length
+        ? overlayContext.run({ ids: overlayIds, cutoff, overlays }, next) : next());
     } catch {
       res.status(422).json({ error: "Requested analysis snapshot unavailable or invalid" });
     }

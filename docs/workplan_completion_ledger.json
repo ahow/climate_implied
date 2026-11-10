@@ -10,7 +10,7 @@
     "verified_at": "2026-11-09T23:35Z"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-09T23:41:39.744341+00:00",
+  "updated_at": "2026-11-10T00:32:51.766742+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -76,33 +76,11 @@
           "files_functions_changed": [
             "script/workplan-evidence-run.py"
           ],
-          "behaviour_delivered_this_run": "Latest full regression executed: 195 TypeScript and 51 Python tests; type check/build passed. Earlier executions retained.",
+          "behaviour_delivered_this_run": "Latest full regression: 204 TypeScript/63 Python passed, zero failures/skips; type checking and build exit 0.",
           "inputs_versions_assumptions": [],
           "executions": [
             {
               "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T22:12:20.589269+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 26.531,
-              "counts": {
-                "tests": 192,
-                "pass": 192,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log",
-              "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "uv",
-                "run",
                 "python",
                 "-m",
                 "unittest",
@@ -110,151 +88,24 @@
                 "-s",
                 "script",
                 "-p",
-                "test_*.py"
+                "test_handoff_contract.py"
               ],
-              "executed_at": "2026-11-09T22:12:47.538211+00:00",
+              "executed_at": "2026-11-10T00:21:08.893971+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 11.427,
+              "elapsed_seconds": 0.376,
               "counts": {
-                "tests": 51,
-                "pass": 51,
+                "tests": 4,
+                "pass": 4,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/workplan-completion/20261109T221247538211Z.log",
-              "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
+              "log": "generated-artifacts/workplan-completion/20261110T002108893971Z.log",
+              "workspace_revision": "ce36ef8985ba7de26be07fc0b240635246c0ba78",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
             {
               "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:12:59.337405+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 13.085,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T221259337405Z.log",
-              "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "build"
-              ],
-              "executed_at": "2026-11-09T22:13:12.812454+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 19.952,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T221312812454Z.log",
-              "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:19:05.773525+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 6.571,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T221905773525Z.log",
-              "workspace_revision": "c62078bbe0dcf1d0c4d89bc1c200e4f724758b34",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:24:50.995599+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 4.573,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T222450995599Z.log",
-              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:25:26.304421+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 4.409,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T222526304421Z.log",
-              "workspace_revision": "476f3de7a7245afcc5c8058bbc00663615f0a93b",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:39:17.167920+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 15.714,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T223917167920Z.log",
-              "workspace_revision": "94f6e34d33453ca4541cae48fb43cc9b0f1cf80e",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:42:44.476375+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 13.219,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T224244476375Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T22:44:20.117148+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 25.381,
-              "counts": {
-                "tests": 195,
-                "pass": 195,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T224420117148Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "uv",
-                "run",
                 "python",
                 "-m",
                 "unittest",
@@ -262,64 +113,19 @@
                 "-s",
                 "script",
                 "-p",
-                "test_*.py"
+                "test_storage_adoption.py"
               ],
-              "executed_at": "2026-11-09T22:44:45.888786+00:00",
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 11.817,
+              "elapsed_seconds": 0.883,
               "counts": {
-                "tests": 51,
-                "pass": 51,
+                "tests": 4,
+                "pass": 4,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/workplan-completion/20261109T224445888786Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:44:58.076176+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 12.281,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T224458076176Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "build"
-              ],
-              "executed_at": "2026-11-09T22:45:10.770404+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 19.967,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T224510770404Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T22:52:15.145347+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 6.705,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T225215145347Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -329,17 +135,17 @@
                 "-c",
                 "npx tsx --test script/*.test.ts"
               ],
-              "executed_at": "2026-11-09T23:05:11.473426+00:00",
+              "executed_at": "2026-11-10T00:29:58.796940+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 25.636,
+              "elapsed_seconds": 26.79,
               "counts": {
-                "tests": 197,
-                "pass": 197,
+                "tests": 204,
+                "pass": 204,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/workplan-completion/20261109T230511473426Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -354,17 +160,17 @@
                 "-p",
                 "test_*.py"
               ],
-              "executed_at": "2026-11-09T23:05:37.511792+00:00",
+              "executed_at": "2026-11-10T00:30:26.002081+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 8.745,
+              "elapsed_seconds": 9.663,
               "counts": {
-                "tests": 51,
-                "pass": 51,
+                "tests": 63,
+                "pass": 63,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/workplan-completion/20261109T230537511792Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "log": "generated-artifacts/workplan-completion/20261110T003026002081Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -374,12 +180,12 @@
                 "run",
                 "check"
               ],
-              "executed_at": "2026-11-09T23:05:46.665756+00:00",
-              "exit_code": 2,
-              "elapsed_seconds": 5.625,
+              "executed_at": "2026-11-10T00:30:36.080727+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 10.155,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230546665756Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+              "log": "generated-artifacts/workplan-completion/20261110T003036080727Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -389,162 +195,12 @@
                 "run",
                 "build"
               ],
-              "executed_at": "2026-11-09T23:05:52.701114+00:00",
+              "executed_at": "2026-11-10T00:30:46.670502+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 19.181,
+              "elapsed_seconds": 19.47,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230552701114Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T23:06:19.436848+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 4.263,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230619436848Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T23:06:24.115884+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 24.452,
-              "counts": {
-                "tests": 197,
-                "pass": 197,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T230624115884Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "build"
-              ],
-              "executed_at": "2026-11-09T23:06:48.938561+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 16.742,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T230648938561Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "python",
-                "-m",
-                "unittest",
-                "discover",
-                "-s",
-                "script",
-                "-p",
-                "test_*.py"
-              ],
-              "executed_at": "2026-11-09T23:07:06.062751+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 3.951,
-              "counts": {
-                "tests": 51,
-                "pass": 51,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T230706062751Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T23:26:17.808408+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 25.575,
-              "counts": {
-                "tests": 200,
-                "pass": 200,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
-              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "python",
-                "-m",
-                "unittest",
-                "discover",
-                "-s",
-                "script",
-                "-p",
-                "test_*.py"
-              ],
-              "executed_at": "2026-11-09T23:26:43.785060+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 8.591,
-              "counts": {
-                "tests": 53,
-                "pass": 53,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T232643785060Z.log",
-              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "check"
-              ],
-              "executed_at": "2026-11-09T23:26:52.786679+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 4.257,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T232652786679Z.log",
-              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "npm",
-                "run",
-                "build"
-              ],
-              "executed_at": "2026-11-09T23:26:57.433977+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 19.356,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T232657433977Z.log",
-              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "log": "generated-artifacts/workplan-completion/20261110T003046670502Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -1887,16 +1543,17 @@
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
           "files_functions_changed": [
-            "server/snapshots/guards.ts:validSnapshotGuards",
-            "server/snapshots/regional.ts:captureRegionalInputs,loadRegionalInputs",
-            "server/snapshots/regionalContract.ts",
-            "server/calculation/regionalProjections.ts:calculateRegionalFromInputs",
+            "server/snapshots/overlayContract.ts",
+            "server/snapshots/overlays.ts",
             "server/routes.ts",
-            "client/src/components/analysis-selection.tsx",
+            "server/climateValuation/sharedUtils.ts",
             "client/src/lib/analysis-selection.ts",
-            "client/src/lib/export-contract.ts"
+            "client/src/components/analysis-selection.tsx",
+            "client/src/lib/export-contract.ts",
+            "script/verify-overlay-replay.ts",
+            "docs/Development_Overlay_Replay.md"
           ],
-          "behaviour_delivered_this_run": "Strong archive guards retained. Added immutable regional external-input capture/load, paired indicator/regional historical API execution without live/cache fallback, response identity validation, selector UI and export IDs.",
+          "behaviour_delivered_this_run": "Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.",
           "inputs_versions_assumptions": [
             "Workbook archive 271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
             "Indicator archive f31b9af915967998043a530b54dfd6a87e59b089a9053ad063437065832be6cd",
@@ -1908,76 +1565,14 @@
               "command": [
                 "npx",
                 "tsx",
-                "--test",
-                "script/snapshot-guards.test.ts",
-                "script/privileged-route-inventory.test.ts",
-                "script/analysis-selection.test.ts"
+                "script/verify-overlay-replay.ts"
               ],
-              "executed_at": "2026-11-09T22:10:05.285355+00:00",
+              "executed_at": "2026-11-10T00:26:39.545205+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 4.343,
-              "counts": {
-                "tests": 5,
-                "pass": 5,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T221005285355Z.log",
-              "workspace_revision": "5b15ce21abcf405e59d4597e0abc59cf05aa70ab",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T22:12:20.589269+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 26.531,
-              "counts": {
-                "tests": 192,
-                "pass": 192,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log",
-              "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "env",
-                "NODE_ENV=development",
-                "npx",
-                "tsx",
-                "script/verify-workbook-snapshot.ts"
-              ],
-              "executed_at": "2026-11-09T22:14:43.708712+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 29.349,
+              "elapsed_seconds": 35.287,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T221443708712Z.log",
-              "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "env",
-                "NODE_ENV=development",
-                "npx",
-                "tsx",
-                "script/capture-regional-snapshot.ts"
-              ],
-              "executed_at": "2026-11-09T22:42:34.514708+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 6.081,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T224234514708Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+              "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -1986,22 +1581,19 @@
                 "npx",
                 "tsx",
                 "--test",
-                "script/regional-archive.test.ts",
-                "script/regional-replay.test.ts",
-                "script/snapshot-request.test.ts",
-                "script/analysis-selection.test.ts"
+                "script/overlay-replay.test.ts"
               ],
-              "executed_at": "2026-11-09T22:42:41.009407+00:00",
+              "executed_at": "2026-11-10T00:27:14.951125+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 3.082,
+              "elapsed_seconds": 0.767,
               "counts": {
-                "tests": 9,
-                "pass": 9,
+                "tests": 3,
+                "pass": 3,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/workplan-completion/20261109T224241009407Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+              "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
@@ -2011,92 +1603,17 @@
                 "-c",
                 "npx tsx --test script/*.test.ts"
               ],
-              "executed_at": "2026-11-09T22:44:20.117148+00:00",
+              "executed_at": "2026-11-10T00:29:58.796940+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 25.381,
+              "elapsed_seconds": 26.79,
               "counts": {
-                "tests": 195,
-                "pass": 195,
+                "tests": 204,
+                "pass": 204,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/workplan-completion/20261109T224420117148Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "python",
-                "-c",
-                "import os,json,urllib.request,urllib.error; base=\"https://\"+os.environ[\"REPLIT_DEV_DOMAIN\"]; get=lambda p:urllib.request.urlopen(base+p,timeout=60); r=json.load(get(\"/api/analysis/snapshots?kind=regional-intensity\"))[\"items\"][0][\"id\"]; i=json.load(get(\"/api/analysis/snapshots?kind=indicator-overrides\"))[\"items\"][0][\"id\"]; url=\"/api/projection/regions?regionalSnapshotId=\"+r+\"&indicatorSnapshotId=\"+i; a=get(url); assert a.headers[\"X-Regional-Snapshot\"]==r; assert a.headers[\"X-Indicator-Data-State\"]==\"archived-approved-indicators\"; body=json.load(a); assert len(body)==4; assert body==json.load(get(url)); failed=False\ntry: get(\"/api/projection/regions?regionalSnapshotId=\"+r)\nexcept urllib.error.HTTPError as e: failed=e.code==422\nassert failed; print(json.dumps({\"regionalSnapshot\":r,\"indicatorSnapshot\":i,\"regions\":len(body),\"repeatExact\":True,\"incompletePairRejected\":True}))"
-              ],
-              "executed_at": "2026-11-09T22:46:13.251322+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 1.534,
-              "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T224613251322Z.log",
-              "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T23:05:11.473426+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 25.636,
-              "counts": {
-                "tests": 197,
-                "pass": 197,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T230511473426Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T23:06:24.115884+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 24.452,
-              "counts": {
-                "tests": 197,
-                "pass": 197,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T230624115884Z.log",
-              "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
-              "worktree_dirty": true,
-              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-            },
-            {
-              "command": [
-                "bash",
-                "-c",
-                "npx tsx --test script/*.test.ts"
-              ],
-              "executed_at": "2026-11-09T23:26:17.808408+00:00",
-              "exit_code": 0,
-              "elapsed_seconds": 25.575,
-              "counts": {
-                "tests": 200,
-                "pass": 200,
-                "fail": 0,
-                "skipped": 0
-              },
-              "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
-              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -2120,63 +1637,432 @@
               "decision": "pass"
             }
           ],
-          "scientific_acceptance": "not-applicable-operational",
+          "scientific_acceptance": "engineering-partial-no-vintage-certification",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Complete financial/carbon/SDG overlay archival and readers remain unimplemented.",
-            "Production has no archive tables or guards."
+            "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+            "Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.",
+            "Production archive schema remains unprovisioned; no DDL attempted."
           ],
-          "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
-          "blockers": []
+          "next_action": "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "partial",
+              "behaviour_delivered_this_run": "Strong archive guards retained. Added immutable regional external-input capture/load, paired indicator/regional historical API execution without live/cache fallback, response identity validation, selector UI and export IDs.",
+              "files_functions_changed": [
+                "server/snapshots/guards.ts:validSnapshotGuards",
+                "server/snapshots/regional.ts:captureRegionalInputs,loadRegionalInputs",
+                "server/snapshots/regionalContract.ts",
+                "server/calculation/regionalProjections.ts:calculateRegionalFromInputs",
+                "server/routes.ts",
+                "client/src/components/analysis-selection.tsx",
+                "client/src/lib/analysis-selection.ts",
+                "client/src/lib/export-contract.ts"
+              ],
+              "executions": [
+                {
+                  "command": [
+                    "npx",
+                    "tsx",
+                    "--test",
+                    "script/snapshot-guards.test.ts",
+                    "script/privileged-route-inventory.test.ts",
+                    "script/analysis-selection.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T22:10:05.285355+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 4.343,
+                  "counts": {
+                    "tests": 5,
+                    "pass": 5,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T221005285355Z.log",
+                  "workspace_revision": "5b15ce21abcf405e59d4597e0abc59cf05aa70ab",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "bash",
+                    "-c",
+                    "npx tsx --test script/*.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T22:12:20.589269+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 26.531,
+                  "counts": {
+                    "tests": 192,
+                    "pass": 192,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T221220589269Z.log",
+                  "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "env",
+                    "NODE_ENV=development",
+                    "npx",
+                    "tsx",
+                    "script/verify-workbook-snapshot.ts"
+                  ],
+                  "executed_at": "2026-11-09T22:14:43.708712+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 29.349,
+                  "counts": null,
+                  "log": "generated-artifacts/workplan-completion/20261109T221443708712Z.log",
+                  "workspace_revision": "2776d32597bf5f544a2c9d08a1f735a54e0cdb5c",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "env",
+                    "NODE_ENV=development",
+                    "npx",
+                    "tsx",
+                    "script/capture-regional-snapshot.ts"
+                  ],
+                  "executed_at": "2026-11-09T22:42:34.514708+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 6.081,
+                  "counts": null,
+                  "log": "generated-artifacts/workplan-completion/20261109T224234514708Z.log",
+                  "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "npx",
+                    "tsx",
+                    "--test",
+                    "script/regional-archive.test.ts",
+                    "script/regional-replay.test.ts",
+                    "script/snapshot-request.test.ts",
+                    "script/analysis-selection.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T22:42:41.009407+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 3.082,
+                  "counts": {
+                    "tests": 9,
+                    "pass": 9,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T224241009407Z.log",
+                  "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "bash",
+                    "-c",
+                    "npx tsx --test script/*.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T22:44:20.117148+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 25.381,
+                  "counts": {
+                    "tests": 195,
+                    "pass": 195,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T224420117148Z.log",
+                  "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "python",
+                    "-c",
+                    "import os,json,urllib.request,urllib.error; base=\"https://\"+os.environ[\"REPLIT_DEV_DOMAIN\"]; get=lambda p:urllib.request.urlopen(base+p,timeout=60); r=json.load(get(\"/api/analysis/snapshots?kind=regional-intensity\"))[\"items\"][0][\"id\"]; i=json.load(get(\"/api/analysis/snapshots?kind=indicator-overrides\"))[\"items\"][0][\"id\"]; url=\"/api/projection/regions?regionalSnapshotId=\"+r+\"&indicatorSnapshotId=\"+i; a=get(url); assert a.headers[\"X-Regional-Snapshot\"]==r; assert a.headers[\"X-Indicator-Data-State\"]==\"archived-approved-indicators\"; body=json.load(a); assert len(body)==4; assert body==json.load(get(url)); failed=False\ntry: get(\"/api/projection/regions?regionalSnapshotId=\"+r)\nexcept urllib.error.HTTPError as e: failed=e.code==422\nassert failed; print(json.dumps({\"regionalSnapshot\":r,\"indicatorSnapshot\":i,\"regions\":len(body),\"repeatExact\":True,\"incompletePairRejected\":True}))"
+                  ],
+                  "executed_at": "2026-11-09T22:46:13.251322+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 1.534,
+                  "counts": null,
+                  "log": "generated-artifacts/workplan-completion/20261109T224613251322Z.log",
+                  "workspace_revision": "fcfbbddea063551918bd4a8fb03986b97807090d",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "bash",
+                    "-c",
+                    "npx tsx --test script/*.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T23:05:11.473426+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 25.636,
+                  "counts": {
+                    "tests": 197,
+                    "pass": 197,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T230511473426Z.log",
+                  "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "bash",
+                    "-c",
+                    "npx tsx --test script/*.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T23:06:24.115884+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 24.452,
+                  "counts": {
+                    "tests": 197,
+                    "pass": 197,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T230624115884Z.log",
+                  "workspace_revision": "01f3d808d015a8bd1fb76f2abe31532e3e9703ac",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                },
+                {
+                  "command": [
+                    "bash",
+                    "-c",
+                    "npx tsx --test script/*.test.ts"
+                  ],
+                  "executed_at": "2026-11-09T23:26:17.808408+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 25.575,
+                  "counts": {
+                    "tests": 200,
+                    "pass": 200,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "log": "generated-artifacts/workplan-completion/20261109T232617808408Z.log",
+                  "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "S02-002",
           "source_section": "implementation",
           "requirement": "Implement analysis manifests: code SHA, model and assumption versions, dataset hashes, scenario, settings, seeds, ensemble size and output hashes, using canonical serialisation and SHA-256.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/snapshots/overlayContract.ts",
+            "server/snapshots/overlays.ts",
+            "server/routes.ts",
+            "server/climateValuation/sharedUtils.ts",
+            "client/src/lib/analysis-selection.ts",
+            "client/src/components/analysis-selection.tsx",
+            "client/src/lib/export-contract.ts",
+            "script/verify-overlay-replay.ts",
+            "docs/Development_Overlay_Replay.md"
+          ],
+          "behaviour_delivered_this_run": "Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-overlay-replay.ts"
+              ],
+              "executed_at": "2026-11-10T00:26:39.545205+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 35.287,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/overlay-replay.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:27:14.951125+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.767,
+              "counts": {
+                "tests": 3,
+                "pass": 3,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:29:58.796940+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 26.79,
+              "counts": {
+                "tests": 204,
+                "pass": 204,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "engineering-partial-no-vintage-certification",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+            "Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.",
+            "Production archive schema remains unprovisioned; no DDL attempted."
           ],
-          "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
-          "blockers": []
+          "next_action": "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S02-003",
           "source_section": "implementation",
           "requirement": "Resolve one manifest at the start of each request and use it throughout; include it in cache keys; prevent reduced responses populating full-result caches.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/snapshots/overlayContract.ts",
+            "server/snapshots/overlays.ts",
+            "server/routes.ts",
+            "server/climateValuation/sharedUtils.ts",
+            "client/src/lib/analysis-selection.ts",
+            "client/src/components/analysis-selection.tsx",
+            "client/src/lib/export-contract.ts",
+            "script/verify-overlay-replay.ts",
+            "docs/Development_Overlay_Replay.md"
+          ],
+          "behaviour_delivered_this_run": "Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-overlay-replay.ts"
+              ],
+              "executed_at": "2026-11-10T00:26:39.545205+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 35.287,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/overlay-replay.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:27:14.951125+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.767,
+              "counts": {
+                "tests": 3,
+                "pass": 3,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:29:58.796940+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 26.79,
+              "counts": {
+                "tests": 204,
+                "pass": 204,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "engineering-partial-no-vintage-certification",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+            "Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.",
+            "Production archive schema remains unprovisioned; no DDL attempted."
           ],
-          "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
-          "blockers": []
+          "next_action": "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S02-004",
@@ -2453,25 +2339,102 @@
           "id": "S02-007",
           "source_section": "acceptance",
           "requirement": "An earlier manifest reproduces its analytical output hashes (excluding timestamps and administrative identifiers; declared tolerances for cross-environment floating point) after one refresh of each type (financial, carbon, SDG, driver).",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/snapshots/overlayContract.ts",
+            "server/snapshots/overlays.ts",
+            "server/routes.ts",
+            "server/climateValuation/sharedUtils.ts",
+            "client/src/lib/analysis-selection.ts",
+            "client/src/components/analysis-selection.tsx",
+            "client/src/lib/export-contract.ts",
+            "script/verify-overlay-replay.ts",
+            "docs/Development_Overlay_Replay.md"
+          ],
+          "behaviour_delivered_this_run": "Ordered financial/carbon/SDG overlay schema, hashes, guarded persistence/read, cutoff/unit/orphan checks and request-local application implemented. Selector and exports carry IDs/cutoff; absent archives reject rather than use current data. Real retained development baseline 2442 companies/470341 observations with three private synthetic overlays reproduced in two fresh processes, hash 46cc9662b8d7233137d2cbefdf30ea3b578c6fb064a09ff91a5966b926128b3a; baseline unchanged. Stored-result serialization tested, not full recalculation acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/verify-overlay-replay.ts"
+              ],
+              "executed_at": "2026-11-10T00:26:39.545205+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 35.287,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "--test",
+                "script/overlay-replay.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:27:14.951125+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.767,
+              "counts": {
+                "tests": 3,
+                "pass": 3,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:29:58.796940+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 26.79,
+              "counts": {
+                "tests": 204,
+                "pass": 204,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "engineering-partial-no-vintage-certification",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+            "Complete all-material-input replay and concurrent refresh/rejection journeys; file fixture does not establish full application replay.",
+            "Production archive schema remains unprovisioned; no DDL attempted."
           ],
-          "next_action": "Investigate production database ownership; provision through supported route; implement complete overlay replay.",
-          "blockers": []
+          "next_action": "Wire real reviewed refreshes and approval transactions to immutable overlays without auto-approval.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S02-008",
@@ -2778,73 +2741,154 @@
           "id": "S03-001",
           "source_section": "implementation",
           "requirement": "Build the registry schema: identifier, definition, publisher, raw and transformed units, geography, category, observation period, availability date, vintage, update cadence and licence.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/audit-driver-evidence.ts",
+            "docs/Driver_Evidence_Audit.md"
+          ],
+          "behaviour_delivered_this_run": "All 22 driver entries audited against mandatory metadata and actual calculation references. 0/22 metadata-complete and 0/22 central eligible. Explicit date/vintage gaps retained; role and calibration findings enumerated, not converted into acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/audit-driver-evidence.ts"
+              ],
+              "executed_at": "2026-11-10T00:24:24.033586+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 3.464,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002424033586Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "audit-complete-calibration-incomplete",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms."
           ],
-          "next_action": "Audit all 22 registry entries against every mandatory source/evidence field.",
-          "blockers": []
+          "next_action": "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S03-002",
           "source_section": "implementation",
           "requirement": "Give each indicator one or more roles: mechanism input, level anchor, validation target, context, or candidate leading indicator. Only mechanism inputs move the forecast.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/audit-driver-evidence.ts",
+            "docs/Driver_Evidence_Audit.md"
+          ],
+          "behaviour_delivered_this_run": "All 22 driver entries audited against mandatory metadata and actual calculation references. 0/22 metadata-complete and 0/22 central eligible. Explicit date/vintage gaps retained; role and calibration findings enumerated, not converted into acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/audit-driver-evidence.ts"
+              ],
+              "executed_at": "2026-11-10T00:24:24.033586+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 3.464,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002424033586Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "audit-complete-calibration-incomplete",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms."
           ],
-          "next_action": "Audit all 22 registry entries against every mandatory source/evidence field.",
-          "blockers": []
+          "next_action": "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S03-003",
           "source_section": "implementation",
           "requirement": "Store each indicator's uncertainty distribution, overlap group, regional applicability and missing-data method.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/audit-driver-evidence.ts",
+            "docs/Driver_Evidence_Audit.md"
+          ],
+          "behaviour_delivered_this_run": "All 22 driver entries audited against mandatory metadata and actual calculation references. 0/22 metadata-complete and 0/22 central eligible. Explicit date/vintage gaps retained; role and calibration findings enumerated, not converted into acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/audit-driver-evidence.ts"
+              ],
+              "executed_at": "2026-11-10T00:24:24.033586+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 3.464,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002424033586Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "audit-complete-calibration-incomplete",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms."
           ],
-          "next_action": "Audit all 22 registry entries against every mandatory source/evidence field.",
-          "blockers": []
+          "next_action": "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S03-004",
@@ -2898,49 +2942,103 @@
           "id": "S03-006",
           "source_section": "implementation",
           "requirement": "Record the licence status of every source in the registry.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/audit-driver-evidence.ts",
+            "docs/Driver_Evidence_Audit.md"
+          ],
+          "behaviour_delivered_this_run": "All 22 driver entries audited against mandatory metadata and actual calculation references. 0/22 metadata-complete and 0/22 central eligible. Explicit date/vintage gaps retained; role and calibration findings enumerated, not converted into acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/audit-driver-evidence.ts"
+              ],
+              "executed_at": "2026-11-10T00:24:24.033586+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 3.464,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002424033586Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "audit-complete-calibration-incomplete",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms."
           ],
-          "next_action": "Audit all 22 registry entries against every mandatory source/evidence field.",
-          "blockers": []
+          "next_action": "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S03-007",
           "source_section": "acceptance",
           "requirement": "100% of indicators have every mandatory field.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/audit-driver-evidence.ts",
+            "docs/Driver_Evidence_Audit.md"
+          ],
+          "behaviour_delivered_this_run": "All 22 driver entries audited against mandatory metadata and actual calculation references. 0/22 metadata-complete and 0/22 central eligible. Explicit date/vintage gaps retained; role and calibration findings enumerated, not converted into acceptance.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/audit-driver-evidence.ts"
+              ],
+              "executed_at": "2026-11-10T00:24:24.033586+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 3.464,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002424033586Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "audit-complete-calibration-incomplete",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms."
           ],
-          "next_action": "Audit all 22 registry entries against every mandatory source/evidence field.",
-          "blockers": []
+          "next_action": "Supply reviewed observation/availability/vintage/licence evidence per indicator; legacy comparator references are not calibrated causal mechanisms.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S03-008",
@@ -3031,40 +3129,124 @@
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
           "files_functions_changed": [
-            "docs/Heat_Pump_Diffusion_Protocol.md",
-            "docs/Heat_Pump_Diffusion_Results.md",
-            "script/heat_pump_diffusion.py:evaluate",
-            "script/test_heat_pump_diffusion.py"
+            "script/storage_adoption.py:evaluate",
+            "script/extract-eia-storage.cjs",
+            "script/test_storage_adoption.py",
+            "docs/Storage_Adoption_Protocol.md",
+            "docs/Storage_Adoption_Results.md",
+            "script/ev_sales_calibration.py"
           ],
-          "behaviour_delivered_this_run": "Heat-pump source acquired: AHRI public US air-source heat-pump shipments 2006-2025 (table image SHA-256 e6d5b997...). Frozen diagnostic (commit 7c8121d): eval 2019-2025 MAPE primary 2011-2018 window persistence 21.0%, linear 9.0%, log-linear 11.3%; 2006-2018 sensitivity 21.0/22.7/21.2%. Window-sensitive; no share denominator, so no logistic fit.",
+          "behaviour_delivered_this_run": "Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.",
           "inputs_versions_assumptions": [],
           "executions": [
             {
               "command": [
                 "python",
-                "script/heat_pump_diffusion.py",
-                "generated-artifacts/heat-pump-sources/ahri_ashp_shipments.json"
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_storage_adoption.py"
               ],
-              "executed_at": "2026-11-09T23:25:29.166934+00:00",
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 0.174,
+              "elapsed_seconds": 0.883,
+              "counts": {
+                "tests": 4,
+                "pass": 4,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "node",
+                "script/extract-eia-storage.cjs"
+              ],
+              "executed_at": "2026-11-10T00:23:19.576851+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.736,
               "counts": null,
-              "log": "generated-artifacts/workplan-completion/20261109T232529166934Z.log",
-              "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+              "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/storage_adoption.py",
+                "generated-artifacts/driver-calibration/eia-storage-2025.json"
+              ],
+              "executed_at": "2026-11-10T00:23:20.742704+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/ev_sales_calibration.py"
+              ],
+              "executed_at": "2026-11-10T00:24:27.870546+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.729,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [],
-          "scientific_acceptance": "not-accepted-levels-sensitivity-only",
+          "scientific_acceptance": "storage-positive-relative-baselines-not-central; EV unchanged",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No permitted heating-equipment denominator (AHRI furnace/monthly PDFs login-only; EHPA/JRAIA paid) so heat-pump share diffusion is uncalibrated.",
-            "EV, storage and bootstrap-interval diffusion fits remain."
+            "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+            "Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete."
           ],
-          "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
-          "blockers": []
+          "next_action": "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "partial",
+              "behaviour_delivered_this_run": "Heat-pump source acquired: AHRI public US air-source heat-pump shipments 2006-2025 (table image SHA-256 e6d5b997...). Frozen diagnostic (commit 7c8121d): eval 2019-2025 MAPE primary 2011-2018 window persistence 21.0%, linear 9.0%, log-linear 11.3%; 2006-2018 sensitivity 21.0/22.7/21.2%. Window-sensitive; no share denominator, so no logistic fit.",
+              "files_functions_changed": [
+                "docs/Heat_Pump_Diffusion_Protocol.md",
+                "docs/Heat_Pump_Diffusion_Results.md",
+                "script/heat_pump_diffusion.py:evaluate",
+                "script/test_heat_pump_diffusion.py"
+              ],
+              "executions": [
+                {
+                  "command": [
+                    "python",
+                    "script/heat_pump_diffusion.py",
+                    "generated-artifacts/heat-pump-sources/ahri_ashp_shipments.json"
+                  ],
+                  "executed_at": "2026-11-09T23:25:29.166934+00:00",
+                  "exit_code": 0,
+                  "elapsed_seconds": 0.174,
+                  "counts": null,
+                  "log": "generated-artifacts/workplan-completion/20261109T232529166934Z.log",
+                  "workspace_revision": "7c8121de1200bd87863556ec453e77a868e34a93",
+                  "worktree_dirty": true,
+                  "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "S04-002",
@@ -3166,49 +3348,219 @@
           "id": "S04-006",
           "source_section": "implementation",
           "requirement": "Holdout. Fit on data to the end of each technology's training window; predict the following years to 2024; compare with persistence and linear trend.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/EV_and_Cost_Calibration_Results.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/storage_adoption.py:evaluate",
+            "script/extract-eia-storage.cjs",
+            "script/test_storage_adoption.py",
+            "docs/Storage_Adoption_Protocol.md",
+            "docs/Storage_Adoption_Results.md",
+            "script/ev_sales_calibration.py"
+          ],
+          "behaviour_delivered_this_run": "Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_storage_adoption.py"
+              ],
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.883,
+              "counts": {
+                "tests": 4,
+                "pass": 4,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "node",
+                "script/extract-eia-storage.cjs"
+              ],
+              "executed_at": "2026-11-10T00:23:19.576851+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.736,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/storage_adoption.py",
+                "generated-artifacts/driver-calibration/eia-storage-2025.json"
+              ],
+              "executed_at": "2026-11-10T00:23:20.742704+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/ev_sales_calibration.py"
+              ],
+              "executed_at": "2026-11-10T00:24:27.870546+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.729,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "storage-positive-relative-baselines-not-central; EV unchanged",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+            "Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete."
           ],
-          "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
-          "blockers": []
+          "next_action": "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S04-007",
           "source_section": "implementation",
           "requirement": "Fallback rule, fixed before fitting. A driver that does not beat both baselines out of sample becomes a bounded sensitivity, not a central-model input. The exception is a separately documented physical or empirical basis for its central role.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/EV_and_Cost_Calibration_Results.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/storage_adoption.py:evaluate",
+            "script/extract-eia-storage.cjs",
+            "script/test_storage_adoption.py",
+            "docs/Storage_Adoption_Protocol.md",
+            "docs/Storage_Adoption_Results.md",
+            "script/ev_sales_calibration.py"
+          ],
+          "behaviour_delivered_this_run": "Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_storage_adoption.py"
+              ],
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.883,
+              "counts": {
+                "tests": 4,
+                "pass": 4,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "node",
+                "script/extract-eia-storage.cjs"
+              ],
+              "executed_at": "2026-11-10T00:23:19.576851+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.736,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/storage_adoption.py",
+                "generated-artifacts/driver-calibration/eia-storage-2025.json"
+              ],
+              "executed_at": "2026-11-10T00:23:20.742704+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/ev_sales_calibration.py"
+              ],
+              "executed_at": "2026-11-10T00:24:27.870546+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.729,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "storage-positive-relative-baselines-not-central; EV unchanged",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+            "Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete."
           ],
-          "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
-          "blockers": []
+          "next_action": "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S04-008",
@@ -3238,73 +3590,328 @@
           "id": "S04-009",
           "source_section": "acceptance",
           "requirement": "Each fitted driver's out-of-sample error is reported against persistence and linear trend, and the fallback rule is applied exactly as committed.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/EV_and_Cost_Calibration_Results.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/storage_adoption.py:evaluate",
+            "script/extract-eia-storage.cjs",
+            "script/test_storage_adoption.py",
+            "docs/Storage_Adoption_Protocol.md",
+            "docs/Storage_Adoption_Results.md",
+            "script/ev_sales_calibration.py"
+          ],
+          "behaviour_delivered_this_run": "Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_storage_adoption.py"
+              ],
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.883,
+              "counts": {
+                "tests": 4,
+                "pass": 4,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "node",
+                "script/extract-eia-storage.cjs"
+              ],
+              "executed_at": "2026-11-10T00:23:19.576851+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.736,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/storage_adoption.py",
+                "generated-artifacts/driver-calibration/eia-storage-2025.json"
+              ],
+              "executed_at": "2026-11-10T00:23:20.742704+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/ev_sales_calibration.py"
+              ],
+              "executed_at": "2026-11-10T00:24:27.870546+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.729,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "storage-positive-relative-baselines-not-central; EV unchanged",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+            "Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete."
           ],
-          "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
-          "blockers": []
+          "next_action": "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S04-010",
           "source_section": "acceptance",
           "requirement": "No driver that failed its baselines remains a central input without a documented justification.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/EV_and_Cost_Calibration_Results.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/storage_adoption.py:evaluate",
+            "script/extract-eia-storage.cjs",
+            "script/test_storage_adoption.py",
+            "docs/Storage_Adoption_Protocol.md",
+            "docs/Storage_Adoption_Results.md",
+            "script/ev_sales_calibration.py"
+          ],
+          "behaviour_delivered_this_run": "Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_storage_adoption.py"
+              ],
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.883,
+              "counts": {
+                "tests": 4,
+                "pass": 4,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "node",
+                "script/extract-eia-storage.cjs"
+              ],
+              "executed_at": "2026-11-10T00:23:19.576851+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.736,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/storage_adoption.py",
+                "generated-artifacts/driver-calibration/eia-storage-2025.json"
+              ],
+              "executed_at": "2026-11-10T00:23:20.742704+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/ev_sales_calibration.py"
+              ],
+              "executed_at": "2026-11-10T00:24:27.870546+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.729,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "storage-positive-relative-baselines-not-central; EV unchanged",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+            "Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete."
           ],
-          "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
-          "blockers": []
+          "next_action": "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S04-011",
           "source_section": "acceptance",
           "requirement": "Every saturation prior and literature elasticity has a cited source; every training window is declared.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/EV_and_Cost_Calibration_Results.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/storage_adoption.py:evaluate",
+            "script/extract-eia-storage.cjs",
+            "script/test_storage_adoption.py",
+            "docs/Storage_Adoption_Protocol.md",
+            "docs/Storage_Adoption_Results.md",
+            "script/ev_sales_calibration.py"
+          ],
+          "behaviour_delivered_this_run": "Retained frozen EV study rerun unchanged: five fits, Rest of World incomplete, only India passes diagnostic, no promotion. New EIA public-domain storage protocol/tests frozen in 2155948. 2010-2018 training/2019-2024 holdout: exponential MW MAE 6589.37 vs 9204.32 persistence/9027.87 linear; MWh 16218.66 vs 25405.17/25302.87. Both paired 95% improvement intervals exclude zero; MAPE ~47%, sensitivity-only, saturation unidentified.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "python",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "script",
+                "-p",
+                "test_storage_adoption.py"
+              ],
+              "executed_at": "2026-11-10T00:23:18.237073+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.883,
+              "counts": {
+                "tests": 4,
+                "pass": 4,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "node",
+                "script/extract-eia-storage.cjs"
+              ],
+              "executed_at": "2026-11-10T00:23:19.576851+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.736,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/storage_adoption.py",
+                "generated-artifacts/driver-calibration/eia-storage-2025.json"
+              ],
+              "executed_at": "2026-11-10T00:23:20.742704+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.376,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "python",
+                "script/ev_sales_calibration.py"
+              ],
+              "executed_at": "2026-11-10T00:24:27.870546+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 0.729,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+              "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "storage-positive-relative-baselines-not-central; EV unchanged",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+            "Integrate qualified parameter distributions only after source/region/structural checks; other Stage 4 drivers remain incomplete."
           ],
-          "next_action": "Complete heat-pump/storage/policy/nowcast studies and persist qualified parameter distributions.",
-          "blockers": []
+          "next_action": "Obtain a defensible sourced saturation prior before bounded storage diffusion; no invented ceiling.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S04-012",
@@ -5102,25 +5709,52 @@
           "id": "S10-005",
           "source_section": "implementation",
           "requirement": "Run the full matching job with checkpoints; produce a batch review file for ambiguous cases; approve through the existing review workflow, never by the developer alone.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "existing-plus-this-run",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "script/prepare-company-review.ts",
+            "docs/Company_Review_Pack.md"
+          ],
+          "behaviour_delivered_this_run": "Prepared hash-verified private review packet for all 27 retained issuers and 270 fiscal periods. Workbook/provider identities, currencies, source hashes, filing dates and missing exact t+1/t+4 endpoints included. No identity approval or fiscal-rule change.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/prepare-company-review.ts"
+              ],
+              "executed_at": "2026-11-10T00:28:34.620389+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 3.963,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T002834620389Z.log",
+              "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "not-approved",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Owner/independent identity evidence review remains; missing calendar endpoints do not themselves prove 52/53-week accounting."
           ],
-          "next_action": "Audit lifecycle/identity census; assemble review batches and broader financial coverage.",
-          "blockers": []
+          "next_action": "Owner/independent identity evidence review remains; missing calendar endpoints do not themselves prove 52/53-week accounting.",
+          "blockers": [],
+          "prior_reconciliation": [
+            {
+              "status": "not-yet-reconciled",
+              "behaviour_delivered_this_run": null,
+              "files_functions_changed": [],
+              "executions": []
+            }
+          ]
         },
         {
           "id": "S10-006",
@@ -10845,10 +11479,244 @@
       "workspace_revision": "f9789532f8d3701ad48c5e6424a96c34bf336ab0",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "script",
+        "-p",
+        "test_handoff_contract.py"
+      ],
+      "executed_at": "2026-11-10T00:21:08.893971+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.376,
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T002108893971Z.log",
+      "workspace_revision": "ce36ef8985ba7de26be07fc0b240635246c0ba78",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "script",
+        "-p",
+        "test_storage_adoption.py"
+      ],
+      "executed_at": "2026-11-10T00:23:18.237073+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.883,
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T002318237073Z.log",
+      "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "node",
+        "script/extract-eia-storage.cjs"
+      ],
+      "executed_at": "2026-11-10T00:23:19.576851+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.736,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T002319576851Z.log",
+      "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "script/storage_adoption.py",
+        "generated-artifacts/driver-calibration/eia-storage-2025.json"
+      ],
+      "executed_at": "2026-11-10T00:23:20.742704+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.376,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T002320742704Z.log",
+      "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/audit-driver-evidence.ts"
+      ],
+      "executed_at": "2026-11-10T00:24:24.033586+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 3.464,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T002424033586Z.log",
+      "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "script/ev_sales_calibration.py"
+      ],
+      "executed_at": "2026-11-10T00:24:27.870546+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.729,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T002427870546Z.log",
+      "workspace_revision": "2155948546ab8d8d17f979f9d9977c85e2b3adf4",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/verify-overlay-replay.ts"
+      ],
+      "executed_at": "2026-11-10T00:26:39.545205+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 35.287,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T002639545205Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/overlay-replay.test.ts"
+      ],
+      "executed_at": "2026-11-10T00:27:14.951125+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.767,
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T002714951125Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/prepare-company-review.ts"
+      ],
+      "executed_at": "2026-11-10T00:28:34.620389+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 3.963,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T002834620389Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npx tsx --test script/*.test.ts"
+      ],
+      "executed_at": "2026-11-10T00:29:58.796940+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 26.79,
+      "counts": {
+        "tests": 204,
+        "pass": 204,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T002958796940Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "script",
+        "-p",
+        "test_*.py"
+      ],
+      "executed_at": "2026-11-10T00:30:26.002081+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 9.663,
+      "counts": {
+        "tests": 63,
+        "pass": 63,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261110T003026002081Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "executed_at": "2026-11-10T00:30:36.080727+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 10.155,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T003036080727Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "executed_at": "2026-11-10T00:30:46.670502+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 19.47,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T003046670502Z.log",
+      "workspace_revision": "61635f08913ef25976edab0009ec4b48510ba05a",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
-    "next_requirement": "S11-004",
+    "next_requirement": "S02-007",
     "unfinished_requirement_ids": [
       "S00-001",
       "S00-004",
@@ -11146,7 +12014,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "UPDATE 2026-11-09 late: S00-005/S00-010 verified (single Replit autoscale scheduler environment + advisory lock + one scheduled run per month in production). D8 as-of study executed: negative for reverse DCF, Gordon stays primary; next run company-specific beta variant (S11-004) and Stage 14 signal. US heat-pump levels diagnostic done (AHRI); share calibration blocked on denominator. Then 22-driver audit, overlay replay, field semantics. Earlier note: S00-003/S00-007 baseline coverage passed, including actual grouped HTTP endpoints and regional captured inputs across fresh servers. Do not repeat unless invalidated. Verify S00-005/S00-010 legacy Replit autoscale scheduler ownership; Railway and development disabled, no second scheduler. Regional immutable replay now works in development with optional selector, export identity and no live fallback. Continue missing financial/carbon/SDG overlay and result replay, field-level semantics, all 22 driver evidence entries. Company outcome audit expanded to eleven candidates (56 outcomes); next build historical as-of Gordon/reverse-DCF predictions for those origins. Heat-pump source search found IEA 2019–2024 CC BY chart but no downloadable data and direct HTTP403; investigate AHRI/EHPA/JRAIA next, not all-source blocked. Full reconciliation, calibration, 10k ensemble, company and signal/portfolio research remain unfinished. Managed production archive provisioning and independent acceptance remain separate.",
+    "instruction": "Continue all stages 0-17. Finish real development approval-to-overlay capture and full all-material-input/result replay (current fixture is private synthetic overlays on real retained workbook, not full acceptance). Complete field-level semantics; use Driver_Evidence_Audit.md for all 22 missing metadata/source-calibration gaps. EV original gate unchanged; storage exponential beats baselines but no saturation prior or central promotion. Owner review packet has 27 issuers/270 periods, no approvals. Freeze distinct company-specific cost-of-equity sensitivity before fitting, then actual Stage 14 signal only with compatible Stage 12 projections; Gordon remains primary. Reconcile remaining original clauses against actual evidence. Use workplan-checkpoint.py --checkpoint-id with stable ID at true end only, continuation_ready and exact tag; 202 is transport only. Preserve scheduler and production restrictions.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -11155,5 +12023,17 @@
     "attempted_at": "2026-11-09T22:28:35.686283+00:00",
     "outcome": "http-success",
     "http_status": 202
-  }
+  },
+  "handoff_contract": {
+    "prior_callback": "2026-11-09 23:41:55 HTTP 202 received but NOT MATCHED, owner-confirmed wrong event run-end",
+    "event": "continuation_ready",
+    "project_tag": "climate-implied-workplan-7Y7FDSOyaoDAG1SVtLd3ck",
+    "test": "script/test_handoff_contract.py: enum, exact tag, actionable selection, incomplete completion rejection, no-network duplicate/202 tests",
+    "matching": "HTTP transport acceptance never establishes matched continuation"
+  },
+  "handoff_blockers": [
+    "Production archive tables need supported managed provisioning; independent development remains actionable.",
+    "Heat-pump share denominator unavailable under permitted source access.",
+    "Owner identity/fiscal-rule review outstanding; no auto-approval."
+  ]
 }

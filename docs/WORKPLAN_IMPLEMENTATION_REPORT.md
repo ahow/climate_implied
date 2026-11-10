@@ -1,5 +1,46 @@
 # Workplan implementation report
 
+## Latest increment — 10 November 2026
+
+**Still partial, not workplan completion.** Prior chronological entries below
+are retained as history and are superseded where this section states newer evidence.
+
+- Fixed the confirmed continuation bug. `script/handoff_contract.py` validates
+  the exact project tag and three supported events. The sender chooses
+  continuation_ready while actionable work remains, reserves a stable checkpoint
+  exclusively before transport, uses an Idempotency-Key, and cannot resend an
+  attempted checkpoint. Six automated contract tests include mocked transport;
+  no test callback was sent. HTTP 202 is transport acceptance, not matching.
+  The owner's evidence establishes that the previous run-end callback was NOT matched.
+- Storage study: frozen protocol/tests commit 2155948, EIA public-domain data,
+  nine training years/six holdout years. Both MW and MWh exponential fits beat
+  persistence and linear baselines, with positive paired 95% improvement intervals.
+  MAPE remains ~47%; saturation unidentified, sensitivity-only, no promotion.
+  See Storage_Adoption_Results.md for exact metrics/source hash.
+- Existing EV protocol rerun unchanged: original result hash retained; most
+  regions fail, India passes only a tiny diagnostic improvement, no promotion.
+- All 22 drivers audited: 0 have complete date/vintage metadata and 0 are
+  central-model eligible. Driver_Evidence_Audit.md enumerates every entry and
+  code reference. Audit completeness is not scientific calibration.
+- Development overlays: financial/carbon/SDG contracts, guarded archive storage,
+  request-local application, ordered identities/cutoff in manifest/selector/
+  exports, invalid or unavailable archive rejection. Private synthetic overlays
+  on the retained 2,442-company/470,341-observation dataset reproduce exactly in
+  two fresh processes. This does not complete real approval-flow integration or
+  all-material-input application replay. See Development_Overlay_Replay.md.
+- Private owner review pack: 27 issuers, 270 fiscal-period checks, source hashes,
+  currencies/filings/exact-date missingness; zero approvals and no fiscal-rule change.
+- Full regression: **204 TypeScript and 63 Python tests pass**, no failures/skips;
+  type check and build exit 0. Actual commands/timestamps/logs in run_executions.
+  Restart clean, development scheduler disabled, preview renders without browser
+  errors. Development health 200; unsupported/missing overlay archives return 422.
+
+No production data, scheduler setting, approval gate or D8 rule changed.
+Gordon remains primary. Field-level semantics, full real overlay/result replay,
+company-specific cost-of-equity sensitivity, actual Stage 14 signal, and broader
+clause reconciliation remain incomplete. None is falsely marked completed.
+Owner acceptance has not been performed by the developer.
+
 ## Continuation 2026-11-09 (late): first empirical studies
 
 ### D8 as-of Gordon vs reverse-DCF — executed, negative for reverse DCF

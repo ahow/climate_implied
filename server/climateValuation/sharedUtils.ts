@@ -4,6 +4,8 @@ import type { CvCompany, CvTimeSeries } from "@shared/schema";
 import { orderCalculationRows } from "../../shared/calculationContract";
 import { carryForwardEmissions } from "./emissionsCarryForward";
 import { loadSnapshot, snapshotContext } from "../snapshots/store";
+import { overlayContext } from "../snapshots/overlays";
+import { applyOverlays } from "../snapshots/overlayContract";
 
 export type ScoringMethod = "absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative";
 
@@ -120,10 +122,15 @@ export async function loadCompaniesAndTimeSeries(applyCarryForward: boolean = tr
   timeSeries: CvTimeSeries[];
 }> {
   const header = snapshotContext.getStore();
-  const captured = header ? await loadSnapshot(header) : await db.transaction(async tx => ({
+  let captured = header ? await loadSnapshot(header) : await db.transaction(async tx => ({
     companies: await tx.select().from(cvCompanies),
     timeSeries: await tx.select().from(cvTimeSeries),
   }), { isolationLevel: "repeatable read", accessMode: "read only" });
+  const overlay = overlayContext.getStore();
+  if (overlay) {
+    if (!header) throw new Error("Overlay replay requires immutable workbook");
+    captured = applyOverlays(captured, overlay.overlays, overlay.cutoff);
+  }
   const companies = captured.companies.sort((a, b) => a.id - b.id);
   const rawTimeSeries = orderCalculationRows(captured.timeSeries);
   const timeSeries = applyCarryForward ? carryForwardEmissions(rawTimeSeries) : rawTimeSeries;

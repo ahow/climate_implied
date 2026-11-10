@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { currentSelection, parseSelection, selectionKey } from "@/lib/analysis-selection";
+import { currentSelection, parseSelection, selectionKey, selectedRequest } from "@/lib/analysis-selection";
 
 export function AnalysisSelectionControl() {
   let active = null;
@@ -9,6 +9,8 @@ export function AnalysisSelectionControl() {
   const [workbook, setWorkbook] = useState(active?.workbook ?? "");
   const [indicators, setIndicators] = useState(active?.indicators ?? "");
   const [regional, setRegional] = useState(active?.regional ?? "");
+  const [overlays, setOverlays] = useState(active?.overlays?.join(",") ?? "");
+  const [asOf, setAsOf] = useState(active?.asOf ?? "");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const inventory = useQuery({
@@ -33,11 +35,14 @@ export function AnalysisSelectionControl() {
   async function apply() {
     setBusy(true); setError("");
     try {
-      const selection = parseSelection({ workbook, indicators, ...(regional ? { regional } : {}) });
-      const r = await fetch(`/api/cv/summary?snapshotId=${selection.workbook}&indicatorSnapshotId=${selection.indicators}`);
+      const selection = parseSelection({ workbook, indicators, ...(regional ? { regional } : {}),
+        ...(overlays.trim() ? { overlays: overlays.split(",").map(x => x.trim()), asOf } : {}) });
+      const r = await fetch(selectedRequest("/api/cv/summary", selection).url);
       if (!r.ok || r.headers.get("X-Analysis-Snapshot") !== selection.workbook ||
         r.headers.get("X-Indicator-Data-State") !== "archived-approved-indicators")
         throw new Error("Selected archives could not be verified. Current selection was not changed.");
+      if (selection.overlays && r.headers.get("X-Analysis-Overlays") !== selection.overlays.join(","))
+        throw new Error("Selected overlays could not be verified. Current selection was not changed.");
       if (selection.regional) {
         const regionResponse = await fetch(`/api/projection/regions?regionalSnapshotId=${selection.regional}&indicatorSnapshotId=${selection.indicators}`);
         if (!regionResponse.ok || regionResponse.headers.get("X-Regional-Snapshot") !== selection.regional
@@ -69,6 +74,16 @@ export function AnalysisSelectionControl() {
               <option key={x.id} value={x.id}>{x.createdAt} — {x.id}</option>)}
           </select>
         </label>
+        <label className="text-sm">Ordered company-overlay IDs (optional, comma separated)
+          <input className="block border rounded p-2 w-full bg-background" value={overlays}
+            onChange={e => setOverlays(e.target.value)} />
+        </label>
+        <label className="text-sm">Overlay information cutoff
+          <input type="date" className="block border rounded p-2 bg-background" value={asOf}
+            disabled={!overlays.trim()} onChange={e => setAsOf(e.target.value)} />
+        </label>
+        <p className="text-xs text-muted-foreground">Only already-reviewed archived financial, carbon and SDG overlays may be selected.
+          Later entries override earlier ones. This does not approve data or establish original-vintage evidence.</p>
         <label className="text-sm">Approved-indicator snapshot
           <select className="block border rounded p-2 w-full bg-background" value={indicators} onChange={e => setIndicators(e.target.value)}>
             <option value="">Select indicators</option>
