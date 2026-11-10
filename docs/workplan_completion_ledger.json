@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "current_release": {
-    "workspace_commit": "b3b41b78481cd1157e080c0dcc3f33c402c466f1",
-    "github_main": "3bc1ddf5379b5dd3783116c2b19011b97f192c67",
-    "ci": "Source validation 42729165070 success; production-validated matches",
-    "railway_deployment": "e2219151-fe29-4711-bf1c-ca3140d7d4fb",
+    "workspace_commit": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+    "github_main": "02afe6457d6e20b96e281b43fa76e0fcd462ce26",
+    "ci": "42732701451 validation and promotion success",
+    "railway_deployment": "483ce3e1-33b5-4873-a14a-e3cb5d5fd124",
     "railway_status": "SUCCESS",
-    "smoke": "health 200; build-info matching sourceCommit",
-    "verified_at": "2026-11-10T00:37:49.865759+00:00",
-    "later_local_only": "Beta-growth comparison and transactional financial archive changes validated locally, not exported/deployed."
+    "smoke": "health/build-info/field-semantics200;source SHA matches;16fields",
+    "verified_at": "2026-11-10T01:10:59.382320+00:00",
+    "later_local_only": "Expanded9-path verifier and final ledger reconciliation pending source export"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-10T01:01:18.899132+00:00",
+  "updated_at": "2026-11-10T01:10:59.382383+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -44,23 +44,21 @@
           "id": "S00-001",
           "source_section": "implementation",
           "requirement": "Confirm the GitHub main SHA and Railway deployment identity; record whether 80a9315 is the live release.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "verified",
+          "origin": "verified-this-run",
           "existing_evidence": [
             "docs/CI_Negative_Control.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
           "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "behaviour_delivered_this_run": "Verified GitHub02afe6457d6e20b96e281b43fa76e0fcd462ce26, CI42732701451 success, Railway483ce3e1-33b5-4873-a14a-e3cb5d5fd124 SUCCESS and live build-info matching;80a9315 is not the live revision.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "release-identity-only",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
-          ],
+          "remaining_gaps": [],
           "next_action": "Inventory privileged routes; rehearse isolated recovery; verify single scheduler.",
           "blockers": []
         },
@@ -2502,7 +2500,7 @@
             "server/calculation/historicalIndicators.ts",
             "docs/Development_Review_Material_Replay.md"
           ],
-          "behaviour_delivered_this_run": "Real SDG API result reproduced in two fresh processes with exact JSON hash after applying the real public withholding filter; old source version now intentionally refused after later source changes. All-endpoint/refresh-type acceptance still unmet.",
+          "behaviour_delivered_this_run": "Actual API output recalculated with exact hash in fresh processes for all9 registered company-result paths at tested settings; SDG additionally two-process deterministic. Empty targets yield empty bands/terciles. No synthetic overlays used for these requests. All-refresh and concurrent acceptance remains open.",
           "inputs_versions_assumptions": [],
           "executions": [
             {
@@ -2570,6 +2568,159 @@
               "counts": null,
               "log": "generated-artifacts/workplan-completion/20261110T005723317851Z.log",
               "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "e5548900d473b03e2cec15c41cd47f954379e9df9d6e95210de50b2121285e0d",
+                "generated-artifacts/material-replay/final-fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:03:51.334340+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 12.466,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010351334340Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "d3a147364f631ff8efef5afcc3bd4f69e9178673ee3e411aa5a654e3a586386e",
+                "generated-artifacts/material-replay/pe-comparison_method_absolute_includeScope3_false.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:05:09.346340+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 16.602,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010509346340Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "b23626641c1e8cc7d3a8f0f40e69a9b533b39449dbbbb1687da27e4963c60568",
+                "generated-artifacts/material-replay/decarb-bands.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:05:30.556150+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 13.607,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010530556150Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "8eda569b307af2ee816ed5b80954b639893c53bf3e7d224d565e8aedbde401c7",
+                "generated-artifacts/material-replay/decarb-terciles.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:05:50.037427+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 15.584,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010550037427Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "ab877b750ae572f34a231330186038d3062787c78ae8e0f4061e89de678b4274",
+                "generated-artifacts/material-replay/decarb-gap_summary.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:06:10.127388+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 12.562,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010610127388Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "46f6c926337ff2f048149d6754fd39aac563a23b47b2b06e8a108d7ab5c253a9",
+                "generated-artifacts/material-replay/decarb-gap_timeseries.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:06:26.802761+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 11.467,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010626802761Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "cc89c522cf0867c026ef2c51d765e874fd4c4906391355cbad9a607c7b942f9c",
+                "generated-artifacts/material-replay/summary.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:07:23.632324+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 18.903,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010723632324Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "1fe9456b12cad1b6ffecf6eb80cfcce8a8e778201486c74ac719ed0e90503c10",
+                "generated-artifacts/material-replay/carbon-price.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:07:56.828992+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 21.334,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010756828992Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "npx",
+                "tsx",
+                "script/replay-sdg-result.ts",
+                "4af332823a9909fc38213497d31a74a56f56f5bce7f0cd7e4e0bb27d667753ff",
+                "generated-artifacts/material-replay/backtest.fresh.json"
+              ],
+              "executed_at": "2026-11-10T01:08:33.914211+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 23.118,
+              "counts": null,
+              "log": "generated-artifacts/workplan-completion/20261110T010833914211Z.log",
+              "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -8177,22 +8328,25 @@
           "id": "S12-001",
           "source_section": "implementation",
           "requirement": "Map each company to model sectors and regions by operating geography (where it produces and sells), using FMP revenue segments, workbook data and disclosures. Headquarters country is a fallback only, and is flagged.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Operating-geography schema and coverage normalization exist; verified per-company FMP/disclosure segment mappings not supplied.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Operating-geography schema and coverage normalization exist; verified per-company FMP/disclosure segment mappings not supplied."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8201,22 +8355,25 @@
           "id": "S12-002",
           "source_section": "implementation",
           "requirement": "Activity growth: the model's regional sector trajectories applied to the company's mix, with its market share mean-reverting to the sector.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Compounds activity by exposure and applies supplied share multiplier; empirical market-share mean reversion and regional trajectory ingestion not implemented.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Compounds activity by exposure and applies supplied share multiplier; empirical market-share mean reversion and regional trajectory ingestion not implemented."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8225,22 +8382,25 @@
           "id": "S12-003",
           "source_section": "implementation",
           "requirement": "Margins bounded by company history and peer ranges. Carbon drag applies only to emissions that bear a charge:",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Enforces supplied margin bounds; actual historical/peer range calibration remains missing.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Enforces supplied margin bounds; actual historical/peer range calibration remains missing."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8249,22 +8409,25 @@
           "id": "S12-004",
           "source_section": "implementation",
           "requirement": "Scope 1 under the regional carbon-pricing regimes that apply.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope1 liable fraction is explicit; sourced regional regime incidence is not populated.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Scope1 liable fraction is explicit; sourced regional regime incidence is not populated."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8273,22 +8436,25 @@
           "id": "S12-005",
           "source_section": "implementation",
           "requirement": "Scope 2 through electricity prices where relevant.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope2 liable fraction is explicit separate channel; sourced electricity price incidence remains missing.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Scope2 liable fraction is explicit separate channel; sourced electricity price incidence remains missing."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8297,22 +8463,25 @@
           "id": "S12-006",
           "source_section": "implementation",
           "requirement": "Scope 3 is not a direct liability; it enters only through demand effects already in activity growth.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope3 excluded from direct drag; externally supplied demand activity not empirically calibrated.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Scope3 excluded from direct drag; externally supplied demand activity not empirically calibrated."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8321,22 +8490,25 @@
           "id": "S12-007",
           "source_section": "implementation",
           "requirement": "Drag = liable emissions × projected effective carbon price × (1 − pass-through), with sector pass-through ranges from the literature.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Exact drag formula implemented; literature-backed sector pass-through ranges not populated.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Exact drag formula implemented; literature-backed sector pass-through ranges not populated."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8345,22 +8517,25 @@
           "id": "S12-008",
           "source_section": "implementation",
           "requirement": "Produce cash-flow projections that correspond line by line to the Stage 11 valuation (same cash-flow basis, horizon, nominal terms and treatment of reinvestment), so projected and implied growth are directly comparable.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Explicit line-item nominal FCFE ledger exists; full paired real valuation projection inputs remain missing.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Explicit line-item nominal FCFE ledger exists; full paired real valuation projection inputs remain missing."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8369,22 +8544,25 @@
           "id": "S12-009",
           "source_section": "implementation",
           "requirement": "Company emissions = activity × intensity, by scope. The intensity path comes from regional sector technology trajectories. A separate abatement term is used only for measures not already in those trajectories, with a check that no improvement is counted twice. Targets count only through explicit delivery assumptions backed by credibility evidence.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Activity times scope-specific intensity implemented without extra target multiplier; sourced regional technology trajectories missing.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Activity times scope-specific intensity implemented without extra target multiplier; sourced regional technology trajectories missing."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8393,22 +8571,25 @@
           "id": "S12-010",
           "source_section": "implementation",
           "requirement": "Sample activity, share, margin, carbon price and pass-through across 1,000 members, paired with the valuation inputs, to give each company a projected-growth distribution.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Accepts up to1000 ordered member ledgers and tests1000; no empirically calibrated paired joint sampling with real valuation inputs.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Accepts up to1000 ordered member ledgers and tests1000; no empirically calibrated paired joint sampling with real valuation inputs."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8523,22 +8704,25 @@
           "id": "S12-014",
           "source_section": "acceptance",
           "requirement": "Company emissions reconcile to activity × intensity (× any separate abatement) by scope, and a double-counting check passes.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope1 activity-intensity reconciliation and no scope3 direct charge fixture pass; full source trajectory overlap audit missing.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Scope1 activity-intensity reconciliation and no scope3 direct charge fixture pass; full source trajectory overlap audit missing."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -8547,23 +8731,45 @@
           "id": "S12-015",
           "source_section": "acceptance",
           "requirement": "Carbon drag uses only liable emissions; a fixture confirms Scope 3 creates no direct charge.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "verified",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing)",
+            "script/company-projection.test.ts (pre-existing)"
+          ],
+          "behaviour_delivered_this_run": "Executed numerical fixture confirms carbonDrag51 from liable Scope1 and no change to growth when Scope3 changes1000 to999999. Only this explicit fixture criterion is verified, not empirical company calibration.",
           "inputs_versions_assumptions": [],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npx tsx --test script/*.test.ts"
+              ],
+              "executed_at": "2026-11-10T00:54:54.859644+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 26.801,
+              "counts": {
+                "tests": 212,
+                "pass": 212,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261110T005454859644Z.log",
+              "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "numerical-fixture-only",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
-          ],
+          "remaining_gaps": [],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
         },
@@ -8571,22 +8777,25 @@
           "id": "S12-016",
           "source_section": "acceptance",
           "requirement": "A unit test confirms projected and implied growth share cash-flow basis, unit, horizon and definition.",
-          "status": "not-yet-reconciled",
-          "origin": "pre-existing-scope",
+          "status": "partial",
+          "origin": "pre-existing-audited-this-run",
           "existing_evidence": [
             "docs/Company_Accounting_Controls.md"
           ],
           "evidence_caveat": "Stage-level report pointer only; this individual requirement is not yet verified.",
-          "files_functions_changed": [],
-          "behaviour_delivered_this_run": null,
+          "files_functions_changed": [
+            "server/calculation/companyProjection.ts (pre-existing, inspected)",
+            "script/company-projection.test.ts (pre-existing; included in212-test passing run)"
+          ],
+          "behaviour_delivered_this_run": "Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Projection reports FCFE/5year/currency; a complete projected-versus-implied paired definition acceptance test remains missing.",
           "inputs_versions_assumptions": [],
           "executions": [],
           "numerical_results": [],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "conditional-only-not-empirical",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Reconcile this exact requirement with code and direct evidence."
+            "Projection reports FCFE/5year/currency; a complete projected-versus-implied paired definition acceptance test remains missing."
           ],
           "next_action": "Source operating exposures and carbon assumptions; execute three climate-linked cases.",
           "blockers": []
@@ -12572,12 +12781,164 @@
       "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "e5548900d473b03e2cec15c41cd47f954379e9df9d6e95210de50b2121285e0d",
+        "generated-artifacts/material-replay/final-fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:03:51.334340+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.466,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010351334340Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "d3a147364f631ff8efef5afcc3bd4f69e9178673ee3e411aa5a654e3a586386e",
+        "generated-artifacts/material-replay/pe-comparison_method_absolute_includeScope3_false.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:05:09.346340+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 16.602,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010509346340Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "b23626641c1e8cc7d3a8f0f40e69a9b533b39449dbbbb1687da27e4963c60568",
+        "generated-artifacts/material-replay/decarb-bands.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:05:30.556150+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 13.607,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010530556150Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "8eda569b307af2ee816ed5b80954b639893c53bf3e7d224d565e8aedbde401c7",
+        "generated-artifacts/material-replay/decarb-terciles.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:05:50.037427+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 15.584,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010550037427Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "ab877b750ae572f34a231330186038d3062787c78ae8e0f4061e89de678b4274",
+        "generated-artifacts/material-replay/decarb-gap_summary.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:06:10.127388+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 12.562,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010610127388Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "46f6c926337ff2f048149d6754fd39aac563a23b47b2b06e8a108d7ab5c253a9",
+        "generated-artifacts/material-replay/decarb-gap_timeseries.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:06:26.802761+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 11.467,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010626802761Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "cc89c522cf0867c026ef2c51d765e874fd4c4906391355cbad9a607c7b942f9c",
+        "generated-artifacts/material-replay/summary.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:07:23.632324+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 18.903,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010723632324Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "1fe9456b12cad1b6ffecf6eb80cfcce8a8e778201486c74ac719ed0e90503c10",
+        "generated-artifacts/material-replay/carbon-price.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:07:56.828992+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 21.334,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010756828992Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "script/replay-sdg-result.ts",
+        "4af332823a9909fc38213497d31a74a56f56f5bce7f0cd7e4e0bb27d667753ff",
+        "generated-artifacts/material-replay/backtest.fresh.json"
+      ],
+      "executed_at": "2026-11-10T01:08:33.914211+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 23.118,
+      "counts": null,
+      "log": "generated-artifacts/workplan-completion/20261110T010833914211Z.log",
+      "workspace_revision": "fca066b799bc64ae4f160411a2e4db8c729e6494",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
     "next_requirement": "S02-007",
     "unfinished_requirement_ids": [
-      "S00-001",
       "S00-004",
       "S00-006",
       "S00-008",
@@ -12772,7 +13133,6 @@
       "S12-012",
       "S12-013",
       "S12-014",
-      "S12-015",
       "S12-016",
       "S12-017",
       "S12-018",
@@ -12873,7 +13233,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope.",
+    "instruction": "Continue stages 0-17, not completed. Carbon/SDG actual operator transactional review implemented and rollback-tested; real SDG result recomputed in two processes, but ALL endpoint/refresh concurrency/exports replay remains incomplete. Core16 semantic definitions API/UI/XLSX and data hash; finish all field mappings. All22 curated driver source hashes/periods added, unknown original dates not fabricated; fix remaining evidence/calibration without new central promotion. Stage12 per-leaf as-of guard exists, but no reviewed paired projection input corpus; implement real compatible data then Stage14, never proxy. Beta frozen73095d6/88 pairs unchanged, do not rerun. Collector unchanged; no real issuers approved. Only checkpoint at real platform limit/exhausted actionable scope. Expanded replay verifier now matches9 actual CV result paths, not justSDG; do not rerun the same settings unnecessarily. Test refresh/concurrency/nonempty targets and finish per-column mappings. Release core02afe645 verified live. Latest operator/ledger additions pending export.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -12896,5 +13256,69 @@
     "Production archive tables need supported managed provisioning; independent development remains actionable.",
     "Heat-pump share denominator unavailable under permitted source access.",
     "Owner identity/fiscal-rule review outstanding; no auto-approval."
+  ],
+  "material_replay_receipts": [
+    {
+      "id": "d3a147364f631ff8efef5afcc3bd4f69e9178673ee3e411aa5a654e3a586386e",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "dae874c1b7b3f9d0cf9f2d07062891b1bc2e1761c71418c9468c5fd8da9c41ab",
+      "path": "/pe-comparison",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "b23626641c1e8cc7d3a8f0f40e69a9b533b39449dbbbb1687da27e4963c60568",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "path": "/decarb-bands",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "8eda569b307af2ee816ed5b80954b639893c53bf3e7d224d565e8aedbde401c7",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "path": "/decarb-terciles",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "ab877b750ae572f34a231330186038d3062787c78ae8e0f4061e89de678b4274",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "d286abf9460763aaf6c52b80b532471e0578ac3c79d36ee1905f949a6f35f3b9",
+      "path": "/decarb-gap/summary",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "46f6c926337ff2f048149d6754fd39aac563a23b47b2b06e8a108d7ab5c253a9",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "28b95c90fe87211d487692631a8ffb625464e9b9ac4a0bd40f1b5fc41f758880",
+      "path": "/decarb-gap/timeseries",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "cc89c522cf0867c026ef2c51d765e874fd4c4906391355cbad9a607c7b942f9c",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "0f4f659373395afb56ae0e9f192b8c9aa85c4b244b1c857792e75f78fdc3e78d",
+      "path": "/summary",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "1fe9456b12cad1b6ffecf6eb80cfcce8a8e778201486c74ac719ed0e90503c10",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "06e17d891929a78ad7cc04f3309014b166c5bc6c73b2204b5525cc3ae736ffed",
+      "path": "/carbon-price",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "4af332823a9909fc38213497d31a74a56f56f5bce7f0cd7e4e0bb27d667753ff",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "405c9f994ba11488d11930b5e870ca1ecbf1b7181df2ed998e32de6d8d746f95",
+      "path": "/backtest",
+      "meaning": "Fresh-process actual selected calculator replay; not acceptance of untested endpoints or original vintages"
+    },
+    {
+      "id": "e5548900d473b03e2cec15c41cd47f954379e9df9d6e95210de50b2121285e0d",
+      "materialInputsId": "d1e0f87aaabc0b65d284cda3e9371eb8277e3fe4cc315e9e3a9873ee1e20e940",
+      "resultHash": "9b664a9e2d81e73c9fb8b392d02bdc49680cf9834910ea225d796c8b1f29463e",
+      "meaning": "Fresh-process actual SDG calculator replay; not acceptance of other endpoints or original vintages"
+    }
   ]
 }

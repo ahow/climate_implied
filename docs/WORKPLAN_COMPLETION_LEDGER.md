@@ -3,7 +3,7 @@
 Generated from `workplan_completion_ledger.json`. Original requirements remain individually tracked.
 **Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.
 
-Updated: 2026-11-10T01:01:18.899132+00:00
+Updated: 2026-11-10T01:08:57.186040+00:00
 
 Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.
 
@@ -2079,114 +2079,114 @@ Stage 11 is reported as accepted only after the Section 4 model-selection step i
 
 ## Stage 12 — Company projected growth and emissions pathways
 
-### S12-001 — not-yet-reconciled
+### S12-001 — partial
 Map each company to model sectors and regions by operating geography (where it produces and sells), using FMP revenue segments, workbook data and disclosures. Headquarters country is a fallback only, and is flagged.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Operating-geography schema and coverage normalization exist; verified per-company FMP/disclosure segment mappings not supplied.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Operating-geography schema and coverage normalization exist; verified per-company FMP/disclosure segment mappings not supplied.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-002 — not-yet-reconciled
+### S12-002 — partial
 Activity growth: the model's regional sector trajectories applied to the company's mix, with its market share mean-reverting to the sector.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Compounds activity by exposure and applies supplied share multiplier; empirical market-share mean reversion and regional trajectory ingestion not implemented.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Compounds activity by exposure and applies supplied share multiplier; empirical market-share mean reversion and regional trajectory ingestion not implemented.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-003 — not-yet-reconciled
+### S12-003 — partial
 Margins bounded by company history and peer ranges. Carbon drag applies only to emissions that bear a charge:
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Enforces supplied margin bounds; actual historical/peer range calibration remains missing.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Enforces supplied margin bounds; actual historical/peer range calibration remains missing.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-004 — not-yet-reconciled
+### S12-004 — partial
 Scope 1 under the regional carbon-pricing regimes that apply.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope1 liable fraction is explicit; sourced regional regime incidence is not populated.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Scope1 liable fraction is explicit; sourced regional regime incidence is not populated.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-005 — not-yet-reconciled
+### S12-005 — partial
 Scope 2 through electricity prices where relevant.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope2 liable fraction is explicit separate channel; sourced electricity price incidence remains missing.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Scope2 liable fraction is explicit separate channel; sourced electricity price incidence remains missing.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-006 — not-yet-reconciled
+### S12-006 — partial
 Scope 3 is not a direct liability; it enters only through demand effects already in activity growth.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope3 excluded from direct drag; externally supplied demand activity not empirically calibrated.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Scope3 excluded from direct drag; externally supplied demand activity not empirically calibrated.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-007 — not-yet-reconciled
+### S12-007 — partial
 Drag = liable emissions × projected effective carbon price × (1 − pass-through), with sector pass-through ranges from the literature.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Exact drag formula implemented; literature-backed sector pass-through ranges not populated.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Exact drag formula implemented; literature-backed sector pass-through ranges not populated.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-008 — not-yet-reconciled
+### S12-008 — partial
 Produce cash-flow projections that correspond line by line to the Stage 11 valuation (same cash-flow basis, horizon, nominal terms and treatment of reinvestment), so projected and implied growth are directly comparable.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Explicit line-item nominal FCFE ledger exists; full paired real valuation projection inputs remain missing.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Explicit line-item nominal FCFE ledger exists; full paired real valuation projection inputs remain missing.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-009 — not-yet-reconciled
+### S12-009 — partial
 Company emissions = activity × intensity, by scope. The intensity path comes from regional sector technology trajectories. A separate abatement term is used only for measures not already in those trajectories, with a check that no improvement is counted twice. Targets count only through explicit delivery assumptions backed by credibility evidence.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Activity times scope-specific intensity implemented without extra target multiplier; sourced regional technology trajectories missing.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Activity times scope-specific intensity implemented without extra target multiplier; sourced regional technology trajectories missing.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-010 — not-yet-reconciled
+### S12-010 — partial
 Sample activity, share, margin, carbon price and pass-through across 1,000 members, paired with the valuation inputs, to give each company a projected-growth distribution.
 
-- Section: implementation; origin: pre-existing-scope
+- Section: implementation; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Accepts up to1000 ordered member ledgers and tests1000; no empirically calibrated paired joint sampling with real valuation inputs.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Accepts up to1000 ordered member ledgers and tests1000; no empirically calibrated paired joint sampling with real valuation inputs.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
 ### S12-011 — partial
@@ -2222,37 +2222,37 @@ A common additive adjustment applied to every company cannot reorder within-peer
 - Gaps: Reconcile this exact requirement with code and direct evidence.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-014 — not-yet-reconciled
+### S12-014 — partial
 Company emissions reconcile to activity × intensity (× any separate abatement) by scope, and a double-counting check passes.
 
-- Section: acceptance; origin: pre-existing-scope
+- Section: acceptance; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Scope1 activity-intensity reconciliation and no scope3 direct charge fixture pass; full source trajectory overlap audit missing.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Scope1 activity-intensity reconciliation and no scope3 direct charge fixture pass; full source trajectory overlap audit missing.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-015 — not-yet-reconciled
+### S12-015 — verified
 Carbon drag uses only liable emissions; a fixture confirms Scope 3 creates no direct charge.
 
-- Section: acceptance; origin: pre-existing-scope
+- Section: acceptance; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
-- Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Delivered this run: Executed numerical fixture confirms carbonDrag51 from liable Scope1 and no change to growth when Scope3 changes1000 to999999. Only this explicit fixture criterion is verified, not empirical company calibration.
+- Scientific acceptance: numerical-fixture-only
+- Executions: [{"command": ["bash", "-c", "npx tsx --test script/*.test.ts"], "executed_at": "2026-11-10T00:54:54.859644+00:00", "exit_code": 0, "elapsed_seconds": 26.801, "counts": {"tests": 212, "pass": 212, "fail": 0, "skipped": 0}, "log": "generated-artifacts/workplan-completion/20261110T005454859644Z.log", "workspace_revision": "ac25e9d7d7f3233ad076ef3c1aa9c5952b635b52", "worktree_dirty": true, "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"}]
+- Gaps: 
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
-### S12-016 — not-yet-reconciled
+### S12-016 — partial
 A unit test confirms projected and implied growth share cash-flow basis, unit, horizon and definition.
 
-- Section: acceptance; origin: pre-existing-scope
+- Section: acceptance; origin: pre-existing-audited-this-run
 - Existing evidence: docs/Company_Accounting_Controls.md
-- Delivered this run: None recorded
-- Scientific acceptance: not-assessed
+- Delivered this run: Reconciled original clause against existing projectCompanyMembers and executed company-projection.test.ts; Projection reports FCFE/5year/currency; a complete projected-versus-implied paired definition acceptance test remains missing.
+- Scientific acceptance: conditional-only-not-empirical
 - Executions: []
-- Gaps: Reconcile this exact requirement with code and direct evidence.
+- Gaps: Projection reports FCFE/5year/currency; a complete projected-versus-implied paired definition acceptance test remains missing.
 - Next: Source operating exposures and carbon assumptions; execute three climate-linked cases.
 
 ### S12-017 — not-yet-reconciled
@@ -3542,7 +3542,6 @@ Production SHA, health and displayed model and data versions agree.
     "S12-012",
     "S12-013",
     "S12-014",
-    "S12-015",
     "S12-016",
     "S12-017",
     "S12-018",

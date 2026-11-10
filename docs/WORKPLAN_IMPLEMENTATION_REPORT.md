@@ -2,6 +2,17 @@
 
 ## Latest continuation: carbon/SDG lifecycle and material replay
 
+**Expanded evidence:** all nine archived company-analysis result paths now have
+actual API-to-fresh-process matching JSON hashes at tested settings. Bands and
+terciles are empty due to absent targets, not calibrated predictions. No refresh
+concurrency or Stage14 acceptance is inferred. Full commands/results are in
+run_executions and Development_Review_Material_Replay.md.
+
+**Confirmed core release:** workspace fca066b → GitHub02afe6457d6e20b96e281b43fa76e0fcd462ce26;
+CI42732701451 succeeded; Railway483ce3e1-33b5-4873-a14a-e3cb5d5fd124 SUCCESS.
+Live health/build-info/field-semantics200, matching SHA and16 definitions.
+Subsequent verifier/ledger edits are separately recorded.
+
 Starting HEAD ac25e9d; preceding checkpoint confirmed matched by owner and
 not resent. This increment implements real transactional carbon/SDG operator
 review helpers, immutable proposal/decision/overlay archives and actual

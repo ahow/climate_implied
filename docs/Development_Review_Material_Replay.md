@@ -1,5 +1,24 @@
 # Development review and material replay evidence
 
+## Final expanded replay and release observations
+
+The verifier was subsequently extended to all nine archived CV result paths.
+Actual API requests followed by fresh-process calculation matched exact JSON
+hashes for summary, P/E comparison, carbon-price diagnostic, SDG growth,
+decarb bands, decarb terciles, decarb-gap summary, decarb-gap timeseries and
+the existing backtest. No synthetic overlays were used for these nine requests.
+Band/tercile results are empty because the baseline has no targets, so their
+nonempty cases remain untested. This does not establish all-refresh/concurrent
+acceptance or actual Stage14 efficacy. Per-endpoint IDs, hashes, commands and
+logs are retained under generated-artifacts/material-replay and run_executions.
+
+Core workspace fca066b exported as 02afe6457d6e20b96e281b43fa76e0fcd462ce26.
+GitHub run42732701451 validation/promotion succeeded. Railway deployment
+483ce3e1-33b5-4873-a14a-e3cb5d5fd124 SUCCESS; production health and build-info
+200 with matching source SHA; field-semantics API200 returns16 definitions.
+Later verifier expansion and ledger reconciliation are tracked separately from
+that confirmed runtime deployment.
+
 Starting HEAD ac25e9d; prior matched checkpoint not resent. Beta comparison was
 not rerun, refitted or relabelled. Gordon stays primary.
 
