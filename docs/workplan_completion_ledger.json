@@ -400,7 +400,97 @@
         "27native conditional accounts; legacy60.3 unverified baseline withholds. No nativeGWP/mass mixing.",
         "CO2 forcing raw/alignedRMSE0.0870798/0.0873259Wm2; no fitting or promotion."
       ],
-      "stop_reason": "Approaching context limit after substantive implementation, integrated repairs and gated release; original scope remains incomplete."
+      "stop_reason": "Approaching context limit after substantive implementation, integrated repairs and gated release; original scope remains incomplete.",
+      "release": {
+        "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+        "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+        "ci": "42824006487 validate/promote success",
+        "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+        "railway_status": "SUCCESS",
+        "verified_at": "2026-11-10T13:28:22.378259+00:00",
+        "smoke": {
+          "/api/build-info": {
+            "status": 200,
+            "keys": [
+              "sourceCommit",
+              "calculationVersion",
+              "sourceCommitMeaning"
+            ],
+            "body": {
+              "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+              "calculationVersion": "historical-diagnostics-7",
+              "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+            }
+          },
+          "/api/health": {
+            "status": 200,
+            "keys": [
+              "status"
+            ]
+          },
+          "/api/emissions/candidate?scenario=current_policies": {
+            "status": 400
+          },
+          "/api/projection": {
+            "status": 200,
+            "keys": [
+              "calculation",
+              "emissionsTrajectory",
+              "temperatureDistribution",
+              "indicators",
+              "metrics"
+            ],
+            "diagnostic": {
+              "version": "selected-2024-five-percent-v2",
+              "label": "Year emissions reach 5% of 2024",
+              "year": null,
+              "status": "withheld",
+              "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+              "baselineYear": 2024,
+              "baselineValue": null,
+              "baselineEvidenceId": null,
+              "thresholdFraction": 0.05,
+              "thresholdValue": null,
+              "horizonYear": 2100,
+              "basis": {
+                "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                "unit": "GtCO2e-legacy-unreconciled"
+              },
+              "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+              "notNetZero": true
+            }
+          },
+          "public_replay_post": {
+            "status": 403
+          },
+          "verified_at": "2026-11-10T13:28:22.378259+00:00",
+          "native_constant": {
+            "status": 200,
+            "records": 27,
+            "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+          },
+          "nominal": {
+            "status": 200,
+            "rows": 4,
+            "productionEligible": false
+          }
+        },
+        "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+      },
+      "final_production_environment_suite": {
+        "tests": 440,
+        "pass": 440,
+        "fail": 0,
+        "skipped": 0,
+        "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
+      },
+      "release_failures_and_repairs": [
+        "CI42822212423 refused a source-only fixture depending on workspace Git history; pure recovery-hash fixture replaced that dependency, mandatory private replay preserved.",
+        "Railway756e07f9 failed438/439 because NODE_ENV=production correctly refused the private loader before malformed-path assertions. Isolated development path validation and added explicit production refusal test; production guard unchanged.440/440 then passed under NODE_ENV=production; subsequent CI/promotion/Railway succeeded."
+      ]
     }
   },
   "prior_native_fleet_increment": {
@@ -485,16 +575,83 @@
     }
   },
   "current_release": {
-    "workspace_commit": "978a5994c7d195017cc074d53bae155aa61facee",
-    "github_main": "d8439602674d880ee5007f25463f72906de67a1b",
-    "ci": "42806902864 validate/promote success",
-    "railway_deployment": "e0278526-15fb-476f-a1a5-045e861b6d2e",
+    "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+    "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+    "ci": "42824006487 validate/promote success",
+    "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
     "railway_status": "SUCCESS",
-    "verified_at": "2026-11-10",
-    "recorded_at": "2026-11-10T11:35:45.092174+00:00",
-    "timestamp_precision": "Verification date; no invented second for the completed HTTP probe.",
-    "smoke": "Exact d843960 build source/health200/1141registrydefinitions/raw run summaries preserved/publicPOST403; development data-management screenshot renders22indicators/read-only controls.344TS+95Python, typecheck/build, privatefilingvalidator and355privateReceiptAssertions pass. No data/scientific activation.",
-    "later_local_only": "This final receipt/checkpoint documentation is not deployed; published implementation/report is d843960."
+    "verified_at": "2026-11-10T13:28:22.378259+00:00",
+    "smoke": {
+      "/api/build-info": {
+        "status": 200,
+        "keys": [
+          "sourceCommit",
+          "calculationVersion",
+          "sourceCommitMeaning"
+        ],
+        "body": {
+          "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+          "calculationVersion": "historical-diagnostics-7",
+          "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+        }
+      },
+      "/api/health": {
+        "status": 200,
+        "keys": [
+          "status"
+        ]
+      },
+      "/api/emissions/candidate?scenario=current_policies": {
+        "status": 400
+      },
+      "/api/projection": {
+        "status": 200,
+        "keys": [
+          "calculation",
+          "emissionsTrajectory",
+          "temperatureDistribution",
+          "indicators",
+          "metrics"
+        ],
+        "diagnostic": {
+          "version": "selected-2024-five-percent-v2",
+          "label": "Year emissions reach 5% of 2024",
+          "year": null,
+          "status": "withheld",
+          "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+          "baselineYear": 2024,
+          "baselineValue": null,
+          "baselineEvidenceId": null,
+          "thresholdFraction": 0.05,
+          "thresholdValue": null,
+          "horizonYear": 2100,
+          "basis": {
+            "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+            "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+            "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+            "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+            "unit": "GtCO2e-legacy-unreconciled"
+          },
+          "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+          "notNetZero": true
+        }
+      },
+      "public_replay_post": {
+        "status": 403
+      },
+      "verified_at": "2026-11-10T13:28:22.378259+00:00",
+      "native_constant": {
+        "status": 200,
+        "records": 27,
+        "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+      },
+      "nominal": {
+        "status": 200,
+        "rows": 4,
+        "productionEligible": false
+      }
+    },
+    "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-10T13:22:51.362967+00:00",
@@ -1412,8 +1569,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [
             "Complete caller authorization review of dynamic calls, derived caches and shell paths; genuine privileged HTTP lifecycle still needs legitimate operator identity."
           ],
@@ -1491,7 +1648,85 @@
               "limitation": "Static preview only; raw-summary details not opened, and dialog/download/authenticated/operator interactions and browser XLSX downloads not visually verified"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts.",
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
             "script/analysis-manifest.test.ts": "bf2d8f6dba93368e3bdb450c9af383046c61344350804c9e1b31117e0b580d1c",
@@ -1535,7 +1770,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -1569,6 +1804,13 @@
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
           }
         },
         {
@@ -1683,8 +1925,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [],
           "next_action": "Preserve this criterion's scoped evidence; continue other original requirements.",
           "blockers": [],
@@ -1760,7 +2002,85 @@
               "limitation": "Static preview only; raw-summary details not opened, and dialog/download/authenticated/operator interactions and browser XLSX downloads not visually verified"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts.",
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
             "script/analysis-manifest.test.ts": "bf2d8f6dba93368e3bdb450c9af383046c61344350804c9e1b31117e0b580d1c",
@@ -1804,7 +2124,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -1838,6 +2158,13 @@
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
           }
         },
         {
@@ -3238,8 +3565,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [],
           "next_action": "Preserve this criterion's scoped evidence; continue other original requirements.",
           "blockers": [],
@@ -3315,7 +3642,85 @@
               "limitation": "Static preview only; raw-summary details not opened, and dialog/download/authenticated/operator interactions and browser XLSX downloads not visually verified"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts.",
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
             "script/analysis-manifest.test.ts": "bf2d8f6dba93368e3bdb450c9af383046c61344350804c9e1b31117e0b580d1c",
@@ -3359,7 +3764,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -3393,6 +3798,13 @@
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
           }
         },
         {
@@ -4151,8 +4563,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [
             "Original runs[].summary historical leaf meanings remain unknown.",
             "Broader dynamic/custom/display acceptance and live transaction lifecycle are not established by in-memory fixtures."
@@ -4365,7 +4777,85 @@
               "limitation": "Static preview only; raw-summary details not opened, and dialog/download/authenticated/operator interactions and browser XLSX downloads not visually verified"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts.",
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
             "client/src/components/download-data-button.tsx": "30eb26d893f70adbc5ecf30c801dae4d6c996ef4bd49e639f070194e800c020e",
@@ -4416,7 +4906,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -4447,6 +4937,13 @@
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
           }
         },
         {
@@ -5734,8 +6231,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [],
           "next_action": "Preserve this criterion's scoped evidence; continue other original requirements.",
           "blockers": [],
@@ -5845,7 +6342,85 @@
               "limitation": "Static preview only; raw-summary details not opened, and dialog/download/authenticated/operator interactions and browser XLSX downloads not visually verified"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts.",
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
             "client/src/lib/valuation-claims.ts": "2c8f48324bfd72bc6bae90d24011e0fb7c0f6881b7cbfda27f6568b06bd669da",
@@ -5891,7 +6466,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -5925,6 +6500,13 @@
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
           }
         },
         {
@@ -7477,8 +8059,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [],
           "next_action": "Preserve this criterion's scoped evidence; continue other original requirements.",
           "blockers": [],
@@ -7561,7 +8143,85 @@
               "limitation": "Static preview only; raw-summary details not opened, and dialog/download/authenticated/operator interactions and browser XLSX downloads not visually verified"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts.",
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
             "client/src/components/emissions-chart.tsx": "8754bb472d5c0b1c5b7db51104e6e829bab019cdb568c6a3d746bfdc34cdeba0",
@@ -7606,7 +8266,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -7640,6 +8300,13 @@
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
           }
         },
         {
@@ -32428,8 +33095,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [
             "Genuine attributed-model GMST provenance/member comparison remains unavailable.",
             "Volcanic baseline ambiguity, native emissions gaps and observable/species compatibility remain unresolved; no invented conversion."
@@ -32738,7 +33405,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "before_ready_implementation_20261110": {
             "status": "partial",
@@ -32774,7 +33441,92 @@
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts."
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
+          }
         },
         {
           "id": "S07-009",
@@ -52526,8 +53278,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [],
           "next_action": "Preserve this criterion's scoped evidence; continue other original requirements.",
           "blockers": [],
@@ -52706,7 +53458,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "prior_existing_evidence": [
             "docs/Valuation_and_Research_Completion_Status.md",
@@ -52782,7 +53534,92 @@
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts."
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
+          }
         },
         {
           "id": "S11-011",
@@ -63307,8 +64144,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [
             "Three dated quote/share candidates exist but currency/security-class and full cash/stub/sustainable-terminal inputs remain unqualified.0/3complete cases; owner identity/activation separate."
           ],
@@ -63480,7 +64317,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "prior_existing_evidence": [
             "docs/Company_Accounting_Controls.md",
@@ -63552,7 +64389,92 @@
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts."
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
+          }
         },
         {
           "id": "S12-002",
@@ -67669,8 +68591,8 @@
             }
           ],
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+          "deployment_revision": "30a78848f771dde3347d55f4d41d78e971e9033f",
           "remaining_gaps": [],
           "next_action": "Preserve this criterion's scoped evidence; continue other original requirements.",
           "blockers": [],
@@ -67840,7 +68762,7 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             },
-            "pending_this_increment": "Changed workspace; no new deployment claim until integrated CI/promotion/runtime receipts."
+            "pending_this_increment": "Verified implementation30a7884; documentation receipts recorded afterwards."
           },
           "prior_existing_evidence": [
             "docs/Company_Accounting_Controls.md",
@@ -67912,7 +68834,92 @@
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           },
-          "live_release_observation": "Pending new gated promotion; prior verified d843960 remains until exact runtime receipts."
+          "live_release_observation": {
+            "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+            "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+            "ci": "42824006487 validate/promote success",
+            "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+            "railway_status": "SUCCESS",
+            "verified_at": "2026-11-10T13:28:22.378259+00:00",
+            "smoke": {
+              "/api/build-info": {
+                "status": 200,
+                "keys": [
+                  "sourceCommit",
+                  "calculationVersion",
+                  "sourceCommitMeaning"
+                ],
+                "body": {
+                  "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+                  "calculationVersion": "historical-diagnostics-7",
+                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+                }
+              },
+              "/api/health": {
+                "status": 200,
+                "keys": [
+                  "status"
+                ]
+              },
+              "/api/emissions/candidate?scenario=current_policies": {
+                "status": 400
+              },
+              "/api/projection": {
+                "status": 200,
+                "keys": [
+                  "calculation",
+                  "emissionsTrajectory",
+                  "temperatureDistribution",
+                  "indicators",
+                  "metrics"
+                ],
+                "diagnostic": {
+                  "version": "selected-2024-five-percent-v2",
+                  "label": "Year emissions reach 5% of 2024",
+                  "year": null,
+                  "status": "withheld",
+                  "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+                  "baselineYear": 2024,
+                  "baselineValue": null,
+                  "baselineEvidenceId": null,
+                  "thresholdFraction": 0.05,
+                  "thresholdValue": null,
+                  "horizonYear": 2100,
+                  "basis": {
+                    "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+                    "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+                    "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+                    "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+                    "unit": "GtCO2e-legacy-unreconciled"
+                  },
+                  "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+                  "notNetZero": true
+                }
+              },
+              "public_replay_post": {
+                "status": 403
+              },
+              "verified_at": "2026-11-10T13:28:22.378259+00:00",
+              "native_constant": {
+                "status": 200,
+                "records": 27,
+                "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+              },
+              "nominal": {
+                "status": 200,
+                "rows": 4,
+                "productionEligible": false
+              }
+            },
+            "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+          },
+          "ready_release_checks": {
+            "tests": 440,
+            "pass": 440,
+            "fail": 0,
+            "skipped": 0,
+            "log": "generated-artifacts/workplan-completion/20261110T132219284556Z.log"
+          }
         },
         {
           "id": "S12-015",
@@ -88365,7 +89372,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue alloriginal0–17/amendments. Read current_release and per-clause ready-implementation evidence. Preserve genuine producer-summary sidecars/rawhistory, actual-r Gordon labels, original2.5–4% terminal range, separate5%-of-selected2024diagnostic with missing/default-baseline withholding, allscope abatement/replay, datedFCFE stubs and prospectivecutoffs. Original unknownsummary remains; extra supplemental columns notoriginalclosure. SECpublication metadata and actual2025GMST SR1.5reference now found; do notrepeatblanketunavailable claims. Complete actualsourcecompanyinputs/pairs (0/3), genuineattributedmodelGMST and nativeemission/baselinecompatibility; no synthetic/oldintensityefficacy. Existing privateassertions/frozennegativebeta/fleet/EV/storage/Gordonprimary remain. No callbackuntiltrueend. Three FMP exact-date requests nowSUCCEEDED: FSLR2025-02-21,NEE/XOMpredecessor2025-01-31. Currency/class/fullstub-terminal inputs stillneeded; docs403 wasNOTentitlementfailure. Native27source-derivedconditionaldiagnostics nowimplemented;legacy60.3withholds. Preserve frozen FSLRhistoriccode archive and mandatoryprivatevalidation; do notrefreezeoldstudy tohidecode drift.",
+    "instruction": "Continue PlanOFF alloriginal0–17/amendments. Latestverifiedlive30a7884,440TS/106Python separately, mandatoryprivatevalidators passed;37verified261partial2provisioningblocked. Continue alloriginal0–17/amendments. Read current_release and per-clause ready-implementation evidence. Preserve genuine producer-summary sidecars/rawhistory, actual-r Gordon labels, original2.5–4% terminal range, separate5%-of-selected2024diagnostic with missing/default-baseline withholding, allscope abatement/replay, datedFCFE stubs and prospectivecutoffs. Original unknownsummary remains; extra supplemental columns notoriginalclosure. SECpublication metadata and actual2025GMST SR1.5reference now found; do notrepeatblanketunavailable claims. Complete actualsourcecompanyinputs/pairs (0/3), genuineattributedmodelGMST and nativeemission/baselinecompatibility; no synthetic/oldintensityefficacy. Existing privateassertions/frozennegativebeta/fleet/EV/storage/Gordonprimary remain. No callbackuntiltrueend. Three FMP exact-date requests nowSUCCEEDED: FSLR2025-02-21,NEE/XOMpredecessor2025-01-31. Currency/class/fullstub-terminal inputs stillneeded; docs403 wasNOTentitlementfailure. Native27source-derivedconditionaldiagnostics nowimplemented;legacy60.3withholds. Preserve frozen FSLRhistoriccode archive and mandatoryprivatevalidation; do notrefreezeoldstudy tohidecode drift.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -88535,6 +89542,18 @@
       "smoke": "Exactda140f2SHA/health200/financialstatussemanticheader/852registrydefinitions/publicPOST403.310TS/typecheck/build/privatefilingvalidatorpassed;separate1Pythonhistorytest+actualanalysis. Frozenprivatebundleall9/XLSX/networknamespace recovery passed;actualHTTPsource-mutationstillunproven. No productiondata/scientificactivation.",
       "verified_at": "2026-11-10T08:54:10Z",
       "later_local_only": "Final documentation/receipt updates"
+    },
+    {
+      "workspace_commit": "978a5994c7d195017cc074d53bae155aa61facee",
+      "github_main": "d8439602674d880ee5007f25463f72906de67a1b",
+      "ci": "42806902864 validate/promote success",
+      "railway_deployment": "e0278526-15fb-476f-a1a5-045e861b6d2e",
+      "railway_status": "SUCCESS",
+      "verified_at": "2026-11-10",
+      "recorded_at": "2026-11-10T11:35:45.092174+00:00",
+      "timestamp_precision": "Verification date; no invented second for the completed HTTP probe.",
+      "smoke": "Exact d843960 build source/health200/1141registrydefinitions/raw run summaries preserved/publicPOST403; development data-management screenshot renders22indicators/read-only controls.344TS+95Python, typecheck/build, privatefilingvalidator and355privateReceiptAssertions pass. No data/scientific activation.",
+      "later_local_only": "This final receipt/checkpoint documentation is not deployed; published implementation/report is d843960."
     }
   ]
 }

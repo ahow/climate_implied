@@ -1362,3 +1362,94 @@ Per-clause evidence: S00-004/005/010,S01-001/004/007,S07-008,S11-010,S12-001/014
 - `shared/thresholdDiagnosticSemantics.ts`
 
 Release boundary: implementation pending existing Git/CI/Railway gates; prior verified runtime d843960. A later receipt records exact promotion; local documentation is not itself a deployment.
+
+
+## Verified ready-implementation release — 2026-11-10
+
+{
+  "workspace_commit": "fde1964f9e85f75fb2f263629c32c91a374ff052",
+  "github_main": "30a78848f771dde3347d55f4d41d78e971e9033f",
+  "ci": "42824006487 validate/promote success",
+  "railway_deployment": "49322e8a-d1c1-4a2b-b86a-0507d941c70f",
+  "railway_status": "SUCCESS",
+  "verified_at": "2026-11-10T13:28:22.378259+00:00",
+  "smoke": {
+    "/api/build-info": {
+      "status": 200,
+      "keys": [
+        "sourceCommit",
+        "calculationVersion",
+        "sourceCommitMeaning"
+      ],
+      "body": {
+        "sourceCommit": "30a78848f771dde3347d55f4d41d78e971e9033f",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      }
+    },
+    "/api/health": {
+      "status": 200,
+      "keys": [
+        "status"
+      ]
+    },
+    "/api/emissions/candidate?scenario=current_policies": {
+      "status": 400
+    },
+    "/api/projection": {
+      "status": 200,
+      "keys": [
+        "calculation",
+        "emissionsTrajectory",
+        "temperatureDistribution",
+        "indicators",
+        "metrics"
+      ],
+      "diagnostic": {
+        "version": "selected-2024-five-percent-v2",
+        "label": "Year emissions reach 5% of 2024",
+        "year": null,
+        "status": "withheld",
+        "reason": "Missing explicit source-evidenced or captured selected-model 2024 baseline; a generated/default trajectory point or its hash is not input evidence",
+        "baselineYear": 2024,
+        "baselineValue": null,
+        "baselineEvidenceId": null,
+        "thresholdFraction": 0.05,
+        "thresholdValue": null,
+        "horizonYear": 2100,
+        "basis": {
+          "selectionId": "climate-inputs:7d19d948d67732d3adbfeff57d3ca91ba218dc3662c0bf60f1d9d15a1ffe0300",
+          "trajectoryId": "effective-projection:e8c17ee3cb6548063f9ec8da041ffd0ec0a9800531b0daa91e3c9eae2234b428",
+          "memberId": "annual-p50-trajectory-not-an-individual-simulation-member",
+          "gasBasis": "aggregate-GHG-legacy-unspecified-GWP",
+          "unit": "GtCO2e-legacy-unreconciled"
+        },
+        "crossingRule": "first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation",
+        "notNetZero": true
+      }
+    },
+    "public_replay_post": {
+      "status": 403
+    },
+    "verified_at": "2026-11-10T13:28:22.378259+00:00",
+    "native_constant": {
+      "status": 200,
+      "records": 27,
+      "baselineInputId": "captured-native-inventory-sha256:1bb224d96626cd69f675126892dd8ee0e423a9defb16c67b967a891dcdfccd29"
+    },
+    "nominal": {
+      "status": 200,
+      "rows": 4,
+      "productionEligible": false
+    }
+  },
+  "receipt_boundary": "This records the verified implementation revision, not the future documentation commit's own SHA. No data/scientific activation."
+}
+
+Final production-environment suite:440passed/0failed/0skipped;106Python separately; typecheck/build/private validation passed. Earlier439-pass development receipt remains historical. CI and Railway failures were retained and fixed without skipping tests or changing production replay refusal. Source-only hash tests are isolated from required private historical assertions.
+
+Original1000/1001 remains;1553definitions,current1306/1307,expanded1334/1335.0original slots closed,306new current-public slots plus28nominal leaves;27withheld/4aliases separate.37verified261partial2blocked0unreconciled. Stage12still0/3;3dated price candidates nowexist but currency/class/fullcash/stub/terminal evidence stillneeded. Actual2025GMST reference found, modelattribution/memberrange unavailable. Legacybaselinewithholds; native27conditional accounts calculate. No science/owner approval.
+
+Stopping at context/resource boundary, not completion. Next: complete qualified company cash/stub/terminal and currency/class pairing; legitimate operator HTTP lifecycle; attributed-model observable/native emissions compatibility; original partial requirements. Preserve frozen negative studies and no source/date substitution.
+
+Complete changed-path index: docs/READY_IMPLEMENTATION_20261110.md (also script/record-ready-release.py and subsequent receipt-only documentation). Current receipt refers to verified30a7884, avoiding self-referencing SHA updates.
