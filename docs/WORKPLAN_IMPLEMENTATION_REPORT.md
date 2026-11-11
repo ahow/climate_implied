@@ -23,6 +23,59 @@
   },
   "counts": "42verified256partial2blocked",
   "semantics": "1841definitions;original1000/1001unchanged;newreference700supplementalslots explicitlyincludesmetadata;92conditionaldefinitions",
+  "release": {
+    "github_main": "91c6d3ba68c272828ff3a6970551d2f6a2ac59ac",
+    "ci": "43061108763 success",
+    "railway_deployment": "5c45610b-7bca-4c72-b122-219cb0f461aa",
+    "verified_at": "2026-11-11T16:48:02.960151+00:00",
+    "health": 200,
+    "build_info": "exactSHAverified",
+    "affected": "GETreference/export200;1.37SR1.5headline/decade/inventorydistinct; no modelcalculation/acceptance.",
+    "tests": "752TS0fail0skip;207Python;mandatoryissuerandupstreamprivatevalidators;typecheck/build;sourcepins/SSR/XLSX equality",
+    "scope": "Code only. Originalcases0/3; privatebundle155bd3ffunchanged/unprovisioned;docs/localreceipt distinct."
+  }
+}
+
+S01-010: Shared38leaf datedreference nowAPI/UI/export-bound:2025SR1.5headline1.37,ordinaryannual1.38explicitlydistinct,decadal1.24[1.0–1.5],inventory2024. Nooffset/calculation/acceptance use.
+Next: Maintain source-bound reference and exact source labels; physical attribution acceptance belongs toS07.
+
+S01-011: Five newdisplaybindings withadjacentobservable/baseline/source/period/range metadata;61actualcomponentsinvoked,old60evidencepreserved.
+Next: Continue remainingchanged-value metadata withoutgenericunknownsummary formulas or broadUIreruns.
+
+S12-008: Alabama6.1m assetrecognition notcash; typedaxes H1862.895+Q3638.468=YTD1501.363m. Q3/YTDrecognition-CFO1.997/2.777m andbook-CFO−24.920/−36.097m unexplained. Old32rows/340hashes preserved.
+Next: Programme-specificIndiacash amount/day/classification andeligiblecomponentwatts remainmissing; noforcedclosure.
+
+S12-017: NEEequitymethodXPLR52.5%economics distinct51.2%OpCo ownership/control.446mearningsdistributions alreadyCFO;NEE1604mcashbridge incl5mFX. Heldsweeps127→11m explain116mXPLRnetrelease,notparent−131m;15mdifference unresolved.10mCSCSexpense−11mtrueup=−1mexpensecredit,notcashrefund.
+Next: SourceNEEEquity/project61mdistribution split,parent−131mXPLR-only/grosssettlement andservice reimbursementcash origins;0/3cases.
+
+S04-003: 405EI/15EIAactualproviderflags;EIcopyrightfullprecisionacquisition blocked403terms,nobypass. GCBprimaryFrance/Italy/Kosovo45pairs44pass1fail atunchanged±.0005Mt:France2020−.000507. EIA-only32×15=480nativecells separatelyassembled;EUresidualmax.001045227TWh. Nooriginalentitynewlyqualified.
+Next: ResolveEIrights/fullprecision lineage,SanMarinoparentnotes andFranceexportdtype discrepancy; keepEIAalternative separate, nooriginalholdouts untilfullcontract.
+
+# Dated reference and parent cash/source integration
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+    ],
+    "executed_at": "2026-11-11T16:39:08.561933+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 159.126,
+    "counts": {
+      "tests": 752,
+      "pass": 752,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+    "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "42verified256partial2blocked",
+  "semantics": "1841definitions;original1000/1001unchanged;newreference700supplementalslots explicitlyincludesmetadata;92conditionaldefinitions",
   "release": "pending"
 }
 

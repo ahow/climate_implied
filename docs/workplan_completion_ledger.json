@@ -1469,7 +1469,17 @@
       },
       "counts": "42verified256partial2blocked",
       "semantics": "1841definitions;original1000/1001unchanged;newreference700supplementalslots explicitlyincludesmetadata;92conditionaldefinitions",
-      "release": "pending"
+      "release": {
+        "github_main": "91c6d3ba68c272828ff3a6970551d2f6a2ac59ac",
+        "ci": "43061108763 success",
+        "railway_deployment": "5c45610b-7bca-4c72-b122-219cb0f461aa",
+        "verified_at": "2026-11-11T16:48:02.960151+00:00",
+        "health": 200,
+        "build_info": "exactSHAverified",
+        "affected": "GETreference/export200;1.37SR1.5headline/decade/inventorydistinct; no modelcalculation/acceptance.",
+        "tests": "752TS0fail0skip;207Python;mandatoryissuerandupstreamprivatevalidators;typecheck/build;sourcepins/SSR/XLSX equality",
+        "scope": "Code only. Originalcases0/3; privatebundle155bd3ffunchanged/unprovisioned;docs/localreceipt distinct."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1554,18 +1564,18 @@
     }
   },
   "current_release": {
-    "github_main": "7596cb7cdf20397b2b3904d8d9f3c6ef0208eb3d",
-    "ci": "43053422204 success",
-    "railway_deployment": "362b1dce-a56c-46f9-88df-c484c0a8bc71",
-    "verified_at": "2026-11-11T16:01:31.887843+00:00",
+    "github_main": "91c6d3ba68c272828ff3a6970551d2f6a2ac59ac",
+    "ci": "43061108763 success",
+    "railway_deployment": "5c45610b-7bca-4c72-b122-219cb0f461aa",
+    "verified_at": "2026-11-11T16:48:02.960151+00:00",
     "health": 200,
     "build_info": "exactSHAverified",
-    "affected": "PublicconditionalAPI newIndiaamountnull/scoped61m facts verified; no qualification/promotion.",
-    "tests": "736TS0fail0skip;196Python;mandatoryissuer/privateenergyvalidators;typecheck/build",
-    "scope": "Code only; privatebundleunchanged/unprovisioned; laterdocs/localreceipt distinct"
+    "affected": "GETreference/export200;1.37SR1.5headline/decade/inventorydistinct; no modelcalculation/acceptance.",
+    "tests": "752TS0fail0skip;207Python;mandatoryissuerandupstreamprivatevalidators;typecheck/build;sourcepins/SSR/XLSX equality",
+    "scope": "Code only. Originalcases0/3; privatebundle155bd3ffunchanged/unprovisioned;docs/localreceipt distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T16:43:08.937973+00:00",
+  "updated_at": "2026-11-11T16:48:02.960180+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -150676,6 +150686,17 @@
       "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
       "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
       "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
+    },
+    {
+      "github_main": "7596cb7cdf20397b2b3904d8d9f3c6ef0208eb3d",
+      "ci": "43053422204 success",
+      "railway_deployment": "362b1dce-a56c-46f9-88df-c484c0a8bc71",
+      "verified_at": "2026-11-11T16:01:31.887843+00:00",
+      "health": 200,
+      "build_info": "exactSHAverified",
+      "affected": "PublicconditionalAPI newIndiaamountnull/scoped61m facts verified; no qualification/promotion.",
+      "tests": "736TS0fail0skip;196Python;mandatoryissuer/privateenergyvalidators;typecheck/build",
+      "scope": "Code only; privatebundleunchanged/unprovisioned; laterdocs/localreceipt distinct"
     }
   ],
   "latest_changed_paths": [
