@@ -11,8 +11,8 @@ import { bindConditionalExportCells, conditionalCompanyFieldSpecs, conditionalCo
 
 test("registered shared contract has exact API leaves, fact units and lossless export bindings", async () => {
   assert.equal(conditionalCompanyFieldSpecs.length, 30);
-  assert.equal(conditionalCompanySemantics.length, 94);
-  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 94);
+  assert.equal(conditionalCompanySemantics.length, 95);
+  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 95);
   for (const issuer of [undefined, "NEE", "FSLR", "XOM"] as const) {
     const summary = getConditionalCompanySummary(issuer);
     const bindings = bindNestedOutput("conditionalCompany", summary);
@@ -54,8 +54,8 @@ test("new GET APIs and binary workbook remain qualified supplements outside orig
   const census = JSON.parse(await readFile("docs/field_semantics_census.json", "utf8"));
   const contract = census.supplementalQualifiedChanges.conditionalCompany;
   // Protected census is parent-owned: retain its legacy63snapshot or its exact
-   // additive81/84/88/91/92/94definition integration. Exact live registry is checked above.
-   assert.ok([63, 81, 84, 88, 91, 92, 94].includes(contract.definitions));
+   // additive81/84/88/91/92/94/95definition integration. Exact live registry is checked above.
+   assert.ok([63, 81, 84, 88, 91, 92, 94, 95].includes(contract.definitions));
   assert.equal(contract.typedApiFields.length, 63);
   assert.ok(contract.typedApiFields.every((f: { bound: boolean }) => f.bound));
   for (const surface of contract.successApiSurfaces) {
@@ -98,7 +98,7 @@ test("exact supplemental semantics, public allowlist and source aggregate bindin
       "cohortIncludingFiservFace", "cohortIncludingFiservProceeds", "cohortIncludingFiservDifference", "cohortIncludingFiservCash",
       "cohortHistoricalCreditCash", "cohortCfoRemainder", "cohortUnallocatedGrantBridge", "cohortGrantBookCfoResidual", "cohortUsEligibleWatts",
       "cohortPriorCreditCash2026", "cohortPreCutoffReservePv", "cohortPostCutoffVisaPv", "grantScopeReported45x", "grantScopeNoncashSupplement", "attachmentAnnualCfoCashRemainder", "attachmentIndiaFirstReceiptAmount", "parentProgrammeAlabamaRecognition"],
-    ["reportedEmissions", "deliveredUnits", "shortage", "observedExpense", "observedPrice", "observedBank", "grossIncrement", "cashIncrement", "cases", "sourceFollowupHistoricalMvcFees"],
+    ["reportedEmissions", "deliveredUnits", "shortage", "observedExpense", "observedPrice", "observedBank", "grossIncrement", "cashIncrement", "cases", "sourceFollowupHistoricalMvcFees", "sourceCurrentSettlementCash"],
   ]);
   const fact = (issuer: string, id: string) => conditionalCompanySummary.companies
     .find(c => c.issuer === issuer)!.facts.find(f => f.id === id)!.value!;
@@ -229,14 +229,14 @@ test("subsequent XOM primary-source notes qualify units without rewriting frozen
     primitiveValues: cells.filter(cell => typeof JSON.parse(cell.jsonValue) !== "string"),
   };
   assert.equal(cells.length, 308, "Protected legacy schema/numeric facts unchanged; all new source facts are additive");
-  assert.equal(conditionalExportCells(summary).length, 556, "Exactly31new eight-leaf public facts beyond protected snapshot");
+  assert.equal(conditionalExportCells(summary).length, 564, "Exactly32new eight-leaf public facts beyond protected snapshot");
   assert.equal(protectedData.primitiveValues.length, 44);
   assert.equal(createHash("sha256").update(JSON.stringify(protectedData)).digest("hex"),
     "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
     "Exact pre-qualification field paths and every numeric/boolean/null value remain frozen");
   const xom = summary.companies.find(company => company.issuer === "XOM")!;
   assert.deepEqual([xom.facts.length, xom.sourced.length, xom.conditions.length, xom.missingness.length, xom.refusalReasons.length],
-     [10, 2, 5, 4, 2]);
+     [11, 2, 5, 4, 2]);
   assert.equal(xom.experimentVersion, "xom-permit-geography-incremental-carbon-cash-1");
   const unitEvidence = JSON.parse(await readFile("docs/xom-source-inputs-evidence.json", "utf8"));
   const unitSource = unitEvidence.sourceRecords.find((source: { id: string }) => source.id === "UKETS-FULL-FY2024");
@@ -334,6 +334,11 @@ test("new historical MVC disclosure and borrowed-cash perimeter preserve cash/cu
   assert.match(fee.boundary, /NOT paidcash, currentminimumbillings/);
   assert.match(fee.boundary, /baselineexpenses notdeductedagain/);
   assert.match(xom.informationContext, /beforethatcutoff/);
+  const current = xom.facts.find(f => f.id === "sourceCurrentSettlementCash")!;
+  assert.equal(current.value, null);
+  assert.match(current.unit, /NOT zero/);
+  assert.match(current.boundary, /fourbondindentureassumptions do NOT prove CCScontractparty/);
+  assert.match(xom.informationContext, /cf-enlink-current-cash-1/);
   assert.equal(nee.qualifiedOriginalIssuers, 0);
   assert.equal(xom.qualifiedOriginalIssuers, 0);
 });

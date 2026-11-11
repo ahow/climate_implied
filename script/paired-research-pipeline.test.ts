@@ -82,7 +82,8 @@ test("cutoff ignores unused future archives but rejects future artifacts used by
   const future = f.c.artifacts.find(a => a.hash === f.c.periods[30].securities[0].sourceHashes[0])!;
   future.availableAt = "2030-01-01T00:00:00Z";
   future.capturedAt = future.availableAt;
-  assert.deepEqual(run(f), { ...baseline, corpusHash: contentHash(f.c) });
+  assert.deepEqual(run(f), { ...baseline, corpusHash: contentHash(f.c),
+    trackBAdmission: { ...baseline.trackBAdmission, corpusHash: contentHash(f.c) } });
   const used = f.c.artifacts.find(a => a.hash === f.c.periods[15].securities[0].sourceHashes[0])!;
   used.capturedAt = "2030-01-01T00:00:00Z";
   assert.throws(() => run(f), /Artifact beyond corpus cutoff/);
@@ -101,6 +102,11 @@ test("orchestrates frozen full family, ranks, dated accounting, inference, ablat
   assert.equal(r.family.unavailableHypotheses, 6);
   assert.equal(r.scientificAcceptance, false);
   assert.equal(r.efficacy, "WITHHELD");
+  assert.equal(r.trackBAdmission.periods.length, 72);
+  assert.ok(r.trackBAdmission.periods.every(period => period.status === "unavailable" && period.result === null));
+  assert.ok(r.trackBAdmission.periods.some(period => period.reasons.some(reason => reason.code === "missing-period")));
+  assert.ok(r.trackBAdmission.periods.some(period => period.reasons.some(reason => reason.code === "missing-stage9-lineage")));
+  assert.ok(r.trackBAdmission.periods.some(period => period.reasons.some(reason => reason.code === "missing-original-filing")));
   const s = r.specifications[0];
   assert.equal(s.trajectories[0].accounting.length, 24);
   assert.equal(s.trajectories[0].error, undefined);

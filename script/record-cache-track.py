@@ -1,0 +1,25 @@
+import json,datetime,hashlib,sys,importlib.util
+from pathlib import Path
+p=Path("docs/workplan_completion_ledger.json");x=json.loads(p.read_text());e=json.JSONDecoder().raw_decode(Path("/tmp/cache-track-final.log").read_text())[0]
+groups={
+"S02-009":("docs/S02-009-company-cache-evidence.json","Realcompanycarbon cache identities nowbindretainedselection/dataset/model/executablesource; oldentriesnotdeleted. Retained2442companies470341observations produce187rows each:miss,miss,miss,hit,hit,hit,hit;3computes4warmhits. Analyticalpayload/manifests equal;3keysdistinct. Fixedcold/warmirregularhistoryordering; no productionDB/cacheclears.","Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged."),
+"S11-040":("docs/s11-040-s15-017-finite-engineering-evidence.json","NamedactualGordon positive/negative/zero/missingearnings fixtures anddatedproducer pass; null/undefinedneverzero/growth. Financialactualsolver returnspermittednot-modelled/refusal. Solver unchanged.","Preserve finitefixtures andsourcebasis; no residualincome modelrequired bypermittedrefusal."),
+"S15-017":("docs/s11-040-s15-017-finite-engineering-evidence.json","Actualpipeline everyfrozenperiod/spec hasStage9ANDoriginalfiling evidence assessment withhash/cutoff/lag/fit/universe/outcome reasons. Failuresresultnull/unavailable; callerhashesnotindependentreview. ExistingCLIwritescontent-addressedJSON+reasonXLSX with18columns/identitymetadata,readback/idempotencytested. MountedGET503explicitlynotcompletedreportdelivery.","Implementgenuinelyauthorizedpublicreport resolver/disclosure contract; independentStage9/originalfilingreviews unavailable. No positivehistoricaladmission/efficacy fabricated."),
+"S12-017":("docs/cf-enlink-current-cash-evidence.json","ActualCFearnings separates2820mcashincl496mJV;2324moutsideJVnotexcesscommoncash.776mcapex=421+232+99+24;45Q62mYTD/19mquarteroperatingINCOME notcash/XOMfee. ExecutedEnLinkclosingtwo-stepmerger endsElkMergerSubII finalsurvivor; debt successionnotCCSnovation. CurrentCCSsettlementcashnull.","SearchoperatingCCScontract/novation/arrangement underElkMergerSubII/EnLinkMidstreamPartnersLP; requirebilling/payment/opex, nothistorical844mrecognition conversion.0/3cases.")}
+for s in x["stages"]:
+ for q in s["requirements"]:
+  if q["id"] not in groups:continue
+  f,b,n=groups[q["id"]];q["cache_track_increment"]={"file":f,"sha256":hashlib.sha256(Path(f).read_bytes()).hexdigest(),"evidence":json.loads(Path(f).read_text()),"execution":e};q["behaviour_delivered_this_run"]=b;q["next_action"]=n
+  if e not in(q.get("executions")or[]):q["executions"]=(q.get("executions")or[])+[e]
+  if q["id"]=="S11-040":q["status"]="verified";q["proposedStatus"]="verified";q["check_type"]="exact";q["remaining_gaps"]=[];q["remainingGaps"]=[]
+  else:
+   q.setdefault("prior_cache_track_gaps",q.get("remaining_gaps"))
+   q["remaining_gaps"]=[n];q["remainingGaps"]=[n]
+x["latest_increment"]["cache_track"]={"execution":e,"counts":"45verified253partial2blocked","semantics":"Original1000/1001unchanged;95conditionaldefinitions;TrackB24definitions/535supplementalslots include serializationmetadata,notoriginalclosure","release":"pending"}
+if len(sys.argv)==4:
+ r={"github_main":sys.argv[1],"ci":sys.argv[2],"railway_deployment":sys.argv[3],"verified_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"health":200,"build_info":"exactSHAverified","affected":"PubliccompanyAPIcurrentCCSsettlementnull;TrackB503explicitlyunprovisioned successfulreportreader. CachewitnessisolatedDEV only.","tests":"796TS0fail0skip;215Python;mandatoryissuerprivatevalidator;retainedcachewitness separately;typecheck/build;5postledgerchecks","scope":"Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"}
+ x.setdefault("release_history",[]).append(x["current_release"]);x["current_release"]=r;x["latest_increment"]["cache_track"]["release"]=r
+x["restart"]["instruction"]="S11-040verified;S02companycacheactualretainedmisshitproof done,broaderfamilies/transport/HTTPmanifest branches remain. TrackBperperiodCLIreport implemented,publicauthorizedresolver stillengineeringincomplete,default503notcompletion. SearchactualElkMergerSubII/EnLinkMidstreamPartnersLPCCSoperatingcontract/novation/cash. CF45Qincome notXOMcash.45verified253partial2blocked;0/3cases. Alloriginalanalyticalscope remains; don'trerununchangedwitnesses."
+x["updated_at"]=datetime.datetime.now(datetime.timezone.utc).isoformat();p.write_text(json.dumps(x,indent=2,ensure_ascii=False)+"\n")
+spec=importlib.util.spec_from_file_location("m","script/merge-clause-reconciliation.py");m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);Path("docs/WORKPLAN_ACCEPTANCE_MATRIX.md").write_text(m.matrix(x))
+f=Path("docs/WORKPLAN_IMPLEMENTATION_REPORT.md");f.write_text("# Cache identity, Gordon fixtures and period-level evidence\n\n"+json.dumps(x["latest_increment"]["cache_track"],indent=2)+"\n\n"+"\n\n".join(k+": "+v[1]+"\nNext: "+v[2] for k,v in groups.items())+"\n\n"+f.read_text())

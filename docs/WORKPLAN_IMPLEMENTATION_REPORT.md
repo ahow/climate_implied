@@ -1,3 +1,43 @@
+# Cache identity, Gordon fixtures and period-level evidence
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-cf-enlink-current-cash-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T18:03:42.684595+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 157.439,
+    "counts": {
+      "tests": 796,
+      "pass": 796,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T180342684595Z.log",
+    "workspace_revision": "e150f1e13c67ecdd6f9eb4bb8e9ade1f4bd8ccdd",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "45verified253partial2blocked",
+  "semantics": "Original1000/1001unchanged;95conditionaldefinitions;TrackB24definitions/535supplementalslots include serializationmetadata,notoriginalclosure",
+  "release": "pending"
+}
+
+S02-009: Realcompanycarbon cache identities nowbindretainedselection/dataset/model/executablesource; oldentriesnotdeleted. Retained2442companies470341observations produce187rows each:miss,miss,miss,hit,hit,hit,hit;3computes4warmhits. Analyticalpayload/manifests equal;3keysdistinct. Fixedcold/warmirregularhistoryordering; no productionDB/cacheclears.
+Next: Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged.
+
+S11-040: NamedactualGordon positive/negative/zero/missingearnings fixtures anddatedproducer pass; null/undefinedneverzero/growth. Financialactualsolver returnspermittednot-modelled/refusal. Solver unchanged.
+Next: Preserve finitefixtures andsourcebasis; no residualincome modelrequired bypermittedrefusal.
+
+S15-017: Actualpipeline everyfrozenperiod/spec hasStage9ANDoriginalfiling evidence assessment withhash/cutoff/lag/fit/universe/outcome reasons. Failuresresultnull/unavailable; callerhashesnotindependentreview. ExistingCLIwritescontent-addressedJSON+reasonXLSX with18columns/identitymetadata,readback/idempotencytested. MountedGET503explicitlynotcompletedreportdelivery.
+Next: Implementgenuinelyauthorizedpublicreport resolver/disclosure contract; independentStage9/originalfilingreviews unavailable. No positivehistoricaladmission/efficacy fabricated.
+
+S12-017: ActualCFearnings separates2820mcashincl496mJV;2324moutsideJVnotexcesscommoncash.776mcapex=421+232+99+24;45Q62mYTD/19mquarteroperatingINCOME notcash/XOMfee. ExecutedEnLinkclosingtwo-stepmerger endsElkMergerSubII finalsurvivor; debt successionnotCCSnovation. CurrentCCSsettlementcashnull.
+Next: SearchoperatingCCScontract/novation/arrangement underElkMergerSubII/EnLinkMidstreamPartnersLP; requirebilling/payment/opex, nothistorical844mrecognition conversion.0/3cases.
+
 # Quantity labels, historical fee source and precision lineage
 
 {
@@ -3132,6 +3172,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-reference-parent-91c6d3b",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T16:48:39.591592+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-label-cash-7f2f110",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T17:35:36.467203+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

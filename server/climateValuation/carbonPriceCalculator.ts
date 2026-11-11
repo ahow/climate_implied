@@ -2,8 +2,10 @@ import { db } from "../db";
 import { projectionCache } from "@shared/schema";
 import type { CvTimeSeries, CvCompany } from "@shared/schema";
 import { eq } from "drizzle-orm";
-import { calculationKey } from "../calculation/identity";
 import { snapshotContext } from "../snapshots/store";
+import { overlayContext } from "../snapshots/overlays";
+import { companyCarbonCacheIdentity, readCompanyCarbonCache, writeCompanyCarbonCache,
+  witnessCompanyCarbonCache } from "./companyCarbonCache";
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
 import { calculateCarbonIntensity, assignTerciles, groupTimeSeriesByDate, filterCompaniesByGeography, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
@@ -128,24 +130,33 @@ export async function calculateTotalBasedCarbonPrice(
   geography?: string
 ): Promise<CarbonPriceResult[]> {
   const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
-  const cacheMethod = calculationKey("finance", { companies: allCompanies, timeSeries: allTimeSeries }, {
+  const overlay = overlayContext.getStore();
+  const identity = companyCarbonCacheIdentity({ companies: allCompanies, timeSeries: allTimeSeries }, {
     uploadId, method, inferenceMethod, includeScope3, winsorize, winsorizePercentile, geography: geography ?? null,
+  }, {
+    workbook: snapshotContext.getStore()?.id ?? null,
+    overlays: [...(overlay?.ids ?? [])], cutoff: overlay?.cutoff ?? null,
   });
+  const cacheMethod = identity.cacheKey;
 
   const groupLabels = getGroupLabels(inferenceMethod);
 
-  if (!geography && !snapshotContext.getStore()) {
-    const [cached] = await db.select().from(projectionCache)
-      .where(eq(projectionCache.cacheKey, cacheMethod));
-    if (cached) {
+  if (!geography) {
+    const cached = await readCompanyCarbonCache(identity, async () => {
+      const [row] = await db.select().from(projectionCache)
+        .where(eq(projectionCache.cacheKey, cacheMethod));
+      return row?.resultData;
+    });
+    if (cached !== undefined) {
       // Existing JSONB cache preserves JS-number precision; legacy REAL columns
       // rounded computed aggregates to float32 and changed warm-cache results.
-      return (cached.resultData as CarbonPriceResult[])
+      return (cached as CarbonPriceResult[])
         .map(row => ({ ...row, date: new Date(row.date) }))
         .sort((a, b) => a.date.getTime() - b.date.getTime());
     }
-  }
+  } else witnessCompanyCarbonCache("bypass", identity);
 
+  witnessCompanyCarbonCache("compute", identity);
   console.log(`[CarbonPrice] Computing on-the-fly for ${cacheMethod}...`);
 
   const filteredCompanies = filterCompaniesByGeography(allCompanies, geography);
@@ -253,11 +264,16 @@ export async function calculateTotalBasedCarbonPrice(
 
   }
 
-  if (!geography && !snapshotContext.getStore() && results.length > 0) {
-    await db.insert(projectionCache).values({
-      cacheKey: cacheMethod, projectionYear: 2024, category: "finance", region: null,
-      resultData: results,
-    }).onConflictDoNothing({ target: projectionCache.cacheKey });
+  // Match the warm JSONB read's ordering even for irregular company histories.
+  // The HTTP handler already sorts this way; analytical values are unchanged.
+  results.sort((a, b) => a.date.getTime() - b.date.getTime());
+  if (!geography && results.length > 0) {
+    await writeCompanyCarbonCache(identity, results, async () => {
+      await db.insert(projectionCache).values({
+        cacheKey: cacheMethod, projectionYear: 2024, category: "finance", region: null,
+        resultData: results,
+      }).onConflictDoNothing({ target: projectionCache.cacheKey });
+    });
   }
 
   if (results.length > 0) {

@@ -37,6 +37,7 @@ const securitySchema = z.object({
 const periodSchema = z.object({
   specification: specificationSchema, origin: timestamp, executionAt: timestamp, endAt: timestamp,
   outcomeAvailableAt: timestamp, universeHash: digest, expectedCompanyIds: z.array(z.string().min(1)).min(2),
+  trackBManifestHash: digest.nullable().optional(),
   securities: z.array(securitySchema),
   cashAnnualRate: finite, financingAnnualRate: finite.nonnegative(),
   factors: z.object({

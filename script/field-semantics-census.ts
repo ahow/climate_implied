@@ -30,6 +30,10 @@ import { conditionalCompanyApiSurfaces, conditionalCompanyWorkbookSurface,
 import { warmingReferenceFieldSpecs, warmingValidationReferenceSemantics,
   warmingReferenceExportDocument, warmingReferenceExportLeafBindings } from "../shared/warmingValidationReferenceSemantics";
 import { WARMING_VALIDATION_REFERENCE } from "../shared/warmingValidationReference";
+import { trackBAdmissionFieldSpecs, trackBAdmissionSemantics, trackBAdmissionHttpSemantics,
+  trackBAdmissionExportLeafBindings } from "../shared/trackBAdmissionContract";
+import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
+import { supplementalSheetBindings } from "../shared/supplementalSheetBindings";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -52,6 +56,10 @@ const warmingReferenceApiSurface='API GET "/api/reference/warming-validation"';
 const warmingReferenceExportSurface='API GET "/api/reference/warming-validation/export.json"';
 const warmingExportLeafBindings=warmingReferenceExportLeafBindings();
 const warmingApiLeafBindings=new Map<string,{id:string;transform:string}>();
+const trackBApiSurface='API GET "/api/research/track-b-admission"';
+const trackBJsonSurface='API GET "/api/research/track-b-admission/export.json"';
+const trackBWorkbookSurface="XLSX server/calculation/trackBAdmissionWorkbook.ts";
+const trackBLeafBindings=new Map<string,{id:string;transform:string}>();
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
 const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
 const verifiedExportBindings: {surface:string;field:string;id:string;transform:string}[]=[];
@@ -314,6 +322,45 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
 // External route handler's actual typed send arguments are supplemental API
 // inventory, never additions to the frozen original direct-res.json cohort.
 if(!baseline) {
+  const handler=readFileSync("server/trackBAdmissionApi.ts","utf8");
+  const index=readFileSync("server/index.ts","utf8");
+  const cli=readFileSync("script/run-paired-research-pipeline.ts","utf8");
+  if(!handler.includes("res.json(report)") || !handler.includes(".json(trackBAdmissionExportDocument(report))") ||
+    !handler.includes("if (!readReport)") || !handler.includes("engineering remains incomplete"))
+    throw new Error("Track B exact report/export/refusal handler changed");
+  if(index.indexOf("registerTrackBAdmissionRoutes(app)")<index.indexOf("app.use(releaseSafety())") ||
+    index.indexOf("app.use(releaseSafety())")<0)
+    throw new Error("Track B handler must be mounted after releaseSafety");
+  if(!cli.includes("buildTrackBAdmissionWorkbook(result.trackBAdmission)") ||
+    !cli.includes('writeFile(trackBWorkbookPath, workbook, { flag: "wx" })'))
+    throw new Error("Track B CLI no longer writes the exact immutable period-reason workbook");
+  const add=(surface:string,field:string,type:string,binding:{id:string;transform:string},source="server/trackBAdmissionApi.ts")=>{
+    if(!outputFieldSemantics.some(s=>s.id===binding.id)) throw new Error(`Unmapped Track B output ${binding.id}`);
+    trackBLeafBindings.set(`${surface}|${field}`,binding);
+    supplementalTypedApiEntries.push({surface,field,type,source,line:1,resolution:"exact-qualified-track-b-contract-only-not-public-report-availability"});
+  };
+  const typeOf=(path:string)=>["scientificAcceptance","investmentEvidence","authenticityVerified",
+    "periods[].stage9ContractSatisfied","periods[].originalFilingsContractSatisfied"].includes(path)?"boolean":
+    path==="periods[].result"?"null":["periods[].executionAt","periods[].endAt","periods[].manifestHash",
+      "periods[].reasons[].companyId","periods[].reasons[].artifactHash"].includes(path)?"string | null":"string";
+  for(const [path] of trackBAdmissionFieldSpecs)
+    add(trackBApiSurface,path,typeOf(path),{id:`trackBAdmission.${path}`,transform:"Identity; strict report; no numeric result or independent authentication"});
+  for(const [path,binding] of Object.entries(trackBAdmissionExportLeafBindings()))
+    add(trackBJsonSurface,path,path.startsWith("report.")?typeOf(path.slice(7)):
+      path.startsWith("rows[].")?typeOf(binding.id.slice("trackBAdmission.".length)):"string",binding);
+  for(const surface of [trackBApiSurface,trackBJsonSurface])
+    add(surface,"error","string",{id:"trackBAdmissionHttp.error",transform:"Exact400/404/503 refusal; unprovisioned public report reader is503, not successful report completion"});
+  for(const [column,binding] of Object.entries(trackBWorkbookReasonBindings))
+    add(`${trackBWorkbookSurface}:Period reasons`,`[].${column}`,
+      binding.id.endsWith("ContractSatisfied")?"boolean":"string",binding,"server/calculation/trackBAdmissionWorkbook.ts");
+  for(const field of trackBWorkbookIdentityFields) for(const column of ["Field","JSON value"])
+    add(`${trackBWorkbookSurface}:Assessment identity`,`[${field}].${column}`,"string",{id:`trackBAdmission.${field}`,
+      transform:column==="Field"?"Exact finite source field identity, not its measured value":"JSON.stringify exact report value; false/null never blank or zero"},"server/calculation/trackBAdmissionWorkbook.ts");
+  for(const sheet of ["Field semantics","Column bindings"] as const)
+    for(const [column,binding] of Object.entries(supplementalSheetBindings(sheet)))
+      add(`${trackBWorkbookSurface}:${sheet}`,`[].${column}`,"string",binding,"server/calculation/trackBAdmissionWorkbook.ts");
+}
+if(!baseline) {
   const source=program.getSourceFiles().find(s=>relativeSource(s.fileName)==="server/warmingValidationReferenceApi.ts");
   if(!source) throw new Error("Missing registered warming reference handler");
   const handler=source.text;
@@ -451,6 +498,21 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   },
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
   supplementalQualifiedChanges:{
+    trackBAdmission:{
+      definitions:trackBAdmissionSemantics.length+trackBAdmissionHttpSemantics.length,
+      ids:[...trackBAdmissionSemantics,...trackBAdmissionHttpSemantics].map(s=>s.id),
+      reportSchemaLeaves:trackBAdmissionFieldSpecs.length,
+      api:{surface:trackBApiSurface,mounted:true,authorizedPublicReportResolverProvisioned:false,
+        successfulPublicReportEngineeringComplete:false,defaultStatus:503,
+        qualification:"Declared report/export contracts and mounted explicit refusals are not a completed public report reader. Existing CLI archives are not automatically authorized for public disclosure."},
+      jsonExport:{surface:trackBJsonSurface,leafBindings:trackBAdmissionExportLeafBindings()},
+      workbook:{source:"server/calculation/trackBAdmissionWorkbook.ts",cli:"script/run-paired-research-pipeline.ts",
+        reasonColumns:trackBWorkbookReasonBindings,identityFields:trackBWorkbookIdentityFields,
+        metadataColumns:31,qualification:"Actual CLI immutable XLSX; exact nullable cells JSON.stringify; no caller-mode authentication or efficacy. Metadata columns are existing supplemental definitions, not new scientific quantities."},
+      typedApiAndWorkbookFields:supplementalTypedApiEntries.filter(e=>trackBLeafBindings.has(`${e.surface}|${e.field}`))
+        .map(e=>({...e,...trackBLeafBindings.get(`${e.surface}|${e.field}`),bound:true})),
+      boundary:"24 supplemental definitions only; actual per-period structural/refusal engineering, no authenticated positive admission. Original1000/1001,unknown summary and withheld fields unchanged.",
+    },
     warmingValidationReference:{
       definitions:warmingValidationReferenceSemantics.length,ids:warmingValidationReferenceSemantics.map(s=>s.id),
       api:{surface:warmingReferenceApiSurface,successLeaves:warmingReferenceFieldSpecs.length},
@@ -641,6 +703,8 @@ const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent
 const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
   .map(e=>[`${e.surface}|${e.field}`,e])).values());
 const externalTypedApiBound=externalTypedApiFields.filter(e=>
+    trackBLeafBindings.has(`${e.surface}|${e.field}`)?
+      outputFieldSemantics.some(f=>f.id===trackBLeafBindings.get(`${e.surface}|${e.field}`)!.id):
    warmingApiLeafBindings.has(`${e.surface}|${e.field}`)?
      outputFieldSemantics.some(f=>f.id===warmingApiLeafBindings.get(`${e.surface}|${e.field}`)!.id):
    outputFieldSemantics.some(f=>f.id===`${e.surface.includes("/company-conditional-summaries")?"conditionalCompany":
@@ -689,6 +753,9 @@ const reconciliation = baseline ? {} : {
      conditionalCompanyWorkbookColumns:2,
      warmingReferenceApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===warmingReferenceApiSurface).length,
      warmingReferenceJsonExportLeafSlots:externalTypedApiFields.filter(e=>e.surface===warmingReferenceExportSurface).length,
+      trackBAdmissionApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBApiSurface).length,
+      trackBAdmissionJsonExportLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBJsonSurface).length,
+      trackBAdmissionWorkbookLeafSlots:externalTypedApiFields.filter(e=>e.surface.startsWith(trackBWorkbookSurface)).length,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

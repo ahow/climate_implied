@@ -8,6 +8,7 @@ import { accountOverlappingSleeves, sleeveScheduleSchema } from "./pairedResearc
 import { accountResearchEvents } from "./pairedResearchEvents";
 import { constrainedLongOnly, longOnlyVariantSchema } from "./pairedResearchLongOnly";
 import { portfolioFrequencySchema, reconcilePortfolioFrequency } from "./pairedResearchFrequency";
+import { assessTrackBAdmission } from "./trackBAdmission";
 
 const time = z.string().datetime();
 const protocolSchema = z.object({
@@ -27,6 +28,7 @@ const protocolSchema = z.object({
   sleeveSchedule: sleeveScheduleSchema.optional(),
   longOnlyVariants: z.array(longOnlyVariantSchema).optional(),
   portfolioFrequency: portfolioFrequencySchema.optional(),
+  trackBPolicy: z.object({ filingLagDays: z.number().int().nonnegative() }).strict().optional(),
 }).strict();
 export type PairedResearchProtocol = z.infer<typeof protocolSchema>;
 const mean = (v: number[]) => v.reduce((s, x) => s + x, 0) / v.length;
@@ -379,11 +381,12 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
       portfolioEvidence: portfolioEvidence as ReturnType<typeof reconcilePortfolioFrequency> | { unavailable: string } };
   });
   return { protocolId: expectedProtocolHash, corpusHash: c.corpusHash, disclosure: p.disclosure, mode: c.mode,
+    trackBAdmission: assessTrackBAdmission(protocolInput, expectedProtocolHash, corpusInput),
     sleeveAccounting, eventAccounting,
     specifications, family: adjudicateResearchFamily({ protocolId: expectedProtocolHash, specifications: p.specifications, results }),
     efficacy: "WITHHELD", scientificAcceptance: false, investmentEvidence: false, authenticityVerified: false,
     tracks: { A: c.mode === "revised-history" ? "conditional revised-history" : "unavailable",
-      B: c.mode === "point-in-time" ? "contract-checked; independent archive verification required" : "unavailable",
+      B: "unavailable: see every frozen period in trackBAdmission; no authenticated Stage9 plus original-filing review",
       prospective: "unavailable: requires independently retained live signal archive" },
     limitations: ["Caller-supplied origin and provenance claims are not authenticated.",
       "Historical efficacy requires independent archive verification and review; engineering fixtures never adjudicate positively.",

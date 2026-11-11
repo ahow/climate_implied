@@ -8,6 +8,8 @@ import { outputFieldSemantics } from "../shared/outputFieldSemantics";
 import { conditionalCompanySemantics } from "../shared/companyConditionalSemantics";
 import { warmingValidationReferenceSemantics, warmingReferenceExportLeafBindings,
   warmingReferenceExportDocument } from "../shared/warmingValidationReferenceSemantics";
+import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics, trackBAdmissionExportLeafBindings } from "../shared/trackBAdmissionContract";
+import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
 const census = JSON.parse(readFileSync("docs/field_semantics_census.json", "utf8"));
 const frozen = JSON.parse(readFileSync("docs/field_semantics_original_cohort.json", "utf8"));
 
@@ -47,10 +49,11 @@ test("every new typed API/export denominator change is separate and reconciles a
   // fact count. The reference's exact38-ID contract is independently checked.
   assert.equal(census.definitions, fieldSemantics.length + outputFieldSemantics.length);
   assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, conditionalCompanySemantics.length);
-  assert.equal(added.externalTypedApiSlots, 924);
-  assert.equal(added.externalTypedApiBoundSlots, 924);
+  assert.equal(added.externalTypedApiSlots, 1459);
+  assert.equal(added.externalTypedApiBoundSlots, 1459);
   assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots +
-    added.warmingReferenceApiLeafSlots + added.warmingReferenceJsonExportLeafSlots);
+    added.warmingReferenceApiLeafSlots + added.warmingReferenceJsonExportLeafSlots +
+    added.trackBAdmissionApiLeafSlots + added.trackBAdmissionJsonExportLeafSlots + added.trackBAdmissionWorkbookLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
   assert.equal(added.conditionalCompanyApiLeafSlots, 63);
@@ -58,10 +61,34 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(added.conditionalCompanyWorkbookColumns, 2);
   assert.equal(added.warmingReferenceApiLeafSlots, 39);
   assert.equal(added.warmingReferenceJsonExportLeafSlots, 661);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 2256);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 2255);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 1255);
+  assert.equal(added.trackBAdmissionApiLeafSlots, 24);
+  assert.equal(added.trackBAdmissionJsonExportLeafSlots, 446);
+  assert.equal(added.trackBAdmissionWorkbookLeafSlots, 65);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 2791);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 2790);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 1790);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
+});
+test("TrackB24 definitions and535 schema/export supplements never turn mounted503 into completed report engineering", () => {
+  const track = census.supplementalQualifiedChanges.trackBAdmission;
+  assert.equal(track.definitions, 24);
+  assert.deepEqual(track.ids, [...trackBAdmissionSemantics, ...trackBAdmissionHttpSemantics].map(s => s.id));
+  assert.equal(track.reportSchemaLeaves, 23);
+  assert.deepEqual(track.jsonExport.leafBindings, trackBAdmissionExportLeafBindings());
+  assert.equal(Object.keys(track.jsonExport.leafBindings).length, 445);
+  assert.deepEqual(track.workbook.reasonColumns, trackBWorkbookReasonBindings);
+  assert.deepEqual(track.workbook.identityFields, [...trackBWorkbookIdentityFields]);
+  assert.equal(track.workbook.metadataColumns, 31);
+  assert.equal(track.api.mounted, true);
+  assert.equal(track.api.defaultStatus, 503);
+  assert.equal(track.api.authorizedPublicReportResolverProvisioned, false);
+  assert.equal(track.api.successfulPublicReportEngineeringComplete, false);
+  assert.equal(track.typedApiAndWorkbookFields.length, 535);
+  assert.ok(track.typedApiAndWorkbookFields.every((field: { bound: boolean; id: string }) =>
+    field.bound && outputFieldSemantics.some(s => s.id === field.id)));
+  assert.ok(frozen.slots.every((s: { surface: string }) => !s.surface.includes("track-b-admission") && !s.surface.includes("trackBAdmissionWorkbook")));
+  assert.equal(census.originalGapReconciliation.originalPublicSlots, 1001);
+  assert.equal(census.originalGapReconciliation.originalFullyBoundFields, 1000);
 });
 
 test("reference38 definitions and finite JSON serialization are exact supplements, not original closure", () => {

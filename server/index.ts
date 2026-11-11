@@ -5,6 +5,7 @@ import { createServer } from "http";
 import { releaseSafety } from "./releaseSafety";
 import { registerWarmingValidationReferenceRoutes } from "./warmingValidationReferenceApi";
 import { quantityDescriptionMiddleware } from "./quantityDescriptionApi";
+import { registerTrackBAdmissionRoutes } from "./trackBAdmissionApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -65,6 +66,9 @@ app.use((req, res, next) => {
 (async () => {
   app.use(quantityDescriptionMiddleware());
   registerWarmingValidationReferenceRoutes(app);
+  // No authorized public retained-pipeline reader exists. Explicit503 is not a
+  // completed report API; do not publish private CLI archives as a fallback.
+  registerTrackBAdmissionRoutes(app);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {

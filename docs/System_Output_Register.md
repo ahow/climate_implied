@@ -78,6 +78,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | POST | "/api/data/proposals/:id/approve" | server/routes.ts |
 | POST | "/api/data/proposals/:id/reject" | server/routes.ts |
 | POST | "/api/data/indicator/:key/manual" | server/routes.ts |
+| GET | `/api/research/track-b-admission${suffix}` | server/trackBAdmissionApi.ts |
 | GET | "/api/reference/warming-validation" | server/warmingValidationReferenceApi.ts |
 | GET | "/api/reference/warming-validation/export.json" | server/warmingValidationReferenceApi.ts |
 

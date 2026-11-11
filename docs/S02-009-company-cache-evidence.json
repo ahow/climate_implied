@@ -1,0 +1,116 @@
+{
+  "criterion": "S02-009",
+  "exactLedgerClause": "Cold and warm caches return identical values and identities.",
+  "ledgerGapReadWithoutEditing": "Repeated GET equality alone cannot establish cold-vs-warm cache-path execution.",
+  "engineeringAcceptance": "Directly demonstrated for the actual company carbon-price production calculator with isolated cache I/O and retained input selections; not full application-wide or deployed PostgreSQL/HTTP acceptance.",
+  "inspectedProductionPaths": {
+    "crossRequestCompanyResultCache": "server/climateValuation/carbonPriceCalculator.ts: calculateTotalBasedCarbonPrice -> projection_cache JSONB get/insert",
+    "workbookAndOverlayRead": "server/climateValuation/sharedUtils.ts: loadCompaniesAndTimeSeries -> snapshotContext/loadSnapshot + ordered overlayContext",
+    "existingCacheCondition": "Previously skipped both reads and writes for every immutable snapshot selection, so repeated retained/default GETs could not prove a warm result-cache hit.",
+    "otherCompanyCalculators": "No cross-request result cache found in the other descriptive company calculators. Backtest scoring maps are within-calculation memoization, not the cross-request cache under test.",
+    "existingRouteRunIdentity": "server/routes.ts uses createManifest plus material/source/workbook/overlay identities. It was inspected but not changed or executed."
+  },
+  "implementationFiles": [
+    "server/climateValuation/companyCarbonCache.ts",
+    "server/climateValuation/carbonPriceCalculator.ts",
+    "script/company-carbon-cache.test.ts",
+    "script/witness-company-carbon-cache.ts"
+  ],
+  "sourceSha256": {
+    "server/climateValuation/companyCarbonCache.ts": "d3d276993804a566022fd30e662474c9610ffde48637ed34e591e44ccd382b30",
+    "server/climateValuation/carbonPriceCalculator.ts": "c020318ddd896798653e204a39bc76b1183ef78a7cb998a656a6a22e7cc9dd83",
+    "script/company-carbon-cache.test.ts": "7d4b22018543c70dc259980c4ad68149c61aeafa1dba90235bd2a27961955c5d",
+    "script/witness-company-carbon-cache.ts": "860f1d7f3c30007f303a8f66697cce968182539d0aa8562d24e47405f982401e"
+  },
+  "fixesAndBoundaries": [
+    "Actual calculator now supports the genuine read/write cache path for immutable workbook selections as well as mutable-current selections; geography bypass remains unchanged.",
+    "New company-carbon-cache-2 contract binds effective input hash, exact dataset and ordered overlays/cutoff, model definitions/settings and the actual executable source archive used by production analysis manifests.",
+    "Old cache keys included values/settings and broad calculation version but not executable source archive or retained-selection identity. New hashes cannot reuse the old contract's entries; no cache clear is needed or performed.",
+    "Cold results are explicitly sorted like warm JSONB results. Irregular histories could otherwise return different array order even when their values matched; the existing HTTP handler already applies this order.",
+    "The isolated adapter replaces only cache persistence. It executes actual production calculator lookup/compute/write/return branches and emits direct miss/hit/compute/write witnesses.",
+    "Private adapter scopes require explicit NODE_ENV=test or development and cannot be enabled from HTTP or in production.",
+    "Cached analytical payloads contain no witness phase, hit flag, observedAt, cache timing or creation-clock diagnostics.",
+    "No protected FaIR bundle file, server/routes.ts, canonical ledger, scientific acceptance, physical withholding, auth or deployment was changed."
+  ],
+  "actualRetainedWitness": {
+    "command": "env -u DATABASE_URL NODE_ENV=development npx tsx script/witness-company-carbon-cache.ts",
+    "passed": true,
+    "evidence": "generated-artifacts/company-cache-witness/witness-JVXhhZ/evidence.json",
+    "evidenceSha256": "32163f4a70de0fced6e67d29a9d00359920af1019357b40565030f258f0bf5bb",
+    "input": "generated-artifacts/overlay-replay/inputs-77e6a05320e664e34a6d5ec4c1a0144ba532b7a6b5cb6cddc1144e0c95253626.json",
+    "inputSha256": "d386cea7528782523a7e90e530e36b2ece336693777e1205ea12ce300ea075f3",
+    "datasetId": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+    "companies": 2442,
+    "observations": 470341,
+    "analyticalRowsPerResult": 187,
+    "sourceVersionAtWitness": "8211dcf48dea21af15b684f958d4bf751a630f925e3a0a8ff6069a24429f86aa",
+    "modelVersion": "historical-diagnostics-7",
+    "financeModelVersion": "legacy-finance-v1",
+    "backend": "Fresh isolated Map storing JSON-serialized payloads, reproducing JSONB Date encoding and binary64 number round-trip; not PostgreSQL storage acceptance.",
+    "directBackendGetHitSequence": [false, false, false, true, true, true, true],
+    "coldMisses": 3,
+    "actualComputations": 3,
+    "actualWrites": 3,
+    "warmHitsWithoutRecomputation": 4,
+    "distinctCacheKeys": 3,
+    "distinctCalculatorRunManifests": 3,
+    "selections": [
+      {
+        "name": "retained-baseline",
+        "orderedOverlays": [],
+        "cacheKey": "finance:ce80176939c24b8db9c5abef67d7660cf41adf18267eec54d52a0f8427789e11",
+        "calculatorManifestId": "4c630e20c904379e27e331b1ce9a63d4826669cda2ff045f76b7d21b33a4c8db"
+      },
+      {
+        "name": "retained-financial-engineering-overlay",
+        "orderedOverlays": ["791448faa7c59583ba35f604ca99d59c32f852a89556c03a6707da4674b7c24d"],
+        "cacheKey": "finance:4b8fe82698a417c978545690d24018ca9ed2671e5638efe63c556f690c53a66f",
+        "calculatorManifestId": "d9d14e34e96b65a1628edeb2016faaf4db0f4b18eaf627a88e9af86dd3e80af5"
+      },
+      {
+        "name": "retained-financial-plus-sdg-engineering-overlays",
+        "orderedOverlays": [
+          "791448faa7c59583ba35f604ca99d59c32f852a89556c03a6707da4674b7c24d",
+          "b29b50a509fe7053d9f9ccacc14321901174416c719a0e3dd2a39d016767d131"
+        ],
+        "cacheKey": "finance:0acb28995ccbe668a86e233735ad38e87d3eab0da2cd422a28764ff7b937286f",
+        "calculatorManifestId": "7e85a64e95911a0ee2c5c032e50af171535ae700a9fc95375d2f2a6f74eefc71"
+      }
+    ],
+    "comparison": [
+      "For each selection, cold and warm full calculator payload canonical hashes are identical.",
+      "For each selection, cold and warm public descriptive payload hashes are identical.",
+      "Dataset ID, effective input hash, executable source/model identity, calculator run-manifest ID and cache key are identical within each cold/warm pair.",
+      "Three retained selections use three separate keys/manifests and genuine initial misses, including concurrent warm reads and returning to the baseline.",
+      "All three selected public aggregates happen to be equal: 06e17d891929a78ad7cc04f3309014b166c5bc6c73b2204b5525cc3ae736ffed. Different retained selection identities still do not alias.",
+      "The existing retained overlays are explicitly synthetic engineering perturbations on an authentic retained development workbook, not issuer/scientific/owner approvals."
+    ],
+    "initialOverstrongAssertion": "An initial witness attempt incorrectly required the one-cell retained overlay to change the selected/winsorized public aggregate. Actual aggregates were equal. That assertion was removed rather than fabricating a changed value; the final witness checks distinct identities/direct cache branches, which is the criterion.",
+    "productionDatabaseQueries": 0,
+    "productionCacheClears": 0,
+    "httpRequests": 0,
+    "oldNinePathFixtureRerun": false
+  },
+  "focusedEngineeringTests": {
+    "command": "env -u DATABASE_URL NODE_ENV=test npx tsx --test script/company-carbon-cache.test.ts",
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "cases": [
+      "Actual calculator miss/compute/write/hit and immutable JSON cache payload; irregular-history cold/warm ordering",
+      "Identical effective values with a no-op selection overlay cannot alias; distinct workbook datasets remain isolated during concurrent warm reads",
+      "Creation clocks/cache diagnostics excluded; ordered selections, source version and calculation settings affect identity",
+      "Isolated persistence substitution refused in production"
+    ],
+    "projectCompiler": { "command": "npm run check", "result": "passed" },
+    "focusedScriptCompiler": "Passed with actual project aliases and ES2022 target matching Node20/tsx top-level-await scripts; scripts are outside the project's existing tsconfig include.",
+    "protectedFairBundleSources": "All thirteen current files were separately SHA256-compared against the current authorized bundle's source manifest and remained unchanged."
+  },
+  "exactResidual": [
+    "Not a blanket completion claim for every application cache or the canonical S02-009 ledger row.",
+    "Real deployed PostgreSQL cache rows, HTTP cold/warm handlers and the HTTP material-input/result archive manifests were not exercised. The witnessed calculator manifest is a computational identity, not an assertion of an HTTP X-Analysis-Manifest receipt.",
+    "Geography cache bypass, empty-result non-caching and local backtest memoization are not established as cache-hit paths by this witness.",
+    "No supported current-source mutation, publication-vintage, scientific, owner, investment or deployment acceptance is implied.",
+    "The other eight unchanged calculator paths and the old nine-path retained fixture were not rerun."
+  ]
+}

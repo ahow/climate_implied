@@ -1,0 +1,127 @@
+{
+  "criteria": {
+    "S11-040": "Gordon fixtures pass for positive, negative, zero and missing earnings; the financials method passes its own fixtures.",
+    "S15-017": "Track B shows “unavailable” for every period failing its evidence requirements.",
+    "bindingTrackBClause": "Track B: point-in-time. It applies only to periods where projections are retrospective simulations on verified past inputs (Stage 9) and fundamentals are original, not restated, filings. Track B is “unavailable” wherever these requirements are unmet.",
+    "source": "Exact original clauses and binding Track B conjunction read from docs/WORKPLAN_COMPLETION_LEDGER.md; no canonical edits.",
+    "financialRefusalScope": "The original criterion permits explicit financial-sector refusal. No separately validated financial residual-income model is demanded, implemented or claimed here."
+  },
+  "S11-040": {
+    "implementation": "Tests only; actual Gordon/dated as-of solver implementations, effective r, source dates, monetary scaling and primary model choice are unchanged.",
+    "namedFixtures": [
+      "S11-040 positive earnings Gordon fixture executes actual solver at the actual r",
+      "S11-040 negative earnings Gordon fixture never becomes zero earnings or a growth result",
+      "S11-040 zero earnings Gordon fixture never becomes zero earnings or a growth result",
+      "S11-040 missing earnings Gordon fixture never becomes zero earnings or a growth result",
+      "S11-040 financial-sector method fixture explicitly refuses an unvalidated model",
+      "S11-040 missing original earnings statement gives a named origin-specific Gordon exclusion, not zero",
+      "S11-040 dated positive earnings Gordon fixture preserves actual r and native monetary basis",
+      "S11-040 dated negative earnings Gordon fixture preserves actual r and native monetary basis",
+      "S11-040 dated zero earnings Gordon fixture preserves actual r and native monetary basis"
+    ],
+    "actualSolverEvidence": "positivePE plus impliedGrowthFromPE executes the real Gordon solver at r0.08/0.095/0.12. Negative/zero/null earnings with no reported P/E cannot manufacture P/E or growth; null and undefined solver inputs explicitly throw.",
+    "datedProducerEvidence": "Actual buildAsOfRows: absent matching original earnings statements produce no rows and a named exclusion at every2017–2022origin. Positive/negative/zero earnings fixtures preserve information2017-07-22,origin2017-07-31,FY2016-12-31,filing2017-02-20,outcome availability2021-02-20,USD and marketCap1000million->1e9. At actual r0.095 positive Gordon is r-80/1e9; non-positive is null, never zero.",
+    "financialMethodEvidence": "Actual reverseCashFlowGrowth financial-sector branch returns not-modelled with its separately-validated-residual-income-model reason and no growth field.",
+    "assessment": "The missing explicit named Gordon fixture conjunction and permitted financial refusal are now directly exercised. This is finite engineering fixture evidence, not issuer calibration, approval, historical efficacy or a new financial-sector model."
+  },
+  "S15-017": {
+    "pipelineIntegration": "runPairedResearchPipeline now includes trackBAdmission for every frozen specification x expectedOrigin, including absent periods, and points tracks.B to those unavailable rows. Existing accounting, rankings, inference estimators, Gordon primary model and family denominator are unchanged.",
+    "schemaAdditions": "Optional nullable period.trackBManifestHash and optional frozen protocol.trackBPolicy.filingLagDays. Missing lag remains a named failure; no default lag is invented.",
+    "periodManifest": "track-b-period-manifest-1 binds exact specification,origin,informationCutoff,Stage9 manifest hash and issuer-specific original-filing lineage hashes.",
+    "Stage9Manifest": "stage9-retrospective-lineage-1 binds exact specification/origin/cutoff,retrospective classification,parameter-fit-through timestamp,parameter-fit receipt,input hashes and complete actual projection-manifest domain. stage9-parameter-fit-1 binds model,fit cutoff,parameter artifact and fit-input artifact hashes.",
+    "filingManifest": "original-filing-lineage-1 binds company,original/restated flags,actual publication/fiscal timestamps,actual valuation manifest and underlying source-document hash. Both lineage/document hashes must belong to the actual security input domain.",
+    "failureCoverage": [
+      "Absent/duplicate frozen periods; missing/undeclared/duplicate companies; exact universe membership; execution/outcome chronology and retained outcome cutoff",
+      "Missing/invalid period or Stage9/fit/filing manifests; missing/duplicate referenced artifacts; canonical payload/hash mismatch",
+      "Non-original artifacts,availability or capture after origin,used artifacts beyond corpus cutoff",
+      "Wrong Stage9 model/specification/origin/cutoff/classification,parameters fitted after origin,wrong fit identity,wrong projection-manifest domain",
+      "Missing/duplicate original-filing binding,restatement/non-original filing,wrong issuer/valuation identity,filing/document not actually used by security",
+      "Fiscal/publication order,receipt availability before publication,filing published after origin,unelapsed precommitted lag,missing frozen lag",
+      "Independent Stage9 review unavailable with actual referenced Stage9 hash; independent original-filing review unavailable for each expected company and lineage hash; separate underlying original-document review reason retains its real source-document hash without any source bytes"
+    ],
+    "authenticityBoundary": "No authenticated independent review authority/store is provisioned. Consequently every current report remains status unavailable with result null,scientificAcceptance=false,investmentEvidence=false,authenticityVerified=false, even when structural contract booleans pass. Caller mode,claimed original vintage,self-hashes or a 'verified-past-inputs' classification can never authenticate themselves.",
+    "syntheticEvidence": "All new admission fixtures are explicitly engineering-only and negative for historical efficacy. Even structurally complete claimed-original synthetic records remain unavailable. No authentic historical positive admission is fabricated.",
+    "assessment": "Actual per-period conjunction/refusal engineering is implemented in the production research pipeline and actual CLI JSON/XLSX export, with exact date/hash/manifest checks and reason-level reporting, not a mode-only disclaimer. Historical admissibility and efficacy remain unavailable until genuine independently reviewed archives exist. Public GET handlers are now mounted but report-reader engineering remains explicitly incomplete: valid requests default503 because no authorized public retained report resolver exists."
+  },
+  "APIAndExport": {
+    "module": "server/trackBAdmissionApi.ts: registerTrackBAdmissionRoutes(app,readReport)",
+    "routes": [
+      "GET /api/research/track-b-admission?protocolHash=EXACT_SHA256",
+      "GET /api/research/track-b-admission/export.json?protocolHash=EXACT_SHA256"
+    ],
+    "binding": "shared/trackBAdmissionContract.ts: strict23leaf report semantics plus one separate HTTP refusal semantic; exact18column reason-row export bindings; one row per failed requirement per period, preserving explicit null result,company,source hash,cutoffs and status. Same report is already in normal pipeline JSON export.",
+    "controls": "Unknown/extra query400,no exact retained report404,invalid report/protocol identity/resolver503. Named refusal header binds trackBAdmissionHttp.error. No solver/study execution,source payload export,originUri export,private file reads,source substitution or public mutation routes.",
+    "integrationStatus": "Mounted through server/index.ts after releaseSafety, without protected routes edits. Default authorized-public-reader absence explicitly returns503 engineering incomplete for report and export. This mounted refusal is NOT complete API report delivery. Existing actual pipeline JSON and new CLI XLSX both carry real per-period reasons.",
+    "storedReaderInspection": [
+      "script/run-paired-research-pipeline.ts is the existing content-addressed paired-pipeline producer. Its generated-artifacts/paired-research-pipeline JSON directory has no authorized public report-reader binding or public disclosure manifest.",
+      "server/routes.ts462–487 exposes submitted-input research-contract operations, not stored paired-pipeline report retrieval. No new operation/public writes or protected routes edits are introduced.",
+      "server/calculation/driverParameterRegistry.ts reads a retained driver-adoption report for a different purpose; this is not authority to publish paired-research archives.",
+      "Server source search found no existing authorized public stored paired-pipeline report resolver. No filesystem scan, guessed public allowlist, approval mechanism or review store was invented."
+    ],
+    "remainingEngineering": "Provision and authorize a genuine public retained report resolver, with exact protocol identity and public disclosure boundary, before successful API report delivery can be assessed. Independent authenticated Stage9/original-source review remains separately unprovisioned. Neither gap is represented as completed engineering or historical efficacy.",
+    "registeredGlobalMetadata": "23report plus1HTTP precise semantics registered in shared/outputFieldSemantics.ts. Supplemental census records535 API/JSON/XLSX contract domains separately; default-success provisioning is explicitly false. No original1001 closure credit.",
+    "actualCliWorkbook": "script/run-paired-research-pipeline.ts writes the existing immutable content-addressed result JSON plus same-result-hash-track-b-admission.xlsx via wx, verifying identical preexisting bytes and never overwriting. Four worksheets:18reason columns;8finite identity keys with exact JSON values;14field-definition metadata columns;17binding metadata columns. Nullable reason cells use explicit JSON.stringify, never zero/blank; metadata timestamps deterministic and expressly not source dates. No study rerun or historical archive publication was performed.",
+    "testEvidence": "Real isolated Express GET/report/export equality,exact metadata header,400/404/503 rejection,releaseSafety403mutation refusal,strict null-result validation,wrong-protocol refusal,lossless JSON readback and no raw document/provider URI leakage. New default-registration test proves503 engineering remaining. Actual CLI subprocess,using only explicit synthetic negative temporary fixtures,reads back JSON plus XLSX and reexecutes to prove existing artifacts remain byte-identical and unmodified."
+  },
+  "supplementalCensusReconciliation": {
+    "integrationDefinitionsAdded": 24,
+    "actualDefinitions": 1868,
+    "previousStoredDefinitions": 1841,
+    "definitionDelta": "27total versus previous stored census:24this integration plus3already-present previously uncensused definitions; current registry is asserted dynamically without claiming extra original closure.",
+    "newReportApiSlots": 24,
+    "newJsonExportSlots": 446,
+    "newWorkbookSlots": 65,
+    "newWorkbookSlotBreakdown": "18reason columns +16identity field/value cells for8finite source keys +31existing qualified metadata sheet columns",
+    "totalNewSupplementalSlots": 535,
+    "externalSlotsBefore": 924,
+    "externalSlotsAfter": 1459,
+    "externalBoundSlotsAfter": 1459,
+    "expandedPublicBefore": 2256,
+    "expandedPublicAfter": 2791,
+    "expandedBoundBefore": 2255,
+    "expandedBoundAfter": 2790,
+    "expandedDeltaFromOriginal": 1790,
+    "directFieldsUnchanged": 1359,
+    "directPublicUnchanged": 1332,
+    "directBoundUnchanged": 1331,
+    "originalPublicUnchanged": 1001,
+    "originalBoundUnchanged": 1000,
+    "closedOriginalUnchanged": 571,
+    "unknownHistoricalSummaryUnchanged": 1,
+    "withheldUnchanged": 27,
+    "qualification": "Contract schemas and metadata serialization domains are inventoried even though no authorized public report reader exists. Mounted503 is not successful report delivery; serialized metadata is not extra measured data, approval, source authentication, scientific acceptance or efficacy."
+  },
+  "verification": {
+    "command": "npx tsx --test script/track-b-admission.test.ts script/paired-research-pipeline.test.ts script/paired-research-accounting.test.ts script/research-family.test.ts script/next-census-accounting.test.ts script/operational-field-semantics.test.ts script/remaining-field-semantics.test.ts script/research-field-semantics.test.ts && npx tsc --noEmit && npx tsx script/field-semantics-census.ts --check && git diff --check",
+    "pass": 54,
+    "fail": 0,
+    "skip": 0,
+    "additional": "Typecheck and diff checks passed. Existing paired accounting,full frozen-family denominator,cutoff,concurrency and no-fixture-acceptance regressions passed unchanged in meaning. One existing exact output expectation now binds the new nested report corpusHash to the same real changed corpus hash.",
+    "priorGordonVerification": "The preceding55focused-test pass included the new S11-040 Gordon fixtures and dated basis tests. Their test/solver source pins remain unchanged during this integration follow-up.",
+    "censusCheck": "Census explicitly regenerated and --check now passes. Frozen original1001 identity fingerprint,1000bound,571closed,one unknown summary and27withheld all remain asserted; strict original/completeness gates still correctly refuse completion. No historical study was rerun or refrozen.",
+    "sourcePins": {
+      "script/valuation-integrity.test.ts": "b7efe882926680a16dbce4a929b416faacd7408be38e31080cbf28bcb490bc81",
+      "script/asof-valuation.test.ts": "e4262ddd0487e933c4a4a18636d161d7944e1655abd36bb735b1ed25d707485d",
+      "server/calculation/pairedResearchPipeline.ts": "b4b787f0f2b47fb25152ad12fac391cf81aef6e73385072088085ee1d741eed7",
+      "server/calculation/pairedResearchCorpus.ts": "dbb93f1520e9191a52353b00b26956232d0d0a7f4777fa735692b1fe78407a3a",
+      "server/calculation/trackBAdmission.ts": "23d4cfd3eeebde0c13f95b0365ab80aa529ae957d182f0f387dd97a07817de06",
+      "shared/trackBAdmissionContract.ts": "e55c733899aabb487ba82b06ffbaf6981e05c2a8e850dd4abcc8e1637ae018b2",
+      "server/trackBAdmissionApi.ts": "71921219dfd6a76af84d182509bf1d39e35e158e076c2adee56c2921a713a6f8",
+      "script/track-b-admission.test.ts": "b1ee4e636dfbe8c2808526df61cb19cbd84b5aa6897e2f4d1620e5460e375d4a",
+      "server/calculation/trackBAdmissionWorkbook.ts": "138b55a6ed359e57e4f434b8699cba528f0ceaa83ab9136d1a50067e5c51aa96",
+      "script/run-paired-research-pipeline.ts": "0613ee581594138a964d6f8d4e5ad15580c1a839cb71a003e3a840d9165f5228",
+      "server/index.ts": "ca30d6d73e9dfa8bd8c355fdc3c400474043c901230b3a429fb0421f648e459a",
+      "shared/outputFieldSemantics.ts": "71e15d66b45504171c73016a78740953b2ae20d383b595a97312279918ab0f81",
+      "script/field-semantics-census.ts": "3900c2da81a13b64f70cf59db17ae203a41ff6176cfc5772206a873972880ede",
+      "script/next-census-accounting.test.ts": "89e46bca4fc9efabdb7ed0f57799b1a53161addaef6b2937af06982d6d3fa970",
+      "docs/field_semantics_census.json": "e3f5f8780d8547416a19d2b97c4f144e6e31b3de1597abe74b822899535768c7"
+    },
+    "unchangedSolverAndProtectedReceipts": {
+      "server/climateValuation/decarbConversion.ts": "9f5420029eba8200c45c273eb899b9f219b428b23650eaf8b67071328d65d4f5",
+      "server/financialData/asOfValuation.ts": "2079093ebee1aa5a39c1391dfadd07671193c5f442d384c24cfab90c38bda0ac",
+      "server/routes.ts": "653ccf33e628df5ee42a3ae5c7386ff996235c887ff3c904e90df7e2e44bd303"
+    }
+  },
+  "protectedBoundary": "Own solver/research tests,paired research/admission/API/export modules,explicit server/index.ts registration,global metadata registry and supplemental census integration only. No cache-module edits,protected FaIR source edits,canonical ledger edits,server/routes.ts edits,fullsuite,browser run,source-private validation reruns,historical study reruns,commit,deploy or external callback. Actual CLI test used only explicit synthetic negative temporary fixtures. No denied protected-hash dependency encountered; genuine independent source-review and authorized public report resolver provisioning remain unavailable, never inferred.",
+  "originalBoundary": "Original1001cohort,1000bound,one unknown historical summary and27withheld are unchanged by this work; new local admission/control metadata are supplemental and not original closure."
+}

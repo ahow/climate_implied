@@ -59,3 +59,36 @@ test("explicit sensitivity rates change only valuations, never outcome or filing
   assert.equal(missing.rows.length, 0);
   assert.ok(missing.exclusions.every(e => /rate/.test(e.reason)));
 });
+test("S11-040 missing original earnings statement gives a named origin-specific Gordon exclusion, not zero", () => {
+  const input = { ...base, incomes: [], observations: observations.map(o => ({ ...o, netProfit: null })) };
+  const missing = buildAsOfRows(input);
+  assert.deepEqual(missing.rows, []);
+  for (const origin of ["2017-07-31", "2018-07-31", "2019-07-31", "2020-07-31", "2021-07-31", "2022-07-31"])
+    assert.ok(missing.exclusions.some(e => e.companyId === "X" && e.origin === origin &&
+      e.reason === "No matching income statement filed before origin"), origin);
+  assert.deepEqual(input.incomes, []);
+  assert.equal(input.observations[1].date, "2017-07-22T00:00:00.000Z");
+});
+for (const [name, earnings] of [["positive", 80], ["negative", -80], ["zero", 0]] as const)
+  test(`S11-040 dated ${name} earnings Gordon fixture preserves actual r and native monetary basis`, () => {
+    const rate = .095;
+    const result = buildAsOfRows({ ...base,
+      incomes: incomes.map(i => ({ ...i, netIncome: earnings })),
+      observations: observations.map(o => ({ ...o, netProfit: null })),
+      costOfEquityByOrigin: Object.fromEntries([2017, 2018, 2019, 2020, 2021, 2022].map(y => [`${y}-07-31`, rate])),
+    });
+    const row = result.rows.find(r => r.origin === "2017-07-31")!;
+    assert.equal(row.informationDate, "2017-07-22");
+    assert.equal(row.baseFiscalDate, "2016-12-31");
+    assert.equal(row.baseFilingDate, "2017-02-20");
+    assert.equal(row.outcomeAvailableAt, "2021-02-20");
+    assert.equal(row.currency, "USD");
+    if (name === "positive") {
+      assert.equal(row.gordonCashFlowGrowth, rate - earnings / (1000 * 1e6));
+      assert.equal(row.gordonSignal, row.gordonCashFlowGrowth);
+    } else {
+      assert.equal(row.gordonCashFlowGrowth, null);
+      assert.equal(row.gordonSignal, null);
+      assert.ok(result.exclusions.some(e => e.origin === "2017-07-31" && e.reason === "Gordon unavailable: non-positive earnings"));
+    }
+  });

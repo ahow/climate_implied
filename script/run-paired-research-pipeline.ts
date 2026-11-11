@@ -1,6 +1,7 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { contentHash } from "../server/calculation/analysisManifest";
 import { runPairedResearchPipeline } from "../server/calculation/pairedResearchPipeline";
+import { buildTrackBAdmissionWorkbook } from "../server/calculation/trackBAdmissionWorkbook";
 
 async function main() {
   const [protocolPath, expectedHash, corpusPath] = process.argv.slice(2);
@@ -16,7 +17,13 @@ async function main() {
   catch (e) {
     if ((e as NodeJS.ErrnoException).code !== "EEXIST" || await readFile(path, "utf8") !== text) throw e;
   }
-  console.log(JSON.stringify({ path, efficacy: result.efficacy, scientificAcceptance: false,
+  const trackBWorkbookPath = `${directory}/${contentHash(result)}-track-b-admission.xlsx`;
+  const workbook = buildTrackBAdmissionWorkbook(result.trackBAdmission);
+  try { await writeFile(trackBWorkbookPath, workbook, { flag: "wx" }); }
+  catch (e) {
+    if ((e as NodeJS.ErrnoException).code !== "EEXIST" || !(await readFile(trackBWorkbookPath)).equals(workbook)) throw e;
+  }
+  console.log(JSON.stringify({ path, trackBWorkbookPath, efficacy: result.efficacy, scientificAcceptance: false,
     familySize: result.family.familySize, unavailable: result.family.unavailableHypotheses }));
 }
 main().catch(e => { console.error(e instanceof Error ? e.message : "Pipeline failed"); process.exitCode = 1; });

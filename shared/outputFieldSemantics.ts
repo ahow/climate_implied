@@ -23,6 +23,7 @@ import { thresholdDiagnosticSemantics } from "./thresholdDiagnosticSemantics";
 import { nativeThresholdSemantics } from "./nativeThresholdSemantics";
 import { conditionalCompanySemantics } from "./companyConditionalSemantics";
 import { warmingValidationReferenceSemantics } from "./warmingValidationReferenceSemantics";
+import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics } from "./trackBAdmissionContract";
 import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
@@ -40,6 +41,8 @@ const financial = {
 const peFinancial={...financial,geography:"Selected workbook universe; this endpoint does not apply a geography filter",
   missingness:"Require positive marketCap and positive netProfit for each member; omit dates unless both terciles contain eligible records. No missing-value replacement with zero."};
 export const outputFieldSemantics:OutputFieldSemantic[]=[
+  ...trackBAdmissionSemantics,
+  ...trackBAdmissionHttpSemantics,
   ...warmingValidationReferenceSemantics,
   ...conditionalCompanySemantics,
   ...indicatorFieldSemantics,
