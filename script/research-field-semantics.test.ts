@@ -8,6 +8,9 @@ import { driverFieldSpecs, driverConsumerFieldSpecs, referenceFieldSpecs } from 
 import { companySummarySpecs } from "../shared/companySummarySemantics";
 import { carryForwardEmissions, computeImputationStats } from "../server/climateValuation/emissionsCarryForward";
 import type { CvTimeSeries } from "../shared/schema";
+import XLSX from "xlsx";
+import { createHash } from "node:crypto";
+import { readWorkbookNumeric } from "../server/climateValuation/workbookMissingness";
 
 test("all actual research and pinned reference leaves bind without numerical modification",()=>{
   const response={status:"evidence-gaps-explicit",indicators:driverEvidenceRegistry()};
@@ -59,6 +62,19 @@ test("company summary definitions bind dates, null upload and actual carry-forwa
     {companyId:1,date:new Date("2024-02-01"),scope1Emissions:null,scope2Emissions:20,scope3Emissions:null},
     {companyId:2,date:new Date("2024-02-01"),scope1Emissions:null,scope2Emissions:null,scope3Emissions:null},
   ] as CvTimeSeries[];
+  const workbook = XLSX.utils.book_new();
+  const sheet = XLSX.utils.aoa_to_sheet([
+    ["date", "scope1", "scope2", "scope3"],
+    ["2024-01", 10, null, 30], ["2024-02", null, 20, null], ["2024-02", null, null, null],
+  ]);
+  XLSX.utils.book_append_sheet(workbook, sheet, "ObservedScopes");
+  const sourceId = createHash("sha256").update(XLSX.write(workbook, { type: "buffer", bookType: "xlsx" })).digest("hex");
+  observations.forEach((row, index) => Object.assign(row, { sourceCells: Object.fromEntries(
+    ["scope1Emissions", "scope2Emissions", "scope3Emissions"].map((field, col) => {
+      const address = XLSX.utils.encode_cell({ r: index + 1, c: col + 1 });
+      return [field, readWorkbookNumeric(sourceId, "ObservedScopes", address, sheet[address]).source];
+    }),
+  ) }));
   const imputation=computeImputationStats(carryForwardEmissions(observations));
   assert.deepEqual(imputation,{totalRecords:3,imputedRecords:1,imputedFraction:1/3,
     imputedByScope:{scope1:1,scope2:0,scope3:1}});

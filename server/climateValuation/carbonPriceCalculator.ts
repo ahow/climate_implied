@@ -82,15 +82,15 @@ function assignGroupByDecarbAmbition(
   return assignments;
 }
 
-function computeGroupAggregates(
+export function computeGroupAggregates(
   records: CvTimeSeries[],
   includeScope3: boolean,
   winsorize: boolean,
   winsorizePercentile: number
 ): { totalMarketCap: number; totalProfit: number; totalEmissions: number; peRatio: number; count: number } {
   const validRecords = records.filter((ts: CvTimeSeries) =>
-    ts.marketCap != null && ts.netProfit != null &&
-    (ts.scope1Emissions != null || ts.scope2Emissions != null)
+    ts.marketCap != null && ts.netProfit != null && Number.isFinite(ts.netProfit) &&
+    calculateCarbonIntensity(ts.scope1Emissions, ts.scope2Emissions, ts.scope3Emissions, ts.marketCap, includeScope3) !== null
   );
 
   if (validRecords.length === 0) {
@@ -100,9 +100,10 @@ function computeGroupAggregates(
   let marketCaps = validRecords.map((ts: CvTimeSeries) => ts.marketCap!);
   let profits = validRecords.map((ts: CvTimeSeries) => ts.netProfit!);
   let emissions = validRecords.map((ts: CvTimeSeries) => {
-    const s1 = ts.scope1Emissions || 0;
-    const s2 = ts.scope2Emissions || 0;
-    const s3 = includeScope3 ? (ts.scope3Emissions || 0) : 0;
+    // Eligibility above requires every included scope; never sum an unknown as zero.
+    const s1 = ts.scope1Emissions!;
+    const s2 = ts.scope2Emissions!;
+    const s3 = includeScope3 ? ts.scope3Emissions! : 0;
     return s1 + s2 + s3;
   });
 
@@ -138,10 +139,16 @@ export async function calculateTotalBasedCarbonPrice(
     overlays: [...(overlay?.ids ?? [])], cutoff: overlay?.cutoff ?? null,
   });
   const cacheMethod = identity.cacheKey;
+  const persist = async (results: CarbonPriceResult[]) => writeCompanyCarbonCache(identity, results, async () => {
+    await db.insert(projectionCache).values({
+      cacheKey: cacheMethod, projectionYear: 2024, category: "finance", region: null,
+      resultData: results,
+    }).onConflictDoNothing({ target: projectionCache.cacheKey });
+  });
 
   const groupLabels = getGroupLabels(inferenceMethod);
 
-  if (!geography) {
+  {
     const cached = await readCompanyCarbonCache(identity, async () => {
       const [row] = await db.select().from(projectionCache)
         .where(eq(projectionCache.cacheKey, cacheMethod));
@@ -154,7 +161,7 @@ export async function calculateTotalBasedCarbonPrice(
         .map(row => ({ ...row, date: new Date(row.date) }))
         .sort((a, b) => a.date.getTime() - b.date.getTime());
     }
-  } else witnessCompanyCarbonCache("bypass", identity);
+  }
 
   witnessCompanyCarbonCache("compute", identity);
   console.log(`[CarbonPrice] Computing on-the-fly for ${cacheMethod}...`);
@@ -163,7 +170,10 @@ export async function calculateTotalBasedCarbonPrice(
   const companyIdSet = new Set(filteredCompanies.map(c => c.id));
   const filteredTimeSeries = allTimeSeries.filter(ts => companyIdSet.has(ts.companyId));
 
-  if (filteredTimeSeries.length === 0) return [];
+  if (filteredTimeSeries.length === 0) {
+    await persist([]);
+    return [];
+  }
 
   const companySectors = new Map<number, string | null>(filteredCompanies.map((c: CvCompany) => [c.id, c.sector]));
 
@@ -267,14 +277,7 @@ export async function calculateTotalBasedCarbonPrice(
   // Match the warm JSONB read's ordering even for irregular company histories.
   // The HTTP handler already sorts this way; analytical values are unchanged.
   results.sort((a, b) => a.date.getTime() - b.date.getTime());
-  if (!geography && results.length > 0) {
-    await writeCompanyCarbonCache(identity, results, async () => {
-      await db.insert(projectionCache).values({
-        cacheKey: cacheMethod, projectionYear: 2024, category: "finance", region: null,
-        resultData: results,
-      }).onConflictDoNothing({ target: projectionCache.cacheKey });
-    });
-  }
+  await persist(results);
 
   if (results.length > 0) {
     const sample = results[Math.floor(results.length / 2)];

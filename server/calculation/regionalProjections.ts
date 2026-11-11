@@ -57,7 +57,7 @@ let owidCache: { intensities: Record<string, IntensityResult>; fetchedAt: number
  */
 export async function getRegionalCarbonIntensities(): Promise<Record<string, IntensityResult>> {
   if (owidCache && Date.now() - owidCache.fetchedAt < OWID_CACHE_TTL_MS) {
-    return owidCache.intensities;
+    return structuredClone(owidCache.intensities);
   }
 
   const staticResult: Record<string, IntensityResult> = {};
@@ -101,14 +101,14 @@ export async function getRegionalCarbonIntensities(): Promise<Record<string, Int
     }
 
     owidCache = { intensities: result, fetchedAt: Date.now() };
-    return result;
+    return structuredClone(result);
   } catch (err) {
     console.warn(
       "Regional OWID carbon-intensity fetch failed; using static fallback:",
       err instanceof Error ? err.message : err
     );
     owidCache = { intensities: staticResult, fetchedAt: Date.now() };
-    return staticResult;
+    return structuredClone(staticResult);
   }
 }
 

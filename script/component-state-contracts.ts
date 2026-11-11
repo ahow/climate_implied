@@ -34,6 +34,15 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "track-b-research.tsx": query("Empty source-pinned catalog is explicit; absent/malformed selected report has a named absence/invalid reason, never an indefinite loader.", {
+    loading: "Actual catalog/report pending read suppresses previous success and download links; each has a named loading message.",
+    error: "Catalog and selected report failures take precedence over retained data; no prior values or downloads are displayed.",
+    selection: "Exact protocol/report/disclosure query key plus verified browser report/domain SHA256 and server identity headers; no automatic latest/current fallback.",
+    null: "Every withheld period result remains explicit unavailable(null); null source/hash references have named absence, not zero.",
+    zero: "No numerical TrackB efficacy is supplied; false acceptance flags and null results are distinct, never fabricated zero returns.",
+    refusal: "Publication authorization is not Stage9 authentication; actual per-period failures, source hashes and operator publication prerequisites are shown.",
+    scope: "Only genuine public catalog/allowlisted report reads and exact JSON/XLSX downloads. Isolated injected SSR states are engineering tests, never real approvals.",
+  }),
   "analysis-selection.tsx": query("Unprovisioned/empty archive inventory is explicit; invalid saved IDs require reset.", {
     loading: "useReadQuery suppresses prior inventory options while pending; loading is explicit. Apply is busy/disabled during verification.",
     error: "Inventory errors and apply-verification errors are explicit. Failed verification leaves current selection unchanged.",
@@ -193,7 +202,7 @@ export const filePolicies: Record<string, Policy> = {
     refusal: "Physical comparison withheld: no defensible valuation-to-activity mapping.",
     selection: "Scoring/geography/dataset keys own group results; pending/error never shows prior selected result.",
   }),
-  "methodology.tsx": controls("Static methodological definitions/caveats, pinned WarmingValidationReference and independently queried DriverEvidenceDisclosure. Reference is not a computed result or model input. No market/Tier2/TrackB numeric results."),
+  "methodology.tsx": controls("Static caveats, pinned WarmingValidationReference and independently queried DriverEvidenceDisclosure/TrackBResearch. Reference is not a computed input; TrackB is per-period structural/refusal disclosure, not numeric efficacy."),
   "news-sentiment.tsx": query("Missing cached response, daily volume or positive-count sentiment observations have separate reasons.", {
     null: "No sentiment denominator => no neutral mean/percentage zero; no volume observations => weekly average unavailable. True volume zero remains zero.",
     refusal: "Operator-refresh-required and provider-configuration errors are distinct; UI never makes provider refresh calls.",
@@ -218,6 +227,7 @@ export const focusedRenderComponents = new Set([
   "ThresholdDiagnosticDownload", "Dashboard", "LegacyDashboard", "DataManagement", "DecarbGapSignal",
   "TimeSeriesChartTooltip", "BacktestTooltip", "DecarbSignal", "Methodology", "NewsSentiment",
   "WarmingValidationReference",
+  "TrackBResearch",
 ]);
 const remainingCohort = new Set([
   "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
@@ -282,7 +292,9 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: name === "WarmingValidationReference"
+    focusedEvidence: name === "TrackBResearch"
+      ? "script/track-b-admission.test.ts: direct imported TrackBResearch SSR covers catalog/report loading,error,empty,missing,invalid and exact selected absent-period reasons/download identities. Actual DEV filesystem resolver/HTTP/XLSX/browser-hash tests exercise the same contract; no old61component suite or browser interaction rerun is claimed."
+      : name === "WarmingValidationReference"
       ? "script/warming-validation-reference.test.ts: direct imported component SSR verifies1.37SR1.5headline,1.24[1.0–1.5]decade,2024inventory,source/date qualifications,five global field IDs and decoded local JSON equality. script/component-state-census.test.ts directly renders the61stconsumer and checks reachability/policy/finite count; old60component suites are not rerun or claimed reverified."
       : ["IndicatorDetailDialog", "IndicatorSeriesTooltip"].includes(name)
       ? "script/valuation-indicator-partial-state.test.ts plus script/indicator-portal-followup.test.ts: actual modal construction, persistent accessible header/trigger/refetch handlers and empty-source zero tooltip. Browser focus/portal follow-up remains separate."

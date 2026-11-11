@@ -34,6 +34,8 @@ import { trackBAdmissionFieldSpecs, trackBAdmissionSemantics, trackBAdmissionHtt
   trackBAdmissionExportLeafBindings } from "../shared/trackBAdmissionContract";
 import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
 import { supplementalSheetBindings } from "../shared/supplementalSheetBindings";
+import { trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
+import { trackBPublicCatalog } from "../server/trackBPublicCatalog";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -58,6 +60,8 @@ const warmingExportLeafBindings=warmingReferenceExportLeafBindings();
 const warmingApiLeafBindings=new Map<string,{id:string;transform:string}>();
 const trackBApiSurface='API GET "/api/research/track-b-admission"';
 const trackBJsonSurface='API GET "/api/research/track-b-admission/export.json"';
+const trackBXlsxSurface='API GET "/api/research/track-b-admission/export.xlsx"';
+const trackBCatalogSurface='API GET "/api/research/track-b-admission/catalog"';
 const trackBWorkbookSurface="XLSX server/calculation/trackBAdmissionWorkbook.ts";
 const trackBLeafBindings=new Map<string,{id:string;transform:string}>();
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
@@ -328,7 +332,7 @@ if(!baseline) {
   if(!handler.includes("res.json(report)") || !handler.includes(".json(trackBAdmissionExportDocument(report))") ||
     !handler.includes("if (!readReport)") || !handler.includes("engineering remains incomplete"))
     throw new Error("Track B exact report/export/refusal handler changed");
-  if(index.indexOf("registerTrackBAdmissionRoutes(app)")<index.indexOf("app.use(releaseSafety())") ||
+  if(index.indexOf("registerTrackBAdmissionRoutes(app, loadPublishedTrackBAdmission)")<index.indexOf("app.use(releaseSafety())") ||
     index.indexOf("app.use(releaseSafety())")<0)
     throw new Error("Track B handler must be mounted after releaseSafety");
   if(!cli.includes("buildTrackBAdmissionWorkbook(result.trackBAdmission)") ||
@@ -359,6 +363,15 @@ if(!baseline) {
   for(const sheet of ["Field semantics","Column bindings"] as const)
     for(const [column,binding] of Object.entries(supplementalSheetBindings(sheet)))
       add(`${trackBWorkbookSurface}:${sheet}`,`[].${column}`,"string",binding,"server/calculation/trackBAdmissionWorkbook.ts");
+  for(const item of [...supplementalTypedApiEntries].filter(e=>e.surface.startsWith(trackBWorkbookSurface)))
+    add(trackBXlsxSurface,`${item.surface.slice(trackBWorkbookSurface.length+1)}.${item.field}`,item.type,
+      trackBLeafBindings.get(`${item.surface}|${item.field}`)!);
+  for(const semantic of trackBPublicCatalogSemantics)
+    add(trackBCatalogSurface,semantic.id.slice("trackBPublicCatalog.".length),
+      semantic.id.endsWith("reports[]")?"empty array or exact pinned report domain":
+      semantic.id.endsWith("Acceptance")||semantic.id.endsWith("Evidence")?"false":"string",
+      {id:semantic.id,transform:"Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review"});
+  add(trackBCatalogSurface,"error","string",{id:"trackBAdmissionHttp.error",transform:"Catalog query override refusal; no publication approval"});
 }
 if(!baseline) {
   const source=program.getSourceFiles().find(s=>relativeSource(s.fileName)==="server/warmingValidationReferenceApi.ts");
@@ -499,19 +512,24 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
   supplementalQualifiedChanges:{
     trackBAdmission:{
-      definitions:trackBAdmissionSemantics.length+trackBAdmissionHttpSemantics.length,
-      ids:[...trackBAdmissionSemantics,...trackBAdmissionHttpSemantics].map(s=>s.id),
+      definitions:trackBAdmissionSemantics.length+trackBAdmissionHttpSemantics.length+trackBPublicCatalogSemantics.length,
+      ids:[...trackBAdmissionSemantics,...trackBAdmissionHttpSemantics,...trackBPublicCatalogSemantics].map(s=>s.id),
       reportSchemaLeaves:trackBAdmissionFieldSpecs.length,
-      api:{surface:trackBApiSurface,mounted:true,authorizedPublicReportResolverProvisioned:false,
-        successfulPublicReportEngineeringComplete:false,defaultStatus:503,
-        qualification:"Declared report/export contracts and mounted explicit refusals are not a completed public report reader. Existing CLI archives are not automatically authorized for public disclosure."},
+      api:{surface:trackBApiSurface,mounted:true,authorizedPublicReportResolverProvisioned:true,
+        readerAndOfflinePublicationEngineeringImplemented:true,realReportPublicationDemonstrated:false,
+        authorizedRealReportPins:trackBPublicCatalog.length,unlistedStatus:404,
+        qualification:"Actual trusted source-pinned disclosure reader and offline publisher,DEV synthetic end-to-end tested. No genuine report is yet authorized; source rights review/pins/publication are operator prerequisites. Private pipeline/filing archives are never runtime fallbacks."},
       jsonExport:{surface:trackBJsonSurface,leafBindings:trackBAdmissionExportLeafBindings()},
       workbook:{source:"server/calculation/trackBAdmissionWorkbook.ts",cli:"script/run-paired-research-pipeline.ts",
         reasonColumns:trackBWorkbookReasonBindings,identityFields:trackBWorkbookIdentityFields,
         metadataColumns:31,qualification:"Actual CLI immutable XLSX; exact nullable cells JSON.stringify; no caller-mode authentication or efficacy. Metadata columns are existing supplemental definitions, not new scientific quantities."},
       typedApiAndWorkbookFields:supplementalTypedApiEntries.filter(e=>trackBLeafBindings.has(`${e.surface}|${e.field}`))
         .map(e=>({...e,...trackBLeafBindings.get(`${e.surface}|${e.field}`),bound:true})),
-      boundary:"24 supplemental definitions only; actual per-period structural/refusal engineering, no authenticated positive admission. Original1000/1001,unknown summary and withheld fields unchanged.",
+      catalog:{surface:trackBCatalogSurface,definitions:trackBPublicCatalogSemantics.length},
+      xlsxApi:{surface:trackBXlsxSurface,qualification:"Exact same validated report and source identities as JSON/UI; nullable cells preserve explicit JSON null"},
+      headerBindings:{reportHash:"trackBPublicCatalog.reports[].reportHash",disclosureHash:"trackBPublicCatalog.reports[].disclosureHash",
+        pipelineResultHash:"trackBPublicCatalog.reports[].pipelineResultHash",periodDomainHash:"trackBPublicCatalog.reports[].periodDomainHash"},
+      boundary:"35 supplemental definitions:24report/refusal plus11publication controls. Publication never authenticates Stage9/original inputs or claims efficacy. Original1000/1001,unknown summary and withheld fields unchanged.",
     },
     warmingValidationReference:{
       definitions:warmingValidationReferenceSemantics.length,ids:warmingValidationReferenceSemantics.map(s=>s.id),
@@ -756,6 +774,8 @@ const reconciliation = baseline ? {} : {
       trackBAdmissionApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBApiSurface).length,
       trackBAdmissionJsonExportLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBJsonSurface).length,
       trackBAdmissionWorkbookLeafSlots:externalTypedApiFields.filter(e=>e.surface.startsWith(trackBWorkbookSurface)).length,
+      trackBAdmissionXlsxApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBXlsxSurface).length,
+      trackBAdmissionCatalogLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBCatalogSurface).length,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

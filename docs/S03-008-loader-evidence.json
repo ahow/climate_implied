@@ -1,0 +1,136 @@
+{
+  "criterion": "S03-008",
+  "requirement": "Negative test: a blank source cell never becomes zero; every infilled value can be traced back to its original blank.",
+  "assessment": "Read-only compatibility verified against the actual authorized retained workbook after correcting three integration defects. Invalid qualifiers are still refused. No issuer/scientific approval is implied.",
+  "privacy": "Public evidence contains paths, hashes, aggregate counts and dispositions only. No private source cell coordinates, issuer rows, economic values, raw workbook payload or private calculation/export is published.",
+  "retainedInput": {
+    "path": "attached_assets/CarbonData2301a_(1)_1770595242257.xlsx",
+    "sha256": "a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+    "sourceBytesModified": false,
+    "scope": "Authorized retained current-workbook file; mutable database selection was not read or modified."
+  },
+  "actualReadOnlyExecution": {
+    "command": "npx tsx script/audit-retained-workbook-loader.ts 'attached_assets/CarbonData2301a_(1)_1770595242257.xlsx'",
+    "audit": "generated-artifacts/s03-008/retained-loader-counts.json",
+    "auditSha256": "ed818eca5d7eaa120aca40ef70c0ccbcf2272a3a1cb218525b31cf0e879c05b8",
+    "actualMethods": ["validateRequiredSheets", "parseAndPrepare", "generateTimeSeriesStreaming"],
+    "isolation": "Separate CLI process. Actual streamed batches counted then discarded; no private data export or snapshot persistence.",
+    "status": "accepted",
+    "companies": 2442,
+    "uniqueCompanyIsins": 2442,
+    "streamedRows": 470341,
+    "duplicateCompanyDateRows": 0,
+    "sourceStateValueMismatches": 0,
+    "databaseReads": 0,
+    "databaseWrites": 0,
+    "approvalWrites": 0,
+    "cacheWrites": 0
+  },
+  "consumedNumericCellInventory": {
+    "definition": "Actual numeric-parser consumption, not every unused spreadsheet cell. Financial alias columns are validated; RI emits/reads only the authoritative last mapped column.",
+    "total": 1976823,
+    "blank": 21512,
+    "providerNAUnavailable": 252110,
+    "observedZero": 1450,
+    "observedOther": 1701751,
+    "unsupportedRejected": 0,
+    "bySheet": {
+      "GreenRev": { "consumed": 2440, "blank": 33, "providerNA": 0, "observedZero": 454, "unsupported": 0 },
+      "EmissionTargets": { "consumed": 1573, "blank": 0, "providerNA": 0, "observedZero": 13, "unsupported": 0 },
+      "S1": { "consumed": 36510, "blank": 4622, "providerNA": 0, "observedZero": 275, "unsupported": 0 },
+      "S2": { "consumed": 36510, "blank": 4621, "providerNA": 0, "observedZero": 95, "unsupported": 0 },
+      "S3": { "consumed": 27690, "blank": 12236, "providerNA": 0, "observedZero": 6, "unsupported": 0 },
+      "MV": { "consumed": 471113, "blank": 0, "providerNA": 56889, "observedZero": 0, "unsupported": 0 },
+      "PE": { "consumed": 466481, "blank": 0, "providerNA": 69417, "observedZero": 0, "unsupported": 0 },
+      "Profit": { "consumed": 464165, "blank": 0, "providerNA": 69122, "observedZero": 16, "unsupported": 0 },
+      "RI": { "consumed": 470341, "blank": 0, "providerNA": 56682, "observedZero": 591, "unsupported": 0, "nonAuthoritativeAliasColumns": 4 }
+    },
+    "dispositions": {
+      "blankOrNull": "Retained null with original source identity; never an observed zero.",
+      "exactFinancialNA": "Only exact trimmed NA on MV/PE/Profit/RI is the reviewed retained-provider unavailable sentinel. It remains null with state=unavailable and missingness=provider-NA, not state=blank, not zero, and not eligible for original-blank infill.",
+      "otherNAOrNotApplicable": "N/A, not-applicable and NA outside the four reviewed financial sheets remain refused.",
+      "belowThreshold": "Refused; never interpreted as a measured bound or zero.",
+      "booleanAndExcelError": "Refused, unchanged. None occur in actual consumed cells of this retained input.",
+      "prefixPercentInfinity": "Refused, unchanged.",
+      "trueZero": "Observed numeric zero retained, separate from missing/unavailable."
+    }
+  },
+  "integrationDefectsFoundAndFixed": [
+    {
+      "defect": "Initial strict policy rejected the actual retained workbook.",
+      "observed": "252110 consumed financial cells use exact NA; original strict-load execution refused.",
+      "beforeLog": "/tmp/s03-008-retained-before.json",
+      "fix": "Narrow reviewed provider-NA unavailable state, not blanket token acceptance or blank/zero coercion."
+    },
+    {
+      "defect": "Exact-day-only Profit matching made all471113 then-streamed netProfit values null.",
+      "beforeLog": "/tmp/s03-008-retained-final.json",
+      "observed": "193 Profit periods; zero exact MV timestamp matches;192 unique same-calendar-month matches and no ambiguous Profit months.",
+      "fix": "Unique same-calendar-month source-period alignment is explicit, not nearest30-day borrowing or original-blank infill. Actual Profit source date/cell and method survive immutable input/export. Cross-month and ambiguous alignment remain unavailable/refused.",
+      "finalCoverage": { "alignedKnownProfitValues": 391908, "observedZeroProfitValues": 16, "nonzeroProfitValues": 391892, "unavailableProfitValues": 78433 },
+      "limitation": "Alignment is an explicit monthly engineering interpretation, not approval of financial source periods. One unmatched period remains unavailable; no cross-month value is fabricated."
+    },
+    {
+      "defect": "Alias handling could pair an earlier value with a later missing-source identity, and emitted772 duplicate RI company/date rows.",
+      "beforeLog": "/tmp/s03-008-retained-compatible.json",
+      "fix": "Last mapped alias is authoritative including blank/NA; no earlier-value backfill. RI emits one original per company/date. Later explicit-blank metadata/scope rows also do not inherit earlier zero/value.",
+      "final": "Four non-authoritative RI alias columns suppressed; duplicate company/date rows0; source-state/value mismatches0."
+    }
+  ],
+  "streamedValueStateCounts": {
+    "definition": "Output field counts; annual scope cells may recur across monthly rows, so these are not unique source-cell counts.",
+    "nullValues": 728572,
+    "zeroValues": 5119,
+    "fieldDetails": "generated-artifacts/s03-008/retained-loader-counts.json"
+  },
+  "privateValidatorImpact": {
+    "reproducibleCommand": "npx tsx script/audit-loader-private-validator-dependencies.ts",
+    "inventory": "generated-artifacts/s03-008/retained-validator-impact.json",
+    "inventorySha256": "6ced80609bf59d121c1069b50a290ad8117261b209ef0107d56772518d060300",
+    "validatorsInspected": 29,
+    "issuerValidatorsWithChangedLoaderDependencies": 0,
+    "moduleOnlyDependency": "validate-driver-retained-private.ts imports unchanged driverEvidenceRegistry from the module containing the separately changed interpolation helper; it does not consume this workbook loader or the modified interpolation.",
+    "pinnedRuntimeReview": {
+      "path": "script/pinned-company-source.ts",
+      "sha256": "e70aec966d128f8f48f2abad36755f0c32fb23777939fb30f2c89a291f3c3867",
+      "result": "Pinned historical replay loads its three authenticated archived company kernels plus archived analysisManifest, not the mutable workbook loader. No mutable-current fallback was added."
+    },
+    "sourceInputInvalidationsByThisTask": 0,
+    "requiredRerunsForLoaderInputInvalidation": [],
+    "additionalReadOnlyIssuerCheck": {
+      "command": "npx tsx script/validate-issuer-cashflow-private.ts",
+      "validatorSha256": "a2ef46efe897fa938dbdcd2daa589a22a5262230abb30986a7dc839c9264a06b",
+      "exitCode": 0,
+      "privateLog": "/tmp/s03-008-private-issuer-check.log",
+      "interpretation": "Existing retained evidence integrity check, not new issuer approval."
+    },
+    "boundary": "Static relative/@shared dependency traversal plus manual dynamic pinned-loader review. No retained private input or historical receipt was regenerated; unrelated mandatory/pinned validators were not rerun."
+  },
+  "focusedVerification": {
+    "integrationCommand": "S03_008_EVIDENCE_DIR=generated-artifacts/s03-008/retained-compatibility-fixtures npx tsx --test script/workbook-missingness-integration.test.ts",
+    "integrationPassed": 23,
+    "affectedExistingPassed": 2,
+    "affectedExistingSkipped": 5,
+    "failed": 0,
+    "typecheck": "npx tsc --noEmit --pretty false passed",
+    "logs": ["/tmp/s03-008-retained-final-tests.log", "/tmp/s03-008-retained-final-regressions.log", "/tmp/s03-008-retained-final-types.log"],
+    "newRealBranches": ["financial provider-NA unavailable identity/export", "non-financial NA still refused", "unique same-month Profit source date/method", "cross-month Profit not borrowed", "financial last-alias missingness not backfilled", "RI one-original alias policy", "metadata/scope last blank not backfilled from earlier zero"]
+  },
+  "remainingFinitePathInventory": [
+    { "path": "actual retained strict loader", "status": "complete-read-only", "proof": "470341 streamed rows; zero unsupported cells, duplicate originals or source/value disagreements" },
+    { "path": "blank/null/qualifier/zero → immutable input → actual calculator/export", "status": "complete-isolated-fixtures", "proof": "23 integration tests, including current compatibility branches" },
+    { "path": "mandatory/private/pinned issuer impact", "status": "complete-impact-review", "proof": "29 validators inventoried; no loader input invalidation; one additional read-only private validator passed" },
+    { "path": "parent browser/full-suite integration", "status": "pending-parent", "proof": "Not run by this worker" },
+    { "path": "actual private full snapshot persistence/model export/import/approval", "status": "not-authorized-and-not-performed", "proof": "No private payload export, DB access, approval or cache writes; portable full pipeline was tested instead" }
+  ],
+  "sourceSha256": {
+    "script/audit-retained-workbook-loader.ts": "7dfdec206e3a519be34d7793ceb2ffefc0f08157de756bd60a5a7daef0048d47",
+    "script/audit-loader-private-validator-dependencies.ts": "3edc3dab3ddf1f6d240a383da70ea45974959b160569550c5d3044fb4bb96c0b",
+    "server/climateValuation/dataProcessor.ts": "b170bd9afb02a66bf5c2011f872069ad2053fc60e6ec61a9ce5c45b760a79ed6",
+    "server/climateValuation/workbookMissingness.ts": "4a980c2b20935c6741bd4d0db811294661387d361764a493d47fe5b22cf76bff",
+    "server/climateValuation/workbookMissingnessExport.ts": "68adbbaf60081463c3f075c8aa899639ea0a35a20a94f70751397d2ab1b16d88",
+    "script/workbook-missingness-integration.test.ts": "be24e4efe3aa365689828966e22bb9c2274323ea200cd6d120c78b7fcb584438"
+  },
+  "previewSmoke": "generated-artifacts/s03-008/retained-compatibility-preview.jpg",
+  "scopeSafety": "No routes, TrackB, protectedFaIR, cache code, canonical ledgers, deployment, publish or callbacks changed. No workflows started/restarted. Source bytes and private evidence inputs remain read-only."
+}

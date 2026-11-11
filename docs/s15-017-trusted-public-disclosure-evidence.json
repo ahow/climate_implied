@@ -1,0 +1,72 @@
+{
+  "criterion": "S15-017: Track B shows “unavailable” for every period failing its evidence requirements.",
+  "bindingConjunction": "Retrospective simulation on verified past inputs(Stage9) AND original,not-restated filings; unavailable wherever either requirement is unmet.",
+  "assessment": "Actual retained-report publication/resolver/download/UI engineering is implemented and tested end-to-end with isolated explicitly synthetic DEV authorization only. It replaces the production unconfigured503 stub with a genuine source-pinned public disclosure reader. No genuine rights-cleared report has been supplied or authorized: production source catalog remains empty, catalog GET is empty,unlisted report GET is404,and the UI gives the exact operator prerequisite. No real publication,authenticated positive TrackB admission,historical efficacy or canonical closure is claimed.",
+  "existingPolicyInspection": {
+    "trustedCatalogPattern": "Read server/calculation/fairArtifactCatalog.ts and fairArtifactRoutes.ts only: reviewed source-controlled content pins,exact immutable selection,fail-closed retained bytes,not a scientific acceptance or runtime availability claim. Protected FaIR files were not edited.",
+    "operatorAuthority": "server/operatorContract.ts and server/releaseSafety.ts: authorized-workspace-shell is existing authority; HTTP principal/role is not implemented. GET is read-only; public mutations remain403. No new token,role,localhost bypass,DEV public write,review or approval endpoint introduced.",
+    "financialApprovalBoundary": "server/financialData/approvalArchive.ts is current-only financial review archiving,not a public backtest-disclosure or original-vintage authority. No reuse/inference of its approvals and no database schema/review changes.",
+    "storageBoundary": "server/storage.ts is user/projection-cache memory storage,not an authorized research report catalog. Existing paired CLI produces retained JSON; a generated file is not automatically permission to publish it."
+  },
+  "implementedChain": [
+    "Existing run-paired-research-pipeline CLI computes the actual pipeline result and writes immutable result JSON/XLSX. It now also writes the strict allowlisted trackBAdmission report plus an UNPUBLISHED/not-reviewed disclosure candidate,never an automatic approval.",
+    "The disclosure binds exact protocolHash,reportHash,pipelineResultHash,corpusHash and ordered periodDomainHash. The domain includes specification,origin,informationCutoff,executionAt,endAt for every frozen period,including absent periods.",
+    "server/trackBPublicCatalog.ts is the source-reviewed publication authority following the existing source-pin pattern. It has zero genuine entries. Reviewer text,self-hashes,caller mode or a disclosure file on disk alone grant no authority.",
+    "The offline publish-track-b-disclosure CLI can only copy already catalog-pinned,published,reviewed public bytes from fixed hash-derived candidate filenames. It checks the real retained pipeline hash and its exact trackBAdmission hash,uses immutable wx writes,and cannot approve or edit a catalog.",
+    "server/trackBDisclosureStore.ts reads ONLY hash-derived public report/disclosure files under a fixed root. It verifies source-catalog uniqueness,strict schemas,publication/rights state,canonical hashes and all report/domain identities. It refuses missing/unlisted404,unpublished/unauthorized403,corrupt/ambiguous503; no private pipeline,filing or provider fallback.",
+    "Symlink roots/files are refused; bounded regular files are opened readonly with O_NOFOLLOW and descriptor-level size checks. No request-supplied path or review is accepted.",
+    "server/index.ts mounts the actual trusted reader after releaseSafety,without protected routes edits. GET catalog,report,JSON and XLSX share exact source identities; expected reportHash/disclosureHash selectors refuse changed identity409 rather than replacing a selection.",
+    "Methodology renders actual TrackBResearch. It selects only source-pinned protocols,checks report/domain SHA256 in browser against selected catalog and server headers,and withholds stale results/downloads on loading,error,missing,invalid or mismatched selection. Actual unavailable periods and individual gate/company/artifact reasons remain explicit."
+  ],
+  "realOperatorPrerequisite": [
+    "Under the existing authorized workspace-shell boundary,run the existing paired pipeline CLI with genuine frozen protocol,precommitted protocol hash and retained corpus. Do not rerun/refreeze an old private study merely to satisfy a new code hash. Its report/disclosure outputs are only candidates.",
+    "The genuine workspace/publication operator must review the EXACT allowlisted report and redistribution rights. Clear any company/provider-derived/licensed content; do not copy original filings,licensed provider payloads or full private pipeline objects to public storage.",
+    "Retain a NEW strict track-b-public-disclosure-1 manifest with status published,classification retained-research,actual operator-public-disclosure reviewer/reviewedAt/publicRightsStatement,and exact protocol/report/pipeline/corpus/period-domain hashes. Keep scientificAcceptance=false,investmentEvidence=false,providerPayloadIncluded=false. Preserve the original unpublished candidate unchanged; its changed publication manifest has a different canonical content hash.",
+    "Through a genuinely reviewed source change,add the exact five-field pin(protocolHash,reportHash,disclosureHash,pipelineResultHash,periodDomainHash) to server/trackBPublicCatalog.ts. Source review is authority; filling reviewer text or sending HTTP/query review data is not approval. No such real pin was created by this task.",
+    "Place the exact reviewed manifest at generated-artifacts/paired-research-pipeline/<disclosureHash>.disclosure.json beside the actual retained pipeline and allowlisted report candidates,then run npx tsx script/publish-track-b-disclosure.ts EXACT_PROTOCOL_SHA256. The default empty catalog genuinely refuses this operation rather than manufacturing authorization.",
+    "The normal application release must contain the reviewed source pin and retained public-only files under generated-artifacts/track-b-public. Public GET validates selected content at read time. Publication permission never substitutes for independent Stage9/original-source authentication."
+  ],
+  "engineeringFixtureBoundary": "Root/catalog injection is trusted-code-only and requires both actual NODE_ENV=development and explicit allowEngineeringFixtures=true. Injected catalogs may authorize ONLY classification engineering-fixture with synthetic-development-only review carrying the literal no-real-approval qualification. Production and injected real-operator records are refused. Production defaults never load test fixtures or accept roots/catalogs/reviews from HTTP/env inputs.",
+  "scientificBoundary": "The independent Stage9/original-filing review store remains unprovisioned. All current admission records retain status unavailable,result:null,scientificAcceptance=false,investmentEvidence=false,authenticityVerified=false. New publication authorization does not satisfy those scientific gates. Gordon primary,actual r,dates,monetary basis,numerical estimators,accounting and frozen family cells are unchanged.",
+  "supplementalCensus": {
+    "registeredDefinitions": 1879,
+    "newPublicationControlDefinitions": 11,
+    "trackBDefinitionsTotal": 35,
+    "trackBReportAndControlDefinitionsBefore": 24,
+    "trackBSupplementalDomainsBefore": 535,
+    "trackBSupplementalDomainsAfter": 612,
+    "newDomains": "65actual readonly HTTP XLSX domains plus12catalog/error domains,including the explicit empty-catalog container; not extra measured quantities",
+    "externalSlotsBefore": 1459,
+    "externalSlotsAfter": 1536,
+    "externalBoundAfter": 1536,
+    "expandedPublicBefore": 2791,
+    "expandedPublicAfter": 2868,
+    "expandedBoundBefore": 2790,
+    "expandedBoundAfter": 2867,
+    "originalPublicUnchanged": 1001,
+    "originalBoundUnchanged": 1000,
+    "closedOriginalUnchanged": 571,
+    "unknownHistoricalSummaryUnchanged": 1,
+    "withheldUnchanged": 27,
+    "newComponent": "TrackBResearch,reachable only through actual Methodology component tag;62components total(original60 plus pinned warming reference plus TrackB),1845dynamic expressions,129binding expressions. These are source/engineering denominators,not scientific validation.",
+    "scope": "Only the new UI states were directly rendered for this follow-up. Four finite census/policy tests were run; the old61component rendered-state suites were not rerun or claimed reverified. Metadata/header/catalog serialization does not close original1001."
+  },
+  "verification": {
+    "command": "npx tsx --test script/track-b-admission.test.ts script/paired-research-pipeline.test.ts script/paired-research-accounting.test.ts script/research-family.test.ts script/next-census-accounting.test.ts script/operational-field-semantics.test.ts script/remaining-field-semantics.test.ts script/research-field-semantics.test.ts script/component-state-census.test.ts script/valuation-integrity.test.ts script/asof-valuation.test.ts script/valuation-statistics.test.ts script/cash-flow-valuation.test.ts",
+    "pass": 84,
+    "fail": 0,
+    "skip": 0,
+    "additional": "Typecheck passed. Field census regenerated and --check passed. An intervening concurrent source-position change affected only workbookBuilderInventory39->39; census was explicitly reconciled and checked again after typecheck,not silently treated as scientific evidence.",
+    "newBehaviorTests": "Actual CLI result/candidate chain,immutable repeat publication,actual DEV retained filesystem resolver and HTTP JSON/XLSX,real source/document hash headers,browser content/domain SHA256,absent frozen periods,empty genuine catalog,unpublished/unreviewed denial,unknown/missing/corrupt/symlink/ambiguous/changed selection refusal,private schema-key rejection,production synthetic authorization denial,public POST403,new direct UI SSR loading/error/empty/missing/invalid/success states.",
+    "gordon": "Named positive/negative/zero/missing actual Gordon fixtures and dated native monetary/r/dates basis regressions were rerun and passed; production Gordon/as-of solver source untouched.",
+    "browser": "No browser interaction or screenshot was performed by this subagent. Parent handles the bounded visual/interaction plan below; SSR and actual isolated HTTP/XLSX tests are not claimed as browser confirmation."
+  },
+  "boundedParentPlan": [
+    "Run/restart the application only under parent workflow ownership. On /methodology,confirm the new panel loads the genuine empty catalog and gives the operator prerequisite,without stale download links or fabricated report rows.",
+    "Confirm real app GET catalog200 with zero source-authorized reports and exact unknown protocol404; arbitrary paths/review overrides400 and public writes403. Optional unconfigured registration503 is tested but is not the production reader path.",
+    "For successful selection/download interaction coverage,use ONLY an isolated DEV synthetic test fixture service or explicit test interception with matching content/domain hashes. Do not insert fake real approvals into the production catalog or create a DEV public mutation bypass.",
+    "Check exact protocol selection,loading/error hides previous rows/downloads,absent-period unavailable reasons and matching JSON/XLSX report/disclosure/pipeline/domain identities. Existing automated source/fetch/SSR/HTTP tests already exercise these data contracts.",
+    "Parent may run the full integration suite later; no fullsuite,deploy,commit,canonical ledger edit or callback was executed here."
+  ],
+  "protectedBoundary": "No protected FaIR/server/routes/canonical ledger/cache-module edits,no public writes/authprincipal inventions,no private filing/license payload publication,no real approval fabricated,no genuine historical study rerun or refreeze. No denied protected-hash dependency encountered."
+}

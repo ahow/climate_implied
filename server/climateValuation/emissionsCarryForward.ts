@@ -1,11 +1,22 @@
 import type { CvTimeSeries } from "@shared/schema";
+import { validSourceCell, type WorkbookSourceCell, type WorkbookSourceMetadata } from "./workbookMissingness";
 
 export type ImputedScope = "scope1" | "scope2" | "scope3";
 
-export type CvTimeSeriesWithImputation = CvTimeSeries & {
+export interface ImputedCell {
+  scope: ImputedScope;
+  method: "last-observation-carried-forward";
+  original: WorkbookSourceCell;
+  donor: WorkbookSourceCell;
+  donorObservationDate: string;
+  value: number;
+}
+export type CvTimeSeriesWithImputation = CvTimeSeries & WorkbookSourceMetadata & {
   isImputed?: boolean;
   imputedScopes?: ImputedScope[];
   emissionsAsOf?: Date | null;
+  imputedCells?: ImputedCell[];
+  imputationRefusals?: { scope: ImputedScope; reason: string }[];
 };
 
 export interface ImputationStats {
@@ -30,50 +41,39 @@ export function carryForwardEmissions(
   for (const records of companyEntries) {
     records.sort((a: CvTimeSeries, b: CvTimeSeries) => (a.date!.getTime() - b.date!.getTime()));
 
-    let lastScope1: number | null = null;
-    let lastScope2: number | null = null;
-    let lastScope3: number | null = null;
-    let lastScopeDate: Date | null = null;
-
+    const donors = new Map<ImputedScope, { value: number; source?: WorkbookSourceCell; date: Date }>();
     for (const ts of records) {
-      const hadAnyObserved =
-        (ts.scope1Emissions !== null && ts.scope1Emissions !== undefined) ||
-        (ts.scope2Emissions !== null && ts.scope2Emissions !== undefined) ||
-        (ts.scope3Emissions !== null && ts.scope3Emissions !== undefined);
-
-      if (ts.scope1Emissions !== null && ts.scope1Emissions !== undefined) {
-        lastScope1 = ts.scope1Emissions;
-      }
-      if (ts.scope2Emissions !== null && ts.scope2Emissions !== undefined) {
-        lastScope2 = ts.scope2Emissions;
-      }
-      if (ts.scope3Emissions !== null && ts.scope3Emissions !== undefined) {
-        lastScope3 = ts.scope3Emissions;
-      }
-      if (hadAnyObserved && ts.date) {
-        lastScopeDate = ts.date;
-      }
-
-      const filled: CvTimeSeriesWithImputation = { ...ts };
+      if ((ts as CvTimeSeriesWithImputation).isImputed || (ts as CvTimeSeriesWithImputation).imputedCells?.length)
+        throw new Error("Carry-forward requires original unfilled input rows, not previously imputed outputs");
+      const filled: CvTimeSeriesWithImputation = { ...ts, imputedCells: [], imputationRefusals: [] };
       const imputedScopes: ImputedScope[] = [];
-
-      if ((filled.scope1Emissions === null || filled.scope1Emissions === undefined) && lastScope1 !== null) {
-        filled.scope1Emissions = lastScope1;
-        imputedScopes.push("scope1");
+      for (const [scope, field] of [
+        ["scope1", "scope1Emissions"], ["scope2", "scope2Emissions"], ["scope3", "scope3Emissions"],
+      ] as const) {
+        const value = ts[field], original = (ts as CvTimeSeriesWithImputation).sourceCells?.[field];
+        if (value != null) {
+          if (!Number.isFinite(value)) throw new Error(`Nonfinite observed ${field}; company ${ts.companyId}`);
+          donors.set(scope, { value, source: original, date: ts.date });
+          continue;
+        }
+        const donor = donors.get(scope);
+        if (!donor) continue;
+        if (!validSourceCell(original, "blank", null) || !validSourceCell(donor.source, "observed", donor.value) ||
+            original.sourceId !== donor.source.sourceId) {
+          filled.imputationRefusals!.push({ scope, reason: "Original blank and observed donor source-cell identities unavailable or inconsistent; no untraceable infill" });
+          continue;
+        }
+        filled[field] = donor.value;
+        imputedScopes.push(scope);
+        filled.imputedCells!.push({
+          scope, method: "last-observation-carried-forward", original: { ...original },
+          donor: { ...donor.source }, donorObservationDate: donor.date.toISOString(), value: donor.value,
+        });
       }
-      if ((filled.scope2Emissions === null || filled.scope2Emissions === undefined) && lastScope2 !== null) {
-        filled.scope2Emissions = lastScope2;
-        imputedScopes.push("scope2");
-      }
-      if ((filled.scope3Emissions === null || filled.scope3Emissions === undefined) && lastScope3 !== null) {
-        filled.scope3Emissions = lastScope3;
-        imputedScopes.push("scope3");
-      }
-
       if (imputedScopes.length > 0) {
         filled.isImputed = true;
         filled.imputedScopes = imputedScopes;
-        filled.emissionsAsOf = lastScopeDate;
+        filled.emissionsAsOf = new Date(Math.min(...filled.imputedCells!.map(cell => new Date(cell.donorObservationDate).getTime())));
       } else {
         filled.isImputed = false;
         filled.emissionsAsOf = ts.date ?? null;

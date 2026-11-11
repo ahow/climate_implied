@@ -5,6 +5,9 @@ import { adaptLegacyDriverRole, assertCuratedForecastUse, driverRoleSchema } fro
 import { resolveEmissionsInputs } from "../server/calculation/emissionsInputs";
 import { HISTORICAL_INDICATORS } from "../server/calculation/historicalIndicators";
 import { projectNativeEmissions } from "../server/calculation/emissionsCandidate";
+import XLSX from "xlsx";
+import { createHash } from "node:crypto";
+import { readWorkbookNumeric } from "../server/climateValuation/workbookMissingness";
 test("driver registry accounts for all indicators without inventing calibration", () => {
   const rows = driverEvidenceRegistry();
   assert.equal(rows.length, 22);
@@ -43,10 +46,18 @@ test("context and validation observations cannot change the native diagnostic tr
   assert.equal(result.productionEligible, false);
 });
 test("missingness interpolation preserves observed zeros and refuses extrapolation", () => {
-  const rows = [{ year: 2020, value: 0 }, { year: 2021, value: null }, { year: 2022, value: 4 }];
+  const sheet = XLSX.utils.aoa_to_sheet([["year", "value"], [2020, 0], [2021, null], [2022, 4]]);
+  const workbook = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(workbook, sheet, "Indicators");
+  const sourceId = createHash("sha256").update(XLSX.write(workbook, { type: "buffer", bookType: "xlsx" })).digest("hex");
+  const rows = [{ year: 2020, value: 0 }, { year: 2021, value: null }, { year: 2022, value: 4 }].map((row, index) => ({
+    ...row, sourceCell: readWorkbookNumeric(sourceId, "Indicators", `B${index + 2}`, sheet[`B${index + 2}`]).source,
+  }));
   assert.equal(interpolateInterior(rows, 2020).value, 0);
   assert.equal(interpolateInterior(rows, 2021).value, 2);
   assert.equal(interpolateInterior(rows, 2021).infilled, true);
+  assert.equal(interpolateInterior(rows, 2021).originalSourceCell?.cell, "B3");
+  assert.equal(interpolateInterior(rows.map(({ sourceCell, ...row }) => row), 2021).infilled, false);
+  assert.equal(interpolateInterior(rows.filter(row => row.year !== 2021), 2021).infilled, false);
   assert.equal(interpolateInterior(rows, 2019).value, null);
   assert.throws(() => interpolateInterior([{ year: 2020, value: NaN }], 2020));
 });

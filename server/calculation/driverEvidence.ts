@@ -3,6 +3,7 @@ import { HISTORICAL_INDICATORS } from "./historicalIndicators";
 import { contentHash } from "./analysisManifest";
 import { driverConsumerTrace } from "./driverConsumptionTrace";
 import { curatedDriverRole } from "../../shared/driverAdmission";
+import { validSourceCell, type WorkbookSourceCell } from "../climateValuation/workbookMissingness";
 
 export function driverEvidenceRegistry() {
   return INDICATORS.map(d => {
@@ -60,7 +61,7 @@ export function driverEvidenceRegistry() {
     evidenceState: "Unavailable",
   }); });
 }
-export function interpolateInterior(points: { year: number; value: number | null }[], year: number) {
+export function interpolateInterior(points: { year: number; value: number | null; sourceCell?: WorkbookSourceCell }[], year: number) {
   if (!Number.isInteger(year)) throw new Error("Integer year required");
   const sorted = [...points].sort((a, b) => a.year - b.year);
   if (new Set(sorted.map(p => p.year)).size !== sorted.length ||
@@ -68,10 +69,16 @@ export function interpolateInterior(points: { year: number; value: number | null
     throw new Error("Unique years and finite values or explicit null required");
   const exact = sorted.find(p => p.year === year);
   if (exact?.value !== undefined && exact.value !== null) return { value: exact.value, method: "observed", infilled: false };
-  const valid = sorted.filter((p): p is { year: number; value: number } => p.value !== null);
+  const valid = sorted.filter((p): p is typeof p & { value: number } => p.value !== null);
   const left = [...valid].reverse().find(p => p.year < year), right = valid.find(p => p.year > year);
   if (!left || !right) return { value: null, method: "unavailable-no-extrapolation", infilled: false };
+  if (!exact || !validSourceCell(exact.sourceCell, "blank", null) ||
+      !validSourceCell(left.sourceCell, "observed", left.value) ||
+      !validSourceCell(right.sourceCell, "observed", right.value) ||
+      exact.sourceCell.sourceId !== left.sourceCell.sourceId || exact.sourceCell.sourceId !== right.sourceCell.sourceId)
+    return { value: null, method: "unavailable-untraceable-original-blank-or-donors", infilled: false };
   return { value: left.value + (right.value - left.value) * (year - left.year) / (right.year - left.year),
     method: "linear-interior-diagnostic", infilled: true, originalValue: exact?.value ?? null,
+    originalSourceCell: { ...exact.sourceCell }, sourceCells: [{ ...left.sourceCell }, { ...right.sourceCell }],
     sourceYears: [left.year, right.year], uncertainty: "not-quantified" };
 }

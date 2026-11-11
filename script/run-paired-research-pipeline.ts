@@ -2,6 +2,8 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { contentHash } from "../server/calculation/analysisManifest";
 import { runPairedResearchPipeline } from "../server/calculation/pairedResearchPipeline";
 import { buildTrackBAdmissionWorkbook } from "../server/calculation/trackBAdmissionWorkbook";
+import { bindTrackBAdmission } from "../shared/trackBAdmissionContract";
+import { trackBPeriodDomainHash } from "../server/trackBDisclosureStore";
 
 async function main() {
   const [protocolPath, expectedHash, corpusPath] = process.argv.slice(2);
@@ -23,7 +25,20 @@ async function main() {
   catch (e) {
     if ((e as NodeJS.ErrnoException).code !== "EEXIST" || !(await readFile(trackBWorkbookPath)).equals(workbook)) throw e;
   }
-  console.log(JSON.stringify({ path, trackBWorkbookPath, efficacy: result.efficacy, scientificAcceptance: false,
+  const report = bindTrackBAdmission(result.trackBAdmission).report, reportHash = contentHash(report);
+  const reportPath = `${directory}/${reportHash}.report.json`;
+  const draft = { contract: "track-b-public-disclosure-1", status: "unpublished",
+    classification: corpus.mode === "engineering-fixture" ? "engineering-fixture" : "retained-research",
+    protocolHash: report.protocolHash, reportHash, pipelineResultHash: contentHash(result), corpusHash: report.corpusHash,
+    periodDomainHash: trackBPeriodDomainHash(report), providerPayloadIncluded: false,
+    review: { kind: "not-reviewed" }, scientificAcceptance: false, investmentEvidence: false };
+  const disclosureDraftPath = `${directory}/${contentHash(draft)}.disclosure.json`;
+  for (const [file, value] of [[reportPath, report], [disclosureDraftPath, draft]] as const) {
+    const text = JSON.stringify(value, null, 2) + "\n";
+    try { await writeFile(file, text, { flag: "wx" }); }
+    catch (e) { if ((e as NodeJS.ErrnoException).code !== "EEXIST" || await readFile(file, "utf8") !== text) throw e; }
+  }
+  console.log(JSON.stringify({ path, trackBWorkbookPath, reportPath, disclosureDraftPath, efficacy: result.efficacy, scientificAcceptance: false,
     familySize: result.family.familySize, unavailable: result.family.unavailableHypotheses }));
 }
 main().catch(e => { console.error(e instanceof Error ? e.message : "Pipeline failed"); process.exitCode = 1; });

@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import express from "express";
-import { readFileSync, mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { readFileSync, mkdtempSync, writeFileSync, rmSync, unlinkSync, symlinkSync } from "node:fs";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -16,6 +19,12 @@ import { buildTrackBAdmissionWorkbook, trackBAdmissionWorkbookTables,
   trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
 import { outputFieldSemantics } from "../shared/outputFieldSemantics";
 import { registerTrackBAdmissionRoutes } from "../server/trackBAdmissionApi";
+import { trackBPeriodDomainHash, createTrackBPublicationReader, validateTrackBPublication } from "../server/trackBDisclosureStore";
+import { trackBPublicCatalog } from "../server/trackBPublicCatalog";
+import { TRACK_B_PUBLIC_PREREQUISITE, trackBPublicCatalogSchema, trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
+import { fetchTrackBCatalog, fetchTrackBReport, trackBReportUrl } from "../client/src/lib/trackBPublicReports";
+import { TrackBResearch, type TrackBResearchReadState } from "../client/src/components/track-b-research";
+import { publishPinnedTrackBReport } from "../server/trackBDisclosurePublisher";
 import { releaseSafety } from "../server/releaseSafety";
 
 /** Explicit synthetic negative engineering corpus. Claimed original metadata is
@@ -211,9 +220,12 @@ test("exact API/export semantics preserve every failed period/reason, dates, has
   const app = express();
   app.use(releaseSafety());
   registerTrackBAdmissionRoutes(app, hash => {
-    if (hash === report.protocolHash || hash === "e".repeat(64)) return report;
-    if (hash === "d".repeat(64)) return { ...report, protocolHash: hash,
-      periods: [{ ...report.periods[0], result: 0 }] } as any;
+    const identity = { protocolHash: report.protocolHash, reportHash: contentHash(report),
+      disclosureHash: contentHash({ syntheticUnitIdentity: true }), pipelineResultHash: contentHash({ syntheticPipelineIdentity: true }),
+      periodDomainHash: trackBPeriodDomainHash(report) };
+    if (hash === report.protocolHash || hash === "e".repeat(64)) return { report, identity };
+    if (hash === "d".repeat(64)) return { identity, report: { ...report, protocolHash: hash,
+      periods: [{ ...report.periods[0], result: 0 }] } } as any;
     return undefined;
   });
   const server = app.listen(0, "127.0.0.1");
@@ -237,9 +249,9 @@ test("exact API/export semantics preserve every failed period/reason, dates, has
     assert.equal((await fetch(`${base}${query}`, { method: "POST" })).status, 403);
   } finally { await new Promise<void>((resolve, reject) => server.close(error => error ? reject(error) : resolve())); }
 });
-test("mounted unprovisioned public reader is explicitly503 engineering remaining, not completed API report", async () => {
+test("unconfigured API instance explicitly503; production index installs genuine source-pinned disclosure reader", async () => {
   const index = readFileSync("server/index.ts", "utf8");
-  assert.ok(index.indexOf("registerTrackBAdmissionRoutes(app)") > index.indexOf("app.use(releaseSafety())"));
+  assert.ok(index.indexOf("registerTrackBAdmissionRoutes(app, loadPublishedTrackBAdmission)") > index.indexOf("app.use(releaseSafety())"));
   for (const s of [...trackBAdmissionSemantics, ...trackBAdmissionHttpSemantics])
     assert.deepEqual(outputFieldSemantics.filter(v => v.id === s.id), [s]);
   const app = express(); app.use(releaseSafety()); registerTrackBAdmissionRoutes(app);
@@ -255,7 +267,7 @@ test("mounted unprovisioned public reader is explicitly503 engineering remaining
     }
   } finally { await new Promise<void>((resolve, reject) => server.close(error => error ? reject(error) : resolve())); }
 });
-test("actual pipeline CLI produces immutable JSON plus XLSX per-period reason rows, exact identities and no efficacy", () => {
+test("actual pipeline CLI produces immutable JSON/XLSX and unreviewed disclosure candidate; DEV-only pinned publication roundtrip", async () => {
   const f = fixture({ restatedCompany: "engineering-alpha" });
   const report = assess(f), document = trackBAdmissionExportDocument(report);
   const tables = trackBAdmissionWorkbookTables(report);
@@ -290,5 +302,153 @@ test("actual pipeline CLI produces immutable JSON plus XLSX per-period reason ro
     assert.equal(output.efficacy, "WITHHELD"); assert.equal(output.scientificAcceptance, false);
     const repeated = run(); assert.equal(repeated.status, 0, repeated.stderr);
     assert.deepEqual(JSON.parse(repeated.stdout), output, "Existing identical artifacts are preserved, not rewritten");
+    const draft = JSON.parse(readFileSync(join(directory, output.disclosureDraftPath), "utf8"));
+    assert.equal(draft.status, "unpublished"); assert.deepEqual(draft.review, { kind: "not-reviewed" });
+    assert.deepEqual(JSON.parse(readFileSync(join(directory, output.reportPath), "utf8")), report);
+    assert.equal(draft.pipelineResultHash, contentHash(retained));
+    const disclosure = { ...draft, status: "published", classification: "engineering-fixture",
+      review: { kind: "synthetic-development-only", qualification: "Synthetic authorization for isolated DEV engineering only; no real approval" } };
+    const pin = { protocolHash: report.protocolHash, reportHash: contentHash(report),
+      pipelineResultHash: contentHash(retained), disclosureHash: contentHash(disclosure), periodDomainHash: trackBPeriodDomainHash(report) };
+    const pipelineRoot = join(directory, "generated-artifacts/paired-research-pipeline"), publicRoot = join(directory, "public-only");
+    writeFileSync(join(pipelineRoot, `${pin.disclosureHash}.disclosure.json`), JSON.stringify(disclosure));
+    const environment = process.env.NODE_ENV;
+    try {
+      process.env.NODE_ENV = "development";
+      const options = { catalog: [pin], pipelineRoot, publicRoot, allowEngineeringFixtures: true };
+      await publishPinnedTrackBReport(pin.protocolHash, options);
+      await publishPinnedTrackBReport(pin.protocolHash, options);
+      assert.deepEqual((await createTrackBPublicationReader({ root: publicRoot, catalog: [pin], allowEngineeringFixtures: true })(pin.protocolHash)).report, report);
+      await assert.rejects(publishPinnedTrackBReport(pin.protocolHash, { pipelineRoot, publicRoot }), /cannot grant approval/);
+      process.env.NODE_ENV = "production";
+      await assert.rejects(createTrackBPublicationReader({ root: publicRoot, catalog: [pin], allowEngineeringFixtures: true })(pin.protocolHash), /not authorized/);
+    } finally { if (environment === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = environment; }
   } finally { rmSync(directory, { recursive: true, force: true }); }
+});
+function disclosureFixture() {
+  const protocol = { frozenAt: "2019-01-01T00:00:00Z", trackBPolicy: { filingLagDays: 5 },
+    specifications: [{ model: "SYNTHETIC-DEV-ONLY", peer: "sector", target: "next-month" }],
+    expectedOrigins: ["2020-02-29T00:00:00Z", "2020-04-30T00:00:00Z"] };
+  const corpus = { mode: "engineering-fixture", dataEnd: "2021-01-01T00:00:00Z", artifacts: [], periods: [] };
+  const report = assessTrackBAdmission(protocol, contentHash(protocol), corpus);
+  const disclosure = { contract: "track-b-public-disclosure-1", status: "published", classification: "engineering-fixture",
+    protocolHash: report.protocolHash, reportHash: contentHash(report), pipelineResultHash: contentHash({ engineeringOnly: true, trackBAdmission: report }),
+    corpusHash: report.corpusHash, periodDomainHash: trackBPeriodDomainHash(report), providerPayloadIncluded: false,
+    review: { kind: "synthetic-development-only", qualification: "Synthetic authorization for isolated DEV engineering only; no real approval" },
+    scientificAcceptance: false, investmentEvidence: false };
+  const pin = { protocolHash: report.protocolHash, reportHash: contentHash(report), disclosureHash: contentHash(disclosure),
+    pipelineResultHash: disclosure.pipelineResultHash, periodDomainHash: disclosure.periodDomainHash };
+  return { report, disclosure, pin };
+}
+const catalogFor = (f: ReturnType<typeof disclosureFixture>) => trackBPublicCatalogSchema.parse({
+  contract: "track-b-public-catalog-1", reports: [f.pin], availability: "Pinned publications; retained bytes validated on exact selection",
+  operatorPrerequisite: TRACK_B_PUBLIC_PREREQUISITE, scientificAcceptance: false, investmentEvidence: false,
+});
+test("genuine production catalog has no fabricated real approvals; exact operator publication prerequisite and11 registered metadata definitions", async () => {
+  assert.equal(trackBPublicCatalog.length, 0);
+  await assert.rejects(createTrackBPublicationReader()("a".repeat(64)), /No source-authorized/);
+  assert.match(TRACK_B_PUBLIC_PREREQUISITE, /redistribution rights/);
+  assert.match(TRACK_B_PUBLIC_PREREQUISITE, /reviewed source change/);
+  assert.equal(trackBPublicCatalogSemantics.length, 11);
+  for (const s of trackBPublicCatalogSemantics) assert.deepEqual(outputFieldSemantics.filter(v => v.id === s.id), [s]);
+});
+test("trusted source pin and retained disclosure refuse unpublished/unreviewed/hash/domain/private keys and production synthetic authorization", () => {
+  const f = disclosureFixture(), previous = process.env.NODE_ENV;
+  try {
+    process.env.NODE_ENV = "development";
+    assert.deepEqual(validateTrackBPublication(f.pin, f.disclosure, f.report, true).report, f.report);
+    for (const change of [{ status: "unpublished" }, { review: { kind: "not-reviewed" } }]) {
+      const disclosure = { ...f.disclosure, ...change }, pin = { ...f.pin, disclosureHash: contentHash(disclosure) };
+      assert.throws(() => validateTrackBPublication(pin, disclosure, f.report, true), /unpublished|authorization/);
+    }
+    assert.throws(() => validateTrackBPublication({ ...f.pin, reportHash: "0".repeat(64) }, f.disclosure, f.report, true), /hash mismatch/);
+    const disclosure = { ...f.disclosure, periodDomainHash: "1".repeat(64) };
+    assert.throws(() => validateTrackBPublication({ ...f.pin, periodDomainHash: disclosure.periodDomainHash,
+      disclosureHash: contentHash(disclosure) }, disclosure, f.report, true), /identity mismatch/);
+    assert.throws(() => validateTrackBPublication(f.pin, f.disclosure, { ...f.report, providerPayload: "DO NOT PUBLISH" }, true));
+    process.env.NODE_ENV = "production";
+    assert.throws(() => validateTrackBPublication(f.pin, f.disclosure, f.report, true), /not authorized/);
+  } finally { if (previous === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = previous; }
+});
+test("actual DEV filesystem resolver HTTP JSON/XLSX/client hashes preserve absent periods and refuse missing/corrupt/changed/unauthorized paths", async () => {
+  const f = disclosureFixture(), root = mkdtempSync(join(tmpdir(), "track-b-public-DEV-")), previous = process.env.NODE_ENV;
+  const reportPath = join(root, `${f.pin.reportHash}.report.json`), disclosurePath = join(root, `${f.pin.disclosureHash}.disclosure.json`);
+  const save = () => { writeFileSync(reportPath, JSON.stringify(f.report)); writeFileSync(disclosurePath, JSON.stringify(f.disclosure)); };
+  save(); process.env.NODE_ENV = "development";
+  const reader = createTrackBPublicationReader({ root, catalog: [f.pin], allowEngineeringFixtures: true });
+  let activeReader = reader;
+  const app = express(); app.use(releaseSafety()); registerTrackBAdmissionRoutes(app, hash => activeReader(hash), [f.pin]);
+  const server = app.listen(0, "127.0.0.1"); await new Promise<void>(resolve => server.once("listening", resolve));
+  const address = server.address(); assert.ok(address && typeof address !== "string");
+  const base = `http://127.0.0.1:${address.port}`;
+  const localFetch = ((input: RequestInfo | URL, init?: RequestInit) => fetch(`${base}${input}`, init)) as typeof fetch;
+  try {
+    assert.deepEqual(await fetchTrackBCatalog(localFetch), catalogFor(f));
+    assert.deepEqual(await fetchTrackBReport(f.pin, localFetch), f.report);
+    assert.equal(f.report.periods.length, 2);
+    assert.ok(f.report.periods.every(p => p.status === "unavailable" && p.result === null && p.reasons.some(r => r.code === "missing-period")));
+    const json = await localFetch(trackBReportUrl(f.pin, "/export.json")), document: any = await json.json();
+    assert.deepEqual(document.report, f.report);
+    const binary = await localFetch(trackBReportUrl(f.pin, "/export.xlsx"));
+    for (const response of [json, binary]) assert.equal(response.headers.get("x-track-b-report-sha256"), f.pin.reportHash);
+    const book = XLSX.read(Buffer.from(await binary.arrayBuffer()), { type: "buffer" });
+    const rows = XLSX.utils.sheet_to_json<any>(book.Sheets["Period reasons"]);
+    assert.equal(rows.length, document.rows.length);
+    assert.ok(rows.every(r => r["Track B result"] === "null" && r["Protocol SHA256"] === f.pin.protocolHash && r["Corpus SHA256"] === f.report.corpusHash));
+    assert.equal((await localFetch(trackBReportUrl({ ...f.pin, reportHash: "0".repeat(64) }))).status, 409);
+    assert.equal((await localFetch("/api/research/track-b-admission?protocolHash=" + "0".repeat(64))).status, 404);
+    assert.equal((await localFetch(trackBReportUrl(f.pin) + "&path=/etc/passwd")).status, 400);
+    assert.equal((await localFetch(trackBReportUrl(f.pin), { method: "POST" })).status, 403);
+    unlinkSync(reportPath); assert.equal((await localFetch(trackBReportUrl(f.pin))).status, 404);
+    writeFileSync(reportPath, "{broken-json"); assert.equal((await localFetch(trackBReportUrl(f.pin))).status, 503);
+    save(); unlinkSync(reportPath); symlinkSync(disclosurePath, reportPath);
+    assert.equal((await localFetch(trackBReportUrl(f.pin))).status, 503);
+    unlinkSync(reportPath); save();
+    const unpublished = { ...f.disclosure, status: "unpublished" }, unpublishedPin = { ...f.pin, disclosureHash: contentHash(unpublished) };
+    writeFileSync(join(root, `${unpublishedPin.disclosureHash}.disclosure.json`), JSON.stringify(unpublished));
+    activeReader = createTrackBPublicationReader({ root, catalog: [unpublishedPin], allowEngineeringFixtures: true });
+    assert.equal((await localFetch(trackBReportUrl(f.pin))).status, 403, "Actual retained unpublished disclosure is denied");
+    activeReader = reader;
+    process.env.NODE_ENV = "production";
+    assert.equal((await localFetch(trackBReportUrl(f.pin))).status, 403, "Synthetic authorization cannot escape isolated DEV");
+    process.env.NODE_ENV = "development";
+    await assert.rejects(createTrackBPublicationReader({ root, catalog: [f.pin, f.pin], allowEngineeringFixtures: true })(f.pin.protocolHash), /Ambiguous/);
+    const forgedFetch = (async () => new Response(JSON.stringify({ ...f.report, corpusCutoff: "2022-01-01T00:00:00Z" }),
+      { headers: { "X-Track-B-Report-SHA256": f.pin.reportHash, "X-Track-B-Disclosure-SHA256": f.pin.disclosureHash,
+        "X-Track-B-Pipeline-SHA256": f.pin.pipelineResultHash, "X-Track-B-Period-Domain-SHA256": f.pin.periodDomainHash } })) as typeof fetch;
+    await assert.rejects(fetchTrackBReport(f.pin, forgedFetch), /identity mismatch/);
+  } finally {
+    await new Promise<void>((resolve, reject) => server.close(e => e ? reject(e) : resolve()));
+    rmSync(root, { recursive: true, force: true });
+    if (previous === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = previous;
+  }
+});
+test("new actual UI SSR covers loading/error/empty/missing/corrupt/selected absence and exact period reasons/download IDs, no old UI rerun", () => {
+  const f = disclosureFixture(), catalog = catalogFor(f);
+  const render = (state: TrackBResearchReadState) => renderToStaticMarkup(React.createElement(QueryClientProvider,
+    { client: new QueryClient() }, React.createElement(TrackBResearch, { readState: state })));
+  for (const state of [
+    { catalog: { data: catalog, loading: true } }, { catalog: { data: catalog, error: "catalog unavailable" } },
+    { catalog: {} }, { catalog: { data: { ...catalog, reports: [] } } },
+    { catalog: { data: catalog } }, { catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash, report: { loading: true, data: f.report } },
+    { catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash, report: { error: "corrupt report", data: f.report } },
+    { catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash },
+    { catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash, report: { data: { ...f.report, periods: [] } } },
+    { catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash, selectedReportHash: "0".repeat(64), report: { data: f.report } },
+    { catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash, selectedDisclosureHash: "0".repeat(64), report: { data: f.report } },
+  ] as TrackBResearchReadState[]) {
+    const html = render(state);
+    assert.doesNotMatch(html, /Download exact JSON|Download exact XLSX/);
+    assert.doesNotMatch(html, /Track B: unavailable/);
+  }
+  assert.match(render({ catalog: { data: { ...catalog, reports: [] } } }), /No authorized public Track B reports/);
+  assert.match(render({ catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash }), /Selected report response absent/);
+  const html = render({ catalog: { data: catalog }, selectedProtocol: f.pin.protocolHash, report: { data: f.report } });
+  for (const period of f.report.periods) {
+    assert.ok(html.includes(period.origin)); assert.ok(html.includes(period.specification.replaceAll('"', "&quot;")));
+    for (const reason of period.reasons) assert.ok(html.includes(reason.code));
+  }
+  assert.match(html, /Result unavailable \(null\)/);
+  assert.ok(html.includes(trackBReportUrl(f.pin, "/export.xlsx").replaceAll("&", "&amp;")));
+  assert.match(html, /not Stage9 authentication/);
 });

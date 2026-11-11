@@ -6,6 +6,7 @@ import { releaseSafety } from "./releaseSafety";
 import { registerWarmingValidationReferenceRoutes } from "./warmingValidationReferenceApi";
 import { quantityDescriptionMiddleware } from "./quantityDescriptionApi";
 import { registerTrackBAdmissionRoutes } from "./trackBAdmissionApi";
+import { loadPublishedTrackBAdmission } from "./trackBDisclosureStore";
 
 const app = express();
 const httpServer = createServer(app);
@@ -66,9 +67,9 @@ app.use((req, res, next) => {
 (async () => {
   app.use(quantityDescriptionMiddleware());
   registerWarmingValidationReferenceRoutes(app);
-  // No authorized public retained-pipeline reader exists. Explicit503 is not a
-  // completed report API; do not publish private CLI archives as a fallback.
-  registerTrackBAdmissionRoutes(app);
+  // Exact source-pinned public disclosures only; no private archive fallback.
+  // The genuine production catalog is empty until operator rights review/pins.
+  registerTrackBAdmissionRoutes(app, loadPublishedTrackBAdmission);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {

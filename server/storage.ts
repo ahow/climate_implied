@@ -37,25 +37,26 @@ export class MemStorage implements IStorage {
   }
 
   async getProjectionCache(cacheKey: string): Promise<ProjectionCache | undefined> {
-    return this.projectionCaches.get(cacheKey);
+    const cached = this.projectionCaches.get(cacheKey);
+    return cached === undefined ? undefined : structuredClone(cached);
   }
 
   async setProjectionCache(data: InsertProjectionCache): Promise<ProjectionCache> {
     const id = randomUUID();
     const cache: ProjectionCache = {
-      ...data,
+      ...structuredClone(data),
       category: data.category ?? null,
       region: data.region ?? null,
       id,
       createdAt: new Date(),
     };
     // Content-addressed entries may change as inputs refresh; bound memory use.
-    if (this.projectionCaches.size >= 64) {
+    if (!this.projectionCaches.has(data.cacheKey) && this.projectionCaches.size >= 64) {
       const oldest = this.projectionCaches.keys().next().value;
       if (oldest) this.projectionCaches.delete(oldest);
     }
     this.projectionCaches.set(data.cacheKey, cache);
-    return cache;
+    return structuredClone(cache);
   }
 
   async clearProjectionCaches(): Promise<void> {

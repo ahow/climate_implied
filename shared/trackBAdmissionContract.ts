@@ -40,7 +40,7 @@ export const trackBAdmissionFieldSpecs: [string, string, string, string][] = [
   ["periods[].reasons[].detail", "Precise unavailable explanation", "Public gate-specific reason; no private source bytes", "explanatory text"],
   ["scientificAcceptance", "No scientific acceptance", "literal false", "boolean"],
   ["investmentEvidence", "No investment efficacy", "literal false", "boolean"],
-  ["authenticityVerified", "No provisioned authenticated review authority", "literal false; self-hashes/caller classifications are insufficient", "boolean"],
+  ["authenticityVerified", "No authenticated independent Stage9/original-source review authority", "literal false; publication authorization,self-hashes and caller classifications are insufficient", "boolean"],
   ["limitation", "Scope of per-period contract checks", "Synthetic/contract-passing sources do not establish historical efficacy", "explanatory text"],
 ];
 export const trackBAdmissionSemantics: OutputFieldSemantic[] = trackBAdmissionFieldSpecs.map(([path, meaning, formula, unit]) => ({
@@ -58,9 +58,16 @@ export const trackBAdmissionSemantics: OutputFieldSemantic[] = trackBAdmissionFi
 export const trackBAdmissionHttpSemantics: OutputFieldSemantic[] = [{
   ...trackBAdmissionSemantics[trackBAdmissionSemantics.length - 1], id: "trackBAdmissionHttp.error",
   meaning: "GET admission/export read refusal, not a Track B evidence result",
-  formula: "HTTP400 malformed/extra query;404 no exact retained protocol;503 unprovisioned resolver or invalid report/identity/resolver; explicit error text only",
+  formula: "HTTP400 invalid selection;403 unauthorized/unpublished;404 unlisted/missing;409 changed exact report/disclosure;503 unprovisioned/corrupt/identity failure; explicit refusal only",
   unit: "refusal text", dependencies: ["query.protocolHash", "strict public report resolver/contract"],
   missingness: "No retained assessment is404, never fabricated empty history, zero result or an alternative protocol",
+  source: "server/trackBAdmissionApi.ts; server/trackBDisclosureStore.ts: exact selection,source-catalog authorization and retained-file validation",
+  period: "Request-time publication/selection control; report information cutoffs never rewritten",
+  geography: "Control metadata only; missing report does not establish population coverage",
+  status: "Explicit read refusal; no disclosure authorization or scientific acceptance granted",
+  uncertainty: "No numerical evidence or efficacy estimate in an HTTP refusal",
+  scope: "Read-only catalog/report/JSON/XLSX; no caller review,public mutation,private provider bytes or filesystem paths",
+  asOfRule: "Exact selected protocol/report/disclosure pins and retained source dates; no latest/current replacement",
 }];
 export function bindTrackBAdmission(input: unknown) {
   const report = trackBAdmissionSchema.parse(input);

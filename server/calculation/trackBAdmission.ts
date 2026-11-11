@@ -211,6 +211,6 @@ export function assessTrackBAdmission(protocolInput: unknown, expectedProtocolHa
     contract: "track-b-period-admission-1" as const, protocolHash: expectedProtocolHash, corpusHash,
     corpusCutoff: corpus.dataEnd, periods, scientificAcceptance: false as const, investmentEvidence: false as const,
     authenticityVerified: false as const,
-    limitation: "Per-period Stage9 AND original-filing contract checks; no authenticated review store is provisioned. Synthetic/contract-passing records never establish historical efficacy.",
+    limitation: "Per-period Stage9 AND original-filing contract checks; no authenticated independent Stage9/original-source review store is provisioned. Public disclosure authorization does not satisfy those gates. Synthetic/contract-passing records never establish historical efficacy.",
   };
 }

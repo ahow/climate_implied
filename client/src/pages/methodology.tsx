@@ -6,6 +6,7 @@ import { PublicationMethodologyNotes } from "@/components/publication-methodolog
 import { DriverEvidenceDisclosure } from "@/components/driver-evidence-disclosure";
 import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { WarmingValidationReference } from "@/components/warming-validation-reference";
+import { TrackBResearch } from "@/components/track-b-research";
 import { RETIRED_FINANCE_RESIDUAL_DESCRIPTOR } from "@shared/quantityDescriptors";
 
 export default function Methodology() {
@@ -33,6 +34,7 @@ export default function Methodology() {
           <p className="mt-3 text-sm text-muted-foreground">The separate native candidate review can use its pinned, captured source-derived2024 inventory cells as a conditional baseline: species masses remain in Mt of that same gas, with fossil/industrial CO2 and net land-use CO2 separated. These are not GWP-weighted CO2e residuals, a calibrated forecast or physical net zero. Supplied regional-member diagnostics use explicit captured MODEL initial conditions; no missing regional2024 land-use observation is fabricated.</p>
         </Card>
         <WarmingValidationReference />
+        <TrackBResearch />
         <DriverEvidenceDisclosure />
         <details className="rounded-md border p-4">
         <summary className="cursor-pointer text-sm font-semibold">Archived legacy methodology — opt in; superseded claims, not current scientific guidance</summary>

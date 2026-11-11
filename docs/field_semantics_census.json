@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 1868,
+  "definitions": 1879,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -239,6 +239,125 @@
       "line": 30,
       "id": "warmingReference.inventory.year",
       "expression": "Separate inventory year: {reference.inventory.year}. {reference.inventory.basis}; {reference.inventory.status}.\n      ",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 47,
+      "id": "trackBPublicCatalog.reports[]",
+      "expression": "<p>No authorized public Track B reports have been published.</p><p className=\"text-xs\" data-field-id=\"trackBPublicCatalog.operatorPrerequisite\">{catalog.operatorPrerequisite}</p>",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 48,
+      "id": "trackBPublicCatalog.operatorPrerequisite",
+      "expression": "{catalog.operatorPrerequisite}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 50,
+      "id": "trackBPublicCatalog.reports[].protocolHash",
+      "expression": "Exact frozen protocol <select aria-label=\"Track B frozen protocol\" className=\"ml-2 border rounded p-1 bg-background\"\n          value={pin ? `${pin.protocolHash}:${pin.reportHash}:${pin.disclosureHash}` : \"\"} onChange={event => setSelection(event.target.value)}>\n          <option value=\"\">Select a source-pinned publication</option>\n          {catalog.reports.map(item => <option key={`${item.protocolHash}-${item.reportHash}`} value={`${item.protocolHash}:${item.reportHash}:${item.disclosureHash}`}>{item.protocolHash}</option>)}\n        </select>",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 63,
+      "id": "trackBAdmission.limitation",
+      "expression": "{report.limitation}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 67,
+      "id": "trackBAdmission.periods[].specification",
+      "expression": "{period.specification}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 68,
+      "id": "trackBAdmission.periods[].origin",
+      "expression": "Origin: {period.origin}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 69,
+      "id": "trackBAdmission.periods[].informationCutoff",
+      "expression": "Information cutoff: {period.informationCutoff}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 70,
+      "id": "trackBAdmission.periods[].executionAt",
+      "expression": "Execution: {period.executionAt ?? \"Unavailable (null)\"}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 71,
+      "id": "trackBAdmission.periods[].endAt",
+      "expression": "Holding end: {period.endAt ?? \"Unavailable (null)\"}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 72,
+      "id": "trackBAdmission.periods[].manifestHash",
+      "expression": "Period manifest: {period.manifestHash ?? \"Unavailable (null)\"}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 73,
+      "id": "trackBAdmission.periods[].status",
+      "expression": "Track B: {period.status}· <span data-field-id=\"trackBAdmission.periods[].result\">Result unavailable (null)</span>",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 73,
+      "id": "trackBAdmission.periods[].result",
+      "expression": "Result unavailable (null)",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 75,
+      "id": "trackBAdmission.periods[].reasons[].code",
+      "expression": "{reason.code}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 76,
+      "id": "trackBAdmission.periods[].reasons[].gate",
+      "expression": "{reason.gate}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 77,
+      "id": "trackBAdmission.periods[].reasons[].companyId",
+      "expression": "{reason.companyId ?? \"Period-wide (null)\"}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 78,
+      "id": "trackBAdmission.periods[].reasons[].detail",
+      "expression": "{reason.detail}",
+      "bound": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 79,
+      "id": "trackBAdmission.periods[].reasons[].artifactHash",
+      "expression": "{reason.artifactHash ?? \"No referenced artifact (null)\"}",
       "bound": true
     },
     {
@@ -998,13 +1117,6 @@
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
-      "source": "server/calculation/companyProjectionReplay.ts",
-      "line": 178,
-      "builder": "XLSX.utils.book_append_sheet",
-      "sheetExpression": "name",
-      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
-    },
-    {
       "source": "server/calculation/trackBAdmissionWorkbook.ts",
       "line": 37,
       "builder": "XLSX.utils.book_append_sheet",
@@ -1033,10 +1145,31 @@
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
+      "source": "server/calculation/companyProjectionReplay.ts",
+      "line": 178,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "name",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "server/climateValuation/workbookMissingnessExport.ts",
+      "line": 81,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "name",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
       "source": "script/diagnostic-metadata-semantics.test.ts",
       "line": 76,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Comparison\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/driver-evidence.test.ts",
+      "line": 50,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"Indicators\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
@@ -1138,6 +1271,13 @@
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
+      "source": "script/research-field-semantics.test.ts",
+      "line": 70,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"ObservedScopes\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
       "source": "script/s16-005-finite-obligations.test.ts",
       "line": 134,
       "builder": "XLSX.utils.book_append_sheet",
@@ -1184,6 +1324,13 @@
       "line": 85,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Validation reference\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/workbook-missingness-integration.test.ts",
+      "line": 29,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "sheet",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
@@ -2950,236 +3097,404 @@
       "explicitSemanticAncestor": false
     },
     {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 44,
+      "expression": "catalogState.loading ? <p role=\"status\">Loading public disclosure catalog…</p> :\n      catalogState.error ? <p role=\"alert\">Public catalog unavailable: {catalogState.error}</p> :\n      !catalog ? <p role=\"alert\">Public catalog response absent or invalid; no reports/downloads available.</p> :\n      !catalog.reports.length ? <section data-field-id=\"trackBPublicCatalog.reports[]\"><p>No authorized public Track B reports have been published.</p>\n        <p className=\"text-xs\" data-field-id=\"trackBPublicCatalog.operatorPrerequisite\">{catalog.operatorPrerequisite}</p></section> :\n      <section className=\"space-y-3\">\n        <label className=\"text-sm\" data-field-id=\"trackBPublicCatalog.reports[].protocolHash\">Exact frozen protocol <select aria-label=\"Track B frozen protocol\" className=\"ml-2 border rounded p-1 bg-background\"\n          value={pin ? `${pin.protocolHash}:${pin.reportHash}:${pin.disclosureHash}` : \"\"} onChange={event => setSelection(event.target.value)}>\n          <option value=\"\">Select a source-pinned publication</option>\n          {catalog.reports.map(item => <option key={`${item.protocolHash}-${item.reportHash}`} value={`${item.protocolHash}:${item.reportHash}:${item.disclosureHash}`}>{item.protocolHash}</option>)}\n        </select></label>\n        {!pin ? <p>Select an exact publication; no latest report or current inputs are substituted.</p> :\n          reportState.loading ? <p role=\"status\">Loading selected retained report… Previous results/downloads withheld.</p> :\n          reportState.error ? <p role=\"alert\">Selected report unavailable: {reportState.error}</p> :\n          invalid ? <p role=\"alert\">{invalid}</p> :\n          !report ? <p>Selected report response absent; no results/downloads available.</p> :\n          <section className=\"space-y-3\">\n            <dl className=\"text-xs break-all\">{([\"reportHash\", \"disclosureHash\", \"pipelineResultHash\", \"periodDomainHash\"] as const).map(key =>\n              <div key={key} data-field-id={`trackBPublicCatalog.reports[].${key}`}><dt>{key}</dt><dd>{pin[key]}</dd></div>)}</dl>\n            <p data-field-id=\"trackBAdmission.limitation\" className=\"text-xs\">{report.limitation}</p>\n            <nav className=\"flex gap-4 text-sm\"><a className=\"underline\" href={trackBReportUrl(pin, \"/export.json\")}>Download exact JSON</a>\n              <a className=\"underline\" href={trackBReportUrl(pin, \"/export.xlsx\")}>Download exact XLSX</a></nav>\n            {report.periods.map((period, index) => <section key={`${period.specification}-${period.origin}-${index}`} className=\"border rounded p-3 text-xs space-y-2\">\n              <p data-field-id=\"trackBAdmission.periods[].specification\">{period.specification}</p>\n              <p data-field-id=\"trackBAdmission.periods[].origin\">Origin: {period.origin}</p>\n              <p data-field-id=\"trackBAdmission.periods[].informationCutoff\">Information cutoff: {period.informationCutoff}</p>\n              <p data-field-id=\"trackBAdmission.periods[].executionAt\">Execution: {period.executionAt ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].endAt\">Holding end: {period.endAt ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].manifestHash\">Period manifest: {period.manifestHash ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].status\">Track B: {period.status} · <span data-field-id=\"trackBAdmission.periods[].result\">Result unavailable (null)</span></p>\n              <ul className=\"space-y-2\">{period.reasons.map((reason, i) => <li key={i}>\n                <strong data-field-id=\"trackBAdmission.periods[].reasons[].code\">{reason.code}</strong>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].gate\">{reason.gate}</span>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].companyId\">{reason.companyId ?? \"Period-wide (null)\"}</span>\n                <p data-field-id=\"trackBAdmission.periods[].reasons[].detail\">{reason.detail}</p>\n                <p className=\"break-all\" data-field-id=\"trackBAdmission.periods[].reasons[].artifactHash\">{reason.artifactHash ?? \"No referenced artifact (null)\"}</p>\n              </li>)}</ul>\n            </section>)}\n          </section>}\n      </section>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 45,
+      "expression": "catalogState.error",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 48,
+      "expression": "catalog.operatorPrerequisite",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 53,
+      "expression": "catalog.reports.map(item => <option key={`${item.protocolHash}-${item.reportHash}`} value={`${item.protocolHash}:${item.reportHash}:${item.disclosureHash}`}>{item.protocolHash}</option>)",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 53,
+      "expression": "item.protocolHash",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 55,
+      "expression": "!pin ? <p>Select an exact publication; no latest report or current inputs are substituted.</p> :\n          reportState.loading ? <p role=\"status\">Loading selected retained report… Previous results/downloads withheld.</p> :\n          reportState.error ? <p role=\"alert\">Selected report unavailable: {reportState.error}</p> :\n          invalid ? <p role=\"alert\">{invalid}</p> :\n          !report ? <p>Selected report response absent; no results/downloads available.</p> :\n          <section className=\"space-y-3\">\n            <dl className=\"text-xs break-all\">{([\"reportHash\", \"disclosureHash\", \"pipelineResultHash\", \"periodDomainHash\"] as const).map(key =>\n              <div key={key} data-field-id={`trackBPublicCatalog.reports[].${key}`}><dt>{key}</dt><dd>{pin[key]}</dd></div>)}</dl>\n            <p data-field-id=\"trackBAdmission.limitation\" className=\"text-xs\">{report.limitation}</p>\n            <nav className=\"flex gap-4 text-sm\"><a className=\"underline\" href={trackBReportUrl(pin, \"/export.json\")}>Download exact JSON</a>\n              <a className=\"underline\" href={trackBReportUrl(pin, \"/export.xlsx\")}>Download exact XLSX</a></nav>\n            {report.periods.map((period, index) => <section key={`${period.specification}-${period.origin}-${index}`} className=\"border rounded p-3 text-xs space-y-2\">\n              <p data-field-id=\"trackBAdmission.periods[].specification\">{period.specification}</p>\n              <p data-field-id=\"trackBAdmission.periods[].origin\">Origin: {period.origin}</p>\n              <p data-field-id=\"trackBAdmission.periods[].informationCutoff\">Information cutoff: {period.informationCutoff}</p>\n              <p data-field-id=\"trackBAdmission.periods[].executionAt\">Execution: {period.executionAt ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].endAt\">Holding end: {period.endAt ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].manifestHash\">Period manifest: {period.manifestHash ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].status\">Track B: {period.status} · <span data-field-id=\"trackBAdmission.periods[].result\">Result unavailable (null)</span></p>\n              <ul className=\"space-y-2\">{period.reasons.map((reason, i) => <li key={i}>\n                <strong data-field-id=\"trackBAdmission.periods[].reasons[].code\">{reason.code}</strong>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].gate\">{reason.gate}</span>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].companyId\">{reason.companyId ?? \"Period-wide (null)\"}</span>\n                <p data-field-id=\"trackBAdmission.periods[].reasons[].detail\">{reason.detail}</p>\n                <p className=\"break-all\" data-field-id=\"trackBAdmission.periods[].reasons[].artifactHash\">{reason.artifactHash ?? \"No referenced artifact (null)\"}</p>\n              </li>)}</ul>\n            </section>)}\n          </section>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 57,
+      "expression": "reportState.error",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 58,
+      "expression": "invalid",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 61,
+      "expression": "([\"reportHash\", \"disclosureHash\", \"pipelineResultHash\", \"periodDomainHash\"] as const).map(key =>\n              <div key={key} data-field-id={`trackBPublicCatalog.reports[].${key}`}><dt>{key}</dt><dd>{pin[key]}</dd></div>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 62,
+      "expression": "key",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 62,
+      "expression": "pin[key]",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 63,
+      "expression": "report.limitation",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 66,
+      "expression": "report.periods.map((period, index) => <section key={`${period.specification}-${period.origin}-${index}`} className=\"border rounded p-3 text-xs space-y-2\">\n              <p data-field-id=\"trackBAdmission.periods[].specification\">{period.specification}</p>\n              <p data-field-id=\"trackBAdmission.periods[].origin\">Origin: {period.origin}</p>\n              <p data-field-id=\"trackBAdmission.periods[].informationCutoff\">Information cutoff: {period.informationCutoff}</p>\n              <p data-field-id=\"trackBAdmission.periods[].executionAt\">Execution: {period.executionAt ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].endAt\">Holding end: {period.endAt ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].manifestHash\">Period manifest: {period.manifestHash ?? \"Unavailable (null)\"}</p>\n              <p data-field-id=\"trackBAdmission.periods[].status\">Track B: {period.status} · <span data-field-id=\"trackBAdmission.periods[].result\">Result unavailable (null)</span></p>\n              <ul className=\"space-y-2\">{period.reasons.map((reason, i) => <li key={i}>\n                <strong data-field-id=\"trackBAdmission.periods[].reasons[].code\">{reason.code}</strong>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].gate\">{reason.gate}</span>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].companyId\">{reason.companyId ?? \"Period-wide (null)\"}</span>\n                <p data-field-id=\"trackBAdmission.periods[].reasons[].detail\">{reason.detail}</p>\n                <p className=\"break-all\" data-field-id=\"trackBAdmission.periods[].reasons[].artifactHash\">{reason.artifactHash ?? \"No referenced artifact (null)\"}</p>\n              </li>)}</ul>\n            </section>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 67,
+      "expression": "period.specification",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 68,
+      "expression": "period.origin",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 69,
+      "expression": "period.informationCutoff",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 70,
+      "expression": "period.executionAt ?? \"Unavailable (null)\"",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 71,
+      "expression": "period.endAt ?? \"Unavailable (null)\"",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 72,
+      "expression": "period.manifestHash ?? \"Unavailable (null)\"",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 73,
+      "expression": "period.status",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 74,
+      "expression": "period.reasons.map((reason, i) => <li key={i}>\n                <strong data-field-id=\"trackBAdmission.periods[].reasons[].code\">{reason.code}</strong>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].gate\">{reason.gate}</span>{\" · \"}\n                <span data-field-id=\"trackBAdmission.periods[].reasons[].companyId\">{reason.companyId ?? \"Period-wide (null)\"}</span>\n                <p data-field-id=\"trackBAdmission.periods[].reasons[].detail\">{reason.detail}</p>\n                <p className=\"break-all\" data-field-id=\"trackBAdmission.periods[].reasons[].artifactHash\">{reason.artifactHash ?? \"No referenced artifact (null)\"}</p>\n              </li>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 75,
+      "expression": "reason.code",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 75,
+      "expression": "\" · \"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 76,
+      "expression": "reason.gate",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 76,
+      "expression": "\" · \"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 77,
+      "expression": "reason.companyId ?? \"Period-wide (null)\"",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 78,
+      "expression": "reason.detail",
+      "explicitSemanticAncestor": true
+    },
+    {
+      "source": "client/src/components/track-b-research.tsx",
+      "line": 79,
+      "expression": "reason.artifactHash ?? \"No referenced artifact (null)\"",
+      "explicitSemanticAncestor": true
+    },
+    {
       "source": "client/src/pages/methodology.tsx",
-      "line": 109,
+      "line": 111,
       "expression": "indicatorFieldSpecs.length",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 112,
+      "line": 114,
       "expression": "[\n                  { category: \"Technology\", sources: [\"IRENA Renewable Capacity Statistics\", \"IEA Global EV Outlook\"], color: \"bg-emerald-500/10 text-emerald-600 dark:text-emerald-400\" },\n                  { category: \"Policy\", sources: [\"Climate Action Tracker\", \"Net Zero Tracker\"], color: \"bg-amber-500/10 text-amber-600 dark:text-amber-400\" },\n                  { category: \"Corporate\", sources: [\"Science Based Targets initiative (SBTi)\"], color: \"bg-orange-500/10 text-orange-600 dark:text-orange-400\" },\n                  { category: \"Socioeconomic\", sources: [\"Gallup Environment Poll\", \"Pew Research Climate Surveys\", \"World Bank / IMF WDI\"], color: \"bg-pink-500/10 text-pink-600 dark:text-pink-400\" },\n                  { category: \"Financial Flows\", sources: [\"IEA World Energy Investment\", \"Climate Bonds Initiative\", \"Stand.earth Divestment Database\"], color: \"bg-teal-500/10 text-teal-600 dark:text-teal-400\" },\n                  { category: \"Emissions Outcomes\", sources: [\"Global Carbon Project (GCP)\", \"NOAA Mauna Loa Observatory\", \"IPCC AR6 Carbon Budget\"], color: \"bg-red-500/10 text-red-600 dark:text-red-400\" },\n                ].map((cat) => (\n                  <div key={cat.category}>\n                    <Badge variant=\"secondary\" className={`mb-2 ${cat.color}`}>{cat.category}</Badge>\n                    <ul className=\"text-xs text-muted-foreground space-y-1 list-none p-0 m-0\">\n                      {cat.sources.map((s) => (\n                        <li key={s} className=\"flex items-start gap-1.5\">\n                          <span className=\"text-primary mt-0.5\">-</span>\n                          {s}\n                        </li>\n                      ))}\n                    </ul>\n                  </div>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 121,
+      "line": 123,
       "expression": "cat.category",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 123,
+      "line": 125,
       "expression": "cat.sources.map((s) => (\n                        <li key={s} className=\"flex items-start gap-1.5\">\n                          <span className=\"text-primary mt-0.5\">-</span>\n                          {s}\n                        </li>\n                      ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 126,
+      "line": 128,
       "expression": "s",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 156,
+      "line": 158,
       "expression": "[\n                      [\"Power\", \"26.9%\", \"16.2\", \"Renewable energy displacement\"],\n                      [\"Transport\", \"14.4%\", \"8.7\", \"Electric vehicle adoption\"],\n                      [\"Industry\", \"24.1%\", \"14.5\", \"Electrification, efficiency\"],\n                      [\"Buildings\", \"9.6%\", \"5.8\", \"Heat pumps, insulation\"],\n                      [\"Agriculture\", \"17.1%\", \"10.3\", \"Methane reduction\"],\n                      [\"Other\", \"8.0%\", \"4.8\", \"Waste management, forestry\"],\n                    ].map(([sector, share, baseline, driver]) => (\n                      <tr key={sector} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"py-2 font-medium text-foreground\">{sector}</td>\n                        <td className=\"text-right py-2\">{share}</td>\n                        <td className=\"text-right py-2\">{baseline}</td>\n                        <td className=\"py-2 pl-4\">{driver}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 165,
+      "line": 167,
       "expression": "sector",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 166,
+      "line": 168,
       "expression": "share",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 167,
+      "line": 169,
       "expression": "baseline",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 168,
+      "line": 170,
       "expression": "driver",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 188,
+      "line": 190,
       "expression": "[\n                  \"Renewable growth rate uncertainty: \\u00B115%\",\n                  \"EV adoption uncertainty: \\u00B120%\",\n                  \"Policy effectiveness: sampled around implementation rate\",\n                  \"Carbon intensity decline: \\u00B112%\",\n                  \"Economic growth: 2.5% \\u00B1 0.8%\",\n                  \"Climate sensitivity (ECS): 3.0 \\u00B1 0.5\\u00B0C\",\n                ].map((item, i) => (\n                  <li key={i} className=\"flex items-start gap-2\">\n                    <span className=\"text-primary font-bold\">-</span>\n                    {item}\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 198,
+      "line": 200,
       "expression": "item",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 255,
+      "line": 257,
       "expression": "RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 288,
+      "line": 290,
       "expression": "RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 349,
+      "line": 351,
       "expression": "[\n                  \"Empirical semi-elasticity: ex-post evaluation of 39 countries' carbon pricing policies (Rafaty, Dolphin & Pretis 2025; Doebbeling-Hildebrandt et al. 2024)\",\n                  \"IAM shadow prices: IPCC AR6 integrated assessment model carbon prices consistent with 1.5-2\\u00B0C pathways\",\n                  \"Marginal abatement cost curves (MACCs): bottom-up engineering analysis of techno-economic abatement potential at each price level (McKinsey, EDF)\"\n                ].map((item, i) => (\n                  <li key={i} className=\"flex items-start gap-2\">\n                    <span className=\"text-primary font-bold\">{i + 1}.</span>\n                    {item}\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 355,
+      "line": 357,
       "expression": "i + 1",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 356,
+      "line": 358,
       "expression": "item",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 385,
+      "line": 387,
       "expression": "[\n                      [\"$10\", \"4%\", \"Marginal\"],\n                      [\"$25\", \"8%\", \"Low\"],\n                      [\"$50\", \"16%\", \"Moderate\"],\n                      [\"$75\", \"23%\", \"Substantial\"],\n                      [\"$100\", \"29%\", \"Strong\"],\n                      [\"$150\", \"38%\", \"Very strong\"],\n                      [\"$200\", \"45%\", \"1.5\\u00B0C-aligned\"],\n                      [\"$300\", \"55%\", \"Very high\"],\n                      [\"$500\", \"65%\", \"Near-complete fossil exit\"],\n                    ].map(([price, reduction, signal]) => (\n                      <tr key={price} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"text-right py-1.5 font-medium text-foreground\">{price}</td>\n                        <td className=\"text-right py-1.5\">{reduction}</td>\n                        <td className=\"py-1.5 pl-4\">{signal}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 397,
+      "line": 399,
       "expression": "price",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 398,
+      "line": 400,
       "expression": "reduction",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 399,
+      "line": 401,
       "expression": "signal",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 444,
+      "line": 446,
       "expression": "[\n                      [\"0%/yr\", \"4,643\", \"3.19\\u00B0C\", \"No action (flat emissions)\"],\n                      [\"2%/yr\", \"2,379\", \"2.17\\u00B0C\", \"Moderate decline\"],\n                      [\"5%/yr\", \"1,183\", \"1.63\\u00B0C\", \"Ambitious (near 2\\u00B0C)\"],\n                      [\"7%/yr\", \"858\", \"1.49\\u00B0C\", \"1.5\\u00B0C-consistent\"],\n                      [\"10%/yr\", \"603\", \"1.37\\u00B0C\", \"Aggressive decarbonization\"],\n                      [\"-1%/yr\", \"6,944\", \"4.22\\u00B0C\", \"Rising emissions\"],\n                    ].map(([rate, emissions, temp, pathway]) => (\n                      <tr key={rate} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"text-right py-1.5 font-medium text-foreground\">{rate}</td>\n                        <td className=\"text-right py-1.5\">{emissions}</td>\n                        <td className=\"text-right py-1.5\">{temp}</td>\n                        <td className=\"py-1.5 pl-4\">{pathway}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 453,
-      "expression": "rate",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/methodology.tsx",
-      "line": 454,
-      "expression": "emissions",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/methodology.tsx",
       "line": 455,
-      "expression": "temp",
+      "expression": "rate",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
       "line": 456,
+      "expression": "emissions",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 457,
+      "expression": "temp",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 458,
       "expression": "pathway",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 484,
+      "line": 486,
       "expression": "RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 488,
+      "line": 490,
       "expression": "[\n                      [\"2%/yr\", \"~2172\"],\n                      [\"3%/yr\", \"~2122\"],\n                      [\"5%/yr\", \"~2082\"],\n                      [\"7%/yr\", \"~2065\"],\n                      [\"10%/yr\", \"~2052\"],\n                      [\"15%/yr\", \"~2042\"],\n                    ].map(([rate, year]) => (\n                      <tr key={rate} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"text-right py-1.5 font-medium text-foreground\">{rate}</td>\n                        <td className=\"text-right py-1.5\">{year}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 497,
+      "line": 499,
       "expression": "rate",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 498,
+      "line": 500,
       "expression": "year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 521,
+      "line": 523,
       "expression": "[\n                  { method: \"Absolute\", desc: \"All companies ranked globally by target ambition. The top third are 'best' and bottom third are 'worst'.\" },\n                  { method: \"Sector Relative\", desc: \"Companies ranked within their sector (e.g., Industrials, Financials). This controls for sectors where high decarbonization targets are structurally harder to achieve.\" },\n                  { method: \"Sub-Sector Relative\", desc: \"Companies ranked within their sub-sector (e.g., Ind. Goods & Services, Banks). Provides finer-grained comparison among closer peers.\" },\n                  { method: \"Industry Relative\", desc: \"Companies ranked within their industry (e.g., Ind. Transportation, Retail Banking). The most granular level, comparing companies with very similar emission profiles.\" },\n                ].map((item) => (\n                  <li key={item.method} className=\"flex items-start gap-2\">\n                    <Badge variant=\"secondary\" className=\"shrink-0 mt-0.5\">{item.method}</Badge>\n                    <span>{item.desc}</span>\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 528,
+      "line": 530,
       "expression": "item.method",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 529,
+      "line": 531,
       "expression": "item.desc",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 676,
+      "line": 678,
       "expression": "[\n                  { strategy: \"Selected signal\", desc: \"Carbon intensity, SDG and ambition use fixed company scores ranked across the filtered universe. They are retrospective comparisons, not point-in-time investable backtests. Peer-relative methods are not supported for these backtests.\" },\n                  { strategy: \"Decarb Gap\", desc: \"Formerly labelled Valuation-Aware. Requested with signal=decarb_gap; no separate strategy parameter exists. Ranks projected rate minus company implied rate within the selected peer groups. Lower P/E means lower implied growth, not higher growth.\" },\n                ].map((item) => (\n                  <li key={item.strategy} className=\"flex items-start gap-2\">\n                    <Badge variant=\"secondary\" className=\"shrink-0 mt-0.5\">{item.strategy}</Badge>\n                    <span>{item.desc}</span>\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 681,
+      "line": 683,
       "expression": "item.strategy",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 682,
+      "line": 684,
       "expression": "item.desc",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 709,
+      "line": 711,
       "expression": "[\n                  \"IPCC AR6 WG3 (2022). Climate Change 2022: Mitigation of Climate Change. Chapter 3, Figure 3.34.\",\n                  \"IPCC SR1.5 (2018). Global Warming of 1.5\\u00B0C. Chapter 2, Figure 2.26.\",\n                  \"Rafaty, R., Dolphin, G. & Pretis, F. (2025). Carbon pricing and the elasticity of CO2 emissions. Energy Economics, 144.\",\n                  \"Doebbeling-Hildebrandt, N. et al. (2024). Systematic review and meta-analysis of ex-post evaluations on the effectiveness of carbon pricing. Nature Communications, 15, 4147.\",\n                  \"Parry, I. et al. (2021). Proposal for an International Carbon Price Floor Among Large Emitters. IMF Staff Climate Note 2021/001.\",\n                  \"Naucler, T. & Enkvist, P.-A. (2009). Pathways to a Low-Carbon Economy. McKinsey Global GHG Abatement Cost Curve v2.\",\n                  \"Gordon, M.J. (1959). Dividends, Earnings, and Stock Prices. Review of Economics and Statistics, 41(2).\",\n                ].map((ref, i) => (\n                  <li key={i} className=\"flex items-start gap-2\">\n                    <span className=\"text-primary font-bold shrink-0\">[{i + 1}]</span>\n                    {ref}\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 719,
+      "line": 721,
       "expression": "i + 1",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 720,
+      "line": 722,
       "expression": "ref",
       "explicitSemanticAncestor": false
     },
@@ -10320,7 +10635,7 @@
   ],
   "supplementalQualifiedChanges": {
     "trackBAdmission": {
-      "definitions": 24,
+      "definitions": 35,
       "ids": [
         "trackBAdmission.contract",
         "trackBAdmission.protocolHash",
@@ -10345,16 +10660,29 @@
         "trackBAdmission.investmentEvidence",
         "trackBAdmission.authenticityVerified",
         "trackBAdmission.limitation",
-        "trackBAdmissionHttp.error"
+        "trackBAdmissionHttp.error",
+        "trackBPublicCatalog.contract",
+        "trackBPublicCatalog.reports[]",
+        "trackBPublicCatalog.reports[].protocolHash",
+        "trackBPublicCatalog.reports[].reportHash",
+        "trackBPublicCatalog.reports[].disclosureHash",
+        "trackBPublicCatalog.reports[].pipelineResultHash",
+        "trackBPublicCatalog.reports[].periodDomainHash",
+        "trackBPublicCatalog.availability",
+        "trackBPublicCatalog.operatorPrerequisite",
+        "trackBPublicCatalog.scientificAcceptance",
+        "trackBPublicCatalog.investmentEvidence"
       ],
       "reportSchemaLeaves": 23,
       "api": {
         "surface": "API GET \"/api/research/track-b-admission\"",
         "mounted": true,
-        "authorizedPublicReportResolverProvisioned": false,
-        "successfulPublicReportEngineeringComplete": false,
-        "defaultStatus": 503,
-        "qualification": "Declared report/export contracts and mounted explicit refusals are not a completed public report reader. Existing CLI archives are not automatically authorized for public disclosure."
+        "authorizedPublicReportResolverProvisioned": true,
+        "readerAndOfflinePublicationEngineeringImplemented": true,
+        "realReportPublicationDemonstrated": false,
+        "authorizedRealReportPins": 0,
+        "unlistedStatus": 404,
+        "qualification": "Actual trusted source-pinned disclosure reader and offline publisher,DEV synthetic end-to-end tested. No genuine report is yet authorized; source rights review/pins/publication are operator prerequisites. Private pipeline/filing archives are never runtime fallbacks."
       },
       "jsonExport": {
         "surface": "API GET \"/api/research/track-b-admission/export.json\"",
@@ -18116,9 +18444,870 @@
           "id": "supplementalSheet.bindings.asOfRule",
           "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
           "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Protocol SHA256",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.protocolHash",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Corpus SHA256",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.corpusHash",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Corpus cutoff",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.corpusCutoff",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Specification",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].specification",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Origin",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].origin",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Information cutoff",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].informationCutoff",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Execution",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].executionAt",
+          "transform": "JSON.stringify nullable source value: literal null is explicit unavailable, quoted strings retain their exact identity; never zero or blank",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].End",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].endAt",
+          "transform": "JSON.stringify nullable source value: literal null is explicit unavailable, quoted strings retain their exact identity; never zero or blank",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Period manifest",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].manifestHash",
+          "transform": "JSON.stringify nullable source value: literal null is explicit unavailable, quoted strings retain their exact identity; never zero or blank",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Stage9 contract satisfied (not authenticated)",
+          "type": "boolean",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].stage9ContractSatisfied",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Original filings contract satisfied (not authenticated)",
+          "type": "boolean",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].originalFilingsContractSatisfied",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Track B status",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].status",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Track B result",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].result",
+          "transform": "JSON.stringify nullable source value: literal null is explicit unavailable, quoted strings retain their exact identity; never zero or blank",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Failed gate",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].reasons[].gate",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Reason code",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].reasons[].code",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Company",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].reasons[].companyId",
+          "transform": "JSON.stringify nullable source value: literal null is explicit unavailable, quoted strings retain their exact identity; never zero or blank",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Referenced artifact",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].reasons[].artifactHash",
+          "transform": "JSON.stringify nullable source value: literal null is explicit unavailable, quoted strings retain their exact identity; never zero or blank",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Period reasons.[].Reason",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.periods[].reasons[].detail",
+          "transform": "Identity; exact report value, one row per failed requirement per frozen period",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[contract].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.contract",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[contract].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.contract",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[protocolHash].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.protocolHash",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[protocolHash].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.protocolHash",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[corpusHash].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.corpusHash",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[corpusHash].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.corpusHash",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[corpusCutoff].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.corpusCutoff",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[corpusCutoff].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.corpusCutoff",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[scientificAcceptance].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.scientificAcceptance",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[scientificAcceptance].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.scientificAcceptance",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[investmentEvidence].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.investmentEvidence",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[investmentEvidence].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.investmentEvidence",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[authenticityVerified].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.authenticityVerified",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[authenticityVerified].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.authenticityVerified",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[limitation].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.limitation",
+          "transform": "Exact finite source field identity, not its measured value",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Assessment identity.[limitation].JSON value",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmission.limitation",
+          "transform": "JSON.stringify exact report value; false/null never blank or zero",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Field",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Field",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Classification",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Classification",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Unit",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Unit",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Formula",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Formula",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Dependencies",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Dependencies",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Source",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Source",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Vintage",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Vintage",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].AsOf",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.AsOf",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Meaning",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Meaning",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Period",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Period",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Geography",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Geography",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Status",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Status",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Missingness",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Missingness",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Field semantics.[].Uncertainty",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.definitions.Uncertainty",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].Column",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.Column",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].FieldID",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.FieldID",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].Transformation",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.Transformation",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].id",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.id",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].meaning",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.meaning",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].role",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.role",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].formula",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.formula",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].dependencies",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.dependencies",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].unit",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.unit",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].source",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.source",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].period",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.period",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].geography",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.geography",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].status",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.status",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].missingness",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.missingness",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].uncertainty",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.uncertainty",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].scope",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.scope",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+          "field": "Column bindings.[].asOfRule",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "supplementalSheet.bindings.asOfRule",
+          "transform": "Identity of the already constructed metadata text; omitted optional cells stay absent",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "contract",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.contract",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "reports[]",
+          "type": "empty array or exact pinned report domain",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.reports[]",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "reports[].protocolHash",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.reports[].protocolHash",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "reports[].reportHash",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.reports[].reportHash",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "reports[].disclosureHash",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.reports[].disclosureHash",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "reports[].pipelineResultHash",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.reports[].pipelineResultHash",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "reports[].periodDomainHash",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.reports[].periodDomainHash",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "availability",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.availability",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "operatorPrerequisite",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.operatorPrerequisite",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "scientificAcceptance",
+          "type": "false",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.scientificAcceptance",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "investmentEvidence",
+          "type": "false",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBPublicCatalog.investmentEvidence",
+          "transform": "Exact source-controlled catalog identity/domain; retained files validated on selection, not caller review",
+          "bound": true
+        },
+        {
+          "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+          "field": "error",
+          "type": "string",
+          "source": "server/trackBAdmissionApi.ts",
+          "line": 1,
+          "resolution": "exact-qualified-track-b-contract-only-not-public-report-availability",
+          "id": "trackBAdmissionHttp.error",
+          "transform": "Catalog query override refusal; no publication approval",
+          "bound": true
         }
       ],
-      "boundary": "24 supplemental definitions only; actual per-period structural/refusal engineering, no authenticated positive admission. Original1000/1001,unknown summary and withheld fields unchanged."
+      "catalog": {
+        "surface": "API GET \"/api/research/track-b-admission/catalog\"",
+        "definitions": 11
+      },
+      "xlsxApi": {
+        "surface": "API GET \"/api/research/track-b-admission/export.xlsx\"",
+        "qualification": "Exact same validated report and source identities as JSON/UI; nullable cells preserve explicit JSON null"
+      },
+      "headerBindings": {
+        "reportHash": "trackBPublicCatalog.reports[].reportHash",
+        "disclosureHash": "trackBPublicCatalog.reports[].disclosureHash",
+        "pipelineResultHash": "trackBPublicCatalog.reports[].pipelineResultHash",
+        "periodDomainHash": "trackBPublicCatalog.reports[].periodDomainHash"
+      },
+      "boundary": "35 supplemental definitions:24report/refusal plus11publication controls. Publication never authenticates Stage9/original inputs or claims efficacy. Original1000/1001,unknown summary and withheld fields unchanged."
     },
     "warmingValidationReference": {
       "definitions": 38,
@@ -59539,11 +60728,11 @@
     ],
     "removedOriginalSlots": [],
     "originalPublicDenominator": 1001,
-    "externalTypedApiSlots": 1459,
-    "externalTypedApiBoundSlots": 1459,
-    "expandedApiAndDownloadPublicSlots": 2791,
-    "expandedApiAndDownloadBoundSlots": 2790,
-    "expandedPublicDeltaFromOriginal": 1790,
+    "externalTypedApiSlots": 1536,
+    "externalTypedApiBoundSlots": 1536,
+    "expandedApiAndDownloadPublicSlots": 2868,
+    "expandedApiAndDownloadBoundSlots": 2867,
+    "expandedPublicDeltaFromOriginal": 1867,
     "supplementalMetadataSheetColumns": 31,
     "companyCoverageApiLeafSlots": 133,
     "companyCoverageJsonExportLeafSlots": 133,
@@ -59555,6 +60744,8 @@
     "trackBAdmissionApiLeafSlots": 24,
     "trackBAdmissionJsonExportLeafSlots": 446,
     "trackBAdmissionWorkbookLeafSlots": 65,
+    "trackBAdmissionXlsxApiLeafSlots": 65,
+    "trackBAdmissionCatalogLeafSlots": 12,
     "boundary": "All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot."
   }
 }

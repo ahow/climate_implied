@@ -1,3 +1,87 @@
+# Trusted reports, source missingness and cache transport
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T19:14:27.938306+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 176.167,
+    "counts": {
+      "tests": 831,
+      "pass": 831,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+    "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "47verified251partial2blocked",
+  "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
+  "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
+  "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained.",
+  "release": "pending"
+}
+
+S15-017: Trusted source-pinned disclosurecatalog/fixedpublicstore nowserveactualCLIreport JSON/XLSX and UI; exacthash/cutoff/domain identities;404missing,403unpublished,503corrupt,409changedselection. Noarbitrarypath/privatefallback/publicwrite. Catalog genuinelyempty. Actualpipeline→DEVstore→HTTP→XLSX tested; browserempty/selected/absent/loading/errorpass withsyntheticinterception; browserXLSXplaceholder notparsedworkbook, backendactualreadbackseparate.
+Next/boundary: Writtenperperiodunavailableengineeringverified. Genuinepublicreport needsrightsreview,realreviewer/date/redistribution statement and reviewedcatalogpin, thenofflinepublisher. DisclosuredoesnotapproveStage9/originalfilings/science.
+
+S03-008: Strictloader→immutableinput→actualcalculation/export retainsblank/null/zero/sourcecells;everyfill linksoriginalblank+observeddonors/method. TypedproviderNA unavailable notinfilleligible. Actual1976823cells:21512blanks/252110NA/1450zeros/0unsupported;2442companies470341rows/0duplicates/0statevaluemismatch. Same-monthProfit retainsactualsourcedate;391908knownincl16zeros. No nearbycrossmonthborrowing ormissing-scopes-as-zero.
+Next/boundary: Finiteoriginalnegativefixture criterionverified viarealadapters/aggregation/export andread-onlycurrentworkbook; no privatefullsnapshotDBpublication/approval orhistoricalvintage claim. Preserveimmutableoldarchives andsourceavailability limits.
+
+S02-009: Geography/emptycompanycachebranches anddetachedMemStorage/regionalcache fixmutationpoisoning/eviction. NewloopbackactualHTTP/materialarchivewitness4miss+4warmhits;quartermemo12miss12write23hits eachinvocation. Regionalprovider1call+2warm success/failure. Synthetic6company36month datasets, notoldlarge witness.
+Next/boundary: Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof.
+
+S12-017: Fournewofficialsources authenticateEnLinkMidstreamPartnersLP reportingnotice/successor andONEOKEx21EnLinkCCSLLC; Q1corporatecredit/guarantees notCCSnovation/funding. Noqualifyingnewcashinput;historical844mrecognition preserved;0/3cases.
+Next/boundary: Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography.
+
+# Trusted reports, source missingness and cache transport
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T19:14:27.938306+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 176.167,
+    "counts": {
+      "tests": 831,
+      "pass": 831,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+    "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "47verified251partial2blocked",
+  "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
+  "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
+  "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained.",
+  "release": "pending"
+}
+
+S15-017: Trusted source-pinned disclosurecatalog/fixedpublicstore nowserveactualCLIreport JSON/XLSX and UI; exacthash/cutoff/domain identities;404missing,403unpublished,503corrupt,409changedselection. Noarbitrarypath/privatefallback/publicwrite. Catalog genuinelyempty. Actualpipeline→DEVstore→HTTP→XLSX tested; browserempty/selected/absent/loading/errorpass withsyntheticinterception; browserXLSXplaceholder notparsedworkbook, backendactualreadbackseparate.
+Next/boundary: Writtenperperiodunavailableengineeringverified. Genuinepublicreport needsrightsreview,realreviewer/date/redistribution statement and reviewedcatalogpin, thenofflinepublisher. DisclosuredoesnotapproveStage9/originalfilings/science.
+
+S03-008: Strictloader→immutableinput→actualcalculation/export retainsblank/null/zero/sourcecells;everyfill linksoriginalblank+observeddonors/method. TypedproviderNA unavailable notinfilleligible. Actual1976823cells:21512blanks/252110NA/1450zeros/0unsupported;2442companies470341rows/0duplicates/0statevaluemismatch. Same-monthProfit retainsactualsourcedate;391908knownincl16zeros. No nearbycrossmonthborrowing ormissing-scopes-as-zero.
+Next/boundary: Finiteoriginalnegativefixture criterionverified viarealadapters/aggregation/export andread-onlycurrentworkbook; no privatefullsnapshotDBpublication/approval orhistoricalvintage claim. Preserveimmutableoldarchives andsourceavailability limits.
+
+S02-009: Geography/emptycompanycachebranches anddetachedMemStorage/regionalcache fixmutationpoisoning/eviction. NewloopbackactualHTTP/materialarchivewitness4miss+4warmhits;quartermemo12miss12write23hits eachinvocation. Regionalprovider1call+2warm success/failure. Synthetic6company36month datasets, notoldlarge witness.
+Next/boundary: Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof.
+
+S12-017: Fournewofficialsources authenticateEnLinkMidstreamPartnersLP reportingnotice/successor andONEOKEx21EnLinkCCSLLC; Q1corporatecredit/guarantees notCCSnovation/funding. Noqualifyingnewcashinput;historical844mrecognition preserved;0/3cases.
+Next/boundary: Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography.
+
 # Cache identity, Gordon fixtures and period-level evidence
 
 {
@@ -3317,6 +3401,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-label-cash-7f2f110",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T17:35:36.467203+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-cache-periods-52d2ab7",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T18:25:13.800113+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

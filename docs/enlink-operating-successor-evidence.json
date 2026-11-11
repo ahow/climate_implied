@@ -1,0 +1,180 @@
+{
+  "version":"enlink-operating-successor-1",
+  "status":"bounded-materially-new-primary-search-complete-no-qualified-cash-input",
+  "qualifiedOriginalIssuers":0,
+  "technicalOriginalCompletion":false,
+  "ownerReview":"not-self-approved",
+  "request":"Actualoperatingcontract/novation/settlement/currentbilling/payment/funding/opex discovery using newlyauthenticated ElkMergerSubII andEnLinkMidstreamPartnersLP keys. No repeatedfourlastrequests, closingpackages, oldkernels or grids.",
+  "rights":"OfficialSECmetadata andissuer-authoredfilings; only paraphrasedpublicfacts/locators/derivedsourcequalificationstatus in this evidence. Rawprimarycompletefiles/privateproviderbytes stay in ignoredprivateartifacts. No rawprivateexport.",
+  "acquisition":{
+    "maximumLogicalRequests":4,
+    "actualLogicalRequests":4,
+    "http200Count":4,
+    "repeatedPriorPrimaryRequests":0,
+    "paidCalls":0,
+    "sealed":true,
+    "searchStoppedAtBound":true,
+    "exactCommands":[
+      "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one emlp-submissions.json https://data.sec.gov/submissions/CIK0001179060.json 'RetainedONEOKFY2025Ex4index links authenticated EnLinkMidstreamPartnersLP CIK1179060; successoroperatingsubsidiary/contractfilingdiscovery'",
+      "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one oneok-fy2025-ex21.html https://www.sec.gov/Archives/edgar/data/1039684/000103968426000006/oke10-k2025exhibit21.htm 'RetainedONEOKFY2025annual declaredEx21href:operating-entityinventorydistinctfromoldclosing/bonds'",
+      "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one emlp-reporting-suspension-20250210.html https://www.sec.gov/Archives/edgar/data/1179060/000121390025011812/ea023055103-1515d_elkmerger.htm 'NewEMLPsubmissionsdeclaredlatest15-15Dprimary/accession; materialoperatingsuccessorreportingstatus notsameclosing'",
+      "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one oneok-first-postmerger-2025q1.html https://www.sec.gov/Archives/edgar/data/1039684/000103968425000061/oke-20250331.htm 'RetainedONEOKsubmissionsdeclarefirstpostmergerQ12025: businessacquisitioncontract/contingency/fee/payment andexhibitindex discovery; no repeatedannual/closing'"
+    ]
+  },
+  "sourceRecords":[
+    {
+      "id":"EMLP-OFFICIAL-METADATA",
+      "url":"https://data.sec.gov/submissions/CIK0001179060.json",
+      "publicationDate":null,
+      "capturedDate":"2026-11-11",
+      "period":"Currentretainedrecentfilingindex; mostrecentForm15February10,2025",
+      "legalIdentity":"EnLink Midstream Partners, LP, CIK0001179060",
+      "locator":"name/cik; filings.recent.accessionNumber/form/filingDate/primaryDocument; filings.files",
+      "unit":"Issueridentity/filingdates, no cash",
+      "sha256":"f247f81ad8ac97ca1135a1bc51d584d17fc1752c1df5105b4dfdfb280682edb4",
+      "reliability":"CIKauthenticatedfromretainedONEOKannualexactdebtissuerlinks, not guessed. Currentrecentindex has no2021+10K/Q; NOT a globalno-disclosureclaim. Historicalarchive2002–2010notrequestedbecauseirrelevantto2022+CCScontract."
+    },
+    {
+      "id":"ONEOK-FY2025-SUBSIDIARIES",
+      "url":"https://www.sec.gov/Archives/edgar/data/1039684/000103968426000006/oke10-k2025exhibit21.htm",
+      "publicationDate":"2026-02-24",
+      "period":"AsDecember31,2025",
+      "legalIdentity":"ONEOKInc, CIK0001039684; listedgroupentities below",
+      "locator":"Exhibit21 alphabeticalsubsidiaryrows ElkMergerSubII; EnLinkCCS; EnLinkMidstreamOperating/Partners/Services",
+      "unit":"Legalnames andstateofincorporation/organization; NOT operatinggeography, ownershipofCCSassets or USD",
+      "sha256":"e7e441f7d6658ee4e5511a50e117e966c572d95002bd56d45ff15c0eb13a7d3d",
+      "reliability":"Materiallynewactualoperating-entityinventory. EnLinkCCSLLC existsaslistedDelawaresubsidiary, not authenticatedas namedXOMtransport/settlementparty. Listingdoesnotspecifydirectparentchain or operatingprojectequity."
+    },
+    {
+      "id":"EMLP-REPORTING-NOTICE",
+      "url":"https://www.sec.gov/Archives/edgar/data/1179060/000121390025011812/ea023055103-1515d_elkmerger.htm",
+      "publicationDate":"2025-02-10",
+      "period":"Notice/certificationFebruary10,2025; closingJanuary31,2025",
+      "legalIdentity":"ElkMergerSubII,L.L.C., successorEnLinkMidstreamLLC; ScheduleA subsidiaryguarantor EnLinkMidstreamPartnersLP",
+      "locator":"Form15cover checkedRule12g-4(a)(1)/12h-3(b)(1)(i); ScheduleA; signatures",
+      "unit":"Registration/reportingnotice, namedclasses of securities; no CCSsettlementmoney",
+      "sha256":"facbb22f7d127679b3c9b2f413035efab0328d6299392d1e875c4c857d2f155d",
+      "reliability":"Actual15-15D foundusingnewEMLPmetadata, not sameclosingpackage. Gives materialreasonnottoexpectfreshstandalonequarterreports. Not cessationofpipelines, CCScontracttermination/novation, or proofallfuturegroupreportingceases."
+    },
+    {
+      "id":"ONEOK-FIRST-POSTMERGER-QUARTER",
+      "url":"https://www.sec.gov/Archives/edgar/data/1039684/000103968425000061/oke-20250331.htm",
+      "publicationDate":"2025-04-30",
+      "period":"QuarterendedMarch31,2025",
+      "legalIdentity":"ONEOKInc CIK0001039684; glossaryEnLink/EnLinkPartners, not authenticatedCCSoperatingcontractparty",
+      "locator":"Glossary; NoteBacquisitions/transactioncosts; NoteKcontractassets/liabilities; Item6Exhibits10.1–10.5",
+      "unit":"Sourcecontractdiscovery; company-wideUSDmillions innotes not attributedCCS/projectcash",
+      "sha256":"c1213a1dc1822d99d36cb05adf7ce27941e40cf6cc8928b536c0b1f57eab5923",
+      "reliability":"Materiallynewfirstpostmergeroperatingquarter, not same2026earnings/closing. NamedExxon/Pecan/CCS/carboncapture/sequestration absentinthisexactfiling. FiveEX10entries aretwoemployeeawards andthreecorporatebankcredit/guarantees. No attached/incorporatedCCScontract identifiedinthisindex; no globalundisclosedclaim."
+    }
+  ],
+  "sourceFacts":{
+    "selectedCrosswalkNotFullGroupCensus":true,
+    "underlyingIncorporatedCorporateCreditInstrumentsFetched":false,
+    "organizedGroupEntities":[
+      {"legalName":"Elk Merger Sub II, L.L.C.","organizationJurisdiction":"Delaware"},
+      {"legalName":"EnLink CCS, LLC","organizationJurisdiction":"Delaware"},
+      {"legalName":"EnLink Midstream Operating, LP","organizationJurisdiction":"Delaware"},
+      {"legalName":"EnLink Midstream Partners, LP","organizationJurisdiction":"Delaware"},
+      {"legalName":"EnLink Midstream Services, LLC","organizationJurisdiction":"Texas"}
+    ],
+    "organizationJurisdictionIsNotOperatingGeography":true,
+    "actualCcsOperatingContractParty":null,
+    "actualXomOperatingContractParty":null,
+    "actualCcsContractNovation":null,
+    "actualCcsContractTermination":null,
+    "quarterDeclaredContractIndex":[
+      {"exhibit":"10.1","kind":"EmployeeRestrictedUnitAwardAgreement"},
+      {"exhibit":"10.2","kind":"EmployeePerformanceUnitAwardAgreement"},
+      {"exhibit":"10.3","kind":"ONEOKcorporatebankcreditagreement"},
+      {"exhibit":"10.4","kind":"ElkMergerSubII/EnLinkPartnersguarantytoCitibankundercorporatecreditfacility"},
+      {"exhibit":"10.5","kind":"GroupcorporatebankguarantyincludingElkMergerSubII/EnLinkPartners"}
+    ],
+    "cashBridge":{
+      "newlyQualified":false,
+      "billingUsd":null,
+      "paymentUsd":null,
+      "fundingUsd":null,
+      "opexUsd":null,
+      "replacementCapexUsd":null,
+      "actualAppliedCashChangeUsd":0,
+      "qualifiedOriginalIssuers":0,
+      "economicCalculationsExecuted":0,
+      "oldKernelsOrGridsRerun":0,
+      "why":"Newsource closes groupentity/reportingscope, not actualoperatingCCScontract/payment economics. Stopboundedsearch rather than monetizing guarantees, recognition or unallocatedtail."
+    }
+  },
+  "fieldSpecificFindings":[
+    {"field":"EnLinkCCSoperatingcontractparty","status":"candidatelegalname-newly-sourced-role-unverified","result":"EnLinkCCSLLC inactualEx21, Delawareorganization. No textidentifiesit asholderofXOMMVCtransportationcontract, creditororsettlementpayee. Neverassignit automaticallyfromname."},
+    {"field":"Currentlegalreportingidentity","status":"material-new-primary-closed-dated-scope","result":"ActualForm15expresslylinksElkMergerSubIIsuccessor andScheduleAEMLPguarantor; checkedreportingsuspension/registrationrules. Groupdefinition/list extends datedentityevidence, not CCScontractnovation."},
+    {"field":"ExecutedCCScontract/novation/settlement","status":"not-located-in-examined-new-sources","result":"Newfirstpostmerger10QEX10.1–10.5indexhasemployeeawards/corporatecreditguarantees only; no namedXOM/PecanCCSterms inwholequarter. Corporatebankguaranty is not novation ofoperatingcontract or CCSsettlement."},
+    {"field":"Currentbilling/payment/funding/opex/replacement","status":"no-qualified-new-financial-input","result":"No projectcounterpartyCCScashseries, billingprice, paymentdate/amount or earmarkedprojectdraw identified. Groupcreditcapacity/guarantees are not actualfunding. Aggregatecontractliabilities not zeroCCSbillings. Share-awardsettlement/noncashcompensation not CCSrecovery."},
+    {"field":"Historical844m/CF45Q","status":"preserved-not-used","result":"No changeofhistoricalexpectedrecognition intocash; no2029–2050tailallocation; noCF45Qrecognition or JVcash transfer toXOM. No baselinecarboncost deductedagain."},
+    {"field":"Gas/geography/policyallocation","status":"unchanged-no-new-operating-site-input","result":"Stateoforganization is notoperatingcarbonjurisdiction. No nativeCO2/CO2e/scope/coveredshare/banking/freeallocation/pass-through orcashsettlementtiming claimedfromtheselegal/creditfilings. No HQproxy or globalaverage."}
+  ],
+  "originalClauseProposals":[
+    {"clause":"ActualCCScontractparty/currentstatus/projectfunding","proposal":"Keep datedgrouplegalentity/reportingfacts separatefromcontract/cash. NewlycandidateEnLinkCCSLLCrole mustremainunverified withoutdirectexecutedoperatinginstrument. Threecorporatecredit/guarantees donotcloseprojectfunding.","qualification":false},
+    {"clause":"OriginalfundedcommonFCFE/terminal/stub","proposal":"No actualnewqualifyingcashinput, hence no originalcase/terminal/reinvestment/stub/scoring/pricecutoff change. Preserveoriginalfiveyear+tenyearfade/2.5–4%terminal/sameCFbasis/currency/shares/stub/cutoff. Futureassumptions maynotinventobservedbilling/receipts/contractnovation or moveanothercompanycreditintoXOMcash.","qualification":false}
+  ],
+  "informationContext":"Revised-historysourcecompletion ONLY. Form15publishedFebruary10,2025, firstquarterApril30,2025 andFY2025Ex21February24,2026; doNOT backdate tooriginalretainedJanuary2025XOMcutoff or rewriteFY2024sourcebasis/frozenv3/v4negativecases. No newexperimentvaluation, fullcashflowcase, positivegrowthassumption or ownerapproval.",
+  "freeze":{
+    "freezeSha256":"c016c2565f1fc171c8df7d5a642b729838989843b2e910e17a49b4251bafc545",
+    "reportSha256":"ddc1370b4d20893075bfa2dd42986a7d123e43a79fbe972029b696bd319a4858",
+    "sourceAndProtocolFrozenBeforeAdapter":true,
+    "humanReconnaissancePrecededAdapterFreeze":true,
+    "adapterExecutions":1,
+    "economicScoringExecutions":0,
+    "futureEconomicAssumptions":0
+  },
+  "publicOutputDecision":{
+    "sharedApiUiXlsxFactsAdded":0,
+    "reason":"No qualifiednewCCSfinancialinput. Avoidincrementalcurrentcash/operatingparty claims. Existingcurrentsettlementnull/historical844m facts remainbyteunchanged.",
+    "publicSafeDerivedEvidenceOnly":["Five namedONEOKgroupsubsidiaries/organizationstates asofDecember31,2025, explicitlyNOT operatinggeography/contractparties","Form15datedreporting/legalidentityscope","NewfirstpostmergerEX10five-rowclassification andfieldsnotlocatedinexaminedsources"],
+    "rawPrivateProviderOrPrimaryBytesExported":false,
+    "priorLiveSemanticDefinitionsUnchanged":95,
+    "priorExportLeavesUnchanged":564
+  },
+  "stopAndResiduals":{
+    "stop":"FourmateriallyNEWofficialrequestscompleted; stopmicroaudits. Do not repeatclosingpackages/theseindexrows/earnings or runarbitraryeconomicgrid.",
+    "preciseMissingInputs":["ExecutedoperatingCCStransportation/financial-arrangementinstrument namingbothlegalsubsidiaries anditscurrentstatus/novation","Currentminimum-billings or fee-price-volume obligations byperiod, not historicalfuture-recognitiongroupedtail","Actualpaymentamount/date/bankorcashflowclassification, not share-awardsettlement or recognition","Project-earmarkedfundingdraws/capitalcalls/opex/replacementneeds; corporatecreditguaranties insufficient"],
+    "notGloballyUndisclosed":true,
+    "notLocatedScope":"OnlynewEMLPcurrentSECmetadata/Form15; ONEOKFY2025Ex21; ONEOKMarch31,2025quarterwholetext/EX10index. Priorfour2024/2025/2026packages preserved, notrequestedagain.",
+    "unattemptedNotPretendedAbsent":["No repeatedoldclosing/debtpackages, no irrelevant2002–2010archivequery","No acquisitionofunlocatedconfidentialoperatingcontract or privatecounterpartyinvoice","No newNEE/FSLRoldnote/microaudit substitution"]
+  },
+  "verification":{
+    "status":"passed-separate-private-and-code-only",
+    "publicCommand":"npx tsx --test script/enlink-operating-successor.test.ts",
+    "adapterCommand":"npx tsx script/run-enlink-operating-successor.ts --private-primary",
+    "mandatoryPrivateCommand":"npx tsx script/validate-enlink-operating-successor-private.ts --private-primary",
+    "publicTestsPassed":4,
+    "publicTestsFailed":0,
+    "publicLogSha256":"313b643ce9cca545e5ca557aa174bcfc1c1e523ac837155da1a4b6ba3c4f9aa6",
+    "mandatoryPrivatePassed":true,
+    "privateNewGroupEntityRowsVerified":5,
+    "privateActualDeclaredEx10RowsVerified":5,
+    "privateActualReportingNoticeAndMetadataVerified":true,
+    "privatePriorProtectedArtifactHashes":340,
+    "privateOriginalAnnualRows":32,
+    "privateOriginal613405m14435m780kDiagnosticsPreserved":true,
+    "privatePublicApiSharedDataByteUnchanged":true,
+    "privateSourceSupportsNewCashBridge":false,
+    "privateLogSha256":"72df6802d536a241869a763d4c8178bbdc82934257df6f79ec3cb21d76ea3549",
+    "privateReceiptSha256":"5ada45e42020fabca5200edc7709c2e3462846c605c87e00f4316b2deae11a9a",
+    "captureLogSha256":"cf251e6821527737ac77f5921bb03336c0da2402fea20527c1942c891872b07c",
+    "sealedReceiptsSha256":"98a1b5b90552abfe25ce960d4536d0946eafd94b56502b6392b6cc9bb70ff40d",
+    "sourceSealSha256":"dfc78b41a302c0217f8d6d68aa7e77392a07a0242029d45eb2ccd56cadb4a67e",
+    "adapterLogSha256":"a5212edd6bcc1f54f36a32f0b9a61953f95eecd855bb06efcaebf38956b61630",
+    "strictOwnFileCount":5,
+    "strictEs2022ExactCommand":"npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/enlinkOperatingSuccessorEvidence.ts script/capture-enlink-operating-successor.ts script/enlink-operating-successor.test.ts script/run-enlink-operating-successor.ts script/validate-enlink-operating-successor-private.ts",
+    "strictEs5ExactCommand":"npx tsc --noEmit --strict --target ES5 --lib ES2022,DOM --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/enlinkOperatingSuccessorEvidence.ts script/capture-enlink-operating-successor.ts script/enlink-operating-successor.test.ts script/run-enlink-operating-successor.ts script/validate-enlink-operating-successor-private.ts",
+    "strictEs2022Exit":0,
+    "strictEs5Exit":0,
+    "bothEmptyCompilerLogsSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "apiOrXlsxUnchangedControlsRerun":false,
+    "appOrBrowserRun":false,
+    "publicTestsDependOnPrivateArtifacts":false,
+    "canonicalLedgersFairBundlesOtherHelpersCachesTrackBLoadersCollectorsRoutesEdited":false,
+    "sharedPublicDataEdited":false,
+    "workflowCommitDeployPublishCallbackApprovalPurchaseBillingDdlProdChanges":0
+  }
+}

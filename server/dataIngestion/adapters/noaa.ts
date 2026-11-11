@@ -1,19 +1,24 @@
 import { fetchWithTimeout, todayIso, type FetchedValue, type SourceAdapter } from "./types";
+import { createHash } from "node:crypto";
 
 const ANNMEAN_URL = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt";
 const GROWTH_URL = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt";
 const SOURCE = "NOAA Global Monitoring Laboratory (Mauna Loa)";
 
-function parseLatestRow(text: string): { year: number; value: number } | undefined {
-  let latest: { year: number; value: number } | undefined;
-  for (const line of text.split("\n")) {
+function parseLatestRow(text: string, sourceUrl: string): { year: number; value: number; line: number; sourceId: string } | undefined {
+  let latest: { year: number; value: number; line: number; sourceId: string } | undefined;
+  const lines = text.split("\n"), sourceId = createHash("sha256").update(text).digest("hex");
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index];
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith("#")) continue;
     const parts = trimmed.split(/\s+/);
-    const year = parseInt(parts[0], 10);
-    const value = parseFloat(parts[1]);
-    if (!Number.isFinite(year) || !Number.isFinite(value)) continue;
-    if (!latest || year > latest.year) latest = { year, value };
+    if (!/^\d{4}$/.test(parts[0]) || !/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/.test(parts[1] ?? ""))
+      throw new Error(`Unsupported NOAA numeric source ${sourceUrl} ${sourceId}:line${index + 1}:column2`);
+    const year = Number(parts[0]), value = Number(parts[1]);
+    if (!Number.isFinite(value) || value === -99.99 || value === -999.99)
+      throw new Error(`Missing/unsupported NOAA numeric source ${sourceUrl} ${sourceId}:line${index + 1}:column2`);
+    if (!latest || year > latest.year) latest = { year, value, line: index + 1, sourceId };
   }
   return latest;
 }
@@ -27,7 +32,7 @@ export const noaaAdapter: SourceAdapter = {
 
     const annResp = await fetchWithTimeout(ANNMEAN_URL);
     if (annResp.ok) {
-      const annLatest = parseLatestRow(await annResp.text());
+      const annLatest = parseLatestRow(await annResp.text(), ANNMEAN_URL);
       if (annLatest) {
         out.push({
           indicatorKey: "atmosphericCO2ppm",
@@ -37,6 +42,7 @@ export const noaaAdapter: SourceAdapter = {
           sourceUrl: ANNMEAN_URL,
           asOfDate,
           method: "api",
+          rawContext: JSON.stringify({ sourceId: annLatest.sourceId, line: annLatest.line, column: 2, missingness: "Observed numeric source; no blank/token infill" }),
         });
       }
     } else {
@@ -45,7 +51,7 @@ export const noaaAdapter: SourceAdapter = {
 
     const grResp = await fetchWithTimeout(GROWTH_URL);
     if (grResp.ok) {
-      const grLatest = parseLatestRow(await grResp.text());
+      const grLatest = parseLatestRow(await grResp.text(), GROWTH_URL);
       if (grLatest) {
         out.push({
           indicatorKey: "co2GrowthRatePpm",
@@ -55,6 +61,7 @@ export const noaaAdapter: SourceAdapter = {
           sourceUrl: GROWTH_URL,
           asOfDate,
           method: "api",
+          rawContext: JSON.stringify({ sourceId: grLatest.sourceId, line: grLatest.line, column: 2, missingness: "Observed numeric source; no blank/token infill" }),
         });
       }
     } else {

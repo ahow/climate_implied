@@ -24,6 +24,7 @@ import { nativeThresholdSemantics } from "./nativeThresholdSemantics";
 import { conditionalCompanySemantics } from "./companyConditionalSemantics";
 import { warmingValidationReferenceSemantics } from "./warmingValidationReferenceSemantics";
 import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics } from "./trackBAdmissionContract";
+import { trackBPublicCatalogSemantics } from "./trackBDisclosureContract";
 import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
@@ -43,6 +44,7 @@ const peFinancial={...financial,geography:"Selected workbook universe; this endp
 export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...trackBAdmissionSemantics,
   ...trackBAdmissionHttpSemantics,
+  ...trackBPublicCatalogSemantics,
   ...warmingValidationReferenceSemantics,
   ...conditionalCompanySemantics,
   ...indicatorFieldSemantics,

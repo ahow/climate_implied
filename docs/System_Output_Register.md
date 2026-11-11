@@ -78,6 +78,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | POST | "/api/data/proposals/:id/approve" | server/routes.ts |
 | POST | "/api/data/proposals/:id/reject" | server/routes.ts |
 | POST | "/api/data/indicator/:key/manual" | server/routes.ts |
+| GET | "/api/research/track-b-admission/catalog" | server/trackBAdmissionApi.ts |
 | GET | `/api/research/track-b-admission${suffix}` | server/trackBAdmissionApi.ts |
 | GET | "/api/reference/warming-validation" | server/warmingValidationReferenceApi.ts |
 | GET | "/api/reference/warming-validation/export.json" | server/warmingValidationReferenceApi.ts |
@@ -104,6 +105,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
 | client/src/components/target-input-disclosure.tsx | "/api/calculation/field-semantics" |
+| client/src/components/track-b-research.tsx | "/api/research/track-b-admission/catalog" |
+| client/src/components/track-b-research.tsx | "/api/research/track-b-admission" |
 | client/src/hooks/use-company-conditional-summaries.ts | "/api/cv/company-conditional-summaries" |
 | client/src/lib/analysis-selection.ts | "/api/cv/summary" |
 | client/src/lib/analysis-selection.ts | "/api/cv/dimensions" |
@@ -127,6 +130,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
+| client/src/lib/trackBPublicReports.ts | `/api/research/track-b-admission${suffix}?${new URLSearchParams({ protocolHash: pin.protocolHash, reportHash: pin.reportHash, disclosureHash: pin.disclosureHash, })}` |
+| client/src/lib/trackBPublicReports.ts | "/api/research/track-b-admission/catalog" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/uploads" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/summary" |
 | client/src/pages/climate-valuation.tsx | `/api/cv/carbon-price?uploadId=${uploadId}&method=sector_relative&includeScope3=${includeScope3}&winsorize=${winsorize}&inferenceMethod=carbon_intensity` |

@@ -1553,6 +1553,33 @@
       },
       "failed_ci": "43074869603: retained historical proposal compared against newly verified status after ledger edit. Prior published619a0d8 S11-040partial independently confirmed; dedicated pre-increment provenance and exact assertions repaired. No calculator/gate weakening; earlier796pass preceded ledger edit; final796pass follows repair.",
       "failure_evidence": "docs/S02-009-public-source-failure-evidence.json"
+    },
+    "resolver_loader": {
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+        ],
+        "executed_at": "2026-11-11T19:14:27.938306+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 176.167,
+        "counts": {
+          "tests": 831,
+          "pass": 831,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+        "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "counts": "47verified251partial2blocked",
+      "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
+      "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
+      "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained.",
+      "release": "pending"
     }
   },
   "prior_native_fleet_increment": {
@@ -1648,7 +1675,7 @@
     "scope": "Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T18:24:11.359774+00:00",
+  "updated_at": "2026-11-11T19:20:45.617046+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -18250,9 +18277,12 @@
           "files_functions_changed": [
             "script/check-nine-http-recovery.ts",
             "server/calculation/identity.ts",
-            "server/routes.ts"
+            "server/routes.ts",
+            "server/storage.ts",
+            "server/climateValuation/companyCarbonCache.ts",
+            "script/company-cache-transport.test.ts"
           ],
-          "behaviour_delivered_this_run": "Realcompanycarbon cache identities nowbindretainedselection/dataset/model/executablesource; oldentriesnotdeleted. Retained2442companies470341observations produce187rows each:miss,miss,miss,hit,hit,hit,hit;3computes4warmhits. Analyticalpayload/manifests equal;3keysdistinct. Fixedcold/warmirregularhistoryordering; no productionDB/cacheclears.",
+          "behaviour_delivered_this_run": "Geography/emptycompanycachebranches anddetachedMemStorage/regionalcache fixmutationpoisoning/eviction. NewloopbackactualHTTP/materialarchivewitness4miss+4warmhits;quartermemo12miss12write23hits eachinvocation. Regionalprovider1call+2warm success/failure. Synthetic6company36month datasets, notoldlarge witness.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -18367,6 +18397,26 @@
               "workspace_revision": "0a3a720eca0eb6eb47e992b88519dae23e160aa1",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -18385,9 +18435,9 @@
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
           "remaining_gaps": [
-            "Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged."
+            "Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof."
           ],
-          "next_action": "Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged.",
+          "next_action": "Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof.",
           "blockers": [],
           "check_type": "exact",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
@@ -18682,8 +18732,189 @@
             "Repeated GET equality alone cannot establish cold-vs-warm cache-path execution."
           ],
           "remainingGaps": [
-            "Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged."
-          ]
+            "Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof."
+          ],
+          "before_resolver_loader_increment": {
+            "status": "partial",
+            "remaining_gaps": [
+              "Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged."
+            ]
+          },
+          "resolver_loader_increment": {
+            "file": "docs/S02-009-cache-extension-evidence.json",
+            "sha256": "30278bda43d0544b4ca489d460689c75079110b30fc19573b1f24169f2443eec",
+            "evidence": {
+              "criterion": "S02-009",
+              "exactLedgerClause": "Cold and warm caches return identical values and identities.",
+              "ledgerReadOnlyLocation": "docs/workplan_completion_ledger.json:S02-009",
+              "engineeringAcceptance": "Additional actual cache families and geography/empty branches now have direct engineering witnesses. Actual loopback HTTP executes production CV registrations and material/result archive functions with explicitly isolated database I/O. This is not full application-wide, deployed, PostgreSQL-authority or scientific acceptance.",
+              "priorProofsNotRepeated": [
+                {
+                  "evidence": "docs/S02-009-company-cache-evidence.json",
+                  "scope": "Actual retained 2442-company/470341-observation calculator witness: three retained selections, three misses/computations and four warm hits.",
+                  "sourceVersion": "8211dcf48dea21af15b684f958d4bf751a630f925e3a0a8ff6069a24429f86aa",
+                  "rerun": false,
+                  "qualification": "Historical source-pinned receipt, not silently relabelled as a current-source full-dataset witness. This extension and parallel missingness work change executable source identities."
+                },
+                {
+                  "evidence": "script/threshold-route-integration.test.ts",
+                  "scope": "Existing extracted actual projection handler with isolated persistent-cache I/O; tests schema/versioned response and subsequent cached read.",
+                  "rerun": false,
+                  "qualification": "Not evidence of all route-local caches, real PostgreSQL transport or this extension's changed source."
+                },
+                {
+                  "evidence": "docs/S02-009-public-source-failure-evidence.json",
+                  "scope": "Earlier approved-public-source suite reproduction identified unrelated reconciliation-stage failure.",
+                  "rerun": false,
+                  "qualification": "No unrelated test assertion, reconciliation proposal, ledger, publication or promotion changed here."
+                }
+              ],
+              "actualFamilyInventory": [
+                {
+                  "family": "Company carbon-price cross-request JSONB result cache",
+                  "path": "server/climateValuation/carbonPriceCalculator.ts",
+                  "currentProof": "Four cold misses/compute/write paths followed by four concurrent warm hits. Geographic US, empty geography ZZ, distinct dataset and populated-history/no-eligible-profit empty result all exercised through actual HTTP.",
+                  "fix": "Geography and both empty-result branches now use the existing selection/source/model/settings-bound cache key. Cached [] is a hit, not absence."
+                },
+                {
+                  "family": "Projection MemStorage cache",
+                  "path": "server/storage.ts",
+                  "currentProof": "Actual isolated instance get/set detects caller-mutation poisoning and confirms replacement at capacity does not evict another selection.",
+                  "fix": "Clone insertion input and both return paths; evict only for a genuinely new key.",
+                  "remaining": "Current extension does not claim new transport-level witnesses for all projection routes using this store."
+                },
+                {
+                  "family": "Current walk-forward per-invocation quarter score memo",
+                  "path": "server/climateValuation/walkForwardBacktest.ts",
+                  "currentProof": "Actual production backtest HTTP registration and calculator source; three invocations, each 12 misses, 12 writes and 23 real local memo hits. Concurrent distinct datasets retain distinct HTTP manifests/material archives. Repeated same selection preserves result, manifest, material and archived-result identities.",
+                  "qualification": "Within-invocation memoization, not cross-request result caching. Instrumented native Map dependency in isolated source execution; production algorithm not edited."
+                },
+                {
+                  "family": "Legacy prior-quarter score memo",
+                  "path": "server/climateValuation/backtestCalculator.ts",
+                  "currentProof": "Actual legacy function source through private loopback fixture transport; three invocations, each 12 misses, 12 writes and 23 memo hits, including concurrent distinct datasets.",
+                  "qualification": "Explicit legacy comparison only. Private fixture endpoint is not an application endpoint. No claim of public legacy HTTP archive identities or scientific backtest validation."
+                },
+                {
+                  "family": "Regional OWID input provider process cache",
+                  "path": "server/calculation/regionalProjections.ts",
+                  "currentProof": "Actual function with isolated provider I/O: one cold fetch and two warm return branches, both successful-provider and cached-static-failure cases. Caller mutations cannot change subsequent analytical payload hashes. No real network request.",
+                  "fix": "Detach returned payload from cache on successful cold, warm and failure-cache returns.",
+                  "qualification": "Synthetic engineering provider fixture; not live OWID data or public regional-route acceptance."
+                },
+                {
+                  "family": "Immutable source/material/result archive deduplication and retrieval",
+                  "path": "server/snapshots/materialInputs.ts; server/snapshots/results.ts; server/snapshots/resultContract.ts",
+                  "currentProof": "Actual production capture/save/load/hash-validation functions through isolated SQL/ORM transport and actual HTTP handlers. Direct adapter insert-if-absent witnesses: source 1 new/10 existing, material 3 new/8 existing, result 6 new/5 existing. Stored HTTP results equal analytical responses; dataset/model/source references are verified.",
+                  "qualification": "Archive deduplication is not a general result cache. Fixture guard metadata is not proof of PostgreSQL triggers, permissions, transactions or durability. Process-local source-payload memo is exercised indirectly, not separately branch-instrumented."
+                },
+                {
+                  "family": "Projection route-local response caches",
+                  "path": "server/routes.ts: projectionResultCache, categoryCacheResult, regionalCacheResult, sensitivityCacheResult, historicalTrendCacheResult, categoryHistoricalTrendCache, routeCacheRevisions",
+                  "currentProof": "Inventoried only in this extension; existing projection-handler proof above retained without rerun.",
+                  "remaining": "Direct current-source miss/hit/concurrent witnesses for all six route-local families, regional TTL/input selection and finance projected-rate helper remain unproved. Protected route source was not edited."
+                },
+                {
+                  "family": "Other company calculators and immutable workbook replay",
+                  "path": "server/climateValuation; server/snapshots/store.ts",
+                  "currentProof": "No additional cross-request company result-cache family found. Workbook replay explicitly uses request scope, not a global ID cache.",
+                  "qualification": "Per-calculation lookup/index Maps are not automatically cross-request caches. News/provider/UI/Track-B/FaIR HTTP caches and scientific pipelines are outside this bounded acceptance."
+                }
+              ],
+              "finalWitness": {
+                "evidence": "generated-artifacts/company-cache-extension/http-qQPUH5/evidence.json",
+                "sha256": "026d83f8297efd8ea70e3bd2722ced7d19ddad6e1006ba65a16d2debd0351f1f",
+                "fileMode": "0600",
+                "directoryMode": "0700",
+                "fixtures": "Three explicitly synthetic engineering datasets, each six companies and 36 monthly dates. No private workbook exported.",
+                "datasetIds": [
+                  "816b690cc0c9bed1ee345d72fbc4a9acfad95023fb833d1d6c28b6a0c41e128a",
+                  "3ec217955f73dabcaa5c82fe5b30615e1989b9a103740ada63b422ab86d05624",
+                  "65207da589fa42e2a7f31b4d4585bc411ec06916eb7ca75c467c8e9a1c337ec1"
+                ],
+                "sourceVersion": "0940d39de3dd1c26a9d57e378cf0c5d7e9429586db0fe2f23a05e4f1f1c0bfdb",
+                "modelVersion": "historical-diagnostics-7",
+                "financeModelVersion": "legacy-finance-v1",
+                "companyCache": {
+                  "misses": 4,
+                  "computes": 4,
+                  "writes": 4,
+                  "warmHits": 4,
+                  "distinctKeys": 4
+                },
+                "identityChecks": [
+                  "Cold/warm JSON analytical payload hashes equal.",
+                  "Calculator dataset/model/source/run-manifest identities equal for the same selection.",
+                  "Actual HTTP snapshot, manifest, material-input and archived-result identities equal for the same selection.",
+                  "Actual archived result loader verifies source/material/workbook references and returns exactly the HTTP analytical result.",
+                  "Distinct datasets and geography retain distinct cache keys; distinct datasets retain distinct manifest/material identities even when aggregates coincide.",
+                  "Clock/cache witness diagnostics remain outside analytical identities and response payloads; existing direct createdAt-exclusion test also passes."
+                ],
+                "postgresqlTransportExecuted": false,
+                "realDatabaseQueries": 0,
+                "ddl": 0,
+                "productionCacheClears": 0,
+                "priorLargeRetainedWitnessRerun": false
+              },
+              "accessVersusCode": {
+                "missingAccess": "No explicitly authorized disposable DB URL/identity/attestation was available. Ambient DATABASE_URL and PG* presence is not authority to use or clear that database. No connection/provisioning attempt was made.",
+                "supportedCode": "Optional transport accepts COMPANY_CACHE_DISPOSABLE_DATABASE_URL only with COMPANY_CACHE_DISPOSABLE_AUTHORIZATION=preprovisioned-disposable-no-ddl and COMPANY_CACHE_DISPOSABLE_DATABASE_HASH matching contentHash({database: current_database()}). It uses the actual existing projection_cache and immutable archive schema, refuses DDL/destructive SQL, verifies production archive guards through actual functions, and never falls back to ambient credentials or memory after configured authorization failure.",
+                "operatorCommand": "NODE_ENV=development npx tsx --test script/company-cache-transport.test.ts",
+                "operatorPrerequisites": "Authorized operator privately supplies the three dedicated environment values for an already-provisioned disposable database. Existing tables/guards and unused exact cache keys are required for cold witnesses. Failed/occupied setup is refused, not reset. No secrets in commands, evidence or HTTP.",
+                "remainingMissingCodeOrHarness": "All-six projection route-local branch witnesses and full regional selection/TTL identity matrix are still missing proof, independently of DB access. Optional PostgreSQL branch has not been executed, so its transport behavior remains unverified rather than accepted."
+              },
+              "verification": {
+                "focusedCommand": "env -u DATABASE_URL NODE_ENV=test npx tsx --test script/company-cache-transport.test.ts script/company-carbon-cache.test.ts script/analysis-result-archive.test.ts",
+                "tests": 10,
+                "pass": 10,
+                "fail": 0,
+                "skip": 0,
+                "focusedLog": "generated-artifacts/company-cache-extension/focused-tests.log",
+                "focusedLogSha256": "f69dd134944321f7c6ad19f6d787d5d3eb669a69823e8d0b4287e9ab8c4233c6",
+                "actualProjectCompiler": "npm run check",
+                "actualProjectCompilerPassed": true,
+                "additionalScriptCompiler": "npx tsc --noEmit --project generated-artifacts/company-cache-extension/check.tsconfig.json",
+                "additionalScriptCompilerScope": "Ignored generated config extends the actual project config, unchanged ES5/downlevel settings, explicitly includes this new script; no gate or repository tsconfig changes.",
+                "additionalScriptCompilerPassed": true,
+                "compilerLog": "generated-artifacts/company-cache-extension/typecheck.log",
+                "compilerLogSha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27"
+              },
+              "sourceSha256AtFinalVerification": {
+                "server/storage.ts": "c1c84a1304753672fc373b9902231eb56f616dcc309856a7df56b593913f5ecd",
+                "server/climateValuation/carbonPriceCalculator.ts": "43a05c46a396b8e7cb202cd80797f71cd39c45f2465e5713cbbf5370e7ad077e",
+                "server/calculation/regionalProjections.ts": "5b4b3514bf447b31f31cc09a3cae80043a0b44be630f218802fa841cbd43e7af",
+                "script/company-cache-transport.test.ts": "b981c98e89ade3352f204017a1c60a6a356be2669a172138daa3f9b4b2e5f0e0"
+              },
+              "parallelWorkQualification": "Another worker concurrently changed computeGroupAggregates export/eligibility/scope handling in carbonPriceCalculator.ts. Those edits were preserved; this task owns only geography/empty cache persistence changes in that shared file. Final focused tests run against the combined file hash recorded here. Whole-application source identity can change with other workers; no global source freeze or old retained-data revalidation is claimed.",
+              "unchangedBoundaries": [
+                "No protected FaIR bundle source or server/routes.ts edit.",
+                "No canonical ledger, deployment, callback, public upload/write endpoint, auth weakening or service change.",
+                "No application/workflow start or restart; only ephemeral loopback engineering test transport.",
+                "No commit, publication, raw private export, old nine-path rerun or large retained witness rerun.",
+                "No blanket S02-009 completion or scientific promotion."
+              ]
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          }
         },
         {
           "id": "S02-010",
@@ -21436,7 +21667,7 @@
           "id": "S03-008",
           "source_section": "acceptance",
           "requirement": "Negative test: a blank source cell never becomes zero; every infilled value can be traced back to its original blank.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Remaining_Workplan_Execution.md"
@@ -21445,9 +21676,14 @@
           "files_functions_changed": [
             "server/calculation/driverEvidence.ts",
             "script/driver-evidence.test.ts",
-            "script/snapshot-contract.test.ts"
+            "script/snapshot-contract.test.ts",
+            "server/climateValuation/workbookMissingness.ts",
+            "server/climateValuation/workbookMissingnessExport.ts",
+            "server/climateValuation/emissionsCarryForward.ts",
+            "server/dataIngestion/adapters/noaa.ts",
+            "script/workbook-missingness-integration.test.ts"
           ],
-          "behaviour_delivered_this_run": "Negative unit test preserves observed0 and null blanks; interpolated2021 value2 from2020=0,2022=4 carries originalValue=null, sourceYears and not-quantified uncertainty; outside interval staysnull. End-to-end all-source acquisition lineage is not covered.",
+          "behaviour_delivered_this_run": "Strictloader→immutableinput→actualcalculation/export retainsblank/null/zero/sourcecells;everyfill linksoriginalblank+observeddonors/method. TypedproviderNA unavailable notinfilleligible. Actual1976823cells:21512blanks/252110NA/1450zeros/0unsupported;2442companies470341rows/0duplicates/0statevaluemismatch. Same-monthProfit retainsactualsourcedate;391908knownincl16zeros. No nearbycrossmonthborrowing ormissing-scopes-as-zero.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -21522,6 +21758,26 @@
               "worktree_dirty": true,
               "scope": "Focused self-contained engineering checks only; no final fullsuite, unchanged replay, release or scientific acceptance",
               "log_inspected": true
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -21539,10 +21795,8 @@
           "scientific_acceptance": "No scientific/model/owner acceptance inferred from software characterization or metadata coverage",
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Helper test does not prove every source loader/legacy aggregation/export path; absence vs explicit null and sampled provenance need end-to-end tests."
-          ],
-          "next_action": "Add real loader negative fixtures for blank/not-applicable/below-threshold and assert immutable cell lineage through approved input/export.",
+          "remaining_gaps": [],
+          "next_action": "Finiteoriginalnegativefixture criterionverified viarealadapters/aggregation/export andread-onlycurrentworkbook; no privatefullsnapshotDBpublication/approval orhistoricalvintage claim. Preserveimmutableoldarchives andsourceavailability limits.",
           "blockers": [],
           "check_type": "exact",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
@@ -21658,7 +21912,272 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
-          }
+          },
+          "before_resolver_loader_increment": {
+            "status": "partial",
+            "remaining_gaps": [
+              "Helper test does not prove every source loader/legacy aggregation/export path; absence vs explicit null and sampled provenance need end-to-end tests."
+            ]
+          },
+          "resolver_loader_increment": {
+            "file": "docs/S03-008-loader-evidence.json",
+            "sha256": "37bd44244bae83de5d4e5a880e42580ec1a82e90dcf7069e1217f7d3cb85a9d1",
+            "evidence": {
+              "criterion": "S03-008",
+              "requirement": "Negative test: a blank source cell never becomes zero; every infilled value can be traced back to its original blank.",
+              "assessment": "Read-only compatibility verified against the actual authorized retained workbook after correcting three integration defects. Invalid qualifiers are still refused. No issuer/scientific approval is implied.",
+              "privacy": "Public evidence contains paths, hashes, aggregate counts and dispositions only. No private source cell coordinates, issuer rows, economic values, raw workbook payload or private calculation/export is published.",
+              "retainedInput": {
+                "path": "attached_assets/CarbonData2301a_(1)_1770595242257.xlsx",
+                "sha256": "a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+                "sourceBytesModified": false,
+                "scope": "Authorized retained current-workbook file; mutable database selection was not read or modified."
+              },
+              "actualReadOnlyExecution": {
+                "command": "npx tsx script/audit-retained-workbook-loader.ts 'attached_assets/CarbonData2301a_(1)_1770595242257.xlsx'",
+                "audit": "generated-artifacts/s03-008/retained-loader-counts.json",
+                "auditSha256": "ed818eca5d7eaa120aca40ef70c0ccbcf2272a3a1cb218525b31cf0e879c05b8",
+                "actualMethods": [
+                  "validateRequiredSheets",
+                  "parseAndPrepare",
+                  "generateTimeSeriesStreaming"
+                ],
+                "isolation": "Separate CLI process. Actual streamed batches counted then discarded; no private data export or snapshot persistence.",
+                "status": "accepted",
+                "companies": 2442,
+                "uniqueCompanyIsins": 2442,
+                "streamedRows": 470341,
+                "duplicateCompanyDateRows": 0,
+                "sourceStateValueMismatches": 0,
+                "databaseReads": 0,
+                "databaseWrites": 0,
+                "approvalWrites": 0,
+                "cacheWrites": 0
+              },
+              "consumedNumericCellInventory": {
+                "definition": "Actual numeric-parser consumption, not every unused spreadsheet cell. Financial alias columns are validated; RI emits/reads only the authoritative last mapped column.",
+                "total": 1976823,
+                "blank": 21512,
+                "providerNAUnavailable": 252110,
+                "observedZero": 1450,
+                "observedOther": 1701751,
+                "unsupportedRejected": 0,
+                "bySheet": {
+                  "GreenRev": {
+                    "consumed": 2440,
+                    "blank": 33,
+                    "providerNA": 0,
+                    "observedZero": 454,
+                    "unsupported": 0
+                  },
+                  "EmissionTargets": {
+                    "consumed": 1573,
+                    "blank": 0,
+                    "providerNA": 0,
+                    "observedZero": 13,
+                    "unsupported": 0
+                  },
+                  "S1": {
+                    "consumed": 36510,
+                    "blank": 4622,
+                    "providerNA": 0,
+                    "observedZero": 275,
+                    "unsupported": 0
+                  },
+                  "S2": {
+                    "consumed": 36510,
+                    "blank": 4621,
+                    "providerNA": 0,
+                    "observedZero": 95,
+                    "unsupported": 0
+                  },
+                  "S3": {
+                    "consumed": 27690,
+                    "blank": 12236,
+                    "providerNA": 0,
+                    "observedZero": 6,
+                    "unsupported": 0
+                  },
+                  "MV": {
+                    "consumed": 471113,
+                    "blank": 0,
+                    "providerNA": 56889,
+                    "observedZero": 0,
+                    "unsupported": 0
+                  },
+                  "PE": {
+                    "consumed": 466481,
+                    "blank": 0,
+                    "providerNA": 69417,
+                    "observedZero": 0,
+                    "unsupported": 0
+                  },
+                  "Profit": {
+                    "consumed": 464165,
+                    "blank": 0,
+                    "providerNA": 69122,
+                    "observedZero": 16,
+                    "unsupported": 0
+                  },
+                  "RI": {
+                    "consumed": 470341,
+                    "blank": 0,
+                    "providerNA": 56682,
+                    "observedZero": 591,
+                    "unsupported": 0,
+                    "nonAuthoritativeAliasColumns": 4
+                  }
+                },
+                "dispositions": {
+                  "blankOrNull": "Retained null with original source identity; never an observed zero.",
+                  "exactFinancialNA": "Only exact trimmed NA on MV/PE/Profit/RI is the reviewed retained-provider unavailable sentinel. It remains null with state=unavailable and missingness=provider-NA, not state=blank, not zero, and not eligible for original-blank infill.",
+                  "otherNAOrNotApplicable": "N/A, not-applicable and NA outside the four reviewed financial sheets remain refused.",
+                  "belowThreshold": "Refused; never interpreted as a measured bound or zero.",
+                  "booleanAndExcelError": "Refused, unchanged. None occur in actual consumed cells of this retained input.",
+                  "prefixPercentInfinity": "Refused, unchanged.",
+                  "trueZero": "Observed numeric zero retained, separate from missing/unavailable."
+                }
+              },
+              "integrationDefectsFoundAndFixed": [
+                {
+                  "defect": "Initial strict policy rejected the actual retained workbook.",
+                  "observed": "252110 consumed financial cells use exact NA; original strict-load execution refused.",
+                  "beforeLog": "/tmp/s03-008-retained-before.json",
+                  "fix": "Narrow reviewed provider-NA unavailable state, not blanket token acceptance or blank/zero coercion."
+                },
+                {
+                  "defect": "Exact-day-only Profit matching made all471113 then-streamed netProfit values null.",
+                  "beforeLog": "/tmp/s03-008-retained-final.json",
+                  "observed": "193 Profit periods; zero exact MV timestamp matches;192 unique same-calendar-month matches and no ambiguous Profit months.",
+                  "fix": "Unique same-calendar-month source-period alignment is explicit, not nearest30-day borrowing or original-blank infill. Actual Profit source date/cell and method survive immutable input/export. Cross-month and ambiguous alignment remain unavailable/refused.",
+                  "finalCoverage": {
+                    "alignedKnownProfitValues": 391908,
+                    "observedZeroProfitValues": 16,
+                    "nonzeroProfitValues": 391892,
+                    "unavailableProfitValues": 78433
+                  },
+                  "limitation": "Alignment is an explicit monthly engineering interpretation, not approval of financial source periods. One unmatched period remains unavailable; no cross-month value is fabricated."
+                },
+                {
+                  "defect": "Alias handling could pair an earlier value with a later missing-source identity, and emitted772 duplicate RI company/date rows.",
+                  "beforeLog": "/tmp/s03-008-retained-compatible.json",
+                  "fix": "Last mapped alias is authoritative including blank/NA; no earlier-value backfill. RI emits one original per company/date. Later explicit-blank metadata/scope rows also do not inherit earlier zero/value.",
+                  "final": "Four non-authoritative RI alias columns suppressed; duplicate company/date rows0; source-state/value mismatches0."
+                }
+              ],
+              "streamedValueStateCounts": {
+                "definition": "Output field counts; annual scope cells may recur across monthly rows, so these are not unique source-cell counts.",
+                "nullValues": 728572,
+                "zeroValues": 5119,
+                "fieldDetails": "generated-artifacts/s03-008/retained-loader-counts.json"
+              },
+              "privateValidatorImpact": {
+                "reproducibleCommand": "npx tsx script/audit-loader-private-validator-dependencies.ts",
+                "inventory": "generated-artifacts/s03-008/retained-validator-impact.json",
+                "inventorySha256": "6ced80609bf59d121c1069b50a290ad8117261b209ef0107d56772518d060300",
+                "validatorsInspected": 29,
+                "issuerValidatorsWithChangedLoaderDependencies": 0,
+                "moduleOnlyDependency": "validate-driver-retained-private.ts imports unchanged driverEvidenceRegistry from the module containing the separately changed interpolation helper; it does not consume this workbook loader or the modified interpolation.",
+                "pinnedRuntimeReview": {
+                  "path": "script/pinned-company-source.ts",
+                  "sha256": "e70aec966d128f8f48f2abad36755f0c32fb23777939fb30f2c89a291f3c3867",
+                  "result": "Pinned historical replay loads its three authenticated archived company kernels plus archived analysisManifest, not the mutable workbook loader. No mutable-current fallback was added."
+                },
+                "sourceInputInvalidationsByThisTask": 0,
+                "requiredRerunsForLoaderInputInvalidation": [],
+                "additionalReadOnlyIssuerCheck": {
+                  "command": "npx tsx script/validate-issuer-cashflow-private.ts",
+                  "validatorSha256": "a2ef46efe897fa938dbdcd2daa589a22a5262230abb30986a7dc839c9264a06b",
+                  "exitCode": 0,
+                  "privateLog": "/tmp/s03-008-private-issuer-check.log",
+                  "interpretation": "Existing retained evidence integrity check, not new issuer approval."
+                },
+                "boundary": "Static relative/@shared dependency traversal plus manual dynamic pinned-loader review. No retained private input or historical receipt was regenerated; unrelated mandatory/pinned validators were not rerun."
+              },
+              "focusedVerification": {
+                "integrationCommand": "S03_008_EVIDENCE_DIR=generated-artifacts/s03-008/retained-compatibility-fixtures npx tsx --test script/workbook-missingness-integration.test.ts",
+                "integrationPassed": 23,
+                "affectedExistingPassed": 2,
+                "affectedExistingSkipped": 5,
+                "failed": 0,
+                "typecheck": "npx tsc --noEmit --pretty false passed",
+                "logs": [
+                  "/tmp/s03-008-retained-final-tests.log",
+                  "/tmp/s03-008-retained-final-regressions.log",
+                  "/tmp/s03-008-retained-final-types.log"
+                ],
+                "newRealBranches": [
+                  "financial provider-NA unavailable identity/export",
+                  "non-financial NA still refused",
+                  "unique same-month Profit source date/method",
+                  "cross-month Profit not borrowed",
+                  "financial last-alias missingness not backfilled",
+                  "RI one-original alias policy",
+                  "metadata/scope last blank not backfilled from earlier zero"
+                ]
+              },
+              "remainingFinitePathInventory": [
+                {
+                  "path": "actual retained strict loader",
+                  "status": "complete-read-only",
+                  "proof": "470341 streamed rows; zero unsupported cells, duplicate originals or source/value disagreements"
+                },
+                {
+                  "path": "blank/null/qualifier/zero → immutable input → actual calculator/export",
+                  "status": "complete-isolated-fixtures",
+                  "proof": "23 integration tests, including current compatibility branches"
+                },
+                {
+                  "path": "mandatory/private/pinned issuer impact",
+                  "status": "complete-impact-review",
+                  "proof": "29 validators inventoried; no loader input invalidation; one additional read-only private validator passed"
+                },
+                {
+                  "path": "parent browser/full-suite integration",
+                  "status": "pending-parent",
+                  "proof": "Not run by this worker"
+                },
+                {
+                  "path": "actual private full snapshot persistence/model export/import/approval",
+                  "status": "not-authorized-and-not-performed",
+                  "proof": "No private payload export, DB access, approval or cache writes; portable full pipeline was tested instead"
+                }
+              ],
+              "sourceSha256": {
+                "script/audit-retained-workbook-loader.ts": "7dfdec206e3a519be34d7793ceb2ffefc0f08157de756bd60a5a7daef0048d47",
+                "script/audit-loader-private-validator-dependencies.ts": "3edc3dab3ddf1f6d240a383da70ea45974959b160569550c5d3044fb4bb96c0b",
+                "server/climateValuation/dataProcessor.ts": "b170bd9afb02a66bf5c2011f872069ad2053fc60e6ec61a9ce5c45b760a79ed6",
+                "server/climateValuation/workbookMissingness.ts": "4a980c2b20935c6741bd4d0db811294661387d361764a493d47fe5b22cf76bff",
+                "server/climateValuation/workbookMissingnessExport.ts": "68adbbaf60081463c3f075c8aa899639ea0a35a20a94f70751397d2ab1b16d88",
+                "script/workbook-missingness-integration.test.ts": "be24e4efe3aa365689828966e22bb9c2274323ea200cd6d120c78b7fcb584438"
+              },
+              "previewSmoke": "generated-artifacts/s03-008/retained-compatibility-preview.jpg",
+              "scopeSafety": "No routes, TrackB, protectedFaIR, cache code, canonical ledgers, deployment, publish or callbacks changed. No workflows started/restarted. Source bytes and private evidence inputs remain read-only."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "proposedStatus": "verified",
+          "remainingGaps": [],
+          "operational_scientific_boundaries": "Finiteoriginalnegativefixture criterionverified viarealadapters/aggregation/export andread-onlycurrentworkbook; no privatefullsnapshotDBpublication/approval orhistoricalvintage claim. Preserveimmutableoldarchives andsourceavailability limits."
         },
         {
           "id": "S03-009",
@@ -125850,9 +126369,12 @@
               "path": "script/validate-fslr-public-cohort-private.ts",
               "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
               "namedFunctions": []
-            }
+            },
+            "server/calculation/enlinkOperatingSuccessorEvidence.ts",
+            "script/enlink-operating-successor.test.ts",
+            "script/validate-enlink-operating-successor-private.ts"
           ],
-          "behaviour_delivered_this_run": "ActualCFearnings separates2820mcashincl496mJV;2324moutsideJVnotexcesscommoncash.776mcapex=421+232+99+24;45Q62mYTD/19mquarteroperatingINCOME notcash/XOMfee. ExecutedEnLinkclosingtwo-stepmerger endsElkMergerSubII finalsurvivor; debt successionnotCCSnovation. CurrentCCSsettlementcashnull.",
+          "behaviour_delivered_this_run": "Fournewofficialsources authenticateEnLinkMidstreamPartnersLP reportingnotice/successor andONEOKEx21EnLinkCCSLLC; Q1corporatecredit/guarantees notCCSnovation/funding. Noqualifyingnewcashinput;historical844mrecognition preserved;0/3cases.",
           "inputs_versions_assumptions": [
             "Distinct NEW FY2025 UNAUDITED issuer release/2026-guidance conditional experiment, not the selected FY2024 10-K case; frozen ten schedules/50 annual rows."
           ],
@@ -126049,6 +126571,26 @@
               "workspace_revision": "0a3a720eca0eb6eb47e992b88519dae23e160aa1",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -126062,9 +126604,9 @@
           "git_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
           "deployment_revision": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
           "remaining_gaps": [
-            "SearchoperatingCCScontract/novation/arrangement underElkMergerSubII/EnLinkMidstreamPartnersLP; requirebilling/payment/opex, nothistorical844mrecognition conversion.0/3cases."
+            "Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography."
           ],
-          "next_action": "SearchoperatingCCScontract/novation/arrangement underElkMergerSubII/EnLinkMidstreamPartnersLP; requirebilling/payment/opex, nothistorical844mrecognition conversion.0/3cases.",
+          "next_action": "Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -126350,7 +126892,7 @@
             }
           },
           "remainingGaps": [
-            "SearchoperatingCCScontract/novation/arrangement underElkMergerSubII/EnLinkMidstreamPartnersLP; requirebilling/payment/opex, nothistorical844mrecognition conversion.0/3cases."
+            "Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography."
           ],
           "ready_action": "Complete eligible FSLR activity/margin/reinvestment, NEE gross LLC priorities/project returns and XOM actual fee/funding/replacement contracts; owner review remains separate.",
           "new_files_functions": [
@@ -128147,7 +128689,292 @@
           },
           "prior_cache_track_gaps": [
             "0/3 original fully qualified end-to-end company cases."
-          ]
+          ],
+          "before_resolver_loader_increment": {
+            "status": "partial",
+            "remaining_gaps": [
+              "SearchoperatingCCScontract/novation/arrangement underElkMergerSubII/EnLinkMidstreamPartnersLP; requirebilling/payment/opex, nothistorical844mrecognition conversion.0/3cases."
+            ]
+          },
+          "resolver_loader_increment": {
+            "file": "docs/enlink-operating-successor-evidence.json",
+            "sha256": "2ca1e4aa32650d5937f9d2d19cfa6fbb2f434420d2a745039e248cf775c0bbcc",
+            "evidence": {
+              "version": "enlink-operating-successor-1",
+              "status": "bounded-materially-new-primary-search-complete-no-qualified-cash-input",
+              "qualifiedOriginalIssuers": 0,
+              "technicalOriginalCompletion": false,
+              "ownerReview": "not-self-approved",
+              "request": "Actualoperatingcontract/novation/settlement/currentbilling/payment/funding/opex discovery using newlyauthenticated ElkMergerSubII andEnLinkMidstreamPartnersLP keys. No repeatedfourlastrequests, closingpackages, oldkernels or grids.",
+              "rights": "OfficialSECmetadata andissuer-authoredfilings; only paraphrasedpublicfacts/locators/derivedsourcequalificationstatus in this evidence. Rawprimarycompletefiles/privateproviderbytes stay in ignoredprivateartifacts. No rawprivateexport.",
+              "acquisition": {
+                "maximumLogicalRequests": 4,
+                "actualLogicalRequests": 4,
+                "http200Count": 4,
+                "repeatedPriorPrimaryRequests": 0,
+                "paidCalls": 0,
+                "sealed": true,
+                "searchStoppedAtBound": true,
+                "exactCommands": [
+                  "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one emlp-submissions.json https://data.sec.gov/submissions/CIK0001179060.json 'RetainedONEOKFY2025Ex4index links authenticated EnLinkMidstreamPartnersLP CIK1179060; successoroperatingsubsidiary/contractfilingdiscovery'",
+                  "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one oneok-fy2025-ex21.html https://www.sec.gov/Archives/edgar/data/1039684/000103968426000006/oke10-k2025exhibit21.htm 'RetainedONEOKFY2025annual declaredEx21href:operating-entityinventorydistinctfromoldclosing/bonds'",
+                  "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one emlp-reporting-suspension-20250210.html https://www.sec.gov/Archives/edgar/data/1179060/000121390025011812/ea023055103-1515d_elkmerger.htm 'NewEMLPsubmissionsdeclaredlatest15-15Dprimary/accession; materialoperatingsuccessorreportingstatus notsameclosing'",
+                  "npx tsx script/capture-enlink-operating-successor.ts --private-primary --one oneok-first-postmerger-2025q1.html https://www.sec.gov/Archives/edgar/data/1039684/000103968425000061/oke-20250331.htm 'RetainedONEOKsubmissionsdeclarefirstpostmergerQ12025: businessacquisitioncontract/contingency/fee/payment andexhibitindex discovery; no repeatedannual/closing'"
+                ]
+              },
+              "sourceRecords": [
+                {
+                  "id": "EMLP-OFFICIAL-METADATA",
+                  "url": "https://data.sec.gov/submissions/CIK0001179060.json",
+                  "publicationDate": null,
+                  "capturedDate": "2026-11-11",
+                  "period": "Currentretainedrecentfilingindex; mostrecentForm15February10,2025",
+                  "legalIdentity": "EnLink Midstream Partners, LP, CIK0001179060",
+                  "locator": "name/cik; filings.recent.accessionNumber/form/filingDate/primaryDocument; filings.files",
+                  "unit": "Issueridentity/filingdates, no cash",
+                  "sha256": "f247f81ad8ac97ca1135a1bc51d584d17fc1752c1df5105b4dfdfb280682edb4",
+                  "reliability": "CIKauthenticatedfromretainedONEOKannualexactdebtissuerlinks, not guessed. Currentrecentindex has no2021+10K/Q; NOT a globalno-disclosureclaim. Historicalarchive2002–2010notrequestedbecauseirrelevantto2022+CCScontract."
+                },
+                {
+                  "id": "ONEOK-FY2025-SUBSIDIARIES",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1039684/000103968426000006/oke10-k2025exhibit21.htm",
+                  "publicationDate": "2026-02-24",
+                  "period": "AsDecember31,2025",
+                  "legalIdentity": "ONEOKInc, CIK0001039684; listedgroupentities below",
+                  "locator": "Exhibit21 alphabeticalsubsidiaryrows ElkMergerSubII; EnLinkCCS; EnLinkMidstreamOperating/Partners/Services",
+                  "unit": "Legalnames andstateofincorporation/organization; NOT operatinggeography, ownershipofCCSassets or USD",
+                  "sha256": "e7e441f7d6658ee4e5511a50e117e966c572d95002bd56d45ff15c0eb13a7d3d",
+                  "reliability": "Materiallynewactualoperating-entityinventory. EnLinkCCSLLC existsaslistedDelawaresubsidiary, not authenticatedas namedXOMtransport/settlementparty. Listingdoesnotspecifydirectparentchain or operatingprojectequity."
+                },
+                {
+                  "id": "EMLP-REPORTING-NOTICE",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1179060/000121390025011812/ea023055103-1515d_elkmerger.htm",
+                  "publicationDate": "2025-02-10",
+                  "period": "Notice/certificationFebruary10,2025; closingJanuary31,2025",
+                  "legalIdentity": "ElkMergerSubII,L.L.C., successorEnLinkMidstreamLLC; ScheduleA subsidiaryguarantor EnLinkMidstreamPartnersLP",
+                  "locator": "Form15cover checkedRule12g-4(a)(1)/12h-3(b)(1)(i); ScheduleA; signatures",
+                  "unit": "Registration/reportingnotice, namedclasses of securities; no CCSsettlementmoney",
+                  "sha256": "facbb22f7d127679b3c9b2f413035efab0328d6299392d1e875c4c857d2f155d",
+                  "reliability": "Actual15-15D foundusingnewEMLPmetadata, not sameclosingpackage. Gives materialreasonnottoexpectfreshstandalonequarterreports. Not cessationofpipelines, CCScontracttermination/novation, or proofallfuturegroupreportingceases."
+                },
+                {
+                  "id": "ONEOK-FIRST-POSTMERGER-QUARTER",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1039684/000103968425000061/oke-20250331.htm",
+                  "publicationDate": "2025-04-30",
+                  "period": "QuarterendedMarch31,2025",
+                  "legalIdentity": "ONEOKInc CIK0001039684; glossaryEnLink/EnLinkPartners, not authenticatedCCSoperatingcontractparty",
+                  "locator": "Glossary; NoteBacquisitions/transactioncosts; NoteKcontractassets/liabilities; Item6Exhibits10.1–10.5",
+                  "unit": "Sourcecontractdiscovery; company-wideUSDmillions innotes not attributedCCS/projectcash",
+                  "sha256": "c1213a1dc1822d99d36cb05adf7ce27941e40cf6cc8928b536c0b1f57eab5923",
+                  "reliability": "Materiallynewfirstpostmergeroperatingquarter, not same2026earnings/closing. NamedExxon/Pecan/CCS/carboncapture/sequestration absentinthisexactfiling. FiveEX10entries aretwoemployeeawards andthreecorporatebankcredit/guarantees. No attached/incorporatedCCScontract identifiedinthisindex; no globalundisclosedclaim."
+                }
+              ],
+              "sourceFacts": {
+                "selectedCrosswalkNotFullGroupCensus": true,
+                "underlyingIncorporatedCorporateCreditInstrumentsFetched": false,
+                "organizedGroupEntities": [
+                  {
+                    "legalName": "Elk Merger Sub II, L.L.C.",
+                    "organizationJurisdiction": "Delaware"
+                  },
+                  {
+                    "legalName": "EnLink CCS, LLC",
+                    "organizationJurisdiction": "Delaware"
+                  },
+                  {
+                    "legalName": "EnLink Midstream Operating, LP",
+                    "organizationJurisdiction": "Delaware"
+                  },
+                  {
+                    "legalName": "EnLink Midstream Partners, LP",
+                    "organizationJurisdiction": "Delaware"
+                  },
+                  {
+                    "legalName": "EnLink Midstream Services, LLC",
+                    "organizationJurisdiction": "Texas"
+                  }
+                ],
+                "organizationJurisdictionIsNotOperatingGeography": true,
+                "actualCcsOperatingContractParty": null,
+                "actualXomOperatingContractParty": null,
+                "actualCcsContractNovation": null,
+                "actualCcsContractTermination": null,
+                "quarterDeclaredContractIndex": [
+                  {
+                    "exhibit": "10.1",
+                    "kind": "EmployeeRestrictedUnitAwardAgreement"
+                  },
+                  {
+                    "exhibit": "10.2",
+                    "kind": "EmployeePerformanceUnitAwardAgreement"
+                  },
+                  {
+                    "exhibit": "10.3",
+                    "kind": "ONEOKcorporatebankcreditagreement"
+                  },
+                  {
+                    "exhibit": "10.4",
+                    "kind": "ElkMergerSubII/EnLinkPartnersguarantytoCitibankundercorporatecreditfacility"
+                  },
+                  {
+                    "exhibit": "10.5",
+                    "kind": "GroupcorporatebankguarantyincludingElkMergerSubII/EnLinkPartners"
+                  }
+                ],
+                "cashBridge": {
+                  "newlyQualified": false,
+                  "billingUsd": null,
+                  "paymentUsd": null,
+                  "fundingUsd": null,
+                  "opexUsd": null,
+                  "replacementCapexUsd": null,
+                  "actualAppliedCashChangeUsd": 0,
+                  "qualifiedOriginalIssuers": 0,
+                  "economicCalculationsExecuted": 0,
+                  "oldKernelsOrGridsRerun": 0,
+                  "why": "Newsource closes groupentity/reportingscope, not actualoperatingCCScontract/payment economics. Stopboundedsearch rather than monetizing guarantees, recognition or unallocatedtail."
+                }
+              },
+              "fieldSpecificFindings": [
+                {
+                  "field": "EnLinkCCSoperatingcontractparty",
+                  "status": "candidatelegalname-newly-sourced-role-unverified",
+                  "result": "EnLinkCCSLLC inactualEx21, Delawareorganization. No textidentifiesit asholderofXOMMVCtransportationcontract, creditororsettlementpayee. Neverassignit automaticallyfromname."
+                },
+                {
+                  "field": "Currentlegalreportingidentity",
+                  "status": "material-new-primary-closed-dated-scope",
+                  "result": "ActualForm15expresslylinksElkMergerSubIIsuccessor andScheduleAEMLPguarantor; checkedreportingsuspension/registrationrules. Groupdefinition/list extends datedentityevidence, not CCScontractnovation."
+                },
+                {
+                  "field": "ExecutedCCScontract/novation/settlement",
+                  "status": "not-located-in-examined-new-sources",
+                  "result": "Newfirstpostmerger10QEX10.1–10.5indexhasemployeeawards/corporatecreditguarantees only; no namedXOM/PecanCCSterms inwholequarter. Corporatebankguaranty is not novation ofoperatingcontract or CCSsettlement."
+                },
+                {
+                  "field": "Currentbilling/payment/funding/opex/replacement",
+                  "status": "no-qualified-new-financial-input",
+                  "result": "No projectcounterpartyCCScashseries, billingprice, paymentdate/amount or earmarkedprojectdraw identified. Groupcreditcapacity/guarantees are not actualfunding. Aggregatecontractliabilities not zeroCCSbillings. Share-awardsettlement/noncashcompensation not CCSrecovery."
+                },
+                {
+                  "field": "Historical844m/CF45Q",
+                  "status": "preserved-not-used",
+                  "result": "No changeofhistoricalexpectedrecognition intocash; no2029–2050tailallocation; noCF45Qrecognition or JVcash transfer toXOM. No baselinecarboncost deductedagain."
+                },
+                {
+                  "field": "Gas/geography/policyallocation",
+                  "status": "unchanged-no-new-operating-site-input",
+                  "result": "Stateoforganization is notoperatingcarbonjurisdiction. No nativeCO2/CO2e/scope/coveredshare/banking/freeallocation/pass-through orcashsettlementtiming claimedfromtheselegal/creditfilings. No HQproxy or globalaverage."
+                }
+              ],
+              "originalClauseProposals": [
+                {
+                  "clause": "ActualCCScontractparty/currentstatus/projectfunding",
+                  "proposal": "Keep datedgrouplegalentity/reportingfacts separatefromcontract/cash. NewlycandidateEnLinkCCSLLCrole mustremainunverified withoutdirectexecutedoperatinginstrument. Threecorporatecredit/guarantees donotcloseprojectfunding.",
+                  "qualification": false
+                },
+                {
+                  "clause": "OriginalfundedcommonFCFE/terminal/stub",
+                  "proposal": "No actualnewqualifyingcashinput, hence no originalcase/terminal/reinvestment/stub/scoring/pricecutoff change. Preserveoriginalfiveyear+tenyearfade/2.5–4%terminal/sameCFbasis/currency/shares/stub/cutoff. Futureassumptions maynotinventobservedbilling/receipts/contractnovation or moveanothercompanycreditintoXOMcash.",
+                  "qualification": false
+                }
+              ],
+              "informationContext": "Revised-historysourcecompletion ONLY. Form15publishedFebruary10,2025, firstquarterApril30,2025 andFY2025Ex21February24,2026; doNOT backdate tooriginalretainedJanuary2025XOMcutoff or rewriteFY2024sourcebasis/frozenv3/v4negativecases. No newexperimentvaluation, fullcashflowcase, positivegrowthassumption or ownerapproval.",
+              "freeze": {
+                "freezeSha256": "c016c2565f1fc171c8df7d5a642b729838989843b2e910e17a49b4251bafc545",
+                "reportSha256": "ddc1370b4d20893075bfa2dd42986a7d123e43a79fbe972029b696bd319a4858",
+                "sourceAndProtocolFrozenBeforeAdapter": true,
+                "humanReconnaissancePrecededAdapterFreeze": true,
+                "adapterExecutions": 1,
+                "economicScoringExecutions": 0,
+                "futureEconomicAssumptions": 0
+              },
+              "publicOutputDecision": {
+                "sharedApiUiXlsxFactsAdded": 0,
+                "reason": "No qualifiednewCCSfinancialinput. Avoidincrementalcurrentcash/operatingparty claims. Existingcurrentsettlementnull/historical844m facts remainbyteunchanged.",
+                "publicSafeDerivedEvidenceOnly": [
+                  "Five namedONEOKgroupsubsidiaries/organizationstates asofDecember31,2025, explicitlyNOT operatinggeography/contractparties",
+                  "Form15datedreporting/legalidentityscope",
+                  "NewfirstpostmergerEX10five-rowclassification andfieldsnotlocatedinexaminedsources"
+                ],
+                "rawPrivateProviderOrPrimaryBytesExported": false,
+                "priorLiveSemanticDefinitionsUnchanged": 95,
+                "priorExportLeavesUnchanged": 564
+              },
+              "stopAndResiduals": {
+                "stop": "FourmateriallyNEWofficialrequestscompleted; stopmicroaudits. Do not repeatclosingpackages/theseindexrows/earnings or runarbitraryeconomicgrid.",
+                "preciseMissingInputs": [
+                  "ExecutedoperatingCCStransportation/financial-arrangementinstrument namingbothlegalsubsidiaries anditscurrentstatus/novation",
+                  "Currentminimum-billings or fee-price-volume obligations byperiod, not historicalfuture-recognitiongroupedtail",
+                  "Actualpaymentamount/date/bankorcashflowclassification, not share-awardsettlement or recognition",
+                  "Project-earmarkedfundingdraws/capitalcalls/opex/replacementneeds; corporatecreditguaranties insufficient"
+                ],
+                "notGloballyUndisclosed": true,
+                "notLocatedScope": "OnlynewEMLPcurrentSECmetadata/Form15; ONEOKFY2025Ex21; ONEOKMarch31,2025quarterwholetext/EX10index. Priorfour2024/2025/2026packages preserved, notrequestedagain.",
+                "unattemptedNotPretendedAbsent": [
+                  "No repeatedoldclosing/debtpackages, no irrelevant2002–2010archivequery",
+                  "No acquisitionofunlocatedconfidentialoperatingcontract or privatecounterpartyinvoice",
+                  "No newNEE/FSLRoldnote/microaudit substitution"
+                ]
+              },
+              "verification": {
+                "status": "passed-separate-private-and-code-only",
+                "publicCommand": "npx tsx --test script/enlink-operating-successor.test.ts",
+                "adapterCommand": "npx tsx script/run-enlink-operating-successor.ts --private-primary",
+                "mandatoryPrivateCommand": "npx tsx script/validate-enlink-operating-successor-private.ts --private-primary",
+                "publicTestsPassed": 4,
+                "publicTestsFailed": 0,
+                "publicLogSha256": "313b643ce9cca545e5ca557aa174bcfc1c1e523ac837155da1a4b6ba3c4f9aa6",
+                "mandatoryPrivatePassed": true,
+                "privateNewGroupEntityRowsVerified": 5,
+                "privateActualDeclaredEx10RowsVerified": 5,
+                "privateActualReportingNoticeAndMetadataVerified": true,
+                "privatePriorProtectedArtifactHashes": 340,
+                "privateOriginalAnnualRows": 32,
+                "privateOriginal613405m14435m780kDiagnosticsPreserved": true,
+                "privatePublicApiSharedDataByteUnchanged": true,
+                "privateSourceSupportsNewCashBridge": false,
+                "privateLogSha256": "72df6802d536a241869a763d4c8178bbdc82934257df6f79ec3cb21d76ea3549",
+                "privateReceiptSha256": "5ada45e42020fabca5200edc7709c2e3462846c605c87e00f4316b2deae11a9a",
+                "captureLogSha256": "cf251e6821527737ac77f5921bb03336c0da2402fea20527c1942c891872b07c",
+                "sealedReceiptsSha256": "98a1b5b90552abfe25ce960d4536d0946eafd94b56502b6392b6cc9bb70ff40d",
+                "sourceSealSha256": "dfc78b41a302c0217f8d6d68aa7e77392a07a0242029d45eb2ccd56cadb4a67e",
+                "adapterLogSha256": "a5212edd6bcc1f54f36a32f0b9a61953f95eecd855bb06efcaebf38956b61630",
+                "strictOwnFileCount": 5,
+                "strictEs2022ExactCommand": "npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/enlinkOperatingSuccessorEvidence.ts script/capture-enlink-operating-successor.ts script/enlink-operating-successor.test.ts script/run-enlink-operating-successor.ts script/validate-enlink-operating-successor-private.ts",
+                "strictEs5ExactCommand": "npx tsc --noEmit --strict --target ES5 --lib ES2022,DOM --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/enlinkOperatingSuccessorEvidence.ts script/capture-enlink-operating-successor.ts script/enlink-operating-successor.test.ts script/run-enlink-operating-successor.ts script/validate-enlink-operating-successor-private.ts",
+                "strictEs2022Exit": 0,
+                "strictEs5Exit": 0,
+                "bothEmptyCompilerLogsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "apiOrXlsxUnchangedControlsRerun": false,
+                "appOrBrowserRun": false,
+                "publicTestsDependOnPrivateArtifacts": false,
+                "canonicalLedgersFairBundlesOtherHelpersCachesTrackBLoadersCollectorsRoutesEdited": false,
+                "sharedPublicDataEdited": false,
+                "workflowCommitDeployPublishCallbackApprovalPurchaseBillingDdlProdChanges": 0
+              }
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          }
         },
         {
           "id": "S12-018",
@@ -143522,7 +144349,7 @@
           "id": "S15-017",
           "source_section": "acceptance",
           "requirement": "Track B shows “unavailable” for every period failing its evidence requirements.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Workplan_Status_and_Conclusions.md",
@@ -143532,9 +144359,15 @@
           ],
           "evidence_caveat": "Clause-level source inspection plus only the actual bounded execution receipts listed. Partial implementation is not complete acceptance. Missing historical research is not replaced by proxy efficacy.",
           "files_functions_changed": [
-            "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
+            "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation",
+            "server/trackBDisclosureStore.ts",
+            "server/trackBDisclosurePublisher.ts",
+            "server/trackBPublicCatalog.ts",
+            "server/trackBAdmissionApi.ts",
+            "client/src/components/track-b-research.tsx",
+            "shared/trackBDisclosureContract.ts"
           ],
-          "behaviour_delivered_this_run": "Actualpipeline everyfrozenperiod/spec hasStage9ANDoriginalfiling evidence assessment withhash/cutoff/lag/fit/universe/outcome reasons. Failuresresultnull/unavailable; callerhashesnotindependentreview. ExistingCLIwritescontent-addressedJSON+reasonXLSX with18columns/identitymetadata,readback/idempotencytested. MountedGET503explicitlynotcompletedreportdelivery.",
+          "behaviour_delivered_this_run": "Trusted source-pinned disclosurecatalog/fixedpublicstore nowserveactualCLIreport JSON/XLSX and UI; exacthash/cutoff/domain identities;404missing,403unpublished,503corrupt,409changedselection. Noarbitrarypath/privatefallback/publicwrite. Catalog genuinelyempty. Actualpipeline→DEVstore→HTTP→XLSX tested; browserempty/selected/absent/loading/errorpass withsyntheticinterception; browserXLSXplaceholder notparsedworkbook, backendactualreadbackseparate.",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -143603,6 +144436,26 @@
               "workspace_revision": "0a3a720eca0eb6eb47e992b88519dae23e160aa1",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -143611,10 +144464,8 @@
           "scientific_acceptance": "not-assessed",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Implementgenuinelyauthorizedpublicreport resolver/disclosure contract; independentStage9/originalfilingreviews unavailable. No positivehistoricaladmission/efficacy fabricated."
-          ],
-          "next_action": "Implementgenuinelyauthorizedpublicreport resolver/disclosure contract; independentStage9/originalfilingreviews unavailable. No positivehistoricaladmission/efficacy fabricated.",
+          "remaining_gaps": [],
+          "next_action": "Writtenperperiodunavailableengineeringverified. Genuinepublicreport needsrightsreview,realreviewer/date/redistribution statement and reviewedcatalogpin, thenofflinepublisher. DisclosuredoesnotapproveStage9/originalfilings/science.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -143622,7 +144473,7 @@
               "owner_action": "Implement explicit period-level Stage9 plus original-filing evidence assessment and unavailable reasons; never treat mode label as acceptance."
             }
           ],
-          "check_type": "operational",
+          "check_type": "exact",
           "implementation_files_functions": [
             {
               "path": "server/calculation/pairedResearchPipeline.ts",
@@ -143823,9 +144674,111 @@
           "prior_cache_track_gaps": [
             "Mode-level 'contract-checked; independent archive verification required' is not yet per-period unavailable reporting for every Stage9/original-filing failure."
           ],
-          "remainingGaps": [
-            "Implementgenuinelyauthorizedpublicreport resolver/disclosure contract; independentStage9/originalfilingreviews unavailable. No positivehistoricaladmission/efficacy fabricated."
-          ]
+          "remainingGaps": [],
+          "before_resolver_loader_increment": {
+            "status": "partial",
+            "remaining_gaps": [
+              "Implementgenuinelyauthorizedpublicreport resolver/disclosure contract; independentStage9/originalfilingreviews unavailable. No positivehistoricaladmission/efficacy fabricated."
+            ]
+          },
+          "resolver_loader_increment": {
+            "file": "docs/s15-017-trusted-public-disclosure-evidence.json",
+            "sha256": "2b0e88206ae5496c99be01fc8742aa6650614bd2c5c1a71e346a6ff6b28d3dc0",
+            "evidence": {
+              "criterion": "S15-017: Track B shows “unavailable” for every period failing its evidence requirements.",
+              "bindingConjunction": "Retrospective simulation on verified past inputs(Stage9) AND original,not-restated filings; unavailable wherever either requirement is unmet.",
+              "assessment": "Actual retained-report publication/resolver/download/UI engineering is implemented and tested end-to-end with isolated explicitly synthetic DEV authorization only. It replaces the production unconfigured503 stub with a genuine source-pinned public disclosure reader. No genuine rights-cleared report has been supplied or authorized: production source catalog remains empty, catalog GET is empty,unlisted report GET is404,and the UI gives the exact operator prerequisite. No real publication,authenticated positive TrackB admission,historical efficacy or canonical closure is claimed.",
+              "existingPolicyInspection": {
+                "trustedCatalogPattern": "Read server/calculation/fairArtifactCatalog.ts and fairArtifactRoutes.ts only: reviewed source-controlled content pins,exact immutable selection,fail-closed retained bytes,not a scientific acceptance or runtime availability claim. Protected FaIR files were not edited.",
+                "operatorAuthority": "server/operatorContract.ts and server/releaseSafety.ts: authorized-workspace-shell is existing authority; HTTP principal/role is not implemented. GET is read-only; public mutations remain403. No new token,role,localhost bypass,DEV public write,review or approval endpoint introduced.",
+                "financialApprovalBoundary": "server/financialData/approvalArchive.ts is current-only financial review archiving,not a public backtest-disclosure or original-vintage authority. No reuse/inference of its approvals and no database schema/review changes.",
+                "storageBoundary": "server/storage.ts is user/projection-cache memory storage,not an authorized research report catalog. Existing paired CLI produces retained JSON; a generated file is not automatically permission to publish it."
+              },
+              "implementedChain": [
+                "Existing run-paired-research-pipeline CLI computes the actual pipeline result and writes immutable result JSON/XLSX. It now also writes the strict allowlisted trackBAdmission report plus an UNPUBLISHED/not-reviewed disclosure candidate,never an automatic approval.",
+                "The disclosure binds exact protocolHash,reportHash,pipelineResultHash,corpusHash and ordered periodDomainHash. The domain includes specification,origin,informationCutoff,executionAt,endAt for every frozen period,including absent periods.",
+                "server/trackBPublicCatalog.ts is the source-reviewed publication authority following the existing source-pin pattern. It has zero genuine entries. Reviewer text,self-hashes,caller mode or a disclosure file on disk alone grant no authority.",
+                "The offline publish-track-b-disclosure CLI can only copy already catalog-pinned,published,reviewed public bytes from fixed hash-derived candidate filenames. It checks the real retained pipeline hash and its exact trackBAdmission hash,uses immutable wx writes,and cannot approve or edit a catalog.",
+                "server/trackBDisclosureStore.ts reads ONLY hash-derived public report/disclosure files under a fixed root. It verifies source-catalog uniqueness,strict schemas,publication/rights state,canonical hashes and all report/domain identities. It refuses missing/unlisted404,unpublished/unauthorized403,corrupt/ambiguous503; no private pipeline,filing or provider fallback.",
+                "Symlink roots/files are refused; bounded regular files are opened readonly with O_NOFOLLOW and descriptor-level size checks. No request-supplied path or review is accepted.",
+                "server/index.ts mounts the actual trusted reader after releaseSafety,without protected routes edits. GET catalog,report,JSON and XLSX share exact source identities; expected reportHash/disclosureHash selectors refuse changed identity409 rather than replacing a selection.",
+                "Methodology renders actual TrackBResearch. It selects only source-pinned protocols,checks report/domain SHA256 in browser against selected catalog and server headers,and withholds stale results/downloads on loading,error,missing,invalid or mismatched selection. Actual unavailable periods and individual gate/company/artifact reasons remain explicit."
+              ],
+              "realOperatorPrerequisite": [
+                "Under the existing authorized workspace-shell boundary,run the existing paired pipeline CLI with genuine frozen protocol,precommitted protocol hash and retained corpus. Do not rerun/refreeze an old private study merely to satisfy a new code hash. Its report/disclosure outputs are only candidates.",
+                "The genuine workspace/publication operator must review the EXACT allowlisted report and redistribution rights. Clear any company/provider-derived/licensed content; do not copy original filings,licensed provider payloads or full private pipeline objects to public storage.",
+                "Retain a NEW strict track-b-public-disclosure-1 manifest with status published,classification retained-research,actual operator-public-disclosure reviewer/reviewedAt/publicRightsStatement,and exact protocol/report/pipeline/corpus/period-domain hashes. Keep scientificAcceptance=false,investmentEvidence=false,providerPayloadIncluded=false. Preserve the original unpublished candidate unchanged; its changed publication manifest has a different canonical content hash.",
+                "Through a genuinely reviewed source change,add the exact five-field pin(protocolHash,reportHash,disclosureHash,pipelineResultHash,periodDomainHash) to server/trackBPublicCatalog.ts. Source review is authority; filling reviewer text or sending HTTP/query review data is not approval. No such real pin was created by this task.",
+                "Place the exact reviewed manifest at generated-artifacts/paired-research-pipeline/<disclosureHash>.disclosure.json beside the actual retained pipeline and allowlisted report candidates,then run npx tsx script/publish-track-b-disclosure.ts EXACT_PROTOCOL_SHA256. The default empty catalog genuinely refuses this operation rather than manufacturing authorization.",
+                "The normal application release must contain the reviewed source pin and retained public-only files under generated-artifacts/track-b-public. Public GET validates selected content at read time. Publication permission never substitutes for independent Stage9/original-source authentication."
+              ],
+              "engineeringFixtureBoundary": "Root/catalog injection is trusted-code-only and requires both actual NODE_ENV=development and explicit allowEngineeringFixtures=true. Injected catalogs may authorize ONLY classification engineering-fixture with synthetic-development-only review carrying the literal no-real-approval qualification. Production and injected real-operator records are refused. Production defaults never load test fixtures or accept roots/catalogs/reviews from HTTP/env inputs.",
+              "scientificBoundary": "The independent Stage9/original-filing review store remains unprovisioned. All current admission records retain status unavailable,result:null,scientificAcceptance=false,investmentEvidence=false,authenticityVerified=false. New publication authorization does not satisfy those scientific gates. Gordon primary,actual r,dates,monetary basis,numerical estimators,accounting and frozen family cells are unchanged.",
+              "supplementalCensus": {
+                "registeredDefinitions": 1879,
+                "newPublicationControlDefinitions": 11,
+                "trackBDefinitionsTotal": 35,
+                "trackBReportAndControlDefinitionsBefore": 24,
+                "trackBSupplementalDomainsBefore": 535,
+                "trackBSupplementalDomainsAfter": 612,
+                "newDomains": "65actual readonly HTTP XLSX domains plus12catalog/error domains,including the explicit empty-catalog container; not extra measured quantities",
+                "externalSlotsBefore": 1459,
+                "externalSlotsAfter": 1536,
+                "externalBoundAfter": 1536,
+                "expandedPublicBefore": 2791,
+                "expandedPublicAfter": 2868,
+                "expandedBoundBefore": 2790,
+                "expandedBoundAfter": 2867,
+                "originalPublicUnchanged": 1001,
+                "originalBoundUnchanged": 1000,
+                "closedOriginalUnchanged": 571,
+                "unknownHistoricalSummaryUnchanged": 1,
+                "withheldUnchanged": 27,
+                "newComponent": "TrackBResearch,reachable only through actual Methodology component tag;62components total(original60 plus pinned warming reference plus TrackB),1845dynamic expressions,129binding expressions. These are source/engineering denominators,not scientific validation.",
+                "scope": "Only the new UI states were directly rendered for this follow-up. Four finite census/policy tests were run; the old61component rendered-state suites were not rerun or claimed reverified. Metadata/header/catalog serialization does not close original1001."
+              },
+              "verification": {
+                "command": "npx tsx --test script/track-b-admission.test.ts script/paired-research-pipeline.test.ts script/paired-research-accounting.test.ts script/research-family.test.ts script/next-census-accounting.test.ts script/operational-field-semantics.test.ts script/remaining-field-semantics.test.ts script/research-field-semantics.test.ts script/component-state-census.test.ts script/valuation-integrity.test.ts script/asof-valuation.test.ts script/valuation-statistics.test.ts script/cash-flow-valuation.test.ts",
+                "pass": 84,
+                "fail": 0,
+                "skip": 0,
+                "additional": "Typecheck passed. Field census regenerated and --check passed. An intervening concurrent source-position change affected only workbookBuilderInventory39->39; census was explicitly reconciled and checked again after typecheck,not silently treated as scientific evidence.",
+                "newBehaviorTests": "Actual CLI result/candidate chain,immutable repeat publication,actual DEV retained filesystem resolver and HTTP JSON/XLSX,real source/document hash headers,browser content/domain SHA256,absent frozen periods,empty genuine catalog,unpublished/unreviewed denial,unknown/missing/corrupt/symlink/ambiguous/changed selection refusal,private schema-key rejection,production synthetic authorization denial,public POST403,new direct UI SSR loading/error/empty/missing/invalid/success states.",
+                "gordon": "Named positive/negative/zero/missing actual Gordon fixtures and dated native monetary/r/dates basis regressions were rerun and passed; production Gordon/as-of solver source untouched.",
+                "browser": "No browser interaction or screenshot was performed by this subagent. Parent handles the bounded visual/interaction plan below; SSR and actual isolated HTTP/XLSX tests are not claimed as browser confirmation."
+              },
+              "boundedParentPlan": [
+                "Run/restart the application only under parent workflow ownership. On /methodology,confirm the new panel loads the genuine empty catalog and gives the operator prerequisite,without stale download links or fabricated report rows.",
+                "Confirm real app GET catalog200 with zero source-authorized reports and exact unknown protocol404; arbitrary paths/review overrides400 and public writes403. Optional unconfigured registration503 is tested but is not the production reader path.",
+                "For successful selection/download interaction coverage,use ONLY an isolated DEV synthetic test fixture service or explicit test interception with matching content/domain hashes. Do not insert fake real approvals into the production catalog or create a DEV public mutation bypass.",
+                "Check exact protocol selection,loading/error hides previous rows/downloads,absent-period unavailable reasons and matching JSON/XLSX report/disclosure/pipeline/domain identities. Existing automated source/fetch/SSR/HTTP tests already exercise these data contracts.",
+                "Parent may run the full integration suite later; no fullsuite,deploy,commit,canonical ledger edit or callback was executed here."
+              ],
+              "protectedBoundary": "No protected FaIR/server/routes/canonical ledger/cache-module edits,no public writes/authprincipal inventions,no private filing/license payload publication,no real approval fabricated,no genuine historical study rerun or refreeze. No denied protected-hash dependency encountered."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T19:14:27.938306+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 176.167,
+              "counts": {
+                "tests": 831,
+                "pass": 831,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+              "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "proposedStatus": "verified",
+          "operational_scientific_boundaries": "Writtenperperiodunavailableengineeringverified. Genuinepublicreport needsrightsreview,realreviewer/date/redistribution statement and reviewedcatalogpin, thenofflinepublisher. DisclosuredoesnotapproveStage9/originalfilings/science."
         },
         {
           "id": "S15-018",
@@ -152393,6 +153346,26 @@
       "workspace_revision": "0a3a720eca0eb6eb47e992b88519dae23e160aa1",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-11T19:14:27.938306+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 176.167,
+      "counts": {
+        "tests": 831,
+        "pass": 831,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+      "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -152660,13 +153633,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "S11-040verified;S02companycacheactualretainedmisshitproof done,broaderfamilies/transport/HTTPmanifest branches remain. TrackBperperiodCLIreport implemented,publicauthorizedresolver stillengineeringincomplete,default503notcompletion. SearchactualElkMergerSubII/EnLinkMidstreamPartnersLPCCSoperatingcontract/novation/cash. CF45Qincome notXOMcash.45verified253partial2blocked;0/3cases. Alloriginalanalyticalscope remains; don'trerununchangedwitnesses.",
+    "instruction": "47verified251partial2blocked. S15-017trustedresolver+periodunavailableengineering andS03-008real-loadernegativefixtures verified; don'trepeatunchanged. RealpublicTrackBcatalogempty: exactrightsreview/catalogpin/offlinepublish needed,notStage9scienceapproval. RemainingS02sixprojectioncachefamilies/TTL andexplicitdisposablePostgreSQLtransport; noambientDB/DDL. CompanydirectoperatingCCSinstrument/billings/opex stillmissing; don'trepeatcredit/indexaudits. Alloriginalanalyticalscope/0of3cases remains; no newefficacy.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-label-cash-7f2f110",
+    "checkpoint_id": "ckpt-20261111-cache-periods-52d2ab7",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T17:35:36.467203+00:00",
+    "attempted_at": "2026-11-11T18:25:13.800113+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -152768,8 +153741,8 @@
       "blocked-production-provisioning": 2
     },
     "3": {
-      "partial": 8,
-      "verified": 2
+      "partial": 7,
+      "verified": 3
     },
     "4": {
       "partial": 12
@@ -152810,7 +153783,8 @@
       "verified": 3
     },
     "15": {
-      "partial": 19
+      "partial": 18,
+      "verified": 1
     },
     "16": {
       "partial": 12,

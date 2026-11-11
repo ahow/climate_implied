@@ -10,8 +10,8 @@ import { warmingReferenceExportDocument } from "../shared/warmingValidationRefer
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 61, "Original60 actual consumers plus one new pinned reference");
-  assert.equal(report.focusedRenderedComponentCount, 61);
+  assert.equal(report.componentCount, 62, "Original60 plus pinned warming reference and actual TrackB public disclosure consumer");
+  assert.equal(report.focusedRenderedComponentCount, 62);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -56,7 +56,11 @@ test("imported sibling exports are reachable only through actual component tags"
   assert.deepEqual(reference.routes, ["/methodology"]);
   assert.equal(reference.contract.inputKind, "pinned-reference");
   assert.match(reference.contract.focusedEvidence, /warming-validation-reference\.test\.ts/);
-  assert.equal(report.components.filter(component => component.id !== reference.id).length, 60);
+  const trackB = report.components.find(component => component.component === "TrackBResearch")!;
+  assert.deepEqual(trackB.routes, ["/methodology"]);
+  assert.equal(trackB.contract.inputKind, "queried-evidence");
+  assert.match(trackB.contract.focusedEvidence, /track-b-admission\.test\.ts/);
+  assert.equal(report.components.filter(component => component.id !== reference.id && component.id !== trackB.id).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

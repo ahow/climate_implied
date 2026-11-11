@@ -10,6 +10,7 @@ import { warmingValidationReferenceSemantics, warmingReferenceExportLeafBindings
   warmingReferenceExportDocument } from "../shared/warmingValidationReferenceSemantics";
 import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics, trackBAdmissionExportLeafBindings } from "../shared/trackBAdmissionContract";
 import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
+import { trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
 const census = JSON.parse(readFileSync("docs/field_semantics_census.json", "utf8"));
 const frozen = JSON.parse(readFileSync("docs/field_semantics_original_cohort.json", "utf8"));
 
@@ -49,11 +50,12 @@ test("every new typed API/export denominator change is separate and reconciles a
   // fact count. The reference's exact38-ID contract is independently checked.
   assert.equal(census.definitions, fieldSemantics.length + outputFieldSemantics.length);
   assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, conditionalCompanySemantics.length);
-  assert.equal(added.externalTypedApiSlots, 1459);
-  assert.equal(added.externalTypedApiBoundSlots, 1459);
+  assert.equal(added.externalTypedApiSlots, 1536);
+  assert.equal(added.externalTypedApiBoundSlots, 1536);
   assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots +
     added.warmingReferenceApiLeafSlots + added.warmingReferenceJsonExportLeafSlots +
-    added.trackBAdmissionApiLeafSlots + added.trackBAdmissionJsonExportLeafSlots + added.trackBAdmissionWorkbookLeafSlots);
+    added.trackBAdmissionApiLeafSlots + added.trackBAdmissionJsonExportLeafSlots + added.trackBAdmissionWorkbookLeafSlots +
+    added.trackBAdmissionXlsxApiLeafSlots + added.trackBAdmissionCatalogLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
   assert.equal(added.conditionalCompanyApiLeafSlots, 63);
@@ -64,15 +66,17 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(added.trackBAdmissionApiLeafSlots, 24);
   assert.equal(added.trackBAdmissionJsonExportLeafSlots, 446);
   assert.equal(added.trackBAdmissionWorkbookLeafSlots, 65);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 2791);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 2790);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 1790);
+  assert.equal(added.trackBAdmissionXlsxApiLeafSlots, 65);
+  assert.equal(added.trackBAdmissionCatalogLeafSlots, 12);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 2868);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 2867);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 1867);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
 });
-test("TrackB24 definitions and535 schema/export supplements never turn mounted503 into completed report engineering", () => {
+test("TrackB35 definitions and612 supplements bind actual trusted reader/catalog/XLSX but never fabricate real publication or historical acceptance", () => {
   const track = census.supplementalQualifiedChanges.trackBAdmission;
-  assert.equal(track.definitions, 24);
-  assert.deepEqual(track.ids, [...trackBAdmissionSemantics, ...trackBAdmissionHttpSemantics].map(s => s.id));
+  assert.equal(track.definitions, 35);
+  assert.deepEqual(track.ids, [...trackBAdmissionSemantics, ...trackBAdmissionHttpSemantics, ...trackBPublicCatalogSemantics].map(s => s.id));
   assert.equal(track.reportSchemaLeaves, 23);
   assert.deepEqual(track.jsonExport.leafBindings, trackBAdmissionExportLeafBindings());
   assert.equal(Object.keys(track.jsonExport.leafBindings).length, 445);
@@ -80,10 +84,13 @@ test("TrackB24 definitions and535 schema/export supplements never turn mounted50
   assert.deepEqual(track.workbook.identityFields, [...trackBWorkbookIdentityFields]);
   assert.equal(track.workbook.metadataColumns, 31);
   assert.equal(track.api.mounted, true);
-  assert.equal(track.api.defaultStatus, 503);
-  assert.equal(track.api.authorizedPublicReportResolverProvisioned, false);
-  assert.equal(track.api.successfulPublicReportEngineeringComplete, false);
-  assert.equal(track.typedApiAndWorkbookFields.length, 535);
+  assert.equal(track.api.unlistedStatus, 404);
+  assert.equal(track.api.authorizedPublicReportResolverProvisioned, true);
+  assert.equal(track.api.readerAndOfflinePublicationEngineeringImplemented, true);
+  assert.equal(track.api.realReportPublicationDemonstrated, false);
+  assert.equal(track.api.authorizedRealReportPins, 0);
+  assert.equal(track.catalog.definitions, 11);
+  assert.equal(track.typedApiAndWorkbookFields.length, 612);
   assert.ok(track.typedApiAndWorkbookFields.every((field: { bound: boolean; id: string }) =>
     field.bound && outputFieldSemantics.some(s => s.id === field.id)));
   assert.ok(frozen.slots.every((s: { surface: string }) => !s.surface.includes("track-b-admission") && !s.surface.includes("trackBAdmissionWorkbook")));
