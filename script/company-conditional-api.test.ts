@@ -11,8 +11,8 @@ import { bindConditionalExportCells, conditionalCompanyFieldSpecs, conditionalCo
 
 test("registered shared contract has exact API leaves, fact units and lossless export bindings", async () => {
   assert.equal(conditionalCompanyFieldSpecs.length, 30);
-  assert.equal(conditionalCompanySemantics.length, 84);
-  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 84);
+  assert.equal(conditionalCompanySemantics.length, 88);
+  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 88);
   for (const issuer of [undefined, "NEE", "FSLR", "XOM"] as const) {
     const summary = getConditionalCompanySummary(issuer);
     const bindings = bindNestedOutput("conditionalCompany", summary);
@@ -54,8 +54,8 @@ test("new GET APIs and binary workbook remain qualified supplements outside orig
   const census = JSON.parse(await readFile("docs/field_semantics_census.json", "utf8"));
   const contract = census.supplementalQualifiedChanges.conditionalCompany;
   // Protected census is parent-owned: retain its legacy63snapshot or its exact
-  // additive81/84definition integration. Exact live registry is checked above.
-  assert.ok([63, 81, 84].includes(contract.definitions));
+   // additive81/84/88definition integration. Exact live registry is checked above.
+   assert.ok([63, 81, 84, 88].includes(contract.definitions));
   assert.equal(contract.typedApiFields.length, 63);
   assert.ok(contract.typedApiFields.every((f: { bound: boolean }) => f.bound));
   for (const surface of contract.successApiSurfaces) {
@@ -92,12 +92,12 @@ test("exact supplemental semantics, public allowlist and source aggregate bindin
   assert.ok(Object.isFrozen(conditionalCompanySummary.companies[0].facts[0]));
   assert.deepEqual(conditionalCompanySummary.companies.map(c => c.issuer), ["NEE", "FSLR", "XOM"]);
   assert.deepEqual(conditionalCompanySummary.companies.map(c => c.facts.map(f => f.id)), [
-    ["fplDividend", "parentContribution", "netParentCash", "fplCashChange", "cashResidual", "beforeCommon", "withoutDmi", "unknownGrossInflow", "unknownGrossOutflow", "conditionalCases", "negativeFunding", "relatedPartnerGrossDistributions"],
+    ["fplDividend", "parentContribution", "netParentCash", "fplCashChange", "cashResidual", "beforeCommon", "withoutDmi", "unknownGrossInflow", "unknownGrossOutflow", "conditionalCases", "negativeFunding", "relatedPartnerGrossDistributions", "attachmentRenewablesIiBuyout", "attachmentNeeCategory2025Distributions"],
     ["openingPpe", "capex", "depreciation", "closingPpe", "budgetRemainder", "cases", "positiveTerminals", "positivePlans", "zeroCreditPositive", "negativeFunding",
       "cohortTransferFace", "cohortTransferCash", "cohortFaceCashDifference", "cohortTreasuryCash", "cohortSelectedCash", "cohortRemainingClaims",
       "cohortIncludingFiservFace", "cohortIncludingFiservProceeds", "cohortIncludingFiservDifference", "cohortIncludingFiservCash",
       "cohortHistoricalCreditCash", "cohortCfoRemainder", "cohortUnallocatedGrantBridge", "cohortGrantBookCfoResidual", "cohortUsEligibleWatts",
-      "cohortPriorCreditCash2026", "cohortPreCutoffReservePv", "cohortPostCutoffVisaPv", "grantScopeReported45x", "grantScopeNoncashSupplement"],
+      "cohortPriorCreditCash2026", "cohortPreCutoffReservePv", "cohortPostCutoffVisaPv", "grantScopeReported45x", "grantScopeNoncashSupplement", "attachmentAnnualCfoCashRemainder", "attachmentIndiaFirstReceiptAmount"],
     ["reportedEmissions", "deliveredUnits", "shortage", "observedExpense", "observedPrice", "observedBank", "grossIncrement", "cashIncrement", "cases"],
   ]);
   const fact = (issuer: string, id: string) => conditionalCompanySummary.companies
@@ -168,6 +168,17 @@ test("GET API, JSON and XLSX are the same allowlist; unsupported inputs and writ
         }
       });
       assert.deepEqual(actual, conditionalExportCells(expected));
+       if (issuer === "NEE" || issuer === "FSLR") {
+         const company = expected.companies[0];
+         assert.equal(company.facts.filter(f => f.id.startsWith("attachment")).length, 2);
+         company.facts.forEach((fact, index) => { if (fact.id.startsWith("attachment")) {
+           for (const key of Object.keys(fact) as (keyof typeof fact)[]) {
+             const cell = actual.find(c => c.field === `companies.0.facts.${index}.${key}`)!;
+             assert.deepEqual(JSON.parse(cell.jsonValue), fact[key]);
+           }
+         } });
+         assert.match(company.informationContext, /issuer-attachment-grant-followup-1/);
+       }
       if (issuer === "FSLR") {
         const company = expected.companies[0];
         assert.equal(company.facts.filter(f => f.id.startsWith("cohort")).length, 18);
@@ -210,7 +221,7 @@ test("subsequent XOM primary-source notes qualify units without rewriting frozen
     primitiveValues: cells.filter(cell => typeof JSON.parse(cell.jsonValue) !== "string"),
   };
   assert.equal(cells.length, 308, "Protected legacy schema/numeric facts unchanged; new FSLRfacts are additive");
-  assert.equal(conditionalExportCells(summary).length, 476, "Exactly21new eight-leaf public facts");
+  assert.equal(conditionalExportCells(summary).length, 508, "Exactly25new eight-leaf public facts beyond protected snapshot");
   assert.equal(protectedData.primitiveValues.length, 44);
   assert.equal(createHash("sha256").update(JSON.stringify(protectedData)).digest("hex"),
     "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
@@ -279,4 +290,23 @@ test("FSLR18new public cohort facts retain exact conditional vintages, cash iden
   }
   assert.equal(company.qualifiedOriginalIssuers, 0);
   assert.equal(company.qualifiedOriginalPairs, 0);
+});
+
+test("new actual attachment/grant facts distinguish bought-out units, receipt month, cash amount and CFOdiagnostic", () => {
+  const nee = getConditionalCompanySummary("NEE").companies[0], fslr = getConditionalCompanySummary("FSLR").companies[0];
+  const n = (id: string) => nee.facts.find(f => f.id === id)!;
+  const f = (id: string) => fslr.facts.find(f => f.id === id)!;
+  assert.equal(n("attachmentRenewablesIiBuyout").value, 931000000);
+  assert.equal(n("attachmentNeeCategory2025Distributions").value, 61000000);
+  assert.equal(n("relatedPartnerGrossDistributions").value, 422000000);
+  assert.match(nee.informationContext, /96\.5%\/18\.82%.*counterfactuals.*NOT actual post-buyout/);
+  assert.equal(f("attachmentAnnualCfoCashRemainder").value, 613405000);
+  assert.match(f("attachmentAnnualCfoCashRemainder").boundary, /NOT grant-free recurringFCFE/);
+  assert.equal(f("attachmentIndiaFirstReceiptAmount").value, null);
+  assert.match(f("attachmentIndiaFirstReceiptAmount").unit, /actual receiptmonth2026-07/);
+  assert.match(f("attachmentIndiaFirstReceiptAmount").boundary, /AFTER June30.*not six-monthcash/);
+  assert.match(fslr.informationContext, /2026-02-24.*2026-07-30.*NOT known at2025-02-21/);
+  assert.doesNotMatch(JSON.stringify(getConditionalCompanySummary()), /5993041906|6193642869|5993\/6194/);
+  assert.equal(nee.experimentVersion, "nee-component-cash-waterfall-1-funding-guard");
+  assert.equal(fslr.experimentVersion, "fslr-paid-spare-capacity-post-credit-1");
 });

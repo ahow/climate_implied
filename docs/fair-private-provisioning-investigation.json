@@ -20,6 +20,12 @@
   "currentBundleSha256": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
   "currentBundleBytes": 103204794,
   "liveTransferAttempted": false,
+  "manusInvestigation": {
+    "status": "completed; user-reported 2026-11-11",
+    "result": "Known project/service/environment reads denied GraphQLNotAuthorized; ProjectToken not found. No verified CLI/SSH scope. This is not proof the credential is globally invalid.",
+    "changes": "No credentials/provider changes or transfer",
+    "dependency": "Authorized authenticated CLI or registered SSH principal plus private workspace bundle access. Investigation is not pending."
+  },
   "liveSuccessfulSelectedReadProven": false,
   "scientificAcceptance": "not-accepted",
   "separateFrom": "Production archive-schema provisioning; no database or DDL operation."

@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 1795,
+  "definitions": 1799,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -1002,6 +1002,13 @@
       "line": 163,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Bindings\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/issuer-attachment-grant-inputs.test.ts",
+      "line": 15,
+      "builder": "b.addWorksheet",
+      "sheetExpression": "\"Financial notes\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
@@ -12224,7 +12231,7 @@
       "boundary": "New read-only explicitly conditional endpoint; typed send-argument domain and input/HTTP metadata inventoried separately, never original cohort closure credit."
     },
     "conditionalCompany": {
-      "definitions": 84,
+      "definitions": 88,
       "ids": [
         "conditionalCompany.schemaVersion",
         "conditionalCompany.scope",
@@ -12268,6 +12275,8 @@
         "conditionalCompany.fact.NEE.conditionalCases",
         "conditionalCompany.fact.NEE.negativeFunding",
         "conditionalCompany.fact.NEE.relatedPartnerGrossDistributions",
+        "conditionalCompany.fact.NEE.attachmentRenewablesIiBuyout",
+        "conditionalCompany.fact.NEE.attachmentNeeCategory2025Distributions",
         "conditionalCompany.fact.FSLR.openingPpe",
         "conditionalCompany.fact.FSLR.capex",
         "conditionalCompany.fact.FSLR.depreciation",
@@ -12298,6 +12307,8 @@
         "conditionalCompany.fact.FSLR.cohortPostCutoffVisaPv",
         "conditionalCompany.fact.FSLR.grantScopeReported45x",
         "conditionalCompany.fact.FSLR.grantScopeNoncashSupplement",
+        "conditionalCompany.fact.FSLR.attachmentAnnualCfoCashRemainder",
+        "conditionalCompany.fact.FSLR.attachmentIndiaFirstReceiptAmount",
         "conditionalCompany.fact.XOM.reportedEmissions",
         "conditionalCompany.fact.XOM.deliveredUnits",
         "conditionalCompany.fact.XOM.shortage",

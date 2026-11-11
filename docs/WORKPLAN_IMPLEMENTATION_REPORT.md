@@ -1,3 +1,43 @@
+# Attachment and energy-definition implementation receipt
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-attachment-grant-private.ts --private-primary && uv run python script/kaya_eu_energy_definition_bridge.py validate-private && npm run build"
+    ],
+    "executed_at": "2026-11-11T15:53:35.417702+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 161.765,
+    "counts": {
+      "tests": 736,
+      "pass": 736,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T155335417702Z.log",
+    "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "41verified257partial2blocked",
+  "semantics": "original1000/1001;88conditionaldefinitions;508exportleaves",
+  "release": "pending"
+}
+
+S12-017: Actual2019/2020incorporatedcontracts and3accessioninventories126/7/19files; inspected86/1sheetworkbooks. ExhibitB IRRmodel notlocatedwithinexaminedscope. FY2025 source reports ALLremainingexternalRenewablesIIClassB acquiredApril2025 for931m; old30%holding remainscounterfactual.931+219=1150buyoutcash; financing−674;739+630−674=695cashincrease,threezeroresiduals.
+Next: Retrieve actualLLCAvailableCash/reserves/datedflows andNEEFY2025parent/legalentitycrosswalk to61m distributions/931m acquisition; noFY2024cash insertion.
+
+S12-008: H12026Note5: firstIndia subsidy installmentreceivedJuly2026 afterJune30; amount/day/cashclassificationunknown. FY2025CFO lessselectedcreditreceipts613.405m isdiagnosticnotFCFE;14.435m/.780m unexplainedresiduals retained. Old32rows/outcomes unchanged.
+Next: Programme-specific grantrollforward/eligiblevolumes stillneeded; Q32026Alabama6.1m recognition isnextretainedsource,notIndiacash.
+
+S04-003: PublisherEIpriority/EIAfallback doesnotrecomputeEU27; regionalandhybridcountrytableboundaries differ.420cellscompared,417exact; Malta2022+.010/2023+2.457TWh explainsresidualchangesexactly;2016−4.027TWhgap persists. TerritorialCO2 excludesinternationalbunkers exceptWorld. No forecastentitynewlyqualified; nofits.
+Next: Acquire rights-qualifiedsame-releaseproviderflags/fullprecisionenergy,EIdefinitions/member-regiondata,GCBparentterritorynotes. Original2011PPP gaps remain;2021PPP notsubstitution.
+
+S07-002: Manusinvestigationcompleted: documentedknownscope reads GraphQLNotAuthorized/ProjectToken notfound; notglobalcredentialinvalidity. Nochange/transfer. Existing155bd3ffbundleunchanged.
+Next: AuthorizedCLI/registeredSSH principal plusprivatebundleaccess; configureFAIR_ARTIFACT_ROOT beforefinalcontainer,thenprivateinstall/activate, retainrecoverycopy.
+
 # Verified grant/LLC and territorial input release
 
 {
@@ -2815,6 +2855,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-private-cohorts-085d671",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T14:39:59.119334+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-grants-territorial-1dbe19a",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T15:21:48.155922+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

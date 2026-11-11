@@ -1,0 +1,14 @@
+{
+  "schemaVersion":1,
+  "source":"Frozen CO2 README6c78052304913b07e0b38b60f4e8488427cc2fb62d341ce66c1bf7974d21c9ed explicitly links dated OWID ETL steps",
+  "historicalMethodSelection":"Latest public OWID ETL commit no later than frozen CO2 repository commit time2026-06-02T16:33:39Z. Timestamp selection alone is not certified artifact-to-ETL binding;retain limitation.",
+  "commitURL":"https://api.github.com/repos/owid/etl/commits?until=2026-06-02T16:33:39Z&per_page=1",
+  "publisherLinkedPaths":[
+    "etl/steps/data/garden/energy/2026-05-05/primary_energy_consumption.py",
+    "etl/steps/data/garden/energy_institute/2025-06-27/statistical_review_of_world_energy.py",
+    "etl/steps/data/garden/eia/2026-05-05/international_energy.py",
+    "etl/steps/data/garden/gcp/2025-11-13/global_carbon_budget.py"
+  ],
+  "permittedUse":"Public publisher methods inspection,private retention,not executable imports. No upstream model/control or data-bundle download.",
+  "bound":"Within original10requests/20MB budget;no retries;remaining requests only publisher-discovered metadata/definitions"
+}

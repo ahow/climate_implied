@@ -1,0 +1,185 @@
+{
+  "schemaVersion":1,
+  "status":"publisher-source-aggregation-and-revision-boundaries-qualified; total-EU27-energy-gap-not-yet-scientifically-closed",
+  "taskBoundary":{
+    "retained3285RowCensusRebuilt":false,
+    "newFocusedEnergyCells":420,
+    "originalWindow":[2010,2024],
+    "originalCriteriaRefrozen":false,
+    "WDI2021PPP":"Separate sensitivity basis,NOT replacement for originalMPD2011PPP",
+    "miningReaudits":0,
+    "modelsFitsBreaksHoldoutScores":0,
+    "unavailableCasesAreStatisticalRejections":false
+  },
+  "retainedInputs":{
+    "jointResultSHA256":"2572e6d26049eeee34ff88db51e7ba6e2f45657a655109c4e18c4f5dee2c4b2f",
+    "pairedCellsSHA256":"4927b432d540a96055fbb8dc35b6184c6879c60b6dbc96627b6430335384a1d5",
+    "legacyEnergyCSV":"generated-artifacts/driver-calibration/owid-energy-data.csv",
+    "legacyEnergySHA256":"266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+    "originalCO2CSV_SHA256":"7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
+    "originalKayaProtocolSHA256":"210d19c643942e739c7a38431b14d682fef0789b5670a847499ea8d31842cdee",
+    "originalForecastProtocolSHA256":"ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f"
+  },
+  "boundedPrimaryAcquisition":{
+    "sourcePlan":"docs/kaya-eu-energy-definition-source-plan.json",
+    "sourcePlanSHA256":"9836c912d8e4f387692a8072021f299db4acb2b54f55c2276c6f0cafba3b4428",
+    "historicalMethodRoute":"docs/kaya-eu-energy-definition-method-route.json",
+    "historicalMethodRouteSHA256":"f8055cc883c27aec3e4a534edd5b1beb522c005a3656e8f48d5c121a4b6557a4",
+    "gcbMetadataRoute":"docs/kaya-eu-energy-definition-gcb-route.json",
+    "gcbMetadataRouteSHA256":"d5e84b3174dc7429af59b5dd8ca9a259e7d6b1348d147dc5e7450db9d6c2fb94",
+    "requests":10,
+    "maximumRequests":10,
+    "bodyBytes":230475,
+    "maximumTotalBodyBytes":20000000,
+    "actualEachRequestCapBytes":1000000,
+    "timeoutSeconds":45,
+    "retries":0,
+    "allHTTPStatuses":200,
+    "allCurlExits":0,
+    "numericDatasetOrArchiveDownloads":0,
+    "paidCallsOrPurchases":0,
+    "rightsBoundary":"Public publisher README,method code and metadata inspected privately;no upstream numeric/model/control files or unknown-rights data bundles acquired. Raw methods/metadata and full numerical audit remain ignored/private,no raw redistribution.",
+    "manifest":"generated-artifacts/kaya-eu-energy-definition/requests.json",
+    "manifestSHA256":"e56c6be703222912eb55d0933bd536d6954f1de79a71a0e4bfe78e150e5f4d60",
+    "exactURLsTimesSizesAnd20ResponseHashes":"Saved in source manifest;no requests to old WDI/mining sources and no retries of prior timed-out requests"
+  },
+  "exactSourceVersionBinding":{
+    "frozenCO2RepositoryCommit":"382ee6c662b0ece26e111f263b44c029afad7787",
+    "frozenCO2CommitTime":"2026-06-02T16:33:39Z",
+    "frozenReadmeSHA256":"6c78052304913b07e0b38b60f4e8488427cc2fb62d341ce66c1bf7974d21c9ed",
+    "readmeMethodReferences":"Explicit dated EI2025-06-27,EIA2026-05-05,primary-energy2026-05-05 and GCB2025-11-13 OWID ETL processing paths",
+    "readmeChangelog":"2026-06-01 update to latest EIA International Energy Data. Separate carbon-intensity unit change is not applied to native primary-energy values.",
+    "selectedETLCommit":"282a8ef5715e21770167128edb236a68f7b3ed23",
+    "selectedETLCommitTime":"2026-06-02T16:32:34Z",
+    "selection":"Latest public ETL commit no later than frozen CO2 commit,selected before inspecting method outcomes",
+    "timeDifferenceSeconds":65,
+    "bindingLimit":"Exact dated README paths,immutable historical method commit and matching retained numbers support provenance. Temporal proximity does NOT certify atomic ETL-data-artifact binding or publication-at-origin data availability.",
+    "historicalDataVintagesCertified":false,
+    "sourceMethods":[
+      {"name":"primary-energy-method","namespace":"energy/2026-05-05","bodySHA256":"d40d2ace8261ddcd4bc155bb0750f4371e66ffc61c27e8ba156ad7132328520f"},
+      {"name":"ei-method","namespace":"energy_institute/2025-06-27","bodySHA256":"255357388f7a1b44eff08a9a3d9616d07e8584723f07c6771fb61400e5d27315"},
+      {"name":"eia-method","namespace":"eia/2026-05-05","bodySHA256":"1e4aee0d9c75f08f8cd1fbf9a4c291e02a72c065c3de52d3d99481e0bb2ea728"},
+      {"name":"gcb-method","namespace":"gcp/2025-11-13","bodySHA256":"3b6192f08ade1dde982957cfc0298657c55154f06ba914ee1ee8b5292b2980d9"},
+      {"name":"gcb-metadata","namespace":"gcp/2025-11-13","bodySHA256":"6e03d52ff82c037798f42f3a56a45a285b583204490ac8876bb78feeeda1c2a4"},
+      {"name":"gcb-country-map","namespace":"gcp/2025-11-13","bodySHA256":"c15b5f36c68845aa8985749fe5dad4aafad74f0e60a9a1cd06b49513f96f7131"}
+    ],
+    "GCBSourceGitObjectsIndependentlyVerified":3
+  },
+  "newPublisherDefinedEnergyAccounting":{
+    "sourcePriority":{
+      "methodLines":[43,72,107,110],
+      "finding":"Primary-energy bridge selects EI legacy input-equivalent energy and EIA total-energy consumption;EI takes priority on matching country/year. It does NOT recompute EU27 after per-country EIA fallback.",
+      "EIRegionConstruction":"EI processing creates continents/income regions,but EU27 is absent from its reaggregation dictionary. Do not equate the native EU aggregate with a new sum of the final hybrid country table.",
+      "status":"Source-programme aggregation boundary resolved;per-cell EI/EIA provider flags remain unacquired,so no claim that Malta alone explains the entire same-release discrepancy."
+    },
+    "sourceUnitDefinitions":{
+      "EI":"Published EJ_TO_TWH=1e6/3600,exact2500/9 TWh per EJ",
+      "EIA":"Published total-energy terajoules multiplied by TJ_TO_TWH=1/3600",
+      "methodLines":{"EI":[35,36],"EIA":[27,40,41]},
+      "newCorrectionFactorFitted":false,
+      "sourceConversionAppliedToChangeNativeNumbers":false,
+      "interpretation":"Both native fields are already TWh. Unit normalization is documented,NOT proof of identical provider methodology or territory."
+    },
+    "legacyVersusTES":{
+      "EI_MethodLines":[3,5,13,18,164,798,824,845],
+      "finding":"EI2025 changed published methodology to TES/physical energy content,but this OWID method explicitly retains legacy input-equivalent primary energy. The raw primary_ej maps to legacy primary consumption;non-fossil component conversions are recalculated separately.",
+      "publisherFivePercentCheck":"The publisher's <5percent internal calculated-versus-reported primary-energy check is NOT an EU27 additivity acceptance rule and is NOT adopted as a scientific tolerance here.",
+      "replacementTESCatalogSplice":false
+    },
+    "retainedReleaseOverlap":{
+      "cells":420,
+      "exactNumericMatches":417,
+      "other26MembersExactMatches":390,
+      "EU27AggregateExactMatches":15,
+      "MaltaExactMatches":12,
+      "changedCells":[
+        {"country":"Malta","year":2022,"nativeCO2MinusRetainedLegacyEnergyTWh":"0.010"},
+        {"country":"Malta","year":2023,"nativeCO2MinusRetainedLegacyEnergyTWh":"2.457"}
+      ],
+      "legacySourceUnavailable":[{"country":"Malta","year":2024}],
+      "meaning":"Actual source revision/localization evidence,NOT independent measurements or forecast validation. All observed between-file changes in these420selected cells are localized to Malta,not to EU aggregate or other26 members."
+    },
+    "exactResidualRevisionAccounting":{
+      "formula":"Delta(EU minus sum27)=DeltaEU minus sum(DeltaMember). Native quantities never altered.",
+      "2022":{"legacyResidualTWh":"-0.637","currentResidualTWh":"-0.647","memberRevisionMaltaTWh":"0.010","residualChangeTWh":"-0.010","accountingResidualTWh":"0.000"},
+      "2023":{"legacyResidualTWh":"2.130","currentResidualTWh":"-0.327","memberRevisionMaltaTWh":"2.457","residualChangeTWh":"-2.457","accountingResidualTWh":"0.000"},
+      "2024":"Legacy Malta value absent;legacy complete27 sum and residual remain null,not zero-filled or shortened.",
+      "unchangedLargestGap2016TWh":"-4.027",
+      "outcome":"Two later Malta revisions explain exactly the CHANGE in EU additivity residuals,not the full original residual in every year. The2016max persists unchanged.",
+      "remainingCurrentResiduals2010to2024TWh":["-2.246","-1.691","-1.572","-1.456","-1.436","-2.505","-4.027","-1.609","-1.783","-1.818","-1.228","-2.036","-0.647","-0.327","2.233"],
+      "scientificBoundaryQualified":false
+    },
+    "memberIsolationSafeguard":"EU minus other26 is an unassigned aggregate component,NOT an independently observed EI Malta value. All15 such identities retained privately with source row pointers;none fitted or inserted into a model."
+  },
+  "newNativeCO2ScopeAndNullIdentityQualification":{
+    "territorialProductionScope":{
+      "metadataLines":[3,7],
+      "finding":"Publisher GCB2025 metadata explicitly says production within territorial borders,not imported-goods emissions. International aviation/shipping are excluded from every individual country/region and counted only in global total.",
+      "EU27CO2MethodLine":45,
+      "EU27CO2Finding":"GCB processing explicitly constructs its EU27 region from country members;energy uses a separate primary-energy source bridge.",
+      "WorldCO2BunkerAccountingNowSourceDefined":true,
+      "WorldEnergyResidualIdentifiedAsBunkerEnergy":false
+    },
+    "canonicalNames":[
+      {"nativeIdentifier":"MCO","sourceRaw":"Monaco","publisherCanonical":"Monaco","nativeCO2EmptyYears":15,"nativeEnergyEmptyYears":15,"WDI2021GDPNullYears":15,"GDPStatus":"publisher-returned-null"},
+      {"nativeIdentifier":"SMR","sourceRaw":"San Marino","publisherCanonical":"San Marino","nativeCO2EmptyYears":15,"nativeEnergyEmptyYears":15,"WDI2021GDPNullYears":[2024],"GDPStatus":"publisher-returned-null"},
+      {"nativeIdentifier":"VAT","sourceRaw":"Vatican City","publisherCanonical":"Vatican","nativeCO2EmptyYears":15,"nativeEnergyEmptyYears":15,"WDI2021GDPGapYears":15,"GDPStatus":"numeric-query-unattempted-no-publisher-WDI-country-identity"},
+      {"nativeIdentifier":"XKX","sourceRaw":"Kosovo","publisherCanonical":"Kosovo","nativeCO2EmptyYears":0,"nativeEnergyEmptyYears":0,"WDI2021GDPGapYears":0,"qualification":"Publisher canonical label supports retained Kosovo/XKX name bridge;not a claim of official native ISO code or fully equal territorial GDP/energy coverage."}
+    ],
+    "nullInterpretation":"MCO/SMR/VAT are NOT failures to recognize canonical GCB country names. Published harmonization map does NOT map their labels to France/Italy. Parent-country inclusion in underlying GCB reporting remains unproven;missing emissions never become zero.",
+    "GibraltarPrimaryEnergyExclusion":{"sourceMethodLines":[21,213,278],"finding":"The primary-energy programme intentionally removes Gibraltar as an outlier. This source-defined exclusion is not evidence its energy equals World residual or that a missing GDP/energy territory can be silently merged."},
+    "sameVintageWDIGaps":"Existing October-source core/November-source population-sidecar separation and failed extra-country GDP acquisition retained untouched. No new WDI query or vintage splice."
+  },
+  "originalFrozenEntityAdmission":{
+    "qualifiedNewEntities":[],
+    "GDPGapYears":{
+      "World":[2011,2012,2013,2014,2023,2024],
+      "China":[2023,2024],
+      "India":[2023,2024],
+      "United States":[2023,2024],
+      "European Union (27)":[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024]
+    },
+    "otherOriginalEntities":"RoW and transport structural/membership gaps unchanged. OriginalMPD sidecar EU27 still missing54member-years2023/24.",
+    "result":"No separate original full-window entity became qualified. Do not replace missing originalGDP with WDI2021PPP or run shortened holdouts.",
+    "familyTreatment":"Unavailable/not-executed,NOT statistical rejection. No p-values,winners,break tests,baseline comparisons or uncertainty/coverage claims fabricated. Any eventual original family run must preserve unavailable-case treatment and original train-only,both-baseline,uncertainty thresholds."
+  },
+  "narrowNextSourceInputs":{
+    "unattemptedProviderRows":"Same-release garden/energy/2026-05-05/primary_energy_consumption country/year source flags and full-precision primary energy for420focused cells. Source programme emits provider column,but exported retained CSVs omit it.",
+    "unattemptedEIDefinitions":"EI2025 exact Definitions sheet and full-precision legacy primary regional/member values,with verified permitted-use terms,before attributing persistent residuals to a specific territory/provider. No numeric EI/EIA archive downloaded.",
+    "unattemptedCO2ParentReportingNotes":"Version-matched GCB2025 national-country/parent-territory reporting notes for Monaco,San Marino,Vatican. Canonical label mapping alone does not resolve underlying emissions inclusion.",
+    "stillMissingOriginalGDP":"Full original2011PPP2023/24national data,World2011-14 and EU27original frozen GDP cells. WDI2021PPP stays separate sensitivity.",
+    "notClaimed":"Total all15-year EU27 energy additivity discrepancy is NOT yet closed;source-policy and actual revision components are now qualified with exact numerical accounting."
+  },
+  "implementationAndChecks":{
+    "module":"script/kaya_eu_energy_definition_bridge.py",
+    "moduleSHA256":"c4843a5472a5ac832c2faef4b701576c5085e7b7df8db581bc7aa91bc37f1391",
+    "tests":"script/test_kaya_eu_energy_definition_bridge.py",
+    "testsSHA256":"39f74e4573422d2df120d2dfabd47b9b4c890dabdd62bb42f285108b4dd1aad1",
+    "assemblyCommand":"python script/kaya_eu_energy_definition_bridge.py assemble",
+    "assemblyUTC":"2026-11-11T15:38:57.996107+00:00",
+    "privateResult":"generated-artifacts/kaya-eu-energy-definition/focused-definition-result.json",
+    "privateResultSHA256":"251b54d9c40d7e7969f791db7cb3c26c5aacd0d479c2d4aa0cf800affe837264",
+    "publicTestCommand":"PYTHONPATH=script python -m unittest test_kaya_eu_energy_definition_bridge -v",
+    "publicTestsPassed":7,
+    "publicTestsFailed":0,
+    "publicTestsSkipped":0,
+    "cleanSourceOnlyTestsPassed":7,
+    "cleanContext":"Only new module/test files,no docs or generated-artifacts. No private-file dependency.",
+    "privateValidatorCommand":"python script/kaya_eu_energy_definition_bridge.py validate-private",
+    "privateValidatorExit":0,
+    "privateResponseHashesVerified":20,
+    "nativeGitBlobsVerified":3,
+    "retainedCensusHashesVerified":2,
+    "privateNegativeControl":"Source-only invocation correctly fails FileNotFoundError for required private census,never skip.",
+    "logs":[
+      {"path":"generated-artifacts/kaya-eu-energy-definition/focused-tests.log","sha256":"cf5a71b8005c8b1a3f73bbc759ea4d1969b7cf27ad4d9245adbee1c7085b2601"},
+      {"path":"generated-artifacts/kaya-eu-energy-definition/public-clean-tests.log","sha256":"cf5a71b8005c8b1a3f73bbc759ea4d1969b7cf27ad4d9245adbee1c7085b2601"},
+      {"path":"generated-artifacts/kaya-eu-energy-definition/private-validation.log","sha256":"9cb7f8619bdc8dc3e57faa8a5227f0eeef8ff281f91418bff13a491776a2322b"},
+      {"path":"generated-artifacts/kaya-eu-energy-definition/private-clean-negative.log","sha256":"ca8f5bf4ce7c55340b56840fd6a584f477ed2402ef5ea966e56e52640ef65379"},
+      {"path":"generated-artifacts/kaya-eu-energy-definition/assembly.log","sha256":"afb0782bea71c1abb2b6062b704eac5868ff8ddebd546531c73a24fd943b0e34"}
+    ]
+  },
+  "canonicalLedgersProtectedFaIRRuntimeCollectorChanges":0,
+  "commitsDeploymentsPublishingCallbacks":0,
+  "centralEligible":false
+}

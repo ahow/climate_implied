@@ -1,0 +1,22 @@
+{
+  "schemaVersion":1,
+  "purpose":"Advance retained joint census by resolving same-release EU27 energy input provenance,source-defined member aggregation and native CO2 null-country scope;do NOT rebuild3285rows",
+  "retainedJointResultSHA256":"2572e6d26049eeee34ff88db51e7ba6e2f45657a655109c4e18c4f5dee2c4b2f",
+  "retainedPairedCellsSHA256":"4927b432d540a96055fbb8dc35b6184c6879c60b6dbc96627b6430335384a1d5",
+  "sourceRevision":"382ee6c662b0ece26e111f263b44c029afad7787",
+  "initialURLs":[
+    "https://raw.githubusercontent.com/owid/co2-data/382ee6c662b0ece26e111f263b44c029afad7787/README.md",
+    "https://api.github.com/repos/owid/co2-data/commits/382ee6c662b0ece26e111f263b44c029afad7787"
+  ],
+  "maximumRequests":10,
+  "maximumEachBodyBytes":7000000,
+  "maximumTotalBodyBytes":20000000,
+  "timeoutSeconds":45,
+  "maximumRedirects":5,
+  "retries":0,
+  "followups":"Exact publisher-linked source/method/definition files and immutable release metadata only;save discovered route before requesting it. No guessed numeric dataset endpoints.",
+  "numericSourceFiles":"Only bounded public primary files with verified source-specific permitted-use terms;otherwise retain rights gap. No purchases/licence bypass/raw redistribution.",
+  "sourceAccounting":"Retained exact EU27 regional and27 native member energy cells2010-2024. Investigate EI versus EIA member provenance and source-defined units/conversions/territories. Never fit a correcting factor,identify a residual as observed energy,or equate World residual with bunkers.",
+  "qualification":"Original frozen protocols unchanged. Separate original entities only qualify with full2010-2024originalPPP/source/boundary contract;WDI2021PPP remains separately labelled sensitivity. Keep unavailable family cases non-rejections.",
+  "outputs":"Disjoint new source code/tests/focused evidence;raw/derived tables ignored/private. No mining reaudit,3285row assembly,protectedFaIR/ledger/runtime changes,commit/deploy/publish/callback."
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion":1,
+  "resolvedHistoricalETLCommit":"282a8ef5715e21770167128edb236a68f7b3ed23",
+  "commitTime":"2026-06-02T16:32:34Z",
+  "sourceBindingLimit":"65seconds before frozen CO2 repository commit,and dated processing paths match frozen README. Temporal proximity is supporting provenance,not atomic artifact binding.",
+  "nextRequest":"https://api.github.com/repos/owid/etl/contents/etl/steps/data/garden/gcp/2025-11-13?ref=282a8ef5715e21770167128edb236a68f7b3ed23",
+  "purpose":"Discover exact publisher-owned metadata/country-definition paths for original native CO2 missing MCO/SMR/VAT and transport scopes",
+  "remainingBudgetBeforeRequest":3,
+  "noSourceNumericDownloadsOrUnknownRights":true
+}

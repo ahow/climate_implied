@@ -40,8 +40,8 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(census.fields.length, 1028 + added.addedSlots);
   // Eighteen explicit FSLR cohort facts are supplemental definitions, not
   // closure of the immutable original 1001-slot cohort.
-  assert.equal(census.definitions, 1774 + 18 + 3);
-  assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, 84);
+  assert.equal(census.definitions, 1774 + 18 + 3 + 4);
+  assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, 88);
   assert.equal(added.externalTypedApiSlots, 224);
   assert.equal(added.externalTypedApiBoundSlots, 224);
   assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots);
