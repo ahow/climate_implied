@@ -1,5 +1,6 @@
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { Button } from "@/components/ui/button";
+import { ALL_COMMITMENTS_LABEL, hasReviewedAllCommitmentsLabel } from "@shared/referenceScenarioLabels";
 
 type PublishedReferences = {
   version: string;
@@ -61,6 +62,7 @@ function isPublishedReferences(value: unknown): value is PublishedReferences {
     const scenario = value.scenarios.find((item: unknown) => isRecord(item) && item.id === id);
     if (!isRecord(scenario) || !["label", "publishedName", "definition"].every((key) => isText(scenario[key])) ||
       !isFiniteNumber(scenario.temperatureMedianC) || !Array.isArray(scenario.emissions)) return false;
+    if (id === "all-announced-commitments" && !hasReviewedAllCommitmentsLabel(scenario)) return false;
     for (const year of milestoneYears) {
       const points = scenario.emissions.filter((item: unknown) => isRecord(item) && item.year === year);
       if (points.length !== 1 || !isRecord(points[0])) return false;
@@ -163,7 +165,7 @@ export function PublishedScenarioReferences() {
                 <tr className="border-b text-muted-foreground">
                   <th scope="col" className="py-2 pr-4 text-left font-medium">Year</th>
                   <th scope="col" className="py-2 px-2 text-right font-medium">Current policies<br /><span className="text-xs font-normal">Policy-pathway range</span></th>
-                  <th scope="col" className="py-2 pl-4 text-right font-medium">All commitments delivered<br /><span className="text-xs font-normal">Optimistic single value</span></th>
+                  <th scope="col" className="py-2 pl-4 text-right font-medium" data-field-id="publishedReference.scenarios[].label">{ALL_COMMITMENTS_LABEL}<br /><span className="text-xs font-normal">Optimistic single value</span></th>
                 </tr>
               </thead>
               <tbody>

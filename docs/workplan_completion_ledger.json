@@ -1590,6 +1590,32 @@
         "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
         "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
       }
+    },
+    "coverage_caches": {
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+        ],
+        "executed_at": "2026-11-11T20:39:14.534923+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 266.685,
+        "counts": {
+          "tests": 853,
+          "pass": 853,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+        "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "counts": "50verified248partial2blocked",
+      "semantics": "Original1000/1001unchanged;4aliasesexplicitrestored;1918definitions;3726/3727expandedpublic;newfieldsnotoriginalclosure.",
+      "failure_history": "Initial853/852pass1fail localnegation;two officialsourcequotes unknown separatelyfixedexactreviews. Earlier44/46focused stalealias/displayassertions repairedwithstrongerprovenance. Two replacementcandidates superseded withfailures retained; no silentrefreeze.",
+      "release": "pending"
     }
   },
   "prior_native_fleet_increment": {
@@ -1685,7 +1711,7 @@
     "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T19:26:06.976863+00:00",
+  "updated_at": "2026-11-11T20:44:55.454688+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -18292,7 +18318,7 @@
             "server/climateValuation/companyCarbonCache.ts",
             "script/company-cache-transport.test.ts"
           ],
-          "behaviour_delivered_this_run": "Geography/emptycompanycachebranches anddetachedMemStorage/regionalcache fixmutationpoisoning/eviction. NewloopbackactualHTTP/materialarchivewitness4miss+4warmhits;quartermemo12miss12write23hits eachinvocation. Regionalprovider1call+2warm success/failure. Synthetic6company36month datasets, notoldlarge witness.",
+          "behaviour_delivered_this_run": "Six actual routes:18 cold/warm pairs,43 hits,96 identityreceipts; TTL24h, concurrentA/B/current, empty/error/recovery/geography/missingarchives. Fixeddownstreammutationpoisoning at11send sites; sixcoldJSONhashes unchanged.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -18427,6 +18453,26 @@
               "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -18445,9 +18491,9 @@
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
           "remaining_gaps": [
-            "Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof."
+            "ExplicitdisposablePostgreSQLtransport unavailable/unexecuted; refresh/DELETEinvalidation unexecuted. Witness-levelsource/materialpins are not inventedproductionarchivefields."
           ],
-          "next_action": "Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof.",
+          "next_action": "ExplicitdisposablePostgreSQLtransport unavailable/unexecuted; refresh/DELETEinvalidation unexecuted. Witness-levelsource/materialpins are not inventedproductionarchivefields.",
           "blockers": [],
           "check_type": "exact",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
@@ -18742,7 +18788,7 @@
             "Repeated GET equality alone cannot establish cold-vs-warm cache-path execution."
           ],
           "remainingGaps": [
-            "Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof."
+            "ExplicitdisposablePostgreSQLtransport unavailable/unexecuted; refresh/DELETEinvalidation unexecuted. Witness-levelsource/materialpins are not inventedproductionarchivefields."
           ],
           "before_resolver_loader_increment": {
             "status": "partial",
@@ -18921,6 +18967,184 @@
               },
               "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
               "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/S02-009-projection-route-cache-evidence.json",
+            "sha256": "34e410cc5b514d451f7bcf5bf6eebbd25a04f6f7978c9696cfc0c71426dcf7f7",
+            "evidence": {
+              "criterion": "S02-009",
+              "exactLedgerClause": "Cold and warm caches return identical values and identities.",
+              "scopeAcceptance": "Six actual projection route-local cache families now have direct cold/warm, selection/concurrency and mutation-isolation engineering witnesses. Actual HTTP handlers, existing deterministic calculators and original run counts execute. No blanket production/PostgreSQL/global-invalidator/scientific acceptance is claimed.",
+              "inventory": [
+                {
+                  "route": "GET /api/projection",
+                  "cache": "projectionResultCache",
+                  "calculator": "calculateEmissionsTrajectory -> calculateTemperatureDistribution -> getTemperatureStats",
+                  "key": "projection:<PROJECTION_RESPONSE_VERSION> revision tag; separate MemStorage calculationKey(projection, revision, category/runs/responseVersion)",
+                  "ttl": "No time TTL; revision checked",
+                  "qualification": "Route-local slot only applies to category=all. Separate persistent tier is observed, not confused with a route-local hit."
+                },
+                {
+                  "route": "GET /api/projection/categories",
+                  "cache": "categoryCacheResult",
+                  "calculator": "calculateAllCategoryProjections",
+                  "key": "categories:<PROJECTION_RESPONSE_VERSION> revision tag",
+                  "ttl": "No time TTL; revision checked"
+                },
+                {
+                  "route": "GET /api/projection/regions",
+                  "cache": "regionalCacheResult and regionalCacheFetchedAt",
+                  "calculator": "calculateRegionalProjections; paired retained replay uses calculateRegionalFromInputs",
+                  "key": "regions:<PROJECTION_RESPONSE_VERSION> revision tag plus 24h age",
+                  "ttl": "24 hours; exact expiry tested",
+                  "qualification": "Production policy requires indicatorSnapshotId and regionalSnapshotId together for retained geography. This branch deliberately bypasses the default response cache and returns no-store. Default-cache A/B tests use isolated current-approved provider fixtures, not an invalid retained/default mixture."
+                },
+                {
+                  "route": "GET /api/projection/sensitivity",
+                  "cache": "sensitivityCacheResult",
+                  "calculator": "calculateSensitivityAnalysis",
+                  "key": "sensitivity revision tag",
+                  "ttl": "No time TTL; revision checked",
+                  "qualification": "Analytical aggregates can coincide across selections; different revisions/datasets and direct new computations still demonstrate non-aliasing."
+                },
+                {
+                  "route": "GET /api/projection/historical-trend",
+                  "cache": "historicalTrendCacheResult",
+                  "calculator": "getRecalculatedHistoricalTrend",
+                  "key": "history:<PROJECTION_RESPONSE_VERSION> revision tag",
+                  "ttl": "No time TTL; revision checked"
+                },
+                {
+                  "route": "GET /api/projection/categories/historical-trend",
+                  "cache": "categoryHistoricalTrendCache",
+                  "calculator": "getCategoryHistoricalTrend",
+                  "key": "category-history:<PROJECTION_RESPONSE_VERSION> revision tag",
+                  "ttl": "No time TTL; revision checked"
+                }
+              ],
+              "realDefectAndFix": {
+                "before": "All six route-local families exposed the cached object itself to downstream res.json consumers. Mutating an actual cold-response object inside the isolated server changed the subsequent warm HTTP analytical hash.",
+                "baselineEvidence": "generated-artifacts/projection-route-cache/mutation-idXOmB/evidence.json",
+                "baselineEvidenceSha256": "ca7a6e474bf21174f035fc27e105b073b7888ea56aa9fd155c98779451286dd8",
+                "baselineLog": "generated-artifacts/projection-route-cache/before-mutation.log",
+                "baselineLogSha256": "6514580550aa68399126050dabdaadaabceb220e782ddd36184153c4f60e1ded",
+                "baselineResult": "Genuine assertion failure after six recorded unsafe probes; unrelated matrix test not selected in this diagnostic command.",
+                "fix": "server/calculation/projectionCacheResponse.ts returns a structuredClone at the response boundary. Eleven send sites in the six handlers now detach both cold and warm responses. Cache keys, revision/TTL policy, analytical formulas, schemas, seeds, run counts and withholding gates are unchanged.",
+                "after": "Mutating both cold and warm in-server response-consumer objects cannot poison subsequent responses. Client-side parsed-body mutation also cannot poison caches.",
+                "payloadCompatibility": "All six unmutated cold JSON hashes are exactly equal before and after the fix; no payload-value or ordering change."
+              },
+              "finalWitness": {
+                "matrix": "generated-artifacts/projection-route-cache/matrix-HJuCMx/evidence.json",
+                "matrixSha256": "9820ccf23e3ea706efd13492486b1cee74ab6b42f14051a373f1c625c9d739d3",
+                "mutation": "generated-artifacts/projection-route-cache/mutation-H2WVOh/evidence.json",
+                "mutationSha256": "1643eeed930168c54a2058a2765146287c06296c35ee84abafcf727750d7557a",
+                "permissions": "Evidence files0600; isolated directories0700; generated-artifacts ignored",
+                "coldWarmPairs": 18,
+                "directRouteCacheHitsAcrossMatrix": 43,
+                "validRequestIdentityReceipts": 96,
+                "effectiveMaterialFingerprints": "Computed from actual effective historical rows, approved-indicator selection and selected/default regional material, outside analytical payloads.",
+                "sourceArchiveIdAtStart": "d764d48d543f01d1f790ec84c9dc4f18ab146326942ff18e3f6f7ff86ef5b439",
+                "stableCalculationDependencySourceHashes": 21,
+                "sourceQualification": "All21 actual handler/calculator/selection/contract dependency hashes are checked unchanged through the witness and checked again before this receipt. Whole-application source is not globally frozen against unrelated workers.",
+                "model": "historical-diagnostics-7",
+                "rng": "mulberry32-midpoint-v1",
+                "seedContract": "Existing production seeds and original run counts only. Main emissions default startYear*12345, temperature PDF42*12345 and summary99*12345; category/history engines retain their existing deterministic counts/seeds. No Math.random replacement, reduced-run shortcut or scientific recalibration.",
+                "retainedIndicatorA": "4e9ee694230eaedd41e92df56d8b7b94bc87c5314f6c22cbe059d3febbd33a56",
+                "retainedIndicatorB": "06d2b950ea8cca44fe16480a594cdd61587411b759f3c3baac2df556b9f7418e",
+                "retainedRegionalA": "352b456a428ec4bb5994edc0167bdb508efc2c5077f8e2cc2c2de7296ec3ebf0",
+                "retainedRegionalB": "bffe3c905bcecc47bff632bf2075968f06ae41a049df59030dc2b444f8903222",
+                "fixtureMeaning": "Explicit engineering approved-value/regional fixtures; actual embedded curated and nowcast engine history. Current-approved I/O is isolated, not the live production database.",
+                "checks": [
+                  "Each family executes real computation on each initial A/B/current cold case, actual revision-map validation on warm cases, and no calculator invocation on those warm hits.",
+                  "Analytical JSON, actual indicator/model/revision/semantics headers and effective-material fingerprints match cold/warm.",
+                  "Concurrent A/B/current requests remain selection-isolated for every family.",
+                  "Controlled asynchronous default-regional completion B-before-A cannot return or tag another selection's payload.",
+                  "Regional cache is warm at TTL-1 and recomputes at exact TTL without clock or diagnostic leakage into analytical/material identity.",
+                  "All six actual error handlers return500 for isolated calculator faults; valid retained selection recovery is unchanged.",
+                  "All six reject captured empty historical input with500 before it can be cached as invented empty output.",
+                  "All six reject unavailable indicator archives with422.",
+                  "Paired retained regional A/B replay is no-store and recomputes on repeat, preserving replay identity rather than falsely claiming a warm default-cache hit.",
+                  "Missing and empty retained geographic material return422; no static-fill fallthrough.",
+                  "Unsupported geography query is not silently interpreted as a nonexistent filter: actual regional API returns its four supported regions unchanged."
+                ],
+                "realDatabaseQueries": 0,
+                "realProviderRequests": 0,
+                "ddl": 0,
+                "productionCacheClears": 0
+              },
+              "identityAndAccessResiduals": {
+                "actualWireIdentity": "Existing X-Indicator-Snapshot, X-Indicator-Data-State, X-Calculation-Version, X-Calculation-Input-Revision, X-Regional-Snapshot and field-semantics headers are compared as returned. The main response's existing calculation identity remains intact.",
+                "missingProductionIdentityCode": "These projection routes do not expose CV material/result archive identities or source-archive headers. Source and effective-material fingerprints here are explicit witness-level pins, not invented production archive references. Adding projection-wide archival identity would be separate application-contract work.",
+                "notExecuted": "Startup scheduler, approved-override reload and outer global-invalidation middleware containing DELETE FROM projection_cache are intentionally not executed. Actual pure currentProjectionRevision, validRouteCache/tagRouteCache and actual six handlers execute. This is not full middleware/real-DB acceptance.",
+                "missingAccess": "No explicitly authorized preprovisioned disposable PostgreSQL transport was available. Ambient DATABASE_URL/PG* were not used. Existing explicit-authority/refusal branch from the preceding extension is unchanged; no new connection/resource/provisioning attempt.",
+                "noOldWitnessReruns": "No unchanged company-carbon, quarter-memo, standalone regional-provider, 2442/470341 retained witness or old nine-path study rerun. Regional calculations here are required by the new actual route-cache matrix, not a replay of prior scientific studies."
+              },
+              "protectedFairBundleCompatibility": {
+                "requiresParentDecision": true,
+                "validatedBundleUntouched": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
+                "validatedBundleBytes": 103204794,
+                "protectedSourceFilesCompared": 13,
+                "onlyProtectedSourceMismatch": "server/routes.ts",
+                "packagedAndBeforeRoutesSha256": "653ccf33e628df5ee42a3ae5c7386ff996235c887ff3c904e90df7e2e44bd303",
+                "afterRoutesSha256": "1171228a36fa145d5371c4c9a9d79172960dc1ba350a05f8eaac1276a7873a8a",
+                "evidenceOfOldHash": "Read-only SHA comparison with the existing isolated release's sources/server/routes.ts; other12 protected source snapshots still match.",
+                "expectedStrictRefusal": "FAIR_BUNDLE_SOURCE_MISMATCH:server/routes.ts",
+                "impact": "Offline install/activation/export/recovery validation against the new source root must not treat the old bundle as source-compatible. Existing artifact catalog/data bytes were not changed or rerehearsed; already-active runtime data loading is not asserted broken or reverified.",
+                "newDependency": "projectionCacheResponse.ts is ordinary public application source imported by routes. The existing thirteen-file bundle allowlist is NOT modified; parent decides whether a reviewed future source policy should include this helper.",
+                "parentOptions": "Authorize a separately reviewed rebuild/rehearsal and independently trusted new bundle hash, or revert/defer this response-detachment change. Do not silently relabel the old validated bundle, weaken source checks, or provision it as matching these new routes.",
+                "actionsNotTaken": "No bundle rebuild/refreeze, artifact rewrite, install, activation, recovery, export, deployment or provisioning attempt."
+              },
+              "verification": {
+                "command": "env -u DATABASE_URL NODE_ENV=test npx tsx --test script/projection-route-cache.test.ts",
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "skip": 0,
+                "log": "generated-artifacts/projection-route-cache/final-tests.log",
+                "logSha256": "d39ecf547f7c4c4eaaa64330164ffed84336d6eed506bf922a494bf22bb90029",
+                "actualProjectCompiler": "npm run check",
+                "actualProjectCompilerPassed": true,
+                "newScriptCompiler": "npx tsc --noEmit --project generated-artifacts/projection-route-cache/check.tsconfig.json",
+                "newScriptCompilerPassed": true,
+                "compilerQualification": "Ignored config extends actual project tsconfig unchanged, including ES5/downlevel settings. No gate change.",
+                "compilerLog": "generated-artifacts/projection-route-cache/typecheck.log",
+                "compilerLogSha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "changedHarnessRegression": "Two existing main-projection handler tests passed after adding the new production helper binding to their extracted-handler sandbox. Four unrelated tests not selected; no assertions/skips were added or weakened.",
+                "changedHarnessRegressionLog": "generated-artifacts/projection-route-cache/changed-projection-harness-regression.log",
+                "changedHarnessRegressionLogSha256": "c057dff0928d31ac7301ed2dea728ecbebf89a66fcceaee53a1cfeaa7e386d74"
+              },
+              "sourceSha256": {
+                "server/routes.ts": "1171228a36fa145d5371c4c9a9d79172960dc1ba350a05f8eaac1276a7873a8a",
+                "server/calculation/projectionCacheResponse.ts": "cef7e8d66c3bd7a5c95f695636b904cbc9311306bf366353f2e95e605edc91c8",
+                "script/projection-route-cache.test.ts": "b9826ad86e4db7bde9e230d740b512fa281b92e3b11cdb04e724b401045051ae",
+                "script/threshold-route-integration.test.ts": "e1d8b7f13dfa53146ac16551aae5bfe79823dae8b6e2980d243f9d070cbc70bc"
+              },
+              "boundaries": "No Stage10/server-index/ledger/deployment/callback edits; no commit/publication, real service changes, ambient DB, DDL, production clear, raw private export or scientific promotion. Only ephemeral loopback engineering test transport was started, not the application/workflow."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -72235,7 +72459,7 @@
           "id": "S06-009",
           "source_section": "acceptance",
           "requirement": "No NDC-only pathway is labelled “all commitments”.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "script/reference_gas_infill.py",
@@ -72250,7 +72474,7 @@
             "docs/NGFS_Pathway_Compatibility_Assessment.md:",
             "server/calculation/nativePathwayContract.ts:nativeInventory,validateNativePair"
           ],
-          "behaviour_delivered_this_run": "Native pathway contract rejects NDC-only pathways labelled as all commitments.",
+          "behaviour_delivered_this_run": "ActualUIadmissionbugfixed: NDC-only cannotenterallcommitmentsID. Sharedexactlabelcard/table;8invalid/missingvariants withheld; validCATandtruezero preserved;28APIleaves. NGFSNDCexports remainnarrow.",
           "inputs_versions_assumptions": [
             "Positive-gas anchor ratio tapers to 1 by 2050 (2030 sensitivity); signed-land additive offset tapers to 0; three four-gas alternatives",
             {
@@ -72316,6 +72540,26 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -72340,10 +72584,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Native contract rejects NDC-only all-commitments labels; audit every displayed/API/export binding and actual all-commitments input."
-          ],
-          "next_action": "Native contract rejects NDC-only all-commitments labels; audit every displayed/API/export binding and actual all-commitments input.",
+          "remaining_gaps": [],
+          "next_action": "FiniteNDC-labelcriterionverified; noactualnativeallcommitments/calibratedsciencepromotion. Sourcequotations retainedwithexactindividualscanreviews.",
           "blockers": [],
           "stage": 6,
           "stageName": "Scenarios and reference pathways",
@@ -72355,7 +72597,7 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "not-yet-reconciled",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "exact",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
@@ -72554,7 +72796,183 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
-          }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/S06-009-pathway-label-evidence.json",
+            "sha256": "601ad355d0503c1d8e0e92f647f63cae7ac6ef6d3e4552682ecf9a635439b4c7",
+            "evidence": {
+              "criterion": "S06-009",
+              "followUpEvidence": "docs/S06-009-quantity-label-fix-evidence.json",
+              "historicalReceiptNotice": "This records the prior executed label/source snapshot. Its original hashes and receipts are preserved. The linked quantity-label follow-up records the subsequent explicit-negation correction and exact CAT-quote reviews, with current changed-source hashes and executed checks.",
+              "requirement": "No NDC-only pathway is labelled “all commitments”.",
+              "assessment": "Focused engineering negative-label checks passed for the actual audited API/UI/JSON and native diagnostic bindings. This does not certify native production-pathway completeness or scientific readiness.",
+              "privacy": "Public source paths, hashes, labels, commands and counters only. No private issuer rows, private workbook cells, raw licensed workbook or private calculation payload exported.",
+              "writtenContract": {
+                "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+                "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+                "bindingAmendments": "docs/Developer_Workplan_Amendments.md",
+                "decisionD1": "National targets plus long-term net-zero targets; corporate targets excluded"
+              },
+              "generatedEvidence": {
+                "path": "generated-artifacts/warning-pathway-label-evidence.json",
+                "sha256": "1f5e942d48b78913e544187bcb8325c8ab19b2634bdde0693e1059fc87b03999",
+                "generator": "script/audit-warning-pathway-labels.ts",
+                "derivation": "This public-safe summary records the generated audit and focused execution receipts, not a synthetic source registry or new scientific acceptance test."
+              },
+              "actualAPI": {
+                "path": "/api/reference-scenarios",
+                "httpStatus": 200,
+                "version": "cat-2025-11-13-v1",
+                "bodySha256": "dd76d22ce9e18ece472b657807237c05e4524c868ccee4114eed6463cb5a564a",
+                "matchesRetainedJSON": true,
+                "semanticsBoundLeaves": 28,
+                "source": {
+                  "name": "Climate Action Tracker",
+                  "publishedAt": "2025-11-13",
+                  "workbookSha256": "44044cda8f851f77d6ca0eeb0750848fb6ee32bab50939df2cc2363e63a8c6c1",
+                  "workbookHashStatus": "Recorded publisher-workbook identity in retained metadata; raw workbook not downloaded or rehashed by this audit.",
+                  "attribution": "Climate Analytics and NewClimate Institute",
+                  "licence": "Non-commercial use only; attribution and copyright notice required."
+                },
+                "labels": [
+                  {
+                    "id": "current-policies",
+                    "label": "Current policies",
+                    "publishedName": "Policies & action"
+                  },
+                  {
+                    "id": "all-announced-commitments",
+                    "label": "All announced commitments delivered",
+                    "publishedName": "Optimistic scenario (net-zero pledges)"
+                  }
+                ]
+              },
+              "actualBindingInventory": [
+                {
+                  "path": "server/routes.ts: GET /api/reference-scenarios",
+                  "coverage": "Actual HTTP response equals retained CAT JSON. Published name, definition, source and licence accompany the label; no NDC substitution."
+                },
+                {
+                  "path": "client/src/components/published-scenario-references.tsx",
+                  "coverage": "Actual SSR card and milestone table share the reviewed label. NDC-only/generic Net Zero2050/missing/contradictory identity is withheld, not relabelled. Genuine zero remains renderable."
+                },
+                {
+                  "path": "shared/referenceScenarioLabels.ts",
+                  "coverage": "Shared reviewed CAT identity/definition/label binding; not a native-model readiness gate."
+                },
+                {
+                  "path": "client/src/pages/methodology.tsx",
+                  "coverage": "CAT optimistic national long-term-pledge case is conditional. NGFS NDCs explicitly excludes long-term net-zero pledges."
+                },
+                {
+                  "path": "server/calculation/nativePathwayContract.ts: validateNativePair",
+                  "coverage": "Actual calculation rejects NDC-only commitments; serialized successful diagnostic remains accounting-valid-not-scientifically-promoted."
+                },
+                {
+                  "path": "script/reference_gas_infill.py",
+                  "coverage": "Source-inspected exports retain Nationally Determined Contributions (NDCs) and allCommitmentsAvailable=false. Protected climate execution not rerun."
+                },
+                {
+                  "path": "script/fair_native_bridge.py",
+                  "coverage": "Source-inspected NDC-only commitments refusal preserved. Protected engine not executed."
+                }
+              ],
+              "executedCommands": [
+                {
+                  "command": "npx tsx --test script/warning-and-pathway-label-contracts.test.ts",
+                  "scope": "Rerun only this six-test focused file after the authorized stale-metadata correction.",
+                  "exitCode": 0,
+                  "tests": 6,
+                  "pass": 6,
+                  "fail": 0,
+                  "skipped": 0,
+                  "log": "generated-artifacts/warning-pathway-label-tests.tap",
+                  "logSha256": "4322f1246d8bde763e8dc5d5fbecae9712e1eacf2148088b911d69ae4fbaad5f"
+                },
+                {
+                  "command": "npx tsx script/audit-warning-pathway-labels.ts > generated-artifacts/warning-pathway-label-evidence.json",
+                  "exitCode": 0,
+                  "scope": "Read-only source/archive inspection and actual API GET; public-safe hashes/labels/counters emitted."
+                },
+                {
+                  "command": "npx tsc --noEmit --pretty false",
+                  "exitCode": 0,
+                  "scope": "Retained prior-batch typecheck receipt; not rerun for this string-only metadata follow-up. Parent owns final coherent checks.",
+                  "log": "generated-artifacts/warning-pathway-label-types.log",
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              ],
+              "focusedCaseCounters": {
+                "tests": 6,
+                "invalidMissingOrContradictoryUIVariants": 8,
+                "retainedPreFixAdmissionReproduced": 1,
+                "genuineZeroSSR": 1,
+                "originalWarningHosts": 12,
+                "linkedRemovedWarningBindings": 3,
+                "underlyingResolutionRecords": 1,
+                "broadUnchangedUIHarnessReruns": 0,
+                "protectedClimateEngineRuns": 0
+              },
+              "warningFollowUp": {
+                "register": "docs/S16-013-warning-resolution-register.json",
+                "resolution": "R16-EXTRAPOLATION-001",
+                "changedBinding": "client/src/lib/ui-claim-register.ts: legacy diagnostic policy sentence",
+                "result": "Stale may-extrapolate-beyond2100 metadata now states right-censoring at the actual simulated horizon, distinct from5% of2024 and net zero.",
+                "physicalWarningPreserved": [
+                  "CO2-only response to aggregate GHG",
+                  "fixed1.1C offset",
+                  "no standalone regional temperature interpretation"
+                ],
+                "coordination": "Authorized one-sentence follow-up only; other Stage10 UI-index entries and shared semantics untouched. Parent handles full-suite/coherent census."
+              },
+              "sourceSha256": {
+                "docs/Developer_Workplan_Amendments.md": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
+                "docs/S16-013-warning-resolution-register.json": "663bb41b82ba478efa3749744729c213feea2e6203d1d2ef6ca4e5b45da1324c",
+                "shared/referenceScenarioLabels.ts": "2161635a71114b35c84c13b889fd7cb9232fc97e947d40ad732e51bbaf7f2ee4",
+                "client/src/components/published-scenario-references.tsx": "fe292c47bcd4ca674ad150bb35f7f371001d26eca34cdfd43335b9715d71935d",
+                "client/src/lib/ui-claim-register.ts": "7c3ec1e1020701d68fe2888ab4e1aa70e112c90b42be89c9dab258a33b8841df",
+                "server/calculation/nativePathwayContract.ts": "dbb3d34924b122925a0ed0c8ebf9cd2dab300e67c4e15fa9fde41a929799023d",
+                "server/calculation/data/catReferences.json": "1a71646c452ec3d426a2a4e6df6bd6fe7fd9887d01e579fdbc38194a147a81c7",
+                "server/calculation/historicalMetrics.ts": "d7370be55c60fe28e0e58ce153ee09d470cbe3a5c49229b8bb4e587ee45280aa",
+                "script/warning-and-pathway-label-contracts.test.ts": "f15fbd250bc0deed7284a81fecebf10ab8a96553ba70b3f9efae37920bdf5f7c",
+                "script/reference_gas_infill.py": "62b7c5f13977ca6724a229ed8c6b46a5e043e91953de0c50c22b45cc89672c9b",
+                "script/fair_native_bridge.py": "8c75fcaecf5e51c0e2c8fcc0bbbe789e312707a4a68fe616bab210fd6a155e70",
+                "script/audit-warning-pathway-labels.ts": "ee8827def648e6d3541f8ce390727007e62e12a527b3dc24daf10dcf4fda0dd5"
+              },
+              "residuals": [
+                "Original per-run backtest warning payload archive unavailable; renderer retained, unseen historical text not reconstructed or declared resolved.",
+                "Native full-commitments production input/scientific readiness remains unestablished, not silently substituted by NDCs and not added as an extra condition for this negative label criterion.",
+                "Parent full-suite and coherent source-census checks pending; no broad unchanged UI reruns by this worker."
+              ],
+              "safety": "No canonical ledger, route, protectedFaIR, source data, scientific gate, deployment or callback changed."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [],
+          "operational_scientific_boundaries": "FiniteNDC-labelcriterionverified; noactualnativeallcommitments/calibratedsciencepromotion. Sourcequotations retainedwithexactindividualscanreviews."
         },
         {
           "id": "S06-010",
@@ -73280,7 +73698,7 @@
               "namedFunctions": []
             }
           ],
-          "behaviour_delivered_this_run": "Manusinvestigationcompleted: documentedknownscope reads GraphQLNotAuthorized/ProjectToken notfound; notglobalcredentialinvalidity. Nochange/transfer. Existing155bd3ffbundleunchanged.",
+          "behaviour_delivered_this_run": "Deliberateprivatev2replacement2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120,103216823bytes,14sourceclosure. Old155unchanged. Exact36datafiles/16ensembles/13456members unchanged;16runtime-rootloads/21refusals/recovery passed.",
           "inputs_versions_assumptions": [
             "native Mt bridge to Gt/Mt/kt gas/yr; annual temperature=(T[y]+T[y+1])/2; anomaly subtracts each member's 1850-1900 mean",
             {
@@ -73429,6 +73847,26 @@
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -73459,9 +73897,9 @@
           "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
           "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
-            "Actual live successful selected artifact reads still unproven; authenticated private transfer is required. This is not the production archive-schema dependency."
+            "Authorizedoperatortransferstillunavailable. Newcurrent-sourcecandidate only; old155requiresoldauthorizedsource. Superseded1dc9/66261candidatesnotforprovision. NoPythonHTTP/newresources/modelrerun/scienceacceptance."
           ],
-          "next_action": "AuthorizedCLI/registeredSSH principal plusprivatebundleaccess; configureFAIR_ARTIFACT_ROOT beforefinalcontainer,thenprivateinstall/activate, retainrecoverycopy.",
+          "next_action": "Authorizedoperatortransferstillunavailable. Newcurrent-sourcecandidate only; old155requiresoldauthorizedsource. Superseded1dc9/66261candidatesnotforprovision. NoPythonHTTP/newresources/modelrerun/scienceacceptance.",
           "blockers": [],
           "stage": 7,
           "stageName": "Climate response and the four headline measures",
@@ -73873,7 +74311,7 @@
             }
           },
           "remainingGaps": [
-            "Actual live successful selected artifact reads still unproven; authenticated private transfer is required. This is not the production archive-schema dependency."
+            "Authorizedoperatortransferstillunavailable. Newcurrent-sourcecandidate only; old155requiresoldauthorizedsource. Superseded1dc9/66261candidatesnotforprovision. NoPythonHTTP/newresources/modelrerun/scienceacceptance."
           ],
           "ready_action": "Authorized Railway operator privately transfers current155bd3ff bundle, installs source-matching release and configures absolute FAIR_ARTIFACT_ROOT; verify live selected/member/summary reads and refusals. Preserve private recovery copy across ephemeral deployments.",
           "new_files_functions": [
@@ -73993,6 +74431,196 @@
               },
               "log": "generated-artifacts/workplan-completion/20261111T155335417702Z.log",
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/originalS07-002-cache-replacement-evidence.json",
+            "sha256": "2d600b353e45dc7cb66f25980c4f37157a2e5adbe5b6431d05461bff8637df00",
+            "evidence": {
+              "scope": "Parent-authorized deliberate packaging replacement for the demonstrated six-route response-cache mutation fix. Not a silent refreeze, provisioning action or scientific change.",
+              "baseline": {
+                "bundle": "generated-artifacts/fair-bundle-rehearsal-yNPUor/exact16.fairbundle",
+                "sha256": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
+                "bytes": 103204794,
+                "originalReceipt": "docs/originalS07-002-private-bundle-evidence.json",
+                "preservedImmutable": true,
+                "originalStoreIncludingRecoveryTreeSha256BeforeAndAfter": "02587ebcecd290d5e251cb115b82a418bcd516ba972788157e180c95688b1a2c",
+                "qualification": "Old bundle, installed original release, activation history, recovery receipts, file contents and modes were read-only and verified unchanged. Old155 remains the retained old-source rollback artifact, not deleted or relabelled."
+              },
+              "replacement": {
+                "bundle": "generated-artifacts/fair-cache-replacement-0AvtsM/exact16-cache-replacement-v2.fairbundle",
+                "exportedIdenticalBundle": "generated-artifacts/fair-cache-replacement-0AvtsM/exported-v2.fairbundle",
+                "sha256": "2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120",
+                "bytes": 103216823,
+                "manifestSha256": "16537947a150e4ba58abbe6038c0f2e37229662f638874dd2658bd69bf67c452",
+                "format": "fair-private-bundle-v2",
+                "magic": "FAIR_PRIVATE_BUNDLE_V2",
+                "artifactVersionUnchanged": "s07-offline-fair-v1",
+                "packagingPolicy": "s07-cache-response-detachment-1",
+                "packagingPolicySha256": "9d43a51b1e7b4f693735b1654a25d630e67b1881b1063e3f8dca42ef0115f23e",
+                "protectedSourceFiles": 14,
+                "dataFiles": 36,
+                "payloadFiles": 50,
+                "scientificAcceptance": "not-accepted",
+                "rawPrivateBytesOnlyIgnoredGeneratedDirectory": true
+              },
+              "publicSafeDiff": {
+                "meaning": "Only source snapshots/framing/policy metadata change. No ensemble, output, retained input, member series, model parameter, RNG, threshold or acceptance change.",
+                "sourceClosure": [
+                  "server/calculation/fairArtifactCatalog.ts",
+                  "server/calculation/fairArtifacts.ts",
+                  "server/calculation/fairArtifactFiles.ts",
+                  "server/calculation/fairArtifactRoutes.ts",
+                  "server/calculation/ensemble.ts",
+                  "server/calculation/historicalValidation.ts",
+                  "server/routes.ts",
+                  "script/fair-artifact-bundle.ts",
+                  "script/fair-reference.py",
+                  "script/regional_fair_pathway.py",
+                  "script/fair_physical_retention.py",
+                  "docs/Independent_FaIR_Benchmark_Protocol.md",
+                  "docs/Regional_FaIR_Coupling.md",
+                  "server/calculation/projectionCacheResponse.ts"
+                ],
+                "reviewedSourceChanges": [
+                  {
+                    "path": "server/routes.ts",
+                    "previousSha256": "653ccf33e628df5ee42a3ae5c7386ff996235c887ff3c904e90df7e2e44bd303",
+                    "currentSha256": "1171228a36fa145d5371c4c9a9d79172960dc1ba350a05f8eaac1276a7873a8a",
+                    "reason": "Eleven send sites detach cold/warm cached responses; pre/post unmutated payload hashes match for all six routes."
+                  },
+                  {
+                    "path": "script/fair-artifact-bundle.ts",
+                    "previousSha256": "cb0a879e761a43537f8c1f787c08d9c0c502819a132ff920431234e6d65c4547",
+                    "currentSha256": "a6014dab8aaceacbd982dbfb1d97c8c501ad604d850492ba93b9c44315cdf436",
+                    "reason": "Explicit v2 replacement policy/mandatory byte validator, v1 read/export/recovery compatibility, source-root operator argument, legacy-build refusal and numeric sha256 CLI option parsing."
+                  },
+                  {
+                    "path": "server/calculation/projectionCacheResponse.ts",
+                    "previousSha256": null,
+                    "currentSha256": "cef7e8d66c3bd7a5c95f695636b904cbc9311306bf366353f2e95e605edc91c8",
+                    "reason": "Reviewed 347-byte response-detachment helper, newly included in protected source closure."
+                  }
+                ],
+                "otherOldProtectedSourcesUnchanged": 11,
+                "unreviewedSourceChangePolicy": "Any other old protected-source difference, extra source path, or change to the exact reviewed routes/helper pins refuses. No unrelated worker additions are silently included.",
+                "unchangedDataFilesSha256": "661a74dd1cd907d68a96dd5ea8b1b066bf89840f4f5d653b6a54e0ae0ed70c23",
+                "unchangedArtifactIdentitiesAndAllMemberHashesSha256": "d7308d034be8d3b736fb519bf738729e9e5f6f70c6854d86f41401c9e1a8a69c",
+                "privateValidatorProof": "Trusted old155 and new2025 archives independently decode and validate every file/catalog/member hash. All36 data buffers compare byte-for-byte equal; all16 complete artifact manifests/selections and all13456 member IDs/full-series SHA identities compare exactly equal.",
+                "unchangedEnsembleSha256": {
+                  "fair-reference": "6f2749385f8c42d911d875ddf47a72f1e3c8e7cd1e32b9bd710b88ecf6ddc232",
+                  "regional-fair-zero-history": "738b378c6d03d51ce56a604116bcf365d0cb4beec5511dbd8b3c0f5ae5817616",
+                  "regional-fair-carry-history": "738b378c6d03d51ce56a604116bcf365d0cb4beec5511dbd8b3c0f5ae5817616",
+                  "regional-fair-peak-history": "5baeac548c647c7bf2f4267ee691f9464a97673a1fd83d0399e82ab4c1fd3508",
+                  "reference-gas-infill/s0-2030-constant-2024": "09a139f709514e709137254479f728a541c8660cacc6180d5f722395ecff350b",
+                  "reference-gas-infill/s0-2030-linear-zero-2050": "901b05b6394a282705ac32d4239edecfa477d0fee21018a9ba1b49a97044ff34",
+                  "reference-gas-infill/s0-2030-zero-after-2024": "2db9e09e15f89857f0bd53eece584f5052e412b32418d55d1a77592b0416a62e",
+                  "reference-gas-infill/s0-2050-constant-2024": "d556b22761f6b9ce03065ed3cc0ae2ff8bbd2a0c1d62fc1ecf5168d64e74111b",
+                  "reference-gas-infill/s0-2050-linear-zero-2050": "30a328a543fc4595af7ce2b9f6e5b1a32d45a8f1c4b9a1812a60bfe5393d1df2",
+                  "reference-gas-infill/s0-2050-zero-after-2024": "6bad0b81b8d54431f11991f5441170a23431e885e98f34d63fbdac46ebbed17e",
+                  "reference-gas-infill/s1-2030-constant-2024": "6c14acb34da12c52898379375ed27d884b828bd4896dc549dd7bfdd701a2e2c5",
+                  "reference-gas-infill/s1-2030-linear-zero-2050": "fba0366db2ed424579cddcc5d11e6c544c11520a5dbea09cbf4f742ab9a70834",
+                  "reference-gas-infill/s1-2030-zero-after-2024": "583bdb3a23eb281e49ada2a71fe2741110cc133cd3e306dcba1d09eb7ac67a5f",
+                  "reference-gas-infill/s1-2050-constant-2024": "b5e5820a74449830d7b0c843c7d5183f7debb271680a0dd53402aa4463a6f93d",
+                  "reference-gas-infill/s1-2050-linear-zero-2050": "e617c2400391cefae1a2bc1bf1a2a8cff76c008e3b01ac440073a087e5f6875c",
+                  "reference-gas-infill/s1-2050-zero-after-2024": "7b1f4f05d79bbe864bb8ce1b93607fcd0c11fbc3e4a90de1bdfd7af0eacf0955"
+                }
+              },
+              "privateValidationAndRehearsal": {
+                "command": "env -u DATABASE_URL NODE_ENV=development npx tsx script/rehearse-fair-replacement.ts",
+                "passed": true,
+                "privateEvidence": "generated-artifacts/fair-cache-replacement-0AvtsM/private-evidence.json",
+                "privateEvidenceSha256": "f77d51f336972b1df44fc0426790c0d444b57db4efd2f0fe8d92831250da70a2",
+                "rehearsalLog": "generated-artifacts/fair-replacement-check/private-rehearsal.log",
+                "rehearsalLogSha256": "75b1f2c9a63415e9f638738413b18b140e0d6eb1ce5abebe2408e305b0b4d64e",
+                "standaloneMandatoryValidatorCommand": "env -u DATABASE_URL NODE_ENV=development npx tsx script/fair-artifact-bundle.ts validate-replacement --baseline=generated-artifacts/fair-bundle-rehearsal-yNPUor/exact16.fairbundle --baseline-sha256=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --bundle=generated-artifacts/fair-cache-replacement-0AvtsM/exact16-cache-replacement-v2.fairbundle --sha256=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120",
+                "standaloneMandatoryValidatorPassed": true,
+                "validatorLog": "generated-artifacts/fair-replacement-check/private-validator.log",
+                "validatorLogSha256": "be2730ceab887f00ce72547364640f05f031d600968262b8c263e25ba27effd0",
+                "unchangedEnsembles": 16,
+                "unchangedOutputs": 16,
+                "unchangedMembers": 13456,
+                "exactDataByteEquality": true,
+                "sourceRefusal": "Old155 against current source refuses FAIR_BUNDLE_SOURCE_MISMATCH:server/routes.ts; new2025 against old source also refuses. Install/activation/export/recovery retain strict local-source checks.",
+                "recovery": "Separate isolated store installs immutable old and new releases, activates old then atomically new, refuses rollback with wrong new source root, recovers old using exact old authorized source root, recovers to explicit withholding, then reactivates new. Both old/new exports are byte-identical to their original trusted archives.",
+                "isolatedActivationReceiptSha256": "00c2d71dfef92a41fe30d2b876db133c3e2022c66f818299aa34d2276fe7c046",
+                "isolatedReceiptIsNotAnOperatorProductionReceipt": true,
+                "refusalChecks": 21,
+                "permissions": {
+                  "installedAndRecoveryFiles0600": 109,
+                  "directories0700": 53,
+                  "noSymlinks": true
+                },
+                "preservedOldArchiveAndOriginalRecoveryTree": true,
+                "scientificOrPythonHttpExecution": false,
+                "provisioningOrDeployment": false
+              },
+              "supersededDevelopmentCandidates": [
+                {
+                  "sha256": "1dc9a6f8c8a2299dcc08bd4f2b1a7b3b5b970bdb208bbfdc71cb6ff1e50beb41",
+                  "bundle": "generated-artifacts/fair-cache-replacement-45Cqwu/exact16-cache-replacement-v2.fairbundle",
+                  "reason": "Rejected in recovery rehearsal: v1 schema root-key ordering changed reconstructed legacy archive identity. Fixed by preserving exact old v1 framing/order; never eligible for operator use."
+                },
+                {
+                  "sha256": "66261d37873b717d0e487580658d7dd5d22c9ffcf6a3b1d375afa923033b62ec",
+                  "bundle": "generated-artifacts/fair-cache-replacement-pMpDFF/exact16-cache-replacement-v2.fairbundle",
+                  "reason": "Programmatic integrity/recovery passed, but mandatory standalone CLI revealed prior parser rejected numeric sha256 flag names. Parser fixed with public CLI regression; source changed, so this candidate is explicitly superseded, not relabelled."
+                }
+              ],
+              "operatorNewHashActionNotExecuted": {
+                "authorization": "Authorized operator only, after parent review. Privately transfer old155 and final new2025 through approved SSH/SFTP; no HTTP uploader/public artifact/Git transport. No host identity/credentials are invented here.",
+                "preparation": "From the exact reviewed public application checkout: umask 077; mkdir -p generated-artifacts/fair-authorized-replacement; chmod 700 generated-artifacts/fair-authorized-replacement; privately place exact16-v1.fairbundle and exact16-cache-replacement-v2.fairbundle there with0600 modes.",
+                "mandatoryValidate": "npx tsx script/fair-artifact-bundle.ts validate-replacement --baseline=generated-artifacts/fair-authorized-replacement/exact16-v1.fairbundle --baseline-sha256=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --bundle=generated-artifacts/fair-authorized-replacement/exact16-cache-replacement-v2.fairbundle --sha256=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --source-root=\"$PWD\"",
+                "installNoActivation": "npx tsx script/fair-artifact-bundle.ts install --bundle=generated-artifacts/fair-authorized-replacement/exact16-cache-replacement-v2.fairbundle --sha256=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --store=generated-artifacts/fair-authorized-replacement/store --source-root=\"$PWD\"",
+                "freshActivationOnlyIfCurrentlyUnconfigured": "npx tsx script/fair-artifact-bundle.ts activate --store=generated-artifacts/fair-authorized-replacement/store --release=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --expected-active=none --source-root=\"$PWD\"",
+                "replacementActivationOnlyIfOld155IsActuallyActive": "npx tsx script/fair-artifact-bundle.ts activate --store=generated-artifacts/fair-authorized-replacement/store --release=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --expected-active=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --source-root=\"$PWD\"",
+                "recovery": "Privately retain the ACTUAL operator activation receipt hash. recover --store=generated-artifacts/fair-authorized-replacement/store --receipt=\"$OPERATOR_RECEIPT_SHA256\" --expected-active=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 requires --source-root=\"$AUTHORIZED_OLD_SOURCE_ROOT\" when previous=old155; when previous=none it restores explicit withholding. Never substitute the isolated rehearsal receipt.",
+                "rollbackToOld155OnlyIfActualReceiptPreviousIsOld155": "npx tsx script/fair-artifact-bundle.ts recover --store=generated-artifacts/fair-authorized-replacement/store --receipt=\"$OPERATOR_RECEIPT_SHA256\" --expected-active=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --source-root=\"$AUTHORIZED_OLD_SOURCE_ROOT\"",
+                "rollbackToWithholdingOnlyIfActualReceiptPreviousIsNone": "npx tsx script/fair-artifact-bundle.ts recover --store=generated-artifacts/fair-authorized-replacement/store --receipt=\"$OPERATOR_RECEIPT_SHA256\" --expected-active=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --source-root=\"$PWD\"",
+                "runtimeFlag": "Parent/operator separately controls existing FAIR_ARTIFACT_ROOT with the absolute verified store path. No runtime default, authentication or service configuration changed here.",
+                "ephemeralRecoveryWarning": "No mounted persistent volume/bucket is assumed. Unmounted generated files disappear on a new deployment; retain approved archives/source roots/receipts privately off-instance and revalidate/reinstall after source-compatible redeployment. No persistence resource or deployment was provisioned."
+              },
+              "checks": {
+                "publicUnitTests": 5,
+                "passed": 5,
+                "failed": 0,
+                "skipped": 0,
+                "unitLog": "generated-artifacts/fair-replacement-check/unit-tests.log",
+                "unitLogSha256": "3cf4893b87145c93588e53ec7ae17b3f4c8c11ae959384b25a9fe8d5105a9b9a",
+                "actualProjectCompiler": "npm run check",
+                "actualProjectCompilerPassed": true,
+                "scriptCompiler": "npx tsc --noEmit --project generated-artifacts/fair-replacement-check/tsconfig.json",
+                "scriptCompilerQualification": "Ignored config extends unchanged actual project config including ES5/downlevel settings; no gate change.",
+                "scriptCompilerPassed": true,
+                "compilerLogSha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "testSourceSha256": "cd7b1c119c5f69b5362396eedf44d87048eede23a3b61672cd6ca96a0fb221bb",
+                "rehearsalSourceSha256": "3474b93c94133e7b1d629284a323787df2d1f7d45ab2d73bb661516b654a782a"
+              },
+              "boundaries": "No scientific rerun/tuning, new scientific acceptance, Python, HTTP server, Railway/provisioning/resource creation, deploy/callback, ledger edit, commit/publication or private Git bytes. Original old155 metadata and artifacts remain historical and immutable; this is a separately authorized replacement receipt."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -92027,7 +92655,7 @@
           "id": "S10-002",
           "source_section": "implementation",
           "requirement": "Keep identity-review states distinct: not queried, provider error, candidate awaiting review, accepted, ambiguous, unmatched, out of scope. None of the first three may be merged into another.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/financialData/identity.ts",
@@ -92046,7 +92674,7 @@
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Checked each required review state rather than treating candidates as approvals.",
+          "behaviour_delivered_this_run": "Seven-stateactualreader/census/API/UI/XLSX:2442full=1currentaccepted+349candidate+474ambiguous+1618unmatched; otherstates0. Verifiedimmutableeligible0,not conflatedwithcurrentaccepted1.",
           "inputs_versions_assumptions": [
             "ISIN/venue/class/ADR candidate evidence and explicit review objects; retained 2,442-company candidate census, not identity approval."
           ],
@@ -92101,6 +92729,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -92113,10 +92761,8 @@
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Not-queried, provider-error and awaiting-review states are not yet reconciled across every consumer/census row."
-          ],
-          "next_action": "Produce the seven-state census and reader assertions; do not merge unqueried/error/review states.",
+          "remaining_gaps": [],
+          "next_action": "Currentcensusengineeringverified; legacyacceptedrecordoriginalprofileunretained, excludednotreconstructed. Genuineidentityapproval andeligiblehistoricalcorpus remainseparate.",
           "blockers": [],
           "stage": 10,
           "check_type": "exact",
@@ -92369,7 +93015,225 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/s10-002-006-014-retained-coverage-evidence.json",
+            "sha256": "aeea533d4133030dabe1485cd17dec72bcb8c7673d3142617782f08743deb9af",
+            "evidence": {
+              "contract": "stage10-retained-coverage-evidence-1",
+              "canonicalLedgerChanged": false,
+              "criteria": [
+                {
+                  "id": "S10-002",
+                  "originalCriterion": "Keep identity-review states distinct: not queried, provider error, candidate awaiting review, accepted, ambiguous, unmatched, out of scope. None of the first three may be merged into another.",
+                  "engineering": "Actual complete immutable-workbook reader, real retained mapping journal/current review reconciliation, seven-state census/API/UI/JSON/XLSX and existing financial-coverage CLI implemented. Explicit provider errors/not-queried survive; candidate becomes accepted only with genuine independently approved matching existing review. Sampled diagnostic reassessment no longer treats absent/error provider bytes as successful empty/unmatched responses; sampled collector retains failures separately from successful completion. No acquisition script was executed.",
+                  "assessment": "Finite current retained-census engineering fulfilled. Serialized historical diagnostics are not rewritten, and no historical review timeline or real approval is fabricated."
+                },
+                {
+                  "id": "S10-006",
+                  "originalCriterion": "Load FMP statement history as versioned overlays: revenue, EBITDA, operating cash flow, capital expenditure, working capital, net income, net debt, shares and segments where available. Record each value's filing date, and flag whether it is the original or a restated value.",
+                  "engineering": "Actual retained content-addressed candidate financial payloads authenticated/read without mutation. Private per-value records preserve exact companyId/ISIN, source/version hash, capture, fiscal end-year, native currency, raw provider filing date, usable filing-date evidence and original/restated/unknown class. Latest actual available version selected before field inspection; tied versions/duplicate annual slots conflict instead of arbitrary survivor/coalescing. Existing legacy normalizer gains explicit per-value source-date/provenance metadata without changing numerical assignments.",
+                  "assessment": "Engineering advanced substantively, data/provenance criterion remains partial. Only27 retained candidate versions and no immutable approved-current-financial archives exist. Annual provider histories are revised-history with no independently verified original publication vintages; segments are absent. Current single-period NI snapshots lack explicit annual FY classification and are not substituted into annual history."
+                },
+                {
+                  "id": "S10-014",
+                  "originalCriterion": "Coverage of cash-flow and net-debt history, and the share of values flagged as restated, are reported by sector and region.",
+                  "engineering": "Actual fixed full-workbook and verified-eligible sector×workbook-geography cube, including explicit Unknown and zero-company categories. Each field has fixed company×declared-year slots, missing/null/invalid/conflict states, original/restated/unknown and filing-date partitions. Explicit true-restated-flag share/present is distinct from unknown share and restated/known-provenance rate; no true flags is NOT proof of no restatements. Zero known denominator returns null, not false0%restatement prevalence.",
+                  "assessment": "Descriptive aggregate reporting engineering fulfilled on genuinely retained inputs; substantive source coverage and original-vintage verification remain incomplete. No historical efficacy or complete ingestion is claimed."
+                }
+              ],
+              "productionBindings": {
+                "reader": "server/financialData/stage10Source.ts:getStage10Coverage",
+                "normalizationAndCensus": "server/financialData/stage10Coverage.ts",
+                "api": "GET /api/research/stage10-coverage",
+                "json": "GET /api/research/stage10-coverage/export.json",
+                "xlsx": "GET /api/research/stage10-coverage/export.xlsx",
+                "registration": "server/index.ts after releaseSafety; server/routes.ts not edited by this work",
+                "ui": "client/src/components/stage10-financial-coverage.tsx mounted on /methodology",
+                "cli": "script/financial-coverage.ts",
+                "sharedContract": "shared/stage10Coverage.ts; global outputFieldSemantics registry",
+                "sameInputRule": "UI download links pin exact workbookHash/cutoff/year range/expectedInputHash. Changed inputs409, malformed selection400, source/storage corruption or unavailable historical review chronology503; no replacement current report."
+              },
+              "readPolicy": {
+                "database": "Repeatable-read READ ONLY transaction; immutable header/chunk hash, cardinality, ordinals and actual immutable-trigger guards verified. Complete existing financial review SELECT, not paginated200-row listing. Existing immutable financial archives SELECT only.",
+                "files": "Fixed existing retained identity-audit and content-addressed worked-financial-input roots; payload and complete envelope fingerprints bound. No request-controlled paths, provider requests, DDL, purchases, public writes, approvals, private handoff scans, filings or licence payload reads.",
+                "join": "Exact companyId AND ISIN; filename ticker/profile symbol only consistency checks,never ticker-only join. Duplicate issuer acceptance cannot enlarge verified eligibility.",
+                "chronology": "Explicit cutoff or exact maximum retained capture/review/archive timestamp,never invented filing date. Earlier-than-audit or current mutable review chronology refuses; no invented historical review store.",
+                "disclosure": "Aggregate counts only. No securities,issuer/company IDs,ISINs,tickers,provider financial values,raw source objects,private URLs or per-company source hashes exported. Populations1–4 suppress all counts/shares,including eligible totals,while preserving categories and denominators. This does not authorize additional provider redistribution."
+              },
+              "actualRetainedRead": {
+                "inputHash": "47da0a83973d2ffbb391f00e8eeaa601881bda429c54992a6f48d7feee3eb21a",
+                "workbookHash": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+                "informationCutoff": "2026-11-09T23:17:36.035Z",
+                "fiscalYears": [
+                  2015,
+                  2016,
+                  2017,
+                  2018,
+                  2019,
+                  2020,
+                  2021,
+                  2022,
+                  2023,
+                  2024,
+                  2025
+                ],
+                "fullWorkbookCompanies": 2442,
+                "verifiedEligibleCompanies": 0,
+                "admittedStage11To15Records": 0,
+                "retainedCandidateVersions": 27,
+                "selectedAsOfVersions": 27,
+                "identityCounts": {
+                  "not-queried": 0,
+                  "provider-error": 0,
+                  "candidate-awaiting-review": 349,
+                  "accepted": 1,
+                  "ambiguous": 474,
+                  "unmatched": 1618,
+                  "out-of-scope": 0
+                },
+                "legacy95PercentGatePreserved": {
+                  "structuralEligible": 2442,
+                  "accepted": 1,
+                  "unresolved": 2441,
+                  "coverage": 0.0004095004095004095,
+                  "passed": false
+                },
+                "expectedFullPopulationSlotsPerField": 26862,
+                "eightFields": {
+                  "fields": [
+                    "revenue",
+                    "ebitda",
+                    "operatingCashFlow",
+                    "capitalExpenditure",
+                    "fcfe",
+                    "workingCapital",
+                    "netIncome",
+                    "shares"
+                  ],
+                  "presentEach": 261,
+                  "missingEach": 26600,
+                  "conflictedEach": 1,
+                  "unknownRestatementEach": 261,
+                  "providerFilingDateUnverifiedEach": 258,
+                  "filingDateMissingOrProxyEach": 3
+                },
+                "netDebt": {
+                  "present": 256,
+                  "missing": 26600,
+                  "invalidReconciliation": 5,
+                  "conflicted": 1,
+                  "unknownRestatement": 256,
+                  "providerFilingDateUnverified": 253,
+                  "filingDateMissingOrProxy": 3
+                },
+                "segments": {
+                  "present": 0,
+                  "missing": 26862
+                },
+                "verifiedOriginalValues": 0,
+                "explicitRestatedFlags": 0,
+                "knownProvenanceRestatedRates": "null for all financial fields,not an inferred0%total restatement prevalence",
+                "aggregateRows": 22134,
+                "actualWorkbookRowsReadBack": 22134,
+                "actualWorkbookBytes": 4528218,
+                "actualWorkbookInputHashMatches": true,
+                "actualImportedComponentSSRInputHashMatches": true,
+                "actualImportedComponentSSRFullDenominatorMatches": true
+              },
+              "protectedHashDependency": {
+                "legacySingleCompanyHistory": "Original input hash incorporates a profile absent from the retained raw envelope. Original hash cannot be authenticated from available retained bytes. Excluded rather than reconstructing from a later profile,ticker-attaching or silently refreezing old studies.",
+                "historicalExperiments": "No cached/private research study,protected FaIR source,original source values or historical financial data file rewritten."
+              },
+              "remainingSourcePrerequisites": [
+                "Genuinely retained immutable independently reviewed financial identities under existing authorized operator policies; current approved row alone is not an immutable financial archive.",
+                "Authorized annual statement/segment records with real per-value original/restated evidence and independently verified original publication dates/capture before each actual model origin. Provider filing-date proxies and current-only NI are insufficient.",
+                "Only then can actual eligible Stage11–15 input corpus advance. No real approval,purchase,provider refresh or historical acceptance is generated by this engineering."
+              ],
+              "supplementalCensus": {
+                "newDefinitions": 39,
+                "definitionsBefore": 1879,
+                "definitionsAfter": 1918,
+                "newSupplementalSlots": 859,
+                "apiSlots": 39,
+                "jsonSlots": 736,
+                "xlsxSlots": 84,
+                "externalSlotsBefore": 1536,
+                "externalSlotsAfter": 2395,
+                "expandedPublicBefore": 2868,
+                "expandedPublicAfter": 3727,
+                "expandedBoundBefore": 2867,
+                "expandedBoundAfter": 3726,
+                "originalPublicUnchanged": 1001,
+                "originalBoundUnchanged": 1000,
+                "originalOpaqueHistoricalSummaryUnchanged": 1,
+                "originalWithheldUnchanged": 27,
+                "originalSlotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+                "componentCountBefore": 62,
+                "componentCountAfter": 63,
+                "original60ComponentRenderedSuitesRerun": false
+              },
+              "verification": {
+                "focusedTests": "39passed,0failed,0skipped: stage10-retained-coverage,financial-identity,financial-mapping,mapping-diagnostics,statement-history,completed-cash-flow,component-state-census,next-census-accounting,operational-field-semantics",
+                "typecheck": "npx tsc --noEmit passed",
+                "census": "Both component and field census regenerated; field census --check passed",
+                "diffCheck": "git diff --check passed",
+                "actualRetainedIntegration": "Real READ ONLY source→aggregate→production XLSX builder/readback→direct actual component SSR verified,not merely a mounted503 or fabricated real approval",
+                "earlierBroaderFocusedRun": {
+                  "passed": 44,
+                  "failed": 2,
+                  "parentOwnedConcurrentStaleAssertions": [
+                    "script/remaining-field-semantics.test.ts:20 expects4resolvedResponseAliases; concurrently refactored projection-cache routes now resolve directly,actual0. Original1000/1001 remains intact.",
+                    "script/research-field-semantics.test.ts:105 expects13driver/published-reference display bindings; concurrent reference-label consumer adds one,actual14."
+                  ],
+                  "action": "Not weakened or edited by Stage10 work; parent/source owners reconcile exact new production contracts."
+                },
+                "notRun": [
+                  "full suite",
+                  "browser rerun",
+                  "workflow restart",
+                  "private historical studies",
+                  "provider collectors",
+                  "commit",
+                  "deployment",
+                  "callback"
+                ]
+              },
+              "boundedParentUiPlan": [
+                "Open /methodology and verify named loading/error/source-gap states and actual standalone workbook/input/cutoff identities.",
+                "Switch full/verified-eligible populations and all ten field choices; each changes presentation only. Page25cells locally,Unknown/zero categories retained,all rows in exports.",
+                "Download pinned JSON/XLSX and compare inputHash,denominators,unknown/restated/date classes; source changes must409,never silently replace prior selection.",
+                "No broad original62component/browser suite is claimed by the new component's direct SSR tests."
+              ]
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "proposedStatus": "verified",
+          "remainingGaps": [],
+          "operational_scientific_boundaries": "Currentcensusengineeringverified; legacyacceptedrecordoriginalprofileunretained, excludednotreconstructed. Genuineidentityapproval andeligiblehistoricalcorpus remainseparate."
         },
         {
           "id": "S10-003",
@@ -93340,7 +94204,7 @@
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Checked annual statement normalization, filing-date fields and actual retained history scope.",
+          "behaviour_delivered_this_run": "Authenticated27candidateversions; eightfields261present/26862slots, netdebt256present/5invalid,segmentsabsent. Original/restated/unknown andfilingdate/sourceclasses distinct.",
           "inputs_versions_assumptions": [
             "Retained annual candidate statements with fiscal/filing dates and explicit restatement/publication limitations; not complete sector/region histories."
           ],
@@ -93387,6 +94251,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -93400,9 +94284,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Versioned overlays do not yet cover all listed fields/issuers, segments and original-versus-restated provenance."
+            "Noimmutableapprovedfinancialarchives orverifiedoriginalpublicationvintages;0admissibleStage11–15records. Needgenuineversionedapprovedsource/identity evidence,notselfapproval."
           ],
-          "next_action": "Report field-by-field overlay coverage and original/restated evidence before claiming complete fundamentals ingestion.",
+          "next_action": "Noimmutableapprovedfinancialarchives orverifiedoriginalpublicationvintages;0admissibleStage11–15records. Needgenuineversionedapprovedsource/identity evidence,notselfapproval.",
           "blockers": [],
           "stage": 10,
           "check_type": "operational",
@@ -93631,7 +94515,225 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/s10-002-006-014-retained-coverage-evidence.json",
+            "sha256": "aeea533d4133030dabe1485cd17dec72bcb8c7673d3142617782f08743deb9af",
+            "evidence": {
+              "contract": "stage10-retained-coverage-evidence-1",
+              "canonicalLedgerChanged": false,
+              "criteria": [
+                {
+                  "id": "S10-002",
+                  "originalCriterion": "Keep identity-review states distinct: not queried, provider error, candidate awaiting review, accepted, ambiguous, unmatched, out of scope. None of the first three may be merged into another.",
+                  "engineering": "Actual complete immutable-workbook reader, real retained mapping journal/current review reconciliation, seven-state census/API/UI/JSON/XLSX and existing financial-coverage CLI implemented. Explicit provider errors/not-queried survive; candidate becomes accepted only with genuine independently approved matching existing review. Sampled diagnostic reassessment no longer treats absent/error provider bytes as successful empty/unmatched responses; sampled collector retains failures separately from successful completion. No acquisition script was executed.",
+                  "assessment": "Finite current retained-census engineering fulfilled. Serialized historical diagnostics are not rewritten, and no historical review timeline or real approval is fabricated."
+                },
+                {
+                  "id": "S10-006",
+                  "originalCriterion": "Load FMP statement history as versioned overlays: revenue, EBITDA, operating cash flow, capital expenditure, working capital, net income, net debt, shares and segments where available. Record each value's filing date, and flag whether it is the original or a restated value.",
+                  "engineering": "Actual retained content-addressed candidate financial payloads authenticated/read without mutation. Private per-value records preserve exact companyId/ISIN, source/version hash, capture, fiscal end-year, native currency, raw provider filing date, usable filing-date evidence and original/restated/unknown class. Latest actual available version selected before field inspection; tied versions/duplicate annual slots conflict instead of arbitrary survivor/coalescing. Existing legacy normalizer gains explicit per-value source-date/provenance metadata without changing numerical assignments.",
+                  "assessment": "Engineering advanced substantively, data/provenance criterion remains partial. Only27 retained candidate versions and no immutable approved-current-financial archives exist. Annual provider histories are revised-history with no independently verified original publication vintages; segments are absent. Current single-period NI snapshots lack explicit annual FY classification and are not substituted into annual history."
+                },
+                {
+                  "id": "S10-014",
+                  "originalCriterion": "Coverage of cash-flow and net-debt history, and the share of values flagged as restated, are reported by sector and region.",
+                  "engineering": "Actual fixed full-workbook and verified-eligible sector×workbook-geography cube, including explicit Unknown and zero-company categories. Each field has fixed company×declared-year slots, missing/null/invalid/conflict states, original/restated/unknown and filing-date partitions. Explicit true-restated-flag share/present is distinct from unknown share and restated/known-provenance rate; no true flags is NOT proof of no restatements. Zero known denominator returns null, not false0%restatement prevalence.",
+                  "assessment": "Descriptive aggregate reporting engineering fulfilled on genuinely retained inputs; substantive source coverage and original-vintage verification remain incomplete. No historical efficacy or complete ingestion is claimed."
+                }
+              ],
+              "productionBindings": {
+                "reader": "server/financialData/stage10Source.ts:getStage10Coverage",
+                "normalizationAndCensus": "server/financialData/stage10Coverage.ts",
+                "api": "GET /api/research/stage10-coverage",
+                "json": "GET /api/research/stage10-coverage/export.json",
+                "xlsx": "GET /api/research/stage10-coverage/export.xlsx",
+                "registration": "server/index.ts after releaseSafety; server/routes.ts not edited by this work",
+                "ui": "client/src/components/stage10-financial-coverage.tsx mounted on /methodology",
+                "cli": "script/financial-coverage.ts",
+                "sharedContract": "shared/stage10Coverage.ts; global outputFieldSemantics registry",
+                "sameInputRule": "UI download links pin exact workbookHash/cutoff/year range/expectedInputHash. Changed inputs409, malformed selection400, source/storage corruption or unavailable historical review chronology503; no replacement current report."
+              },
+              "readPolicy": {
+                "database": "Repeatable-read READ ONLY transaction; immutable header/chunk hash, cardinality, ordinals and actual immutable-trigger guards verified. Complete existing financial review SELECT, not paginated200-row listing. Existing immutable financial archives SELECT only.",
+                "files": "Fixed existing retained identity-audit and content-addressed worked-financial-input roots; payload and complete envelope fingerprints bound. No request-controlled paths, provider requests, DDL, purchases, public writes, approvals, private handoff scans, filings or licence payload reads.",
+                "join": "Exact companyId AND ISIN; filename ticker/profile symbol only consistency checks,never ticker-only join. Duplicate issuer acceptance cannot enlarge verified eligibility.",
+                "chronology": "Explicit cutoff or exact maximum retained capture/review/archive timestamp,never invented filing date. Earlier-than-audit or current mutable review chronology refuses; no invented historical review store.",
+                "disclosure": "Aggregate counts only. No securities,issuer/company IDs,ISINs,tickers,provider financial values,raw source objects,private URLs or per-company source hashes exported. Populations1–4 suppress all counts/shares,including eligible totals,while preserving categories and denominators. This does not authorize additional provider redistribution."
+              },
+              "actualRetainedRead": {
+                "inputHash": "47da0a83973d2ffbb391f00e8eeaa601881bda429c54992a6f48d7feee3eb21a",
+                "workbookHash": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+                "informationCutoff": "2026-11-09T23:17:36.035Z",
+                "fiscalYears": [
+                  2015,
+                  2016,
+                  2017,
+                  2018,
+                  2019,
+                  2020,
+                  2021,
+                  2022,
+                  2023,
+                  2024,
+                  2025
+                ],
+                "fullWorkbookCompanies": 2442,
+                "verifiedEligibleCompanies": 0,
+                "admittedStage11To15Records": 0,
+                "retainedCandidateVersions": 27,
+                "selectedAsOfVersions": 27,
+                "identityCounts": {
+                  "not-queried": 0,
+                  "provider-error": 0,
+                  "candidate-awaiting-review": 349,
+                  "accepted": 1,
+                  "ambiguous": 474,
+                  "unmatched": 1618,
+                  "out-of-scope": 0
+                },
+                "legacy95PercentGatePreserved": {
+                  "structuralEligible": 2442,
+                  "accepted": 1,
+                  "unresolved": 2441,
+                  "coverage": 0.0004095004095004095,
+                  "passed": false
+                },
+                "expectedFullPopulationSlotsPerField": 26862,
+                "eightFields": {
+                  "fields": [
+                    "revenue",
+                    "ebitda",
+                    "operatingCashFlow",
+                    "capitalExpenditure",
+                    "fcfe",
+                    "workingCapital",
+                    "netIncome",
+                    "shares"
+                  ],
+                  "presentEach": 261,
+                  "missingEach": 26600,
+                  "conflictedEach": 1,
+                  "unknownRestatementEach": 261,
+                  "providerFilingDateUnverifiedEach": 258,
+                  "filingDateMissingOrProxyEach": 3
+                },
+                "netDebt": {
+                  "present": 256,
+                  "missing": 26600,
+                  "invalidReconciliation": 5,
+                  "conflicted": 1,
+                  "unknownRestatement": 256,
+                  "providerFilingDateUnverified": 253,
+                  "filingDateMissingOrProxy": 3
+                },
+                "segments": {
+                  "present": 0,
+                  "missing": 26862
+                },
+                "verifiedOriginalValues": 0,
+                "explicitRestatedFlags": 0,
+                "knownProvenanceRestatedRates": "null for all financial fields,not an inferred0%total restatement prevalence",
+                "aggregateRows": 22134,
+                "actualWorkbookRowsReadBack": 22134,
+                "actualWorkbookBytes": 4528218,
+                "actualWorkbookInputHashMatches": true,
+                "actualImportedComponentSSRInputHashMatches": true,
+                "actualImportedComponentSSRFullDenominatorMatches": true
+              },
+              "protectedHashDependency": {
+                "legacySingleCompanyHistory": "Original input hash incorporates a profile absent from the retained raw envelope. Original hash cannot be authenticated from available retained bytes. Excluded rather than reconstructing from a later profile,ticker-attaching or silently refreezing old studies.",
+                "historicalExperiments": "No cached/private research study,protected FaIR source,original source values or historical financial data file rewritten."
+              },
+              "remainingSourcePrerequisites": [
+                "Genuinely retained immutable independently reviewed financial identities under existing authorized operator policies; current approved row alone is not an immutable financial archive.",
+                "Authorized annual statement/segment records with real per-value original/restated evidence and independently verified original publication dates/capture before each actual model origin. Provider filing-date proxies and current-only NI are insufficient.",
+                "Only then can actual eligible Stage11–15 input corpus advance. No real approval,purchase,provider refresh or historical acceptance is generated by this engineering."
+              ],
+              "supplementalCensus": {
+                "newDefinitions": 39,
+                "definitionsBefore": 1879,
+                "definitionsAfter": 1918,
+                "newSupplementalSlots": 859,
+                "apiSlots": 39,
+                "jsonSlots": 736,
+                "xlsxSlots": 84,
+                "externalSlotsBefore": 1536,
+                "externalSlotsAfter": 2395,
+                "expandedPublicBefore": 2868,
+                "expandedPublicAfter": 3727,
+                "expandedBoundBefore": 2867,
+                "expandedBoundAfter": 3726,
+                "originalPublicUnchanged": 1001,
+                "originalBoundUnchanged": 1000,
+                "originalOpaqueHistoricalSummaryUnchanged": 1,
+                "originalWithheldUnchanged": 27,
+                "originalSlotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+                "componentCountBefore": 62,
+                "componentCountAfter": 63,
+                "original60ComponentRenderedSuitesRerun": false
+              },
+              "verification": {
+                "focusedTests": "39passed,0failed,0skipped: stage10-retained-coverage,financial-identity,financial-mapping,mapping-diagnostics,statement-history,completed-cash-flow,component-state-census,next-census-accounting,operational-field-semantics",
+                "typecheck": "npx tsc --noEmit passed",
+                "census": "Both component and field census regenerated; field census --check passed",
+                "diffCheck": "git diff --check passed",
+                "actualRetainedIntegration": "Real READ ONLY source→aggregate→production XLSX builder/readback→direct actual component SSR verified,not merely a mounted503 or fabricated real approval",
+                "earlierBroaderFocusedRun": {
+                  "passed": 44,
+                  "failed": 2,
+                  "parentOwnedConcurrentStaleAssertions": [
+                    "script/remaining-field-semantics.test.ts:20 expects4resolvedResponseAliases; concurrently refactored projection-cache routes now resolve directly,actual0. Original1000/1001 remains intact.",
+                    "script/research-field-semantics.test.ts:105 expects13driver/published-reference display bindings; concurrent reference-label consumer adds one,actual14."
+                  ],
+                  "action": "Not weakened or edited by Stage10 work; parent/source owners reconcile exact new production contracts."
+                },
+                "notRun": [
+                  "full suite",
+                  "browser rerun",
+                  "workflow restart",
+                  "private historical studies",
+                  "provider collectors",
+                  "commit",
+                  "deployment",
+                  "callback"
+                ]
+              },
+              "boundedParentUiPlan": [
+                "Open /methodology and verify named loading/error/source-gap states and actual standalone workbook/input/cutoff identities.",
+                "Switch full/verified-eligible populations and all ten field choices; each changes presentation only. Page25cells locally,Unknown/zero categories retained,all rows in exports.",
+                "Download pinned JSON/XLSX and compare inputHash,denominators,unknown/restated/date classes; source changes must409,never silently replace prior selection.",
+                "No broad original62component/browser suite is claimed by the new component's direct SSR tests."
+              ]
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "Noimmutableapprovedfinancialarchives orverifiedoriginalpublicationvintages;0admissibleStage11–15records. Needgenuineversionedapprovedsource/identity evidence,notselfapproval."
+          ]
         },
         {
           "id": "S10-007",
@@ -96025,7 +97127,7 @@
           "id": "S10-014",
           "source_section": "acceptance",
           "requirement": "Coverage of cash-flow and net-debt history, and the share of values flagged as restated, are reported by sector and region.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/financialData/statementHistory.ts",
@@ -96042,7 +97144,7 @@
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Checked requested history-coverage/restatement reporting dimensions.",
+          "behaviour_delivered_this_run": "Realread-onlycoverage bysector×region/Unknown full+eligible populations,restated/unknown denominators,privacy suppression; actual22134XLSXrows andcomponentSSRsameinputHash47da0a83973d2ffbb391f00e8eeaa601881bda429c54992a6f48d7feee3eb21a.",
           "inputs_versions_assumptions": [
             "Retained annual candidate statements with fiscal/filing dates and explicit restatement/publication limitations; not complete sector/region histories."
           ],
@@ -96089,6 +97191,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -96101,13 +97223,11 @@
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Cash-flow/net-debt/restated shares by sector and region are not completely reported."
-          ],
-          "next_action": "Produce that sector×region coverage table with explicit missing/restated categories.",
+          "remaining_gaps": [],
+          "next_action": "Descriptivecoverageengineeringverified; currentcoverage doesnotestablishoriginalvintage orowneracceptance.",
           "blockers": [],
           "stage": 10,
-          "check_type": "numerical",
+          "check_type": "exact",
           "check_scope": "S10-014 ONLY: Checked requested history-coverage/restatement reporting dimensions. Only the listed criterion-specific unfinished conjunct prevents verification.",
           "financial_basis": {
             "selected_original_case": {
@@ -96333,7 +97453,225 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/s10-002-006-014-retained-coverage-evidence.json",
+            "sha256": "aeea533d4133030dabe1485cd17dec72bcb8c7673d3142617782f08743deb9af",
+            "evidence": {
+              "contract": "stage10-retained-coverage-evidence-1",
+              "canonicalLedgerChanged": false,
+              "criteria": [
+                {
+                  "id": "S10-002",
+                  "originalCriterion": "Keep identity-review states distinct: not queried, provider error, candidate awaiting review, accepted, ambiguous, unmatched, out of scope. None of the first three may be merged into another.",
+                  "engineering": "Actual complete immutable-workbook reader, real retained mapping journal/current review reconciliation, seven-state census/API/UI/JSON/XLSX and existing financial-coverage CLI implemented. Explicit provider errors/not-queried survive; candidate becomes accepted only with genuine independently approved matching existing review. Sampled diagnostic reassessment no longer treats absent/error provider bytes as successful empty/unmatched responses; sampled collector retains failures separately from successful completion. No acquisition script was executed.",
+                  "assessment": "Finite current retained-census engineering fulfilled. Serialized historical diagnostics are not rewritten, and no historical review timeline or real approval is fabricated."
+                },
+                {
+                  "id": "S10-006",
+                  "originalCriterion": "Load FMP statement history as versioned overlays: revenue, EBITDA, operating cash flow, capital expenditure, working capital, net income, net debt, shares and segments where available. Record each value's filing date, and flag whether it is the original or a restated value.",
+                  "engineering": "Actual retained content-addressed candidate financial payloads authenticated/read without mutation. Private per-value records preserve exact companyId/ISIN, source/version hash, capture, fiscal end-year, native currency, raw provider filing date, usable filing-date evidence and original/restated/unknown class. Latest actual available version selected before field inspection; tied versions/duplicate annual slots conflict instead of arbitrary survivor/coalescing. Existing legacy normalizer gains explicit per-value source-date/provenance metadata without changing numerical assignments.",
+                  "assessment": "Engineering advanced substantively, data/provenance criterion remains partial. Only27 retained candidate versions and no immutable approved-current-financial archives exist. Annual provider histories are revised-history with no independently verified original publication vintages; segments are absent. Current single-period NI snapshots lack explicit annual FY classification and are not substituted into annual history."
+                },
+                {
+                  "id": "S10-014",
+                  "originalCriterion": "Coverage of cash-flow and net-debt history, and the share of values flagged as restated, are reported by sector and region.",
+                  "engineering": "Actual fixed full-workbook and verified-eligible sector×workbook-geography cube, including explicit Unknown and zero-company categories. Each field has fixed company×declared-year slots, missing/null/invalid/conflict states, original/restated/unknown and filing-date partitions. Explicit true-restated-flag share/present is distinct from unknown share and restated/known-provenance rate; no true flags is NOT proof of no restatements. Zero known denominator returns null, not false0%restatement prevalence.",
+                  "assessment": "Descriptive aggregate reporting engineering fulfilled on genuinely retained inputs; substantive source coverage and original-vintage verification remain incomplete. No historical efficacy or complete ingestion is claimed."
+                }
+              ],
+              "productionBindings": {
+                "reader": "server/financialData/stage10Source.ts:getStage10Coverage",
+                "normalizationAndCensus": "server/financialData/stage10Coverage.ts",
+                "api": "GET /api/research/stage10-coverage",
+                "json": "GET /api/research/stage10-coverage/export.json",
+                "xlsx": "GET /api/research/stage10-coverage/export.xlsx",
+                "registration": "server/index.ts after releaseSafety; server/routes.ts not edited by this work",
+                "ui": "client/src/components/stage10-financial-coverage.tsx mounted on /methodology",
+                "cli": "script/financial-coverage.ts",
+                "sharedContract": "shared/stage10Coverage.ts; global outputFieldSemantics registry",
+                "sameInputRule": "UI download links pin exact workbookHash/cutoff/year range/expectedInputHash. Changed inputs409, malformed selection400, source/storage corruption or unavailable historical review chronology503; no replacement current report."
+              },
+              "readPolicy": {
+                "database": "Repeatable-read READ ONLY transaction; immutable header/chunk hash, cardinality, ordinals and actual immutable-trigger guards verified. Complete existing financial review SELECT, not paginated200-row listing. Existing immutable financial archives SELECT only.",
+                "files": "Fixed existing retained identity-audit and content-addressed worked-financial-input roots; payload and complete envelope fingerprints bound. No request-controlled paths, provider requests, DDL, purchases, public writes, approvals, private handoff scans, filings or licence payload reads.",
+                "join": "Exact companyId AND ISIN; filename ticker/profile symbol only consistency checks,never ticker-only join. Duplicate issuer acceptance cannot enlarge verified eligibility.",
+                "chronology": "Explicit cutoff or exact maximum retained capture/review/archive timestamp,never invented filing date. Earlier-than-audit or current mutable review chronology refuses; no invented historical review store.",
+                "disclosure": "Aggregate counts only. No securities,issuer/company IDs,ISINs,tickers,provider financial values,raw source objects,private URLs or per-company source hashes exported. Populations1–4 suppress all counts/shares,including eligible totals,while preserving categories and denominators. This does not authorize additional provider redistribution."
+              },
+              "actualRetainedRead": {
+                "inputHash": "47da0a83973d2ffbb391f00e8eeaa601881bda429c54992a6f48d7feee3eb21a",
+                "workbookHash": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+                "informationCutoff": "2026-11-09T23:17:36.035Z",
+                "fiscalYears": [
+                  2015,
+                  2016,
+                  2017,
+                  2018,
+                  2019,
+                  2020,
+                  2021,
+                  2022,
+                  2023,
+                  2024,
+                  2025
+                ],
+                "fullWorkbookCompanies": 2442,
+                "verifiedEligibleCompanies": 0,
+                "admittedStage11To15Records": 0,
+                "retainedCandidateVersions": 27,
+                "selectedAsOfVersions": 27,
+                "identityCounts": {
+                  "not-queried": 0,
+                  "provider-error": 0,
+                  "candidate-awaiting-review": 349,
+                  "accepted": 1,
+                  "ambiguous": 474,
+                  "unmatched": 1618,
+                  "out-of-scope": 0
+                },
+                "legacy95PercentGatePreserved": {
+                  "structuralEligible": 2442,
+                  "accepted": 1,
+                  "unresolved": 2441,
+                  "coverage": 0.0004095004095004095,
+                  "passed": false
+                },
+                "expectedFullPopulationSlotsPerField": 26862,
+                "eightFields": {
+                  "fields": [
+                    "revenue",
+                    "ebitda",
+                    "operatingCashFlow",
+                    "capitalExpenditure",
+                    "fcfe",
+                    "workingCapital",
+                    "netIncome",
+                    "shares"
+                  ],
+                  "presentEach": 261,
+                  "missingEach": 26600,
+                  "conflictedEach": 1,
+                  "unknownRestatementEach": 261,
+                  "providerFilingDateUnverifiedEach": 258,
+                  "filingDateMissingOrProxyEach": 3
+                },
+                "netDebt": {
+                  "present": 256,
+                  "missing": 26600,
+                  "invalidReconciliation": 5,
+                  "conflicted": 1,
+                  "unknownRestatement": 256,
+                  "providerFilingDateUnverified": 253,
+                  "filingDateMissingOrProxy": 3
+                },
+                "segments": {
+                  "present": 0,
+                  "missing": 26862
+                },
+                "verifiedOriginalValues": 0,
+                "explicitRestatedFlags": 0,
+                "knownProvenanceRestatedRates": "null for all financial fields,not an inferred0%total restatement prevalence",
+                "aggregateRows": 22134,
+                "actualWorkbookRowsReadBack": 22134,
+                "actualWorkbookBytes": 4528218,
+                "actualWorkbookInputHashMatches": true,
+                "actualImportedComponentSSRInputHashMatches": true,
+                "actualImportedComponentSSRFullDenominatorMatches": true
+              },
+              "protectedHashDependency": {
+                "legacySingleCompanyHistory": "Original input hash incorporates a profile absent from the retained raw envelope. Original hash cannot be authenticated from available retained bytes. Excluded rather than reconstructing from a later profile,ticker-attaching or silently refreezing old studies.",
+                "historicalExperiments": "No cached/private research study,protected FaIR source,original source values or historical financial data file rewritten."
+              },
+              "remainingSourcePrerequisites": [
+                "Genuinely retained immutable independently reviewed financial identities under existing authorized operator policies; current approved row alone is not an immutable financial archive.",
+                "Authorized annual statement/segment records with real per-value original/restated evidence and independently verified original publication dates/capture before each actual model origin. Provider filing-date proxies and current-only NI are insufficient.",
+                "Only then can actual eligible Stage11–15 input corpus advance. No real approval,purchase,provider refresh or historical acceptance is generated by this engineering."
+              ],
+              "supplementalCensus": {
+                "newDefinitions": 39,
+                "definitionsBefore": 1879,
+                "definitionsAfter": 1918,
+                "newSupplementalSlots": 859,
+                "apiSlots": 39,
+                "jsonSlots": 736,
+                "xlsxSlots": 84,
+                "externalSlotsBefore": 1536,
+                "externalSlotsAfter": 2395,
+                "expandedPublicBefore": 2868,
+                "expandedPublicAfter": 3727,
+                "expandedBoundBefore": 2867,
+                "expandedBoundAfter": 3726,
+                "originalPublicUnchanged": 1001,
+                "originalBoundUnchanged": 1000,
+                "originalOpaqueHistoricalSummaryUnchanged": 1,
+                "originalWithheldUnchanged": 27,
+                "originalSlotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+                "componentCountBefore": 62,
+                "componentCountAfter": 63,
+                "original60ComponentRenderedSuitesRerun": false
+              },
+              "verification": {
+                "focusedTests": "39passed,0failed,0skipped: stage10-retained-coverage,financial-identity,financial-mapping,mapping-diagnostics,statement-history,completed-cash-flow,component-state-census,next-census-accounting,operational-field-semantics",
+                "typecheck": "npx tsc --noEmit passed",
+                "census": "Both component and field census regenerated; field census --check passed",
+                "diffCheck": "git diff --check passed",
+                "actualRetainedIntegration": "Real READ ONLY source→aggregate→production XLSX builder/readback→direct actual component SSR verified,not merely a mounted503 or fabricated real approval",
+                "earlierBroaderFocusedRun": {
+                  "passed": 44,
+                  "failed": 2,
+                  "parentOwnedConcurrentStaleAssertions": [
+                    "script/remaining-field-semantics.test.ts:20 expects4resolvedResponseAliases; concurrently refactored projection-cache routes now resolve directly,actual0. Original1000/1001 remains intact.",
+                    "script/research-field-semantics.test.ts:105 expects13driver/published-reference display bindings; concurrent reference-label consumer adds one,actual14."
+                  ],
+                  "action": "Not weakened or edited by Stage10 work; parent/source owners reconcile exact new production contracts."
+                },
+                "notRun": [
+                  "full suite",
+                  "browser rerun",
+                  "workflow restart",
+                  "private historical studies",
+                  "provider collectors",
+                  "commit",
+                  "deployment",
+                  "callback"
+                ]
+              },
+              "boundedParentUiPlan": [
+                "Open /methodology and verify named loading/error/source-gap states and actual standalone workbook/input/cutoff identities.",
+                "Switch full/verified-eligible populations and all ten field choices; each changes presentation only. Page25cells locally,Unknown/zero categories retained,all rows in exports.",
+                "Download pinned JSON/XLSX and compare inputHash,denominators,unknown/restated/date classes; source changes must409,never silently replace prior selection.",
+                "No broad original62component/browser suite is claimed by the new component's direct SSR tests."
+              ]
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "proposedStatus": "verified",
+          "remainingGaps": [],
+          "operational_scientific_boundaries": "Descriptivecoverageengineeringverified; currentcoverage doesnotestablishoriginalvintage orowneracceptance."
         }
       ]
     },
@@ -146898,7 +148236,7 @@
           "files_functions_changed": [
             "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
           ],
-          "behaviour_delivered_this_run": "Reconciled original clause against exact existing functions and retained actual logs. No analytical calculation or source data changed by this record.",
+          "behaviour_delivered_this_run": "12originalwarninghosts,3linkedremovalbindings,1resolutionR16-EXTRAPOLATION-001 actualcrossinghorizon/null behavior;physical/currency/vintage/investmentwarnings preserved.",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -146925,6 +148263,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -146934,9 +148292,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No exhaustive original-warning removal/resolution register has been reconciled."
+            "Historicalper-runbacktestwarningpayloadarchive unavailable;dynamicrendererretained,no unseenwarningsinventedresolved."
           ],
-          "next_action": "Inventory each original interim warning and link any removal to exact resolved limitation and evidence; leave unresolved warnings intact.",
+          "next_action": "Historicalper-runbacktestwarningpayloadarchive unavailable;dynamicrendererretained,no unseenwarningsinventedresolved.",
           "blockers": [
             {
               "kind": "independent judgement and/or incomplete evidence",
@@ -146994,7 +148352,232 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
-          }
+          },
+          "before_coverage_increment": {
+            "status": "partial",
+            "published_ledger_revision": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1"
+          },
+          "coverage_increment": {
+            "file": "docs/S16-013-warning-resolution-register.json",
+            "sha256": "278a0ad0c9e62365946c3e048f705141101f95d3f1de440a49e6eb10031f89ee",
+            "evidence": {
+              "criterion": "S16-013",
+              "requirement": "Each removed interim warning has a linked resolution record.",
+              "bindingAmendment": "docs/Developer_Workplan_Amendments.md: stages16–17; remove warnings only after resolving their underlying limitation.",
+              "originalSourceRevision": "7985aa08dc0cc7240491eaea37e94690f8b2234e",
+              "sourceScope": "Retained Stage1 claim-containment source. Twelve original warning/qualification hosts identified by the recorded source scan; generated current/historical hashes are separate evidence. This is source reconciliation, not a deployment receipt.",
+              "scanPattern": "warning|unsupported|not validated|not.*forecast|unverified|not.*standalone|not.*climate|not.*decarbon|no defensible|withheld|not.*vintage",
+              "originalHosts": [
+                {
+                  "path": "client/src/components/backtest-summary.tsx",
+                  "originalExcerpt": "s.warnings.map",
+                  "currentRequired": [
+                    "s.warnings.map"
+                  ],
+                  "disposition": "retained-dynamic-warning-renderer",
+                  "limit": "Original per-run warning payload archive is not supplied; no individual historical warning text or removal is invented."
+                },
+                {
+                  "path": "client/src/components/category-comparison.tsx",
+                  "originalExcerpt": "Illustrative input-shock scenarios, not forecasts or category contributions.",
+                  "currentRequired": [
+                    "Illustrative input-shock scenarios, not forecasts or category contributions."
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/components/emissions-candidate-review.tsx",
+                  "originalExcerpt": "Read-only candidate, not calibrated and not a forecast.",
+                  "currentRequired": [
+                    "not calibrated and not a forecast"
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/components/historical-trend-chart.tsx",
+                  "originalExcerpt": "Retrospective reconstruction using current methodology and revised inputs",
+                  "currentRequired": [
+                    "Retrospective reconstruction using current methodology and revised inputs"
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/components/publication-methodology-notes.tsx",
+                  "originalExcerpt": "not archived forecasts",
+                  "currentRequired": [
+                    "not archived forecasts",
+                    "Unsupported combinations return an error",
+                    "not verified publication-date vintages"
+                  ],
+                  "disposition": "retained-in-closed-legacy-methodology",
+                  "limit": "Moving legacy notes inside explicitly superseded opt-in documentation does not resolve forecast vintage limitations."
+                },
+                {
+                  "path": "client/src/components/valuation-notice.tsx",
+                  "originalExcerpt": "Workbook currency compatibility is unverified.",
+                  "currentRequired": [
+                    "outputs are withheld",
+                    "no defensible valuation-to-activity mapping",
+                    "not decarbonisation rates or market climate expectations",
+                    "not five-year reverse-DCF growth",
+                    "not per revenue",
+                    "Workbook currency compatibility is unverified.",
+                    "not validated investment evidence",
+                    "no 2024 base year is assumed"
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/lib/ui-claim-register.ts",
+                  "originalExcerpt": "Fixed-5-Gt milestone may extrapolate beyond 2100.",
+                  "currentRequired": [
+                    "CO2-only response",
+                    "fixed 1.1C offset",
+                    "right-censored at the actual simulated horizon",
+                    "not 5% of 2024 and not net zero (R16-EXTRAPOLATION-001)",
+                    "No standalone regional temperature interpretation",
+                    "not climate, valuation-to-activity or milestone output"
+                  ],
+                  "disposition": "physical-warnings-retained-extrapolation-risk-resolved",
+                  "resolution": "R16-EXTRAPOLATION-001",
+                  "limit": "Authorized bounded follow-up corrected only the disproven extrapolation sentence; other Stage10 UI-index entries and shared semantics were not edited."
+                },
+                {
+                  "path": "client/src/pages/climate-valuation.tsx",
+                  "originalExcerpt": "No defensible valuation-to-activity mapping has been established.",
+                  "currentRequired": [
+                    "No defensible valuation-to-activity mapping has been established.",
+                    "No numeric substitutes are shown or exported.",
+                    "not a decarbonization rate or five-year reverse-DCF growth"
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/pages/dashboard.tsx",
+                  "originalExcerpt": "Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.",
+                  "currentRequired": [
+                    "CO2-only response to aggregate GHG",
+                    "fixed 1.1°C offset",
+                    "not validated physical forecasts",
+                    "Regional temperatures are not standalone regional warming estimates.",
+                    "Historical recalculations are not forecast validation.",
+                    "Neither residual diagnostic is net zero"
+                  ],
+                  "disposition": "physical-warnings-retained-extrapolation-risk-resolved",
+                  "resolution": "R16-EXTRAPOLATION-001"
+                },
+                {
+                  "path": "client/src/pages/decarb-gap-signal.tsx",
+                  "originalExcerpt": "Physical-gap distribution withheld",
+                  "currentRequired": [
+                    "Physical-gap distribution withheld",
+                    "It does not identify climate expectations.",
+                    "Valuation-derived temperature, carbon-price and net-zero outputs are withheld."
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/pages/decarb-signal.tsx",
+                  "originalExcerpt": "Physical comparison withheld",
+                  "currentRequired": [
+                    "Physical comparison withheld",
+                    "No defensible valuation-to-activity mapping",
+                    "Their subtraction is not a supported climate signal.",
+                    "not a decarbonization rate"
+                  ],
+                  "disposition": "retained"
+                },
+                {
+                  "path": "client/src/pages/methodology.tsx",
+                  "originalExcerpt": "Its fixed-5-Gt milestone may extrapolate beyond 2100",
+                  "currentRequired": [
+                    "fixed 1.1°C offset",
+                    "No new scientific model is ready.",
+                    "not validated investment evidence",
+                    "superseded claims",
+                    "no interpolation or extrapolation",
+                    "not relabelled as a percentage"
+                  ],
+                  "disposition": "physical-warnings-retained-extrapolation-risk-resolved",
+                  "resolution": "R16-EXTRAPOLATION-001"
+                }
+              ],
+              "removedWarnings": [
+                {
+                  "path": "client/src/pages/dashboard.tsx",
+                  "originalText": "may extrapolate beyond 2100",
+                  "resolution": "R16-EXTRAPOLATION-001"
+                },
+                {
+                  "path": "client/src/pages/methodology.tsx",
+                  "originalText": "may extrapolate beyond 2100",
+                  "resolution": "R16-EXTRAPOLATION-001"
+                },
+                {
+                  "path": "client/src/lib/ui-claim-register.ts",
+                  "originalText": "may extrapolate beyond 2100",
+                  "resolution": "R16-EXTRAPOLATION-001"
+                }
+              ],
+              "resolutions": [
+                {
+                  "id": "R16-EXTRAPOLATION-001",
+                  "resolvedLimitation": "Current legacy fixed5Gt milestone is no longer extrapolated beyond actual simulated trajectory rows.",
+                  "implementation": "server/calculation/historicalMetrics.ts: historicalTrajectoryMetrics finds an actual annual row at or below5Gt; otherwise null. The separate selected-2024 five-percent diagnostic is not substituted for it.",
+                  "evidence": [
+                    "script/warning-and-pathway-label-contracts.test.ts",
+                    "script/projection-metric-consistency.test.ts",
+                    "script/historical-metrics.test.ts"
+                  ],
+                  "replacement": "Right-censored, explicitly non-net-zero fixed-5gt-v1 comparator; separate selected-baseline5% diagnostic.",
+                  "notResolved": [
+                    "CO2-only response to aggregate GHG",
+                    "fixed1.1°C offset",
+                    "standalone regional warming interpretation",
+                    "forecast-vintage validation",
+                    "native-pathway scientific readiness",
+                    "valuation-to-activity identification"
+                  ]
+                }
+              ],
+              "additionalHistoricalSelectionWarning": {
+                "revision": "9aa18a4fb9d3ba6c65e50310de5b3069cb36bcdb",
+                "path": "client/src/components/analysis-snapshot-status.tsx",
+                "originalText": "Selection changes only this summary; it does not change the current source or any other page.",
+                "disposition": "retained-correctly-scoped",
+                "reason": "The Data Management summary preview is still independent. The separate analysis-wide selection does not justify deleting this preview warning.",
+                "resolutionReportForSeparateControl": "docs/Analysis_Wide_Historical_Selection.md",
+                "stillUnresolved": "Current-code input replay is not original-vintage evidence; complete original executable/overlay archival is not claimed."
+              },
+              "residuals": [
+                "No original per-run backtest warning payload archive is available in this task. Its renderer is retained; no unseen text is claimed removed/resolved."
+              ],
+              "safety": "Only the disproven extrapolation-risk metadata was corrected, linked to R16-EXTRAPOLATION-001. No native readiness, physical, identification, currency, vintage or investment-validity warning was weakened. No canonical ledger or deployment status changed."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T20:39:14.534923+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 266.685,
+              "counts": {
+                "tests": 853,
+                "pass": 853,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+              "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "Historicalper-runbacktestwarningpayloadarchive unavailable;dynamicrendererretained,no unseenwarningsinventedresolved."
+          ]
         },
         {
           "id": "S16-014",
@@ -153376,6 +154959,46 @@
       "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-11T20:30:52.117047+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 227.552,
+      "counts": {
+        "tests": 853,
+        "pass": 852,
+        "fail": 1,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T203052117047Z.log",
+      "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-11T20:39:14.534923+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 266.685,
+      "counts": {
+        "tests": 853,
+        "pass": 853,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+      "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -153643,13 +155266,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "47verified251partial2blocked. S15-017trustedresolver+periodunavailableengineering andS03-008real-loadernegativefixtures verified; don'trepeatunchanged. RealpublicTrackBcatalogempty: exactrightsreview/catalogpin/offlinepublish needed,notStage9scienceapproval. RemainingS02sixprojectioncachefamilies/TTL andexplicitdisposablePostgreSQLtransport; noambientDB/DDL. CompanydirectoperatingCCSinstrument/billings/opex stillmissing; don'trepeatcredit/indexaudits. Alloriginalanalyticalscope/0of3cases remains; no newefficacy.",
+    "instruction": "50verified248partial2blocked. Stage10sevenstate/sectorregiondescriptivecoverage andNDC-labelengineeringverified;0immutableeligiblehistoricalrecords. S10-006actualapprovedsourcecoverage partial; no tickerjoins/selfapproval. Sixprojectioncachematrixdone; Postgres/privilegedinvalidation notexecuted. Newprivatebundle2025be43 exactsame16data requiresauthorizedoperatortransfer; preserveold155butcurrentcodeincompatible. Warningsdynamicoriginalpayload gap remains. Actualcompanyeconomics/dated11–15/climate scientificinputs remain; don'trerununchangednegative studies.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-cache-periods-52d2ab7",
+    "checkpoint_id": "ckpt-20261111-disclosure-missingness-760ea69",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T18:25:13.800113+00:00",
+    "attempted_at": "2026-11-11T19:27:23.203328+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -153761,7 +155384,8 @@
       "partial": 13
     },
     "6": {
-      "partial": 10
+      "partial": 9,
+      "verified": 1
     },
     "7": {
       "partial": 21,
@@ -153774,7 +155398,8 @@
       "partial": 14
     },
     "10": {
-      "partial": 14
+      "partial": 12,
+      "verified": 2
     },
     "11": {
       "partial": 34,

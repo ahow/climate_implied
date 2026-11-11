@@ -7,6 +7,8 @@ import { nativePathwayGasIds } from "../shared/nativePathwaySemantics";
 import { nativeInventory, validateNativePair } from "../server/calculation/nativePathwayContract";
 import * as XLSX from "xlsx";
 import ts from "typescript";
+import { resolve } from "node:path";
+import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 
 const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
 test("134 original slots close; unknown historical summary remains unresolved without denominator changes",()=>{
@@ -27,6 +29,52 @@ test("134 original slots close; unknown historical summary remains unresolved wi
   }
   assert.equal(new Set(outputFieldSemantics.map(f=>f.id)).size,outputFieldSemantics.length);
   assert.equal(census.completion,false,"Supplemental display/custom-sheet/chained-response coverage is not fully verified");
+});
+
+test("four original cache aliases retain explicit provenance through the production response clone",()=>{
+  const aliases=["projectionResultCache","categoryCacheResult","historicalTrendCacheResult","categoryHistoricalTrendCache"];
+  assert.deepEqual(census.resolvedResponseAliases.map((a:{expression:string})=>a.expression).sort(),[...aliases].sort());
+  for(const alias of census.resolvedResponseAliases) {
+    assert.equal(alias.responseExpression,`detachProjectionCacheResponse(${alias.expression})`);
+    assert.deepEqual(alias.transparentWrapper,{
+      source:"server/calculation/projectionCacheResponse.ts",name:"detachProjectionCacheResponse",
+    });
+  }
+  const fixturePath=resolve("script/__response_alias_resolution_fixture__.ts");
+  const helperPath=resolve("server/calculation/projectionCacheResponse.ts");
+  const fixture=`
+    import { detachProjectionCacheResponse as clone } from "../server/calculation/projectionCacheResponse";
+    declare const res: {json(value: unknown): void};
+    ${[...aliases,"freshResult"].map(name=>`declare const ${name}: {value:number};`).join("\n")}
+    ${aliases.map(name=>`res.json(${name}); res.json(clone(${name}));`).join("\n")}
+    res.json(clone(freshResult));
+    res.json(clone({projectionResultCache}));
+    res.json(clone(projectionResultCache, categoryCacheResult));
+    function detachProjectionCacheResponse<T>(value:T):T {return value;}
+    res.json(detachProjectionCacheResponse(projectionResultCache));
+  `;
+  const run=(helper:string)=>{
+    const options={target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext,moduleResolution:ts.ModuleResolutionKind.Bundler};
+    const host=ts.createCompilerHost(options),get=host.getSourceFile.bind(host);
+    host.getSourceFile=(file,version,onError,newFile)=>
+      resolve(file)===fixturePath||resolve(file)===helperPath
+        ? ts.createSourceFile(file,resolve(file)===fixturePath?fixture:helper,ts.ScriptTarget.ES2022,true)
+        : get(file,version,onError,newFile);
+    const program=ts.createProgram([fixturePath],options,host),checker=program.getTypeChecker();
+    const found:ReturnType<typeof resolveOriginalResponseAlias>[]=[];
+    const visit=(node:ts.Node):void=>{
+      if(ts.isCallExpression(node)&&node.expression.getText()==="res.json")
+        found.push(resolveOriginalResponseAlias(node.arguments[0],checker));
+      ts.forEachChild(node,visit);
+    };
+    visit(program.getSourceFile(fixturePath)!);
+    return found;
+  };
+  const genuine=run(readFileSync(helperPath,"utf8"));
+  assert.deepEqual(genuine.slice(0,8).map(a=>a?.expression),aliases.flatMap(name=>[name,name]));
+  assert.ok(genuine.slice(8).every(a=>a===undefined),"Fresh values, changed arguments, arity and same-named local functions must not earn original alias credit");
+  const transformed=run("export function detachProjectionCacheResponse<T>(value:T):T {return {changed:true} as T;}");
+  assert.equal(transformed.filter(Boolean).length,4,"A transforming wrapper must not resolve; only the four direct aliases remain");
 });
 
 test("native pathway dynamic domains bind every gas/checkpoint and exclude 2024 from the cumulative sum",()=>{

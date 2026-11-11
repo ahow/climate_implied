@@ -1,0 +1,45 @@
+{
+  "scope": "Bounded follow-up to the quantity-label full-suite failure after S16-013/S06-009 label changes.",
+  "reportedParentFailure": { "tests": 853, "pass": 852, "fail": 1, "location": "script/quantity-label-contracts.test.ts:208", "condition": "All-runtime scan expected zero violations; actual one." },
+  "preservedBeforeScan": {
+    "command": "npx tsx script/residual-label-scan.ts generated-artifacts/warning-pathway-label-quantity-before.json",
+    "path": "generated-artifacts/warning-pathway-label-quantity-before.json",
+    "sha256": "323dd0ccd8264c6c776c041d7f6872cfc6d93a41bf636853bf063fc623101850",
+    "sourceFiles": 350,
+    "counts": { "technical-name": 122, "local-negation": 38, "reviewed-exception": 28, "violation": 1, "unknown": 2 },
+    "finding": "The legacy policy said not5% of2024 or net zero, leaving the net-zero occurrence without its own explicit negation. Two further unknowns were exact official CAT title/definition duplicates in the new shared identity guard, masked by the first failing assertion."
+  },
+  "fix": {
+    "warning": "Changed the policy to not5% of2024 and not net zero. Preserved right-censoring, R16-EXTRAPOLATION-001, CO2-only/aggregate-GHG response, fixed1.1C offset and no standalone regional-temperature interpretation.",
+    "officialSourceQuotes": "Preserved CAT's actual published title and definition verbatim. Added only two individual file-plus-exact-text reviews for shared/referenceScenarioLabels.ts, matching the existing reviewed literals in catReferences.json.",
+    "gatePreserved": "No scanner-classification logic, broad exception, file whitelist, unknown/violation threshold or unused-exception gate changed.",
+    "regression": "Quantity test requires the actual legacy policy to classify as local-negation without an exception; both exact CAT quotes must match retained metadata and classify as individually reviewed."
+  },
+  "executedFocusedTests": {
+    "command": "npx tsx --test script/quantity-label-contracts.test.ts script/warning-and-pathway-label-contracts.test.ts",
+    "exitCode": 0,
+    "tests": 13,
+    "pass": 13,
+    "fail": 0,
+    "skipped": 0,
+    "log": "generated-artifacts/warning-pathway-label-quantity-fix-tests.tap",
+    "logSha256": "e01fa6f8fed3c976ab12157f86bfcc2df7957df2d538e23bf14d6203e925b87d"
+  },
+  "afterScan": {
+    "command": "npx tsx script/residual-label-scan.ts generated-artifacts/warning-pathway-label-quantity-after.json",
+    "path": "generated-artifacts/warning-pathway-label-quantity-after.json",
+    "sha256": "358b1651804d6204b1c80c79c37bbd72a1e7800e840911ef7cfa187d3b59022c",
+    "sourceFiles": 350,
+    "counts": { "technical-name": 122, "local-negation": 39, "reviewed-exception": 30, "violation": 0, "unknown": 0 },
+    "unusedExceptions": 0
+  },
+  "changedSourceSha256": {
+    "client/src/lib/ui-claim-register.ts": "0a9e7da257e6e8184458407da67c85bf711447ea19bbea0e070cd734c9f350cb",
+    "docs/S16-013-warning-resolution-register.json": "278a0ad0c9e62365946c3e048f705141101f95d3f1de440a49e6eb10031f89ee",
+    "script/residual-label-scan.ts": "7f3e03e54ec394c5f3397229a0398a220378bbc1e5b4936bc6f9618a50738caa",
+    "script/quantity-label-contracts.test.ts": "9c562294df2e59f4cefdc598959a6659d2b30c2c7ef8978809a30dee4ca453ec"
+  },
+  "safety": "No routes, calculation helpers, package scripts, bundle pins, native/scientific gates, canonical ledgers, deployment or callbacks edited. No protected model execution or broad unchanged reruns.",
+  "parentRecheck": "Full suite and coherent census remain for parent; all fourteen retained bundle pins must remain unchanged.",
+  "privacy": "Public source labels, paths, hashes and counters only; no raw private issuer/workbook payload."
+}

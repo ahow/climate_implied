@@ -10,6 +10,7 @@ import { bindNestedOutput, bindExportColumns, outputFieldSemantics } from "../sh
 import { selectedTrajectoryThresholdContext } from "../server/calculation/thresholdDiagnostic";
 import { historicalTrajectoryMetrics } from "../server/calculation/historicalMetrics";
 import { calculationKey } from "../server/calculation/identity";
+import { detachProjectionCacheResponse } from "../server/calculation/projectionCacheResponse";
 import { legacyContext } from "../shared/calculationContract";
 import * as forward from "../server/calculation/forwardProjection";
 import * as history from "../server/calculation/historicalIndicators";
@@ -40,7 +41,7 @@ function projectionHandler() {
   let handler: (req: unknown, res: unknown) => Promise<void>;
   const cache = new Map<string, unknown>(), writes: string[] = [];
   const sandbox = {
-    ...forward, ...history, calculationKey, legacyContext, PROJECTION_RESPONSE_VERSION,
+    ...forward, ...history, calculationKey, legacyContext, PROJECTION_RESPONSE_VERSION, detachProjectionCacheResponse,
     projectionResponseSchema, bindNestedOutput, historicalTrajectoryMetrics,
     selectedTrajectoryThresholdContext, applyCategoryModifications,
     projectionResultCache: null,

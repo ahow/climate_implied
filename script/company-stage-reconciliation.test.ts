@@ -60,7 +60,14 @@ for (const clause of canonical) {
     assert.equal(record.status_review.prior_canonical_status,cachePrior.status);
     assert.ok(clause.cache_track_increment?.execution,"Later verification needs its own execution receipt");
   }
-  const priorStatus=clause.before_ready_implementation_20261110?.status ?? cachePrior?.status ?? clause.status;
+  const coveragePrior=clause.before_coverage_increment;
+  if(coveragePrior){
+    assert.ok(["S10-002","S10-006","S10-014"].includes(clause.id));
+    assert.equal(coveragePrior.published_ledger_revision,"09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1");
+    assert.equal(record.status_review.prior_canonical_status,coveragePrior.status);
+    assert.ok(clause.coverage_increment?.execution,"Later coverage verification needs its own execution receipt");
+  }
+  const priorStatus=clause.before_ready_implementation_20261110?.status ?? cachePrior?.status ?? coveragePrior?.status ?? clause.status;
   if (priorStatus === "verified") assert.equal(record.status, "verified", "No unproved prior verified downgrade");
   if(priorStatus!=="verified"&&clause.status==="verified"){
     assert.ok(clause.executions.length>0,"New parent verification needs actual executions");

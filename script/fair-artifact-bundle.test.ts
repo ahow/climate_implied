@@ -2,10 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdir, mkdtemp, writeFile, symlink, link, chmod } from "node:fs/promises";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { safeBundlePath, readFairPrivateFile, readRuntimeFairArtifact } from "../server/calculation/fairArtifactFiles";
 import { createFairArtifactLoader } from "../server/calculation/fairArtifacts";
 import { fairArtifactCatalog, fairArtifactSelection } from "../server/calculation/fairArtifactCatalog";
-import { activateFairRelease, buildFairBundle } from "./fair-artifact-bundle";
+import { activateFairRelease, buildFairBundle, buildFairReplacementBundle, validateFairReplacement } from "./fair-artifact-bundle";
 
 test("private reader refuses traversal, symlinks, hardlinks and open permissions", async () => {
   await mkdir("generated-artifacts", { recursive: true });
@@ -54,4 +55,22 @@ test("offline package functions cannot write outside ignored generated directory
   await assert.rejects(activateFairRelease("public/store", "0".repeat(64), null), /PRIVATE_GENERATED/);
   const root = await mkdtemp(path.resolve("generated-artifacts/fair-activation-engineering-test-"));
   await assert.rejects(activateFairRelease(root, "../traversal", null), /EXACT_SHA256/);
+});
+
+test("separately versioned replacement requires explicit trusted baseline; legacy build cannot silently refreeze", async () => {
+  const root = await mkdtemp(path.resolve("generated-artifacts/fair-replacement-refusal-test-"));
+  await assert.rejects(buildFairBundle(path.join(root, "silent.fairbundle")), /REPLACEMENT_REQUIRED/);
+  await assert.rejects(buildFairReplacementBundle(path.join(root, "replacement.fairbundle"), "not-read", "0".repeat(64)),
+    /BASELINE_NOT_AUTHORIZED/);
+  await assert.rejects(validateFairReplacement("not-read", "0".repeat(64), "not-read", "0".repeat(64)),
+    /BASELINE_NOT_AUTHORIZED/);
+});
+
+test("operator CLI accepts sha256 option names and reaches exact-baseline authorization", () => {
+  const result = spawnSync(process.execPath, ["--import", "tsx", "script/fair-artifact-bundle.ts", "validate-replacement",
+    "--baseline=not-read", `--baseline-sha256=${"0".repeat(64)}`, "--bundle=not-read", `--sha256=${"0".repeat(64)}`],
+  { encoding: "utf8", env: { ...process.env, DATABASE_URL: undefined, NODE_ENV: "test" } });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /FAIR_REPLACEMENT_BASELINE_NOT_AUTHORIZED/);
+  assert.doesNotMatch(result.stderr, /Use --key=value/);
 });

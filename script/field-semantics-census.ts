@@ -36,6 +36,8 @@ import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../s
 import { supplementalSheetBindings } from "../shared/supplementalSheetBindings";
 import { trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
 import { trackBPublicCatalog } from "../server/trackBPublicCatalog";
+import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBindings, stage10JsonExportLeafBindings } from "../shared/stage10Coverage";
+import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -64,6 +66,10 @@ const trackBXlsxSurface='API GET "/api/research/track-b-admission/export.xlsx"';
 const trackBCatalogSurface='API GET "/api/research/track-b-admission/catalog"';
 const trackBWorkbookSurface="XLSX server/calculation/trackBAdmissionWorkbook.ts";
 const trackBLeafBindings=new Map<string,{id:string;transform:string}>();
+const stage10ApiSurface='API GET "/api/research/stage10-coverage"';
+const stage10JsonSurface='API GET "/api/research/stage10-coverage/export.json"';
+const stage10XlsxSurface='API GET "/api/research/stage10-coverage/export.xlsx"';
+const stage10LeafBindings=new Map<string,{id:string;transform:string}>();
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
 const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
 const verifiedExportBindings: {surface:string;field:string;id:string;transform:string}[]=[];
@@ -127,7 +133,8 @@ if(!baseline) {
   for(const column of companyReplayLedgerColumns) entries.push({surface:"XLSX server/calculation/companyProjectionReplay.ts:Ledger",
     field:`[].${column}`,type:"string | number | null",source:"server/calculation/companyProjectionReplay.ts",line:1,resolution:"typed-field"});
 }
-const resolvedResponseAliases: {surface:string;source:string;line:number;expression:string;replacement:string}[]=[];
+const resolvedResponseAliases: {surface:string;source:string;line:number;expression:string;responseExpression:string;
+  transparentWrapper?:{source:string;name:string};replacement:string}[]=[];
 function fields(type:ts.Type,path:string,surface:string,node:ts.Node,depth=0) {
   const source=node.getSourceFile(),where={source:relativeSource(source.fileName),line:source.getLineAndCharacterOfPosition(node.getStart()).line+1};
   if(type.isUnion()) {for(const t of type.types) if(!(t.flags&(ts.TypeFlags.Null|ts.TypeFlags.Undefined))) fields(t,path,surface,node,depth);return;}
@@ -174,12 +181,12 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
           resolution: "exact-qualified-production-contract",
         })));
       } else fields(checker.getTypeAtLocation(node.arguments[0]),"",surface,node);
-      const expression=node.arguments[0].getText(source);
-      if(!baseline&&["projectionResultCache","categoryCacheResult","historicalTrendCacheResult","categoryHistoricalTrendCache"].includes(expression)){
+      const alias=!baseline ? resolveOriginalResponseAlias(node.arguments[0],checker) : undefined;
+      if(alias){
         const type=checker.getTypeAtLocation(node.arguments[0]);
         if(type.flags&(ts.TypeFlags.Any|ts.TypeFlags.Unknown)) throw new Error("Cache response alias regressed to unknown");
         resolvedResponseAliases.push({surface,source:relativeSource(source.fileName),
-          line:source.getLineAndCharacterOfPosition(node.getStart()).line+1,expression,
+          line:source.getLineAndCharacterOfPosition(node.getStart()).line+1,...alias,
           replacement:"Typed cached response expands to the same qualified leaves as fresh response; former $ placeholder retained in reconciliation, not silently discarded"});
       }
     }
@@ -325,6 +332,40 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
 }
 // External route handler's actual typed send arguments are supplemental API
 // inventory, never additions to the frozen original direct-res.json cohort.
+if(!baseline) {
+  const handler=readFileSync("server/stage10CoverageApi.ts","utf8"), index=readFileSync("server/index.ts","utf8");
+  if(!handler.includes("res.json(report)") || !handler.includes(".json(stage10ExportDocument(report))") ||
+    !handler.includes(".send(buildStage10Workbook(report))") ||
+    index.indexOf("registerStage10CoverageRoutes(app)")<index.indexOf("app.use(releaseSafety())") ||
+    index.indexOf("app.use(releaseSafety())")<0) throw new Error("Stage10 actual read-only API/export registration changed");
+  const add=(surface:string,field:string,type:string,binding:{id:string;transform:string})=>{
+    if(!outputFieldSemantics.some(s=>s.id===binding.id)) throw new Error(`Unmapped Stage10 leaf ${binding.id}`);
+    stage10LeafBindings.set(`${surface}|${field}`,binding);
+    supplementalTypedApiEntries.push({surface,field,type,source:"server/stage10CoverageApi.ts",line:1,
+      resolution:"exact-qualified-retained-aggregate-contract-not-identity-or-original-filing-approval"});
+  };
+  const typeOf=(path:string)=>path==="fiscalYears[]"?"number":
+    ["scientificAcceptance","investmentEvidence"].includes(path)?"false":
+    ["fullWorkbookCompanies","verifiedEligibleCompanies","admittedStage11To15Records","retainedSourceVersions","selectedSourceVersions"].includes(path)?"number":
+    path==="rows[].suppressed"?"boolean":path==="rows[].companies"||path==="rows[].expectedSlots"?"number":
+    path.startsWith("rows[].")&&!["population","sector","region","dimension","key"].includes(path.slice(7))?"number | null":"string";
+  for(const path of stage10ReportFieldPaths)
+    add(stage10ApiSurface,path,typeOf(path),{id:`stage10Coverage.${path}`,transform:"Identity of strict safe aggregate; no private provider/identity/value rows"});
+  for(const [path,binding] of Object.entries(stage10JsonExportLeafBindings()))
+    add(stage10JsonSurface,path,path.startsWith("report.")?typeOf(path.slice(7)):path.startsWith("rows[].")?typeOf(path):"string",binding);
+  for(const [column,binding] of Object.entries(stage10ExportBindings))
+    add(stage10XlsxSurface,`Aggregate coverage.[].${column}`,typeOf(`rows[].${column}`).replace("null",'"null"'),
+      {...binding,transform:`${binding.transform}; XLSX literal text null,never blank or0`});
+  for(const path of stage10ReportFieldPaths.filter(p=>!p.startsWith("rows[].")))
+    for(const column of ["Field","JSON value"])
+      add(stage10XlsxSurface,`Exact input identity.[${path}].${column}`,"string",{id:`stage10Coverage.${path}`,
+        transform:column==="Field"?"Exact source field name,not its value":"JSON.stringify complete exact aggregate metadata,including arrays/false/null; no private rows"});
+  for(const sheet of ["Field semantics","Column bindings"] as const)
+    for(const [column,binding] of Object.entries(supplementalSheetBindings(sheet)))
+      add(stage10XlsxSurface,`${sheet}.[].${column}`,"string",binding);
+  for(const surface of [stage10ApiSurface,stage10JsonSurface,stage10XlsxSurface])
+    add(surface,"error","string",{id:"stage10Coverage.error",transform:"Exact400invalid selection/409changed input/503unavailable-corrupt storage; never zero/unqueried/not-restated fallback"});
+}
 if(!baseline) {
   const handler=readFileSync("server/trackBAdmissionApi.ts","utf8");
   const index=readFileSync("server/index.ts","utf8");
@@ -511,6 +552,24 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   },
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
   supplementalQualifiedChanges:{
+    stage10Coverage:{
+      definitions:stage10CoverageSemantics.length,ids:stage10CoverageSemantics.map(s=>s.id),
+      reportSchemaLeaves:stage10ReportFieldPaths.length,
+      api:{surface:stage10ApiSurface,mountedAfterReleaseSafety:true,readOnlyRetainedResolverImplemented:true,
+        providerRefresh:false,publicWrites:false,realApprovalCreated:false,
+        source:"server/financialData/stage10Source.ts: repeatable-read READ ONLY immutable snapshot/review SELECTs and fixed retained roots",
+        sourceBoundary:"Current approvals do not imply immutable original financial histories; authentic candidate coverage does not advance historical model cohorts"},
+      jsonExport:{surface:stage10JsonSurface,leafBindings:stage10JsonExportLeafBindings()},
+      workbook:{surface:stage10XlsxSurface,source:"server/financialData/stage10Export.ts",
+        aggregateColumns:stage10ExportBindings,identityFields:stage10ReportFieldPaths.filter(p=>!p.startsWith("rows[].")),
+        metadataColumns:31,nullRepresentation:"literal text null; no missing→0"},
+      headerBindings:{"X-Stage10-Input-SHA256":"stage10Coverage.inputHash"},
+      display:{source:"client/src/components/stage10-financial-coverage.tsx",populationAndFieldSelection:"Local presentation only,no availability-dependent cohort change",
+        verification:"script/stage10-retained-coverage.test.ts direct imported SSR and actual HTTP/JSON/XLSX engineering fixtures"},
+      typedApiAndWorkbookFields:supplementalTypedApiEntries.filter(e=>stage10LeafBindings.has(`${e.surface}|${e.field}`))
+        .map(e=>({...e,...stage10LeafBindings.get(`${e.surface}|${e.field}`),bound:true})),
+      boundary:"39 supplemental descriptive/control definitions,all seven identity states/ten fields/fixed full and eligible denominators. Explicit true restated flags/present is NOT total prevalence; unknown share and known-provenance rate remain separate,zero known denominator→null. Counts only,small populations suppressed. No original1001 closure or scientific/Stage11–15 cohort acceptance.",
+    },
     trackBAdmission:{
       definitions:trackBAdmissionSemantics.length+trackBAdmissionHttpSemantics.length+trackBPublicCatalogSemantics.length,
       ids:[...trackBAdmissionSemantics,...trackBAdmissionHttpSemantics,...trackBPublicCatalogSemantics].map(s=>s.id),
@@ -721,6 +780,8 @@ const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent
 const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
   .map(e=>[`${e.surface}|${e.field}`,e])).values());
 const externalTypedApiBound=externalTypedApiFields.filter(e=>
+    stage10LeafBindings.has(`${e.surface}|${e.field}`)?
+      outputFieldSemantics.some(f=>f.id===stage10LeafBindings.get(`${e.surface}|${e.field}`)!.id):
     trackBLeafBindings.has(`${e.surface}|${e.field}`)?
       outputFieldSemantics.some(f=>f.id===trackBLeafBindings.get(`${e.surface}|${e.field}`)!.id):
    warmingApiLeafBindings.has(`${e.surface}|${e.field}`)?
@@ -776,6 +837,9 @@ const reconciliation = baseline ? {} : {
       trackBAdmissionWorkbookLeafSlots:externalTypedApiFields.filter(e=>e.surface.startsWith(trackBWorkbookSurface)).length,
       trackBAdmissionXlsxApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBXlsxSurface).length,
       trackBAdmissionCatalogLeafSlots:externalTypedApiFields.filter(e=>e.surface===trackBCatalogSurface).length,
+       stage10CoverageApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===stage10ApiSurface).length,
+       stage10CoverageJsonExportLeafSlots:externalTypedApiFields.filter(e=>e.surface===stage10JsonSurface).length,
+       stage10CoverageXlsxApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===stage10XlsxSurface).length,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

@@ -19,6 +19,7 @@ import { projectCompanyMembers } from "./calculation/companyProjection";
 import { getCompanyCoverage } from "./snapshots/companyCoverage";
 import {listCompanyOperatingReviews,projectReviewedCompany} from "./snapshots/companyOperatingReview";
 import {projectionResponseSchema,PROJECTION_RESPONSE_VERSION,type ProjectionResponse} from "../shared/projectionResponse";
+import { detachProjectionCacheResponse } from "./calculation/projectionCacheResponse";
 import { loadIndicatorSnapshot } from "./snapshots/indicators";
 import { loadRegionalInputs } from "./snapshots/regional";
 import { calculateRegionalFromInputs } from "./calculation/regionalProjections";
@@ -638,14 +639,14 @@ export async function registerRoutes(
 
       if (category === "all" && projectionResultCache && validRouteCache(`projection:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("projection",projectionResultCache).map(f=>f.id).join(","));
-        return res.json(projectionResultCache);
+        return res.json(detachProjectionCacheResponse(projectionResultCache));
       }
 
       const cached = await storage.getProjectionCache(cacheKey);
       if (cached) {
         const validatedCache=projectionResponseSchema.parse(cached.resultData);
         res.set("X-Field-Semantics",bindNestedOutput("projection",validatedCache).map(f=>f.id).join(","));
-        return res.json(validatedCache);
+        return res.json(detachProjectionCacheResponse(validatedCache));
       }
 
       const allNowcast = getAllHistoricalIndicatorsWithNowcast();
@@ -718,7 +719,7 @@ export async function registerRoutes(
         resultData: result,
       });
 
-      res.json(result);
+      res.json(detachProjectionCacheResponse(result));
     } catch (error) {
       console.error("Projection calculation error:", error);
       res.status(500).json({ error: "Failed to calculate projection" });
@@ -740,13 +741,13 @@ export async function registerRoutes(
     try {
       if (categoryCacheResult && validRouteCache(`categories:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("category",categoryCacheResult).map(f=>f.id).join(","));
-        return res.json(categoryCacheResult);
+        return res.json(detachProjectionCacheResponse(categoryCacheResult));
       }
       const result = calculateAllCategoryProjections();
       categoryCacheResult = result;
       tagRouteCache(`categories:${PROJECTION_RESPONSE_VERSION}`, res);
       res.set("X-Field-Semantics",bindNestedOutput("category",result).map(f=>f.id).join(","));
-      res.json(result);
+      res.json(detachProjectionCacheResponse(result));
     } catch (error) {
       console.error("Category projections error:", error);
       res.status(500).json({ error: "Failed to calculate category projections" });
@@ -757,7 +758,7 @@ export async function registerRoutes(
     try {
       const respond=(rows:Awaited<ReturnType<typeof calculateRegionalProjections>>)=>{
         res.set("X-Field-Semantics",bindNestedOutput("regional",rows).map(f=>f.id).join(","));
-        return res.json(rows);
+        return res.json(detachProjectionCacheResponse(rows));
       };
       const regionalId = snapshotSelection(req.query.regionalSnapshotId);
       if (regionalId) {
@@ -787,7 +788,7 @@ export async function registerRoutes(
     try {
       const respond=(rows:ReturnType<typeof calculateSensitivityAnalysis>)=>{
         res.set("X-Field-Semantics",bindOutputFields("sensitivity",rows).map(f=>f.id).join(","));
-        return res.json(rows);
+        return res.json(detachProjectionCacheResponse(rows));
       };
       if (sensitivityCacheResult && validRouteCache("sensitivity", res)) {
         return respond(sensitivityCacheResult);
@@ -810,13 +811,13 @@ export async function registerRoutes(
     try {
       if (historicalTrendCacheResult && validRouteCache(`history:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("historical",historicalTrendCacheResult).map(f=>f.id).join(","));
-        return res.json(historicalTrendCacheResult);
+        return res.json(detachProjectionCacheResponse(historicalTrendCacheResult));
       }
       const result = getRecalculatedHistoricalTrend();
       historicalTrendCacheResult = result;
       tagRouteCache(`history:${PROJECTION_RESPONSE_VERSION}`, res);
       res.set("X-Field-Semantics",bindNestedOutput("historical",result).map(f=>f.id).join(","));
-      res.json(result);
+      res.json(detachProjectionCacheResponse(result));
     } catch (error) {
       console.error("Historical trend error:", error);
       res.status(500).json({ error: "Failed to calculate historical trend" });
@@ -827,13 +828,13 @@ export async function registerRoutes(
     try {
       if (categoryHistoricalTrendCache && validRouteCache(`category-history:${PROJECTION_RESPONSE_VERSION}`, res)) {
         res.set("X-Field-Semantics",bindNestedOutput("categoryHistory",categoryHistoricalTrendCache).map(f=>f.id).join(","));
-        return res.json(categoryHistoricalTrendCache);
+        return res.json(detachProjectionCacheResponse(categoryHistoricalTrendCache));
       }
       const result = getCategoryHistoricalTrend();
       categoryHistoricalTrendCache = result;
       tagRouteCache(`category-history:${PROJECTION_RESPONSE_VERSION}`, res);
       res.set("X-Field-Semantics",bindNestedOutput("categoryHistory",result).map(f=>f.id).join(","));
-      res.json(result);
+      res.json(detachProjectionCacheResponse(result));
     } catch (error) {
       console.error("Category historical trend error:", error);
       res.status(500).json({ error: "Failed to calculate category historical trend" });

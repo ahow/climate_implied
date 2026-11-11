@@ -11,6 +11,7 @@ import { warmingValidationReferenceSemantics, warmingReferenceExportLeafBindings
 import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics, trackBAdmissionExportLeafBindings } from "../shared/trackBAdmissionContract";
 import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
 import { trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
+import { stage10CoverageSemantics, stage10JsonExportLeafBindings, stage10ExportBindings } from "../shared/stage10Coverage";
 const census = JSON.parse(readFileSync("docs/field_semantics_census.json", "utf8"));
 const frozen = JSON.parse(readFileSync("docs/field_semantics_original_cohort.json", "utf8"));
 
@@ -50,12 +51,13 @@ test("every new typed API/export denominator change is separate and reconciles a
   // fact count. The reference's exact38-ID contract is independently checked.
   assert.equal(census.definitions, fieldSemantics.length + outputFieldSemantics.length);
   assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, conditionalCompanySemantics.length);
-  assert.equal(added.externalTypedApiSlots, 1536);
-  assert.equal(added.externalTypedApiBoundSlots, 1536);
+  assert.equal(added.externalTypedApiSlots, 2395);
+  assert.equal(added.externalTypedApiBoundSlots, 2395);
   assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots +
     added.warmingReferenceApiLeafSlots + added.warmingReferenceJsonExportLeafSlots +
     added.trackBAdmissionApiLeafSlots + added.trackBAdmissionJsonExportLeafSlots + added.trackBAdmissionWorkbookLeafSlots +
-    added.trackBAdmissionXlsxApiLeafSlots + added.trackBAdmissionCatalogLeafSlots);
+    added.trackBAdmissionXlsxApiLeafSlots + added.trackBAdmissionCatalogLeafSlots +
+    added.stage10CoverageApiLeafSlots + added.stage10CoverageJsonExportLeafSlots + added.stage10CoverageXlsxApiLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
   assert.equal(added.conditionalCompanyApiLeafSlots, 63);
@@ -68,10 +70,32 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(added.trackBAdmissionWorkbookLeafSlots, 65);
   assert.equal(added.trackBAdmissionXlsxApiLeafSlots, 65);
   assert.equal(added.trackBAdmissionCatalogLeafSlots, 12);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 2868);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 2867);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 1867);
+  assert.equal(added.stage10CoverageApiLeafSlots, 39);
+  assert.equal(added.stage10CoverageJsonExportLeafSlots, 736);
+  assert.equal(added.stage10CoverageXlsxApiLeafSlots, 84);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 3727);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 3726);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 2726);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
+});
+test("Stage10 exact39 new definitions/859 aggregate supplements are not original1001 closure or historical model eligibility", () => {
+  const coverage = census.supplementalQualifiedChanges.stage10Coverage;
+  assert.equal(coverage.definitions, 39);
+  assert.deepEqual(coverage.ids, stage10CoverageSemantics.map(s => s.id));
+  assert.equal(coverage.reportSchemaLeaves, 38);
+  assert.deepEqual(coverage.jsonExport.leafBindings, stage10JsonExportLeafBindings());
+  assert.equal(Object.keys(coverage.jsonExport.leafBindings).length, 735);
+  assert.deepEqual(coverage.workbook.aggregateColumns, stage10ExportBindings);
+  assert.equal(coverage.workbook.identityFields.length, 14);
+  assert.equal(coverage.api.readOnlyRetainedResolverImplemented, true);
+  assert.equal(coverage.api.publicWrites, false); assert.equal(coverage.api.providerRefresh, false);
+  assert.equal(coverage.api.realApprovalCreated, false);
+  assert.equal(coverage.typedApiAndWorkbookFields.length, 859);
+  assert.ok(coverage.typedApiAndWorkbookFields.every((f: { bound: boolean; id: string }) =>
+    f.bound && outputFieldSemantics.some(s => s.id === f.id)));
+  assert.ok(frozen.slots.every((s: { surface: string }) => !s.surface.includes("stage10-coverage")));
+  assert.equal(census.originalGapReconciliation.originalPublicSlots, 1001);
+  assert.equal(census.originalGapReconciliation.originalFullyBoundFields, 1000);
 });
 test("TrackB35 definitions and612 supplements bind actual trusted reader/catalog/XLSX but never fabricate real publication or historical acceptance", () => {
   const track = census.supplementalQualifiedChanges.trackBAdmission;

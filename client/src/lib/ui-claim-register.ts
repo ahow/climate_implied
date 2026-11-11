@@ -14,7 +14,7 @@ export const uiClaimRegister = [
   {
     route: "/ (explicit legacy opt-in)",
     consumers: ["TemperatureGauge", "TemperatureHistogram", "EmissionsChart", "SensitivityChart", "RegionalComparison", "HistoricalTrendChart", "CategoryTrendChart", "CategoryComparison"],
-    policy: "Unsupported legacy model diagnostics: CO2-only response on aggregate GHG plus fixed 1.1C offset. Fixed-5-Gt milestone may extrapolate beyond 2100. No standalone regional temperature interpretation.",
+    policy: "Unsupported legacy model diagnostics: CO2-only response on aggregate GHG plus fixed 1.1C offset. Fixed-5-Gt milestone is right-censored at the actual simulated horizon; not 5% of 2024 and not net zero (R16-EXTRAPOLATION-001). No standalone regional temperature interpretation.",
     exports: "Existing chart downloads remain legacy diagnostics, reachable only inside opt-in view; not promoted, rebased or repaired.",
   },
   {

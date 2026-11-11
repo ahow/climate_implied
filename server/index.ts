@@ -7,6 +7,7 @@ import { registerWarmingValidationReferenceRoutes } from "./warmingValidationRef
 import { quantityDescriptionMiddleware } from "./quantityDescriptionApi";
 import { registerTrackBAdmissionRoutes } from "./trackBAdmissionApi";
 import { loadPublishedTrackBAdmission } from "./trackBDisclosureStore";
+import { registerStage10CoverageRoutes } from "./stage10CoverageApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -70,6 +71,7 @@ app.use((req, res, next) => {
   // Exact source-pinned public disclosures only; no private archive fallback.
   // The genuine production catalog is empty until operator rights review/pins.
   registerTrackBAdmissionRoutes(app, loadPublishedTrackBAdmission);
+  registerStage10CoverageRoutes(app);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {

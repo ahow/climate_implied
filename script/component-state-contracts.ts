@@ -34,6 +34,15 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "stage10-financial-coverage.tsx": query("Absent/malformed retained aggregate is explicit unavailable,never zero coverage.", {
+    loading: "Actual initial/background pending read hides retained values and all download links; named loading status.",
+    error: "Any read failure wins over retained success; explicit error,not zero values or not-queried identities.",
+    selection: "Full report is frozen before local population/field presentation filters; exact workbook/cutoff/year/inputHash download pins; changed input409,no substitute.",
+    null: "Privacy-suppressed counts are labeled Suppressed; undefined/zero-denominator shares unavailable. Unknown restatement is separate,not original or0%not-restated.",
+    zero: "Actual zero counts retained; zero-denominator shares remain null. Current approval is not verified immutable financial eligibility.",
+    refusal: "Source/storage corruption and unsupported original vintages refuse; no provider refresh or model/corpus approval.",
+    scope: "Safe aggregate only,same inputHash API/UI/JSON/XLSX. All seven identity states and ten field coverage categories with sector×region Unknown retained; no private IDs/provider values.",
+  }),
   "track-b-research.tsx": query("Empty source-pinned catalog is explicit; absent/malformed selected report has a named absence/invalid reason, never an indefinite loader.", {
     loading: "Actual catalog/report pending read suppresses previous success and download links; each has a named loading message.",
     error: "Catalog and selected report failures take precedence over retained data; no prior values or downloads are displayed.",
@@ -202,7 +211,7 @@ export const filePolicies: Record<string, Policy> = {
     refusal: "Physical comparison withheld: no defensible valuation-to-activity mapping.",
     selection: "Scoring/geography/dataset keys own group results; pending/error never shows prior selected result.",
   }),
-  "methodology.tsx": controls("Static caveats, pinned WarmingValidationReference and independently queried DriverEvidenceDisclosure/TrackBResearch. Reference is not a computed input; TrackB is per-period structural/refusal disclosure, not numeric efficacy."),
+  "methodology.tsx": controls("Static caveats,pinned WarmingValidationReference and independently queried DriverEvidenceDisclosure/TrackBResearch/Stage10FinancialCoverage. Reference is not a computed input; research/coverage are descriptive retained structural evidence,not model approval or efficacy."),
   "news-sentiment.tsx": query("Missing cached response, daily volume or positive-count sentiment observations have separate reasons.", {
     null: "No sentiment denominator => no neutral mean/percentage zero; no volume observations => weekly average unavailable. True volume zero remains zero.",
     refusal: "Operator-refresh-required and provider-configuration errors are distinct; UI never makes provider refresh calls.",
@@ -228,6 +237,7 @@ export const focusedRenderComponents = new Set([
   "TimeSeriesChartTooltip", "BacktestTooltip", "DecarbSignal", "Methodology", "NewsSentiment",
   "WarmingValidationReference",
   "TrackBResearch",
+  "Stage10FinancialCoverage",
 ]);
 const remainingCohort = new Set([
   "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
@@ -292,7 +302,9 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: name === "TrackBResearch"
+    focusedEvidence: name === "Stage10FinancialCoverage"
+      ? "script/stage10-retained-coverage.test.ts: direct actual component SSR loading,error,absent,invalid,ready seven-state/cutoff/inputHash/downloads. Same suite exercises real HTTP/JSON/XLSX adapter against isolated synthetic engineering inputs,not real approvals. Original62component suite/browser not rerun or claimed."
+      : name === "TrackBResearch"
       ? "script/track-b-admission.test.ts: direct imported TrackBResearch SSR covers catalog/report loading,error,empty,missing,invalid and exact selected absent-period reasons/download identities. Actual DEV filesystem resolver/HTTP/XLSX/browser-hash tests exercise the same contract; no old61component suite or browser interaction rerun is claimed."
       : name === "WarmingValidationReference"
       ? "script/warming-validation-reference.test.ts: direct imported component SSR verifies1.37SR1.5headline,1.24[1.0–1.5]decade,2024inventory,source/date qualifications,five global field IDs and decoded local JSON equality. script/component-state-census.test.ts directly renders the61stconsumer and checks reachability/policy/finite count; old60component suites are not rerun or claimed reverified."

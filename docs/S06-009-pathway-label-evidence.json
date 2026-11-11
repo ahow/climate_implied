@@ -1,0 +1,113 @@
+{
+  "criterion": "S06-009",
+  "followUpEvidence": "docs/S06-009-quantity-label-fix-evidence.json",
+  "historicalReceiptNotice": "This records the prior executed label/source snapshot. Its original hashes and receipts are preserved. The linked quantity-label follow-up records the subsequent explicit-negation correction and exact CAT-quote reviews, with current changed-source hashes and executed checks.",
+  "requirement": "No NDC-only pathway is labelled “all commitments”.",
+  "assessment": "Focused engineering negative-label checks passed for the actual audited API/UI/JSON and native diagnostic bindings. This does not certify native production-pathway completeness or scientific readiness.",
+  "privacy": "Public source paths, hashes, labels, commands and counters only. No private issuer rows, private workbook cells, raw licensed workbook or private calculation payload exported.",
+  "writtenContract": {
+    "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+    "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+    "bindingAmendments": "docs/Developer_Workplan_Amendments.md",
+    "decisionD1": "National targets plus long-term net-zero targets; corporate targets excluded"
+  },
+  "generatedEvidence": {
+    "path": "generated-artifacts/warning-pathway-label-evidence.json",
+    "sha256": "1f5e942d48b78913e544187bcb8325c8ab19b2634bdde0693e1059fc87b03999",
+    "generator": "script/audit-warning-pathway-labels.ts",
+    "derivation": "This public-safe summary records the generated audit and focused execution receipts, not a synthetic source registry or new scientific acceptance test."
+  },
+  "actualAPI": {
+    "path": "/api/reference-scenarios",
+    "httpStatus": 200,
+    "version": "cat-2025-11-13-v1",
+    "bodySha256": "dd76d22ce9e18ece472b657807237c05e4524c868ccee4114eed6463cb5a564a",
+    "matchesRetainedJSON": true,
+    "semanticsBoundLeaves": 28,
+    "source": {
+      "name": "Climate Action Tracker",
+      "publishedAt": "2025-11-13",
+      "workbookSha256": "44044cda8f851f77d6ca0eeb0750848fb6ee32bab50939df2cc2363e63a8c6c1",
+      "workbookHashStatus": "Recorded publisher-workbook identity in retained metadata; raw workbook not downloaded or rehashed by this audit.",
+      "attribution": "Climate Analytics and NewClimate Institute",
+      "licence": "Non-commercial use only; attribution and copyright notice required."
+    },
+    "labels": [
+      { "id": "current-policies", "label": "Current policies", "publishedName": "Policies & action" },
+      { "id": "all-announced-commitments", "label": "All announced commitments delivered", "publishedName": "Optimistic scenario (net-zero pledges)" }
+    ]
+  },
+  "actualBindingInventory": [
+    { "path": "server/routes.ts: GET /api/reference-scenarios", "coverage": "Actual HTTP response equals retained CAT JSON. Published name, definition, source and licence accompany the label; no NDC substitution." },
+    { "path": "client/src/components/published-scenario-references.tsx", "coverage": "Actual SSR card and milestone table share the reviewed label. NDC-only/generic Net Zero2050/missing/contradictory identity is withheld, not relabelled. Genuine zero remains renderable." },
+    { "path": "shared/referenceScenarioLabels.ts", "coverage": "Shared reviewed CAT identity/definition/label binding; not a native-model readiness gate." },
+    { "path": "client/src/pages/methodology.tsx", "coverage": "CAT optimistic national long-term-pledge case is conditional. NGFS NDCs explicitly excludes long-term net-zero pledges." },
+    { "path": "server/calculation/nativePathwayContract.ts: validateNativePair", "coverage": "Actual calculation rejects NDC-only commitments; serialized successful diagnostic remains accounting-valid-not-scientifically-promoted." },
+    { "path": "script/reference_gas_infill.py", "coverage": "Source-inspected exports retain Nationally Determined Contributions (NDCs) and allCommitmentsAvailable=false. Protected climate execution not rerun." },
+    { "path": "script/fair_native_bridge.py", "coverage": "Source-inspected NDC-only commitments refusal preserved. Protected engine not executed." }
+  ],
+  "executedCommands": [
+    {
+      "command": "npx tsx --test script/warning-and-pathway-label-contracts.test.ts",
+      "scope": "Rerun only this six-test focused file after the authorized stale-metadata correction.",
+      "exitCode": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "skipped": 0,
+      "log": "generated-artifacts/warning-pathway-label-tests.tap",
+      "logSha256": "4322f1246d8bde763e8dc5d5fbecae9712e1eacf2148088b911d69ae4fbaad5f"
+    },
+    {
+      "command": "npx tsx script/audit-warning-pathway-labels.ts > generated-artifacts/warning-pathway-label-evidence.json",
+      "exitCode": 0,
+      "scope": "Read-only source/archive inspection and actual API GET; public-safe hashes/labels/counters emitted."
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "exitCode": 0,
+      "scope": "Retained prior-batch typecheck receipt; not rerun for this string-only metadata follow-up. Parent owns final coherent checks.",
+      "log": "generated-artifacts/warning-pathway-label-types.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "focusedCaseCounters": {
+    "tests": 6,
+    "invalidMissingOrContradictoryUIVariants": 8,
+    "retainedPreFixAdmissionReproduced": 1,
+    "genuineZeroSSR": 1,
+    "originalWarningHosts": 12,
+    "linkedRemovedWarningBindings": 3,
+    "underlyingResolutionRecords": 1,
+    "broadUnchangedUIHarnessReruns": 0,
+    "protectedClimateEngineRuns": 0
+  },
+  "warningFollowUp": {
+    "register": "docs/S16-013-warning-resolution-register.json",
+    "resolution": "R16-EXTRAPOLATION-001",
+    "changedBinding": "client/src/lib/ui-claim-register.ts: legacy diagnostic policy sentence",
+    "result": "Stale may-extrapolate-beyond2100 metadata now states right-censoring at the actual simulated horizon, distinct from5% of2024 and net zero.",
+    "physicalWarningPreserved": ["CO2-only response to aggregate GHG", "fixed1.1C offset", "no standalone regional temperature interpretation"],
+    "coordination": "Authorized one-sentence follow-up only; other Stage10 UI-index entries and shared semantics untouched. Parent handles full-suite/coherent census."
+  },
+  "sourceSha256": {
+    "docs/Developer_Workplan_Amendments.md": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
+    "docs/S16-013-warning-resolution-register.json": "663bb41b82ba478efa3749744729c213feea2e6203d1d2ef6ca4e5b45da1324c",
+    "shared/referenceScenarioLabels.ts": "2161635a71114b35c84c13b889fd7cb9232fc97e947d40ad732e51bbaf7f2ee4",
+    "client/src/components/published-scenario-references.tsx": "fe292c47bcd4ca674ad150bb35f7f371001d26eca34cdfd43335b9715d71935d",
+    "client/src/lib/ui-claim-register.ts": "7c3ec1e1020701d68fe2888ab4e1aa70e112c90b42be89c9dab258a33b8841df",
+    "server/calculation/nativePathwayContract.ts": "dbb3d34924b122925a0ed0c8ebf9cd2dab300e67c4e15fa9fde41a929799023d",
+    "server/calculation/data/catReferences.json": "1a71646c452ec3d426a2a4e6df6bd6fe7fd9887d01e579fdbc38194a147a81c7",
+    "server/calculation/historicalMetrics.ts": "d7370be55c60fe28e0e58ce153ee09d470cbe3a5c49229b8bb4e587ee45280aa",
+    "script/warning-and-pathway-label-contracts.test.ts": "f15fbd250bc0deed7284a81fecebf10ab8a96553ba70b3f9efae37920bdf5f7c",
+    "script/reference_gas_infill.py": "62b7c5f13977ca6724a229ed8c6b46a5e043e91953de0c50c22b45cc89672c9b",
+    "script/fair_native_bridge.py": "8c75fcaecf5e51c0e2c8fcc0bbbe789e312707a4a68fe616bab210fd6a155e70",
+    "script/audit-warning-pathway-labels.ts": "ee8827def648e6d3541f8ce390727007e62e12a527b3dc24daf10dcf4fda0dd5"
+  },
+  "residuals": [
+    "Original per-run backtest warning payload archive unavailable; renderer retained, unseen historical text not reconstructed or declared resolved.",
+    "Native full-commitments production input/scientific readiness remains unestablished, not silently substituted by NDCs and not added as an extra condition for this negative label criterion.",
+    "Parent full-suite and coherent source-census checks pending; no broad unchanged UI reruns by this worker."
+  ],
+  "safety": "No canonical ledger, route, protectedFaIR, source data, scientific gate, deployment or callback changed."
+}

@@ -38,6 +38,23 @@ export function normalizeStatementHistory(cashFlows: Row[], balanceSheets: Row[]
     const publicationStatus = filingDates.every(d => typeof d === "string" && d > period)
       ? "provider-filing-date-not-independently-verified" : "publication-date-unavailable-or-report-date-proxy";
     return { period, currency, fcfe, netDebt,
+      valueLineage: Object.fromEntries([
+        ["fcfe", c], ["netDebt", b], ["bookEquity", b], ["operatingCashFlow", c],
+        ["capitalExpenditureOutflow", c], ["netBorrowing", c],
+      ].map(([field, source]) => {
+        const row = source as Row | undefined;
+        const rawDate = row && typeof row.filingDate === "string" ? row.filingDate : null;
+        const filingDate = rawDate && /^\d{4}-\d{2}-\d{2}$/.test(rawDate) && Number.isFinite(Date.parse(rawDate)) &&
+          new Date(rawDate).toISOString().slice(0, 10) === rawDate && rawDate > period ? rawDate : null;
+        const valuePresent = field === "fcfe" ? fcfe !== null : field === "netDebt" ? netDebt !== null :
+          field === "bookEquity" ? !!b && finite(b.totalStockholdersEquity) :
+          field === "operatingCashFlow" ? !!c && finite(c.operatingCashFlow) :
+          field === "capitalExpenditureOutflow" ? !!c && finite(c.capitalExpenditure) && c.capitalExpenditure <= 0 : !!c && finite(c.netDebtIssuance);
+        return [String(field), { filingDate, sourceFilingDate: rawDate, valuePresent,
+          restatement: valuePresent && (row?.restated === true || row?.isRestated === true) ? "restated" : "unknown",
+          filingDateEvidence: filingDate ? "provider-date-not-independently-verified" : "missing-invalid-or-report-date-proxy",
+          sourcePeriod: period, originalPublicationVerified: false }];
+      })),
       bookEquity: b && finite(b.totalStockholdersEquity) ? b.totalStockholdersEquity : null,
       operatingCashFlow: c && finite(c.operatingCashFlow) ? c.operatingCashFlow : null,
       capitalExpenditureOutflow: c && finite(c.capitalExpenditure) && c.capitalExpenditure <= 0 ? -c.capitalExpenditure : null,

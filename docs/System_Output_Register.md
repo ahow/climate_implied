@@ -78,6 +78,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | POST | "/api/data/proposals/:id/approve" | server/routes.ts |
 | POST | "/api/data/proposals/:id/reject" | server/routes.ts |
 | POST | "/api/data/indicator/:key/manual" | server/routes.ts |
+| GET | `/api/research/stage10-coverage${suffix}` | server/stage10CoverageApi.ts |
 | GET | "/api/research/track-b-admission/catalog" | server/trackBAdmissionApi.ts |
 | GET | `/api/research/track-b-admission${suffix}` | server/trackBAdmissionApi.ts |
 | GET | "/api/reference/warming-validation" | server/warmingValidationReferenceApi.ts |
@@ -104,6 +105,9 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-review.tsx | "/api/financial-data/reviews" |
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
+| client/src/components/stage10-financial-coverage.tsx | `/api/research/stage10-coverage${suffix}?${new URLSearchParams({ workbookHash: report.workbookHash, cutoff: report.informationCutoff, expectedInputHash: report.inputHash, firstYear: String(report.fiscalYears[0]), lastYear: String(report.fiscalYears.at(-1)), })}` |
+| client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
+| client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
 | client/src/components/target-input-disclosure.tsx | "/api/calculation/field-semantics" |
 | client/src/components/track-b-research.tsx | "/api/research/track-b-admission/catalog" |
 | client/src/components/track-b-research.tsx | "/api/research/track-b-admission" |

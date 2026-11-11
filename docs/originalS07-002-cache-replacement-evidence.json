@@ -1,0 +1,158 @@
+{
+  "scope": "Parent-authorized deliberate packaging replacement for the demonstrated six-route response-cache mutation fix. Not a silent refreeze, provisioning action or scientific change.",
+  "baseline": {
+    "bundle": "generated-artifacts/fair-bundle-rehearsal-yNPUor/exact16.fairbundle",
+    "sha256": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
+    "bytes": 103204794,
+    "originalReceipt": "docs/originalS07-002-private-bundle-evidence.json",
+    "preservedImmutable": true,
+    "originalStoreIncludingRecoveryTreeSha256BeforeAndAfter": "02587ebcecd290d5e251cb115b82a418bcd516ba972788157e180c95688b1a2c",
+    "qualification": "Old bundle, installed original release, activation history, recovery receipts, file contents and modes were read-only and verified unchanged. Old155 remains the retained old-source rollback artifact, not deleted or relabelled."
+  },
+  "replacement": {
+    "bundle": "generated-artifacts/fair-cache-replacement-0AvtsM/exact16-cache-replacement-v2.fairbundle",
+    "exportedIdenticalBundle": "generated-artifacts/fair-cache-replacement-0AvtsM/exported-v2.fairbundle",
+    "sha256": "2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120",
+    "bytes": 103216823,
+    "manifestSha256": "16537947a150e4ba58abbe6038c0f2e37229662f638874dd2658bd69bf67c452",
+    "format": "fair-private-bundle-v2",
+    "magic": "FAIR_PRIVATE_BUNDLE_V2",
+    "artifactVersionUnchanged": "s07-offline-fair-v1",
+    "packagingPolicy": "s07-cache-response-detachment-1",
+    "packagingPolicySha256": "9d43a51b1e7b4f693735b1654a25d630e67b1881b1063e3f8dca42ef0115f23e",
+    "protectedSourceFiles": 14,
+    "dataFiles": 36,
+    "payloadFiles": 50,
+    "scientificAcceptance": "not-accepted",
+    "rawPrivateBytesOnlyIgnoredGeneratedDirectory": true
+  },
+  "publicSafeDiff": {
+    "meaning": "Only source snapshots/framing/policy metadata change. No ensemble, output, retained input, member series, model parameter, RNG, threshold or acceptance change.",
+    "sourceClosure": [
+      "server/calculation/fairArtifactCatalog.ts",
+      "server/calculation/fairArtifacts.ts",
+      "server/calculation/fairArtifactFiles.ts",
+      "server/calculation/fairArtifactRoutes.ts",
+      "server/calculation/ensemble.ts",
+      "server/calculation/historicalValidation.ts",
+      "server/routes.ts",
+      "script/fair-artifact-bundle.ts",
+      "script/fair-reference.py",
+      "script/regional_fair_pathway.py",
+      "script/fair_physical_retention.py",
+      "docs/Independent_FaIR_Benchmark_Protocol.md",
+      "docs/Regional_FaIR_Coupling.md",
+      "server/calculation/projectionCacheResponse.ts"
+    ],
+    "reviewedSourceChanges": [
+      {
+        "path": "server/routes.ts",
+        "previousSha256": "653ccf33e628df5ee42a3ae5c7386ff996235c887ff3c904e90df7e2e44bd303",
+        "currentSha256": "1171228a36fa145d5371c4c9a9d79172960dc1ba350a05f8eaac1276a7873a8a",
+        "reason": "Eleven send sites detach cold/warm cached responses; pre/post unmutated payload hashes match for all six routes."
+      },
+      {
+        "path": "script/fair-artifact-bundle.ts",
+        "previousSha256": "cb0a879e761a43537f8c1f787c08d9c0c502819a132ff920431234e6d65c4547",
+        "currentSha256": "a6014dab8aaceacbd982dbfb1d97c8c501ad604d850492ba93b9c44315cdf436",
+        "reason": "Explicit v2 replacement policy/mandatory byte validator, v1 read/export/recovery compatibility, source-root operator argument, legacy-build refusal and numeric sha256 CLI option parsing."
+      },
+      {
+        "path": "server/calculation/projectionCacheResponse.ts",
+        "previousSha256": null,
+        "currentSha256": "cef7e8d66c3bd7a5c95f695636b904cbc9311306bf366353f2e95e605edc91c8",
+        "reason": "Reviewed 347-byte response-detachment helper, newly included in protected source closure."
+      }
+    ],
+    "otherOldProtectedSourcesUnchanged": 11,
+    "unreviewedSourceChangePolicy": "Any other old protected-source difference, extra source path, or change to the exact reviewed routes/helper pins refuses. No unrelated worker additions are silently included.",
+    "unchangedDataFilesSha256": "661a74dd1cd907d68a96dd5ea8b1b066bf89840f4f5d653b6a54e0ae0ed70c23",
+    "unchangedArtifactIdentitiesAndAllMemberHashesSha256": "d7308d034be8d3b736fb519bf738729e9e5f6f70c6854d86f41401c9e1a8a69c",
+    "privateValidatorProof": "Trusted old155 and new2025 archives independently decode and validate every file/catalog/member hash. All36 data buffers compare byte-for-byte equal; all16 complete artifact manifests/selections and all13456 member IDs/full-series SHA identities compare exactly equal.",
+    "unchangedEnsembleSha256": {
+      "fair-reference": "6f2749385f8c42d911d875ddf47a72f1e3c8e7cd1e32b9bd710b88ecf6ddc232",
+      "regional-fair-zero-history": "738b378c6d03d51ce56a604116bcf365d0cb4beec5511dbd8b3c0f5ae5817616",
+      "regional-fair-carry-history": "738b378c6d03d51ce56a604116bcf365d0cb4beec5511dbd8b3c0f5ae5817616",
+      "regional-fair-peak-history": "5baeac548c647c7bf2f4267ee691f9464a97673a1fd83d0399e82ab4c1fd3508",
+      "reference-gas-infill/s0-2030-constant-2024": "09a139f709514e709137254479f728a541c8660cacc6180d5f722395ecff350b",
+      "reference-gas-infill/s0-2030-linear-zero-2050": "901b05b6394a282705ac32d4239edecfa477d0fee21018a9ba1b49a97044ff34",
+      "reference-gas-infill/s0-2030-zero-after-2024": "2db9e09e15f89857f0bd53eece584f5052e412b32418d55d1a77592b0416a62e",
+      "reference-gas-infill/s0-2050-constant-2024": "d556b22761f6b9ce03065ed3cc0ae2ff8bbd2a0c1d62fc1ecf5168d64e74111b",
+      "reference-gas-infill/s0-2050-linear-zero-2050": "30a328a543fc4595af7ce2b9f6e5b1a32d45a8f1c4b9a1812a60bfe5393d1df2",
+      "reference-gas-infill/s0-2050-zero-after-2024": "6bad0b81b8d54431f11991f5441170a23431e885e98f34d63fbdac46ebbed17e",
+      "reference-gas-infill/s1-2030-constant-2024": "6c14acb34da12c52898379375ed27d884b828bd4896dc549dd7bfdd701a2e2c5",
+      "reference-gas-infill/s1-2030-linear-zero-2050": "fba0366db2ed424579cddcc5d11e6c544c11520a5dbea09cbf4f742ab9a70834",
+      "reference-gas-infill/s1-2030-zero-after-2024": "583bdb3a23eb281e49ada2a71fe2741110cc133cd3e306dcba1d09eb7ac67a5f",
+      "reference-gas-infill/s1-2050-constant-2024": "b5e5820a74449830d7b0c843c7d5183f7debb271680a0dd53402aa4463a6f93d",
+      "reference-gas-infill/s1-2050-linear-zero-2050": "e617c2400391cefae1a2bc1bf1a2a8cff76c008e3b01ac440073a087e5f6875c",
+      "reference-gas-infill/s1-2050-zero-after-2024": "7b1f4f05d79bbe864bb8ce1b93607fcd0c11fbc3e4a90de1bdfd7af0eacf0955"
+    }
+  },
+  "privateValidationAndRehearsal": {
+    "command": "env -u DATABASE_URL NODE_ENV=development npx tsx script/rehearse-fair-replacement.ts",
+    "passed": true,
+    "privateEvidence": "generated-artifacts/fair-cache-replacement-0AvtsM/private-evidence.json",
+    "privateEvidenceSha256": "f77d51f336972b1df44fc0426790c0d444b57db4efd2f0fe8d92831250da70a2",
+    "rehearsalLog": "generated-artifacts/fair-replacement-check/private-rehearsal.log",
+    "rehearsalLogSha256": "75b1f2c9a63415e9f638738413b18b140e0d6eb1ce5abebe2408e305b0b4d64e",
+    "standaloneMandatoryValidatorCommand": "env -u DATABASE_URL NODE_ENV=development npx tsx script/fair-artifact-bundle.ts validate-replacement --baseline=generated-artifacts/fair-bundle-rehearsal-yNPUor/exact16.fairbundle --baseline-sha256=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --bundle=generated-artifacts/fair-cache-replacement-0AvtsM/exact16-cache-replacement-v2.fairbundle --sha256=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120",
+    "standaloneMandatoryValidatorPassed": true,
+    "validatorLog": "generated-artifacts/fair-replacement-check/private-validator.log",
+    "validatorLogSha256": "be2730ceab887f00ce72547364640f05f031d600968262b8c263e25ba27effd0",
+    "unchangedEnsembles": 16,
+    "unchangedOutputs": 16,
+    "unchangedMembers": 13456,
+    "exactDataByteEquality": true,
+    "sourceRefusal": "Old155 against current source refuses FAIR_BUNDLE_SOURCE_MISMATCH:server/routes.ts; new2025 against old source also refuses. Install/activation/export/recovery retain strict local-source checks.",
+    "recovery": "Separate isolated store installs immutable old and new releases, activates old then atomically new, refuses rollback with wrong new source root, recovers old using exact old authorized source root, recovers to explicit withholding, then reactivates new. Both old/new exports are byte-identical to their original trusted archives.",
+    "isolatedActivationReceiptSha256": "00c2d71dfef92a41fe30d2b876db133c3e2022c66f818299aa34d2276fe7c046",
+    "isolatedReceiptIsNotAnOperatorProductionReceipt": true,
+    "refusalChecks": 21,
+    "permissions": { "installedAndRecoveryFiles0600": 109, "directories0700": 53, "noSymlinks": true },
+    "preservedOldArchiveAndOriginalRecoveryTree": true,
+    "scientificOrPythonHttpExecution": false,
+    "provisioningOrDeployment": false
+  },
+  "supersededDevelopmentCandidates": [
+    {
+      "sha256": "1dc9a6f8c8a2299dcc08bd4f2b1a7b3b5b970bdb208bbfdc71cb6ff1e50beb41",
+      "bundle": "generated-artifacts/fair-cache-replacement-45Cqwu/exact16-cache-replacement-v2.fairbundle",
+      "reason": "Rejected in recovery rehearsal: v1 schema root-key ordering changed reconstructed legacy archive identity. Fixed by preserving exact old v1 framing/order; never eligible for operator use."
+    },
+    {
+      "sha256": "66261d37873b717d0e487580658d7dd5d22c9ffcf6a3b1d375afa923033b62ec",
+      "bundle": "generated-artifacts/fair-cache-replacement-pMpDFF/exact16-cache-replacement-v2.fairbundle",
+      "reason": "Programmatic integrity/recovery passed, but mandatory standalone CLI revealed prior parser rejected numeric sha256 flag names. Parser fixed with public CLI regression; source changed, so this candidate is explicitly superseded, not relabelled."
+    }
+  ],
+  "operatorNewHashActionNotExecuted": {
+    "authorization": "Authorized operator only, after parent review. Privately transfer old155 and final new2025 through approved SSH/SFTP; no HTTP uploader/public artifact/Git transport. No host identity/credentials are invented here.",
+    "preparation": "From the exact reviewed public application checkout: umask 077; mkdir -p generated-artifacts/fair-authorized-replacement; chmod 700 generated-artifacts/fair-authorized-replacement; privately place exact16-v1.fairbundle and exact16-cache-replacement-v2.fairbundle there with0600 modes.",
+    "mandatoryValidate": "npx tsx script/fair-artifact-bundle.ts validate-replacement --baseline=generated-artifacts/fair-authorized-replacement/exact16-v1.fairbundle --baseline-sha256=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --bundle=generated-artifacts/fair-authorized-replacement/exact16-cache-replacement-v2.fairbundle --sha256=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --source-root=\"$PWD\"",
+    "installNoActivation": "npx tsx script/fair-artifact-bundle.ts install --bundle=generated-artifacts/fair-authorized-replacement/exact16-cache-replacement-v2.fairbundle --sha256=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --store=generated-artifacts/fair-authorized-replacement/store --source-root=\"$PWD\"",
+    "freshActivationOnlyIfCurrentlyUnconfigured": "npx tsx script/fair-artifact-bundle.ts activate --store=generated-artifacts/fair-authorized-replacement/store --release=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --expected-active=none --source-root=\"$PWD\"",
+    "replacementActivationOnlyIfOld155IsActuallyActive": "npx tsx script/fair-artifact-bundle.ts activate --store=generated-artifacts/fair-authorized-replacement/store --release=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --expected-active=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --source-root=\"$PWD\"",
+    "recovery": "Privately retain the ACTUAL operator activation receipt hash. recover --store=generated-artifacts/fair-authorized-replacement/store --receipt=\"$OPERATOR_RECEIPT_SHA256\" --expected-active=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 requires --source-root=\"$AUTHORIZED_OLD_SOURCE_ROOT\" when previous=old155; when previous=none it restores explicit withholding. Never substitute the isolated rehearsal receipt.",
+    "rollbackToOld155OnlyIfActualReceiptPreviousIsOld155": "npx tsx script/fair-artifact-bundle.ts recover --store=generated-artifacts/fair-authorized-replacement/store --receipt=\"$OPERATOR_RECEIPT_SHA256\" --expected-active=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --source-root=\"$AUTHORIZED_OLD_SOURCE_ROOT\"",
+    "rollbackToWithholdingOnlyIfActualReceiptPreviousIsNone": "npx tsx script/fair-artifact-bundle.ts recover --store=generated-artifacts/fair-authorized-replacement/store --receipt=\"$OPERATOR_RECEIPT_SHA256\" --expected-active=2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120 --source-root=\"$PWD\"",
+    "runtimeFlag": "Parent/operator separately controls existing FAIR_ARTIFACT_ROOT with the absolute verified store path. No runtime default, authentication or service configuration changed here.",
+    "ephemeralRecoveryWarning": "No mounted persistent volume/bucket is assumed. Unmounted generated files disappear on a new deployment; retain approved archives/source roots/receipts privately off-instance and revalidate/reinstall after source-compatible redeployment. No persistence resource or deployment was provisioned."
+  },
+  "checks": {
+    "publicUnitTests": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "unitLog": "generated-artifacts/fair-replacement-check/unit-tests.log",
+    "unitLogSha256": "3cf4893b87145c93588e53ec7ae17b3f4c8c11ae959384b25a9fe8d5105a9b9a",
+    "actualProjectCompiler": "npm run check",
+    "actualProjectCompilerPassed": true,
+    "scriptCompiler": "npx tsc --noEmit --project generated-artifacts/fair-replacement-check/tsconfig.json",
+    "scriptCompilerQualification": "Ignored config extends unchanged actual project config including ES5/downlevel settings; no gate change.",
+    "scriptCompilerPassed": true,
+    "compilerLogSha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+    "testSourceSha256": "cd7b1c119c5f69b5362396eedf44d87048eede23a3b61672cd6ca96a0fb221bb",
+    "rehearsalSourceSha256": "3474b93c94133e7b1d629284a323787df2d1f7d45ab2d73bb661516b654a782a"
+  },
+  "boundaries": "No scientific rerun/tuning, new scientific acceptance, Python, HTTP server, Railway/provisioning/resource creation, deploy/callback, ledger edit, commit/publication or private Git bytes. Original old155 metadata and artifacts remain historical and immutable; this is a separately authorized replacement receipt."
+}

@@ -7,6 +7,7 @@ import { DriverEvidenceDisclosure } from "@/components/driver-evidence-disclosur
 import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { WarmingValidationReference } from "@/components/warming-validation-reference";
 import { TrackBResearch } from "@/components/track-b-research";
+import { Stage10FinancialCoverage } from "@/components/stage10-financial-coverage";
 import { RETIRED_FINANCE_RESIDUAL_DESCRIPTOR } from "@shared/quantityDescriptors";
 
 export default function Methodology() {
@@ -35,6 +36,7 @@ export default function Methodology() {
         </Card>
         <WarmingValidationReference />
         <TrackBResearch />
+        <Stage10FinancialCoverage />
         <DriverEvidenceDisclosure />
         <details className="rounded-md border p-4">
         <summary className="cursor-pointer text-sm font-semibold">Archived legacy methodology — opt in; superseded claims, not current scientific guidance</summary>

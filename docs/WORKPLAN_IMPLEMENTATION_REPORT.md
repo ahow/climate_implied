@@ -1,3 +1,53 @@
+# Projection caches and retained financial coverage
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T20:39:14.534923+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 266.685,
+    "counts": {
+      "tests": 853,
+      "pass": 853,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+    "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "50verified248partial2blocked",
+  "semantics": "Original1000/1001unchanged;4aliasesexplicitrestored;1918definitions;3726/3727expandedpublic;newfieldsnotoriginalclosure.",
+  "failure_history": "Initial853/852pass1fail localnegation;two officialsourcequotes unknown separatelyfixedexactreviews. Earlier44/46focused stalealias/displayassertions repairedwithstrongerprovenance. Two replacementcandidates superseded withfailures retained; no silentrefreeze.",
+  "release": "pending"
+}
+
+S02-009: Six actual routes:18 cold/warm pairs,43 hits,96 identityreceipts; TTL24h, concurrentA/B/current, empty/error/recovery/geography/missingarchives. Fixeddownstreammutationpoisoning at11send sites; sixcoldJSONhashes unchanged.
+Next/boundary: ExplicitdisposablePostgreSQLtransport unavailable/unexecuted; refresh/DELETEinvalidation unexecuted. Witness-levelsource/materialpins are not inventedproductionarchivefields.
+
+S10-002: Seven-stateactualreader/census/API/UI/XLSX:2442full=1currentaccepted+349candidate+474ambiguous+1618unmatched; otherstates0. Verifiedimmutableeligible0,not conflatedwithcurrentaccepted1.
+Next/boundary: Currentcensusengineeringverified; legacyacceptedrecordoriginalprofileunretained, excludednotreconstructed. Genuineidentityapproval andeligiblehistoricalcorpus remainseparate.
+
+S10-006: Authenticated27candidateversions; eightfields261present/26862slots, netdebt256present/5invalid,segmentsabsent. Original/restated/unknown andfilingdate/sourceclasses distinct.
+Next/boundary: Noimmutableapprovedfinancialarchives orverifiedoriginalpublicationvintages;0admissibleStage11–15records. Needgenuineversionedapprovedsource/identity evidence,notselfapproval.
+
+S10-014: Realread-onlycoverage bysector×region/Unknown full+eligible populations,restated/unknown denominators,privacy suppression; actual22134XLSXrows andcomponentSSRsameinputHash47da0a83973d2ffbb391f00e8eeaa601881bda429c54992a6f48d7feee3eb21a.
+Next/boundary: Descriptivecoverageengineeringverified; currentcoverage doesnotestablishoriginalvintage orowneracceptance.
+
+S06-009: ActualUIadmissionbugfixed: NDC-only cannotenterallcommitmentsID. Sharedexactlabelcard/table;8invalid/missingvariants withheld; validCATandtruezero preserved;28APIleaves. NGFSNDCexports remainnarrow.
+Next/boundary: FiniteNDC-labelcriterionverified; noactualnativeallcommitments/calibratedsciencepromotion. Sourcequotations retainedwithexactindividualscanreviews.
+
+S16-013: 12originalwarninghosts,3linkedremovalbindings,1resolutionR16-EXTRAPOLATION-001 actualcrossinghorizon/null behavior;physical/currency/vintage/investmentwarnings preserved.
+Next/boundary: Historicalper-runbacktestwarningpayloadarchive unavailable;dynamicrendererretained,no unseenwarningsinventedresolved.
+
+S07-002: Deliberateprivatev2replacement2025be43e05e0e72b23002ffb9fd0dd2de16fa9dbec6f80ba205cee868550120,103216823bytes,14sourceclosure. Old155unchanged. Exact36datafiles/16ensembles/13456members unchanged;16runtime-rootloads/21refusals/recovery passed.
+Next/boundary: Authorizedoperatortransferstillunavailable. Newcurrent-sourcecandidate only; old155requiresoldauthorizedsource. Superseded1dc9/66261candidatesnotforprovision. NoPythonHTTP/newresources/modelrerun/scienceacceptance.
+
 # Trusted reports, source missingness and cache transport
 
 {
@@ -3516,6 +3566,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-cache-periods-52d2ab7",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T18:25:13.800113+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-disclosure-missingness-760ea69",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T19:27:23.203328+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

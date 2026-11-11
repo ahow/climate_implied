@@ -39,9 +39,13 @@ for (const item of selected) {
     errors = 0;
   } catch (e) {
     errors++;
+    rows.push({ companyId: item.companyId, isin: item.isin, originalStatus: item.status,
+      collectedAt: new Date().toISOString(), status: "error", identityReviewState: "provider-error", accepted: false,
+      reasons: ["provider-query-failed-retained-not-unmatched"], lifecycle: "unknown" });
     console.error(`Audit provider failure: ${e instanceof Error ? e.message : "unknown"}`);
   }
-  const report = { selectionHash, requested: selected.length, completed: rows.length,
+  const report = { selectionHash, requested: selected.length, attempted: rows.length,
+    completed: rows.filter(r => r.status !== "error").length, providerErrors: rows.filter(r => r.status === "error").length,
     sourceAuditHash: contentHash(source.results), selection: "50 deterministic hash-sampled cases per original state",
     accepted: false, rows };
   await writeFile(path+".tmp", JSON.stringify(report,null,2));
@@ -50,5 +54,6 @@ for (const item of selected) {
   if (errors >= 3) throw new Error("Three consecutive provider failures; checkpoint retained");
   await new Promise(r => setTimeout(r,2700));
 }
-console.log(JSON.stringify({ completed: rows.length, requested: selected.length,
+console.log(JSON.stringify({ attempted: rows.length, completed: rows.filter(r => r.status !== "error").length,
+  providerErrors: rows.filter(r => r.status === "error").length, requested: selected.length,
   reasons: rows.reduce((a,r) => { for (const reason of r.reasons) a[reason]=(a[reason]??0)+1; return a; },{}) }));

@@ -25,6 +25,7 @@ import { conditionalCompanySemantics } from "./companyConditionalSemantics";
 import { warmingValidationReferenceSemantics } from "./warmingValidationReferenceSemantics";
 import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics } from "./trackBAdmissionContract";
 import { trackBPublicCatalogSemantics } from "./trackBDisclosureContract";
+import { stage10CoverageSemantics } from "./stage10Coverage";
 import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
@@ -45,6 +46,7 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...trackBAdmissionSemantics,
   ...trackBAdmissionHttpSemantics,
   ...trackBPublicCatalogSemantics,
+  ...stage10CoverageSemantics,
   ...warmingValidationReferenceSemantics,
   ...conditionalCompanySemantics,
   ...indicatorFieldSemantics,

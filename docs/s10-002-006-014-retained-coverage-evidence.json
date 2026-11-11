@@ -1,0 +1,154 @@
+{
+  "contract": "stage10-retained-coverage-evidence-1",
+  "canonicalLedgerChanged": false,
+  "criteria": [
+    {
+      "id": "S10-002",
+      "originalCriterion": "Keep identity-review states distinct: not queried, provider error, candidate awaiting review, accepted, ambiguous, unmatched, out of scope. None of the first three may be merged into another.",
+      "engineering": "Actual complete immutable-workbook reader, real retained mapping journal/current review reconciliation, seven-state census/API/UI/JSON/XLSX and existing financial-coverage CLI implemented. Explicit provider errors/not-queried survive; candidate becomes accepted only with genuine independently approved matching existing review. Sampled diagnostic reassessment no longer treats absent/error provider bytes as successful empty/unmatched responses; sampled collector retains failures separately from successful completion. No acquisition script was executed.",
+      "assessment": "Finite current retained-census engineering fulfilled. Serialized historical diagnostics are not rewritten, and no historical review timeline or real approval is fabricated."
+    },
+    {
+      "id": "S10-006",
+      "originalCriterion": "Load FMP statement history as versioned overlays: revenue, EBITDA, operating cash flow, capital expenditure, working capital, net income, net debt, shares and segments where available. Record each value's filing date, and flag whether it is the original or a restated value.",
+      "engineering": "Actual retained content-addressed candidate financial payloads authenticated/read without mutation. Private per-value records preserve exact companyId/ISIN, source/version hash, capture, fiscal end-year, native currency, raw provider filing date, usable filing-date evidence and original/restated/unknown class. Latest actual available version selected before field inspection; tied versions/duplicate annual slots conflict instead of arbitrary survivor/coalescing. Existing legacy normalizer gains explicit per-value source-date/provenance metadata without changing numerical assignments.",
+      "assessment": "Engineering advanced substantively, data/provenance criterion remains partial. Only27 retained candidate versions and no immutable approved-current-financial archives exist. Annual provider histories are revised-history with no independently verified original publication vintages; segments are absent. Current single-period NI snapshots lack explicit annual FY classification and are not substituted into annual history."
+    },
+    {
+      "id": "S10-014",
+      "originalCriterion": "Coverage of cash-flow and net-debt history, and the share of values flagged as restated, are reported by sector and region.",
+      "engineering": "Actual fixed full-workbook and verified-eligible sector×workbook-geography cube, including explicit Unknown and zero-company categories. Each field has fixed company×declared-year slots, missing/null/invalid/conflict states, original/restated/unknown and filing-date partitions. Explicit true-restated-flag share/present is distinct from unknown share and restated/known-provenance rate; no true flags is NOT proof of no restatements. Zero known denominator returns null, not false0%restatement prevalence.",
+      "assessment": "Descriptive aggregate reporting engineering fulfilled on genuinely retained inputs; substantive source coverage and original-vintage verification remain incomplete. No historical efficacy or complete ingestion is claimed."
+    }
+  ],
+  "productionBindings": {
+    "reader": "server/financialData/stage10Source.ts:getStage10Coverage",
+    "normalizationAndCensus": "server/financialData/stage10Coverage.ts",
+    "api": "GET /api/research/stage10-coverage",
+    "json": "GET /api/research/stage10-coverage/export.json",
+    "xlsx": "GET /api/research/stage10-coverage/export.xlsx",
+    "registration": "server/index.ts after releaseSafety; server/routes.ts not edited by this work",
+    "ui": "client/src/components/stage10-financial-coverage.tsx mounted on /methodology",
+    "cli": "script/financial-coverage.ts",
+    "sharedContract": "shared/stage10Coverage.ts; global outputFieldSemantics registry",
+    "sameInputRule": "UI download links pin exact workbookHash/cutoff/year range/expectedInputHash. Changed inputs409, malformed selection400, source/storage corruption or unavailable historical review chronology503; no replacement current report."
+  },
+  "readPolicy": {
+    "database": "Repeatable-read READ ONLY transaction; immutable header/chunk hash, cardinality, ordinals and actual immutable-trigger guards verified. Complete existing financial review SELECT, not paginated200-row listing. Existing immutable financial archives SELECT only.",
+    "files": "Fixed existing retained identity-audit and content-addressed worked-financial-input roots; payload and complete envelope fingerprints bound. No request-controlled paths, provider requests, DDL, purchases, public writes, approvals, private handoff scans, filings or licence payload reads.",
+    "join": "Exact companyId AND ISIN; filename ticker/profile symbol only consistency checks,never ticker-only join. Duplicate issuer acceptance cannot enlarge verified eligibility.",
+    "chronology": "Explicit cutoff or exact maximum retained capture/review/archive timestamp,never invented filing date. Earlier-than-audit or current mutable review chronology refuses; no invented historical review store.",
+    "disclosure": "Aggregate counts only. No securities,issuer/company IDs,ISINs,tickers,provider financial values,raw source objects,private URLs or per-company source hashes exported. Populations1–4 suppress all counts/shares,including eligible totals,while preserving categories and denominators. This does not authorize additional provider redistribution."
+  },
+  "actualRetainedRead": {
+    "inputHash": "47da0a83973d2ffbb391f00e8eeaa601881bda429c54992a6f48d7feee3eb21a",
+    "workbookHash": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+    "informationCutoff": "2026-11-09T23:17:36.035Z",
+    "fiscalYears": [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    "fullWorkbookCompanies": 2442,
+    "verifiedEligibleCompanies": 0,
+    "admittedStage11To15Records": 0,
+    "retainedCandidateVersions": 27,
+    "selectedAsOfVersions": 27,
+    "identityCounts": {
+      "not-queried": 0,
+      "provider-error": 0,
+      "candidate-awaiting-review": 349,
+      "accepted": 1,
+      "ambiguous": 474,
+      "unmatched": 1618,
+      "out-of-scope": 0
+    },
+    "legacy95PercentGatePreserved": {
+      "structuralEligible": 2442,
+      "accepted": 1,
+      "unresolved": 2441,
+      "coverage": 0.0004095004095004095,
+      "passed": false
+    },
+    "expectedFullPopulationSlotsPerField": 26862,
+    "eightFields": {
+      "fields": ["revenue","ebitda","operatingCashFlow","capitalExpenditure","fcfe","workingCapital","netIncome","shares"],
+      "presentEach": 261,
+      "missingEach": 26600,
+      "conflictedEach": 1,
+      "unknownRestatementEach": 261,
+      "providerFilingDateUnverifiedEach": 258,
+      "filingDateMissingOrProxyEach": 3
+    },
+    "netDebt": {
+      "present": 256,
+      "missing": 26600,
+      "invalidReconciliation": 5,
+      "conflicted": 1,
+      "unknownRestatement": 256,
+      "providerFilingDateUnverified": 253,
+      "filingDateMissingOrProxy": 3
+    },
+    "segments": {"present":0,"missing":26862},
+    "verifiedOriginalValues": 0,
+    "explicitRestatedFlags": 0,
+    "knownProvenanceRestatedRates": "null for all financial fields,not an inferred0%total restatement prevalence",
+    "aggregateRows": 22134,
+    "actualWorkbookRowsReadBack": 22134,
+    "actualWorkbookBytes": 4528218,
+    "actualWorkbookInputHashMatches": true,
+    "actualImportedComponentSSRInputHashMatches": true,
+    "actualImportedComponentSSRFullDenominatorMatches": true
+  },
+  "protectedHashDependency": {
+    "legacySingleCompanyHistory": "Original input hash incorporates a profile absent from the retained raw envelope. Original hash cannot be authenticated from available retained bytes. Excluded rather than reconstructing from a later profile,ticker-attaching or silently refreezing old studies.",
+    "historicalExperiments": "No cached/private research study,protected FaIR source,original source values or historical financial data file rewritten."
+  },
+  "remainingSourcePrerequisites": [
+    "Genuinely retained immutable independently reviewed financial identities under existing authorized operator policies; current approved row alone is not an immutable financial archive.",
+    "Authorized annual statement/segment records with real per-value original/restated evidence and independently verified original publication dates/capture before each actual model origin. Provider filing-date proxies and current-only NI are insufficient.",
+    "Only then can actual eligible Stage11–15 input corpus advance. No real approval,purchase,provider refresh or historical acceptance is generated by this engineering."
+  ],
+  "supplementalCensus": {
+    "newDefinitions": 39,
+    "definitionsBefore": 1879,
+    "definitionsAfter": 1918,
+    "newSupplementalSlots": 859,
+    "apiSlots": 39,
+    "jsonSlots": 736,
+    "xlsxSlots": 84,
+    "externalSlotsBefore": 1536,
+    "externalSlotsAfter": 2395,
+    "expandedPublicBefore": 2868,
+    "expandedPublicAfter": 3727,
+    "expandedBoundBefore": 2867,
+    "expandedBoundAfter": 3726,
+    "originalPublicUnchanged": 1001,
+    "originalBoundUnchanged": 1000,
+    "originalOpaqueHistoricalSummaryUnchanged": 1,
+    "originalWithheldUnchanged": 27,
+    "originalSlotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+    "componentCountBefore": 62,
+    "componentCountAfter": 63,
+    "original60ComponentRenderedSuitesRerun": false
+  },
+  "verification": {
+    "focusedTests": "39passed,0failed,0skipped: stage10-retained-coverage,financial-identity,financial-mapping,mapping-diagnostics,statement-history,completed-cash-flow,component-state-census,next-census-accounting,operational-field-semantics",
+    "typecheck": "npx tsc --noEmit passed",
+    "census": "Both component and field census regenerated; field census --check passed",
+    "diffCheck": "git diff --check passed",
+    "actualRetainedIntegration": "Real READ ONLY source→aggregate→production XLSX builder/readback→direct actual component SSR verified,not merely a mounted503 or fabricated real approval",
+    "earlierBroaderFocusedRun": {
+      "passed": 44,
+      "failed": 2,
+      "parentOwnedConcurrentStaleAssertions": [
+        "script/remaining-field-semantics.test.ts:20 expects4resolvedResponseAliases; concurrently refactored projection-cache routes now resolve directly,actual0. Original1000/1001 remains intact.",
+        "script/research-field-semantics.test.ts:105 expects13driver/published-reference display bindings; concurrent reference-label consumer adds one,actual14."
+      ],
+      "action": "Not weakened or edited by Stage10 work; parent/source owners reconcile exact new production contracts."
+    },
+    "notRun": ["full suite","browser rerun","workflow restart","private historical studies","provider collectors","commit","deployment","callback"]
+  },
+  "boundedParentUiPlan": [
+    "Open /methodology and verify named loading/error/source-gap states and actual standalone workbook/input/cutoff identities.",
+    "Switch full/verified-eligible populations and all ten field choices; each changes presentation only. Page25cells locally,Unknown/zero categories retained,all rows in exports.",
+    "Download pinned JSON/XLSX and compare inputHash,denominators,unknown/restated/date classes; source changes must409,never silently replace prior selection.",
+    "No broad original62component/browser suite is claimed by the new component's direct SSR tests."
+  ]
+}

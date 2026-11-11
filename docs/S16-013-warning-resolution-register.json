@@ -1,0 +1,50 @@
+{
+  "criterion": "S16-013",
+  "requirement": "Each removed interim warning has a linked resolution record.",
+  "bindingAmendment": "docs/Developer_Workplan_Amendments.md: stages16–17; remove warnings only after resolving their underlying limitation.",
+  "originalSourceRevision": "7985aa08dc0cc7240491eaea37e94690f8b2234e",
+  "sourceScope": "Retained Stage1 claim-containment source. Twelve original warning/qualification hosts identified by the recorded source scan; generated current/historical hashes are separate evidence. This is source reconciliation, not a deployment receipt.",
+  "scanPattern": "warning|unsupported|not validated|not.*forecast|unverified|not.*standalone|not.*climate|not.*decarbon|no defensible|withheld|not.*vintage",
+  "originalHosts": [
+    { "path": "client/src/components/backtest-summary.tsx", "originalExcerpt": "s.warnings.map", "currentRequired": ["s.warnings.map"], "disposition": "retained-dynamic-warning-renderer", "limit": "Original per-run warning payload archive is not supplied; no individual historical warning text or removal is invented." },
+    { "path": "client/src/components/category-comparison.tsx", "originalExcerpt": "Illustrative input-shock scenarios, not forecasts or category contributions.", "currentRequired": ["Illustrative input-shock scenarios, not forecasts or category contributions."], "disposition": "retained" },
+    { "path": "client/src/components/emissions-candidate-review.tsx", "originalExcerpt": "Read-only candidate, not calibrated and not a forecast.", "currentRequired": ["not calibrated and not a forecast"], "disposition": "retained" },
+    { "path": "client/src/components/historical-trend-chart.tsx", "originalExcerpt": "Retrospective reconstruction using current methodology and revised inputs", "currentRequired": ["Retrospective reconstruction using current methodology and revised inputs"], "disposition": "retained" },
+    { "path": "client/src/components/publication-methodology-notes.tsx", "originalExcerpt": "not archived forecasts", "currentRequired": ["not archived forecasts", "Unsupported combinations return an error", "not verified publication-date vintages"], "disposition": "retained-in-closed-legacy-methodology", "limit": "Moving legacy notes inside explicitly superseded opt-in documentation does not resolve forecast vintage limitations." },
+    { "path": "client/src/components/valuation-notice.tsx", "originalExcerpt": "Workbook currency compatibility is unverified.", "currentRequired": ["outputs are withheld", "no defensible valuation-to-activity mapping", "not decarbonisation rates or market climate expectations", "not five-year reverse-DCF growth", "not per revenue", "Workbook currency compatibility is unverified.", "not validated investment evidence", "no 2024 base year is assumed"], "disposition": "retained" },
+    { "path": "client/src/lib/ui-claim-register.ts", "originalExcerpt": "Fixed-5-Gt milestone may extrapolate beyond 2100.", "currentRequired": ["CO2-only response", "fixed 1.1C offset", "right-censored at the actual simulated horizon", "not 5% of 2024 and not net zero (R16-EXTRAPOLATION-001)", "No standalone regional temperature interpretation", "not climate, valuation-to-activity or milestone output"], "disposition": "physical-warnings-retained-extrapolation-risk-resolved", "resolution": "R16-EXTRAPOLATION-001", "limit": "Authorized bounded follow-up corrected only the disproven extrapolation sentence; other Stage10 UI-index entries and shared semantics were not edited." },
+    { "path": "client/src/pages/climate-valuation.tsx", "originalExcerpt": "No defensible valuation-to-activity mapping has been established.", "currentRequired": ["No defensible valuation-to-activity mapping has been established.", "No numeric substitutes are shown or exported.", "not a decarbonization rate or five-year reverse-DCF growth"], "disposition": "retained" },
+    { "path": "client/src/pages/dashboard.tsx", "originalExcerpt": "Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.", "currentRequired": ["CO2-only response to aggregate GHG", "fixed 1.1°C offset", "not validated physical forecasts", "Regional temperatures are not standalone regional warming estimates.", "Historical recalculations are not forecast validation.", "Neither residual diagnostic is net zero"], "disposition": "physical-warnings-retained-extrapolation-risk-resolved", "resolution": "R16-EXTRAPOLATION-001" },
+    { "path": "client/src/pages/decarb-gap-signal.tsx", "originalExcerpt": "Physical-gap distribution withheld", "currentRequired": ["Physical-gap distribution withheld", "It does not identify climate expectations.", "Valuation-derived temperature, carbon-price and net-zero outputs are withheld."], "disposition": "retained" },
+    { "path": "client/src/pages/decarb-signal.tsx", "originalExcerpt": "Physical comparison withheld", "currentRequired": ["Physical comparison withheld", "No defensible valuation-to-activity mapping", "Their subtraction is not a supported climate signal.", "not a decarbonization rate"], "disposition": "retained" },
+    { "path": "client/src/pages/methodology.tsx", "originalExcerpt": "Its fixed-5-Gt milestone may extrapolate beyond 2100", "currentRequired": ["fixed 1.1°C offset", "No new scientific model is ready.", "not validated investment evidence", "superseded claims", "no interpolation or extrapolation", "not relabelled as a percentage"], "disposition": "physical-warnings-retained-extrapolation-risk-resolved", "resolution": "R16-EXTRAPOLATION-001" }
+  ],
+  "removedWarnings": [
+    { "path": "client/src/pages/dashboard.tsx", "originalText": "may extrapolate beyond 2100", "resolution": "R16-EXTRAPOLATION-001" },
+    { "path": "client/src/pages/methodology.tsx", "originalText": "may extrapolate beyond 2100", "resolution": "R16-EXTRAPOLATION-001" },
+    { "path": "client/src/lib/ui-claim-register.ts", "originalText": "may extrapolate beyond 2100", "resolution": "R16-EXTRAPOLATION-001" }
+  ],
+  "resolutions": [
+    {
+      "id": "R16-EXTRAPOLATION-001",
+      "resolvedLimitation": "Current legacy fixed5Gt milestone is no longer extrapolated beyond actual simulated trajectory rows.",
+      "implementation": "server/calculation/historicalMetrics.ts: historicalTrajectoryMetrics finds an actual annual row at or below5Gt; otherwise null. The separate selected-2024 five-percent diagnostic is not substituted for it.",
+      "evidence": ["script/warning-and-pathway-label-contracts.test.ts", "script/projection-metric-consistency.test.ts", "script/historical-metrics.test.ts"],
+      "replacement": "Right-censored, explicitly non-net-zero fixed-5gt-v1 comparator; separate selected-baseline5% diagnostic.",
+      "notResolved": ["CO2-only response to aggregate GHG", "fixed1.1°C offset", "standalone regional warming interpretation", "forecast-vintage validation", "native-pathway scientific readiness", "valuation-to-activity identification"]
+    }
+  ],
+  "additionalHistoricalSelectionWarning": {
+    "revision": "9aa18a4fb9d3ba6c65e50310de5b3069cb36bcdb",
+    "path": "client/src/components/analysis-snapshot-status.tsx",
+    "originalText": "Selection changes only this summary; it does not change the current source or any other page.",
+    "disposition": "retained-correctly-scoped",
+    "reason": "The Data Management summary preview is still independent. The separate analysis-wide selection does not justify deleting this preview warning.",
+    "resolutionReportForSeparateControl": "docs/Analysis_Wide_Historical_Selection.md",
+    "stillUnresolved": "Current-code input replay is not original-vintage evidence; complete original executable/overlay archival is not claimed."
+  },
+  "residuals": [
+    "No original per-run backtest warning payload archive is available in this task. Its renderer is retained; no unseen text is claimed removed/resolved."
+  ],
+  "safety": "Only the disproven extrapolation-risk metadata was corrected, linked to R16-EXTRAPOLATION-001. No native readiness, physical, identification, currency, vintage or investment-validity warning was weakened. No canonical ledger or deployment status changed."
+}

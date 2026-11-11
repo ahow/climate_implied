@@ -11,6 +11,7 @@ import type { CvTimeSeries } from "../shared/schema";
 import XLSX from "xlsx";
 import { createHash } from "node:crypto";
 import { readWorkbookNumeric } from "../server/climateValuation/workbookMissingness";
+import { ALL_COMMITMENTS_LABEL } from "../shared/referenceScenarioLabels";
 
 test("all actual research and pinned reference leaves bind without numerical modification",()=>{
   const response={status:"evidence-gaps-explicit",indicators:driverEvidenceRegistry()};
@@ -102,7 +103,37 @@ test("census counts exact response bindings and keeps explicit displays separate
     assert.deepEqual(family.unbound,[]);
   }
   const displays=census.displayBindings.filter((b:{id:string})=>/^(driverRegistry|publishedReference)\./.test(b.id));
-  assert.equal(displays.length,13);
+  assert.equal(displays.length,14,"Original13 displays plus the explicitly bound commitments table header");
+  const referenceSource="client/src/components/published-scenario-references.tsx";
+  const driverSource="client/src/components/driver-evidence-disclosure.tsx";
+  const headerExpression='{ALL_COMMITMENTS_LABEL}<br /><span className="text-xs font-normal">Optimistic single value</span>';
+  const header=displays.filter((b:{expression:string})=>b.expression===headerExpression);
+  assert.equal(header.length,1,"Exactly one new shared-label table-header consumer");
+  const originalDisplays=displays.filter((b:{expression:string})=>b.expression!==headerExpression);
+  assert.deepEqual(originalDisplays.map((b:{source:string;id:string;expression:string;bound:boolean})=>
+    [b.source,b.id,b.expression,b.bound]),[
+    [referenceSource,"publishedReference.scenarios[].label","{scenario.label}",true],
+    [referenceSource,"publishedReference.scenarios[].publishedName","CAT: {scenario.publishedName}",true],
+    [referenceSource,"publishedReference.scenarios[].temperatureMedianC","{scenario.temperatureMedianC.toFixed(1)}°C",true],
+    [referenceSource,"publishedReference.scenarios[].definition","{scenario.definition}",true],
+    [driverSource,"driverRegistry.status",'{registry.data.status ?? "Registry status not returned"}',true],
+    [driverSource,"driverRegistry.indicators[].id","{indicator.id}",true],
+    [driverSource,"driverRegistry.indicators[].definition",'{indicator.definition || "Definition not supplied"}',true],
+    [driverSource,"driverRegistry.indicators[].publisher",'{indicator.publisher || "Not supplied"}',true],
+    [driverSource,"driverRegistry.indicators[].rawUnit",'{indicator.rawUnit || "Not supplied"}',true],
+    [driverSource,"driverRegistry.indicators[].role",'{indicator.role || "Not supplied"}',true],
+    [driverSource,"driverRegistry.indicators[].evidenceState",'{indicator.evidenceState || "Not supplied"}',true],
+    [driverSource,"driverRegistry.indicators[].centralModelEligible",'{indicator.centralModelEligible === false ? "No" : "Not verified"}',true],
+    [driverSource,"driverRegistry.indicators[].reason",'{indicator.reason || "Not supplied"}',true],
+  ],"All original13 exact source/field/expression bindings remain intact");
+  assert.deepEqual([header[0].source,header[0].id,header[0].expression,header[0].bound],
+    [referenceSource,"publishedReference.scenarios[].label",headerExpression,true]);
+  const cardLabel=originalDisplays.find((b:{expression:string})=>b.expression==="{scenario.label}");
+  assert.deepEqual(requireOutputSemantic(header[0].id),requireOutputSemantic(cardLabel.id),
+    "Shared header and existing card use the identical registered descriptor");
+  assert.equal(ALL_COMMITMENTS_LABEL,
+    references.scenarios.find(s=>s.id==="all-announced-commitments")!.label,
+    "Shared header label equals the actual API reference label");
   for(const display of displays) assert.ok(requireOutputSemantic(display.id));
   const routes=readFileSync("server/routes.ts","utf8");
   assert.match(routes,/bindNestedOutput\("driverRegistry", response\)/);

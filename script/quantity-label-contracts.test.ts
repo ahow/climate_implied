@@ -207,6 +207,17 @@ test("all runtime source routes/exports/legacy descriptions scan with individual
   assert.ok(scan.surfaceInventory.exports.some(e => e.file === "client/src/components/historical-trend-chart.tsx"));
   assert.equal(scan.counts.violation, 0);
   assert.equal(scan.counts.unknown, 0);
+  const policy = /policy: "([^"]*R16-EXTRAPOLATION-001[^"]*)"/.exec(read("client/src/lib/ui-claim-register.ts"))?.[1];
+  assert.ok(policy);
+  assert.match(policy, /not 5% of 2024 and not net zero/);
+  assert.equal(classifyResidualText(policy).classification, "local-negation",
+    "The legacy warning uses explicit negation, not a new exception");
+  const cat = JSON.parse(read("server/calculation/data/catReferences.json")).scenarios[1];
+  for (const text of [cat.publishedName, cat.definition]) {
+    const occurrences = scan.occurrences.filter(entry => entry.file === "shared/referenceScenarioLabels.ts" && entry.text === text);
+    assert.equal(occurrences.length, 1, "Exact original CAT quote, not a generic source-file exception");
+    assert.equal(occurrences[0].classification, "reviewed-exception");
+  }
   assert.deepEqual(scan.unusedExceptions, []);
   assert.equal(new Set(residualTextExceptions.map(e => `${e.file}|${e.text}`)).size, residualTextExceptions.length);
   for (const entry of scan.occurrences) assert.ok(entry.context && entry.reason.length > 20);
