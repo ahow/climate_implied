@@ -15,7 +15,7 @@ test("higher costs reduce wealth and complete loss terminates the series", () =>
   const failed = walkForward(input, new Map(), .02, 10);
   assert.equal(failed.series.length, 1); assert.equal(failed.accounting.netCumulative, 0);
 });
-import { walkForward } from "../server/climateValuation/walkForward";
+import { verifiedSyntheticWalkForward as walkForward } from "./fixtures/verifiedSyntheticMoney";
 import { validateCvQuery } from "../server/climateValuation/queryValidation";
 test("zero-cost API requests are valid; negative costs are rejected", () => {
   assert.doesNotThrow(() => validateCvQuery("/backtest", { costBps: "0" }));

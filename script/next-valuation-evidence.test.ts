@@ -15,6 +15,8 @@ import { originalNominalAssessmentHandler } from "../server/calculation/original
 import type { Request, Response } from "express";
 import { packDataset } from "../server/snapshots/contract";
 import { runWithReplayWorkbook, snapshotContext, type SnapshotHeader } from "../server/snapshots/store";
+import { withVerifiedSyntheticRows } from "./fixtures/verifiedSyntheticMoney";
+import { monetaryContext } from "../server/financialData/workbookMoney";
 import {
   equityProjection, originalNominalEquityProjection, originalNominalEquityAssessment,
   ORIGINAL_NOMINAL_TERMINAL_GRID,
@@ -28,11 +30,13 @@ test("S01-004 actual custom-r calculator/API, rendered label and XLSX notes agre
   const rows = companies.map(c => ({ id: c.id, companyId: c.id, date: new Date("2024-01-31Z"),
     totalReturnIndex: 100, marketCap: 100, netProfit: c.id === 1 ? 5 : 10,
     priceEarnings: null, scope1Emissions: 0, scope2Emissions: 0, scope3Emissions: 0 }));
-  const packed = packDataset(companies, rows);
+  const { packed, money } = withVerifiedSyntheticRows(rows, sourceRows => ({
+    packed: packDataset(companies, sourceRows), money: monetaryContext.getStore()!,
+  }), new Map(companies.map(c => [c.id, c.isin])));
   const header = { id: packed.id, companyCount: 2, observationCount: 2 } as SnapshotHeader;
   for (const percent of [8, 9.25, 6.125]) {
-    const result = await runWithReplayWorkbook(packed, () => snapshotContext.run(header,
-      () => calculateSDGGrowthDifferential(percent / 100)));
+    const result = await monetaryContext.run(money, () => runWithReplayWorkbook(packed, () => snapshotContext.run(header,
+      () => calculateSDGGrowthDifferential(percent / 100))));
     assert.equal(result.length, 1);
     const api = publicValuationResult(result) as typeof result;
     const actual = api[0];
@@ -90,12 +94,14 @@ test("S01-004 nonempty actual target API filtering and registered workbook bindi
   const rows = companies.map(c => ({ id: c.id, companyId: c.id, date: new Date("2024-01-31Z"),
     totalReturnIndex: 100, marketCap: 100, netProfit: [2, 2, 4, 4, 5, 5][c.id - 1],
     priceEarnings: null, scope1Emissions: 0, scope2Emissions: 0, scope3Emissions: 0 }));
-  const packed = packDataset(companies, rows);
+  const { packed, money } = withVerifiedSyntheticRows(rows, sourceRows => ({
+    packed: packDataset(companies, sourceRows), money: monetaryContext.getStore()!,
+  }), new Map(companies.map(c => [c.id, c.isin])));
   const header = { id: packed.id, companyCount: 6, observationCount: 6 } as SnapshotHeader;
   assert.equal(gordonBaselineSemantics.length, 6, "Only six authorized additive metadata IDs");
   assert.equal(new Set(gordonBaselineSemantics.map(field => field.id)).size, 6);
   const percent = 9.375;
-  await runWithReplayWorkbook(packed, () => snapshotContext.run(header, async () => {
+  await monetaryContext.run(money, () => runWithReplayWorkbook(packed, () => snapshotContext.run(header, async () => {
     const target = await calculateDecarbTerciles("absolute", percent / 100);
     const sdg = await calculateSDGGrowthDifferential(percent / 100);
     for (const [prefix, raw] of [["targetTerciles", target], ["sdg", sdg]] as const) {
@@ -127,7 +133,7 @@ test("S01-004 nonempty actual target API filtering and registered workbook bindi
         assert.equal(requireOutputSemantic(note.SemanticField).id, note.SemanticField);
       }
     }
-  }));
+  })));
 });
 
 const nominal = { baseEarnings: 100, discountRate: .08, returnOnEquity: .2,

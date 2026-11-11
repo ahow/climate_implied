@@ -4,6 +4,7 @@ import { computeMonthlyReturns, computeSignalScores } from "./backtestCalculator
 import { loadCompaniesAndTimeSeries, filterCompaniesByGeography, type ScoringMethod } from "./sharedUtils";
 import { computeDecarbGapScores } from "./decarbGapCalculator";
 import { walkForward } from "./walkForward";
+import { monthlyMoneyUnavailable } from "../financialData/workbookMoneyConsumers";
 
 /** Accounting dates are not publication dates; this remains a reconstruction. */
 export async function calculateBacktest(
@@ -27,6 +28,12 @@ export async function calculateBacktest(
     rows.push(row); byCompany.set(row.companyId, rows);
   }
   const monthly = computeMonthlyReturns(byCompany);
+  const moneyGap = monthlyMoneyUnavailable(monthly);
+  if (moneyGap) {
+    const response = buildBacktestResponse([], 0, null, signal, scoringMethod, trackingErrorLimit, "expanding_past_only");
+    response.summary.warnings = [`Backtest unavailable: monetary weights unconverted (${moneyGap}); returns/wealth/tracking error are unavailable, not observed zero.`];
+    return response;
+  }
   const scoresByMonth = new Map<string, Map<number, number>>();
   const cache = new Map<number, Map<number, number>>();
   for (const month of Array.from(monthly.keys()).sort()) {

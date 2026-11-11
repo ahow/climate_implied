@@ -1,4 +1,5 @@
 import { db } from "../db";
+import { qualifyMonetaryDates } from "../financialData/workbookMoney";
 import { projectionCache } from "@shared/schema";
 import type { CvTimeSeries, CvCompany } from "@shared/schema";
 import { eq } from "drizzle-orm";
@@ -87,14 +88,18 @@ export function computeGroupAggregates(
   includeScope3: boolean,
   winsorize: boolean,
   winsorizePercentile: number
-): { totalMarketCap: number; totalProfit: number; totalEmissions: number; peRatio: number; count: number } {
-  const validRecords = records.filter((ts: CvTimeSeries) =>
+): { totalMarketCap: number | null; totalProfit: number | null; totalEmissions: number; peRatio: number | null; count: number } {
+  const qualified = qualifyMonetaryDates(records);
+  if (records.length && qualified.length !== records.length)
+    return { totalMarketCap: null, totalProfit: null, totalEmissions: 0, peRatio: null, count: 0 };
+  const validRecords = qualified.filter((ts: CvTimeSeries) =>
     ts.marketCap != null && ts.netProfit != null && Number.isFinite(ts.netProfit) &&
     calculateCarbonIntensity(ts.scope1Emissions, ts.scope2Emissions, ts.scope3Emissions, ts.marketCap, includeScope3) !== null
   );
 
   if (validRecords.length === 0) {
-    return { totalMarketCap: 0, totalProfit: 0, totalEmissions: 0, peRatio: 0, count: 0 };
+    return { totalMarketCap: records.length ? null : 0, totalProfit: records.length ? null : 0,
+      totalEmissions: 0, peRatio: records.length ? null : 0, count: 0 };
   }
 
   let marketCaps = validRecords.map((ts: CvTimeSeries) => ts.marketCap!);
@@ -130,7 +135,8 @@ export async function calculateTotalBasedCarbonPrice(
   inferenceMethod: InferenceMethod = "carbon_intensity",
   geography?: string
 ): Promise<CarbonPriceResult[]> {
-  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const { companies: allCompanies, timeSeries: sourceTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const allTimeSeries = qualifyMonetaryDates(sourceTimeSeries);
   const overlay = overlayContext.getStore();
   const identity = companyCarbonCacheIdentity({ companies: allCompanies, timeSeries: allTimeSeries }, {
     uploadId, method, inferenceMethod, includeScope3, winsorize, winsorizePercentile, geography: geography ?? null,
@@ -237,6 +243,8 @@ export async function calculateTotalBasedCarbonPrice(
 
     const highAgg = computeGroupAggregates(highRiskRecords, includeScope3, winsorize, winsorizePercentile);
     const lowAgg = computeGroupAggregates(lowRiskRecords, includeScope3, winsorize, winsorizePercentile);
+    if (highAgg.totalMarketCap === null || highAgg.totalProfit === null || highAgg.peRatio === null ||
+      lowAgg.totalMarketCap === null || lowAgg.totalProfit === null || lowAgg.peRatio === null) continue;
 
     if (highAgg.count === 0 || lowAgg.count === 0) continue;
     if (highAgg.totalEmissions <= 0 || lowAgg.peRatio <= 0) continue;

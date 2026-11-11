@@ -1,4 +1,5 @@
 import type { CvTimeSeries } from "@shared/schema";
+import { qualifyMonetaryDates } from "../financialData/workbookMoney";
 import { calculateCarbonIntensity, assignTerciles, groupTimeSeriesByDate, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
 export interface TercileResult {
@@ -18,7 +19,8 @@ export async function computeTercilesOnTheFly(
   method: "absolute" | "sector_relative",
   includeScope3: boolean
 ): Promise<TercileResult[]> {
-  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const { companies: allCompanies, timeSeries: sourceTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const allTimeSeries = qualifyMonetaryDates(sourceTimeSeries);
 
   const companySectors = new Map<number, string | null>(allCompanies.map((c) => [c.id, c.sector]));
 

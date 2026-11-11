@@ -12,6 +12,7 @@ import { snapshotId } from "../server/financialData/review";
 import { contentHash } from "../server/calculation/analysisManifest";
 import { stage10IdentityStates, stage10Fields, stage10CoverageSemantics, stage10JsonExportLeafBindings } from "../shared/stage10Coverage";
 import { reassessRetainedMapping } from "../server/financialData/mappingDiagnostics";
+import { lifecycleProfileEvidence } from "../server/financialData/stage10Lifecycle";
 import { registerStage10CoverageRoutes } from "../server/stage10CoverageApi";
 import { buildStage10Workbook, stage10ExportDocument } from "../server/financialData/stage10Export";
 import { Stage10FinancialCoverage, stage10DownloadUrl, fetchStage10Coverage } from "../client/src/components/stage10-financial-coverage";
@@ -135,7 +136,10 @@ test("actual retained-version authenticator rejects corrupt hash/identity/securi
   }
 });
 test("actual aggregate API/JSON/XLSX use same input hash,dates,denominators,nulls; no private identifiers/values/public writes", async () => {
-  const report = buildStage10Coverage({ ...fixture(), years: Array.from({ length: 11 }, (_, i) => 2015 + i) }), document = stage10ExportDocument(report), app = express();
+  const source = fixture(), company = source.companies[2];
+  const lifecycleEvidence = lifecycleProfileEvidence(company, { isin: company.isin, symbol: "ENGINEERING_PRIVATE",
+    exchange: "ENGINEERING", isActivelyTrading: true }, "2021-03-01T00:00:00Z", source.workbookHash, "retained-worked-profile");
+  const report = buildStage10Coverage({ ...source, lifecycleEvidence, years: Array.from({ length: 11 }, (_, i) => 2015 + i) }), document = stage10ExportDocument(report), app = express();
   let unavailable = false;
   app.use(releaseSafety()); registerStage10CoverageRoutes(app, async () => {
     if (unavailable) throw new Error("Source failure; never expose raw provider/private error bytes");
@@ -152,12 +156,17 @@ test("actual aggregate API/JSON/XLSX use same input hash,dates,denominators,null
     assert.equal(binary.headers.get("x-stage10-input-sha256"), report.inputHash);
     const book = XLSX.read(Buffer.from(await binary.arrayBuffer()), { type: "buffer" });
     const rows = XLSX.utils.sheet_to_json<any>(book.Sheets["Aggregate coverage"]);
+    const lifecycleAudit = XLSX.utils.sheet_to_json<any>(book.Sheets["Lifecycle source audit"]);
+    assert.equal(lifecycleAudit.length, 2);
+    assert.deepEqual(lifecycleAudit[0], report.lifecycleEvidenceAudit[0]);
+    assert.equal(rows.find(r => r.population === "full-workbook" && r.key === "listed|candidate-awaiting-review").present, 1);
     assert.equal(rows.length, report.rows.length); assert.equal(rows.find(r => r.population === "verified-eligible").present, "null");
     const text = JSON.stringify(document) + JSON.stringify(rows);
-    for (const secret of ["PRIVATE_IDENTIFIER", "PRIVATE_CLASS", "PRIVATE_ISSUER", "US4592001014"]) assert.ok(!text.includes(secret));
+    for (const secret of ["PRIVATE_IDENTIFIER", "PRIVATE_CLASS", "PRIVATE_ISSUER", "US4592001014", "ENGINEERING_PRIVATE"]) assert.ok(!text.includes(secret));
     assert.ok(!("cells" in report)); assert.ok(!("reviews" in report));
     assert.equal((await fetch(`${base}/api/research/stage10-coverage?expectedInputHash=${"0".repeat(64)}`)).status, 409);
     assert.equal((await fetch(`${base}/api/research/stage10-coverage?path=/etc/passwd`)).status, 400);
+    assert.equal((await fetch(`${base}/api/research/stage10-coverage?lifecycle=listed`)).status, 400);
     assert.equal((await fetch(`${base}/api/research/stage10-coverage`, { method: "POST" })).status, 403);
     const nativeFetch = globalThis.fetch;
     try {
@@ -173,7 +182,7 @@ test("actual aggregate API/JSON/XLSX use same input hash,dates,denominators,null
   } finally { await new Promise<void>((resolve, reject) => server.close(e => e ? reject(e) : resolve())); }
   assert.ok(buildStage10Workbook(report).length > 1000);
 });
-test("exact JSON leaf serialization and39 definitions are complete metadata-only supplements", () => {
+test("exact JSON leaf serialization and51 definitions include independent lifecycle audit metadata", () => {
   const document = stage10ExportDocument(buildStage10Coverage(fixture()));
   const paths = new Set<string>();
   function walk(value: unknown, path: string) {
@@ -183,7 +192,7 @@ test("exact JSON leaf serialization and39 definitions are complete metadata-only
   }
   walk(document, "");
   const bindings = stage10JsonExportLeafBindings();
-  assert.equal(Object.keys(bindings).length, 735);
+  assert.equal(Object.keys(bindings).length, 953);
   assert.deepEqual(Array.from(paths).sort(), Object.keys(bindings).sort());
   for (const binding of Object.values(bindings)) assert.ok(stage10CoverageSemantics.some(s => s.id === binding.id));
 });
@@ -199,7 +208,7 @@ test("actual new UI SSR hides stale error/loading/invalid inputs and exposes sam
   for (const state of stage10IdentityStates) assert.ok(html.includes(state));
   assert.ok(html.includes(stage10DownloadUrl(report, "/export.xlsx").replaceAll("&", "&amp;")));
   assert.match(html, /no historical point-in-time/);
-  assert.equal(stage10CoverageSemantics.length, 39);
+  assert.equal(stage10CoverageSemantics.length, 51);
   for (const s of stage10CoverageSemantics) assert.deepEqual(outputFieldSemantics.filter(v => v.id === s.id), [s]);
   assert.equal(stage10Fields.length, 10);
 });

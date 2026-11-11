@@ -10,6 +10,8 @@ import { companyCarbonCacheIdentity, runWithIsolatedCompanyCarbonCache,
 import { canonical } from "../server/calculation/identity";
 import { publicValuationResult } from "../server/calculation/publicValuationContract";
 import { contentHash } from "../server/calculation/analysisManifest";
+import { withVerifiedSyntheticRows } from "./fixtures/verifiedSyntheticMoney";
+import { monetaryContext } from "../server/financialData/workbookMoney";
 
 function fixture(multiplier = 1, irregular = false) {
   // Synthetic ENGINEERING fixture only; never a real issuer claim or DB row.
@@ -24,10 +26,12 @@ function fixture(multiplier = 1, irregular = false) {
     priceEarnings: 10, scope1Emissions: company.id * 25, scope2Emissions: company.id * 2,
     scope3Emissions: null, totalReturnIndex: 100,
   })));
-  const packed = packDataset(companies as any, timeSeries as any);
-  const header = { id: packed.id, companyCount: companies.length, observationCount: timeSeries.length,
-    chunkCount: packed.chunks.length } as SnapshotHeader;
-  return { packed, header };
+  return withVerifiedSyntheticRows(timeSeries, rows => {
+    const packed = packDataset(companies as any, rows);
+    const header = { id: packed.id, companyCount: companies.length, observationCount: timeSeries.length,
+      chunkCount: packed.chunks.length } as SnapshotHeader;
+    return { packed, header, money: monetaryContext.getStore()! };
+  }, new Map(companies.map(c => [c.id, c.isin])));
 }
 function backend() {
   const entries = new Map<string, string>(), reads: { key: string; hit: boolean }[] = [], writes: string[] = [];
@@ -45,7 +49,7 @@ test("actual calculator executes miss/compute/write then JSONB-like hit, without
   const prior = process.env.NODE_ENV; process.env.NODE_ENV = "test";
   try {
     const a = fixture(1, true), store = backend(), events: CompanyCarbonCacheWitness[] = [];
-    await runWithReplayWorkbook(a.packed, () => snapshotContext.run(a.header, () =>
+    await monetaryContext.run(a.money, () => runWithReplayWorkbook(a.packed, () => snapshotContext.run(a.header, () =>
       runWithIsolatedCompanyCarbonCache(store, event => events.push(event), async () => {
         const cold = await calculateTotalBasedCarbonPrice(0, "absolute", false, false, 5);
         assert.ok(cold.length);
@@ -64,7 +68,7 @@ test("actual calculator executes miss/compute/write then JSONB-like hit, without
         cold[0].topTercileMarketCap = -999;
         const warmAgain = await calculateTotalBasedCarbonPrice(0, "absolute", false, false, 5);
         assert.equal(canonical(warmAgain), coldCanonical, "caller mutation cannot poison serialized cache");
-      })));
+      }))));
   } finally { if (prior === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = prior; }
 });
 test("retained no-op overlay identity cannot alias identical effective inputs; distinct datasets cannot cross-hit", async () => {
@@ -76,11 +80,11 @@ test("retained no-op overlay identity cannot alias identical effective inputs; d
       field: "marketCap", value: 110, kind: "financial", unit: "USD million",
       source: "synthetic engineering no-op", approvalEvidence: "TEST ONLY not approval", historyBasis: "revised-history",
     }]);
-    const run = (value: ReturnType<typeof fixture>, overlay = false) => runWithReplayWorkbook(value.packed, () =>
+    const run = (value: ReturnType<typeof fixture>, overlay = false) => monetaryContext.run(value.money, () => runWithReplayWorkbook(value.packed, () =>
       snapshotContext.run(value.header, () => runWithIsolatedCompanyCarbonCache(store, event => identities.push(event), () =>
         overlay ? overlayContext.run({ ids: [noOp.id], cutoff: "2021-01-01", overlays: [noOp.payload] },
           () => calculateTotalBasedCarbonPrice(0, "absolute", false, false, 5)) :
-          calculateTotalBasedCarbonPrice(0, "absolute", false, false, 5))));
+           calculateTotalBasedCarbonPrice(0, "absolute", false, false, 5)))));
     const original = await run(a);
     const noOpResult = await run(a, true);
     assert.equal(canonical(original), canonical(noOpResult));

@@ -1,0 +1,105 @@
+{
+  "criterion": "S03-004",
+  "requirement": "Implement the missing-data standard: observed zero, unavailable, not applicable and below-threshold are distinct; interpolate interior gaps only; infill with sampled uncertainty; never fill with zero.",
+  "assessment": "Bounded engineering implementation and actual adapter/export tests passed. This is not a claim that all collected indicators have source-supported distributions or that the complete criterion is satisfied throughout production.",
+  "scopeOwnership": "Scopes/indicators only. Monetary aggregate/currency implementation left to the concurrent worker. No original workbook loader, S03-008 source-cell schema, protected bundle pins, routes, canonical ledgers, deployment or callbacks edited.",
+  "actualZeroIssues": [
+    {
+      "path": "server/dataIngestion/adapters/owid.ts",
+      "before": "One-decimal rounding after Mt-to-Gt conversion turned an actual engineering source value0.0005Mt into0Gt.",
+      "after": "Actual native conversion retains0.0000005Gt; source byte hash/JSON locator/original value/unit/transform and null/refused-source ledger retained in rawContext. Conversion underflow refuses, not zero.",
+      "baselineRevision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+      "baselineSourceSha256": "63e878c020d62520f65a344534d7b01e60f7a69693f32fa7b284dcdce3e92924",
+      "proof": "Focused test executes the actual retained adapter and current adapter against the same isolated response."
+    },
+    {
+      "path": "server/dataIngestion/adapters/noaa.ts",
+      "before": "Two-decimal growth rounding turned the engineering source observation0.001ppm into0ppm.",
+      "after": "Retains source precision, including0.001ppm growth and420.1234ppm concentration. Source hash/line/column/original value retained. Nonzero-token numeric underflow refuses.",
+      "baselineRevision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+      "baselineSourceSha256": "6179213fdcbe5553828dc542d483d6619856734c8a17f285cc75f54bb3c4c554",
+      "proof": "Focused test executes actual retained/current adapters; no live provider request or measurement is fabricated."
+    }
+  ],
+  "scopeBaseline": {
+    "status": "Previously fixed by S03-008; preserved, not reimplemented.",
+    "source": "server/climateValuation/carbonPriceCalculator.ts: computeGroupAggregates",
+    "retainedRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
+    "fixtureBefore": { "eligibleRows": 2, "totalEmissions": 10 },
+    "fixtureAfter": { "eligibleRows": 1, "totalEmissions": 0 },
+    "interpretation": "Old actual code summed a missing included scope as0. Current actual code omits that row and preserves the other row's complete observed-zero scopes. Test supplies isolated explicit USD-million source receipts to satisfy the concurrent money guard, without real issuer approval.",
+    "guardProof": "calculateCarbonIntensity(0,0,null,100,false)=0; with Scope3 required it is null. Incomplete row excluded by actual backtest scoring.",
+    "structuralZeros": "Excluded Scope3 contributes no term when not selected; empty-group/count accumulator identities are not observed zero source cells."
+  },
+  "newReadOnlyQualifiedSourcePath": {
+    "adapter": "server/dataIngestion/adapters/qualifiedArchive.ts",
+    "cli": "script/export-qualified-indicators.ts",
+    "version": "qualified-indicator-source-v1",
+    "states": {
+      "observed": "Finite supplied numeric value, including0; not inferred from a qualifier.",
+      "unavailable": "Explicit null plus blank/provider-null/not-returned reason. Only an actual explicit blank can be an infill target.",
+      "not-applicable": "Explicit null plus source-supplied applicability reason; never a blank/zero/interpolation target.",
+      "below-threshold": "Explicit null with source-supplied finite bound/operator/reason; bound not substituted as a measured value or zero."
+    },
+    "identity": "SHA256 of actual input bytes and exact JSON source locators; loaded input deeply frozen. Forged/spread caller objects cannot be exported as an actual adapter result.",
+    "sampling": "Only source-supplied paired finite draws with explicit paired-source-draw-linear-interior method/evidence are propagated. Pair by supplied sample ID, not position. No fitted normal/uniform distribution, random draws, invented variance or independence assumption.",
+    "refusals": ["absent original cell", "nonblank qualifier even with fully evidenced bracketing donors", "unbracketed target/no extrapolation", "missing source method", "missing donor samples", "unpaired sample IDs", "duplicate source years/IDs", "ambiguous numeric tokens", "unknown indicator/unit"],
+    "export": "Actual XLSX/CLI roundtrip includes Identity, SourceCells, SourceSamples, Results and SampleLineage. Every derived sample retains original blank, donor draw locators and source method locator/hash.",
+    "admission": "Source declarations/sampling evidence remain unverified and not approved. This path is read-only, not wired into automated collection/approval or a central model.",
+    "liveSourceEvidence": "No live provider paired-draw corpus is supplied or claimed by this task. Positive sampled-lineage tests use clearly labelled isolated engineering source files."
+  },
+  "finiteActualInventory": [
+    { "path": "server/climateValuation/sharedUtils.ts", "result": "Included scopes finite/nonnegative and complete; unknown gives null. Scope3 exclusion is structural, not missing-data zero." },
+    { "path": "server/climateValuation/carbonPriceCalculator.ts", "result": "Actual group scope eligibility regression tested; no remaining literal scope||0. Monetary changes owned by concurrent worker." },
+    { "path": "server/climateValuation/tercileCalculator.ts", "result": "Uses selected-scope calculateCarbonIntensity eligibility; monetary work not edited." },
+    { "path": "server/climateValuation/backtestCalculator.ts", "result": "Actual score path requires known finite nonnegative Scope1+2; incomplete row not ranked." },
+    { "path": "server/calculation/companyCoverage.ts", "result": "Complete required scope values required for sourced emissions/intensity; existing diagnostic left unchanged." },
+    { "path": "server/calculation/companyProjection.ts; companyProjectionReplay.ts", "result": "Explicit required finite base-scope schema/replay; no source qualifier promoted to a physical value. No protected-model execution." },
+    { "path": "server/climateValuation/dataProcessor.ts; workbookMissingness.ts; workbookMissingnessExport.ts", "result": "S03-008 source-byte/cell provenance and unsupported-token refusal preserved. Its raw ambiguous N/A/threshold tokens are not guessed into new states." },
+    { "path": "server/climateValuation/emissionsCarryForward.ts", "result": "Preserved source-traced legacy carry-forward is not interior sampled infill. Residual, not counted as S03-004 completion." },
+    { "path": "server/calculation/driverEvidence.ts: interpolateInterior", "result": "Preserved source-traced deterministic diagnostic reports uncertainty not-quantified; not promoted to source-supported sampled infill." },
+    { "path": "server/dataIngestion/adapters/index.ts", "result": "Actual automated collector has5 adapters and22 distinct keys. New qualified archive is an additional read-only CLI path, not a fictional sixth registered collector." },
+    { "path": "server/dataIngestion/adapters/noaa.ts", "result": "Two keys; source numeric precision/zero/underflow tests executed; no source-draw distribution inferred from extra uncertainty columns." },
+    { "path": "server/dataIngestion/adapters/owid.ts", "result": "One key; source precision/null/refused-token ledger tested. Unsupported qualifier tokens remain rejected as observations, not guessed into a bound." },
+    { "path": "server/dataIngestion/adapters/worldBank.ts", "result": "One key; affected existing null/true-zero regression passed; monetary module untouched." },
+    { "path": "server/dataIngestion/adapters/perplexity.ts", "result": "Fourteen keys; source estimates/nonnumeric or implausible response refusal unchanged. Not a verified observation/qualifier/draw source." },
+    { "path": "server/dataIngestion/adapters/derived.ts", "result": "Four keys; existing declared arithmetic/domain floors and curated-input assumptions unchanged. No new qualifier/distribution or central approval inferred." }
+  ],
+  "executedVerification": {
+    "focusedCommand": "S03_004_EVIDENCE_DIR=generated-artifacts/s03-004/qualified-fixtures npx tsx --test script/source-qualified-missingness.test.ts",
+    "focused": { "tests": 7, "pass": 7, "fail": 0, "skipped": 0, "log": "generated-artifacts/s03-004/focused-tests.tap", "sha256": "caedd5d92d07a21dc93ba2c3fa28c14298d18bc7bc7c15358aba0f5f27719e4a" },
+    "affectedS03008Command": "npx tsx --test --test-name-pattern 'actual NOAA adapter|actual WorldBank/OWID' script/workbook-missingness-integration.test.ts",
+    "affectedS03008": { "pass": 2, "fail": 0, "skipped": 21, "log": "generated-artifacts/s03-004/s03-008-adapter-regressions.tap", "sha256": "b384bdb15a19f8ad7328aea64fafe0db647945d43bd2107e04117574a5759be8" },
+    "typecheck": { "command": "npx tsc --noEmit --pretty false", "exitCode": 0, "log": "generated-artifacts/s03-004/typecheck.log" },
+    "actualCLI": "npx tsx script/export-qualified-indicators.ts <retained-fixture.json> qualified-indicator-audit.xlsx --engineering-only",
+    "initialFixtureFailures": { "log": "/tmp/s03-004-first-tests.log", "pass": 5, "fail": 2, "resolution": "Corrected NOAA mock URL selection and supplied real isolated XLSX money-cell receipts for the concurrent currency guard; no production gate bypass." }
+  },
+  "retainedEngineeringArtifacts": {
+    "input": "generated-artifacts/s03-004/qualified-fixtures/source-a04b0f373601bbc1c4132f5083d0cddd8b3ed805d2e9289f61a89d2877cf4965.json",
+    "inputSha256": "dd2efc0017be2b5295dd27e2ff9d616e964d380e64e11a31d7888f2710f19ed3",
+    "output": "generated-artifacts/s03-004/qualified-fixtures/qualified-indicator-audit.xlsx",
+    "outputSha256": "0a2991bcd1b6b80ed6b18de021c49d5b97232963cf6fbfa88ebbefce200f7c9a",
+    "states": { "observed": 3, "unavailable": 3, "not-applicable": 1, "below-threshold": 1 },
+    "observedZeros": 1,
+    "originalSourceSamples": 4,
+    "actualInteriorInfills": 1,
+    "derivedSamplesWithLineage": 2,
+    "withheldResults": 4
+  },
+  "sourceSha256": {
+    "server/dataIngestion/adapters/owid.ts": "38b8eb8a3e86c39d7c92d0c2a1644c639a426f996896454cbf79dcb14c4a9af7",
+    "server/dataIngestion/adapters/noaa.ts": "23ae216a58db5e027dc78b6583cfc9676e70ccea1a603be1b9bef88ed8cb9551",
+    "server/dataIngestion/adapters/qualifiedArchive.ts": "80c72432556452b98a42e19e867d14e60ef3a082118bab814098e0b95b6d943a",
+    "script/export-qualified-indicators.ts": "744dbbb52a5549928b16b5daf060cb5978cdd408fea773553f83836e67e137f3",
+    "script/source-qualified-missingness.test.ts": "abddb807b18e878838fd796ff34e02aff6707f2743893e40b9363e4fe5f1a993"
+  },
+  "remainingFinitePaths": [
+    "Automated ingestion/proposal persistence still uses numeric FetchedValue; complete four-state storage/review/UI propagation is not implemented by this read-only archive path.",
+    "No source-supported paired draws are established for the five live collector adapters. Missing evidence refuses sampled infill; this work supplies no synthetic production distribution.",
+    "Legacy source-traced carry-forward and deterministic unquantified interpolation are separate diagnostics, not fulfilment of the interior-sampled standard.",
+    "Full S03-008 calculator/export regression remains with parent/currency integration; only its two affected adapter cases were rerun here.",
+    "Protected native climate engines, all fourteen bundle pins, live data collection, private issuer approval, mutable DB state and full-suite acceptance were not rerun or changed."
+  ],
+  "privacy": "Public evidence is paths/hashes/counters and clearly identified engineering examples only; no actual private issuer/workbook payload exported.",
+  "previewSmoke": { "path": "generated-artifacts/s03-004/preview-smoke.jpg", "scope": "Existing initial Data Management preview renders normally; no collection/approval or unchanged interactive flow rerun." }
+}

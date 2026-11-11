@@ -1,4 +1,5 @@
 import type { CvTimeSeries } from "@shared/schema";
+import { qualifyMonetaryDates } from "../financialData/workbookMoney";
 import { convertAll } from "./decarbConversion";
 import { computeCompanyAnnualDecarbRate, groupTimeSeriesByDate, loadCompaniesAndTimeSeries } from "./sharedUtils";
 
@@ -45,7 +46,8 @@ export function getBandMidpoint(bandIndex: number): number {
 }
 
 export async function calculateDecarbBands(): Promise<DecarbBandResult[]> {
-  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(false);
+  const { companies: allCompanies, timeSeries: sourceTimeSeries } = await loadCompaniesAndTimeSeries(false);
+  const allTimeSeries = qualifyMonetaryDates(sourceTimeSeries);
 
   if (allTimeSeries.length === 0) return [];
 

@@ -1,4 +1,5 @@
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
+import { qualifyMonetaryDates } from "../financialData/workbookMoney";
 import { gordonBaselineMetadata } from "../calculation/publicValuationContract";
 import type { CvCompany, CvTimeSeries } from "@shared/schema";
 import {
@@ -92,7 +93,8 @@ export async function calculateDecarbTerciles(
   geography?: string
 ): Promise<DecarbTercileResult[]> {
   const baseline = gordonBaselineMetadata(costOfEquity);
-  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const { companies: allCompanies, timeSeries: sourceTimeSeries } = await loadCompaniesAndTimeSeries(true);
+  const allTimeSeries = qualifyMonetaryDates(sourceTimeSeries);
 
   const filteredCompanies = filterCompaniesByGeography(allCompanies, geography);
   const companyIdSet = new Set(filteredCompanies.map(c => c.id));

@@ -4,9 +4,10 @@ import { SeededRandom, randomNormalFrom } from "../server/calculation/random";
 import { calculationKey } from "../server/calculation/identity";
 import { legacyContext, orderCalculationRows, quantity } from "../shared/calculationContract";
 import { calculateEmissionsTrajectory, calculateTemperatureDistribution, getTemperatureStats } from "../server/calculation/forwardProjection";
-import { computeDecarbGapScores } from "../server/climateValuation/decarbGapCalculator";
+import { verifiedSyntheticGapScores as computeDecarbGapScores } from "./fixtures/verifiedSyntheticMoney";
 import { getLatestTimeSeriesPerCompany } from "../server/climateValuation/sharedUtils";
-import { computeMonthlyReturns, computeBenchmarkReturn, computeSignalScores } from "../server/climateValuation/backtestCalculator";
+import { verifiedSyntheticMonthlyReturns as computeMonthlyReturns, verifiedSyntheticBenchmarkReturn as computeBenchmarkReturn,
+  verifiedSyntheticSignalScores as computeSignalScores } from "./fixtures/verifiedSyntheticMoney";
 import { convertAll } from "../server/climateValuation/decarbConversion";
 import { inputs, companies, rows, backtestSettings } from "./fixtures/calculationInputs";
 import { expected } from "./fixtures/calculationExpected";

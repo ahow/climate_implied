@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { walkForward, type ReturnObservation } from "../server/climateValuation/walkForward";
-import { computeMonthlyReturns } from "../server/climateValuation/backtestCalculator";
+import type { ReturnObservation } from "../server/climateValuation/walkForward";
+import { verifiedSyntheticWalkForward as walkForward, verifiedSyntheticMonthlyReturns as computeMonthlyReturns } from "./fixtures/verifiedSyntheticMoney";
 import type { CvTimeSeries } from "../shared/schema";
 import { calculateBacktest } from "../server/climateValuation/walkForwardBacktest";
 

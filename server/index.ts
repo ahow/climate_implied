@@ -8,6 +8,7 @@ import { quantityDescriptionMiddleware } from "./quantityDescriptionApi";
 import { registerTrackBAdmissionRoutes } from "./trackBAdmissionApi";
 import { loadPublishedTrackBAdmission } from "./trackBDisclosureStore";
 import { registerStage10CoverageRoutes } from "./stage10CoverageApi";
+import { registerWorkbookMoneyAuditApi } from "./workbookMoneyAuditApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -72,6 +73,7 @@ app.use((req, res, next) => {
   // The genuine production catalog is empty until operator rights review/pins.
   registerTrackBAdmissionRoutes(app, loadPublishedTrackBAdmission);
   registerStage10CoverageRoutes(app);
+  registerWorkbookMoneyAuditApi(app);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {

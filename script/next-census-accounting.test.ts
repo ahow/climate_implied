@@ -51,13 +51,14 @@ test("every new typed API/export denominator change is separate and reconciles a
   // fact count. The reference's exact38-ID contract is independently checked.
   assert.equal(census.definitions, fieldSemantics.length + outputFieldSemantics.length);
   assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, conditionalCompanySemantics.length);
-  assert.equal(added.externalTypedApiSlots, 2395);
-  assert.equal(added.externalTypedApiBoundSlots, 2395);
+  assert.equal(added.externalTypedApiSlots, 2766);
+  assert.equal(added.externalTypedApiBoundSlots, 2766);
   assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots +
     added.warmingReferenceApiLeafSlots + added.warmingReferenceJsonExportLeafSlots +
     added.trackBAdmissionApiLeafSlots + added.trackBAdmissionJsonExportLeafSlots + added.trackBAdmissionWorkbookLeafSlots +
     added.trackBAdmissionXlsxApiLeafSlots + added.trackBAdmissionCatalogLeafSlots +
-    added.stage10CoverageApiLeafSlots + added.stage10CoverageJsonExportLeafSlots + added.stage10CoverageXlsxApiLeafSlots);
+    added.stage10CoverageApiLeafSlots + added.stage10CoverageJsonExportLeafSlots + added.stage10CoverageXlsxApiLeafSlots +
+    added.workbookMoneyAuditApiLeafSlots + added.workbookMoneyAuditXlsxApiLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
   assert.equal(added.conditionalCompanyApiLeafSlots, 63);
@@ -70,27 +71,40 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(added.trackBAdmissionWorkbookLeafSlots, 65);
   assert.equal(added.trackBAdmissionXlsxApiLeafSlots, 65);
   assert.equal(added.trackBAdmissionCatalogLeafSlots, 12);
-  assert.equal(added.stage10CoverageApiLeafSlots, 39);
-  assert.equal(added.stage10CoverageJsonExportLeafSlots, 736);
-  assert.equal(added.stage10CoverageXlsxApiLeafSlots, 84);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 3727);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 3726);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 2726);
+  assert.equal(added.stage10CoverageApiLeafSlots, 51);
+  assert.equal(added.stage10CoverageJsonExportLeafSlots, 954);
+  assert.equal(added.stage10CoverageXlsxApiLeafSlots, 101);
+  assert.equal(added.workbookMoneyAuditApiLeafSlots, 35);
+  assert.equal(added.workbookMoneyAuditXlsxApiLeafSlots, 89);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 4098);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 4097);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 3097);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
 });
-test("Stage10 exact39 new definitions/859 aggregate supplements are not original1001 closure or historical model eligibility", () => {
+test("Monetary audit36 exact definitions/124 supplemental slots never qualify unknown money or close original1001", () => {
+  const money = census.supplementalQualifiedChanges.workbookMoneyAudit;
+  assert.equal(money.definitions, 36);
+  assert.equal(money.reportLeaves, 34);
+  assert.equal(money.workbook.qualificationFields.length, 20);
+  assert.equal(Object.keys(money.workbook.sourceColumns).length, 15);
+  assert.equal(money.typedApiAndWorkbookFields.length, 124);
+  assert.ok(money.typedApiAndWorkbookFields.every((f: { bound: boolean }) => f.bound));
+  assert.equal(money.api.headerBinding["X-Workbook-Money-Audit-SHA256"], "workbookMoney.auditHash");
+});
+test("Stage10 exact51 definitions/1106 aggregate supplements keep lifecycle separate and original1001 unchanged", () => {
   const coverage = census.supplementalQualifiedChanges.stage10Coverage;
-  assert.equal(coverage.definitions, 39);
+  assert.equal(coverage.definitions, 51);
   assert.deepEqual(coverage.ids, stage10CoverageSemantics.map(s => s.id));
-  assert.equal(coverage.reportSchemaLeaves, 38);
+  assert.equal(coverage.reportSchemaLeaves, 50);
   assert.deepEqual(coverage.jsonExport.leafBindings, stage10JsonExportLeafBindings());
-  assert.equal(Object.keys(coverage.jsonExport.leafBindings).length, 735);
+  assert.equal(Object.keys(coverage.jsonExport.leafBindings).length, 953);
   assert.deepEqual(coverage.workbook.aggregateColumns, stage10ExportBindings);
-  assert.equal(coverage.workbook.identityFields.length, 14);
+  assert.equal(coverage.workbook.identityFields.length, 19);
+  assert.equal(Object.keys(coverage.workbook.lifecycleAuditColumns).length, 7);
   assert.equal(coverage.api.readOnlyRetainedResolverImplemented, true);
   assert.equal(coverage.api.publicWrites, false); assert.equal(coverage.api.providerRefresh, false);
   assert.equal(coverage.api.realApprovalCreated, false);
-  assert.equal(coverage.typedApiAndWorkbookFields.length, 859);
+  assert.equal(coverage.typedApiAndWorkbookFields.length, 1106);
   assert.ok(coverage.typedApiAndWorkbookFields.every((f: { bound: boolean; id: string }) =>
     f.bound && outputFieldSemantics.some(s => s.id === f.id)));
   assert.ok(frozen.slots.every((s: { surface: string }) => !s.surface.includes("stage10-coverage")));

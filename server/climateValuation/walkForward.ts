@@ -1,5 +1,12 @@
 import type { BacktestPoint } from "../../shared/backtest";
-export interface ReturnObservation { companyId: number; monthlyReturn: number; marketCap: number; }
+import { requireQualifiedWeight, monthlyMoneyUnavailable, MonetaryUnavailableError, type QualifiedWeightSource } from "../financialData/workbookMoneyConsumers";
+export interface ReturnObservation extends QualifiedWeightSource { companyId: number; monthlyReturn: number; marketCap: number; }
+interface KernelObservation { companyId: number; monthlyReturn: number; benchmarkMass: number }
+export interface EqualSectorStrategyObservation { companyId: number; sector: string; monthlyReturn: number }
+export const EQUAL_SECTOR_STRATEGY_CONTRACT = Object.freeze({
+  version: "equal-sector-strategy-weights-1", basis: "dimensionless", unit: "fraction-of-benchmark-nav",
+  construction: "equal-within-sector",
+} as const);
 
 function annualizedRisk(values: number[]) {
   if (values.length < 3) return 0;
@@ -7,10 +14,10 @@ function annualizedRisk(values: number[]) {
   return Math.sqrt(values.reduce((s, v) => s + (v - mean) ** 2, 0) / values.length * 12);
 }
 
-function portfolio(rows: ReturnObservation[], scores: Map<number, number>, tilt: number) {
-  const total = rows.reduce((s, r) => s + r.marketCap, 0);
+function portfolio(rows: KernelObservation[], scores: Map<number, number>, tilt: number) {
+  const total = rows.reduce((s, r) => s + r.benchmarkMass, 0);
   if (!Number.isFinite(total) || total <= 0) throw new Error("Invalid portfolio capitalization");
-  const benchmark = rows.map(r => r.marketCap / total);
+  const benchmark = rows.map(r => r.benchmarkMass / total);
   const benchmarkReturn = rows.reduce((s, r, i) => s + benchmark[i] * r.monthlyReturn, 0);
   if (tilt === 0 || rows.every(r => (scores.get(r.companyId) ?? 0) === 0)) {
     return { benchmark: benchmarkReturn, portfolio: benchmarkReturn, overweight: 0, underweight: 0,
@@ -39,6 +46,58 @@ export function walkForward(
 ) {
   if (!Number.isFinite(targetTE) || targetTE <= 0) throw new Error("Invalid target tracking error");
   if (!Number.isFinite(costBps) || costBps < 0 || costBps > 100) throw new Error("Cost must be 0–100 basis points per traded dollar");
+  const unavailable = monthlyMoneyUnavailable(monthly);
+  if (unavailable) throw new MonetaryUnavailableError(unavailable);
+  for (const [month, rows] of Array.from(monthly.entries())) {
+    if (new Set(rows.map(r => r.companyId)).size !== rows.length) throw new Error("Duplicate company in a monthly portfolio");
+    if (!rows.length || rows.some(r => !Number.isFinite(r.marketCap) || r.marketCap <= 0 ||
+      !Number.isFinite(r.monthlyReturn) || r.monthlyReturn < -1)) throw new Error("Invalid monthly return/weight observations");
+    for (const row of rows) requireQualifiedWeight(row, month);
+  }
+  return executeWalkForward(new Map(Array.from(monthly.entries()).map(([month, rows]) => [month,
+    rows.map(r => ({ companyId: r.companyId, monthlyReturn: r.monthlyReturn, benchmarkMass: r.marketCap }))])),
+    scoresByMonth, targetTE, costBps);
+}
+
+/** A separate dimensionless contract, NOT a flag bypassing monetary validation.
+ * No market-cap or caller-supplied numeric weight is accepted: positive normalized
+ * weights are constructed solely from the explicitly chosen equal-sector rule.
+ * This cannot certify, convert or normalize native workbook capitalisations. */
+export function walkForwardEqualSectorStrategy(
+  monthly: Map<string, EqualSectorStrategyObservation[]>,
+  scoresByMonth: Map<string, Map<number, number>>,
+  targetTE: number,
+  costBps: number,
+  contract: typeof EQUAL_SECTOR_STRATEGY_CONTRACT,
+) {
+  if (!contract || typeof contract !== "object" || Object.keys(contract).length !== 4 || Object.entries(EQUAL_SECTOR_STRATEGY_CONTRACT).some(([k, v]) =>
+    (contract as Record<string, unknown>)[k] !== v)) throw new Error("Explicit equal-sector dimensionless strategy contract required");
+  if (monthlyMoneyUnavailable(monthly)) throw new MonetaryUnavailableError("A rejected monetary series cannot be relabelled dimensionless");
+  const weights = new Map<string, KernelObservation[]>();
+  for (const [month, rows] of Array.from(monthly.entries())) {
+    if (!/^\d{4}-(?:0[1-9]|1[0-2])$/.test(month) || !rows.length ||
+      rows.some(r => Object.keys(r).some(k => !["companyId", "sector", "monthlyReturn"].includes(k)) ||
+        !Number.isInteger(r.companyId) || !r.sector?.trim()))
+      throw new Error("Strategy rows must contain only companyId, sector and dimensionless monthlyReturn; no monetary input/weight relabelling");
+    const sectors = new Map<string, number>();
+    rows.forEach(r => sectors.set(r.sector, (sectors.get(r.sector) ?? 0) + 1));
+    const derived = rows.map(r => ({ companyId: r.companyId, monthlyReturn: r.monthlyReturn,
+      benchmarkMass: 1 / sectors.size / sectors.get(r.sector)! }));
+    const total = derived.reduce((sum, r) => sum + r.benchmarkMass, 0);
+    if (!Number.isFinite(total) || Math.abs(total - 1) > 1e-12) throw new Error("Strategy weights must sum to one");
+    weights.set(month, derived);
+  }
+  return executeWalkForward(weights, scoresByMonth, targetTE, costBps);
+}
+
+/** Shared risk/tilt/trading arithmetic; callers above establish the distinct
+ * monetary-capitalisation or constructed dimensionless weight contract first. */
+function executeWalkForward(
+  monthly: Map<string, KernelObservation[]>, scoresByMonth: Map<string, Map<number, number>>,
+  targetTE: number, costBps: number,
+) {
+  if (!Number.isFinite(targetTE) || targetTE <= 0) throw new Error("Invalid target tracking error");
+  if (!Number.isFinite(costBps) || costBps < 0 || costBps > 100) throw new Error("Cost must be 0–100 basis points per traded dollar");
   const months = Array.from(monthly.keys()).sort();
   const unitHistory: number[] = [], activeHistory: number[] = [];
   let benchmarkWealth = 1, portfolioWealth = 1;
@@ -50,7 +109,7 @@ export function walkForward(
     const rows = monthly.get(month)!;
     if (new Set(rows.map(r => r.companyId)).size !== rows.length)
       throw new Error("Duplicate company in a monthly portfolio");
-    if (!rows.length || rows.some(r => !Number.isFinite(r.marketCap) || r.marketCap <= 0 ||
+    if (!rows.length || rows.some(r => !Number.isFinite(r.benchmarkMass) || r.benchmarkMass <= 0 ||
       !Number.isFinite(r.monthlyReturn) || r.monthlyReturn < -1)) {
       throw new Error("Invalid monthly return/weight observations");
     }

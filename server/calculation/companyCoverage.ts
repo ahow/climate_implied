@@ -1,6 +1,7 @@
 /** S12-018: descriptive selected-workbook coverage, never a projected census.
  * Membership is frozen before inspecting values; missing values never become 0.
  */
+import { qualifiedSourceAmount, type MonetarySourceRow } from "../financialData/workbookMoneyConsumers";
 export type CoverageState = "present" | "null" | "missing" | "conflicted" | "invalid";
 export type MappingBasis = "operating-geography" | "headquarters-fallback" | "unknown" | "missing" | "conflicted";
 export interface CoverageCompany { id: number; isin: string }
@@ -8,8 +9,9 @@ export interface CoverageObservation {
   companyId: number; date: Date | string;
   marketCap?: number | null; scope1Emissions?: number | null;
   scope2Emissions?: number | null; scope3Emissions?: number | null;
-  /** Absent uses the declared workbook USD convention; explicit mismatches do not aggregate. */
+  /** Descriptive native metadata only. Neither this label nor its absence certifies conversion. */
   marketCapCurrency?: string | null;
+  sourceCells?: MonetarySourceRow["sourceCells"];
 }
 export interface CoverageReview {
   companyId: number; eligible: boolean; eligibilityConflict?: boolean; mapping: MappingBasis;
@@ -48,8 +50,6 @@ export function companyCoverage(input: {
       let state: CoverageState = "missing", value: number | null = null;
       // Multiple same-date records are ambiguous even if values happen to match.
       if (rows.length > 1) state = "conflicted";
-      else if (rows.length && field === "marketCap" && Object.hasOwn(rows[0], "marketCapCurrency") &&
-        rows[0].marketCapCurrency !== "USD") state = "conflicted";
       else if (rows.length && Object.hasOwn(rows[0], field)) {
         const raw = rows[0][field];
         if (raw === null) state = "null";
@@ -58,7 +58,9 @@ export function companyCoverage(input: {
       }
       return [field, { state, value }];
     })) as Record<typeof fields[number], { state: CoverageState; value: number | null }>;
-    return { eligible: review?.eligible === true && !review.eligibilityConflict,
+    const qualifiedCap = rows.length === 1 && values.marketCap.state === "present"
+      ? qualifiedSourceAmount(rows[0], "marketCap", input.informationCutoff) : { value: null };
+    return { qualifiedCap: qualifiedCap.value, eligible: review?.eligible === true && !review.eligibilityConflict,
       eligibilityConflict: review?.eligibilityConflict === true,
       mapping: review?.eligibilityConflict ? "conflicted" as const : review?.mapping ?? "missing" as const, values };
   });
@@ -74,10 +76,12 @@ export function companyCoverage(input: {
       const states = Object.fromEntries((["present", "null", "missing", "conflicted", "invalid"] as const)
         .map(state => [state, rows.filter(r => r.values[field].state === state).length]));
       const known = rows.filter(r => r.values[field].state === "present");
-      const knownTotal = known.length ? known.reduce((s, r) => s + r.values[field].value!, 0) : null;
+      const moneyWithheld = field === "marketCap" && known.some(r => r.qualifiedCap === null);
+      const metricValue = (r: typeof records[number]) => field === "marketCap" ? r.qualifiedCap! : r.values[field].value!;
+      const knownTotal = known.length && !moneyWithheld ? known.reduce((s, r) => s + metricValue(r), 0) : null;
       const mapped = (basis: MappingBasis) => {
         const matching = known.filter(r => r.mapping === basis);
-        const value = known.length ? matching.reduce((s, r) => s + r.values[field].value!, 0) : null;
+        const value = known.length && !moneyWithheld ? matching.reduce((s, r) => s + metricValue(r), 0) : null;
         return { knownValue: value, shareOfKnownValue: value !== null && knownTotal !== null ? fraction(value, knownTotal) : null };
       };
       return [field, { states, availableCount: known.length, availableShare: fraction(known.length, denominator),
@@ -96,8 +100,9 @@ export function companyCoverage(input: {
     eligibleKnownValueCoverage,
     eligibilityConflicts: records.filter(r => r.eligibilityConflict).length,
     eligibilityRule: "Unique currently approved financial review, exact workbook companyId/ISIN, valid snapshot, all review/source/quote/filing timestamps available by cutoff; no issuer double counting.",
-    units: { marketCap: "USD million (workbook convention; no FX applied)", emissions: "tonnes CO2e; scopes separate, never summed across issuers/scopes as a global inventory" },
+    units: { marketCap: "USD million ONLY after exact source-cell denomination/scale and authorized dated FX qualification; otherwise monetary totals/weights unavailable", emissions: "tonnes CO2e; scopes separate, never summed across issuers/scopes as a global inventory" },
     limitations: [
+      `Capitalisation qualification: ${records.filter(r => r.qualifiedCap !== null).length} qualified; ${records.filter(r => r.values.marketCap.state === "present" && r.qualifiedCap === null).length} valid raw amounts unconverted. Raw availability counts/states are preserved, but monetary totals and shares are null wherever a known native amount is unconverted.`,
       "Exact observation date only; no latest-value carry-forward. Full workbook denominator is fixed before data availability checks.",
       "Eligible denominator means reviewed financial identity, not approved operating model or scientific acceptance.",
       "Mapping requires a unique approved complete operating proposal with verified archived identity and source claims; headquarters is never inferred as operating geography.",

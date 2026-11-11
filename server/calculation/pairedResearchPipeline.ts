@@ -2,7 +2,8 @@ import { z } from "zod";
 import { contentHash } from "./analysisManifest";
 import { rankPairedCompanyGaps } from "./pairedCompanyGap";
 import { adjudicateResearchFamily } from "./researchFamily";
-import { walkForward } from "../climateValuation/walkForward";
+import { walkForward, walkForwardEqualSectorStrategy, EQUAL_SECTOR_STRATEGY_CONTRACT } from "../climateValuation/walkForward";
+import { MonetaryUnavailableError, requireQualifiedWeight } from "../financialData/workbookMoneyConsumers";
 import { adaptPairedResearchCorpus, specificationKey, specificationSchema, type ResearchPeriod } from "./pairedResearchCorpus";
 import { accountOverlappingSleeves, sleeveScheduleSchema } from "./pairedResearchSleeves";
 import { accountResearchEvents } from "./pairedResearchEvents";
@@ -21,6 +22,9 @@ const protocolSchema = z.object({
   repetitions: z.number().int().min(200).max(10000), seed: z.number().int(),
   currency: z.string().min(1), geography: z.string().min(1),
   quantile: z.number().positive().max(.5), weighting: z.literal("equal-within-sector"),
+  // An independent, explicitly frozen strategy choice, never a currency receipt
+  // or a relabelling of security.marketCap as a dimensionless coefficient.
+  longOnlyKernelWeighting: z.literal("equal-within-sector").optional(),
   costBps: z.literal(25), sensitivityCostBps: z.array(z.number().min(0).max(100)),
   borrowRateMultipliers: z.array(z.number().nonnegative()).min(1),
   terminalStresses: z.tuple([z.literal(0), z.literal(-.3), z.literal(-1)]),
@@ -342,8 +346,18 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
         ({ companyId: s.numericId, marketCap: s.marketCap, monthlyReturn: o.returns[i] }))]));
       if (monthly.size !== observations.length) throw new Error("Duplicate kernel month");
       const scores = new Map(observations.map(o => [o.t.executionAt.slice(0, 7), new Map(o.t.securities.map(s => [s.numericId, o.scores[s.companyId]!]))]));
-      const kernel = walkForward(monthly, scores, .02, p.costBps);
-      longOnly = { label: "existing-long-only-tilt-kernel-not-long-short-evidence", result: kernel };
+      let kernel: ReturnType<typeof walkForward> | undefined;
+      try {
+        kernel = p.longOnlyKernelWeighting === "equal-within-sector"
+          ? walkForwardEqualSectorStrategy(new Map(observations.map(o => [o.t.executionAt.slice(0, 7),
+            o.t.securities.map((s, i) => ({ companyId: s.numericId, sector: s.sector, monthlyReturn: o.returns[i] }))])),
+          scores, .02, p.costBps, EQUAL_SECTOR_STRATEGY_CONTRACT)
+          : walkForward(monthly, scores, .02, p.costBps);
+        longOnly = { label: "existing-long-only-tilt-kernel-not-long-short-evidence", result: kernel };
+      } catch (error) {
+        if (!(error instanceof MonetaryUnavailableError)) throw error;
+        longOnly = { unavailable: error.message };
+      }
       for (const variant of p.longOnlyVariants ?? []) {
         const accounting: ReturnType<typeof accountResearchPeriod>[] = [];
         let prior: Record<string, number> = {};
@@ -358,13 +372,18 @@ export function runPairedResearchPipeline(protocolInput: unknown, expectedProtoc
               if (!s || Math.abs(h.endUnits * s.executionPrice * s.executionFx - h.endValue) > 1e-8)
                 throw new Error("Constraint variant execution mark discontinuity");
             }
-            const tilt = kernel.series.find(r => r.date === o.t.executionAt.slice(0, 7))?.tiltScale;
-            if (tilt === undefined) throw new Error("Missing past-only kernel tilt");
             const rows = o.t.securities.map(s => {
               if (!s.longOnlyInputs) throw new Error(`Missing origin eligibility/liquidity: ${s.companyId}`);
               return { companyId: s.companyId, sector: s.sector, marketCap: s.marketCap, score: o.scores[s.companyId],
                 eligible: s.longOnlyInputs.eligible, liquidity: s.longOnlyInputs.liquidity, availableAt: s.longOnlyInputs.availableAt };
             });
+            // These constraint variants still use source-cap weights, unlike
+            // the explicitly chosen equal-sector kernel. Never reuse its
+            // dimensionless contract as a monetary-currency bypass.
+            for (const row of monthly.get(o.t.executionAt.slice(0, 7))!)
+              requireQualifiedWeight(row, o.t.executionAt.slice(0, 7));
+            const tilt = kernel?.series.find(r => r.date === o.t.executionAt.slice(0, 7))?.tiltScale;
+            if (tilt === undefined) throw new Error("Missing qualified past-only kernel tilt");
             const selection = constrainedLongOnly(rows, variant, tilt, o.t.executionAt, i, prior);
             const row = accountResearchPeriod(o.t, selection.weights, prior, p.costBps, 1);
             accounting.push(row); prior = row.drifted;

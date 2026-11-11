@@ -1,4 +1,5 @@
 import type { CvTimeSeries } from "@shared/schema";
+import { qualifyMonetaryDates } from "../financialData/workbookMoney";
 import { gordonBaselineMetadata } from "../calculation/publicValuationContract";
 import { impliedGrowthFromPE, growthDifferentialToDecarbRate, convertAll } from "./decarbConversion";
 import { loadCompaniesAndTimeSeries, groupTimeSeriesByDate, filterCompaniesByGeography } from "./sharedUtils";
@@ -28,7 +29,8 @@ export async function calculateSDGGrowthDifferential(
   geography?: string
 ): Promise<SDGGrowthResult[]> {
   const baseline = gordonBaselineMetadata(costOfEquity);
-  const { companies: allCompanies, timeSeries: allTimeSeries } = await loadCompaniesAndTimeSeries(false);
+  const { companies: allCompanies, timeSeries: sourceTimeSeries } = await loadCompaniesAndTimeSeries(false);
+  const allTimeSeries = qualifyMonetaryDates(sourceTimeSeries);
 
   const filteredCompanies = filterCompaniesByGeography(allCompanies, geography);
   const companyIdSet = new Set(filteredCompanies.map(c => c.id));

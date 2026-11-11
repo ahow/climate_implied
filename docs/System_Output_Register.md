@@ -83,6 +83,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | GET | `/api/research/track-b-admission${suffix}` | server/trackBAdmissionApi.ts |
 | GET | "/api/reference/warming-validation" | server/warmingValidationReferenceApi.ts |
 | GET | "/api/reference/warming-validation/export.json" | server/warmingValidationReferenceApi.ts |
+| GET | "/api/financial-data/workbook-money-audit" | server/workbookMoneyAuditApi.ts |
+| GET | "/api/financial-data/workbook-money-audit.xlsx" | server/workbookMoneyAuditApi.ts |
 
 ## Frontend API references
 
@@ -111,6 +113,10 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/target-input-disclosure.tsx | "/api/calculation/field-semantics" |
 | client/src/components/track-b-research.tsx | "/api/research/track-b-admission/catalog" |
 | client/src/components/track-b-research.tsx | "/api/research/track-b-admission" |
+| client/src/components/workbook-money-audit.tsx | "/api/financial-data/workbook-money-audit" |
+| client/src/components/workbook-money-audit.tsx | "/api/financial-data/workbook-money-audit" |
+| client/src/components/workbook-money-audit.tsx | `/api/financial-data/workbook-money-audit?expectedAuditHash=${state.auditHash}` |
+| client/src/components/workbook-money-audit.tsx | `/api/financial-data/workbook-money-audit.xlsx?expectedAuditHash=${state.auditHash}` |
 | client/src/hooks/use-company-conditional-summaries.ts | "/api/cv/company-conditional-summaries" |
 | client/src/lib/analysis-selection.ts | "/api/cv/summary" |
 | client/src/lib/analysis-selection.ts | "/api/cv/dimensions" |

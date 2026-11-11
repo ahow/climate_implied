@@ -16,7 +16,8 @@ function parseLatestRow(text: string, sourceUrl: string): { year: number; value:
     if (!/^\d{4}$/.test(parts[0]) || !/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/.test(parts[1] ?? ""))
       throw new Error(`Unsupported NOAA numeric source ${sourceUrl} ${sourceId}:line${index + 1}:column2`);
     const year = Number(parts[0]), value = Number(parts[1]);
-    if (!Number.isFinite(value) || value === -99.99 || value === -999.99)
+    if (!Number.isFinite(value) || value === -99.99 || value === -999.99 ||
+        value === 0 && /[1-9]/.test(parts[1].split(/[eE]/)[0]))
       throw new Error(`Missing/unsupported NOAA numeric source ${sourceUrl} ${sourceId}:line${index + 1}:column2`);
     if (!latest || year > latest.year) latest = { year, value, line: index + 1, sourceId };
   }
@@ -37,12 +38,12 @@ export const noaaAdapter: SourceAdapter = {
         out.push({
           indicatorKey: "atmosphericCO2ppm",
           year: annLatest.year,
-          value: Math.round(annLatest.value * 10) / 10,
+          value: annLatest.value,
           source: SOURCE,
           sourceUrl: ANNMEAN_URL,
           asOfDate,
           method: "api",
-          rawContext: JSON.stringify({ sourceId: annLatest.sourceId, line: annLatest.line, column: 2, missingness: "Observed numeric source; no blank/token infill" }),
+          rawContext: JSON.stringify({ sourceId: annLatest.sourceId, line: annLatest.line, column: 2, state: "observed", originalValue: annLatest.value, missingness: "Observed numeric source; no blank/token infill or presentation rounding" }),
         });
       }
     } else {
@@ -56,12 +57,12 @@ export const noaaAdapter: SourceAdapter = {
         out.push({
           indicatorKey: "co2GrowthRatePpm",
           year: grLatest.year,
-          value: Math.round(grLatest.value * 100) / 100,
+          value: grLatest.value,
           source: SOURCE,
           sourceUrl: GROWTH_URL,
           asOfDate,
           method: "api",
-          rawContext: JSON.stringify({ sourceId: grLatest.sourceId, line: grLatest.line, column: 2, missingness: "Observed numeric source; no blank/token infill" }),
+          rawContext: JSON.stringify({ sourceId: grLatest.sourceId, line: grLatest.line, column: 2, state: "observed", originalValue: grLatest.value, missingness: "Observed numeric source; no blank/token infill or presentation rounding" }),
         });
       }
     } else {

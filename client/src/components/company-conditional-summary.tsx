@@ -36,7 +36,7 @@ export function CompanyConditionalSummary() {
   const exportBase = `/api/cv/company-conditional-summaries/export`;
 
   return (
-    <Card className="p-4 sm:p-6 space-y-5" data-testid="company-conditional-summary">
+    <Card className="min-w-0 max-w-full p-4 sm:p-6 space-y-5" data-testid="company-conditional-summary">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
@@ -94,8 +94,8 @@ export function CompanyConditionalSummary() {
                 <DisclosureList title="Sourced observations and boundaries" items={company.sourced} />
                 <DisclosureList title="Conditional assumptions · not observations" items={company.conditions} />
               </div>
-              <div className="overflow-x-auto rounded-md border">
-                <table className="w-full text-xs text-left">
+              <div className="min-w-0 w-full max-w-full overflow-x-auto rounded-md border">
+                <table className="w-full table-fixed sm:table-auto text-xs text-left [overflow-wrap:anywhere]">
                   <caption className="text-left px-3 py-2 font-medium bg-muted/30">Cash and unit reconciliation · null means unknown, never zero</caption>
                   <thead className="border-y bg-muted/20"><tr><th className="p-3 font-medium">Aggregate / status</th><th className="p-3 font-medium">Value / unit</th><th className="p-3 font-medium">Formula, provenance and limitation</th></tr></thead>
                   <tbody>{Array.isArray(company.facts) && company.facts.map((fact, index) =>
@@ -126,8 +126,8 @@ export function DisclosureList({ title, items }: { title: string; items?: readon
 export function ConditionalFactRow({ fact, issuer }: { fact?: ConditionalFact | null; issuer: ConditionalIssuer }) {
   if (!fact || typeof fact !== "object") return <tr><td colSpan={3} role="status">Conditional fact row unavailable — not returned. No aggregate value is substituted.</td></tr>;
   return <tr className="border-b last:border-b-0 align-top" data-testid={`conditional-fact-${issuer}-${fact.id ?? "missing-id"}`}>
-    <th scope="row" className="p-3 min-w-40 font-medium">{fact.label ?? "Fact label not returned"}<span className="block mt-1 text-muted-foreground font-normal">{fact.classification === "conditional" ? "Conditional calculation" : fact.classification === "sourced-derived" ? "Sourced / derived" : "Classification unavailable — not returned"}</span></th>
-    <td className="p-3 min-w-32"><span className="font-mono tabular-nums">{fact.value === null ? "Unknown (null)" : typeof fact.value === "number" && Number.isFinite(fact.value) ? fact.value.toLocaleString("en-US", { maximumFractionDigits: 2 }) : "Unavailable — finite value not returned"}</span><span className="block text-muted-foreground mt-1">{fact.unit ?? "Unit not returned"}</span></td>
-    <td className="p-3 min-w-64 space-y-1"><p className="font-mono">{fact.formula ?? "Formula not returned"}</p><p className="text-muted-foreground">{fact.boundary ?? "Boundary not returned"}</p><p className="text-muted-foreground break-all">Evidence locator: <code>{fact.sourceLocator ?? "Source locator not returned"}</code></p></td>
+    <th scope="row" className="p-3 sm:min-w-40 font-medium">{fact.label ?? "Fact label not returned"}<span className="block mt-1 text-muted-foreground font-normal">{fact.classification === "conditional" ? "Conditional calculation" : fact.classification === "sourced-derived" ? "Sourced / derived" : "Classification unavailable — not returned"}</span></th>
+    <td className="p-3 sm:min-w-32"><span className="font-mono tabular-nums">{fact.value === null ? "Unknown (null)" : typeof fact.value === "number" && Number.isFinite(fact.value) ? fact.value.toLocaleString("en-US", { maximumFractionDigits: 2 }) : "Unavailable — finite value not returned"}</span><span className="block text-muted-foreground mt-1">{fact.unit ?? "Unit not returned"}</span></td>
+    <td className="p-3 sm:min-w-64 space-y-1"><p className="font-mono">{fact.formula ?? "Formula not returned"}</p><p className="text-muted-foreground">{fact.boundary ?? "Boundary not returned"}</p><p className="text-muted-foreground break-all">Evidence locator: <code>{fact.sourceLocator ?? "Source locator not returned"}</code></p></td>
   </tr>;
 }

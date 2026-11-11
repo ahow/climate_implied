@@ -26,6 +26,7 @@ import { warmingValidationReferenceSemantics } from "./warmingValidationReferenc
 import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics } from "./trackBAdmissionContract";
 import { trackBPublicCatalogSemantics } from "./trackBDisclosureContract";
 import { stage10CoverageSemantics } from "./stage10Coverage";
+import { workbookMoneySemantics } from "./workbookMoneyAudit";
 import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
@@ -47,6 +48,7 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...trackBAdmissionHttpSemantics,
   ...trackBPublicCatalogSemantics,
   ...stage10CoverageSemantics,
+  ...workbookMoneySemantics,
   ...warmingValidationReferenceSemantics,
   ...conditionalCompanySemantics,
   ...indicatorFieldSemantics,

@@ -10,6 +10,8 @@ import { getConditionalCompanySummary } from "../shared/companyConditionalData";
 import ClimateValuation, { AnalysisSection, SummaryCard, roundedPE, ValuationPETooltip, assertValuationGroupRows } from "../client/src/pages/climate-valuation";
 import { IndicatorDetailDialog, IndicatorDetailReadState, IndicatorSeriesTooltip, indicatorDetailAvailability } from "../client/src/pages/data-management";
 import { IndicatorCards } from "../client/src/components/indicator-cards";
+import postcss from "postcss";
+import tailwindcss from "tailwindcss";
 
 (globalThis as any).React = React;
 const html = (component: React.ReactElement) => renderToStaticMarkup(component);
@@ -41,6 +43,47 @@ test("conditional canonical public snapshot retains null/zero, qualifies facts a
   const result = conditional(payload);
   for (const text of ["Unknown (null)", ">0<", "Conditional, not qualified", "0/3 qualified", "no Tier 2 or efficacy promotion", "Public JSON", "Public XLSX"]) assert.ok(result.includes(text), text);
   assert.ok(result.includes('href="/api/cv/company-conditional-summaries/export.json?issuer=NEE"'));
+});
+test("conditional reconciliation mobile containment wraps the actual NEE dividend row without changing facts or exports", async () => {
+  const payload = getConditionalCompanySummary("NEE");
+  const before = JSON.stringify(payload);
+  const result = conditional(payload);
+  const table = result.match(/<table class="([^"]+)">([\s\S]*?)<\/table>/);
+  assert.ok(table, "Actual reconciliation table is rendered");
+  assert.ok(table[2].includes('data-testid="conditional-fact-NEE-fplDividend"'));
+  assert.match(table[1], /\btable-fixed\b/);
+  assert.ok(table[1].includes("sm:table-auto"));
+  assert.ok(table[1].includes("[overflow-wrap:anywhere]"), "Unbroken formula/unit tokens can wrap without being elided");
+  assert.match(result, /class="[^"]*min-w-0[^"]*max-w-full[^"]*" data-testid="company-conditional-summary"/);
+  assert.match(result, /<div class="min-w-0 w-full max-w-full overflow-x-auto rounded-md border"><table/);
+  const cellClasses = [...table[2].matchAll(/<(?:th|td)\b[^>]*class="([^"]+)"/g)].map(match => match[1].split(/\s+/));
+  assert.ok(cellClasses.every(classes => !classes.some(token => /^min-w-/.test(token))), "Desktop cell minimum widths cannot force the mobile table wider than its container");
+  for (const minimum of ["sm:min-w-40", "sm:min-w-32", "sm:min-w-64"])
+    assert.ok(cellClasses.some(classes => classes.includes(minimum)), `Existing desktop layout retained: ${minimum}`);
+  const css = (await postcss([tailwindcss({
+    content: [{ raw: result, extension: "html" }],
+    corePlugins: { preflight: false },
+  })]).process("@tailwind utilities;", { from: undefined })).root;
+  const declaration = (selector: string, property: string) => {
+    let found: { value: string; media?: string } | undefined;
+    css.walkRules(rule => {
+      if (rule.selector === selector) rule.walkDecls(property, decl => {
+        found = { value: decl.value, media: rule.parent?.type === "atrule" ? (rule.parent as postcss.AtRule).params : undefined };
+      });
+    });
+    return found;
+  };
+  assert.equal(declaration(".table-fixed", "table-layout")?.value, "fixed");
+  assert.equal(declaration(".min-w-0", "min-width")?.value, "0px");
+  assert.equal(declaration(".max-w-full", "max-width")?.value, "100%");
+  assert.equal(declaration(".overflow-x-auto", "overflow-x")?.value, "auto");
+  assert.equal(declaration(".\\[overflow-wrap\\:anywhere\\]", "overflow-wrap")?.value, "anywhere");
+  assert.deepEqual(declaration(".sm\\:table-auto", "table-layout"), { value: "auto", media: "(min-width: 640px)" });
+  for (const [size, value] of [["40", "10rem"], ["32", "8rem"], ["64", "16rem"]])
+    assert.deepEqual(declaration(`.sm\\:min-w-${size}`, "min-width"), { value, media: "(min-width: 640px)" });
+  assert.ok(result.includes("Unknown (null)"));
+  assert.ok(result.includes('href="/api/cv/company-conditional-summaries/export.xlsx?issuer=NEE"'));
+  assert.equal(JSON.stringify(payload), before, "Rendering changes containment only, never public source facts");
 });
 test("missing selected issuer never links to another issuer's complete exports", () => {
   const result = conditional(getConditionalCompanySummary("FSLR"));
@@ -124,6 +167,42 @@ test("valuation root partial imputation metadata cannot crash or invent a denomi
     assert.ok(result.includes("Unavailable"));
     assert.ok(!result.includes("NaN%"));
   } finally { client.clear(); }
+});
+test("valuation summary held request has explicit current-query loading status which clears for settled zero or error", async () => {
+  for (const outcome of ["zero", "error"] as const) {
+    // Each SSR render creates an observer: do not turn the settled error check
+    // into a fresh automatic retry-on-remount (the browser observer stays mounted).
+    const client = new QueryClient({ defaultOptions: { queries: { staleTime: Infinity, retry: false, retryOnMount: false } } });
+    client.setQueryData(["/api/cv/uploads"], []);
+    client.setQueryData(COMPANY_CONDITIONAL_QUERY_KEY, { schemaVersion: "company-conditional-public-1", companies: [] });
+    let resolve!: (value: unknown) => void;
+    let reject!: (reason: Error) => void;
+    const held = new Promise<unknown>((yes, no) => { resolve = yes; reject = no; });
+    const pending = client.fetchQuery({ queryKey: ["/api/cv/summary"], queryFn: () => held });
+    const render = () => html(React.createElement(QueryClientProvider, { client }, React.createElement(ClimateValuation)));
+    try {
+      const waiting = render();
+      assert.match(waiting, /<p role="status" aria-live="polite"[^>]*data-testid="status-company-summary-loading">Loading company summary for the current selection\.<\/p>/);
+      assert.ok(waiting.indexOf('data-testid="status-company-summary-loading"') < waiting.indexOf("Monetary-input-dependent totals"), "Summary feedback precedes long monetary disclosures on mobile");
+      for (const label of ["companies", "records", "sectors", "geographies"])
+        assert.ok(!waiting.includes(`data-testid="card-summary-${label}"`), "A held source does not fabricate settled zero/count cards");
+      if (outcome === "zero") {
+        resolve({ companiesCount: 0, sectors: 0, geographies: 0, dateRange: { recordCount: 0 } });
+        await pending;
+        const ready = render();
+        assert.ok(!ready.includes('data-testid="status-company-summary-loading"'));
+        for (const label of ["companies", "records", "sectors", "geographies"])
+          assert.match(ready, new RegExp(`data-testid="card-summary-${label}"[\\s\\S]*?<p class="text-xl font-semibold">0<\\/p>`));
+      } else {
+        reject(new Error("ENGINEERING_HELD_SUMMARY_FAILURE"));
+        await assert.rejects(pending, /ENGINEERING_HELD_SUMMARY_FAILURE/);
+        const failed = render();
+        assert.ok(!failed.includes('data-testid="status-company-summary-loading"'));
+        assert.ok(failed.includes("Company summary read failed for the current selection."));
+        assert.ok(!failed.includes("ENGINEERING_HELD_SUMMARY_FAILURE"));
+      }
+    } finally { resolve(null); await pending.catch(() => {}); client.clear(); }
+  }
 });
 test("valuation record collection guard refuses null/nonobject rows, while partial fields remain independently unavailable", () => {
   for (const rows of [null, {}, [null], [0], [[]]]) assert.throws(() => assertValuationGroupRows(rows), /expected an array of observation records/);

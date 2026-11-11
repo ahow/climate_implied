@@ -1,0 +1,169 @@
+{
+  "version": "workbook-money-integration-3",
+  "status": "12-original-currency-test-failures-resolved; two-global-census-checks-still-stale; pending-review-only",
+  "approved": false,
+  "originalIssuerCaseQualification": "0/3 unchanged",
+  "priorFailedFullRun": {
+    "path": "generated-artifacts/workplan-completion/20261111T222643835876Z.log",
+    "sha256": "c6d10f759579e963daa1948e8a3e530e870d55478b3fc384187708d154e14ef6",
+    "preservedWithoutEdits": true,
+    "tests": 886,
+    "passed": 872,
+    "failed": 14
+  },
+  "all14FailureMapping": [
+    {
+      "file": "script/company-carbon-cache.test.ts",
+      "originalFailures": 2,
+      "tests": [
+        "actual calculator executes miss/compute/write then JSONB-like hit, without DB credentials",
+        "retained no-op overlay identity cannot alias identical effective inputs; distinct datasets cannot cross-hit"
+      ],
+      "resolution": "Explicit CI-only accepted identity/source-cell/native currency/million-scale receipts are built before synthetic snapshot packing and retained through its AsyncLocal monetary context. Existing nonempty output, cold/warm identity, distinct numerical result, no-op overlay, mutation-isolation and exact hit/miss assertions remain unchanged.",
+      "current": "passed"
+    },
+    {
+      "file": "script/next-valuation-evidence.test.ts",
+      "originalFailures": 2,
+      "tests": [
+        "S01-004 actual custom-r calculator/API, rendered label and XLSX notes agree; fixed8 retained",
+        "S01-004 nonempty actual target API filtering and registered workbook bindings agree at custom r"
+      ],
+      "resolution": "The two old engineering snapshots now carry explicit trusted synthetic monetary receipts/context. Nonempty-output, exact custom-rate formula, API bindings, rendered text, workbook readback and no-default-rate assertions are retained.",
+      "current": "passed"
+    },
+    {
+      "file": "script/paired-research-pipeline.test.ts",
+      "originalFailures": 7,
+      "tests": [
+        "concurrent/repeated frozen requests retain incomplete family cells and paired uncertainty",
+        "frozen long-only variants require origin eligibility and liquidity, never defaults",
+        "orchestrates frozen full family, ranks, dated accounting, inference, ablations and separate kernel without fixture acceptance",
+        "future execution returns cannot change earlier selected units and weights",
+        "unknown borrow is hypothetical, known unavailable borrow rejects and cannot earn spread support",
+        "missing entire frozen date is not silently selected away; factor and execution reconciliation fail closed",
+        "unchanged long-only kernel retains warm-up and capped past-only tilt"
+      ],
+      "resolution": "Inspection found that the old caller really passed security.marketCap, not already-normalized strategy weights. It is NOT relabelled dimensionless. Its source-cap path remains guarded and reports unavailable without aborting independent research endpoints. A separate explicitly frozen optional protocol choice constructs equal-sector strategy fractions without reading marketCap. Engineering fixtures declare that independent strategy choice before protocol hashing. All original assertions remain, with additional source-cap/strategy separation regressions.",
+      "current": "passed"
+    },
+    {
+      "file": "script/track-b-admission.test.ts",
+      "originalFailures": 1,
+      "tests": ["actual research pipeline embeds exact period admission JSON and withholds historical efficacy"],
+      "resolution": "Only the synthetic fixture protocol gains the same explicit equal-sector kernel choice; no Track B admission or authenticity logic is changed.",
+      "current": "passed"
+    },
+    {
+      "file": "script/next-census-accounting.test.ts",
+      "originalFailures": 1,
+      "tests": ["strict completeness fails on OLD unknown summary JSON, not cured by authenticated new sidecar"],
+      "current": "still-fails: Field census stale",
+      "ownership": "Parent canonical census/semantics integration; no census or original-slot acceptance changes made here."
+    },
+    {
+      "file": "script/output-field-semantics.test.ts",
+      "originalFailures": 1,
+      "tests": ["API and download type census must be regenerated when source fields change"],
+      "current": "still-fails: Field census stale",
+      "ownership": "Parent canonical census/semantics integration; no stale-check/assertion disabled."
+    }
+  ],
+  "unitContracts": {
+    "monetary": "walkForward remains the source-capitalisation entry point. Checked source-native cells/identity/currency/magnitude/exact-date FX and prior-period weight dates remain mandatory; no extra argument or strategy flag bypasses them.",
+    "dimensionless": {
+      "entryPoint": "walkForwardEqualSectorStrategy",
+      "contract": "equal-sector-strategy-weights-1",
+      "basis": "dimensionless",
+      "unit": "fraction-of-benchmark-nav",
+      "construction": "equal-within-sector",
+      "formula": "For included company i in sector s: weight_i = 1 / distinctSectorCount / includedCountInSector_s. Sum must be one within 1e-12.",
+      "inputs": ["companyId", "sector", "monthlyReturn"],
+      "forbiddenInputs": ["marketCap", "weightSource", "benchmarkWeight", "any caller-supplied numeric weight"],
+      "callerContractRequired": true,
+      "rejectedMonetaryMapCannotBeRelabelled": true
+    },
+    "researchProtocol": "Optional longOnlyKernelWeighting:'equal-within-sector' is a distinct predeclared strategy benchmark. It is not inferred from protocol.currency or from the spread portfolio's weighting field. An absent choice preserves guarded source-cap behaviour. Historical retained protocols are not edited and their old cap-weighted results are not retrospectively certified or replaced.",
+    "sharedMath": "Private internal kernel uses benchmarkMass; all previous risk warm-up, expanding-past-only tilt/cap, return, turnover, cost, drift and terminal-loss arithmetic is shared unchanged. A 24-month independent verified-monetary versus separately constructed dimensionless-strategy reconciliation matches every returned field exactly.",
+    "constraintVariants": "They still use source-cap weights. They separately call requireQualifiedWeight even when the independent strategy kernel is available. Missing origin eligibility/liquidity still fails first. No dimensionless contract is reused to certify native cap-based constraint weights.",
+    "scientificClaims": "The independent strategy choice is a new conditional engineering configuration, not recovery of an original cap-weighted monetary valuation. Research efficacy/authenticity/investment evidence remain withheld/false."
+  },
+  "files": {
+    "application": ["server/climateValuation/walkForward.ts", "server/calculation/pairedResearchPipeline.ts"],
+    "fixtures": ["script/company-carbon-cache.test.ts", "script/next-valuation-evidence.test.ts", "script/paired-research-pipeline.test.ts", "script/track-b-admission.test.ts"],
+    "newTests": ["script/walk-forward-weight-contract.test.ts"],
+    "mandatoryPrivateValidator": "script/validate-workbook-money-integration-private.ts",
+    "notEdited": "No cache helper, loader, Track B admission implementation, public-history/warning implementation, route/UI, canonical ledger/census, protected fair bundle or 14-bundle pin."
+  },
+  "validation": {
+    "fullPublic": {
+      "command": "npx tsx --test script/*.test.ts",
+      "tests": 892,
+      "passed": 890,
+      "failed": 2,
+      "skipped": 0,
+      "remainingFailures": "The two original stale-census tests mapped above; all 12 original currency failures now pass.",
+      "logSha256": "fcb9b00ae104e550dd99bac09522047e452043aa70cd9b6ae96811dad48104cf"
+    },
+    "allAffectedPublicFiles": {
+      "command": "npx tsx --test script/company-carbon-cache.test.ts script/next-valuation-evidence.test.ts script/paired-research-pipeline.test.ts script/track-b-admission.test.ts script/walk-forward-weight-contract.test.ts script/workbook-money-consumers.test.ts script/company-coverage.test.ts script/company-coverage-query.test.ts script/company-coverage-route.test.ts script/valuation-statistics.test.ts script/peer-valuation-semantics.test.ts script/valuation-integrity.test.ts script/calculation-foundations.test.ts script/source-qualified-missingness.test.ts script/walk-forward.test.ts script/backtest-costs.test.ts script/backtest-field-semantics.test.ts script/workbook-money.test.ts script/workbook-money-api.test.ts script/workbook-missingness-integration.test.ts",
+      "passed": 146,
+      "failed": 0,
+      "skipped": 0,
+      "privateFileDependency": false,
+      "logSha256": "6097565cbccd482bf118592c780e61b38b770c920afff05f455fcfefacfd4e14"
+    },
+    "applicationTypecheck": {
+      "command": "npx tsc --noEmit --pretty false",
+      "passed": true,
+      "originalTsconfigUnchanged": true,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "newSourceTestAndPrivateRunnerStrictCheck": {
+      "command": "npx tsc --noEmit --project generated-artifacts/workbook-money-consumers-v3/tsconfig-check.json --pretty false",
+      "passed": true,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scopeNote": "Additional generated check includes the new boundary test/private runner and production modules. A broader exploratory legacy-test type preflight also found two existing test-only diagnostics outside changed lines (widened sharesBasis string and fetch response inference), retained separately; application compiler configuration was not relaxed, runtime full scope was not narrowed/skipped.",
+      "retainedBroadLegacyScriptPreflightLogSha256": "bfa6f26ed685c0ab9fd31b704f1b9331e775c3b49ddb5d8e2437e5cb3787585d"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-workbook-money-integration-private.ts --private-primary",
+      "passed": true,
+      "actualCompanies": 2442,
+      "actualRows": 470341,
+      "currentValidNativeCapitalisationAvailable": 2437,
+      "qualifiedMoneyConversions": 0,
+      "authorizedDatedFx": 0,
+      "capitalisationTotal": null,
+      "capitalisationWeightedShares": null,
+      "reportedDimensionlessPositivePePreserved": 390215,
+      "unsupportedNativeRatioFallbacksWithheld": 1255,
+      "rawProfitTrueZerosPreserved": 16,
+      "currentApprovedIdentityStillInsufficientWithoutCurrencyReceipts": true,
+      "legacyAndMountedActualSourceCapBacktestsWithheld": 2,
+      "independentNonemptyActualRiAndNativeCapInputRejected": true,
+      "fullNativeMoneyRiDatesReportedPeFingerprintAndInputBytesUnchanged": true,
+      "logSha256": "a48204828909cba397b8716ad2d888386e9cfbb1c28842fb51cb8bad2a31def9",
+      "receiptSha256": "74802f1a1fd9fe1d7eea19412a7a61ecde2e9bda36d4396824a1657aec1ecc7d",
+      "frozenBeforePrivateCalculationSha256": "b6f53eb3213fc51d44f649498a2796412b1c5abdef2b02984ff74e64de6978a8",
+      "rawPrivateExport": false
+    }
+  },
+  "preservation": {
+    "previousUnitEvidence": "docs/S10-007-013-currency-consumers-evidence.json",
+    "previousUnitSourceAndResultsArchivedBeforeChanges": true,
+    "previous8SourceArchiveSha256": "ef515b09b7e5874dcdf360aa40ba804ddaac8d36e392422cc413b1beb18b65ae",
+    "previousFreezeAndReceiptUnchanged": true,
+    "originalNominalConsumerGuardSourcesUnchanged": true,
+    "unchangedFivePrivateNominalControlsNotRerun": true,
+    "protectedScientificKernelsPrivateScoringAnd14PinsNotRerunOrEdited": true,
+    "providerPurchasesApprovalDbMutationDdlCollectorProductionChanges": 0,
+    "commitsDeploymentPublishCallbacksWorkflows": 0
+  },
+  "readyNextIntegration": [
+    "Parent should regenerate the canonical field census after its warning/history/semantics units settle, then run its --check and both mapped stale tests followed by the full public suite. Do not change the original unknown-summary completeness gate or paper over it with new sidecar acceptance. This unit intentionally did not edit the canonical census.",
+    "Actual source-cap research and workbook portfolios still need authentic native cell currency/scale/original observation dates plus accepted-identity-bound exact-date FX where necessary. Protocol.currency, execution-price FX and synthetic model units do not establish marketCap denomination.",
+    "No source-cap constraint variant becomes qualified merely because an independent equal-sector strategy kernel runs. A future source adapter must supply actual qualified original cap evidence; missing facts remain explicit.",
+    "Any real use of the dimensionless strategy constructor must explicitly freeze the independent benchmark choice and provide qualified common-basis realized-return inputs. The current unit does not qualify an actual global workbook strategy or claim original historical efficacy."
+  ]
+}

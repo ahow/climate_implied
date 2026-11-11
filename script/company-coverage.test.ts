@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { companyCoverage } from "../server/calculation/companyCoverage";
+import { verifiedSyntheticCoverage as companyCoverage } from "./fixtures/verifiedSyntheticMoney";
 import { companyCoverageSemantics } from "../shared/companyCoverageSemantics";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -65,8 +65,8 @@ test("identity conflicts exclude eligibility, reject duplicate universe, and rej
 });
 test("explicit incompatible currency conflicts instead of silently aggregating currencies", () => {
   const r = companyCoverage({ ...base, observations: base.observations.map(o => ({ ...o, marketCapCurrency: o.companyId === 1 ? "EUR" : "USD" })) });
-  assert.equal(r.fullWorkbook.metrics.marketCap.states.conflicted, 1);
-  assert.equal(r.fullWorkbook.metrics.marketCap.knownTotal, 300);
+  assert.equal(r.fullWorkbook.metrics.marketCap.states.present, 2, "Both valid native observations remain present");
+  assert.equal(r.fullWorkbook.metrics.marketCap.knownTotal, null, "Do not publish selected USD subset when another known amount is unconverted");
 });
 test("JSON export preserves null/zero/statuses and every new primitive has separate exact semantics", () => {
   const report = companyCoverage(base);

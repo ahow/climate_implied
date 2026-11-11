@@ -5,10 +5,20 @@ export const stage10Fields = ["revenue", "ebitda", "operatingCashFlow", "capital
   "workingCapital", "netIncome", "netDebt", "shares", "segments"] as const;
 export type Stage10IdentityState = typeof stage10IdentityStates[number];
 export type Stage10Field = typeof stage10Fields[number];
+export const stage10LifecycleStates = ["listed", "acquired", "merged", "delisted", "unknown"] as const;
+export type Stage10LifecycleState = typeof stage10LifecycleStates[number];
+export const stage10LifecycleSourceKinds = ["retained-worked-profile", "retained-root-cause-profile"] as const;
+export const stage10LifecycleJointKeys = stage10LifecycleStates.flatMap(lifecycle => stage10IdentityStates.map(identity => `${lifecycle}|${identity}`));
+const lifecycleAuditSchema = z.object({
+  sourceKind: z.enum(stage10LifecycleSourceKinds), endpoint: z.string().url(), sourceSetHash: z.string().regex(/^[a-f0-9]{64}$/),
+  evidenceRecords: z.number().int().nonnegative(), usedNonUnknownCompanies: z.number().int().nonnegative(),
+  firstCapturedAt: z.string().datetime().nullable(), lastCapturedAt: z.string().datetime().nullable(),
+}).strict();
 export const stage10PrivacyMinimumCompanies = 5;
 export const stage10RowSchema = z.object({
   population: z.enum(["full-workbook", "verified-eligible"]), sector: z.string(), region: z.string(),
-  dimension: z.enum(["identity", "financial-field"]), key: z.enum([...stage10IdentityStates, ...stage10Fields]),
+  dimension: z.enum(["identity", "financial-field", "lifecycle", "lifecycle-identity"]),
+  key: z.enum([...stage10IdentityStates, ...stage10Fields, ...stage10LifecycleStates, ...stage10LifecycleJointKeys] as [string, ...string[]]),
   companies: z.number().int().nonnegative(), expectedSlots: z.number().int().nonnegative(),
   suppressed: z.boolean(), present: z.number().int().nonnegative().nullable(),
   missing: z.number().int().nonnegative().nullable(), explicitNull: z.number().int().nonnegative().nullable(),
@@ -23,9 +33,12 @@ export const stage10RowSchema = z.object({
   explicitRestatedFlagShareOfPresent: z.number().min(0).max(1).nullable(),
 }).strict();
 export const stage10CoverageSchema = z.object({
-  contract: z.literal("stage10-retained-coverage-1"),
+  contract: z.literal("stage10-retained-coverage-2"),
   inputHash: z.string().regex(/^[a-f0-9]{64}$/), workbookHash: z.string().regex(/^[a-f0-9]{64}$/),
   informationCutoff: z.string().datetime(), fiscalYears: z.array(z.number().int()).min(1),
+  denominatorVersion: z.string().regex(/^[a-f0-9]{64}$/), lifecycleSourceSetHash: z.string().regex(/^[a-f0-9]{64}$/),
+  lifecycleNonUnknownCompanies: z.number().int().nonnegative(), lifecycleAuditedNonUnknownCompanies: z.number().int().nonnegative(),
+  lifecycleUnverifiedNonUnknownCompanies: z.literal(0), lifecycleEvidenceAudit: z.array(lifecycleAuditSchema).length(2),
   fullWorkbookCompanies: z.number().int().nonnegative(), verifiedEligibleCompanies: z.number().int().nonnegative(),
   admittedStage11To15Records: z.number().int().nonnegative(),
   retainedSourceVersions: z.number().int().nonnegative(), selectedSourceVersions: z.number().int().nonnegative(),
@@ -44,15 +57,17 @@ export const stage10CoverageSchema = z.object({
     const group = JSON.stringify([row.population, row.sector, row.region]);
     if (groupCounts.has(group) && groupCounts.get(group) !== row.companies) issue("Availability-dependent population denominator");
     groupCounts.set(group, row.companies);
-    if (row.expectedSlots !== row.companies * (row.dimension === "identity" ? 1 : report.fiscalYears.length)) issue("Incorrect fixed slot denominator");
-    if (!(row.dimension === "identity" ? stage10IdentityStates : stage10Fields).includes(row.key as never)) issue("Quantity outside exact dimension domain");
+    if (row.expectedSlots !== row.companies * (row.dimension !== "financial-field" ? 1 : report.fiscalYears.length)) issue("Incorrect fixed slot denominator");
+    const domain = row.dimension === "identity" ? stage10IdentityStates : row.dimension === "lifecycle" ? stage10LifecycleStates :
+      row.dimension === "lifecycle-identity" ? stage10LifecycleJointKeys : stage10Fields;
+    if (!(domain as readonly string[]).includes(row.key)) issue("Quantity outside exact dimension domain");
     if (row.suppressed !== (row.companies > 0 && row.companies < stage10PrivacyMinimumCompanies)) issue("Privacy suppression disagreement");
     const counts = ["present", "missing", "explicitNull", "invalid", "conflicted", "original", "restated", "restatementUnknown",
       "originalFilingDateVerified", "providerFilingDateUnverified", "filingDateMissing", "availableShare", "restatementKnownDenominator",
       "restatedShareOfKnownProvenance", "restatementUnknownShareOfPresent", "explicitRestatedFlagShareOfPresent"] as const;
     if (row.suppressed) { if (counts.some(k => row[k] !== null)) issue("Small-population count disclosure"); continue; }
     if (row.present === null || row.availableShare !== (row.expectedSlots ? row.present / row.expectedSlots : null)) issue("Presence fraction disagreement");
-    if (row.dimension === "identity") {
+    if (row.dimension !== "financial-field") {
       if (row.present! > row.companies || counts.filter(k => k !== "present" && k !== "availableShare").some(k => row[k] !== null)) issue("Invalid identity-state cell");
       continue;
     }
@@ -82,17 +97,40 @@ export const stage10CoverageSchema = z.object({
     if (!groupCounts.has(global)) issue("Missing global population");
     const total = Array.from(groupCounts).filter(([k]) => JSON.parse(k)[0] === population && k !== global).reduce((sum, [, n]) => sum + n, 0);
     if (total !== groupCounts.get(global)) issue("Sector×region population dropped");
+    const globalRows = report.rows.filter(r => r.population === population && r.sector === "All sectors" && r.region === "All regions");
+    for (const [dimension, keys] of [["lifecycle", stage10LifecycleStates], ["lifecycle-identity", stage10LifecycleJointKeys]] as const) {
+      const rows = globalRows.filter(r => r.dimension === dimension);
+      if (rows.length !== keys.length || !keys.every(key => rows.some(r => r.key === key))) issue("Incomplete lifecycle/joint domain");
+      if (rows.length && !rows[0].suppressed && rows.reduce((sum, r) => sum + r.present!, 0) !== groupCounts.get(global)) issue("Lifecycle/joint denominator disagreement");
+    }
+    for (const lifecycle of stage10LifecycleStates) {
+      const marginal = globalRows.find(r => r.dimension === "lifecycle" && r.key === lifecycle);
+      const joint = globalRows.filter(r => r.dimension === "lifecycle-identity" && r.key.startsWith(`${lifecycle}|`));
+      if (marginal && !marginal.suppressed && marginal.present !== joint.reduce((sum, r) => sum + r.present!, 0)) issue("Lifecycle joint marginal disagreement");
+    }
+    for (const identity of stage10IdentityStates) {
+      const marginal = globalRows.find(r => r.dimension === "identity" && r.key === identity);
+      const joint = globalRows.filter(r => r.dimension === "lifecycle-identity" && r.key.endsWith(`|${identity}`));
+      if (marginal && !marginal.suppressed && marginal.present !== joint.reduce((sum, r) => sum + r.present!, 0)) issue("Identity joint marginal disagreement");
+    }
   }
+  if (report.lifecycleNonUnknownCompanies !== report.lifecycleAuditedNonUnknownCompanies ||
+    report.lifecycleNonUnknownCompanies > report.fullWorkbookCompanies) issue("Lifecycle verification audit incomplete");
+  const fullLife = report.rows.filter(r => r.population === "full-workbook" && r.sector === "All sectors" &&
+    r.region === "All regions" && r.dimension === "lifecycle" && r.key !== "unknown");
+  if (fullLife.length && !fullLife[0].suppressed && fullLife.reduce((n, r) => n + r.present!, 0) !== report.lifecycleNonUnknownCompanies)
+    issue("Nonunknown lifecycle audit differs from actual joined population");
+  if (new Set(report.lifecycleEvidenceAudit.map(r => r.sourceKind)).size !== 2) issue("Missing/duplicate lifecycle evidence source group");
 });
 export type Stage10CoverageReport = z.infer<typeof stage10CoverageSchema>;
 const rowSpecs: [string, string, string][] = [
   ["population", "Frozen full workbook or independently verified immutable financial identity subset", "Selection before field availability; never survivor-only"],
   ["sector", "Workbook sector,Unknown retained", "Exact category or Unknown; All sectors denotes full-domain aggregate"],
   ["region", "Workbook geography label,not inferred operating region", "Exact geography or Unknown; no ticker/headquarters remapping"],
-  ["dimension", "Identity-state or financial-field coverage row", "One exact seven-state or ten-field domain member"],
-  ["key", "Exact identity state or field name", "All seven states/ten fields retained,including zero counts"],
+  ["dimension", "Identity,lifecycle,actual joint or financial-field coverage row", "Lifecycle and joint35-cell domains occur in full/eligible global populations; seven identity/ten field domains also by sector×region"],
+  ["key", "Exact independent state,joint pair or field name", "Seven identity states; listed/acquired/merged/delisted/unknown lifecycle;35literal lifecycle|identity pairs; ten fields"],
   ["companies", "Population company denominator", "Frozen before inspection of values"],
-  ["expectedSlots", "Company or company×fiscal-year denominator", "identity:N;financial-field:N×number of declared fiscal years"],
+  ["expectedSlots", "Company or company×fiscal-year denominator", "identity/lifecycle/lifecycle-identity:N;financial-field:N×number of declared fiscal years"],
   ["suppressed", "Small-population privacy suppression", "True for1–4companies; category and denominator retained,counts/shares null,including eligible totals"],
   ["present", "Present valid field slots or exact identity-state count", "Observed zero is present; no missing/null coercion"],
   ["missing", "Absent selected-version field slots", "Expected slots without that source field; no cross-version coalescing"],
@@ -123,10 +161,22 @@ const context = {
   asOfRule: "Actual retained capture/review/filing dates at cutoff; no future input substitution or current review reconstructed as historical approval",
 };
 const headerSpecs: [string, string, string][] = [
-  ["contract", "Stage10 aggregate report contract", "literal stage10-retained-coverage-1"],
+  ["contract", "Versioned Stage10 aggregate report contract", "literal stage10-retained-coverage-2; adds independent dated lifecycle/identity join,not a rewrite of version1 financial studies"],
   ["inputHash", "Exact selected input identity", "Canonical SHA256 of complete frozen workbook/identity audit/reviews/immutable sources/settings"],
   ["workbookHash", "Actual selected immutable full workbook", "Verified workbook-snapshot-1 content hash; no current database fallback"],
   ["informationCutoff", "Actual explicit source availability cutoff", "Request value,or exact latest retained capture/review timestamp; not a fabricated filing date"],
+  ["denominatorVersion", "Version of frozen company denominator and eligibility rule before coverage", "SHA256(workbookHash,cutoff,exact companyId/ISIN/category population,verified eligible IDs,rule); no availability or lifecycle survivor filtering"],
+  ["lifecycleSourceSetHash", "Exact retained lifecycle evidence set at explicit cutoff", "SHA256(cutoff,private dated exact-security evidence); no raw identifiers or provider objects exported"],
+  ["lifecycleNonUnknownCompanies", "Full-population companies with dated verified lifecycle evidence", "Count of resolved listed/acquired/merged/delisted; acceptance/last workbook observation never evidence"],
+  ["lifecycleAuditedNonUnknownCompanies", "Every nonunknown lifecycle's source audit count", "Must equal lifecycleNonUnknownCompanies; each exact-security dated fact,source hash and endpoint checked"],
+  ["lifecycleUnverifiedNonUnknownCompanies", "Nonunknown lifecycle without a verification source", "Literal0,enforced before publication; never a scientific acceptance flag"],
+  ["lifecycleEvidenceAudit[].sourceKind", "Exact retained evidence collection", "Worked-profile or authenticated retained100-case root-cause profile; not a newly selected sample"],
+  ["lifecycleEvidenceAudit[].endpoint", "Provider listing evidence endpoint with private selector omitted", "https://financialmodelingprep.com/stable/profile; exact input/security selectors retained privately and bound by sourceSetHash"],
+  ["lifecycleEvidenceAudit[].sourceSetHash", "Fingerprint of complete source-group evidence", "Canonical SHA256 of private exact-security dated observations,not individual private source hashes"],
+  ["lifecycleEvidenceAudit[].evidenceRecords", "Available dated source observations,not unique issuers", "Retained exact-ISIN profile active/inactive flags at/before cutoff; inactive never implies delisted"],
+  ["lifecycleEvidenceAudit[].usedNonUnknownCompanies", "Distinct resolved companies supported by this source group", "Latest consistent verified evidence; groups may overlap,do not sum as denominator"],
+  ["lifecycleEvidenceAudit[].firstCapturedAt", "Earliest available evidence capture in this source group", "Actual retained capture timestamp; no observations→null,not listing start date"],
+  ["lifecycleEvidenceAudit[].lastCapturedAt", "Latest available evidence capture in this source group", "Actual retained capture timestamp; no observations→null,not delisting date"],
   ["fiscalYears[]", "Predeclared complete fiscal-year domain", "2015–2025 inclusive default,or explicit bounded requested range; frozen before field availability"],
   ["fullWorkbookCompanies", "Full immutable workbook denominator", "All workbook companies,including unknown categories/unresolved identities"],
   ["verifiedEligibleCompanies", "Verified immutable approved financial identity denominator", "Unique exact companyId/ISIN/issuer approved-current-financial archive; current review alone insufficient"],
@@ -141,12 +191,14 @@ const headerSpecs: [string, string, string][] = [
 export const stage10CoverageSemantics: OutputFieldSemantic[] = [...headerSpecs, ...rowSpecs.map(([p, m, f]) => [`rows[].${p}`, m, f] as [string, string, string]),
   ["error", "Explicit aggregate reader refusal", "400invalid selection;409changed exact input;503source/storage unavailable/corrupt; no fallback aggregate"] as [string, string, string]]
   .map(([path, meaning, formula]) => ({ id: `stage10Coverage.${path}`, meaning, formula, unit:
-    path.includes("Hash") ? "SHA256 hex" : path.includes("Share") ? "fraction0–1 or null" :
-    path === "informationCutoff" ? "UTC timestamp" : path === "fiscalYears[]" ? "Gregorian fiscal-end year" :
+    path.includes("Hash") || path === "denominatorVersion" ? "SHA256 hex" : path.includes("Share") ? "fraction0–1 or null" :
+    path === "informationCutoff" || path.endsWith("CapturedAt") ? "UTC timestamp or null" : path === "fiscalYears[]" ? "Gregorian fiscal-end year" :
+    path.startsWith("lifecycle") && path.endsWith("Companies") ? "companies" :
+    path.endsWith(".evidenceRecords") ? "dated provider listing observations" :
     ["fullWorkbookCompanies", "verifiedEligibleCompanies", "rows[].companies"].includes(path) ? "companies" :
     path.endsWith("SourceVersions") ? "retained source versions" : path === "admittedStage11To15Records" ? "original-dated field records" :
     ["scientificAcceptance", "investmentEvidence", "rows[].suppressed"].includes(path) ? "boolean" :
-    path === "rows[].present" || path === "rows[].expectedSlots" ? "companies(identity) or company-year-field slots(financial-field)" :
+    path === "rows[].present" || path === "rows[].expectedSlots" ? "companies(identity/lifecycle/joint) or company-year-field slots(financial-field)" :
     path.startsWith("rows[].") && ["missing", "explicitNull", "invalid", "conflicted", "original", "restated", "restatementUnknown",
       "originalFilingDateVerified", "providerFilingDateUnverified", "filingDateMissing", "restatementKnownDenominator"].includes(path.slice(7)) ?
       "company-year-field slots" : "declared identifier/category/qualification text", ...context }));
@@ -154,6 +206,10 @@ export const stage10ExportBindings = Object.fromEntries(rowSpecs.map(([field]) =
   field, { id: `stage10Coverage.rows[].${field}`, transform: "Identity of aggregate row; null remains explicit unavailable/suppressed,never zero" },
 ]));
 export const stage10ReportFieldPaths = stage10CoverageSemantics.filter(s => !s.id.endsWith(".error")).map(s => s.id.slice("stage10Coverage.".length));
+export const stage10IdentityHeaderPaths = stage10ReportFieldPaths.filter(p => !p.startsWith("rows[].") && !p.startsWith("lifecycleEvidenceAudit[]."));
+export const stage10LifecycleAuditBindings = Object.fromEntries(Object.keys(lifecycleAuditSchema.shape).map(column => [
+  column, { id: `stage10Coverage.lifecycleEvidenceAudit[].${column}`, transform: "Exact aggregate source audit; nullable capture stays explicit null,no private identifiers" },
+]));
 /** Every concrete dictionary/binding cell has its own finite structural path.
  * Metadata is not reclassified as an observed financial value. */
 export function stage10JsonExportLeafBindings() {
@@ -170,6 +226,9 @@ export function stage10JsonExportLeafBindings() {
   for (const [column, binding] of Object.entries(stage10ExportBindings))
     for (const property of ["id", "transform"]) out[`columnBindings.${column}.${property}`] = { id: binding.id,
       transform: `Literal binding ${property} metadata,not a second measured value` };
+  for (const [column, binding] of Object.entries(stage10LifecycleAuditBindings))
+    for (const property of ["id", "transform"]) out[`lifecycleAuditColumnBindings.${column}.${property}`] = { id: binding.id,
+      transform: `Literal lifecycle audit-table ${property} binding metadata,not an additional company or approval` };
   out.qualification = { id: "stage10Coverage.limitation", transform: "Aggregate-only privacy/interpretation disclosure" };
   return out;
 }

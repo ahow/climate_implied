@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { summarizeRates, positivePE } from "../server/climateValuation/valuationStatistics";
-import { computePerCompanyImpliedDecarbRates, computeDecarbGapScores } from "../server/climateValuation/decarbGapCalculator";
+import { summarizeRates } from "../server/climateValuation/valuationStatistics";
+import { verifiedSyntheticPE as positivePE } from "./fixtures/verifiedSyntheticMoney";
+import { verifiedSyntheticImpliedRates as computePerCompanyImpliedDecarbRates, verifiedSyntheticGapScores as computeDecarbGapScores } from "./fixtures/verifiedSyntheticMoney";
 import type { CvCompany, CvTimeSeries } from "../shared/schema";
 
 test("mean, median and percentiles represent the cross section", () => {

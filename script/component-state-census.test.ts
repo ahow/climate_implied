@@ -10,8 +10,8 @@ import { warmingReferenceExportDocument } from "../shared/warmingValidationRefer
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 63, "Original60 plus warming reference,TrackB disclosure and actual retained Stage10 coverage consumer");
-  assert.equal(report.focusedRenderedComponentCount, 63);
+  assert.equal(report.componentCount, 64, "Original60 plus warming reference,TrackB,Stage10 and actual retained monetary audit consumer");
+  assert.equal(report.focusedRenderedComponentCount, 64);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -64,7 +64,11 @@ test("imported sibling exports are reachable only through actual component tags"
   assert.deepEqual(stage10.routes, ["/methodology"]);
   assert.equal(stage10.contract.inputKind, "queried-evidence");
   assert.match(stage10.contract.focusedEvidence, /stage10-retained-coverage\.test\.ts/);
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id].includes(component.id)).length, 60);
+  const money = report.components.find(component => component.component === "WorkbookMoneyAudit")!;
+  assert.deepEqual(money.routes, ["/climate-valuation", "/methodology"]);
+  assert.equal(money.contract.inputKind, "queried-evidence");
+  assert.match(money.contract.focusedEvidence, /workbook-money-integration\.test\.ts/);
+  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

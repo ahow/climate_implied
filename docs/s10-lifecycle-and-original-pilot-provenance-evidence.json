@@ -1,0 +1,143 @@
+{
+  "contract": "stage10-lifecycle-and-pilot-provenance-evidence-1",
+  "canonicalLedgerChanged": false,
+  "reportContract": "stage10-retained-coverage-2",
+  "supersedesForCurrentEngineeringOnly": "docs/s10-002-006-014-retained-coverage-evidence.json; that version1 receipt remains historical,not rewritten or refrozen",
+  "originalCriteria": {
+    "S10-001": "Record lifecycle status (listed, acquired, merged, delisted) only from verified listing evidence: provider listing status, corporate-action records or exchange data. A company's last workbook observation is not evidence; without verification, status is “unknown”. Publish the denominator and eligibility rules before measuring coverage.",
+    "S10-008": "All 2,442 companies have both a lifecycle status (including “unknown”) and an identity-review state, and counts reconcile.",
+    "S10-009": "No lifecycle status other than “unknown” lacks a verification source.",
+    "S02-004": "Version the company denominator; keep lifecycle status (active, acquired, delisted) separate from identity-review status (accepted, ambiguous, unmatched, out of scope).",
+    "S10-003": "Root-cause audit of 50 unmatched and 50 ambiguous cases from the earlier 200-company run."
+  },
+  "implementation": {
+    "reader": "server/financialData/stage10Source.ts",
+    "lifecycleResolver": "server/financialData/stage10Lifecycle.ts",
+    "privateJoin": "Every frozen companyId+ISIN receives its own independent identity state and lifecycle state. Listing never approves identity or changes financial eligibility. No ticker-only joins.",
+    "providerListingRule": "Only authenticated retained exact-ISIN profiles with actual capturedAt,symbol,exchange and boolean isActivelyTrading. True supports listed/provider-active observation at capture; false is unknown,never delisted. IPO date,accepted identity,positive quote and last workbook observation are not evidence.",
+    "otherLifecycleStates": "Five states listed/acquired/merged/delisted/unknown,independent of the seven identity states. No actual exchange/action resolver is provisioned in inspected retained roots; generic classifier fixtures cannot be published as real census sources.",
+    "sourceAudit": "Every nonunknown status must retain a valid source hash,actual available/effective dates,exact security and source endpoint. Publication rejects unverified nonunknown evidence. All120 actual nonunknown dispositions are attributed to the two real retained provider-profile collections.",
+    "denominator": "Explicit denominatorVersion fingerprints immutable workbook,cutoff,complete companyId/ISIN/sector/geography population,verified eligible IDs and eligibility rule BEFORE field/lifecycle coverage. No lifecycle survivor filtering.",
+    "privacy": "Same existing count suppression for populations1–4. API/UI/JSON/XLSX only aggregate categories/counts/date windows/composite hashes. No company/security identifiers,tickers,per-company source hashes,provider values,raw profiles,private URLs or licence payloads exported.",
+    "api": "Existing GET-only /api/research/stage10-coverage and export.json/export.xlsx; source-dependent exact inputHash and selectors retained; no new route,public write,provider refresh,real approval or callback",
+    "ui": "Existing63rd component on /methodology now renders actual full/eligible lifecycle×identity35-cell join,source audits and denominator version. Listing is explicitly provider-stated observation,not exchange-certified continuity.",
+    "workbook": "Existing Aggregate coverage includes both global35-cell joins plus five lifecycle marginals; Exact input identity includes new scalar pins; separate Lifecycle source audit worksheet has seven precisely bound columns."
+  },
+  "actualRetainedRead": {
+    "inputHash": "fe497702672573fa08fa3d73549180c6c68005b0f34219c87e03fde7262c2fed",
+    "workbookHash": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+    "denominatorVersion": "3d6f7cd3494a22bcbe42d338f5a6de22a5bedec8654f73f5ffe54a14de4941fd",
+    "lifecycleSourceSetHash": "c483cfe16188556845f80e73f2b47ad52387133eb9300dab4232523a98d9a339",
+    "informationCutoff": "2026-11-09T23:17:36.035Z",
+    "fullCompanies": 2442,
+    "verifiedEligibleCompanies": 0,
+    "admittedStage11To15Records": 0,
+    "lifecycle": {"listed":120,"acquired":0,"merged":0,"delisted":0,"unknown":2322},
+    "nonUnknownSourceAudited": 120,
+    "unverifiedNonUnknown": 0,
+    "positiveJointCells": {
+      "listed|candidate-awaiting-review":1,
+      "listed|ambiguous":69,
+      "listed|unmatched":50,
+      "unknown|candidate-awaiting-review":348,
+      "unknown|accepted":1,
+      "unknown|ambiguous":405,
+      "unknown|unmatched":1568
+    },
+    "allOtherFullJointCells": 0,
+    "eligibleJointCompanies": 0,
+    "legacyAcceptedOne": "Still unknown lifecycle and not immutable-financial eligible: missing original profile remains unretained; no reconstruction,provider refresh or silent hash refreeze",
+    "sourceGroups": [
+      {
+        "kind":"retained-worked-profile",
+        "endpoint":"https://financialmodelingprep.com/stable/profile",
+        "observations":27,
+        "usedNonUnknownCompanies":27,
+        "firstCapturedAt":"2026-11-09T08:34:42.418Z",
+        "lastCapturedAt":"2026-11-09T23:17:36.035Z"
+      },
+      {
+        "kind":"retained-root-cause-profile",
+        "endpoint":"https://financialmodelingprep.com/stable/profile",
+        "observations":211,
+        "usedNonUnknownCompanies":93,
+        "firstCapturedAt":"2026-11-08T21:15:30.460Z",
+        "lastCapturedAt":"2026-11-08T21:21:35.707Z",
+        "scope":"100existing full-census cases can have multiple profiles;200active profile observations are NOT a200-company pilot"
+      }
+    ],
+    "aggregateRows":22214,
+    "actualWorkbookRowsReadBack":22214,
+    "actualWorkbookSourceAuditRows":2,
+    "actualWorkbookBytes":4556142,
+    "actualWorkbookInputHashMatches":true,
+    "actualWorkbookSourceAuditEqualsReport":true,
+    "actualImportedComponentSSRHashAndLifecycleCountMatch":true
+  },
+  "boundedOriginal200Investigation": {
+    "newSampleProduced": false,
+    "providerCalls": 0,
+    "original200ReconstructedFromFirst200CurrentRows": false,
+    "checkedScope": [
+      "Existing generated-artifacts/financial-data mapping/root-cause/reassessed metadata and hashes",
+      "Existing collector and source-only-validation script snapshots,without executing collectors",
+      "Existing stage-10-00/stage-10-01 historical receipt metadata",
+      "docs/Developer_Workplan_Execution.md earlier200pilot narrative and existing stages10–13 reconciliation provenance",
+      "READ ONLY snapshot metadata grouped by kind WHERE company_count=200 OR kind contains mapping; no private bundle IDs/pins or payloads read"
+    ],
+    "currentParentAudit": {
+      "universe":2442,
+      "attempted":2442,
+      "canonicalResultsHash":"6840bfe24153d3fbc8ebf2eee4f4b49fefce1eb3e730fe0be176018a341cdeb2"
+    },
+    "retained100RootCause": {
+      "requested":100,
+      "completed":100,
+      "originalUnmatched":50,
+      "originalAmbiguous":50,
+      "sourceAuditHashMatchesFull2442":true,
+      "selectionHash":"eceb9486c911cb626b587338c84b0de1747b2ba83c6e5e3e769922171b8ffa85",
+      "existingSelectorRecomputedForAuthenticationOnly":true,
+      "all100MembershipsMatchExistingFullAuditSelection":true,
+      "earlier200PilotProvenance":false
+    },
+    "historicalReceiptMetadata": [
+      {"path":"generated-artifacts/workplan/stage-10-00.log","sha256":"195e9e6741b246edcc5f42c1ae490856e37b79ac5f0c13be07522fb42bc44d57","bytes":3257,"frozen200CohortPayload":false},
+      {"path":"generated-artifacts/workplan/stage-10-01.log","sha256":"8b932c34e7ed863ef03ee779bf22b956e3fc4030b5b858880de8b6df807b951f","bytes":262,"denominator":2442}
+    ],
+    "matching200OrMappingSnapshotMetadata": [],
+    "conclusion": "A genuine earlier200pilot is mentioned,but its frozen membership,statuses,capture and source payload were not located in this bounded authorized inspection. Current100case receipts prove50+50 from FULL2442,not the requested earlier200. Resumable mutable audit checkpoints do not preserve the earlier pilot snapshot. Original S10-003 remains unfulfilled; no replacement sample or universal absence claim.",
+    "exactPrerequisite": "Original dated200-attempt cohort/result artifact and source identity,or authorized historical resolver locating that exact retained version. Only then authenticate its original50unmatched+50ambiguous membership; never select a fresh substitute."
+  },
+  "criterionAssessment": {
+    "S10-001":"Current retained engineering fulfilled with qualified dated provider listing observations and explicit unknown otherwise; no continuous/legal-status verification claimed.",
+    "S10-008":"Actual2442 dual-state census and both population marginals reconciled; eligible0 remains0,all unknowns retained.",
+    "S10-009":"Actual120/120 nonunknown sources audited;0unverified. No nonexistent exchange/action approvals admitted.",
+    "S02-004":"Explicit immutable denominator/as-of/source versions and independent actual joint implemented. Historical unobserved lifecycle timelines remain unknown.",
+    "S10-003":"Original earlier200cohort requirement remains a provenance gap; genuine current full-census100sample is not substituted."
+  },
+  "supplementalCensusDeltaFromPriorStage10": {
+    "addedDefinitions":12,
+    "stage10DefinitionsBefore":39,
+    "stage10DefinitionsAfter":51,
+    "addedSupplementalSlots":247,
+    "stage10SlotsBefore":859,
+    "stage10SlotsAfter":1106,
+    "apiSlots":51,
+    "jsonSlots":954,
+    "xlsxSlots":101,
+    "identityMetadataRows":19,
+    "lifecycleAuditColumns":7,
+    "originalBoundPublicUnchanged":"1000/1001; opaque historical summary1 and withheld27 unchanged",
+    "originalSlotFingerprint":"34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+    "componentCountUnchanged":63,
+    "concurrentCurrencyOwnership":"Currency audit and monetary aggregation modules/semantics are owned by the currency worker. Stage10 touches no monetary assignment or aggregation; reconcile final global totals dynamically after both integrations."
+  },
+  "verification": {
+    "focusedTests":"44passed,0failed,0skipped: stage10-lifecycle,stage10-retained-coverage,financial-identity,financial-mapping,mapping-diagnostics,statement-history,completed-cash-flow,component-state-census,next-census-accounting,operational-field-semantics",
+    "typecheck":"npx tsc --noEmit passed",
+    "realRetainedRead":"Actual trusted source→v2 aggregate→production XLSX readback→actual component SSR,not only synthetic HTTP fixture",
+    "earlierParallelInventoryRace":"One earlier --check freshness assertion failed while the currency worker added source workbook builders; no contract assertions weakened. Later regeneration and44focused checks passed.",
+    "notPerformed":["fullsuite","broad original62component/browser rerun","workflow restart","provider acquisition","financial/model numerical experiment rerun","private14bundle pin edits","ledger edits","real approval","commit","deploy","callback"]
+  }
+}

@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { execFileSync } from "node:child_process";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,10 +14,15 @@ import { validateNativePair } from "../server/calculation/nativePathwayContract"
 import { historicalTrajectoryMetrics } from "../server/calculation/historicalMetrics";
 import references from "../server/calculation/data/catReferences.json";
 import warnings from "../docs/S16-013-warning-resolution-register.json";
+import {
+  decodeRetainedWarningSource, loadRetainedWarningSource, reconstructClientTree, WARNING_CLIENT_TREE,
+} from "./fixtures/retainedWarningSource";
 
 (globalThis as any).React = React;
 const read = (path: string) => readFileSync(path, "utf8");
 const normalize = (text: string) => text.replace(/\s+/g, " ");
+const retained = loadRetainedWarningSource();
+const originalSources = new Map(retained.original.files.map(file => [file.path, file.text]));
 function renderReferences(data: unknown) {
   const client = new QueryClient({ defaultOptions: { queries: { staleTime: Infinity, retry: false, gcTime: Infinity } } });
   client.setQueryData(["/api/reference-scenarios"], data);
@@ -66,8 +70,18 @@ test("actual UI withholds NDC-only, contradictory or missing commitment identiti
     assert.doesNotMatch(html, /1\.9°C|All announced commitments delivered<\/h3>/);
   }
 });
+test("retained source fixture reconstructs all89 original files and refuses corruption or missing/duplicate paths", () => {
+  assert.equal(retained.original.files.length, 89);
+  assert.equal(retained.original.files.reduce((sum, file) => sum + file.bytes, 0), 519294);
+  assert.equal(reconstructClientTree(retained.original.files), WARNING_CLIENT_TREE);
+  assert.notEqual(reconstructClientTree(retained.original.files.slice(1)), WARNING_CLIENT_TREE);
+  assert.throws(() => reconstructClientTree([...retained.original.files, retained.original.files[0]]), /duplicate path/);
+  const corrupt = Buffer.from(readFileSync("script/fixtures/retained-warning-source.json"));
+  corrupt[0] ^= 1;
+  assert.throws(() => decodeRetainedWarningSource(corrupt), /SHA256 mismatch/);
+});
 test("retained pre-fix UI validator really admitted an NDC-only definition under the commitments ID", () => {
-  const source = execFileSync("git", ["show", "40c524b29bec455f51e0bb9ac7d3efabe0218e3e:client/src/components/published-scenario-references.tsx"], { encoding: "utf8" });
+  const source = retained.preFixReference.file.text;
   const ast = ts.createSourceFile("original.tsx", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const names = new Set(["milestoneYears", "isRecord", "isText", "isFiniteNumber", "isHttpsUrl"]);
   const declarations = ast.statements.filter(node =>
@@ -100,20 +114,24 @@ test("actual native calculation/export refuses NDC-only commitments and preserve
 test("every recorded removed warning has its actual original text, current replacement and linked resolution", () => {
   assert.equal(warnings.originalHosts.length, 12);
   assert.equal(warnings.removedWarnings.length, 3);
-  const actualOriginalHosts = execFileSync("git", ["grep", "-l", "-i", "-E", warnings.scanPattern,
-    warnings.originalSourceRevision, "--", "client/src"], { encoding: "utf8" })
-    .trim().split("\n").map(line => line.slice(line.indexOf(":") + 1)).sort();
+  assert.equal(warnings.originalSourceRevision, retained.original.revision);
+  // Preserve the complete original grep domain, not only the12 known matches.
+  // This pattern uses the shared JS/POSIX-ERE subset and is evaluated per line.
+  const pattern = new RegExp(warnings.scanPattern, "i");
+  const actualOriginalHosts = retained.original.files
+    .filter(file => file.text.split("\n").some(line => pattern.test(line))).map(file => file.path).sort();
   assert.deepEqual(warnings.originalHosts.map(host => host.path).sort(), actualOriginalHosts,
     "inventory denominator is the actual retained source scan, not placeholder entries");
   for (const host of warnings.originalHosts) {
-    const original = normalize(execFileSync("git", ["show", `${warnings.originalSourceRevision}:${host.path}`], { encoding: "utf8" }));
+    assert.ok(originalSources.has(host.path), `retained original ${host.path}`);
+    const original = normalize(originalSources.get(host.path)!);
     assert.ok(original.includes(normalize(host.originalExcerpt)), `original ${host.path}`);
     for (const fragment of host.currentRequired)
       assert.ok(normalize(read(host.path)).includes(fragment), `${host.path}: ${fragment}`);
   }
   for (const removed of warnings.removedWarnings) {
     assert.ok(warnings.resolutions.some(record => record.id === removed.resolution));
-    assert.ok(execFileSync("git", ["show", `${warnings.originalSourceRevision}:${removed.path}`], { encoding: "utf8" }).includes(removed.originalText));
+    assert.ok(originalSources.get(removed.path)?.includes(removed.originalText), `retained removed-warning source ${removed.path}`);
     assert.ok(!read(removed.path).includes(removed.originalText));
   }
   const preview = warnings.additionalHistoricalSelectionWarning;
@@ -127,8 +145,9 @@ test("actual fixed5Gt calculator resolves extrapolation only, not physical/net-z
   assert.equal(result.netZeroYear, 2100);
   assert.equal(result.legacyFixed5Gt.notNetZero, true);
   assert.equal(result.legacyFixed5Gt.version, "fixed-5gt-v1");
-  const html = renderToStaticMarkup(React.createElement(Router, { ssrPath: "/climate-valuation" },
-    React.createElement(ValuationNotice)));
+  const html = renderToStaticMarkup(React.createElement(Router, {
+    ssrPath: "/climate-valuation", children: React.createElement(ValuationNotice),
+  }));
   for (const text of ["no defensible valuation-to-activity mapping", "Workbook currency compatibility is unverified",
     "not validated investment evidence", "not decarbonisation rates or market climate expectations"])
     assert.ok(normalize(html).includes(text));

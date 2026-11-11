@@ -34,6 +34,15 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "workbook-money-audit.tsx": query("Missing/invalid/unidentified retained audit is explicit unavailable,never0money.", {
+    loading: "Initial/background pending read suppresses previous counts and all download links.",
+    error: "Named source/read/integrity error wins over cached success; no private exception bytes or stale counts.",
+    selection: "Full strict report SHA256 verified against HTTP header; JSON/XLSX downloads pin expectedAuditHash; changed report409,never latest fallback.",
+    null: "MonetaryTotals null is intentional unknown denomination/magnitude/FX withholding,not0. All actual numeric source zeros remain separate counts.",
+    zero: "Source count0 is retained; FX0 and converted0 are explicit facts,not money. Identity review1 does not approve denomination.",
+    refusal: "Missing production retained catalog returns503; no public refresh,paths,USD/scale/FX defaults,private values or approvals.",
+    scope: "Actual existing audit of full2442 source companies and811572 numeric cells is descriptive. Safe source counts/date windows/hash pins only. Independently reported dimensionless PE is not withheld by this monetary audit alone.",
+  }),
   "stage10-financial-coverage.tsx": query("Absent/malformed retained aggregate is explicit unavailable,never zero coverage.", {
     loading: "Actual initial/background pending read hides retained values and all download links; named loading status.",
     error: "Any read failure wins over retained success; explicit error,not zero values or not-queried identities.",
@@ -41,7 +50,7 @@ export const filePolicies: Record<string, Policy> = {
     null: "Privacy-suppressed counts are labeled Suppressed; undefined/zero-denominator shares unavailable. Unknown restatement is separate,not original or0%not-restated.",
     zero: "Actual zero counts retained; zero-denominator shares remain null. Current approval is not verified immutable financial eligibility.",
     refusal: "Source/storage corruption and unsupported original vintages refuse; no provider refresh or model/corpus approval.",
-    scope: "Safe aggregate only,same inputHash API/UI/JSON/XLSX. All seven identity states and ten field coverage categories with sector×region Unknown retained; no private IDs/provider values.",
+    scope: "Safe aggregate only,same inputHash API/UI/JSON/XLSX. Independent five-state lifecycle×seven-state identity joint for all full/eligible companies; dated source audit and denominator version; last workbook observation never delisting. Ten field sector×region categories remain unchanged; no private IDs/provider values.",
   }),
   "track-b-research.tsx": query("Empty source-pinned catalog is explicit; absent/malformed selected report has a named absence/invalid reason, never an indefinite loader.", {
     loading: "Actual catalog/report pending read suppresses previous success and download links; each has a named loading message.",
@@ -238,6 +247,7 @@ export const focusedRenderComponents = new Set([
   "WarmingValidationReference",
   "TrackBResearch",
   "Stage10FinancialCoverage",
+  "WorkbookMoneyAudit",
 ]);
 const remainingCohort = new Set([
   "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
@@ -302,8 +312,10 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: name === "Stage10FinancialCoverage"
-      ? "script/stage10-retained-coverage.test.ts: direct actual component SSR loading,error,absent,invalid,ready seven-state/cutoff/inputHash/downloads. Same suite exercises real HTTP/JSON/XLSX adapter against isolated synthetic engineering inputs,not real approvals. Original62component suite/browser not rerun or claimed."
+    focusedEvidence: name === "WorkbookMoneyAudit"
+      ? "script/workbook-money-integration.test.ts: actual imported component SSR loading/error/absent/invalid/ready with strict full-report hash and pinned downloads; real HTTP/XLSX safe-count/date/reason equality and source/query/hash refusals. Synthetic engineering is not real approval; old63component browser suite not rerun."
+      : name === "Stage10FinancialCoverage"
+      ? "script/stage10-retained-coverage.test.ts: actual component SSR loading,error,absent,invalid,ready identity/lifecycle/source-audit/hash/download states; real HTTP/JSON/XLSX with positive dated listing evidence. script/stage10-lifecycle.test.ts checks35-cell independent join,marginals,dates/source refusals and unchanged eligibility. Synthetic engineering is not real approval; original62component/browser suite not rerun."
       : name === "TrackBResearch"
       ? "script/track-b-admission.test.ts: direct imported TrackBResearch SSR covers catalog/report loading,error,empty,missing,invalid and exact selected absent-period reasons/download identities. Actual DEV filesystem resolver/HTTP/XLSX/browser-hash tests exercise the same contract; no old61component suite or browser interaction rerun is claimed."
       : name === "WarmingValidationReference"

@@ -7,6 +7,7 @@ import { snapshotGuardQuery, guardRowsValid } from "../snapshots/guards";
 import { snapshotSchema, snapshotId } from "./review";
 import { buildStage10Coverage, sevenStateIdentity, type Stage10Company, type Stage10Cell } from "./stage10Coverage";
 import { stage10Fields, type Stage10Field } from "../../shared/stage10Coverage";
+import { lifecycleProfileEvidence, type LifecycleEvidence } from "./stage10Lifecycle";
 
 const finite = (x: unknown): x is number => typeof x === "number" && Number.isFinite(x);
 const date = (x: unknown): x is string => typeof x === "string" && /^\d{4}-\d{2}-\d{2}$/.test(x) &&
@@ -88,13 +89,23 @@ export async function readStage10RetainedFiles() {
     audit.results.some((r: any) => !Number.isInteger(r.companyId) || typeof r.isin !== "string"))
     throw new Error("Retained identity journal unavailable/inconsistent; cannot infer not-queried from corruption");
   const root = "generated-artifacts/company-worked-inputs";
+  const rootCause = JSON.parse(await readFile("generated-artifacts/financial-data/root-cause-audit.json", "utf8"));
+  // Authenticate the EXISTING frozen100-case selection from the FULL2442
+  // audit. This is validation,not a new sample or the earlier200-company pilot.
+  const selected = ["unmatched", "ambiguous"].flatMap(status => audit.results.filter((r: any) => r.status === status)
+    .sort((a: any, b: any) => contentHash({ isin: a.isin, seed: "audit-20261108" }).localeCompare(contentHash({ isin: b.isin, seed: "audit-20261108" }))).slice(0, 50));
+  if (rootCause.sourceAuditHash !== contentHash(audit.results) || rootCause.selectionHash !== contentHash(selected.map((r: any) =>
+    ({ companyId: r.companyId, isin: r.isin, status: r.status }))) || !Array.isArray(rootCause.rows) ||
+    rootCause.rows.length !== 100 || new Set(rootCause.rows.map((r: any) => r.companyId)).size !== 100 ||
+    !rootCause.rows.every((r: any) => selected.some((s: any) => r.companyId === s.companyId && r.isin === s.isin && r.originalStatus === s.status)))
+    throw new Error("Retained root-cause source/selection provenance unavailable; cannot relabel or resample");
   const names = (await readdir(root)).filter(n => /^[A-Za-z0-9.-]+-[a-f0-9]{64}\.json$/.test(n)).sort();
   const versions = [];
   for (const name of names) {
     const source = JSON.parse(await readFile(`${root}/${name}`, "utf8"));
     versions.push(authenticateStage10RetainedVersion(source, name));
   }
-  return { audit, versions };
+  return { audit, versions, rootCause, rootCauseHash: contentHash(rootCause) };
 }
 export async function getStage10Coverage(options: { workbookHash?: string; cutoff?: string; firstYear?: number; lastYear?: number } = {}) {
   const firstYear = options.firstYear ?? 2015, lastYear = options.lastYear ?? 2025;
@@ -117,7 +128,8 @@ export async function getStage10Coverage(options: { workbookHash?: string; cutof
     const archives = (await tx.execute(sql`SELECT s.id,s.chunk_count,s.created_at,c.ordinal,c.payload FROM cv_analysis_snapshots s
       LEFT JOIN cv_analysis_chunks c ON c.snapshot_id=s.id WHERE s.kind='approved-current-financial' ORDER BY s.id,c.ordinal`)).rows as Record<string, any>[];
     const reviewTimes = reviews.flatMap(r => [r.reviewed_at, r.created_at]).filter(Boolean).map(t => new Date(t).toISOString()).sort();
-    const actualTimes = [files.audit.createdAt, ...files.versions.map(s => s.fetchedAt), ...archives.map(a => a.created_at),
+    const actualTimes = [files.audit.createdAt, ...files.rootCause.rows.map((r: any) => r.collectedAt),
+      ...files.versions.map(s => s.fetchedAt), ...archives.map(a => a.created_at),
       ...reviews.flatMap(r => [r.reviewed_at, r.created_at, r.payload?.fetchedAt]).filter(Boolean)].map(t => new Date(t).toISOString()).sort();
     const cutoff = options.cutoff ?? actualTimes.at(-1)!;
     if (!Number.isFinite(Date.parse(cutoff)) || Date.parse(files.audit.createdAt) > Date.parse(cutoff))
@@ -125,6 +137,20 @@ export async function getStage10Coverage(options: { workbookHash?: string; cutof
     if (reviewTimes.length && Date.parse(reviewTimes.at(-1)!) > Date.parse(cutoff))
       throw new Error("Current mutable review journal cannot reconstruct earlier approval/supersession states; no invented historical review store");
     const companies = workbook.companies as Stage10Company[];
+    const lifecycleEvidence: LifecycleEvidence[] = [];
+    for (const source of files.versions) {
+      const company = companies.find(c => c.id === source.payload.company.id && c.isin === source.payload.company.isin);
+      if (company) lifecycleEvidence.push(...lifecycleProfileEvidence(company, source.payload.profile, source.fetchedAt,
+        source.sourceEnvelopeHash, "retained-worked-profile"));
+    }
+    for (const row of files.rootCause.rows) {
+      const company = companies.find(c => c.id === row.companyId && c.isin === row.isin);
+      if (!company || ["error", "provider-error"].includes(row.status)) continue;
+      if (!Number.isFinite(Date.parse(row.collectedAt))) throw new Error("Undated retained lifecycle profile capture");
+      if (!Array.isArray(row.profiles)) throw new Error("Retained lifecycle provider evidence missing,not successful empty query");
+      for (const profile of row.profiles ?? []) lifecycleEvidence.push(...lifecycleProfileEvidence(company, profile,
+        row.collectedAt, files.rootCauseHash, "retained-root-cause-profile"));
+    }
     const eligibleIds: number[] = [], cells: Stage10Cell[] = [], sourceGaps: string[] = [];
     for (const archive of archives) {
       if (archive.chunk_count !== 1 || archive.ordinal !== 0 || contentHash(archive.payload) !== archive.id) throw new Error("Corrupt immutable approved financial overlay");
@@ -162,12 +188,14 @@ export async function getStage10Coverage(options: { workbookHash?: string; cutof
       "Unqueried/provider-error/awaiting-review are distinct; current review without an immutable approved-current-financial archive is not verified-eligible.");
     sourceGaps.push("Existing approved-current-financial snapshots are current-only identities/single-period NI,with no explicit annual FY/original-vintage classification. They are not substituted for annual historical statements.");
     sourceGaps.push("Current mutable approval/supersession rows are not a historical review timeline. Cutoffs before the latest retained review event refuse rather than reconstruct earlier approvals.");
+    sourceGaps.push("Lifecycle is independent of all seven identity states. Listed means dated exact-ISIN provider active-listing evidence,not exchange-certified continuous listing. Inactive/last workbook observation/accepted identity never implies delisted,acquired or merged.");
+    sourceGaps.push("Retained root-cause100 is authenticated50unmatched+50ambiguous from the FULL2442 source,NOT the earlier200-company pilot. No frozen earlier200cohort/status payload was located in the bounded provenance investigation; S10-003 is not fulfilled by relabelling/resampling.");
     if (!archives.length) sourceGaps.push("No immutable approved-current-financial overlays retained; verified-eligible corpus cannot advance from current approvals alone.");
     return buildStage10Coverage({ workbookHash: String(header.id), cutoff: new Date(cutoff).toISOString(),
       years: Array.from({ length: lastYear - firstYear + 1 }, (_, i) => firstYear + i), companies,
       attempts: files.audit.results, reviews: reviews.map(r => ({ ...r, reviewed_at: r.reviewed_at ? new Date(r.reviewed_at).toISOString() : null,
         created_at: new Date(r.created_at).toISOString() })),
-      eligibleIds, cells, sourceIdentity: { audit: contentHash(files.audit), versions: files.versions.map(s => ({
+      eligibleIds, cells, lifecycleEvidence, sourceIdentity: { audit: contentHash(files.audit), rootCause: files.rootCauseHash, versions: files.versions.map(s => ({
         hash: s.inputHash, envelopeHash: s.sourceEnvelopeHash, fetchedAt: s.fetchedAt })),
         financialArchives: archives.map(a => ({ hash: a.id, retainedAt: new Date(a.created_at).toISOString() })) },
       retainedVersions: files.versions.length, selectedVersions, sourceGaps });

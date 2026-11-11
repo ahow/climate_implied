@@ -1,0 +1,94 @@
+{
+  "contract": "workbook-money-public-integration-evidence-1",
+  "status": "Engineering integrated; monetary data pending review and intentionally withheld",
+  "registration": {
+    "module": "server/index.ts",
+    "order": "registerWorkbookMoneyAuditApi(app) after app.use(releaseSafety()); protected server/routes.ts unchanged",
+    "routes": [
+      "GET /api/financial-data/workbook-money-audit",
+      "GET /api/financial-data/workbook-money-audit.xlsx"
+    ],
+    "retainedSource": "Existing fixed retained generated-artifacts/workbook-money-audit-v1/safe-summary-qualified.json plus both authenticated private metadata hashes; private bytes never returned",
+    "productionAbsent": "Missing/unreadable/corrupt retained source =>503 with null money and pending-review status. No fabricated public catalog,default USD,source fallback or approval.",
+    "queryPolicy": "Only expectedAuditHash;400unsupported queries/paths/currency/refresh;409changed exact report; no public writes",
+    "disclosurePin": "SHA256(JSON.stringify(strict parsed complete public summary)); X-Workbook-Money-Audit-SHA256; exact same digest in XLSX qualification and both UI download URLs",
+    "privacy": "Counts,source-date windows,qualification strings and opaque collection hashes only. Strict schema rejects raw provider objects/private identifiers/monetary totals."
+  },
+  "actualRetainedSource": {
+    "version": "workbook-money-audit-2",
+    "capturedAt": "2026-11-11T21:09:22.778Z",
+    "auditHash": "04fe25e89909caabcfcecfc49fb0febd574ef56a9acaae9c3a85619b78bd90e7",
+    "sourceHash": "a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+    "sourceCompanies": 2442,
+    "finiteNumericSourceCells": 811572,
+    "explicitCurrencyCells": 0,
+    "explicitMagnitudeCells": 0,
+    "authorizedDatedFxCount": 0,
+    "convertedMoneyCells": 0,
+    "monetaryTotals": null,
+    "approvedIdentityReviewCountNotMoneyApproval": 1,
+    "exactAcceptedIdentityCountNotMoneyApproval": 1,
+    "unresolvedDenominationOrMagnitude": true,
+    "sheets": [
+      {"sheet":"MV","dataRows":193,"numericCells":414224,"trueZeros":0,"firstActualSourceDate":"2010-01-22T00:00:00.000Z","lastActualSourceDate":"2026-01-22T00:00:00.000Z"},
+      {"sheet":"Profit","dataRows":193,"numericCells":397348,"trueZeros":16,"firstActualSourceDate":"2010-02-04T00:00:00.000Z","lastActualSourceDate":"2026-02-04T00:00:00.000Z"}
+    ],
+    "sourceDatePolicy": "Unique-same-calendar-month Profit alignment preserves actual Profit source day; no RI/MV-day/nearest-day FX substitution",
+    "sameMonthCrossDateRowPairs": 192,
+    "ambiguousProfitMonths": 0,
+    "interpretation": "811572 is a count of numeric cells,NOT qualified money. Raw zero observations stay16 in Profit,not monetary total0. Name tokens and quote/statement currencies are not cell denomination/magnitude evidence."
+  },
+  "ui": {
+    "component": "client/src/components/workbook-money-audit.tsx#WorkbookMoneyAudit",
+    "routes": ["/methodology", "/climate-valuation"],
+    "framework": "Existing Card/TanStack patterns; independent strict SHA-verified GET; loading/error/invalid/absent hide stale counts and downloads",
+    "qualifier": "Actual source companies/numeric-cell count and both original sheet date ranges shown alongside exact currency/scale/dated-FX missingness,review status,null money and source hashes",
+    "financePageClaim": "Money-input-dependent totals and derived ratios may be intentionally withheld despite numeric source cells. This does NOT by itself reject independently reported dimensionless PE. No PE replacement or calculation changes.",
+    "componentCount": 64,
+    "original60Unchanged": true
+  },
+  "export": {
+    "sourceCountRows": 2,
+    "sourceCountColumns": 15,
+    "qualificationRows": 20,
+    "fieldSemanticRows": 36,
+    "columnBindingRows": 35,
+    "metadataColumns": 31,
+    "actualRetainedWorkbookBytes": 36926,
+    "actualSourceCountsAndDatesEqualReadback": true,
+    "actualDisclosureHashPinnedReadback": true,
+    "actualImportedComponentSSR811572AndHashPins": true,
+    "nullRepresentation": "literal text null,never blank or numeric0",
+    "binding": "Every source column and each exact Field-selected qualification scalar has its own semantic ID/formula/unit; actual validated row/cell partitions enforced"
+  },
+  "supplementalCensus": {
+    "addedDefinitions": 36,
+    "reportLeaves": 34,
+    "additionalTransportAndErrorDefinitions": 2,
+    "apiLeafSlots": 35,
+    "xlsxLeafSlots": 89,
+    "addedSupplementalSlots": 124,
+    "definitionsBefore": 1930,
+    "definitionsAfter": 1966,
+    "externalSlotsBefore": 2642,
+    "externalSlotsAfter": 2766,
+    "expandedPublicSlotsBefore": 3974,
+    "expandedPublicSlotsAfter": 4098,
+    "expandedBoundSlotsBefore": 3973,
+    "expandedBoundSlotsAfter": 4097,
+    "originalPublicBound": "1000/1001 unchanged; opaque summary1,withheld27,original slot fingerprint unchanged",
+    "originalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+    "directSupplementalSlotsUnchanged": 331,
+    "noScientificClosureCredit": true
+  },
+  "verification": {
+    "focusedTests": "29passed,0failed/skipped: workbook-money-integration,workbook-money-api,workbook-money,component-state-census,next-census-accounting,operational-field-semantics",
+    "http": "Actual GET router/production strict serializer and XLSX writer in isolated engineering HTTP tests; real client fetch verifies header SHA and rejects mismatched hash; query/changed-pin/write refusals",
+    "retainedRead": "Real existing trusted source getter→production XLSX binary readback→actual imported component SSR",
+    "typecheck": "npx tsc --noEmit passed",
+    "census": "Both censuses regenerated; field census --check and git diff --check passed",
+    "notPerformed": ["fullsuite","browser rerun","workflow/app restart","provider refresh","real approval","14bundle pins","protected routes","canonical ledger","deploy","callback"],
+    "ownership": "No edits to currency worker companyCoverage.ts/backtest/valuationStatistics guards or financial numerical assignments."
+  },
+  "remainingOperatorPrerequisite": "Provision genuine existing safe retained audit plus matching private metadata/reconciliation bytes in production if unavailable; to release monetary totals requires authentic accepted identities,explicit source-cell denomination/magnitude and authorized actual-source-day FX wherever needed. No arbitrary currency/scale/date substitution or review approval invented."
+}

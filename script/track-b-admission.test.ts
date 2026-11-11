@@ -39,7 +39,8 @@ function fixture(options: {
     specifications: [spec], expectedOrigins: ["2020-02-29T00:00:00Z", "2020-04-30T00:00:00Z"],
     frozenAt: "2019-01-01T00:00:00Z", evaluationStart: "2020-02-29T00:00:00Z", evaluationEnd: "2021-01-01T00:00:00Z",
     embargoDays: 2, blockLength: 1, repetitions: 200, seed: 1, currency: "USD", geography: "engineering-only",
-    quantile: .5, weighting: "equal-within-sector", costBps: 25, sensitivityCostBps: [], borrowRateMultipliers: [1],
+    quantile: .5, weighting: "equal-within-sector", longOnlyKernelWeighting: "equal-within-sector",
+    costBps: 25, sensitivityCostBps: [], borrowRateMultipliers: [1],
     terminalStresses: [0, -.3, -1], disclosure: "locked retrospective evaluation (prior exposure: 2020 onward)",
     ...(options.lag === null ? {} : { trackBPolicy: { filingLagDays: options.lag ?? 5 } }),
   };

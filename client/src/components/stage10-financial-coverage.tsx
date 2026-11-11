@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
-import { stage10CoverageSchema, stage10Fields, type Stage10CoverageReport } from "@shared/stage10Coverage";
+import { stage10CoverageSchema, stage10Fields, stage10IdentityStates, stage10LifecycleStates, type Stage10CoverageReport } from "@shared/stage10Coverage";
 export function stage10DownloadUrl(report: Stage10CoverageReport, suffix: string) {
   return `/api/research/stage10-coverage${suffix}?${new URLSearchParams({
     workbookHash: report.workbookHash, cutoff: report.informationCutoff, expectedInputHash: report.inputHash,
@@ -37,6 +37,7 @@ export function Stage10FinancialCoverage({ readState }: { readState?: { loading?
           <span data-field-id="stage10Coverage.admittedStage11To15Records">Original-dated Stage11–15 records: {report.admittedStage11To15Records}</span></p>
         <p className="text-xs break-all" data-field-id="stage10Coverage.inputHash">Input SHA256: {report.inputHash}</p>
         <p className="text-xs break-all" data-field-id="stage10Coverage.workbookHash">Full immutable workbook SHA256: {report.workbookHash}; separate from the active analysis selection.</p>
+        <p className="text-xs break-all" data-field-id="stage10Coverage.denominatorVersion">Denominator/as-of rule version: {report.denominatorVersion}</p>
         <p className="text-xs"><span data-field-id="stage10Coverage.retainedSourceVersions">Retained candidate source versions: {report.retainedSourceVersions}</span>{" · "}
           <span data-field-id="stage10Coverage.selectedSourceVersions">Selected as-of versions: {report.selectedSourceVersions}</span>; neither count establishes identity or publication approval.</p>
         <p className="text-xs" data-field-id="stage10Coverage.informationCutoff">Information cutoff: {report.informationCutoff}; fiscal years {report.fiscalYears.join(", ")}</p>
@@ -48,6 +49,28 @@ export function Stage10FinancialCoverage({ readState }: { readState?: { loading?
             <span data-field-id="stage10Coverage.rows[].key">{r.key}</span>:{" "}
             <span data-field-id="stage10Coverage.rows[].present">{r.present === null ? "Suppressed" : r.present}</span>{" / "}
             <span data-field-id="stage10Coverage.rows[].companies">{r.companies}</span></p>)}</div>
+        <h3 className="font-medium">Independent lifecycle × seven identity states</h3>
+        <p className="text-xs">Listed means a dated exact-security provider active-listing observation,not a verified continuous exchange listing.
+          Inactive status,last workbook observation and accepted identity never imply delisting,acquisition or merger.</p>
+        <div className="overflow-x-auto"><table className="text-xs"><thead><tr><th>Lifecycle / identity</th>
+          {stage10IdentityStates.map(s => <th className="p-2" key={s}>{s}</th>)}<th>Lifecycle total</th></tr></thead>
+          <tbody>{stage10LifecycleStates.map(lifecycle => <tr key={lifecycle}><th className="p-2" data-field-id="stage10Coverage.rows[].key">{lifecycle}</th>
+            {stage10IdentityStates.map(identity => {
+              const joint = report.rows.find(r => r.population === population && r.sector === "All sectors" &&
+                r.dimension === "lifecycle-identity" && r.key === `${lifecycle}|${identity}`);
+              return <td className="p-2" key={identity} data-field-id="stage10Coverage.rows[].present">{joint?.present === null ? "Suppressed" : joint?.present ?? "Unavailable"}</td>;
+            })}
+            <td className="p-2" data-field-id="stage10Coverage.rows[].present">{report.rows.find(r => r.population === population &&
+              r.sector === "All sectors" && r.dimension === "lifecycle" && r.key === lifecycle)?.present ?? "Suppressed"}</td>
+          </tr>)}</tbody></table></div>
+        <p className="text-xs"><span data-field-id="stage10Coverage.lifecycleNonUnknownCompanies">Full-workbook nonunknown lifecycle companies: {report.lifecycleNonUnknownCompanies}</span>{" · "}
+          <span data-field-id="stage10Coverage.lifecycleAuditedNonUnknownCompanies">Source-audited: {report.lifecycleAuditedNonUnknownCompanies}</span>{" · "}
+          <span data-field-id="stage10Coverage.lifecycleUnverifiedNonUnknownCompanies">Unverified nonunknown: {report.lifecycleUnverifiedNonUnknownCompanies}</span></p>
+        <details className="text-xs"><summary>Every nonunknown lifecycle’s dated source audit</summary>
+          <p className="break-all" data-field-id="stage10Coverage.lifecycleSourceSetHash">Source-set SHA256: {report.lifecycleSourceSetHash}</p>
+          {report.lifecycleEvidenceAudit.map(row => <div key={row.sourceKind} className="py-2 border-t">{Object.entries(row).map(([key, value]) =>
+            <p key={key} className="break-all" data-field-id={`stage10Coverage.lifecycleEvidenceAudit[].${key}`}>{key}: {value === null ? "Unavailable" : value}</p>)}</div>)}
+        </details>
         <div className="flex flex-wrap gap-3 text-sm">
           <label>Population <select value={population} onChange={e => { setPopulation(e.target.value); setPage(0); }} className="border rounded bg-background p-1">
             <option value="full-workbook">Full workbook</option><option value="verified-eligible">Verified eligible only</option></select></label>

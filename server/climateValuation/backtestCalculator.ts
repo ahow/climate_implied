@@ -5,10 +5,11 @@ import { computeDecarbGapScores } from "./decarbGapCalculator";
 import { buildBacktestResponse, type BacktestResponse } from "../../shared/backtest";
 import { orderCalculationRows } from "../../shared/calculationContract";
 import type { BacktestPoint, SignalType } from "../../shared/backtest";
+import { qualifiedSourceAmount, requireQualifiedWeight, markMonthlyMoneyUnavailable, monthlyMoneyUnavailable, type QualifiedWeightSource } from "../financialData/workbookMoneyConsumers";
 export type { SignalType } from "../../shared/backtest";
 
 
-interface CompanyMonthly {
+interface CompanyMonthly extends QualifiedWeightSource {
   companyId: number;
   monthKey: string;
   monthlyReturn: number;
@@ -49,7 +50,7 @@ export function computeSignalScores(
       const s2 = latest.scope2Emissions;
       if (s1 == null || s2 == null || !Number.isFinite(s1) || !Number.isFinite(s2) || s1 < 0 || s2 < 0) continue;
       const totalEmissions = s1 + s2;
-      const mc = latest.marketCap;
+      const mc = qualifiedSourceAmount(latest, "marketCap").value;
       if (!mc || !Number.isFinite(mc) || mc <= 0) continue;
       rawValues.push({ id: c.id, value: -(totalEmissions / mc) });
     }
@@ -72,15 +73,27 @@ export function computeMonthlyReturns(
   timeSeriesByCompany: Map<number, CvTimeSeries[]>,
 ): Map<string, CompanyMonthly[]> {
   const monthlyData = new Map<string, CompanyMonthly[]>();
+  const qualifiedByCompany = new Map<number, (CvTimeSeries & QualifiedWeightSource)[]>();
+  for (const [companyId, series] of Array.from(timeSeriesByCompany.entries())) {
+    const qualified: (CvTimeSeries & QualifiedWeightSource)[] = [];
+    for (const row of series) {
+      if (row.totalReturnIndex === null || !Number.isFinite(row.totalReturnIndex) || row.totalReturnIndex < 0) continue;
+      const cap = qualifiedSourceAmount(row, "marketCap");
+      if (cap.value === null || !cap.evidence)
+        return markMonthlyMoneyUnavailable(monthlyData, cap.reason);
+      qualified.push({ ...row, marketCap: cap.value, weightSource: cap.evidence });
+    }
+    qualifiedByCompany.set(companyId, qualified);
+  }
 
-  const companyEntries = Array.from(timeSeriesByCompany.entries());
+  const companyEntries = Array.from(qualifiedByCompany.entries());
   for (const [companyId, series] of companyEntries) {
     const sorted = series
       .filter((s: CvTimeSeries) => s.totalReturnIndex !== null && Number.isFinite(s.totalReturnIndex) &&
         s.totalReturnIndex >= 0 && s.marketCap !== null && Number.isFinite(s.marketCap) && s.marketCap >= 0)
       .sort((a: CvTimeSeries, b: CvTimeSeries) => a.date!.getTime() - b.date!.getTime());
 
-    const monthlyRI = new Map<string, { firstRI: number; lastRI: number; lastMV: number; lastDate: Date }>();
+    const monthlyRI = new Map<string, { firstRI: number; lastRI: number; lastMV: number; lastDate: Date; weightSource: CompanyMonthly["weightSource"] }>();
 
     for (const s of sorted) {
       const mk = toMonthKey(s.date!);
@@ -91,11 +104,13 @@ export function computeMonthlyReturns(
           lastRI: s.totalReturnIndex!,
           lastMV: s.marketCap!,
           lastDate: s.date!,
+          weightSource: s.weightSource,
         });
       } else {
         existing.lastRI = s.totalReturnIndex!;
         existing.lastMV = s.marketCap!;
         existing.lastDate = s.date!;
+        existing.weightSource = s.weightSource;
       }
     }
 
@@ -117,6 +132,7 @@ export function computeMonthlyReturns(
         monthKey: mk,
         monthlyReturn: ret,
         marketCap: prev.lastMV,
+        weightSource: prev.weightSource,
       });
     }
   }
@@ -125,9 +141,11 @@ export function computeMonthlyReturns(
 }
 
 export function computeBenchmarkReturn(monthData: CompanyMonthly[]): number {
+  for (const row of monthData) requireQualifiedWeight(row, row.monthKey);
+  if (!monthData.length) throw new Error("Benchmark unavailable: no qualified monetary observations");
   let totalMV = 0;
   for (const d of monthData) totalMV += d.marketCap;
-  if (totalMV <= 0) return 0;
+  if (totalMV <= 0) throw new Error("Benchmark unavailable: nonpositive qualified capitalization denominator");
 
   let weightedReturn = 0;
   for (const d of monthData) {
@@ -141,9 +159,10 @@ function computePortfolioReturn(
   signalScores: Map<number, number>,
   tiltScale: number,
 ): { ret: number; overweight: number; underweight: number } {
+  for (const row of monthData) requireQualifiedWeight(row, row.monthKey);
   let totalMV = 0;
   for (const d of monthData) totalMV += d.marketCap;
-  if (totalMV <= 0) return { ret: 0, overweight: 0, underweight: 0 };
+  if (totalMV <= 0) throw new Error("Portfolio unavailable: nonpositive qualified capitalization denominator");
 
   const weights: number[] = [];
   const returns: number[] = [];
@@ -380,6 +399,12 @@ export async function calculateLegacyBacktest(
   }
 
   const monthlyData = computeMonthlyReturns(timeSeriesByCompany);
+  const moneyGap = monthlyMoneyUnavailable(monthlyData);
+  if (moneyGap) {
+    const response = respond([], 0, null);
+    response.summary.warnings.push(`Backtest unavailable: monetary weights unconverted (${moneyGap}); no default USD or zero return.`);
+    return response;
+  }
   const sortedMonths = Array.from(monthlyData.keys()).sort();
 
   if (sortedMonths.length < 2) return respond([], 0, null);

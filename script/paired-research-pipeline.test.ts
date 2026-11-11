@@ -13,6 +13,7 @@ function fixture(months = 36) {
     frozenAt: "2019-01-01T00:00:00Z", evaluationStart: "2020-12-31T00:00:00Z",
     evaluationEnd: "2023-02-01T00:00:00Z", embargoDays: 2, blockLength: 1, repetitions: 200, seed: 123,
     currency: "USD", geography: "fixture-region", quantile: .25, weighting: "equal-within-sector",
+    longOnlyKernelWeighting: "equal-within-sector",
     costBps: 25, sensitivityCostBps: [0, 50], borrowRateMultipliers: [0, 2], terminalStresses: [0, -.3, -1],
     disclosure: "locked retrospective evaluation (prior exposure: 2020 onward)",
   };
@@ -74,6 +75,16 @@ test("frozen long-only variants require origin eligibility and liquidity, never 
   f.p.longOnlyVariants = [{ sectorNeutral: true, maxActiveWeight: .1, participation: .1, capital: 100, rebalanceMonths: 3 }];
   const r = run(f).specifications[0].longOnlyVariants[0] as { unavailable: string };
   assert.match(r.unavailable, /Missing origin eligibility/);
+});
+test("Dimensionless strategy kernel never certifies source-capitalisation constraint-variant weights", () => {
+  const f = fixture();
+  f.p.longOnlyVariants = [{ sectorNeutral: true, maxActiveWeight: .1, participation: .1, capital: 100, rebalanceMonths: 3 }];
+  for (const period of f.c.periods) for (const security of period.securities) security.longOnlyInputs = {
+    eligible: true, liquidity: 10000, availableAt: period.origin, sourceHashes: security.sourceHashes,
+  };
+  const result = run(f).specifications[0];
+  assert.ok((result.longOnly as any).result.series.length);
+  assert.match((result.longOnlyVariants[0] as any).unavailable, /exact monetary weight evidence missing/);
 });
 test("cutoff ignores unused future archives but rejects future artifacts used by complete dates", () => {
   const f = fixture();
@@ -232,4 +243,12 @@ test("unchanged long-only kernel retains warm-up and capped past-only tilt", () 
   assert.equal(kernel.result.series.length, 36);
   assert.ok(kernel.result.series.slice(0, 12).every(r => r.tiltScale === 0));
   assert.ok(kernel.result.series.every(r => r.tiltScale >= 0 && r.tiltScale <= 5));
+});
+test("Absent explicit strategy choice preserves source-cap refusal without aborting independent research endpoints", () => {
+  const f = fixture(); delete f.p.longOnlyKernelWeighting;
+  const result = run(f);
+  const withheld = result.specifications[0].longOnly as { unavailable: string };
+  assert.match(withheld.unavailable, /monetary weight evidence missing/);
+  assert.equal(result.efficacy, "WITHHELD"); assert.equal(result.scientificAcceptance, false);
+  assert.equal(result.specifications[0].originCount, 36);
 });

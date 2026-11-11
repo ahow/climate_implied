@@ -36,7 +36,9 @@ import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../s
 import { supplementalSheetBindings } from "../shared/supplementalSheetBindings";
 import { trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
 import { trackBPublicCatalog } from "../server/trackBPublicCatalog";
-import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBindings, stage10JsonExportLeafBindings } from "../shared/stage10Coverage";
+import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBindings, stage10JsonExportLeafBindings,
+  stage10IdentityHeaderPaths, stage10LifecycleAuditBindings } from "../shared/stage10Coverage";
+import { workbookMoneySemantics, workbookMoneyReportPaths, workbookMoneyRootPaths, workbookMoneySheetBindings } from "../shared/workbookMoneyAudit";
 import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
@@ -70,6 +72,9 @@ const stage10ApiSurface='API GET "/api/research/stage10-coverage"';
 const stage10JsonSurface='API GET "/api/research/stage10-coverage/export.json"';
 const stage10XlsxSurface='API GET "/api/research/stage10-coverage/export.xlsx"';
 const stage10LeafBindings=new Map<string,{id:string;transform:string}>();
+const workbookMoneyApiSurface='API GET "/api/financial-data/workbook-money-audit"';
+const workbookMoneyXlsxSurface='API GET "/api/financial-data/workbook-money-audit.xlsx"';
+const workbookMoneyLeafBindings=new Map<string,{id:string;transform:string}>();
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
 const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
 const verifiedExportBindings: {surface:string;field:string;id:string;transform:string}[]=[];
@@ -346,7 +351,9 @@ if(!baseline) {
   };
   const typeOf=(path:string)=>path==="fiscalYears[]"?"number":
     ["scientificAcceptance","investmentEvidence"].includes(path)?"false":
-    ["fullWorkbookCompanies","verifiedEligibleCompanies","admittedStage11To15Records","retainedSourceVersions","selectedSourceVersions"].includes(path)?"number":
+    ["fullWorkbookCompanies","verifiedEligibleCompanies","admittedStage11To15Records","retainedSourceVersions","selectedSourceVersions",
+      "lifecycleNonUnknownCompanies","lifecycleAuditedNonUnknownCompanies","lifecycleUnverifiedNonUnknownCompanies"].includes(path)?"number":
+    path.startsWith("lifecycleEvidenceAudit[].") ? path.endsWith("Companies")||path.endsWith("Records")?"number":path.endsWith("CapturedAt")?"string | null":"string":
     path==="rows[].suppressed"?"boolean":path==="rows[].companies"||path==="rows[].expectedSlots"?"number":
     path.startsWith("rows[].")&&!["population","sector","region","dimension","key"].includes(path.slice(7))?"number | null":"string";
   for(const path of stage10ReportFieldPaths)
@@ -356,15 +363,47 @@ if(!baseline) {
   for(const [column,binding] of Object.entries(stage10ExportBindings))
     add(stage10XlsxSurface,`Aggregate coverage.[].${column}`,typeOf(`rows[].${column}`).replace("null",'"null"'),
       {...binding,transform:`${binding.transform}; XLSX literal text null,never blank or0`});
-  for(const path of stage10ReportFieldPaths.filter(p=>!p.startsWith("rows[].")))
+  for(const path of stage10IdentityHeaderPaths)
     for(const column of ["Field","JSON value"])
       add(stage10XlsxSurface,`Exact input identity.[${path}].${column}`,"string",{id:`stage10Coverage.${path}`,
         transform:column==="Field"?"Exact source field name,not its value":"JSON.stringify complete exact aggregate metadata,including arrays/false/null; no private rows"});
+  for(const [column,binding] of Object.entries(stage10LifecycleAuditBindings))
+    add(stage10XlsxSurface,`Lifecycle source audit.[].${column}`,typeOf(`lifecycleEvidenceAudit[].${column}`).replace("null",'"null"'),
+      {...binding,transform:`${binding.transform}; XLSX nullable capture is literal text null,never invented date`});
   for(const sheet of ["Field semantics","Column bindings"] as const)
     for(const [column,binding] of Object.entries(supplementalSheetBindings(sheet)))
       add(stage10XlsxSurface,`${sheet}.[].${column}`,"string",binding);
   for(const surface of [stage10ApiSurface,stage10JsonSurface,stage10XlsxSurface])
     add(surface,"error","string",{id:"stage10Coverage.error",transform:"Exact400invalid selection/409changed input/503unavailable-corrupt storage; never zero/unqueried/not-restated fallback"});
+}
+if(!baseline) {
+  const index=readFileSync("server/index.ts","utf8");
+  if(index.indexOf("registerWorkbookMoneyAuditApi(app)")<index.indexOf("app.use(releaseSafety())") ||
+    index.indexOf("app.use(releaseSafety())")<0) throw new Error("Monetary audit must mount after releaseSafety");
+  const add=(surface:string,field:string,type:string,binding:{id:string;transform:string})=>{
+    if(!outputFieldSemantics.some(s=>s.id===binding.id)) throw new Error(`Unmapped monetary audit ${binding.id}`);
+    workbookMoneyLeafBindings.set(`${surface}|${field}`,binding);
+    supplementalTypedApiEntries.push({surface,field,type,source:"server/workbookMoneyAuditApi.ts",line:1,resolution:"exact-safe-monetary-source-audit-only"});
+  };
+  const numeric=new Set(["sourceCompanyCount","approvedReviewCount","exactAcceptedIdentityCount","authorizedDatedFxCount","convertedMoneyCells",
+    "sameMonthCrossDateRowPairs","ambiguousProfitMonths"]);
+  const typeOf=(path:string)=>path==="monetaryTotals"?"null":path==="unresolvedDenominationOrMagnitude"?"boolean":
+    numeric.has(path)||path.startsWith("sheets[].")&&!["sheet","firstActualSourceDate","lastActualSourceDate"].includes(path.slice(9))?"number":"string";
+  for(const path of workbookMoneyReportPaths)
+    add(workbookMoneyApiSurface,path,typeOf(path),{id:`workbookMoney.${path}`,transform:"Exact strict safe audit leaf; full source counts,not monetary values"});
+  for(const [column,binding] of Object.entries(workbookMoneySheetBindings))
+    add(workbookMoneyXlsxSurface,`Safe source counts.[].${column}`,typeOf(`sheets[].${column}`),binding);
+  for(const path of [...workbookMoneyRootPaths,"auditHash"])
+    for(const column of ["Field","Value / JSON"])
+      add(workbookMoneyXlsxSurface,`Qualification and dates.[${path}].${column}`,column==="Field"?"string":path==="monetaryTotals"?'"null"':typeOf(path),
+        {id:`workbookMoney.${path}`,transform:column==="Field"?"Exact row field name,not its measured value":
+          "Exact source scalar; boolean remains boolean; null literal text null; no unit/FX conversion"});
+  for(const sheet of ["Field semantics","Column bindings"] as const)
+    for(const [column,binding] of Object.entries(supplementalSheetBindings(sheet)))
+      add(workbookMoneyXlsxSurface,`${sheet}.[].${column}`,"string",binding);
+  for(const surface of [workbookMoneyApiSurface,workbookMoneyXlsxSurface])
+    for(const path of ["error","monetaryTotals","status"])
+      add(surface,path,typeOf(path),{id:`workbookMoney.${path}`,transform:"Success intentional null money/pending review or400query/409changed audit/503source refusal; never default0/USD"});
 }
 if(!baseline) {
   const handler=readFileSync("server/trackBAdmissionApi.ts","utf8");
@@ -552,6 +591,20 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   },
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
   supplementalQualifiedChanges:{
+    workbookMoneyAudit:{
+      definitions:workbookMoneySemantics.length,ids:workbookMoneySemantics.map(s=>s.id),
+      reportLeaves:workbookMoneyReportPaths.length,
+      api:{surface:workbookMoneyApiSurface,mountedAfterReleaseSafety:true,readOnly:true,
+        headerBinding:{"X-Workbook-Money-Audit-SHA256":"workbookMoney.auditHash"},downloadPin:"expectedAuditHash"},
+      workbook:{surface:workbookMoneyXlsxSurface,sourceColumns:workbookMoneySheetBindings,qualificationFields:[...workbookMoneyRootPaths,"auditHash"],
+        metadataColumns:31,nullRepresentation:"literal text null,never0"},
+      display:{source:"client/src/components/workbook-money-audit.tsx",routes:["/methodology","/climate-valuation"],
+        bindings:workbookMoneySemantics.map(s=>s.id),verification:"script/workbook-money-integration.test.ts actual imported SSR and real HTTP/XLSX equality"},
+      typedApiAndWorkbookFields:Array.from(new Map(supplementalTypedApiEntries.filter(e=>workbookMoneyLeafBindings.has(`${e.surface}|${e.field}`))
+        .map(e=>[`${e.surface}|${e.field}`,e])).values())
+        .map(e=>({...e,...workbookMoneyLeafBindings.get(`${e.surface}|${e.field}`),bound:true})),
+      boundary:"Pending-review safe aggregate only; numeric source cells do not establish denomination,magnitude,source-day FX or money. Independent reported dimensionless PE is not monetary. No original1001 closure,private values or real approvals.",
+    },
     stage10Coverage:{
       definitions:stage10CoverageSemantics.length,ids:stage10CoverageSemantics.map(s=>s.id),
       reportSchemaLeaves:stage10ReportFieldPaths.length,
@@ -561,14 +614,14 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
         sourceBoundary:"Current approvals do not imply immutable original financial histories; authentic candidate coverage does not advance historical model cohorts"},
       jsonExport:{surface:stage10JsonSurface,leafBindings:stage10JsonExportLeafBindings()},
       workbook:{surface:stage10XlsxSurface,source:"server/financialData/stage10Export.ts",
-        aggregateColumns:stage10ExportBindings,identityFields:stage10ReportFieldPaths.filter(p=>!p.startsWith("rows[].")),
+        aggregateColumns:stage10ExportBindings,identityFields:stage10IdentityHeaderPaths,lifecycleAuditColumns:stage10LifecycleAuditBindings,
         metadataColumns:31,nullRepresentation:"literal text null; no missing→0"},
       headerBindings:{"X-Stage10-Input-SHA256":"stage10Coverage.inputHash"},
       display:{source:"client/src/components/stage10-financial-coverage.tsx",populationAndFieldSelection:"Local presentation only,no availability-dependent cohort change",
         verification:"script/stage10-retained-coverage.test.ts direct imported SSR and actual HTTP/JSON/XLSX engineering fixtures"},
       typedApiAndWorkbookFields:supplementalTypedApiEntries.filter(e=>stage10LeafBindings.has(`${e.surface}|${e.field}`))
         .map(e=>({...e,...stage10LeafBindings.get(`${e.surface}|${e.field}`),bound:true})),
-      boundary:"39 supplemental descriptive/control definitions,all seven identity states/ten fields/fixed full and eligible denominators. Explicit true restated flags/present is NOT total prevalence; unknown share and known-provenance rate remain separate,zero known denominator→null. Counts only,small populations suppressed. No original1001 closure or scientific/Stage11–15 cohort acceptance.",
+      boundary:"51 supplemental descriptive/control definitions. Seven identity states are independent of five lifecycle states; actual35-cell full/eligible joint marginals and every nonunknown source audit reconcile. Last workbook observation/accepted identity is never listing evidence. Explicit restated flags are NOT prevalence. Original1001 and historical model acceptance unchanged.",
     },
     trackBAdmission:{
       definitions:trackBAdmissionSemantics.length+trackBAdmissionHttpSemantics.length+trackBPublicCatalogSemantics.length,
@@ -780,6 +833,8 @@ const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent
 const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
   .map(e=>[`${e.surface}|${e.field}`,e])).values());
 const externalTypedApiBound=externalTypedApiFields.filter(e=>
+    workbookMoneyLeafBindings.has(`${e.surface}|${e.field}`)?
+      outputFieldSemantics.some(f=>f.id===workbookMoneyLeafBindings.get(`${e.surface}|${e.field}`)!.id):
     stage10LeafBindings.has(`${e.surface}|${e.field}`)?
       outputFieldSemantics.some(f=>f.id===stage10LeafBindings.get(`${e.surface}|${e.field}`)!.id):
     trackBLeafBindings.has(`${e.surface}|${e.field}`)?
@@ -840,6 +895,8 @@ const reconciliation = baseline ? {} : {
        stage10CoverageApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===stage10ApiSurface).length,
        stage10CoverageJsonExportLeafSlots:externalTypedApiFields.filter(e=>e.surface===stage10JsonSurface).length,
        stage10CoverageXlsxApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===stage10XlsxSurface).length,
+       workbookMoneyAuditApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===workbookMoneyApiSurface).length,
+       workbookMoneyAuditXlsxApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===workbookMoneyXlsxSurface).length,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

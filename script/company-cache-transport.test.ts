@@ -28,10 +28,33 @@ import { runWithIsolatedCompanyCarbonCache, type CompanyCarbonCacheWitness } fro
 import { requestOverrides } from "../server/dataIngestion/requestOverrides";
 import { CALCULATION_VERSION } from "../shared/calculationContract";
 import * as companyUtils from "../server/climateValuation/sharedUtils";
+import * as backtestFunctions from "../server/climateValuation/backtestCalculator";
+import * as gapFunctions from "../server/climateValuation/decarbGapCalculator";
+import * as walkForwardFunctions from "../server/climateValuation/walkForward";
+import * as moneyConsumers from "../server/financialData/workbookMoneyConsumers";
 import { bindNestedOutput } from "../shared/outputFieldSemantics";
+import { monetaryContext, qualifyMonetaryDates } from "../server/financialData/workbookMoney";
+import { withVerifiedSyntheticRows } from "./fixtures/verifiedSyntheticMoney";
 
 const require = createRequire(import.meta.url);
 type ArchiveOperation = { operation: string; table?: string; existing?: boolean; id?: string; kind?: string };
+async function bounded<T>(label: string, work: Promise<T>, timeoutMs = 10_000): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([work, new Promise<never>((_resolve, reject) => {
+      timer = setTimeout(() => reject(new Error(`Company-cache transport timeout after ${timeoutMs}ms: ${label}`)), timeoutMs);
+    })]);
+  } finally { if (timer) clearTimeout(timer); }
+}
+async function fetchJson(url: string, init?: RequestInit, timeoutMs = 30_000) {
+  const signal = AbortSignal.timeout(timeoutMs);
+  try {
+    const response = await fetch(url, { ...init, signal });
+    return { response, body: await response.json() };
+  } catch (error) {
+    throw new Error(`Company-cache transport ${signal.aborted ? "timeout" : "failure"}: ${url}; ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
 function fixture(multiplier: number, noProfit = false) {
   const companies = Array.from({ length: 6 }, (_, i) => ({
     id: i + 1, isin: `engineering-http-${i}`, name: `ENGINEERING ONLY ${i}`, sector: "fixture",
@@ -42,7 +65,17 @@ function fixture(multiplier: number, noProfit = false) {
     marketCap: multiplier * (100 + company.id * 10), netProfit: noProfit ? 0 : 10 + company.id, priceEarnings: 10,
     scope1Emissions: company.id * 25, scope2Emissions: company.id * 2, scope3Emissions: null,
     totalReturnIndex: 100 * Math.pow(1 + 0.001 * (company.id - 3), month) })));
-  return { companies, rows, packed: packDataset(companies as any, rows as any) };
+  // These are declared engineering USD-million amounts, not inferred issuer
+  // currencies. Preserve every synthetic amount/date and attach explicit
+  // identity/source-cell/denomination receipts using the shared CI-only builder.
+  return withVerifiedSyntheticRows(rows, declaredRows => {
+    assert.deepEqual(declaredRows.map(({ sourceCells, ...native }) => native), rows,
+      "Explicit synthetic receipts must not change native fixture amounts, dates, reported P/E or return indices");
+    return {
+      companies, rows: declaredRows, packed: packDataset(companies as any, declaredRows as any),
+      monetaryReceipt: structuredClone(monetaryContext.getStore()!),
+    };
+  }, new Map(companies.map(company => [company.id, company.isin])));
 }
 
 /** Explicit in-memory transport for the ACTUAL archive modules. SQL/ORM calls
@@ -140,7 +173,8 @@ async function supportedTransport() {
     !/^[a-f0-9]{64}$/.test(process.env.COMPANY_CACHE_DISPOSABLE_DATABASE_HASH ?? ""))
     throw new Error("Disposable transport needs explicit authorization and exact database identity hash");
   const operations: ArchiveOperation[] = [];
-  const pool = new Pool({ connectionString: url, max: 4 });
+  const pool = new Pool({ connectionString: url, max: 4, connectionTimeoutMillis: 10_000,
+    query_timeout: 10_000, statement_timeout: 10_000 });
   function instrument(target: any) {
     const query = target.query.bind(target);
     target.query = (...args: any[]) => {
@@ -219,6 +253,25 @@ test("optional disposable PostgreSQL transport refuses absent authorization befo
   }
 });
 
+test("isolated transport reports bounded header/body/wait timeouts and closes active connections", { timeout: 5_000 }, async () => {
+  const server = createServer((req, res) => {
+    if (req.url === "/body") { res.writeHead(200, { "Content-Type": "application/json" }); res.write("{"); }
+    // Deliberately never complete either synthetic response.
+  });
+  try {
+    await bounded("timeout regression listen", new Promise<void>(done => server.listen(0, "127.0.0.1", done)));
+    const base = `http://127.0.0.1:${(server.address() as any).port}`;
+    await assert.rejects(fetchJson(`${base}/headers`, undefined, 100), /Company-cache transport timeout: .*\/headers/);
+    await assert.rejects(fetchJson(`${base}/body`, undefined, 100), /Company-cache transport timeout: .*\/body/);
+    await assert.rejects(bounded("deliberately unresolved regression wait", new Promise<never>(() => {}), 10),
+      /timeout after 10ms: deliberately unresolved regression wait/);
+  } finally {
+    const closed = new Promise<void>((done, reject) => server.close(error => error ? reject(error) : done()));
+    server.closeAllConnections();
+    await bounded("timeout regression shutdown", closed, 1_000);
+  }
+});
+
 test("remaining MemStorage cache detaches payloads and updates full cache without evicting an unrelated selection", async () => {
   const store = new MemStorage(), original = { values: [1, 2] };
   const put = await store.setProjectionCache({ cacheKey: "a", projectionYear: 2024, resultData: original });
@@ -264,10 +317,15 @@ test("actual regional provider cache cold/warm and failure-cache returns cannot 
   }
 });
 
-test("actual HTTP carbon route + material/result archive functions preserve cold/warm geography and empty identities", async () => {
+test("actual HTTP carbon route + material/result archive functions preserve cold/warm geography and empty identities", { timeout: 90_000 }, async () => {
   const prior = process.env.NODE_ENV; process.env.NODE_ENV = "test";
   const transport = await supportedTransport(), modules = productionArchiveModules(transport.db);
   const fixtures = [fixture(1), fixture(2), fixture(3, true)], datasets = new Map(fixtures.map(value => [value.packed.id, value]));
+  assert.equal(qualifyMonetaryDates(fixtures[0].rows).length, 0,
+    "Production currency guard must still withhold synthetic native money without explicit internal receipts");
+  for (const value of fixtures) monetaryContext.run(value.monetaryReceipt, () =>
+    assert.equal(qualifyMonetaryDates(value.rows).length, value.rows.length,
+      "Every declared synthetic money cell must qualify through the actual production guard"));
   const entries = new Map<string, string>(), witnesses: { request: string; event: CompanyCarbonCacheWitness }[] = [];
   const cacheOperations: { request: string; operation: string; key: string; hit?: boolean }[] = [];
   const cacheScope = new AsyncLocalStorage<string>();
@@ -322,8 +380,16 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
       }
     }
     const module = { exports: {} as any };
-    const localRequire = (name: string) => name === "./sharedUtils" ? companyUtils :
-      name.startsWith(".") ? require(resolve(dirname(file), name)) : require(name);
+    // Instrument only this module's Map. Reuse actual ESM dependency instances:
+    // requiring them again as CJS creates a second monetary ALS/WeakMap domain
+    // and incorrectly loses the request's explicit synthetic receipt.
+    const actualDependencies: Record<string, unknown> = {
+      "./sharedUtils": companyUtils, "./backtestCalculator": backtestFunctions,
+      "./decarbGapCalculator": gapFunctions, "./walkForward": walkForwardFunctions,
+      "../financialData/workbookMoneyConsumers": moneyConsumers,
+    };
+    const localRequire = (name: string) => actualDependencies[name] ??
+      (name.startsWith(".") ? require(resolve(dirname(file), name)) : require(name));
     const code = ts.transpileModule(readFileSync(file, "utf8"), {
       compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS, esModuleInterop: true },
     }).outputText;
@@ -339,7 +405,7 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
     const work = () => cacheScope.run(label, () => runWithOverrideRows([], () =>
       runWithIsolatedCompanyCarbonCache(backend, event => witnesses.push({ request: label, event }), next)));
     const selected = datasets.get(id);
-    if (selected) runWithReplayWorkbook(selected.packed, work); else work();
+    if (selected) monetaryContext.run(selected.monetaryReceipt, () => runWithReplayWorkbook(selected.packed, work)); else work();
   });
   const bindings: Record<string, unknown> = { ...modules, app, historicalRequestPolicy, snapshotSelection, overlaySelection,
     applyOverlays, createManifest, CALCULATION_VERSION, requestOverrides, snapshotContext, overlayContext,
@@ -360,27 +426,37 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
   }
   // Explicit private fixture endpoint for the retained legacy comparison only;
   // no such endpoint is added to the application or public route inventory.
-  app.get("/__test/legacy-quarter", async (req, res) => {
-    const header = await modules.resolveSnapshot(String(req.query.snapshotId));
-    const output = await snapshotContext.run(header, () => legacy.calculateLegacyBacktest(
-      "decarb_gap", 2, "absolute", "US", 0, new Map([[2018, 0], [2019, 0], [2020, 0], [2021, 0]])));
-    res.json(publicValuationResult(output));
+  app.get("/__test/legacy-quarter", async (req, res, next) => {
+    try {
+      const header = await modules.resolveSnapshot(String(req.query.snapshotId));
+      const output = await snapshotContext.run(header, () => legacy.calculateLegacyBacktest(
+        "decarb_gap", 2, "absolute", "US", 0, new Map([[2018, 0], [2019, 0], [2020, 0], [2021, 0]])));
+      res.json(publicValuationResult(output));
+    } catch (error) { next(error); }
   });
   const server = createServer(app);
   const results: any[] = [];
+  const progress: string[] = [];
+  const checkpoint = (stage: string) => {
+    progress.push(stage);
+    if (process.env.COMPANY_CACHE_TRANSPORT_TRACE === "1") console.error(`CACHE TRANSPORT STAGE ${stage}`);
+  };
   try {
     for (const value of fixtures) await modules.saveImportedWorkbook(value.companies, value.rows, "SYNTHETIC ENGINEERING HTTP fixture");
-    await new Promise<void>(done => server.listen(0, "127.0.0.1", done));
+    await bounded("loopback listen", new Promise<void>((done, reject) => {
+      server.once("error", reject); server.listen(0, "127.0.0.1", done);
+    }));
     const base = `http://127.0.0.1:${(server.address() as any).port}`;
     const request = async (index: number, geography: string, label: string) => {
-      const response = await fetch(`${base}/api/cv/carbon-price?snapshotId=${fixtures[index].packed.id}&method=absolute&geography=${geography}`,
+      checkpoint(`${label}:request`);
+      const { response, body } = await fetchJson(`${base}/api/cv/carbon-price?snapshotId=${fixtures[index].packed.id}&method=absolute&geography=${geography}`,
         { headers: { "x-test-witness": label } });
-      const body = await response.json(); assert.equal(response.status, 200, JSON.stringify({ body, failures }));
+      assert.equal(response.status, 200, JSON.stringify({ body, failures }));
       const identity = Object.fromEntries(["X-Analysis-Snapshot", "X-Analysis-Manifest", "X-Analysis-Material-Inputs", "X-Analysis-Result"]
         .map(key => [key, response.headers.get(key)]));
-      assert.ok(Object.values(identity).every(Boolean));
-      const storedResponse = await fetch(`${base}/api/analysis/results/${identity["X-Analysis-Result"]}`);
-      const stored = await storedResponse.json(); assert.equal(storedResponse.status, 200, JSON.stringify(stored));
+      assert.ok(Object.values(identity).every(Boolean), `${label}: all four analytical/archive identity headers must be present`);
+      const { response: storedResponse, body: stored } = await fetchJson(`${base}/api/analysis/results/${identity["X-Analysis-Result"]}`);
+      assert.equal(storedResponse.status, 200, JSON.stringify(stored));
       assert.deepEqual(stored.result, body); assert.equal(stored.manifest.id, identity["X-Analysis-Manifest"]);
       assert.equal(stored.materialReplayState, "referenced-material-archives-verified");
       assert.equal(stored.manifest.settings.materialInputsId, identity["X-Analysis-Material-Inputs"]);
@@ -394,8 +470,10 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
     const a = await request(0, "US", "a-cold"), empty = await request(0, "ZZ", "empty-cold");
     const b = await request(1, "US", "b-cold");
     const noEligible = await request(2, "US", "no-eligible-cold");
+    checkpoint("cold-complete");
     const warm = await Promise.all([request(0, "US", "a-warm"), request(0, "ZZ", "empty-warm"),
       request(1, "US", "b-warm"), request(2, "US", "no-eligible-warm")]);
+    checkpoint("warm-complete");
     for (const [i, cold] of Array.from([a, empty, b, noEligible].entries())) {
       assert.equal(cold.analyticalHash, warm[i].analyticalHash);
       assert.deepEqual(cold.identity, warm[i].identity);
@@ -403,7 +481,9 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
       assert.deepEqual(witnesses.filter(row => row.request === cold.label).map(row => row.event.phase), ["lookup-miss", "compute", "write"]);
       assert.deepEqual(witnesses.filter(row => row.request === warm[i].label).map(row => row.event.phase), ["lookup-hit"]);
     }
-    assert.ok(a.rows > 0); assert.equal(empty.rows, 0); assert.equal(noEligible.rows, 0);
+    checkpoint(`nonempty-assertion:a=${a.rows}:empty=${empty.rows}:no-eligible=${noEligible.rows}`);
+    assert.ok(a.rows > 0, "Synthetic qualified USD-million fixture must produce nonempty finance rows");
+    assert.equal(empty.rows, 0); assert.equal(noEligible.rows, 0);
     assert.notEqual(a.identity["X-Analysis-Manifest"], b.identity["X-Analysis-Manifest"]);
     assert.notEqual(a.identity["X-Analysis-Material-Inputs"], b.identity["X-Analysis-Material-Inputs"]);
     assert.notEqual(a.calculatorIdentity.cacheKey, empty.calculatorIdentity.cacheKey);
@@ -415,13 +495,12 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
     ]) {
       const requestMemo = async (dataset: number, attempt: number) => {
         const label = `${family}-${attempt}`;
-        const response = await fetch(`${base}${endpoint}?snapshotId=${fixtures[dataset].packed.id}&signal=carbon_intensity&method=absolute&geography=US`,
+        checkpoint(`${label}:request`);
+        const { response, body: output } = await fetchJson(`${base}${endpoint}?snapshotId=${fixtures[dataset].packed.id}&signal=carbon_intensity&method=absolute&geography=US`,
           { headers: { "x-test-witness": label } });
-        const output = await response.json();
         assert.equal(response.status, 200, JSON.stringify({ output, failures }));
         if (family === "current-walk-forward-quarter") {
-          const archive = await fetch(`${base}/api/analysis/results/${response.headers.get("X-Analysis-Result")}`);
-          const stored = await archive.json();
+          const { response: archive, body: stored } = await fetchJson(`${base}/api/analysis/results/${response.headers.get("X-Analysis-Result")}`);
           assert.equal(archive.status, 200, JSON.stringify({ stored, failures }));
           assert.deepEqual(stored.result, output);
           assert.equal(stored.manifest.snapshotHashes[0], fixtures[dataset].packed.id);
@@ -433,7 +512,8 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
         const misses = events.filter(event => event.phase === "miss").length;
         const hits = events.filter(event => event.phase === "hit").length;
         const writes = events.filter(event => event.phase === "write").length;
-        assert.ok(misses > 0 && hits > 0); assert.equal(misses, writes);
+        assert.ok(misses > 0 && hits > 0, `${label}: direct local-cache miss and hit witnesses are both required; ${JSON.stringify({ events, warnings: output.summary?.warnings })}`);
+        assert.equal(misses, writes);
         return { datasetId: fixtures[dataset].packed.id, hash: contentHash(output), misses, hits, writes,
           manifest: response.headers.get("X-Analysis-Manifest"), material: response.headers.get("X-Analysis-Material-Inputs"),
           result: response.headers.get("X-Analysis-Result") };
@@ -460,8 +540,15 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
     const directory = mkdtempSync(resolve("generated-artifacts/company-cache-extension/http-"));
     writeFileSync(`${directory}/evidence.json`, JSON.stringify({
       passed: true, fixture: "6 companies x 36 dates, three synthetic engineering datasets; not real issuer evidence",
+      syntheticCurrencyReceipts: fixtures.map(value => ({
+        datasetId: value.packed.id, receiptHash: contentHash(value.monetaryReceipt),
+        targetCurrency: value.monetaryReceipt.targetCurrency, magnitude: "millions",
+        acceptedSyntheticIdentities: value.monetaryReceipt.identities.length,
+        exactSyntheticSourceCells: value.monetaryReceipt.cells.length, authorizedFx: value.monetaryReceipt.fx.length,
+        declaration: "CI-only explicit USD-million identity/cell/denomination receipts, never real issuer approval or a production guard bypass",
+      })),
       productionRegistrations: Array.from(registrations.keys()), sourceHash: contentHash(readFileSync("server/routes.ts", "utf8")),
-      results, witnesses, cacheOperations, memoResults, memoEvents, archiveTransportOperations: transport.operations,
+      results, witnesses, cacheOperations, memoResults, memoEvents, progress, archiveTransportOperations: transport.operations,
       transport: transport.kind === "postgres" ? "Actual loopback HTTP and independently authorized disposable PostgreSQL" :
         "Actual loopback HTTP, actual production handlers and material/result hash-validation functions; isolated in-memory SQL/ORM I/O adapter",
       access: transport.access, postgresqlTransportExecuted: transport.kind === "postgres",
@@ -471,8 +558,15 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
     }, null, 2), { mode: 0o600, flag: "wx" });
     console.log(`HTTP/MATERIAL CACHE EVIDENCE ${directory}/evidence.json`);
   } finally {
-    await new Promise<void>(done => server.close(() => done()));
-    await transport.close();
-    if (prior === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = prior;
+    checkpoint("cleanup:start");
+    try {
+      const closed = new Promise<void>((done, reject) => server.close(error => error ? reject(error) : done()));
+      server.closeAllConnections();
+      await bounded("loopback shutdown", closed, 3_000);
+      checkpoint("cleanup:server-closed");
+    } finally {
+      try { await bounded("isolated transport shutdown", transport.close(), 3_000); }
+      finally { if (prior === undefined) delete process.env.NODE_ENV; else process.env.NODE_ENV = prior; }
+    }
   }
 });

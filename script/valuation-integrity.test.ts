@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { calculateCarbonIntensity, computeAnnualDecarbRate } from "../server/climateValuation/sharedUtils";
 import { impliedGrowthFromPE } from "../server/climateValuation/decarbConversion";
-import { positivePE } from "../server/climateValuation/valuationStatistics";
+import { verifiedSyntheticPE as positivePE } from "./fixtures/verifiedSyntheticMoney";
 import { reverseCashFlowGrowth } from "../server/calculation/cashFlowValuation";
 test("missing emissions are unavailable, while observed zero emissions remain zero", () => {
   assert.equal(calculateCarbonIntensity(null, 2, null, 100, false), null);

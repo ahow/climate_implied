@@ -1,0 +1,131 @@
+{
+  "version": "workbook-money-consumers-2",
+  "status": "implemented-and-privately-validated; pending-review-only",
+  "approval": false,
+  "originalIssuerCasesQualified": "0/3 unchanged; this is denomination/consumer engineering, not issuer-case qualification",
+  "requirements": [
+    {
+      "clause": "Finish companyCoverage capitalization weights; preserve raw availability and no default USD",
+      "implementation": "Valid native amounts retain present state/count and raw values. Known monetary totals, mapped monetary totals and value-weighted shares require exact source-cell denomination/scale/accepted identity and any authorized original-date FX. A population with any present but unconverted amount withholds its entire monetary total, not a converted-subset sum. Emissions counts/totals are unchanged.",
+      "files": ["server/calculation/companyCoverage.ts", "server/financialData/workbookMoneyConsumers.ts"]
+    },
+    {
+      "clause": "Finish actual backtestCalculator/walkForward monetary weights; no unqualified zeros",
+      "implementation": "Monthly weights are rebuilt from checked native source rows, carry the lagged original MoneyCellEvidence and are independently revalidated against the trusted context in direct benchmark/portfolio/walk-forward consumers. Future/same-month weight source dates are refused. Unknown weights withhold the backtest instead of dropping unknown members and renormalizing a selected subset. Both legacy and mounted calculators return empty series plus explicit unconverted-weight warnings; realized tracking error and tilt remain null, and no fictional wealth accounting is attached. Naked low-level weights raise MonetaryUnavailableError, with monetaryTotal:null. Known RI terminal loss/zero handling is preserved.",
+      "files": ["server/climateValuation/backtestCalculator.ts", "server/climateValuation/walkForward.ts", "server/climateValuation/walkForwardBacktest.ts", "server/financialData/workbookMoneyConsumers.ts"]
+    },
+    {
+      "clause": "Finish valuationStatistics raw MC/Profit fallback; preserve independent dimensionless reported PE",
+      "implementation": "Independent finite positive reported PE remains usable without monetary conversion. Fallback requires both native source amounts qualified to the same explicit USD-million basis, original field dates and source-cell receipts. Same-month different-date Profit is accepted only with the existing explicitly named alignment derivation; FX is still tied to each actual source date. The retained Profit datatype is FY2 INC MEAN EST, not newly declared GAAP income or cash. No source row is rewritten.",
+      "files": ["server/climateValuation/valuationStatistics.ts", "server/financialData/workbookMoneyConsumers.ts"]
+    },
+    {
+      "clause": "Update fixtures with explicit synthetic verified-currency receipts, not weaker arithmetic assertions",
+      "implementation": "A CI-only helper declares synthetic USD-million source cells, dates and accepted identity receipts. Existing arithmetic/order-invariance/tie/risk/cost/wealth/terminal-loss expectations are retained. The former EUR-conflicted/selected-USD-total coverage assertion is intentionally replaced with valid-native-present plus whole-total-null, because currency uncertainty is not a raw datum conflict.",
+      "files": ["script/fixtures/verifiedSyntheticMoney.ts", "script/workbook-money-consumers.test.ts", "script/company-coverage.test.ts", "script/valuation-statistics.test.ts", "script/peer-valuation-semantics.test.ts", "script/valuation-integrity.test.ts", "script/calculation-foundations.test.ts", "script/walk-forward.test.ts", "script/backtest-costs.test.ts", "script/backtest-field-semantics.test.ts"]
+    }
+  ],
+  "actualSource": {
+    "priorEvidence": "docs/S10-007-013-workbook-money-evidence.json",
+    "nativeWorkbookSha256": "a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+    "retainedSnapshotId": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+    "retainedInputFileSha256": "9f7dbf9e5e21212b4d870bffae5920e6096ed8f243c8c8df1498958b9badf8fb",
+    "actualCompanyCount": 2442,
+    "actualObservationCount": 470341,
+    "latestSnapshotSourceObservationDate": "2026-01-22",
+    "latestRawPositiveCapitalisationAvailableCount": 2437,
+    "sourceCurrencyOrMagnitudeQualifiedCellCount": 0,
+    "authorizedDatedFxCount": 0,
+    "currentAcceptedIdentityCount": 1,
+    "currentAcceptanceIsNotHistoricalApproval": true,
+    "currencyScope": "Native XLSX source metadata was audited in the prior unit; the full retained legacy snapshot separately lacks exact sourceCells/denomination metadata. Neither price currency nor Profit currency is inferred from listing country, headquarters, a general Datastream EC default, matching native numbers or the existence of one current identity acceptance.",
+    "informationContext": "Current revised-history audit of retained observations and current review records; no claim that current source/identity evidence was known at an old valuation or observation cutoff."
+  },
+  "actualResults": {
+    "coverageKnownCapitalisationTotal": null,
+    "coverageCapitalisationWeightedShares": null,
+    "validRawAvailabilityRetained": true,
+    "reportedPositivePePreservedCount": 390215,
+    "unqualifiedRawRatioFallbackWithheldCount": 1255,
+    "nativeWorksheetAndRetainedSnapshotProfitTrueZeros": 16,
+    "originalWorksheetSameMonthDistinctDatePairsPreserved": 192,
+    "acceptedIdentityWithoutSourceDenominationStillWithheld": true,
+    "legacyAndMountedBacktestsWithheld": 2,
+    "nominalConsumerEmptySeriesCount": 5,
+    "emptySeriesCountIsNotAnObservedZeroValuation": true,
+    "directBenchmarkAndWalkForwardRejectUnqualifiedWeights": true,
+    "actualNativeMoneyRiDatesReportedPeInMemoryFingerprintUnchanged": true,
+    "nativeSourceAndRetainedInputFileBytesUnchanged": true,
+    "actualPriorSafeXlsxBinaryReadbackPassed": true,
+    "noNewEconomicOrFutureAssumptions": true
+  },
+  "validation": {
+    "publicCodeOnly": {
+      "command": "npx tsx --test script/workbook-money-consumers.test.ts script/company-coverage.test.ts script/company-coverage-query.test.ts script/company-coverage-route.test.ts script/valuation-statistics.test.ts script/peer-valuation-semantics.test.ts script/valuation-integrity.test.ts script/calculation-foundations.test.ts script/source-qualified-missingness.test.ts script/walk-forward.test.ts script/backtest-costs.test.ts script/backtest-field-semantics.test.ts script/workbook-money.test.ts script/workbook-money-api.test.ts script/workbook-missingness-integration.test.ts",
+      "passed": 102,
+      "failed": 0,
+      "privateFileDependency": false,
+      "logSha256": "aba9310f0cb34f95c7ebbc711b07d8fe8db513888cdf62b64c3b6811ea3a20ca"
+    },
+    "projectTypecheck": {
+      "command": "npx tsc --noEmit --pretty false",
+      "passed": true,
+      "originalTsconfigUnchanged": true,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "privateRunnerAndNewTestTypecheck": {
+      "command": "npx tsc --noEmit --project generated-artifacts/workbook-money-consumers-v2/tsconfig-check.json --pretty false",
+      "passed": true,
+      "note": "Additional isolated check includes script files excluded by the unchanged original application tsconfig.",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-workbook-money-consumers-private.ts --private-primary",
+      "passed": true,
+      "retainedRowsIndependentlyInspected": 470341,
+      "rawPrivateDataExported": false,
+      "logSha256": "c94ac3b69e1e3f2b6f3dd8800b902d2e6f8afaca6cda9fefe6ea0ea09e7f6f40",
+      "receiptSha256": "c8f220d39af60fbcded75986afda733b740f1506b218aaff38c15d73c52337b8",
+      "runnerSha256": "043db7301660f8d2262f4770257982dcd64508b5566088cb2814ec53a35fee56",
+      "codeAndSourceFreezeBeforeCalculationSha256": "0211081c22f906f7cb414ff4dfd3feb0a42d88b22a91daeeb84a82b4eb64aadb"
+    },
+    "preflightFindings": [
+      "Initial private-runner import typo was corrected before any new freeze/calculation; calculateLegacyBacktest is the actual export.",
+      "The prior guard freeze correctly refused two parent-owned API/export integration changes. No prior pins were rewritten. The new private freeze explicitly records their old/new exact hashes; all other prior computational/source pins still match."
+    ],
+    "parentOwnedIntegrationPins": [
+      {"path": "server/financialData/workbookMoneyExport.ts", "sha256": "891b1a931e57943e797e529237e4fd062d46214c6fbc3e0b9c87b516e90aef2e"},
+      {"path": "server/workbookMoneyAuditApi.ts", "sha256": "8a6c7d08abbc57402683012c200b8c27c440c78cdb423fca8ef3d16484bb48bc"}
+    ]
+  },
+  "integrationNotes": {
+    "routesMountUiAndSemanticsEditedByThisUnit": false,
+    "newPublicPrimitivePaths": [],
+    "existingLabelsAndWarnings": "companyCoverage.units.marketCap now states conditional qualified USD millions, never workbook-default USD. Existing limitations[] records qualified/unconverted native counts. Existing backtest summary.warnings[] explains withholding; existing nullable metrics stay null.",
+    "safeAdditionalDerivedAllowlistProposalOnly": [
+      "actualCompanyCount", "actualObservationCount", "latestSnapshotSourceObservationDate",
+      "latestRawPositiveCapitalisationAvailableCount", "sourceCurrencyOrMagnitudeQualifiedCellCount",
+      "authorizedDatedFxCount", "coverageKnownCapitalisationTotal:null",
+      "coverageCapitalisationWeightedShares:null", "reportedPositivePePreservedCount",
+      "unqualifiedRawRatioFallbackWithheldCount", "legacyAndMountedBacktestsWithheld",
+      "nativeWorksheetAndRetainedSnapshotProfitTrueZeros", "originalWorksheetSameMonthDistinctDatePairsPreserved",
+      "validRawAvailabilityRetained", "pending-review-only"
+    ],
+    "notPublicAllowlisted": "No company-level provider values, company identity/review rows, workbook rows/cells, FX receipt payloads, raw retained snapshot/input JSON or raw private logs."
+  },
+  "remainingSourceInputsAndReadyNextBlock": [
+    "For each exact accepted identity and source cell, obtain authentic field-specific currency including any minor denomination, numeric scale and denomination evidence hash bound to the original workbook/sourceId/sheet/cell/date/native value. Currency absent versus explicit USD is not conflated.",
+    "If currencies differ from the explicit calculation target, retain identity-review-bound direct base/quote FX receipts for the EXACT original MV and Profit dates, publication/source hash/HTTPS locator, positive rate and authorization at/before the declared information cutoff. No nearest-day, listing-country or same-currency assumption.",
+    "Bind these receipts to trusted internal MonetaryContext only after review; native source rows feed source-amount consumers and derived normalized monthly weights feed weightSource revalidation. Do not relabel normalized numbers as native source values.",
+    "Parent owns mounting/API/UI/field-semantics integration and coherent cross-unit checks. Existing safe summary/XLSX fields can be exposed now as null/unqualified with raw availability counts; new counts above remain proposals until parent allowlists them.",
+    "No qualified monetary valuation/backtest claim is made from missing metadata. Original issuer cases and protected negative studies remain unchanged and unqualified."
+  ],
+  "safety": {
+    "protected14BundlePinsChanged": false,
+    "protectedScientificStudiesOrOldKernelsRerun": false,
+    "providerPaidCallsPurchasesApprovalDbWritesDdl": 0,
+    "collectorProductionOrLoaderChanges": false,
+    "workflowsAppStartDeployCommitPublishCallback": false,
+    "rawPrivateExport": false
+  }
+}

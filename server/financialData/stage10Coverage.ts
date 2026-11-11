@@ -1,5 +1,6 @@
 import { contentHash } from "../calculation/analysisManifest";
-import { stage10Fields, stage10IdentityStates, stage10CoverageSchema, stage10PrivacyMinimumCompanies, type Stage10Field, type Stage10IdentityState } from "../../shared/stage10Coverage";
+import { stage10Fields, stage10IdentityStates, stage10LifecycleStates, stage10LifecycleJointKeys, stage10CoverageSchema, stage10PrivacyMinimumCompanies, type Stage10Field, type Stage10IdentityState } from "../../shared/stage10Coverage";
+import { auditStage10Lifecycles, type LifecycleEvidence } from "./stage10Lifecycle";
 import { validIsin } from "./isin";
 import { snapshotSchema, snapshotId } from "./review";
 export type Stage10Company = { id: number; isin: string; sector?: string | null; geography?: string | null };
@@ -55,6 +56,7 @@ export function buildStage10Coverage(input: {
   workbookHash: string; cutoff: string; years: number[]; companies: Stage10Company[]; attempts: Record<string, any>[];
   reviews: Record<string, any>[]; eligibleIds: number[]; cells: Stage10Cell[]; sourceIdentity: unknown;
   retainedVersions: number; selectedVersions: number; sourceGaps: string[];
+  lifecycleEvidence?: LifecycleEvidence[];
 }) {
   if (new Set(input.companies.map(c => c.id)).size !== input.companies.length ||
     new Set(input.companies.map(c => c.isin)).size !== input.companies.length) throw new Error("Duplicate workbook identity");
@@ -70,6 +72,12 @@ export function buildStage10Coverage(input: {
   for (const owners of Array.from(issuerOwners.values()).filter(x => x.length > 1))
     for (const id of owners) { if (ids.has(id)) state.set(id, "ambiguous"); eligible.delete(id); }
   for (const id of Array.from(eligible)) if (state.get(id) !== "accepted") throw new Error("Verified eligible identity is not accepted");
+  const lifecycleEvidence = input.lifecycleEvidence ?? [];
+  const lifecycle = auditStage10Lifecycles(input.companies, lifecycleEvidence, input.cutoff);
+  const denominatorVersion = contentHash({ version: "stage10-denominator-1", workbookHash: input.workbookHash,
+    cutoff: input.cutoff, companies: input.companies.map(c => [c.id, c.isin, c.sector ?? null, c.geography ?? null]),
+    verifiedEligibleIds: Array.from(eligible).sort((a, b) => a - b),
+    rule: "Full immutable workbook; verified immutable accepted identities frozen before field availability; lifecycle never selects survivors" });
   const cells = new Map<string, Stage10Cell[]>();
   for (const cell of input.cells) {
     if (!input.companies.some(c => c.id === cell.companyId && c.isin === cell.isin)) throw new Error("Cell identity mismatch; no ticker join");
@@ -95,6 +103,15 @@ export function buildStage10Coverage(input: {
       rows.push({ ...base, ...blank, dimension: "identity" as const, key, expectedSlots: companies.length,
         present: suppressed ? null : present, availableShare: suppressed || !companies.length ? null : present / companies.length });
     }
+    if (group.sector === "All sectors" && group.region === "All regions") {
+      for (const dimension of ["lifecycle", "lifecycle-identity"] as const)
+        for (const key of dimension === "lifecycle" ? stage10LifecycleStates : stage10LifecycleJointKeys) {
+          const present = companies.filter(c => dimension === "lifecycle" ? lifecycle.resolved.get(c.id)!.state === key :
+            `${lifecycle.resolved.get(c.id)!.state}|${state.get(c.id)}` === key).length;
+          rows.push({ ...base, ...blank, dimension, key, expectedSlots: companies.length,
+            present: suppressed ? null : present, availableShare: suppressed || !companies.length ? null : present / companies.length });
+        }
+    }
     for (const field of stage10Fields) {
       const counts = { present: 0, missing: 0, explicitNull: 0, invalid: 0, conflicted: 0, original: 0, restated: 0, restatementUnknown: 0,
         originalFilingDateVerified: 0, providerFilingDateUnverified: 0, filingDateMissing: 0 };
@@ -119,14 +136,17 @@ export function buildStage10Coverage(input: {
         restatementUnknownShareOfPresent: suppressed || !counts.present ? null : counts.restatementUnknown / counts.present });
     }
   }
-  const manifest = { contract: "stage10-retained-coverage-1", privacyMinimumCompanies: stage10PrivacyMinimumCompanies, identityDomain: stage10IdentityStates,
+  const manifest = { contract: "stage10-retained-coverage-2", privacyMinimumCompanies: stage10PrivacyMinimumCompanies, identityDomain: stage10IdentityStates,
     fieldDomain: stage10Fields, provenanceShareRule: "known-provenance-rate-separate-from-explicit-true-flags-and-unknown-share",
     workbookHash: input.workbookHash, cutoff: input.cutoff, years: input.years,
     companies: input.companies, attempts: input.attempts, reviews: input.reviews, eligible: Array.from(eligible).sort((a, b) => a - b),
-    cells: input.cells, sourceIdentity: input.sourceIdentity };
-  return stage10CoverageSchema.parse({ contract: "stage10-retained-coverage-1", inputHash: contentHash(manifest),
+    cells: input.cells, sourceIdentity: input.sourceIdentity, denominatorVersion, lifecycleEvidence };
+  return stage10CoverageSchema.parse({ contract: "stage10-retained-coverage-2", inputHash: contentHash(manifest),
     workbookHash: input.workbookHash, informationCutoff: input.cutoff, fiscalYears: input.years,
     fullWorkbookCompanies: input.companies.length, verifiedEligibleCompanies: eligible.size,
+    denominatorVersion, lifecycleSourceSetHash: lifecycle.sourceSetHash, lifecycleNonUnknownCompanies: lifecycle.known,
+    lifecycleAuditedNonUnknownCompanies: lifecycle.audited, lifecycleUnverifiedNonUnknownCompanies: lifecycle.unverified,
+    lifecycleEvidenceAudit: lifecycle.sourceRows,
     admittedStage11To15Records: stage10EligibleCorpus(input.companies, eligible, input.cells.filter(c => input.years.includes(c.year)), input.cutoff).length,
     retainedSourceVersions: input.retainedVersions, selectedSourceVersions: input.selectedVersions, sourceGaps: input.sourceGaps,
     rows, scientificAcceptance: false, investmentEvidence: false,

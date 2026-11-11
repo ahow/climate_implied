@@ -18,12 +18,28 @@ import { noaaAdapter } from "../server/dataIngestion/adapters/noaa";
 import { worldBankAdapter } from "../server/dataIngestion/adapters/worldBank";
 import { owidAdapter } from "../server/dataIngestion/adapters/owid";
 import { createHash } from "node:crypto";
+import { monetaryContext, type MonetaryContext } from "../server/financialData/workbookMoney";
 
 const directory = process.env.S03_008_EVIDENCE_DIR ?? mkdtempSync(join(tmpdir(), "s03-008-"));
 mkdirSync(directory, { recursive: true });
 const names = ["Blank", "Null", "Zero", "Carry", "Low", "High"];
 const isins = names.map((_, index) => `US${String(index + 1).padStart(10, "0")}`);
 const years = [2022, 2023, 2024];
+/** Explicit CI-only declaration: these synthetic fixtures use USD millions.
+ * This does not attribute any denomination to the actual retained workbook. */
+function withSyntheticUsdDeclaration<T>(rows: (CvTimeSeries & WorkbookSourceMetadata)[], work: () => T): T {
+  const ids = Array.from(new Set(rows.map(r => r.companyId)));
+  const context: MonetaryContext = { cutoff: "2026-01-01T00:00:00.000Z", targetCurrency: "USD", fx: [],
+    identities: ids.map(id => ({ companyId: id, isin: isins[id - 1], reviewId: createHash("sha256").update(`synthetic identity ${id}`).digest("hex"),
+      status: "approved", reviewedAt: "2025-01-01T00:00:00.000Z" })),
+    cells: rows.flatMap(row => (["marketCap", "netProfit"] as const).flatMap(field => {
+      const source = row.sourceCells?.[field];
+      return source && row[field] !== null ? [{ companyId: row.companyId, isin: isins[row.companyId - 1], field,
+        sourceId: source.sourceId, sheet: source.sheet, cell: source.cell, observationDate: source.observationDate!,
+        nativeValue: row[field]!, nativeCurrency: "USD", magnitude: "millions" as const, denominationEvidenceHash: source.sourceId }] : [];
+    })) };
+  return monetaryContext.run(context, work);
+}
 function fixture(name: string, edit?: (book: XLSX.WorkBook) => void) {
   const book = XLSX.utils.book_new();
   const add = (sheet: string, rows: unknown[][]) => XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet(rows), sheet);
@@ -102,8 +118,8 @@ test("actual XLSX loader → immutable dataset → actual calculator → audited
   assert.equal(mid.emissionsAsOf?.getUTCFullYear(), 2022, "Observed scope2 in2023 must not relabel older scope1/3 donors");
   assert.deepEqual(mid.imputedCells?.map(fill => fill.original.cell), ["C5", "C5"]);
   const header = { id: stored.id, companyCount: 6, observationCount: 18 } as SnapshotHeader;
-  const calculation = await runWithReplayWorkbook(stored, () =>
-    snapshotContext.run(header, () => computeTercilesOnTheFly("absolute", false)));
+  const calculation = await withSyntheticUsdDeclaration(raw, () => runWithReplayWorkbook(stored, () =>
+    snapshotContext.run(header, () => computeTercilesOnTheFly("absolute", false))));
   assert.equal(calculation.length, 3, "Actual calculator ran, not a replicated formula");
   for (const row of calculation) {
     assert.equal(row.bottomCount, 1); assert.equal(row.topCount, 1);
@@ -214,7 +230,7 @@ test("actual carbon-price aggregate/export excludes missing included scope inste
   const restored = unpackDataset(packed.id, JSON.parse(JSON.stringify(packed.chunks))).timeSeries as (CvTimeSeries & WorkbookSourceMetadata)[];
   const original = restored.filter(row => row.date.getUTCFullYear() === 2022 && [1, 3].includes(row.companyId));
   assert.equal(original[0].scope1Emissions, 0); assert.equal(original[0].scope2Emissions, null);
-  const aggregate = computeGroupAggregates(original, false, false, 1);
+  const aggregate = withSyntheticUsdDeclaration(original, () => computeGroupAggregates(original, false, false, 1));
   assert.equal(aggregate.count, 1); assert.equal(aggregate.totalMarketCap, 100);
   assert.equal(aggregate.totalProfit, 5); assert.equal(aggregate.totalEmissions, 0);
   const calculated = carryForwardEmissions(original);
@@ -288,9 +304,9 @@ test("actual loader cannot borrow nearby-period Profit as if it were the origina
     row.netProfit === null && !row.sourceCells?.netProfit && !row.derivations));
   assert.ok(loaded.rows.filter(row => row.date.getUTCFullYear() !== 2022).every(row => row.netProfit !== null));
   const packed = packDataset(loaded.companies, loaded.rows);
-  const calculation = await runWithReplayWorkbook(packed, () =>
+  const calculation = await withSyntheticUsdDeclaration(loaded.rows, () => runWithReplayWorkbook(packed, () =>
     snapshotContext.run({ id: packed.id, companyCount: 6, observationCount: 18 } as SnapshotHeader,
-      () => computeTercilesOnTheFly("absolute", false)));
+      () => computeTercilesOnTheFly("absolute", false))));
   assert.equal(calculation.length, 2);
   assert.ok(calculation.every(row => !row.date.startsWith("2022")));
 });

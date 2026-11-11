@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { walkForward } from "../server/climateValuation/walkForward";
+import { verifiedSyntheticWalkForward as walkForward } from "./fixtures/verifiedSyntheticMoney";
 import { buildBacktestResponse } from "../shared/backtest";
 import { bindNestedOutput, bindExportColumns, requireOutputSemantic } from "../shared/outputFieldSemantics";
 

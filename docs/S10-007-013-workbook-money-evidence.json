@@ -1,0 +1,151 @@
+{
+  "version":"workbook-money-audit-2-and-guards-1",
+  "status":"pending-review-partial-acceptance-not-auto-approved",
+  "originalClauseProposals":[
+    {
+      "id":"S10-007",
+      "clause":"ActualworkbookProfit/marketvaluecurrency/unit audit withdatedFX for requiredconversions",
+      "proposal":"Actualretainedworkbookcells/headers/numberformats/comments andcurrentapprovedidentityjournal nowaudited. No worksheetdenomination/monetarymultiplier evidence; approvedidentity/quote/statementcurrency mustnotfillthisgap. ZeroauthorizeddatedFXreceiptssupplied; actualconversioncount0, moneytotalsnull. Keepacceptancepending.",
+      "qualifiedCompletion":false
+    },
+    {
+      "id":"S10-013",
+      "clause":"No actualaggregate mixesunconvertedcurrencies",
+      "proposal":"Guardfiveactualnominal-total calculators BEFORE aggregation/ranking/cacheinput; directgroupaggregate returnsnullmoney for nonemptyunqualifiedinputs. Genuinezero remainszero onlyafterexplicitqualification. Currentremainingweightedcoverage/backtest and derivedratiofallback owners mustfinish their distinctconsumerpaths; doNOTclosewholecriterionfromfive-entrypointtest.",
+      "qualifiedCompletion":false
+    }
+  ],
+  "sourceRecords":[
+    {
+      "id":"ACTUAL-RETAINED-WORKBOOK",
+      "privatePath":"attached_assets/CarbonData2301a_(1)_1770595242257.xlsx",
+      "sha256":"a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+      "publicationDate":null,
+      "capturedAt":"2026-11-11T21:09:22.778Z",
+      "locator":"DescriptiveexactISIN/namebindings; MV/Profitphysicalcells, ownAcolsourceExcelcalendar dates, headers/cell.z formats/comments",
+      "period":"MV2010-01-22 through2026-01-22; Profit2010-02-04 through2026-02-04,193rowdates each",
+      "unit":"Nativecurrency/minorunit/magnitude UNKNOWN. No automaticUSDmillion, listingcountry, profilecurrency or pricecurrency inheritance.",
+      "identityScope":"2442sourceISINs; rawidentity/cellvaluesprivateonly",
+      "reliability":"Actualphysicalmetadata; no originalpublicationvintage/backdatedavailability inferred. Profitdatatype is FY2income meanestimate, NOT automatically reportedGAAPnetincome or cash.",
+      "rights":"User-retainedprivateworkbook/providerbytes. Publicoutputsrestrictedtosafeaggregatecounts/sourcehashes/first-lastdates/qualificationlabels, neverrawcompany/nativefinancialvalues or cellpayloads."
+    },
+    {
+      "id":"ACTUAL-READONLY-REVIEW-JOURNAL",
+      "privateLocator":"private-audit.json.journal rows; SELECTfinancial_reviews LEFTJOINcv_companies exactcompanyId/ISIN",
+      "capturedAt":"2026-11-11T21:09:22.778Z",
+      "unit":"Identity/reviewstatus/count, NOT worksheetdenomination",
+      "approvedReviewCount":1,
+      "exactAcceptedIdentityCount":1,
+      "reliability":"Actualcurrentapprovedreview/exactworkbookISIN binding, NOT provider candidateacceptance. Current2026reviewdates are not reconstructed2010–2026historicalapprovalstates. No identityapproval/statusmutation performed.",
+      "rights":"Rawapprovedidentity/payload/timestampsretainedprivate; publiccounts only."
+    },
+    {
+      "id":"RETAINED-PUBLISHER-EC-CURRENCY-REFERENCE",
+      "url":"https://product.datastream.com/navigator/AdvanceHelpFiles/Functions/WebHelp/Currency_code_EC.htm",
+      "privatePath":"generated-artifacts/return-calendar-source/publisher/currency-code.html",
+      "sha256":"0240ea663bf39fb9e3d209d1b18a1d7c3a7e374dffca8f9c983aba27e7f96b05",
+      "publicationDate":null,
+      "locator":"ECfunction optionalPprimarypricecurrency/Ssecondarynonprice-dividendcurrency parameters",
+      "unit":"Currencyfunctiondescription, NOT datedcompany/datatypecurrency/FXreceipts",
+      "reliability":"Readalreadyretainedofficialreference, no newproviderquery. Defaultpricecurrency mustnot be assignedto MV/FY2forecastincome denomination or monetarymagnitude; no observedECcompanyresponse supplied."
+    }
+  ],
+  "actualSafeAggregates":{
+    "sourceCompanyCount":2442,
+    "mv":{"columns":2442,"dataRows":193,"numericCells":414224,"trueZeros":0,"providerNA":56889,"blank":192,"other":1},
+    "profit":{"columns":2442,"dataRows":193,"numericCells":397348,"trueZeros":16,"providerNA":69326,"blank":4608,"other":24},
+    "totalNumericMoneyCells":811572,
+    "explicitCurrencyCells":0,
+    "qualifiedExplicitMagnitudeCells":0,
+    "commentedCells":0,
+    "numberFormats":"General or absent only",
+    "sameMonthActualCrossDateRowPairs":192,
+    "ambiguousProfitMonths":0,
+    "authorizedDatedFxReceipts":0,
+    "observedQualifiedMoneyConversions":0,
+    "monetaryTotals":null,
+    "moneyDenominationIsNotKnownEvenForAcceptedIdentity":true
+  },
+  "metadataCorrection":{
+    "rawFirstPassPreserved":true,
+    "correctedVersion":"workbook-money-audit-2",
+    "reason":"Initialbroadwordscan mislabeled386unit-token cells persheet as explicitmagnitude. Tokensarefromtwocompanysecuritynames containingUNITS, not datatype/unitmetadata. Headerdescriptor/Generalformat/no-comment reconciliation qualifiesZERO monetarymagnitudes. Originalcandidatecounts remainprivate; correctedpublicoutput explicitlylabels them unqualifiedcompany-name tokens. No monetaryconversion/scoring occurred beforeoraftercorrection.",
+    "correctionSha256":"ae294dde60219308ff7f087fd6d3cba49787988907b2cb3b8b10980649e21298"
+  },
+  "implementedEngineering":{
+    "checkedConverter":"server/financialData/workbookMoney.ts checkedWorkbookMoney",
+    "rules":[
+      "ExactcompanyId/ISIN andsingleapprovedidentityreviewId atdeclaredcutoff; no candidate/profile/listingcountry authorization.",
+      "Explicitnativecurrency/case-significantminorunit AND declaredunits/thousands/millions AND cell/source/denominationprovenance required.",
+      "NormalizeGBp/ZAc/ILA by0.01 onlywhen explicitlydeclared for thatmonetarycell; marketcap neverinherits quoteprice scale.",
+      "Crosscurrency requires singleexplicitlyauthorizedidentity-bound directFXquote, exact ACTUALSOURCE calendar day, base/quotepair, positivefinitequotePerBase, primarysourcehash/URL andauthorizationtimestamp <=cutoff. No inversion, nearestday, holidayfill or samecurrency assumption.",
+      "Samecurrency bypassesFX onlyafterexplicitcell-denomination/magnitude proof, neverbecausecompany/statement/profilecurrency matches target.",
+      "Unique-same-calendar-monthProfit alignment retainsactualProfitdate/sourcecell/nativevalue; FX followsProfitday, not alignedRIday. Crossmonth/unjustifiedcrossdate refuses.",
+      "Originalnumericvalues/sourcecells/dates are neverrewritten. Onlyqualifiedcalculationcopies use USDmillions. Internalcertificate prevents doubleconversion and detects money/date/lineage/contextchanges.",
+      "TrustedinternalMonetaryContext only; no publicrequest may authorizeidentity/FX. Caller mustauthenticateactualauthorization/FXreceipt beforeconstructingcontext. Thisunit suppliesnoactualFXreceipts or automaticapproval."
+    ],
+    "actualNominalTotalConsumersGuarded":[
+      "server/climateValuation/carbonPriceCalculator.ts calculateTotalBasedCarbonPrice/computeGroupAggregates",
+      "server/climateValuation/tercileCalculator.ts computeTercilesOnTheFly",
+      "server/climateValuation/sdgGrowthCalculator.ts calculateSDGGrowthDifferential",
+      "server/climateValuation/decarbBandCalculator.ts calculateDecarbBands",
+      "server/climateValuation/decarbTercileCalculator.ts calculateDecarbTerciles"
+    ],
+    "guardScope":"All-or-withholdper-timestamp for presentunqualifiedmonetaryobservations; unknown/unconvertedmembership cannotbe silentlydropped toproduce a selectedconverteduniverse total. Missingdata/nonpositivePE rules remainseparate.",
+    "currentExpectedEffect":"Withnoauthorizedcellcurrencycontext, theseactualnominal-total results are withheld/empty; directnonemptyunqualifiedgroup hasnullmoney, neverinventedzero totals. SourceProfittruezero observations survive rawloader/normalization tests.",
+    "safeOutputModules":["server/financialData/workbookMoneyExport.ts","server/workbookMoneyAuditApi.ts"],
+    "safeApiPaths":["GET /api/financial-data/workbook-money-audit","GET /api/financial-data/workbook-money-audit.xlsx"],
+    "apiRegistration":"ExportedregisterWorkbookMoneyAuditApi(app) readyforparentmount. Globalroutes/lifecycle/coverage-ownedfiles deliberatelyNOTedited; newpathsareNOTclaimedmountedinthefullrunningapp.",
+    "outputContract":"Strictsafeaggregate-onlyschema, pending-reviewlabel, no-store; missing/invalid/privateextrafields explicit503withmonetaryTotalsnull. XLSX literalnull, sourcecounts/dates/qualification only, no rawprovider/identities/cells.",
+    "uiIntegration":"Lifecycle/UIowner canuse label/nullsourceaudit. No worker-ownedcoveragecomponentmodified; no browserverificationclaimed."
+  },
+  "validation":{
+    "captureCommand":"npx tsx script/audit-workbook-money-private.ts --private-primary",
+    "captureLogSha256":"fc0a2f8f175089b09333dff1e34ffefa0701095423dbe4352268b00efdbdbe7b",
+    "metadataReconciliationCommand":"npx tsx script/finalize-workbook-money-audit-private.ts --private-primary",
+    "metadataReconciliationLogSha256":"8a2189c224b6e53a4a5a692ec595d5da0ad2b52c3fdbdf66b777514ecba56e73",
+    "publicCodeOnlyCommand":"npx tsx --test script/workbook-money.test.ts script/workbook-money-api.test.ts script/workbook-missingness-integration.test.ts",
+    "publicTestsPassed":32,
+    "publicTestsFailed":0,
+    "publicLogSha256":"c730aab3e5d6c73817d8bff977f091c8401f95cf97c4f82ec65c2694ff513a72",
+    "publicTestsUsePrivateSourceFiles":false,
+    "legacyMissingnessFixtures":"ExplicitCI-onlysyntheticUSDmilliondeclaration addedto existingmonetarytestcalls; no syntheticdenomination attributedtorealworkbook. Blank/null/truezero, originalProfitdates and no-nearbyperiod borrowing remain tested.",
+    "mandatoryPrivateCommand":"npx tsx script/validate-workbook-money-private.ts --private-primary",
+    "mandatoryPrivatePassed":true,
+    "mandatoryPrivateLogSha256":"d80c3dbb9a3d8b63138a4ad96399ccbc929fd7856fd41d71ad18baa37242a455",
+    "mandatoryPrivateReceiptSha256":"3cad95ed7c9635d6754f8c717fb262c0372282303a7160bc063f1ba742d9ec9f",
+    "sourceCodeFreezeSha256":"a1a47c7d29610f553a5aa17df6d52c1759d24103a28db3fffc3ffbf613e479db",
+    "safeSummarySha256":"0a83a33981f2966fda3b444c132a464c1f1200ee548a853390e52bd8798b2da5",
+    "privateSourceMetadataSha256":"bb90e568004ee411a2c2c1f9e4e47fa3a5e01db8342837d307bb23c6a4000e12",
+    "privateChecks":"Independentrecountbothactualsheets; actual16Profitzeros/192crossdatepairs; actualapprovedidentity1 stillwithheldwithoutcell-denomination; actual2442January2026source-moneyrows throughfiveexistingnominal-total calculators underread-onlyprivateimmutable replay, all[]; directaggregatecashnull; actualsafeXLSXbinaryreadback. Non-moneytarget/emissions fields deliberatelyunretrieved/null, neverinventedfacts. Sourcevalues/dates/filebytesunchanged.",
+    "privateCacheIo":"Existingtest/developmentisolatedbackend usedONLY topreventtheactualcarboncalculator writing/readingproductioncache; no cachehelperedited and no DBwrites.",
+    "fullTypecheckCommand":"npx tsc --noEmit --pretty false",
+    "fullTypecheckExit":0,
+    "fullTypecheckLogSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tsconfigRelaxed":false,
+    "failedPreflightHistory":"Preservedinitialoldmissingnessfixturefailures beforeexplicitCIcurrencydeclarations; firststandalonecompilerprobe usedunsupportedCLI --paths flag, then fullactualprojecttypecheck passed. No hiddenfinancial scoring/parameterretune."
+  },
+  "narrowResidualsAndCoordination":{
+    "currencySource":"Authoritativeper-datatype/per-seriesdenomination/minorunit/magnitude foractualMV/FY2estimateProfit sourcesnotdeclaredinworkbookmetadata. Quote/statement currencies andECdefaultpricecurrency are not replacements.",
+    "fxSource":"NoauthorizeddatedFXregistry/receipts suppliedorcreated. Cannot choosevalidFXpairsuntilnativefielddenominationknown. Exactsource-day quotes/authorization/provenance neededforeachrequiredconversion; weekends/missingdaysstayunknown.",
+    "ownerConsumerHandoffs":[
+      "Stage10lifecycle/coverageowner: server/calculation/companyCoverage.ts currentlypermitsabsentmarketCapCurrency underUSDconvention forcapitalisationweightedshares. Missingdenomination/scale mustwithhold thosemonetaryweights; do notcountthisfive-nominal-consumerunit aswholecoverageclosure.",
+      "Return/backtestowner: server/climateValuation/backtestCalculator.ts computeMonthlyReturns/portfolio weighting andwalkForwardBacktest path usemarketcapweights; unknown/unconvertedweightinputscannot bepresentedcommon-currency. No returncalendar/14bundlepins wereeditedhere.",
+      "Derivedratioowner: server/climateValuation/valuationStatistics.ts positivePE stillhas rawMC/Profit fallback. IndependentlyprovidedpositivePE is dimensionless, but fallbackrequiresqualifiedcompatiblemoney; notclosedbyfiveaggregateentrypointgate.",
+      "Parentmount: registerWorkbookMoneyAuditApi(app) andpending-reviewlabel canbeintegratedatglobalrouter/UIownerboundary; no claim newfull-appAPIroutesarelive."
+    ],
+    "noBlanketApprovalBlock":"Concrete missingfields/ownerentrypoints above; sourceauditandfiveactualnominal-totalguards areexecutedengineering, not a fabricatedsuccessfulconversion or completedwhole-currencycriterion."
+  },
+  "safety":{
+    "dbQueries":"OneactualSELECT-onlyreview/workbookidentityjournalcapture; laterprivatevalidatorusesretainedfiles andisolatedreplay only.",
+    "dbWritesApprovalDdlPurchasesPaidCalls":0,
+    "canonicalLedgersLifecycleCoverageFilesModified":false,
+    "otherHelpersCachesTrackBLoadersModified":false,
+    "protected14BundlePinsModifiedOrRefrozen":false,
+    "protectedScientificBundlesRerun":false,
+    "sourceWorkbookPrivateProviderBytesExported":false,
+    "workflowAppStartCommitDeployPublishCallbackCalls":0,
+    "historicalAvailabilityBackdated":false,
+    "scientificOrWorkplanAutoApproval":false
+  }
+}
