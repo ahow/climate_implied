@@ -1540,7 +1540,17 @@
       },
       "counts": "45verified253partial2blocked",
       "semantics": "Original1000/1001unchanged;95conditionaldefinitions;TrackB24definitions/535supplementalslots include serializationmetadata,notoriginalclosure",
-      "release": "pending",
+      "release": {
+        "github_main": "52d2ab74faf4e4f12b97b111cd3c258d2ab27277",
+        "ci": "43076544962 success",
+        "railway_deployment": "31e065b9-f2e5-423d-a39d-8a8d59e4b1f8",
+        "verified_at": "2026-11-11T18:24:11.359756+00:00",
+        "health": 200,
+        "build_info": "exactSHAverified",
+        "affected": "PubliccompanyAPIcurrentCCSsettlementnull;TrackB503explicitlyunprovisioned successfulreportreader. CachewitnessisolatedDEV only.",
+        "tests": "796TS0fail0skip;215Python;mandatoryissuerprivatevalidator;retainedcachewitness separately;typecheck/build;5postledgerchecks",
+        "scope": "Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"
+      },
       "failed_ci": "43074869603: retained historical proposal compared against newly verified status after ledger edit. Prior published619a0d8 S11-040partial independently confirmed; dedicated pre-increment provenance and exact assertions repaired. No calculator/gate weakening; earlier796pass preceded ledger edit; final796pass follows repair.",
       "failure_evidence": "docs/S02-009-public-source-failure-evidence.json"
     }
@@ -1627,18 +1637,18 @@
     }
   },
   "current_release": {
-    "github_main": "7f2f110cbba1b7f17afc009600bcbc8316809722",
-    "ci": "43068813904 success",
-    "railway_deployment": "66d4bed6-44e3-47d8-9a6d-4ac9dca26775",
-    "verified_at": "2026-11-11T17:34:57.965049+00:00",
+    "github_main": "52d2ab74faf4e4f12b97b111cd3c258d2ab27277",
+    "ci": "43076544962 success",
+    "railway_deployment": "31e065b9-f2e5-423d-a39d-8a8d59e4b1f8",
+    "verified_at": "2026-11-11T18:24:11.359756+00:00",
     "health": 200,
     "build_info": "exactSHAverified",
-    "affected": "PublicAPIhistorical844m fact and sharedcontractlabels verified; no scientificpromotion.",
-    "tests": "768TS0fail0skip;215Python;mandatoryissuer/precisionprivatevalidators;typecheck/build;5postledgerchecks",
-    "scope": "Code release only;bundleunchanged/operatorblocked;0/3cases;laterdocs/localreceipt distinct."
+    "affected": "PubliccompanyAPIcurrentCCSsettlementnull;TrackB503explicitlyunprovisioned successfulreportreader. CachewitnessisolatedDEV only.",
+    "tests": "796TS0fail0skip;215Python;mandatoryissuerprivatevalidator;retainedcachewitness separately;typecheck/build;5postledgerchecks",
+    "scope": "Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T18:18:26.660926+00:00",
+  "updated_at": "2026-11-11T18:24:11.359774+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -153148,6 +153158,17 @@
       "affected": "GETreference/export200;1.37SR1.5headline/decade/inventorydistinct; no modelcalculation/acceptance.",
       "tests": "752TS0fail0skip;207Python;mandatoryissuerandupstreamprivatevalidators;typecheck/build;sourcepins/SSR/XLSX equality",
       "scope": "Code only. Originalcases0/3; privatebundle155bd3ffunchanged/unprovisioned;docs/localreceipt distinct."
+    },
+    {
+      "github_main": "7f2f110cbba1b7f17afc009600bcbc8316809722",
+      "ci": "43068813904 success",
+      "railway_deployment": "66d4bed6-44e3-47d8-9a6d-4ac9dca26775",
+      "verified_at": "2026-11-11T17:34:57.965049+00:00",
+      "health": 200,
+      "build_info": "exactSHAverified",
+      "affected": "PublicAPIhistorical844m fact and sharedcontractlabels verified; no scientificpromotion.",
+      "tests": "768TS0fail0skip;215Python;mandatoryissuer/precisionprivatevalidators;typecheck/build;5postledgerchecks",
+      "scope": "Code release only;bundleunchanged/operatorblocked;0/3cases;laterdocs/localreceipt distinct."
     }
   ],
   "latest_changed_paths": [
