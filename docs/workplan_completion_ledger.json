@@ -1668,7 +1668,17 @@
       },
       "counts": "56verified242partial2blocked",
       "semantics": "Original1000/1001unchanged;extra64component/supplementalfieldsnotoriginalclosure",
-      "release": "NOT DEPLOYED; existing queues observed independently",
+      "release": {
+        "github_main": "3413ebc4553d8802803140531e265c88665190f6",
+        "ci": "43120050850 success",
+        "railway_deployment": "e0bd83dc-08d3-4308-b895-c1ecbce4e923",
+        "verified_at": "2026-11-11T23:38:27.230722+00:00",
+        "health": 200,
+        "build_info": "exactSHAverified",
+        "tests": "Local coherent892TS0fail0skip+215Python+mandatoryprivateintegration/cashflow+typecheck/build. Final clean shallow Node22/default-concurrency public candidate893/893; current focused/census/postledger checks passed. Distinct execution boundaries retained.",
+        "affected": "Reference API200; Stage10 API503 source/storage unavailable; monetaryaudit503 pendingreview with nulltotals, no FX/currencyfallback. This is code deployment,not private-data activation.",
+        "scope": "56engineeringcriteria verified;0eligiblehistoricalrecords/0of3cases. Bundle2025sourcecompatiblecandidate remainsunprovisioned;source/rights/approval constraints remain."
+      },
       "failure_history": "Interrupted/constrained validation attempts retained. Cachetransport fixture unqualifiedaftermoneyguard; Nodeassertion diagnostic inferencehung; explicitmessages/qualifiedsyntheticreceipts/sharedESMcontexts/boundedtimeouts fixed without productiongateweakening. Mobileoverflow andsummaryfeedback failures fixed, receipts preserved.",
       "public_ci_history": "43099169985 and43116713745 failedTS: faithful shallow public reproduction found unavailable workspace Git history. Exact source-only fixtures preserve original blobs/tree and all old/current assertions; no private data/history dump, skip, workflow or timeout weakening. See docs/S02-009-public-source-failure-evidence.json. Final public-source validation receipt is separate from local892."
     }
@@ -1755,18 +1765,18 @@
     }
   },
   "current_release": {
-    "github_main": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1",
-    "ci": "43087204818 success",
-    "railway_deployment": "c09554d2-ddec-44ab-b07d-a32b05a6aa89",
-    "verified_at": "2026-11-11T20:58:39.315831+00:00",
+    "github_main": "3413ebc4553d8802803140531e265c88665190f6",
+    "ci": "43120050850 success",
+    "railway_deployment": "e0bd83dc-08d3-4308-b895-c1ecbce4e923",
+    "verified_at": "2026-11-11T23:38:27.230722+00:00",
     "health": 200,
     "build_info": "exactSHAverified",
-    "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
-    "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
-    "scope": "Observed previous-code documentation release. NEW Stage10/cache/NDC work is NOT deployed; prior831TS/215Python receipt belongs to this code lineage."
+    "tests": "Local coherent892TS0fail0skip+215Python+mandatoryprivateintegration/cashflow+typecheck/build. Final clean shallow Node22/default-concurrency public candidate893/893; current focused/census/postledger checks passed. Distinct execution boundaries retained.",
+    "affected": "Reference API200; Stage10 API503 source/storage unavailable; monetaryaudit503 pendingreview with nulltotals, no FX/currencyfallback. This is code deployment,not private-data activation.",
+    "scope": "56engineeringcriteria verified;0eligiblehistoricalrecords/0of3cases. Bundle2025sourcecompatiblecandidate remainsunprovisioned;source/rights/approval constraints remain."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T23:27:46.307212+00:00",
+  "updated_at": "2026-11-11T23:38:27.230744+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -150460,6 +150470,9 @@
             "script/valuation-indicator-partial-state.test.ts",
             "client/src/components/company-conditional-summary.tsx",
             "client/src/pages/climate-valuation.tsx",
+            "script/valuation-indicator-partial-state.test.ts",
+            "client/src/components/company-conditional-summary.tsx",
+            "client/src/pages/climate-valuation.tsx",
             "script/valuation-indicator-partial-state.test.ts"
           ],
           "behaviour_delivered_this_run": "8routes desktop/mobile;42applicable controlledloading/empty/errorcells,6static404NA. Mobiletableoverflow708px→307px within309wrapper fixed;summaryloadingfeedbackfixedwithactualquerySSR. Syntheticemptyzeros notrealfindings.",
@@ -150490,6 +150503,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T22:57:55.434360+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 250.079,
+              "counts": {
+                "tests": 892,
+                "pass": 892,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T225755434360Z.log",
+              "workspace_revision": "1418cdb3a7c4d3f858a41b06b7444024a5657d95",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             },
             {
               "command": [
@@ -157241,7 +157274,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "First inspectexistingGitHubCI/promotion; lastobservedruntime09b, newworknotclaimeddeployed. Lifecycle2442/120listedobservations/2322unknown/0eligible andcurrencyguards implemented; unknownunits/FX no financialapproval. S10original200cohort missing; no substitute. Full42cell desktop/mobile review done with mobilefix. Continue actualsource-currency/FX/issueroperatinginputs/qualifiedhistoricalcorpus andsource-supported scientificstudies; frozen negatives unchanged. Bundle2025 only matchingreplacementsource, no provision on09b.",
+    "instruction": "Verifiedlive 3413ebc4553d8802803140531e265c88665190f6: codeonly,Stage10source/storage503 andmoney-audit503null are exactremainingprovisioning boundaries; no dataactivation. Lifecycle/readers/currencyguards and42cellUIreview complete; original200cohort, actualcurrency/scale/exactdayFX and3issueroperatingcases stillmissing. Continue originalqualifiedscientific/historicalcorpus work without retuning negatives. Bundle2025sourcecompatiblecandidate stillneedsauthorizedoperatortransfer; old155immutable. Public shallow-source historytests repaired without privateexport or gateweakening.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -157787,6 +157820,17 @@
       "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
       "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
       "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
+    },
+    {
+      "github_main": "09b05cbe1e9288b0883fee41ed7bf9e595dd0bb1",
+      "ci": "43087204818 success",
+      "railway_deployment": "c09554d2-ddec-44ab-b07d-a32b05a6aa89",
+      "verified_at": "2026-11-11T20:58:39.315831+00:00",
+      "health": 200,
+      "build_info": "exactSHAverified",
+      "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
+      "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
+      "scope": "Observed previous-code documentation release. NEW Stage10/cache/NDC work is NOT deployed; prior831TS/215Python receipt belongs to this code lineage."
     }
   ],
   "latest_changed_paths": [
@@ -157794,33 +157838,35 @@
     "script/record-bundle-cohort.py",
     "script/validate_climatetrace_mining_private.py"
   ],
-  "pending_release": {
-    "source_workspace": "bf0d527dfc4c17454fc294bb01763e11b3270366",
-    "source_github": "457ba3c315014cdf4760ccb31bb498fbd15f4e88",
-    "ci": 43098003470,
-    "observed_status": "queued; jobs=[]; no job started or restarted",
-    "new_code_deployed": false,
-    "local_execution": {
-      "command": [
-        "bash",
-        "-c",
-        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
-      ],
-      "executed_at": "2026-11-11T20:39:14.534923+00:00",
-      "exit_code": 0,
-      "elapsed_seconds": 266.685,
-      "counts": {
-        "tests": 853,
-        "pass": 853,
-        "fail": 0,
-        "skipped": 0
+  "pending_release_history": [
+    {
+      "source_workspace": "bf0d527dfc4c17454fc294bb01763e11b3270366",
+      "source_github": "457ba3c315014cdf4760ccb31bb498fbd15f4e88",
+      "ci": 43098003470,
+      "observed_status": "queued; jobs=[]; no job started or restarted",
+      "new_code_deployed": false,
+      "local_execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+        ],
+        "executed_at": "2026-11-11T20:39:14.534923+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 266.685,
+        "counts": {
+          "tests": 853,
+          "pass": 853,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
+        "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
       },
-      "log": "generated-artifacts/workplan-completion/20261111T203914534923Z.log",
-      "workspace_revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e",
-      "worktree_dirty": true,
-      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
-    },
-    "next_action": "Allow existing gated CI/promotion to run; inspect actual result before claiming deployment. Any later docs-only run is separate.",
-    "private_bundle": "2025be43 replacement only for matching NEW source; old155 retained for matching OLD source. Do not activate new bundle on current09b runtime."
-  }
+      "next_action": "Allow existing gated CI/promotion to run; inspect actual result before claiming deployment. Any later docs-only run is separate.",
+      "private_bundle": "2025be43 replacement only for matching NEW source; old155 retained for matching OLD source. Do not activate new bundle on current09b runtime."
+    }
+  ]
 }
