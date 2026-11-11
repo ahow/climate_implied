@@ -2,10 +2,9 @@
 
 **39 verified engineering criteria /259 partial /2 provisioning-blocked /0 unreconciled. All300 original clauses retained; completion and efficacy are NOT established.**
 
-Served GitHub revision `d578715438eb2c84dcaee518e2a0363419aed4ee`,
-CI `42925352694` success, Railway `02d48bbd-282a-42b6-8e84-8272c7219f00` success,
-build-info and health verified. This is the later documentation revision of
-implementation `274440b5`; new local recovery scripts are separately recorded.
+Served GitHub revision `2d0a759b03739447c1c8291ed7b500bb758414bb`,
+CI `42989861313` success, Railway `ae8ed634-6950-4cde-96e9-41c31fc1d864` success,
+build-info/health verified2026-11-11T08:52:59Z. New recovery/source/calculation code is published; subsequent documentation and local handoff receipts are distinct.
 
 Latest coherent implementation checks: **521 public TypeScript tests and128 public Python tests**;
 new mandatory private policy tests and issuer/355 pinned assertions passed separately.
@@ -2266,3 +2265,39 @@ Two exact permit/legal joins;24 conditional component cases;384 independently re
 Next: Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings.
 
 Evidence: `docs/xom-climate-liability-evidence.json`; paths: `server/calculation/xomClimateLiabilityCase.ts`, `script/run-xom-climate-liability-case.ts`, `script/validate-xom-climate-liability-private.ts`, `script/xom-climate-liability-case.test.ts`, `script/capture-xom-climate-liability-sources.ts`
+
+## Final verified calendar/liability release
+
+{
+  "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+  "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+  "ci": "42989861313 validate/promote success",
+  "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
+  "railway_status": "SUCCESS",
+  "verified_at": "2026-11-11T08:52:59.728218+00:00",
+  "smoke": {
+    "/api/build-info": {
+      "status": 200,
+      "body": {
+        "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      }
+    },
+    "/api/health": {
+      "status": 200
+    },
+    "/api/calculation/company-coverage": {
+      "status": 503
+    },
+    "publicReplayPost": {
+      "status": 403
+    },
+    "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
+  },
+  "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
+}
+
+Earlier async worker wait returned null while the worker continued; accessing .text immediately failed. Subsequent work/checks/publication succeeded. This does not establish the cause of the later platform-level Agent error. Explicit terminal Python cleanup does not catch arbitrary platform/tool-runtime termination.
+
+Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qualified full issuer cases and0/50qualified return comparisons. No callback sent during active work; explicit one-time terminal cleanup follows saved evidence.

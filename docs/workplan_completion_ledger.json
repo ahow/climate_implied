@@ -972,7 +972,8 @@
       ],
       "tests": "python -m unittest discover -s script -p test_terminal_cleanup.py:4passed/0failed; no unchanged scientific studies rerun",
       "limits": "Cannot catch SIGKILL, sandbox loss or platform crashes. Persistence failure prevents a handoff claiming saved evidence. Existing sender remains idempotent; HTTP202 is not listener matching.",
-      "scope": "Recovery is not completion. Continue exact original work from retained v3/v4/source/frequency evidence; no new tasks or schedules. Explicit terminal cleanup is used only at true run end."
+      "scope": "Recovery is not completion. Continue exact original work from retained v3/v4/source/frequency evidence; no new tasks or schedules. Explicit terminal cleanup is used only at true run end.",
+      "additional_observed_tool_failure": "Earlier async worker wait returned null while the worker continued; accessing .text immediately failed. Subsequent work/checks/publication succeeded. This does not establish the cause of the later platform-level Agent error. Explicit terminal Python cleanup does not catch arbitrary platform/tool-runtime termination."
     },
     "calendar_liability_recovery": {
       "recordedAt": "2026-11-11T08:47:35.288184+00:00",
@@ -1020,7 +1021,37 @@
       "initialFailure": "519/521 TS: stale census inventory for three new XLSX test-fixture sheets. Regenerated inventory only; no original denominator/strict-gate change.",
       "coverage": "Original1000/1001 unchanged;1703definitions,current1323/1324,expanded1484/1485;4aliases/27withheld separate.",
       "status": "39verified259partial2provisioning-blocked0unreconciled;0/3qualified original issuers;0/50qualified return comparisons. No scientific acceptance or production activation.",
-      "handoff": "Explicit terminal-only wrapper saves before operation and before existing idempotent callback;5offline cleanup tests and6existing handoff tests. Process/platform death remains uncatchable/unproven. No callback sent during work."
+      "handoff": "Explicit terminal-only wrapper saves before operation and before existing idempotent callback;5offline cleanup tests and6existing handoff tests. Process/platform death remains uncatchable/unproven. No callback sent during work.",
+      "release": {
+        "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+        "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+        "ci": "42989861313 validate/promote success",
+        "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
+        "railway_status": "SUCCESS",
+        "verified_at": "2026-11-11T08:52:59.728218+00:00",
+        "smoke": {
+          "/api/build-info": {
+            "status": 200,
+            "body": {
+              "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+              "calculationVersion": "historical-diagnostics-7",
+              "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+            }
+          },
+          "/api/health": {
+            "status": 200
+          },
+          "/api/calculation/company-coverage": {
+            "status": 503
+          },
+          "publicReplayPost": {
+            "status": 403
+          },
+          "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
+        },
+        "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
+      },
+      "stop_reason": "Context boundary after recovery, substantive source/calculation work, integrated tests and verified release; original work remains, not completion."
     }
   },
   "prior_native_fleet_increment": {
@@ -1105,13 +1136,33 @@
     }
   },
   "current_release": {
-    "workspace_commit": "03988d8022fef12d03bb754dcd3d4cebb3165934",
-    "github_main": "d578715438eb2c84dcaee518e2a0363419aed4ee",
-    "ci": "42925352694 success",
-    "railway_deployment": "02d48bbd-282a-42b6-8e84-8272c7219f00",
+    "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+    "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+    "ci": "42989861313 validate/promote success",
+    "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
     "railway_status": "SUCCESS",
-    "verified_at": "2026-11-11T08:11:09.798689+00:00",
-    "receipt_boundary": "Served documentation revision of implementation274440b5; new local terminal-cleanup code is not claimed deployed."
+    "verified_at": "2026-11-11T08:52:59.728218+00:00",
+    "smoke": {
+      "/api/build-info": {
+        "status": 200,
+        "body": {
+          "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+          "calculationVersion": "historical-diagnostics-7",
+          "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+        }
+      },
+      "/api/health": {
+        "status": 200
+      },
+      "/api/calculation/company-coverage": {
+        "status": 503
+      },
+      "publicReplayPost": {
+        "status": 403
+      },
+      "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
+    },
+    "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-11T08:47:35.288184+00:00",
@@ -5443,8 +5494,8 @@
             "calendar_liability": "99/100 original XLSX boundaries exactly equal;100/100 immutable/recovery boundaries equal; original/frozen discrepant numbers share binary32 bits.0/50qualified comparisons; no repairs, date substitution or break-rate claim."
           },
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-          "deployment_revision": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+          "git_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+          "deployment_revision": "2d0a759b03739447c1c8291ed7b500bb758414bb",
           "remaining_gaps": [
             "Original runs[].summary historical leaf meanings remain unknown.",
             "Broader dynamic/custom/display acceptance and live transaction lifecycle are not established by in-memory fixtures.",
@@ -5660,17 +5711,17 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-            "github_main": "274440b5e644a49fdfe2c5470397241391d3ee2a",
-            "ci": "42924327747 validate/promote success",
-            "railway_deployment": "8b3f1d05-ce55-4047-931b-bcdfd543817f",
+            "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+            "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+            "ci": "42989861313 validate/promote success",
+            "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
             "railway_status": "SUCCESS",
-            "verified_at": "2026-11-10T23:38:19.839443+00:00",
+            "verified_at": "2026-11-11T08:52:59.728218+00:00",
             "smoke": {
               "/api/build-info": {
                 "status": 200,
                 "body": {
-                  "sourceCommit": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+                  "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
                   "calculationVersion": "historical-diagnostics-7",
                   "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
                 }
@@ -5678,28 +5729,15 @@
               "/api/health": {
                 "status": 200
               },
-              "/api/calculation/field-semantics": {
-                "status": 200,
-                "returnIndex": {
-                  "field": "totalReturnIndex",
-                  "role": "Input",
-                  "unit": "index",
-                  "formula": "Reported cumulative total-return index; period return = ending index / starting index - 1 for finite strictly positive levels",
-                  "dependencies": [],
-                  "source": "Selected workbook plus ordered approved overlays",
-                  "vintage": "Revised history; original publication vintage not certified",
-                  "asOf": "Selected workbook observation label, not independently verified exchange-close time. Exact market-calendar and cash-dividend/split conventions require source evidence; no nearest-trading-date substitution or original-vintage claim."
-                }
-              },
               "/api/calculation/company-coverage": {
                 "status": 503
               },
               "publicReplayPost": {
                 "status": 403
               },
-              "verifiedAt": "2026-11-10T23:38:19.839443+00:00"
+              "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
             },
-            "receipt_boundary": "Verified implementation, not the later documentation receipt. Production coverage503 remains unavailable; no production data/science activation."
+            "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
           },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
@@ -105293,8 +105331,8 @@
             "calendar_liability": "Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-          "deployment_revision": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+          "git_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+          "deployment_revision": "2d0a759b03739447c1c8291ed7b500bb758414bb",
           "remaining_gaps": [
             "0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval.",
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
@@ -105539,17 +105577,17 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-            "github_main": "274440b5e644a49fdfe2c5470397241391d3ee2a",
-            "ci": "42924327747 validate/promote success",
-            "railway_deployment": "8b3f1d05-ce55-4047-931b-bcdfd543817f",
+            "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+            "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+            "ci": "42989861313 validate/promote success",
+            "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
             "railway_status": "SUCCESS",
-            "verified_at": "2026-11-10T23:38:19.839443+00:00",
+            "verified_at": "2026-11-11T08:52:59.728218+00:00",
             "smoke": {
               "/api/build-info": {
                 "status": 200,
                 "body": {
-                  "sourceCommit": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+                  "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
                   "calculationVersion": "historical-diagnostics-7",
                   "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
                 }
@@ -105557,28 +105595,15 @@
               "/api/health": {
                 "status": 200
               },
-              "/api/calculation/field-semantics": {
-                "status": 200,
-                "returnIndex": {
-                  "field": "totalReturnIndex",
-                  "role": "Input",
-                  "unit": "index",
-                  "formula": "Reported cumulative total-return index; period return = ending index / starting index - 1 for finite strictly positive levels",
-                  "dependencies": [],
-                  "source": "Selected workbook plus ordered approved overlays",
-                  "vintage": "Revised history; original publication vintage not certified",
-                  "asOf": "Selected workbook observation label, not independently verified exchange-close time. Exact market-calendar and cash-dividend/split conventions require source evidence; no nearest-trading-date substitution or original-vintage claim."
-                }
-              },
               "/api/calculation/company-coverage": {
                 "status": 503
               },
               "publicReplayPost": {
                 "status": 403
               },
-              "verifiedAt": "2026-11-10T23:38:19.839443+00:00"
+              "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
             },
-            "receipt_boundary": "Verified implementation, not the later documentation receipt. Production coverage503 remains unavailable; no production data/science activation."
+            "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -127918,8 +127943,8 @@
             "calendar_liability": "99/100 original XLSX boundaries exactly equal;100/100 immutable/recovery boundaries equal; original/frozen discrepant numbers share binary32 bits.0/50qualified comparisons; no repairs, date substitution or break-rate claim."
           },
           "scientific_acceptance": "not-assessed",
-          "git_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-          "deployment_revision": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+          "git_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+          "deployment_revision": "2d0a759b03739447c1c8291ed7b500bb758414bb",
           "remaining_gaps": [
             "Required random sample, retained provider values/parameters, break definition and break rates missing.",
             "Verify original listing/currency/class history and exact price/dividend/split/calendar conventions; retain all50 denominator and do not substitute dates or sampled rows.",
@@ -128055,17 +128080,17 @@
             "next_action": "Freeze deterministic 50-observation random sample and tolerances, use permitted existing read-only provider access, retain comparison rows privately and publish aggregate break rates."
           },
           "live_release_observation": {
-            "workspace_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-            "github_main": "274440b5e644a49fdfe2c5470397241391d3ee2a",
-            "ci": "42924327747 validate/promote success",
-            "railway_deployment": "8b3f1d05-ce55-4047-931b-bcdfd543817f",
+            "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+            "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+            "ci": "42989861313 validate/promote success",
+            "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
             "railway_status": "SUCCESS",
-            "verified_at": "2026-11-10T23:38:19.839443+00:00",
+            "verified_at": "2026-11-11T08:52:59.728218+00:00",
             "smoke": {
               "/api/build-info": {
                 "status": 200,
                 "body": {
-                  "sourceCommit": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+                  "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
                   "calculationVersion": "historical-diagnostics-7",
                   "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
                 }
@@ -128073,28 +128098,15 @@
               "/api/health": {
                 "status": 200
               },
-              "/api/calculation/field-semantics": {
-                "status": 200,
-                "returnIndex": {
-                  "field": "totalReturnIndex",
-                  "role": "Input",
-                  "unit": "index",
-                  "formula": "Reported cumulative total-return index; period return = ending index / starting index - 1 for finite strictly positive levels",
-                  "dependencies": [],
-                  "source": "Selected workbook plus ordered approved overlays",
-                  "vintage": "Revised history; original publication vintage not certified",
-                  "asOf": "Selected workbook observation label, not independently verified exchange-close time. Exact market-calendar and cash-dividend/split conventions require source evidence; no nearest-trading-date substitution or original-vintage claim."
-                }
-              },
               "/api/calculation/company-coverage": {
                 "status": 503
               },
               "publicReplayPost": {
                 "status": 403
               },
-              "verifiedAt": "2026-11-10T23:38:19.839443+00:00"
+              "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
             },
-            "receipt_boundary": "Verified implementation, not the later documentation receipt. Production coverage503 remains unavailable; no production data/science activation."
+            "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
           },
           "before_calendar_liability": {
             "files_functions_changed": [
@@ -138406,7 +138418,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue alloriginal0–17/amendments. Preserve521publicTS/128Python plusnewmandatoryprivate checks; original1000/1001unknown. Newcalendar evidence: originalmonthlyM/X(RI)~U$/empty-end metadata;oneboundaryfloat32/textrepresentation reproduced, not ingestion/vintage proof.0/50return comparisons; obtain applicable RI/FX/calendar/dividend methodology and originaluploadlink, no nearestdate. NewXOMtwo-permit incremental liability24componentcases/384cash/768allowance rows is conditionalonly, notfullissuer; baselineexpense notdeductedtwice.0/3qualified originalcases. Continue NEE project/noncommon inputs,FSLR source-qualified terminal/capacity, genuine historicalIGCC/native/memberandjointdriver evidence and actualdatedStage11–15corpus. Preserve allfrozennegativebeta/fleet/EV/storage/Gordonprimary andscientific/auth/owner gates. Existingterminalwrapper onlytrueend; nooldmatchedcallbackresend.",
+    "instruction": "Verifiedrelease2d0a759b/CI42989861313/Railwayae8ed634;521publicTS/128Python andnewmandatoryprivatecalendar/XOM checks passed. Continue alloriginal0–17/amendments. Preserve521publicTS/128Python plusnewmandatoryprivate checks; original1000/1001unknown. Newcalendar evidence: originalmonthlyM/X(RI)~U$/empty-end metadata;oneboundaryfloat32/textrepresentation reproduced, not ingestion/vintage proof.0/50return comparisons; obtain applicable RI/FX/calendar/dividend methodology and originaluploadlink, no nearestdate. NewXOMtwo-permit incremental liability24componentcases/384cash/768allowance rows is conditionalonly, notfullissuer; baselineexpense notdeductedtwice.0/3qualified originalcases. Continue NEE project/noncommon inputs,FSLR source-qualified terminal/capacity, genuine historicalIGCC/native/memberandjointdriver evidence and actualdatedStage11–15corpus. Preserve allfrozennegativebeta/fleet/EV/storage/Gordonprimary andscientific/auth/owner gates. Existingterminalwrapper onlytrueend; nooldmatchedcallbackresend.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -138748,6 +138760,15 @@
         "verifiedAt": "2026-11-10T23:38:19.839443+00:00"
       },
       "receipt_boundary": "Verified implementation, not the later documentation receipt. Production coverage503 remains unavailable; no production data/science activation."
+    },
+    {
+      "workspace_commit": "03988d8022fef12d03bb754dcd3d4cebb3165934",
+      "github_main": "d578715438eb2c84dcaee518e2a0363419aed4ee",
+      "ci": "42925352694 success",
+      "railway_deployment": "02d48bbd-282a-42b6-8e84-8272c7219f00",
+      "railway_status": "SUCCESS",
+      "verified_at": "2026-11-11T08:11:09.798689+00:00",
+      "receipt_boundary": "Served documentation revision of implementation274440b5; new local terminal-cleanup code is not claimed deployed."
     }
   ]
 }
