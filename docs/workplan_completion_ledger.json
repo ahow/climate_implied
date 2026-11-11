@@ -1434,7 +1434,17 @@
       },
       "counts": "41verified257partial2blocked",
       "semantics": "original1000/1001;88conditionaldefinitions;508exportleaves",
-      "release": "pending"
+      "release": {
+        "github_main": "7596cb7cdf20397b2b3904d8d9f3c6ef0208eb3d",
+        "ci": "43053422204 success",
+        "railway_deployment": "362b1dce-a56c-46f9-88df-c484c0a8bc71",
+        "verified_at": "2026-11-11T16:01:31.887843+00:00",
+        "health": 200,
+        "build_info": "exactSHAverified",
+        "affected": "PublicconditionalAPI newIndiaamountnull/scoped61m facts verified; no qualification/promotion.",
+        "tests": "736TS0fail0skip;196Python;mandatoryissuer/privateenergyvalidators;typecheck/build",
+        "scope": "Code only; privatebundleunchanged/unprovisioned; laterdocs/localreceipt distinct"
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1519,19 +1529,18 @@
     }
   },
   "current_release": {
-    "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
-    "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
-    "ci": "43046628640 success",
-    "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
-    "verified_at": "2026-11-11T15:21:26.302895+00:00",
+    "github_main": "7596cb7cdf20397b2b3904d8d9f3c6ef0208eb3d",
+    "ci": "43053422204 success",
+    "railway_deployment": "362b1dce-a56c-46f9-88df-c484c0a8bc71",
+    "verified_at": "2026-11-11T16:01:31.887843+00:00",
     "health": 200,
-    "build_info": "Exact SHA verified",
-    "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
-    "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
-    "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
+    "build_info": "exactSHAverified",
+    "affected": "PublicconditionalAPI newIndiaamountnull/scoped61m facts verified; no qualification/promotion.",
+    "tests": "736TS0fail0skip;196Python;mandatoryissuer/privateenergyvalidators;typecheck/build",
+    "scope": "Code only; privatebundleunchanged/unprovisioned; laterdocs/localreceipt distinct"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T15:56:53.350005+00:00",
+  "updated_at": "2026-11-11T16:01:31.887863+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -149073,6 +149082,18 @@
       "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
       "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
       "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+    },
+    {
+      "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+      "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+      "ci": "43046628640 success",
+      "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+      "verified_at": "2026-11-11T15:21:26.302895+00:00",
+      "health": 200,
+      "build_info": "Exact SHA verified",
+      "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+      "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+      "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
     }
   ],
   "latest_changed_paths": [
