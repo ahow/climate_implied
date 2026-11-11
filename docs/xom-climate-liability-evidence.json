@@ -1,0 +1,307 @@
+{
+  "schemaVersion": "xom-geographic-climate-liability-evidence-proposal-1",
+  "purpose": "Independent original-case climate-cost COMPONENT proposal; not a qualified original whole-company case, price forecast, current-law certification, identity approval or shared-ledger update",
+  "technicalQualifiedOriginalIssuers": 0,
+  "technicalRequiredOriginalIssuers": 3,
+  "qualifiedOriginalPairs": 0,
+  "version": "xom-permit-geography-incremental-carbon-cash-1",
+  "integrationGuard": {
+    "baselineExpenseTreatment": "Retained original operating profit/CFO already includes an unidentified embedded carbon expense. The legacy field name operatingProfitBeforeClimate and its separately tagged climateOperatingCost=0 do NOT establish that historical carbon expense was zero or removed.",
+    "incrementOnly": "New input is explicitly priceIncrementGbpPerUka, never an observed total price. Model keeps baseline expense intact and rebuilds only the matched future price-increment cost, recovery and receivable delta. No historical baseline removal or total-carbon-expense deduction.",
+    "observedCompanyCarbonExpense": null,
+    "observedCompanyPaidUkaPrice": null,
+    "observedCompanyCashPurchaseDates": null,
+    "observedAllowanceSaleCash": null,
+    "observedUncommittedBank": null,
+    "auctionPriceUsedAsCompanyCash": false,
+    "complianceYearUsedAsObservedCashSettlementYear": false,
+    "futureCashConvention": "Future purchases in emissions year is a separately frozen prospective scenario convention, not an inference from 2024 compliance. Later legal surrender is not treated as evidence of when allowances were purchased or paid.",
+    "zeroBoundary": "Observed 2024 delivered allocation zero for UK-E-IN-12019 is actually present in the registry. Unknown historical banks/sale cash never become factual zeros. Future opening uncommitted bank zero and no discretionary sales are conditional scenario choices, not observed account balances or receipts.",
+    "frozenBeforeCalculation": true,
+    "unchangedControlsRerunForThisGuard": false
+  },
+  "files": [
+    "server/calculation/xomClimateLiabilityCase.ts",
+    "script/capture-xom-climate-liability-sources.ts",
+    "script/run-xom-climate-liability-case.ts",
+    "script/xom-climate-liability-case.test.ts",
+    "script/validate-xom-climate-liability-private.ts"
+  ],
+  "immutableExperiment": {
+    "freezePath": "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/2026-11-11T08-31-24-612Z/frozen-before-calculation.json",
+    "freezeSha256": "8fe6be77af2f5d46c459cbcbb536e98817dba989c97eb8a573a28d326aebaa85",
+    "frozenAt": "2026-11-11T08:31:24.612Z",
+    "calculatedAt": "2026-11-11T08:31:24.643Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/2026-11-11T08-31-24-612Z/report.json",
+    "reportSha256": "127c525445abb0df6ccbdeea81296b6665ed490053090da11bca13e05bec9b63",
+    "informationContext": "REVISED HISTORY. FY2024 selected permit observations are in registry snapshots published in 2026; FY2024 Exhibit 21 is in the February 2025 annual filing. Not historical information available at the retained January 2025 equity-price cutoff.",
+    "v3AndV4CodeFreezeResultsPreserved": true,
+    "oldCasesOrReverseScoringRerun": false,
+    "originalFslr10Cases50RowsUnchanged": true,
+    "sharedLedgerRoutesSemanticsChanged": false,
+    "parentReturnCalendarAndTerminalRecoveryModulesChanged": false
+  },
+  "boundedPrimarySourceAttempts": {
+    "maximumLogicalPublicGetAttempts": 24,
+    "actualLogicalPublicGetAttempts": 24,
+    "discoveryAttempts": 12,
+    "capturedResponses": 12,
+    "http200": 21,
+    "http404": 2,
+    "http403": 1,
+    "newPaidProviderRequests": 0,
+    "purchasesApprovalsDbChangesCommitsDeployCallbacksWorkflows": 0,
+    "receiptPath": "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/sources/receipts.json",
+    "receiptSha256": "8166357b6117c92df0dffddf90eaac8ef48c93848540ef6cacf1701fe6a1b6b9",
+    "discoveryReceiptLimit": "Twelve initial discovery URL/status observations are recorded without invented body hashes or exact timestamps; authoritative claims bind three subsequently retained, hashed primary payloads.",
+    "failedAttempts": [
+      "Guessed GOV.UK verified-emissions/free-allocation-2024 publication: 404",
+      "Guessed equivalent 2023 publication: 404",
+      "Initial SEC Exhibit 21 request without identified user agent: 403; one standards-compliant identified request to the SAME exact exhibit returned 200"
+    ],
+    "officialDiscovery": "GOV.UK participating-in-UK-ETS, reports collection, installation allocation and regulator-report pages led to the official UK registry report sections. Eight section payloads retained; no further requests after the bound.",
+    "captureCommands": [
+      "npx tsx script/capture-xom-climate-liability-sources.ts --private-primary --registry-sections",
+      "npx tsx script/capture-xom-climate-liability-sources.ts --private-primary --one xom-ex21.html https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xomexhibit21123124.htm",
+      "npx tsx script/capture-xom-climate-liability-sources.ts --private-primary --one operators-2024.xlsx https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section1/uk_ets_Standard_Report_OHA_Participants_Allocations_2024_20261111010000000.xlsx",
+      "npx tsx script/capture-xom-climate-liability-sources.ts --private-primary --one compliance-2026.xlsx 'https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section5/UK_ETS_Compliance_Report_Emissions_&_Surrenders_2026.xlsx'",
+      "npx tsx script/capture-xom-climate-liability-sources.ts --private-primary --one xom-ex21-identified.html https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xomexhibit21123124.htm"
+    ]
+  },
+  "authoritativeClaims": {
+    "registryAllocation": {
+      "url": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section1/uk_ets_Standard_Report_OHA_Participants_Allocations_2024_20261111010000000.xlsx",
+      "sha256": "c3626c758accdea4ee0bb6ffea1cdaa9f7ba604ebbbfe54382a22735b1702ddc",
+      "sourcePeriod": 2024,
+      "snapshotPublication": "2026-11-11",
+      "exactFields": ["Installation ID", "Permit ID", "Account Holder Name", "Installation Name", "Regulator", "Regulated activity", "Allocation Entitlement_2024", "Allocation Delivered_2024"]
+    },
+    "registryEmissions": {
+      "url": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section5/UK_ETS_Compliance_Report_Emissions_&_Surrenders_2026.xlsx",
+      "sha256": "21c8670a2642686b2cf50c9afbaa58e8e4dd481689e7a33d3313dce4cb602439",
+      "publicationFromRegistrySection": "2026-06-22",
+      "selectedField": "Recorded emissions 2024",
+      "joinFields": ["Operator ID", "Permit ID or Monitoring plan ID", "Account Holder Name", "Installation name", "Regulator"],
+      "nativeUnit": "tCO2e",
+      "definitionLocation": "Field Categorisation worksheet, Recorded emissions [year], Description; rich-text definition preserved, not flattened to an object string",
+      "definitionMeaning": "Verified installation greenhouse-gas emissions in tonnes of carbon dioxide equivalent. Neither native CO2 tonnes nor a corporate Scope 1/equity-emissions series.",
+      "geographyEvidence": "EA regulator code maps to installations in England in the same workbook's Regulator definition. This is operating-installation geography, not corporate headquarters."
+    },
+    "legalSubsidiary": {
+      "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xomexhibit21123124.htm",
+      "sha256": "3eb6cbbd71d0224a9100e915c59d007850c93c2365d642ceddabdcc4e7f31fa1",
+      "issuer": "Exxon Mobil Corporation",
+      "retainedPrimaryCik": "0000034088",
+      "sameAnnualFilingAccession": "0000034088-25-000010",
+      "ownershipAsOf": "2024-12-31",
+      "exactLegalOperator": "Esso Petroleum Company Limited",
+      "votingSecuritiesOwnedDirectlyOrIndirectlyPercent": 100,
+      "countryOfOrganization": "United Kingdom",
+      "boundary": "Voting-security ownership is observed. Do not relabel it as measured equity-attributable emissions, a complete common-cash waterfall or proof about nonvoting claims."
+    },
+    "permits": [
+      {
+        "installationId": 1000118,
+        "permitId": "UK-E-IN-12019",
+        "operator": "Esso Petroleum Company Limited",
+        "sourceInstallationName": "Fawley Refinery",
+        "operatingJurisdiction": "England",
+        "activity": "COMBUSTION_OF_FUELS",
+        "reportedCoveredTco2e2024": 564699,
+        "allocationEntitlementUka2024": 0,
+        "allocationDeliveredUka2024": 0,
+        "nativeCo2Tonnes": null,
+        "corporateGhgScope": null,
+        "actualBankUnits": null,
+        "globalCoveredShare": null
+      },
+      {
+        "installationId": 1000119,
+        "permitId": "UK-E-IN-11402",
+        "operator": "Esso Petroleum Company Limited",
+        "sourceInstallationName": "Esso Petroleum Company Limited",
+        "operatingJurisdiction": "England",
+        "activity": "REFINING_OF_MINERAL_OIL; PRODUCTION_OF_HYDROGEN_AND_SYNTHESIS_GAS",
+        "reportedCoveredTco2e2024": 2505358,
+        "allocationEntitlementUka2024": 1509112,
+        "allocationDeliveredUka2024": 1509112,
+        "nativeCo2Tonnes": null,
+        "corporateGhgScope": null,
+        "actualBankUnits": null,
+        "globalCoveredShare": null,
+        "siteNameLimit": "Registry installation name is generic; do not silently rename this permit Fawley or infer its address from the operator's HQ."
+      }
+    ],
+    "additiveSelectedPermitReportedTco2e": 3070057,
+    "selectedDeliveredUka2024": 1509112,
+    "selectedReportedTonnesMinusDeliveredUnits": 1560945,
+    "differenceBoundary": "Derived annual permit shortage before any bank, purchases or transfers; NOT observed 2024 purchased units, cash expense, payable or full-group net carbon liability.",
+    "excludedChemicalPermit": {
+      "installationId": 1000124,
+      "permitId": "UK-E-IN-11401",
+      "sourceName": "Fawley Chemicals",
+      "operator": "ExxonMobil Chemical Limited",
+      "reason": "Different legal operator; exact FY2024 subsidiary/ownership chain was not identified in captured Exhibit 21. Similar group name is not a substitute for legal linkage.",
+      "globalOrGroupOffsetInferred": false
+    }
+  },
+  "conditionalForwardCalculation": {
+    "observationVsAssumption": "Source observations remain the FY2024 permit emissions/free allocations and FY2024 voting-ownership row. Every price increment, FX coordinate, future bank, allocation, pass-through, cash timing and common-burden choice is explicitly frozen in a separate assumptions object.",
+    "emissions": "Hold selected absolute annual permit-reported tCO2e at FY2024 levels; no invented physical growth, free abatement, Scope 2/3 or native-CO2 conversion.",
+    "unitConvention": "Explicit conditional 1 UKA per reported tCO2e; statutory denomination/covered-gas annex not independently retrieved within the bounded attempt. Do not label the conditional unit convention a new authenticated legal citation.",
+    "price": "Model INCREMENTAL price shocks only. Existing embedded carbon expense/price level is unidentified and is NOT deducted again. GBP1 normalization is a coefficient, not an observed UKA price; GBP25 is a standardized adverse price-increment stress, not an auction forecast.",
+    "priceIndex": "Incremental nominal price follows the retained original operating revenue index solely as a frozen stress-index convention, preserving the original five-year/ten-year fade/2.5-4% terminal; not a causal carbon-price forecast.",
+    "currency": "Native cost GBP; USD conversion requires an explicit future conditional USD/GBP. Unit-normalization uses 1; adverse stresses use 1.25. Neither is reported as an observed dated FX quote.",
+    "banking": "Future opening UNCOMMITTED bank zero is conservative, not an observed account balance. Use bank-first settlement; earmark current obligations for later legal surrender; no speculative allowance sales, terminal bank liquidation or inference from cumulative surrenders.",
+    "allocation": "Future delivered allowances held at actual 2024 units, or zero as adverse sensitivity; no future award or statutory phaseout fabricated.",
+    "cashTiming": "Prospective purchase in emissions year; earmarked units cover later surrender. Uncommitted bank excludes earmarked obligations. This is a cash-purchase convention, not a claim about actual historical purchase/surrender dates.",
+    "passThroughAndTax": "No recovery/no marginal tax shield is conservative. Half recovery with one-year collection lag is a sensitivity, not a source-estimated contract. Recognized recovery, collections and incremental AR are separately reconciled.",
+    "commonBurden": "Full incremental common-cash burden is an explicit conservative prospective assumption for the 100%-voting subsidiary, not an observed equity-emissions ownership allocation or new NCI fact.",
+    "terminalProtection": "Reject integration when positive uncommitted bank would eventually deplete beyond the horizon; never capitalize a temporarily bank-funded zero cost as an infinite terminal exemption.",
+    "fundedIntegration": "Rebuild climate operating cost, recovery revenue/profit, opening/closing AR, collections, CFO and FCFE. Preserve every original fixed-capital/replacement, debt proceeds/repayments, interest, cash tax, non-common reserve, cash reserve and dated stub. Additional recovery does not imply new physical volume; no second debt subtraction or excess-cash release.",
+    "scenarios": [
+      {
+        "id": "unit-gbp-increment-normalization",
+        "incrementGbpPerUka": 1,
+        "conditionalUsdPerGbp": 1,
+        "futureAllocationFraction": 1,
+        "passThroughFraction": 0,
+        "passThroughLagYears": 0,
+        "firstYearGrossIncrementalGbp": 1560945,
+        "firstYearIncrementalCashUsd": -1560945
+      },
+      {
+        "id": "gbp25-increment-no-pass",
+        "incrementGbpPerUka": 25,
+        "conditionalUsdPerGbp": 1.25,
+        "futureAllocationFraction": 1,
+        "passThroughFraction": 0,
+        "passThroughLagYears": 0,
+        "firstYearGrossIncrementalGbp": 39023625,
+        "firstYearIncrementalCashUsd": -48779531.25
+      },
+      {
+        "id": "gbp25-increment-half-pass-lag1",
+        "incrementGbpPerUka": 25,
+        "conditionalUsdPerGbp": 1.25,
+        "futureAllocationFraction": 1,
+        "passThroughFraction": 0.5,
+        "passThroughLagYears": 1,
+        "firstYearGrossIncrementalGbp": 39023625,
+        "firstYearIncrementalCashUsd": -48779531.25
+      },
+      {
+        "id": "gbp25-increment-zero-future-free",
+        "incrementGbpPerUka": 25,
+        "conditionalUsdPerGbp": 1.25,
+        "futureAllocationFraction": 0,
+        "passThroughFraction": 0,
+        "passThroughLagYears": 0,
+        "firstYearGrossIncrementalGbp": 76751425,
+        "firstYearIncrementalCashUsd": -95939281.25
+      }
+    ],
+    "integratedCases": 24,
+    "basis": "Six STORED original XOM source-conditioned/constraint cases at terminal growth 2.5%, 3.25%, 4%, each with four NEW component scenarios",
+    "futureCashRows": 384,
+    "permitAllowanceUnitRows": 768,
+    "originalWholeCompanyQualification": "0/3; twenty-four conditional components are NOT twenty-four qualified original cases",
+    "newReverseScoringPerformed": false,
+    "oldV3V4NegativeNoRootResultsChanged": false,
+    "ccsTariffInvented": false,
+    "hqProxyOrGlobalAverage532AllocationUsed": false
+  },
+  "verification": {
+    "codeOnly": {
+      "command": "npx tsx --test script/xom-climate-liability-case.test.ts",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "privateSourceFilesOrNetwork": false,
+      "coverage": "Synthetic rich-text/offset-header workbook parser and exact legal/permit joins; unit/geography/duplicate rejection; independent bank/purchase unit conservation; independent cost/pass-through/AR/CFO; unpriced terminal-bank depletion rejection; independent original stub/dated PV; labelled allocation/FX sensitivities.",
+      "logSha256": "05886d4e727e2f43c5a91f90979bcb342535ae9e6bdddf275d851063d83c0006"
+    },
+    "assembly": {
+      "command": "npx tsx script/run-xom-climate-liability-case.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "cc482fc6e1b42989254e406143ae9027833231abaec8b02dac8c6bff8d62765e"
+    },
+    "mandatoryPrivatePrimary": {
+      "command": "npx tsx script/validate-xom-climate-liability-private.ts --private-primary",
+      "exitCode": 0,
+      "exactLegalOperators": 1,
+      "exactPermitJoins": 2,
+      "newCaseReplays": 24,
+      "independentCashRows": 384,
+      "allowanceUnitRows": 768,
+      "checks": "Primary/source/code/prior-experiment hashes, native tCO2e definition, exact original legal row and two registry joins; independent source-derived shortage/cash/lagged collection/PV; unchanged replacement, debt, interest, tax and non-common rows; income/AR/revenue-stock identities; zero original qualification and no old rerun/reverse scoring.",
+      "logSha256": "65101f65ab8864a204a70564b4938b380ad0c5dae63077b04893685db8c8d2ef"
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomClimateLiabilityCase.ts script/capture-xom-climate-liability-sources.ts script/run-xom-climate-liability-case.ts script/xom-climate-liability-case.test.ts script/validate-xom-climate-liability-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5Typecheck": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomClimateLiabilityCase.ts",
+      "exitCode": 0,
+      "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logsDirectory": "generated-artifacts/company-operating-corpus/xom-climate-liability-v1",
+    "appWorkflowUiOrFullSuiteRun": false,
+    "rawPrimaryProviderOrPersonalContactDataExported": false
+  },
+  "preciseRemainingFields": [
+    {
+      "scope": "Both selected permits",
+      "field": "Native CO2 gas-specific tonnes and GHG Protocol scope/equity reconciliation",
+      "sourceAttempt": "Actual compliance workbook reports tCO2e, with no gas breakdown or corporate GHG scope/equity field; no conversion invented."
+    },
+    {
+      "scope": "Both selected permits",
+      "field": "Opening/closing uncommitted allowance holdings and actual purchase/transfer prices/dates",
+      "sourceAttempt": "Public operator/allocation and emissions/surrender sheets contain annual delivered units and cumulative surrender/compliance totals, NOT account-bank or facility purchase-price ledgers. Bank zero is only prospective stress."
+    },
+    {
+      "scope": "UK-E-IN-11402",
+      "field": "Specific installation address/site boundary",
+      "sourceAttempt": "Source installation name is Esso Petroleum Company Limited; exact permit/operator and England regulator are known. No Fawley address inferred from HQ or generic name."
+    },
+    {
+      "scope": "UK-E-IN-11401 / ExxonMobil Chemical Limited",
+      "field": "Exact FY2024 legal subsidiary and ownership chain",
+      "sourceAttempt": "Registry legal operator differs from Esso; captured annual Exhibit 21 lacks an exact ExxonMobil Chemical Limited row. Excluded, not merged by similar brand name."
+    },
+    {
+      "scope": "Selected permit policy model",
+      "field": "Captured statutory allowance denomination/covered-gas annex and future free-allocation awards",
+      "sourceAttempt": "Twenty-four-attempt bound reached after authoritative registry and exact Exhibit 21 linkage. One-UKA-per-reported-tCO2e, future allocation and bank assumptions are openly conditional; no current-law certification."
+    },
+    {
+      "scope": "Whole XOM original climate-linked case",
+      "field": "Remaining operating jurisdictions/permits, global coverage fraction and embedded historical carbon expense",
+      "sourceAttempt": "Two exact English permit obligations do not establish all-company carbon coverage or the counterfactual price embedded in original operating margin. No HQ/global-average allocation or blanket completed-case claim."
+    },
+    {
+      "scope": "Market/reference parameters",
+      "field": "Observed dated UKA prices and GBP/USD quote, measured pass-through/tax realization",
+      "sourceAttempt": "Not established within this bounded source pack; prospective stress coordinates and zero-shield/lagged-recovery sensitivities are calculations, not invented observations."
+    }
+  ],
+  "originalClauseProposals": [
+    {
+      "clause": "Use real operating policy geography and legal ownership, not all revenue or HQ/global average",
+      "proposedStatus": "Two exact English registry permit obligations linked by installation/permit/legal operator to FY2024 100%-voting subsidiary; component-ready, NOT global coverage/equity-emissions completion."
+    },
+    {
+      "clause": "Distinguish native CO2/CO2e, covered scope, free allocations and banking",
+      "proposedStatus": "Native reported tCO2e preserved; native CO2/scope/equity/global share explicitly absent. Actual delivered allocations retained; observed bank remains null and future zero-bank assumption labelled."
+    },
+    {
+      "clause": "Full funded original 2.5-4% cash basis and forward conditional assumptions, not invented CCS economics",
+      "proposedStatus": "Twenty-four separately frozen original-range incremental operating-cost integrations reconcile accrual/AR/CFO/FCFE/terminal with unchanged original financing/capital/stub. No CCS tariff and no new reverse/root scoring; qualification stays 0/3."
+    }
+  ],
+  "readyNextEngineeringBlock": "Under a NEW bounded source/version, retrieve the UK permit/gas annex and exact Companies House or issuer legal chain for ExxonMobil Chemical Limited; reconcile group-available free units/banks before expanding parent exposure. Independently source dated GBP UKA/FX only if moving from stress coordinates to an observed-price baseline. Existing module is dependency-ready for those facts; do not mutate v3/v4 or this freeze, infer a global share, or require future observations to calculate labelled scenarios."
+}

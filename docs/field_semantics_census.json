@@ -1087,6 +1087,27 @@
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Identity\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/xom-climate-liability-case.test.ts",
+      "line": 24,
+      "builder": "allocation.addWorksheet",
+      "sheetExpression": "\"Data\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/xom-climate-liability-case.test.ts",
+      "line": 24,
+      "builder": "compliance.addWorksheet",
+      "sheetExpression": "\"Data\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/xom-climate-liability-case.test.ts",
+      "line": 34,
+      "builder": "compliance.addWorksheet",
+      "sheetExpression": "\"Field Categorisation\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     }
   ],
   "displayExpressionInventory": [

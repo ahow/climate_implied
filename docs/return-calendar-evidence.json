@@ -1,0 +1,319 @@
+{
+  "version": "retained-ri-calendar-evidence-2",
+  "recordedAt": "2026-11-11T08:13:48Z",
+  "continuedAt": "2026-11-11T08:21:19Z",
+  "clause": "S15-009",
+  "scope": "Bounded read-only original XLSX request-metadata and fixed-sample provenance inspection. Not a new protocol, resample, provider reconciliation, identity approval or source acceptance.",
+  "privacy": "Only source-request definitions, hashes, locators and aggregate counts are published. No private index levels, sampled identities, company names, individual mismatch coordinates or provider payloads are published.",
+  "originalWorkbook": {
+    "path": "attached_assets/CarbonData2301a_(1)_1770595242257.xlsx",
+    "sha256": "a52105dae0750d3474d0853960733837b580dc4cef2a208152205f9e164b957c",
+    "parts": [
+      {
+        "locator": "xl/workbook.xml: sheets/sheet[@name='RI']; workbookPr",
+        "sha256": "258338b03292c2b63dd69bc361ac9de4d436143345a8866b91cb23e9e92ab31b",
+        "finding": "RI is sheetId 2 / rId2. No date1904=true declaration; XLSX decodes the workbook as the 1900 date system."
+      },
+      {
+        "locator": "xl/_rels/workbook.xml.rels: Relationship[@Id='rId2']",
+        "sha256": "38f5ecfd5b853d0c5e1b6b2feba44e59d2165ad421b55aa394297694fdb67fc1",
+        "finding": "RI relationship points to worksheets/sheet2.xml."
+      },
+      {
+        "locator": "xl/worksheets/_rels/sheet2.xml.rels: comments and customProperty relationships",
+        "sha256": "e0e65a7f6093c38776e285f728a1599bff0c83d138ce570e0fd4312945356767",
+        "finding": "RI relationships explicitly point to comments2.xml and customProperty2.bin."
+      },
+      {
+        "locator": "xl/worksheets/sheet2.xml: dimension; sheetData/row/c[@r='A1']/f; A2:A194; row 1",
+        "sha256": "88fc66ba725bff55067582b4b99988d2f950ef183d8734d6617e49734dc23320",
+        "finding": "A1:COY194. Single retained _xll.DSGRID request; datatype expression X(RI)~U$, start 2010, empty requested end, frequency M. MonthlyTSFormat=true, YearlyTSFormat=false, QuarterlyTSFormat=false, TimeSeriesList=true, RowHeader=true, ColHeader=true, DispSeriesDescription=true. Cached series are values, not 193 rows of dividend/split/FX calculation formulas."
+      },
+      {
+        "locator": "xl/comments2.xml: comment[@ref='A1']/text",
+        "sha256": "3ed046e4c52a415bedad5372920ccd7d10213f92f61f1cd8effe2cf0ad144cdb",
+        "finding": "Original =DSGRID comment independently corroborates request expression, monthly frequency, unspecified end and options. Private list identifier is not reproduced."
+      },
+      {
+        "locator": "xl/customProperty2.bin: UTF-16LE JSON request key and output range",
+        "sha256": "4db7b32c2a2939a741d7551f22740b50f9c9677140c61e5264544782985ac9a9",
+        "finding": "Corroborates the same DSGRID request; retained output range is $B$1:$COY$1,$A$2:$COY$194."
+      },
+      {
+        "locator": "xl/styles.xml: cellXfs/xf at zero-based index 2",
+        "sha256": "4b50024d4c2c01b0eae6ff853e49ef9ad29271efdef68561d3c796d4c995ad7b",
+        "finding": "Date style uses numFmtId 14; A2:A194 decode as numeric Excel dates formatted m/d/yy."
+      },
+      {
+        "locator": "xl/volatileDependencies.xml: volType[@type='realTimeData']/main",
+        "sha256": "ac697dbbc9d5aa0d8f184d63bcb8ae5c5697be6c30378318d31a4b7bdde3f0e1",
+        "finding": "Provider shim is refinitivshim.rtdserver.dsgrid. RI A1 is included in the RTD dependencies."
+      }
+    ],
+    "standardConnectionParts": {
+      "inspection": "ZIP entry enumeration for connections, queryTables and externalLinks",
+      "count": 0,
+      "interpretation": "No standard connection parts; provider provenance instead survives in DSGRID formula, comment, custom-property and RTD metadata. Absence of standard connections is not absence of a provider request."
+    }
+  },
+  "sourceDerivedConventions": {
+    "calendarEncoding": "1900-system integer Excel serial dates. Explicit UTC calendar decoding preserves the written labels; no local-time roll or trading-date adjustment.",
+    "frequency": "Monthly request M, not daily observations or month-end observations.",
+    "dateLabels": {
+      "count": 193,
+      "first": "2010-01-22",
+      "last": "2026-01-22",
+      "dayOfMonth": 22,
+      "weekendLabelCount": 54
+    },
+    "returnDatatype": "Requested RI; 2441 of 2442 cached series headers end in TOT RETURN IND; one does not have that suffix. This is a type label, not an adjustment methodology.",
+    "currency": "Original expression explicitly requests X(RI)~U$. The adapter retains the exact U$ token rather than stripping the currency expression or defaulting to a local-currency price return. This receipt does not certify an FX fixing/direction, historical listing currency, or numerical conversion.",
+    "actualTradingCalendarRule": "Unresolved. Monthly labels and weekend labels alone do not establish previous-business-day, next-business-day, stale/carry-forward, exchange holiday or common-calendar treatment.",
+    "actualRiAdjustmentAndDividendRule": "Unresolved. No retained RI formula supplies gross/net withholding, ordinary/special dividend treatment, reinvestment date/price, split adjustment or same-day action basis.",
+    "publisherDocumentation": {
+      "used": true,
+      "retainedCaptureRequests": 5,
+      "publicDocuments": 3,
+      "loginRedirectsNotFollowedDuringRetainedCapture": 1,
+      "missingPaths": 1,
+      "captureManifest": "generated-artifacts/return-calendar-source/publisher/capture.json",
+      "captureManifestSha256": "0d775b931eadd346347fa57173fefa7333e0db52a5303ec337b13f9c15f1f6ee",
+      "acquisitionScript": "script/capture-return-publisher-docs.ts",
+      "acquisitionScriptSha256": "f820624500db7185b078d5b511951ef8d1b641262ba1c8af961f7d0697fb06e4",
+      "discoveryScope": "Additional unauthenticated GET navigation of the publisher DSWS documentation, linked Functions Help TOC, currency-code page, frequency/date pages, developer catalog and linked DSWS Python guide. Retained five-request capture below is fully counted; discovery redirects were not comprehensively instrumented and are not represented as a complete network-request count. No nonpublisher search result is used as evidence.",
+      "documents": [
+        {
+          "url": "https://product.datastream.com/navigator/AdvanceHelpFiles/Functions/WebHelp/Actual_dates.htm",
+          "capturedAt": "2026-11-11T08:20:37.843Z",
+          "httpStatus": 200,
+          "path": "generated-artifacts/return-calendar-source/publisher/actual-dates.html",
+          "sha256": "6cdca20f67a6e90526a57375bf812966bc527415bced13b49bdee558142428a5",
+          "locator": "h1 Actual dates; function-date definition paragraph; final Note paragraph",
+          "finding": "Publisher defines actual start/end dates FOR A FUNCTION and says a Saturday/Sunday actual date uses the previous Friday.",
+          "applicability": "Not established for the retained raw X(RI)~U$ DSGRID monthly request, which contains no AVG#/MAV# or other dated function. This scoped function-parameter rule is NOT a license to substitute Friday for any of the 24 sampled weekend-boundary intervals."
+        },
+        {
+          "url": "https://product.datastream.com/navigator/AdvanceHelpFiles/Functions/WebHelp/Currency_code_EC.htm",
+          "capturedAt": "2026-11-11T08:20:38.415Z",
+          "httpStatus": 200,
+          "path": "generated-artifacts/return-calendar-source/publisher/currency-code.html",
+          "sha256": "0240ea663bf39fb9e3d209d1b18a1d7c3a7e374dffca8f9c983aba27e7f96b05",
+          "locator": "h1 Currency code (EC#); Primary/secondary Indicator definitions; final EC#(U:KO) example table",
+          "finding": "Publisher explicitly distinguishes primary price currency from secondary dividend currency and displays U$ as a non-euro series price-currency code in the final example.",
+          "applicability": "Corroborates U$ as a publisher currency token, and that dividend and price currencies can differ. Does not explicitly define the tilde conversion operator, spell out a complete U$ currency-code dictionary, establish historical FX fixing/direction or give RI conversion/reinvestment treatment. These remain unresolved; no numerical currency adapter is added."
+        },
+        {
+          "url": "https://product.datastream.com/navigator/AdvanceHelpFiles/Functions/WebHelp/Calculation_and_Request_Frequency.htm",
+          "capturedAt": "2026-11-11T08:20:39.647Z",
+          "httpStatus": 200,
+          "path": "generated-artifacts/return-calendar-source/publisher/request-frequency.html",
+          "sha256": "6f34a2184eba802caa17c5d3060cdedc6715187e2850e5eb7a21460ba868266e",
+          "locator": "h1 Calculation and Request Frequency; non-nested and nested function paragraphs",
+          "finding": "Function calculation frequency can differ from request frequency.",
+          "applicability": "No raw DSGRID monthly weekend/holiday adjustment rule or retained RI dividend, split or FX methodology is supplied."
+        },
+        {
+          "url": "https://product.datastream.com/browse/search.aspx?dt=true",
+          "capturedAt": "2026-11-11T08:20:39.746Z",
+          "httpStatus": 302,
+          "path": "generated-artifacts/return-calendar-source/publisher/datatype-access.html",
+          "sha256": "6bbb1a6faa0ade59f8134b2db70103c9b317368a82b0180f40423facbcdecba6",
+          "finding": "Publisher's linked datatype browser redirects to DSLogon.aspx. Retained capture deliberately does not follow redirect. Earlier discovery showed a Datastream Login form; no credentials were supplied and no login was submitted.",
+          "failure": "Applicable RI datatype dictionary/methodology could not be inspected through this public route. Gross/net, ordinary/special dividend, split, reinvestment and FX origins remain missing."
+        },
+        {
+          "url": "https://product.datastream.com/dswsclient/Docs/AboutDSWS.htm",
+          "capturedAt": "2026-11-11T08:20:39.845Z",
+          "httpStatus": 404,
+          "path": "generated-artifacts/return-calendar-source/publisher/legacy-doc-path.html",
+          "sha256": "dc1d54dab6ec8c00f70137927504e4f222c8395f10760b6beecfcfa94e08249f",
+          "failure": "Legacy guessed documentation path does not exist; no convention inferred from it."
+        }
+      ],
+      "conclusion": "Primary publisher material provides scoped context, but does not close the actual retained-request conventions. Unknown applicability is explicit unavailability, not a nearest-date/default-FX rule."
+    }
+  },
+  "ingestionAndArchiveProvenance": {
+    "ingestionPath": "server/climateValuation/dataProcessor.ts",
+    "ingestionSha256": "264a7cd799b828d4a03dea1b94a25ec5477611021c60118cf711f62345ce7eb3",
+    "locators": [
+      "excelSerialToDate and parseDateValue",
+      "parseAndPrepare: Descriptive Type/NAME mapping",
+      "generateTimeSeriesStreaming: RI header extractCompanyName mapping and totalReturnIndex assignment"
+    ],
+    "finding": "The inspected ingestion source uses the Excel epoch via local Date construction, maps original workbook names to Descriptive ISINs, and assigns RI cell values directly. It contains no RI-specific weekend remapping, cash-dividend reinvestment, split adjustment or FX transformation. Current source inspection is not proof of the historical importer version/timezone. UTC source-calendar decoding is not used to relabel the frozen archive.",
+    "recovery": {
+      "manifest": "generated-artifacts/recovery/20261109/manifest.json",
+      "manifestSha256": "9c5d7577aab5f4687e1a03e533a2527f57821928a8e85b3889d60e712ad6a7ef",
+      "companies": "generated-artifacts/recovery/20261109/cv_companies.jsonl",
+      "companiesSha256": "366003ba6208085b38141cb4ff6d063626d654cc53a6fff2cc7ad8fd0e3374fc",
+      "companyRows": 2442,
+      "observations": "generated-artifacts/recovery/20261109/cv_time_series.jsonl",
+      "observationsSha256": "be7083676a38f01f30674a22cb502b04ef0ae3618b9e3573d86b2c95ee271898",
+      "observationRows": 470341,
+      "scope": "Retained development analytical rows, not original-publication-vintage proof."
+    },
+    "fixedBoundaryCheck": {
+      "method": "Exact retained Descriptive ISIN -> original NAME -> original RI header mapping; require unique mappings. Exact date labels only. Read every requested boundary privately; no current ticker join.",
+      "requestedBoundaryCells": 100,
+      "uniqueRequestedBoundaryCells": 100,
+      "exactOriginalXlsxMatches": 99,
+      "originalXlsxMismatches": 1,
+      "exactRecoveryArchiveMatches": 100,
+      "ambiguousOriginalNameMappings": 0,
+      "missingOriginalBoundaryCells": 0,
+      "interpretation": "One frozen/recovery boundary differs from the retained XLSX. The difference is now reproduced through PostgreSQL real encoding/text decoding, as detailed below; it is not repaired or rounded into acceptance. All 100 frozen boundary levels exactly match the retained recovery rows. The original workbook is still not represented as an exact numerical copy of the frozen dataset."
+    },
+    "oneBoundaryPrecisionLineage": {
+      "privateReceipt": "generated-artifacts/return-calendar-source/boundary-lineage-private.json",
+      "privateReceiptSha256": "df117710b63081b6cad89440c44e9ee33611574144350fc06948ebfa0e3244e9",
+      "privateContents": "Exact original coordinate, ISIN/date, OOXML lexical/numeric levels, recovery row, current DB text/binary proof, immutable selected row and header. Not reproduced publicly.",
+      "sourceCellType": "n",
+      "sourceFormulaAtMismatch": false,
+      "originalLexicalDecimalPlaces": 11,
+      "ooxmlLexicalToNumberExact": true,
+      "numericIngestionConversion": "sanitizeNumeric's number branch returns the parsed number unchanged; no RI rounding operation is present in the inspected importer.",
+      "currentDatabaseType": "real / float4",
+      "currentExtraFloatDigits": "1",
+      "readOnlyTransaction": "BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY; SELECT only; ROLLBACK",
+      "exactDifferenceFrozenMinusOriginalLexical": "0.00999999998",
+      "binary64SubtractionFrozenMinusOriginal": 0.009999999951105565,
+      "sourceAndFrozenMapToSameBinary32": true,
+      "originalLexicalCastToPostgresRealTextEqualsFrozen": true,
+      "originalLexicalCastToPostgresRealBitsEqualCurrentStoredBits": true,
+      "currentStoredBinary32WidenedToBinary64EqualsMathFroundOriginal": true,
+      "currentStoredRealTextEqualsFrozen": true,
+      "immutableSelectedJsonbRowEqualsFrozen": true,
+      "recoverySelectedRowEqualsFrozen": true,
+      "observedEncodingPath": "Original OOXML lexical -> Number -> PostgreSQL real (IEEE binary32) -> shortest round-trip decimal text -> JavaScript Number -> JSONB immutable row / recovery JSONL / frozen JSON.",
+      "interpretation": "The observed precision difference is exactly reproducible by the inspected real-column conversion/text path and shares identical binary32 bits. JSONB/recovery preserve the frozen numeric text, not the original OOXML lexeme. This explains representational consistency; it does not prove the historical ingestion version/configuration, original extraction vintage, or byte-for-byte XLSX origin.",
+      "immutableSnapshot": {
+        "id": "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+        "createdAt": "2026-11-08T12:07:22.840Z",
+        "sourceUploadId": null,
+        "chunkCount": 238,
+        "companyCount": 2442,
+        "observationCount": 470341,
+        "sourceNoteMeaning": "Captured from existing revised workbook database; stored precision retained, original source precision/publication vintages not reconstructed.",
+        "inspectionScope": "Exact snapshot header and the single mismatch row in its stored JSONB chunk selected READ ONLY. Complete 238-chunk rehash was not performed or claimed in this continuation."
+      },
+      "codeOrigins": [
+        {
+          "path": "shared/schema.ts",
+          "sha256": "cdac5c19e325d4af3f9c3852b5df61dac9afd0ad0dd4896ec4c8c1687ceb402e",
+          "locator": "cvTimeSeries.totalReturnIndex real('total_return_index')"
+        },
+        {
+          "path": "server/snapshots/contract.ts",
+          "sha256": "f371dc33bd84612432bc930a81e9796294e8436c3347b9ec298ba7eb1c3e8127",
+          "locator": "packDataset: row spread, date normalization and chunk canonical hash; no RI-value repair"
+        },
+        {
+          "path": "server/snapshots/store.ts",
+          "sha256": "916d962f691d263400f1a80872b32d708016efb8bb95109d7de110e28ed6ef8c",
+          "locator": "captureCurrentWorkbook and persist: source note, row capture and chunks"
+        },
+        {
+          "path": "script/prepare-return-quality-sample.ts",
+          "sha256": "ba30d3e9d74191e2c8d2816a296a2d0fe335b6c0025598da9bb12b7e8eef253f",
+          "locator": "loadSnapshot -> observation totalReturnIndex -> deterministic sampler"
+        }
+      ],
+      "stillMissingOrigins": [
+        "No source_upload_id ties this immutable snapshot to an original workbook upload record.",
+        "No original publisher response/extraction-vintage certificate or historical importer version/timezone/extra_float_digits receipt was found.",
+        "Current DB cast equivalence and stored snapshot row agreement are not a retrospective ingestion audit or permission to overwrite original/frozen values."
+      ],
+      "repairsOrQualificationChanges": 0
+    }
+  },
+  "immutableInputs": {
+    "protocol": {
+      "path": "docs/Return_Quality_Protocol.json",
+      "fileSha256": "7aa80134ce0bf68ba39d9404eaac0b7be75ffbc98556df51fe71128870b144bd",
+      "existingCanonicalProtocolHash": "1cff730fd30647e4bc10de0371353ab7f6a265a51d72f66436a008a7b37d6052"
+    },
+    "artifactPrefix": "generated-artifacts/return-quality/1cff730fd30647e4bc10de0371353ab7f6a265a51d72f66436a008a7b37d6052-271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+    "freezeFileSha256": "53a28b0c646b44aa52c3ff481608672da2cc1e44b6e5fc3b6e0bfc6f40848f6d",
+    "sampleFileSha256": "11b547394d1e29a27ee585c862ff91665c411f8a54457c92e7d077ea8bce5b2b",
+    "identityAttemptFileSha256": "89829a17e9bf35f6ecdbbae2261db94459da05a4e7f7a29047b25dd3bdd8269d",
+    "frozenReturnQualityCodeSha256": "e95bd0bf9552e3814454db7b94ed76f109c3e3a382340bc599ce68b30ce1e4ed",
+    "requested": 50,
+    "frozenPopulation": 411339,
+    "boundaryLabelsOnDay22": 100,
+    "intervalsWithWeekendBoundary": 24,
+    "modified": false
+  },
+  "implementation": {
+    "adapter": "server/calculation/returnQualitySourceConvention.ts",
+    "adapterSha256": "5ea825be16f193f1beb2dc18981931549af580b6bc1813488d2e1b233e063141",
+    "tests": "script/return-quality-source-convention.test.ts",
+    "testsSha256": "0a78b53cbce17b1fd000ac809ff34cf1eb3e8e4d8b2f52afd79d6c03ea9ef14c",
+    "mandatoryPrivateValidator": "script/validate-return-calendar-private.ts",
+    "mandatoryPrivateValidatorSha256": "e861591fd7625edd38a5126cbb7f1ba69ca2a23270647078fefc4a8839ea15a3",
+    "behavior": "Strict, standalone metadata/date adapter requiring corroborating formula/comment/custom-property and explicit date system. Unsupported request, currency, options, metadata disagreement, invalid serials or changed population throws. Preserves weekend labels and currency token; always reports reconstruction unavailable pending unresolved methodology and review. No integration into or modification of frozen arithmetic/protocol.",
+    "commandsExecuted": [
+      {
+        "command": "unzip -l 'attached_assets/CarbonData2301a_(1)_1770595242257.xlsx'",
+        "purpose": "Enumerate retained OOXML parts."
+      },
+      {
+        "command": "npx tsx --test script/return-quality-source-convention.test.ts",
+        "result": "4 tests passed; 0 failed; 0 skipped. Synthetic source metadata only."
+      },
+      {
+        "command": "npx tsx script/validate-return-calendar-private.ts",
+        "result": "Historical initial implementation passed pinned private source assertions before this continuation. Current validator requires explicit --read-only-db; use the new command below, not this old invocation."
+      },
+      {
+        "command": "npx tsc --noEmit --pretty false 2>&1 | head -50",
+        "result": "No TypeScript diagnostics emitted."
+      },
+      {
+        "command": "npx tsx script/capture-return-publisher-docs.ts",
+        "result": "Five public documentation captures retained: 3 HTTP 200 documents, 1 HTTP 302 login redirect deliberately not followed, 1 HTTP 404 path. No provider-data API or paid calls."
+      },
+      {
+        "command": "npx tsx script/validate-return-calendar-private.ts --read-only-db --retain-private",
+        "result": "Changed validator passed and retained a new mode-0600 private lineage receipt; exact source/frozen lexical difference and DB binary32/text/immutable/recovery agreement established. Never mutates the retained source/archive."
+      },
+      {
+        "command": "npx tsx script/validate-return-calendar-private.ts --read-only-db",
+        "result": "Final changed validator passed all source/precision-lineage, pinned private-receipt and 5 pinned publisher-capture assertions. 0 computed, 0 qualified, 50 unavailable, 0 approvals. Function weekend rule remains inapplicable/unresolved for raw monthly labels."
+      },
+      {
+        "command": "npx tsc --noEmit --skipLibCheck --target es2022 --module esnext --moduleResolution bundler --esModuleInterop script/validate-return-calendar-private.ts script/capture-return-publisher-docs.ts",
+        "result": "Exit 0; no diagnostics. Checks changed scripts directly; old focused tests were not rerun because their adapter/tests did not change."
+      }
+    ],
+    "reproduction": "Run npx tsx script/validate-return-calendar-private.ts --read-only-db with retained XLSX, frozen artifacts, recovery rows, pinned private-lineage receipt, pinned publisher captures and development DATABASE_URL present. Missing/changed private source or DB origin is a hard failure, not a skip. The historical --retain-private capture flag used exclusive creation; do not regenerate or overwrite the now-pinned receipt. Success confirms bounded findings only."
+  },
+  "result": {
+    "computedReturns": 0,
+    "qualifiedReturns": 0,
+    "unavailableReturns": 50,
+    "numericalBreakRate": null,
+    "materialBreakRate": null,
+    "approvals": 0,
+    "sourceAcceptance": false,
+    "residuals": [
+      "Obtain applicable original publisher rules tying M / empty-end monthly labels to actual valuation dates, including exchange holidays and weekend labels; do not infer nearest close.",
+      "Establish applicable RI adjustment, gross/net dividend/tax, reinvestment and split conventions with source-derived methodology.",
+      "Establish requested currency semantics and exact historical FX conversion/fixing and listing currencies; no default FX.",
+      "The one boundary mismatch is reproduced as real-column/text representational encoding, not repaired or accepted as a return comparison. Original upload linkage, publisher extraction vintage and historical ingestion configuration remain unproven.",
+      "Historical listing identity and independent review remain unresolved; 50 current ISIN candidates are not 50 qualified observations."
+    ]
+  },
+  "prohibitedActionsTaken": {
+    "databaseReadOnlyAccess": true,
+    "databaseMutations": false,
+    "ddl": false,
+    "providerCalls": false,
+    "paidCalls": false,
+    "approvals": false,
+    "commitsOrPublishing": false,
+    "callbacksOrWorkflows": false,
+    "canonicalLedgerEdits": false,
+    "frozenSampleProtocolOrGateEdits": false
+  }
+}

@@ -51,6 +51,9 @@ def main():
         except subprocess.TimeoutExpired:
             code = 124
             handle.write("\nEvidence runner: command timed out; no completion claimed.\n")
+        except OSError as error:
+            code = 127
+            handle.write(f"\nEvidence runner: command launch failed ({type(error).__name__}); no completion claimed.\n")
     text = log.read_text()
     entry = {
         "command": command, "executed_at": started.isoformat(), "exit_code": code,

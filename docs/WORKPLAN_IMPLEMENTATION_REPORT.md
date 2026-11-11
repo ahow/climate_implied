@@ -1,3 +1,28 @@
+# Latest verified state — recovery on 2026-11-11
+
+**39 verified engineering criteria /259 partial /2 provisioning-blocked /0 unreconciled. All300 original clauses retained; completion and efficacy are NOT established.**
+
+Served GitHub revision `d578715438eb2c84dcaee518e2a0363419aed4ee`,
+CI `42925352694` success, Railway `02d48bbd-282a-42b6-8e84-8272c7219f00` success,
+build-info and health verified. This is the later documentation revision of
+implementation `274440b5`; new local recovery scripts are separately recorded.
+
+Latest coherent implementation checks: **521 public TypeScript tests and128 public Python tests**;
+new mandatory private policy tests and issuer/355 pinned assertions passed separately.
+The earlier482+4 /117+4 and484/121 receipts below are historical, not current totals.
+
+Original semantics1000/1001 remain; no original closure from supplemental definitions.
+Original issuer qualification0/3. V4 operating reverse:7 certified no-root outcomes,
+5 nonpositive-terminal bracket refusals,6 unsupported NEE-driver refusals.
+Actual historical GMST attribution remains unavailable; policy exposure is descriptive only.
+The fixed50-return sample has50 exact-ISIN candidates,24 weekend-boundary intervals,
+and0 qualified return comparisons. No source/owner/scientific approval is inferred.
+
+**Reading note:** older dated sections below are preserved history. They do not
+override this headline, current_release in the JSON ledger, or later dated evidence.
+
+---
+
 # Workplan implementation report
 
 ## Clause-complete reconciliation and implementation — 2026-11-10
@@ -2155,3 +2180,89 @@ Evidence: `docs/Return_Quality_Protocol.json`; changed: `server/calculation/retu
 
 Context limit after recovered release, substantive parallel implementation/studies, integrated checks and verified new gated release; ready work remains, not completion.
 Originalcoverage1000/1001 unchanged;1703definitions/current1323/1324/expanded1484/1485 are supplemental, not originalclosure.39verified259partial2blocked0unreconciled;0/3qualifiedoriginalissuer cases and efficacy withheld. Independent owner/audit acceptance unclaimed.
+
+## Terminal recovery investigation
+
+{
+  "recordedAt": "2026-11-11T08:11:09.798689+00:00",
+  "recovery": "Workspace03988d8 and published/runtime d578715438eb2c84dcaee518e2a0363419aed4ee verified; health200. Published implementation274440b5 passed CI42924327747 and Railway8b3f1d05; d5787154 is its later documentation revision, now served.",
+  "errors": "Recorded prior recoverable failures: missing explicit private-validator flag; receipt helper list/dict TypeError; identity-attempt console canonicalization of undefined fields AFTER50 responses saved. All were corrected. Available logs do NOT establish cause of platform Agent ran into an error or prove that platform termination is catchable. No terminal callback had been executed before interruption.",
+  "changes": [
+    "script/workplan-evidence-run.py: retain OSError launch failure as127 with log",
+    "script/terminal_cleanup.py: persist state before final operation and in finally before existing handoff",
+    "script/workplan-terminal.py: explicitly opted-in true-end wrapper, no watchdog or automatic active-work callback",
+    "script/test_terminal_cleanup.py:4passing offline tests, no network callback"
+  ],
+  "tests": "python -m unittest discover -s script -p test_terminal_cleanup.py:4passed/0failed; no unchanged scientific studies rerun",
+  "limits": "Cannot catch SIGKILL, sandbox loss or platform crashes. Persistence failure prevents a handoff claiming saved evidence. Existing sender remains idempotent; HTTP202 is not listener matching.",
+  "scope": "Recovery is not completion. Continue exact original work from retained v3/v4/source/frequency evidence; no new tasks or schedules. Explicit terminal cleanup is used only at true run end."
+}
+
+## Calendar provenance, incremental liability and cleanup integration
+
+{
+  "recordedAt": "2026-11-11T08:47:35.288184+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-return-calendar-private.ts --read-only-db && npx tsx script/validate-xom-climate-liability-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T08:40:03.088977+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 137.761,
+    "counts": {
+      "tests": 521,
+      "pass": 521,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T084003088977Z.log",
+    "workspace_revision": "8b566b01b1fffc04e6f4029c33a7c87435e055c0",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "changedPaths": [
+    ".agents/memory/continuation-contract.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/field_semantics_census.json",
+    "docs/return-calendar-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "docs/xom-climate-liability-evidence.json",
+    "script/capture-return-publisher-docs.ts",
+    "script/capture-xom-climate-liability-sources.ts",
+    "script/record-calendar-liability.py",
+    "script/return-quality-source-convention.test.ts",
+    "script/run-xom-climate-liability-case.ts",
+    "script/test_terminal_cleanup.py",
+    "script/validate-return-calendar-private.ts",
+    "script/validate-xom-climate-liability-private.ts",
+    "script/workplan-terminal.py",
+    "script/xom-climate-liability-case.test.ts",
+    "server/calculation/returnQualitySourceConvention.ts",
+    "server/calculation/xomClimateLiabilityCase.ts"
+  ],
+  "counts": "521publicTS/0fail/0skip;128publicPython passed; both new mandatoryprivate validators passed; typecheck/build passed.",
+  "initialFailure": "519/521 TS: stale census inventory for three new XLSX test-fixture sheets. Regenerated inventory only; no original denominator/strict-gate change.",
+  "coverage": "Original1000/1001 unchanged;1703definitions,current1323/1324,expanded1484/1485;4aliases/27withheld separate.",
+  "status": "39verified259partial2provisioning-blocked0unreconciled;0/3qualified original issuers;0/50qualified return comparisons. No scientific acceptance or production activation.",
+  "handoff": "Explicit terminal-only wrapper saves before operation and before existing idempotent callback;5offline cleanup tests and6existing handoff tests. Process/platform death remains uncatchable/unproven. No callback sent during work."
+}
+
+### S01-001, S15-009
+Established original M/empty-end/X(RI)~U$ formula metadata and retained day22 labels; no inferred trading-date/FX/dividend methodology. Reproduced one mismatch through PostgreSQL real/text representation in read-only transaction; not historical importer proof.
+
+99/100 original XLSX boundaries exactly equal;100/100 immutable/recovery boundaries equal; original/frozen discrepant numbers share binary32 bits.0/50qualified comparisons; no repairs, date substitution or break-rate claim.
+
+Next: Obtain applicable licensed publisher RI/calendar/FX/dividend/adjustment methodology and original upload/import linkage, then exact historical listing/source reconstruction; preserve fixed50 and raw bytes.
+
+Evidence: `docs/return-calendar-evidence.json`; paths: `server/calculation/returnQualitySourceConvention.ts`, `script/validate-return-calendar-private.ts`, `script/return-quality-source-convention.test.ts`, `script/capture-return-publisher-docs.ts`
+
+### S12-001
+Added source-bound permit/legal liability component integrated as incremental expense/recovery/AR/CFO/FCFE only; no second subtraction of unidentified embedded baseline carbon expense.
+
+Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases.
+
+Next: Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings.
+
+Evidence: `docs/xom-climate-liability-evidence.json`; paths: `server/calculation/xomClimateLiabilityCase.ts`, `script/run-xom-climate-liability-case.ts`, `script/validate-xom-climate-liability-private.ts`, `script/xom-climate-liability-case.test.ts`, `script/capture-xom-climate-liability-sources.ts`
