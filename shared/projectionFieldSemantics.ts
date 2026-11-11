@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 const common={
   source:"/api/projection; legacyContext, forwardProjection and historicalTrajectoryMetrics; source/config hashes identify retained code, not scientific validation",
@@ -82,7 +83,7 @@ const summaries:Spec[]=[
     `${temperature}; round(count(T<=grid)/N,4)`,["temperatureDistribution.pdf[].temperature","calculation.seeds.temperaturePdf"]],
   ["metrics.reductionRate","Ten-year compound reduction of annual median emissions","Output","percent/year","100*(1-(trajectory[10].p50/trajectory[0].p50)^(1/10))",["emissionsTrajectory[].p50"]],
   ["metrics.temperatureRise","Alias of legacy median temperature","Output","°C","temperatureDistribution.median",["temperatureDistribution.median"]],
-  ["metrics.netZeroYear","First median5Gt threshold year; NOT net zero despite legacy name","Output","calendar year or null","first year with trajectory.p50<=5, else null",["emissionsTrajectory[].year","emissionsTrajectory[].p50"]],
+  ["metrics.netZeroYear",FIXED_5GT_DESCRIPTOR.label,"Output","calendar year or null","first year with trajectory.p50<=5, else null",["emissionsTrajectory[].year","emissionsTrajectory[].p50"]],
   ["metrics.emissionsStart","First simulated annual median emissions","Output","GtCO2e/year","trajectory[0].p50",["emissionsTrajectory[].p50"]],
   ["metrics.emissionsDecadeLater","Annual median emissions ten years after start","Output","GtCO2e/year","trajectory[10].p50",["emissionsTrajectory[].p50"]],
   ["metrics.emissions2100","Final simulated annual median emissions","Output","GtCO2e/year","trajectory[last].p50",["emissionsTrajectory[].p50"]],
@@ -91,4 +92,5 @@ export const projectionFieldSemantics:OutputFieldSemantic[]=[
   ...metadata,
   ...inputSpecs.map(([key,meaning,unit,formula]):Spec=>[`indicators.${key}`,meaning,"Input",unit,formula,["latest resolved input row","calculation.scenario"]]),
   ...trajectory,...summaries,
-].map(([key,meaning,role,unit,formula,dependencies])=>({id:`projection.${key}`,meaning,role,unit,formula,dependencies,...common}));
+].map(([key,meaning,role,unit,formula,dependencies])=>({id:`projection.${key}`,meaning,role,unit,formula,dependencies,...common,
+  ...(key==="metrics.netZeroYear"?{scope:`${FIXED_5GT_DESCRIPTOR.description} ${common.scope}`}:{})}));

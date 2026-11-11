@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { THRESHOLD_DIAGNOSTIC_LABEL, THRESHOLD_DIAGNOSTIC_VERSION } from "./thresholdDiagnostic";
 
@@ -54,7 +55,7 @@ thresholdDiagnosticSemantics.push({
 });
 for (const [field, meaning, unit, formula] of [
   ["version", "Version of separate fixed5Gt comparator", "version identifier", "fixed-5gt-v1"],
-  ["year", "Separate fixed5Gt crossing year; legacy netZeroYear compatibility alias", "calendar year or null", "first annual p50<=5, else null at selected horizon; NOT5% or net zero"],
+  ["year", FIXED_5GT_DESCRIPTOR.label, "calendar year or null", "first annual p50<=5, else null at selected horizon; NOT5% or net zero"],
   ["thresholdValue", "Separate fixed5Gt constant, not percentage", "GtCO2e legacy unreconciled", "5"],
   ["unit", "Legacy comparator emissions reporting unit", "unit identifier", "GtCO2e; unspecified legacy GWP"],
   ["notNetZero", "Explicit legacy residual versus physical zero separation", "boolean", "true"],

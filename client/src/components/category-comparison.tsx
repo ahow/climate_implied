@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Zap, Shield, Building2, Users } from "lucide-react";
@@ -60,7 +61,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
     Category: c.categoryName,
     "Temperature (\u00B0C)": c.temperatureRise,
     "Reduction Rate (%/yr)": c.reductionRate,
-    "Legacy fixed-5gt-v1 year (5 GtCO2e)": c.netZeroYear,
+    [FIXED_5GT_DESCRIPTOR.label]: c.netZeroYear,
     [THRESHOLD_DIAGNOSTIC_LABEL]: c.thresholdDiagnostic?.year ?? null,
     "5% diagnostic status": c.thresholdDiagnostic?.status ?? "withheld",
   }));
@@ -81,11 +82,12 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
           filename="category-scenario-analysis"
           sheetName="Category Scenarios"
           rows={downloadRows}
+          interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
             Category:{id:"category.categoryName",transform:"Identity"},
             "Temperature (\u00B0C)":{id:"category.temperatureRise",transform:"Identity"},
             "Reduction Rate (%/yr)":{id:"category.reductionRate",transform:"Identity"},
-            "Legacy fixed-5gt-v1 year (5 GtCO2e)":{id:"category.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
+            [FIXED_5GT_DESCRIPTOR.label]:{id:"category.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
             [THRESHOLD_DIAGNOSTIC_LABEL]:{id:"category.thresholdDiagnostic.year",transform:"Identity; null preserved; not fixed 5 Gt"},
             "5% diagnostic status":{id:"category.thresholdDiagnostic.status",transform:"Identity; missing archived diagnostic -> withheld"},
           }}
@@ -133,7 +135,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
                   </span>
                 </div>
                 <ThresholdDiagnosticDetails diagnostic={cat.thresholdDiagnostic} contextLabel={cat.categoryName} />
-                <p className="text-xs text-muted-foreground">Separate legacy fixed-5gt-v1: {cat.netZeroYear === undefined ? "Unavailable — not returned" : cat.netZeroYear === null ? "Not reached within trajectory horizon" : cat.netZeroYear}; not net zero.</p>
+                <p className="text-xs text-muted-foreground" title={FIXED_5GT_DESCRIPTOR.description}>{FIXED_5GT_DESCRIPTOR.label}: {cat.netZeroYear === undefined ? "Unavailable — not returned" : cat.netZeroYear === null ? "Not reached within trajectory horizon" : cat.netZeroYear}; not net zero.</p>
                 {![cat.temperatureRise, cat.reductionRate].every(value => typeof value === "number" && Number.isFinite(value)) &&
                   <p role="status" className="text-xs text-muted-foreground">This category has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}
               </div>

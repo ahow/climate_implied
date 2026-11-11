@@ -39,7 +39,8 @@ test("default dashboard mounts no legacy model consumers; diagnostics require ex
   assert.match(read("server/calculation/thresholdDiagnostic.ts"), /const thresholdValue = 0\.05 \* baseline\.value/);
   const gauge = read("client/src/components/temperature-gauge.tsx");
   assert.match(gauge, /THRESHOLD_DIAGNOSTIC_LABEL/);
-  assert.match(gauge, /Separate legacy diagnostic \(fixed-5gt-v1\)/);
+  assert.match(gauge, /FIXED_5GT_DESCRIPTOR\.label/);
+  assert.match(gauge, /title=\{FIXED_5GT_DESCRIPTOR\.description\}/);
   assert.match(gauge, /Fixed 5 GtCO₂e is not 5% of 2024 and is not net zero/);
   assert.doesNotMatch(gauge, /On Track|On track|Delayed|Significantly Delayed/);
   assert.doesNotMatch(dashboard, /\?\? (2\.7|2\.1|3\.3)/);

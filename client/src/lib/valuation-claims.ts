@@ -1,16 +1,13 @@
+import { GORDON_DEFINITION, gordonLabelFromPercent } from "@shared/quantityDescriptors";
 /** Descriptive valuation diagnostics only; no valuation-to-emissions mapping. */
-export function gordonBaselineLabel(costOfEquityPct = 8): string {
-  if (!Number.isFinite(costOfEquityPct) || costOfEquityPct <= 0 || costOfEquityPct > 100)
-    throw new Error("Gordon cost of equity must be finite and in (0,100]");
-  return `Gordon baseline (r = ${Number(costOfEquityPct.toPrecision(12))}%)`;
-}
+export const gordonBaselineLabel = gordonLabelFromPercent;
 
 /** Workbook interpretation notes use precisely the displayed/API label. */
 export function gordonExportNotes(costOfEquityPct: number, semanticPrefix?: "sdg" | "targetTerciles") {
   const notes = [
     { Field: "Valuation baseline", Value: gordonBaselineLabel(costOfEquityPct) },
     { Field: "Gordon cost of equity (decimal)", Value: String(costOfEquityPct / 100) },
-    { Field: "Gordon definition", Value: "g = r - 1/PE; fully distributable earnings; steady-state comparator, not five-year reverse-DCF growth or a physical decarbonisation rate" },
+    { Field: "Gordon definition", Value: GORDON_DEFINITION },
   ];
   const fields = ["gordonBaselineLabel", "costOfEquity", "gordonDefinition"];
   return notes.map((note, index) => semanticPrefix

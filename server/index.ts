@@ -4,6 +4,7 @@ import { serveStatic } from "./static";
 import { createServer } from "http";
 import { releaseSafety } from "./releaseSafety";
 import { registerWarmingValidationReferenceRoutes } from "./warmingValidationReferenceApi";
+import { quantityDescriptionMiddleware } from "./quantityDescriptionApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  app.use(quantityDescriptionMiddleware());
   registerWarmingValidationReferenceRoutes(app);
   await registerRoutes(httpServer, app);
 

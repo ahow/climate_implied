@@ -23,6 +23,7 @@ import { thresholdDiagnosticSemantics } from "./thresholdDiagnosticSemantics";
 import { nativeThresholdSemantics } from "./nativeThresholdSemantics";
 import { conditionalCompanySemantics } from "./companyConditionalSemantics";
 import { warmingValidationReferenceSemantics } from "./warmingValidationReferenceSemantics";
+import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
   dependencies:string[]; unit:string; source:string; period:string; geography:string;
@@ -101,12 +102,12 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
       role:"Calculated" as const,formula:`sum(eligible ${metric==="MarketCap"?"marketCap":"netProfit"})`,
       dependencies:[metric==="MarketCap"?"marketCap":"netProfit","sdgAlignmentScore"],unit:"USD million",...financial})),
   ]),
-  {id:"legacy.threshold5GtYear",meaning:"First simulated year median emissions are at or below 5 GtCO2e; NOT net zero",
+  {id:"legacy.threshold5GtYear",meaning:FIXED_5GT_DESCRIPTOR.label,
     role:"Output",formula:"min(year where trajectory[year].p50 <= 5), or null if not reached within simulated horizon",
     dependencies:["trajectory.year","trajectory.p50"],unit:"calendar year",
     source:"historicalTrajectoryMetrics; source version retained in material archive",period:"Simulated horizon through 2100",
     geography:"Global",status:"Unsupported legacy conditional diagnostic",missingness:"Null means not reached within horizon; never replace with 2200",
-    uncertainty:"Median-trajectory threshold only, not member-level arrival uncertainty",scope:"Current-code or selected-input reconstruction, not historical forecast",
+    uncertainty:"Median-trajectory threshold only, not member-level arrival uncertainty",scope:`${FIXED_5GT_DESCRIPTOR.description} Current-code or selected-input reconstruction, not historical forecast`,
     asOfRule:"Reconstruction for the input year; not a forecast originally issued at that date"},
 ];
 export function requireOutputSemantic(id:string) {

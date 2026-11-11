@@ -1,3 +1,4 @@
+import { THRESHOLD_DIAGNOSTIC_LABEL } from "@shared/thresholdDiagnostic";
 import { Button } from "@/components/ui/button";
 import { Thermometer, TrendingDown, Calendar } from "lucide-react";
 import type { MetricView } from "@/lib/types";
@@ -10,7 +11,7 @@ interface MetricToggleProps {
 const METRICS: { value: MetricView; label: string; icon: React.ElementType }[] = [
   { value: "temperature", label: "Temperature", icon: Thermometer },
   { value: "reductionRate", label: "Reduction Rate", icon: TrendingDown },
-  { value: "netZero", label: "Year emissions reach 5% of 2024", icon: Calendar },
+  { value: "netZero", label: THRESHOLD_DIAGNOSTIC_LABEL, icon: Calendar },
 ];
 
 export function MetricToggle({ activeMetric, onMetricChange }: MetricToggleProps) {

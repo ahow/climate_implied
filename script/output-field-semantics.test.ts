@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { outputFieldSemantics,bindOutputFields,requireOutputSemantic,bindExportColumns,bindNestedOutput } from "../shared/outputFieldSemantics";
 import * as XLSX from "xlsx";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
+import { FIXED_5GT_DESCRIPTOR } from "../shared/quantityDescriptors";
 test("all historical/category response leaves bind, without treating reconstructions as issued forecasts",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   for(const [path,prefix,count,originalCount] of [["/api/projection/categories","category",33,15],["/api/projection/historical-trend","historical",25,7],["/api/projection/categories/historical-trend","categoryHistory",149,23]] as const) {
@@ -42,7 +43,9 @@ test("all regional response fields bind with explicit PPP/nominal and nonregiona
   assert.equal(census.originalGapReconciliation.families.find((f:any)=>f.surface==='API GET "/api/projection/regions"').total,10);
   for(const field of fields) assert.ok(requireOutputSemantic(`regional.${field.field.slice(3)}`));
   assert.match(requireOutputSemantic("regional.carbonIntensityBasis").meaning,/not interchangeable/);
-  assert.match(requireOutputSemantic("regional.netZeroYear").meaning,/NOT net zero/);
+  assert.equal(requireOutputSemantic("regional.netZeroYear").meaning,FIXED_5GT_DESCRIPTOR.label);
+  assert.ok(requireOutputSemantic("regional.netZeroYear").scope.includes(FIXED_5GT_DESCRIPTOR.description));
+  assert.match(requireOutputSemantic("regional.netZeroYear").scope,/not net zero/);
 });
 test("missing or invalid temperature inputs cannot manufacture zero summaries or NaN densities",()=>{
   assert.throws(()=>calculateTemperatureDistribution([]),/requires/);
@@ -99,7 +102,9 @@ test("threshold semantics never substitute an arbitrary future date or physical 
   assert.ok(!readFileSync("client/src/components/category-comparison.tsx","utf8").includes('"Net-Zero Year"'));
   assert.ok(!readFileSync("client/src/pages/methodology.tsx","utf8").includes("The net zero year is the year when cumulative emission reductions reach 95%"));
   const semantic=requireOutputSemantic("legacy.threshold5GtYear");
-  assert.match(semantic.meaning,/NOT net zero/);
+  assert.equal(semantic.meaning,FIXED_5GT_DESCRIPTOR.label);
+  assert.ok(semantic.scope.includes(FIXED_5GT_DESCRIPTOR.description));
+  assert.match(semantic.scope,/not net zero/);
   assert.match(semantic.missingness,/never replace with 2200/);
   for(const file of ["historical-trend-chart","category-trend-chart"]) {
     const text=readFileSync(`client/src/components/${file}.tsx`,"utf8");

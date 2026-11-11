@@ -1,0 +1,16 @@
+{
+  "schemaVersion":1,
+  "frozenBeforeNumericalRequest":true,
+  "rights":"GCB2025v15explicit CC BY4.0 already verified;project only fossilCO2 total for France2020,not mixed-rights energy/GDP columns",
+  "publicProjectionRoute":"Publisher documented Datasette read-only SELECT export",
+  "sourceTables":[
+    {"stage":"meadow","URI":"https://catalog.ourworldindata.org/meadow/gcp/2025-11-13/global_carbon_budget/global_carbon_budget_fossil_co2_emissions.parquet","country":"France","year":2020,"field":"total","sourceUnit":"million tonnes CO2"},
+    {"stage":"gcb_garden","URI":"https://catalog.ourworldindata.org/garden/gcp/2025-11-13/global_carbon_budget/global_carbon_budget.parquet","country":"France","year":2020,"field":"emissions_total","sourceUnit":"tonnes CO2"},
+    {"stage":"co2_garden","URI":"https://catalog.ourworldindata.org/garden/emissions/2025-12-04/owid_co2/owid_co2.parquet","country":"France","year":2020,"field":"co2","sourceUnit":"million tonnes CO2"}
+  ],
+  "schemaProvenance":"Exact table names and dated namespaces from retained/source-retrieved original GCBmeadow/GCBgarden/OWIDgarden methods and original frozen README",
+  "query":"One UNION ALL of three SELECTs,stage,country,year,value cast to double,typeof(originalField);WHEREcountryFranceANDyear2020 only,LIMIT4",
+  "caps":{"requests":1,"bodyBytes":100000},
+  "comparison":"Compare actual published values/types to source-prescribed read/pack/unit/CSV-format operations. Preserve original input and nativeexport;no fitted constant,numerical correction or tolerance change.",
+  "vintageLimit":"Current objects under original dated namespaces,not asserted original artifact checksums. Original raw GCBv15input and frozen native CSV remain separately hash-qualified."
+}

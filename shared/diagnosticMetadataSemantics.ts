@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR, GORDON_DEFINITION, RETIRED_FINANCE_RESIDUAL_DESCRIPTOR } from "./quantityDescriptors";
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 
 type Spec = [string, string, string, string];
@@ -25,9 +26,9 @@ const contract: Spec[] = [
   ["indicatorUnits[].unit","Declared registry unit","INDICATORS[].unit","unit label"],
   ["metricDefinitions.reductionRate","Legacy first-decade compound decline definition","literal first-decade compound annual emissions decline","percentage points/year"],
   ["metricDefinitions.temperature","Legacy endpoint warming definition","literal legacy 2100 warming; not validated physical forecast","definition text"],
-  ["metricDefinitions.physicalResidualThreshold","Legacy absolute emissions milestone","literal 5 Gt annual residual, not net zero","definition text"],
-  ["metricDefinitions.financeResidualThreshold","Legacy finance residual milestone","literal 5% of starting annual emissions, not net zero","definition text"],
-  ["metricDefinitions.financeGrowth","Legacy valuation comparator","literal r - E/P; not calibrated emissions decline","definition text"],
+  ["metricDefinitions.physicalResidualThreshold","Legacy absolute emissions milestone",FIXED_5GT_DESCRIPTOR.thresholdLabel,"definition text"],
+  ["metricDefinitions.financeResidualThreshold","Legacy finance residual milestone",RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.description,"definition text"],
+  ["metricDefinitions.financeGrowth","Legacy valuation comparator",GORDON_DEFINITION,"definition text"],
   ["remainingScientificWork[]","Outstanding scientific work, not completion evidence","fixed six-item route list","text"],
 ];
 const registry: Spec[] = [

@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Thermometer, TrendingDown, Calendar } from "lucide-react";
@@ -166,7 +167,7 @@ export function TemperatureGauge({
 
         <ThresholdDiagnosticDetails diagnostic={thresholdDiagnostic} contextLabel="Selected main trajectory" />
         <p className="my-4 text-xs text-muted-foreground">
-           Separate legacy diagnostic (fixed-5gt-v1): {netZeroYear === undefined ? "Unavailable — not returned" : netZeroYear === null ? "Not reached within trajectory horizon" : netZeroYear}.
+           <span title={FIXED_5GT_DESCRIPTOR.description}>{FIXED_5GT_DESCRIPTOR.label}</span>: {netZeroYear === undefined ? "Unavailable — not returned" : netZeroYear === null ? "Not reached within trajectory horizon" : netZeroYear}.
           Fixed 5 GtCO₂e is not 5% of 2024 and is not net zero.
         </p>
 

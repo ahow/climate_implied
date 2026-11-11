@@ -19,6 +19,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic, observationTimestamp } from "@/lib/valuation-claims";
+import { GORDON_DEFINITION } from "@shared/quantityDescriptors";
 import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
 import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
 import {
@@ -500,6 +501,7 @@ export function AnalysisSection({
       </div>
       <p className="text-sm text-muted-foreground mb-4">{description}</p>
       <p className="text-sm font-medium mb-4" data-testid={`${testIdPrefix}-gordon-baseline-label`}
+        title={GORDON_DEFINITION}
         data-field-id={gordonSemanticPrefix ? `${gordonSemanticPrefix}.gordonBaselineLabel` : undefined}>
         {gordonBaselineLabel(costOfEquityPct)}
       </p>

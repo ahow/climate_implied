@@ -1,3 +1,4 @@
+import { GORDON_DEFINITION, gordonLabelFromPercent } from "../../shared/quantityDescriptors";
 const unsupported = new Set([
   "impliedTemperature", "impliedCarbonPrice", "impliedDecarbRate", "netZeroYear",
   "projectedRate", "gap", "medianImpliedRate", "meanImpliedRate",
@@ -9,8 +10,8 @@ export function gordonBaselineMetadata(costOfEquity: number) {
     throw new Error("Gordon cost of equity must be finite and in (0,1]");
   return {
     costOfEquity,
-    gordonBaselineLabel: `Gordon baseline (r = ${Number((costOfEquity * 100).toPrecision(12))}%)`,
-    gordonDefinition: "g = r - 1/PE; fully distributable earnings; steady-state comparator, not five-year reverse-DCF growth or a physical decarbonisation rate",
+    gordonBaselineLabel: gordonLabelFromPercent(costOfEquity * 100),
+    gordonDefinition: GORDON_DEFINITION,
   };
 }
 /** Keep descriptive input rows, but never publish unsupported physical claims. */

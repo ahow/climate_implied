@@ -1,3 +1,47 @@
+# Quantity labels, historical fee source and precision lineage
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-cash-source-followup-private.ts --private-primary && uv run python script/kaya_precision_territory_lineage.py validate-private && npm run build"
+    ],
+    "executed_at": "2026-11-11T17:26:18.251985+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 162.712,
+    "counts": {
+      "tests": 768,
+      "pass": 768,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T172618251985Z.log",
+    "workspace_revision": "d0ae721a8196a9abe4739848f5825b5176d86334",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "44verified254partial2blocked",
+  "semantics": "original1000/1001unchanged;94conditionaldefinitions/556leaves",
+  "release": "pending",
+  "failure": "Initial768tests767pass1failed obsoleteembeddedliteral assertion; replaced with stricteractualproductionrow/SSR/exactlabel/numeric/null/binding checks. No gateweakening."
+}
+
+S01-014: Sharedactual-r Gordon/fixed5Gt/selected5%/retiredfinance5% descriptors bindrealUI/API/descriptions/exports; tests executeactualrows/bindings/notes/SSR/XLSX. Numericvalues/nulls unchanged.
+Next: Preserve exactdescriptor equality whenregisteredquantitieschange; no scientificacceptance implied.
+
+S01-016: Corrected3archivedmethodology mislabels. Contextscan326sourcefiles/69routesites/36exportwriters/188occurrences:122technical,38negations,28individualexceptions;0violations/unknownsource/unusedexceptions. Dynamicexternaldata notclaimedscanned.
+Next: Maintain exactcontext exceptions andmutationtests. Staticruntime-source criterionverified; externaldynamicdata/archivecontent has separateprovenance limits.
+
+S12-017: PrimaryEnLinkQ22024 actualXOMsubsidiary MVCrecognition schedule19.8/33.8/33.7/33.8m2025–28 plus722.9m2029–50,total844m. HistoricalrecognitionNOTcash/currentsettlement/pertonnefee. NEEpool250→123→119m supports131mNETrepayment;interim±1mresiduals remain;XPLR116difference15m notforcedclosed.
+Next: Inspect declaredCFearnings8K0001324404-26-000023/cf-20261104.htm andactualEnLinksettlement; legalentity/payment/opex/replacement stillmissing. NEEgrosssettlements/XPLRonlyleg unresolved.
+
+S12-008: Q4USmanufacturing salesguidance3.4–4.3GW notobservedeligiblewatts. IndiaJulyamount/classificationnull. Prior32rows/340hashes anddiagnostics preserved.
+Next: Find actualprogrammecash/eligiblecomponentcosts withoutrecognition→cash orprojection→measurement substitution.
+
+S04-003: France2020 Float32packing Mt→tonnes→Mt and%.3fexport reproducedbitexactly:281.5155029296875→281515488→281.515472412109375→281.515. Representationaccountingresidual0;original−.000507FAIL at±.0005 remains. SanMarinoparentrule notlocated inboundedprimarysources;UNFCCCblockedpage notdocument.
+Next: Obtain explicitGCB2025/source country-year/component SanMarinoinclusion rule; preserveoriginalFrancefailure andsource-witnessnotarchivedworker limitation. Noentitynewlyqualified/noholdouts.
+
 # Dated reference and parent cash/source integration
 
 {
@@ -3023,6 +3067,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-attachments-energy-7596cb7",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T16:02:11.040161+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-reference-parent-91c6d3b",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T16:48:39.591592+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

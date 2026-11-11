@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Globe, MapPin } from "lucide-react";
@@ -59,7 +60,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
     "Reduction Rate (%/yr)": r.reductionRate,
     "Carbon Intensity (kg/$GDP)": r.carbonIntensity,
     "Intensity basis": r.carbonIntensityBasis,
-    "Legacy fixed-5gt-v1 year (5 GtCO2e)": r.netZeroYear,
+    [FIXED_5GT_DESCRIPTOR.label]: r.netZeroYear,
     "Milestone definition": r.milestoneDefinition,
     Claim: r.claim,
   }));
@@ -80,13 +81,14 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           filename="legacy-global-intensity-counterfactual"
           sheetName="Global Counterfactual"
           rows={downloadRows}
+          interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
             Region:{id:"regional.regionName",transform:"Identity"},
             "Legacy global counterfactual warming (\u00B0C)":{id:"regional.temperatureRise",transform:"Identity"},
             "Reduction Rate (%/yr)":{id:"regional.reductionRate",transform:"Identity"},
             "Carbon Intensity (kg/$GDP)":{id:"regional.carbonIntensity",transform:"Identity; read companion basis column"},
             "Intensity basis":{id:"regional.carbonIntensityBasis",transform:"Identity"},
-            "Legacy fixed-5gt-v1 year (5 GtCO2e)":{id:"regional.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
+            [FIXED_5GT_DESCRIPTOR.label]:{id:"regional.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
             "Milestone definition":{id:"regional.milestoneDefinition",transform:"Identity"},
             Claim:{id:"regional.claim",transform:"Identity"},
           }}
@@ -122,7 +124,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
               <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
                 <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {displayDiagnostic(region.reductionRate, "%/yr")}</span>
                 <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {displayDiagnostic(region.carbonIntensity)} — {region.carbonIntensityBasis ?? "Basis not returned"}</span>
-                <span data-testid={`text-region-netzero-${region.region}`}>Separate legacy fixed-5gt-v1: {region.netZeroYear === undefined ? "Unavailable — not returned" : region.netZeroYear === null ? "Not reached by 2100" : region.netZeroYear}</span>
+                <span title={FIXED_5GT_DESCRIPTOR.description} data-testid={`text-region-netzero-${region.region}`}>{FIXED_5GT_DESCRIPTOR.label}: {region.netZeroYear === undefined ? "Unavailable — not returned" : region.netZeroYear === null ? "Not reached by 2100" : region.netZeroYear}</span>
               </div>
               {![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === "number" && Number.isFinite(value)) &&
                 <p role="status" className="text-xs text-muted-foreground">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}

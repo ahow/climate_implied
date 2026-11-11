@@ -1,0 +1,20 @@
+{
+  "schemaVersion":1,
+  "purpose":"New targeted original-source trace for France2020native-export precision and SanMarino parent policy. No old source audits/retrievals.",
+  "initialURLs":[
+    "https://api.github.com/repos/owid/co2-data/git/trees/382ee6c662b0ece26e111f263b44c029afad7787?recursive=1",
+    "https://api.github.com/repos/owid/etl/contents/etl/steps/data/meadow/gcp/2025-11-13?ref=282a8ef5715e21770167128edb236a68f7b3ed23"
+  ],
+  "maximumRequests":18,
+  "maximumEachRightsQualifiedNumericBodyBytes":2000000,
+  "maximumTotalBodyBytes":18000000,
+  "timeoutSeconds":45,
+  "retries":0,
+  "followups":"Exact returned original publisher code/metadata paths and source-linked national/territory documentation. Version-qualified,read-only single-France2020 curated-stage projections allowed under GCB CC BY4.0. Freeze numerical route before acquisition.",
+  "preservedStrictFailure":{"country":"France","year":2020,"nativeMinusPrimaryMtCO2":"-0.000507","unchangedDisplayOnlyEnvelopeMtCO2":"0.0005","outcome":"FAIL"},
+  "precisionRules":"Trace actual loader dtypes,unit conversion,packing and exporter rounding. Test source-prescribed representation paths,not a fitted residual or new correction. Never replace raw/native values or relax failure.",
+  "territoryRules":"Seek SanMarino-specific original-source parent/coverage statement;do not infer Italy from geography or Vatican policy. If source2025explicitly defers country geographies,retain that exact limitation.",
+  "excluded":"No EI403request/mirrors/purchases,no provider405/15 or480EIA alternative reruns,no420/417audit/3285census rebuild,no model/control acquisitions or attribution fitting.",
+  "admission":"Original full2010-2024window/2011PPP contract unchanged,WDI2021PPP separate. No original holdouts unless newly fully qualified original entity.",
+  "outputs":"New disjoint climate code/tests/evidence;raw and full diagnostics private ignored. No ledger/FaIR/runtime/deploy/publish/callback."
+}

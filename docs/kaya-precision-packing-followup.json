@@ -1,0 +1,14 @@
+{
+  "schemaVersion":1,
+  "reason":"Original18-request cap exhausted with actual single-cell stage projections. The last exact directory response identifies a5557byte source file implementing packing/safe-type conversion. Retrieve this one source dependency to complete actual dtype lineage,not an outcome-driven numeric retry.",
+  "original18RequestPlanUnchanged":true,
+  "initialURLs":["https://raw.githubusercontent.com/owid/etl/282a8ef5715e21770167128edb236a68f7b3ed23/lib/repack/owid/repack/__init__.py"],
+  "maximumRequests":1,
+  "maximumEachRightsQualifiedNumericBodyBytes":20000,
+  "maximumTotalBodyBytes":20000,
+  "timeoutSeconds":45,
+  "retries":0,
+  "source":"Exact download_url and Git blob returned in retained repack-module-directory.body;public source code only,no numerical datasets",
+  "rights":"Read original publisher code for representation trace,retain raw privately,do not apply code license to third-party data.",
+  "excluded":"No tolerance alteration,point tuning,EI request,old audit,ledger/FaIR/runtime/deploy/publish/callback."
+}

@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -102,7 +103,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     "P10 (\u00B0C)": d.p10,
     "P90 (\u00B0C)": d.p90,
     "Reduction Rate (%/yr)": d.reductionRate,
-    "Legacy fixed-5gt-v1 year (5 GtCO2e)": d.netZeroYear ?? null,
+    [FIXED_5GT_DESCRIPTOR.label]: d.netZeroYear ?? null,
     [THRESHOLD_DIAGNOSTIC_LABEL]: d.thresholdDiagnostic?.year ?? null,
     "5% diagnostic status": d.thresholdDiagnostic?.status ?? "withheld",
     Estimated: d.isNowcast ? "yes" : "no",
@@ -148,13 +149,14 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
           filename={`historical-trend-${metricView}`}
           sheetName="Historical Trend"
           rows={downloadRows}
+          interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
             Year:{id:"historical.year",transform:"Identity"},
             "Temperature Median (\u00B0C)":{id:"historical.median",transform:"Identity"},
             "P10 (\u00B0C)":{id:"historical.p10",transform:"Identity; uncalibrated conditional quantile"},
             "P90 (\u00B0C)":{id:"historical.p90",transform:"Identity; uncalibrated conditional quantile"},
             "Reduction Rate (%/yr)":{id:"historical.reductionRate",transform:"Identity"},
-            "Legacy fixed-5gt-v1 year (5 GtCO2e)":{id:"historical.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
+            [FIXED_5GT_DESCRIPTOR.label]:{id:"historical.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
             [THRESHOLD_DIAGNOSTIC_LABEL]:{id:"historical.thresholdDiagnostic.year",transform:"Identity; null preserved; not fixed 5 Gt"},
             "5% diagnostic status":{id:"historical.thresholdDiagnostic.status",transform:"Identity; missing archived diagnostic -> withheld"},
             Estimated:{id:"historical.isNowcast",transform:"true -> yes; false -> no, not vintage certification"},

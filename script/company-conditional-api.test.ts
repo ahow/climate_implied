@@ -11,8 +11,8 @@ import { bindConditionalExportCells, conditionalCompanyFieldSpecs, conditionalCo
 
 test("registered shared contract has exact API leaves, fact units and lossless export bindings", async () => {
   assert.equal(conditionalCompanyFieldSpecs.length, 30);
-  assert.equal(conditionalCompanySemantics.length, 92);
-  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 92);
+  assert.equal(conditionalCompanySemantics.length, 94);
+  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 94);
   for (const issuer of [undefined, "NEE", "FSLR", "XOM"] as const) {
     const summary = getConditionalCompanySummary(issuer);
     const bindings = bindNestedOutput("conditionalCompany", summary);
@@ -54,8 +54,8 @@ test("new GET APIs and binary workbook remain qualified supplements outside orig
   const census = JSON.parse(await readFile("docs/field_semantics_census.json", "utf8"));
   const contract = census.supplementalQualifiedChanges.conditionalCompany;
   // Protected census is parent-owned: retain its legacy63snapshot or its exact
-   // additive81/84/88/91/92definition integration. Exact live registry is checked above.
-   assert.ok([63, 81, 84, 88, 91, 92].includes(contract.definitions));
+   // additive81/84/88/91/92/94definition integration. Exact live registry is checked above.
+   assert.ok([63, 81, 84, 88, 91, 92, 94].includes(contract.definitions));
   assert.equal(contract.typedApiFields.length, 63);
   assert.ok(contract.typedApiFields.every((f: { bound: boolean }) => f.bound));
   for (const surface of contract.successApiSurfaces) {
@@ -92,13 +92,13 @@ test("exact supplemental semantics, public allowlist and source aggregate bindin
   assert.ok(Object.isFrozen(conditionalCompanySummary.companies[0].facts[0]));
   assert.deepEqual(conditionalCompanySummary.companies.map(c => c.issuer), ["NEE", "FSLR", "XOM"]);
   assert.deepEqual(conditionalCompanySummary.companies.map(c => c.facts.map(f => f.id)), [
-    ["fplDividend", "parentContribution", "netParentCash", "fplCashChange", "cashResidual", "beforeCommon", "withoutDmi", "unknownGrossInflow", "unknownGrossOutflow", "conditionalCases", "negativeFunding", "relatedPartnerGrossDistributions", "attachmentRenewablesIiBuyout", "attachmentNeeCategory2025Distributions", "parentProgrammeAffiliateCash", "parentProgrammeServiceCosts", "parentProgrammeHeldSweepRelease"],
+    ["fplDividend", "parentContribution", "netParentCash", "fplCashChange", "cashResidual", "beforeCommon", "withoutDmi", "unknownGrossInflow", "unknownGrossOutflow", "conditionalCases", "negativeFunding", "relatedPartnerGrossDistributions", "attachmentRenewablesIiBuyout", "attachmentNeeCategory2025Distributions", "parentProgrammeAffiliateCash", "parentProgrammeServiceCosts", "parentProgrammeHeldSweepRelease", "sourceFollowupBorrowedNetRelease"],
     ["openingPpe", "capex", "depreciation", "closingPpe", "budgetRemainder", "cases", "positiveTerminals", "positivePlans", "zeroCreditPositive", "negativeFunding",
       "cohortTransferFace", "cohortTransferCash", "cohortFaceCashDifference", "cohortTreasuryCash", "cohortSelectedCash", "cohortRemainingClaims",
       "cohortIncludingFiservFace", "cohortIncludingFiservProceeds", "cohortIncludingFiservDifference", "cohortIncludingFiservCash",
       "cohortHistoricalCreditCash", "cohortCfoRemainder", "cohortUnallocatedGrantBridge", "cohortGrantBookCfoResidual", "cohortUsEligibleWatts",
       "cohortPriorCreditCash2026", "cohortPreCutoffReservePv", "cohortPostCutoffVisaPv", "grantScopeReported45x", "grantScopeNoncashSupplement", "attachmentAnnualCfoCashRemainder", "attachmentIndiaFirstReceiptAmount", "parentProgrammeAlabamaRecognition"],
-    ["reportedEmissions", "deliveredUnits", "shortage", "observedExpense", "observedPrice", "observedBank", "grossIncrement", "cashIncrement", "cases"],
+    ["reportedEmissions", "deliveredUnits", "shortage", "observedExpense", "observedPrice", "observedBank", "grossIncrement", "cashIncrement", "cases", "sourceFollowupHistoricalMvcFees"],
   ]);
   const fact = (issuer: string, id: string) => conditionalCompanySummary.companies
     .find(c => c.issuer === issuer)!.facts.find(f => f.id === id)!.value!;
@@ -219,24 +219,24 @@ test("GET API, JSON and XLSX are the same allowlist; unsupported inputs and writ
 
 test("subsequent XOM primary-source notes qualify units without rewriting frozen numbers or permit gaps", async () => {
   const summary = getConditionalCompanySummary();
-  // Additive FSLRcohort facts must not invalidate the protected legacy snapshot.
+  // Additive source facts do not replace the exact original10/11/9 issuer snapshot.
   const legacySnapshot = { ...summary, companies: summary.companies.map(company => company.issuer === "FSLR" ?
     { ...company, facts: company.facts.slice(0, 10) } : company.issuer === "NEE" ?
-      { ...company, facts: company.facts.slice(0, 11) } : company) };
+      { ...company, facts: company.facts.slice(0, 11) } : { ...company, facts: company.facts.slice(0, 9) }) };
   const cells = conditionalExportCells(legacySnapshot);
   const protectedData = {
     paths: cells.map(cell => cell.field),
     primitiveValues: cells.filter(cell => typeof JSON.parse(cell.jsonValue) !== "string"),
   };
-  assert.equal(cells.length, 308, "Protected legacy schema/numeric facts unchanged; new FSLRfacts are additive");
-  assert.equal(conditionalExportCells(summary).length, 540, "Exactly29new eight-leaf public facts beyond protected snapshot");
+  assert.equal(cells.length, 308, "Protected legacy schema/numeric facts unchanged; all new source facts are additive");
+  assert.equal(conditionalExportCells(summary).length, 556, "Exactly31new eight-leaf public facts beyond protected snapshot");
   assert.equal(protectedData.primitiveValues.length, 44);
   assert.equal(createHash("sha256").update(JSON.stringify(protectedData)).digest("hex"),
     "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
     "Exact pre-qualification field paths and every numeric/boolean/null value remain frozen");
   const xom = summary.companies.find(company => company.issuer === "XOM")!;
   assert.deepEqual([xom.facts.length, xom.sourced.length, xom.conditions.length, xom.missingness.length, xom.refusalReasons.length],
-    [9, 2, 5, 4, 2]);
+     [10, 2, 5, 4, 2]);
   assert.equal(xom.experimentVersion, "xom-permit-geography-incremental-carbon-cash-1");
   const unitEvidence = JSON.parse(await readFile("docs/xom-source-inputs-evidence.json", "utf8"));
   const unitSource = unitEvidence.sourceRecords.find((source: { id: string }) => source.id === "UKETS-FULL-FY2024");
@@ -319,6 +319,24 @@ test("new actual attachment/grant facts distinguish bought-out units, receipt mo
   assert.equal(fslr.experimentVersion, "fslr-paid-spare-capacity-post-credit-1");
 });
 
+test("new historical MVC disclosure and borrowed-cash perimeter preserve cash/current-contract unknowns", () => {
+  const summary = getConditionalCompanySummary();
+  const nee = summary.companies.find(c => c.issuer === "NEE")!;
+  const xom = summary.companies.find(c => c.issuer === "XOM")!;
+  const borrowed = nee.facts.find(f => f.id === "sourceFollowupBorrowedNetRelease")!;
+  const fee = xom.facts.find(f => f.id === "sourceFollowupHistoricalMvcFees")!;
+  assert.equal(borrowed.value, 131000000);
+  assert.match(borrowed.boundary, /LIABILITY/);
+  assert.match(borrowed.boundary, /actualservicecash remainnull/);
+  assert.match(nee.informationContext, /nee-borrowed-cash-perimeter-1/);
+  assert.equal(fee.value, 844000000);
+  assert.match(fee.unit, /NOT cash/);
+  assert.match(fee.boundary, /NOT paidcash, currentminimumbillings/);
+  assert.match(fee.boundary, /baselineexpenses notdeductedagain/);
+  assert.match(xom.informationContext, /beforethatcutoff/);
+  assert.equal(nee.qualifiedOriginalIssuers, 0);
+  assert.equal(xom.qualifiedOriginalIssuers, 0);
+});
 test("new parent/equitymethod and ASC832recognition facts cannot masquerade as incremental common cash", () => {
   const nee = getConditionalCompanySummary("NEE").companies[0], fslr = getConditionalCompanySummary("FSLR").companies[0];
   const n = nee.facts.find(f => f.id === "parentProgrammeAffiliateCash")!;

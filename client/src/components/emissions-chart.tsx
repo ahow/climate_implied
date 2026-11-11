@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -153,7 +154,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
             stroke="hsl(var(--muted-foreground))"
             strokeDasharray="4 4"
             label={{
-              value: "Legacy fixed-5gt-v1 (5 GtCO₂e; not 5% of 2024 or net zero)",
+              value: `${FIXED_5GT_DESCRIPTOR.thresholdLabel}; not 5% of 2024 and not net zero`,
               position: "insideTopRight",
               style: { fontSize: 10, fill: "hsl(var(--muted-foreground))" },
             }}

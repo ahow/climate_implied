@@ -1,0 +1,102 @@
+{
+  "criteria": {
+    "S01-014": "Each renamed label is identical across UI, API descriptions and exports.",
+    "S01-016": "A text scan finds no positive residual threshold labelled “net zero”.",
+    "source": "docs/WORKPLAN_COMPLETION_LEDGER.md: original acceptance clauses S01-014 and S01-016; read only",
+    "bindingScope": "Preserve effective variable Gordon r, fixed5Gt versus selected evidenced5%-of-2024 versus archived finance-formula distinctions, every numeric assignment and original1000/1001 boundary. S01-011 metadata applies to the changed descriptions/labels, not a new whole-UI verification claim."
+  },
+  "findingsAndFixes": [
+    {
+      "finding": "Gordon UI/export and API labels already agreed for tested r but duplicated label/definition implementations could diverge.",
+      "fix": "shared/quantityDescriptors.ts supplies the exact validated percent label formatter and GORDON_DEFINITION to real UI, server metadata and export notes. Actual AnalysisSection has the same definition as its title; existing effective calculator rate/numbers are unchanged."
+    },
+    {
+      "finding": "Fixed5Gt year had several UI/API-description variants despite one exact existing export header.",
+      "fix": "Use the existing Legacy fixed-5gt-v1 year (5 GtCO2e) header as shared crossing-year label in actual cards, workbook builders/bindings and field definitions. Preserve explicit not-net-zero/censoring descriptions beside changed values and in export Interpretation notes. Annual threshold value has its own distinct label, never a year label."
+    },
+    {
+      "finding": "Selected5%-of-2024 already had a shared API/UI/export label; one UI control duplicated it and changed export descriptions were not centrally tied.",
+      "fix": "MetricToggle now consumes existing THRESHOLD_DIAGNOSTIC_LABEL. Selected descriptor reuses the unchanged label/version, gives a precise same-selection/evidenced-baseline/censoring description, and is used by actual detail title and workbook notes. Regional selected diagnostic remains its separate download; no new regional columns were invented."
+    },
+    {
+      "finding": "Three archived methodology texts still positively called the retired fixed-baseline5% finance formula net zero: overview strong text, conversion badge, example-table heading.",
+      "fix": "All three now use Retired formula: year emissions reach 5% of fixed baseline. Adjacent description distinguishes this archived extrapolation from selected-2024-five-percent-v2. Historical example strings ~2172/~2122/~2082/~2065/~2052/~2042 remain exactly unchanged."
+    },
+    {
+      "finding": "Protected route/engine source still produces older descriptive strings.",
+      "fix": "server/quantityDescriptionApi.ts adapts only successful GET JSON descriptions on /api/calculation-contract and /api/projection/regions. Registered in server/index.ts after releaseSafety and before existing routes. Exact reviewed old or canonical strings only; unreviewed replacements throw explicit errors. Three contract descriptions and regional milestoneDefinition are canonicalized. All numeric values, nulls, keys, units and input objects are preserved. No protected server/routes.ts or regional engine edit."
+    }
+  ],
+  "actualEqualityEvidence": {
+    "Gordon": "Real AnalysisSection SSR, gordonBaselineMetadata, gordonExportNotes and XLSX readback at r=3,7.5,8,12.345678901234 percent; existing actual calculator custom-r tests also passed. No fixed8 label for variable-r output.",
+    "fixed5Gt": "Real CategoryComparison/RegionalComparison/TemperatureGauge SSR; actual category/regional/historical production downloadRows, fieldBindings and interpretationNotes expressions executed, bound and XLSX-readback checked. Year2097, zero reduction and null year retained. API regional description equals the same exact tooltip/export description; annual threshold API/chart label is distinct.",
+    "selected5Percent": "Actual bounded arithmetic diagnostic label equals real MetricToggle/details and thresholdExportRow/bindings; XLSX readback preserves label,2025crossing,threshold5 and notNetZero=true on an explicitly labelled engineering fixture, not a new empirical observation.",
+    "API": "Isolated real Express middleware GET tests verify shared descriptions and unchanged numeric/key assignments. Authentic old literals are checked against protected route/engine source before normalization. Unknown description versions refuse rather than silently relabel.",
+    "unchangedAssignments": "Legacy constant objects exactly asserted; archived table strings retained; existing35finite-domain export cases and band assignment/representative checks pass. No physical-engine changes, refit or scientific experiments."
+  },
+  "scan": {
+    "implementation": "script/residual-label-scan.ts",
+    "artifact": "generated-artifacts/rendered-states/residual-label-scan.json",
+    "scope": "Every .ts/.tsx/.json under client/src,server,shared; all runtime route/API/export/legacy-description source, shipped publication records and comments. Every occurrence records exact file,line,span start,text,local context,classification and reason. No file/route whitelist.",
+    "sourceFiles": 326,
+    "routeRegistrationSites": 69,
+    "HTTPRegistrationSites": 61,
+    "pageRouteSites": 8,
+    "exportWriterSites": 36,
+    "occurrences": 188,
+    "technicalNames": 122,
+    "adjacentLocalNegations": 38,
+    "exactIndividualReviewedExceptions": 28,
+    "violations": 0,
+    "unknownSourceOccurrences": 0,
+    "unusedExceptions": 0,
+    "exceptionPolicy": "Each nontrivial exception is one exact file plus complete whitespace-normalized literal/comment/JSX text and an individual reason. Covers actual negation, CAT/NGFS published scenario scope, policy-coverage indicator definitions, proper publisher names, news keywords and technical trace documentation. Changed or unused exceptions fail tests. Technical code/test attributes are inventoried, not presented as numeric quantity labels.",
+    "mutationTests": "Reject5%baseline-is-net-zero, contextual5Gt Net Zero Year, one negated occurrence followed by a positive occurrence, unrelated unavailable prose and double-negation is-not-unavailable. Unqualified Net Zero Year is unknown, not silently accepted.",
+    "unknownCoverage": [
+      "Two HTTP registration sites are templated; exact source expressions are inventoried, not falsely reported as expanded route counts.",
+      "Arbitrary runtime concatenations, external article/provider strings, database rows and opaque historical JSON are not exhaustively executed by a static source scan.",
+      "Built/minified release artifacts and unrelated operator/study CLI exports are not reverified here.",
+      "No browser hover/click/portal verification or every-field/every-state component coverage is inferred."
+    ]
+  },
+  "verification": {
+    "command": "npx tsx script/field-semantics-census.ts && npx tsx script/component-state-census.ts generated-artifacts/rendered-states/component-state-contracts.json && npx tsx script/residual-label-scan.ts generated-artifacts/rendered-states/residual-label-scan.json && npx tsx --test script/quantity-label-contracts.test.ts script/ui-claims.test.ts script/finite-export-schemas.test.ts script/diagnostic-metadata-semantics.test.ts script/output-field-semantics.test.ts script/component-state-census.test.ts script/next-census-accounting.test.ts && npx tsc --noEmit && git diff --check",
+    "pass": 45,
+    "fail": 0,
+    "skip": 0,
+    "additionalFocusedReceipt": "Earlier focused quantity-label/next-valuation-evidence/ui-claims run21/21passed, including existing actual custom-r calculator/API/XLSX cases; no fullsuite or broad61UI rerun.",
+    "sourcePins": {
+      "shared/quantityDescriptors.ts": "678666236d065f92bec8a7f90acfb4f690c3481113a0929dadfbb3319e664bd3",
+      "server/quantityDescriptionApi.ts": "1d086693fafccc06da0e4aaa9ebd391f3e53a8f0ff2e4b9cc7a3a63de40f1fb4",
+      "script/residual-label-scan.ts": "2b792f1d150eafa48b6a2a1ae5e7006005a9b8b693ac9a3b2f987b231b5ec6e6",
+      "script/quantity-label-contracts.test.ts": "2df1ec896253e92a000874699c504f49c4596d72fc77e0a49a9e517add735fb7"
+    },
+    "protectedReadOnlyReceipts": {
+      "server/routes.ts": "653ccf33e628df5ee42a3ae5c7386ff996235c887ff3c904e90df7e2e44bd303",
+      "server/calculation/regionalProjections.ts": "2cc2272b7103dc2c2cae1c0bb3ae6ad438700eb75a741d7502fc5892ab98a676",
+      "shared/calculationContract.ts": "7700217420661611987a9443dedb94a9fb4b3603fd106a9aca55e70bae34a2c9"
+    }
+  },
+  "denominators": {
+    "semanticDefinitionsUnchanged": 1841,
+    "directInventoryUnchanged": 1359,
+    "directBoundUnchanged": 1331,
+    "expandedPublicUnchanged": 2256,
+    "expandedBoundUnchanged": 2255,
+    "originalPublicUnchanged": 1001,
+    "originalBoundUnchanged": 1000,
+    "closedOriginalGapsUnchanged": 571,
+    "unknownHistoricalSummaryUnchanged": 1,
+    "withheldUnchanged": 27,
+    "componentsUnchanged": 61,
+    "componentDynamicExpressions": 1807,
+    "fieldBindingExpressionsUnchanged": 111,
+    "qualification": "Descriptor/Interpretation metadata is not an extra numerical output, schema key or original closure credit. Census regenerated for actual source locations/expressions and existing exact bindings."
+  },
+  "criterionAssessment": {
+    "S01-014": "Finite equality engineering is implemented and tested for effective-r Gordon, fixed5Gt crossing-year versus annual threshold, selected evidenced5%-of-2024 and separately retired finance5% descriptions. Existing target-band numeric assignments remain unchanged. Not merely a dictionary-presence assertion: actual UI/API/production export consumers are exercised. Parent owns final integrated/release/canonical assessment.",
+    "S01-016": "Runtime-source scan now has complete declared root coverage, occurrence-level inventory, individually exact exceptions, fail-on-unknown/fail-on-violation gates and mutation tests. Three confirmed archived positive-residual mislabels were corrected. Zero remaining unreviewed source occurrences at this scope; built/dynamic/provider/archive/CLI unknown coverage remains explicit, so no unrestricted all-artifact scientific/release acceptance is claimed.",
+    "S01-011": "Only changed quantity labels/descriptions and their metadata were reconciled; shared definitions retain unit,source,period,scope,missingness,uncertainty and selected-baseline limitations. No global61component or original opaque-summary completion claim."
+  },
+  "protectedBoundary": "No canonical ledger,protected FaIR bundle,server/routes.ts or numerical regional/physical engine edits. No denied protected-hash dependency encountered or silent refreeze. No private provider bytes/runtime private reads,fullsuite,browser rerun,commit,deploy or external callback."
+}

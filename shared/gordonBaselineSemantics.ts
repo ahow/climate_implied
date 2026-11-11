@@ -1,4 +1,5 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
+import { GORDON_DEFINITION } from "./quantityDescriptors";
 
 /** Exactly the six additive SDG/target API metadata leaves; no census credit. */
 export const gordonBaselineSemantics: OutputFieldSemantic[] = (["sdg", "targetTerciles"] as const).flatMap(prefix => {
@@ -32,7 +33,7 @@ export const gordonBaselineSemantics: OutputFieldSemantic[] = (["sdg", "targetTe
       ...context, id: `${prefix}.gordonDefinition`,
       meaning: "Descriptive Gordon interpretation, not five-year reverse-DCF growth or physical decarbonisation",
       unit: "text",
-      formula: "'g = r - 1/PE; fully distributable earnings; steady-state comparator, not five-year reverse-DCF growth or a physical decarbonisation rate'",
+      formula: `'${GORDON_DEFINITION}'`,
       dependencies: [`${prefix}.costOfEquity`, "priceEarnings"],
     },
   ];

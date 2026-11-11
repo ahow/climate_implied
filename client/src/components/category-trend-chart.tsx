@@ -16,6 +16,7 @@ import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,categoryExportNames,categoryExportKeys } from "@shared/finiteExportSchemas";
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
+import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 
 interface CategoryTrendChartProps {
   data: CategoryHistoricalTrendPoint[];
@@ -148,7 +149,8 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
           rows={downloadRows}
           fieldBindings={finiteExportBindings("categoryTrend",{metric:config.metricKey})}
           testId="button-download-category-trends"
-          label={metricView === "netZero" ? "Download separate legacy fixed-5gt-v1" : "Download data"}
+          label={metricView === "netZero" ? `Download ${FIXED_5GT_DESCRIPTOR.label}` : "Download data"}
+          interpretationNotes={residualQuantityExportNotes()}
         />
       </div>
       {data.some(row => CATEGORY_KEYS.some(key => !row[key])) &&

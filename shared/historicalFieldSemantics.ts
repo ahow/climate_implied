@@ -1,9 +1,11 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { projectionFieldSemantics } from "./projectionFieldSemantics";
+import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 function copy(id:string,newId:string,patch:Partial<OutputFieldSemantic>={}):OutputFieldSemantic {
   const field=projectionFieldSemantics.find(f=>f.id===`projection.${id}`);
   if(!field) throw new Error(`Missing underlying projection definition: ${id}`);
-  return {...field,id:newId,...patch};
+  return {...field,id:newId,...patch,
+    ...(id==="metrics.netZeroYear"?{scope:`${FIXED_5GT_DESCRIPTOR.description} ${patch.scope??field.scope}`}:{})};
 }
 const history={
   source:"historicalRecalculation/categoryHistoricalTrend; retained model/data content hashes, not original publication vintages",

@@ -6,6 +6,7 @@ import { PublicationMethodologyNotes } from "@/components/publication-methodolog
 import { DriverEvidenceDisclosure } from "@/components/driver-evidence-disclosure";
 import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { WarmingValidationReference } from "@/components/warming-validation-reference";
+import { RETIRED_FINANCE_RESIDUAL_DESCRIPTOR } from "@shared/quantityDescriptors";
 
 export default function Methodology() {
   return (
@@ -251,7 +252,7 @@ export default function Methodology() {
                 The system processes company-level data including market capitalisation, net profit, emission targets,
                 and carbon emissions to derive four interconvertible climate measures:
                 <strong> implied temperature rise</strong>, <strong>rate of emissions reduction</strong>,
-                <strong> net zero year</strong>, and <strong>implied carbon price</strong>.
+                <strong> {RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label}</strong>, and <strong>implied carbon price</strong>.
               </p>
             </Card>
           </section>
@@ -284,7 +285,7 @@ export default function Methodology() {
                 <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-center mt-2">
                   <Badge variant="secondary">Rate of Emissions Reduction</Badge>
                   <span className="text-muted-foreground">&rarr;</span>
-                  <Badge variant="outline">Net Zero Year</Badge>
+                  <Badge variant="outline" title={RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.description}>{RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label}</Badge>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground m-0">
@@ -480,7 +481,7 @@ export default function Methodology() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-right py-2 font-medium">Annual Decarb Rate</th>
-                      <th className="text-right py-2 font-medium">Net Zero Year</th>
+                      <th className="text-right py-2 font-medium" title={RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.description}>{RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label}</th>
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">

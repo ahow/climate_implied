@@ -1,3 +1,4 @@
+import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 const context={
   source:"calculateRegionalFromInputs; regional intensity archive/current source and model code hashes retained in material manifests",
@@ -17,8 +18,8 @@ const fields:[string,string,OutputFieldSemantic["role"],string,string,string[]][
   ["carbonIntensityBasis","Explicit GDP price basis; PPP and nominal are not interchangeable","Output",
     "source==owid ? kg CO2/international-dollar GDP(PPP) : kg CO2/nominal-dollar GDP(static assumption)","basis label",["carbonIntensitySource"]],
   ["claim","Scope restriction on the counterfactual","Output","Literal: Legacy global intensity counterfactual; not a regional temperature forecast","claim label",[]],
-  ["milestoneDefinition","Meaning and censoring rule of the legacy threshold","Output","Literal: Legacy 5 Gt milestone; not net zero; null means not reached by 2100","definition",[]],
-  ["netZeroYear","First median-trajectory year at or below5GtCO2e; legacy field name, NOT net zero","Output",
+  ["milestoneDefinition","Meaning and censoring rule of the legacy threshold","Output",FIXED_5GT_DESCRIPTOR.description,"definition",[]],
+  ["netZeroYear",FIXED_5GT_DESCRIPTOR.label,"Output",
     "min(year where trajectory.p50<=5), otherwise null","calendar year",["trajectory.year","trajectory.p50"]],
   ["reductionRate","Ten-year compound reduction of median global counterfactual emissions","Output",
     "100*(1-(trajectory[10].p50/trajectory[0].p50)^(1/10))","percent/year",["trajectory.p50"]],
@@ -28,4 +29,5 @@ const fields:[string,string,OutputFieldSemantic["role"],string,string,string[]][
 ];
 export const regionalFieldSemantics:OutputFieldSemantic[]=fields.map(([key,meaning,role,formula,unit,dependencies])=>({
   id:`regional.${key}`,meaning,role,formula,unit,dependencies,...context,
+  ...(["netZeroYear","milestoneDefinition"].includes(key)?{scope:`${FIXED_5GT_DESCRIPTOR.description} ${context.scope}`}:{}),
 }));
