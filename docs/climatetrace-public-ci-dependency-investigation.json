@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "status": "mining-private-dependency-hypothesis-disproved; actual-canonical-classification-failure-reproduced; owner-repair-required",
+  "ci": {
+    "run": 43037996241,
+    "commit": "0ff6cded70e941cc1f6931e512258710c13beb68",
+    "validateJob": 130581897339,
+    "conclusion": "failure",
+    "failedStep": "Run uv run python -m unittest discover -s script -p 'test_*.py'",
+    "typescriptStepConclusion": "success",
+    "metadataRetrievedUsing": "Read-only existing verify-ci-negative-control.py api helper;no dispatch or promotion",
+    "rawJobLog": "GitHub logs endpoint returned HTTPError;not available through this credential. Exact stack below comes from source-only reproduction,not claimed as retrieved CI log.",
+    "runMetadata": "generated-artifacts/mining-public-ci-repair/ci-run.json",
+    "runMetadataSHA256": "939a9ba43d7d30553c8c696164a252fb94514ad7738daee43fa06dad7abb3acc",
+    "jobMetadata": "generated-artifacts/mining-public-ci-repair/ci-jobs.json",
+    "jobMetadataSHA256": "60d4f5999fab6a45e6314ce7179a892948548f253665fdb3ce2a6dc8776d50ba",
+    "annotations": "generated-artifacts/mining-public-ci-repair/ci-annotations.json",
+    "annotationsSHA256": "d6a2f000bc2eacd73756f21d35501a0c2ac40fb689d48d45ac5e67e39dec7c1d"
+  },
+  "publicCleanReproduction": {
+    "sourceSelection": "git ls-files filtered through existing sync-github.py approved(path);copied source files only into isolated ignored directory",
+    "directory": "generated-artifacts/mining-public-ci-repair/public-before",
+    "privateGeneratedArtifactsPresentInsideExport": false,
+    "sourceHashesComparedWithFailedCICommit": [
+      "script/test_climatetrace_mining_method_qualification.py",
+      "script/climatetrace_mining_method_qualification.py",
+      "script/test_clause_reconciliation.py",
+      "docs/workplan_completion_ledger.json"
+    ],
+    "allComparedSourceBytesIdentical": true,
+    "ledgerSHA256AtFailedCommitAndWorkspace": "082948730f939a8a15ae2df575ffc54625d72cdbfd86750abd907eff3995c095",
+    "command": "python -m unittest discover -s script -p 'test_*.py'",
+    "tests": 179,
+    "failures": 1,
+    "errors": 0,
+    "skips": 0,
+    "exit": 1,
+    "exactFailure": {
+      "test": "test_clause_reconciliation.ReconciliationTests.test_full_actual_matrix_has_all_original_criteria",
+      "sourceLine": 43,
+      "assertion": "self.assertIn(r['check_type'],m.CHECK_TYPES)",
+      "offendingCriterion": "S16-005",
+      "actualCheckType": "finite engineering component/render/browser contracts",
+      "permittedCheckTypes": ["exact","numerical","operational","judgement"],
+      "producer": "script/record-bundle-cohort.py",
+      "producerLine": 48,
+      "mechanism": "Producer replaces a closed-enum check_type with a prose description. This is a real canonical-record classification defect,not an ignored-file dependency."
+    },
+    "log": "generated-artifacts/mining-public-ci-repair/public-before.log",
+    "logSHA256": "151f44f45c6fc7591ba816da2a9afede6240517f5653fb436daaa140a11ad0da",
+    "localFocusedClauseTest": "Same failure reproduced in authorized workspace;not limited to export."
+  },
+  "miningPublicUnits": {
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "changedAssertions": 0,
+    "privateRawBytesExported": 0,
+    "result": "All existing synthetic-fixture units pass in source-only context. No mining public-unit dependency needs removal.",
+    "command": "python -m unittest discover -s script -p test_climatetrace_mining_method_qualification.py -v",
+    "log": "generated-artifacts/mining-public-ci-repair/mining-public-clean.log",
+    "logSHA256": "0e83c7491734e027c57eef813091b46680754c100b14aff140a87b7eeaee0877"
+  },
+  "requiredPrivateValidation": {
+    "implementation": "script/validate_climatetrace_mining_private.py",
+    "implementationSHA256": "b46403e9b7c635bf578c6642f2f58d5df7c4c3a6f01ad18dd8912610ef5b50a8",
+    "change": "Persisted the previous private evidence assertions as a required explicit validator,not unittest-discovered. Missing bytes fail,never skip;uses TestCase assertions that remain enabled under Python optimization.",
+    "preserved": "36 source/method/artifact SHA256 checks;4 publisher Git blob checks;request count/size/status;118279 native input rows;zero missing inputs;11634 single-factor panels;exact activity/factor differences;three exact engineering residuals;negative fresh-outcome admission and no fit.",
+    "command": "python script/validate_climatetrace_mining_private.py",
+    "authorizedWorkspaceExit": 0,
+    "sourceHashesVerified": 36,
+    "publisherGitBlobsVerified": 4,
+    "missingFilesSkipped": 0,
+    "sourceAssemblyOrForecastReruns": 0,
+    "log": "generated-artifacts/mining-public-ci-repair/private-validation.log",
+    "logSHA256": "96213034af05898c3def0fbc49824edc89f259e56b98ec577fe2cf1e181f68e0",
+    "cleanExportNegativeControl": {
+      "exit": 1,
+      "reason": "FileNotFoundError for required ignored source manifest;correctly fails without source bytes",
+      "log": "generated-artifacts/mining-public-ci-repair/private-validator-clean-negative.log",
+      "logSHA256": "b084d3a8bf21267423009cce12aac0663a273291c9997581251b8170cd01f0c1"
+    }
+  },
+  "remainingOwnerAction": {
+    "whyNotClaimedFixed": "Actual failure is in canonical S16-005 classification and its non-climate ledger producer,outside delegated disjoint climate/no-canonical-edit scope. Do not hide it by moving the failing public test or broadening CHECK_TYPES.",
+    "needed": "Owner corrects S16-005 check_type to the appropriate existing enum and fixes producer to preserve prose in a descriptive field instead. Retain original criteria,digest,status/evidence and all test assertions. Then rerun full179-test clean public discovery and required private validators.",
+    "promotion": "Remain held until actual source repair and clean full validation."
+  },
+  "canonicalLedgerChanges": 0,
+  "protectedFaIRFileChanges": 0,
+  "testSkipsOrDisables": 0,
+  "assertionOrGateWeakening": 0,
+  "commitsPublishingDeployments": 0
+}

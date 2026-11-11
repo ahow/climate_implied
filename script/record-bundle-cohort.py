@@ -45,7 +45,8 @@ for stage in x["stages"]:
   r["behaviour_delivered_this_run"]=behavior;r["remaining_gaps"]=gaps;r["next_action"]=nextaction
   r["remainingGaps"]=gaps;r["ready_action"]=nextaction
   if r["id"]=="S16-005":
-   r["status"]="verified";r["proposedStatus"]="verified";r["check_type"]="finite engineering component/render/browser contracts"
+   r["status"]="verified";r["proposedStatus"]="verified";r["check_type"]="exact"
+   r["check_scope"]="finite engineering component/render/browser contracts"
    r["scientific_acceptance"]="Not a scientific acceptance claim; original engineering criterion verified."
   paths={"S07-002":["server/calculation/fairArtifactFiles.ts","server/calculation/fairArtifacts.ts","script/fair-artifact-bundle.ts","script/rehearse-fair-artifact-bundle.ts","script/fair-artifact-bundle.test.ts"],
   "S04-005":["script/climatetrace_mining_method_qualification.py","script/test_climatetrace_mining_method_qualification.py"],

@@ -1432,7 +1432,7 @@
     "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T14:23:12.879594+00:00",
+  "updated_at": "2026-11-11T14:32:18.233115+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -137550,7 +137550,7 @@
               "owner_action": "Create complete absent-output fixtures for every page and verify specific reasons in UI, API and exports."
             }
           ],
-          "check_type": "finite engineering component/render/browser contracts",
+          "check_type": "exact",
           "implementation_files_functions": [
             {
               "path": "client/src/pages/dashboard.tsx",
@@ -137731,7 +137731,8 @@
           ],
           "prior_files_functions_preserved": [
             "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
-          ]
+          ],
+          "check_scope": "finite engineering component/render/browser contracts"
         },
         {
           "id": "S16-006",
@@ -145044,6 +145045,26 @@
       "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T14:29:47.406945+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 150.626,
+      "counts": {
+        "tests": 722,
+        "pass": 722,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+      "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -145753,49 +145774,8 @@
     }
   ],
   "latest_changed_paths": [
-    "client/src/lib/valuation-claims.ts",
-    "client/src/pages/climate-valuation.tsx",
-    "client/src/pages/decarb-gap-signal.tsx",
-    "client/src/pages/decarb-signal.tsx",
-    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
-    "docs/WORKPLAN_COMPLETION_LEDGER.md",
-    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
-    "docs/climatetrace-mining-method-qualification-plan.json",
-    "docs/climatetrace-mining-method-source-evidence.json",
-    "docs/climatetrace-temporal-method-route.json",
-    "docs/fair-private-provisioning-investigation.json",
-    "docs/field_semantics_census.json",
-    "docs/fslr-cohort-integrated-evidence.json",
-    "docs/fslr-public-cohort-evidence.json",
-    "docs/issuer-financial-followup-evidence.json",
-    "docs/originalS07-002-private-bundle-evidence.json",
-    "docs/workplan_completion_ledger.json",
-    "script/capture-issuer-financial-followup.ts",
-    "script/climatetrace_mining_method_qualification.py",
-    "script/company-conditional-api.test.ts",
-    "script/component-state-contracts.ts",
-    "script/fair-artifact-bundle.test.ts",
-    "script/fair-artifact-bundle.ts",
-    "script/fslr-cohort-integrated.test.ts",
-    "script/indicator-portal-followup.test.ts",
-    "script/issuer-financial-followup.test.ts",
-    "script/next-census-accounting.test.ts",
+    "docs/climatetrace-public-ci-dependency-investigation.json",
     "script/record-bundle-cohort.py",
-    "script/rehearse-fair-artifact-bundle.ts",
-    "script/remaining-component-contracts.test.ts",
-    "script/run-fslr-cohort-integrated.ts",
-    "script/s16-005-finite-changed-browser-plan.json",
-    "script/s16-005-finite-obligation-inventory.json",
-    "script/s16-005-finite-obligations.test.ts",
-    "script/test_climatetrace_mining_method_qualification.py",
-    "script/validate-fslr-cohort-integrated-private.ts",
-    "script/validate-fslr-public-cohort-private.ts",
-    "script/validate-issuer-financial-followup-private.ts",
-    "server/calculation/fairArtifactFiles.ts",
-    "server/calculation/fairArtifacts.ts",
-    "server/calculation/fslrCohortIntegratedLedger.ts",
-    "server/calculation/issuerFinancialFollowupInputs.ts",
-    "shared/companyConditionalData.ts",
-    "shared/companyConditionalSemantics.ts"
+    "script/validate_climatetrace_mining_private.py"
   ]
 }
