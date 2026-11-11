@@ -1663,7 +1663,7 @@
     },
     {
       "source": "script/source-qualified-missingness.test.ts",
-      "line": 178,
+      "line": 194,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheet",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"

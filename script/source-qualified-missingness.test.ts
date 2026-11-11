@@ -14,10 +14,14 @@ import { computeGroupAggregates } from "../server/climateValuation/carbonPriceCa
 import { calculateCarbonIntensity } from "../server/climateValuation/sharedUtils";
 import { computeSignalScores } from "../server/climateValuation/backtestCalculator";
 import { monetaryContext, type MonetaryContext } from "../server/financialData/workbookMoney";
+import {
+  decodeRetainedMissingnessSources, inspectMissingnessSources, MISSINGNESS_FIXTURE_PATH,
+  retainedMissingnessSource,
+} from "./fixtures/retainedMissingnessSource";
 
 const directory = process.env.S03_004_EVIDENCE_DIR ?? mkdtempSync(join(tmpdir(), "s03-004-"));
 function retainedAdapter(path: string, name: string) {
-  const source = execFileSync("git", ["show", `b91c298dba2b0a1884b5c758ebc0c21e0a59f84e:${path}`], { encoding: "utf8" });
+  const source = retainedMissingnessSource("b91c298dba2b0a1884b5c758ebc0c21e0a59f84e", path);
   const ast = ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true);
   const declarations = ast.statements.filter(node => !ts.isImportDeclaration(node))
     .map(node => node.getText(ast).replace(/^export\s+/, "")).join("\n");
@@ -47,6 +51,18 @@ function archive(edit?: (value: any) => void) {
   writeFileSync(path, JSON.stringify(source, null, 2));
   return { path, input: readQualifiedIndicatorArchive(path) };
 }
+test("three immutable original server-code fixtures validate exact bytes/SHA/Git blobs without historical Git", () => {
+  const bytes = readFileSync(MISSINGNESS_FIXTURE_PATH), sources = decodeRetainedMissingnessSources(bytes);
+  assert.equal(sources.length, 3);
+  assert.equal(sources.reduce((sum, source) => sum + source.bytes, 0), 17668);
+  assert.deepEqual(Array.from(new Set(sources.map(source => source.mode))), ["100644"]);
+  const corrupt = Buffer.from(bytes); corrupt[0] ^= 1;
+  assert.throws(() => decodeRetainedMissingnessSources(corrupt), /SHA256 mismatch/);
+  assert.throws(() => inspectMissingnessSources(sources.slice(1)), /Exactly three/);
+  assert.throws(() => inspectMissingnessSources([sources[1], sources[0], sources[2]]), /Unapproved historical source identity/);
+  assert.throws(() => inspectMissingnessSources([{ ...sources[0], text: `${sources[0].text}\n` }, ...sources.slice(1)]), /SHA\/blob\/byte mismatch/);
+  assert.throws(() => retainedMissingnessSource("unapproved", "server/routes.ts"), /not in approved immutable/);
+});
 test("actual qualified-source adapter→immutable input→XLSX/CLI distinguishes zero, unavailable, not-applicable and below-threshold", () => {
   const { input, path } = archive();
   assert.equal(input.sourceId, createHash("sha256").update(readFileSync(path)).digest("hex"));
@@ -201,7 +217,7 @@ test("actual scope consumers preserve complete observed-zero rows and omit unkno
   const scores = computeSignalScores([{ id: 1 }, { id: 2 }] as any, "carbon_intensity", new Map(records.map((row: any) => [row.companyId, [row]])));
   assert.equal(scores.size, 0, "Incomplete row omitted; one valid row cannot form a rank distribution");
   const path = "server/climateValuation/carbonPriceCalculator.ts";
-  const source = execFileSync("git", ["show", `40c524b29bec455f51e0bb9ac7d3efabe0218e3e:${path}`], { encoding: "utf8" });
+  const source = retainedMissingnessSource("40c524b29bec455f51e0bb9ac7d3efabe0218e3e", path);
   const ast = ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true);
   const declaration = ast.statements.find(node => ts.isFunctionDeclaration(node) && node.name?.text === "computeGroupAggregates");
   assert.ok(declaration);

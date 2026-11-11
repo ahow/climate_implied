@@ -1,5 +1,157 @@
 {
   "reportedPublicRun": "43074869603",
+  "subsequentRun43116713745": {
+    "publicCommit": "9cd475d01352123d567c22c98fef3488885924ce",
+    "sourceWorkspaceCommit": "2bb7fe87d55b",
+    "publicTree": "bdb6a6de610ebdca3fa22e2d501253057261db62",
+    "remote": {
+      "job": "130846474888",
+      "failedStep": "Run npx tsx --test script/*.test.ts",
+      "startedAt": "2026-11-11T23:03:07Z",
+      "completedAt": "2026-11-11T23:06:08Z",
+      "promotion": "skipped",
+      "annotations": "Generic exit1 only; no exact test names. No credential retrieval or authenticated raw job-log access.",
+      "jobsReceipt": "generated-artifacts/company-cache-public-ci/run-43116713745-jobs.json",
+      "jobsReceiptSha256": "1b1ea95beefe4f0b3cfc557973017843997e3e57b778d9b39b106dcb88874e84",
+      "annotationsReceipt": "generated-artifacts/company-cache-public-ci/run-43116713745-annotations.json",
+      "annotationsReceiptSha256": "faa7e8436327c556ea4fe503bc37abb3a8d3f87ba98fb2cc57191d7702ac24f5"
+    },
+    "faithfulApprovedSourceReproduction": {
+      "directory": "generated-artifacts/company-cache-public-ci/public-9cd475d0-jk3CXy",
+      "approvedEntries": 1140,
+      "policy": "Unchanged sync-github.py ROOT_FILES/SOURCE_DIRS/component exclusions and regular-file modes. Exact source-only archive plus own standalone depth1 public Git checkout; no ancestor workspace Git discovery.",
+      "privateAssetsOrGeneratedArtifactsOrHistoryExported": 0,
+      "dependencyMode": "Dependency-only node_modules symlink after exact unchanged package-lock equality.",
+      "node": "v22.23.4",
+      "existingNodeBinary": "/nix/store/lr2c5f2y7q62pzfrkclgsy5yj31hsn5l-nodejs-22.23.4/bin/node",
+      "nodeInstalledOrDependenciesChanged": false,
+      "availableParallelism": 8,
+      "testConcurrencyOverride": false,
+      "commandQualification": "Existing Node22 executes local tsx CLI --test script/*.test.ts, the same test CLI/default concurrency as CI; Node22 bin is also prepended to PATH so fresh subprocesses use the same runtime. Ambient DB/disposable authorization variables and NODE_ENV unset.",
+      "tests": 892,
+      "passed": 889,
+      "failed": 3,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 142386.358373,
+      "exitCode": 1,
+      "log": "generated-artifacts/company-cache-public-ci/public-9cd475d0-node22-path-default-full.log",
+      "logSha256": "fcabc0483275725aefccdc899ee4c88ecb43ee1f95df9b1101c7c7cb5e7db48e",
+      "sourceReceipt": "generated-artifacts/company-cache-public-ci/public-9cd475d0-jk3CXy/source-reproduction.json",
+      "sourceReceiptSha256": "e4b68d17928edf0ea0bedaf138619d3b9c8475d55ffc644363495bdafccd413f"
+    },
+    "exactFailures": [
+      {
+        "file": "script/source-qualified-missingness.test.ts",
+        "line": 139,
+        "name": "actual OWID adapter retains null-source lineage, true zero and small nonzero after native-unit conversion",
+        "operation": "retainedAdapter calls git show b91c298dba2b0a1884b5c758ebc0c21e0a59f84e:server/dataIngestion/adapters/owid.ts",
+        "reason": "Historical workspace source object absent from approved public source checkout."
+      },
+      {
+        "file": "script/source-qualified-missingness.test.ts",
+        "line": 159,
+        "name": "actual NOAA adapter retains source precision rather than rounding a small known growth value to zero",
+        "operation": "retainedAdapter calls git show b91c298dba2b0a1884b5c758ebc0c21e0a59f84e:server/dataIngestion/adapters/noaa.ts",
+        "reason": "Historical workspace source object absent from approved public source checkout."
+      },
+      {
+        "file": "script/source-qualified-missingness.test.ts",
+        "line": 204,
+        "name": "actual scope consumers preserve complete observed-zero rows and omit unknown scopes; retained old aggregate baseline differs",
+        "operation": "git show 40c524b29bec455f51e0bb9ac7d3efabe0218e3e:server/climateValuation/carbonPriceCalculator.ts",
+        "reason": "Historical workspace source object absent from approved public source checkout."
+      }
+    ],
+    "notTheHypothesizedCacheTimeout": {
+      "actualCompanyCacheTransportCase": "passed under Node22/default concurrency",
+      "durationMs": 22203.968335,
+      "existing30SecondHttpAnd90SecondCaseBudgets": "Not changed; observed failure does not justify increasing or weakening timeouts.",
+      "oldWarningFixtureRepair": "All its source-history cases passed; new failures are separate server-source historical lookups.",
+      "currentAndPublicMissingnessTestSha256": "abddb807b18e878838fd796ff34e02aff6707f2743893e40b9363e4fe5f1a993"
+    },
+    "supersededDiagnosticInvocation": {
+      "log": "generated-artifacts/company-cache-public-ci/public-9cd475d0-node22-default-full.log",
+      "logSha256": "28c2062e0182e09befccff249e5dc895b2d1dfffdfe2ae82c2daa6d923744360",
+      "qualification": "Initial existing-Node22 invocation did not also adjust PATH, so two fresh subprocess tests launched installed Node20 and correctly refused runtime mismatch; parent case also failed, producing6 failures total. This was a reproduction-environment defect, not evidence of an actual CI replay-model defect. Correcting PATH without changing source gives the exact three historical-source failures above."
+    },
+    "repairSourceCoordination": {
+      "proposal": "Separate immutable hash-pinned CI-only fixture of three exact historical approved server-source blobs, inspected for regular modes/UTF8/credentials. Keep previous89-client fixture immutable. Replace only historical git-show reads with verified source lookup; retain all original before/current precision, zero/null/scope and monetary-guard assertions.",
+      "newSourceFiles": [
+        { "path": "server/dataIngestion/adapters/owid.ts", "revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e", "gitBlobSha1": "2c80013f9c3d409c1e8480a5b428960dec51d5f0", "bytes": 1441, "mode": "100644" },
+        { "path": "server/dataIngestion/adapters/noaa.ts", "revision": "b91c298dba2b0a1884b5c758ebc0c21e0a59f84e", "gitBlobSha1": "b1efc5f30fe001ac40320b754f2fc18b6d39ba85", "bytes": 3144, "mode": "100644" },
+        { "path": "server/climateValuation/carbonPriceCalculator.ts", "revision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e", "gitBlobSha1": "ddcaa21c9907a05bdefe01c1bb03aabcef863e8c", "bytes": 13083, "mode": "100644" }
+      ],
+      "totalAdditionalApprovedSourceBytes": 17668,
+      "initialStatus": "Diagnosis initially awaited explicit parent coordination for the three historical server-source blobs; approved repair below supersedes that blocker.",
+      "all14BundlePinsUnchanged": true,
+      "workflowDependencyOrGateChange": false,
+      "currentWorkspaceFullSuiteDuplicated": false
+    },
+    "parentApprovedThreeSourceRepair": {
+      "authorization": "Parent approved ONLY the three listed historical server-code blobs/17668bytes after credential/private-data inspection; no raw provider data, credentials, assets or history dump.",
+      "fixture": "script/fixtures/retained-missingness-source.json",
+      "fixtureSha256": "c6bb4bfc8dbd66e0912bc7759b942521562dbbcd1462a8b44cf21557a57ba25d",
+      "serializedBytes": 19374,
+      "originalSourceBytes": 17668,
+      "sourceCount": 3,
+      "sourceSha256": {
+        "server/dataIngestion/adapters/owid.ts": "63e878c020d62520f65a344534d7b01e60f7a69693f32fa7b284dcdce3e92924",
+        "server/dataIngestion/adapters/noaa.ts": "6179213fdcbe5553828dc542d483d6619856734c8a17f285cc75f54bb3c4c554",
+        "server/climateValuation/carbonPriceCalculator.ts": "7a27f7b8e7862cbc457a66dc364d673996e0739bcb30fbb0432d2a5f2a1f6aa9"
+      },
+      "inspection": "Exactly three regular100644 UTF8 code blobs at the approved revision/path/blob identities. Original adapters contain source URLs/fetch/parsing code, not downloaded provider payloads; original calculator contains model code, not workbook/provider records. Existing credential patterns plus additional provider/literal-secret patterns found zero matches. Export writes exclusively read-only under restrictive umask; no private artifact, assets, credential or Git-history data exported.",
+      "inspectionReceipt": "generated-artifacts/company-cache-public-ci/missingness-source-export-inspection.json",
+      "inspectionReceiptSha256": "cb5fc26863c0a2ca352d876581eebba1c849c2e6cbca35e264cbd254356e74e4",
+      "loaderAndExplicitExporter": "script/fixtures/retainedMissingnessSource.ts",
+      "loaderSha256": "e80c2038a3da4677606adf08db0c871483680807c93e6437b079a08bacc8cd53",
+      "loaderContract": "Raw fixture SHA256 plus exact three revision/path/mode/byte/Git-blob/SHA256 pins; unapproved lookup, missing/reordered source, mutated text or corrupt package refuses. No fallback to current source/history. CI never calls exporter.",
+      "test": "script/source-qualified-missingness.test.ts",
+      "testSha256": "0cbd73a839b54c867e9d5fa0d2a4459e391a7532c382a9cc6f377b1bbaa92fc4",
+      "preservedAssertions": "Only the three historical git-show reads changed to verified source lookup. All original old/current OWID/NOAA precision, true-zero/null/underflow, date lineage, scope eligibility and explicit synthetic monetary-receipt assertions remain. Added one exact-source integrity test, not a skipped or reduced case.",
+      "oldClientFixtureSha256Unchanged": "54c86532decc726490c5fa0abf45f9966b3591f986c910f2f8596708ff69331f",
+      "intermediateStrictGateFailurePreserved": {
+        "log": "generated-artifacts/company-cache-public-ci/public-9cd475d0-missingness-repaired-node22-default-full.log",
+        "logSha256": "986604a98e6cdfccbaa2cca37a9c1ad557899a2f2100fa14883c19682080c62a",
+        "cases": 893,
+        "passed": 891,
+        "failed": 2,
+        "reason": "New integrity test moved an existing XLSX fixture builder from line178 to194. Strict census --check correctly rejected stale source-location metadata; completeness and regeneration tests failed.",
+        "correction": "Ran actual unchanged census generator. docs/field_semantics_census.json diff is exactly one source-location line178->194; no definitions/fields/denominator/binding/closure changes.",
+        "correctedCensusSha256": "8752b88605e3b39a87a6c3923095c060771c2d65cbf49c8c9f39471f3c14766d"
+      },
+      "faithfulFinalValidation": {
+        "base": "Standalone exact shallow public9cd475d0 source plus only three repair source files and the one-line census metadata regeneration. Not an already-published commit.",
+        "node": "v22.23.4, existing runtime, PATH also selects Node22 for fresh subprocesses",
+        "concurrency": "Default same CI test CLI; no test-concurrency override",
+        "historicalSourceObjectsRemainAbsent": true,
+        "focusedCases": 8,
+        "focusedPassed": 8,
+        "focusedPlusBothCensusGates": 28,
+        "focusedPlusCensusPassed": 28,
+        "focusedLog": "generated-artifacts/company-cache-public-ci/public-9cd475d0-missingness-census-final-focused.log",
+        "focusedLogSha256": "fa30b7db232e2d096a98a06e515a3988257a2ea0936c8dd57e4167e7a00f9e99",
+        "fullCases": 893,
+        "fullPassed": 893,
+        "fullFailed": 0,
+        "fullSkipped": 0,
+        "fullCancelled": 0,
+        "fullDurationMs": 138750.207647,
+        "fullLog": "generated-artifacts/company-cache-public-ci/public-9cd475d0-final-node22-default-full.log",
+        "fullLogSha256": "56ba8ae241d5186da8c5faa0a01b4eb3fa37ad7c344013bbd2772ea2c7d1e1e8",
+        "overlayReceipt": "generated-artifacts/company-cache-public-ci/public-9cd475d0-missingness-overlay.json",
+        "overlayReceiptSha256": "fd171e6583d5a8a4534c536fb118b905c1bc277b1ddbb6e296ad1e86f8d0e947",
+        "compiler": "npx tsc --noEmit --project generated-artifacts/company-cache-public-ci/missingness-fixture-tsconfig.json",
+        "compilerPassed": true,
+        "compilerQualification": "Ignored config extends unchanged actual strict/default-ES5 project configuration.",
+        "compilerLog": "generated-artifacts/company-cache-public-ci/missingness-fixture-typecheck.log"
+      },
+      "all14BundlePinsUnchanged": true,
+      "cacheTimeoutBudgetsAssertionsDependenciesAndWorkflowUnchanged": true,
+      "ledgerDeployCallbackCommitPublicationOrPrivateValidatorRun": false,
+      "remaining": "Parent owns current-tree/private-validator full integration recheck, reviewed public source export and actual remote CI/promotion decision."
+    }
+  },
   "subsequentRun43099169985": {
     "publicCommit": "57a264ba106a22f744707b0ccd0bcab0683e8869",
     "sourceWorkspaceCommit": "17f8e50c2201",

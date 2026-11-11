@@ -24,6 +24,60 @@
   "counts": "56verified242partial2blocked",
   "semantics": "Original1000/1001unchanged;extra64component/supplementalfieldsnotoriginalclosure",
   "release": "NOT DEPLOYED; existing queues observed independently",
+  "failure_history": "Interrupted/constrained validation attempts retained. Cachetransport fixture unqualifiedaftermoneyguard; Nodeassertion diagnostic inferencehung; explicitmessages/qualifiedsyntheticreceipts/sharedESMcontexts/boundedtimeouts fixed without productiongateweakening. Mobileoverflow andsummaryfeedback failures fixed, receipts preserved.",
+  "public_ci_history": "43099169985 and43116713745 failedTS: faithful shallow public reproduction found unavailable workspace Git history. Exact source-only fixtures preserve original blobs/tree and all old/current assertions; no private data/history dump, skip, workflow or timeout weakening. See docs/S02-009-public-source-failure-evidence.json. Final public-source validation receipt is separate from local892."
+}
+
+S02-004: Versioned lifecycle×identity denominator,35cells reconcile2442full/0eligible; lifecycle independent reviewstates.
+Next/boundary: No historicalapproval/financialeligibility inferred.
+
+S10-001: 120provider-activeobservations withactualdatedsources;2322unknown; acquisition/merger/delistingknown0. Lastobservation/inactiveflag/acceptedidentity neverimplieslifecycle.
+Next/boundary: Provider observations not original historicalinvestability.
+
+S10-008: Every2442company paired lifecycle/sevenstate; API/UI/XLSX22214rows+2auditrows reconcile, immutableeligible0.
+Next/boundary: Legacyaccepted1 remainsunretained/unknownlifecycle; no approvalrefreeze.
+
+S10-009: All120nonunknownsources audited;0unverifiednonunknownlabels.
+Next/boundary: Do notinferlistingfromidentity or corporateactionsfromlastworkbookdate.
+
+S10-003: Existing100caseaudit authenticated50unmatched+50ambiguous fromFULL2442,notoriginal200; boundedartifact/readonlysnapshot search retained.
+Next/boundary: Originaldated200membership/results/sourceversion required; no replacement sample.
+
+S10-007: Actual811572numericmoneycells audited;0explicitcurrencies/qualifiedscales/authorizedexactdayFX,0conversions.193dates;16Profitzeros/192samemonthcrossdatepairs preserved. UNITS tokenswere2securitynames,notunits.
+Next/boundary: Need datatypecurrency/minorunit/multiplier andactual-source-dayFX receipts; identityapprovalalonecannotqualify worksheetmoney.
+
+S10-013: Allactualnominalconsumers/weights/rawMC-Profitfallback guarded; moneytotals/shares/unknownbacktests withheldnot0.2437nativecapitalizationobservations and390215reportedpositivePE retained;1255unsupportedfallbackswithheld. Actualprivateconsumer/XLSXproof.
+Next/boundary: Currencyengineeringverified, not qualifiedmonetarydata/valuation. IndependentdimensionlessPE retained.
+
+S03-004: RemovedNOAA/OWIDprematurerounding;sourceprecision retained,underflowrefused. Readonlyqualifiedarchive fourstates andinteriorinfillonlyactualblank/donors/source-suppliedpaireddraws.8observations/1zero/1infill/2derivedsamples/4withheld. Oldscopeaggregate2rows10emissions→1observedzero row0 documented.
+Next/boundary: Fullfourstatepersistence/review/UI andrealproviderpaired-draw evidence remain; deterministic/carryforward diagnostics not sampledstandard.
+
+# Lifecycle evidence and checked monetary aggregation
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T22:57:55.434360+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 250.079,
+    "counts": {
+      "tests": 892,
+      "pass": 892,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T225755434360Z.log",
+    "workspace_revision": "1418cdb3a7c4d3f858a41b06b7444024a5657d95",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "56verified242partial2blocked",
+  "semantics": "Original1000/1001unchanged;extra64component/supplementalfieldsnotoriginalclosure",
+  "release": "NOT DEPLOYED; existing queues observed independently",
   "failure_history": "Interrupted/constrained validation attempts retained. Cachetransport fixture unqualifiedaftermoneyguard; Nodeassertion diagnostic inferencehung; explicitmessages/qualifiedsyntheticreceipts/sharedESMcontexts/boundedtimeouts fixed without productiongateweakening. Mobileoverflow andsummaryfeedback failures fixed, receipts preserved."
 }
 
