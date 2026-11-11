@@ -1392,7 +1392,18 @@
         "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
       },
       "counts": "41verified257partial2blocked",
-      "release": "Local implementation validated; release receipt pending",
+      "release": {
+        "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+        "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+        "ci": "43046628640 success",
+        "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+        "verified_at": "2026-11-11T15:21:26.302895+00:00",
+        "health": 200,
+        "build_info": "Exact SHA verified",
+        "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+        "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+        "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
+      },
       "clauses": [
         "S04-003",
         "S12-008",
@@ -1483,17 +1494,16 @@
     }
   },
   "current_release": {
-    "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
-    "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
-    "ci": "43039515013 success",
-    "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
-    "verified_at": "2026-11-11T14:38:46.906434+00:00",
-    "build_info": "exact SHA verified",
+    "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+    "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+    "ci": "43046628640 success",
+    "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+    "verified_at": "2026-11-11T15:21:26.302895+00:00",
     "health": 200,
-    "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
-    "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
-    "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
-    "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+    "build_info": "Exact SHA verified",
+    "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+    "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+    "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-11T15:15:48.458110+00:00",
@@ -5845,8 +5855,8 @@
             "calendar_liability": "99/100 original XLSX boundaries exactly equal;100/100 immutable/recovery boundaries equal; original/frozen discrepant numbers share binary32 bits.0/50qualified comparisons; no repairs, date substitution or break-rate claim."
           },
           "scientific_acceptance": "No scientific, identity, issuer or owner acceptance implied.",
-          "git_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
-          "deployment_revision": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+          "git_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+          "deployment_revision": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
           "remaining_gaps": [
             "Original runs[].summary historical leaf meanings remain unknown.",
             "Broader dynamic/custom/display acceptance and live transaction lifecycle are not established by in-memory fixtures.",
@@ -6062,33 +6072,16 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
-            "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
-            "ci": "42989861313 validate/promote success",
-            "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
-            "railway_status": "SUCCESS",
-            "verified_at": "2026-11-11T08:52:59.728218+00:00",
-            "smoke": {
-              "/api/build-info": {
-                "status": 200,
-                "body": {
-                  "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
-                  "calculationVersion": "historical-diagnostics-7",
-                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
-                }
-              },
-              "/api/health": {
-                "status": 200
-              },
-              "/api/calculation/company-coverage": {
-                "status": 503
-              },
-              "publicReplayPost": {
-                "status": 403
-              },
-              "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
-            },
-            "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
+            "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+            "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+            "ci": "43046628640 success",
+            "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+            "verified_at": "2026-11-11T15:21:26.302895+00:00",
+            "health": 200,
+            "build_info": "Exact SHA verified",
+            "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+            "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+            "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
           },
           "reviewed_at": "2026-11-10T12:59:40.497435+00:00",
           "inspected_source_sha256": {
@@ -24826,8 +24819,8 @@
             }
           ],
           "scientific_acceptance": "not-promoted",
-          "git_commit": "37b92be048df7a5cfed641350100534ace6219b0",
-          "deployment_revision": "592957cddbdc6a67856cb326f61b6dfa2d0e7eda",
+          "git_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+          "deployment_revision": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
           "remaining_gaps": [
             "Identity decomposition exists, but complete five-region compatible GDP/energy/CO2 histories, all trend/break tests and usable forecast holdouts remain incomplete."
           ],
@@ -25235,16 +25228,16 @@
             }
           ],
           "live_release_observation": {
-            "workspace_commit": "37b92be048df7a5cfed641350100534ace6219b0",
-            "github_main": "592957cddbdc6a67856cb326f61b6dfa2d0e7eda",
-            "ci": "43019539782 success",
-            "railway_deployment": "68d8a8b8-e5e4-4e9b-9d4a-5bc96b4ff71f",
-            "verified_at": "2026-11-11T12:25:04.103100+00:00",
-            "build_info": "exact SHA verified",
+            "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+            "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+            "ci": "43046628640 success",
+            "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+            "verified_at": "2026-11-11T15:21:26.302895+00:00",
             "health": 200,
-            "affected": "data-management200; closed-modal crash fixed and initialrender screenshots clean before release; no unchanged41browser suite rerun",
-            "tests": "Final623TS/0fail/0skip/typecheck/build;172Python and mandatoryprivate issuer-law validator passed before client-only modalfix, measured code unchanged",
-            "scope": "Code/source only; no data/scientific promotion; later documentation/local receipts distinct."
+            "build_info": "Exact SHA verified",
+            "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+            "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+            "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
           },
           "component_source_evidence": [
             {
@@ -118064,8 +118057,8 @@
             }
           ],
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
-          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
-          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+          "git_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+          "deployment_revision": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
           "remaining_gaps": [
             "Conditional revised-history integration is not fully sourced operating case or qualified projection/valuation pair."
           ],
@@ -118402,17 +118395,16 @@
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
           "live_release_observation": {
-            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
-            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
-            "ci": "43039515013 success",
-            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
-            "verified_at": "2026-11-11T14:38:46.906434+00:00",
-            "build_info": "exact SHA verified",
+            "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+            "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+            "ci": "43046628640 success",
+            "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+            "verified_at": "2026-11-11T15:21:26.302895+00:00",
             "health": 200,
-            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
-            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
-            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
-            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+            "build_info": "Exact SHA verified",
+            "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+            "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+            "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
           },
           "grant_kaya_increment": {
             "evidence": [
@@ -122348,8 +122340,8 @@
             }
           ],
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
-          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
-          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+          "git_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+          "deployment_revision": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
           "remaining_gaps": [
             "0/3 original fully qualified end-to-end company cases."
           ],
@@ -122690,17 +122682,16 @@
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
           "live_release_observation": {
-            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
-            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
-            "ci": "43039515013 success",
-            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
-            "verified_at": "2026-11-11T14:38:46.906434+00:00",
-            "build_info": "exact SHA verified",
+            "workspace_commit": "fd808b69ef95f29d99a8de527c108ebb0756ef59",
+            "github_main": "1dbe19a116d33729fc378a0e26222adb3f5bc61c",
+            "ci": "43046628640 success",
+            "railway_deployment": "94e68ba6-9c59-472c-b42b-380db61cd47e",
+            "verified_at": "2026-11-11T15:21:26.302895+00:00",
             "health": 200,
-            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
-            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
-            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
-            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+            "build_info": "Exact SHA verified",
+            "affected": "PublicconditionalAPI returns997600000 recognition and422000000 scopeddistribution; no qualifiedcase/sciencepromotion.",
+            "tests": "730TS0fail0skip;189Python;mandatorygrant/privateKaya checks;typecheck/build;5postledgerreconciliation checks.",
+            "scope": "Code release; private155bd3ffbundle unchanged/unprovisioned. Laterdocs/localreceipt distinct."
           },
           "grant_kaya_increment": {
             "evidence": [
@@ -147548,6 +147539,19 @@
       "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
       "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
       "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
+    },
+    {
+      "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+      "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+      "ci": "43039515013 success",
+      "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+      "verified_at": "2026-11-11T14:38:46.906434+00:00",
+      "build_info": "exact SHA verified",
+      "health": 200,
+      "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+      "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+      "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+      "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
     }
   ],
   "latest_changed_paths": [
