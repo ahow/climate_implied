@@ -1,0 +1,26 @@
+{
+  "scope": "Optional narrow confirmation of changed branches by the existing authorized parent tester. Not a replay of the unchanged41 routes, six prior passing flows or ten cumulative receipts; not an extra scientific/owner acceptance gate.",
+  "restrictions": ["Read-only test fixtures/interception", "No operator/provider mutation", "No deployment or callback", "Do not overwrite original failure or follow-up evidence"],
+  "cases": [
+    {
+      "id": "signal-missing-accounting-tooltip-reason",
+      "route": "/decarb-signal",
+      "fixture": "Use the existing completed-upload backtest fixture: Jan2024 activeReturn=0, trackingError=null; Feb2024 activeReturn=null, trackingError=0; cumulative multipliers=1. Dates must be valid. Preserve other already-valid response metadata.",
+      "interaction": "Hover the two actual dated active-return/TE points only.",
+      "assertions": ["Jan: 0.00% Active Return and Tracking Error (ann.) not returned for this observation", "Feb: 0.00% Tracking Error and Active Return not returned for this observation", "No bare percent or missing-as-zero"],
+      "automatedProof": "Installed Recharts plus the actual source tooltip has a default-filter negative control and corrected filterNull=false render test."
+    },
+    {
+      "id": "gap-selected-measure-refuses-other-fields",
+      "route": "/decarb-gap",
+      "fixture": "Selected SDG response has date=2024-01, dirtyPE=20, cleanPE omitted, plus bottomTercilePeRatio=20, topTercilePeRatio=10, bestTercilePE=20, worstTercilePE=20. Supply the normal ready summary metadata. These extra fields are not selected SDG inputs.",
+      "assertions": ["Selected group gap is Unavailable with missing/invalid P/E denominator reason", "Do not display carbon5.00pp or ambition0.00pp as SDG", "No unnecessary export/download replay: source export builder is tested to retain null selected gap"]
+    },
+    {
+      "id": "undated-observation-reason-not-fake-hover",
+      "route": "/decarb-signal",
+      "fixture": "Current SDG group date=null with otherwise valid equal20PE; current backtest series date=null with multipliers1, activeReturn0 and trackingError=null. No substitute valid-date row.",
+      "assertions": ["Specific SDG and backtest observation-date-unavailable notices", "Latest SDG headline unavailable rather than 0.00pp or backfilled prior month", "No 1970 observation or fake hover target", "No enabled comparison/cumulative-return export from the undated rows", "Do not rerun previous JSON/XLSX, issuer or archive flows"]
+    }
+  ]
+}

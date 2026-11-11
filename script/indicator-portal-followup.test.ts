@@ -5,7 +5,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import ts from "typescript";
 import { IndicatorSeriesTooltip } from "../client/src/pages/data-management";
-import { displayDiagnostic } from "../client/src/lib/valuation-claims";
+import { displayDiagnostic, observationTimestamp, tooltipObservation } from "../client/src/lib/valuation-claims";
 
 (globalThis as any).React = React;
 const sourcePath = "client/src/pages/data-management.tsx";
@@ -106,7 +106,7 @@ for (const path of ["client/src/pages/decarb-signal.tsx", "client/src/pages/deca
     if (ts.isVariableDeclaration(node) && node.name.getText() === "BacktestTooltip") expression = node.initializer!.getText();
   });
   assert.ok(expression);
-  const Tooltip = evaluate(expression, { displayDiagnostic });
+  const Tooltip = evaluate(expression, { displayDiagnostic, observationTimestamp, tooltipObservation });
   for (const missing of ["trackingError", "activeReturn"]) {
     const html = renderToStaticMarkup(React.createElement(Tooltip, { active: true, label: "2024-01", payload: [
       { dataKey: "trackingError", name: "Tracking Error", value: missing === "trackingError" ? null : 0 },

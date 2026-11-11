@@ -1299,6 +1299,43 @@
         "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
         "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
       }
+    },
+    "bundle_cohort": {
+      "clauses": [
+        "S07-002",
+        "S12-001",
+        "S12-008",
+        "S12-011",
+        "S12-017",
+        "S04-005",
+        "S16-005"
+      ],
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+        ],
+        "executed_at": "2026-11-11T14:16:15.552204+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 155.436,
+        "counts": {
+          "tests": 722,
+          "pass": 722,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+        "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "pythonTests": 179,
+      "privateValidators": 3,
+      "browserChangedCases": "3/3pass; prior failures/followups retained",
+      "originalSemantics": "1000/1001 unchanged;18supplemental definitions added,1792total",
+      "counts": "41verified257partial2blocked",
+      "provisioning": "private authorized transfer unavailable; no new resources"
     }
   },
   "prior_native_fleet_increment": {
@@ -1395,7 +1432,7 @@
     "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T13:26:46.723159+00:00",
+  "updated_at": "2026-11-11T14:23:12.879594+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -25893,11 +25930,41 @@
           ],
           "evidence_caveat": "Original numerical criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Annual revised fossil-CO2 trend is not 2024-2026 monthly/daily high-frequency nowcasting; source original releases and scope-compatible outcomes.",
           "files_functions_changed": [
-            "server/calculation/shortHorizonEmissions.ts:line,interval,shortHorizonEmissions",
-            "script/short-horizon-emissions.ts:",
-            "docs/Historical_Diagnostics_and_Skill_Results.md:"
+            {
+              "path": "script/climatetrace_mining_method_qualification.py",
+              "sha256": "1dd0c58d810e4433dc765eafe6cac03e3001ec87b5b64e6fca09cbc4802473fc",
+              "namedFunctions": [
+                "sha",
+                "save",
+                "request",
+                "discover",
+                "acquire_methods",
+                "acquire_temporal",
+                "decimal_native",
+                "native_formula",
+                "input_pair_audit",
+                "normalized",
+                "locate",
+                "method_source_admission",
+                "assemble"
+              ]
+            },
+            {
+              "path": "script/test_climatetrace_mining_method_qualification.py",
+              "sha256": "097d5691999bb707fb6e2b39e0f8f0ee2ea6a9e1421181e314176e4cdb8296b4",
+              "namedFunctions": [
+                "row",
+                "test_exact_native_product_no_factor_fit_or_float_rounding",
+                "test_missing_input_not_zero_filled",
+                "test_native_units_not_guessed_or_converted",
+                "test_nonfinite_negative_and_bad_native_input_rejected",
+                "test_new_input_field_pairs_not_old_CO2_repetition",
+                "test_source_page_proof_requires_all_terms_on_same_page",
+                "test_annual_disaggregation_never_admitted_as_fresh_monthly_outcomes"
+              ]
+            }
           ],
-          "behaviour_delivered_this_run": "Full separateWDI2021PPP revision2026-10-08:465GDP+465populationcells;75regionalyears,RoW/transport30null. Original2011PPP54gaps unchanged. ActualmonthlyCO2 archive118279rows/1939listedminingassets/80countries;2024–25sameasset/month23268pairs exactlyequal. Partialportfolio/revisedhistory/freshnessnotqualified; noholdouts orsynthetic outcomes.",
+          "behaviour_delivered_this_run": "Publisher methodology proves annual disaggregation/extrapolation and carried2023activity; new native activity/factor audit118279rows reproduces23268yearpairs/1939Januarypairs exactly. Reject as independent fresh2025/26monthly outcomes; retain source-modelled revised history only.",
           "inputs_versions_assumptions": [
             "origin-specific training only; bias=mean(pred-actual), MAE=mean(abs(pred-actual)); paired baseline improvements",
             {
@@ -25999,6 +26066,26 @@
               "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -26034,9 +26121,9 @@
           "git_commit": "37b92be048df7a5cfed641350100534ace6219b0",
           "deployment_revision": "592957cddbdc6a67856cb326f61b6dfa2d0e7eda",
           "remaining_gaps": [
-            "Annual revised fossil-CO2 trend is not 2024-2026 monthly/daily high-frequency nowcasting; source original releases and scope-compatible outcomes."
+            "Full-scope origin-vintage monthly outcomes remain unavailable; no nowcast fitting/scoring performed."
           ],
-          "next_action": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
+          "next_action": "Find original dated full-scope monthly/dailyCO2 outcomes with actual freshness and compatible territorial/sector definitions; mining modeled estimates cannot supply independent holdout targets.",
           "blockers": [],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
@@ -27351,6 +27438,99 @@
                 "centralEligible": false
               }
             }
+          ],
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "docs/climatetrace-mining-method-source-evidence.json",
+                "sha256": "6337ee865045ad4421c902c6ece828c9dbfdda28205a5e6a01fea8c79644a817"
+              }
+            ],
+            "behavior": "Publisher methodology proves annual disaggregation/extrapolation and carried2023activity; new native activity/factor audit118279rows reproduces23268yearpairs/1939Januarypairs exactly. Reject as independent fresh2025/26monthly outcomes; retain source-modelled revised history only.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "Full-scope origin-vintage monthly outcomes remain unavailable; no nowcast fitting/scoring performed."
+          ],
+          "ready_action": "Find original dated full-scope monthly/dailyCO2 outcomes with actual freshness and compatible territorial/sector definitions; mining modeled estimates cannot supply independent holdout targets.",
+          "new_files_functions": [
+            {
+              "path": "script/climatetrace_mining_method_qualification.py",
+              "sha256": "1dd0c58d810e4433dc765eafe6cac03e3001ec87b5b64e6fca09cbc4802473fc",
+              "namedFunctions": [
+                "sha",
+                "save",
+                "request",
+                "discover",
+                "acquire_methods",
+                "acquire_temporal",
+                "decimal_native",
+                "native_formula",
+                "input_pair_audit",
+                "normalized",
+                "locate",
+                "method_source_admission",
+                "assemble"
+              ]
+            },
+            {
+              "path": "script/test_climatetrace_mining_method_qualification.py",
+              "sha256": "097d5691999bb707fb6e2b39e0f8f0ee2ea6a9e1421181e314176e4cdb8296b4",
+              "namedFunctions": [
+                "row",
+                "test_exact_native_product_no_factor_fit_or_float_rounding",
+                "test_missing_input_not_zero_filled",
+                "test_native_units_not_guessed_or_converted",
+                "test_nonfinite_negative_and_bad_native_input_rejected",
+                "test_new_input_field_pairs_not_old_CO2_repetition",
+                "test_source_page_proof_requires_all_terms_on_same_page",
+                "test_annual_disaggregation_never_admitted_as_fresh_monthly_outcomes"
+              ]
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "server/calculation/shortHorizonEmissions.ts:line,interval,shortHorizonEmissions",
+            "script/short-horizon-emissions.ts:",
+            "docs/Historical_Diagnostics_and_Skill_Results.md:"
           ]
         },
         {
@@ -69359,12 +69539,65 @@
           ],
           "evidence_caveat": "Original operational criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Offline Python artifacts exist; verify all Node routes consume the exact versioned ensembles and missing-artifact errors without Python request execution.",
           "files_functions_changed": [
-            "script/fair-reference.py:main",
-            "script/fair_native_bridge.py:normalized,native_coverage,apply_native_pathway",
-            "script/regional_fair_pathway.py:member_pathway,main",
-            "script/fair_physical_retention.py:physical_dataset,retain_physical"
+            {
+              "path": "server/calculation/fairArtifactFiles.ts",
+              "sha256": "8e36184ef09af22295b71999a643e10831e7c2c2d6fe0bf0c1b4260d554c1b5e",
+              "namedFunctions": [
+                "safeBundlePath",
+                "readFairPrivateFile",
+                "readRuntimeFairArtifact"
+              ]
+            },
+            {
+              "path": "server/calculation/fairArtifacts.ts",
+              "sha256": "6420215db8620c9d7c6903b5544392f6c79ec47f8a12d46716c0133909626400",
+              "namedFunctions": [
+                "createFairArtifactLoader",
+                "fairMember"
+              ]
+            },
+            {
+              "path": "script/fair-artifact-bundle.ts",
+              "sha256": "cb0a879e761a43537f8c1f787c08d9c0c502819a132ff920431234e6d65c4547",
+              "namedFunctions": [
+                "requireSha",
+                "privateOutput",
+                "privateDirectory",
+                "exclusiveFile",
+                "syncDirectory",
+                "syncPrivateTree",
+                "absent",
+                "decode",
+                "validateManifest",
+                "buildFairBundle",
+                "withLock",
+                "installFairBundle",
+                "validateRelease",
+                "activeRelease",
+                "activateFairRelease",
+                "recoverFairActivation",
+                "exportFairRelease",
+                "unlockAbandonedFairStore",
+                "main"
+              ]
+            },
+            {
+              "path": "script/rehearse-fair-artifact-bundle.ts",
+              "sha256": "c8a6aae22aaafe57e29b81af5019b2a10e0e02e1aa44ae643cbe6e84f1f47ee1",
+              "namedFunctions": [
+                "changedManifest",
+                "forgedSource",
+                "rejects",
+                "permissions"
+              ]
+            },
+            {
+              "path": "script/fair-artifact-bundle.test.ts",
+              "sha256": "25bd953d2a02fb355d8f75d50aa2041f2d79e778030087450f2408b453391006",
+              "namedFunctions": []
+            }
           ],
-          "behaviour_delivered_this_run": "24route surfaces inventoried; explicit exactartifact/version/manifest/ensemble/memberhash selection and refusal.16retained ensembles/13456members independently validated;96actualconsumer invocations. NoPythonHTTP/no scientificpromotion. Deploymentprivateartifact availability still separate.",
+          "behaviour_delivered_this_run": "Exact16 private bundle with atomic install/activation/recovery,13protected source snapshots,all13456member identities,29refusals,permissions/export identity. Live storage/authorized transfer unavailable: no bucket/volume/CLI session/SSH principal or connector write tool.",
           "inputs_versions_assumptions": [
             "native Mt bridge to Gt/Mt/kt gas/yr; annual temperature=(T[y]+T[y+1])/2; anomaly subtracts each member's 1850-1900 mean",
             {
@@ -69453,6 +69686,26 @@
               "workspace_revision": "572b3903012667a59916900717514d57995331ed",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -69483,9 +69736,9 @@
           "git_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
           "deployment_revision": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
           "remaining_gaps": [
-            "ExactversionedNodeconsumers and missing/corrupt/versionrefusals implemented/retained validated; deployed authorized privateensemble availability remains unproven. NoPythonHTTP. Scientificacceptance belongs to separatecriteria."
+            "Actual live successful selected artifact reads still unproven; authenticated private transfer is required. This is not the production archive-schema dependency."
           ],
-          "next_action": "Complete residual per-field/branch contracts beyond60componentinvocation and preserve targetedbrowser evidence. Deploy authorized exactofflineartifact bundle via existing supported private provisioning, never regeneratePythonHTTP. Separately integrate actualcredit receipts with retained2023origin/othergrant normalization and stubbasis; find laterEnLink/ONEOKarrangement/Rosepermit, actualCCSfees and NEEcashpriorities. Scientificjoint/physical/historicalcorpus gates remain; no proxy efficacy.",
+          "next_action": "Authorized Railway operator privately transfers current155bd3ff bundle, installs source-matching release and configures absolute FAIR_ARTIFACT_ROOT; verify live selected/member/summary reads and refusals. Preserve private recovery copy across ephemeral deployments.",
           "blockers": [],
           "stage": 7,
           "stageName": "Climate response and the four headline measures",
@@ -69841,7 +70094,129 @@
             "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
             "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
             "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
-          }
+          },
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "docs/originalS07-002-private-bundle-evidence.json",
+                "sha256": "21d983020d684a9ef078265200a21f87ba41f63c8fb80d744eb8820014cd5a52"
+              },
+              {
+                "file": "docs/fair-private-provisioning-investigation.json",
+                "sha256": "7002951c57bb812034fcb59462f735c2f5675d1de17292ada38a0a07d7b5a71e"
+              }
+            ],
+            "behavior": "Exact16 private bundle with atomic install/activation/recovery,13protected source snapshots,all13456member identities,29refusals,permissions/export identity. Live storage/authorized transfer unavailable: no bucket/volume/CLI session/SSH principal or connector write tool.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "Actual live successful selected artifact reads still unproven; authenticated private transfer is required. This is not the production archive-schema dependency."
+          ],
+          "ready_action": "Authorized Railway operator privately transfers current155bd3ff bundle, installs source-matching release and configures absolute FAIR_ARTIFACT_ROOT; verify live selected/member/summary reads and refusals. Preserve private recovery copy across ephemeral deployments.",
+          "new_files_functions": [
+            {
+              "path": "server/calculation/fairArtifactFiles.ts",
+              "sha256": "8e36184ef09af22295b71999a643e10831e7c2c2d6fe0bf0c1b4260d554c1b5e",
+              "namedFunctions": [
+                "safeBundlePath",
+                "readFairPrivateFile",
+                "readRuntimeFairArtifact"
+              ]
+            },
+            {
+              "path": "server/calculation/fairArtifacts.ts",
+              "sha256": "6420215db8620c9d7c6903b5544392f6c79ec47f8a12d46716c0133909626400",
+              "namedFunctions": [
+                "createFairArtifactLoader",
+                "fairMember"
+              ]
+            },
+            {
+              "path": "script/fair-artifact-bundle.ts",
+              "sha256": "cb0a879e761a43537f8c1f787c08d9c0c502819a132ff920431234e6d65c4547",
+              "namedFunctions": [
+                "requireSha",
+                "privateOutput",
+                "privateDirectory",
+                "exclusiveFile",
+                "syncDirectory",
+                "syncPrivateTree",
+                "absent",
+                "decode",
+                "validateManifest",
+                "buildFairBundle",
+                "withLock",
+                "installFairBundle",
+                "validateRelease",
+                "activeRelease",
+                "activateFairRelease",
+                "recoverFairActivation",
+                "exportFairRelease",
+                "unlockAbandonedFairStore",
+                "main"
+              ]
+            },
+            {
+              "path": "script/rehearse-fair-artifact-bundle.ts",
+              "sha256": "c8a6aae22aaafe57e29b81af5019b2a10e0e02e1aa44ae643cbe6e84f1f47ee1",
+              "namedFunctions": [
+                "changedManifest",
+                "forgedSource",
+                "rejects",
+                "permissions"
+              ]
+            },
+            {
+              "path": "script/fair-artifact-bundle.test.ts",
+              "sha256": "25bd953d2a02fb355d8f75d50aa2041f2d79e778030087450f2408b453391006",
+              "namedFunctions": []
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "script/fair-reference.py:main",
+            "script/fair_native_bridge.py:normalized,native_coverage,apply_native_pathway",
+            "script/regional_fair_pathway.py:member_pathway,main",
+            "script/fair_physical_retention.py:physical_dataset,retain_physical"
+          ]
         },
         {
           "id": "S07-003",
@@ -106358,19 +106733,21 @@
           ],
           "evidence_caveat": "S12-001: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Full issuer operating-geography disclosures/mix mappings are not populated.",
           "files_functions_changed": [
-            "server/calculation/issuerCashflowCase.ts",
-            "server/calculation/issuerCashflowReconciliation.ts",
-            "script/assemble-issuer-cashflow-cases.ts",
-            "script/validate-issuer-cashflow-reconciliation-private.ts",
-            "server/calculation/issuerOriginalOperatingCase.ts",
-            "server/calculation/issuerOperatingDriverReverse.ts",
-            "server/calculation/xomClimateLiabilityCase.ts",
-            "script/run-xom-climate-liability-case.ts",
-            "script/validate-xom-climate-liability-private.ts",
-            "script/xom-climate-liability-case.test.ts",
-            "script/capture-xom-climate-liability-sources.ts"
+            {
+              "path": "server/calculation/issuerFinancialFollowupInputs.ts",
+              "sha256": "20f4d3b487b267afdcf48ca4c3d4977e46d2e74696adcfd71f41dc645e8016ec",
+              "namedFunctions": [
+                "observedPermitBoundary",
+                "qualifyRoseTracker"
+              ]
+            },
+            {
+              "path": "script/validate-issuer-financial-followup-private.ts",
+              "sha256": "5d43ca8d981060b9fa9924e79d1c639790d272047af6a0daca16a7a62c8a1a89",
+              "namedFunctions": []
+            }
           ],
-          "behaviour_delivered_this_run": "Actual FSLR selected3transfercohorts2258.8mface→2154.9mreceived/proceeds,103.9mdifference; separate117.6mTreasurycash; selectedobservedreceipts2272.5m. NotfullGAAPgrants/CFO andno doubleaddition. EnLink2024Q3routefinancinguncertain; CF2025interimEOR/Rosepermit dependency invalidates assumedhistoricalroutecontinuity.0/3qualified.",
+          "behaviour_delivered_this_run": "New primary Rose tracker identifies Texas project/application and proposed wells, not final permit or CF crosswalk; global FSLR production/sales do not identify US-qualified module allocation.",
           "inputs_versions_assumptions": {
             "schemaVersion": "issuer-analytics-evidence-proposal-1",
             "purpose": "Bounded parent-review proposal, not acceptance, identity approval, production data, or a central-ledger update",
@@ -108125,6 +108502,26 @@
               "workspace_revision": "572b3903012667a59916900717514d57995331ed",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -108500,11 +108897,9 @@
           "git_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
           "deployment_revision": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
           "remaining_gaps": [
-            "0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval.",
-            "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
-            "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
+            "Operating allocation, project crosswalk and approved permit limits remain unresolved."
           ],
-          "next_action": "Complete residual per-field/branch contracts beyond60componentinvocation and preserve targetedbrowser evidence. Deploy authorized exactofflineartifact bundle via existing supported private provisioning, never regeneratePythonHTTP. Separately integrate actualcredit receipts with retained2023origin/othergrant normalization and stubbasis; find laterEnLink/ONEOKarrangement/Rosepermit, actualCCSfees and NEEcashpriorities. Scientificjoint/physical/historicalcorpus gates remain; no proxy efficacy.",
+          "next_action": "Obtain actual component/production geography allocation and verified CF-to-Rose legal/site crosswalk; do not substitute HQ or corporate volumes.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -114578,7 +114973,88 @@
                 "notAllowed": "No raw primary HTML/receipts/private paths/source snippets, provider payloads, shares/price/return series, inferred tariffs, original raw financial rows or blanket object export. This is a proposed allowlist, not an implemented public route."
               }
             }
-          }
+          },
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "docs/issuer-financial-followup-evidence.json",
+                "sha256": "d633b6ff5616be95d27bfaaa60614bb1ae5be517183ba327740f35cb25869009"
+              }
+            ],
+            "behavior": "New primary Rose tracker identifies Texas project/application and proposed wells, not final permit or CF crosswalk; global FSLR production/sales do not identify US-qualified module allocation.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "Operating allocation, project crosswalk and approved permit limits remain unresolved."
+          ],
+          "ready_action": "Obtain actual component/production geography allocation and verified CF-to-Rose legal/site crosswalk; do not substitute HQ or corporate volumes.",
+          "new_files_functions": [
+            {
+              "path": "server/calculation/issuerFinancialFollowupInputs.ts",
+              "sha256": "20f4d3b487b267afdcf48ca4c3d4977e46d2e74696adcfd71f41dc645e8016ec",
+              "namedFunctions": [
+                "observedPermitBoundary",
+                "qualifyRoseTracker"
+              ]
+            },
+            {
+              "path": "script/validate-issuer-financial-followup-private.ts",
+              "sha256": "5d43ca8d981060b9fa9924e79d1c639790d272047af6a0daca16a7a62c8a1a89",
+              "namedFunctions": []
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "server/calculation/issuerCashflowCase.ts",
+            "server/calculation/issuerCashflowReconciliation.ts",
+            "script/assemble-issuer-cashflow-cases.ts",
+            "script/validate-issuer-cashflow-reconciliation-private.ts",
+            "server/calculation/issuerOriginalOperatingCase.ts",
+            "server/calculation/issuerOperatingDriverReverse.ts",
+            "server/calculation/xomClimateLiabilityCase.ts",
+            "script/run-xom-climate-liability-case.ts",
+            "script/validate-xom-climate-liability-private.ts",
+            "script/xom-climate-liability-case.test.ts",
+            "script/capture-xom-climate-liability-sources.ts"
+          ]
         },
         {
           "id": "S12-002",
@@ -116280,11 +116756,48 @@
           ],
           "evidence_caveat": "S12-008: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: A qualified same-basis market pair, justified continuation and explicit November2026 stub/horizon treatment remain absent; cash schedules themselves now exist. The NEW FY2025 anchor is an UNAUDITED ISSUER EARNINGS RELEASE, NOT Form10-K, used only for a distinct conditional experiment; selectedFY2024 case is unchanged. Last-available-close age alone is not a blocker; actual shares/identity/terminal/horizon requirements and cutoffs remain.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            {
+              "path": "server/calculation/fslrCohortIntegratedLedger.ts",
+              "sha256": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+              "namedFunctions": [
+                "plainFslr",
+                "extractFslrLegacyRecognition",
+                "fact",
+                "historicalFslrCashBridge",
+                "datedCashPv",
+                "rowFcfeFromFundedCash",
+                "integrateFslrSourceCohorts"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalData.ts",
+              "sha256": "544cd8cae0d5508d3a020719eb3ee0eff7813df85292215ba9d72b51212517ad",
+              "namedFunctions": [
+                "deepFreeze",
+                "conditionalFactEvidenceReference",
+                "getConditionalCompanySummary",
+                "conditionalExportCells"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalSemantics.ts",
+              "sha256": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+              "namedFunctions": [
+                "bindConditionalExportCells"
+              ]
+            },
+            {
+              "path": "script/validate-fslr-cohort-integrated-private.ts",
+              "sha256": "71840e428929294415462ece1cd639002edaec575d328665f4ac22812c403419",
+              "namedFunctions": []
+            },
+            {
+              "path": "script/validate-fslr-public-cohort-private.ts",
+              "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
+              "namedFunctions": []
+            }
           ],
-          "behaviour_delivered_this_run": "Checked line-by-line FCFE compatibility without confusing endpoint CAGR with path-adjustment growth.",
+          "behaviour_delivered_this_run": "Integrated retained FSLR recognition/collections and2023-origin normalization in original5year+10yearfade cash basis; removed forecast overlap before actual receipts. Two source-bounded Q1 timing conventions,32cash rows. Later outcomes explicitly revised history, not known2025-02-21; no double discount/WC/cash.",
           "inputs_versions_assumptions": [
             "Distinct NEW FY2025 UNAUDITED issuer release/2026-guidance conditional experiment, not the selected FY2024 10-K case; frozen ten schedules/50 annual rows."
           ],
@@ -116321,6 +116834,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -116334,9 +116867,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "A qualified same-basis market pair, justified continuation and explicit November2026 stub/horizon treatment remain absent; cash schedules themselves now exist."
+            "Conditional revised-history integration is not fully sourced operating case or qualified projection/valuation pair."
           ],
-          "next_action": "Resolve matched market/continuation/horizon basis while retaining computed cash schedules and distinct FY2025 experiment.",
+          "next_action": "Resolve exact Q1 receipt day, unallocated grant bridge and eligible production economics; retain original terminal/reinvestment and refusal gates before qualified pairing.",
           "blockers": [],
           "stage": 12,
           "check_type": "numerical",
@@ -116563,7 +117096,111 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "docs/fslr-cohort-integrated-evidence.json",
+                "sha256": "267ceeb4c823026fd5daa375528404427c3a03281b9cc3dc384846a36dad2867"
+              },
+              {
+                "file": "docs/fslr-public-cohort-evidence.json",
+                "sha256": "3e1b2e936275570b954008274848bf8e916613ff7bf26547604ca8ec135da663"
+              }
+            ],
+            "behavior": "Integrated retained FSLR recognition/collections and2023-origin normalization in original5year+10yearfade cash basis; removed forecast overlap before actual receipts. Two source-bounded Q1 timing conventions,32cash rows. Later outcomes explicitly revised history, not known2025-02-21; no double discount/WC/cash.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "Conditional revised-history integration is not fully sourced operating case or qualified projection/valuation pair."
+          ],
+          "ready_action": "Resolve exact Q1 receipt day, unallocated grant bridge and eligible production economics; retain original terminal/reinvestment and refusal gates before qualified pairing.",
+          "new_files_functions": [
+            {
+              "path": "server/calculation/fslrCohortIntegratedLedger.ts",
+              "sha256": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+              "namedFunctions": [
+                "plainFslr",
+                "extractFslrLegacyRecognition",
+                "fact",
+                "historicalFslrCashBridge",
+                "datedCashPv",
+                "rowFcfeFromFundedCash",
+                "integrateFslrSourceCohorts"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalData.ts",
+              "sha256": "544cd8cae0d5508d3a020719eb3ee0eff7813df85292215ba9d72b51212517ad",
+              "namedFunctions": [
+                "deepFreeze",
+                "conditionalFactEvidenceReference",
+                "getConditionalCompanySummary",
+                "conditionalExportCells"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalSemantics.ts",
+              "sha256": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+              "namedFunctions": [
+                "bindConditionalExportCells"
+              ]
+            },
+            {
+              "path": "script/validate-fslr-cohort-integrated-private.ts",
+              "sha256": "71840e428929294415462ece1cd639002edaec575d328665f4ac22812c403419",
+              "namedFunctions": []
+            },
+            {
+              "path": "script/validate-fslr-public-cohort-private.ts",
+              "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
+              "namedFunctions": []
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
+            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
+            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+          ]
         },
         {
           "id": "S12-009",
@@ -117138,11 +117775,48 @@
           ],
           "evidence_caveat": "S12-011: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: No complete Stage9-linked original-company-input retrospective projection set is evidenced.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            {
+              "path": "server/calculation/fslrCohortIntegratedLedger.ts",
+              "sha256": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+              "namedFunctions": [
+                "plainFslr",
+                "extractFslrLegacyRecognition",
+                "fact",
+                "historicalFslrCashBridge",
+                "datedCashPv",
+                "rowFcfeFromFundedCash",
+                "integrateFslrSourceCohorts"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalData.ts",
+              "sha256": "544cd8cae0d5508d3a020719eb3ee0eff7813df85292215ba9d72b51212517ad",
+              "namedFunctions": [
+                "deepFreeze",
+                "conditionalFactEvidenceReference",
+                "getConditionalCompanySummary",
+                "conditionalExportCells"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalSemantics.ts",
+              "sha256": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+              "namedFunctions": [
+                "bindConditionalExportCells"
+              ]
+            },
+            {
+              "path": "script/validate-fslr-cohort-integrated-private.ts",
+              "sha256": "71840e428929294415462ece1cd639002edaec575d328665f4ac22812c403419",
+              "namedFunctions": []
+            },
+            {
+              "path": "script/validate-fslr-public-cohort-private.ts",
+              "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
+              "namedFunctions": []
+            }
           ],
-          "behaviour_delivered_this_run": "Checked historical-cutoff guards and vintage labels rather than calling revised history original vintages.",
+          "behaviour_delivered_this_run": "API/UI/JSON/XLSX explicitly label later2025/2026 collection facts as revised history, not inputs available at original2025-02-21 origin.",
           "inputs_versions_assumptions": [
             "Per-material-leaf source/value hashes and availability cutoff; synthetic evidence and revised historical statements do not prove original publisher vintages."
           ],
@@ -117184,6 +117858,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -117197,9 +117891,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No complete Stage9-linked original-company-input retrospective projection set is evidenced."
+            "No newly qualified historical company origin."
           ],
-          "next_action": "Audit publisher vintage/classification/source cutoffs for each historical company run; otherwise retain revised-history label.",
+          "next_action": "Assemble genuinely origin-available complete company inputs for historical paired study; do not backdate this receipt integration.",
           "blockers": [],
           "prior_reconciliation": [
             {
@@ -117418,7 +118112,107 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "docs/fslr-public-cohort-evidence.json",
+                "sha256": "3e1b2e936275570b954008274848bf8e916613ff7bf26547604ca8ec135da663"
+              }
+            ],
+            "behavior": "API/UI/JSON/XLSX explicitly label later2025/2026 collection facts as revised history, not inputs available at original2025-02-21 origin.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "No newly qualified historical company origin."
+          ],
+          "ready_action": "Assemble genuinely origin-available complete company inputs for historical paired study; do not backdate this receipt integration.",
+          "new_files_functions": [
+            {
+              "path": "server/calculation/fslrCohortIntegratedLedger.ts",
+              "sha256": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+              "namedFunctions": [
+                "plainFslr",
+                "extractFslrLegacyRecognition",
+                "fact",
+                "historicalFslrCashBridge",
+                "datedCashPv",
+                "rowFcfeFromFundedCash",
+                "integrateFslrSourceCohorts"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalData.ts",
+              "sha256": "544cd8cae0d5508d3a020719eb3ee0eff7813df85292215ba9d72b51212517ad",
+              "namedFunctions": [
+                "deepFreeze",
+                "conditionalFactEvidenceReference",
+                "getConditionalCompanySummary",
+                "conditionalExportCells"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalSemantics.ts",
+              "sha256": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+              "namedFunctions": [
+                "bindConditionalExportCells"
+              ]
+            },
+            {
+              "path": "script/validate-fslr-cohort-integrated-private.ts",
+              "sha256": "71840e428929294415462ece1cd639002edaec575d328665f4ac22812c403419",
+              "namedFunctions": []
+            },
+            {
+              "path": "script/validate-fslr-public-cohort-private.ts",
+              "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
+              "namedFunctions": []
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
+            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
+            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+          ]
         },
         {
           "id": "S12-012",
@@ -119955,11 +120749,48 @@
           ],
           "evidence_caveat": "S12-017: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: No utility+oil/gas+industrial trio meets the original end-to-end criteria. The NEW FY2025 anchor is an UNAUDITED ISSUER EARNINGS RELEASE, NOT Form10-K, used only for a distinct conditional experiment; selectedFY2024 case is unchanged. Last-available-close age alone is not a blocker; actual shares/identity/terminal/horizon requirements and cutoffs remain.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            {
+              "path": "server/calculation/fslrCohortIntegratedLedger.ts",
+              "sha256": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+              "namedFunctions": [
+                "plainFslr",
+                "extractFslrLegacyRecognition",
+                "fact",
+                "historicalFslrCashBridge",
+                "datedCashPv",
+                "rowFcfeFromFundedCash",
+                "integrateFslrSourceCohorts"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalData.ts",
+              "sha256": "544cd8cae0d5508d3a020719eb3ee0eff7813df85292215ba9d72b51212517ad",
+              "namedFunctions": [
+                "deepFreeze",
+                "conditionalFactEvidenceReference",
+                "getConditionalCompanySummary",
+                "conditionalExportCells"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalSemantics.ts",
+              "sha256": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+              "namedFunctions": [
+                "bindConditionalExportCells"
+              ]
+            },
+            {
+              "path": "script/validate-fslr-cohort-integrated-private.ts",
+              "sha256": "71840e428929294415462ece1cd639002edaec575d328665f4ac22812c403419",
+              "namedFunctions": []
+            },
+            {
+              "path": "script/validate-fslr-public-cohort-private.ts",
+              "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
+              "namedFunctions": []
+            }
           ],
-          "behaviour_delivered_this_run": "Counted distinct technical issuer cases, not sensitivities or incremental subsidiaries.",
+          "behaviour_delivered_this_run": "Substantive FSLR cash integration and new Rose/ONEOK primary investigation retained;0/3qualified worked companies. No old grids/root forcing.",
           "inputs_versions_assumptions": [
             "Distinct NEW FY2025 UNAUDITED issuer release/2026-guidance conditional experiment, not the selected FY2024 10-K case; frozen ten schedules/50 annual rows."
           ],
@@ -119996,6 +120827,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -120009,9 +120860,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No utility+oil/gas+industrial trio meets the original end-to-end criteria."
+            "0/3 original fully qualified end-to-end company cases."
           ],
-          "next_action": "Complete NEE/XOM consolidated economics and qualified same-basis pairing; do not count FSLR sensitivity members as issuers.",
+          "next_action": "Complete eligible FSLR activity/margin/reinvestment, NEE gross LLC priorities/project returns and XOM actual fee/funding/replacement contracts; owner review remains separate.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -120242,7 +121093,111 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "docs/fslr-cohort-integrated-evidence.json",
+                "sha256": "267ceeb4c823026fd5daa375528404427c3a03281b9cc3dc384846a36dad2867"
+              },
+              {
+                "file": "docs/issuer-financial-followup-evidence.json",
+                "sha256": "d633b6ff5616be95d27bfaaa60614bb1ae5be517183ba327740f35cb25869009"
+              }
+            ],
+            "behavior": "Substantive FSLR cash integration and new Rose/ONEOK primary investigation retained;0/3qualified worked companies. No old grids/root forcing.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [
+            "0/3 original fully qualified end-to-end company cases."
+          ],
+          "ready_action": "Complete eligible FSLR activity/margin/reinvestment, NEE gross LLC priorities/project returns and XOM actual fee/funding/replacement contracts; owner review remains separate.",
+          "new_files_functions": [
+            {
+              "path": "server/calculation/fslrCohortIntegratedLedger.ts",
+              "sha256": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+              "namedFunctions": [
+                "plainFslr",
+                "extractFslrLegacyRecognition",
+                "fact",
+                "historicalFslrCashBridge",
+                "datedCashPv",
+                "rowFcfeFromFundedCash",
+                "integrateFslrSourceCohorts"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalData.ts",
+              "sha256": "544cd8cae0d5508d3a020719eb3ee0eff7813df85292215ba9d72b51212517ad",
+              "namedFunctions": [
+                "deepFreeze",
+                "conditionalFactEvidenceReference",
+                "getConditionalCompanySummary",
+                "conditionalExportCells"
+              ]
+            },
+            {
+              "path": "shared/companyConditionalSemantics.ts",
+              "sha256": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+              "namedFunctions": [
+                "bindConditionalExportCells"
+              ]
+            },
+            {
+              "path": "script/validate-fslr-cohort-integrated-private.ts",
+              "sha256": "71840e428929294415462ece1cd639002edaec575d328665f4ac22812c403419",
+              "namedFunctions": []
+            },
+            {
+              "path": "script/validate-fslr-public-cohort-private.ts",
+              "sha256": "acc0beeb9f8e4f29d643c814a63b572e4b0872531cb88367244397c9f4c5fda6",
+              "namedFunctions": []
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
+            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
+            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+          ]
         },
         {
           "id": "S12-018",
@@ -136438,7 +137393,7 @@
           "id": "S16-005",
           "source_section": "implementation",
           "requirement": "Support unavailable and partial results everywhere. No component may assume all four market-implied measures, or any Tier 2 output, exists. Each shows the specific reason when absent.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md",
@@ -136449,9 +137404,28 @@
           ],
           "evidence_caveat": "Clause-level source inspection plus only the actual bounded execution receipts listed. Partial implementation is not complete acceptance. Missing historical research is not replaced by proxy efficacy.",
           "files_functions_changed": [
-            "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
+            {
+              "path": "client/src/pages/decarb-signal.tsx",
+              "sha256": "9fcebfefb58f659c6b8fc1cb36971f53baf9f52e03f3c405cc4886700a9f5031",
+              "namedFunctions": [
+                "formatDateLabel",
+                "DecarbSignal"
+              ]
+            },
+            {
+              "path": "script/s16-005-finite-obligations.test.ts",
+              "sha256": "aa3b29be1ad20c74c83a6189714f469465eee8c9ff9162a80058bf01e26af048",
+              "namedFunctions": [
+                "source",
+                "walk",
+                "production",
+                "client",
+                "markup",
+                "assertNoEnabledExport"
+              ]
+            }
           ],
-          "behaviour_delivered_this_run": "60/60actualdynamiccomponents cumulatively invoked;1738JSX/106bindings. New36cohort and focusedportal/hover/export/archive flows. Initial10flowplan6pass2fail1partial1unrun; targeted4residualflows4pass after actualfocus/title/source/refetch fixes. Historicalnull-datehover limitation retained, no all-field/all-branch claim/no unchanged41suite rerun.",
+          "behaviour_delivered_this_run": "Finite written partial/unavailable-measure obligations fulfilled:60component invocation evidence plus prior interactions and3changed browser cases. Null dates withhold affected headlines/charts/exports; named missing tooltip series; selectedSDG cannot borrow carbon/ambition fields; pending/error exports withheld. Valid zero retained.",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -136539,18 +137513,36 @@
               "workspace_revision": "572b3903012667a59916900717514d57995331ed",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
             "No zero/placeholder market-implied measures may substitute for missing evidence."
           ],
-          "scientific_acceptance": "not-assessed",
+          "scientific_acceptance": "Not a scientific acceptance claim; original engineering criterion verified.",
           "git_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
           "deployment_revision": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
-          "remaining_gaps": [
-            "All60components directly invoked; cumulative targeted10logicalinteraction flows resolved with separatefailed/followup receipts. Exhaustive dynamicfield/branch combinations and null-date no-hover behavior are not an all-fields pass."
-          ],
-          "next_action": "Complete residual per-field/branch contracts beyond60componentinvocation and preserve targetedbrowser evidence. Deploy authorized exactofflineartifact bundle via existing supported private provisioning, never regeneratePythonHTTP. Separately integrate actualcredit receipts with retained2023origin/othergrant normalization and stubbasis; find laterEnLink/ONEOKarrangement/Rosepermit, actualCCSfees and NEEcashpriorities. Scientificjoint/physical/historicalcorpus gates remain; no proxy efficacy.",
+          "remaining_gaps": [],
+          "next_action": "Preserve these finite engineering regression contracts when components change. Scientific and issuer acceptance remain separate clauses.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -136558,7 +137550,7 @@
               "owner_action": "Create complete absent-output fixtures for every page and verify specific reasons in UI, API and exports."
             }
           ],
-          "check_type": "operational",
+          "check_type": "finite engineering component/render/browser contracts",
           "implementation_files_functions": [
             {
               "path": "client/src/pages/dashboard.tsx",
@@ -136596,12 +137588,7 @@
             "server/calculation/publicValuationContract.ts": "7289d5b0abe8812f978df91451510b10841e0bc6825d4215c052835160c293f0",
             "server/calculation/readiness.ts": "453b87ee60eee6c19d8d340ef1841c2f5a1bc2ec66a35d92411d36ded820d0d2"
           },
-          "ready_action": {
-            "owner": "implementation/research owner under existing authorization",
-            "action": "Create complete absent-output fixtures for every page and verify specific reasons in UI, API and exports.",
-            "can_execute_now_without_external_acceptance": true,
-            "restriction": "No purchases, DDL, real issuer approvals, production mutation, collector changes, commits, release or callback. Preserve public mutation403."
-          },
+          "ready_action": "Preserve these finite engineering regression contracts when components change. Scientific and issuer acceptance remain separate clauses.",
           "reconciled_at": "2026-11-10T09:22:10.758Z",
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -136664,7 +137651,87 @@
             "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
             "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
             "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
-          }
+          },
+          "bundle_cohort_increment": {
+            "directEvidence": [
+              {
+                "file": "script/s16-005-finite-obligation-inventory.json",
+                "sha256": "18fb5ce118efbf44ae83db71b6cac898078fbd4cec691f489a5d13dfa6badd22"
+              },
+              {
+                "file": "generated-artifacts/rendered-states/s16-005-finite-engineering-evidence.json",
+                "sha256": "629a5320ae35db1c147bf4bb815897697f732bcdec97ca122977f32d2113bff9"
+              }
+            ],
+            "behavior": "Finite written partial/unavailable-measure obligations fulfilled:60component invocation evidence plus prior interactions and3changed browser cases. Null dates withhold affected headlines/charts/exports; named missing tooltip series; selectedSDG cannot borrow carbon/ambition fields; pending/error exports withheld. Valid zero retained.",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:16:15.552204+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 155.436,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "priorFailedExecution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:13:11.151176+00:00",
+              "exit_code": 1,
+              "elapsed_seconds": 115.572,
+              "counts": {
+                "tests": 722,
+                "pass": 721,
+                "fail": 1,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+              "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "remainingGaps": [],
+          "proposedStatus": "verified",
+          "new_files_functions": [
+            {
+              "path": "client/src/pages/decarb-signal.tsx",
+              "sha256": "9fcebfefb58f659c6b8fc1cb36971f53baf9f52e03f3c405cc4886700a9f5031",
+              "namedFunctions": [
+                "formatDateLabel",
+                "DecarbSignal"
+              ]
+            },
+            {
+              "path": "script/s16-005-finite-obligations.test.ts",
+              "sha256": "aa3b29be1ad20c74c83a6189714f469465eee8c9ff9162a80058bf01e26af048",
+              "namedFunctions": [
+                "source",
+                "walk",
+                "production",
+                "client",
+                "markup",
+                "assertNoEnabledExport"
+              ]
+            }
+          ],
+          "prior_files_functions_preserved": [
+            "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
+          ]
         },
         {
           "id": "S16-006",
@@ -143937,6 +145004,46 @@
       "workspace_revision": "572b3903012667a59916900717514d57995331ed",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T14:13:11.151176+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 115.572,
+      "counts": {
+        "tests": 722,
+        "pass": 721,
+        "fail": 1,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T141311151176Z.log",
+      "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T14:16:15.552204+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 155.436,
+      "counts": {
+        "tests": 722,
+        "pass": 722,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+      "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -144204,13 +145311,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Complete residual per-field/branch contracts beyond60componentinvocation and preserve targetedbrowser evidence. Deploy authorized exactofflineartifact bundle via existing supported private provisioning, never regeneratePythonHTTP. Separately integrate actualcredit receipts with retained2023origin/othergrant normalization and stubbasis; find laterEnLink/ONEOKarrangement/Rosepermit, actualCCSfees and NEEcashpriorities. Scientificjoint/physical/historicalcorpus gates remain; no proxy efficacy. 40verified258partial2blocked; original1000/1001;0/3qualified. No whole-stage acceptance.",
+    "instruction": "S07-002 needs authenticated private transfer of current155bd3ff bundle and live selected reads; do not rerun isolated29refusals unchanged. S16-005 finite engineering verified, preserve3newbrowserpasses. Continue FSLR unallocatedgrants/Q1day/eligiblevolumes, NEE LLCcash, XOM actualcontract/Rosecrosswalk. Miningmonthly candidate rejected as fresh independent outcomes by primary methodology; seek genuine dated/fullscope sources. All0–17remaining requirements persist;0/3cases, no efficacy.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-components-monthly-592957c",
+    "checkpoint_id": "ckpt-20261111-fair-components-bc53096",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T12:25:33.453130+00:00",
+    "attempted_at": "2026-11-11T13:32:25.036195+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -144357,8 +145464,8 @@
       "partial": 19
     },
     "16": {
-      "partial": 13,
-      "verified": 1
+      "partial": 12,
+      "verified": 2
     },
     "17": {
       "verified": 1,
@@ -144644,5 +145751,51 @@
       "tests": "Final623TS/0fail/0skip/typecheck/build;172Python and mandatoryprivate issuer-law validator passed before client-only modalfix, measured code unchanged",
       "scope": "Code/source only; no data/scientific promotion; later documentation/local receipts distinct."
     }
+  ],
+  "latest_changed_paths": [
+    "client/src/lib/valuation-claims.ts",
+    "client/src/pages/climate-valuation.tsx",
+    "client/src/pages/decarb-gap-signal.tsx",
+    "client/src/pages/decarb-signal.tsx",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/climatetrace-mining-method-qualification-plan.json",
+    "docs/climatetrace-mining-method-source-evidence.json",
+    "docs/climatetrace-temporal-method-route.json",
+    "docs/fair-private-provisioning-investigation.json",
+    "docs/field_semantics_census.json",
+    "docs/fslr-cohort-integrated-evidence.json",
+    "docs/fslr-public-cohort-evidence.json",
+    "docs/issuer-financial-followup-evidence.json",
+    "docs/originalS07-002-private-bundle-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "script/capture-issuer-financial-followup.ts",
+    "script/climatetrace_mining_method_qualification.py",
+    "script/company-conditional-api.test.ts",
+    "script/component-state-contracts.ts",
+    "script/fair-artifact-bundle.test.ts",
+    "script/fair-artifact-bundle.ts",
+    "script/fslr-cohort-integrated.test.ts",
+    "script/indicator-portal-followup.test.ts",
+    "script/issuer-financial-followup.test.ts",
+    "script/next-census-accounting.test.ts",
+    "script/record-bundle-cohort.py",
+    "script/rehearse-fair-artifact-bundle.ts",
+    "script/remaining-component-contracts.test.ts",
+    "script/run-fslr-cohort-integrated.ts",
+    "script/s16-005-finite-changed-browser-plan.json",
+    "script/s16-005-finite-obligation-inventory.json",
+    "script/s16-005-finite-obligations.test.ts",
+    "script/test_climatetrace_mining_method_qualification.py",
+    "script/validate-fslr-cohort-integrated-private.ts",
+    "script/validate-fslr-public-cohort-private.ts",
+    "script/validate-issuer-financial-followup-private.ts",
+    "server/calculation/fairArtifactFiles.ts",
+    "server/calculation/fairArtifacts.ts",
+    "server/calculation/fslrCohortIntegratedLedger.ts",
+    "server/calculation/issuerFinancialFollowupInputs.ts",
+    "shared/companyConditionalData.ts",
+    "shared/companyConditionalSemantics.ts"
   ]
 }

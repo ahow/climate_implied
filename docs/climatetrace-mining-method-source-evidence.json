@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "criterion": "S04-005",
+  "status": "publisher-monthly-freshness-dependency-qualified; mining-candidate-rejected-as-independent-realized2025-2026-outcomes",
+  "routeDecision": {
+    "selectedUserAuthorizedAlternative": "Bounded publisher methodology/freshness qualification because retained full joint Kaya contract remains blocked",
+    "retainedFirst": [
+      "docs/Kaya_Protocol.md",
+      "Retained frozen CO2 source/codebook and existing source assembly scripts",
+      "Retained WDI465GDP/465population full-basis result",
+      "Retained exact native monthly archive,result and same-version guide",
+      "Native bundled guide explicitly links publisher methodology repository"
+    ],
+    "retainedJointKayaBlockers": [
+      "Entire new WDI2021PPP basis is separate from frozen MPD2011PPP;54 original EU27 member-year gaps remain unchanged",
+      "75 complete WDI regional account-years,but30 RoW/transport account-years have no qualified source GDP/population account",
+      "International aviation/shipping have distinct native CO2 records but absent GDP/population/primary-energy cells,not zero",
+      "Full native territorial,World/country,bunker and primary-energy compatibility unresolved;no RoW subtraction invented as source-native observation"
+    ],
+    "notClaimed": "No new full joint Kaya reconciliation or full-contract admission. No unchanged study/retrieval rerun merely to restate those blockers.",
+    "retainedWDIResultSHA256": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+    "retainedMonthlyResultSHA256": "bc6301c83c155dab5a477237468e10452399a8587b33c71fc91c19b8c5d5880f",
+    "retainedArchiveSHA256": "39a59227653de449180fc90c8f32a7c636117b66e54e853ec5c4c4cec11b609e"
+  },
+  "frozenBeforeRequests": [
+    {"path":"docs/climatetrace-mining-method-qualification-plan.json","sha256":"f4539136c9aa2bbee7c851e6fa1b249bbe593cda114df903bf206f098e59d290"},
+    {"path":"docs/climatetrace-temporal-method-route.json","sha256":"552dd083f1369dbef635d304fbea93df511d8341239675bb5f10feda4506a932"}
+  ],
+  "newPrimarySourceAcquisition": {
+    "publisherRepository": "climatetracecoalition/methodology-documents",
+    "authority": "Official Climate TRACE guides explicitly link2025/CHANGELOG and2026/CHANGELOG in this repository. No guessed dataset IDs or hidden endpoints.",
+    "resolvedCommit": "8469b207b9a9bd56f4ecb50b18f1c95893933a61",
+    "commitAuthorAndCommitterDate": "2026-11-06T01:38:32Z",
+    "resolvedTree": "fc3a9914ebac894b95244cdee30dbe597206f3d2",
+    "treeTruncated": false,
+    "requests": 7,
+    "maximumRequests": 8,
+    "unusedRequests": 1,
+    "stopDecision": "Stopped after explicit temporal-method follow-up;no eighth request or primary input bulk download.",
+    "downloadedBodyBytes": 3802548,
+    "maximumTotalBodyBytes": 50000000,
+    "maximumMethodPDFBytes": 20000000,
+    "maximumTreeBytes": 5000000,
+    "maximumMetadataBytes": 2000000,
+    "timeoutSeconds": 60,
+    "maximumRedirects": 5,
+    "allFinalHTTPStatuses": 200,
+    "curlFailures": 0,
+    "retries": 0,
+    "paidCalls": 0,
+    "purchases": 0,
+    "manifest": "generated-artifacts/climatetrace-mining-method/requests.json",
+    "manifestSHA256": "6c60fbffe34ebc58c8cb17b14a7a7d13796f8dc8905b5de3385d9b33f4dcf8c3",
+    "discovery": "generated-artifacts/climatetrace-mining-method/publisher-source-discovery.json",
+    "discoverySHA256": "a3de44c4fb7715d4cc037026d42d214090455a67b4d4a774f2e9dbfab64caac1",
+    "rights": "Public publisher methodology/changelog inspection only. Existing source-data CC-BY4.0 attribution retained. Do not infer a redistribution license for PDF documents from repository visibility or data license;raw PDFs/texts remain private/ignored.",
+    "audit": "Every exact URL,redirect,status,time,size,body and response-header SHA256 retained. Four publisher file bodies verified against immutable Git blob SHA1 and native byte sizes before extraction."
+  },
+  "publisherDocuments": [
+    {
+      "name": "publisher-mining-method",
+      "path": "2025/Mineral Extraction/Mining and Quarrying Emissions from Copper, Iron, Bauxite, Rock and Sand-MineralExtractionSector-11025.docx.pdf",
+      "sourceGitBlobSHA1": "682fc20940b2621f9262c1b78a6989e3fe02ea2d",
+      "bytes": 1329133,
+      "bodySHA256": "182f3ac2d06494c662a4553878c471a109ba332370b19b12613ff324e31d49f0",
+      "textSHA256": "e8935228dec7000b86349cc1119c0a35bfd51bae5c74d8aa8ab3bcedf2b84780",
+      "nativeDocumentVersion": "November2025",
+      "attribution": "Matthew Jolleys,Hypervine,Climate TRACE",
+      "sourcePages": {
+        "annualProductionAndForwardFilled2024Estimates": [15,16],
+        "retrospectiveEmissionFactorUpdates": [16],
+        "annualAverageOrOlderProductionWhenMissing": [3],
+        "dieselPurchaseCombustionProxy": [1],
+        "companyAndRepresentativeNationalRegionalFactors": [13,14]
+      }
+    },
+    {
+      "name": "publisher-temporal-method",
+      "path": "2025/Post Processing for Global Emissions and Metadata Completeness/Temporal Disaggregation of Emissions Data for the Climate TRACE Inventory-121225.docx.pdf",
+      "sourceGitBlobSHA1": "ea938b8c232dcbddd7f19dc5a029f27ef1d5488c",
+      "bytes": 1891758,
+      "bodySHA256": "a9291dcf806c51b31fd9a33913fbf4b46ac4d362b8baa04a25eb90901bb3a58c",
+      "textSHA256": "20a80b92f9f5582907221968fa3905456c082271b3112ff80b23ffd1524137fd",
+      "nativeDocumentVersion": "December2025",
+      "attribution": "WattTime and Johns Hopkins University Applied Physics Laboratory,Climate TRACE",
+      "sourcePages": {
+        "EDGARr1AnnualToMonthlyProfiles": [1],
+        "AnnualClassificationExplicitlyIncludesBauxiteCopperIron": [5],
+        "GapFillingAndSameMonthLastFullYearForwardExtrapolation": [3]
+      }
+    },
+    {
+      "name": "publisher-2025-dec-v5-1-changelog",
+      "path": "2025/CHANGELOG/12_Dec_V5.1.0/5.1.0_combined-changelog-climate-trace.docx.pdf",
+      "sourceGitBlobSHA1": "9404c9eea9c3136f5da17b29017c52b8ed957026",
+      "bytes": 110393,
+      "bodySHA256": "7d472149643c829aa42679cbfc1767073cb2b7479f75119eacaf0ffa541b8765",
+      "textSHA256": "4acd57536f7e80f20dbec1bba820c5d5e01920fc43ee77539f678070ed148ce7",
+      "nativeHeaderDate": "2025-12-01",
+      "miningSourceFinding": "All three selected subsector sections extend reported estimated data through2024-12-31 and update source metadata/factors;not independent2025 monthly activity.",
+      "periodEndMeaning": "A reported estimate horizon,not a claim of last measured production date."
+    },
+    {
+      "name": "publisher-2026-mar-v5-5-changelog",
+      "path": "2026/CHANGELOG/03_Mar_V5.5.0/5.5.0_combined-changelog_2026.docx.pdf",
+      "sourceGitBlobSHA1": "07ca93b74705b355d9741f30fc88c2459e8ea0a0",
+      "bytes": 144775,
+      "bodySHA256": "551cd221c6b00f8e5d6624e176d3d1ad4f3e6258d6f089b0b59c896c424bcee3",
+      "textSHA256": "02404a042551ed148cec25053d543dea292174821fd3df60a7804f912a4a4c22",
+      "nativeHeaderDate": "2026-03-25",
+      "miningSourceFinding": "Added:None in bauxite,copper,iron sections. Bauxite duplicate removal,group/regional copper factor corrections and three iron factor corrections;these are revisions,not new measured2026 mining activity."
+    }
+  ],
+  "newSubstantiveMethodQualification": {
+    "previousGap": "Exact repetitions were known but publisher mechanism had not been qualified.",
+    "nowEstablished": [
+      "Primary mining methodology reports annual production inputs and calculated annual company/national/regional emission factors,not native observed monthly mining emissions.",
+      "Mining method explicitly says copper/iron2024 production was not updated;bauxite only limited updates,with activity largely carried from2023. Emission factors updated retrospectively.",
+      "Publisher temporal Table1 expressly classifies bauxite,copper,iron mining as annual data disaggregated with EDGARr1.",
+      "Publisher temporal section2.2.2 explicitly extrapolates using equivalent months from the last full reported year,and forward/back-fills temporal gaps.",
+      "Source-generated monthly labels and2025/2026 repeated inputs therefore cannot qualify this candidate as independent fresh realized monthly outcomes."
+    ],
+    "nativeReportedEstimateHorizon": "2024-12-31",
+    "lastMeasuredProductionYear": "Not globally established;explicitly older/non-current for many assets. Do not equate2024 estimate endpoint with2024 fresh production measurement.",
+    "independentRealized2025Or2026MonthlyOutcomeAdmission": false,
+    "publisherMethodDependencyQualified": true,
+    "interpretationLimit": "A negative source-eligibility decision for this mining candidate,not causal disproof,forecast skill or a claim all publisher sectors lack high-frequency data.",
+    "noPublisherProxyRecreation": "No EDGAR profiles,grids,InSAR model,company factors,seasonal allocation,forward-fill or extrapolated observations recreated."
+  },
+  "newNativeInputAssembly": {
+    "source": "Retained exactv5.5.0 CO2 bauxite/copper/iron member bytes only",
+    "newlyAssembledFields": ["activity","activity_units","emissions_factor","emissions_factor_units","emissions_quantity"],
+    "nativeInputRows": 118279,
+    "nativeInputMissingOrUnqualifiedRows": 0,
+    "nativeSourceFactorsChanged": false,
+    "newSyntheticObservations": 0,
+    "quantityOnlyRepetitionAuditRerun": false,
+    "activityFactorComparisons": [
+      {
+        "comparison": "same-native-asset-calendar-month2024-versus2025",
+        "pairs": 23268,
+        "nativeActivityPresentPairs": 23268,
+        "exactActivityEqualPairs": 23268,
+        "exactActivityEqualNonzeroPairs": 14160,
+        "maxAbsActivityDifferenceTonnesOre": "0",
+        "nativeFactorPresentPairs": 23268,
+        "exactFactorEqualPairs": 23268,
+        "maxAbsFactorDifference": "0"
+      },
+      {
+        "comparison": "same-native-asset-January2024-versusJanuary2026",
+        "pairs": 1939,
+        "nativeActivityPresentPairs": 1939,
+        "exactActivityEqualPairs": 1939,
+        "exactActivityEqualNonzeroPairs": 1180,
+        "maxAbsActivityDifferenceTonnesOre": "0",
+        "nativeFactorPresentPairs": 1939,
+        "exactFactorEqualPairs": 1939,
+        "maxAbsFactorDifference": "0"
+      }
+    ],
+    "withinNativeAssetYearFactorPanels": 11634,
+    "panelsWithExactlyOneFactor": 11634,
+    "panelsWithMultipleFactors": 0,
+    "nativeArithmeticAudit": {
+      "formula": "Compare reported native CO2 with reported native activity multiplied by reported native factor,only when native units match exactly",
+      "purpose": "Dependency/arithmetic audit only;product is labelled NOT a new observation. Emissions are constructed from these inputs,so numerical agreement does not validate physical accuracy or independent outcomes.",
+      "precision": "100-digit Decimal,no binary-float fitting",
+      "admissionThresholds": "Exact native CO2 and native dimensional unit strings;finite nonnegative source inputs;missing remains missing. Exact equality threshold0 for source identities. No numerical residual threshold used to declare scientific compatibility.",
+      "perSubsector": [
+        {
+          "subsector": "bauxite-mining",
+          "rows": 16714,
+          "nativeActivityUnit": "t of bauxite ore",
+          "nativeFactorUnit": "t of CO2 per t of bauxite ore",
+          "exactReportedEqualsNativeProductRows": 5786,
+          "maxAbsReportedMinusProductTonnes": "3.23258347768224E-10",
+          "maxRelativeReportedMinusProduct": "3.576349501165266482644044035662092467159733607600504519858972847025547010420440802534576721101927662E-14",
+          "maxAbsCell": {"source_id":"42233086","country":"GIN","month":"2022-04","sourceLogicalRow":3372}
+        },
+        {
+          "subsector": "copper-mining",
+          "rows": 55754,
+          "nativeActivityUnit": "t of copper ore",
+          "nativeFactorUnit": "t of CO2 per t of copper ore",
+          "exactReportedEqualsNativeProductRows": 20170,
+          "maxAbsReportedMinusProductTonnes": "1.1577855445804158E-9",
+          "maxRelativeReportedMinusProduct": "5.497098420423925366213279798495262566416001333853225006086609205153331628299175010871124236320330291E-13",
+          "maxAbsCell": {"source_id":"45945017","country":"PER","month":"2023-04","sourceLogicalRow":41265}
+        },
+        {
+          "subsector": "iron-mining",
+          "rows": 45811,
+          "nativeActivityUnit": "t of iron ore",
+          "nativeFactorUnit": "t of CO2 per t of iron ore",
+          "exactReportedEqualsNativeProductRows": 22062,
+          "maxAbsReportedMinusProductTonnes": "8.831552818622974E-10",
+          "maxRelativeReportedMinusProduct": "5.975477895752581975982809535353932115646115039346271740375393749938308685638520819871296697737809628E-14",
+          "maxAbsCell": {"source_id":"43157847","country":"AUS","month":"2021-04","sourceLogicalRow":1957}
+        }
+      ],
+      "residualDecision": "Preserve native text-encoded activity/factor/quantity residuals;no fitted offset,factor adjustment,rounding correction or relaxed acceptance. No accuracy or headline scoring claim."
+    },
+    "privateNativeInputTrace": "generated-artifacts/climatetrace-mining-method/native-activity-factor-audit.csv",
+    "privateNativeInputTraceSHA256": "4a17531e0bfc9b51b27bed1f5af839126114b9f37c641723f968ac5b3ed0d3b2",
+    "traceBytes": 32639785,
+    "traceContents": "Native input strings/units,reported CO2,explicitly audit-only product/residual,source member and logical-row pointers. Raw/derived audit trace ignored/private,not redistributed."
+  },
+  "exactVersionAndBoundaryResiduals": {
+    "methodExampleInventoryVersusArchive": {
+      "methodDocumentAssets": 1941,
+      "archiveAssets": 1939,
+      "archiveMinusMethod": -2,
+      "bauxite": {"method":273,"archive":274,"difference":1},
+      "copper": {"method":914,"archive":914,"difference":0},
+      "iron": {"method":754,"archive":751,"difference":-3},
+      "decision": "Different release/example catalogs. Do not force equality or treat publisher method summary totals as matched numerical validation."
+    },
+    "sourceDates": {
+      "miningDocumentVersion": "November2025",
+      "miningFileHistoryCommit": "5012d1f466b661cc6b18390bada617457a766ffb",
+      "miningFileAuthorAndCommitterDate": "2025-11-12T01:08:26Z",
+      "temporalDocumentVersion": "December2025",
+      "currentResolvedRepositoryCommit": "2026-11-06T01:38:32Z",
+      "v5_5ChangelogHeader": "2026-03-25",
+      "archivePublisherClaimedRelease": "2026-03-26",
+      "archiveRepositoryCreated": "2026-05-01T18:30:19.483485+00:00",
+      "decision": "Distinct method/file/changelog/dataset/repository dates retained. Neither file-version label nor git timestamp certifies original data bytes publicly available at a historical forecast origin.",
+      "temporalFileHistory": "unattempted;current pinned blob and internal December2025 version retained"
+    },
+    "scope": "Method uses annual company fuel/emission inputs,scaling and representative national/regional factors. Native CO2 is not CO2e,but formal Scope1/2,offsite electricity/fuel attribution,power double counting,territory/bunkers and full GDP/primary-energy interoperability remain unqualified. No proxy implemented here.",
+    "original2024Or2025ReleaseSnapshots": "unattempted in this methodology increment;do not relabel revised2026 archive history as original vintages",
+    "jointKayaReconciliation": "not executed in this alternative branch;original complete-window contract still blocked,no interpolation,shortening,currency splice or invented RoW"
+  },
+  "implementationAndExecution": {
+    "module": "script/climatetrace_mining_method_qualification.py",
+    "moduleSHA256": "1dd0c58d810e4433dc765eafe6cac03e3001ec87b5b64e6fca09cbc4802473fc",
+    "readOnlyZipDependencySHA256": "90902946b0a638dcc995b0b46a635b34e48351baac423f46d4567f9be3ca6f04",
+    "tests": "script/test_climatetrace_mining_method_qualification.py",
+    "testsSHA256": "097d5691999bb707fb6e2b39e0f8f0ee2ea6a9e1421181e314176e4cdb8296b4",
+    "acquisitionCommands": [
+      ".pythonlibs/bin/python script/climatetrace_mining_method_qualification.py discover",
+      ".pythonlibs/bin/python script/climatetrace_mining_method_qualification.py methods",
+      ".pythonlibs/bin/python script/climatetrace_mining_method_qualification.py temporal"
+    ],
+    "assemblyCommand": ".pythonlibs/bin/python script/climatetrace_mining_method_qualification.py assemble",
+    "PDFConverter": "pdftotext -layout;four pinned publisher documents",
+    "assemblyExit": 0,
+    "assemblyCompletedUTC": "2026-11-11T14:09:28.186827+00:00",
+    "assemblyLog": "generated-artifacts/climatetrace-mining-method/assembly.log",
+    "assemblyLogSHA256": "ca41f6b811605f890ee125433063d40a43cfb858b024a69ce3187271826f2ad8",
+    "testCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_climatetrace_mining_method_qualification -v",
+    "testsPassed": 7,
+    "testsFailed": 0,
+    "testsSkipped": 0,
+    "testsLog": "generated-artifacts/climatetrace-mining-method/focused-tests.log",
+    "testsLogSHA256": "0e83c7491734e027c57eef813091b46680754c100b14aff140a87b7eeaee0877",
+    "testCoverage": "Exact Decimal native formula,unmodified factor,missing versus zero,native unit incompatibility,nonfinite/negative rejection,new activity/factor comparisons,source-page dependencies and rejection of annual-disaggregated series as fresh independent monthly outcomes.",
+    "result": "generated-artifacts/climatetrace-mining-method/method-qualified-native-input-result.json",
+    "resultSHA256": "d483b62488ee3f44d68861b685bb3c08edf32c01c097651c86535a4b20e50f9e"
+  },
+  "oldQuantityOnlyRepetitionPasses": 0,
+  "oldForecastOrKayaDiagnosticRuns": 0,
+  "fits": 0,
+  "holdoutScores": 0,
+  "newProxyOrGridOrCalibration": false,
+  "canonicalProtectedFaIRProductionCollectorChanges": 0,
+  "commitsDeploymentsPublishing": 0,
+  "centralEligible": false
+}

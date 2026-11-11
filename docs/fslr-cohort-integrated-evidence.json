@@ -1,0 +1,162 @@
+{
+  "version": "fslr-source-cohort-integrated-1",
+  "status": "computed-and-independently-private-validated-source-cash-integration-only",
+  "scope": "Disjoint new source-cohort cash splice into one retained original FY2024/commonFCFE/FY2025stub/5yr+10yrfade/2.5%terminal ledger; no original kernel/grid/root rerun, canonical edit or raw private export.",
+  "technicalOriginalIssuerCompletion": false,
+  "ownerReview": "pending-not-requested",
+  "qualifiedOriginalIssuers": 0,
+  "futureConditions": "Retained unallocated production/eligibility/financing assumptions remain conditional. Source cash lots do not equal total eligible generation or total GAAPgovernmentgrant receivables.",
+  "dateBoundaryPlanFrozenBeforeOutcome": "Two source-supported Q1Visa timing boundary treatments relative to2025-02-21: received before cutoff and reserved, or paid2025-03-31. Other known months use monthend convention; known2025cash for midyear contracts uses original yearend date with no stub-proration. No invented actual payment day.",
+  "noDoubleCountPlan": "Remove matching identified2025face subset's original net cash and quartercarry before inserting observed proceeds. Do not deduct source face/proceeds difference again, re-recognize income, tax receipt again, change otherWC, or add separate excesscash.",
+  "files": [
+    "server/calculation/fslrCohortIntegratedLedger.ts",
+    "script/fslr-cohort-integrated.test.ts",
+    "script/run-fslr-cohort-integrated.ts",
+    "script/validate-fslr-cohort-integrated-private.ts",
+    "docs/fslr-cohort-integrated-evidence.json"
+  ],
+  "priorEvidence": "docs/issuer-cash-collections-evidence.json",
+  "freeze": {
+    "path": "generated-artifacts/company-operating-corpus/fslr-cohort-integrated-v1/2026-11-11T13-46-14-298Z/frozen-before-calculation.json",
+    "sha256": "d9885a31f12d72528b72aff8b286262d94f0f350c91289e6b464ca36247bc735",
+    "frozenAt": "2026-11-11T13:46:14.299Z",
+    "calculatedAt": "2026-11-11T13:46:14.305Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/fslr-cohort-integrated-v1/2026-11-11T13-46-14-298Z/report.json",
+    "reportSha256": "b7dddd17e1667a9f62b173fae225c9a4da320f9157c8e23385eb648297494982",
+    "protectedDistinctPriorHashes": 340,
+    "sourceCase": "FSLR-source-conditioned-g0.025-original-v3; immutable original retained, not rewritten",
+    "originalPriceSharesCutoff": "2025-02-21; original market record hashed privately, no raw price/shares exported",
+    "originalFormalFirstYear": 2026,
+    "originalFiveYearRows": 5,
+    "originalFadeRows": 10,
+    "originalTerminalGrowth": 0.025,
+    "otherOriginalGrowthEndpoints": "3.25%/4% experiments untouched, not rescored by this unit",
+    "originalStubAndSettlementReserve": "Retained original2025remaining-days/365.25interpolation for corecash, same yearend payment date and one settlement reserve. Only matching credit cash is replaced.",
+    "informationContext": "Revised-history conditional cash re-expression. Later observed collections are not asserted known at the original February2025price cutoff."
+  },
+  "actualSourceRecognitionAndClassification": {
+    "legacyPrimary": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+      "publicationDate": "2025-02-25",
+      "period": "FY2024/2023financials; source baseline remains FY2024",
+      "identity": "First Solar, Inc.; CIK0001274494; consolidated common issuer",
+      "locator": "Native SECHTMLNote9Government Grants; CFOstatement; MD&AOperating Activities. Fiservparagraph follows printed97footer.",
+      "units": "Financial statement USDthousands converted by actual iXBRLscale; deal narrative USDmillions kept separately with rounding caveat",
+      "recognition": "Eligible modules sold to customers determine source45Xcost-of-sales recognition, not the later credit-sale payment date. Fiservloss27.5m belongs2023; Visaapproximate39m loss belongs2024. Neither is a new cash deduction in the receipt year.",
+      "cfoClassification": "Source MD&Aexpressly attributes2024operatingcash to45Xsale proceeds. Government-grants-receivable CFOadjustment is separately tagged; new component does not add it again."
+    },
+    "laterActualSources": [
+      {"url":"https://www.sec.gov/Archives/edgar/data/1274494/000127449425000033/fslr-20250331.htm","published":"2025-04-29","locator":"Note5; 2024Visa202.6m receivedQ12025, exact day not disclosed in cited lines"},
+      {"url":"https://www.sec.gov/Archives/edgar/data/1274494/000127449426000109/fslr-20260331.htm","published":"2026-04-30","locator":"Note5/MD&A; 2024-originTreasury117.6mJanuary2026 and October2025transferbalance95.2mFebruary2026"},
+      {"url":"https://www.sec.gov/Archives/edgar/data/1274494/000127449426000212/fslr-20260930.htm","published":"2026-10-29","locator":"Note5three transfercohorts; operatinghighlights global4.3GWproduced/4.1GWsoldQ32026"}
+    ],
+    "rights": "Bounded factual calculations/citations from public issuer financial disclosures. Private retained full HTML/receipts/market/provider data not exported or published. Quarterly amounts are issuer unaudited disclosures, not independent physical or legal-eligibility certification."
+  },
+  "completeKnownCohortIndexDerivedAggregates": {
+    "identifiedGroupedTransfersIncludingFiserv": 4,
+    "underlyingAgreementsReportedInGroups": 8,
+    "combinedFaceUsd": 2946000000,
+    "combinedTransferProceedsUsd": 2814600000,
+    "combinedFaceLessProceedsUsd": 131400000,
+    "plusTreasuryCashOnlyUsd": 117600000,
+    "combinedIdentifiedTransferPlusTreasuryCashUsd": 2932200000,
+    "identifiedCashByReceiptYearUsd": {"2024":1275700000,"2025":1443700000,"2026":212800000},
+    "notAllCorporateCreditsOrGrants": true,
+    "treasuryFaceOrOpeningBookBalanceUnknown": true
+  },
+  "historicalNormalizationComputed": {
+    "reportedFY2024CfoUsd": 1217999000,
+    "fiserv2023OriginCashReceived2024Usd": 659700000,
+    "visa2024OriginCashReceived2024Usd": 616000000,
+    "identified2024OperatingCreditCashUsd": 1275700000,
+    "cfoLessOnlyIdentifiedCreditCashUsd": -57701000,
+    "roundedReceiptAggregateBoundUsd": 100000,
+    "boundCaveat": "Two0.1mrounded narrative cash amounts, each±0.05m; CFOitself reported tothousands. This is a diagnostic non-credit-cash remainder, not grant-free recurring FCF or a restatement of original historicalFCFE.",
+    "reportedIncomeGrantBenefits2024Usd": {"costOfSales":1009451000,"researchDevelopment":4186000,"productionStartup":484000},
+    "reportedGrantReceivableCfoEffect2024Usd": 270300000,
+    "unallocatedIncomeGrantPlusCfoAdjustmentLessIdentifiedCashUsd": 8721000,
+    "notObservedOtherGrantCash": true,
+    "grantBalances2024Usd": {"current":403759000,"noncurrent":157570000},
+    "grantBalances2023Usd": {"current":659745000,"noncurrent":152208000},
+    "grantBookDecreaseUsd": 250624000,
+    "cfoVersusBookMovementUnattributedUsd": 19676000,
+    "prior2023IncomeGrantPlusGrantReceivableCfoAdjustmentUsd": 0,
+    "otherGrantTreatment": "Indiaasset subsidy24%, conditionally paid in six installments after certifications/applications/government review. No dated cash schedule inferred. All unclassified grant balances remain separately reserved; not assumed45X, collected at face, or written off.8.721m/19.676m residuals remain unattributed, not invented India/FX/cash facts."
+  },
+  "cashIntegrationExecuted": {
+    "sourceIdentified2025FaceUsd": 1401600000,
+    "retainedConditionalGrossFaceEquivalentForecastAnchorUsd": 1675000000,
+    "anchorCaveat": "This is the inherited original forward model's credit-equivalent convention, not actual FY2025recognized credit or a source-audited gross/net guidance reconciliation. Unmatched273.4m remains conditional, not observed eligible/unsold credits. Old operating/tax/eligibility assumptions are not upgraded by this splice.",
+    "oldMatchingNetProceedsUsd": 1338485487.6341577,
+    "oldMatchingQuarterCarryRemoved2026Usd": 334621371.9085394,
+    "oldMatchingForecastStubCashRemoved2025Usd": 860258639.8962861,
+    "actualMatchingCashInserted2025Usd": 1241100000,
+    "actualPriorCreditCashInserted2026Usd": 212800000,
+    "actualSelected2025TransferProceedsUsd": 1336300000,
+    "sourceDiscountIsNotDeductedAgain": true,
+    "adjustedYearend2025StubFcfeUsd": 42649204.21612805,
+    "adjusted2026TotalFcfeIncludingDatedPriorCashUsd": 1435180933.2657723,
+    "timingTreatments": [
+      {"visaTiming":"pre-cutoff-reserved","visa202.6mDistributableAfterCutoffUsd":0,"finiteCashDeltaPvUsd":264507698.69760892,"conditionalIntegratedWholeEquityUsd":5993041906.14639},
+      {"visaTiming":"post-cutoff-march31","visa202.6mDistributableAfterCutoffUsd":202600000,"finiteCashDeltaPvUsd":465108662.4538152,"conditionalIntegratedWholeEquityUsd":6193642869.902596}
+    ],
+    "timingInterpretation": "Two treatments of a genuinely source-bounded Q1payment relative toFebruary21cutoff, not an operating stress grid or certified global valuation bounds. Precutoff receipt is reserved by explicit original cash-reserve policy, not asserted absent. Postcutoff usesMarch31as a dated boundary, not an observed date. Midyear2025contract cash usesDec31and no pre-contract advances assumption; January/February2026cash uses monthend conventions. All exact dates so assigned are labelled assumptions. Displayed numerical PVprecision is computational, not source measurement accuracy: deal cash/face disclosures are rounded.",
+    "unchanged": ["FY2024historicalbaseFCFEnegative","coreoperatingcash","recognizedpolicyincome","otheroperatingWC","cashTaxes","capital/replacement/reinvestment","grossDebtRollovers","noncommonclaims","original5yr+10yrfade","terminalFcfe30136785.583735228"],
+    "newRecognitionTaxOtherWcAdjustmentUsd": 0,
+    "newExcessCashOrSecondDiscountAdjustmentUsd": 0,
+    "annualCashRowsRebuilt": 32,
+    "datedFinitePvRebuilds": 2,
+    "oldIssuerKernelExecutions": 0,
+    "reverseOrRootAttempts": 0,
+    "intrayearFundingCaveat": "Original annual conditional funding policies retained; no new assertion of observed intra-year liquidity, investor subscription commitment or market-clearing pair."
+  },
+  "actualVolumeEligibility": {
+    "quarter": "2026Q3",
+    "sourceGlobalProducedGw": 4.3,
+    "sourceGlobalSoldGw": 4.1,
+    "actualUsEligibleWatts": null,
+    "fullyUsVsInternationalInitiatedUsFinishedAllocation": null,
+    "sourceIssuerRates": "Up-toapproximately17c/WfullyUS versusapproximately7c/Winternational-initiated/UScompleted; not equal legal/cash eligibility proof",
+    "notInferredFrom": ["globalGW","UScustomerrevenueshare","headquarters","creditincome/rate inversion"],
+    "remaining": "Actual component/material/PFEcost shares, USprimaryeligiblecomponent65%attribution and current-law qualification remain unverified. Explicit sourced conditional future allocation is possible in a NEWfreeze; no future observed facts demanded by this component."
+  },
+  "verification": {
+    "codeOnlyCommand": "npx tsx --test script/fslr-cohort-integrated.test.ts",
+    "codeOnlyTestsPassed": 5,
+    "codeOnlyPrivateDependencies": false,
+    "codeOnlyLogSha256": "357ec2e1f9b648263667e2eb311a09de38bde7a0d3156a979f43090af8624e8d",
+    "calculationCommand": "npx tsx script/run-fslr-cohort-integrated.ts --private-primary",
+    "calculationLogSha256": "dda72b93e546f67d155cbb247a5f4d3ea2158b74921977356ea1543090c1cfd3",
+    "mandatoryPrivateCommand": "npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary",
+    "mandatoryPrivateStatus": "pass;340priorhashes;32fundedcashrows;2independentdatedPVrebuilds;sourcehistoricalclassification/rounding/residual checks",
+    "privateLogSha256": "ff497f1f33f4be048961175a54e08d44587c9c79ca8bc2d31934b2013c115b8f",
+    "strictTypeCommands": [
+      "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target ES2022 server/calculation/fslrCohortIntegratedLedger.ts script/fslr-cohort-integrated.test.ts script/run-fslr-cohort-integrated.ts script/validate-fslr-cohort-integrated-private.ts",
+      "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target ES5 server/calculation/fslrCohortIntegratedLedger.ts script/fslr-cohort-integrated.test.ts script/run-fslr-cohort-integrated.ts script/validate-fslr-cohort-integrated-private.ts"
+    ],
+    "strictTypes": "both pass; no tsconfig relaxation",
+    "eachEmptyStrictLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logsRoot": "generated-artifacts/company-operating-corpus/fslr-cohort-integrated-v1/",
+    "newPrimaryRequestsForCashIntegration": 0,
+    "productionCanonicalUiChanges": 0
+  },
+  "technicalVersusOwner": {
+    "technicalSourceIntegrationExecuted": true,
+    "technicalOriginalIssuerCompletion": false,
+    "originalQualification": "0/3",
+    "ownerReview": "pending-not-requested",
+    "notOnlyAnOwnerGate": "Unverified component allocation/law, inherited forward credit/financing/operating/terminal conditions and unattributed grant-book residuals remain explicit economic/source qualifications."
+  },
+  "originalClauseProposals": [
+    "S12-001partial technical integration: new two-treatment sourcecash ledger completed, not a maintenance benchmark, original completion, legal signoff or owner approval.",
+    "Replace only overlapping identified forecast proceeds/carry; source-received net cash is not new income, not taxable again by this splice, not otherWCcash, and not an excesscashaddon.",
+    "Preserve immutable originalcases/results and all other terminal endpoints. No impliedFCFEgrowth or reverse root claimed from the still-negative actual historicalbase."
+  ],
+  "nextReadySourceWork": "Separate completed actual ONEOK/Rosefollowup recorded in docs/issuer-financial-followup-evidence.json. No findings injected into old XOMscoring.",
+  "safePublicDerivedFieldsProposal": [
+    "/technicalSourceIntegrationExecuted","/technicalOriginalIssuerCompletion","/qualifiedOriginalIssuers","/requiredOriginalIssuers",
+    "/cases/0/finiteCashDeltaPvUsd","/cases/1/finiteCashDeltaPvUsd",
+    "/cases/0/terminalUnchanged","/cases/1/terminalUnchanged"
+  ],
+  "safeDisplayCondition": "Label partial revised-history cash splice, conditional timing/reserve treatments, not full-company actual results or qualified market pairs. No raw source/market/provider/private file export."
+}

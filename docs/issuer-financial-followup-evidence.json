@@ -1,0 +1,144 @@
+{
+  "version": "issuer-financial-followup-source-1",
+  "status": "source-qualified-and-private-validated-no-financial-rescoring",
+  "scope": "Six bounded new primaryrequests after sourcecash integration; exact ONEOKfinancial-arrangement search and newly located Roseapplication geography/status. No obtainedCF2022repeat, old kernels, canonical/UI/routes, purchases, approvalrequests, production changes or publish/callback.",
+  "qualifiedOriginalIssuers": 0,
+  "technicalOriginalIssuerCompletion": false,
+  "ownerReview": "pending-not-requested",
+  "newLogicalGetAttempts": 6,
+  "maxLogicalAttempts": 6,
+  "finalHttp200Payloads": 6,
+  "paidProviderCalls": 0,
+  "receiptPath": "generated-artifacts/company-operating-corpus/issuer-financial-followup-v1/receipts.json",
+  "receiptSha256": "48966e2800fd5d49407c25f6c48b295d774e2ee36bab3e07601abb7494aff0f4",
+  "freeze": {
+    "path": "generated-artifacts/company-operating-corpus/issuer-financial-followup-v1/2026-11-11T13-52-52-190Z/frozen-before-qualification.json",
+    "sha256": "a1d4b0468997967a12bf0f96d5a6ba43fc333fe0c84f7c97b008f08340285f51",
+    "frozenAt": "2026-11-11T13:52:52.191Z",
+    "qualifiedAt": "2026-11-11T13:52:52.274Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/issuer-financial-followup-v1/2026-11-11T13-52-52-190Z/report.json",
+    "reportSha256": "c3761ec8d99b7160a4e8493ed2a816db602a9d77b6436190eddb87c6f31a31cc",
+    "frozenBeforeQualification": "All6sourcebytes, two derivedtexts, fourcodehashes and non-inference rules persisted before sourceadapterqualification. No forecast/scoring."
+  },
+  "sourceRecords": [
+    {
+      "url": "https://data.sec.gov/submissions/CIK0001039684.json",
+      "publicationDate": null,
+      "period": "Retained2026-11-11SECsubmissions",
+      "identity": "ONEOK INC /NEW/;CIK0001039684 returned/authenticated, not assumed from candidateCIK",
+      "locator": "name/cik/filings.recent actual10Kaccession/primaryDocument",
+      "unit": "identity/discovery",
+      "rightsReliability": "Original public SECmetadata, retained privately"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1039684/000103968425000036/oke-20241231.htm",
+      "publicationDate": "2025-02-25",
+      "period": "FY2024",
+      "identity": "ONEOK INC /NEW/;CIK0001039684",
+      "locator": "Full actual declared annual HTMLcase-insensitive terms Exxon\\s*Mobil|Pecan\\s*Island|sequestr|financial arrangement|contract termination",
+      "page": "Whole HTMLterm discovery, not a source claim of complete commercial-contract review",
+      "unit": "Source discovery, no assigned USDfee/settlement",
+      "matches": 0,
+      "exactFieldsNotLocated": ["executedXOMfee/escalation/minimumbilling","PecanIslandfinancialarrangementamount/settlementcashdate","projectopex/replacement/funding"],
+      "rightsReliability": "Public primary financial filing; specific negative search, not global nondisclosure conclusion"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1039684/000103968426000006/oke-20251231.htm",
+      "publicationDate": "2026-02-24",
+      "period": "FY2025",
+      "identity": "ONEOK INC /NEW/;CIK0001039684",
+      "locator": "Same whole-document explicit-term search independently validated",
+      "unit": "Source discovery only",
+      "matches": 0,
+      "executedAgreementObtained": false,
+      "settlementOrXomLiabilityUsd": null,
+      "rightsReliability": "Primary public issuer report. Actual EnLinkcustomer contract or settlement is not inferred from corporate acquisition values."
+    },
+    {
+      "url": "https://www.epa.gov/system/files/documents/2026-09/class-vi-permit-tracker_9-25-26.pdf",
+      "publicationDate": null,
+      "declaredFilenameSnapshot": "2026-09-25",
+      "lastModifiedNotPublication": "2026-09-28",
+      "period": "Snapshot named in actual regulator link",
+      "identity": "USEPApublisher",
+      "locator": "One-page PDFactually linked by retained current-classVIprojects page",
+      "unit": "permit-tracker discovery",
+      "roseLiteralMatches": 0,
+      "meaning": "No Rose literal in this particular EPAtracker, not evidence that project/permit absent. Actual linked Texasregulator source followed.",
+      "rightsReliability": "Original USfederal public record; text independently rebuilt fromPDFbytes"
+    },
+    {
+      "url": "https://www.rrc.texas.gov/oil-and-gas/applications-and-permits/injection-storage-permits/co2-storage/",
+      "publicationDate": null,
+      "period": "Public source page retained2026-11-11",
+      "identity": "Railroad Commission of Texas",
+      "locator": "Texaslink actually declared by EPA; actual ClassVIApplicationList link d11hlhb0",
+      "unit": "source discovery",
+      "rightsReliability": "Original state regulator public page, no account/signin/authenticated requests"
+    },
+    {
+      "url": "https://www.rrc.texas.gov/media/d11hlhb0/class_vi_application-11052026.pdf",
+      "publicationDate": null,
+      "contentLastUpdated": "2026-11-05",
+      "period": "Applicationstatus asof2026-11-05, not a present-day finalpermit determination",
+      "identity": "Railroad Commission of Texas; printed operator abbreviation ExxonMobil Low Carbon Sol. Onshore LLC",
+      "locator": "Page1, RRCTracking57803RoseCCSrow plus multilineoperator/docket",
+      "unit": "application/wellcount/feetTVD/dates; not mass/cash",
+      "qualifiedFields": {
+        "rrcTracking": "57803",
+        "projectAsPrinted": "Rose CCS",
+        "operatorAsPrinted": "ExxonMobil Low Carbon Sol. Onshore LLC",
+        "county": "Jefferson",
+        "state": "Texas",
+        "district": "03",
+        "formation": "Fleming, Upper Frio",
+        "applicationInjectionWells": 3,
+        "injectionIntervalTvdFeet": [3340,8455],
+        "submitted": "2024-03-14",
+        "applicationStatus": "Hearing",
+        "protested": true,
+        "referredToHearing": "2025-10-31",
+        "docket": "OG-25-00029632",
+        "approvalDatePublishedInRow": null
+      },
+      "notQualified": ["finalpermitnumber/document","fulllegalregistryidentity","directCFcontract-toRRCtrackingcrosswalk","sitecoordinates/wellIDs","gascomposition/nativeCO2monitoring","actual/permittedannualinjection","minimumfees/actualcash","ownership/equitycashshare"],
+      "nonInference": "Tracking57803isNOT a finalpermitidentifier; three proposedwells are NOT operatingthroughput/capacity; hearing/referral is NOT approval. Do not transfer old PecanIslandVermilionlocation to this candidate. Conditional future permission may be modelled explicitly in a separate freeze, never represented as observed.",
+      "rightsReliability": "Original state regulator public dated application summary, independently PDF-to-text verified. Abbreviated operator preserved verbatim; not expanded into an authenticated legal name."
+    }
+  ],
+  "files": [
+    "script/capture-issuer-financial-followup.ts",
+    "server/calculation/issuerFinancialFollowupInputs.ts",
+    "script/issuer-financial-followup.test.ts",
+    "script/validate-issuer-financial-followup-private.ts",
+    "docs/issuer-financial-followup-evidence.json"
+  ],
+  "verification": {
+    "codeOnlyCommand": "npx tsx --test script/issuer-financial-followup.test.ts",
+    "codeOnlyTestsPassed": 4,
+    "codeOnlyPrivateDependencies": false,
+    "codeOnlyLogSha256": "b3fc34612787f3f552c6213360dbbf8f82220b970de648a1ba0f158e5642b7f0",
+    "mandatoryPrivateCommand": "npx tsx script/validate-issuer-financial-followup-private.ts --private-primary",
+    "mandatoryPrivateStatus": "pass;6actualpayloadhashes;2independentPDFrebuilds;2declaredONEOKannuals;exactRosemultilinerow",
+    "privateLogSha256": "3281f4fd010dc90fc5ba32c4ee1a25f403d06843ef13603bae9c85fa5ea06559",
+    "strictTypeCommands": [
+      "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target ES2022 script/capture-issuer-financial-followup.ts server/calculation/issuerFinancialFollowupInputs.ts script/issuer-financial-followup.test.ts script/validate-issuer-financial-followup-private.ts",
+      "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target ES5 script/capture-issuer-financial-followup.ts server/calculation/issuerFinancialFollowupInputs.ts script/issuer-financial-followup.test.ts script/validate-issuer-financial-followup-private.ts"
+    ],
+    "strictTypes": "both pass, unchanged tsconfig",
+    "eachEmptyStrictLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logsRoot": "generated-artifacts/company-operating-corpus/issuer-financial-followup-v1/",
+    "privateArtifacts": "AllrawHTML/PDF/text/receipts/freeze/report/logs git-ignored; no raw private export",
+    "financialModelOrOldKernelOrRootExecutions": 0
+  },
+  "narrowRemainingAndReadyNext": [
+    "Now a precise regulator tracking/docket/county/operator-abbreviation candidate exists: public RRCdocketOG-25-00029632/application57803actual documents are the next target for full legaloperator, coordinates, wellIDs, gas/MMV/injection limits and approval history. Those project documents remain unattempted, not declared undisclosed.",
+    "CFJuly2025Roseproject and RRCrow share project/operator branding but no contract/permitidentifier bridge has been obtained. Do not assert exactphysicalroute or beneficial ownership solely from that candidate match.",
+    "PecanIslandfinancial-arrangement terms remain not located in the TWOspecifiedONEOKannuals and priorEnLink2024Q3paragraph. Later8Ks/subsidiarycontracts/docket/executedsettlement documents remain unattempted; do not assign price, zero liability or corporate acquisition consideration to this agreement.",
+    "No observations are invented to fill final-permit or cash-tariff fields. Explicitly sourced/frozen future assumptions remain permitted, but must not force a root or erase missing actual fields."
+  ],
+  "originalClauseProposals": [
+    "S12-001sourcepartial: add actualRoseapplicationgeography/status with registry/CFcrosswalk/permit gaps explicit; original qualification remains0/3.",
+    "Current observation is datedapplicationHearing, not ownerapproval, commissionedcapacity or a positive CCScash model."
+  ]
+}

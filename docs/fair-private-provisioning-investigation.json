@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-11",
+  "clause": "S07-002",
+  "project": "9e5be6c6-c701-4384-8d03-723aa76ecfaf",
+  "service": "5e6e93c3-a202-4bfe-9cf1-65cb82b54a34",
+  "environment": "b83d4d99-a7a7-42d8-ad83-0ca24a3468df",
+  "readOnlyFindings": {
+    "buckets": 0,
+    "volumes": 0,
+    "mountedVolumes": 0,
+    "localRailwayCliSession": "No executable or local CLI configuration found",
+    "localSshIdentity": "No SSH directory; SSH-agent probe exit2",
+    "connectedProviderCapability": "Read/list/tail container files only; no authorized write/exec/transfer tool",
+    "runtimePrerequisites": "/app/node_modules/tsx/dist/cli.mjs and /app/script exist by provider read-only listing; /app inferred app directory, not executed cwd"
+  },
+  "officialTransferReference": "https://docs.railway.com/cli/ssh",
+  "requiredAction": "An authorized Railway operator must use their authenticated CLI or registered SSH/SFTP identity to transfer the private bundle and execute the exact install/activate commands in originalS07-002-private-bundle-evidence.json. Use node node_modules/tsx/dist/cli.mjs rather than network-resolving npx. Do not share credentials in chat.",
+  "runtimeConfiguration": "Set FAIR_ARTIFACT_ROOT to the installed absolute store path through the existing authorized environment configuration flow. This investigation did not change variables, credentials, resources or the scheduler.",
+  "recovery": "No existing persistent mount. Replacement deployment may lose bundle/store/pointer/receipts; retain the trusted bundle privately and reinstall the exact source-matching release. Missing store refuses503. Persistent storage would require a separately authorized resource decision; none created.",
+  "currentBundleSha256": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
+  "currentBundleBytes": 103204794,
+  "liveTransferAttempted": false,
+  "liveSuccessfulSelectedReadProven": false,
+  "scientificAcceptance": "not-accepted",
+  "separateFrom": "Production archive-schema provisioning; no database or DDL operation."
+}

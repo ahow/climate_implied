@@ -1,7 +1,7 @@
-import { readFile } from "node:fs/promises";
 import { z } from "zod";
 import { ensembleSchema } from "./ensemble";
 import { fairArtifactCatalog, fairArtifactSelection, fairSha256 } from "./fairArtifactCatalog";
+import { readRuntimeFairArtifact } from "./fairArtifactFiles";
 
 export class FairArtifactError extends Error {
   constructor(public code: string, public status: number, message: string) { super(message); }
@@ -24,7 +24,7 @@ const resultSchema = z.object({
 
 /** No request paths, latest aliases, Python, writes, network access, cached stale
  * bytes or fallback data. Reader injection is only for isolated engineering tests. */
-export function createFairArtifactLoader(reader: (path: string) => Promise<Buffer> = readFile) {
+export function createFairArtifactLoader(reader: (path: string) => Promise<Buffer> = readRuntimeFairArtifact) {
   return async (input: unknown) => {
     const parsed = fairArtifactSelectionSchema.safeParse(input);
     if (!parsed.success) throw new FairArtifactError("FAIR_SELECTION_INVALID", 400,

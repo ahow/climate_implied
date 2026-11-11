@@ -4,15 +4,15 @@ import { test } from "node:test";
 import express from "express";
 import ExcelJS from "exceljs";
 import { createHash } from "node:crypto";
-import { conditionalCompanySummary, conditionalExportCells, getConditionalCompanySummary } from "../shared/companyConditionalData";
+import { conditionalCompanySummary, conditionalExportCells, conditionalFactEvidenceReference, getConditionalCompanySummary } from "../shared/companyConditionalData";
 import { CONDITIONAL_COMPANY_ROUTE, registerCompanyConditionalRoutes } from "../server/companyConditionalApi";
 import { bindNestedOutput, requireOutputSemantic } from "../shared/outputFieldSemantics";
 import { bindConditionalExportCells, conditionalCompanyFieldSpecs, conditionalCompanySemantics } from "../shared/companyConditionalSemantics";
 
 test("registered shared contract has exact API leaves, fact units and lossless export bindings", async () => {
   assert.equal(conditionalCompanyFieldSpecs.length, 30);
-  assert.equal(conditionalCompanySemantics.length, 63);
-  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 63);
+  assert.equal(conditionalCompanySemantics.length, 81);
+  assert.equal(new Set(conditionalCompanySemantics.map(s => s.id)).size, 81);
   for (const issuer of [undefined, "NEE", "FSLR", "XOM"] as const) {
     const summary = getConditionalCompanySummary(issuer);
     const bindings = bindNestedOutput("conditionalCompany", summary);
@@ -27,7 +27,7 @@ test("registered shared contract has exact API leaves, fact units and lossless e
       assert.equal(semantic.unit, fact.unit);
       assert.equal(semantic.formula, fact.formula);
       assert.ok(semantic.meaning.includes(fact.boundary));
-      assert.equal(semantic.source, `${company.evidenceDocument}#${fact.sourceLocator}; public allowlist only, no runtime evidence reads`);
+      assert.equal(semantic.source, `${conditionalFactEvidenceReference(company, fact)}; public allowlist only, no runtime evidence reads`);
       assert.ok(cellBindings.some(b => b.id === semantic.id));
     }
     assert.throws(() => bindConditionalExportCells(summary, cells.slice(1)), /complete ordered/);
@@ -53,7 +53,9 @@ test("registered shared contract has exact API leaves, fact units and lossless e
 test("new GET APIs and binary workbook remain qualified supplements outside original1001", async () => {
   const census = JSON.parse(await readFile("docs/field_semantics_census.json", "utf8"));
   const contract = census.supplementalQualifiedChanges.conditionalCompany;
-  assert.equal(contract.definitions, 63);
+  // Protected census is parent-owned: retain its legacy63snapshot or its exact
+  // additive81definition integration. The actual live registry is checked above.
+  assert.ok([63, 81].includes(contract.definitions));
   assert.equal(contract.typedApiFields.length, 63);
   assert.ok(contract.typedApiFields.every((f: { bound: boolean }) => f.bound));
   for (const surface of contract.successApiSurfaces) {
@@ -91,7 +93,11 @@ test("exact supplemental semantics, public allowlist and source aggregate bindin
   assert.deepEqual(conditionalCompanySummary.companies.map(c => c.issuer), ["NEE", "FSLR", "XOM"]);
   assert.deepEqual(conditionalCompanySummary.companies.map(c => c.facts.map(f => f.id)), [
     ["fplDividend", "parentContribution", "netParentCash", "fplCashChange", "cashResidual", "beforeCommon", "withoutDmi", "unknownGrossInflow", "unknownGrossOutflow", "conditionalCases", "negativeFunding"],
-    ["openingPpe", "capex", "depreciation", "closingPpe", "budgetRemainder", "cases", "positiveTerminals", "positivePlans", "zeroCreditPositive", "negativeFunding"],
+    ["openingPpe", "capex", "depreciation", "closingPpe", "budgetRemainder", "cases", "positiveTerminals", "positivePlans", "zeroCreditPositive", "negativeFunding",
+      "cohortTransferFace", "cohortTransferCash", "cohortFaceCashDifference", "cohortTreasuryCash", "cohortSelectedCash", "cohortRemainingClaims",
+      "cohortIncludingFiservFace", "cohortIncludingFiservProceeds", "cohortIncludingFiservDifference", "cohortIncludingFiservCash",
+      "cohortHistoricalCreditCash", "cohortCfoRemainder", "cohortUnallocatedGrantBridge", "cohortGrantBookCfoResidual", "cohortUsEligibleWatts",
+      "cohortPriorCreditCash2026", "cohortPreCutoffReservePv", "cohortPostCutoffVisaPv"],
     ["reportedEmissions", "deliveredUnits", "shortage", "observedExpense", "observedPrice", "observedBank", "grossIncrement", "cashIncrement", "cases"],
   ]);
   const fact = (issuer: string, id: string) => conditionalCompanySummary.companies
@@ -109,12 +115,14 @@ test("exact supplemental semantics, public allowlist and source aggregate bindin
       "missingness", "refusalReasons",
     ]);
     // Test-time reads only: production data and API contain no filesystem access.
-    const source = JSON.parse(await readFile(company.evidenceDocument, "utf8"));
-    assert.equal(company.experimentVersion, source.version);
+    const defaultSource = JSON.parse(await readFile(company.evidenceDocument, "utf8"));
+    assert.equal(company.experimentVersion, defaultSource.version);
     assert.ok(company.sourced.length && company.conditions.length && company.missingness.length && company.refusalReasons.length);
     for (const fact of company.facts) {
       assert.deepEqual(Object.keys(fact), ["id", "label", "value", "unit", "classification", "formula", "sourceLocator", "boundary"]);
-      const keys = fact.sourceLocator.replace(/\[(\d+)\]/g, ".$1").split(".");
+      const [document, locator] = conditionalFactEvidenceReference(company, fact).split("#");
+      const source = JSON.parse(await readFile(document, "utf8"));
+      const keys = locator.replace(/\[(\d+)\]/g, ".$1").split(".");
       const sourceValue = keys.reduce((value, key) => value[key], source);
       assert.equal(fact.value, sourceValue, `${company.issuer}.${fact.id}`);
       assert.ok(fact.formula && fact.unit && fact.boundary);
@@ -160,9 +168,24 @@ test("GET API, JSON and XLSX are the same allowlist; unsupported inputs and writ
         }
       });
       assert.deepEqual(actual, conditionalExportCells(expected));
+      if (issuer === "FSLR") {
+        const company = expected.companies[0];
+        assert.equal(company.facts.filter(f => f.id.startsWith("cohort")).length, 18);
+        company.facts.forEach((fact, index) => { if (fact.id.startsWith("cohort")) {
+          for (const key of ["value", "unit", "classification", "formula", "sourceLocator", "boundary"] as const) {
+            const cell = actual.find(c => c.field === `companies.0.facts.${index}.${key}`)!;
+            assert.deepEqual(JSON.parse(cell.jsonValue), fact[key]);
+          }
+        } });
+        const context = JSON.parse(actual.find(c => c.field === "companies.0.informationContext")!.jsonValue);
+        assert.match(context, /2025-02-21.*NOT backdated/);
+        assert.match(context, /2026-10-29/);
+        assert.equal(company.experimentVersion, "fslr-paid-spare-capacity-post-credit-1");
+      }
     }
     for (const suffix of ["", "/export.json", "/export.xlsx"]) {
-      for (const query of ["?issuer=UNKNOWN", "?issuer=NEE&issuer=XOM", "?costOfEquity=0.01", "?issuer[secret]=NEE"]) {
+      for (const query of ["?issuer=UNKNOWN", "?issuer=NEE&issuer=XOM", "?costOfEquity=0.01", "?issuer[secret]=NEE",
+        "?experimentVersion=fslr-source-cohort-integrated-1", "?referenceDate=2026-11-11"]) {
         assert.equal((await fetch(`${base}${suffix}${query}`)).status, 400);
       }
       for (const method of ["POST", "PUT", "PATCH", "DELETE"]) {
@@ -177,12 +200,16 @@ test("GET API, JSON and XLSX are the same allowlist; unsupported inputs and writ
 
 test("subsequent XOM primary-source notes qualify units without rewriting frozen numbers or permit gaps", async () => {
   const summary = getConditionalCompanySummary();
-  const cells = conditionalExportCells(summary);
+  // Additive FSLRcohort facts must not invalidate the protected legacy snapshot.
+  const legacySnapshot = { ...summary, companies: summary.companies.map(company => company.issuer === "FSLR" ?
+    { ...company, facts: company.facts.filter(fact => !fact.id.startsWith("cohort")) } : company) };
+  const cells = conditionalExportCells(legacySnapshot);
   const protectedData = {
     paths: cells.map(cell => cell.field),
     primitiveValues: cells.filter(cell => typeof JSON.parse(cell.jsonValue) !== "string"),
   };
-  assert.equal(cells.length, 308, "No schema, fact or narrative-array count additions");
+  assert.equal(cells.length, 308, "Protected legacy schema/numeric facts unchanged; new FSLRfacts are additive");
+  assert.equal(conditionalExportCells(summary).length, 452, "Exactly18new eight-leaf public facts");
   assert.equal(protectedData.primitiveValues.length, 44);
   assert.equal(createHash("sha256").update(JSON.stringify(protectedData)).digest("hex"),
     "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
@@ -216,4 +243,39 @@ test("subsequent XOM primary-source notes qualify units without rewriting frozen
   assert.match(xom.refusalReasons[1], /FY2024.*metric CO2 capacity.*FY2022.*short tons, not retrospectively metric/);
   assert.match(xom.refusalReasons[1], /client capex, not XOM transport\/storage capex/);
   assert.match(xom.refusalReasons[1], /capacity is not minimum billing, realized capture or a fee/);
+});
+
+test("FSLR18new public cohort facts retain exact conditional vintages, cash identities and unknowns", () => {
+  const company = getConditionalCompanySummary("FSLR").companies[0];
+  const facts = company.facts.filter(f => f.id.startsWith("cohort"));
+  assert.equal(facts.length, 18);
+  assert.equal(facts.filter(f => f.classification === "conditional").length, 2);
+  assert.equal(company.experimentVersion, "fslr-paid-spare-capacity-post-credit-1");
+  for (const text of ["issuer-cash-collections-source-1", "fslr-source-cohort-integrated-1",
+    "issuer-original-operating-funding-3", "2025-02-21", "2025-02-25", "2025-04-29", "2026-04-30", "2026-10-29",
+    "NOT known", "NOT backdated", "NOT a point-in-time"])
+    assert.ok(company.informationContext.includes(text), text);
+  const fact = (id: string) => facts.find(f => f.id === id)!;
+  assert.equal(fact("cohortTransferFace").value! - fact("cohortTransferCash").value!, fact("cohortFaceCashDifference").value);
+  assert.equal(fact("cohortTransferCash").value! + fact("cohortTreasuryCash").value!, fact("cohortSelectedCash").value);
+  assert.equal(fact("cohortIncludingFiservFace").value! - fact("cohortIncludingFiservProceeds").value!,
+    fact("cohortIncludingFiservDifference").value);
+  assert.equal(fact("cohortIncludingFiservProceeds").value! + fact("cohortTreasuryCash").value!,
+    fact("cohortIncludingFiservCash").value);
+  assert.equal(fact("cohortUsEligibleWatts").value, null);
+  assert.equal(fact("cohortCfoRemainder").value, -57701000);
+  assert.match(fact("cohortRemainingClaims").boundary, /ONLY these three contracts/);
+  assert.match(fact("cohortUnallocatedGrantBridge").boundary, /NOT observed/);
+  assert.match(fact("cohortGrantBookCfoResidual").boundary, /not assumed FX/);
+  assert.match(company.conditions.join(" "), /BEFORE inserting actual net receipts/);
+  assert.match(company.refusalReasons.join(" "), /not full original technical completion/);
+  for (const f of facts) {
+    assert.match(f.sourceLocator, /^docs\/(?:issuer-cash-collections|fslr-cohort-integrated)-evidence\.json#/);
+    const semantic = requireOutputSemantic(`conditionalCompany.fact.FSLR.${f.id}`);
+    assert.equal(semantic.source, `${f.sourceLocator}; public allowlist only, no runtime evidence reads`);
+    assert.equal(semantic.unit, f.unit);
+    assert.equal(semantic.formula, f.formula);
+  }
+  assert.equal(company.qualifiedOriginalIssuers, 0);
+  assert.equal(company.qualifiedOriginalPairs, 0);
 });

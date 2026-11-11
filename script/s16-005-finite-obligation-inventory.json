@@ -1,0 +1,68 @@
+{
+  "criterionId": "S16-005",
+  "writtenCriterion": "Support unavailable and partial results everywhere. No component may assume all four market-implied measures, or any Tier 2 output, exists. Each shows the specific reason when absent.",
+  "scope": "Finite client engineering obligations, not exhaustive combinations or a new scientific/owner acceptance gate. No canonical ledger is modified by this inventory.",
+  "retainedDenominator": {
+    "actualComponents": 60,
+    "cumulativeDirectInvocations": 60,
+    "logicalInteractionReceipts": 10,
+    "interpretation": "The actual component census and six original passing interactions plus four successful follow-ups remain evidence. Neither original failures nor their follow-ups are rewritten."
+  },
+  "obligations": [
+    {
+      "id": "independent-market-measure-absence",
+      "fields": ["impliedTemperature", "impliedCarbonPrice", "impliedDecarbRate", "netZeroYear"],
+      "contract": "Each withheld physical measure has its own interpretation/reason; available P/E or earnings-yield gaps do not substitute for any physical measure. Legacy fixed-5gt and selected-2024 residual thresholds remain separately labeled.",
+      "paths": ["/climate-valuation", "/decarb-signal", "/decarb-gap", "/"],
+      "status": "satisfied-retained",
+      "evidence": ["generated-artifacts/rendered-states/component-state-contracts.json", "generated-artifacts/rendered-states/remaining-component-focused-evidence.json"],
+      "rerun": "No unchanged41 route harness or all-absent S16-010 rerun."
+    },
+    {
+      "id": "partial-public-company-and-tier2-evidence",
+      "fields": ["facts[].value", "facts[].classification", "facts[].unit", "facts[].formula", "facts[].sourceLocator", "facts[].boundary", "conditions", "missingness", "refusalReasons", "candidateEnabled", "checks[].passed"],
+      "contract": "Missing nested evidence, undefined eligibility/checks and absent result collections have specific refusal/unavailable reasons, not zero, false approval or a fabricated Tier2 result. Public issuer exports require the selected complete allowlist; private extra keys never become published facts.",
+      "status": "satisfied-retained",
+      "evidence": ["generated-artifacts/rendered-states/component-new-branch-evidence.json", "generated-artifacts/rendered-states/component-portal-followup-evidence.json"],
+      "rerun": "Preserve the ten interaction receipts; do not rerun the six unchanged passed flows."
+    },
+    {
+      "id": "missing-observation-date",
+      "fields": ["carbon-price[].date", "sdg-growth[].date", "decarb-terciles[].date", "backtest.series[].date"],
+      "contract": "Null/missing/invalid dates are unavailable, never Unix epoch or a guessed date. Dated charts/exports omit undated rows with a visible reason. An undated selected observation cannot establish a latest group headline or derived display-period return accounting; independently available dated values/zeros remain available.",
+      "status": "satisfied-focused",
+      "implementation": ["client/src/lib/valuation-claims.ts", "client/src/pages/climate-valuation.tsx", "client/src/pages/decarb-signal.tsx", "client/src/pages/decarb-gap-signal.tsx"],
+      "focusedTests": "script/s16-005-finite-obligations.test.ts"
+    },
+    {
+      "id": "missing-rendered-tooltip-series",
+      "fields": ["carbonIntensity", "sdgExposure", "decarbAmbition", "impliedRate", "benchmark", "portfolio", "valuation", "activeReturn", "trackingError"],
+      "contract": "Actual chart series are passed through Recharts with filterNull=false. Missing values display the actual series name plus not-returned reason rather than silently disappearing, bare percent signs or invented zero. Genuine zero keeps its units.",
+      "status": "satisfied-focused",
+      "implementation": ["client/src/pages/decarb-signal.tsx", "client/src/pages/decarb-gap-signal.tsx"],
+      "focusedTests": "script/s16-005-finite-obligations.test.ts"
+    },
+    {
+      "id": "current-selection-pending-error",
+      "fields": ["geography", "uploadId", "measure", "selectedSnapshotId", "indicatorKey"],
+      "contract": "Only current-key supplied evidence is available. Pending/error cannot reuse retained current success, another geography/issuer/archive or its exports. A selected measure with missing fields cannot substitute another measure's present fields. Existing header verification and selected-preview mismatch reasons remain authoritative.",
+      "status": "satisfied-focused",
+      "retainedEvidence": ["generated-artifacts/rendered-states/component-portal-followup-evidence.json"],
+      "focusedTests": "script/s16-005-finite-obligations.test.ts"
+    },
+    {
+      "id": "partial-export-correspondence",
+      "fields": ["Date", "Active Return (%)", "Tracking Error (ann.) (%)", "Tracking Error (ann. %)", "companies[].issuer", "companies[].facts[].value"],
+      "contract": "Exports use only current dated rows. Missing numeric cells stay blank/null, actual zero stays zero, and absent/undated rows do not enable a completed download. No invented date or source/selection substitution. Existing public JSON/XLSX allowlist receipts remain unchanged.",
+      "status": "satisfied-focused",
+      "focusedTests": "script/s16-005-finite-obligations.test.ts",
+      "retainedEvidence": ["generated-artifacts/rendered-states/component-new-branch-evidence.json"]
+    }
+  ],
+  "notAdditionalAcceptanceRequirements": [
+    "Every permutation of null/missing/loading/error across every dynamic JSX expression",
+    "A new owner signature or scientific calibration gate for this client engineering criterion",
+    "Another complete route harness, all-absent harness, download/issuer/archive receipt replay or deployment",
+    "Fabricating a hover target or date for an undated observation"
+  ]
+}

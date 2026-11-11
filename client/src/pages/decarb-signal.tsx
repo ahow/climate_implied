@@ -17,7 +17,7 @@ import {
 import { Activity, TrendingDown, Globe, Layers, BarChart3 } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,signalCumulativeColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats } from "@/lib/valuation-claims";
+import { earningsYieldGapPp, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats, observationTimestamp, datedObservations, hasUndatedObservations, tooltipObservation } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -207,8 +207,8 @@ export default function DecarbSignal() {
     const dateMap = new Map<number, ChartDataPoint>();
 
     if (carbonPriceData) {
-      for (const pt of carbonPriceData) {
-        const ts = new Date(pt.date).getTime();
+      for (const pt of datedObservations(carbonPriceData)) {
+        const ts = observationTimestamp(pt.date)!;
         const existing = dateMap.get(ts);
         if (existing) {
           existing.carbonIntensity = earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio);
@@ -223,8 +223,8 @@ export default function DecarbSignal() {
     }
 
     if (sdgData) {
-      for (const pt of sdgData) {
-        const ts = new Date(pt.date).getTime();
+      for (const pt of datedObservations(sdgData)) {
+        const ts = observationTimestamp(pt.date)!;
         const existing = dateMap.get(ts);
         if (existing) {
           existing.sdgExposure = earningsYieldGapPp(pt.cleanPE, pt.dirtyPE);
@@ -239,8 +239,8 @@ export default function DecarbSignal() {
     }
 
     if (decarbTercileData) {
-      for (const pt of decarbTercileData) {
-        const ts = new Date(pt.date).getTime();
+      for (const pt of datedObservations(decarbTercileData)) {
+        const ts = observationTimestamp(pt.date)!;
         const existing = dateMap.get(ts);
         if (existing) {
           existing.decarbAmbition = earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE);
@@ -263,14 +263,18 @@ export default function DecarbSignal() {
     // All headline cards refer to the same latest chart date. Never silently
     // backfill a missing latest observation with a different month's result.
     const latest = chartData[chartData.length - 1];
-    return { carbonIntensity: latest.carbonIntensity, sdgExposure: latest.sdgExposure, decarbAmbition: latest.decarbAmbition };
-  }, [chartData]);
+    return {
+      carbonIntensity: hasUndatedObservations(carbonPriceData) ? null : latest.carbonIntensity,
+      sdgExposure: hasUndatedObservations(sdgData) ? null : latest.sdgExposure,
+      decarbAmbition: hasUndatedObservations(decarbTercileData) ? null : latest.decarbAmbition,
+    };
+  }, [chartData, carbonPriceData, sdgData, decarbTercileData]);
 
-  const backtestStats = useMemo(() => backtestDisplayStats(backtestData), [backtestData]);
+  const backtestStats = useMemo(() => hasUndatedObservations(backtestData) ? null : backtestDisplayStats(backtestData), [backtestData]);
 
   const backtestChartData = useMemo(() => {
     if (!backtestData) return [];
-    return backtestData.map((d) => ({
+    return datedObservations(backtestData).map((d) => ({
       date: d.date,
       benchmark: backtestPercent(d.benchmarkCumulative, true),
       portfolio: backtestPercent(d.portfolioCumulative, true),
@@ -293,7 +297,7 @@ export default function DecarbSignal() {
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {displayDiagnostic(entry.value, " pp")}
+              {tooltipObservation(entry.value, entry.name ?? entry.dataKey ?? "Series value", " pp")}
             </span>
           </div>
         ))}
@@ -307,7 +311,7 @@ export default function DecarbSignal() {
       return <p role="status">Tooltip series unavailable — no valid observations returned.</p>;
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm" data-testid="backtest-tooltip">
-        <p className="font-medium text-foreground mb-2">{label ?? "Observation date unavailable"}</p>
+        <p className="font-medium text-foreground mb-2">{observationTimestamp(label) === undefined ? "Observation date unavailable" : label}</p>
         {payload.map((entry: any) => (
           <div key={entry.dataKey} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
@@ -315,7 +319,7 @@ export default function DecarbSignal() {
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {displayDiagnostic(entry.value, "%")}
+              {tooltipObservation(entry.value, entry.name ?? entry.dataKey ?? "Series value", "%")}
             </span>
           </div>
         ))}
@@ -347,6 +351,9 @@ export default function DecarbSignal() {
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-signal">
       <QueryReadErrors prefix="/api/cv" />
+      {([["Carbon intensity", carbonPriceData], ["SDG", sdgData], ["Ambition", decarbTercileData]] as const).map(([label, rows]) =>
+        hasUndatedObservations(rows) && <p role="status" key={label}>{label}: observation date unavailable. Undated rows are omitted from charts and exports; the latest gap is withheld rather than backfilled.</p>)}
+      {hasUndatedObservations(backtestData) && <p role="status">Backtest observation date unavailable. Undated rows are omitted from charts and exports; derived period accounting is withheld. No date is substituted.</p>}
       <ReadResultReason label="Company dataset" loading={uploadsLoading} error={uploadsError} available={!!uploadId} emptyReason="No completed company dataset is available. Import and review require the operator CLI." />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -412,7 +419,7 @@ export default function DecarbSignal() {
             {displayDiagnostic(latestValues?.carbonIntensity, " pp")}
           </p>
           <p className="text-xs text-muted-foreground">Low-minus-high group Gordon baseline gap</p>
-          <ReadResultReason label="Carbon intensity gap" loading={loadingCP} error={cpError} available={latestValues?.carbonIntensity != null} emptyReason={!uploadId ? "No completed company dataset." : carbonPriceData?.length ? "Selected groups have missing or invalid P/E denominators." : "No carbon-intensity groups for this selection."} />
+          <ReadResultReason label="Carbon intensity gap" loading={loadingCP} error={cpError} available={latestValues?.carbonIntensity != null} emptyReason={!uploadId ? "No completed company dataset." : hasUndatedObservations(carbonPriceData) ? "Observation date missing or invalid; the latest gap cannot be established." : carbonPriceData?.length ? "Selected groups have missing or invalid P/E denominators." : "No carbon-intensity groups for this selection."} />
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -423,7 +430,7 @@ export default function DecarbSignal() {
             {displayDiagnostic(latestValues?.sdgExposure, " pp")}
           </p>
           <p className="text-xs text-muted-foreground">Positive-minus-negative group Gordon baseline gap</p>
-          <ReadResultReason label="SDG gap" loading={loadingSDG} error={sdgError} available={latestValues?.sdgExposure != null} emptyReason={!uploadId ? "No completed company dataset." : sdgData?.length ? "Selected groups have missing or invalid P/E denominators." : "No SDG groups for this selection."} />
+          <ReadResultReason label="SDG gap" loading={loadingSDG} error={sdgError} available={latestValues?.sdgExposure != null} emptyReason={!uploadId ? "No completed company dataset." : hasUndatedObservations(sdgData) ? "Observation date missing or invalid; the latest gap cannot be established." : sdgData?.length ? "Selected groups have missing or invalid P/E denominators." : "No SDG groups for this selection."} />
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -434,7 +441,7 @@ export default function DecarbSignal() {
             {displayDiagnostic(latestValues?.decarbAmbition, " pp")}
           </p>
           <p className="text-xs text-muted-foreground">Best-minus-worst group Gordon baseline gap</p>
-          <ReadResultReason label="Ambition gap" loading={loadingDecarb} error={decarbError} available={latestValues?.decarbAmbition != null} emptyReason={!uploadId ? "No completed company dataset." : decarbTercileData?.length ? "Selected groups have missing or invalid P/E denominators." : "No ambition groups for this selection."} />
+          <ReadResultReason label="Ambition gap" loading={loadingDecarb} error={decarbError} available={latestValues?.decarbAmbition != null} emptyReason={!uploadId ? "No completed company dataset." : hasUndatedObservations(decarbTercileData) ? "Observation date missing or invalid; the latest gap cannot be established." : decarbTercileData?.length ? "Selected groups have missing or invalid P/E denominators." : "No ambition groups for this selection."} />
         </Card>
       </div>
 
@@ -497,7 +504,7 @@ export default function DecarbSignal() {
                 tickFormatter={(v: number) => `${v}%`}
                 label={{ value: "Earnings-yield gap (pp)", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }}
               />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip filterNull={false} content={<CustomTooltip />} />
               <Legend
                 wrapperStyle={{ fontSize: 12 }}
               />
@@ -649,7 +656,7 @@ export default function DecarbSignal() {
                       tick={{ fontSize: 10 }}
                       tickFormatter={(v: number) => `${v.toFixed(0)}%`}
                     />
-                    <Tooltip content={<BacktestTooltip />} />
+                    <Tooltip filterNull={false} content={<BacktestTooltip />} />
                     <Legend wrapperStyle={{ fontSize: 11 }} />
                     <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.4} />
                     <Line
@@ -711,7 +718,7 @@ export default function DecarbSignal() {
                       tick={{ fontSize: 10 }}
                       tickFormatter={(v: number) => `${v.toFixed(1)}%`}
                     />
-                    <Tooltip content={<BacktestTooltip />} />
+                    <Tooltip filterNull={false} content={<BacktestTooltip />} />
                     <Legend wrapperStyle={{ fontSize: 11 }} />
                     <ReferenceLine yAxisId="left" y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.4} />
                     <ReferenceLine yAxisId="right" y={trackingErrorLimit} stroke={BACKTEST_COLORS.trackingError} strokeDasharray="6 3" strokeOpacity={0.6} label={{ value: `Target TE: ${trackingErrorLimit}%`, position: "right", style: { fontSize: 10, fill: BACKTEST_COLORS.trackingError } }} />

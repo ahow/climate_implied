@@ -1,5 +1,5 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
-import { conditionalCompanySummary, conditionalExportCells, type getConditionalCompanySummary } from "./companyConditionalData";
+import { conditionalCompanySummary, conditionalExportCells, conditionalFactEvidenceReference, type getConditionalCompanySummary } from "./companyConditionalData";
 
 export const conditionalCompanyApiSurfaces = [
   'API GET "/api/cv/company-conditional-summaries"',
@@ -20,8 +20,8 @@ export const conditionalCompanyFieldSpecs: [string, string, string, string][] = 
   ["frozenProtocolsChanged", "No frozen protocol changes by presentation/export", "literal false", "boolean"],
   ["companies[].issuer", "Exact allowlisted company discriminator", "NEE | FSLR | XOM; optional issuer query filters only this array", "issuer identifier"],
   ["companies[].name", "Issuer display name", "same-row immutable allowlisted name", "text"],
-  ["companies[].experimentVersion", "Frozen conditional experiment version", "same-row public evidence document version", "identifier"],
-  ["companies[].evidenceDocument", "Public evidence document locator, never a runtime read", "same-row docs/*.json locator from immutable allowlist", "public document path"],
+  ["companies[].experimentVersion", "Legacy frozen experiment version; additive integration versions are separately enumerated", "same-row default public evidence document version, not silently replaced by a new cohort integration", "identifier"],
+  ["companies[].evidenceDocument", "Default legacy public evidence document locator, never a runtime read", "same-row docs/*.json; newer fact sourceLocator may explicitly identify a different public docs/*.json#pointer", "public document path"],
   ["companies[].informationContext", "Issuer-specific information/vintage boundary", "same-row retained revised-history and publication-cutoff qualification", "text"],
   ["companies[].qualifiedOriginalIssuers", "This conditional company does not qualify an original issuer", "literal 0", "issuers"],
   ["companies[].qualifiedOriginalPairs", "This conditional company does not qualify an original pair", "literal 0", "pairs"],
@@ -31,7 +31,7 @@ export const conditionalCompanyFieldSpecs: [string, string, string, string][] = 
   ["companies[].facts[].unit", "Exact unit of same-row value", "same-row retained unit; USD, GBP, UKA, tCO2e, counts and periods are not interchangeable", "unit identifier"],
   ["companies[].facts[].classification", "Observed/derived versus conditional distinction", "sourced-derived | conditional; neither implies whole-company qualification", "label"],
   ["companies[].facts[].formula", "Exact arithmetic or source/unknown explanation", "same-row public fact formula; no runtime parameter fitting", "formula text"],
-  ["companies[].facts[].sourceLocator", "Exact test-time evidence value location", "same-row public evidenceDocument plus sourceLocator; no private runtime source reads", "public JSON locator"],
+  ["companies[].facts[].sourceLocator", "Exact test-time evidence value location", "explicit public docs/*.json#pointer when supplied, otherwise same-row default evidenceDocument#sourceLocator; no private runtime source reads", "public JSON locator"],
   ["companies[].facts[].boundary", "Fact-specific scope and limitations", "same-row explicit missingness, currency, funding or causal boundary", "text"],
   ["companies[].sourced[]", "Source-backed observations and their limitations", "immutable issuer-specific sourced disclosures", "text"],
   ["companies[].conditions[]", "Conditional scenario assumptions, not observations", "immutable issuer-specific conditions; no UI/query override", "text"],
@@ -42,7 +42,7 @@ export const conditionalCompanyFieldSpecs: [string, string, string, string][] = 
 const common = {
   role: "Output" as const,
   source: "shared/companyConditionalData.ts: explicit immutable public derived aggregate allowlist; evidenceDocument/sourceLocator identify public receipts",
-  period: "Issuer-specific FY2024 observations and frozen conditional future paths; same-row informationContext and boundary control",
+  period: "Issuer-specific FY2024 observations, separately enumerated later2025/2026collection facts and frozen conditional paths; exact same-row informationContext/sourceLocator/boundary control",
   geography: "NEE/FPL selected US/Canada cash scope; FSLR disclosed manufacturing assumptions; XOM selected English permits only; not global equity emissions",
   status: "Supplemental conditional research; 0/3 qualified original issuers, zero qualified pairs; no Tier2 or efficacy promotion",
   missingness: "Explicit null means unknown, not zero. No private/runtime source fallback; unsupported query rejects400",
@@ -59,8 +59,8 @@ export const conditionalCompanySemantics: OutputFieldSemantic[] = [
     ...common, id: `conditionalCompany.fact.${company.issuer}.${fact.id}`,
     meaning: `${company.issuer}: ${fact.label}. ${fact.boundary}`,
     formula: fact.formula, unit: fact.unit,
-    dependencies: [`${company.evidenceDocument}#${fact.sourceLocator}`, `classification:${fact.classification}`],
-    source: `${company.evidenceDocument}#${fact.sourceLocator}; public allowlist only, no runtime evidence reads`,
+    dependencies: [conditionalFactEvidenceReference(company, fact), `classification:${fact.classification}`],
+    source: `${conditionalFactEvidenceReference(company, fact)}; public allowlist only, no runtime evidence reads`,
     missingness: fact.value === null ? `Explicit unknown null; ${fact.boundary}` : common.missingness,
   }))),
   {

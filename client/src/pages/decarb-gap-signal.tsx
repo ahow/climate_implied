@@ -17,7 +17,7 @@ import {
 import { Activity, Globe, Layers, BarChart3, TrendingUp, TrendingDown, ArrowUpDown, Beaker } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,groupGapExportColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats } from "@/lib/valuation-claims";
+import { gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats, observationTimestamp, datedObservations, hasUndatedObservations, tooltipObservation, selectedGroupGapPp } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -157,6 +157,7 @@ function formatDateLabel(timestamp: number): string {
 }
 
 function formatDateStr(dateStr: string): string {
+  if (observationTimestamp(dateStr) === undefined) return "Observation date unavailable";
   const d = new Date(dateStr);
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
@@ -252,24 +253,20 @@ export default function DecarbGapSignal() {
   }, [measure, carbonPriceData, sdgData, decarbTercileData]);
 
   const latestImpliedRate = useMemo(() => {
-    if (!selectedMeasureData || selectedMeasureData.length === 0) return null;
+    if (!selectedMeasureData || selectedMeasureData.length === 0 || hasUndatedObservations(selectedMeasureData)) return null;
     const last = selectedMeasureData[selectedMeasureData.length - 1];
-    if ("cleanPE" in last) return earningsYieldGapPp(last.cleanPE, last.dirtyPE);
-    if ("bestTercilePE" in last) return earningsYieldGapPp(last.bestTercilePE, last.worstTercilePE);
-    return earningsYieldGapPp(last.bottomTercilePeRatio, last.topTercilePeRatio);
-  }, [selectedMeasureData]);
+    return selectedGroupGapPp(last, measure);
+  }, [selectedMeasureData, measure]);
 
 
   const chartData = useMemo(() => {
     const dateMap = new Map<number, TimeSeriesDataPoint>();
 
     if (selectedMeasureData) {
-      for (const pt of selectedMeasureData) {
-        const ts = new Date(pt.date).getTime();
+      for (const pt of datedObservations<CarbonPricePoint | SDGGrowthPoint | DecarbTercilePoint>(selectedMeasureData)) {
+        const ts = observationTimestamp(pt.date)!;
         const existing = dateMap.get(ts);
-        const impliedRate = "cleanPE" in pt ? earningsYieldGapPp(pt.cleanPE, pt.dirtyPE)
-          : "bestTercilePE" in pt ? earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE)
-          : earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio);
+        const impliedRate = selectedGroupGapPp(pt, measure);
         if (existing) {
           existing.impliedRate = impliedRate;
         } else {
@@ -283,7 +280,7 @@ export default function DecarbGapSignal() {
     }
 
     return Array.from(dateMap.values()).sort((a, b) => a.date - b.date);
-  }, [selectedMeasureData]);
+  }, [selectedMeasureData, measure]);
 
   const loadingMeasure = (measure === "carbon_intensity" && loadingCP) ||
     (measure === "sdg_alignment" && loadingSDG) ||
@@ -293,7 +290,7 @@ export default function DecarbGapSignal() {
   const hasData = !!summary && summary.companyCount > 0;
 
   function computeStats(data: BacktestPoint[] | undefined) {
-    return backtestDisplayStats(data);
+    return hasUndatedObservations(data) ? null : backtestDisplayStats(data);
   }
 
   const backtestStats = useMemo(() => computeStats(backtestData), [backtestData]);
@@ -304,10 +301,10 @@ export default function DecarbGapSignal() {
     const signalMap = new Map<string, BacktestPoint>();
     const valMap = new Map<string, BacktestPoint>();
     if (backtestData) {
-      for (const d of backtestData) signalMap.set(d.date, d);
+      for (const d of datedObservations(backtestData)) signalMap.set(d.date, d);
     }
     if (valuationBacktestData) {
-      for (const d of valuationBacktestData) valMap.set(d.date, d);
+      for (const d of datedObservations(valuationBacktestData)) valMap.set(d.date, d);
     }
     const allDates = Array.from(new Set([...Array.from(signalMap.keys()), ...Array.from(valMap.keys())])).sort();
     return allDates.map((date) => {
@@ -339,7 +336,7 @@ export default function DecarbGapSignal() {
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {displayDiagnostic(entry.value, " pp")}
+              {tooltipObservation(entry.value, entry.name ?? entry.dataKey ?? "Series value", " pp")}
             </span>
           </div>
         ))}
@@ -353,7 +350,7 @@ export default function DecarbGapSignal() {
       return <p role="status">Tooltip series unavailable — no valid observations returned.</p>;
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
-        <p className="font-medium text-foreground mb-2">{label ?? "Observation date unavailable"}</p>
+        <p className="font-medium text-foreground mb-2">{observationTimestamp(label) === undefined ? "Observation date unavailable" : label}</p>
         {payload.map((entry: any) => (
           <div key={entry.dataKey} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
@@ -361,7 +358,7 @@ export default function DecarbGapSignal() {
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {displayDiagnostic(entry.value, "%")}
+              {tooltipObservation(entry.value, entry.name ?? entry.dataKey ?? "Series value", "%")}
             </span>
           </div>
         ))}
@@ -392,6 +389,8 @@ export default function DecarbGapSignal() {
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-gap-signal">
       <QueryReadErrors prefix="/api/cv" />
+      {hasUndatedObservations(selectedMeasureData) && <p role="status">Selected group observation date unavailable. Undated rows are omitted from charts and exports; the latest gap is withheld rather than backfilled.</p>}
+      {(hasUndatedObservations(backtestData) || hasUndatedObservations(valuationBacktestData)) && <p role="status">Backtest observation date unavailable. Undated rows are omitted from charts and exports; affected derived period accounting is withheld. No date is substituted.</p>}
       <ReadResultReason label="Company dataset" loading={uploadsLoading} error={uploadsError} available={!!uploadId} emptyReason="No completed company dataset is available. Import and review require the operator CLI." />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -481,7 +480,7 @@ export default function DecarbGapSignal() {
                 {displayDiagnostic(latestImpliedRate, " pp")}
               </p>
               <p className="text-xs text-muted-foreground">First-minus-second group Gordon baseline gap</p>
-              <ReadResultReason label="Selected group gap" loading={loadingMeasure} error={measure === "carbon_intensity" ? cpError : measure === "sdg_alignment" ? sdgError : decarbError} available={latestImpliedRate != null} emptyReason={selectedMeasureData?.length ? "Selected groups have missing or invalid P/E denominators." : "No valuation groups for this measure and geography."} />
+              <ReadResultReason label="Selected group gap" loading={loadingMeasure} error={measure === "carbon_intensity" ? cpError : measure === "sdg_alignment" ? sdgError : decarbError} available={latestImpliedRate != null} emptyReason={hasUndatedObservations(selectedMeasureData) ? "Observation date missing or invalid; the latest gap cannot be established." : selectedMeasureData?.length ? "Selected groups have missing or invalid P/E denominators." : "No valuation groups for this measure and geography."} />
             </Card>
             <Card className="p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
@@ -564,7 +563,7 @@ export default function DecarbGapSignal() {
                       tickFormatter={(v: number) => `${v.toFixed(1)}%`}
                       label={{ value: "Earnings-yield gap (pp)", angle: -90, position: "insideLeft", style: { fontSize: 11, fill: "hsl(var(--muted-foreground))" } }}
                     />
-                    <Tooltip content={<TimeSeriesChartTooltip />} />
+                    <Tooltip filterNull={false} content={<TimeSeriesChartTooltip />} />
                     <Legend wrapperStyle={{ fontSize: 11 }} />
                     <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.5} />
                     <Line
@@ -700,7 +699,7 @@ export default function DecarbGapSignal() {
                         Active: {backtestDisplay(backtestStats.annualizedActive, 2, true)} ann. | TE: {backtestDisplay(backtestStats.finalTE)}
                       </p>
                     </>
-                  ) : <p className="text-sm text-muted-foreground">Loading...</p>}
+                  ) : <p className="text-sm text-muted-foreground">{loadingBacktest ? "Loading..." : hasUndatedObservations(backtestData) ? "Unavailable — observation date missing or invalid." : "Unavailable — return accounting not returned."}</p>}
                 </div>
                 {compareGap && <div className="p-3 rounded-md border bg-muted/30">
                   <p className="text-xs mb-1 font-medium" style={{ color: COLORS.valuation }}>Decarb Gap</p>
@@ -713,7 +712,7 @@ export default function DecarbGapSignal() {
                         Active: {backtestDisplay(valBacktestStats.annualizedActive, 2, true)} ann. | TE: {backtestDisplay(valBacktestStats.finalTE)}
                       </p>
                     </>
-                  ) : <p className="text-sm text-muted-foreground">Loading...</p>}
+                  ) : <p className="text-sm text-muted-foreground">{loadingValBacktest ? "Loading..." : hasUndatedObservations(valuationBacktestData) ? "Unavailable — observation date missing or invalid." : "Unavailable — return accounting not returned."}</p>}
                 </div>}
               </div>
             )}
@@ -758,7 +757,7 @@ export default function DecarbGapSignal() {
                         }}
                       />
                       <YAxis tick={{ fontSize: 10 }} tickFormatter={(v: number) => `${v.toFixed(0)}%`} />
-                      <Tooltip content={<BacktestTooltip />} />
+                      <Tooltip filterNull={false} content={<BacktestTooltip />} />
                       <Legend wrapperStyle={{ fontSize: 11 }} />
                       <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.4} />
                       <Line dataKey="benchmark" name="Benchmark (MV-weighted)" stroke={COLORS.benchmark} strokeWidth={1.5} dot={false} type="monotone" />
@@ -798,7 +797,7 @@ export default function DecarbGapSignal() {
                       />
                       <YAxis yAxisId="left" tick={{ fontSize: 10 }} tickFormatter={(v: number) => `${v.toFixed(1)}%`} />
                       <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 10 }} tickFormatter={(v: number) => `${v.toFixed(1)}%`} />
-                      <Tooltip content={<BacktestTooltip />} />
+                      <Tooltip filterNull={false} content={<BacktestTooltip />} />
                       <Legend wrapperStyle={{ fontSize: 11 }} />
                       <ReferenceLine yAxisId="left" y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" strokeOpacity={0.4} />
                       <ReferenceLine yAxisId="right" y={trackingErrorLimit} stroke={COLORS.trackingError} strokeDasharray="6 3" strokeOpacity={0.6} label={{ value: `Target TE: ${trackingErrorLimit}%`, position: "right", style: { fontSize: 10, fill: COLORS.trackingError } }} />

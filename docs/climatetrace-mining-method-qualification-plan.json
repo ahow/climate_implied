@@ -1,0 +1,55 @@
+{
+  "version": "climatetrace-mining-method-qualification-1",
+  "criterion": "S04-005",
+  "route": "Execute bounded publisher methodology/freshness qualification because retained joint Kaya contract remains blocked;do not rerun old forecasting/accounting/assembly passes.",
+  "retainedFirst": {
+    "originalProtocol": "docs/Kaya_Protocol.md",
+    "codebookSHA256": "33b4f5e00efd58c7b83863f736beba1af4df946b43642b0400c3ec38648e0e8e",
+    "WDIResultSHA256": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+    "nativeMonthlyResultSHA256": "bc6301c83c155dab5a477237468e10452399a8587b33c71fc91c19b8c5d5880f",
+    "nativeArchiveSHA256": "39a59227653de449180fc90c8f32a7c636117b66e54e853ec5c4c4cec11b609e",
+    "sameVersionGuideSHA256": "e07dd3b20a14c7f4a6694996c1d037bf9bb11b059e40b8ecf1c80c77ba3184e7",
+    "jointKayaBlockers": [
+      "WDI entire2021PPP basis cannot fill original MPD2011PPP54 missing EU27 member-years",
+      "Retained WDI gives75 full regional account-years but30 original RoW/transport account-years have no qualified GDP/population account",
+      "Retained source-specific CO2 includes distinct international aviation/shipping;their primary-energy and GDP/population cells are absent,not zero",
+      "Full2010-2024 native world/country territory,bunker and energy-definition reconciliation not established;no subtraction invented as source-native RoW"
+    ],
+    "freshnessTrigger": "All23268 native2024-vs2025 same-asset/month pairs and1939 January2024-vs2026 pairs exactly equal. This is retained source evidence,not a new skill test. Do not rerun those same checks."
+  },
+  "primaryPublisherIdentity": {
+    "repository": "climatetracecoalition/methodology-documents",
+    "authority": "Exact GitHub repository explicitly linked by retained bundled March2026v5.5.0 guide at2025/CHANGELOG and current publisher guide at2026/CHANGELOG",
+    "methodCitation": "Jolleys,M.(2025),Mineral Extraction sector:Mining and Quarrying Emissions from Copper,Iron,Bauxite,Rock and Sand,Hypervine,UK",
+    "access": "Public publisher-authored method/source documents only;no private endpoints,credentials,purchases,data-license bypass,model/control data or runnable publisher code"
+  },
+  "boundedSequence": [
+    "https://api.github.com/repos/climatetracecoalition/methodology-documents/commits/main;resolve actual current commit and author/committer metadata",
+    "One exact commit-root tree URL returned by that metadata,recursive=true;stop if truncated",
+    "At most two exact public method PDF/Markdown files selected by mining/quarrying/Hypervine identity and2025/2026 version before reading content;raw immutable commit URLs only",
+    "At most two exact returned2025/2026 mineral-extraction changelog/license/source records needed to qualify temporal/source boundaries",
+    "At most one publisher git-commit history metadata request for selected method path;commit timestamps are not certified original public availability",
+    "At most one explicitly method-linked public primary input-release metadata document,only if necessary to identify actual last measured production year;no input/model bulk download"
+  ],
+  "bounds": {
+    "maximumRequests": 8,
+    "timeoutSeconds": 60,
+    "maximumRedirects": 5,
+    "maximumMethodPDFBytes": 20000000,
+    "maximumTreeBytes": 5000000,
+    "maximumMetadataBytes": 2000000,
+    "maximumTotalBodyBytes": 50000000,
+    "retry": false,
+    "paidCalls": 0
+  },
+  "newNativeSourceAssembly": {
+    "source": "Retained exactv5.5.0 CO2 asset CSVs only,not new grids,proxies,other-gas conversion or replacement observations",
+    "fields": ["activity","activity_units","emissions_factor","emissions_factor_units","emissions_quantity","created_date","modified_date"],
+    "scope": "Three already-selected native bauxite/copper/iron mining source files;full native2021-01 through2026-01 metadata and paired input fields. Do not rerun the old quantity-only repetition audit.",
+    "qualification": "Verify source-reported activity and factor units dimensionally against source-reported CO2. Record activity/factor period identities,missingness and exact input-field repetitions for2024-vs2025 andJanuary2024-vs2026. Inspect actual publisher annual-input cutoff/extrapolation/temporal-allocation/fuel-electricity boundary statements.",
+    "arithmeticAudit": "Only if native units explicitly match,compare native reported quantity to native reported activity times native reported factor. Preserve exact Decimal residuals with100-digit arithmetic. No fitted/changed factor,weights,tolerance relaxation,synthetic observations or scientific pass inferred from numerical identity.",
+    "dating": "Retain archived file version5.5.0,repository creation2026-05-01,publisher claimed2026-03-26 and newly retrieved method commit/file versions separately. Current method is not presumed contemporaneous with archive or earlier forecast origins.",
+    "admission": "Source schema/units qualification is not independent realized-outcome qualification. Monthly labels or seasonal allocation of an annual activity input cannot alone qualify fresh independent monthly emissions outcomes. No fit,headline scoring or central promotion."
+  },
+  "outputs": "New disjoint physical script/tests/focused evidence only;new source/results privately in ignored generated-artifacts/climatetrace-mining-method. No old source edits,canonical ledgers,protectedFaIR bundle,production,collector,commit,deploy,publish,callback,synthetic calibration or ensemble."
+}

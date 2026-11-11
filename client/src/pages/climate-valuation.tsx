@@ -18,7 +18,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { DownloadDataButton } from "@/components/download-data-button";
-import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic } from "@/lib/valuation-claims";
+import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic, observationTimestamp } from "@/lib/valuation-claims";
 import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
 import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
 import {
@@ -181,7 +181,7 @@ export default function ClimateValuation() {
   };
 
   const carbonIntensityChartData = carbonPrices?.map((p) => ({
-    date: new Date(p.date).getTime(),
+    date: observationTimestamp(p.date),
     cleanPE: roundedPE(p.bottomTercilePeRatio),
     dirtyPE: roundedPE(p.topTercilePeRatio),
     cleanCount: p.bottomTercileCompanyCount,
@@ -189,7 +189,7 @@ export default function ClimateValuation() {
   }));
 
   const sdgChartData = sdgGrowth?.map((p) => ({
-    date: new Date(p.date).getTime(),
+    date: observationTimestamp(p.date),
     cleanPE: roundedPE(p.cleanPE),
     dirtyPE: roundedPE(p.dirtyPE),
     cleanCount: p.cleanCount,
@@ -197,7 +197,7 @@ export default function ClimateValuation() {
   }));
 
   const ambitionChartData = decarbTerciles?.map((p) => ({
-    date: new Date(p.date).getTime(),
+    date: observationTimestamp(p.date),
     bestPE: roundedPE(p.bestTercilePE),
     worstPE: roundedPE(p.worstTercilePE),
     bestCount: p.bestTercileCompanyCount,
@@ -451,7 +451,7 @@ interface AnalysisSectionProps {
   icon: React.ElementType;
   title: string;
   description: string;
-  chartData: Array<{ date: number; [k: string]: any }>;
+  chartData: Array<{ date?: number; [k: string]: any }>;
   isLoading: boolean;
   error?: Error | null;
   formatChartDate: (ts: number) => string;
@@ -482,7 +482,7 @@ export function AnalysisSection({
   headerRight,
   peChart,
 }: AnalysisSectionProps) {
-  const currentRows = isLoading || error ? [] : chartData.filter(row => typeof row.date === "number" && Number.isFinite(row.date));
+  const currentRows = isLoading || error ? [] : chartData.filter((row): row is { date: number; [k: string]: any } => typeof row.date === "number" && Number.isFinite(row.date));
   const peDownloadRows = certifyFiniteExport("valuationPE",currentRows.map((d) => ({
     Date: formatTooltipDate(d.date),
     [`${peChart.highLabel} P/E (x)`]: roundedPE(d[peChart.highKey]),

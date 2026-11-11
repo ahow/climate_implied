@@ -38,8 +38,38 @@ export function earningsYieldGapPp(companyPE: unknown, peerPE: unknown): number 
   return company === null || peer === null ? null : company - peer;
 }
 
+/** Selection chooses the definition; another present field is never a substitute. */
+export function selectedGroupGapPp(row: unknown, measure: string): number | null {
+  if (!row || typeof row !== "object") return null;
+  const fields = row as Record<string, unknown>;
+  if (measure === "sdg_alignment") return earningsYieldGapPp(fields.cleanPE, fields.dirtyPE);
+  if (measure === "decarb_ambition") return earningsYieldGapPp(fields.bestTercilePE, fields.worstTercilePE);
+  if (measure === "carbon_intensity") return earningsYieldGapPp(fields.bottomTercilePeRatio, fields.topTercilePeRatio);
+  return null;
+}
+
 export function displayDiagnostic(value: unknown, suffix = ""): string {
   return typeof value === "number" && Number.isFinite(value) ? `${value.toFixed(2)}${suffix}` : "Unavailable";
+}
+
+/** Null is an unavailable observation date, never the Unix epoch. */
+export function observationTimestamp(value: unknown): number | undefined {
+  if (typeof value !== "number" && (typeof value !== "string" || !value.trim())) return undefined;
+  const timestamp = new Date(value).getTime();
+  return Number.isFinite(timestamp) ? timestamp : undefined;
+}
+
+export function datedObservations<T extends { date?: unknown }>(rows?: readonly T[] | null): T[] {
+  return Array.isArray(rows) ? rows.filter(row => row && observationTimestamp(row.date) !== undefined) : [];
+}
+
+export function hasUndatedObservations(rows: unknown): boolean {
+  return rows != null && (!Array.isArray(rows) || rows.some(row => !row || observationTimestamp(row.date) === undefined));
+}
+
+export function tooltipObservation(value: unknown, field: string, suffix: string): string {
+  return typeof value === "number" && Number.isFinite(value)
+    ? displayDiagnostic(value, suffix) : `Unavailable — ${field} not returned for this observation`;
 }
 
 export function backtestPercent(value: unknown, cumulative = false): number | undefined {

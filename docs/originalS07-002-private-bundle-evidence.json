@@ -1,0 +1,153 @@
+{
+  "criterion": "originalS07-002",
+  "scope": "Isolated offline private bundle build, install, activation/export/recovery rehearsal; not provisioning or scientific acceptance",
+  "implementation": [
+    "server/calculation/fairArtifactFiles.ts",
+    "server/calculation/fairArtifacts.ts",
+    "script/fair-artifact-bundle.ts",
+    "script/rehearse-fair-artifact-bundle.ts",
+    "script/fair-artifact-bundle.test.ts"
+  ],
+  "version": "s07-offline-fair-v1",
+  "format": "fair-private-bundle-v1",
+  "actualRetainedRehearsal": {
+    "command": "npx tsx script/rehearse-fair-artifact-bundle.ts",
+    "passed": true,
+    "bundle": "generated-artifacts/fair-bundle-rehearsal-yNPUor/exact16.fairbundle",
+    "exportedIdenticalBundle": "generated-artifacts/fair-bundle-rehearsal-yNPUor/exported.fairbundle",
+    "bytes": 103204794,
+    "bundleSha256": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
+    "manifestSha256": "001369ece0d247bef314db061efacdece1849c39deeac64c3adbd7811e65c4b1",
+    "artifactCount": 16,
+    "memberSeries": 13456,
+    "dataFiles": 36,
+    "protectedSourceFiles": 13,
+    "archivePayloadFiles": 49,
+    "manifestContains": [
+      "All sixteen exact catalog manifests and version/hash selections",
+      "All 13456 member IDs and full annual member-series SHA256 identities",
+      "Every payload file path, byte count, SHA256 and restrictive mode",
+      "Exact source snapshots with hashes, checked against authorized local source before install/activation/export"
+    ],
+    "sourceHashesSha256": "64f2d4936563ac73cd80c1a8446f83eaaf1084926c838dc694f155b707932102",
+    "protectedImplementationHashes": {
+      "server/calculation/fairArtifactCatalog.ts": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c",
+      "server/calculation/fairArtifacts.ts": "6420215db8620c9d7c6903b5544392f6c79ec47f8a12d46716c0133909626400",
+      "server/calculation/fairArtifactFiles.ts": "8e36184ef09af22295b71999a643e10831e7c2c2d6fe0bf0c1b4260d554c1b5e",
+      "server/calculation/fairArtifactRoutes.ts": "b9103279e26f54ae636e86812d77846d41197d3e666ed893a8cfe18843b5eb82",
+      "script/fair-artifact-bundle.ts": "cb0a879e761a43537f8c1f787c08d9c0c502819a132ff920431234e6d65c4547"
+    },
+    "all16ConfiguredRuntimeRootLoadsPassed": true,
+    "refusalChecks": 29,
+    "permissionProof": {
+      "installedAndRecoveryFiles0600": 56,
+      "installedAndRecoveryDirectories0700": 29,
+      "archiveAndExport0600": true,
+      "noSymlinkInstallTree": true
+    },
+    "initialActivationReceiptSha256": "69fff1f9277e4edf6c1109ab95d7031dc6019c3392f1a3c69a4a773d441b6862",
+    "recovery": [
+      "Install does not activate and never replaces an existing release",
+      "Verified immutable staged files are fsynced and renamed into a content-addressed release",
+      "Activation uses an exclusive operator lock, exact expected-active precondition, immutable recovery receipt and atomic pointer rename",
+      "Prior release bytes remain untouched; interrupted staging directories cannot be selected as releases",
+      "Recovery to the initial unconfigured state becomes explicit 503 withholding, never legacy file fallback",
+      "Reactivation restores verified artifact availability",
+      "Abandoned lock removal requires its exact trusted hash and a proven-dead PID; live-owner lock removal refuses",
+      "Private export reconstructs byte-identical trusted archive and never replaces an existing output"
+    ],
+    "negativeCases": [
+      "Outside ignored generated directory",
+      "Bundle path traversal, symlink components and duplicate/nonregular paths",
+      "Wrong external bundle hash, missing archive, corrupt/truncated payload",
+      "Unknown bundle version or catalog/member identity mismatch",
+      "Self-attested modified source with recomputed internal hash still refuses against local authorized source",
+      "Existing release/output refusal",
+      "Wrong activation precondition and live lock refusal",
+      "Missing or corrupt installed member ensemble causes explicit runtime 503",
+      "Open group/other permissions refuse",
+      "Interrupted staging never activates"
+    ]
+  },
+  "supersededBundles": [
+    {
+      "sha256": "11a77d824c656391d7c94741e067ed3465aa11ad85f5049e65e5537e2ac48a8e",
+      "path": "generated-artifacts/fair-bundle-rehearsal-0kM0cI/exact16.fairbundle",
+      "status": "superseded-development-rehearsal",
+      "reason": "Subsequent tooling added full staging-directory durability and additional fault checks."
+    },
+    {
+      "sha256": "d8f149eb4a00606d9e5d2761d196415aa5581f7a7cb8ac234413ddf4b76a674d",
+      "path": "generated-artifacts/fair-bundle-rehearsal-Pgbvxi/exact16.fairbundle",
+      "status": "superseded-development-rehearsal",
+      "reason": "Subsequent bundle manifests included all complete catalog manifests explicitly."
+    },
+    {
+      "sha256": "2ff24a87590f3ca64b20f77f002aabde4d319922b06633f53add62a53d045c85",
+      "path": "generated-artifacts/fair-bundle-rehearsal-DFulWv/exact16.fairbundle",
+      "status": "superseded-previous-parent-handoff-do-not-provision",
+      "reason": "Protected fairArtifactFiles.ts changed to Array.from(parts.entries()) for the actual project compiler's ES5/downlevel iteration compatibility. No security or scientific gate changed.",
+      "supersededSourceSha256": "f903df659389991fb18c72de550db09090da137e6a58ef53b518171c73a1ba89",
+      "replacementSourceSha256": "8e36184ef09af22295b71999a643e10831e7c2c2d6fe0bf0c1b4260d554c1b5e"
+    }
+  ],
+  "operatorContract": {
+    "offlineCli": "npx tsx script/fair-artifact-bundle.ts",
+    "build": "build --output=generated-artifacts/PRIVATE_DIRECTORY/exact16.fairbundle",
+    "install": "install --bundle=generated-artifacts/PRIVATE_DIRECTORY/exact16.fairbundle --sha256=TRUSTED_EXTERNAL_SHA256 --store=generated-artifacts/PRIVATE_STORE",
+    "activate": "activate --store=generated-artifacts/PRIVATE_STORE --release=TRUSTED_EXTERNAL_SHA256 --expected-active=none",
+    "exportReadSupport": "export --store=generated-artifacts/PRIVATE_STORE --release=TRUSTED_EXTERNAL_SHA256 --output=generated-artifacts/PRIVATE_DIRECTORY/exported.fairbundle",
+    "recover": "recover --store=generated-artifacts/PRIVATE_STORE --receipt=TRUSTED_ACTIVATION_RECEIPT_SHA256 --expected-active=CURRENT_RELEASE_SHA256",
+    "unlockOnlyProvenAbandonedLock": "unlock --store=generated-artifacts/PRIVATE_STORE --lock-sha256=TRUSTED_LOCK_SHA256",
+    "expectedActiveMeaning": "The exact previously active release SHA256, or none. No implicit activation or overwrite.",
+    "trustBoundary": "The expected bundle SHA256 is delivered independently by the authorized parent/operator; it is never inferred as trust from untrusted package contents.",
+    "runtimeFlag": "FAIR_ARTIFACT_ROOT",
+    "runtimeFlagValue": "Absolute path to the privately installed store, not an artifact path supplied through HTTP",
+    "unsetRuntimeFlag": "Original generated-artifacts layout remains the default",
+    "brokenConfiguredRoot": "Fails closed, without falling back to original files",
+    "sourceProtection": "Any change to one of the thirteen protected source/protocol files requires rebuilding and reauthorizing a new bundle SHA256.",
+    "ownership": "Parent owns actual authorized transport, provisioning, runtime flag changes and any deployment; none was performed here.",
+    "concurrencyBoundary": "Private directories must not be concurrently writable by an untrusted same-UID process; the operator lock serializes supported offline changes.",
+    "authorizationBoundary": "No authenticated Railway CLI session, SSH agent/key, bucket or mounted volume is established by this work. An authorized operator must use the official Railway SSH/SFTP instructions and supply their own service target and approved credentials; none are fabricated or inferred.",
+    "exactCurrentBundleOperatorCommands": [
+      "umask 077",
+      "mkdir -m 700 -p generated-artifacts/private-fair-transfer",
+      "sha256sum generated-artifacts/private-fair-transfer/exact16.fairbundle",
+      "npx tsx script/fair-artifact-bundle.ts install --bundle=generated-artifacts/private-fair-transfer/exact16.fairbundle --sha256=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --store=generated-artifacts/private-fair-store",
+      "npx tsx script/fair-artifact-bundle.ts activate --store=generated-artifacts/private-fair-store --release=155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724 --expected-active=none",
+      "FAIR_ARTIFACT_ROOT=\"$(pwd)/generated-artifacts/private-fair-store\" npx tsx script/validate-retained-fair-artifacts.ts"
+    ],
+    "exactCurrentBundleCommandPrerequisites": [
+      "Operator is in the exact authorized source checkout matching the thirteen protected source snapshots; node dependencies/tsx are available.",
+      "Operator has already transferred the CURRENT exact private bundle to the named 0600 file using their authorized SSH/SFTP path; this work performs no connection or transfer.",
+      "The printed sha256sum must match the separately trusted current bundle SHA256 and byte length 103204794 before proceeding.",
+      "Use the exact existing release SHA256 instead of none if activation is replacing an existing active release; never bypass the precondition.",
+      "Record the activation receipt SHA256 from actual command output; the rehearsal receipt is not a deployed recovery receipt."
+    ],
+    "ephemeralRecovery": [
+      "Without a mounted persistent volume, a new deployment/container can lose the entire installed store, active pointer, bundle and on-container recovery receipts.",
+      "Retain the authorized exact bundle, trusted SHA256 and actual activation receipt privately outside the ephemeral container using operator-approved storage; this work creates no bucket, volume or other service.",
+      "After an ephemeral loss, reinstall the exact bundle into the new matching source checkout, reactivate with expected-active=none, and reapply FAIR_ARTIFACT_ROOT through the parent-authorized runtime configuration procedure.",
+      "A lost store must produce explicit 503 artifact refusal until reinstallation. No fallback, public Git inclusion, public upload endpoint or scientific promotion is an acceptable recovery method.",
+      "If the deployed source changes, rebuild and reauthorize a new bundle instead of silently reusing a superseded source-bound bundle."
+    ]
+  },
+  "engineeringTestsForParent": "npx tsx --test script/fair-artifact-bundle.test.ts script/fair-artifact-routes.test.ts",
+  "strictFocusedTypeScript": "passed",
+  "actualProjectCompiler": {
+    "command": "npm run check",
+    "result": "passed",
+    "fix": "Array.from(parts.entries()) avoids TS2802 under the existing project target without changing tsconfig, runtime semantics or gates"
+  },
+  "rawPrivateBytesOnlyUnderIgnoredGeneratedDirectory": true,
+  "httpWriteUploadOrAuthChanges": false,
+  "pythonExecution": false,
+  "oldScientificStudiesRerun": false,
+  "serviceOrDeploymentChanges": false,
+  "ledgerOrCommitChanges": false,
+  "scientificAcceptance": "not-accepted",
+  "remaining": [
+    "Actual authorized transport/storage provisioning and deployed artifact availability remain parent-owned and unperformed.",
+    "All existing scientific negative gates, unapproved histories/controls and legacy production engine withholding remain unchanged."
+  ]
+}

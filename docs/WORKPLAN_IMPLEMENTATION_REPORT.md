@@ -1,3 +1,64 @@
+# Private bundle rehearsal, integrated FSLR receipts and finite UI acceptance
+
+{
+  "clauses": [
+    "S07-002",
+    "S12-001",
+    "S12-008",
+    "S12-011",
+    "S12-017",
+    "S04-005",
+    "S16-005"
+  ],
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T14:16:15.552204+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 155.436,
+    "counts": {
+      "tests": 722,
+      "pass": 722,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T141615552204Z.log",
+    "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "pythonTests": 179,
+  "privateValidators": 3,
+  "browserChangedCases": "3/3pass; prior failures/followups retained",
+  "originalSemantics": "1000/1001 unchanged;18supplemental definitions added,1792total",
+  "counts": "41verified257partial2blocked",
+  "provisioning": "private authorized transfer unavailable; no new resources"
+}
+
+S07-002: Exact16 private bundle with atomic install/activation/recovery,13protected source snapshots,all13456member identities,29refusals,permissions/export identity. Live storage/authorized transfer unavailable: no bucket/volume/CLI session/SSH principal or connector write tool.
+Next: Authorized Railway operator privately transfers current155bd3ff bundle, installs source-matching release and configures absolute FAIR_ARTIFACT_ROOT; verify live selected/member/summary reads and refusals. Preserve private recovery copy across ephemeral deployments.
+
+S12-001: New primary Rose tracker identifies Texas project/application and proposed wells, not final permit or CF crosswalk; global FSLR production/sales do not identify US-qualified module allocation.
+Next: Obtain actual component/production geography allocation and verified CF-to-Rose legal/site crosswalk; do not substitute HQ or corporate volumes.
+
+S12-008: Integrated retained FSLR recognition/collections and2023-origin normalization in original5year+10yearfade cash basis; removed forecast overlap before actual receipts. Two source-bounded Q1 timing conventions,32cash rows. Later outcomes explicitly revised history, not known2025-02-21; no double discount/WC/cash.
+Next: Resolve exact Q1 receipt day, unallocated grant bridge and eligible production economics; retain original terminal/reinvestment and refusal gates before qualified pairing.
+
+S12-011: API/UI/JSON/XLSX explicitly label later2025/2026 collection facts as revised history, not inputs available at original2025-02-21 origin.
+Next: Assemble genuinely origin-available complete company inputs for historical paired study; do not backdate this receipt integration.
+
+S12-017: Substantive FSLR cash integration and new Rose/ONEOK primary investigation retained;0/3qualified worked companies. No old grids/root forcing.
+Next: Complete eligible FSLR activity/margin/reinvestment, NEE gross LLC priorities/project returns and XOM actual fee/funding/replacement contracts; owner review remains separate.
+
+S04-005: Publisher methodology proves annual disaggregation/extrapolation and carried2023activity; new native activity/factor audit118279rows reproduces23268yearpairs/1939Januarypairs exactly. Reject as independent fresh2025/26monthly outcomes; retain source-modelled revised history only.
+Next: Find original dated full-scope monthly/dailyCO2 outcomes with actual freshness and compatible territorial/sector definitions; mining modeled estimates cannot supply independent holdout targets.
+
+S16-005: Finite written partial/unavailable-measure obligations fulfilled:60component invocation evidence plus prior interactions and3changed browser cases. Null dates withhold affected headlines/charts/exports; named missing tooltip series; selectedSDG cannot borrow carbon/ambition fields; pending/error exports withheld. Valid zero retained.
+Next: Preserve these finite engineering regression contracts when components change. Scientific and issuer acceptance remain separate clauses.
+
 # Latest verified offline-route/component release
 
 {
@@ -2652,6 +2713,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-components-monthly-592957c",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T12:25:33.453130+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-fair-components-bc53096",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T13:32:25.036195+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

@@ -35,7 +35,7 @@ import DecarbSignal from "../client/src/pages/decarb-signal";
 import Methodology from "../client/src/pages/methodology";
 import NewsSentiment from "../client/src/pages/news-sentiment";
 import { companyCoverage } from "../server/calculation/companyCoverage";
-import { displayDiagnostic, backtestPercent, backtestDisplayStats, backtestDisplay } from "../client/src/lib/valuation-claims";
+import { displayDiagnostic, backtestPercent, backtestDisplayStats, backtestDisplay, observationTimestamp, tooltipObservation } from "../client/src/lib/valuation-claims";
 import { parseSelection, selectionKey, selectedRequest } from "../client/src/lib/analysis-selection";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
 import { prepareQualifiedJsonExport } from "../client/src/lib/export-contract";
@@ -296,7 +296,7 @@ for (const [path, name, unit] of [
   ["client/src/pages/decarb-gap-signal.tsx", "BacktestTooltip", "%"],
 ] as const) test(`${path}#${name} actual tooltip has inactive/absent/invalid-row/null/zero/date/series contracts`, () => {
   const formatDateLabel = actualSourceValue(path, "formatDateLabel");
-  const Component = actualSourceValue(path, name, { displayDiagnostic, formatDateLabel });
+  const Component = actualSourceValue(path, name, { displayDiagnostic, formatDateLabel, observationTimestamp, tooltipObservation });
   assert.equal(markup(element(Component, { active: false })), "");
   for (const payload of [undefined, [], [null]]) assert.ok(markup(element(Component, { active: true, payload })).includes("Tooltip series unavailable"));
   const missing = markup(element(Component, { active: true, payload: [{ value: null }] }));

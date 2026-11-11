@@ -155,7 +155,7 @@ export const filePolicies: Record<string, Policy> = {
   }),
   "climate-valuation.tsx": props("Page-level summary/group absent states are independent of public conditional aggregates.", {
     missing: "Summary count missing/invalid has named count-not-returned reason. Partial imputation total/fraction/count remains unavailable. Malformed group collections are refused per section. Missing P/E stays blank, not null→zero; invalid-date rows are withheld with a reason.",
-    null: "Null P/E is unavailable, not zero. True finite P/E/count zero remains numeric. Four physical measures remain explicitly withheld.",
+    null: "Null P/E is unavailable, not zero. True finite P/E/count zero remains numeric. Null/missing/invalid source dates never coerce to Unix epoch: those rows cannot reach dated charts or exports. Four physical measures remain explicitly withheld.",
     loading: "useReadQuery suppresses previous response. AnalysisSection empties chart/export rows while pending; current export is disabled.",
     error: "Named summary/section failure; AnalysisSection has no previous values or export rows.",
     selection: "Cost-of-equity/scoring/dataset/archive selection parameterize company diagnostics; public conditional summaries remain independent.",
@@ -170,15 +170,15 @@ export const filePolicies: Record<string, Policy> = {
     null: "Applied value/series tooltip null is unavailable, not zero. Missing baseline stays absent. Null/malformed definition or series blocks unlabeled/unproven downloads.",
     refusal: "Persisted summary interpretation depends on source manifest evidence. Unverified legacy raw summary is labeled, not promoted.",
     selection: "Indicator detail key owns dialog read; prior indicator series is not retained during pending/error; current review records are not archive replay.",
-    scope: "Read-only operator evidence. Extracted dialog state gate and tooltip contents SSR-tested directly; browser portal opening/hover is not asserted.",
+    scope: "Read-only operator evidence. Direct state-gate/tooltip tests and separate component-portal-followup-evidence.json cover portal/focus/current-read/zero-source hover; neither asserts every field permutation.",
   }),
   "decarb-gap-signal.tsx": query("Group denominators, absent summary count, absent subsets and unavailable backtests each have named reasons.", {
-    null: "Invalid/null group P/E means unavailable; finite equal P/E gap and explicit companyCount zero remain zero.",
+    null: "Invalid/null group P/E means unavailable; finite equal P/E gap and explicit companyCount zero remain zero. Undated source rows are omitted with a reason; latest group and affected derived-period accounting cannot backfill a date.",
     refusal: "Physical rate and physical-vs-valuation gap withheld because no valuation-to-activity mapping/comparable definitions.",
-    selection: "Measure/scoring/geography/dataset are query-keyed; current-read suppression. Group series never substitutes physical climate measures.",
+    selection: "Measure explicitly chooses its P/E field pair; missing SDG fields never fall through to present carbon/ambition fields. Current-key pending/error rows and exports cannot reuse current retained or another-geography success. Group series never substitutes physical climate measures.",
   }),
   "decarb-signal.tsx": query("Each of carbon/SDG/ambition group gaps explains missing dataset/groups/invalid P/E separately.", {
-    null: "Latest-date missing series is unavailable, not backfilled from an earlier month. Equal valid P/E gives real zero gap.",
+    null: "Latest-date missing series is unavailable, not backfilled from an earlier month. An undated observation withholds that group's latest headline and affected derived-period accounting; dated rows/independent groups remain available. Equal valid P/E gives real zero gap.",
     refusal: "Physical comparison withheld: no defensible valuation-to-activity mapping.",
     selection: "Scoring/geography/dataset keys own group results; pending/error never shows prior selected result.",
   }),
@@ -256,7 +256,7 @@ export function contractFor(file: string, name: string) {
       loading: "Accessible loading label and skeleton only; no prior result content.",
     } : {}),
     ...(["CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip"].includes(name) && file.includes("decarb") ? {
-      missing: "Inactive => no tooltip; active missing/null/nonobject series rows => explicit unavailable observation. Missing date/name/value has named reason; zero is 0.00 pp or 0.00%, never bare %. Native nested source body is directly executed.",
+      missing: "Inactive => no tooltip; active missing/null/nonobject series rows => explicit unavailable observation. All six real chart consumers use filterNull=false so absent rendered series receive their own named not-returned reason instead of being omitted. Missing date/name/value is explicit; zero is 0.00 pp or 0.00%, never bare %. Native nested source body is directly executed.",
       null: "Null return/gap is unavailable, not 0 pp or 0%; actual multiplier zero separately means −100% return, not missing.",
     } : {}),
     ...(name === "CustomTooltip" && file.includes("sensitivity") ? {

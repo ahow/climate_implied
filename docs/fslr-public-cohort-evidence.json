@@ -1,0 +1,98 @@
+{
+  "version": "fslr-public-cohort-allowlist-1",
+  "status": "read-only-static-integration-api-json-xlsx-readback-and-private-projection-verified",
+  "scope": "18additive FSLRpublic derived facts only. Existing generic API/renderer/export reused; no protected fair routes/census, server routes, UIcomponents, source experiment or financial kernel edited.",
+  "filesChanged": [
+    "shared/companyConditionalData.ts",
+    "shared/companyConditionalSemantics.ts",
+    "script/company-conditional-api.test.ts",
+    "script/validate-fslr-public-cohort-private.ts",
+    "docs/fslr-public-cohort-evidence.json"
+  ],
+  "sourceDocuments": [
+    "docs/issuer-cash-collections-evidence.json",
+    "docs/fslr-cohort-integrated-evidence.json"
+  ],
+  "informationVintage": {
+    "oldExperimentVersionPreserved": "fslr-paid-spare-capacity-post-credit-1",
+    "newSourceComponentSeparatelyEnumerated": "issuer-cash-collections-source-1",
+    "newIntegrationSeparatelyEnumerated": "fslr-source-cohort-integrated-1",
+    "integrationUnderlyingOriginalLedger": "issuer-original-operating-funding-3 source-conditioned2.5%; NOT legacy48paid-capacity paths",
+    "originalReferencePriceCutoffUnchanged": "2025-02-21",
+    "sourcePublicationDatesEnumerated": ["2025-02-25","2025-04-29","2026-04-30","2026-10-29"],
+    "latestSourcePublicationCutoff": "2026-10-29",
+    "latestReportPeriod": "2026Q3",
+    "selectedCashReceiptPeriod": "2024throughFebruary2026",
+    "newIntegrationFreeze": "2026-11-11",
+    "interpretation": "Explicit revised history, NOT point-in-time evidence: later2025/2026collection outcomes and the new integration were NOT known at retainedFebruary21,2025cutoff. No claim that every constituent historical amount lacked prior disclosure; no date/quote/share backdating."
+  },
+  "allowlist": {
+    "newFactIds": [
+      "cohortTransferFace","cohortTransferCash","cohortFaceCashDifference","cohortTreasuryCash","cohortSelectedCash","cohortRemainingClaims",
+      "cohortIncludingFiservFace","cohortIncludingFiservProceeds","cohortIncludingFiservDifference","cohortIncludingFiservCash",
+      "cohortHistoricalCreditCash","cohortCfoRemainder","cohortUnallocatedGrantBridge","cohortGrantBookCfoResidual","cohortUsEligibleWatts",
+      "cohortPriorCreditCash2026","cohortPreCutoffReservePv","cohortPostCutoffVisaPv"
+    ],
+    "count": 18,
+    "sourcedDerivedIncludingExplicitUnknown": 16,
+    "conditionalFinitePvAdjustments": 2,
+    "exactSourcePointers": "Each static fact carries its own explicit docs/issuer-cash-collections-evidence.json#pointer or docs/fslr-cohort-integrated-evidence.json#pointer. Test-time source binding checks all18values; runtime reads no evidence/source files.",
+    "perFactSemantics": "Exact id-specific unit/formula/source/classification/boundary; no new APIkeys or generic commonUSDassumption. Explicit null USeligiblewatts preserved. Source-reported rounded amounts and computational PVprecision not confused.",
+    "excluded": "No raw private HTML/PDF/provider/market payloads, prices/shares/returnseries, privateartifact paths, whole-equity valuations, broad source-object spread or arbitrary client fields."
+  },
+  "boundariesPublished": [
+    "Source face differs from net proceeds and from recognized income.103.9m/131.4m differences already reflected in net cash, never a second deduction.",
+    "Zero remaining selected-transfer proceeds is not zero all-company government grants, future collections, recourse or indemnity.",
+    "2024CFOless identified receipts is a diagnostic remainder, not recurring grant-free FCFE.8.721m/19.676m residuals are not invented other-grant/FXcash.",
+    "Unknown USeligible output is not backsolved from global4.3GW/4.1GW, customer geography, headquarters or17c/W. Current law/FEOC/MACR/deemed-sale qualification unresolved.",
+    "PVadjustments use original10%and one retained2.5%case. Q1Visa precutoff/reserved versus assumedMarch31is a conditional timing/reserve treatment, not observed payment days, global valuation bounds, market pair, zero-credit revaluation or new legacy48outcomes.",
+    "Technical sourcecash integration executed, not full original technical completion and not merely owner-review blocking. Owner review pending/not requested; originalqualification0/3 and zero pairs remain."
+  ],
+  "semanticsAndSchema": {
+    "schemaVersionUnchanged": "company-conditional-public-1",
+    "formalSuccessFieldSpecsUnchanged": 30,
+    "liveFactSpecificDefinitions": 48,
+    "liveConditionalSemanticDefinitions": 81,
+    "priorConditionalSemanticDefinitions": 63,
+    "additiveDefinitions": 18,
+    "typedApiFieldsUnchanged": 63,
+    "allIssuerJsonLeafCount": 452,
+    "priorProtectedLegacyJsonLeafCount": 308,
+    "additionalLeaves": 144,
+    "legacyNumericBooleanNullValuesUnchanged": 44,
+    "legacyStructuralPrimitiveSha256": "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
+    "parentMetadataMergeOnly": "Protected docs/field_semantics_census.json not edited. Its conditionalCompany.definitions snapshot currently63can be updated by parent to81; formal typedAPIfields63and original1001accounting do not change. Tests explicitly permit legacy63or exact current81metadata, while always asserting live81unique definitions and exact bindings.",
+    "sourceReferenceResolution": "conditionalFactEvidenceReference resolves explicit public docs/*.json#pointer, otherwise retains default legacy evidenceDocument#sourceLocator. No runtime filesystem access."
+  },
+  "verification": {
+    "publicCommand": "npx tsx --test script/company-conditional-api.test.ts",
+    "publicPassed": 6,
+    "publicFailed": 0,
+    "publicPrivateFileDependencies": false,
+    "publicLog": "generated-artifacts/company-operating-corpus/fslr-public-cohort-v1/public-api-xlsx.log",
+    "publicLogSha256": "8e863c52e74128bd8b1c8314b5641c27f15a7088f4f9b6301ea7c17caba7a86c",
+    "actualReadback": "Isolated Expressfixture GET API/export.json/export.xlsx for all/NEE/FSLR/XOM; binary workbook reopened with ExcelJS, every ordered JSONleaf/cell/primitive exact. New18FSLRvalue/unit/classification/formula/sourceLocator/boundary cells explicitly checked. Context survives XLSX; null staysnull; negative staysnegative. Unsupported version/reference overrides400; writes404.",
+    "mandatoryPrivateCommand": "npx tsx script/validate-fslr-public-cohort-private.ts --private-primary",
+    "mandatoryPrivateStatus": "pass;4immutable existing artifact bytehashes and18static public scalar bindings checked; no financial/issuer kernel execution",
+    "privateLog": "generated-artifacts/company-operating-corpus/fslr-public-cohort-v1/private-validation.log",
+    "privateLogSha256": "536e1d5a83e0caf008535e22cc2db40606f8c3ac10ca8721f35003dd002595f0",
+    "privateProjectionReceipt": "generated-artifacts/company-operating-corpus/fslr-public-cohort-v1/private-projection-receipt.json",
+    "privateProjectionReceiptSha256": "c3948bf9eb0b8e3f95688a3f2a038ed5bfc1765e60530e7fedb10059b3e7db2e",
+    "strictTypeCommands": [
+      "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target ES2022 shared/companyConditionalData.ts shared/companyConditionalSemantics.ts script/company-conditional-api.test.ts script/validate-fslr-public-cohort-private.ts",
+      "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target ES5 shared/companyConditionalData.ts shared/companyConditionalSemantics.ts script/company-conditional-api.test.ts script/validate-fslr-public-cohort-private.ts"
+    ],
+    "strictTypes": "both pass; no tsconfig relaxation",
+    "eachEmptyStrictLogSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "browserOrAppWorkflow": "Not run/requested: static data in existing generic renderer; parent owns coherent app checks",
+    "externalSourceProviderCalls": 0,
+    "oldFinancialKernelOrGridOrRootExecutions": 0,
+    "protectedRouteCensusCanonicalChanges": 0,
+    "rawPrivateExport": false
+  },
+  "originalClauseProposals": [
+    "S12-001public additive sourcecash presentation complete at component level:18public fact pointers with exact semantics and real API/JSON/XLSXreadback, no original issuer completion.",
+    "Preserve old experimentVersion/default evidenceDocument; new source and integration versions are separately enumerated in informationContext and per-fact public source pointers.",
+    "Owner-reviewed scientific/original acceptance unchanged0/3; parent may merge only supplemental definition-count metadata63to81without altering protected original1001slots."
+  ]
+}

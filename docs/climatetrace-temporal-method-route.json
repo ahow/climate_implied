@@ -1,0 +1,16 @@
+{
+  "version": "climatetrace-temporal-method-route-1",
+  "reasonBeforeDownload": "Six bounded requests completed. Exact primary mining method is November2025,describes annual production and explicitly forward-filled2024 asset data;v5.1 changelog extends mining data through2024-12-31,whilev5.5 lists metadata/factor fixes but Added:None for each selected mining subsector. Need public publisher temporal-postprocessing dependency,not another repeated quantity diagnostic.",
+  "additionalMaximumRequests":1,
+  "combinedRequestsMaximumUnchanged":8,
+  "selection": {
+    "resolvedCommit":"8469b207b9a9bd56f4ecb50b18f1c95893933a61",
+    "path":"2025/Post Processing for Global Emissions and Metadata Completeness/Temporal Disaggregation of Emissions Data for the Climate TRACE Inventory-121225.docx.pdf",
+    "sourceGitBlobSHA1":"ea938b8c232dcbddd7f19dc5a029f27ef1d5488c",
+    "nativeBytes":1891758,
+    "why":"Exact temporal-processing method file returned by already retained publisher tree. Second of maximum2 methodology PDFs,needed to reconcile annual mining inputs with published monthly labels. No publisher model/proxy/grid is executed or regenerated."
+  },
+  "bounds":{"maximumBytes":20000000,"timeoutSeconds":60,"retry":false,"purchases":0},
+  "qualification":"Current immutable method revision is not assumed contemporaneous with archivedV5.5.0 until file/version dates are inspected. Extract exact mining-specific disaggregation/extrapolation/forward-fill statements and retain page/byte hashes. Methodological interpolation by publisher does not become independently observed outcome data or authorize fitting.",
+  "stop":"After this source file,no further public requests in this increment. Eighth request budget intentionally unused;no input downloads,paidcalls,source replication,newgrids,proxy construction or source-factor tuning."
+}
