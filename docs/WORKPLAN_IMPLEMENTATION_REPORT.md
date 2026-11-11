@@ -1,4 +1,18 @@
-# New NEE/admission/alpha1 increment — validated, release pending
+# Latest verified NEE/admission/alpha1 release
+
+{
+  "workspace_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+  "github_main": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
+  "ci": "42998932455 success",
+  "railway_deployment": "7afb6d64-5660-4da9-8cbe-f16e7672b2c5",
+  "verified_at": "2026-11-11T09:57:25.838812+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
+  "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
+}
+
+# New NEE/admission/alpha1 increment — released; historical validation detail
 
 {
   "at": "2026-11-11T09:53:03.090383+00:00",

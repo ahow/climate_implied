@@ -1118,7 +1118,18 @@
       "physical": "Exact licensed alpha1 recovered; zero initial modes/full first-last steps/trapezoidal boundary output proved. Five engineering vectors residual0C at1e-14; annualmean differs0.027986C. No attribution or forcing/control ensemble acquisition.",
       "coverage": "Original1000/1001 unchanged.8 supplemental fields added: public1331/1332,expanded1492/1493,1711definitions. No original closure.",
       "initial_failures": "533/536: stale census and old51leaf assertion. Exact new supplemental fields reconciled, strict gates preserved; final537TS pass.",
-      "next": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance."
+      "next": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance.",
+      "release": {
+        "workspace_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+        "github_main": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
+        "ci": "42998932455 success",
+        "railway_deployment": "7afb6d64-5660-4da9-8cbe-f16e7672b2c5",
+        "verified_at": "2026-11-11T09:57:25.838812+00:00",
+        "build_info": "exact SHA verified",
+        "health": 200,
+        "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
+        "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1203,15 +1214,15 @@
     }
   },
   "current_release": {
-    "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
-    "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
-    "ci": "42994876823 success",
-    "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
-    "verified_at": "2026-11-11T09:27:54.205967+00:00",
+    "workspace_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+    "github_main": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
+    "ci": "42998932455 success",
+    "railway_deployment": "7afb6d64-5660-4da9-8cbe-f16e7672b2c5",
+    "verified_at": "2026-11-11T09:57:25.838812+00:00",
     "build_info": "exact SHA verified",
     "health": 200,
-    "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
-    "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
+    "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
+    "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-11T09:53:03.090383+00:00",
@@ -18085,8 +18096,8 @@
             }
           ],
           "scientific_acceptance": "No scientific/model/owner acceptance inferred from software characterization or metadata coverage",
-          "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
-          "deployment_revision": null,
+          "git_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+          "deployment_revision": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
           "remaining_gaps": [
             "Role schemas differ candidate-mechanism-input vs native mechanism-input; optional legacy context references are not an accepted role-governed forecast."
           ],
@@ -18180,12 +18191,15 @@
             }
           },
           "live_release_observation": {
-            "source": "retained direct build-info/health execution",
-            "log": "generated-artifacts/workplan-completion/20261110T085410274732Z.log",
-            "source_commit": "da140f272a058d093662530e48c66dbc2266c9dc",
-            "checked_at": "2026-11-10T08:54:10Z",
-            "new_check_during_this_task": false,
-            "dirty_worktree_deployed": false
+            "workspace_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+            "github_main": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
+            "ci": "42998932455 success",
+            "railway_deployment": "7afb6d64-5660-4da9-8cbe-f16e7672b2c5",
+            "verified_at": "2026-11-11T09:57:25.838812+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
+            "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
           },
           "reviewed_at": "2026-11-10T10:13:13.142Z",
           "inspected_source_sha256": {
@@ -71116,8 +71130,8 @@
             "credit_resume": "2015–25 SSP245/actual ERF RMSE:CO2 .06038374,CH4 .04022194,N2O .00448006,solar .03448956,volcanic .09825245 W/m2. Qualified GMST share null."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
-          "deployment_revision": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+          "git_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+          "deployment_revision": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
           "remaining_gaps": [
             "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null.",
             "Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025."
@@ -71461,15 +71475,15 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
-            "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
-            "ci": "42994876823 success",
-            "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
-            "verified_at": "2026-11-11T09:27:54.205967+00:00",
+            "workspace_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+            "github_main": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
+            "ci": "42998932455 success",
+            "railway_deployment": "7afb6d64-5660-4da9-8cbe-f16e7672b2c5",
+            "verified_at": "2026-11-11T09:57:25.838812+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
-            "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
+            "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
+            "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -106187,8 +106201,8 @@
             "calendar_liability": "Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
-          "deployment_revision": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+          "git_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+          "deployment_revision": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
           "remaining_gaps": [
             "0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval.",
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
@@ -106433,15 +106447,15 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
-            "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
-            "ci": "42994876823 success",
-            "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
-            "verified_at": "2026-11-11T09:27:54.205967+00:00",
+            "workspace_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
+            "github_main": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
+            "ci": "42998932455 success",
+            "railway_deployment": "7afb6d64-5660-4da9-8cbe-f16e7672b2c5",
+            "verified_at": "2026-11-11T09:57:25.838812+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
-            "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
+            "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
+            "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -140171,6 +140185,17 @@
         "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
       },
       "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
+    },
+    {
+      "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+      "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+      "ci": "42994876823 success",
+      "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
+      "verified_at": "2026-11-11T09:27:54.205967+00:00",
+      "build_info": "exact SHA verified",
+      "health": 200,
+      "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
+      "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
     }
   ]
 }
