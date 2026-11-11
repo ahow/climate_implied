@@ -1,4 +1,18 @@
-# New source-bridge increment — validation complete, release pending
+# Latest verified source-bridge release
+
+{
+  "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+  "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+  "ci": "42994876823 success",
+  "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
+  "verified_at": "2026-11-11T09:27:54.205967+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
+  "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
+}
+
+# Source-bridge increment — released; historical validation detail
 
 {
   "at": "2026-11-11T09:24:03.772777+00:00",

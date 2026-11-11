@@ -1078,7 +1078,18 @@
       "issuer": "48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified.",
       "physical": "176annual years1850-2025 ×200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
       "scope": "39verified259partial2blocked; original1000/1001 unchanged. No approval/data/scientific promotion.",
-      "next": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work."
+      "next": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work.",
+      "release": {
+        "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+        "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+        "ci": "42994876823 success",
+        "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
+        "verified_at": "2026-11-11T09:27:54.205967+00:00",
+        "build_info": "exact SHA verified",
+        "health": 200,
+        "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
+        "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1163,33 +1174,15 @@
     }
   },
   "current_release": {
-    "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
-    "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
-    "ci": "42989861313 validate/promote success",
-    "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
-    "railway_status": "SUCCESS",
-    "verified_at": "2026-11-11T08:52:59.728218+00:00",
-    "smoke": {
-      "/api/build-info": {
-        "status": 200,
-        "body": {
-          "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
-          "calculationVersion": "historical-diagnostics-7",
-          "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
-        }
-      },
-      "/api/health": {
-        "status": 200
-      },
-      "/api/calculation/company-coverage": {
-        "status": 503
-      },
-      "publicReplayPost": {
-        "status": 403
-      },
-      "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
-    },
-    "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
+    "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+    "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+    "ci": "42994876823 success",
+    "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
+    "verified_at": "2026-11-11T09:27:54.205967+00:00",
+    "build_info": "exact SHA verified",
+    "health": 200,
+    "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
+    "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-11T09:24:03.772777+00:00",
@@ -70916,8 +70909,8 @@
             "credit_resume": "2015–25 SSP245/actual ERF RMSE:CO2 .06038374,CH4 .04022194,N2O .00448006,solar .03448956,volcanic .09825245 W/m2. Qualified GMST share null."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-          "deployment_revision": "274440b5e644a49fdfe2c5470397241391d3ee2a",
+          "git_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+          "deployment_revision": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
           "remaining_gaps": [
             "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null.",
             "Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025."
@@ -71261,46 +71254,15 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "89bf438f5df7d98e6f7e684d33b128fa0c47b51c",
-            "github_main": "274440b5e644a49fdfe2c5470397241391d3ee2a",
-            "ci": "42924327747 validate/promote success",
-            "railway_deployment": "8b3f1d05-ce55-4047-931b-bcdfd543817f",
-            "railway_status": "SUCCESS",
-            "verified_at": "2026-11-10T23:38:19.839443+00:00",
-            "smoke": {
-              "/api/build-info": {
-                "status": 200,
-                "body": {
-                  "sourceCommit": "274440b5e644a49fdfe2c5470397241391d3ee2a",
-                  "calculationVersion": "historical-diagnostics-7",
-                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
-                }
-              },
-              "/api/health": {
-                "status": 200
-              },
-              "/api/calculation/field-semantics": {
-                "status": 200,
-                "returnIndex": {
-                  "field": "totalReturnIndex",
-                  "role": "Input",
-                  "unit": "index",
-                  "formula": "Reported cumulative total-return index; period return = ending index / starting index - 1 for finite strictly positive levels",
-                  "dependencies": [],
-                  "source": "Selected workbook plus ordered approved overlays",
-                  "vintage": "Revised history; original publication vintage not certified",
-                  "asOf": "Selected workbook observation label, not independently verified exchange-close time. Exact market-calendar and cash-dividend/split conventions require source evidence; no nearest-trading-date substitution or original-vintage claim."
-                }
-              },
-              "/api/calculation/company-coverage": {
-                "status": 503
-              },
-              "publicReplayPost": {
-                "status": 403
-              },
-              "verifiedAt": "2026-11-10T23:38:19.839443+00:00"
-            },
-            "receipt_boundary": "Verified implementation, not the later documentation receipt. Production coverage503 remains unavailable; no production data/science activation."
+            "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+            "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+            "ci": "42994876823 success",
+            "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
+            "verified_at": "2026-11-11T09:27:54.205967+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
+            "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -105773,8 +105735,8 @@
             "calendar_liability": "Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
-          "deployment_revision": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+          "git_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+          "deployment_revision": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
           "remaining_gaps": [
             "0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval.",
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
@@ -106019,33 +105981,15 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
-            "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
-            "ci": "42989861313 validate/promote success",
-            "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
-            "railway_status": "SUCCESS",
-            "verified_at": "2026-11-11T08:52:59.728218+00:00",
-            "smoke": {
-              "/api/build-info": {
-                "status": 200,
-                "body": {
-                  "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
-                  "calculationVersion": "historical-diagnostics-7",
-                  "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
-                }
-              },
-              "/api/health": {
-                "status": 200
-              },
-              "/api/calculation/company-coverage": {
-                "status": 503
-              },
-              "publicReplayPost": {
-                "status": 403
-              },
-              "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
-            },
-            "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
+            "workspace_commit": "c7798ae0e76e039e62c4022cbf076a0780ea7c36",
+            "github_main": "5ef7bce0ba95722d5b57ad15dbe8a63dafadb2f2",
+            "ci": "42994876823 success",
+            "railway_deployment": "0a4da756-a81b-4510-994d-c7fc76a12d6f",
+            "verified_at": "2026-11-11T09:27:54.205967+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
+            "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -139473,6 +139417,35 @@
       "railway_status": "SUCCESS",
       "verified_at": "2026-11-11T08:11:09.798689+00:00",
       "receipt_boundary": "Served documentation revision of implementation274440b5; new local terminal-cleanup code is not claimed deployed."
+    },
+    {
+      "workspace_commit": "b9dfd63175ce1ab692b22d73343d838cd3c0dee3",
+      "github_main": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+      "ci": "42989861313 validate/promote success",
+      "railway_deployment": "ae8ed634-6950-4cde-96e9-41c31fc1d864",
+      "railway_status": "SUCCESS",
+      "verified_at": "2026-11-11T08:52:59.728218+00:00",
+      "smoke": {
+        "/api/build-info": {
+          "status": 200,
+          "body": {
+            "sourceCommit": "2d0a759b03739447c1c8291ed7b500bb758414bb",
+            "calculationVersion": "historical-diagnostics-7",
+            "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+          }
+        },
+        "/api/health": {
+          "status": 200
+        },
+        "/api/calculation/company-coverage": {
+          "status": 503
+        },
+        "publicReplayPost": {
+          "status": 403
+        },
+        "verifiedAt": "2026-11-11T08:52:59.728218+00:00"
+      },
+      "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
     }
   ]
 }
