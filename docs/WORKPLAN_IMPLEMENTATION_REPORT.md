@@ -24,6 +24,110 @@
   "counts": "47verified251partial2blocked",
   "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
   "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
+  "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained. Ledgerwriter mixed historical dict/string entries caused pre-write deduplication TypeError; preserved both forms and repaired without altering code/test gates.",
+  "release": {
+    "github_main": "760ea696025f5624017804fbbdd66451ce2d3c84",
+    "ci": "43086368440 success",
+    "railway_deployment": "4af4dc0b-1c6f-4050-9293-87ec3997724b",
+    "verified_at": "2026-11-11T19:26:06.976844+00:00",
+    "health": 200,
+    "build_info": "exactSHAverified",
+    "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
+    "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
+    "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
+  }
+}
+
+S15-017: Trusted source-pinned disclosurecatalog/fixedpublicstore nowserveactualCLIreport JSON/XLSX and UI; exacthash/cutoff/domain identities;404missing,403unpublished,503corrupt,409changedselection. Noarbitrarypath/privatefallback/publicwrite. Catalog genuinelyempty. Actualpipeline→DEVstore→HTTP→XLSX tested; browserempty/selected/absent/loading/errorpass withsyntheticinterception; browserXLSXplaceholder notparsedworkbook, backendactualreadbackseparate.
+Next/boundary: Writtenperperiodunavailableengineeringverified. Genuinepublicreport needsrightsreview,realreviewer/date/redistribution statement and reviewedcatalogpin, thenofflinepublisher. DisclosuredoesnotapproveStage9/originalfilings/science.
+
+S03-008: Strictloader→immutableinput→actualcalculation/export retainsblank/null/zero/sourcecells;everyfill linksoriginalblank+observeddonors/method. TypedproviderNA unavailable notinfilleligible. Actual1976823cells:21512blanks/252110NA/1450zeros/0unsupported;2442companies470341rows/0duplicates/0statevaluemismatch. Same-monthProfit retainsactualsourcedate;391908knownincl16zeros. No nearbycrossmonthborrowing ormissing-scopes-as-zero.
+Next/boundary: Finiteoriginalnegativefixture criterionverified viarealadapters/aggregation/export andread-onlycurrentworkbook; no privatefullsnapshotDBpublication/approval orhistoricalvintage claim. Preserveimmutableoldarchives andsourceavailability limits.
+
+S02-009: Geography/emptycompanycachebranches anddetachedMemStorage/regionalcache fixmutationpoisoning/eviction. NewloopbackactualHTTP/materialarchivewitness4miss+4warmhits;quartermemo12miss12write23hits eachinvocation. Regionalprovider1call+2warm success/failure. Synthetic6company36month datasets, notoldlarge witness.
+Next/boundary: Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof.
+
+S12-017: Fournewofficialsources authenticateEnLinkMidstreamPartnersLP reportingnotice/successor andONEOKEx21EnLinkCCSLLC; Q1corporatecredit/guarantees notCCSnovation/funding. Noqualifyingnewcashinput;historical844mrecognition preserved;0/3cases.
+Next/boundary: Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography.
+
+# Trusted reports, source missingness and cache transport
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T19:14:27.938306+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 176.167,
+    "counts": {
+      "tests": 831,
+      "pass": 831,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+    "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "47verified251partial2blocked",
+  "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
+  "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
+  "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained. Ledgerwriter mixed historical dict/string entries caused pre-write deduplication TypeError; preserved both forms and repaired without altering code/test gates.",
+  "release": {
+    "github_main": "760ea696025f5624017804fbbdd66451ce2d3c84",
+    "ci": "43086368440 success",
+    "railway_deployment": "4af4dc0b-1c6f-4050-9293-87ec3997724b",
+    "verified_at": "2026-11-11T19:26:03.569003+00:00",
+    "health": 200,
+    "build_info": "exactSHAverified",
+    "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
+    "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
+    "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
+  }
+}
+
+S15-017: Trusted source-pinned disclosurecatalog/fixedpublicstore nowserveactualCLIreport JSON/XLSX and UI; exacthash/cutoff/domain identities;404missing,403unpublished,503corrupt,409changedselection. Noarbitrarypath/privatefallback/publicwrite. Catalog genuinelyempty. Actualpipeline→DEVstore→HTTP→XLSX tested; browserempty/selected/absent/loading/errorpass withsyntheticinterception; browserXLSXplaceholder notparsedworkbook, backendactualreadbackseparate.
+Next/boundary: Writtenperperiodunavailableengineeringverified. Genuinepublicreport needsrightsreview,realreviewer/date/redistribution statement and reviewedcatalogpin, thenofflinepublisher. DisclosuredoesnotapproveStage9/originalfilings/science.
+
+S03-008: Strictloader→immutableinput→actualcalculation/export retainsblank/null/zero/sourcecells;everyfill linksoriginalblank+observeddonors/method. TypedproviderNA unavailable notinfilleligible. Actual1976823cells:21512blanks/252110NA/1450zeros/0unsupported;2442companies470341rows/0duplicates/0statevaluemismatch. Same-monthProfit retainsactualsourcedate;391908knownincl16zeros. No nearbycrossmonthborrowing ormissing-scopes-as-zero.
+Next/boundary: Finiteoriginalnegativefixture criterionverified viarealadapters/aggregation/export andread-onlycurrentworkbook; no privatefullsnapshotDBpublication/approval orhistoricalvintage claim. Preserveimmutableoldarchives andsourceavailability limits.
+
+S02-009: Geography/emptycompanycachebranches anddetachedMemStorage/regionalcache fixmutationpoisoning/eviction. NewloopbackactualHTTP/materialarchivewitness4miss+4warmhits;quartermemo12miss12write23hits eachinvocation. Regionalprovider1call+2warm success/failure. Synthetic6company36month datasets, notoldlarge witness.
+Next/boundary: Sixprojectionroute-localcache/TTL/selection witnesses remain; explicitlyauthorizedpreprovisioneddisposablePostgreSQL transportnotavailable/executed. NoambientDBfallback/DDL. In-memorySQL/ORMtransport isnotPostgreSQLdurabilityproof.
+
+S12-017: Fournewofficialsources authenticateEnLinkMidstreamPartnersLP reportingnotice/successor andONEOKEx21EnLinkCCSLLC; Q1corporatecredit/guarantees notCCSnovation/funding. Noqualifyingnewcashinput;historical844mrecognition preserved;0/3cases.
+Next/boundary: Need directoperatingtransport/financialarrangement namingbothsubsidiaries,currentstatus/novation/billings/payments/opex/replacement; donotrepeatcorporatecredit/index/closingmicroaudits orassumeorganizationstate=operatinggeography.
+
+# Trusted reports, source missingness and cache transport
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-enlink-operating-successor-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T19:14:27.938306+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 176.167,
+    "counts": {
+      "tests": 831,
+      "pass": 831,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T191427938306Z.log",
+    "workspace_revision": "fdd32a94acb99d43132083d7ff200dc5b5f667cc",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "47verified251partial2blocked",
+  "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
+  "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
   "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained.",
   "release": "pending"
 }

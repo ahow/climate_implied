@@ -1578,8 +1578,18 @@
       "counts": "47verified251partial2blocked",
       "semantics": "Original1000/1001unchanged;TrackB35definitions612supplementaldomains;1879globaldefinitions;2867/2868expandedpublic. Metadata/newfields notoriginalclosure.",
       "browser": "docs/track-b-research-browser-report.md; UIinterceptionnotrealdisclosure; actualbackendXLSXreadbackseparate.",
-      "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained.",
-      "release": "pending"
+      "failure_history": "InitialstrictNA rejection,exact-dayProfitmismatch andaliasduplication foundandfixed beforecoherentchecks; preserved inS03evidence. PriorCI43074869603 retained. Ledgerwriter mixed historical dict/string entries caused pre-write deduplication TypeError; preserved both forms and repaired without altering code/test gates.",
+      "release": {
+        "github_main": "760ea696025f5624017804fbbdd66451ce2d3c84",
+        "ci": "43086368440 success",
+        "railway_deployment": "4af4dc0b-1c6f-4050-9293-87ec3997724b",
+        "verified_at": "2026-11-11T19:26:06.976844+00:00",
+        "health": 200,
+        "build_info": "exactSHAverified",
+        "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
+        "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
+        "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1664,18 +1674,18 @@
     }
   },
   "current_release": {
-    "github_main": "52d2ab74faf4e4f12b97b111cd3c258d2ab27277",
-    "ci": "43076544962 success",
-    "railway_deployment": "31e065b9-f2e5-423d-a39d-8a8d59e4b1f8",
-    "verified_at": "2026-11-11T18:24:11.359756+00:00",
+    "github_main": "760ea696025f5624017804fbbdd66451ce2d3c84",
+    "ci": "43086368440 success",
+    "railway_deployment": "4af4dc0b-1c6f-4050-9293-87ec3997724b",
+    "verified_at": "2026-11-11T19:26:06.976844+00:00",
     "health": 200,
     "build_info": "exactSHAverified",
-    "affected": "PubliccompanyAPIcurrentCCSsettlementnull;TrackB503explicitlyunprovisioned successfulreportreader. CachewitnessisolatedDEV only.",
-    "tests": "796TS0fail0skip;215Python;mandatoryissuerprivatevalidator;retainedcachewitness separately;typecheck/build;5postledgerchecks",
-    "scope": "Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"
+    "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
+    "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
+    "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T19:20:45.617046+00:00",
+  "updated_at": "2026-11-11T19:26:06.976863+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -154143,6 +154153,28 @@
       "affected": "PublicAPIhistorical844m fact and sharedcontractlabels verified; no scientificpromotion.",
       "tests": "768TS0fail0skip;215Python;mandatoryissuer/precisionprivatevalidators;typecheck/build;5postledgerchecks",
       "scope": "Code release only;bundleunchanged/operatorblocked;0/3cases;laterdocs/localreceipt distinct."
+    },
+    {
+      "github_main": "52d2ab74faf4e4f12b97b111cd3c258d2ab27277",
+      "ci": "43076544962 success",
+      "railway_deployment": "31e065b9-f2e5-423d-a39d-8a8d59e4b1f8",
+      "verified_at": "2026-11-11T18:24:11.359756+00:00",
+      "health": 200,
+      "build_info": "exactSHAverified",
+      "affected": "PubliccompanyAPIcurrentCCSsettlementnull;TrackB503explicitlyunprovisioned successfulreportreader. CachewitnessisolatedDEV only.",
+      "tests": "796TS0fail0skip;215Python;mandatoryissuerprivatevalidator;retainedcachewitness separately;typecheck/build;5postledgerchecks",
+      "scope": "Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"
+    },
+    {
+      "github_main": "760ea696025f5624017804fbbdd66451ce2d3c84",
+      "ci": "43086368440 success",
+      "railway_deployment": "4af4dc0b-1c6f-4050-9293-87ec3997724b",
+      "verified_at": "2026-11-11T19:26:03.569003+00:00",
+      "health": 200,
+      "build_info": "exactSHAverified",
+      "affected": "Catalog200empty;unknownprotocol404;private/publicwrites unchanged; no actualreportdisclosure.",
+      "tests": "831TS0fail0skip;215Python;mandatorysuccessor/privatecashflowvalidators;typecheck/build;targetedbrowser;5postledgerchecks",
+      "scope": "Code engineeringrelease only;0/3cases;noefficacy;privateFairoperatorblocked;docs/localreceipt separate"
     }
   ],
   "latest_changed_paths": [
