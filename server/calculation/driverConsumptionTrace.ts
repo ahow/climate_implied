@@ -42,7 +42,7 @@ export function driverConsumerTrace(id: IndicatorKey) {
     stage5: {
       consumer: "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",
       implicitCuratedIndicatorConsumption: false,
-      gate: "Every actual scenario parameter leaf requires source-verified evidence and an exact region/path binding",
+      gate: "Every actual scenario parameter leaf requires canonical mechanism-input role, permitted use, source-verified evidence and an exact region/path binding; central joint distribution and native inventory require pinned review",
       directCuratedDistribution: null,
       missingBridge: "No approved source-compatible mapping from this curated driver to native regional parameter distributions",
     },

@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "criterion": "S07-008",
+  "status": "exact-clean-download-alpha1-source-initialization-and-trapezoidal-output-contract-proved; actual-ensemble-and-control-qualification-still-blocked",
+  "freezes": {
+    "sourceProtocol": "docs/igcc-alpha1-proof-protocol.json",
+    "sourceProtocolSHA256": "5f46de8560221e75fab44169ad2961e4cacb4547a7e6bf3378dec1f4b854b5c1",
+    "operationalFreeze": "docs/igcc-alpha1-timing-operational-freeze.json",
+    "operationalFreezeSHA256": "7ccfb6726faf4083496bd3b595e938b9ee4a94ffda5ed7e477d757c6c0d5ca80",
+    "operationalFreezeBeforeEngineeringResiduals": true,
+    "historicalScoring": false
+  },
+  "boundedAcquisition": {
+    "requests": 5,
+    "maximumAllowed": 6,
+    "allHTTP200": true,
+    "maximumBytesPerResource": 3000000,
+    "maximumSecondsPerResource": 45,
+    "paidCalls": 0,
+    "transportPattern": "curl --max-time 45 --max-filesize 3000000 -L -sS -D <headersPath> -o <bodyPath> -w '<name> HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+    "resources": [
+      {
+        "url": "https://api.github.com/repos/tristramwalsh/global-warming-index/git/trees/b18b5fc8731b5c966613cc6ac38c35be1ab8984a?recursive=1",
+        "retrievalStartedUTC": "2026-11-11T09:31:54Z",
+        "bytes": 222665,
+        "path": "generated-artifacts/igcc-alpha1-proof/operative-tree.json",
+        "sha256": "a1f02c6ccce6f9e751781ffc18bf7e8835b3183ed77fa27f9ef2d7cc81060a5e",
+        "headersPath": "generated-artifacts/igcc-alpha1-proof/operative-tree.headers",
+        "headersSHA256": "b6e31bc5792dcd562110b31c6630c9734a7af65449a7b0fa84572747fd4be967",
+        "finding": "Exact operative revision,612 entries,truncated=false: no vendored alpha1 runner. This resolves the earlier uncertainty about using a later current-tree listing."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/models/__init__.py",
+        "retrievalStartedUTC": "2026-11-11T09:31:54Z",
+        "bytes": 1305,
+        "path": "generated-artifacts/igcc-alpha1-proof/models-init.py.source",
+        "sha256": "51c614b6d0a120fcb49bd56c8a149077a6da052ad3af8adfb32536c4a8d38041",
+        "headersPath": "generated-artifacts/igcc-alpha1-proof/models-init.headers",
+        "headersSHA256": "63bf775d6976c8daf51ebca0e53b49f8d74a159eb525b3e2e0191d5224386282",
+        "finding": "Explicit original dependency acquisition URL: https://zenodo.org/record/4774994/files/FaIRv2.0.0-alpha1.zip. Source renames the extracted package and attempts to remove progress wrappers. It was inspected, never imported or allowed to download implicitly."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/environment_ouce-linux.yml",
+        "retrievalStartedUTC": "2026-11-11T09:31:54Z",
+        "bytes": 351,
+        "path": "generated-artifacts/igcc-alpha1-proof/environment.yml",
+        "sha256": "c23dfb8c706d5be75ebcdf82161ea59ecbcdf008a444547084a4c600a15e5623",
+        "headersPath": "generated-artifacts/igcc-alpha1-proof/environment.headers",
+        "headersSHA256": "22b8eb8a2698288f87c4f262e18f5aefdabfe603535d63fcdd23966384b82b19",
+        "finding": "Original environment names Python3.9.16,NumExpr2.8.4 and other dependencies. This task does not install or substitute those packages in app/runtime."
+      },
+      {
+        "url": "https://zenodo.org/api/records/4774994",
+        "retrievalStartedUTC": "2026-11-11T09:32:04Z",
+        "bytes": 4962,
+        "path": "generated-artifacts/igcc-alpha1-proof/zenodo-metadata.json",
+        "sha256": "5e151afe33ddb5b5bb55064f20b498a143fd8be5317cddf38545d8e567144f28",
+        "headersPath": "generated-artifacts/igcc-alpha1-proof/zenodo-metadata.headers",
+        "headersSHA256": "cac360dd900df86473f5f0d0569641501a83326d8d4f72c5c8ef2415c5c08456",
+        "finding": "Specific open model-code archive rights verified before archive acquisition: license apache2.0,version2.0.0-alpha1,publication_date2021-05-20,doi10.5281/zenodo.4774994; exact filename,size234679 and checksum supplied."
+      },
+      {
+        "url": "https://zenodo.org/api/records/4774994/files/FaIRv2.0.0-alpha1.zip/content",
+        "retrievalStartedUTC": "2026-11-11T09:32:10Z",
+        "bytes": 234679,
+        "path": "generated-artifacts/igcc-alpha1-proof/FaIRv2.0.0-alpha1.zip",
+        "sha256": "8fef0d4651d81faa54137c54ebeea375b4ede16adf745f3351346d98a81a58ce",
+        "publisherMD5": "364fd2a279765eaffec983d496fcb8cd",
+        "publisherMD5AndSizeMatch": true,
+        "headersPath": "generated-artifacts/igcc-alpha1-proof/alpha1-archive.headers",
+        "headersSHA256": "d91d7bc580febf95c0e6fad6b1170678ca7bdab19c08a8f7b3a478509838308a",
+        "finding": "Exactly named original publisher code archive, downloaded only after specific record rights verification. No forcing/control climate-model output downloaded."
+      }
+    ],
+    "rightsQualification": "Archive LICENSE is Apache2.0; runner header independently states CC-BY4.0 and credits Nick Leach and Stuart Jenkins2021. Both permissive notices remain intact in private source archive; discrepancy is not erased, and no rights are extended to forcing/control ensembles. Cite Leach et al.,doi10.5281/zenodo.4774994 and source paper doi10.5194/gmd-2020-390.",
+    "vintageQualification": "Publisher record explicitly provides2021-05-20 publication date and version; retrieval dates/hashes are distinct. Exact archive source is linked by operative2025 GWI code. This does not certify what dependency bytes existed in every historical author HPC working directory."
+  },
+  "recoveredSourceContract": {
+    "runnerArchiveMember": "FaIRv2.0.0-alpha1/fair/fair_runner.py",
+    "runnerSHA256": "098c29699593c2a7831ea26a7874ac554d2b88845ef25dbece99b0f8b67d043d",
+    "runnerLicenseMemberSHA256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "operativeGWI_SHA256": "0fb7c34020f4f8ad9a03186ebcf42008f8d862baf4e4f61f7e9220045bcfb6a4",
+    "sourceLocations": [
+      "alpha1 return_empty_emissions lines108-130 and return_empty_forcing lines133-155",
+      "alpha1 step_temperature lines253-259",
+      "alpha1 run_FaIR emissions-driven initial step,annual loop,timestep construction and T_out index",
+      "operative GWI GWI_faster zero emissions,external forcing and thermal parameters invocation"
+    ],
+    "stateEquation": "S_new=q*F*(1-exp(-dt/d))+S_old*exp(-dt/d)",
+    "returnedTemperatureEquation": "T=sum((S_old+S_new)/2,mode)",
+    "initialization": "S_old=0 immediately before first external-forcing interval; first1750 forcing receives full one-year step, not zero initial output and not a special half-step.",
+    "terminalInterval": "timestep appends last observed spacing; last2025 forcing receives its full one-year step. The source T_out index preserves input labels.",
+    "annualLabelInterpretation": "For integer annual input label y,the executed interval is y to y+1; returned value is the trapezoidal boundary-state average labelled y. Calling it an exact midpoint temperature or continuous annual integral would change the operator.",
+    "nativeModeHandling": "All passed thermal terms included through reshape(...,-1); dependency-ready adapter requires exactly the original three terms.",
+    "zeroEmissionsQualification": "Operative GWI uses source empty emissions and separately inserted external forcing. With zero emissions and zero initial gas perturbations,gas concentrations remain atPI and internal gas forcing remains zero. This proves a forced-response method,not an emissions-native historical simulation.",
+    "threeDistinctOperators": [
+      "Recovered alpha1: half-sum of interval boundary states",
+      "Sibling FTmod: midpoint-sampled impulse quadrature",
+      "Exact continuous mean for interval-constant forcing"
+    ],
+    "priorMidpointVersusAnnualEvidenceSuperseded": false
+  },
+  "originalDownloaderPatchProof": {
+    "finding": "Original models/__init__.py opens runner r+,reads all text and writes the replaced text atEOF without seek/truncate. Clean first-download behavior therefore appends a modified second copy of the module.",
+    "emulatedPatchedRunnerSHA256": "c6c9345902794a93e63b500551eee98b6145d4f816c9c0c8c4637624a0dde246",
+    "progressWrappersReplacedInAppendedCopy": 2,
+    "stepTemperatureDefinitionsInPatchedModule": 2,
+    "activeAndOriginalThermalDefinitionASTEquality": "passed",
+    "patchSilentlyCorrected": false,
+    "implicitDownloaderExecuted": false,
+    "residualProvenanceCaveat": "The existing-directory branch skips both download and verification. This proof establishes the explicitly recovered clean-download source path,not arbitrary pre-existing directory contents or exact author production-runtime history."
+  },
+  "implementation": {
+    "module": "script/igcc_alpha1_timing_proof.py",
+    "moduleSHA256": "978df867449ce44c5267b4d3a19249ce6d452dfd8346499bad5146e961e8e5ef",
+    "tests": "script/test_igcc_alpha1_timing_proof.py",
+    "testsSHA256": "b32852c02a9e71431fe643955ddfe1d1838bc1a7e6ba31f381b46e97b73512c0",
+    "methods": [
+      "Hash-qualified original GWI and alpha1 AST contract verification",
+      "Source-faithful first-download patch emulation without importing publisher downloader",
+      "Exact three source thermal expressions lowered from NumExpr AST to NumPy",
+      "Independent three-mode alpha1_interval_bridge returning source endpoint-average convention",
+      "Dependency-ready qualified_actual_forcing_bridge with exact actual LFS object pin,independent data rights,full annual/member/unit gates and original source q/d parameters"
+    ],
+    "futureActualForcingPin": "26ce5f1a21cc6ee163d361043c4a65830a73cc1aaa8dbec222b546f9ac11a850",
+    "futureForcingGate": "Only the exact operative aggregate forcing object,full1750-2025 year coordinate,unique original ensemble IDs,native wmghg/natural/other_ant variables in W m-2 and compatible license confirmed both in source metadata and independent rights bytes. Merely labelling an arbitrary SSP file historical is rejected.",
+    "actualFingerprintOutputProduced": false,
+    "publicUnitTestsNeedPrivateArchives": false,
+    "numericBackendLimit": "Source thermal AST uses NumPy equivalents of the three fixed NumExpr expressions; no claim of NumExpr2.8.4 binary bitwise identity or full original gas-cycle/environment replay."
+  },
+  "engineeringChecks": {
+    "fixtureOnly": true,
+    "parameters": {"q": [0.2,0.3,0.4], "dYears": [0.5,5,50]},
+    "yearsPerVector": 8,
+    "frozenToleranceC": 1e-14,
+    "relativeTolerance": 0,
+    "scientificAcceptanceThreshold": null,
+    "sourceExpressionVsIndependentBridgeMaxAbsAcrossAllFiveCasesC": 0.0,
+    "sourceExpressionVsIndependentBoundaryStateArrays": "all passed atol1e-14,rtol0",
+    "cases": [
+      {"case":"zero","sourceVsExactAnnualMeanMaxAbsC":0.0,"sourceVsSiblingMidpointMaxAbsC":0.0},
+      {"case":"constant","sourceVsExactAnnualMeanMaxAbsC":0.027986000022449706,"sourceVsSiblingMidpointMaxAbsC":0.09174529616743744},
+      {"case":"first_impulse","sourceVsExactAnnualMeanMaxAbsC":0.027986000022449706,"sourceVsSiblingMidpointMaxAbsC":0.09174529616743744},
+      {"case":"last_impulse","sourceVsExactAnnualMeanMaxAbsC":0.027986000022449706,"sourceVsSiblingMidpointMaxAbsC":0.09174529616743744},
+      {"case":"alternating_signed","sourceVsExactAnnualMeanMaxAbsC":0.05155437356044936,"sourceVsSiblingMidpointMaxAbsC":0.1750803526863168}
+    ],
+    "fullStepEndpointCheck": "First-interval unit impulse returns0.1176171240532904°C; identical terminal-only impulse returns0 until last label,then exactly0.1176171240532904°C. These are engineering fixtures,not predicted warming.",
+    "precision": "Digits document deterministic source arithmetic,not climate accuracy."
+  },
+  "execution": {
+    "testsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_igcc_alpha1_timing_proof -v",
+    "testsExitCode": 0,
+    "testsPassed": 7,
+    "testsFailed": 0,
+    "testsSkipped": 0,
+    "testsLog": "generated-artifacts/igcc-alpha1-proof/focused-tests.log",
+    "testsLogSHA256": "ea34637111d838088f7d44d6b9b470582004cc5f028fc4dfe7e57fd38a264a87",
+    "proofCommand": ".pythonlibs/bin/python script/igcc_alpha1_timing_proof.py",
+    "proofExitCode": 0,
+    "proofCompletedUTC": "2026-11-11T09:35:43.984834+00:00",
+    "proofLog": "generated-artifacts/igcc-alpha1-proof/proof-execution.log",
+    "proofLogSHA256": "28ff2daed6131b83be4b997c27546ed0e20dd7c0aae493a39ad73556fe635311",
+    "result": "generated-artifacts/igcc-alpha1-proof/alpha1-source-proof-result.json",
+    "resultSHA256": "6ed4c2bb3c438b522f8208024f01f360338389db184c1f3f24027a51adbf73cf"
+  },
+  "scientificDecision": {
+    "newGapClosed": "Previously missing operative alpha1 dependency is now recovered from its explicit original publisher source with verified rights,checksum,initialization and exact returned-temperature convention. A source-faithful dependency-ready forced-response adapter is implemented.",
+    "stillNotClosed": [
+      "Data-specific permitted-use evidence and full actual joint GHG/Nat/OHF forcing ensemble bytes are still missing; no actual fingerprint members produced",
+      "Actual model-specific control permissions,source bytes,retraction/citation review and qualified slices remain missing",
+      "Complete boundary-reconciled native species histories through2025 remain missing",
+      "NumExpr binary/full original-environment execution and exact deployed author-working-directory provenance are not certified"
+    ],
+    "noGSATConversion": true,
+    "noHistoricalAttributionClaim": true,
+    "headlineScoring": false,
+    "shareMembersInRange": null,
+    "centralEligible": false
+  },
+  "preservation": {
+    "GMST176x200Rerun": false,
+    "thermal84ComparisonsRerun": false,
+    "priorObservationArtifactAnd84ComparisonReceiptHashes": "checked unchanged",
+    "canonicalLedgersEditedByThisTask": false,
+    "existingFrozenProtocolsEditedByThisTask": false,
+    "appRuntimeAuthCollectorChangedByThisTask": false,
+    "packagesInstalledByThisTask": false,
+    "commitsPublicationCallbacks": false
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "version": "nee-component-cash-waterfall-1-funding-guard",
+  "status": "implemented-and-privately-validated-conditional-not-qualified",
+  "technicalQualifiedOriginalIssuers": 0,
+  "qualifiedOriginalPairs": 0,
+  "scope": "New NEE source-bound component cash/funding experiment only. No canonical ledgers/routes/semantics edited. Original FY2024/private FSLR10cases50rows, v3/v4 negative studies, FSLR48 and XOM24 were read/hashed only, never rerun or retuned. No commit, deployment, callback, approval, purchases, paid calls, auth, production/DDL/collector changes.",
+  "files": [
+    "server/calculation/neeProjectCashWaterfall.ts",
+    "script/run-nee-project-cash-waterfall.ts",
+    "script/nee-project-cash-waterfall.test.ts",
+    "script/validate-nee-project-cash-waterfall-private.ts",
+    "docs/nee-project-cash-waterfall-evidence.json"
+  ],
+  "reviewedLatestContext": [
+    "docs/workplan_completion_ledger.json S12-001 remains partial: operating-production/sales geography, not unflagged headquarters fallback",
+    "docs/issuer-analytics-evidence.json v3/v4 NEE source-budget/EPS-proxy and missing non-common/activity-driver caveats",
+    "docs/fslr-paid-spare-capacity-evidence.json completed disjoint FSLR48; not rerun",
+    "docs/xom-climate-liability-evidence.json completed disjoint XOM24; not rerun"
+  ],
+  "sourceAttempts": {
+    "networkRequests": 0,
+    "providerRequests": 0,
+    "retainedPrimary": "FY2024 NEE/FPL 10-K, accession 0000753308-25-000011",
+    "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000011/nee-20241231.htm",
+    "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/NEE-primary.html",
+    "sha256": "2a4b8e20c5fe08227924b6af664413bb19db948ff4a25f3171fd84797fa74a83",
+    "availableAt": "2025-02-14T19:23:43.000Z",
+    "sectionsExamined": ["Business NEER pp14-15 and FPL pp5-7", "Consolidated cash flows pp64/68", "Consolidated equity pp65/69", "Note1 HLBV/redeemable NCI pp78-79", "Note7 PP&E", "Note15 commitments p108", "Note16 segments pp110-113"],
+    "bindingCount": 57,
+    "bindingCountCaveat": "This is 57 authenticated current bindings, overlapping retained166; NOT 57 newly disjoint facts or a revised canonical fact count.",
+    "boundedAttemptResult": "Retained authenticated annual, existing reconciliation/funding packet and current evidence reviewed. No additional network search was needed for dependency-ready cash-return/funding calculation. No standalone project LLC distribution schedules or country cash returns asserted located.",
+    "preciseResidual": "FY2024 other-financing NET -$597m (prior years -$653m/-$440m) does not identify gross non-DMI distributions and offsetting contributions. Note1 LLC project cash/tax priorities, flip dates and call prices are not supplied as a consolidated annual contract waterfall; equity reclassification/disposal rows are not cash distributions."
+  },
+  "engineeringDecision": "Calculate authenticated historical gross financing and FPL-parent contribution/dividend bridges; independently rebuild whole-issuer cash using FPL and non-FPL residual operating cash returns on paid capital-equivalent stock, full replacement/nuclear fuel/working funding, and explicit conditional non-common reserves. Do not convert HLBV allocations into cash, impose FPL ROE on NEER, use EPS as physical growth or fit a cash yield to market price.",
+  "sourceLocators": {
+    "neeCashReturns": "c-1 consolidated FY2024: CFO f-365 $13.260bn; cash interest f-446 $2.737bn; signed cash tax f-449 -$760m; current/noncurrent asset concepts f-353/f-356; liability concepts f-359/f-362; cost-recovery f-335 and storm f-347; affiliate cash f-341 $811m. Asset-increase concept signs are reversed to actual cash directions.",
+    "fplCashReturns": "c-2 FPL legal-entity segment FY2024: CFO f-757 $8.506bn; cash interest f-817 $1.143bn; cash tax f-820 $640m; WC f-745/f-748/f-751/f-754; cost-recovery f-733 and storm f-739. c-63 instant FPL net PP&E f-651 $76.166bn; consolidated c-13 net PP&E $138.852bn.",
+    "grossDmi": "c-1 f-404 +$2.257bn proceeds, f-407 -$740m payments. Note1 DMI carrying $8.857bn opening/$9.062bn closing and $1.329bn HLBV earnings allocation are distinct noncash items.",
+    "parentFplCash": "c-2 f-796 $3.400bn contribution FROM NEE and f-799 $3.700bn dividend TO NEE. Do not use gross subsidiary dividend as incremental consolidated/common cash.",
+    "unknownOtherCash": "c-1 f-428 -$597m; c-11 f-429 -$653m; c-12 f-430 -$440m. Largest annual NET outflow is $653m, not identified gross other-NCI distributions.",
+    "capitalAndFuel": "Note7 net PP&E includes nuclear fuel; cash fuel c-1 f-374 $399m, FPL c-2 f-763 $222m; nuclear-fuel-AND-OTHER amortization c-1 f-320 $299m/FPL c-2 f-727 $172m. No pure nuclear-fuel net-stock or standalone nuclear maintenance series invented.",
+    "approvedBudgets": "Note15 approved accrual 2025-29 FPL $8.425/10.520/9.905/10.170/10.585bn; NEER $11.045/7.485/3.840/1.470/1.195bn. AFUDC FPL $195/250/255/285/300m and NEER $10/10/20/10/10m. All disclosed AFUDC is separately cash-provisioned, not certified all equity/noncash.",
+    "activityGeographyPolicy": "Business NEER: net generation 32,890MW across41 US states and520MW across4 Canadian provinces; wind operated26,335MW including NCI/JV versus net ownership20,977MW. FPL regulated retail primarily Florida, not HQ allocation. Note15 approved new/repowered wind2,228MW, solar including storage8,205MW, primarily storage4,265MW. Categories are not additive energy production or eligible-US common-cash shares. Business p15 PTC production first-ten-years and labour/enhancement conditions; Note1 credit sales c-1 f-1099 $1.304bn are included in cash tax."
+  },
+  "computedHistoricalWaterfallsUsd": {
+    "neeFinancing": 7000000000,
+    "fplFinancing": -61000000,
+    "allFourFinancingAndCashReconciliationResiduals": 0,
+    "fplGrossDividendToParent": 3700000000,
+    "parentGrossContributionToFpl": 3400000000,
+    "netCashToParent": 300000000,
+    "fplCashBeforeParentTransfers": 361000000,
+    "fplCashChangeAfterParentTransfers": 61000000,
+    "consolidatedBeforeCommonIssuanceAndDividends": 2183000000,
+    "sameWaterfallWithoutNewDmiProceeds": -74000000,
+    "grossOtherNoncommonInflow": null,
+    "grossOtherNoncommonOutflow": null,
+    "dmiBookRollResidualNotCash": 17000000,
+    "caveat": "Historical gross financing reconciliation is NOT a replacement for retained $169m selected historical common-FCFE base. It includes actual disposals, DMI funding, related-party flows, taxes and WC; no claim that $2.183bn was sustainable common FCFE."
+  },
+  "sourceCashReturnNormalizationUsd": {
+    "consolidatedBeforeInterestTaxWcExceptionalClausesAndAffiliateCash": 13926000000,
+    "fpl": 9912000000,
+    "nonFplResidual": 4014000000,
+    "fplCapitalDenominator": 76166000000,
+    "nonFplCapitalDenominator": 62686000000,
+    "normalization": "CFO + cash interest + SIGNED actual cash tax - cash-direction WC - cost-recovery cash effect - signed storm cash effect - separately modeled affiliate cash. Actual tax includes renewable-credit transfers; adding it back removes historical credit cash ONCE. No additional subtraction of that historical transfer and no HLBV addback.",
+    "interpretation": "Observed mature-portfolio cash calibration only. Future yield on paid capital is a labelled condition, not disclosed NEER marginal project IRR, tariff, contract PPA price, energy growth, regulatory allowed ROE or issuer guidance."
+  },
+  "frozenConditions": {
+    "originalBasis": "FY2024 selected cash basis, USD whole-issuer common equity, actual retained 2025-01-31 price/shares/security, signed original2025 dated stub, first five annual steps2026-2030, ten-year fade2031-2040, terminal2041, g2.5/3.25/4%, original10% common discount sensitivity.",
+    "timing": "REVISED-HISTORY: FY2024 annual was available2025-02-14, AFTER retained2025-01-31 reference. No point-in-time availability or prospective historical signal claimed.",
+    "pathCount": "Six original stub/g combinations x two operating-cash-return treatments x two future policy treatments =24 complete paths/384 future rows/24 terminal rows. There are12 distinct future cash paths; original source-conditioned versus constraint labels now distinguish retained stub ONLY, not new EPS-driven operations.",
+    "operatingCash": "Source-calibrated component cash yield on opening funded capital, versus withholding above-nominal incremental-capital returns until approved2025-2029 programme completion2030. No future commissioning observation or guaranteed constant marginal productivity claimed.",
+    "replacement": "At least fixed D&A + nuclear-and-other amortization + nominal g times opening paid capital in TOTAL capital cash. Fuel is within that total, not added twice. Max with approved net-AFUDC investment programme. Explicitly charge further unapproved cash requirements, not assert approved budgets cover all future maintenance/growth.",
+    "fuelBook": "NEW paid-capital-equivalent opening2026 includes $103.25m source-anchored cash-fuel-less-nuclear-and-other-amortization correction to old fixed-only forecast book proxy. Original2025 cash stub and debt unchanged; any leverage/reserve catch-up occurs2026. This is not a historical GAAP restatement or a claimed pure fuel net carrying amount.",
+    "afudcCashGuard": "All source AFUDC held in zero-return, non-distributable cash reserve because cash-versus-equity split is not certified. Initial2026 reserve $471.6625m includes protected2025 legacy maximum plus2026 budget; grows to $1.426913334bn in2029. Reserve indexed thereafter and NEVER released, financing neither operations nor dividends.",
+    "financing": "Retain source effective carrying leverage, source cash interest/debt and paired gross maturity rollovers. No future DMI/other-NCI proceeds, disposals, common issuance or related-party cash funding. Full negative annual common-owner contributions remain negative cash in PV; not guaranteed subscriptions.",
+    "noncommon": "Gross DMI payment reserve $740m indexed plus full three-year maximum NET other-financing reserve $653m indexed. Neither is certified perpetual contractual distribution. Unknown offsetting other-financing inflow is null, not observed zero. Conditional floor books no extra hidden gross claim, and separately solves analytical indexed-claim headrooms.",
+    "policy": "Conditional aggregate renewable transfer cash at no more than historical$1.304bn nominal through2029, uniform ten-year runoff to zero2039; paired zero-all-future-policy-cash path. No country/MW allocation, extra new-cohort/nuclear credit, carbon price, or terminal policy perpetuity. FY2024-law description is not current post2025/FEOC certification.",
+    "tax": "21% positive cash-taxable-profit sensitivity after capital amortization/interest, with affiliate cash once; NOT a US/Canada jurisdictional forecast. Tax benefit realizability is not promised.",
+    "cash": "Fund AR/inventory/other operating-current balances/payables/minimum cash as capital-linked funding targets; preserve original opening2026 stocks, pay regime catch-up in2026. No initial excess-cash release, second debt subtraction, terminal reserve windfall or unpriced equity-company accrual added.",
+    "growthInterpretation": "Actual retained positive$169m historical common-FCFE is used for computed year-five CAGR. Result68.62%-83.09% is recovery from a very small funding residual, NOT activity growth, project IRR or management forecast. No reverse, operating-driver root or uniqueness certification performed."
+  },
+  "freeze": {
+    "frozenAt": "2026-11-11T09:42:31.902Z",
+    "calculatedAt": "2026-11-11T09:42:31.934Z",
+    "path": "generated-artifacts/company-operating-corpus/nee-project-cash-waterfall-v1/2026-11-11T09-42-31-902Z/frozen-before-calculation.json",
+    "sha256": "0f5e34afb6d137553b3ed40cf8be92861bd286ec715e359ce5dd5373105e91e5",
+    "reportPath": "generated-artifacts/company-operating-corpus/nee-project-cash-waterfall-v1/2026-11-11T09-42-31-902Z/report.json",
+    "reportSha256": "58a83fc1cf0f0f59c7ba23dcd4442e2333f9fcd062edf35869b88295aa5cd38a",
+    "protectedPriorFilesChecked": 143,
+    "prototypeDisclosure": "Earlier09-39-39 artifact is retained but NOT final/accepted: independent private check caught a manually expected FPL normalization arithmetic error ($9.896bn versus correct$9.912bn; production calculation already used source facts). Independent check corrected, and separate AFUDC funding guard was frozen before its calculation. No source-yield coefficient or market target was retuned."
+  },
+  "outcomes": {
+    "fullNewCases": 24,
+    "futureCashRows": 384,
+    "componentCapitalRows": 768,
+    "terminalRows": 24,
+    "positiveConditionalFloorTerminals": 24,
+    "positiveConditionalFloorValues": 24,
+    "negativeAnnualCommonFundingRows": 48,
+    "terminalFcfeUsdRange": [2498557663.4440136, 3986388403.395976],
+    "conditionalWholeValueUsdRange": [10566809312.021917, 26668169942.798264],
+    "totalFutureCommonCallsUsdRange": [396597647.7790909, 6074356119.551088],
+    "additionalCashCapitalAboveApprovedNetAfudcBudgets2026To2029": 11000351447.339924,
+    "additionalBudgetCashByYear": {"2026": 0, "2027": 1816609452.3344288, "2028": 4359799259.535298, "2029": 4823942735.470196},
+    "sourceConditionedStubOpeningCapitalYieldExamples": [
+      {"g": 0.025, "terminalFcfe": 3986388403.395976, "runoffPolicyValue": 26668169942.798264, "zeroFuturePolicyValue": 20233764479.573032},
+      {"g": 0.0325, "terminalFcfe": 3275122562.609343, "runoffPolicyValue": 24515289202.809708, "zeroFuturePolicyValue": 18080883739.584488},
+      {"g": 0.04, "terminalFcfe": 2498557663.4440136, "runoffPolicyValue": 21831701882.96396, "zeroFuturePolicyValue": 15397296419.738737}
+    ],
+    "unidentifiedAnnualGrossClaimTerminalHeadroom2024UsdRange": [1383911343.7914398, 2426664902.604802],
+    "unidentifiedAnnualGrossClaimWholePlanHeadroom2024UsdRange": [679650567.7186902, 1958734251.650346],
+    "headroomMeaning": "Exact hypothetical extra annual non-common cash claim indexed with model prices that exhausts terminal cash/whole-plan PV; NOT an observed contractual claim, finite source bound, equity price target or qualified reverse pair.",
+    "testedValueToRetainedEquityRange": [0.07178499892106992, 0.18116864741684022],
+    "qualification": "0/3; all24 are explicit source-calibrated conditional floor calculations. Positive terminal cash and zero-policy positive floor value do not identify missing gross legal waterfalls or source marginal returns."
+  },
+  "validation": {
+    "publicCodeOnly": {
+      "command": "npx tsx --test script/nee-project-cash-waterfall.test.ts",
+      "passed": 6, "failed": 0, "skipped": 0,
+      "privateFileDependencies": false,
+      "logSha256": "e26df470b1fd99426e5817aaf4b0305512d86aa6a2dba668fee91b88670f3746"
+    },
+    "privateAssembly": {
+      "command": "npx tsx script/run-nee-project-cash-waterfall.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "72ea4058241c6ae5794cbf94a2476393b43ac4cc28c94b96cd8e0a1c3f4ec727"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary",
+      "exitCode": 0, "caseReplays": 24, "independentCashRows": 384, "independentComponentCapitalRows": 768, "fundedTerminalGrowthChecks": 24,
+      "checks": "Primary/code/prior immutable hashes; four actual cash/financing identities zero residual; independent source cash normalization; fuel+amortization+replacement book; gross debt legs; tax/credit non-duplication; all AFUDC cash provision; original stub/opening reserve/debt; signed common calls; exact2041/2040 growth equals1+g; independent dated stub/explicit/tail PV and analytical unknown-claim headroom.",
+      "logSha256": "1284eb274f0e59b89e65e79d4c092d7fc64e937155786be81257659c5ab9faee"
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/neeProjectCashWaterfall.ts script/run-nee-project-cash-waterfall.ts script/nee-project-cash-waterfall.test.ts script/validate-nee-project-cash-waterfall-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5SourceTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/neeProjectCashWaterfall.ts",
+      "exitCode": 0, "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logDirectory": "generated-artifacts/company-operating-corpus/nee-project-cash-waterfall-v1/",
+    "privateArtifactsExported": false
+  },
+  "originalClauseProposalsForParentMergeOnly": [
+    {"clause": "S12-001", "proposedStatus": "partial", "evidence": "Source operating geography now explicit for NEE FPL versus NEER US/Canada and operated-versus-net capacity. No HQ/global-average allocation. New cash economic components, budgets and policy transfer cash remain separated; workbook-wide model-sector/geographic revenue and country cash-return weights not fabricated."},
+    {"clause": "Original issuer common-cash/non-common waterfall", "proposedStatus": "substantive conditional engineering, not qualified", "evidence": "Actual gross DMI and FPL-parent cash reconcile; source operating cash model funds full nuclear/replacement/WC/AFUDC/debt; unknown other gross claims are explicit and analytically stressable. No book-NCI/HLBV substitute for cash."},
+    {"clause": "Original positive nominal terminal and five-year plus fade/stub assessment", "proposedStatus": "new24-path conditional calculation executed, qualification0/3", "evidence": "All original2.5-4% terminals have source-calibrated funded positive floor cash and exact annual terminal growth, including zero-policy paths. Actual source project cash-return and full gross-NCI contractual distributions are not certified; no reverse pair or observed future return claimed."}
+  ],
+  "narrowResiduals": [
+    "Note1 targeted-return/flip/call cash priorities and project-specific gross cash/tax distributions remain missing; current net-other financing cannot bound hidden gross offsetting inflows. This does NOT prevent the explicitly conditioned calculation already executed.",
+    "Cash return on future commissioned paid capital is source-calibrated, not issuer marginal guidance. FPL regulated rates and NEER mixed merchant/contracted cash need different project/cohort schedules; FPL ROE cannot fill the latter.",
+    "Note15 excludes not-yet-approved NEER developments; computed extra$11bn replacement/growth cash is conditional need beyond approved estimates, not evidence management has approved or failed to fund it.",
+    "AFUDC equity/debt split, nuclear-fuel-and-other amortization components, and PP&E versus equity-investment composition are not precise future schedules. Full cash reserve and capital-equivalent accounting are conservative explicit treatments, not invented observations.",
+    "US/Canada net MW do not identify revenue sales weights, common-owner cash share or project credit eligibility. Current post2025 law/FEOC remains unverified; aggregate cohort cash and zero-policy alternatives do not certify legal entitlement.",
+    "Historical dated price/shares reference is revised-history, not contemporaneous available-at calibration. No source yield was increased to produce a market pair; no reverse/uniqueness assessment performed."
+  ],
+  "readyNextEngineeringBlock": "Current source component/geography records and24 full funded paths are dependency-ready for parent integration without touching old scores. For a NEW experiment, replace the flat non-FPL marginal cash-yield condition with approved-capital commissioning cohorts and explicit distributions priority/call scenarios; test source-anchored lower cash productivity while rebuilding capital, tax, reserves and gross debt. Missing actual LLC dates/priorities must remain null unless a retained/public exhibit supplies them. Country-capacity shares must NOT become revenue/credit/common-cash weights."
+}

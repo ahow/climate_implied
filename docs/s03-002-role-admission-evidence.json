@@ -1,0 +1,85 @@
+{
+  "requirement": "ORIGINAL S03-002",
+  "scope": "Ready engineering: canonical roles and fail-closed native/Stage5 admission; not scientific acceptance",
+  "verifiedAtUtc": "2026-11-11T09:34:53Z",
+  "sourceFreeze": {
+    "meaning": "Exact local source content tested; not a commit, deployment or full-repository freeze",
+    "sha256": {
+      "shared/driverAdmission.ts": "e0758ef85f7189592aa10058c90d22d3145b42bba3aa549dcb2b60ac3bb53159",
+      "server/calculation/driverEvidence.ts": "640c8802043863a7c8f7020e8c44862a110bd580b059c7c578a6c6b3fdb7d5d1",
+      "server/calculation/driverConsumptionTrace.ts": "8a1795bf268d788d35c43b2e74ed6b66855a1285f84d84f57d248c89512b7c59",
+      "server/calculation/driverParameterRegistry.ts": "178276bd63c6b5766fb0060408babce552985624aeba5a7954436f2a34a43ebb",
+      "server/calculation/emissionsInputs.ts": "699c169d7f049a794210c4ba205d068f9557917acd240774756799d4add2f6b8",
+      "server/calculation/emissionsCandidate.ts": "ee32c46b57ffadf90a55addd1e7239c9c16d788a02696a1980bf3b67dd578cb1",
+      "server/calculation/regionalEngine.ts": "a030163eee28cebf2804151c483089ab1244d37d73b204cb3fff18eb4970c63a",
+      "script/run-regional-ensemble.ts": "5af3c68aba8f5ce2a31fde64e72bb411618fdb0fb37b786fbc5d9468c02ea0b3",
+      "shared/nativeOutputSemantics.ts": "fcdbbf5e263294349cebb8749d5756a7d8e04b028b4f4bc7e45bfee5b8d1f107",
+      "shared/researchFieldSemantics.ts": "bf992589a2cba106a7738c71992098d102247c66f34898c4f16fe4a401ffc580",
+      "script/driver-evidence.test.ts": "07490ea67c8d7edb89924de69f66c437f80780b515268df38a25eca94c3bb661",
+      "script/driver-consumption.test.ts": "9a4c52963ffbed73eff7a392a2305ef0fb72c71d7ab0e7c4e83a0ffd50f379d4",
+      "script/native-semantics.test.ts": "6596806923a4f57e1bde4a2d1c6db4d1dcb7fb79f3e8eb545d70bd867196b6e2",
+      "script/validate-driver-retained-private.ts": "1b534fdee3f0cb49ca4a627c3de2b515363689a7314070ae6bbcf3ae5ab602a5"
+    }
+  },
+  "admissionCoverage": {
+    "canonicalRoles": ["mechanism-input", "level-anchor", "validation-target", "context", "candidate-leading-indicator"],
+    "curated": "driverEvidenceRegistry and resolveEmissionsInputs use curatedDriverRole identically: six candidate mechanisms, three validation targets, thirteen context entries; all 22 remain central-ineligible",
+    "compatibility": "legacyRole explicitly retains each API's previous labels. adaptLegacyDriverRole is opt-in and transfers no eligibility. assertParameterUse does not silently accept old role labels or absent roles",
+    "nativeDiagnostic": "resolveEmissionsInputs role-checks capacity and sales before their observation consumption. diagnosticConsumed is true only for capacity (2023 and 2024) and sales share (2024). Other candidate roles are not claims of actual equation use. Raw projectInventoryEmissions/projectNativeEmissions output explicitly disallows central consumption and production eligibility",
+    "registeredStage5": "consumeRegionalParameterRegistry binds every scenario leaf in every joint row, including fixed constants, booleans, nested sector pathways, measure scope/selectors and evidence text, to exact region/path evidence. Each binding requires canonical mechanism-input role, valid frozen windows/status, permitted central/sensitivity use, compatible geography, approved consumerPaths and retained source byte hashes. Rejected evidence cannot be rescued by an independent physical exception",
+    "defaults": "Registered scenarios require explicit nuclearGenerationTWh, eliminating the raw diagnostic engine's otherwise unbound zero default",
+    "distributionAndInventory": "assertRegionalDistributionUse requires code-pinned reviewed full-registry and exact native-inventory hashes before central sampling. The reviewed pin list is honestly empty. Individually eligible parameters and caller-supplied file hashes cannot sign off joint draws, dependence, selectors or inventory. No signing authority, approval receipt or eligible real registry is fabricated",
+    "legacy": "Preserved comparator equations and explicit legacy-diagnostic CLI remain separate, unregistered and not central-admitted"
+  },
+  "verification": {
+    "command": "npx tsx --test script/driver-evidence.test.ts script/driver-consumption.test.ts script/emissions-candidate.test.ts script/regional-engine.test.ts script/native-semantics.test.ts script/remaining-field-semantics.test.ts script/validate-driver-retained-private.ts",
+    "tests": 44,
+    "pass": 44,
+    "fail": 0,
+    "skip": 0,
+    "privateAssertions": "Four mandatory retained-source tests remain required, unmodified and passed: ten real paired sensitivity distributions (1000 paired draws each), deterministic actual consumption, pinned CLI provenance and 32 central CLI refusals (ten real distributions plus all 22 curated drivers)",
+    "publicCoverage": "Every top-level native dependency is individually denied context-role admission; nested pathway and measure bindings reject context/validation/rejected evidence; eligible individual synthetic parameters still cannot admit unsigned distribution/inventory; all unused curated observations independently leave native diagnostic trajectory unchanged; role aliases confer no eligibility; missing bindings, incompatible scopes, source tampering and implicit nuclear default reject",
+    "additionalChecks": ["npx tsc --noEmit passed", "git diff --check passed"],
+    "executionBoundary": "Code-only tests and read-only verification of retained source/report bytes; no collectors, downloads, frozen-negative study refits or scientific reruns"
+  },
+  "censusContractFollowup": {
+    "scope": "Parent-reported integrated failures repaired with exact supplementary role/admission assertions; no full-suite rerun",
+    "command": "npx tsx --test script/research-field-semantics.test.ts script/native-semantics.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts",
+    "pass": 23,
+    "fail": 0,
+    "skip": 0,
+    "censusRegeneration": "npx tsx script/field-semantics-census.ts; affected checks confirm regenerated census is current",
+    "sha256": {
+      "script/research-field-semantics.test.ts": "69d9d160f0cc48ef501c0f51ce995a758781a219a3ce4599c25de1bec833f35f",
+      "script/next-census-accounting.test.ts": "a63a661733dbd4ed8237fff163b956744c6b389bbf64cad106a657539f1bfd29",
+      "docs/field_semantics_census.json": "4fc8a73daf1de58e97974cb52fbbcf02f4c0ffa797bc4f80d231436d2f1c59a4",
+      "docs/field_semantics_original_cohort.json": "646e9c341badfc5e218736a01809c5d69be9fb5f80a223b339e75205d84aea57"
+    },
+    "newFields": {
+      "driverRegistry": ["indicators[].legacyRole", "indicators[].admission"],
+      "nativeCandidate": ["result.use", "result.productionEligible", "result.centralConsumptionAllowed", "inputs.indicators[].legacyRole", "inputs.indicators[].diagnosticConsumed", "inputs.indicators[].centralModelEligible"]
+    },
+    "denominators": {
+      "driverRegistryLeaves": [51, 53],
+      "nativeCandidateLeaves": [213, 219],
+      "definitions": [1703, 1711],
+      "typedInventorySlotsIncludingWithheld": [1351, 1359],
+      "publicSlots": [1324, 1332],
+      "boundPublicSlots": [1323, 1331],
+      "supplementalPublicDeltaFromOriginal": [323, 331],
+      "expandedApiAndDownloadPublicSlots": [1485, 1493],
+      "expandedApiAndDownloadBoundSlots": [1484, 1492],
+      "expandedPublicDeltaFromOriginal": [484, 492]
+    },
+    "originalCohort": "Byte-identical frozen cohort: 1001 public slots, 1000 bound, 571/572 original gaps closed, one unresolved summary slot, 27 withheld slots; no missing/removed original identities. Exact slot fingerprint remains 34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+    "privateBoundary": "Source-private tests unchanged; prior four-test mandatory receipt retained, not rerun for this contract-only followup"
+  },
+  "unmetGates": [
+    "No reviewed/pinned real six-region central joint distribution and inventory acceptance exists; central native Stage5 remains blocked",
+    "No accepted source-compatible curated-to-native parameter mapping exists; all 22 curated central refusals remain",
+    "Retained adoption generation-share distributions are still sensitivity-only, not native capacity, EV, policy, emissions or calibrated climate parameters",
+    "Source-specific publication vintages, applicability, uncertainty, independent scientific acceptance, climate-response and convergence gates are not closed by role engineering",
+    "There is no actual accepted own forecast whose numerical invariance can be empirically certified; tests prove fail-closed admission before generation and diagnostic non-consumption, not scientific forecast acceptance"
+  ],
+  "excluded": "No canonical ledger/matrix edits, commits, deployment, callbacks or fabricated eligibility"
+}

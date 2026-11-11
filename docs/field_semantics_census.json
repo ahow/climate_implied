@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 1703,
+  "definitions": 1711,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -32,11 +32,11 @@
     }
   ],
   "comparableSlotAccounting": {
-    "actualUniqueSlots": 1351,
+    "actualUniqueSlots": 1359,
     "previouslyUnresolvedAliasSlots": 4,
-    "slotsIncludingReconciledAliases": 1355
+    "slotsIncludingReconciledAliases": 1363
   },
-  "fullyBoundFields": 1323,
+  "fullyBoundFields": 1331,
   "displayBindings": [
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
@@ -12952,8 +12952,8 @@
     },
     {
       "surface": "API GET \"/api/emissions/candidate\"",
-      "total": 213,
-      "bound": 213,
+      "total": 219,
+      "bound": 219,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -13060,8 +13060,8 @@
     },
     {
       "surface": "API GET \"/api/research/driver-registry\"",
-      "total": 51,
-      "bound": 51,
+      "total": 53,
+      "bound": 53,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -16792,6 +16792,22 @@
     },
     {
       "surface": "API GET \"/api/emissions/candidate\"",
+      "field": "inputs.indicators[].centralModelEligible",
+      "type": "true",
+      "source": "server/routes.ts",
+      "line": 567,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/emissions/candidate\"",
+      "field": "inputs.indicators[].diagnosticConsumed",
+      "type": "true",
+      "source": "server/routes.ts",
+      "line": 567,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/emissions/candidate\"",
       "field": "inputs.indicators[].key",
       "type": "\"remainingBudget15C_Gt\"",
       "source": "server/routes.ts",
@@ -16808,6 +16824,14 @@
     },
     {
       "surface": "API GET \"/api/emissions/candidate\"",
+      "field": "inputs.indicators[].legacyRole",
+      "type": "string",
+      "source": "server/routes.ts",
+      "line": 567,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/emissions/candidate\"",
       "field": "inputs.indicators[].reason",
       "type": "string",
       "source": "server/routes.ts",
@@ -16817,7 +16841,7 @@
     {
       "surface": "API GET \"/api/emissions/candidate\"",
       "field": "inputs.indicators[].role",
-      "type": "string",
+      "type": "\"candidate-leading-indicator\"",
       "source": "server/routes.ts",
       "line": 567,
       "resolution": "typed-field"
@@ -17400,6 +17424,14 @@
     },
     {
       "surface": "API GET \"/api/emissions/candidate\"",
+      "field": "result.centralConsumptionAllowed",
+      "type": "true",
+      "source": "server/routes.ts",
+      "line": 567,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/emissions/candidate\"",
       "field": "result.inventoryYear",
       "type": "number",
       "source": "server/routes.ts",
@@ -17410,6 +17442,14 @@
       "surface": "API GET \"/api/emissions/candidate\"",
       "field": "result.key",
       "type": "string",
+      "source": "server/routes.ts",
+      "line": 567,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/emissions/candidate\"",
+      "field": "result.productionEligible",
+      "type": "true",
       "source": "server/routes.ts",
       "line": 567,
       "resolution": "typed-field"
@@ -18018,6 +18058,14 @@
       "surface": "API GET \"/api/emissions/candidate\"",
       "field": "result.trajectory[].year",
       "type": "number",
+      "source": "server/routes.ts",
+      "line": 567,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/emissions/candidate\"",
+      "field": "result.use",
+      "type": "string",
       "source": "server/routes.ts",
       "line": 567,
       "resolution": "typed-field"
@@ -21496,6 +21544,14 @@
     },
     {
       "surface": "API GET \"/api/research/driver-registry\"",
+      "field": "indicators[].admission",
+      "type": "string",
+      "source": "server/routes.ts",
+      "line": 448,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].category",
       "type": "\"Emissions Outcomes\"",
       "source": "server/routes.ts",
@@ -21546,6 +21602,14 @@
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].informationAvailableAt",
       "type": "null",
+      "source": "server/routes.ts",
+      "line": 448,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/research/driver-registry\"",
+      "field": "indicators[].legacyRole",
+      "type": "string",
       "source": "server/routes.ts",
       "line": 448,
       "resolution": "typed-field"
@@ -21673,7 +21737,7 @@
     {
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].role",
-      "type": "string",
+      "type": "\"candidate-leading-indicator\"",
       "source": "server/routes.ts",
       "line": 448,
       "resolution": "typed-field"
@@ -26837,8 +26901,8 @@
         "field": "[].Topic"
       }
     ],
-    "currentPublicSlots": 1324,
-    "publicSlotDenominatorDelta": 323,
+    "currentPublicSlots": 1332,
+    "publicSlotDenominatorDelta": 331,
     "originalCohortComplete": false,
     "originalFullyBoundFields": 1000,
     "originalSlots": [
@@ -37093,16 +37157,16 @@
       }
     ],
     "slotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
-    "currentInventorySlotIdentityFingerprint": "11d509dec87bfef9b4d142173f3e716490e8815a8e2b64eff3354b2726b0655c",
+    "currentInventorySlotIdentityFingerprint": "05632a9b93e501f910007cdb525e24cf4ec89f147835528f8d4bacba27f11886",
     "frozenOriginalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
     "originalSlotIdentitiesUnchanged": true,
     "reconciledCacheAliases": 4,
     "note": "Only reviewed original API families and existing DownloadDataButton slots count as closure. Literal columns require exact qualified bindings; finite dynamic slots require actual production row-builder certification, matching settings/bindings and an explicit finite concrete column domain with runtime rejection. New concrete columns, definitions, supplemental response/JSON claims and displays are separately inventoried, never original closure additions."
   },
   "supplementalSlotAccounting": {
-    "addedSlots": 323,
-    "addedPublicSlots": 323,
-    "addedBoundSlots": 323,
+    "addedSlots": 331,
+    "addedPublicSlots": 331,
+    "addedBoundSlots": 331,
     "addedFields": [
       {
         "surface": "API GET \"/api/cv/decarb-terciles\"",
@@ -37165,6 +37229,33 @@
         "source": "server/routes.ts",
         "line": 1390,
         "resolution": "dynamic-key-needs-explicit-binding",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/emissions/candidate\"",
+        "field": "inputs.indicators[].centralModelEligible",
+        "type": "true",
+        "source": "server/routes.ts",
+        "line": 567,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/emissions/candidate\"",
+        "field": "inputs.indicators[].diagnosticConsumed",
+        "type": "true",
+        "source": "server/routes.ts",
+        "line": 567,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/emissions/candidate\"",
+        "field": "inputs.indicators[].legacyRole",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 567,
+        "resolution": "typed-field",
         "bound": true
       },
       {
@@ -37396,6 +37487,33 @@
         "surface": "API GET \"/api/emissions/candidate\"",
         "field": "residualDiagnostics.version",
         "type": "\"native-mass-residual-diagnostics-1\"",
+        "source": "server/routes.ts",
+        "line": 567,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/emissions/candidate\"",
+        "field": "result.centralConsumptionAllowed",
+        "type": "true",
+        "source": "server/routes.ts",
+        "line": 567,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/emissions/candidate\"",
+        "field": "result.productionEligible",
+        "type": "true",
+        "source": "server/routes.ts",
+        "line": 567,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/emissions/candidate\"",
+        "field": "result.use",
+        "type": "string",
         "source": "server/routes.ts",
         "line": 567,
         "resolution": "typed-field",
@@ -39347,6 +39465,24 @@
       },
       {
         "surface": "API GET \"/api/research/driver-registry\"",
+        "field": "indicators[].admission",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 448,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/research/driver-registry\"",
+        "field": "indicators[].legacyRole",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 448,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].parameterDistribution.loader",
         "type": "string",
         "source": "server/routes.ts",
@@ -40016,9 +40152,9 @@
     "originalPublicDenominator": 1001,
     "externalTypedApiSlots": 161,
     "externalTypedApiBoundSlots": 161,
-    "expandedApiAndDownloadPublicSlots": 1485,
-    "expandedApiAndDownloadBoundSlots": 1484,
-    "expandedPublicDeltaFromOriginal": 484,
+    "expandedApiAndDownloadPublicSlots": 1493,
+    "expandedApiAndDownloadBoundSlots": 1492,
+    "expandedPublicDeltaFromOriginal": 492,
     "supplementalMetadataSheetColumns": 31,
     "companyCoverageApiLeafSlots": 133,
     "companyCoverageJsonExportLeafSlots": 133,

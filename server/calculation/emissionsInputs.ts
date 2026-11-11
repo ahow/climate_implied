@@ -1,12 +1,15 @@
 import { getAllHistoricalIndicators, type HistoricalIndicatorData } from "./historicalIndicators";
 import { INDICATORS } from "../dataIngestion/indicatorRegistry";
 import { constantScenario, type EmissionsScenario } from "./emissionsCandidate";
+import { assertMechanismRole, curatedDriverRole } from "../../shared/driverAdmission";
 
 /** All inputs use the inventory date. Later estimates are NOT observations of 2024. */
 export function resolveEmissionsInputs(history: HistoricalIndicatorData[] = getAllHistoricalIndicators()) {
   const row = history.find(r => r.year === 2024);
   const previous = history.find(r => r.year === 2023);
   if (!row || !previous) throw new Error("Candidate requires dated 2023 and 2024 approved/curated inputs");
+  for (const key of ["renewableCapacityGW", "evSalesSharePct"])
+    assertMechanismRole(curatedDriverRole(key), key);
   const finite = (value: number, name: string, min: number, max = Infinity) => {
     if (!Number.isFinite(value) || value < min || value > max) throw new Error(`Invalid dated input: ${name}`);
     return value;
@@ -32,8 +35,8 @@ export function resolveEmissionsInputs(history: HistoricalIndicatorData[] = getA
     observationBoundary: "curated-or-approved-2024-values; no nowcast",
     diagnostic,
     indicators: INDICATORS.map(d => {
-      const role = ["renewableCapacityGW", "evSalesSharePct"].includes(d.key) ? "mechanism-input" :
-        ["fossilCO2GtPerYear", "atmosphericCO2ppm", "co2GrowthRatePpm"].includes(d.key) ? "validation" : "context";
+      const role = curatedDriverRole(d.key);
+      const diagnosticConsumed = ["renewableCapacityGW", "evSalesSharePct"].includes(d.key);
       const reasons: Record<string, string> = {
         renewableCapacityGW: "Starting capacity and 2023–2024 net additions; no automatic acceleration.",
         evSalesSharePct: "Starting sales mix; bounded fleet turnover, not immediate fleet replacement.",
@@ -47,7 +50,9 @@ export function resolveEmissionsInputs(history: HistoricalIndicatorData[] = getA
         carbonIntensityKgPerGDP: "Aggregate intensity would duplicate explicit technology effects.",
       };
       return { key: d.key, label: d.label, unit: d.unit, year: 2024, value: row[d.key],
-        role, reason: reasons[d.key] ?? (role === "validation"
+        role, diagnosticConsumed, centralModelEligible: false,
+        legacyRole: diagnosticConsumed ? "mechanism-input" : role === "validation-target" ? "validation" : "context",
+        reason: reasons[d.key] ?? (role === "validation-target"
           ? "Independent comparison, not an emissions multiplier."
           : "No separately evidenced causal emissions coefficient.") };
     }),

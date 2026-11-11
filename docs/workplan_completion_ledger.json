@@ -1090,6 +1090,35 @@
         "tests": "525TS/0fail/0skip;140Python;mandatory private FSLR passed;typecheck/build passed",
         "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
       }
+    },
+    "admission_nee_alpha1": {
+      "at": "2026-11-11T09:53:03.090383+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+        ],
+        "executed_at": "2026-11-11T09:50:31.900106+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 125.112,
+        "counts": {
+          "tests": 537,
+          "pass": 537,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T095031900106Z.log",
+        "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "admission": "Canonical role vocabulary plus every bound scenario dependency admission; unsigned joint registry/inventory refuses central generation.22curated+10retained central refusals preserved. No accepted real central forecast.",
+      "nee": "24conditional paths/384cash/768capitalrows. Historical DMI2.257bn/payment740m; cash including DMI2.183bn versus negative74m without. FPL3.7bn dividend less3.4bn contribution=300m netparent cash. Conditional terminals2.499–3.986bn,values10.567–26.668bn;48negative annual funding rows. No root/qualified original case;0/3.",
+      "physical": "Exact licensed alpha1 recovered; zero initial modes/full first-last steps/trapezoidal boundary output proved. Five engineering vectors residual0C at1e-14; annualmean differs0.027986C. No attribution or forcing/control ensemble acquisition.",
+      "coverage": "Original1000/1001 unchanged.8 supplemental fields added: public1331/1332,expanded1492/1493,1711definitions. No original closure.",
+      "initial_failures": "533/536: stale census and old51leaf assertion. Exact new supplemental fields reconciled, strict gates preserved; final537TS pass.",
+      "next": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance."
     }
   },
   "prior_native_fleet_increment": {
@@ -1185,7 +1214,7 @@
     "scope": "Code only; no data/scientific activation. Subsequent documentation and local callback receipt distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T09:24:03.772777+00:00",
+  "updated_at": "2026-11-11T09:53:03.090383+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -17929,7 +17958,7 @@
             "server/calculation/emissionsInputs.ts",
             "script/driver-evidence.test.ts"
           ],
-          "behaviour_delivered_this_run": "Registry classifies candidate mechanism/validation/context and sets centralModelEligible=false for all22. Native diagnostic explicitly uses capacity/sales as mechanism-input and context indicators do not automatically move that candidate; optional legacy engine still consumes some context quantities.",
+          "behaviour_delivered_this_run": "Canonical role vocabulary plus every bound scenario dependency admission; unsigned joint registry/inventory refuses central generation.22curated+10retained central refusals preserved. No accepted real central forecast.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -18022,6 +18051,26 @@
               "worktree_dirty": true,
               "scope": "Focused self-contained engineering checks only; no final fullsuite, unchanged replay, release or scientific acceptance",
               "log_inspected": true
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T09:50:31.900106+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 125.112,
+              "counts": {
+                "tests": 537,
+                "pass": 537,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T095031900106Z.log",
+              "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -18041,7 +18090,7 @@
           "remaining_gaps": [
             "Role schemas differ candidate-mechanism-input vs native mechanism-input; optional legacy context references are not an accepted role-governed forecast."
           ],
-          "next_action": "Unify role vocabulary/admission and test each accepted forecast dependency against mechanism-role eligibility before central promotion.",
+          "next_action": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance.",
           "blockers": [],
           "prior_reconciliation": [
             {
@@ -18181,6 +18230,144 @@
               "ci": "42806902864 validate/promote success",
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
+            }
+          },
+          "admission_nee_alpha1_evidence": {
+            "file": "docs/s03-002-role-admission-evidence.json",
+            "sha256": "a14985ba33c4f52840736934fc57e44b63d678666e5b1fe9f381c91f543acdbf",
+            "details": {
+              "requirement": "ORIGINAL S03-002",
+              "scope": "Ready engineering: canonical roles and fail-closed native/Stage5 admission; not scientific acceptance",
+              "verifiedAtUtc": "2026-11-11T09:34:53Z",
+              "sourceFreeze": {
+                "meaning": "Exact local source content tested; not a commit, deployment or full-repository freeze",
+                "sha256": {
+                  "shared/driverAdmission.ts": "e0758ef85f7189592aa10058c90d22d3145b42bba3aa549dcb2b60ac3bb53159",
+                  "server/calculation/driverEvidence.ts": "640c8802043863a7c8f7020e8c44862a110bd580b059c7c578a6c6b3fdb7d5d1",
+                  "server/calculation/driverConsumptionTrace.ts": "8a1795bf268d788d35c43b2e74ed6b66855a1285f84d84f57d248c89512b7c59",
+                  "server/calculation/driverParameterRegistry.ts": "178276bd63c6b5766fb0060408babce552985624aeba5a7954436f2a34a43ebb",
+                  "server/calculation/emissionsInputs.ts": "699c169d7f049a794210c4ba205d068f9557917acd240774756799d4add2f6b8",
+                  "server/calculation/emissionsCandidate.ts": "ee32c46b57ffadf90a55addd1e7239c9c16d788a02696a1980bf3b67dd578cb1",
+                  "server/calculation/regionalEngine.ts": "a030163eee28cebf2804151c483089ab1244d37d73b204cb3fff18eb4970c63a",
+                  "script/run-regional-ensemble.ts": "5af3c68aba8f5ce2a31fde64e72bb411618fdb0fb37b786fbc5d9468c02ea0b3",
+                  "shared/nativeOutputSemantics.ts": "fcdbbf5e263294349cebb8749d5756a7d8e04b028b4f4bc7e45bfee5b8d1f107",
+                  "shared/researchFieldSemantics.ts": "bf992589a2cba106a7738c71992098d102247c66f34898c4f16fe4a401ffc580",
+                  "script/driver-evidence.test.ts": "07490ea67c8d7edb89924de69f66c437f80780b515268df38a25eca94c3bb661",
+                  "script/driver-consumption.test.ts": "9a4c52963ffbed73eff7a392a2305ef0fb72c71d7ab0e7c4e83a0ffd50f379d4",
+                  "script/native-semantics.test.ts": "6596806923a4f57e1bde4a2d1c6db4d1dcb7fb79f3e8eb545d70bd867196b6e2",
+                  "script/validate-driver-retained-private.ts": "1b534fdee3f0cb49ca4a627c3de2b515363689a7314070ae6bbcf3ae5ab602a5"
+                }
+              },
+              "admissionCoverage": {
+                "canonicalRoles": [
+                  "mechanism-input",
+                  "level-anchor",
+                  "validation-target",
+                  "context",
+                  "candidate-leading-indicator"
+                ],
+                "curated": "driverEvidenceRegistry and resolveEmissionsInputs use curatedDriverRole identically: six candidate mechanisms, three validation targets, thirteen context entries; all 22 remain central-ineligible",
+                "compatibility": "legacyRole explicitly retains each API's previous labels. adaptLegacyDriverRole is opt-in and transfers no eligibility. assertParameterUse does not silently accept old role labels or absent roles",
+                "nativeDiagnostic": "resolveEmissionsInputs role-checks capacity and sales before their observation consumption. diagnosticConsumed is true only for capacity (2023 and 2024) and sales share (2024). Other candidate roles are not claims of actual equation use. Raw projectInventoryEmissions/projectNativeEmissions output explicitly disallows central consumption and production eligibility",
+                "registeredStage5": "consumeRegionalParameterRegistry binds every scenario leaf in every joint row, including fixed constants, booleans, nested sector pathways, measure scope/selectors and evidence text, to exact region/path evidence. Each binding requires canonical mechanism-input role, valid frozen windows/status, permitted central/sensitivity use, compatible geography, approved consumerPaths and retained source byte hashes. Rejected evidence cannot be rescued by an independent physical exception",
+                "defaults": "Registered scenarios require explicit nuclearGenerationTWh, eliminating the raw diagnostic engine's otherwise unbound zero default",
+                "distributionAndInventory": "assertRegionalDistributionUse requires code-pinned reviewed full-registry and exact native-inventory hashes before central sampling. The reviewed pin list is honestly empty. Individually eligible parameters and caller-supplied file hashes cannot sign off joint draws, dependence, selectors or inventory. No signing authority, approval receipt or eligible real registry is fabricated",
+                "legacy": "Preserved comparator equations and explicit legacy-diagnostic CLI remain separate, unregistered and not central-admitted"
+              },
+              "verification": {
+                "command": "npx tsx --test script/driver-evidence.test.ts script/driver-consumption.test.ts script/emissions-candidate.test.ts script/regional-engine.test.ts script/native-semantics.test.ts script/remaining-field-semantics.test.ts script/validate-driver-retained-private.ts",
+                "tests": 44,
+                "pass": 44,
+                "fail": 0,
+                "skip": 0,
+                "privateAssertions": "Four mandatory retained-source tests remain required, unmodified and passed: ten real paired sensitivity distributions (1000 paired draws each), deterministic actual consumption, pinned CLI provenance and 32 central CLI refusals (ten real distributions plus all 22 curated drivers)",
+                "publicCoverage": "Every top-level native dependency is individually denied context-role admission; nested pathway and measure bindings reject context/validation/rejected evidence; eligible individual synthetic parameters still cannot admit unsigned distribution/inventory; all unused curated observations independently leave native diagnostic trajectory unchanged; role aliases confer no eligibility; missing bindings, incompatible scopes, source tampering and implicit nuclear default reject",
+                "additionalChecks": [
+                  "npx tsc --noEmit passed",
+                  "git diff --check passed"
+                ],
+                "executionBoundary": "Code-only tests and read-only verification of retained source/report bytes; no collectors, downloads, frozen-negative study refits or scientific reruns"
+              },
+              "censusContractFollowup": {
+                "scope": "Parent-reported integrated failures repaired with exact supplementary role/admission assertions; no full-suite rerun",
+                "command": "npx tsx --test script/research-field-semantics.test.ts script/native-semantics.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts",
+                "pass": 23,
+                "fail": 0,
+                "skip": 0,
+                "censusRegeneration": "npx tsx script/field-semantics-census.ts; affected checks confirm regenerated census is current",
+                "sha256": {
+                  "script/research-field-semantics.test.ts": "69d9d160f0cc48ef501c0f51ce995a758781a219a3ce4599c25de1bec833f35f",
+                  "script/next-census-accounting.test.ts": "a63a661733dbd4ed8237fff163b956744c6b389bbf64cad106a657539f1bfd29",
+                  "docs/field_semantics_census.json": "4fc8a73daf1de58e97974cb52fbbcf02f4c0ffa797bc4f80d231436d2f1c59a4",
+                  "docs/field_semantics_original_cohort.json": "646e9c341badfc5e218736a01809c5d69be9fb5f80a223b339e75205d84aea57"
+                },
+                "newFields": {
+                  "driverRegistry": [
+                    "indicators[].legacyRole",
+                    "indicators[].admission"
+                  ],
+                  "nativeCandidate": [
+                    "result.use",
+                    "result.productionEligible",
+                    "result.centralConsumptionAllowed",
+                    "inputs.indicators[].legacyRole",
+                    "inputs.indicators[].diagnosticConsumed",
+                    "inputs.indicators[].centralModelEligible"
+                  ]
+                },
+                "denominators": {
+                  "driverRegistryLeaves": [
+                    51,
+                    53
+                  ],
+                  "nativeCandidateLeaves": [
+                    213,
+                    219
+                  ],
+                  "definitions": [
+                    1703,
+                    1711
+                  ],
+                  "typedInventorySlotsIncludingWithheld": [
+                    1351,
+                    1359
+                  ],
+                  "publicSlots": [
+                    1324,
+                    1332
+                  ],
+                  "boundPublicSlots": [
+                    1323,
+                    1331
+                  ],
+                  "supplementalPublicDeltaFromOriginal": [
+                    323,
+                    331
+                  ],
+                  "expandedApiAndDownloadPublicSlots": [
+                    1485,
+                    1493
+                  ],
+                  "expandedApiAndDownloadBoundSlots": [
+                    1484,
+                    1492
+                  ],
+                  "expandedPublicDeltaFromOriginal": [
+                    484,
+                    492
+                  ]
+                },
+                "originalCohort": "Byte-identical frozen cohort: 1001 public slots, 1000 bound, 571/572 original gaps closed, one unresolved summary slot, 27 withheld slots; no missing/removed original identities. Exact slot fingerprint remains 34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+                "privateBoundary": "Source-private tests unchanged; prior four-test mandatory receipt retained, not rerun for this contract-only followup"
+              },
+              "unmetGates": [
+                "No reviewed/pinned real six-region central joint distribution and inventory acceptance exists; central native Stage5 remains blocked",
+                "No accepted source-compatible curated-to-native parameter mapping exists; all 22 curated central refusals remain",
+                "Retained adoption generation-share distributions are still sensitivity-only, not native capacity, EV, policy, emissions or calibrated climate parameters",
+                "Source-specific publication vintages, applicability, uncertainty, independent scientific acceptance, climate-response and convergence gates are not closed by role engineering",
+                "There is no actual accepted own forecast whose numerical invariance can be empirically certified; tests prove fail-closed admission before generation and diagnostic non-consumption, not scientific forecast acceptance"
+              ],
+              "excluded": "No canonical ledger/matrix edits, commits, deployment, callbacks or fabricated eligibility"
             }
           }
         },
@@ -69182,7 +69369,7 @@
             "script/igcc_observation_operator.py",
             "script/validate_igcc_official_sources.py"
           ],
-          "behaviour_delivered_this_run": "176annual years1850-2025 ×200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
+          "behaviour_delivered_this_run": "Exact licensed alpha1 recovered; zero initial modes/full first-last steps/trapezoidal boundary output proved. Five engineering vectors residual0C at1e-14; annualmean differs0.027986C. No attribution or forcing/control ensemble acquisition.",
           "inputs_versions_assumptions": {
             "schemaVersion": 1,
             "criterion": "S07-008",
@@ -70468,6 +70655,26 @@
               "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T09:50:31.900106+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 125.112,
+              "counts": {
+                "tests": 537,
+                "pass": 537,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T095031900106Z.log",
+              "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -70915,7 +71122,7 @@
             "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null.",
             "Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025."
           ],
-          "next_action": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work.",
+          "next_action": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance.",
           "blockers": [],
           "stage": 7,
           "stageName": "Climate response and the four headline measures",
@@ -73464,7 +73671,232 @@
                 }
               }
             }
-          ]
+          ],
+          "admission_nee_alpha1_evidence": {
+            "file": "docs/igcc-alpha1-proof-evidence.json",
+            "sha256": "ffaa19ae12c31751ee193896e98992c1494b1902db47b1f7a58398e0e235fb4c",
+            "details": {
+              "schemaVersion": 1,
+              "criterion": "S07-008",
+              "status": "exact-clean-download-alpha1-source-initialization-and-trapezoidal-output-contract-proved; actual-ensemble-and-control-qualification-still-blocked",
+              "freezes": {
+                "sourceProtocol": "docs/igcc-alpha1-proof-protocol.json",
+                "sourceProtocolSHA256": "5f46de8560221e75fab44169ad2961e4cacb4547a7e6bf3378dec1f4b854b5c1",
+                "operationalFreeze": "docs/igcc-alpha1-timing-operational-freeze.json",
+                "operationalFreezeSHA256": "7ccfb6726faf4083496bd3b595e938b9ee4a94ffda5ed7e477d757c6c0d5ca80",
+                "operationalFreezeBeforeEngineeringResiduals": true,
+                "historicalScoring": false
+              },
+              "boundedAcquisition": {
+                "requests": 5,
+                "maximumAllowed": 6,
+                "allHTTP200": true,
+                "maximumBytesPerResource": 3000000,
+                "maximumSecondsPerResource": 45,
+                "paidCalls": 0,
+                "transportPattern": "curl --max-time 45 --max-filesize 3000000 -L -sS -D <headersPath> -o <bodyPath> -w '<name> HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+                "resources": [
+                  {
+                    "url": "https://api.github.com/repos/tristramwalsh/global-warming-index/git/trees/b18b5fc8731b5c966613cc6ac38c35be1ab8984a?recursive=1",
+                    "retrievalStartedUTC": "2026-11-11T09:31:54Z",
+                    "bytes": 222665,
+                    "path": "generated-artifacts/igcc-alpha1-proof/operative-tree.json",
+                    "sha256": "a1f02c6ccce6f9e751781ffc18bf7e8835b3183ed77fa27f9ef2d7cc81060a5e",
+                    "headersPath": "generated-artifacts/igcc-alpha1-proof/operative-tree.headers",
+                    "headersSHA256": "b6e31bc5792dcd562110b31c6630c9734a7af65449a7b0fa84572747fd4be967",
+                    "finding": "Exact operative revision,612 entries,truncated=false: no vendored alpha1 runner. This resolves the earlier uncertainty about using a later current-tree listing."
+                  },
+                  {
+                    "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/models/__init__.py",
+                    "retrievalStartedUTC": "2026-11-11T09:31:54Z",
+                    "bytes": 1305,
+                    "path": "generated-artifacts/igcc-alpha1-proof/models-init.py.source",
+                    "sha256": "51c614b6d0a120fcb49bd56c8a149077a6da052ad3af8adfb32536c4a8d38041",
+                    "headersPath": "generated-artifacts/igcc-alpha1-proof/models-init.headers",
+                    "headersSHA256": "63bf775d6976c8daf51ebca0e53b49f8d74a159eb525b3e2e0191d5224386282",
+                    "finding": "Explicit original dependency acquisition URL: https://zenodo.org/record/4774994/files/FaIRv2.0.0-alpha1.zip. Source renames the extracted package and attempts to remove progress wrappers. It was inspected, never imported or allowed to download implicitly."
+                  },
+                  {
+                    "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/environment_ouce-linux.yml",
+                    "retrievalStartedUTC": "2026-11-11T09:31:54Z",
+                    "bytes": 351,
+                    "path": "generated-artifacts/igcc-alpha1-proof/environment.yml",
+                    "sha256": "c23dfb8c706d5be75ebcdf82161ea59ecbcdf008a444547084a4c600a15e5623",
+                    "headersPath": "generated-artifacts/igcc-alpha1-proof/environment.headers",
+                    "headersSHA256": "22b8eb8a2698288f87c4f262e18f5aefdabfe603535d63fcdd23966384b82b19",
+                    "finding": "Original environment names Python3.9.16,NumExpr2.8.4 and other dependencies. This task does not install or substitute those packages in app/runtime."
+                  },
+                  {
+                    "url": "https://zenodo.org/api/records/4774994",
+                    "retrievalStartedUTC": "2026-11-11T09:32:04Z",
+                    "bytes": 4962,
+                    "path": "generated-artifacts/igcc-alpha1-proof/zenodo-metadata.json",
+                    "sha256": "5e151afe33ddb5b5bb55064f20b498a143fd8be5317cddf38545d8e567144f28",
+                    "headersPath": "generated-artifacts/igcc-alpha1-proof/zenodo-metadata.headers",
+                    "headersSHA256": "cac360dd900df86473f5f0d0569641501a83326d8d4f72c5c8ef2415c5c08456",
+                    "finding": "Specific open model-code archive rights verified before archive acquisition: license apache2.0,version2.0.0-alpha1,publication_date2021-05-20,doi10.5281/zenodo.4774994; exact filename,size234679 and checksum supplied."
+                  },
+                  {
+                    "url": "https://zenodo.org/api/records/4774994/files/FaIRv2.0.0-alpha1.zip/content",
+                    "retrievalStartedUTC": "2026-11-11T09:32:10Z",
+                    "bytes": 234679,
+                    "path": "generated-artifacts/igcc-alpha1-proof/FaIRv2.0.0-alpha1.zip",
+                    "sha256": "8fef0d4651d81faa54137c54ebeea375b4ede16adf745f3351346d98a81a58ce",
+                    "publisherMD5": "364fd2a279765eaffec983d496fcb8cd",
+                    "publisherMD5AndSizeMatch": true,
+                    "headersPath": "generated-artifacts/igcc-alpha1-proof/alpha1-archive.headers",
+                    "headersSHA256": "d91d7bc580febf95c0e6fad6b1170678ca7bdab19c08a8f7b3a478509838308a",
+                    "finding": "Exactly named original publisher code archive, downloaded only after specific record rights verification. No forcing/control climate-model output downloaded."
+                  }
+                ],
+                "rightsQualification": "Archive LICENSE is Apache2.0; runner header independently states CC-BY4.0 and credits Nick Leach and Stuart Jenkins2021. Both permissive notices remain intact in private source archive; discrepancy is not erased, and no rights are extended to forcing/control ensembles. Cite Leach et al.,doi10.5281/zenodo.4774994 and source paper doi10.5194/gmd-2020-390.",
+                "vintageQualification": "Publisher record explicitly provides2021-05-20 publication date and version; retrieval dates/hashes are distinct. Exact archive source is linked by operative2025 GWI code. This does not certify what dependency bytes existed in every historical author HPC working directory."
+              },
+              "recoveredSourceContract": {
+                "runnerArchiveMember": "FaIRv2.0.0-alpha1/fair/fair_runner.py",
+                "runnerSHA256": "098c29699593c2a7831ea26a7874ac554d2b88845ef25dbece99b0f8b67d043d",
+                "runnerLicenseMemberSHA256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+                "operativeGWI_SHA256": "0fb7c34020f4f8ad9a03186ebcf42008f8d862baf4e4f61f7e9220045bcfb6a4",
+                "sourceLocations": [
+                  "alpha1 return_empty_emissions lines108-130 and return_empty_forcing lines133-155",
+                  "alpha1 step_temperature lines253-259",
+                  "alpha1 run_FaIR emissions-driven initial step,annual loop,timestep construction and T_out index",
+                  "operative GWI GWI_faster zero emissions,external forcing and thermal parameters invocation"
+                ],
+                "stateEquation": "S_new=q*F*(1-exp(-dt/d))+S_old*exp(-dt/d)",
+                "returnedTemperatureEquation": "T=sum((S_old+S_new)/2,mode)",
+                "initialization": "S_old=0 immediately before first external-forcing interval; first1750 forcing receives full one-year step, not zero initial output and not a special half-step.",
+                "terminalInterval": "timestep appends last observed spacing; last2025 forcing receives its full one-year step. The source T_out index preserves input labels.",
+                "annualLabelInterpretation": "For integer annual input label y,the executed interval is y to y+1; returned value is the trapezoidal boundary-state average labelled y. Calling it an exact midpoint temperature or continuous annual integral would change the operator.",
+                "nativeModeHandling": "All passed thermal terms included through reshape(...,-1); dependency-ready adapter requires exactly the original three terms.",
+                "zeroEmissionsQualification": "Operative GWI uses source empty emissions and separately inserted external forcing. With zero emissions and zero initial gas perturbations,gas concentrations remain atPI and internal gas forcing remains zero. This proves a forced-response method,not an emissions-native historical simulation.",
+                "threeDistinctOperators": [
+                  "Recovered alpha1: half-sum of interval boundary states",
+                  "Sibling FTmod: midpoint-sampled impulse quadrature",
+                  "Exact continuous mean for interval-constant forcing"
+                ],
+                "priorMidpointVersusAnnualEvidenceSuperseded": false
+              },
+              "originalDownloaderPatchProof": {
+                "finding": "Original models/__init__.py opens runner r+,reads all text and writes the replaced text atEOF without seek/truncate. Clean first-download behavior therefore appends a modified second copy of the module.",
+                "emulatedPatchedRunnerSHA256": "c6c9345902794a93e63b500551eee98b6145d4f816c9c0c8c4637624a0dde246",
+                "progressWrappersReplacedInAppendedCopy": 2,
+                "stepTemperatureDefinitionsInPatchedModule": 2,
+                "activeAndOriginalThermalDefinitionASTEquality": "passed",
+                "patchSilentlyCorrected": false,
+                "implicitDownloaderExecuted": false,
+                "residualProvenanceCaveat": "The existing-directory branch skips both download and verification. This proof establishes the explicitly recovered clean-download source path,not arbitrary pre-existing directory contents or exact author production-runtime history."
+              },
+              "implementation": {
+                "module": "script/igcc_alpha1_timing_proof.py",
+                "moduleSHA256": "978df867449ce44c5267b4d3a19249ce6d452dfd8346499bad5146e961e8e5ef",
+                "tests": "script/test_igcc_alpha1_timing_proof.py",
+                "testsSHA256": "b32852c02a9e71431fe643955ddfe1d1838bc1a7e6ba31f381b46e97b73512c0",
+                "methods": [
+                  "Hash-qualified original GWI and alpha1 AST contract verification",
+                  "Source-faithful first-download patch emulation without importing publisher downloader",
+                  "Exact three source thermal expressions lowered from NumExpr AST to NumPy",
+                  "Independent three-mode alpha1_interval_bridge returning source endpoint-average convention",
+                  "Dependency-ready qualified_actual_forcing_bridge with exact actual LFS object pin,independent data rights,full annual/member/unit gates and original source q/d parameters"
+                ],
+                "futureActualForcingPin": "26ce5f1a21cc6ee163d361043c4a65830a73cc1aaa8dbec222b546f9ac11a850",
+                "futureForcingGate": "Only the exact operative aggregate forcing object,full1750-2025 year coordinate,unique original ensemble IDs,native wmghg/natural/other_ant variables in W m-2 and compatible license confirmed both in source metadata and independent rights bytes. Merely labelling an arbitrary SSP file historical is rejected.",
+                "actualFingerprintOutputProduced": false,
+                "publicUnitTestsNeedPrivateArchives": false,
+                "numericBackendLimit": "Source thermal AST uses NumPy equivalents of the three fixed NumExpr expressions; no claim of NumExpr2.8.4 binary bitwise identity or full original gas-cycle/environment replay."
+              },
+              "engineeringChecks": {
+                "fixtureOnly": true,
+                "parameters": {
+                  "q": [
+                    0.2,
+                    0.3,
+                    0.4
+                  ],
+                  "dYears": [
+                    0.5,
+                    5,
+                    50
+                  ]
+                },
+                "yearsPerVector": 8,
+                "frozenToleranceC": 1e-14,
+                "relativeTolerance": 0,
+                "scientificAcceptanceThreshold": null,
+                "sourceExpressionVsIndependentBridgeMaxAbsAcrossAllFiveCasesC": 0.0,
+                "sourceExpressionVsIndependentBoundaryStateArrays": "all passed atol1e-14,rtol0",
+                "cases": [
+                  {
+                    "case": "zero",
+                    "sourceVsExactAnnualMeanMaxAbsC": 0.0,
+                    "sourceVsSiblingMidpointMaxAbsC": 0.0
+                  },
+                  {
+                    "case": "constant",
+                    "sourceVsExactAnnualMeanMaxAbsC": 0.027986000022449706,
+                    "sourceVsSiblingMidpointMaxAbsC": 0.09174529616743744
+                  },
+                  {
+                    "case": "first_impulse",
+                    "sourceVsExactAnnualMeanMaxAbsC": 0.027986000022449706,
+                    "sourceVsSiblingMidpointMaxAbsC": 0.09174529616743744
+                  },
+                  {
+                    "case": "last_impulse",
+                    "sourceVsExactAnnualMeanMaxAbsC": 0.027986000022449706,
+                    "sourceVsSiblingMidpointMaxAbsC": 0.09174529616743744
+                  },
+                  {
+                    "case": "alternating_signed",
+                    "sourceVsExactAnnualMeanMaxAbsC": 0.05155437356044936,
+                    "sourceVsSiblingMidpointMaxAbsC": 0.1750803526863168
+                  }
+                ],
+                "fullStepEndpointCheck": "First-interval unit impulse returns0.1176171240532904°C; identical terminal-only impulse returns0 until last label,then exactly0.1176171240532904°C. These are engineering fixtures,not predicted warming.",
+                "precision": "Digits document deterministic source arithmetic,not climate accuracy."
+              },
+              "execution": {
+                "testsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_igcc_alpha1_timing_proof -v",
+                "testsExitCode": 0,
+                "testsPassed": 7,
+                "testsFailed": 0,
+                "testsSkipped": 0,
+                "testsLog": "generated-artifacts/igcc-alpha1-proof/focused-tests.log",
+                "testsLogSHA256": "ea34637111d838088f7d44d6b9b470582004cc5f028fc4dfe7e57fd38a264a87",
+                "proofCommand": ".pythonlibs/bin/python script/igcc_alpha1_timing_proof.py",
+                "proofExitCode": 0,
+                "proofCompletedUTC": "2026-11-11T09:35:43.984834+00:00",
+                "proofLog": "generated-artifacts/igcc-alpha1-proof/proof-execution.log",
+                "proofLogSHA256": "28ff2daed6131b83be4b997c27546ed0e20dd7c0aae493a39ad73556fe635311",
+                "result": "generated-artifacts/igcc-alpha1-proof/alpha1-source-proof-result.json",
+                "resultSHA256": "6ed4c2bb3c438b522f8208024f01f360338389db184c1f3f24027a51adbf73cf"
+              },
+              "scientificDecision": {
+                "newGapClosed": "Previously missing operative alpha1 dependency is now recovered from its explicit original publisher source with verified rights,checksum,initialization and exact returned-temperature convention. A source-faithful dependency-ready forced-response adapter is implemented.",
+                "stillNotClosed": [
+                  "Data-specific permitted-use evidence and full actual joint GHG/Nat/OHF forcing ensemble bytes are still missing; no actual fingerprint members produced",
+                  "Actual model-specific control permissions,source bytes,retraction/citation review and qualified slices remain missing",
+                  "Complete boundary-reconciled native species histories through2025 remain missing",
+                  "NumExpr binary/full original-environment execution and exact deployed author-working-directory provenance are not certified"
+                ],
+                "noGSATConversion": true,
+                "noHistoricalAttributionClaim": true,
+                "headlineScoring": false,
+                "shareMembersInRange": null,
+                "centralEligible": false
+              },
+              "preservation": {
+                "GMST176x200Rerun": false,
+                "thermal84ComparisonsRerun": false,
+                "priorObservationArtifactAnd84ComparisonReceiptHashes": "checked unchanged",
+                "canonicalLedgersEditedByThisTask": false,
+                "existingFrozenProtocolsEditedByThisTask": false,
+                "appRuntimeAuthCollectorChangedByThisTask": false,
+                "packagesInstalledByThisTask": false,
+                "commitsPublicationCallbacks": false
+              }
+            }
+          }
         },
         {
           "id": "S07-009",
@@ -103728,7 +104160,7 @@
             "script/xom-climate-liability-case.test.ts",
             "script/capture-xom-climate-liability-sources.ts"
           ],
-          "behaviour_delivered_this_run": "48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified.",
+          "behaviour_delivered_this_run": "24conditional paths/384cash/768capitalrows. Historical DMI2.257bn/payment740m; cash including DMI2.183bn versus negative74m without. FPL3.7bn dividend less3.4bn contribution=300m netparent cash. Conditional terminals2.499–3.986bn,values10.567–26.668bn;48negative annual funding rows. No root/qualified original case;0/3.",
           "inputs_versions_assumptions": {
             "schemaVersion": "issuer-analytics-evidence-proposal-1",
             "purpose": "Bounded parent-review proposal, not acceptance, identity approval, production data, or a central-ledger update",
@@ -105363,6 +105795,26 @@
               "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T09:50:31.900106+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 125.112,
+              "counts": {
+                "tests": 537,
+                "pass": 537,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T095031900106Z.log",
+              "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -105742,7 +106194,7 @@
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
             "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
           ],
-          "next_action": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work.",
+          "next_action": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -109826,7 +110278,240 @@
                 "readyNextEngineeringBlock": "If continuing FSLR, source the disclosed product/backlog pricing and customer-advance contract schedule into a separately frozen ASP/working-funding stress rather than searching for a coefficient that matches equity. Or choose an eligible alternative with positive actual base FCFE if original CAGR pairing remains mandatory. Do not change this study or original v4 bounds; current module is complete and does not wait on future observations or owner approval."
               }
             }
-          ]
+          ],
+          "admission_nee_alpha1_evidence": {
+            "file": "docs/nee-project-cash-waterfall-evidence.json",
+            "sha256": "275bc8b22f1ce5d98f05e254e85e15037522583477ead2b29f3a6cd87de4cff0",
+            "details": {
+              "version": "nee-component-cash-waterfall-1-funding-guard",
+              "status": "implemented-and-privately-validated-conditional-not-qualified",
+              "technicalQualifiedOriginalIssuers": 0,
+              "qualifiedOriginalPairs": 0,
+              "scope": "New NEE source-bound component cash/funding experiment only. No canonical ledgers/routes/semantics edited. Original FY2024/private FSLR10cases50rows, v3/v4 negative studies, FSLR48 and XOM24 were read/hashed only, never rerun or retuned. No commit, deployment, callback, approval, purchases, paid calls, auth, production/DDL/collector changes.",
+              "files": [
+                "server/calculation/neeProjectCashWaterfall.ts",
+                "script/run-nee-project-cash-waterfall.ts",
+                "script/nee-project-cash-waterfall.test.ts",
+                "script/validate-nee-project-cash-waterfall-private.ts",
+                "docs/nee-project-cash-waterfall-evidence.json"
+              ],
+              "reviewedLatestContext": [
+                "docs/workplan_completion_ledger.json S12-001 remains partial: operating-production/sales geography, not unflagged headquarters fallback",
+                "docs/issuer-analytics-evidence.json v3/v4 NEE source-budget/EPS-proxy and missing non-common/activity-driver caveats",
+                "docs/fslr-paid-spare-capacity-evidence.json completed disjoint FSLR48; not rerun",
+                "docs/xom-climate-liability-evidence.json completed disjoint XOM24; not rerun"
+              ],
+              "sourceAttempts": {
+                "networkRequests": 0,
+                "providerRequests": 0,
+                "retainedPrimary": "FY2024 NEE/FPL 10-K, accession 0000753308-25-000011",
+                "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000011/nee-20241231.htm",
+                "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/NEE-primary.html",
+                "sha256": "2a4b8e20c5fe08227924b6af664413bb19db948ff4a25f3171fd84797fa74a83",
+                "availableAt": "2025-02-14T19:23:43.000Z",
+                "sectionsExamined": [
+                  "Business NEER pp14-15 and FPL pp5-7",
+                  "Consolidated cash flows pp64/68",
+                  "Consolidated equity pp65/69",
+                  "Note1 HLBV/redeemable NCI pp78-79",
+                  "Note7 PP&E",
+                  "Note15 commitments p108",
+                  "Note16 segments pp110-113"
+                ],
+                "bindingCount": 57,
+                "bindingCountCaveat": "This is 57 authenticated current bindings, overlapping retained166; NOT 57 newly disjoint facts or a revised canonical fact count.",
+                "boundedAttemptResult": "Retained authenticated annual, existing reconciliation/funding packet and current evidence reviewed. No additional network search was needed for dependency-ready cash-return/funding calculation. No standalone project LLC distribution schedules or country cash returns asserted located.",
+                "preciseResidual": "FY2024 other-financing NET -$597m (prior years -$653m/-$440m) does not identify gross non-DMI distributions and offsetting contributions. Note1 LLC project cash/tax priorities, flip dates and call prices are not supplied as a consolidated annual contract waterfall; equity reclassification/disposal rows are not cash distributions."
+              },
+              "engineeringDecision": "Calculate authenticated historical gross financing and FPL-parent contribution/dividend bridges; independently rebuild whole-issuer cash using FPL and non-FPL residual operating cash returns on paid capital-equivalent stock, full replacement/nuclear fuel/working funding, and explicit conditional non-common reserves. Do not convert HLBV allocations into cash, impose FPL ROE on NEER, use EPS as physical growth or fit a cash yield to market price.",
+              "sourceLocators": {
+                "neeCashReturns": "c-1 consolidated FY2024: CFO f-365 $13.260bn; cash interest f-446 $2.737bn; signed cash tax f-449 -$760m; current/noncurrent asset concepts f-353/f-356; liability concepts f-359/f-362; cost-recovery f-335 and storm f-347; affiliate cash f-341 $811m. Asset-increase concept signs are reversed to actual cash directions.",
+                "fplCashReturns": "c-2 FPL legal-entity segment FY2024: CFO f-757 $8.506bn; cash interest f-817 $1.143bn; cash tax f-820 $640m; WC f-745/f-748/f-751/f-754; cost-recovery f-733 and storm f-739. c-63 instant FPL net PP&E f-651 $76.166bn; consolidated c-13 net PP&E $138.852bn.",
+                "grossDmi": "c-1 f-404 +$2.257bn proceeds, f-407 -$740m payments. Note1 DMI carrying $8.857bn opening/$9.062bn closing and $1.329bn HLBV earnings allocation are distinct noncash items.",
+                "parentFplCash": "c-2 f-796 $3.400bn contribution FROM NEE and f-799 $3.700bn dividend TO NEE. Do not use gross subsidiary dividend as incremental consolidated/common cash.",
+                "unknownOtherCash": "c-1 f-428 -$597m; c-11 f-429 -$653m; c-12 f-430 -$440m. Largest annual NET outflow is $653m, not identified gross other-NCI distributions.",
+                "capitalAndFuel": "Note7 net PP&E includes nuclear fuel; cash fuel c-1 f-374 $399m, FPL c-2 f-763 $222m; nuclear-fuel-AND-OTHER amortization c-1 f-320 $299m/FPL c-2 f-727 $172m. No pure nuclear-fuel net-stock or standalone nuclear maintenance series invented.",
+                "approvedBudgets": "Note15 approved accrual 2025-29 FPL $8.425/10.520/9.905/10.170/10.585bn; NEER $11.045/7.485/3.840/1.470/1.195bn. AFUDC FPL $195/250/255/285/300m and NEER $10/10/20/10/10m. All disclosed AFUDC is separately cash-provisioned, not certified all equity/noncash.",
+                "activityGeographyPolicy": "Business NEER: net generation 32,890MW across41 US states and520MW across4 Canadian provinces; wind operated26,335MW including NCI/JV versus net ownership20,977MW. FPL regulated retail primarily Florida, not HQ allocation. Note15 approved new/repowered wind2,228MW, solar including storage8,205MW, primarily storage4,265MW. Categories are not additive energy production or eligible-US common-cash shares. Business p15 PTC production first-ten-years and labour/enhancement conditions; Note1 credit sales c-1 f-1099 $1.304bn are included in cash tax."
+              },
+              "computedHistoricalWaterfallsUsd": {
+                "neeFinancing": 7000000000,
+                "fplFinancing": -61000000,
+                "allFourFinancingAndCashReconciliationResiduals": 0,
+                "fplGrossDividendToParent": 3700000000,
+                "parentGrossContributionToFpl": 3400000000,
+                "netCashToParent": 300000000,
+                "fplCashBeforeParentTransfers": 361000000,
+                "fplCashChangeAfterParentTransfers": 61000000,
+                "consolidatedBeforeCommonIssuanceAndDividends": 2183000000,
+                "sameWaterfallWithoutNewDmiProceeds": -74000000,
+                "grossOtherNoncommonInflow": null,
+                "grossOtherNoncommonOutflow": null,
+                "dmiBookRollResidualNotCash": 17000000,
+                "caveat": "Historical gross financing reconciliation is NOT a replacement for retained $169m selected historical common-FCFE base. It includes actual disposals, DMI funding, related-party flows, taxes and WC; no claim that $2.183bn was sustainable common FCFE."
+              },
+              "sourceCashReturnNormalizationUsd": {
+                "consolidatedBeforeInterestTaxWcExceptionalClausesAndAffiliateCash": 13926000000,
+                "fpl": 9912000000,
+                "nonFplResidual": 4014000000,
+                "fplCapitalDenominator": 76166000000,
+                "nonFplCapitalDenominator": 62686000000,
+                "normalization": "CFO + cash interest + SIGNED actual cash tax - cash-direction WC - cost-recovery cash effect - signed storm cash effect - separately modeled affiliate cash. Actual tax includes renewable-credit transfers; adding it back removes historical credit cash ONCE. No additional subtraction of that historical transfer and no HLBV addback.",
+                "interpretation": "Observed mature-portfolio cash calibration only. Future yield on paid capital is a labelled condition, not disclosed NEER marginal project IRR, tariff, contract PPA price, energy growth, regulatory allowed ROE or issuer guidance."
+              },
+              "frozenConditions": {
+                "originalBasis": "FY2024 selected cash basis, USD whole-issuer common equity, actual retained 2025-01-31 price/shares/security, signed original2025 dated stub, first five annual steps2026-2030, ten-year fade2031-2040, terminal2041, g2.5/3.25/4%, original10% common discount sensitivity.",
+                "timing": "REVISED-HISTORY: FY2024 annual was available2025-02-14, AFTER retained2025-01-31 reference. No point-in-time availability or prospective historical signal claimed.",
+                "pathCount": "Six original stub/g combinations x two operating-cash-return treatments x two future policy treatments =24 complete paths/384 future rows/24 terminal rows. There are12 distinct future cash paths; original source-conditioned versus constraint labels now distinguish retained stub ONLY, not new EPS-driven operations.",
+                "operatingCash": "Source-calibrated component cash yield on opening funded capital, versus withholding above-nominal incremental-capital returns until approved2025-2029 programme completion2030. No future commissioning observation or guaranteed constant marginal productivity claimed.",
+                "replacement": "At least fixed D&A + nuclear-and-other amortization + nominal g times opening paid capital in TOTAL capital cash. Fuel is within that total, not added twice. Max with approved net-AFUDC investment programme. Explicitly charge further unapproved cash requirements, not assert approved budgets cover all future maintenance/growth.",
+                "fuelBook": "NEW paid-capital-equivalent opening2026 includes $103.25m source-anchored cash-fuel-less-nuclear-and-other-amortization correction to old fixed-only forecast book proxy. Original2025 cash stub and debt unchanged; any leverage/reserve catch-up occurs2026. This is not a historical GAAP restatement or a claimed pure fuel net carrying amount.",
+                "afudcCashGuard": "All source AFUDC held in zero-return, non-distributable cash reserve because cash-versus-equity split is not certified. Initial2026 reserve $471.6625m includes protected2025 legacy maximum plus2026 budget; grows to $1.426913334bn in2029. Reserve indexed thereafter and NEVER released, financing neither operations nor dividends.",
+                "financing": "Retain source effective carrying leverage, source cash interest/debt and paired gross maturity rollovers. No future DMI/other-NCI proceeds, disposals, common issuance or related-party cash funding. Full negative annual common-owner contributions remain negative cash in PV; not guaranteed subscriptions.",
+                "noncommon": "Gross DMI payment reserve $740m indexed plus full three-year maximum NET other-financing reserve $653m indexed. Neither is certified perpetual contractual distribution. Unknown offsetting other-financing inflow is null, not observed zero. Conditional floor books no extra hidden gross claim, and separately solves analytical indexed-claim headrooms.",
+                "policy": "Conditional aggregate renewable transfer cash at no more than historical$1.304bn nominal through2029, uniform ten-year runoff to zero2039; paired zero-all-future-policy-cash path. No country/MW allocation, extra new-cohort/nuclear credit, carbon price, or terminal policy perpetuity. FY2024-law description is not current post2025/FEOC certification.",
+                "tax": "21% positive cash-taxable-profit sensitivity after capital amortization/interest, with affiliate cash once; NOT a US/Canada jurisdictional forecast. Tax benefit realizability is not promised.",
+                "cash": "Fund AR/inventory/other operating-current balances/payables/minimum cash as capital-linked funding targets; preserve original opening2026 stocks, pay regime catch-up in2026. No initial excess-cash release, second debt subtraction, terminal reserve windfall or unpriced equity-company accrual added.",
+                "growthInterpretation": "Actual retained positive$169m historical common-FCFE is used for computed year-five CAGR. Result68.62%-83.09% is recovery from a very small funding residual, NOT activity growth, project IRR or management forecast. No reverse, operating-driver root or uniqueness certification performed."
+              },
+              "freeze": {
+                "frozenAt": "2026-11-11T09:42:31.902Z",
+                "calculatedAt": "2026-11-11T09:42:31.934Z",
+                "path": "generated-artifacts/company-operating-corpus/nee-project-cash-waterfall-v1/2026-11-11T09-42-31-902Z/frozen-before-calculation.json",
+                "sha256": "0f5e34afb6d137553b3ed40cf8be92861bd286ec715e359ce5dd5373105e91e5",
+                "reportPath": "generated-artifacts/company-operating-corpus/nee-project-cash-waterfall-v1/2026-11-11T09-42-31-902Z/report.json",
+                "reportSha256": "58a83fc1cf0f0f59c7ba23dcd4442e2333f9fcd062edf35869b88295aa5cd38a",
+                "protectedPriorFilesChecked": 143,
+                "prototypeDisclosure": "Earlier09-39-39 artifact is retained but NOT final/accepted: independent private check caught a manually expected FPL normalization arithmetic error ($9.896bn versus correct$9.912bn; production calculation already used source facts). Independent check corrected, and separate AFUDC funding guard was frozen before its calculation. No source-yield coefficient or market target was retuned."
+              },
+              "outcomes": {
+                "fullNewCases": 24,
+                "futureCashRows": 384,
+                "componentCapitalRows": 768,
+                "terminalRows": 24,
+                "positiveConditionalFloorTerminals": 24,
+                "positiveConditionalFloorValues": 24,
+                "negativeAnnualCommonFundingRows": 48,
+                "terminalFcfeUsdRange": [
+                  2498557663.4440136,
+                  3986388403.395976
+                ],
+                "conditionalWholeValueUsdRange": [
+                  10566809312.021917,
+                  26668169942.798264
+                ],
+                "totalFutureCommonCallsUsdRange": [
+                  396597647.7790909,
+                  6074356119.551088
+                ],
+                "additionalCashCapitalAboveApprovedNetAfudcBudgets2026To2029": 11000351447.339924,
+                "additionalBudgetCashByYear": {
+                  "2026": 0,
+                  "2027": 1816609452.3344288,
+                  "2028": 4359799259.535298,
+                  "2029": 4823942735.470196
+                },
+                "sourceConditionedStubOpeningCapitalYieldExamples": [
+                  {
+                    "g": 0.025,
+                    "terminalFcfe": 3986388403.395976,
+                    "runoffPolicyValue": 26668169942.798264,
+                    "zeroFuturePolicyValue": 20233764479.573032
+                  },
+                  {
+                    "g": 0.0325,
+                    "terminalFcfe": 3275122562.609343,
+                    "runoffPolicyValue": 24515289202.809708,
+                    "zeroFuturePolicyValue": 18080883739.584488
+                  },
+                  {
+                    "g": 0.04,
+                    "terminalFcfe": 2498557663.4440136,
+                    "runoffPolicyValue": 21831701882.96396,
+                    "zeroFuturePolicyValue": 15397296419.738737
+                  }
+                ],
+                "unidentifiedAnnualGrossClaimTerminalHeadroom2024UsdRange": [
+                  1383911343.7914398,
+                  2426664902.604802
+                ],
+                "unidentifiedAnnualGrossClaimWholePlanHeadroom2024UsdRange": [
+                  679650567.7186902,
+                  1958734251.650346
+                ],
+                "headroomMeaning": "Exact hypothetical extra annual non-common cash claim indexed with model prices that exhausts terminal cash/whole-plan PV; NOT an observed contractual claim, finite source bound, equity price target or qualified reverse pair.",
+                "testedValueToRetainedEquityRange": [
+                  0.07178499892106992,
+                  0.18116864741684022
+                ],
+                "qualification": "0/3; all24 are explicit source-calibrated conditional floor calculations. Positive terminal cash and zero-policy positive floor value do not identify missing gross legal waterfalls or source marginal returns."
+              },
+              "validation": {
+                "publicCodeOnly": {
+                  "command": "npx tsx --test script/nee-project-cash-waterfall.test.ts",
+                  "passed": 6,
+                  "failed": 0,
+                  "skipped": 0,
+                  "privateFileDependencies": false,
+                  "logSha256": "e26df470b1fd99426e5817aaf4b0305512d86aa6a2dba668fee91b88670f3746"
+                },
+                "privateAssembly": {
+                  "command": "npx tsx script/run-nee-project-cash-waterfall.ts --private-primary",
+                  "exitCode": 0,
+                  "logSha256": "72ea4058241c6ae5794cbf94a2476393b43ac4cc28c94b96cd8e0a1c3f4ec727"
+                },
+                "mandatoryPrivate": {
+                  "command": "npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary",
+                  "exitCode": 0,
+                  "caseReplays": 24,
+                  "independentCashRows": 384,
+                  "independentComponentCapitalRows": 768,
+                  "fundedTerminalGrowthChecks": 24,
+                  "checks": "Primary/code/prior immutable hashes; four actual cash/financing identities zero residual; independent source cash normalization; fuel+amortization+replacement book; gross debt legs; tax/credit non-duplication; all AFUDC cash provision; original stub/opening reserve/debt; signed common calls; exact2041/2040 growth equals1+g; independent dated stub/explicit/tail PV and analytical unknown-claim headroom.",
+                  "logSha256": "1284eb274f0e59b89e65e79d4c092d7fc64e937155786be81257659c5ab9faee"
+                },
+                "strictTypecheck": {
+                  "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/neeProjectCashWaterfall.ts script/run-nee-project-cash-waterfall.ts script/nee-project-cash-waterfall.test.ts script/validate-nee-project-cash-waterfall-private.ts",
+                  "exitCode": 0,
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "es5SourceTypecheck": {
+                  "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/neeProjectCashWaterfall.ts",
+                  "exitCode": 0,
+                  "tsconfigRelaxed": false,
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "logDirectory": "generated-artifacts/company-operating-corpus/nee-project-cash-waterfall-v1/",
+                "privateArtifactsExported": false
+              },
+              "originalClauseProposalsForParentMergeOnly": [
+                {
+                  "clause": "S12-001",
+                  "proposedStatus": "partial",
+                  "evidence": "Source operating geography now explicit for NEE FPL versus NEER US/Canada and operated-versus-net capacity. No HQ/global-average allocation. New cash economic components, budgets and policy transfer cash remain separated; workbook-wide model-sector/geographic revenue and country cash-return weights not fabricated."
+                },
+                {
+                  "clause": "Original issuer common-cash/non-common waterfall",
+                  "proposedStatus": "substantive conditional engineering, not qualified",
+                  "evidence": "Actual gross DMI and FPL-parent cash reconcile; source operating cash model funds full nuclear/replacement/WC/AFUDC/debt; unknown other gross claims are explicit and analytically stressable. No book-NCI/HLBV substitute for cash."
+                },
+                {
+                  "clause": "Original positive nominal terminal and five-year plus fade/stub assessment",
+                  "proposedStatus": "new24-path conditional calculation executed, qualification0/3",
+                  "evidence": "All original2.5-4% terminals have source-calibrated funded positive floor cash and exact annual terminal growth, including zero-policy paths. Actual source project cash-return and full gross-NCI contractual distributions are not certified; no reverse pair or observed future return claimed."
+                }
+              ],
+              "narrowResiduals": [
+                "Note1 targeted-return/flip/call cash priorities and project-specific gross cash/tax distributions remain missing; current net-other financing cannot bound hidden gross offsetting inflows. This does NOT prevent the explicitly conditioned calculation already executed.",
+                "Cash return on future commissioned paid capital is source-calibrated, not issuer marginal guidance. FPL regulated rates and NEER mixed merchant/contracted cash need different project/cohort schedules; FPL ROE cannot fill the latter.",
+                "Note15 excludes not-yet-approved NEER developments; computed extra$11bn replacement/growth cash is conditional need beyond approved estimates, not evidence management has approved or failed to fund it.",
+                "AFUDC equity/debt split, nuclear-fuel-and-other amortization components, and PP&E versus equity-investment composition are not precise future schedules. Full cash reserve and capital-equivalent accounting are conservative explicit treatments, not invented observations.",
+                "US/Canada net MW do not identify revenue sales weights, common-owner cash share or project credit eligibility. Current post2025 law/FEOC remains unverified; aggregate cohort cash and zero-policy alternatives do not certify legal entitlement.",
+                "Historical dated price/shares reference is revised-history, not contemporaneous available-at calibration. No source yield was increased to produce a market pair; no reverse/uniqueness assessment performed."
+              ],
+              "readyNextEngineeringBlock": "Current source component/geography records and24 full funded paths are dependency-ready for parent integration without touching old scores. For a NEW experiment, replace the flat non-FPL marginal cash-yield condition with approved-capital commissioning cohorts and explicit distributions priority/call scenarios; test source-anchored lower cash productivity while rebuilding capital, tax, reserves and gross debt. Missing actual LLC dates/priorities must remain null unless a retained/public exhibit supplies them. Country-capacity shares must NOT become revenue/credit/common-cash weights."
+            }
+          }
         },
         {
           "id": "S12-002",
@@ -138799,6 +139484,46 @@
       "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T09:47:23.469996+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 77.785,
+      "counts": {
+        "tests": 536,
+        "pass": 533,
+        "fail": 3,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T094723469996Z.log",
+      "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T09:50:31.900106+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 125.112,
+      "counts": {
+        "tests": 537,
+        "pass": 537,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T095031900106Z.log",
+      "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -139066,13 +139791,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work. New525publicTS plus source-bridge Python and mandatory private FSLR checks passed. Do not rerun unchanged kernels. 48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified. 176annual years1850-2025 ×200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
+    "instruction": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance. Canonical role vocabulary plus every bound scenario dependency admission; unsigned joint registry/inventory refuses central generation.22curated+10retained central refusals preserved. No accepted real central forecast. 24conditional paths/384cash/768capitalrows. Historical DMI2.257bn/payment740m; cash including DMI2.183bn versus negative74m without. FPL3.7bn dividend less3.4bn contribution=300m netparent cash. Conditional terminals2.499–3.986bn,values10.567–26.668bn;48negative annual funding rows. No root/qualified original case;0/3. Exact licensed alpha1 recovered; zero initial modes/full first-last steps/trapezoidal boundary output proved. Five engineering vectors residual0C at1e-14; annualmean differs0.027986C. No attribution or forcing/control ensemble acquisition.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-calendar-liability-2d0a759",
+    "checkpoint_id": "ckpt-20261111-gmst-capacity-5ef7bce",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T08:56:09.960739+00:00",
+    "attempted_at": "2026-11-11T09:28:18.652768+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202

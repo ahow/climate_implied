@@ -14,13 +14,29 @@ test("all actual research and pinned reference leaves bind without numerical mod
   const original=JSON.stringify(response);
   const driver=bindNestedOutput("driverRegistry",response);
   assert.equal(response.indicators.length,22);
-  assert.equal(driver.length,51);
+  assert.equal(driver.length,53,"Previous51 plus explicit legacyRole and admission metadata");
   assert.equal(new Set(driver.map(f=>f.id)).size,driverFieldSpecs.length);
   assert.equal(JSON.stringify(response),original);
   const reference=bindNestedOutput("publishedReference",references);
   assert.equal(reference.length,28);
   assert.equal(reference.length,referenceFieldSpecs.length);
   assert.ok(response.indicators.every(row=>row.centralModelEligible===false && row.informationAvailableAt===null));
+  assert.ok(response.indicators.every(row=>row.admission==="not-admitted"));
+  for (const row of response.indicators) {
+    assert.equal(row.legacyRole,row.role==="mechanism-input"?"candidate-mechanism-input":row.role);
+  }
+  for (const field of ["indicators[].legacyRole","indicators[].admission"]) {
+    const spec=driverFieldSpecs.find(([path])=>path===field)!;
+    assert.ok(spec,`Exact role/admission definition required: ${field}`);
+    const semantic=requireOutputSemantic(`driverRegistry.${field}`);
+    assert.equal(semantic.meaning,spec[1]);
+    assert.equal(semantic.formula,spec[2]);
+    assert.equal(semantic.unit,spec[3]);
+    assert.ok(driver.some(d=>d.id===semantic.id));
+  }
+  assert.match(requireOutputSemantic("driverRegistry.indicators[].role").formula,/curatedDriverRole/);
+  assert.match(requireOutputSemantic("driverRegistry.indicators[].legacyRole").meaning,/compatibility/);
+  assert.match(requireOutputSemantic("driverRegistry.indicators[].admission").formula,/centralModelEligible remains false for all 22/);
   assert.match(requireOutputSemantic("publishedReference.scenarios[].emissions[].low").meaning,/NOT a probability/);
   assert.match(requireOutputSemantic("driverRegistry.indicators[].sourceProvenance.retainedInputHash").formula,/contentHash/);
   assert.throws(()=>bindNestedOutput("driverRegistry",{indicators:[{unreviewed:1}]}),/Unmapped/);
@@ -62,7 +78,7 @@ test("census counts exact response bindings and keeps explicit displays separate
   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(census.supplementalQualifiedChanges.companyCoverage.definitions,133);
   assert.equal(new Set(census.supplementalQualifiedChanges.companyCoverage.ids).size,133);
-  for(const [path,count] of [["/api/research/driver-registry",51],["/api/reference-scenarios",28],
+  for(const [path,count] of [["/api/research/driver-registry",53],["/api/reference-scenarios",28],
     ["/api/cv/summary",21],["/api/cv/dimensions",2]] as const) {
     const family=census.families.find((f:{surface:string})=>f.surface===`API GET "${path}"`);
     assert.equal(family.total,count);

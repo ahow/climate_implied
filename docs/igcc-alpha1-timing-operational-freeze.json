@@ -1,0 +1,26 @@
+{
+  "version": "igcc-alpha1-timing-operational-freeze-1",
+  "parentProtocolSHA256": "5f46de8560221e75fab44169ad2961e4cacb4547a7e6bf3378dec1f4b854b5c1",
+  "sourceFindingsBeforeNumericalProof": {
+    "originalGWIRevision": "b18b5fc8731b5c966613cc6ac38c35be1ab8984a",
+    "exactTagTree": "Complete612-entry non-truncated tree confirms no vendored alpha1; models/__init__.py supplies exact dependency URL.",
+    "dependency": "Zenodo4774994, FaIRv2.0.0-alpha1.zip, publication2021-05-20, record license apache2.0,234679bytes, publisher MD5364fd2a279765eaffec983d496fcb8cd verified before code use.",
+    "archiveSHA256": "8fef0d4651d81faa54137c54ebeea375b4ede16adf745f3351346d98a81a58ce",
+    "runnerSHA256": "098c29699593c2a7831ea26a7874ac554d2b88845ef25dbece99b0f8b67d043d",
+    "rightsSpecificity": "Archive LICENSE states Apache2.0 and runner header independently states CC-BY4.0 with authors Nick Leach and Stuart Jenkins2021. Preserve both notices, do not erase discrepancy or apply either to unrelated control/forcing datasets. Privately retained; no redistribution.",
+    "timing": "step_temperature advances mode states exactly under constant interval forcing, but returns sum((S_old+S_new)/2), a trapezoidal endpoint average. This is neither the sibling midpoint-impulse quadrature nor the exact continuous annual integral.",
+    "initialization": "Emissions-driven run_FaIR first invokes step_temperature with S_old=0 and timestep[0]. Every source year, including first and last, receives a full step. timestep appends the last observed spacing; T_out retains input labels.",
+    "sourcePatchCaveat": "GWI models/__init__.py opens runner r+, reads all, replaces progress wrappers and writes without seek/truncate. Therefore its first-download operation appends a modified second module, rather than overwriting the original. Active repeated thermal definitions remain mathematically identical; prove this, never silently fix the source."
+  },
+  "fixedProof": {
+    "scope": "Hash-qualified AST contract proof plus exact source step-temperature algebra and independent bridge on engineering zero/constant/first-impulse/last-impulse/alternating forcing vectors. No historical data trajectory or28-configuration ensemble replay.",
+    "sourceExecutionBoundary": "Do not import publisher models/__init__.py or full alpha1 module: it has implicit downloads and default-data side effects. Extract only the pinned thermal function AST and lower its three fixed NumExpr expressions to their NumPy equivalents; report arithmetic-backend limitation. Source control-flow timing and initialization separately verified from exact run_FaIR AST.",
+    "testParameters": "Engineering-only three-mode q=[0.2,0.3,0.4],d=[0.5,5,50] years;8 annual steps. Not climate-member calibration or actual GWI ensemble parameters.",
+    "sourceBridge": "S_new=q*F*(1-exp(-dt/d))+S_old*exp(-dt/d); T_return=sum((S_old+S_new)/2). Preserve source exp-subtraction arithmetic; do not silently substitute expm1 during replication.",
+    "timingComparison": "Retain source trapezoidal return, exact continuous interval integral and midpoint impulse quadrature as three distinct operators. Report residuals for engineering vectors only.",
+    "threshold": "Engineering source-expression/bridge agreement atol1e-14°C,rtol0, with exact initialization/label/term-count assertions. This is a numerical implementation check, not the original independent-reference scientific gate.",
+    "failureRule": "A contract/hash/shape/calendar/term-count failure rejects before returning source-qualified response. No promotion or target tuning.",
+    "sourceQualifications": "A future actual forcing caller must provide complete1750-2025 annual GHG/Nat/OHF values, original forcing identities, units and independently established data-specific rights; absence remains blocked. Engineering fixture mode is explicitly separately named."
+  },
+  "nonClaims": "No NumExpr binary-runtime bitwise equivalence, full gas-cycle execution, native emissions boundary acceptance, GMST conversion, historical attribution, headline scoring or member-share calculation."
+}

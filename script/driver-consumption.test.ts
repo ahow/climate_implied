@@ -18,7 +18,7 @@ import { driverEvidenceRegistry } from "../server/calculation/driverEvidence";
 const testSource = { path: "script/driver-consumption.test.ts",
   sha256: createHash("sha256").update(readFileSync("script/driver-consumption.test.ts")).digest("hex") };
 function failedEvidence(): ParameterEvidence {
-  return { id: "fixture-only", version: "test-1", status: "sensitivity-only", definition: "test-only failed fit",
+  return { id: "fixture-only", version: "test-1", role: "mechanism-input", status: "sensitivity-only", definition: "test-only failed fit",
     geography: "US", unit: "test unit", sources: [testSource],
     evaluation: { candidateMAE: 3, persistenceMAE: 2, linearMAE: 1, metricUnit: "test",
       trainingYears: [2010, 2018], evaluationYears: [2019, 2024], protocol: testSource } };
@@ -63,6 +63,61 @@ test("point winner requires acceptance, no holdout overlap or prior-as-calibrate
   assert.throws(() => assertParameterUse({ ...p, evaluation: { ...p.evaluation!, evaluationYears: [2018, 2024] } }, "sensitivity"), /frozen windows/);
   assert.throws(() => assertParameterUse({ ...p, evaluation: undefined, status: "prior" }, "central"), /Central consumption blocked/);
 });
+test("roles, rejected evidence and invalid uses cannot be promoted by status or a physical exception", () => {
+  const p = { ...failedEvidence(), status: "calibrated" as const,
+    evaluation: { ...failedEvidence().evaluation!, candidateMAE: .1 }, calibrationAcceptance: testSource };
+  for (const role of ["context", "validation-target", "level-anchor", "candidate-leading-indicator"]) {
+    for (const use of ["central", "sensitivity"] as const)
+      assert.throws(() => assertParameterUse({ ...p, role }, use), /mechanism-input role/);
+  }
+  for (const role of [undefined, "candidate-mechanism-input", "validation"])
+    assert.throws(() => assertParameterUse({ ...p, role }, "central"));
+  for (const use of ["central", "sensitivity"] as const)
+    assert.throws(() => assertParameterUse({ ...p, status: "rejected" }, use), /Rejected parameter/);
+  assert.throws(() => assertParameterUse(p, "unknown" as "central"));
+});
+test("every bound native parameter is role/use gated, including constants and nested measure scope", async () => {
+  const initial = fixture();
+  // Fail every top-level actual dependency, not just a representative coefficient.
+  for (const path of scenarioParameterLeaves(initial.registry.rows[0].scenarios[0].scenario)) {
+    const x = fixture();
+    const id = `not-mechanism:${path}`;
+    x.registry.evidence.push({ ...x.registry.evidence[0], id, role: "context", consumerPaths: [path] });
+    x.registry.bindings.find(b => b.region === REGIONS[0] && b.path === path)!.evidenceId = id;
+    await assert.rejects(consumeRegionalParameterRegistry(x), /mechanism-input role/);
+  }
+  for (const role of ["context", "validation-target", "rejected"] as const) {
+    const x = fixture();
+    const s = x.registry.rows[0].scenarios[0].scenario as Record<string, unknown>;
+    s.sectorPathways = { industry: { annualActivityGrowth: .02, residualIntensityImprovement: .01, trendEndYear: 2050 } };
+    s.measures = [{ id: "synthetic-only", mechanism: "process", sectorCodes: ["2.A.1"], gases: ["CO2"],
+      coverage: .2, implementation: .5, maximumReduction: .1, startYear: 2030, deliveryYears: 10,
+      evidence: "Synthetic engineering fixture; not scientific evidence" }];
+    const existing = new Set(x.registry.evidence[0].consumerPaths);
+    const paths = scenarioParameterLeaves(s).filter(p => !existing.has(p));
+    x.registry.evidence[0].consumerPaths.push(...paths);
+    x.registry.bindings.push(...paths.map(path => ({ region: REGIONS[0], path, evidenceId: REGIONS[0] })));
+    if (role === "rejected") x.registry.evidence[0].status = role;
+    else x.registry.evidence[0].role = role;
+    await assert.rejects(consumeRegionalParameterRegistry(x), /mechanism-input role|Rejected parameter/);
+  }
+});
+test("eligible individual parameters cannot sign off an unsigned native distribution or inventory", async () => {
+  const x = fixture();
+  for (const e of x.registry.evidence) {
+    e.status = "calibrated";
+    e.evaluation!.candidateMAE = .1;
+    e.calibrationAcceptance = testSource;
+    assert.equal(assertParameterUse(e, "central").role, "mechanism-input");
+  }
+  // This is solely an engineering fixture. Even valid retained source bytes
+  // and passing individual gates do not admit its actual joint draws.
+  await assert.rejects(consumeRegionalParameterRegistry({ ...x, use: "central" }), /unsigned\/unaccepted joint distribution or native inventory/);
+  x.registry.rows[0].scenarios[0].scenario.annualActivityGrowth = .9;
+  await assert.rejects(consumeRegionalParameterRegistry({ ...x, use: "central" }), /unsigned\/unaccepted/);
+  x.cells[0].nativeMt += 1;
+  await assert.rejects(consumeRegionalParameterRegistry({ ...x, use: "central" }), /unsigned\/unaccepted/);
+});
 test("synthetic engineering joint distributions replay deterministically with prefix-stable paired draws", async () => {
   const x = fixture();
   const second = structuredClone(x.registry.rows[0]);
@@ -90,6 +145,8 @@ test("actual native engine consumes complete registered joint rows with trace re
   assert.equal(a.members.length, 2);
   assert.equal(a.consumption.length, x.registry.bindings.length);
   assert.ok(a.consumption.every(c => c.consumer.includes("projectInventoryEmissions")));
+  assert.ok(a.consumption.every(c => c.role === "mechanism-input"));
+  assert.equal(a.distributionAdmission, "sensitivity-only");
   assert.equal(a.members[0].consumedScenarioHash, contentHash(x.registry.rows[0].scenarios));
   assert.equal(a.consumedRows[0].parameters.length, x.registry.bindings.length);
   assert.equal(a.consumedRows[0].parameters.find(p => p.path === "annualActivityGrowth")!.consumedValueHash, contentHash(0));
@@ -124,6 +181,10 @@ test("actual engine rejects unbound/unused/nested omitted drivers, incompatible 
   unknown.registry.evidence[0].consumerPaths.push("unknownUnusedCoefficient");
   unknown.registry.bindings.push({ region: REGIONS[0], path: "unknownUnusedCoefficient", evidenceId: REGIONS[0] });
   await assert.rejects(consumeRegionalParameterRegistry(unknown), /no actual engine consumer/);
+  const implicit = fixture();
+  delete (implicit.registry.rows[0].scenarios[0].scenario as Record<string, unknown>).nuclearGenerationTWh;
+  implicit.registry.bindings = implicit.registry.bindings.filter(b => b.region !== REGIONS[0] || b.path !== "nuclearGenerationTWh");
+  await assert.rejects(consumeRegionalParameterRegistry(implicit), /explicit nuclearGenerationTWh/);
 });
 test("all 22 curated drivers distinguish actual legacy equations from native registry consumption", () => {
   const rows = driverEvidenceRegistry();

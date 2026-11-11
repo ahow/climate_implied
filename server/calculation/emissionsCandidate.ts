@@ -233,6 +233,7 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
   }
   return { version: EMISSIONS_ENGINE_VERSION, key: calculationKey("native-emissions",
     cells === inventory.cells ? inventory : { year: 2024, cells }, { scenario: s, endYear }, EMISSIONS_ENGINE_VERSION),
-    validation: "mechanism-tests-only", temperature: null, inventoryYear: 2024, scenario: s, trajectory };
+    validation: "mechanism-tests-only", use: "diagnostic", productionEligible: false,
+    centralConsumptionAllowed: false, temperature: null, inventoryYear: 2024, scenario: s, trajectory };
 }
 export function candidateInventory() { return inventory; }

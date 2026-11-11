@@ -1,13 +1,12 @@
-import { INDICATORS, type IndicatorKey } from "../dataIngestion/indicatorRegistry";
+import { INDICATORS } from "../dataIngestion/indicatorRegistry";
 import { HISTORICAL_INDICATORS } from "./historicalIndicators";
 import { contentHash } from "./analysisManifest";
 import { driverConsumerTrace } from "./driverConsumptionTrace";
+import { curatedDriverRole } from "../../shared/driverAdmission";
 
-const mechanisms = new Set<IndicatorKey>(["renewableCapacityGW", "renewableGrowthRate", "evSalesSharePct", "evGrowthRate",
-  "gdpTrillionUSD", "carbonIntensityKgPerGDP"]);
-const validation = new Set<IndicatorKey>(["fossilCO2GtPerYear", "atmosphericCO2ppm", "co2GrowthRatePpm"]);
 export function driverEvidenceRegistry() {
   return INDICATORS.map(d => {
+    const role = curatedDriverRole(d.key);
     const retained = HISTORICAL_INDICATORS.map(r=>({year:r.year,value:r[d.key]}));
     const years = retained.map(r=>r.year);
     const hash = contentHash(retained);
@@ -25,7 +24,9 @@ export function driverEvidenceRegistry() {
     return ({
     id: d.key, definition: d.label, publisher: d.source, rawUnit: d.unit,
     transformedUnit: d.unit, geography: "global", category: d.category,
-    role: mechanisms.has(d.key) ? "candidate-mechanism-input" : validation.has(d.key) ? "validation-target" : "context",
+    role,
+    legacyRole: role === "mechanism-input" ? "candidate-mechanism-input" : role,
+    admission: "not-admitted",
     centralModelEligible: false,
     actualConsumers: driverConsumerTrace(d.key),
     parameterDistribution: {
@@ -34,8 +35,8 @@ export function driverEvidenceRegistry() {
       loader: "retainedAdoptionParameterRegistry",
       reason: "Retained solar/wind generation-share bootstrap distributions are separately sensitivity-only; not distributions for this curated indicator",
     },
-    reason: mechanisms.has(d.key) ? "Mechanism exists but regional calibration and uncertainty evidence are incomplete"
-      : validation.has(d.key) ? "Outcome check, not an independent abatement multiplier"
+    reason: role === "mechanism-input" ? "Mechanism exists but regional calibration and uncertainty evidence are incomplete"
+      : role === "validation-target" ? "Outcome check, not an independent abatement multiplier"
       : "No identified incremental causal coefficient; target coverage is not delivery",
     observationPeriod: { firstYear:Math.min(...years),lastYear:Math.max(...years),
       meaning:"Retained curated row periods; mixed revised observations/estimates, not verification of original observations" },

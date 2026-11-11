@@ -28,26 +28,45 @@ test("frozen original1001 cohort stays immutable; supplemental leaves never manu
 
 test("every new typed API/export denominator change is separate and reconciles arithmetically", () => {
   const added = census.supplementalSlotAccounting;
-  assert.equal(added.addedSlots, 323);
-  assert.equal(added.addedPublicSlots, 323);
-  assert.equal(added.addedBoundSlots, 323);
+  assert.equal(added.addedSlots, 331);
+  assert.equal(added.addedPublicSlots, 331);
+  assert.equal(added.addedBoundSlots, 331);
   assert.deepEqual(added.removedOriginalSlots, []);
-  assert.equal(census.fields.length, 1351);
-  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1324);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 323);
-  assert.equal(census.fullyBoundFields, 1323);
+  assert.equal(census.fields.length, 1359);
+  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1332);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 331);
+  assert.equal(census.fullyBoundFields, 1331);
   assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
   assert.equal(census.fields.length, 1028 + added.addedSlots);
-  assert.equal(census.definitions, 1703);
+  assert.equal(census.definitions, 1711);
   assert.equal(added.externalTypedApiSlots, 161);
   assert.equal(added.externalTypedApiBoundSlots, 161);
   assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 1485);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 1484);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 484);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 1493);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 1492);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 492);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
+});
+
+test("S03-002 adds exactly two registry and six native role/admission leaves, never original closure", () => {
+  const expected = {
+    'API GET "/api/research/driver-registry"': ["indicators[].legacyRole", "indicators[].admission"],
+    'API GET "/api/emissions/candidate"': ["result.use", "result.productionEligible", "result.centralConsumptionAllowed",
+      "inputs.indicators[].legacyRole", "inputs.indicators[].diagnosticConsumed", "inputs.indicators[].centralModelEligible"],
+  };
+  for (const [surface, fields] of Object.entries(expected)) {
+    const added = census.supplementalSlotAccounting.addedFields.filter((e: { surface: string; field: string }) =>
+      e.surface === surface && fields.includes(e.field));
+    assert.deepEqual(added.map((e: { field: string }) => e.field).sort(), [...fields].sort());
+    assert.ok(added.every((e: { bound: boolean }) => e.bound));
+    assert.ok(frozen.slots.every((e: { surface: string; field: string }) =>
+      e.surface !== surface || !fields.includes(e.field)));
+  }
+  assert.equal(census.originalGapReconciliation.originalPublicSlots, 1001);
+  assert.equal(census.originalGapReconciliation.originalFullyBoundFields, 1000);
+  assert.equal(census.originalGapReconciliation.closedOriginalSlots, 571);
 });
 
 test("sidecar16, sheets31, abatement43, Gordon6 and nominal40 remain qualified supplements", () => {
@@ -87,6 +106,6 @@ test("strict completeness fails on OLD unknown summary JSON, not cured by authen
     assert.equal(result.status, 1, gate);
     assert.doesNotMatch(result.stderr, /Field census stale/);
     assert.match(result.stderr, gate === "--require-original-complete"
-      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1323\/1324/);
+      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1331\/1332/);
   }
 });

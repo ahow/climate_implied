@@ -6,6 +6,7 @@ import { SeededRandom } from "./random";
 import { projectRegionalMember } from "./regionalEngine";
 import { sampleRegionalDrivers } from "./regionalSampling";
 import { constantScenario } from "./emissionsCandidate";
+import { assertMechanismRole, driverRoleSchema } from "../../shared/driverAdmission";
 
 export const driverUseSchema = z.enum(["central", "sensitivity"]);
 export type DriverUse = z.infer<typeof driverUseSchema>;
@@ -34,7 +35,11 @@ const independentBasis = z.object({
 }).strict();
 export const parameterEvidenceSchema = z.object({
   id: z.string().min(1), version: z.string().min(1),
-  status: z.enum(["calibrated", "prior", "sensitivity-only"]),
+  // Optional solely to preserve frozen retained distribution content hashes.
+  // assertParameterUse requires it; only the fixed retained loader has an
+  // explicit role adapter at its consumer boundary.
+  role: driverRoleSchema.optional(),
+  status: z.enum(["calibrated", "prior", "sensitivity-only", "rejected"]),
   definition: z.string().min(1), unit: z.string().min(1),
   geography: z.string().min(1),
   sources: z.array(source).min(1),
@@ -48,7 +53,10 @@ export type ParameterEvidence = z.infer<typeof parameterEvidenceSchema>;
 /** Status is never an override for a failed frozen comparison. A prior is not
  * calibrated, and a point-metric winner alone is not calibration acceptance. */
 export function assertParameterUse(input: unknown, use: "central" | "sensitivity") {
+  driverUseSchema.parse(use);
   const p = parameterEvidenceSchema.parse(input);
+  assertMechanismRole(p.role, p.id);
+  if (p.status === "rejected") throw new Error(`Rejected parameter evidence: ${p.id}`);
   const e = p.evaluation;
   if (e && (new Set(e.trainingYears).size !== e.trainingYears.length ||
       new Set(e.evaluationYears).size !== e.evaluationYears.length ||
@@ -158,7 +166,9 @@ export async function consumeRetainedAdoption(input: {
   const registry = await retainedAdoptionParameterRegistry();
   const entry = registry.entries.find(e => e.evidence.id === x.driverId);
   if (!entry) throw new Error(`No retained compatible distribution: ${x.driverId}`);
-  assertParameterUse(entry.evidence, x.use);
+  // Explicit compatibility adapter: generation-share sensitivities are
+  // mechanism inputs to their own logistic consumer, NOT to native emissions.
+  assertParameterUse({ ...entry.evidence, role: "mechanism-input" }, x.use);
   const rng = new SeededRandom(x.seed);
   const members = Array.from({ length: x.members }, (_, i) => {
     const drawIndex = Math.floor(rng.next() * entry.pairedDraws.length);
@@ -171,6 +181,7 @@ export async function consumeRetainedAdoption(input: {
   return { registryHash: registry.registryHash, distributionHash: entry.distributionHash,
     driverId: x.driverId, status: entry.evidence.status, seed: x.seed, years: x.years, members, outputHash,
     actualConsumer: "consumeRetainedAdoption/logistic-generation-share",
+    role: "mechanism-input", roleAdmission: "explicit-retained-adoption-sensitivity-adapter",
     productionEligible: false, claim: "bounded sensitivity adoption paths; not emissions or a calibrated forecast" };
 }
 
@@ -185,6 +196,8 @@ function assertKnownScenarioParameters(scenario: Record<string, unknown>) {
   const allowed = new Set([...Object.keys(constantScenario), "nuclearGenerationTWh", "sectorPathways", "measures"]);
   if (Object.keys(scenario).some(k => !allowed.has(k)))
     throw new Error("Unknown scenario parameter has no actual engine consumer");
+  if (!Object.hasOwn(scenario, "nuclearGenerationTWh"))
+    throw new Error("Registered scenarios require explicit nuclearGenerationTWh; no unbound zero default");
   for (const [sector, p] of Object.entries((scenario.sectorPathways ?? {}) as Record<string, object>)) {
     if (!["power", "transport", "industry", "buildings", "agriculture", "other", "land"].includes(sector) ||
       !p || Object.keys(p).some(k => !["annualActivityGrowth", "residualIntensityImprovement", "trendEndYear"].includes(k)))
@@ -206,6 +219,24 @@ const regionalRegistrySchema = z.object({
     scenarios: z.array(z.object({ region: z.string().min(1), scenario: z.record(z.unknown()) }).strict()).min(1),
   }).strict()).min(1),
 }).strict();
+
+/** Operator flags, calibration status and a file hash supplied by a caller do
+ * not sign off a joint distribution. Central admission requires a code-pinned
+ * reviewed distribution AND its exact native inventory. No such real registry
+ * is accepted today. This is not a signing service or a fabricated approval. */
+const REVIEWED_CENTRAL_REGIONAL_DISTRIBUTIONS: readonly {
+  registryHash: string; inventoryHash: string; acceptance: { path: string; sha256: string };
+}[] = Object.freeze([]);
+
+async function assertRegionalDistributionUse(registryHash: string, cells: unknown, use: DriverUse) {
+  if (use !== "central") return;
+  const inventoryHash = contentHash(cells);
+  const reviewed = REVIEWED_CENTRAL_REGIONAL_DISTRIBUTIONS.find(r =>
+    r.registryHash === registryHash && r.inventoryHash === inventoryHash);
+  if (!reviewed) throw new Error("Central consumption blocked: unsigned/unaccepted joint distribution or native inventory");
+  const actual = createHash("sha256").update(await readFile(reviewed.acceptance.path)).digest("hex");
+  if (actual !== reviewed.acceptance.sha256) throw new Error("Central distribution acceptance hash mismatch");
+}
 
 /** Parent integration boundary for the actual native regional Stage 5 engine.
  * Joint rows are the versioned distribution. There is no independent marginal
@@ -249,6 +280,9 @@ export async function consumeRegionalParameterRegistry(input: {
       throw new Error("All joint rows must have complete identical nested driver coverage");
   }
   const registryHash = contentHash(r);
+  // Includes complete rows, roles, evidence and consumer bindings. Inventory
+  // mass/scope is a separate actual forecast dependency, not a scenario leaf.
+  await assertRegionalDistributionUse(registryHash, input.cells, use);
   const sampling = sampleRegionalDrivers({ seed: input.seed, members: input.members,
     parameterVersion: r.version, evidence: [registryHash], rows: r.rows });
   const rows = new Map(r.rows.map(row => [row.id, row]));
@@ -269,10 +303,12 @@ export async function consumeRegionalParameterRegistry(input: {
     }),
   }));
   return { registryHash, sampling, members, consumedRows,
-    consumption: r.bindings.map(b => ({ ...b, status: evidence.get(b.evidenceId)!.status,
+    consumption: r.bindings.map(b => ({ ...b, role: evidence.get(b.evidenceId)!.role,
+      status: evidence.get(b.evidenceId)!.status,
       consumer: "projectRegionalMember/projectInventoryEmissions",
       independentlyJustifiedCentralException: use === "central" && evidence.get(b.evidenceId)!.status !== "calibrated" })),
-    use, productionEligible: false,
+    use, distributionAdmission: use === "central" ? "reviewed-pinned-central" : "sensitivity-only",
+    inventoryHash: contentHash(input.cells), productionEligible: false,
     claim: "registered conditional native emissions; not calibrated climate or convergence acceptance" };
 }
 

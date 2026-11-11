@@ -1,3 +1,35 @@
+# New NEE/admission/alpha1 increment — validated, release pending
+
+{
+  "at": "2026-11-11T09:53:03.090383+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-project-cash-waterfall-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T09:50:31.900106+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 125.112,
+    "counts": {
+      "tests": 537,
+      "pass": 537,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T095031900106Z.log",
+    "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "admission": "Canonical role vocabulary plus every bound scenario dependency admission; unsigned joint registry/inventory refuses central generation.22curated+10retained central refusals preserved. No accepted real central forecast.",
+  "nee": "24conditional paths/384cash/768capitalrows. Historical DMI2.257bn/payment740m; cash including DMI2.183bn versus negative74m without. FPL3.7bn dividend less3.4bn contribution=300m netparent cash. Conditional terminals2.499\u20133.986bn,values10.567\u201326.668bn;48negative annual funding rows. No root/qualified original case;0/3.",
+  "physical": "Exact licensed alpha1 recovered; zero initial modes/full first-last steps/trapezoidal boundary output proved. Five engineering vectors residual0C at1e-14; annualmean differs0.027986C. No attribution or forcing/control ensemble acquisition.",
+  "coverage": "Original1000/1001 unchanged.8 supplemental fields added: public1331/1332,expanded1492/1493,1711definitions. No original closure.",
+  "initial_failures": "533/536: stale census and old51leaf assertion. Exact new supplemental fields reconciled, strict gates preserved; final537TS pass.",
+  "next": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11\u201315 corpus and operator prerequisites; no synthetic scientific acceptance."
+}
+
 # Latest verified source-bridge release
 
 {
@@ -2352,6 +2384,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-calendar-liability-2d0a759",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T08:56:09.960739+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-gmst-capacity-5ef7bce",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T09:28:18.652768+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

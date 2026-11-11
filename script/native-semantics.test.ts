@@ -40,8 +40,13 @@ test("native schema has exact definitions except declared dynamic gas/sector key
  const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
  const allEntries=census.fields.filter((e:any)=>e.surface.includes('"/api/emissions/candidate"'));
  const entries=allEntries.filter((e:any)=>!e.field.startsWith("residualDiagnostics."));
- assert.equal(entries.length,187);
- assert.equal(allEntries.length,213,"Original187 native fields plus26 supplemental conditional diagnostic leaves");
+ const roleAdmissionFields=["result.use","result.productionEligible","result.centralConsumptionAllowed",
+   "inputs.indicators[].legacyRole","inputs.indicators[].diagnosticConsumed","inputs.indicators[].centralModelEligible"];
+ assert.equal(entries.length,193,"Original187 plus six exact diagnostic role/admission fields");
+ assert.equal(entries.filter((e:any)=>!roleAdmissionFields.includes(e.field)).length,187);
+ assert.deepEqual(entries.filter((e:any)=>roleAdmissionFields.includes(e.field)).map((e:any)=>e.field).sort(),[...roleAdmissionFields].sort());
+ assert.equal(census.originalGapReconciliation.families.find((f:any)=>f.surface==='API GET "/api/emissions/candidate"').total,187);
+ assert.equal(allEntries.length,219,"Original187 native fields plus26 residual diagnostics plus six role/admission fields");
  assert.equal(allEntries.length-entries.length,26);
  const absent=entries.filter((e:any)=>!nativeOutputSemantics.some(f=>f.id===`native.${e.field}`)).map((e:any)=>e.field);
  assert.deepEqual(absent.sort(),["result.trajectory[].nativeMt.*","result.trajectory[].sectorsGtCO2e.*"]);
@@ -52,7 +57,10 @@ test("three actual scenario builders bind all emitted leaves without probability
  for(const scenario of [constantScenario,illustrativeScenario,inputs.diagnostic]){
    const body={promotion:"blocked",inventory:candidateInventory(),inputs,result:projectNativeEmissions(scenario)};
    const definitions=bindNestedOutput("native",body);
-   assert.equal(definitions.length,152);
+    assert.equal(definitions.length,158,"Original152 bindings plus six explicit role/admission/diagnostic-boundary leaves; frozen census is not rewritten");
+    for (const field of ["result.use", "result.productionEligible", "result.centralConsumptionAllowed",
+      "inputs.indicators[].legacyRole", "inputs.indicators[].diagnosticConsumed", "inputs.indicators[].centralModelEligible"])
+      assert.ok(definitions.some(d => d.id === `native.${field}`), `Exact new semantic binding: ${field}`);
    assert.equal(body.result.temperature,null);
    assert.ok(definitions.every(d=>d.uncertainty.includes("Deterministic")||d.uncertainty.includes("Deterministic".toLowerCase())||d.uncertainty.includes("no sampling")));
  }
