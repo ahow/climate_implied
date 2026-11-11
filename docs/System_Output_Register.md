@@ -19,6 +19,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 
 | Method | Path expression | Implementation |
 | --- | --- | --- |
+| GET | `${CONDITIONAL_COMPANY_ROUTE}${suffix}` | server/companyConditionalApi.ts |
 | GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |
 | GET | "/api/calculation/company-coverage" | server/routes.ts |
@@ -85,6 +86,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |
 | client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
 | client/src/components/analysis-snapshot-status.tsx | `/api/cv/summary?snapshotId=${encodeURIComponent(selectedSnapshotId)}` |
+| client/src/components/company-conditional-summary.tsx | `/api/cv/company-conditional-summaries/export` |
 | client/src/components/company-coverage.tsx | "/api/calculation/company-coverage" |
 | client/src/components/company-coverage.tsx | `/api/calculation/company-coverage?${params}` |
 | client/src/components/company-operating-review.tsx | "/api/calculation/company-operating/reviews" |
@@ -95,6 +97,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
 | client/src/components/target-input-disclosure.tsx | "/api/calculation/field-semantics" |
+| client/src/hooks/use-company-conditional-summaries.ts | "/api/cv/company-conditional-summaries" |
 | client/src/lib/analysis-selection.ts | "/api/cv/summary" |
 | client/src/lib/analysis-selection.ts | "/api/cv/dimensions" |
 | client/src/lib/analysis-selection.ts | "/api/cv/carbon-price" |
@@ -134,6 +137,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/pages/dashboard.tsx | "/api/projection/regions" |
 | client/src/pages/dashboard.tsx | "/api/projection/sensitivity" |
 | client/src/pages/dashboard.tsx | "/api/projection/categories/historical-trend" |
+| client/src/pages/dashboard.tsx | "/api/projection" |
 | client/src/pages/data-management.tsx | "/api/data/indicators" |
 | client/src/pages/data-management.tsx | "/api/data/runs" |
 | client/src/pages/data-management.tsx | "/api/data" |

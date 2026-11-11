@@ -25,6 +25,8 @@ import { nativeThresholdSemantics } from "../shared/nativeThresholdSemantics";
 import { nativeThresholdExportBindings, nativeThresholdExportRows } from "../client/src/lib/native-threshold-export";
 import { nativeCandidateResidualDiagnostics } from "../server/calculation/nativeThresholdDiagnostics";
 import { projectNativeEmissions, constantScenario } from "../server/calculation/emissionsCandidate";
+import { conditionalCompanyApiSurfaces, conditionalCompanyWorkbookSurface,
+  conditionalCompanyFieldSpecs, conditionalCompanySemantics } from "../shared/companyConditionalSemantics";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -304,6 +306,29 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
 }
 // External route handler's actual typed send arguments are supplemental API
 // inventory, never additions to the frozen original direct-res.json cohort.
+if(!baseline) {
+  const source=program.getSourceFiles().find(s=>relativeSource(s.fileName)==="server/companyConditionalApi.ts");
+  if(!source) throw new Error("Missing registered conditional company handler");
+  let successBindings=0;
+  const visit=(node:ts.Node):void=>{
+    if(ts.isCallExpression(node)&&node.expression.getText(source)==="res.json"&&
+      node.arguments[0]?.getText(source)==="summary") {
+      successBindings++;
+      for(const surface of conditionalCompanyApiSurfaces) {
+        const start=entries.length;
+        fields(checker.getTypeAtLocation(node.arguments[0]),"",surface,node);
+        supplementalTypedApiEntries.push(...entries.splice(start));
+      }
+    }
+    ts.forEachChild(node,visit);
+  };
+  visit(source);
+  if(successBindings!==1) throw new Error("Conditional summary success response contract changed");
+  for(const surface of [...conditionalCompanyApiSurfaces,conditionalCompanyWorkbookSurface])
+    supplementalTypedApiEntries.push({surface,field:"error",type:"string",source:"server/companyConditionalApi.ts",
+      line:source.getLineAndCharacterOfPosition(source.text.indexOf('function readIssuer')).line+1,
+      resolution:"exact-qualified-query-refusal-contract"});
+}
 if(!baseline) for(const source of program.getSourceFiles().filter(s=>
   relativeSource(s.fileName)==="server/calculation/originalNominalAssessmentHandler.ts")) {
   const visit=(node:ts.Node):void=>{
@@ -437,6 +462,18 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
       typedApiFields:Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.surface.includes("original-nominal-assessment")&&e.type!=="undefined").map(e=>[e.field,e])).values()).map(e=>({
         ...e,bound:outputFieldSemantics.some(f=>f.id===`originalNominalAssessment.${e.field}`)})),
       boundary:"New read-only explicitly conditional endpoint; typed send-argument domain and input/HTTP metadata inventoried separately, never original cohort closure credit."},
+    conditionalCompany:{definitions:conditionalCompanySemantics.length,ids:conditionalCompanySemantics.map(f=>f.id),
+      successApiSurfaces:conditionalCompanyApiSurfaces,
+      successLeavesPerApi:conditionalCompanyFieldSpecs.length,
+      queryRefusalSurfaces:[...conditionalCompanyApiSurfaces,conditionalCompanyWorkbookSurface],
+      typedApiFields:Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.surface.includes("/company-conditional-summaries"))
+        .map(e=>[`${e.surface}|${e.field}`,e])).values()).map(e=>({
+        ...e,bound:outputFieldSemantics.some(f=>f.id===`conditionalCompany.${e.field}`)})),
+      workbook:{surface:conditionalCompanyWorkbookSurface,sheet:"Public allowlist",
+        columns:{"Allowlisted field":"conditionalCompany.export.field","JSON value (null means unknown)":"conditionalCompany.export.jsonValue"},
+        payload:"Every flattened primitive binds its exact structural leaf; fact values additionally bind issuer/id-specific formula/unit semantics and exact public allowlist equality. API/JSON/XLSX runtime readback tests cover all four issuer selections.",
+        coverage:"Two serialization columns are a separate supplemental workbook contract, never extra original XLSX slots"},
+      boundary:"GET-only public immutable aggregates. Two typed JSON success APIs and three HTTP400 error surfaces counted separately; XLSX success is a binary download, not an invented JSON body. No original1001 closure credit."},
   },
    displayBindingScope:"Explicit data-field-id bindings and all direct JSX expression children inventoried separately; expressions include non-value controls/containers and are not claimed semantically covered. Attributes, chart callback payloads and nested component rendering still require runtime review. No original denominator additions.",
   resolvedDynamicDomains:baseline?{}:nativeDynamicDomains,
@@ -550,7 +587,8 @@ const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent
 const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
   .map(e=>[`${e.surface}|${e.field}`,e])).values());
 const externalTypedApiBound=externalTypedApiFields.filter(e=>
-  outputFieldSemantics.some(f=>f.id===`${e.surface.includes("/company-coverage")?"companyCoverage":"originalNominalAssessment"}.${e.field}`)).length;
+   outputFieldSemantics.some(f=>f.id===`${e.surface.includes("/company-conditional-summaries")?"conditionalCompany":
+     e.surface.includes("/company-coverage")?"companyCoverage":"originalNominalAssessment"}.${e.field}`)).length;
 const originalCohortFingerprint=frozenCohort?.slotIdentityFingerprint??slotFingerprint;
 const reconciliation = baseline ? {} : {
   originalGapReconciliation: {
@@ -590,6 +628,9 @@ const reconciliation = baseline ? {} : {
     supplementalMetadataSheetColumns:supplementalSheetSemantics.length,
     companyCoverageApiLeafSlots:companyCoverageSemantics.length,
     companyCoverageJsonExportLeafSlots:companyCoverageSemantics.length,
+     conditionalCompanyApiLeafSlots:externalTypedApiFields.filter(e=>e.surface.includes("/company-conditional-summaries")).length,
+     conditionalCompanySuccessLeavesPerApi:conditionalCompanyFieldSpecs.length,
+     conditionalCompanyWorkbookColumns:2,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

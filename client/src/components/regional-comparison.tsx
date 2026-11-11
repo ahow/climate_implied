@@ -4,6 +4,7 @@ import { Globe, MapPin } from "lucide-react";
 import type { RegionalProjection } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
+import { displayDiagnostic } from "@/lib/valuation-claims";
 
 interface RegionalComparisonProps {
   regions: RegionalProjection[];
@@ -50,6 +51,8 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
     );
   }
 
+  if (!regions.length) return <Card className="p-6"><p role="status">No regional counterfactual results were returned. Regional diagnostics are unavailable, not zero.</p></Card>;
+
   const downloadRows = regions.map((r) => ({
     Region: r.regionName,
     "Legacy global counterfactual warming (\u00B0C)": r.temperatureRise,
@@ -93,7 +96,8 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
 
       <div className="space-y-3">
         {regions.map((region) => {
-          const barWidth = Math.min(100, Math.max(5, ((region.temperatureRise - 1.0) / 4.0) * 100));
+          const hasTemperature = typeof region.temperatureRise === "number" && Number.isFinite(region.temperatureRise);
+          const barWidth = hasTemperature ? Math.min(100, Math.max(5, ((region.temperatureRise - 1.0) / 4.0) * 100)) : 0;
           const color = getRegionColor(region.region);
 
           return (
@@ -104,7 +108,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
                   <span className="text-sm font-medium">{region.regionName}</span>
                 </div>
                 <span className={`text-lg font-bold tabular-nums ${getTempColor(region.temperatureRise)}`} data-testid={`text-region-temp-${region.region}`}>
-                  {region.temperatureRise.toFixed(2)}&deg;C
+                   {displayDiagnostic(region.temperatureRise, "°C")}
                 </span>
               </div>
 
@@ -116,10 +120,12 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
               </div>
 
               <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
-                <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {region.reductionRate.toFixed(1)}%/yr</span>
-                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {region.carbonIntensity.toFixed(2)} — {region.carbonIntensityBasis}</span>
-                <span data-testid={`text-region-netzero-${region.region}`}>Separate legacy fixed-5gt-v1: {region.netZeroYear ?? "Not reached by 2100"}</span>
+                <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {displayDiagnostic(region.reductionRate, "%/yr")}</span>
+                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {displayDiagnostic(region.carbonIntensity)} — {region.carbonIntensityBasis ?? "Basis not returned"}</span>
+                <span data-testid={`text-region-netzero-${region.region}`}>Separate legacy fixed-5gt-v1: {region.netZeroYear === undefined ? "Unavailable — not returned" : region.netZeroYear === null ? "Not reached by 2100" : region.netZeroYear}</span>
               </div>
+              {![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === "number" && Number.isFinite(value)) &&
+                <p role="status" className="text-xs text-muted-foreground">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}
               <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={region.regionName} />
             </div>
           );

@@ -1,6 +1,7 @@
 import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { useState, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
+import { ReadResultReason } from "@/components/read-result-reason";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
@@ -172,14 +173,14 @@ export default function DecarbGapSignal() {
     queryKey: ["/api/cv/dimensions"],
   });
 
-  const { data: uploads } = useQuery<UploadRecord[]>({
+  const { data: uploads, isLoading: uploadsLoading, error: uploadsError } = useQuery<UploadRecord[]>({
     queryKey: ["/api/cv/uploads"],
   });
 
   const uploadId = hasArchivedSelection() ? "archived" : uploads?.find((u) => u.status === "completed")?.id;
 
-  const { data: summary } = useQuery<DecarbGapSummary>({
-    queryKey: ["/api/cv/decarb-gap/summary", scoringMethod, geography],
+  const { data: summary, isLoading: summaryLoading, error: summaryError } = useQuery<DecarbGapSummary>({
+    queryKey: ["/api/cv/decarb-gap/summary", scoringMethod, geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/decarb-gap/summary?${methodParam}${geoParam}`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch summary");
@@ -188,7 +189,7 @@ export default function DecarbGapSignal() {
     enabled: !!uploadId,
   });
 
-  const { data: carbonPriceData, isLoading: loadingCP } = useQuery<CarbonPricePoint[]>({
+  const { data: carbonPriceData, isLoading: loadingCP, error: cpError } = useQuery<CarbonPricePoint[]>({
     queryKey: ["/api/cv/carbon-price", scoringMethod, geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/carbon-price?uploadId=${uploadId}&${methodParam}&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity${geoParam}`, { credentials: "include" });
@@ -198,8 +199,8 @@ export default function DecarbGapSignal() {
     enabled: !!uploadId,
   });
 
-  const { data: sdgData, isLoading: loadingSDG } = useQuery<SDGGrowthPoint[]>({
-    queryKey: ["/api/cv/sdg-growth", geography],
+  const { data: sdgData, isLoading: loadingSDG, error: sdgError } = useQuery<SDGGrowthPoint[]>({
+    queryKey: ["/api/cv/sdg-growth", geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/sdg-growth?costOfEquity=0.08${geoParam}`, { credentials: "include" });
       if (!res.ok) throw new Error("SDG valuation groups unavailable");
@@ -208,8 +209,8 @@ export default function DecarbGapSignal() {
     enabled: !!uploadId,
   });
 
-  const { data: decarbTercileData, isLoading: loadingDecarb } = useQuery<DecarbTercilePoint[]>({
-    queryKey: ["/api/cv/decarb-terciles", scoringMethod, geography],
+  const { data: decarbTercileData, isLoading: loadingDecarb, error: decarbError } = useQuery<DecarbTercilePoint[]>({
+    queryKey: ["/api/cv/decarb-terciles", scoringMethod, geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/decarb-terciles?${methodParam}&costOfEquity=0.08${geoParam}`, { credentials: "include" });
       if (!res.ok) throw new Error("Target valuation groups unavailable");
@@ -225,7 +226,7 @@ export default function DecarbGapSignal() {
 
   const compareGap = backtestSignal !== "decarb_gap";
   const { data: backtestResponse, isLoading: loadingBacktest, error: backtestError } = useQuery<BacktestResponse>({
-    queryKey: ["/api/cv/backtest", backtestSignal, trackingErrorLimit, scoringMethod, geography],
+    queryKey: ["/api/cv/backtest", backtestSignal, trackingErrorLimit, scoringMethod, geography, uploadId],
     queryFn: async () => {
       return fetchBacktest(`/api/cv/backtest?signal=${backtestSignal}&trackingError=${trackingErrorLimit}&trackingErrorUnit=percent&method=${compareGap ? "absolute" : scoringMethod}${geoParam}`);
     },
@@ -233,7 +234,7 @@ export default function DecarbGapSignal() {
   });
 
   const { data: valuationBacktestResponse, isLoading: loadingValBacktest, error: valuationBacktestError } = useQuery<BacktestResponse>({
-    queryKey: ["/api/cv/backtest", "valuation", "decarb_gap", trackingErrorLimit, scoringMethod, geography],
+    queryKey: ["/api/cv/backtest", "valuation", "decarb_gap", trackingErrorLimit, scoringMethod, geography, uploadId],
     queryFn: async () => {
       return fetchBacktest(`/api/cv/backtest?signal=decarb_gap&trackingError=${trackingErrorLimit}&trackingErrorUnit=percent&${methodParam}${geoParam}`);
     },
@@ -403,6 +404,7 @@ export default function DecarbGapSignal() {
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-gap-signal">
       <QueryReadErrors prefix="/api/cv" />
+      <ReadResultReason label="Company dataset" loading={uploadsLoading} error={uploadsError} available={!!uploadId} emptyReason="No completed company dataset is available. Import and review require the operator CLI." />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" data-testid="text-page-title">
@@ -462,7 +464,7 @@ export default function DecarbGapSignal() {
         </div>
       </div>
 
-      {!uploadId && (
+      {!uploadId && !uploadsLoading && !uploadsError && (
         <Card className="p-8 flex flex-col items-center justify-center text-muted-foreground">
           <Activity className="h-10 w-10 mb-3 opacity-40" />
           <p className="text-sm">No company dataset is available. Import and review require the operator CLI.</p>
@@ -491,6 +493,7 @@ export default function DecarbGapSignal() {
                 {displayDiagnostic(latestImpliedRate, " pp")}
               </p>
               <p className="text-xs text-muted-foreground">First-minus-second group Gordon baseline gap</p>
+              <ReadResultReason label="Selected group gap" loading={loadingMeasure} error={measure === "carbon_intensity" ? cpError : measure === "sdg_alignment" ? sdgError : decarbError} available={latestImpliedRate != null} emptyReason={selectedMeasureData?.length ? "Selected groups have missing or invalid P/E denominators." : "No valuation groups for this measure and geography."} />
             </Card>
             <Card className="p-4">
               <div className="flex items-center justify-between gap-2 mb-2">
@@ -507,11 +510,12 @@ export default function DecarbGapSignal() {
                 <span className="text-xs text-muted-foreground font-medium">Companies Scored</span>
               </div>
               <p className="text-2xl font-bold tabular-nums" data-testid="text-company-count" data-field-id="peerValuation.companyCount">
-                {summary ? summary.companyCount : "\u2014"}
+                 {summary?.companyCount ?? "Unavailable"}
               </p>
               <p className="text-xs text-muted-foreground">
                 Legacy eligible-company count; not verified identity coverage
               </p>
+              <ReadResultReason label="Companies scored" loading={summaryLoading} error={summaryError} available={summary?.companyCount != null} emptyReason="The summary did not return an eligible-company count." />
             </Card>
           </div>
 
@@ -597,6 +601,7 @@ export default function DecarbGapSignal() {
                   <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
                   <h2 className="text-sm font-semibold">Legacy selected companies — first subset</h2>
                 </div>
+                <ReadResultReason label="First company subset" available={!!summary?.topCompanies?.length} emptyReason="No first-subset company diagnostics were returned for this selection." />
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
@@ -609,11 +614,11 @@ export default function DecarbGapSignal() {
                       </tr>
                     </thead>
                     <tbody>
-                      {summary?.topCompanies.map((c) => (
+                      {summary?.topCompanies?.map((c) => (
                         <tr key={c.companyId} className="border-b border-border/50">
                           <td data-field-id="peerValuation.topCompanies[].companyName" className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
                           <td data-field-id="peerValuation.topCompanies[].sector" className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
-                          <td data-field-id="peerValuation.topCompanies[].pe" className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
+                          <td data-field-id="peerValuation.topCompanies[].pe" className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(c.pe, "x")}</td>
                           <td data-field-id="peerValuation.display.topCompanies.gordonBaselinePct" className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
                           <td data-field-id="peerValuation.display.topCompanies.peerGapPp" className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
                         </tr>
@@ -628,6 +633,7 @@ export default function DecarbGapSignal() {
                   <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
                   <h2 className="text-sm font-semibold">Legacy selected companies — second subset</h2>
                 </div>
+                <ReadResultReason label="Second company subset" available={!!summary?.bottomCompanies?.length} emptyReason="No second-subset company diagnostics were returned for this selection." />
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
@@ -640,11 +646,11 @@ export default function DecarbGapSignal() {
                       </tr>
                     </thead>
                     <tbody>
-                      {summary?.bottomCompanies.map((c) => (
+                      {summary?.bottomCompanies?.map((c) => (
                         <tr key={c.companyId} className="border-b border-border/50">
                           <td data-field-id="peerValuation.bottomCompanies[].companyName" className="py-1.5 pr-2 font-medium truncate max-w-[140px]" title={c.companyName}>{c.companyName}</td>
                           <td data-field-id="peerValuation.bottomCompanies[].sector" className="py-1.5 pr-2 text-muted-foreground truncate max-w-[100px]" title={c.sector || ""}>{c.sector || "\u2014"}</td>
-                          <td data-field-id="peerValuation.bottomCompanies[].pe" className="py-1.5 pr-2 text-right tabular-nums">{c.pe.toFixed(1)}x</td>
+                          <td data-field-id="peerValuation.bottomCompanies[].pe" className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(c.pe, "x")}</td>
                           <td data-field-id="peerValuation.display.bottomCompanies.gordonBaselinePct" className="py-1.5 pr-2 text-right tabular-nums">{displayDiagnostic(gordonBaselinePct(c.pe), "%")}</td>
                           <td data-field-id="peerValuation.display.bottomCompanies.peerGapPp" className="py-1.5 text-right tabular-nums font-medium">{displayDiagnostic(typeof c.impliedGrowth === "number" && typeof c.peerMedianGrowth === "number" ? (c.impliedGrowth - c.peerMedianGrowth) * 100 : null, " pp")}</td>
                         </tr>

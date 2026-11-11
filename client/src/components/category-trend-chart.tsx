@@ -87,7 +87,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
     );
   }
 
-  if (!data.length) return null;
+  if (!data.length) return <Card className="p-6"><p role="status">No legacy category trend observations were returned.</p></Card>;
 
   const config = getConfig(metricView);
   const hasNowcast = data.some((d) => d.isNowcast);
@@ -98,7 +98,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
       Estimated: d.isNowcast ? "yes" : "no",
     };
     for (const key of CATEGORY_KEYS) {
-      let value: number | null | undefined = d[key][config.metricKey];
+      let value: number | null | undefined = d[key]?.[config.metricKey];
       row[CATEGORY_NAMES[key]] = value ?? undefined;
     }
     return row;
@@ -108,7 +108,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
     const row: Record<string, number | string | boolean | undefined> = { year: d.year, isNowcast: d.isNowcast };
     for (const key of CATEGORY_KEYS) {
       const metrics = d[key];
-      let value = metricView === "netZero" ? metrics.thresholdDiagnostic?.year : metrics[config.metricKey];
+      let value = metricView === "netZero" ? metrics?.thresholdDiagnostic?.year : metrics?.[config.metricKey];
       row[key] = d.isNowcast ? undefined : (value ?? undefined);
       row[`${key}_nowcast`] = d.isNowcast ? (value ?? undefined) : undefined;
     }

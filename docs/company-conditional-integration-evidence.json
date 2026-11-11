@@ -1,0 +1,63 @@
+{
+  "scope": "Bounded integration of completed public conditional-company UI and immutable aggregate allowlist",
+  "verifiedAtUtc": "2026-11-11T10:16:07Z",
+  "moves": {
+    "client/src/server/company-conditional-api.ts": "server/companyConditionalApi.ts",
+    "client/src/server/company-conditional-api.test.ts": "script/company-conditional-api.test.ts",
+    "client/src/lib/company-conditional-data.ts": "shared/companyConditionalData.ts"
+  },
+  "registration": "server/routes.ts imports and invokes registerCompanyConditionalRoutes(app) exactly once. Hook/component type imports now target @shared/companyConditionalData. Old paths are absent.",
+  "publicBoundary": {
+    "routes": [
+      "GET /api/cv/company-conditional-summaries",
+      "GET /api/cv/company-conditional-summaries/export.json",
+      "GET /api/cv/company-conditional-summaries/export.xlsx"
+    ],
+    "inputs": "Only optional scalar issuer NEE/FSLR/XOM filters presentation. Unknown query keys, unsupported/repeated/structured issuer selections reject400.",
+    "writes": "No POST/PUT/PATCH/DELETE handlers added; all four methods reject404 in the focused handler test.",
+    "runtimeReads": "Public immutable aggregate module only; no private evidence/runtime filesystem reads, source downloads or study reruns.",
+    "valuesPreserved": "Moved allowlist bytes are unchanged: SHA256 ad960f647b4eed96c2a5330bd42c4d7d23a827dd20557d742eb78de013c066b7 before and after move. All30 individual fact values and source locators agree with public evidence receipts in test-time-only reads.",
+    "qualification": "0/3 qualified original issuers, zero original pairs, no Tier2/efficacy/original-closure promotion"
+  },
+  "semantics": {
+    "module": "shared/companyConditionalSemantics.ts",
+    "definitions": 63,
+    "definitionBreakdown": "30 exact structural summary leaves +30 issuer/fact-specific value definitions with precise formula/unit/public locator/boundary +two XLSX serialization columns +one query-refusal error definition",
+    "apiAndJson": "bindNestedOutput validates actual success summary. Both JSON surfaces have30 success leaves plus error; XLSX has only one JSON error leaf, never a fabricated JSON success body.",
+    "xlsx": "Single Public allowlist sheet, two unchanged columns. bindConditionalExportCells requires complete ordered leaf coverage, exact frozen primitive values and qualified semantics; fact values bind issuer/id-specific units. All four issuer selections are decoded/read back and compared to JSON/API.",
+    "failureControls": "Unknown semantic leaves, omitted export cells and changed export values reject; signed numbers, zero, quoted strings and explicit null survive."
+  },
+  "census": {
+    "regenerated": "npx tsx script/field-semantics-census.ts",
+    "originalCohortSha256Unchanged": "646e9c341badfc5e218736a01809c5d69be9fb5f80a223b339e75205d84aea57",
+    "original": "1001 public slots;1000 bound;571/572 original gaps closed;one unknown summary slot;27 withheld;no removed original identities; frozen slot fingerprint unchanged",
+    "denominatorDeltasFromPriorS03Census": {
+      "definitions": [1711, 1774],
+      "externalSupplementalTypedApiLeaves": [161, 224],
+      "expandedApiAndDownloadPublic": [1493, 1556],
+      "expandedApiAndDownloadBound": [1492, 1555],
+      "expandedDeltaFromOriginal1001": [492, 555]
+    },
+    "newExternalLeaves": "63:30 summary leaves on each of two JSON success routes plus HTTP400 error on all three routes. Binary XLSX success and its two serialization columns are separately qualified, not original XLSX slot additions.",
+    "unchangedInventory": "1359 typed inventory slots including27 withheld;1332 public/1331 bound;331 supplementary inventory slots. Completion remains false."
+  },
+  "verification": {
+    "command": "npx tsx --test script/company-conditional-api.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/research-field-semantics.test.ts script/native-semantics.test.ts",
+    "pass": 27,
+    "fail": 0,
+    "skip": 0,
+    "additional": ["npx tsc --noEmit passed", "git diff --check passed", "census freshness and original/strict incompleteness checks passed"],
+    "boundary": "Focused tests only; parent owns fullsuite. Source-private assertions unchanged and not rerun. No preview restart, commit, deployment or callback.",
+    "uiVerification": "This integration verified HTTP/JSON/XLSX and source imports, not rendered/interacted UI; prior UI worker owns visual checks."
+  },
+  "sourcePins": {
+    "server/companyConditionalApi.ts": "cb4d49909795f6c1ffdbb4eae1332baf4972cd4c692f7e2df95593dc0d102084",
+    "shared/companyConditionalData.ts": "ad960f647b4eed96c2a5330bd42c4d7d23a827dd20557d742eb78de013c066b7",
+    "shared/companyConditionalSemantics.ts": "8c77549e5bfc1193409a837790a67c119101ba3b368f3149a3f6b98e0cfafaba",
+    "script/company-conditional-api.test.ts": "3e517144c50d27d7c0ea325d841e2105dc77d173c48487828d6c407736d50b8e",
+    "script/field-semantics-census.ts": "126c59fd541cbad4531810e141a2540035ac9fd263f8ac74daf2036f92ec0d89",
+    "script/next-census-accounting.test.ts": "f12aecdb87b8170714eb565d310c3b09167b0b60dd261719c9e4fa2d565e696a",
+    "docs/field_semantics_census.json": "379a63a7bd725e6b9770c94ac41148f8a78e9bb646dd6805532070bdc254b843"
+  },
+  "s03CanonicalProposal": "docs/s03-002-canonical-update-proposal.json; proposal only, canonical owner is parent"
+}

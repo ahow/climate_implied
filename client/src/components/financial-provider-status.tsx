@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import type { FinancialProviderStatus as ProviderStatus } from "@shared/financialData";
 import { RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

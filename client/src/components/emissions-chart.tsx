@@ -28,6 +28,8 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
     );
   }
 
+  if (!trajectory.length) return <Card className="p-6"><p role="status">No legacy emissions trajectory was returned for this selection.</p></Card>;
+
   const sampledData = trajectory.filter((_, i) => i % 2 === 0 || i === trajectory.length - 1);
 
   const downloadRows = trajectory.map((t) => ({

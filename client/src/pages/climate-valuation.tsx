@@ -1,4 +1,5 @@
 import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
+import { CompanyConditionalSummary } from "@/components/company-conditional-summary";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
@@ -235,6 +236,7 @@ export default function ClimateValuation() {
           </div>
         </div>
         <OperatorOnlyNotice />
+        <CompanyConditionalSummary />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <SummaryCard icon={Building2} label="Companies" value={summary?.companiesCount ?? null} isLoading={summaryLoading} />

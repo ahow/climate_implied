@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
+import { ReadResultReason } from "@/components/read-result-reason";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import {
@@ -140,7 +141,7 @@ const CATEGORY_ORDER = [
 ];
 
 function formatValue(value: number | null | undefined, decimals: number): string {
-  if (value === null || value === undefined || Number.isNaN(value)) return "—";
+  if (typeof value !== "number" || !Number.isFinite(value)) return "Unavailable — not returned";
   return value.toLocaleString(undefined, {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
@@ -181,11 +182,11 @@ function formatDateTime(iso: string | null): string {
 export default function DataManagement() {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
-  const { data, isLoading } = useQuery<IndicatorsResponse>({
+  const { data, isLoading, error: indicatorsError } = useQuery<IndicatorsResponse>({
     queryKey: ["/api/data/indicators"],
   });
 
-  const { data: runsData } = useQuery<RunsResponse>({
+  const { data: runsData, isLoading: runsLoading, error: runsError } = useQuery<RunsResponse>({
     queryKey: ["/api/data/runs"],
   });
 
@@ -202,7 +203,9 @@ export default function DataManagement() {
     {},
   );
 
-  const totalPending = (data?.indicators ?? []).reduce((s, i) => s + i.pendingCount, 0);
+  const totalPending = data?.indicators?.every(indicator => typeof indicator.pendingCount === "number" && Number.isFinite(indicator.pendingCount))
+    ? data.indicators.reduce((sum, indicator) => sum + indicator.pendingCount, 0)
+    : undefined;
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-6">
@@ -286,7 +289,7 @@ export default function DataManagement() {
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground">Pending review</p>
             <p className="text-2xl font-bold" data-testid="text-count-pending">
-              {data ? totalPending : "Unavailable"}
+               {totalPending ?? "Unavailable — pending counts not returned"}
             </p>
           </CardContent>
         </Card>
@@ -300,6 +303,8 @@ export default function DataManagement() {
         </Card>
       </div>
 
+      <ReadResultReason label="Indicator inventory" loading={isLoading} error={indicatorsError} available={!!data?.indicators?.length} emptyReason="No reviewed indicators were returned. No indicator values are substituted." />
+      <ReadResultReason label="Collection history" loading={runsLoading} error={runsError} available={!!runsData?.runs?.length} emptyReason="No retained collection runs were returned." />
       <TargetInputDisclosure />
       <FinancialProviderStatus />
       <AnalysisSnapshotStatus />

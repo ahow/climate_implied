@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -65,7 +66,7 @@ export function AnalysisSnapshotStatus() {
     },
     getNextPageParam: (page) => page.nextCursor ?? undefined,
   });
-  const history = { ...inventory, data: inventory.data ? {
+  const history = { ...inventory, data: !inventory.isError && !inventory.isFetching && inventory.data ? {
     status: inventory.data.pages[0].status,
     items: inventory.data.pages.flatMap(page => page.items),
   } : undefined };

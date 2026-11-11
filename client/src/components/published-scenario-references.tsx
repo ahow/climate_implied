@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { Button } from "@/components/ui/button";
 
 type PublishedReferences = {

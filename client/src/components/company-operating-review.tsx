@@ -1,4 +1,4 @@
-import {useQuery} from "@tanstack/react-query";
+import {useReadQuery as useQuery} from "@/lib/use-read-query";
 import {Card,CardContent} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
 type Review={proposalId:string;companyId:string;isin:string;kind:string;sourceArchiveIds:string[];

@@ -40,6 +40,7 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
     );
   }
 
+  if (!pdf.length) return <Card className="p-6"><p role="status">No legacy temperature probability-density observations were returned.</p></Card>;
   const filteredPdf = pdf.filter((d) => d.probability > 0.001);
 
   const downloadRows = pdf.map((d) => ({

@@ -1,3 +1,44 @@
+# Rendered company integration — validated, release pending
+
+{
+  "at": "2026-11-11T10:28:02.943190+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T10:23:34.317977+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 137.353,
+    "counts": {
+      "tests": 550,
+      "pass": 550,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+    "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "browser": "41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance.",
+  "issuer": "New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
+  "ui": "GET-only allowlisted conditional company panel/API/JSON/XLSX integrated; no private/provider rawbytes. Source/conditional/formula/unit/refusal separation. Nozero-fill/stalecached selection data; legitimatezeros preserved.",
+  "coverage": "Original1000/1001 unchanged;1774definitions;expanded1555/1556.63supplemental APIsemantic entries notoriginalclosure.",
+  "next": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11\u201315corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+  "focused_evidence": [
+    {
+      "file": "docs/nee-remittance-counterparty-evidence.json",
+      "sha256": "1f4b412a4b0cbd8e3dfebc2cf41281f51523c8e25d2b9eb483bdbadf158fc5b0"
+    },
+    {
+      "file": "docs/company-conditional-integration-evidence.json",
+      "sha256": "ca2d45989197e34d8a2122ef8e78241493d880fe06543c8b36efa1ef9542cf23"
+    }
+  ]
+}
+
 # Latest verified NEE/admission/alpha1 release
 
 {
@@ -2409,6 +2450,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-gmst-capacity-5ef7bce",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T09:28:18.652768+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-nee-admission-2fb18f0",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T09:57:50.970196+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

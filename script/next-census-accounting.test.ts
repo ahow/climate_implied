@@ -38,15 +38,18 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(census.fullyBoundFields, 1331);
   assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
   assert.equal(census.fields.length, 1028 + added.addedSlots);
-  assert.equal(census.definitions, 1711);
-  assert.equal(added.externalTypedApiSlots, 161);
-  assert.equal(added.externalTypedApiBoundSlots, 161);
-  assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots);
+  assert.equal(census.definitions, 1774);
+  assert.equal(added.externalTypedApiSlots, 224);
+  assert.equal(added.externalTypedApiBoundSlots, 224);
+  assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 1493);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 1492);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 492);
+  assert.equal(added.conditionalCompanyApiLeafSlots, 63);
+  assert.equal(added.conditionalCompanySuccessLeavesPerApi, 30);
+  assert.equal(added.conditionalCompanyWorkbookColumns, 2);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 1556);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 1555);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 555);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
 });
 

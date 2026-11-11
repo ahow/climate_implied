@@ -5,6 +5,7 @@ import type { CategoryProjectionResult } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
+import { displayDiagnostic } from "@/lib/valuation-claims";
 
 interface CategoryComparisonProps {
   categories: CategoryProjectionResult[];
@@ -52,6 +53,8 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
       </Card>
     );
   }
+
+  if (!categories.length) return <Card className="p-6"><p role="status">No legacy category scenario results were returned.</p></Card>;
 
   const downloadRows = categories.map((c) => ({
     Category: c.categoryName,
@@ -114,13 +117,13 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">Temperature</span>
                   <span className={`text-sm font-bold tabular-nums ${getTempColor(cat.temperatureRise)}`} data-testid={`text-category-temp-${cat.category}`}>
-                    {cat.temperatureRise.toFixed(2)}&deg;C
+                     {displayDiagnostic(cat.temperatureRise, "°C")}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">Reduction Rate</span>
                   <span className="text-sm font-semibold tabular-nums" data-testid={`text-category-rate-${cat.category}`}>
-                    {cat.reductionRate.toFixed(2)}%/yr
+                     {displayDiagnostic(cat.reductionRate, "%/yr")}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -130,7 +133,9 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
                   </span>
                 </div>
                 <ThresholdDiagnosticDetails diagnostic={cat.thresholdDiagnostic} contextLabel={cat.categoryName} />
-                <p className="text-xs text-muted-foreground">Separate legacy fixed-5gt-v1: {cat.netZeroYear ?? "Not reached within trajectory horizon"}; not net zero.</p>
+                <p className="text-xs text-muted-foreground">Separate legacy fixed-5gt-v1: {cat.netZeroYear === undefined ? "Unavailable — not returned" : cat.netZeroYear === null ? "Not reached within trajectory horizon" : cat.netZeroYear}; not net zero.</p>
+                {![cat.temperatureRise, cat.reductionRate].every(value => typeof value === "number" && Number.isFinite(value)) &&
+                  <p role="status" className="text-xs text-muted-foreground">This category has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}
               </div>
             </Card>
           );

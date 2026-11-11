@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
+import { ReadResultReason } from "@/components/read-result-reason";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
@@ -79,7 +80,7 @@ function formatNumber(n: number): string {
 }
 
 function sentimentLabel(s: number | null): { text: string; className: string } {
-  if (s === null) return { text: "N/A", className: "text-muted-foreground" };
+  if (typeof s !== "number" || !Number.isFinite(s)) return { text: "N/A", className: "text-muted-foreground" };
   if (s > 0.1) return { text: "Positive", className: "text-green-600 dark:text-green-400" };
   if (s < -0.1) return { text: "Negative", className: "text-red-600 dark:text-red-400" };
   return { text: "Neutral", className: "text-muted-foreground" };
@@ -103,7 +104,7 @@ function aggregateVolumeWeekly(daily: NewsVolumePoint[]): { date: string; count:
 export default function NewsSentiment() {
   const [months, setMonths] = useState("12");
 
-  const { data, isLoading, error } = useQuery<ClimateNewsResult>({
+  const { data: responseData, isLoading, error } = useQuery<ClimateNewsResult>({
     queryKey: ["/api/news/climate", months],
     queryFn: async () => {
       const resp = await fetch(`/api/news/climate?months=${months}`);
@@ -118,6 +119,13 @@ export default function NewsSentiment() {
     staleTime: 6 * 60 * 60 * 1000,
     retry: 1,
   });
+  const data = useMemo(() => responseData ? {
+    ...responseData,
+    volume: responseData.volume ?? [],
+    sentiment: responseData.sentiment ?? [],
+    topicBreakdown: responseData.topicBreakdown ?? [],
+    recentArticles: responseData.recentArticles ?? [],
+  } : undefined, [responseData]);
 
   const weeklyVolume = useMemo(() => {
     if (!data?.volume) return [];
@@ -128,9 +136,9 @@ export default function NewsSentiment() {
     if (!data?.sentiment) return [];
     return data.sentiment.map((s) => ({
       ...s,
-      positiveShare: s.total > 0 ? Math.round((s.positive / s.total) * 100) : 0,
-      negativeShare: s.total > 0 ? Math.round((s.negative / s.total) * 100) : 0,
-      neutralShare: s.total > 0 ? Math.round((s.neutral / s.total) * 100) : 0,
+      positiveShare: s.total > 0 ? Math.round((s.positive / s.total) * 100) : null,
+      negativeShare: s.total > 0 ? Math.round((s.negative / s.total) * 100) : null,
+      neutralShare: s.total > 0 ? Math.round((s.neutral / s.total) * 100) : null,
     }));
   }, [data?.sentiment]);
 
@@ -140,6 +148,7 @@ export default function NewsSentiment() {
     const totalNeg = data.sentiment.reduce((s, p) => s + p.negative, 0);
     const totalNeu = data.sentiment.reduce((s, p) => s + p.neutral, 0);
     const total = totalPos + totalNeg + totalNeu;
+    if (!(total > 0)) return null;
     return {
       avgSentiment: total > 0 ? (totalPos - totalNeg) / total : 0,
       positiveShare: total > 0 ? Math.round((totalPos / total) * 100) : 0,
@@ -152,6 +161,7 @@ export default function NewsSentiment() {
     const recent = data.sentiment.slice(-3);
     const older = data.sentiment.slice(-6, -3);
     if (older.length === 0) return null;
+    if ([...recent, ...older].some(point => !(point.total > 0) || !Number.isFinite(point.avgSentiment))) return null;
     const recentAvg = recent.reduce((s, p) => s + p.avgSentiment, 0) / recent.length;
     const olderAvg = older.reduce((s, p) => s + p.avgSentiment, 0) / older.length;
     return recentAvg - olderAvg;
@@ -230,6 +240,11 @@ export default function NewsSentiment() {
         </div>
       </div>
 
+      <ReadResultReason label="News window" loading={isLoading} available={!!data} emptyReason="No cached news response is available for this period." />
+      {!isLoading && data && <>
+        <ReadResultReason label="News volume" available={!!data.volume.length} emptyReason="No daily volume observations were returned for this period; weekly average is unavailable." />
+        <ReadResultReason label="News sentiment" available={!!overallSentiment} emptyReason="No positive-count sentiment observations were returned for this period; no neutral or zero mean is substituted." />
+      </>}
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map((i) => (
@@ -244,14 +259,14 @@ export default function NewsSentiment() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Card className="p-4" data-testid="card-total-articles">
               <p className="text-xs text-muted-foreground mb-1">Total Articles</p>
-              <p className="text-2xl font-bold">{formatNumber(data.totalArticles)}</p>
+              <p className="text-2xl font-bold">{Number.isFinite(data.totalArticles) ? formatNumber(data.totalArticles) : "Unavailable — not returned"}</p>
               <p className="text-xs text-muted-foreground mt-1">
-                {data.dateRange.start} to {data.dateRange.end}
+                {data.dateRange?.start ?? "Unknown start"} to {data.dateRange?.end ?? "Unknown end"}
               </p>
             </Card>
             <Card className="p-4" data-testid="card-overall-sentiment">
               <p className="text-xs text-muted-foreground mb-1">Overall Sentiment</p>
-              <p className={`text-2xl font-bold ${sentimentLabel(overallSentiment?.avgSentiment ?? 0).className}`}>
+              <p className={`text-2xl font-bold ${sentimentLabel(overallSentiment?.avgSentiment ?? null).className}`}>
                 {overallSentiment ? (overallSentiment.avgSentiment > 0 ? "+" : "") + overallSentiment.avgSentiment.toFixed(2) : "N/A"}
               </p>
               <p className="text-xs text-muted-foreground mt-1">
@@ -283,7 +298,7 @@ export default function NewsSentiment() {
               <p className="text-2xl font-bold">
                 {weeklyVolume.length > 0
                   ? formatNumber(Math.round(weeklyVolume.reduce((s, w) => s + w.count, 0) / weeklyVolume.length))
-                  : "0"}
+                  : "Unavailable"}
               </p>
               <p className="text-xs text-muted-foreground mt-1">articles/week</p>
             </Card>
@@ -415,9 +430,9 @@ export default function NewsSentiment() {
                   rows={sentimentBreakdownRows}
                   fieldBindings={{
                     Month:{id:"news.sentiment[].date",transform:"Identity"},
-                    "Positive (%)":{id:"news.sentiment[].positive",transform:"total > 0 ? Math.round(positive / total * 100) : 0"},
-                    "Neutral (%)":{id:"news.sentiment[].neutral",transform:"total > 0 ? Math.round(neutral / total * 100) : 0"},
-                    "Negative (%)":{id:"news.sentiment[].negative",transform:"total > 0 ? Math.round(negative / total * 100) : 0"},
+                    "Positive (%)":{id:"news.sentiment[].positive",transform:"total > 0 ? Math.round(positive / total * 100) : null; no denominator means unavailable"},
+                    "Neutral (%)":{id:"news.sentiment[].neutral",transform:"total > 0 ? Math.round(neutral / total * 100) : null; no denominator means unavailable"},
+                    "Negative (%)":{id:"news.sentiment[].negative",transform:"total > 0 ? Math.round(negative / total * 100) : null; no denominator means unavailable"},
                   }}
                   testId="button-download-sentiment-breakdown"
                 />
@@ -535,7 +550,7 @@ export default function NewsSentiment() {
                         <span>{article.source}</span>
                         <span>{article.date}</span>
                         <Badge variant="secondary" className={`text-[10px] ${sl.className}`}>
-                          {article.sentiment !== null ? `${article.sentiment > 0 ? "+" : ""}${article.sentiment.toFixed(2)}` : "N/A"}
+                          {typeof article.sentiment === "number" && Number.isFinite(article.sentiment) ? `${article.sentiment > 0 ? "+" : ""}${article.sentiment.toFixed(2)}` : "N/A"}
                         </Badge>
                       </div>
                     </div>

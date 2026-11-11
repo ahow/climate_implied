@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { Button } from "@/components/ui/button";
 import { DownloadDataButton } from "./download-data-button";
 import { nativeExportRow,nativeExportBindings } from "@shared/nativeExport";

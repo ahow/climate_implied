@@ -34,6 +34,8 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     );
   }
 
+  if (!data.length) return <Card className="p-6"><p role="status">No legacy historical recalculation observations were returned.</p></Card>;
+
   const hasNowcast = data.some((d) => d.isNowcast);
   const firstYear = data[0]?.year;
   const lastObservedYear = data.filter((d) => !d.isNowcast).at(-1)?.year;
@@ -45,7 +47,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
           title: "Historical Temperature Projections",
           subtitle: hasNowcast
             ? `Observed data (${firstYear}-${lastObservedYear}) with nowcast extrapolation to present`
-            : `Current model applied retrospectively to each year's inputs (${firstYear}-${lastObservedYear})`,
+             : `Current model applied retrospectively to each year's inputs (${firstYear ?? "unavailable"}-${lastObservedYear ?? "unavailable"})`,
           dataKey: "median",
           yLabel: "\u00B0C above pre-industrial",
           yDomain: [1.5, 3.5] as [number, number],

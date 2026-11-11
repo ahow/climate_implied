@@ -1,0 +1,226 @@
+{
+  "version": "nee-remittance-counterparty-1",
+  "status": "implemented-and-privately-validated-conditional-not-qualified",
+  "technicalQualifiedOriginalIssuers": 0,
+  "qualifiedOriginalPairs": 0,
+  "scope": "New NEE source/cash-remittance/counterparty-funding experiment only; original NEE24/FSLR48/XOM24 kernels are not executed or edited.",
+  "primaryDiscovery": "Retained authenticated FY2024 NEE annual Note4 explicitly reports January2025 XPLR common distribution suspension for an indefinite period. Note8 identifies equity-method ownership, payable cash sweeps, service fees, receivables, gross reported credit-support exposure and separate guarantee fair value. Note1 describes a distinct JV financing-triggered $386m distribution; its intersection with consolidated $811m operating affiliate distributions is NOT disclosed.",
+  "engineeringDecision": "Rebuild funded common cash from stored NEE24 operating/capital rows with an explicitly adverse zero-ALL-affiliate-remittance condition, not an observed all-affiliate suspension. Pair no extra cash reserve with a one-time restricted cash provision at reported $1.3bn credit-support exposure scale. Never count the $58m guarantee fair value, $287m receivable writeoff or $127m payable cash sweep as a second cash expense. Freeze all conditions before scoring.",
+  "sourceGap": "Exact XPLR share of consolidated $811m cash distributions, gross non-DMI distributions/contributions, project LLC cash/tax priorities/flip dates/call amounts, and project commissioning marginal cash returns remain unreported in retained annual. The new calculation does not require invented values for these fields.",
+  "networkRequests": 0,
+  "providerRequests": 0,
+  "files": [
+    "server/calculation/neeRemittanceCounterparty.ts",
+    "script/run-nee-remittance-counterparty.ts",
+    "script/nee-remittance-counterparty.test.ts",
+    "script/validate-nee-remittance-counterparty-private.ts",
+    "docs/nee-remittance-counterparty-evidence.json"
+  ],
+  "sourceAttempts": {
+    "primary": "FY2024 NEE/FPL 10-K accession0000753308-25-000011",
+    "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000011/nee-20241231.htm",
+    "availableAt": "2025-02-14T19:23:43.000Z",
+    "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/NEE-primary.html",
+    "sha256": "2a4b8e20c5fe08227924b6af664413bb19db948ff4a25f3171fd84797fa74a83",
+    "boundedScope": "Retained authenticated annual Note1 disposal/DMI, Note4 impairment and actual distribution-stop event, Note8 related parties, Note9 project-VIE cash/power contracts and retained earnings supplement examined. No new network/provider calls. The ready cash-remittance/counterparty calculation was executed rather than waiting for an unavailable annual LLC contractual distribution schedule.",
+    "newBindingLookups": 9,
+    "countCaveat": "Nine authenticated lookups overlap earlier evidence; not nine additional disjoint facts added to canonical166.",
+    "sourceLocators": [
+      {"id": "f-341", "context": "c-1", "tag": "us-gaap:EquityMethodInvestmentDividendsOrDistributions", "usd": 811000000, "boundary": "Consolidated FY2024 distributions of earnings from equity-method investees, NOT an identified XPLR-only amount."},
+      {"id": "f-2057", "context": "c-404", "tag": "us-gaap:GuaranteeObligationsCurrentCarryingValue", "usd": 1300000000, "boundary": "Note8 approximately$1.3bn guarantees/indemnifications/LCs/surety bonds primarily on behalf of XPLR subsidiaries, maturities2025-2059. Reported exposure scale, NOT expected paid cash or independently verified legal maximum."},
+      {"id": "f-2058", "context": "c-404", "tag": "us-gaap:GuaranteesFairValueDisclosure", "usd": 58000000, "boundary": "Credit-support fair value in noncurrent other liabilities, NOT a second cash claim."},
+      {"id": "f-2048", "context": "c-397", "tag": "us-gaap:AccountsPayableOtherCurrentAndNoncurrent", "usd": 127000000, "boundary": "Cash sweeps due TO XPLR/subsidiaries and included in accounts payable; not NEE excess cash."},
+      {"id": "f-2053", "context": "c-402", "tag": "us-gaap:OtherReceivables", "usd": 159000000, "boundary": "Receivable, not new cash loss or assumed liquidation receipt."},
+      {"id": "f-2055", "context": "c-402", "tag": "us-gaap:OtherAssetsNoncurrent", "usd": 128000000, "boundary": "Noncurrent amount due from XPLR; no duplicate cash writeoff."},
+      {"id": "f-2050", "context": "c-399", "tag": "us-gaap:InterestAndFeeIncomeOtherLoans", "usd": 18000000, "boundary": "Fee INCOME in operating revenues, not authenticated cash collection."},
+      {"id": "f-1142", "context": "c-153", "tag": "us-gaap:EquityMethodInvestmentDividendsOrDistributions", "usd": 386000000, "boundary": "Different five-wind/three-solar JV paid a distribution upon obtaining financing inQ42024. Funding type/CFO-versus-investing cash classification and overlap with$811m remain unknown."},
+      {"id": "f-1139", "context": "c-151", "tag": "us-gaap:NoncontrollingInterestDecreaseFromDeconsolidation", "usd": 844000000, "boundary": "JV NCI book derecognition, NOT a payment to non-common owners."}
+    ],
+    "legalEntityBoundary": "Note8 reports approximately52.6% NONCONTROLLING equity-method interest in XPLR, primarily through XPLR OpCo. This is not a controlling interest in consolidated project NCI or a valid percentage multiplier for consolidated cash/tax flows.",
+    "actualEvent": "Note4: XPLR announced in January2025 that common-unitholder distributions were suspended for an indefinite period. The annual published after retained reference date; revised-history use is explicit.",
+    "classificationNotSolved": "The same XBRL tag on$386m and$811m does not establish classification/overlap. New implementation retains both intersections null and never sums them into$1.197bn lost operating cash."
+  },
+  "frozenForwardConditions": {
+    "freezeBeforeScoring": true,
+    "construction": "24 STORED NEE funding-guard cases x two NEW counterparty cash-provision policies =48 new full paths. No old builder/kernel run. Original stub variants cause duplicate future paths:24 distinct future paths,48 full stub+future assessments.",
+    "remittances": "Zero ALL future affiliate distributions is an adverse cash-continuity condition prompted by actual XPLR suspension, NOT an observed suspension of all$811m and not a source assertion all$811m belongs to XPLR.",
+    "partialIdentification": "XPLR component of$811m: unknown in[0,811m]. Distinct JV distribution overlap with that CFO line: unknown in[0,386m]. Union of at-risk historic CFO affiliate cash remains at most$811m, not$1.197bn. These are accounting-set bounds, not empirical probabilities or legal entitlement limits.",
+    "guaranteeProvision": "Compare no EXTRA restricted cash reserve to one-time2026 reserve at reported FY2024 approximately$1.3bn exposure scale. Neither is a guarantee-call observation. Entire2024 scale is conservatively retained despite unknown2025 expiries/calls/status; no future remaining-balance observation claimed. No arbitrary loss probability or contractual maximum is invented.",
+    "noDoubleDeduction": "Provision is funded once, held nominally at zero return, never also paid as another guarantee call and never released in terminal. Existing non-common reserves stay charged. This may be deliberately conservative if those payment reserves would also cover a call. No additional$58m fair-value payment,$287m receivable writeoff or$127m cash-sweep release/deduction.",
+    "cashRebuild": "Use stored gross operating cash and fixed/nuclear amortization to rebuild taxable-cash proxy and21% cash-tax sensitivity with affiliate cash zero; rebuild every period's full capital/WC/debt/interest/non-common cash. Guarantee reserve is not tax deductible as an expense. No cash-flow scaling disguised as operating activity.",
+    "originalBasis": "FY2024 selected common-FCFE base, original USD/security/reference-date context and2025 signed stub unchanged. Original2026-2030 five years,2031-2040 ten-year fade and2041 terminal at2.5/3.25/4%;10% cost-of-equity sensitivity. All replacement, nuclear fuel, AFUDC and cash reserve funding retained. No second net-debt subtraction, excess-cash release or invented future shares.",
+    "scopeOfOriginalReference": "Revised-history retained2025-01-31 reference; filing available2025-02-14. No price, share count, market cap, provider quote or market-value ratio is read into or emitted by the new calculation.",
+    "remainingPolicyConditions": "Inherited renewable-cash runoff versus zero-future-policy paths and no-policy terminal remain conditional; current post2025 law/FEOC is NOT certified. Source-paid capital cash productivity and gross non-DMI claim uncertainty remain, so no original issuer qualification."
+  },
+  "freeze": {
+    "frozenAt": "2026-11-11T10:08:07.318Z",
+    "calculatedAt": "2026-11-11T10:08:07.381Z",
+    "path": "generated-artifacts/company-operating-corpus/nee-remittance-counterparty-v1/2026-11-11T10-08-07-318Z/frozen-before-calculation.json",
+    "sha256": "7f7a8643ff9baac2b718d6c4181b8907a3bc27c856880cd4d2800144e40188b9",
+    "reportPath": "generated-artifacts/company-operating-corpus/nee-remittance-counterparty-v1/2026-11-11T10-08-07-318Z/report.json",
+    "reportSha256": "4d374152b40f5ff66af04775d276ccc6b60947b19c04ae0f0b365015057e95f2",
+    "protectedPriorFiles": 173,
+    "oldNee24Fslr48Xom24KernelsExecuted": false
+  },
+  "publicDerivedAggregates": {
+    "version": "nee-remittance-counterparty-1",
+    "calculationCases": 48,
+    "futureCashRows": 768,
+    "positiveTerminalCases": 48,
+    "positiveConditionalValueCases": 47,
+    "refusedFundedPlanCases": 1,
+    "terminalCashRangeUsd": [1341835510.2703073, 2933898962.6700544],
+    "signedPlanPvRangeUsd": [-477511608.7392168, 17945174576.65535],
+    "requiredCommonCallsRangeUsd": [1079609226.591591, 10242498863.096863],
+    "cashProvisionRangeUsd": [0, 1300000000],
+    "qualifiedOriginalIssuers": 0,
+    "qualifiedOriginalPairs": 0,
+    "legalWaterfallIdentified": false,
+    "conditionalModelNotObservedForecast": true,
+    "marketReferenceOrPriceDataIncluded": false
+  },
+  "privateOnlyOutcomeContext": {
+    "negativeAnnualCommonFundingRows": 156,
+    "actualCommonFcfeFiveYearCagrRange": [0.5531761792027863, 0.7407316268805666],
+    "growthMeaning": "Actual-base common-cash CAGR, NOT physical output growth/project IRR. Not on public allowlist because it depends on selected retained historical-base record.",
+    "refusedScenario": "Constraint-stub,4% terminal,budget-completion delay,zero future policy cash,exposure-scale cash provision. Terminal cash positive$1.342bn but funded-plan NPV NEGATIVE$477.512m: equity value is null/refused, not a negative quoted share price.",
+    "originalQualifiedIssuers": 0
+  },
+  "verification": {
+    "publicCodeOnly": {
+      "command": "npx tsx --test script/nee-remittance-counterparty.test.ts",
+      "passed": 6, "failed": 0, "skipped": 0,
+      "privateFilesOrNetwork": false,
+      "logSha256": "24ff04f9a356a3e96fe70853abb39e51ad297b1453118f53202a201124fb551e"
+    },
+    "assembly": {
+      "command": "npx tsx script/run-nee-remittance-counterparty.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "00f78b8357f0328f65191d586ce9256f0ab975b13e22ec9c7bf5fe3936b52105"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary",
+      "exitCode": 0, "newCaseReplays": 48, "independentCashRows": 768, "terminalGrowthAndPvChecks": 48,
+      "checks": "Authenticated source/code/protected hashes; exact reported event/legal context; independent cash/tax reconstruction; each stored capital/WC/debt/interest/policy/non-common row unchanged; reserve cash funded once and held; no fair-value/receivable/sweep double deduction; dated stub/terminal PV; actual common-cash CAGR kept distinct; explicit null/refusal; safe public summary projection.",
+      "logSha256": "9f817662f92f21a278512b87b353569d0397f9575582b8bf82a46536d569955d"
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/neeRemittanceCounterparty.ts script/run-nee-remittance-counterparty.ts script/nee-remittance-counterparty.test.ts script/validate-nee-remittance-counterparty-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5Source": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/neeRemittanceCounterparty.ts",
+      "exitCode": 0, "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logsDirectory": "generated-artifacts/company-operating-corpus/nee-remittance-counterparty-v1/",
+    "rawPrivateProviderDataExported": false,
+    "canonicalLedgersEdited": false,
+    "commitDeployPublishCallbackProductionDdlAuthCollectorChanges": false
+  },
+  "safePublicDerivedAggregateAllowlist": {
+    "contract": "Pick ONLY the exact JSON pointers below. No wildcard/object spread of outcomes, source, freeze, cases, baselines or verification. Financial model aggregates listed here are primary-source cash calculations independent of provider price/shares. This is a derived-data leak boundary, not an expanded provider licence, publication callback or change to private file permissions.",
+    "newProjection": {
+      "function": "publicNeeRemittanceSummary in server/calculation/neeRemittanceCounterparty.ts",
+      "file": "docs/nee-remittance-counterparty-evidence.json",
+      "pointers": [
+        "/publicDerivedAggregates/version",
+        "/publicDerivedAggregates/calculationCases",
+        "/publicDerivedAggregates/futureCashRows",
+        "/publicDerivedAggregates/positiveTerminalCases",
+        "/publicDerivedAggregates/positiveConditionalValueCases",
+        "/publicDerivedAggregates/refusedFundedPlanCases",
+        "/publicDerivedAggregates/terminalCashRangeUsd",
+        "/publicDerivedAggregates/signedPlanPvRangeUsd",
+        "/publicDerivedAggregates/requiredCommonCallsRangeUsd",
+        "/publicDerivedAggregates/cashProvisionRangeUsd",
+        "/publicDerivedAggregates/qualifiedOriginalIssuers",
+        "/publicDerivedAggregates/qualifiedOriginalPairs",
+        "/publicDerivedAggregates/legalWaterfallIdentified",
+        "/publicDerivedAggregates/conditionalModelNotObservedForecast",
+        "/publicDerivedAggregates/marketReferenceOrPriceDataIncluded",
+        "/verification/publicCodeOnly/passed",
+        "/verification/publicCodeOnly/failed",
+        "/verification/mandatoryPrivate/newCaseReplays",
+        "/verification/mandatoryPrivate/independentCashRows"
+      ]
+    },
+    "existingNee24": {
+      "file": "docs/nee-project-cash-waterfall-evidence.json",
+      "pointers": [
+        "/version", "/status", "/technicalQualifiedOriginalIssuers", "/qualifiedOriginalPairs",
+        "/outcomes/fullNewCases", "/outcomes/futureCashRows", "/outcomes/componentCapitalRows",
+        "/outcomes/terminalRows", "/outcomes/positiveConditionalFloorTerminals", "/outcomes/positiveConditionalFloorValues",
+        "/outcomes/negativeAnnualCommonFundingRows", "/outcomes/terminalFcfeUsdRange",
+        "/outcomes/conditionalWholeValueUsdRange", "/outcomes/totalFutureCommonCallsUsdRange",
+        "/outcomes/additionalCashCapitalAboveApprovedNetAfudcBudgets2026To2029",
+        "/outcomes/additionalBudgetCashByYear/2026", "/outcomes/additionalBudgetCashByYear/2027",
+        "/outcomes/additionalBudgetCashByYear/2028", "/outcomes/additionalBudgetCashByYear/2029",
+        "/outcomes/unidentifiedAnnualGrossClaimTerminalHeadroom2024UsdRange",
+        "/outcomes/unidentifiedAnnualGrossClaimWholePlanHeadroom2024UsdRange"
+      ]
+    },
+    "existingFslr48": {
+      "file": "docs/fslr-paid-spare-capacity-evidence.json",
+      "pointers": [
+        "/version", "/technicalQualifiedOriginalIssuers", "/technicalRequiredOriginalIssuers", "/qualifiedOriginalPairs",
+        "/outcomes/newCompleteCases", "/outcomes/explicitFutureCashRows", "/outcomes/postCreditTerminalRows",
+        "/outcomes/terminalPositiveCases", "/outcomes/terminalNonpositiveCases",
+        "/outcomes/positiveTerminalButNonpositiveCommonFundedValue", "/outcomes/conditionalPositiveFundedValues",
+        "/outcomes/allPostStubCreditZeroPositiveFundedValues", "/outcomes/negativeCommonFundingYearsRetained",
+        "/outcomes/zeroCreditSignedPlanPvRangeUsd", "/outcomes/marketTargetRootOrUniquenessClaim",
+        "/outcomes/reverseScoringPerformed", "/outcomes/wearDownsideAt4Percent"
+      ]
+    },
+    "existingXom24": {
+      "file": "docs/xom-climate-liability-evidence.json",
+      "pointers": [
+        "/version", "/technicalQualifiedOriginalIssuers", "/technicalRequiredOriginalIssuers", "/qualifiedOriginalPairs",
+        "/conditionalForwardCalculation/integratedCases", "/conditionalForwardCalculation/futureCashRows",
+        "/conditionalForwardCalculation/permitAllowanceUnitRows",
+        "/conditionalForwardCalculation/newReverseScoringPerformed",
+        "/conditionalForwardCalculation/oldV3V4NegativeNoRootResultsChanged",
+        "/conditionalForwardCalculation/ccsTariffInvented",
+        "/conditionalForwardCalculation/hqProxyOrGlobalAverage532AllocationUsed",
+        "/authoritativeClaims/additiveSelectedPermitReportedTco2e",
+        "/authoritativeClaims/selectedDeliveredUka2024",
+        "/authoritativeClaims/selectedReportedTonnesMinusDeliveredUnits",
+        "/verification/codeOnly/passed", "/verification/codeOnly/failed",
+        "/verification/mandatoryPrivatePrimary/newCaseReplays",
+        "/verification/mandatoryPrivatePrimary/independentCashRows"
+      ]
+    },
+    "requiredDisplayLabels": [
+      "Original issuer qualification0/3; calculated scenario count is not qualified issuer/case count.",
+      "Conditional revised-history model, not observed future cash, company forecast, operating-growth estimate or investment recommendation.",
+      "Signed funded-plan NPV can be negative/refused; it is not a negative share price. Negative annual cash requires assumed voluntary pro-rata common funding.",
+      "NEE24 floor leaves unidentified gross other claims; new remittance stress removes ALL affiliate cash conditionally, not an observed all-affiliate suspension. Guarantee amount is an optional exposure-scale cash reserve, not observed paid loss.",
+      "FSLR terminal maintenance/wear assumptions and current45X law/FEOC remain conditional; terminal positivity alone is insufficient and zero-credit funded plans fail.",
+      "XOM quantities cover only selected joined UK permits, reported tCO2e/allowances rather than nativeCO2 or global/company-paid carbon cash. Current carbon expense is embedded; incremental cost stress is not a second baseline deduction or CCS tariff.",
+      "Claim headroom is analytical sensitivity, not observed contract entitlement, a root uniqueness claim or a safe legal limit."
+    ],
+    "neverExpose": [
+      "Raw generated-artifact files, primary HTML/PDF/XLSX exports, private source excerpts or provider responses.",
+      "market/source provider objects; actual prices, shares, market caps, returns observations, ISIN candidate/raw sample records, API URLs with provider query payloads, secrets or environment variables.",
+      "ANY value-to-retained-equity/market-target ratio, including NEE outcomes.testedValueToRetainedEquityRange and FSLR outcomes.bestConditionalValueShareOfRetainedEquityApproximately.",
+      "Actual-base FCFE/CAGR values or per-case cash rows/arrays; privateOnlyOutcomeContext; evidence source paths, freeze paths, baseline/case paths/IDs, source-context objects or freeform full verification/source receipt objects.",
+      "Whole outcome/case/source/authoritativeClaims object serialization. XOM only explicitly allowed summed permit aggregates, never raw permit workbook/legal rows.",
+      "Projected conditional FX coordinates presented as observed market FX/auction/company-paid prices, or source-law eligibility presented as current legal certification."
+    ]
+  },
+  "narrowResiduals": [
+    "Note4/8 identify suspended XPLR cash and legal/credit context but not XPLR's dollar component of consolidated$811m distributions. Need a direct issuer remittance reconciliation, not52.6% times consolidated cash.",
+    "Note1 identifies JV financing-triggered$386m receipt but does not bind its CFO/investing line or intersection with$811m. Need that classification before an observed recurring-cash normalization subtracts a specific amount.",
+    "Gross non-DMI cash contributions/distributions within net-other financing, named LLC cash/tax priorities/flip dates/call prices and commissioning cash-return schedules remain absent from retained annual packet. HLBV and$844m NCI deconsolidation cannot fill them.",
+    "Reported$1.3bn support and$58m fair value lack actual draw/expiry/recovery/collateral schedule and an exact legal maximum; no default probability invented. The full exposure-scale provision is conditional and can overlap existing aggregate payment reserves conservatively.",
+    "Source18m fee income and$287m receivables do not disclose future collected cash or loss realization. No extra fee cash or duplicate writeoff is used.",
+    "Current policy legal eligibility and source marginal project cash productivity remain conditional; positive terminal/47positive floor values do not complete original cases. Qualification stays0/3."
+  ],
+  "originalClauseProposalsForParent": [
+    {"clause": "Original whole-common cash allocation/funding", "proposal": "New source-event/counterparty cash rebuild executed48paths; exact noncash-vs-cash boundaries improved. Gross legal non-DMI waterfall remains unidentified; no qualified original cases."},
+    {"clause": "S12-001", "proposal": "Actual equity-method/counterparty versus consolidated-project boundary prevents incorrect ownership allocation. No52.6% cash-share or HQ/geography proxy; existing operating geography evidence retained, full mixed-sector/country cash weights not invented."},
+    {"clause": "Public evidence/display", "proposal": "Exact JSON-pointer aggregate allowlist and tested explicit projection ready for parent UI integration. No route, public artifact, publication callback or raw provider-data export implemented here."}
+  ],
+  "readyNextEngineeringBlock": "Under a separately frozen version, source a DIRECT XPLR-to-NEE annual cash-remittance amount and the financing-triggered JV receipt's cash-flow classification; replace only corresponding unknown set components. Alternatively consume named LLC priority/flip/call exhibit if authenticated. Current complete no-remittance/exposure-provision paths already quantify funding sensitivity without invented observations or owner approval. Parent may integrate only exact allowlisted aggregate pointers."
+}

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import type { OutputFieldSemantic } from "@shared/outputFieldSemantics";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -7,7 +7,7 @@ export function TargetInputDisclosure() {
   const registry=useQuery<{qualifiedFields:OutputFieldSemantic[]}>({
     queryKey:["/api/calculation/field-semantics"],
   });
-  const fields=registry.data?.qualifiedFields.filter(f=>f.id.startsWith("targetInput."));
+  const fields=registry.data?.qualifiedFields?.filter(f=>f.id.startsWith("targetInput."));
   return <Card><CardContent className="p-4 space-y-3">
     <h2 className="font-semibold">Company target input contract — read only</h2>
     <p className="text-sm text-muted-foreground">

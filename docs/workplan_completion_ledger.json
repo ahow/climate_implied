@@ -1130,6 +1130,44 @@
         "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
         "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
       }
+    },
+    "rendered_company": {
+      "at": "2026-11-11T10:28:02.943190+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+        ],
+        "executed_at": "2026-11-11T10:23:34.317977+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 137.353,
+        "counts": {
+          "tests": 550,
+          "pass": 550,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+        "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "browser": "41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance.",
+      "issuer": "New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
+      "ui": "GET-only allowlisted conditional company panel/API/JSON/XLSX integrated; no private/provider rawbytes. Source/conditional/formula/unit/refusal separation. Nozero-fill/stalecached selection data; legitimatezeros preserved.",
+      "coverage": "Original1000/1001 unchanged;1774definitions;expanded1555/1556.63supplemental APIsemantic entries notoriginalclosure.",
+      "next": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+      "focused_evidence": [
+        {
+          "file": "docs/nee-remittance-counterparty-evidence.json",
+          "sha256": "1f4b412a4b0cbd8e3dfebc2cf41281f51523c8e25d2b9eb483bdbadf158fc5b0"
+        },
+        {
+          "file": "docs/company-conditional-integration-evidence.json",
+          "sha256": "ca2d45989197e34d8a2122ef8e78241493d880fe06543c8b36efa1ef9542cf23"
+        }
+      ]
     }
   },
   "prior_native_fleet_increment": {
@@ -1225,7 +1263,7 @@
     "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T09:53:03.090383+00:00",
+  "updated_at": "2026-11-11T10:28:02.943190+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -18099,9 +18137,9 @@
           "git_commit": "f4b51f076f1f516298a08048f12b33e51a701f12",
           "deployment_revision": "2fb18f029f62368ae3b1471c9820a6bf7eb0e5b5",
           "remaining_gaps": [
-            "Role schemas differ candidate-mechanism-input vs native mechanism-input; optional legacy context references are not an accepted role-governed forecast."
+            "No accepted real joint regional distribution/native inventory or scientific forecast acceptance; canonical role/admission mismatch was fixed and is not an open engineering gap."
           ],
-          "next_action": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance.",
+          "next_action": "Obtain qualified joint distributions/inventory and independent scientific acceptance without weakening canonical role admission.",
           "blockers": [],
           "prior_reconciliation": [
             {
@@ -105829,6 +105867,26 @@
               "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T10:23:34.317977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 137.353,
+              "counts": {
+                "tests": 550,
+                "pass": 550,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+              "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -106208,7 +106266,7 @@
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
             "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
           ],
-          "next_action": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance.",
+          "next_action": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -110525,6 +110583,44 @@
               ],
               "readyNextEngineeringBlock": "Current source component/geography records and24 full funded paths are dependency-ready for parent integration without touching old scores. For a NEW experiment, replace the flat non-FPL marginal cash-yield condition with approved-capital commissioning cohorts and explicit distributions priority/call scenarios; test source-anchored lower cash productivity while rebuilding capital, tax, reserves and gross debt. Missing actual LLC dates/priorities must remain null unless a retained/public exhibit supplies them. Country-capacity shares must NOT become revenue/credit/common-cash weights."
             }
+          },
+          "rendered_company_increment": {
+            "at": "2026-11-11T10:28:02.943190+00:00",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T10:23:34.317977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 137.353,
+              "counts": {
+                "tests": 550,
+                "pass": 550,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+              "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "browser": "41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance.",
+            "issuer": "New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
+            "ui": "GET-only allowlisted conditional company panel/API/JSON/XLSX integrated; no private/provider rawbytes. Source/conditional/formula/unit/refusal separation. Nozero-fill/stalecached selection data; legitimatezeros preserved.",
+            "coverage": "Original1000/1001 unchanged;1774definitions;expanded1555/1556.63supplemental APIsemantic entries notoriginalclosure.",
+            "next": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+            "focused_evidence": [
+              {
+                "file": "docs/nee-remittance-counterparty-evidence.json",
+                "sha256": "1f4b412a4b0cbd8e3dfebc2cf41281f51523c8e25d2b9eb483bdbadf158fc5b0"
+              },
+              {
+                "file": "docs/company-conditional-integration-evidence.json",
+                "sha256": "ca2d45989197e34d8a2122ef8e78241493d880fe06543c8b36efa1ef9542cf23"
+              }
+            ]
           }
         },
         {
@@ -132426,6 +132522,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T10:23:34.317977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 137.353,
+              "counts": {
+                "tests": 550,
+                "pass": 550,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+              "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -132435,9 +132551,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Every component across every page has not been exhaustively rendered with all Tier2/four-market-measure/TrackB outputs absent."
+            "Rendered synthetic all-route state coverage and conditional panel/export checks now exist; genuine data/owner/scientific acceptance and exhaustive future dynamic combinations are not established."
           ],
-          "next_action": "Create complete absent-output fixtures for every page and verify specific reasons in UI, API and exports.",
+          "next_action": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -132501,6 +132617,44 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "rendered_company_increment": {
+            "at": "2026-11-11T10:28:02.943190+00:00",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T10:23:34.317977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 137.353,
+              "counts": {
+                "tests": 550,
+                "pass": 550,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+              "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "browser": "41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance.",
+            "issuer": "New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
+            "ui": "GET-only allowlisted conditional company panel/API/JSON/XLSX integrated; no private/provider rawbytes. Source/conditional/formula/unit/refusal separation. Nozero-fill/stalecached selection data; legitimatezeros preserved.",
+            "coverage": "Original1000/1001 unchanged;1774definitions;expanded1555/1556.63supplemental APIsemantic entries notoriginalclosure.",
+            "next": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+            "focused_evidence": [
+              {
+                "file": "docs/nee-remittance-counterparty-evidence.json",
+                "sha256": "1f4b412a4b0cbd8e3dfebc2cf41281f51523c8e25d2b9eb483bdbadf158fc5b0"
+              },
+              {
+                "file": "docs/company-conditional-integration-evidence.json",
+                "sha256": "ca2d45989197e34d8a2122ef8e78241493d880fe06543c8b36efa1ef9542cf23"
+              }
+            ]
           }
         },
         {
@@ -133083,6 +133237,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T10:23:34.317977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 137.353,
+              "counts": {
+                "tests": 550,
+                "pass": 550,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+              "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -133092,9 +133266,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No complete all-pages rendered fixture with all market measures/Tier2/TrackB absent."
+            "Rendered synthetic all-route state coverage and conditional panel/export checks now exist; genuine data/owner/scientific acceptance and exhaustive future dynamic combinations are not established."
           ],
-          "next_action": "Add browser/render fixture coverage for every route, all-absent state, loading and errors with actual reason assertions.",
+          "next_action": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -133153,6 +133327,44 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "rendered_company_increment": {
+            "at": "2026-11-11T10:28:02.943190+00:00",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T10:23:34.317977+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 137.353,
+              "counts": {
+                "tests": 550,
+                "pass": 550,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+              "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            "browser": "41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance.",
+            "issuer": "New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
+            "ui": "GET-only allowlisted conditional company panel/API/JSON/XLSX integrated; no private/provider rawbytes. Source/conditional/formula/unit/refusal separation. Nozero-fill/stalecached selection data; legitimatezeros preserved.",
+            "coverage": "Original1000/1001 unchanged;1774definitions;expanded1555/1556.63supplemental APIsemantic entries notoriginalclosure.",
+            "next": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+            "focused_evidence": [
+              {
+                "file": "docs/nee-remittance-counterparty-evidence.json",
+                "sha256": "1f4b412a4b0cbd8e3dfebc2cf41281f51523c8e25d2b9eb483bdbadf158fc5b0"
+              },
+              {
+                "file": "docs/company-conditional-integration-evidence.json",
+                "sha256": "ca2d45989197e34d8a2122ef8e78241493d880fe06543c8b36efa1ef9542cf23"
+              }
+            ]
           }
         },
         {
@@ -139538,6 +139750,46 @@
       "workspace_revision": "9efcc3655903e0aca13d3b9f088e31d1e2a51de0",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T10:17:16.105052+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 90.851,
+      "counts": {
+        "tests": 547,
+        "pass": 545,
+        "fail": 2,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T101716105052Z.log",
+      "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-remittance-counterparty-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T10:23:34.317977+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 137.353,
+      "counts": {
+        "tests": 550,
+        "pass": 550,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T102334317977Z.log",
+      "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -139805,13 +140057,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue full NEE project commissioning/marginal return and gross non-DMI distribution evidence, XOM original economics and source-specific control/forcing/native-boundary qualification. Preserve new conditional NEE paths, original FSLR/XOM negatives and alpha1 distinction. Complete genuine dated11–15 corpus and operator prerequisites; no synthetic scientific acceptance. Canonical role vocabulary plus every bound scenario dependency admission; unsigned joint registry/inventory refuses central generation.22curated+10retained central refusals preserved. No accepted real central forecast. 24conditional paths/384cash/768capitalrows. Historical DMI2.257bn/payment740m; cash including DMI2.183bn versus negative74m without. FPL3.7bn dividend less3.4bn contribution=300m netparent cash. Conditional terminals2.499–3.986bn,values10.567–26.668bn;48negative annual funding rows. No root/qualified original case;0/3. Exact licensed alpha1 recovered; zero initial modes/full first-last steps/trapezoidal boundary output proved. Five engineering vectors residual0C at1e-14; annualmean differs0.027986C. No attribution or forcing/control ensemble acquisition.",
+    "instruction": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps. 41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance. New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-gmst-capacity-5ef7bce",
+    "checkpoint_id": "ckpt-20261111-nee-admission-2fb18f0",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T09:28:18.652768+00:00",
+    "attempted_at": "2026-11-11T09:57:50.970196+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202

@@ -1,6 +1,7 @@
 import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { useState, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
+import { ReadResultReason } from "@/components/read-result-reason";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
@@ -148,13 +149,13 @@ export default function DecarbSignal() {
     queryKey: ["/api/cv/dimensions"],
   });
 
-  const { data: uploads } = useQuery<UploadRecord[]>({
+  const { data: uploads, isLoading: uploadsLoading, error: uploadsError } = useQuery<UploadRecord[]>({
     queryKey: ["/api/cv/uploads"],
   });
 
   const uploadId = hasArchivedSelection() ? "archived" : uploads?.find((u) => u.status === "completed")?.id;
 
-  const { data: carbonPriceData, isLoading: loadingCP } = useQuery<CarbonPricePoint[]>({
+  const { data: carbonPriceData, isLoading: loadingCP, error: cpError } = useQuery<CarbonPricePoint[]>({
     queryKey: ["/api/cv/carbon-price", scoringMethod, geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/carbon-price?uploadId=${uploadId}&${methodParam}&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity${geoParam}`, { credentials: "include" });
@@ -164,26 +165,28 @@ export default function DecarbSignal() {
     enabled: !!uploadId,
   });
 
-  const { data: sdgData, isLoading: loadingSDG } = useQuery<SDGGrowthPoint[]>({
-    queryKey: ["/api/cv/sdg-growth", geography],
+  const { data: sdgData, isLoading: loadingSDG, error: sdgError } = useQuery<SDGGrowthPoint[]>({
+    queryKey: ["/api/cv/sdg-growth", geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/sdg-growth?costOfEquity=0.08${geoParam}`, { credentials: "include" });
       if (!res.ok) throw new Error("SDG valuation groups unavailable");
       return res.json();
     },
+    enabled: !!uploadId,
   });
 
-  const { data: decarbTercileData, isLoading: loadingDecarb } = useQuery<DecarbTercilePoint[]>({
-    queryKey: ["/api/cv/decarb-terciles", scoringMethod, geography],
+  const { data: decarbTercileData, isLoading: loadingDecarb, error: decarbError } = useQuery<DecarbTercilePoint[]>({
+    queryKey: ["/api/cv/decarb-terciles", scoringMethod, geography, uploadId],
     queryFn: async () => {
       const res = await fetch(`/api/cv/decarb-terciles?${methodParam}&costOfEquity=0.08${geoParam}`, { credentials: "include" });
       if (!res.ok) throw new Error("Target valuation groups unavailable");
       return res.json();
     },
+    enabled: !!uploadId,
   });
 
   const { data: backtestResponse, isLoading: loadingBacktest, error: backtestError } = useQuery<BacktestResponse>({
-    queryKey: ["/api/cv/backtest", backtestSignal, trackingErrorLimit, scoringMethod, geography],
+    queryKey: ["/api/cv/backtest", backtestSignal, trackingErrorLimit, scoringMethod, geography, uploadId],
     queryFn: async () => {
       return fetchBacktest(`/api/cv/backtest?signal=${backtestSignal}&trackingError=${trackingErrorLimit}&trackingErrorUnit=percent&method=absolute${geoParam}`);
     },
@@ -256,17 +259,10 @@ export default function DecarbSignal() {
   const latestValues = useMemo(() => {
     if (chartData.length === 0) return null;
 
-    let latestCI: number | null | undefined;
-    let latestSDG: number | null | undefined;
-    let latestDA: number | null | undefined;
-
-    for (let i = chartData.length - 1; i >= 0; i--) {
-      if (latestCI === undefined && chartData[i].carbonIntensity !== undefined) latestCI = chartData[i].carbonIntensity;
-      if (latestSDG === undefined && chartData[i].sdgExposure !== undefined) latestSDG = chartData[i].sdgExposure;
-      if (latestDA === undefined && chartData[i].decarbAmbition !== undefined) latestDA = chartData[i].decarbAmbition;
-    }
-
-    return { carbonIntensity: latestCI, sdgExposure: latestSDG, decarbAmbition: latestDA };
+    // All headline cards refer to the same latest chart date. Never silently
+    // backfill a missing latest observation with a different month's result.
+    const latest = chartData[chartData.length - 1];
+    return { carbonIntensity: latest.carbonIntensity, sdgExposure: latest.sdgExposure, decarbAmbition: latest.decarbAmbition };
   }, [chartData]);
 
   const backtestStats = useMemo(() => {
@@ -365,6 +361,7 @@ export default function DecarbSignal() {
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-signal">
       <QueryReadErrors prefix="/api/cv" />
+      <ReadResultReason label="Company dataset" loading={uploadsLoading} error={uploadsError} available={!!uploadId} emptyReason="No completed company dataset is available. Import and review require the operator CLI." />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight" data-testid="text-page-title">
@@ -429,6 +426,7 @@ export default function DecarbSignal() {
             {displayDiagnostic(latestValues?.carbonIntensity, " pp")}
           </p>
           <p className="text-xs text-muted-foreground">Low-minus-high group Gordon baseline gap</p>
+          <ReadResultReason label="Carbon intensity gap" loading={loadingCP} error={cpError} available={latestValues?.carbonIntensity != null} emptyReason={!uploadId ? "No completed company dataset." : carbonPriceData?.length ? "Selected groups have missing or invalid P/E denominators." : "No carbon-intensity groups for this selection."} />
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -439,6 +437,7 @@ export default function DecarbSignal() {
             {displayDiagnostic(latestValues?.sdgExposure, " pp")}
           </p>
           <p className="text-xs text-muted-foreground">Positive-minus-negative group Gordon baseline gap</p>
+          <ReadResultReason label="SDG gap" loading={loadingSDG} error={sdgError} available={latestValues?.sdgExposure != null} emptyReason={!uploadId ? "No completed company dataset." : sdgData?.length ? "Selected groups have missing or invalid P/E denominators." : "No SDG groups for this selection."} />
         </Card>
         <Card className="p-4">
           <div className="flex items-center justify-between gap-2 mb-2">
@@ -449,6 +448,7 @@ export default function DecarbSignal() {
             {displayDiagnostic(latestValues?.decarbAmbition, " pp")}
           </p>
           <p className="text-xs text-muted-foreground">Best-minus-worst group Gordon baseline gap</p>
+          <ReadResultReason label="Ambition gap" loading={loadingDecarb} error={decarbError} available={latestValues?.decarbAmbition != null} emptyReason={!uploadId ? "No completed company dataset." : decarbTercileData?.length ? "Selected groups have missing or invalid P/E denominators." : "No ambition groups for this selection."} />
         </Card>
       </div>
 

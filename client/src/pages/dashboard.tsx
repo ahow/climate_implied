@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
+import { QueryReadErrors } from "@/components/query-read-errors";
 import { TemperatureGauge } from "@/components/temperature-gauge";
 import { EmissionsChart } from "@/components/emissions-chart";
 import { EmissionsCandidateReview } from "@/components/emissions-candidate-review";
@@ -92,7 +94,7 @@ function LegacyDashboard() {
     ? "/api/projection"
     : `/api/projection?category=${activeCategory}`;
 
-  const { data: projection, isLoading: projectionLoading } = useQuery<ProjectionResult>({
+  const { data: projection, isLoading: projectionLoading, error: projectionError } = useQuery<ProjectionResult>({
     queryKey: [projectionUrl],
   });
 
@@ -122,6 +124,7 @@ function LegacyDashboard() {
 
   return (
     <div className="bg-background">
+      <QueryReadErrors prefix="/api/projection" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
@@ -138,16 +141,16 @@ function LegacyDashboard() {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {projection ? <TemperatureGauge
+          {projection?.temperatureDistribution && projection.metrics ? <TemperatureGauge
             temperature={projection.temperatureDistribution.median}
             p10={projection.temperatureDistribution.p10}
             p90={projection.temperatureDistribution.p90}
-            reductionRate={projection?.metrics.reductionRate ?? 0}
-            netZeroYear={projection?.metrics.netZeroYear ?? null}
+            reductionRate={projection.metrics.reductionRate}
+            netZeroYear={projection.metrics.netZeroYear}
             thresholdDiagnostic={projection.metrics.thresholdDiagnostic}
             metricView={metricView}
             isLoading={projectionLoading}
-          /> : <p role="status" className="rounded-md border p-4 text-sm">Legacy calculation {projectionLoading ? "loading…" : "unavailable. No diagnostic values are substituted."}</p>}
+          /> : <p role={projectionError ? "alert" : "status"} className="rounded-md border p-4 text-sm">Legacy calculation {projectionError ? "read failed for the selected category. No previous result is shown." : projectionLoading ? "loading the selected category…" : "unavailable: the selected response has no complete distribution and metrics. No diagnostic values are substituted."}</p>}
 
           <div className="lg:col-span-2">
             <EmissionsChart
@@ -157,7 +160,7 @@ function LegacyDashboard() {
           </div>
         </div>
 
-        {projection && <TemperatureHistogram
+        {projection?.temperatureDistribution && [projection.temperatureDistribution.median, projection.temperatureDistribution.p10, projection.temperatureDistribution.p90].every(value => typeof value === "number" && Number.isFinite(value)) && <TemperatureHistogram
           pdf={projection?.temperatureDistribution.pdf ?? []}
           median={projection.temperatureDistribution.median}
           p10={projection.temperatureDistribution.p10}

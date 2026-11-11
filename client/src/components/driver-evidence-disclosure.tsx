@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

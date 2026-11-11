@@ -75,9 +75,12 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
     );
   }
 
-  if (!data?.length) return null;
+  if (!data?.length) return <Card className="p-6"><p role="status">No legacy sensitivity results were returned. No baseline is substituted.</p></Card>;
+  if (data.some(row => ![row.baselineTemperature, row.p10Temperature, row.p90Temperature, row.temperatureRange].every(value => typeof value === "number" && Number.isFinite(value)))) {
+    return <Card className="p-6"><p role="status">Legacy sensitivity inputs are incomplete. Baseline and sensitivity ranges are withheld rather than defaulted.</p></Card>;
+  }
 
-  const baseline = data[0]?.baselineTemperature ?? 2.7;
+  const baseline = data[0].baselineTemperature;
   const top10 = data.slice(0, 10);
 
   const chartData = top10.map((d) => ({

@@ -12,8 +12,12 @@ export function BacktestSummary({ data, error, label }: {
   data?: BacktestResponse; error?: Error | null; label?: string;
 }) {
   if (error) return <p role="alert" className="text-sm text-destructive mb-3">{label}: {error.message}</p>;
-  if (!data) return null;
+  if (!data) return <p role="status" className="text-xs text-muted-foreground">{label}: No backtest result for the current selection.</p>;
   const s = data.summary;
+  if (!s || !Number.isFinite(s.targetTrackingErrorPct) || typeof s.method !== "string" ||
+    typeof s.calibrationStatus !== "string" || !Array.isArray(s.warnings)) {
+    return <p role="status" className="text-xs text-muted-foreground">{label}: Backtest calibration summary is incomplete; no calibration claim is available.</p>;
+  }
   return (
     <div className="text-xs text-muted-foreground space-y-1 mb-3" data-testid="backtest-calibration-summary">
       <p>

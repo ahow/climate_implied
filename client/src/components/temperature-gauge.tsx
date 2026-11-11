@@ -9,8 +9,8 @@ interface TemperatureGaugeProps {
   temperature: number;
   p10: number;
   p90: number;
-  reductionRate: number;
-  netZeroYear: number | null;
+  reductionRate?: number | null;
+  netZeroYear?: number | null;
   thresholdDiagnostic?: ThresholdDiagnostic;
   metricView: MetricView;
   isLoading?: boolean;
@@ -68,8 +68,16 @@ export function TemperatureGauge({
     );
   }
 
+  if (![temperature, p10, p90].every(value => typeof value === "number" && Number.isFinite(value))) {
+    return <Card className="p-6"><p role="status">Legacy temperature distribution is incomplete for this selection. No temperature or uncertainty values are substituted.</p></Card>;
+  }
+
   const tempLabel = getTemperatureLabel(temperature);
-  const reductionLabel = getReductionLabel(reductionRate);
+  const hasReduction = typeof reductionRate === "number" && Number.isFinite(reductionRate);
+  const reductionLabel = hasReduction ? getReductionLabel(reductionRate) : {
+    label: "Reduction rate unavailable — not returned for this selection",
+    color: "text-muted-foreground", badgeColor: "text-muted-foreground",
+  };
 
   const gaugePercent = Math.min(100, Math.max(0, ((temperature - 1.0) / 4.0) * 100));
   const p10Percent = Math.min(100, Math.max(0, ((p10 - 1.0) / 4.0) * 100));
@@ -84,8 +92,8 @@ export function TemperatureGauge({
         </div>
 
         <div className="flex items-baseline gap-2 mb-1">
-          <span className={`text-5xl font-bold tabular-nums tracking-tight ${getReductionColor(reductionRate)}`} data-testid="text-reduction-value">
-            {reductionRate.toFixed(2)}
+          <span className={`text-5xl font-bold tabular-nums tracking-tight ${hasReduction ? getReductionColor(reductionRate) : "text-muted-foreground"}`} data-testid="text-reduction-value">
+            {hasReduction ? reductionRate.toFixed(2) : "Unavailable"}
           </span>
           <span className="text-2xl font-medium text-muted-foreground">% / yr</span>
         </div>
@@ -98,7 +106,7 @@ export function TemperatureGauge({
           <div
             className="absolute inset-y-0 left-0 rounded-full"
             style={{
-              width: `${Math.min(100, (reductionRate / 10) * 100)}%`,
+              width: hasReduction ? `${Math.min(100, Math.max(0, (reductionRate / 10) * 100))}%` : "0%",
               background: `linear-gradient(90deg, hsl(0, 84%, 35%), hsl(43, 86%, 42%), hsl(168, 76%, 36%))`,
             }}
           />
@@ -158,7 +166,7 @@ export function TemperatureGauge({
 
         <ThresholdDiagnosticDetails diagnostic={thresholdDiagnostic} contextLabel="Selected main trajectory" />
         <p className="my-4 text-xs text-muted-foreground">
-          Separate legacy diagnostic (fixed-5gt-v1): {netZeroYear ?? "Not reached within trajectory horizon"}.
+           Separate legacy diagnostic (fixed-5gt-v1): {netZeroYear === undefined ? "Unavailable — not returned" : netZeroYear === null ? "Not reached within trajectory horizon" : netZeroYear}.
           Fixed 5 GtCO₂e is not 5% of 2024 and is not net zero.
         </p>
 
@@ -178,7 +186,7 @@ export function TemperatureGauge({
             <div>
               <p className="text-xs text-muted-foreground">Reduction Rate</p>
               <p className="text-sm font-semibold tabular-nums" data-testid="text-reduction-rate">
-                {reductionRate.toFixed(2)}% / yr
+                 {hasReduction ? `${reductionRate.toFixed(2)}% / yr` : "Unavailable — not returned"}
               </p>
               <p className={`text-xs ${reductionLabel.color}`}>{reductionLabel.label}</p>
             </div>
@@ -247,7 +255,7 @@ export function TemperatureGauge({
           <div>
             <p className="text-xs text-muted-foreground">Reduction Rate</p>
             <p className="text-sm font-semibold tabular-nums" data-testid="text-reduction-rate">
-              {reductionRate.toFixed(2)}% / yr
+              {hasReduction ? `${reductionRate.toFixed(2)}% / yr` : "Unavailable — not returned"}
             </p>
             <p className={`text-xs ${reductionLabel.color}`}>{reductionLabel.label}</p>
           </div>
