@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "criterion": "S07-008",
+  "status": "source-qualified-control-admission-implemented; supported-modal-update-verified; actual-controls-and-alpha1-fingerprints-still-blocked",
+  "parentObservationAssemblyRerun": false,
+  "freezesBeforeCalculation": {
+    "sourceProtocol": "docs/igcc-control-thermal-bridge-protocol.json",
+    "sourceProtocolSHA256": "9b0e8f82dd67f6b211d4af8a44a03e1a18d2f13ab039f1cff501020c42d4a44c",
+    "sourceSpecificOperationalFreeze": "docs/igcc-control-thermal-operational-freeze.json",
+    "sourceSpecificOperationalFreezeSHA256": "68da9a373537538b0f5748c8a0779134958304abff30abde256f849372f6a61f",
+    "timing": "Initial source/rights plan saved before requests; exact two-term source limitation, modal adapter and residual definitions saved before any thermal residual calculations.",
+    "newNumericalAcceptanceThreshold": null
+  },
+  "boundedAcquisition": {
+    "requestsExecuted": 3,
+    "maximumAllowed": 5,
+    "allHTTP200": true,
+    "paidCalls": 0,
+    "fullControlOrForcingEnsembleRequests": 0,
+    "transportCommandPattern": "curl --max-time 45 --max-filesize 3000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+    "resources": [
+      {
+        "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/data/piControl/CMIP6/README.txt",
+        "retrievalStartedUTC": "2026-11-11T09:11:28Z",
+        "bytes": 3445,
+        "path": "generated-artifacts/igcc-control-thermal-bridge/control-readme.txt",
+        "sha256": "22d30202453758bd4b1b3ed787f8e3f7f3a3ca828cf1359ea182b06b7b4d720a",
+        "headersPath": "generated-artifacts/igcc-control-thermal-bridge/control-readme.headers",
+        "headersSHA256": "8b15eedcddc98c75ceb03440843799fbaf442cf8588ced1c68a1a412e7747ae3",
+        "finding": "Processed CMIP6 retains each original source's licensing restrictions; checking original model licenses, acknowledgements and retractions is mandatory. Processing citation: Nicholls et al., doi:10.1002/gdj3.113. No permission for a particular model supplied by this README."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/models/AR5_IR.py",
+        "retrievalStartedUTC": "2026-11-11T09:11:28Z",
+        "bytes": 4401,
+        "path": "generated-artifacts/igcc-control-thermal-bridge/ar5-ir.py.source",
+        "sha256": "0af19c944dd8067c730dcb1d50fc9c7e07bb52e9ca90be607bbd393333d0f605",
+        "headersPath": "generated-artifacts/igcc-control-thermal-bridge/ar5-ir.headers",
+        "headersSHA256": "998b86efc4099038e912a4ac7636fdaf4d3f78e9a27f2b0a49089905f40588f8",
+        "finding": "FTmod uses exactly two q/d terms and midpoint impulse sampling at lag+0.5. This sibling is not the alpha1 fair_runner imported by the operative GWI. Its exact source is used only through hash-pinned AST extraction of FTmod; original source retained privately."
+      },
+      {
+        "url": "https://pcmdi.llnl.gov/CMIP6/TermsOfUse/TermsOfUse6-1.html",
+        "retrievalStartedUTC": "2026-11-11T09:11:33Z",
+        "bytes": 20480,
+        "path": "generated-artifacts/igcc-control-thermal-bridge/cmip6-terms.html",
+        "sha256": "69397921f4b89febd709a32588fa0f716e357f296b2ab2f51f218e55b7607876",
+        "headersPath": "generated-artifacts/igcc-control-thermal-bridge/cmip6-terms.headers",
+        "headersSHA256": "38beb845dcdc1c8f7c75ffa7796faad15de9ad4eb78944d67dc335eb55a68e10",
+        "finding": "Explicitly requires individual NetCDF global license attributes and says its CC-BY-SA template is an example, not applicable to all output; some models use noncommercial terms. Thus it does not establish TaiESM1-specific permission."
+      }
+    ],
+    "controlAcquisitionDecision": "Stopped before the preselected first-lexicographic AS-RCEC/TaiESM1/piControl/r1i1p1f1 MAG download because exact source-specific terms remain unavailable. No model switch after seeing a filter outcome, no zero/synthetic controls, no claim that the example license grants permission.",
+    "forcingAcquisitionDecision": "Existing public LFS pointer identities are retained, but do not grant data rights. No underlying Chris forcing-ensemble object downloaded."
+  },
+  "newImplementation": {
+    "module": "script/igcc_control_thermal_bridge.py",
+    "moduleSHA256": "93649e766545413ee5e3266baa230d0cf1efe434a24d7972e883210403f8e40e",
+    "tests": "script/test_igcc_control_thermal_bridge.py",
+    "testsSHA256": "1e69a26af354d7abac3e2df4ad31f0c7f279beb97f860d38993d50274a69c84b",
+    "controlAdmission": {
+      "function": "read_qualified_control",
+      "interface": "Original native MAG bytes, independently extracted annual World year/tas CSV bytes, separate rights-evidence bytes, and complete semantic source identity/license metadata; no undocumented MAG parser claimed.",
+      "byteGates": "Original/extraction/terms SHA-256 must match. Exact license text with matching approved license URI must occur in both original text and rights evidence, not merely caller assertions.",
+      "licenseBoundary": "Only exact CC-BY-4.0, CC-BY-SA-4.0 or CC0-1.0 admitted by this local-derivative adapter; unknown/noncommercial/ambiguous templates rejected. This engineering gate does not independently authenticate external records or replace future citation/retraction/publication review.",
+      "identity": "Institution/model/experiment/member/grid/version/variable retained semantically, not upstream's path-depth-dependent institution extraction. Every identity component must occur as a path component.",
+      "calendar": "At least176 consecutive unique finite integer annual source years; no dropna compaction, interpolation or calendar stitching. Explicitly stricter than upstream dropna, to avoid falsely continuous source histories.",
+      "slices": "Exactly176 positions, step88, count=(N-88)//88, first50-position source offset; preserve original source-year bounds and positional identities. Reuse unchanged exact strict three-year/thirty-year variability filter.",
+      "actualSourcesAdmitted": 0,
+      "actualQualifiedSlices": 0
+    },
+    "thermalBridge": {
+      "independentRecurrences": "All three original q/d terms retained. Exact piecewise-constant boundary and annual-mean mode responses computed separately from the sibling's midpoint-sampled impulse recurrence.",
+      "sourceReference": "Each original mode passed through the exact two-term source FTmod with its second coefficient zero, then all three mode outputs summed by linearity. No original q/d term dropped, changed or fitted.",
+      "supportedAdapter": "FaIR2.2.4 step_temperature accepts a diagonal modal transition matrix exp(-1/d) and input q*(-expm1(-1/d)). Modal coordinates are explicitly NOT physical ocean-layer states.",
+      "supportedFaIRSourceSHA256": "568ace02ddb0fb72068830635512adfabaaf83b0b5ff296b73f4312ae4a7b87e",
+      "supportedFaIRLicense": "Installed distribution metadata identifies Apache2.0",
+      "qualification": "This verifies only the algebraic supported modal-step adapter. It is not an independent physical FaIR2.2.4 run, alpha1 emulation proof, GSAT-to-GMST conversion, or accepted GWI fingerprint generator."
+    }
+  },
+  "realSourceDiagnosticInputs": {
+    "actualForcingVersion": "ClimateIndicator/data IGCC-2025a revision d9726573dccd9381652432b58b38f670af493c1c",
+    "actualForcingSHA256": "9d87e026c33b20ccc00c3a12f4a34557553490b37cc43e1eadc324b4678fc035",
+    "forcingUnit": "W m-2, actual annual p50 source1750-2025, all276 exact annual midpoint/bound coordinates",
+    "forcingRights": "Already established CC-BY-4.0 actual-source release; no rights extrapolated to the separate forcing uncertainty ensemble",
+    "sourceThermalParametersSHA256": "25cc0a669ca02ae44c6d862905c2de3e1d8c9d4d465b5c65b9089d02203e5391",
+    "parameterDefinition": "All28 named author configurations, three native q/d terms each; q K per W m-2, d years. Original source values unchanged.",
+    "componentClasses": {
+      "GHG": "52 exact-pinned source gas components: CO2/CH4/N2O plus halogen species; complete membership retained in thermal-method-result.json",
+      "Nat": ["solar", "volcanic"],
+      "OHF": ["aerosol-radiation_interactions", "aerosol-cloud_interactions", "contrails", "land_use", "BC_on_snow", "O3", "H2O_stratospheric"]
+    },
+    "classificationTotalMaxAbsResidualWm2": 8.881784197001252e-16,
+    "sourceMethodResponseUnit": "degrees Celsius, unregressed modal response; NOT attributed human GMST",
+    "initialState": "All modal diagnostic states zero at1750 boundary, no baseline/natural-forcing rezeroing or target offsets. Original alpha1 initialization remains unverified.",
+    "actualJointForcingMembers": 0
+  },
+  "actualNewResidualChecks": {
+    "comparisons": 84,
+    "coverage": "All28 original configurations × three actual p50 source classes, 276 years each; separate2015-2025 eleven-year window retained without SSP substitution",
+    "midpointRecurrenceMinusExactSourceFTmod": {
+      "maxAbsAcrossAllConfigurationsAndComponentsC": 2.6645352591003757e-15,
+      "worstConfiguration": "CESM2-WACCM-FV2",
+      "worstComponent": "GHG",
+      "worstSeriesRMSEC": 6.50757150133452e-16
+    },
+    "supportedModalStepMinusIndependentExactBoundary": {
+      "maxAbsAcrossAllConfigurationsAndComponentsC": 0.0,
+      "rmseAcrossEverySeriesC": 0.0,
+      "interpretation": "Exact equality for this shared discrete matrix update does not establish missing alpha1 forcing-timing equivalence."
+    },
+    "siblingMidpointMinusExactAnnualMean1750to2025": [
+      {"component": "GHG", "worstConfiguration": "GISS-E2-1-G", "maxAbsC": 0.1007540248831078, "worstSeriesRMSEC": 0.03473133979508555},
+      {"component": "Nat", "worstConfiguration": "CanESM5", "maxAbsC": 0.30304346247891356, "worstSeriesRMSEC": 0.04825259558320752},
+      {"component": "OHF", "worstConfiguration": "GISS-E2-1-G", "maxAbsC": 0.04019320434122586, "worstSeriesRMSEC": 0.015915655361307637}
+    ],
+    "siblingMidpointMinusExactAnnualMean2015to2025": [
+      {"component": "GHG", "worstConfiguration": "GISS-E2-1-G", "maxAbsC": 0.1007540248831078, "worstSeriesRMSEC": 0.09462943903272146},
+      {"component": "Nat", "worstConfiguration": "CMCC-CM2-SR5", "maxAbsC": 0.016996698998163876, "worstSeriesRMSEC": 0.00745615527898949},
+      {"component": "OHF", "worstConfiguration": "GISS-E2-1-G", "maxAbsC": 0.028891987964462296, "worstSeriesRMSEC": 0.02285957672013511}
+    ],
+    "precision": "Digits record deterministic numerical residuals, not climate accuracy or a new scientific acceptance threshold."
+  },
+  "execution": {
+    "testsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_igcc_control_thermal_bridge -v",
+    "testsExitCode": 0,
+    "testsPassed": 6,
+    "testsFailed": 0,
+    "testsSkipped": 0,
+    "testsLog": "generated-artifacts/igcc-control-thermal-bridge/focused-tests.log",
+    "testsLogSHA256": "3c886fe682d5246d64b23b768abbbbd4656b765c58f5bd070391015e99ca093f",
+    "diagnosticCommand": ".pythonlibs/bin/python script/igcc_control_thermal_bridge.py",
+    "diagnosticExitCode": 0,
+    "diagnosticCompletedUTC": "2026-11-11T09:14:37.377429+00:00",
+    "diagnosticLog": "generated-artifacts/igcc-control-thermal-bridge/thermal-execution.log",
+    "diagnosticLogSHA256": "ace70d72287e97bfb70c1c08eb691dc26f37bbdfd7c6a9a825efd442ff3333a7",
+    "all84ResidualSeries": "generated-artifacts/igcc-control-thermal-bridge/thermal-method-result.json",
+    "all84ResidualSeriesSHA256": "9abacd78a25953fa5ebfd54196217d2ed7d9b0c5e8fe68048978e66c912ded89",
+    "unregressedResponseArrays": "generated-artifacts/igcc-control-thermal-bridge/unregressed-thermal-method-diagnostic.nc",
+    "unregressedResponseArraysSHA256": "55c0e3e0bd27dfd5cdabcbfc828923c6487492d54d78e7e8340b2ac7d0caf53e",
+    "netcdfReadbackEquality": "passed",
+    "unitTestsNeedPrivateArchives": false
+  },
+  "scientificDecision": {
+    "controlDependency": "Rights-first source-qualified admission and exact slicing implemented, but actual model-specific rights and controls remain missing. Preserve source-specific license/retraction requirements before any real admission.",
+    "thermalDependency": "The sibling FTmod midpoint quadrature is demonstrably not interchangeable with exact annual interval means for these source configurations. Do not substitute it as an alpha1 replication or promote the resulting diagnostic responses to accepted attribution fingerprints.",
+    "remainingAlpha1Proof": "Operative GWI imports alpha1 fair_runner. The already-retained later current-tree listing lacks that module; this does not prove every historical tag lacks it. Exact operative dependency bytes, initialization and forcing/output timing still need independent recovery or validation.",
+    "forcingDependency": "Actual p50 history assembled into complete source classes for a deterministic method check only; independent actual GHG/OHF/Nat uncertainty ensembles with specific rights remain unfetched.",
+    "nativeBoundaryDependency": "Complete boundary-reconciled actual native emissions through2025 remains unmet; no forcing-to-emissions inversion or SSP-as-historical relabelling.",
+    "headlineScoring": false,
+    "shareMembersInRange": null,
+    "newHistoricalAttributionRuns": 0,
+    "centralEligible": false
+  },
+  "preservation": {
+    "observationAssemblyRerun": false,
+    "unchangedStudiesRerun": false,
+    "existingCanonicalLedgersEdited": false,
+    "existingFrozenWindowsEdited": false,
+    "productionAuthCollectorDDLChanges": false,
+    "appWorkflowRun": false,
+    "commitsPublicationCallbacks": false
+  }
+}

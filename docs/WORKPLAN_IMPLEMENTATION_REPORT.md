@@ -1,3 +1,33 @@
+# New source-bridge increment — validation complete, release pending
+
+{
+  "at": "2026-11-11T09:24:03.772777+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T09:21:36.157247+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 121.51,
+    "counts": {
+      "tests": 525,
+      "pass": 525,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T092136157247Z.log",
+    "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "issuer": "48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified.",
+  "physical": "176annual years1850-2025 \u00d7200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
+  "scope": "39verified259partial2blocked; original1000/1001 unchanged. No approval/data/scientific promotion.",
+  "next": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work."
+}
+
 # Latest verified state — recovery on 2026-11-11
 
 **39 verified engineering criteria /259 partial /2 provisioning-blocked /0 unreconciled. All300 original clauses retained; completion and efficacy are NOT established.**
@@ -2301,3 +2331,14 @@ Evidence: `docs/xom-climate-liability-evidence.json`; paths: `server/calculation
 Earlier async worker wait returned null while the worker continued; accessing .text immediately failed. Subsequent work/checks/publication succeeded. This does not establish the cause of the later platform-level Agent error. Explicit terminal Python cleanup does not catch arbitrary platform/tool-runtime termination.
 
 Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qualified full issuer cases and0/50qualified return comparisons. No callback sent during active work; explicit one-time terminal cleanup follows saved evidence.
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-calendar-liability-2d0a759",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T08:56:09.960739+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}

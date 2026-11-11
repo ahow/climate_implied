@@ -1,0 +1,51 @@
+{
+  "version": "igcc-control-thermal-bridge-1",
+  "scope": "New independent piControl/source-thermal dependencies only; no observation-assembly rerun, regression, attribution or headline scoring",
+  "operativeSource": {
+    "revision": "b18b5fc8731b5c966613cc6ac38c35be1ab8984a",
+    "definitionsSHA256": "ee0874342b8d688edebf4a71bca67b073208f8d6357cce284c007031378c56d9",
+    "readBeforeSelection": "load_PiC_CMIP6, filter_PiControl, load_ERF_CMIP6 and GWI run_FaIR invocation; prior focused physical and observation source evidence read",
+    "knownMissingRunner": "The retained current recursive tree has no models/FaIR_V2/FaIRv2_0_0_alpha1/fair/fair_runner.py. Do not claim supported FaIR2.2.4 reproduces absent code."
+  },
+  "boundedAcquisition": {
+    "maximumRequests": 5,
+    "timeoutSeconds": 45,
+    "maximumBytesPerRequest": 3000000,
+    "sequence": [
+      "Exact operative data/piControl/CMIP6/README.txt for dataset-specific rights and source metadata",
+      "Exact operative models/AR5_IR.py for independent retained thermal-method investigation",
+      "At most one source-specific rights page explicitly linked by the returned control README",
+      "Only if terms explicitly permit the intended local derivation: first lexicographic MAG source from already-retained tree (AS-RCEC/TaiESM1/piControl/r1i1p1f1), fixed independently of control outcomes",
+      "At most one metadata/code dependency explicitly linked by the returned thermal source; no general search or ensemble sweep"
+    ],
+    "rightsGate": "No full ensemble or control data acquisition without explicit dataset-specific permitted-use evidence. Generic repository code/output licenses do not license CMIP6 controls or Chris forcing ensembles. Unknown terms stop acquisition.",
+    "noForcingLfsDownload": "Underlying forcing ensembles remain unfetched unless their exact data-specific rights are independently established within this bound. LFS pointer visibility is not permission.",
+    "paidCalls": 0
+  },
+  "fixedSourceControlAssembly": {
+    "sample": "One source only if rights permit; never call it complete GWI control ensemble",
+    "regressionAnnualWindow": [1850, 2025],
+    "length": 176,
+    "sourceSegmentRule": "50 percent overlapping positional segments: step n_yrs//2=88; segments=(N-(n_yrs-n_yrs//2))//(n_yrs//2); each exact 176-position segment",
+    "baseline": "Each source slice first end_pi-start_pi=50 positions, not 51-year observation median offset",
+    "filter": "Exact strict valid 3-year smooth max<0.3, min>-0.3, span>0.06 and valid 30-year smooth max<0.1, min>-0.1",
+    "identity": "Retain institution/model/experiment/member/grid/version/variable/source years, exact hash, positional slice bounds and raw source coordinates",
+    "missingRule": "Source uses dropna before positional slicing; do not silently make a broken calendar continuous. Reject gaps or nonannual/multiple World columns unless explicitly qualified.",
+    "tests": "Independent source-equation segmentation/filter residuals; duplicates, units, unsupported terms, absent/gapped/nonfinite years and identity collisions fail closed"
+  },
+  "thermalInvestigationBeforeOutcomes": {
+    "parameters": "All 28 retained author configurations, 3 q/d terms each; d years, q K per W/m2",
+    "sourceComparison": "If returned source contains executable compatible q/d response, compare exact independently coded recurrence to that source before any historical or attribution use; preserve any discrepancy and timing convention.",
+    "forcingIfNeeded": "Already-retained actual 1750-2025 IGCC p50 ERF only for a deterministic source-method diagnostic, never a joint forcing ensemble or inverse emissions reconstruction",
+    "residuals": "Report per-configuration maximum absolute and RMSE source-method discrepancies with annual versus boundary timing explicit; do not optimize parameters or fit target offsets",
+    "noAutomaticEquivalence": "Agreement with a sibling AR5 impulse-response helper alone is not proof of missing alpha1 runner equivalence or a GSAT/GMST conversion"
+  },
+  "noPromotion": {
+    "modelsForAttribution": 0,
+    "headlineScoring": false,
+    "memberShare": null,
+    "nativeSpeciesAccepted": 0,
+    "canonicalLedgerChanges": false,
+    "commitsPublicationCallbacks": false
+  }
+}

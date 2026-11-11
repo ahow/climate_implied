@@ -1,0 +1,56 @@
+{
+  "version": "igcc-gmst-source-bridge-1",
+  "scope": "New S07-008 observation-source dependency bridge only, not an attribution experiment or acceptance score",
+  "selectionBeforeNewData": {
+    "wind": "Original five-resource attempt and subsequent six-request continuation already exhausted; exact full-window installed-cost table remains absent. Do not repeat blocked IRENA endpoints or use revised country aggregates as an unqualified 2025 source splice.",
+    "native2024Accounting": "Existing EDGAR/GCB aggregate inventory does not independently supply signed five-region land-use allocations and separately reconciled international accounts. Do not infer regional land sinks or transport allocations from global totals.",
+    "chosenDependency": "Actual HadCRUT5.1 GMST ensemble used by the operative GWI observed-2025 source; previously located but not downloaded. Establish specific permitted-use terms before acquiring ensemble bytes."
+  },
+  "sourcesRead": [
+    "docs/wind-cost-source-protocol.json",
+    "docs/wind-cost-source-evidence.json",
+    "docs/driver-source-continuation-protocol.json",
+    "docs/driver-source-continuation-evidence.json",
+    "docs/IGCC_History_Reconciliation_Protocol.md",
+    "docs/physical-attribution-evidence.json",
+    "docs/next-physical-evidence.json",
+    "docs/workplan_completion_ledger.json: S04-002, S04-003, S05-001 through S05-003, S07-008",
+    "generated-artifacts/physical-attribution/ee0874342b8d688edebf4a71bca67b073208f8d6357cce284c007031378c56d9.source: load_Temp_HadCRUT and remove_baseline"
+  ],
+  "boundedAcquisition": {
+    "maximumRequests": 3,
+    "timeoutSeconds": 45,
+    "maximumBytesPerRequest": 2000000,
+    "allowedRequestsInOrder": [
+      "https://www.metoffice.gov.uk/hadobs/hadcrut5/",
+      "One explicit linked HadCRUT5 data-access or terms page if the landing page does not itself establish dataset-specific reuse rights",
+      "Only after rights established: pinned GWI b18b5fc8731b5c966613cc6ac38c35be1ab8984a data/observed-2025/Temp/HadCRUT/HadCRUT.5.1.0.0.analysis.ensemble_series.global.annual.csv"
+    ],
+    "noGeneralSweep": true,
+    "paidCalls": 0,
+    "onFailure": "Retain error bytes and stop; no fallback to summary quantiles, current dataset updates or alternate release"
+  },
+  "fixedAssembly": {
+    "requiredFullAnnualYearsInclusive": [1850, 2025],
+    "requiredMemberCount": 200,
+    "requiredUnits": "degrees Celsius GMST anomaly, source 1961-1990 reference before source-defined rebasing",
+    "sourceVintage": "Exact pinned author file bytes, not original real-time availability and not necessarily latest official release",
+    "yearPolicy": "Require every 1850-2025 row once with 200 finite native members. Preserve and report, but exclude, any 2026 row because it is not a completed annual observation. No interpolation or endpoint extension.",
+    "baseline": "Subtract the 1850-1900 inclusive mean of the annual ensemble median from all members, as operative GWI does. Never individually rebase observation members.",
+    "identity": "Keep original member IDs; record source and protocol SHA-256 and actual raw-file git blob SHA-1",
+    "checks": "Reject duplicate/missing years or members, nonfinite values, noninteger years, wrong header/version, summary quantiles and reference-period mismatch; independently recompute common offset and prove between-member differences survive unchanged",
+    "output": "Hashed private annual observation-member NetCDF plus focused public evidence with exact commands and counts; only descriptive source-assembly diagnostics, no target scoring"
+  },
+  "scientificBoundary": {
+    "newAttributionModels": 0,
+    "unchangedStudiesRerun": 0,
+    "syntheticCalibratedMembers": false,
+    "shareInHeadlineRange": null,
+    "remainingDependencies": [
+      "Exact permitted-use piControl slices and source filtering",
+      "Independent actual GHG/OHF/Nat response fingerprints and alpha1-to-supported thermal-response bridge",
+      "Boundary-reconciled emissions-native histories through 2025 for all active species"
+    ],
+    "noPromotion": "Observation assembly cannot certify the retained SSP-based emissions intervention, establish native 2015-2025 histories, or complete S07-008."
+  }
+}

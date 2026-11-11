@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "criterion": "S07-008",
+  "status": "actual-GMST-observation-source-dependency-assembled; attribution-and-native-history-acceptance-withheld",
+  "protocol": {
+    "path": "docs/igcc-gmst-source-bridge-protocol.json",
+    "sha256": "d22a0c00f9e32abc6e28f3591e15be64583d802121eba035077a6341eec7292a",
+    "freezeBeforeAcquisitionAndAssembly": true,
+    "newExperimentScoring": false
+  },
+  "priorityDecision": {
+    "S04-002": "Do not repeat exhausted source attempts. Original 2025 report lacks 2010-2014 capacity and exact unrounded complete costs. The already-retained 2026 PxWeb country table has 119/113/104/96/91 missing country cells in 2010-2014, so subtotals are not a certified global onshore series. Exact installed-cost table remains absent. No fit, interpolation, vintage splice or shortened window.",
+    "S04-003_and_S05": "Native 2024 EDGAR/GCB aggregate accounting does not independently establish signed five-region land-use allocation and matched international transport accounts. No invented allocation or driver calibration; these original gaps remain unchanged.",
+    "selectedPermittedFallback": "Acquire and assemble actual source-native HadCRUT5.1 200-member GMST observations explicitly used by the operative IGCC-2025 GWI preset. This closes a previously located-but-not-downloaded observation dependency, not the source-control/forcing/native-emissions dependencies."
+  },
+  "newAcquisition": {
+    "requests": 3,
+    "allHTTP200": true,
+    "maximumBytesPerRequest": 2000000,
+    "maximumSecondsPerRequest": 45,
+    "paidCalls": 0,
+    "transportCommandPattern": "curl --max-time 45 --max-filesize 2000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}; URL %{url_effective}\\n' <url>",
+    "resources": [
+      {
+        "url": "https://www.metoffice.gov.uk/hadobs/hadcrut5/",
+        "retrievalStartedUTC": "2026-11-11T09:01:32Z",
+        "serverDateUTC": "2026-11-11T09:01:32Z",
+        "bytes": 11840,
+        "bodyPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-landing.html",
+        "bodySHA256": "93247c5631b0df39a05cf75203c85eb62b02d272b1f274e7ca1edc9a401b64a7",
+        "headersPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-landing.headers",
+        "headersSHA256": "7f32535b936cade5a6d91b1d247ce1259923ad6671d11f46b374fa23f95a5ade",
+        "finding": "Defines global blended near-surface temperature anomalies relative 1961-1990, identifies HadCRUT5 as Met Office/CRU collaboration, declares OGLv3 and explicitly requires reading linked terms. Current official release is 5.2.0.0; it is NOT substituted for the operative 5.1.0.0 snapshot."
+      },
+      {
+        "url": "https://www.metoffice.gov.uk/hadobs/hadcrut5/terms_and_conditions.html",
+        "retrievalStartedUTC": "2026-11-11T09:01:40Z",
+        "serverDateUTC": "2026-11-11T09:01:40Z",
+        "bytes": 3267,
+        "bodyPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-terms.html",
+        "bodySHA256": "5d28efbdc48281339957dc14f0bf251e98d5aa152f59cd8e469decfa3e85f852",
+        "headersPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-terms.headers",
+        "headersSHA256": "5661016e8f3e7a3862378430bc93daa2b6c162a9a960d98a974b5ee72dcc4729",
+        "finding": "Dataset-specific HadCRUT5 Crown copyright and Open Government Licence v3; Morice et al. doi:10.1029/2019JD032361 citation and prescribed acknowledgement required. Read before acquiring observation bytes, fulfilling the landing page's express terms instruction."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/data/observed-2025/Temp/HadCRUT/HadCRUT.5.1.0.0.analysis.ensemble_series.global.annual.csv",
+        "retrievalStartedUTC": "2026-11-11T09:01:46Z",
+        "serverDateUTC": "2026-11-11T09:01:46Z",
+        "bytes": 413948,
+        "bodyPath": "generated-artifacts/igcc-gmst-source-bridge/HadCRUT.5.1.0.0.analysis.ensemble_series.global.annual.csv",
+        "bodySHA256": "8bd47a7647515ac20beb960882d503b5697829fa702e9067e795ddf7fd046155",
+        "nativeGitBlobSHA1": "d79fbb5a2cb3092de508666742907c32c2e62d42",
+        "headersPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-author.headers",
+        "headersSHA256": "6e83017a599ecbbb9bd99049cf78254a707fb21d11a750fa030f671f6aeee5ea",
+        "sourceVersion": "HadCRUT.5.1.0.0",
+        "repositoryRevision": "b18b5fc8731b5c966613cc6ac38c35be1ab8984a",
+        "vintageCaveat": "This is the exact operative author snapshot, independently matching the already-located git blob identity. It is not claimed to be the latest official release or byte-certified original Met Office publication. Original release day and information available at historical origins remain unknown; HTTP date and hash do not establish them."
+      }
+    ],
+    "rightsBoundary": "HadCRUT5-specific OGLv3 applies to these observations, not to unfetched CMIP6 controls or all GWI ancillary data. Native observations and derived members are retained privately; no publication or redistribution performed. Required acknowledgement must retain truthful author-repository acquisition and must not invent the unknown original-version first-publication year."
+  },
+  "implementation": {
+    "module": "script/igcc_gmst_source_bridge.py",
+    "moduleSHA256": "2ca3826693fbe95ee5ccfd35bb3c172151465e7c36c75c8bd36501d3da7c88ca",
+    "tests": "script/test_igcc_gmst_source_bridge.py",
+    "testsSHA256": "17356c8089e1be1544adb8dacdc0643bfbe23f73ccabe00b04ac0657b0df212c",
+    "reusedUnmodifiedKernel": "script/igcc_observation_operator.py",
+    "kernelSHA256": "01e69e8df04eb80ad1a7b0492bddc16bb2f691c6b9d48d4b879ce5d6b49e131b",
+    "sourceBaselineCodeSHA256": "ee0874342b8d688edebf4a71bca67b073208f8d6357cce284c007031378c56d9",
+    "publicUnitTestsRequirePrivateFiles": false,
+    "inputForFutureGWIConstraint": "actual-gmst-observation-members.nc:native_gmst_anomaly, dimensions year/observation_member. The existing GWI kernel applies its own common baseline. gmst_anomaly is the separately retained, already-rebased diagnostic; do not individually member-rebase it.",
+    "gates": [
+      "Pinned source/protocol/terms/operative-definition hashes and exact native git blob SHA-1",
+      "Exact ordered 200-realization header; duplicates, summaries and missing fields rejected",
+      "Complete unique integer 1850-2025 annual years, no missing/nonfinite input or endpoint extension",
+      "Optional 2026 source row retained in raw bytes and explicitly excluded from annual observations",
+      "Coverage fraction in [0,1] and nonnegative coverage uncertainty; separate uncertainty column never treated as member or silently sampled",
+      "Independent numerical common-offset calculation and between-member-difference preservation",
+      "NetCDF readback equality against assembled native and centered arrays"
+    ]
+  },
+  "execution": {
+    "focusedTestsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_igcc_gmst_source_bridge -v",
+    "focusedTestsExitCode": 0,
+    "testMethods": 6,
+    "pass": 6,
+    "fail": 0,
+    "skip": 0,
+    "focusedTestsLog": "generated-artifacts/igcc-gmst-source-bridge/focused-tests.log",
+    "focusedTestsLogSHA256": "7ce95b0e5696519cb4e8052a2b4e6171d20af676154309f1a4d6c64110804418",
+    "assemblyCommand": ".pythonlibs/bin/python script/igcc_gmst_source_bridge.py",
+    "assemblyExitCode": 0,
+    "assemblyCompletedUTC": "2026-11-11T09:03:08.995272+00:00",
+    "assemblyLog": "generated-artifacts/igcc-gmst-source-bridge/assembly-execution.log",
+    "assemblyLogSHA256": "873ee17d8ff170a15607224b3a3e4cc11fe700b1fdda208ca351e870eb8440da",
+    "result": "generated-artifacts/igcc-gmst-source-bridge/assembly-result.json",
+    "resultSHA256": "8cc311e4116af7869f3d30b36f6cba41ea99e1f7bbce9a10142d0ddba1e1baa1",
+    "nativeAndCenteredMembers": "generated-artifacts/igcc-gmst-source-bridge/actual-gmst-observation-members.nc",
+    "nativeAndCenteredMembersSHA256": "34b82f4471ee45d080389ccea7ec3d2b14f0db4832837776e8917a27f841512b",
+    "initialFailurePreserved": {
+      "log": "generated-artifacts/igcc-gmst-source-bridge/initial-fixture-alias-failure.log",
+      "sha256": "dd30de010af6f5061d9a6d57e978e6ce9c938c1f59bc71309eec48891343d4a5",
+      "failure": "Two renamed/duplicate-header assertions initially failed because fixture() reused and mutated the imported HEADER list. Corrected fixture to HEADER.copy(); strict parser gates unchanged. Actual source assembly was not attempted until corrected tests passed."
+    }
+  },
+  "actualNewSourceChecks": {
+    "nativeCSVRows": 177,
+    "completeAnnualRowsUsed": 176,
+    "yearsInclusive": [1850, 2025],
+    "actualObservationMembers": 200,
+    "excludedIncompleteSourceYears": [2026],
+    "unit": "degrees Celsius, global blended GMST anomaly",
+    "nativeReferencePeriod": "1961-1990",
+    "sourceDefinedRebase": "One 1850-1900 inclusive mean of annual ensemble medians, common to all 200 members",
+    "commonBaselineOffsetC": -0.3576333654147059,
+    "member1850to1900BaselineRangeAfterCommonRebaseC": [-0.08752114703627449, 0.12941205239509804],
+    "betweenMemberDifferenceMaxAbsChangeC": 2.220446049250313e-16,
+    "coverageFraction2025": 0.9950727,
+    "coverageUncertainty1Sigma2025C": 0.0041762944,
+    "uncertaintyQualification": "These are real native observation realizations, not synthetic calibrated climate members. Coverage uncertainty remains an explicit separate source field; the assembly does not claim that the operative GWI realization-only treatment includes every observational uncertainty.",
+    "precisionQualification": "Digits document deterministic source transformation and roundoff, not observational accuracy."
+  },
+  "scientificDecision": {
+    "observationDependency": "Advanced from located/unfetched to source-pinned, permitted-use and numerically assembled through actual annual 2025 with preserved member identity and baseline uncertainty.",
+    "nativeHistoricalEmissionsDependency": "Not closed: no actual 2015-2025 emissions input replaced, no CO2e inversion and no SSP-as-historical attribution.",
+    "controlsDependency": "Not closed: exact permitted-use CMIP6 piControl inputs/slices remain required; no zero or random controls substituted.",
+    "fingerprintsDependency": "Not closed: source-specific actual GHG/OHF/Nat forcing ensembles and independently validated alpha1-to-supported-FaIR thermal response remain required.",
+    "newAttributionModelsRun": 0,
+    "unchangedStudiesRerun": 0,
+    "headlineComparisonsPerformed": false,
+    "shareMeanMembersInRange": null,
+    "centralEligible": false,
+    "originalClauseStatus": "Partial; S07-008 is not complete, and no failed S04/S05 candidate is promoted."
+  },
+  "preservation": {
+    "onlyNewDisjointModuleTestsAndFocusedJSONEvidence": true,
+    "existingTrackedFilesChanged": false,
+    "canonicalLedgerSHA256": "430cec716811d1b749aa4535d0d02cb4f29a03d5e0f2f19cb247a8e5dfb9169a",
+    "canonicalMarkdownLedgerSHA256": "8923e04088a292976ec5065865dad78f291024aefb121fd7e1e10e80d0500409",
+    "oldWindowsChanged": false,
+    "commits": 0,
+    "publication": false,
+    "callbacks": false,
+    "productionAuthCollectorDDLChanges": false,
+    "appOrWorkflowRun": false
+  }
+}

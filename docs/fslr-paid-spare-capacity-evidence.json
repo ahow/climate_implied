@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "fslr-paid-spare-capacity-evidence-proposal-1",
+  "requestedUnit": "S12-001 implementation: separate source-supported FSLR paid-spare-capacity/post-45X funded-terminal experiment",
+  "version": "fslr-paid-spare-capacity-post-credit-1",
+  "purpose": "Substantive new conditional original-range calculation; NOT a maintenance benchmark, original-study retune, verified forecast, qualified original issuer or canonical-ledger closure",
+  "technicalQualifiedOriginalIssuers": 0,
+  "technicalRequiredOriginalIssuers": 3,
+  "qualifiedOriginalPairs": 0,
+  "selectionRationale": "Most dependency-ready retained evidence: FY2024 primary explicitly links the remaining US facility investment expected throughout 2025 to the total 2025 capex outlook. This permits a separately conditioned paid-capacity calculation without inventing NEE project waterfalls or needing future observations.",
+  "files": [
+    "server/calculation/fslrPaidSpareCapacityCase.ts",
+    "script/run-fslr-paid-spare-capacity.ts",
+    "script/fslr-paid-spare-capacity.test.ts",
+    "script/validate-fslr-paid-spare-capacity-private.ts"
+  ],
+  "freeze": {
+    "path": "generated-artifacts/company-operating-corpus/fslr-paid-spare-capacity-v1/2026-11-11T09-17-49-531Z/frozen-before-calculation.json",
+    "sha256": "d5ecad1e77a29f96e0c2b4f5e5e249f146b9e4094f1b3d1e92b34b44af3aa2c7",
+    "frozenAt": "2026-11-11T09:17:49.531Z",
+    "calculatedAt": "2026-11-11T09:17:49.573Z",
+    "reportPath": "generated-artifacts/company-operating-corpus/fslr-paid-spare-capacity-v1/2026-11-11T09-17-49-531Z/report.json",
+    "reportSha256": "d774cb94366e0717af822c051c607ad4ddd23b35df6fb05a66c74676ed6d63b5",
+    "beforeOutcomes": "Freeze contains primary facts, original inputs, all eight operating/credit options, stored baselines, code hashes and assumptions before calling the new cash builder or comparing forward values with retained equity.",
+    "informationContext": "Revised-history conditional reference. FY2024 remains selected; original actual USD common shares/price date and original dated 2025 stub remain. Later filing/guidance knowledge is not backdated to the retained 2025 price cutoff."
+  },
+  "sourceAttempts": {
+    "newPublicRequests": 0,
+    "newPaidProviderRequests": 0,
+    "retainedAuthenticatedPrimary": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+    "primaryUrl": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+    "primarySha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+    "cik": "0001274494",
+    "fiscalEnd": "2024-12-31",
+    "retainedOutlookUrl": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000009/ex991pressreleaseq4-2024fi.htm",
+    "outlookSha256": "d550c0881ea9260fd5e4592242e6bb7e946fbad39a2789ecd322da96f8d9e3f2",
+    "locatorOnly": "Retained PDF-mirror text located the disclosure; all factual assertions bind authenticated SEC HTML, not PDF-mirror authority.",
+    "observationsAndForwardDisclosures": {
+      "installedNameplateGw2024": 21,
+      "actualProductionGw2024": 15.5,
+      "actualSoldGw2024": 14.1,
+      "plannedAdditionalNameplateGw": 4,
+      "plannedCommissioning": "Second half of 2025; expected, NOT observed completion",
+      "guidedProductionGw2025": [18, 19],
+      "guidedSoldGw2025": [18, 20],
+      "remainingUsFacilityInvestmentExpectedDuring2025Usd": 700000000,
+      "totalCapitalSpendingOutlook2025Usd": [1300000000, 1500000000],
+      "conditional2025ModelCapexMidpointUsd": 1400000000,
+      "cashPaidOrCommissioningObservationClaimed": false
+    },
+    "inventoryBindings": {
+      "contextRef": "c-14",
+      "contextBoundary": "Consolidated 2024-12-31 instant, CIK 0001274494, no segment, USD scale 3",
+      "us-gaap:InventoryRawMaterialsNetOfReserves": 489524000,
+      "us-gaap:InventoryWorkInProcessNetOfReserves": 115696000,
+      "us-gaap:InventoryFinishedGoodsNetOfReserves": 754536000,
+      "us-gaap:InventoryNet": 1084384000,
+      "us-gaap:InventoryNoncurrent": 275372000,
+      "fullInventoryUsd": 1359756000,
+      "reconciliation": "Raw + WIP + finished goods = current + noncurrent. Five bindings include overlaps with earlier source work; not five claimed disjoint new historical cash facts."
+    }
+  },
+  "paidCapitalAndPhysicalAssumptions": {
+    "paidStatus": "Conditional payment/completion within the already frozen 2025 capex bridge, never asserted as an observed 2025 cash payment",
+    "openingNetPpe2025Usd": 5413683000,
+    "capitalSpend2025Usd": 1400000000,
+    "depreciation2025Usd": 423498000,
+    "closingNetPpe2025Usd": 6390185000,
+    "remainingFacilityBudgetIncludedNotAddedAgainUsd": 700000000,
+    "unallocatedOtherBudgetResidualUsd": 700000000,
+    "budgetResidualBoundary": "Arithmetic remainder, not a claimed asset-level allocation or observed cost of the entire 4 GW expansion.",
+    "ceilingsGw": [21, 25],
+    "v4OriginalBoundWidened": false,
+    "startingUnits": "19 GW forward 2025 shipment-guidance midpoint, NOT FY2024 actual or guaranteed demand",
+    "realUnitPath": "Nonnegative annual increments for five years, then ten-year fade of increments to zero. Capacity-bound rate is determined from source ceiling alone before any cash/value calculation; no target calibration.",
+    "capacityRates": [
+      { "ceilingGw": 21, "firstFiveYearAnnualUnitPerturbation": 0.010581067775600545 },
+      { "ceilingGw": 25, "firstFiveYearAnnualUnitPerturbation": 0.02923517698995651 }
+    ],
+    "productionVsSales": "From 2026, modeled annual finished-module production equals sales and cannot exceed selected available nameplate. Existing real finished-goods stock is held, not drawn down or assumed to grow; no inference that 2024 production/sales ratio is a yield or permanent throughput loss.",
+    "noNewFixedPlantBelowPaidCeiling": "Keep original nominal PP&E/D&A/replacement and financing path. No incremental plant for utilization within the conditional paid ceiling; no expansion above it and no assumed technology/yield upgrade.",
+    "nominalGrowth": "Retain original 2.5%, 3.25%, 4% terminal scenarios and original pre-terminal nominal index. With flat terminal real output, growth is conditional ASP/cash-cost/replacement inflation, NOT observed pricing power or guaranteed contract escalation."
+  },
+  "completeCashRebuild": {
+    "basis": "USD whole-issuer common FCFE; original five years, ten-year fade, 2041 terminal and fixed original dated 2025 stub",
+    "operatingCost": "Core EBIT plus book D&A gives a source-based pre-D&A cash-cost proxy, not observed marginal manufacturing cash profit. Existing normalized costs and economic stock-compensation cost remain; no new addback or learning margin invented.",
+    "cashCostVariants": [
+      "all-cash-cost-variable: scale every source core pre-D&A cost with incremental units, leaving already-paid book D&A fixed; no fixed-cash-overhead leverage",
+      "additional-da-wear-reserve: also expense one source D&A amount per incremental unit-equivalent as conservative cash wear reserve; not new PP&E or measured future maintenance cost"
+    ],
+    "workingFunding": "AR, payables, minimum-cash and other-current-asset-equivalent buffers use frozen source ratios. NO incremental customer advances fund new units; baseline advance path remains conditional.",
+    "inventoryAndPhysicalBoundary": "Incremental raw/WIP-equivalent stock is funded. Source finished-goods-value equivalent is held as extra CASH liquidity, not fictitious extra finished modules that would exceed production capacity. No cash interest or terminal reserve release.",
+    "noncurrentInventory": "Explicitly fund the entire source noncurrent inventory outside the old current-WC proxy. Carry observed opening reserve into first new year, catch up to original revenue index in 2026 and fund later nominal changes. No claim about observed 2025 inventory cash. Included ONCE in operating working capital, NOT PP&E/capex.",
+    "cashFlowLabelBoundary": "Projected operatingCashFlow is the original economic cash-after-working-capital/reserve funding proxy, not reported GAAP CFO or a factual forecast statement.",
+    "financing": "Retain original cash capital/replacement, gross debt rollover, net borrowing, interest and non-common cash schedule. No additional utilization financing assumed. Negative FCFE is explicit voluntary pro-rata common funding, not floored to zero or claimed actual future share issuance.",
+    "tax": "Original 21% positive core-pretax cash sensitivity retained, not new jurisdictional tax guidance.",
+    "legacyAssetsAndCash": "Keep original grant/uncertain Visa reserves, all selected cash/securities reserve and stub. Initial excess-cash release zero; terminal reserve release zero; no second initial-debt deduction.",
+    "noNewUsEligibleCredits": true,
+    "creditVariants": [
+      "inherited-source-law: original fixed nominal per-watt cash/recognized schedule and cash discount/timing unchanged; extra global units earn no additional US credit",
+      "all-post-stub-credit-value-zero: all future credit recognition/cash zero as adverse valuation assumption, not statutory ineligibility. Forecast opening quarter-year credit receivable remains expressly unreleased; not an observed writeoff or missing cash windfall"
+    ],
+    "postCreditBoundary": "All recognized and cash credits are zero from 2034 through terminal in BOTH members. Source-law 2033 settlement runoff is not mistaken for permanent subsidy.",
+    "post2025LawAndFeoc": "Unresolved, never certified. The inherited source-law early credit cash is a scenario, not current-law eligibility proof."
+  },
+  "outcomes": {
+    "newCompleteCases": 48,
+    "construction": "Six stored original FSLR baselines (source-conditioned/constraint × original terminal growth) × two ceilings × two operating-cash-cost treatments × two future-credit valuations",
+    "explicitFutureCashRows": 768,
+    "postCreditTerminalRows": 48,
+    "terminalPositiveCases": 18,
+    "terminalNonpositiveCases": 30,
+    "positiveTerminalButNonpositiveCommonFundedValue": 9,
+    "conditionalPositiveFundedValues": 9,
+    "allPostStubCreditZeroPositiveFundedValues": 0,
+    "negativeCommonFundingYearsRetained": 520,
+    "interpretation": "Eighteen positive terminal rows represent nine distinct operating/ceiling/base terminal configurations paired across credit histories; zero-credit history can have positive terminal yet NEGATIVE whole funded-plan PV. Do not count these as qualified cases or positive standalone equity values.",
+    "sourceConditioned25GwVariableCashCostExamples": [
+      { "terminalGrowth": 0.025, "postCreditAnnualTerminalFcfeUsd": 278418663.2034897, "conditionalWholeEquityUsd": 5914238873.278221, "commonCashContributionsRequiredUsd": 31390116.65309298 },
+      { "terminalGrowth": 0.0325, "postCreditAnnualTerminalFcfeUsd": 163707564.68800694, "conditionalWholeEquityUsd": 5456550850.958578, "commonCashContributionsRequiredUsd": 110228047.10967255 },
+      { "terminalGrowth": 0.04, "postCreditAnnualTerminalFcfeUsd": 39147852.91881251, "conditionalWholeEquityUsd": 4886026971.283689, "commonCashContributionsRequiredUsd": 340535707.19878554 }
+    ],
+    "wearDownsideAt4Percent": "Same 25 GW source-conditioned member with extra D&A wear reserve has approximately NEGATIVE USD170.5m terminal annual FCFE. The 4% positive terminal result is explicitly conditional and fails this maintenance-cost sensitivity.",
+    "zeroCreditSignedPlanPvRangeUsd": [-3633614496.212079, -249916525.00664842],
+    "zeroCreditNegativeValueBoundary": "Signed values are rejected funded-plan NPVs, NOT quoted negative share prices or forced shareholder commitments.",
+    "bestConditionalValueShareOfRetainedEquityApproximately": 0.3554,
+    "marketTargetRootOrUniquenessClaim": false,
+    "reverseScoringPerformed": false,
+    "actualFcfeGrowth": "All 48 retain selected actual FY2024 negative FCFE; actual-to-year-five CAGR is rejected, not replaced with positive 2025 guidance or renamed from unit perturbation.",
+    "originalQualification": "0/3 and zero original pairs. No completion inferred from positive terminal alone, early conditional credit cash, engineering test success or a new version."
+  },
+  "verification": {
+    "codeOnly": {
+      "command": "npx tsx --test script/fslr-paid-spare-capacity.test.ts",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "privateFilesOrNetwork": false,
+      "independence": "Separate synthetic plain-number cash/profit/buffer/PP&E/debt/inventory/stub/dated-PV loop; explicit noncurrent inventory CFO classification; wear cash expense; credit cash removed once; capacity bounds and actual negative-base growth rejection.",
+      "logSha256": "cbe7d351862fb086c61592b02665e1d576a3b7896ae248c99a0d283e7e1fa718"
+    },
+    "assembly": {
+      "command": "npx tsx script/run-fslr-paid-spare-capacity.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "ac9b4b4ed7fa15c95ff02adcd932ca462b6e6ebfd616c1dfa0b3c7144541c93c"
+    },
+    "mandatoryPrivatePrimary": {
+      "command": "npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary",
+      "exitCode": 0,
+      "newCaseReplays": 48,
+      "independentCashAndFundingRows": 768,
+      "terminalRows": 48,
+      "checks": "Actual SEC bytes/code/protected-study hashes; exact narrative and five inventory bindings; USD/FY2024/no-segment context; source capex/fixed-asset bridge; physical ceiling and no extra US credits; independent core cash/WC/full inventory/tax/capital/debt/FCFE/dated-PV; all post-credit terminal rows and negative funding; original actual-growth rejection.",
+      "logSha256": "64f8b77e0cd21920b82238caf9fd688f7720b7023c9ba91ac31c191fc742fe1c"
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/fslrPaidSpareCapacityCase.ts script/run-fslr-paid-spare-capacity.ts script/fslr-paid-spare-capacity.test.ts script/validate-fslr-paid-spare-capacity-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5Typecheck": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/fslrPaidSpareCapacityCase.ts",
+      "exitCode": 0,
+      "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logsDirectory": "generated-artifacts/company-operating-corpus/fslr-paid-spare-capacity-v1",
+    "xom24KernelExecuted": false,
+    "oldOriginalV3V4BuildersOrScoringExecuted": false,
+    "oldFslr10Cases50RowsModified": false,
+    "canonicalThreeLedgersModified": false,
+    "appWorkflowUiFullSuiteProductionDdlCollectorCommitPublishCallback": false,
+    "rawPrivateProviderExport": false
+  },
+  "narrowResiduals": [
+    "Actual remaining-facility payment/completion was not observed: source is FY2024 expectation of USD0.7bn during 2025. This is a declared paid-capacity condition, not a demand for future observations before calculation.",
+    "Plant-level marginal cash cost and engineering replacement/wear curve at higher utilization are not disclosed in retained primary/guidance. Both explicit source-based cash-cost policies are calculated; extra-wear sensitivity demonstrates where the funded terminal fails.",
+    "Nominal ASP/cost/replacement inflation and future contract/demand rollover beyond the disclosed backlog are not source forecasts. Original requested growth scenarios are labelled conditions, not validated pricing power.",
+    "Post-2025 law/FEOC and future 45X eligibility remain unresolved. All-zero future-credit values are separately calculated rather than silently manufacturing eligibility or zero observations.",
+    "Selected actual FY2024 FCFE is negative, so an original actual-based CAGR/reverse growth pair is mathematically undefined. No alternative positive baseline or share/cash-basis substitution is made."
+  ],
+  "originalClauseProposals": [
+    {
+      "clause": "S12-001 real issuer cash assembly and original 2.5-4% sustainable terminal funding",
+      "proposedStatus": "Implemented separate source-bound paid-capacity/full-reserve FSLR calculation; original basis/fade/stub preserved; eighteen post-credit positive terminal rows with explicit contrary sensitivities, not qualified completion."
+    },
+    {
+      "clause": "Future assumptions may be frozen and conditional, never fabricated observations",
+      "proposedStatus": "Observed source facts, source forward disclosures and analyst conditions separated; paid/completed status, extra margin, equity forecasts and legal eligibility never represented as observed."
+    },
+    {
+      "clause": "Preserve prior negative studies and actual case qualification",
+      "proposedStatus": "Original/v3/v4/XOM hashes verified unchanged; no old kernel execution, no market-root forcing and original 0/3 qualification retained."
+    }
+  ],
+  "readyNextEngineeringBlock": "If continuing FSLR, source the disclosed product/backlog pricing and customer-advance contract schedule into a separately frozen ASP/working-funding stress rather than searching for a coefficient that matches equity. Or choose an eligible alternative with positive actual base FCFE if original CAGR pairing remains mandatory. Do not change this study or original v4 bounds; current module is complete and does not wait on future observations or owner approval."
+}

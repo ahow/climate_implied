@@ -1,0 +1,28 @@
+{
+  "version": "igcc-control-thermal-operational-freeze-1",
+  "parentProtocolSHA256": "9b0e8f82dd67f6b211d4af8a44a03e1a18d2f13ab039f1cff501020c42d4a44c",
+  "frozenBeforeNumericalResiduals": true,
+  "sourceFindingsBeforeCalculation": {
+    "controlREADME": "All derivative data retain individual model-source terms. It explicitly requires checking original CMIP6 licenses and retractions.",
+    "CMIP6Terms": "Returned terms explicitly say their CC-BY-SA template is only an example, not a license for all model output. Actual TaiESM1 file-level terms remain unverified. Stop before MAG download; no permission inferred.",
+    "AR5Helper": "Operative models/AR5_IR.py FTmod has exactly two thermal terms and midpoint-sampled exponential response q/d*exp(-(lag+0.5)/d). It is a sibling helper, not the imported missing alpha1 runner.",
+    "supportedFaIR": "Installed FaIR2.2.4 step_temperature is a general deterministic matrix-vector update. Its source SHA-256 is 568ace02ddb0fb72068830635512adfabaaf83b0b5ff296b73f4312ae4a7b87e. Diagonal modal updates can be checked without asserting modal states are FaIR ocean layers."
+  },
+  "fixedDiagnostic": {
+    "inputs": "Already-retained exact IGCC-2025a p50 actual 1750-2025 ERF and all28 source q/d configurations, three terms each",
+    "classification": "OHF is exactly aerosol-radiation/cloud interactions, contrails, land_use, BC_on_snow, O3 and H2O_stratospheric; Nat is solar+volcanic; GHG is source CO2/CH4/N2O and all remaining exact-pinned halogen species. Keep classification memberships and total-sum residual.",
+    "sourceReference": "Use source FTmod separately for each of three original q/d terms with second coefficient explicitly zero, then sum all three outputs by linearity. No term truncation or parameter alteration. Reference bytes must hash-match before AST-limited FTmod extraction.",
+    "independentMidpointRecurrence": "s[t]=exp(-1/d)*s[t-1]+q/d*exp(-0.5/d)*F[t]; sum modes",
+    "supportedModalBridge": "Pass diagonal exp(-1/d) matrix and q*(-expm1(-1/d)) input vector to FaIR2.2.4 step_temperature, with zero stochastic increment and explicitly zero initial diagnostic state; verify boundary states against independently coded stable recurrence",
+    "exactAnnualMean": "For piecewise-constant annual forcing, mode mean=q*F+(old_state-q*F)*d*(-expm1(-1/d)); sum modes. This is not midpoint impulse quadrature.",
+    "residuals": "All28 configurations × GHG/Nat/OHF: midpoint recurrence minus source FTmod; supported boundary minus independent exact boundary; midpoint source response minus exact annual interval mean over1750-2025 and separately2015-2025. No fitted offsets, parameter tuning, acceptance threshold or headline comparisons.",
+    "scientificOutcomeRule": "Numerical implementation equality certifies only the stated modal update. Discretization differences and unavailable alpha1 equivalence remain explicit. Do not pass source-mismatched fingerprints to attribution."
+  },
+  "controlLoader": {
+    "interface": "Dependency-ready admission of an independently extracted native annual World piControl DataArray plus explicit original-byte hash, extraction-byte hash, original model/global license metadata and matching terms evidence. No undocumented MAG parser or claimed actual control member is created.",
+    "requiredMetadata": "source_path, source_sha256, extraction_sha256, institution_id, source_id, experiment_id=piControl, variant_label, grid_label, version, variable_id=tas, region=World, units=K or degC, exact specific license text and terms_evidence_sha256",
+    "licensePolicy": "Only independently evidenced exact CC-BY-4.0, CC-BY-SA-4.0 or CC0-1.0 accepted for this local derivative. Unknown/noncommercial/ambiguous terms fail, no auto-resolving license links. Future publication/retraction/citation review still required.",
+    "slicing": "Exact176-step slices, step88; native annual coordinates consecutive unique integers, finite complete raw source; preserve start/end original coordinates and source version, center first50 and apply exact strict variability filters; not all-control ensemble qualification"
+  },
+  "nonClaims": "No GWI posterior, full actual forcing ensemble, GSAT-to-GMST conversion, native emissions reconstruction or historical attribution; observation assembly is not rerun."
+}

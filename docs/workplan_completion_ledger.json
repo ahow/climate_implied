@@ -1052,6 +1052,33 @@
         "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
       },
       "stop_reason": "Context boundary after recovery, substantive source/calculation work, integrated tests and verified release; original work remains, not completion."
+    },
+    "source_bridge_increment": {
+      "at": "2026-11-11T09:24:03.772777+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary && npm run build"
+        ],
+        "executed_at": "2026-11-11T09:21:36.157247+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 121.51,
+        "counts": {
+          "tests": 525,
+          "pass": 525,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T092136157247Z.log",
+        "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "issuer": "48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified.",
+      "physical": "176annual years1850-2025 ×200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
+      "scope": "39verified259partial2blocked; original1000/1001 unchanged. No approval/data/scientific promotion.",
+      "next": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work."
     }
   },
   "prior_native_fleet_increment": {
@@ -1165,7 +1192,7 @@
     "receipt_boundary": "Verified implementation; later documentation/local handoff receipts are distinct. Coverage503 remains a provisioning dependency; no data/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T08:47:35.288184+00:00",
+  "updated_at": "2026-11-11T09:24:03.772777+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -69162,7 +69189,7 @@
             "script/igcc_observation_operator.py",
             "script/validate_igcc_official_sources.py"
           ],
-          "behaviour_delivered_this_run": "Implemented source GWI observational-constraint operator and actual official history comparisons; no arbitrary GSAT conversion or old SSP rerun.",
+          "behaviour_delivered_this_run": "176annual years1850-2025 ×200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
           "inputs_versions_assumptions": {
             "schemaVersion": 1,
             "criterion": "S07-008",
@@ -70428,6 +70455,26 @@
               "workspace_revision": "4a53720b9d06f688bd0fa95eb1c3044f2b51ad07",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T09:21:36.157247+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 121.51,
+              "counts": {
+                "tests": 525,
+                "pass": 525,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T092136157247Z.log",
+              "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -70875,7 +70922,7 @@
             "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null.",
             "Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025."
           ],
-          "next_action": "Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025.",
+          "next_action": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work.",
           "blockers": [],
           "stage": 7,
           "stageName": "Climate response and the four headline measures",
@@ -73080,7 +73127,382 @@
               "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null."
             ],
             "next_action": "Source-justified spatial GMST operator, actual historical2015–2025 inputs instead of SSPs, and attribution-convention compatibility. GMST member share remains null."
-          }
+          },
+          "source_bridge_prior": {
+            "behaviour": "Implemented source GWI observational-constraint operator and actual official history comparisons; no arbitrary GSAT conversion or old SSP rerun.",
+            "next_action": "Obtain permitted ancillary ensemble/observation/control inputs and source-compatible fingerprints; resolve alpha1/2.2.4 thermal bridge and native histories through2025."
+          },
+          "source_bridge_evidence": [
+            {
+              "path": "docs/igcc-gmst-source-bridge-evidence.json",
+              "sha256": "93e2b8f9b65b6cd5d47dc0cc1fd5762d5485de3d7fb37c3e2e91beb570ec08be",
+              "details": {
+                "schemaVersion": 1,
+                "criterion": "S07-008",
+                "status": "actual-GMST-observation-source-dependency-assembled; attribution-and-native-history-acceptance-withheld",
+                "protocol": {
+                  "path": "docs/igcc-gmst-source-bridge-protocol.json",
+                  "sha256": "d22a0c00f9e32abc6e28f3591e15be64583d802121eba035077a6341eec7292a",
+                  "freezeBeforeAcquisitionAndAssembly": true,
+                  "newExperimentScoring": false
+                },
+                "priorityDecision": {
+                  "S04-002": "Do not repeat exhausted source attempts. Original 2025 report lacks 2010-2014 capacity and exact unrounded complete costs. The already-retained 2026 PxWeb country table has 119/113/104/96/91 missing country cells in 2010-2014, so subtotals are not a certified global onshore series. Exact installed-cost table remains absent. No fit, interpolation, vintage splice or shortened window.",
+                  "S04-003_and_S05": "Native 2024 EDGAR/GCB aggregate accounting does not independently establish signed five-region land-use allocation and matched international transport accounts. No invented allocation or driver calibration; these original gaps remain unchanged.",
+                  "selectedPermittedFallback": "Acquire and assemble actual source-native HadCRUT5.1 200-member GMST observations explicitly used by the operative IGCC-2025 GWI preset. This closes a previously located-but-not-downloaded observation dependency, not the source-control/forcing/native-emissions dependencies."
+                },
+                "newAcquisition": {
+                  "requests": 3,
+                  "allHTTP200": true,
+                  "maximumBytesPerRequest": 2000000,
+                  "maximumSecondsPerRequest": 45,
+                  "paidCalls": 0,
+                  "transportCommandPattern": "curl --max-time 45 --max-filesize 2000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}; URL %{url_effective}\\n' <url>",
+                  "resources": [
+                    {
+                      "url": "https://www.metoffice.gov.uk/hadobs/hadcrut5/",
+                      "retrievalStartedUTC": "2026-11-11T09:01:32Z",
+                      "serverDateUTC": "2026-11-11T09:01:32Z",
+                      "bytes": 11840,
+                      "bodyPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-landing.html",
+                      "bodySHA256": "93247c5631b0df39a05cf75203c85eb62b02d272b1f274e7ca1edc9a401b64a7",
+                      "headersPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-landing.headers",
+                      "headersSHA256": "7f32535b936cade5a6d91b1d247ce1259923ad6671d11f46b374fa23f95a5ade",
+                      "finding": "Defines global blended near-surface temperature anomalies relative 1961-1990, identifies HadCRUT5 as Met Office/CRU collaboration, declares OGLv3 and explicitly requires reading linked terms. Current official release is 5.2.0.0; it is NOT substituted for the operative 5.1.0.0 snapshot."
+                    },
+                    {
+                      "url": "https://www.metoffice.gov.uk/hadobs/hadcrut5/terms_and_conditions.html",
+                      "retrievalStartedUTC": "2026-11-11T09:01:40Z",
+                      "serverDateUTC": "2026-11-11T09:01:40Z",
+                      "bytes": 3267,
+                      "bodyPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-terms.html",
+                      "bodySHA256": "5d28efbdc48281339957dc14f0bf251e98d5aa152f59cd8e469decfa3e85f852",
+                      "headersPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-terms.headers",
+                      "headersSHA256": "5661016e8f3e7a3862378430bc93daa2b6c162a9a960d98a974b5ee72dcc4729",
+                      "finding": "Dataset-specific HadCRUT5 Crown copyright and Open Government Licence v3; Morice et al. doi:10.1029/2019JD032361 citation and prescribed acknowledgement required. Read before acquiring observation bytes, fulfilling the landing page's express terms instruction."
+                    },
+                    {
+                      "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/data/observed-2025/Temp/HadCRUT/HadCRUT.5.1.0.0.analysis.ensemble_series.global.annual.csv",
+                      "retrievalStartedUTC": "2026-11-11T09:01:46Z",
+                      "serverDateUTC": "2026-11-11T09:01:46Z",
+                      "bytes": 413948,
+                      "bodyPath": "generated-artifacts/igcc-gmst-source-bridge/HadCRUT.5.1.0.0.analysis.ensemble_series.global.annual.csv",
+                      "bodySHA256": "8bd47a7647515ac20beb960882d503b5697829fa702e9067e795ddf7fd046155",
+                      "nativeGitBlobSHA1": "d79fbb5a2cb3092de508666742907c32c2e62d42",
+                      "headersPath": "generated-artifacts/igcc-gmst-source-bridge/hadcrut-author.headers",
+                      "headersSHA256": "6e83017a599ecbbb9bd99049cf78254a707fb21d11a750fa030f671f6aeee5ea",
+                      "sourceVersion": "HadCRUT.5.1.0.0",
+                      "repositoryRevision": "b18b5fc8731b5c966613cc6ac38c35be1ab8984a",
+                      "vintageCaveat": "This is the exact operative author snapshot, independently matching the already-located git blob identity. It is not claimed to be the latest official release or byte-certified original Met Office publication. Original release day and information available at historical origins remain unknown; HTTP date and hash do not establish them."
+                    }
+                  ],
+                  "rightsBoundary": "HadCRUT5-specific OGLv3 applies to these observations, not to unfetched CMIP6 controls or all GWI ancillary data. Native observations and derived members are retained privately; no publication or redistribution performed. Required acknowledgement must retain truthful author-repository acquisition and must not invent the unknown original-version first-publication year."
+                },
+                "implementation": {
+                  "module": "script/igcc_gmst_source_bridge.py",
+                  "moduleSHA256": "2ca3826693fbe95ee5ccfd35bb3c172151465e7c36c75c8bd36501d3da7c88ca",
+                  "tests": "script/test_igcc_gmst_source_bridge.py",
+                  "testsSHA256": "17356c8089e1be1544adb8dacdc0643bfbe23f73ccabe00b04ac0657b0df212c",
+                  "reusedUnmodifiedKernel": "script/igcc_observation_operator.py",
+                  "kernelSHA256": "01e69e8df04eb80ad1a7b0492bddc16bb2f691c6b9d48d4b879ce5d6b49e131b",
+                  "sourceBaselineCodeSHA256": "ee0874342b8d688edebf4a71bca67b073208f8d6357cce284c007031378c56d9",
+                  "publicUnitTestsRequirePrivateFiles": false,
+                  "inputForFutureGWIConstraint": "actual-gmst-observation-members.nc:native_gmst_anomaly, dimensions year/observation_member. The existing GWI kernel applies its own common baseline. gmst_anomaly is the separately retained, already-rebased diagnostic; do not individually member-rebase it.",
+                  "gates": [
+                    "Pinned source/protocol/terms/operative-definition hashes and exact native git blob SHA-1",
+                    "Exact ordered 200-realization header; duplicates, summaries and missing fields rejected",
+                    "Complete unique integer 1850-2025 annual years, no missing/nonfinite input or endpoint extension",
+                    "Optional 2026 source row retained in raw bytes and explicitly excluded from annual observations",
+                    "Coverage fraction in [0,1] and nonnegative coverage uncertainty; separate uncertainty column never treated as member or silently sampled",
+                    "Independent numerical common-offset calculation and between-member-difference preservation",
+                    "NetCDF readback equality against assembled native and centered arrays"
+                  ]
+                },
+                "execution": {
+                  "focusedTestsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_igcc_gmst_source_bridge -v",
+                  "focusedTestsExitCode": 0,
+                  "testMethods": 6,
+                  "pass": 6,
+                  "fail": 0,
+                  "skip": 0,
+                  "focusedTestsLog": "generated-artifacts/igcc-gmst-source-bridge/focused-tests.log",
+                  "focusedTestsLogSHA256": "7ce95b0e5696519cb4e8052a2b4e6171d20af676154309f1a4d6c64110804418",
+                  "assemblyCommand": ".pythonlibs/bin/python script/igcc_gmst_source_bridge.py",
+                  "assemblyExitCode": 0,
+                  "assemblyCompletedUTC": "2026-11-11T09:03:08.995272+00:00",
+                  "assemblyLog": "generated-artifacts/igcc-gmst-source-bridge/assembly-execution.log",
+                  "assemblyLogSHA256": "873ee17d8ff170a15607224b3a3e4cc11fe700b1fdda208ca351e870eb8440da",
+                  "result": "generated-artifacts/igcc-gmst-source-bridge/assembly-result.json",
+                  "resultSHA256": "8cc311e4116af7869f3d30b36f6cba41ea99e1f7bbce9a10142d0ddba1e1baa1",
+                  "nativeAndCenteredMembers": "generated-artifacts/igcc-gmst-source-bridge/actual-gmst-observation-members.nc",
+                  "nativeAndCenteredMembersSHA256": "34b82f4471ee45d080389ccea7ec3d2b14f0db4832837776e8917a27f841512b",
+                  "initialFailurePreserved": {
+                    "log": "generated-artifacts/igcc-gmst-source-bridge/initial-fixture-alias-failure.log",
+                    "sha256": "dd30de010af6f5061d9a6d57e978e6ce9c938c1f59bc71309eec48891343d4a5",
+                    "failure": "Two renamed/duplicate-header assertions initially failed because fixture() reused and mutated the imported HEADER list. Corrected fixture to HEADER.copy(); strict parser gates unchanged. Actual source assembly was not attempted until corrected tests passed."
+                  }
+                },
+                "actualNewSourceChecks": {
+                  "nativeCSVRows": 177,
+                  "completeAnnualRowsUsed": 176,
+                  "yearsInclusive": [
+                    1850,
+                    2025
+                  ],
+                  "actualObservationMembers": 200,
+                  "excludedIncompleteSourceYears": [
+                    2026
+                  ],
+                  "unit": "degrees Celsius, global blended GMST anomaly",
+                  "nativeReferencePeriod": "1961-1990",
+                  "sourceDefinedRebase": "One 1850-1900 inclusive mean of annual ensemble medians, common to all 200 members",
+                  "commonBaselineOffsetC": -0.3576333654147059,
+                  "member1850to1900BaselineRangeAfterCommonRebaseC": [
+                    -0.08752114703627449,
+                    0.12941205239509804
+                  ],
+                  "betweenMemberDifferenceMaxAbsChangeC": 2.220446049250313e-16,
+                  "coverageFraction2025": 0.9950727,
+                  "coverageUncertainty1Sigma2025C": 0.0041762944,
+                  "uncertaintyQualification": "These are real native observation realizations, not synthetic calibrated climate members. Coverage uncertainty remains an explicit separate source field; the assembly does not claim that the operative GWI realization-only treatment includes every observational uncertainty.",
+                  "precisionQualification": "Digits document deterministic source transformation and roundoff, not observational accuracy."
+                },
+                "scientificDecision": {
+                  "observationDependency": "Advanced from located/unfetched to source-pinned, permitted-use and numerically assembled through actual annual 2025 with preserved member identity and baseline uncertainty.",
+                  "nativeHistoricalEmissionsDependency": "Not closed: no actual 2015-2025 emissions input replaced, no CO2e inversion and no SSP-as-historical attribution.",
+                  "controlsDependency": "Not closed: exact permitted-use CMIP6 piControl inputs/slices remain required; no zero or random controls substituted.",
+                  "fingerprintsDependency": "Not closed: source-specific actual GHG/OHF/Nat forcing ensembles and independently validated alpha1-to-supported-FaIR thermal response remain required.",
+                  "newAttributionModelsRun": 0,
+                  "unchangedStudiesRerun": 0,
+                  "headlineComparisonsPerformed": false,
+                  "shareMeanMembersInRange": null,
+                  "centralEligible": false,
+                  "originalClauseStatus": "Partial; S07-008 is not complete, and no failed S04/S05 candidate is promoted."
+                },
+                "preservation": {
+                  "onlyNewDisjointModuleTestsAndFocusedJSONEvidence": true,
+                  "existingTrackedFilesChanged": false,
+                  "canonicalLedgerSHA256": "430cec716811d1b749aa4535d0d02cb4f29a03d5e0f2f19cb247a8e5dfb9169a",
+                  "canonicalMarkdownLedgerSHA256": "8923e04088a292976ec5065865dad78f291024aefb121fd7e1e10e80d0500409",
+                  "oldWindowsChanged": false,
+                  "commits": 0,
+                  "publication": false,
+                  "callbacks": false,
+                  "productionAuthCollectorDDLChanges": false,
+                  "appOrWorkflowRun": false
+                }
+              }
+            },
+            {
+              "path": "docs/igcc-control-thermal-bridge-evidence.json",
+              "sha256": "29aad6a45a0cb795d995ec7a8da731d5ce3e0cd98d1fbaaf5da934fac096f977",
+              "details": {
+                "schemaVersion": 1,
+                "criterion": "S07-008",
+                "status": "source-qualified-control-admission-implemented; supported-modal-update-verified; actual-controls-and-alpha1-fingerprints-still-blocked",
+                "parentObservationAssemblyRerun": false,
+                "freezesBeforeCalculation": {
+                  "sourceProtocol": "docs/igcc-control-thermal-bridge-protocol.json",
+                  "sourceProtocolSHA256": "9b0e8f82dd67f6b211d4af8a44a03e1a18d2f13ab039f1cff501020c42d4a44c",
+                  "sourceSpecificOperationalFreeze": "docs/igcc-control-thermal-operational-freeze.json",
+                  "sourceSpecificOperationalFreezeSHA256": "68da9a373537538b0f5748c8a0779134958304abff30abde256f849372f6a61f",
+                  "timing": "Initial source/rights plan saved before requests; exact two-term source limitation, modal adapter and residual definitions saved before any thermal residual calculations.",
+                  "newNumericalAcceptanceThreshold": null
+                },
+                "boundedAcquisition": {
+                  "requestsExecuted": 3,
+                  "maximumAllowed": 5,
+                  "allHTTP200": true,
+                  "paidCalls": 0,
+                  "fullControlOrForcingEnsembleRequests": 0,
+                  "transportCommandPattern": "curl --max-time 45 --max-filesize 3000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+                  "resources": [
+                    {
+                      "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/data/piControl/CMIP6/README.txt",
+                      "retrievalStartedUTC": "2026-11-11T09:11:28Z",
+                      "bytes": 3445,
+                      "path": "generated-artifacts/igcc-control-thermal-bridge/control-readme.txt",
+                      "sha256": "22d30202453758bd4b1b3ed787f8e3f7f3a3ca828cf1359ea182b06b7b4d720a",
+                      "headersPath": "generated-artifacts/igcc-control-thermal-bridge/control-readme.headers",
+                      "headersSHA256": "8b15eedcddc98c75ceb03440843799fbaf442cf8588ced1c68a1a412e7747ae3",
+                      "finding": "Processed CMIP6 retains each original source's licensing restrictions; checking original model licenses, acknowledgements and retractions is mandatory. Processing citation: Nicholls et al., doi:10.1002/gdj3.113. No permission for a particular model supplied by this README."
+                    },
+                    {
+                      "url": "https://raw.githubusercontent.com/tristramwalsh/global-warming-index/b18b5fc8731b5c966613cc6ac38c35be1ab8984a/models/AR5_IR.py",
+                      "retrievalStartedUTC": "2026-11-11T09:11:28Z",
+                      "bytes": 4401,
+                      "path": "generated-artifacts/igcc-control-thermal-bridge/ar5-ir.py.source",
+                      "sha256": "0af19c944dd8067c730dcb1d50fc9c7e07bb52e9ca90be607bbd393333d0f605",
+                      "headersPath": "generated-artifacts/igcc-control-thermal-bridge/ar5-ir.headers",
+                      "headersSHA256": "998b86efc4099038e912a4ac7636fdaf4d3f78e9a27f2b0a49089905f40588f8",
+                      "finding": "FTmod uses exactly two q/d terms and midpoint impulse sampling at lag+0.5. This sibling is not the alpha1 fair_runner imported by the operative GWI. Its exact source is used only through hash-pinned AST extraction of FTmod; original source retained privately."
+                    },
+                    {
+                      "url": "https://pcmdi.llnl.gov/CMIP6/TermsOfUse/TermsOfUse6-1.html",
+                      "retrievalStartedUTC": "2026-11-11T09:11:33Z",
+                      "bytes": 20480,
+                      "path": "generated-artifacts/igcc-control-thermal-bridge/cmip6-terms.html",
+                      "sha256": "69397921f4b89febd709a32588fa0f716e357f296b2ab2f51f218e55b7607876",
+                      "headersPath": "generated-artifacts/igcc-control-thermal-bridge/cmip6-terms.headers",
+                      "headersSHA256": "38beb845dcdc1c8f7c75ffa7796faad15de9ad4eb78944d67dc335eb55a68e10",
+                      "finding": "Explicitly requires individual NetCDF global license attributes and says its CC-BY-SA template is an example, not applicable to all output; some models use noncommercial terms. Thus it does not establish TaiESM1-specific permission."
+                    }
+                  ],
+                  "controlAcquisitionDecision": "Stopped before the preselected first-lexicographic AS-RCEC/TaiESM1/piControl/r1i1p1f1 MAG download because exact source-specific terms remain unavailable. No model switch after seeing a filter outcome, no zero/synthetic controls, no claim that the example license grants permission.",
+                  "forcingAcquisitionDecision": "Existing public LFS pointer identities are retained, but do not grant data rights. No underlying Chris forcing-ensemble object downloaded."
+                },
+                "newImplementation": {
+                  "module": "script/igcc_control_thermal_bridge.py",
+                  "moduleSHA256": "93649e766545413ee5e3266baa230d0cf1efe434a24d7972e883210403f8e40e",
+                  "tests": "script/test_igcc_control_thermal_bridge.py",
+                  "testsSHA256": "1e69a26af354d7abac3e2df4ad31f0c7f279beb97f860d38993d50274a69c84b",
+                  "controlAdmission": {
+                    "function": "read_qualified_control",
+                    "interface": "Original native MAG bytes, independently extracted annual World year/tas CSV bytes, separate rights-evidence bytes, and complete semantic source identity/license metadata; no undocumented MAG parser claimed.",
+                    "byteGates": "Original/extraction/terms SHA-256 must match. Exact license text with matching approved license URI must occur in both original text and rights evidence, not merely caller assertions.",
+                    "licenseBoundary": "Only exact CC-BY-4.0, CC-BY-SA-4.0 or CC0-1.0 admitted by this local-derivative adapter; unknown/noncommercial/ambiguous templates rejected. This engineering gate does not independently authenticate external records or replace future citation/retraction/publication review.",
+                    "identity": "Institution/model/experiment/member/grid/version/variable retained semantically, not upstream's path-depth-dependent institution extraction. Every identity component must occur as a path component.",
+                    "calendar": "At least176 consecutive unique finite integer annual source years; no dropna compaction, interpolation or calendar stitching. Explicitly stricter than upstream dropna, to avoid falsely continuous source histories.",
+                    "slices": "Exactly176 positions, step88, count=(N-88)//88, first50-position source offset; preserve original source-year bounds and positional identities. Reuse unchanged exact strict three-year/thirty-year variability filter.",
+                    "actualSourcesAdmitted": 0,
+                    "actualQualifiedSlices": 0
+                  },
+                  "thermalBridge": {
+                    "independentRecurrences": "All three original q/d terms retained. Exact piecewise-constant boundary and annual-mean mode responses computed separately from the sibling's midpoint-sampled impulse recurrence.",
+                    "sourceReference": "Each original mode passed through the exact two-term source FTmod with its second coefficient zero, then all three mode outputs summed by linearity. No original q/d term dropped, changed or fitted.",
+                    "supportedAdapter": "FaIR2.2.4 step_temperature accepts a diagonal modal transition matrix exp(-1/d) and input q*(-expm1(-1/d)). Modal coordinates are explicitly NOT physical ocean-layer states.",
+                    "supportedFaIRSourceSHA256": "568ace02ddb0fb72068830635512adfabaaf83b0b5ff296b73f4312ae4a7b87e",
+                    "supportedFaIRLicense": "Installed distribution metadata identifies Apache2.0",
+                    "qualification": "This verifies only the algebraic supported modal-step adapter. It is not an independent physical FaIR2.2.4 run, alpha1 emulation proof, GSAT-to-GMST conversion, or accepted GWI fingerprint generator."
+                  }
+                },
+                "realSourceDiagnosticInputs": {
+                  "actualForcingVersion": "ClimateIndicator/data IGCC-2025a revision d9726573dccd9381652432b58b38f670af493c1c",
+                  "actualForcingSHA256": "9d87e026c33b20ccc00c3a12f4a34557553490b37cc43e1eadc324b4678fc035",
+                  "forcingUnit": "W m-2, actual annual p50 source1750-2025, all276 exact annual midpoint/bound coordinates",
+                  "forcingRights": "Already established CC-BY-4.0 actual-source release; no rights extrapolated to the separate forcing uncertainty ensemble",
+                  "sourceThermalParametersSHA256": "25cc0a669ca02ae44c6d862905c2de3e1d8c9d4d465b5c65b9089d02203e5391",
+                  "parameterDefinition": "All28 named author configurations, three native q/d terms each; q K per W m-2, d years. Original source values unchanged.",
+                  "componentClasses": {
+                    "GHG": "52 exact-pinned source gas components: CO2/CH4/N2O plus halogen species; complete membership retained in thermal-method-result.json",
+                    "Nat": [
+                      "solar",
+                      "volcanic"
+                    ],
+                    "OHF": [
+                      "aerosol-radiation_interactions",
+                      "aerosol-cloud_interactions",
+                      "contrails",
+                      "land_use",
+                      "BC_on_snow",
+                      "O3",
+                      "H2O_stratospheric"
+                    ]
+                  },
+                  "classificationTotalMaxAbsResidualWm2": 8.881784197001252e-16,
+                  "sourceMethodResponseUnit": "degrees Celsius, unregressed modal response; NOT attributed human GMST",
+                  "initialState": "All modal diagnostic states zero at1750 boundary, no baseline/natural-forcing rezeroing or target offsets. Original alpha1 initialization remains unverified.",
+                  "actualJointForcingMembers": 0
+                },
+                "actualNewResidualChecks": {
+                  "comparisons": 84,
+                  "coverage": "All28 original configurations × three actual p50 source classes, 276 years each; separate2015-2025 eleven-year window retained without SSP substitution",
+                  "midpointRecurrenceMinusExactSourceFTmod": {
+                    "maxAbsAcrossAllConfigurationsAndComponentsC": 2.6645352591003757e-15,
+                    "worstConfiguration": "CESM2-WACCM-FV2",
+                    "worstComponent": "GHG",
+                    "worstSeriesRMSEC": 6.50757150133452e-16
+                  },
+                  "supportedModalStepMinusIndependentExactBoundary": {
+                    "maxAbsAcrossAllConfigurationsAndComponentsC": 0.0,
+                    "rmseAcrossEverySeriesC": 0.0,
+                    "interpretation": "Exact equality for this shared discrete matrix update does not establish missing alpha1 forcing-timing equivalence."
+                  },
+                  "siblingMidpointMinusExactAnnualMean1750to2025": [
+                    {
+                      "component": "GHG",
+                      "worstConfiguration": "GISS-E2-1-G",
+                      "maxAbsC": 0.1007540248831078,
+                      "worstSeriesRMSEC": 0.03473133979508555
+                    },
+                    {
+                      "component": "Nat",
+                      "worstConfiguration": "CanESM5",
+                      "maxAbsC": 0.30304346247891356,
+                      "worstSeriesRMSEC": 0.04825259558320752
+                    },
+                    {
+                      "component": "OHF",
+                      "worstConfiguration": "GISS-E2-1-G",
+                      "maxAbsC": 0.04019320434122586,
+                      "worstSeriesRMSEC": 0.015915655361307637
+                    }
+                  ],
+                  "siblingMidpointMinusExactAnnualMean2015to2025": [
+                    {
+                      "component": "GHG",
+                      "worstConfiguration": "GISS-E2-1-G",
+                      "maxAbsC": 0.1007540248831078,
+                      "worstSeriesRMSEC": 0.09462943903272146
+                    },
+                    {
+                      "component": "Nat",
+                      "worstConfiguration": "CMCC-CM2-SR5",
+                      "maxAbsC": 0.016996698998163876,
+                      "worstSeriesRMSEC": 0.00745615527898949
+                    },
+                    {
+                      "component": "OHF",
+                      "worstConfiguration": "GISS-E2-1-G",
+                      "maxAbsC": 0.028891987964462296,
+                      "worstSeriesRMSEC": 0.02285957672013511
+                    }
+                  ],
+                  "precision": "Digits record deterministic numerical residuals, not climate accuracy or a new scientific acceptance threshold."
+                },
+                "execution": {
+                  "testsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_igcc_control_thermal_bridge -v",
+                  "testsExitCode": 0,
+                  "testsPassed": 6,
+                  "testsFailed": 0,
+                  "testsSkipped": 0,
+                  "testsLog": "generated-artifacts/igcc-control-thermal-bridge/focused-tests.log",
+                  "testsLogSHA256": "3c886fe682d5246d64b23b768abbbbd4656b765c58f5bd070391015e99ca093f",
+                  "diagnosticCommand": ".pythonlibs/bin/python script/igcc_control_thermal_bridge.py",
+                  "diagnosticExitCode": 0,
+                  "diagnosticCompletedUTC": "2026-11-11T09:14:37.377429+00:00",
+                  "diagnosticLog": "generated-artifacts/igcc-control-thermal-bridge/thermal-execution.log",
+                  "diagnosticLogSHA256": "ace70d72287e97bfb70c1c08eb691dc26f37bbdfd7c6a9a825efd442ff3333a7",
+                  "all84ResidualSeries": "generated-artifacts/igcc-control-thermal-bridge/thermal-method-result.json",
+                  "all84ResidualSeriesSHA256": "9abacd78a25953fa5ebfd54196217d2ed7d9b0c5e8fe68048978e66c912ded89",
+                  "unregressedResponseArrays": "generated-artifacts/igcc-control-thermal-bridge/unregressed-thermal-method-diagnostic.nc",
+                  "unregressedResponseArraysSHA256": "55c0e3e0bd27dfd5cdabcbfc828923c6487492d54d78e7e8340b2ac7d0caf53e",
+                  "netcdfReadbackEquality": "passed",
+                  "unitTestsNeedPrivateArchives": false
+                },
+                "scientificDecision": {
+                  "controlDependency": "Rights-first source-qualified admission and exact slicing implemented, but actual model-specific rights and controls remain missing. Preserve source-specific license/retraction requirements before any real admission.",
+                  "thermalDependency": "The sibling FTmod midpoint quadrature is demonstrably not interchangeable with exact annual interval means for these source configurations. Do not substitute it as an alpha1 replication or promote the resulting diagnostic responses to accepted attribution fingerprints.",
+                  "remainingAlpha1Proof": "Operative GWI imports alpha1 fair_runner. The already-retained later current-tree listing lacks that module; this does not prove every historical tag lacks it. Exact operative dependency bytes, initialization and forcing/output timing still need independent recovery or validation.",
+                  "forcingDependency": "Actual p50 history assembled into complete source classes for a deterministic method check only; independent actual GHG/OHF/Nat uncertainty ensembles with specific rights remain unfetched.",
+                  "nativeBoundaryDependency": "Complete boundary-reconciled actual native emissions through2025 remains unmet; no forcing-to-emissions inversion or SSP-as-historical relabelling.",
+                  "headlineScoring": false,
+                  "shareMembersInRange": null,
+                  "newHistoricalAttributionRuns": 0,
+                  "centralEligible": false
+                },
+                "preservation": {
+                  "observationAssemblyRerun": false,
+                  "unchangedStudiesRerun": false,
+                  "existingCanonicalLedgersEdited": false,
+                  "existingFrozenWindowsEdited": false,
+                  "productionAuthCollectorDDLChanges": false,
+                  "appWorkflowRun": false,
+                  "commitsPublicationCallbacks": false
+                }
+              }
+            }
+          ]
         },
         {
           "id": "S07-009",
@@ -103344,7 +103766,7 @@
             "script/xom-climate-liability-case.test.ts",
             "script/capture-xom-climate-liability-sources.ts"
           ],
-          "behaviour_delivered_this_run": "Added source-bound permit/legal liability component integrated as incremental expense/recovery/AR/CFO/FCFE only; no second subtraction of unidentified embedded baseline carbon expense.",
+          "behaviour_delivered_this_run": "48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified.",
           "inputs_versions_assumptions": {
             "schemaVersion": "issuer-analytics-evidence-proposal-1",
             "purpose": "Bounded parent-review proposal, not acceptance, identity approval, production data, or a central-ledger update",
@@ -104959,6 +105381,26 @@
               "workspace_revision": "8b566b01b1fffc04e6f4029c33a7c87435e055c0",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T09:21:36.157247+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 121.51,
+              "counts": {
+                "tests": 525,
+                "pass": 525,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T092136157247Z.log",
+              "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -105338,7 +105780,7 @@
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
             "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
           ],
-          "next_action": "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings.",
+          "next_action": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -109198,7 +109640,249 @@
               "calendar_liability": "Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases."
             },
             "next_action": "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing."
-          }
+          },
+          "source_bridge_prior": {
+            "behaviour": "Added source-bound permit/legal liability component integrated as incremental expense/recovery/AR/CFO/FCFE only; no second subtraction of unidentified embedded baseline carbon expense.",
+            "next_action": "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
+          },
+          "source_bridge_evidence": [
+            {
+              "path": "docs/fslr-paid-spare-capacity-evidence.json",
+              "sha256": "d6ee9b2d604fc6e605f5f31aa78a3bf17d23067d845f276893c2d47e26956a9c",
+              "details": {
+                "schemaVersion": "fslr-paid-spare-capacity-evidence-proposal-1",
+                "requestedUnit": "S12-001 implementation: separate source-supported FSLR paid-spare-capacity/post-45X funded-terminal experiment",
+                "version": "fslr-paid-spare-capacity-post-credit-1",
+                "purpose": "Substantive new conditional original-range calculation; NOT a maintenance benchmark, original-study retune, verified forecast, qualified original issuer or canonical-ledger closure",
+                "technicalQualifiedOriginalIssuers": 0,
+                "technicalRequiredOriginalIssuers": 3,
+                "qualifiedOriginalPairs": 0,
+                "selectionRationale": "Most dependency-ready retained evidence: FY2024 primary explicitly links the remaining US facility investment expected throughout 2025 to the total 2025 capex outlook. This permits a separately conditioned paid-capacity calculation without inventing NEE project waterfalls or needing future observations.",
+                "files": [
+                  "server/calculation/fslrPaidSpareCapacityCase.ts",
+                  "script/run-fslr-paid-spare-capacity.ts",
+                  "script/fslr-paid-spare-capacity.test.ts",
+                  "script/validate-fslr-paid-spare-capacity-private.ts"
+                ],
+                "freeze": {
+                  "path": "generated-artifacts/company-operating-corpus/fslr-paid-spare-capacity-v1/2026-11-11T09-17-49-531Z/frozen-before-calculation.json",
+                  "sha256": "d5ecad1e77a29f96e0c2b4f5e5e249f146b9e4094f1b3d1e92b34b44af3aa2c7",
+                  "frozenAt": "2026-11-11T09:17:49.531Z",
+                  "calculatedAt": "2026-11-11T09:17:49.573Z",
+                  "reportPath": "generated-artifacts/company-operating-corpus/fslr-paid-spare-capacity-v1/2026-11-11T09-17-49-531Z/report.json",
+                  "reportSha256": "d774cb94366e0717af822c051c607ad4ddd23b35df6fb05a66c74676ed6d63b5",
+                  "beforeOutcomes": "Freeze contains primary facts, original inputs, all eight operating/credit options, stored baselines, code hashes and assumptions before calling the new cash builder or comparing forward values with retained equity.",
+                  "informationContext": "Revised-history conditional reference. FY2024 remains selected; original actual USD common shares/price date and original dated 2025 stub remain. Later filing/guidance knowledge is not backdated to the retained 2025 price cutoff."
+                },
+                "sourceAttempts": {
+                  "newPublicRequests": 0,
+                  "newPaidProviderRequests": 0,
+                  "retainedAuthenticatedPrimary": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+                  "primaryUrl": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+                  "primarySha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+                  "cik": "0001274494",
+                  "fiscalEnd": "2024-12-31",
+                  "retainedOutlookUrl": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000009/ex991pressreleaseq4-2024fi.htm",
+                  "outlookSha256": "d550c0881ea9260fd5e4592242e6bb7e946fbad39a2789ecd322da96f8d9e3f2",
+                  "locatorOnly": "Retained PDF-mirror text located the disclosure; all factual assertions bind authenticated SEC HTML, not PDF-mirror authority.",
+                  "observationsAndForwardDisclosures": {
+                    "installedNameplateGw2024": 21,
+                    "actualProductionGw2024": 15.5,
+                    "actualSoldGw2024": 14.1,
+                    "plannedAdditionalNameplateGw": 4,
+                    "plannedCommissioning": "Second half of 2025; expected, NOT observed completion",
+                    "guidedProductionGw2025": [
+                      18,
+                      19
+                    ],
+                    "guidedSoldGw2025": [
+                      18,
+                      20
+                    ],
+                    "remainingUsFacilityInvestmentExpectedDuring2025Usd": 700000000,
+                    "totalCapitalSpendingOutlook2025Usd": [
+                      1300000000,
+                      1500000000
+                    ],
+                    "conditional2025ModelCapexMidpointUsd": 1400000000,
+                    "cashPaidOrCommissioningObservationClaimed": false
+                  },
+                  "inventoryBindings": {
+                    "contextRef": "c-14",
+                    "contextBoundary": "Consolidated 2024-12-31 instant, CIK 0001274494, no segment, USD scale 3",
+                    "us-gaap:InventoryRawMaterialsNetOfReserves": 489524000,
+                    "us-gaap:InventoryWorkInProcessNetOfReserves": 115696000,
+                    "us-gaap:InventoryFinishedGoodsNetOfReserves": 754536000,
+                    "us-gaap:InventoryNet": 1084384000,
+                    "us-gaap:InventoryNoncurrent": 275372000,
+                    "fullInventoryUsd": 1359756000,
+                    "reconciliation": "Raw + WIP + finished goods = current + noncurrent. Five bindings include overlaps with earlier source work; not five claimed disjoint new historical cash facts."
+                  }
+                },
+                "paidCapitalAndPhysicalAssumptions": {
+                  "paidStatus": "Conditional payment/completion within the already frozen 2025 capex bridge, never asserted as an observed 2025 cash payment",
+                  "openingNetPpe2025Usd": 5413683000,
+                  "capitalSpend2025Usd": 1400000000,
+                  "depreciation2025Usd": 423498000,
+                  "closingNetPpe2025Usd": 6390185000,
+                  "remainingFacilityBudgetIncludedNotAddedAgainUsd": 700000000,
+                  "unallocatedOtherBudgetResidualUsd": 700000000,
+                  "budgetResidualBoundary": "Arithmetic remainder, not a claimed asset-level allocation or observed cost of the entire 4 GW expansion.",
+                  "ceilingsGw": [
+                    21,
+                    25
+                  ],
+                  "v4OriginalBoundWidened": false,
+                  "startingUnits": "19 GW forward 2025 shipment-guidance midpoint, NOT FY2024 actual or guaranteed demand",
+                  "realUnitPath": "Nonnegative annual increments for five years, then ten-year fade of increments to zero. Capacity-bound rate is determined from source ceiling alone before any cash/value calculation; no target calibration.",
+                  "capacityRates": [
+                    {
+                      "ceilingGw": 21,
+                      "firstFiveYearAnnualUnitPerturbation": 0.010581067775600545
+                    },
+                    {
+                      "ceilingGw": 25,
+                      "firstFiveYearAnnualUnitPerturbation": 0.02923517698995651
+                    }
+                  ],
+                  "productionVsSales": "From 2026, modeled annual finished-module production equals sales and cannot exceed selected available nameplate. Existing real finished-goods stock is held, not drawn down or assumed to grow; no inference that 2024 production/sales ratio is a yield or permanent throughput loss.",
+                  "noNewFixedPlantBelowPaidCeiling": "Keep original nominal PP&E/D&A/replacement and financing path. No incremental plant for utilization within the conditional paid ceiling; no expansion above it and no assumed technology/yield upgrade.",
+                  "nominalGrowth": "Retain original 2.5%, 3.25%, 4% terminal scenarios and original pre-terminal nominal index. With flat terminal real output, growth is conditional ASP/cash-cost/replacement inflation, NOT observed pricing power or guaranteed contract escalation."
+                },
+                "completeCashRebuild": {
+                  "basis": "USD whole-issuer common FCFE; original five years, ten-year fade, 2041 terminal and fixed original dated 2025 stub",
+                  "operatingCost": "Core EBIT plus book D&A gives a source-based pre-D&A cash-cost proxy, not observed marginal manufacturing cash profit. Existing normalized costs and economic stock-compensation cost remain; no new addback or learning margin invented.",
+                  "cashCostVariants": [
+                    "all-cash-cost-variable: scale every source core pre-D&A cost with incremental units, leaving already-paid book D&A fixed; no fixed-cash-overhead leverage",
+                    "additional-da-wear-reserve: also expense one source D&A amount per incremental unit-equivalent as conservative cash wear reserve; not new PP&E or measured future maintenance cost"
+                  ],
+                  "workingFunding": "AR, payables, minimum-cash and other-current-asset-equivalent buffers use frozen source ratios. NO incremental customer advances fund new units; baseline advance path remains conditional.",
+                  "inventoryAndPhysicalBoundary": "Incremental raw/WIP-equivalent stock is funded. Source finished-goods-value equivalent is held as extra CASH liquidity, not fictitious extra finished modules that would exceed production capacity. No cash interest or terminal reserve release.",
+                  "noncurrentInventory": "Explicitly fund the entire source noncurrent inventory outside the old current-WC proxy. Carry observed opening reserve into first new year, catch up to original revenue index in 2026 and fund later nominal changes. No claim about observed 2025 inventory cash. Included ONCE in operating working capital, NOT PP&E/capex.",
+                  "cashFlowLabelBoundary": "Projected operatingCashFlow is the original economic cash-after-working-capital/reserve funding proxy, not reported GAAP CFO or a factual forecast statement.",
+                  "financing": "Retain original cash capital/replacement, gross debt rollover, net borrowing, interest and non-common cash schedule. No additional utilization financing assumed. Negative FCFE is explicit voluntary pro-rata common funding, not floored to zero or claimed actual future share issuance.",
+                  "tax": "Original 21% positive core-pretax cash sensitivity retained, not new jurisdictional tax guidance.",
+                  "legacyAssetsAndCash": "Keep original grant/uncertain Visa reserves, all selected cash/securities reserve and stub. Initial excess-cash release zero; terminal reserve release zero; no second initial-debt deduction.",
+                  "noNewUsEligibleCredits": true,
+                  "creditVariants": [
+                    "inherited-source-law: original fixed nominal per-watt cash/recognized schedule and cash discount/timing unchanged; extra global units earn no additional US credit",
+                    "all-post-stub-credit-value-zero: all future credit recognition/cash zero as adverse valuation assumption, not statutory ineligibility. Forecast opening quarter-year credit receivable remains expressly unreleased; not an observed writeoff or missing cash windfall"
+                  ],
+                  "postCreditBoundary": "All recognized and cash credits are zero from 2034 through terminal in BOTH members. Source-law 2033 settlement runoff is not mistaken for permanent subsidy.",
+                  "post2025LawAndFeoc": "Unresolved, never certified. The inherited source-law early credit cash is a scenario, not current-law eligibility proof."
+                },
+                "outcomes": {
+                  "newCompleteCases": 48,
+                  "construction": "Six stored original FSLR baselines (source-conditioned/constraint × original terminal growth) × two ceilings × two operating-cash-cost treatments × two future-credit valuations",
+                  "explicitFutureCashRows": 768,
+                  "postCreditTerminalRows": 48,
+                  "terminalPositiveCases": 18,
+                  "terminalNonpositiveCases": 30,
+                  "positiveTerminalButNonpositiveCommonFundedValue": 9,
+                  "conditionalPositiveFundedValues": 9,
+                  "allPostStubCreditZeroPositiveFundedValues": 0,
+                  "negativeCommonFundingYearsRetained": 520,
+                  "interpretation": "Eighteen positive terminal rows represent nine distinct operating/ceiling/base terminal configurations paired across credit histories; zero-credit history can have positive terminal yet NEGATIVE whole funded-plan PV. Do not count these as qualified cases or positive standalone equity values.",
+                  "sourceConditioned25GwVariableCashCostExamples": [
+                    {
+                      "terminalGrowth": 0.025,
+                      "postCreditAnnualTerminalFcfeUsd": 278418663.2034897,
+                      "conditionalWholeEquityUsd": 5914238873.278221,
+                      "commonCashContributionsRequiredUsd": 31390116.65309298
+                    },
+                    {
+                      "terminalGrowth": 0.0325,
+                      "postCreditAnnualTerminalFcfeUsd": 163707564.68800694,
+                      "conditionalWholeEquityUsd": 5456550850.958578,
+                      "commonCashContributionsRequiredUsd": 110228047.10967255
+                    },
+                    {
+                      "terminalGrowth": 0.04,
+                      "postCreditAnnualTerminalFcfeUsd": 39147852.91881251,
+                      "conditionalWholeEquityUsd": 4886026971.283689,
+                      "commonCashContributionsRequiredUsd": 340535707.19878554
+                    }
+                  ],
+                  "wearDownsideAt4Percent": "Same 25 GW source-conditioned member with extra D&A wear reserve has approximately NEGATIVE USD170.5m terminal annual FCFE. The 4% positive terminal result is explicitly conditional and fails this maintenance-cost sensitivity.",
+                  "zeroCreditSignedPlanPvRangeUsd": [
+                    -3633614496.212079,
+                    -249916525.00664842
+                  ],
+                  "zeroCreditNegativeValueBoundary": "Signed values are rejected funded-plan NPVs, NOT quoted negative share prices or forced shareholder commitments.",
+                  "bestConditionalValueShareOfRetainedEquityApproximately": 0.3554,
+                  "marketTargetRootOrUniquenessClaim": false,
+                  "reverseScoringPerformed": false,
+                  "actualFcfeGrowth": "All 48 retain selected actual FY2024 negative FCFE; actual-to-year-five CAGR is rejected, not replaced with positive 2025 guidance or renamed from unit perturbation.",
+                  "originalQualification": "0/3 and zero original pairs. No completion inferred from positive terminal alone, early conditional credit cash, engineering test success or a new version."
+                },
+                "verification": {
+                  "codeOnly": {
+                    "command": "npx tsx --test script/fslr-paid-spare-capacity.test.ts",
+                    "passed": 4,
+                    "failed": 0,
+                    "skipped": 0,
+                    "privateFilesOrNetwork": false,
+                    "independence": "Separate synthetic plain-number cash/profit/buffer/PP&E/debt/inventory/stub/dated-PV loop; explicit noncurrent inventory CFO classification; wear cash expense; credit cash removed once; capacity bounds and actual negative-base growth rejection.",
+                    "logSha256": "cbe7d351862fb086c61592b02665e1d576a3b7896ae248c99a0d283e7e1fa718"
+                  },
+                  "assembly": {
+                    "command": "npx tsx script/run-fslr-paid-spare-capacity.ts --private-primary",
+                    "exitCode": 0,
+                    "logSha256": "ac9b4b4ed7fa15c95ff02adcd932ca462b6e6ebfd616c1dfa0b3c7144541c93c"
+                  },
+                  "mandatoryPrivatePrimary": {
+                    "command": "npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary",
+                    "exitCode": 0,
+                    "newCaseReplays": 48,
+                    "independentCashAndFundingRows": 768,
+                    "terminalRows": 48,
+                    "checks": "Actual SEC bytes/code/protected-study hashes; exact narrative and five inventory bindings; USD/FY2024/no-segment context; source capex/fixed-asset bridge; physical ceiling and no extra US credits; independent core cash/WC/full inventory/tax/capital/debt/FCFE/dated-PV; all post-credit terminal rows and negative funding; original actual-growth rejection.",
+                    "logSha256": "64f8b77e0cd21920b82238caf9fd688f7720b7023c9ba91ac31c191fc742fe1c"
+                  },
+                  "strictTypecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/fslrPaidSpareCapacityCase.ts script/run-fslr-paid-spare-capacity.ts script/fslr-paid-spare-capacity.test.ts script/validate-fslr-paid-spare-capacity-private.ts",
+                    "exitCode": 0,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "es5Typecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/fslrPaidSpareCapacityCase.ts",
+                    "exitCode": 0,
+                    "tsconfigRelaxed": false,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "logsDirectory": "generated-artifacts/company-operating-corpus/fslr-paid-spare-capacity-v1",
+                  "xom24KernelExecuted": false,
+                  "oldOriginalV3V4BuildersOrScoringExecuted": false,
+                  "oldFslr10Cases50RowsModified": false,
+                  "canonicalThreeLedgersModified": false,
+                  "appWorkflowUiFullSuiteProductionDdlCollectorCommitPublishCallback": false,
+                  "rawPrivateProviderExport": false
+                },
+                "narrowResiduals": [
+                  "Actual remaining-facility payment/completion was not observed: source is FY2024 expectation of USD0.7bn during 2025. This is a declared paid-capacity condition, not a demand for future observations before calculation.",
+                  "Plant-level marginal cash cost and engineering replacement/wear curve at higher utilization are not disclosed in retained primary/guidance. Both explicit source-based cash-cost policies are calculated; extra-wear sensitivity demonstrates where the funded terminal fails.",
+                  "Nominal ASP/cost/replacement inflation and future contract/demand rollover beyond the disclosed backlog are not source forecasts. Original requested growth scenarios are labelled conditions, not validated pricing power.",
+                  "Post-2025 law/FEOC and future 45X eligibility remain unresolved. All-zero future-credit values are separately calculated rather than silently manufacturing eligibility or zero observations.",
+                  "Selected actual FY2024 FCFE is negative, so an original actual-based CAGR/reverse growth pair is mathematically undefined. No alternative positive baseline or share/cash-basis substitution is made."
+                ],
+                "originalClauseProposals": [
+                  {
+                    "clause": "S12-001 real issuer cash assembly and original 2.5-4% sustainable terminal funding",
+                    "proposedStatus": "Implemented separate source-bound paid-capacity/full-reserve FSLR calculation; original basis/fade/stub preserved; eighteen post-credit positive terminal rows with explicit contrary sensitivities, not qualified completion."
+                  },
+                  {
+                    "clause": "Future assumptions may be frozen and conditional, never fabricated observations",
+                    "proposedStatus": "Observed source facts, source forward disclosures and analyst conditions separated; paid/completed status, extra margin, equity forecasts and legal eligibility never represented as observed."
+                  },
+                  {
+                    "clause": "Preserve prior negative studies and actual case qualification",
+                    "proposedStatus": "Original/v3/v4/XOM hashes verified unchanged; no old kernel execution, no market-root forcing and original 0/3 qualification retained."
+                  }
+                ],
+                "readyNextEngineeringBlock": "If continuing FSLR, source the disclosed product/backlog pricing and customer-advance contract schedule into a separately frozen ASP/working-funding stress rather than searching for a coefficient that matches equity. Or choose an eligible alternative with positive actual base FCFE if original CAGR pairing remains mandatory. Do not change this study or original v4 bounds; current module is complete and does not wait on future observations or owner approval."
+              }
+            }
+          ]
         },
         {
           "id": "S12-002",
@@ -138151,6 +138835,26 @@
       "workspace_revision": "8b566b01b1fffc04e6f4029c33a7c87435e055c0",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-fslr-paid-spare-capacity-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T09:21:36.157247+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 121.51,
+      "counts": {
+        "tests": 525,
+        "pass": 525,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T092136157247Z.log",
+      "workspace_revision": "afd387f7b038368aa3f509f0457e5b939cfd9ed4",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -138418,13 +139122,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Verifiedrelease2d0a759b/CI42989861313/Railwayae8ed634;521publicTS/128Python andnewmandatoryprivatecalendar/XOM checks passed. Continue alloriginal0–17/amendments. Preserve521publicTS/128Python plusnewmandatoryprivate checks; original1000/1001unknown. Newcalendar evidence: originalmonthlyM/X(RI)~U$/empty-end metadata;oneboundaryfloat32/textrepresentation reproduced, not ingestion/vintage proof.0/50return comparisons; obtain applicable RI/FX/calendar/dividend methodology and originaluploadlink, no nearestdate. NewXOMtwo-permit incremental liability24componentcases/384cash/768allowance rows is conditionalonly, notfullissuer; baselineexpense notdeductedtwice.0/3qualified originalcases. Continue NEE project/noncommon inputs,FSLR source-qualified terminal/capacity, genuine historicalIGCC/native/memberandjointdriver evidence and actualdatedStage11–15corpus. Preserve allfrozennegativebeta/fleet/EV/storage/Gordonprimary andscientific/auth/owner gates. Existingterminalwrapper onlytrueend; nooldmatchedcallbackresend.",
+    "instruction": "Continue NEE project/noncommon funding and XOM original economic inputs; FSLR source-conditioned marginal economics and current-law qualification, preserving new negative stress outcomes. Obtain model-specific control permissions, actualforcing ensembles and alpha1 timing/initialization/native-boundary proof before attribution. Preserve all frozen studies and remaining original0-17 work. New525publicTS plus source-bridge Python and mandatory private FSLR checks passed. Do not rerun unchanged kernels. 48 conditional FSLR paths/768 cash rows;18 positive and30 nonpositive post-credit terminals;9 positive funded-plan values. Zero-future-credit paths all nonpositive. FY2024 FCFE negative: CAGR refused;0/3qualified. 176annual years1850-2025 ×200 actual GMST observation members assembled.84 thermal comparisons: midpoint residual2.6645352591003757e-15C; supported modal update zero residual. Midpoint versus annual means NOT equivalent; GHG/Nat/OHF maxima0.100754/0.303043/0.040193C. No attribution or member-share claim.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261110-ready-contracts-30a7884",
+    "checkpoint_id": "ckpt-20261111-calendar-liability-2d0a759",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-10T13:29:21.669945+00:00",
+    "attempted_at": "2026-11-11T08:56:09.960739+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
