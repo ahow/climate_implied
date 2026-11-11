@@ -1,6 +1,6 @@
 import json,datetime,hashlib,sys,importlib.util
 from pathlib import Path
-p=Path("docs/workplan_completion_ledger.json");x=json.loads(p.read_text());e=json.JSONDecoder().raw_decode(Path("/tmp/cache-track-final.log").read_text())[0]
+p=Path("docs/workplan_completion_ledger.json");x=json.loads(p.read_text());ep=Path("/tmp/cache-track-postledger.log");e=json.JSONDecoder().raw_decode((ep if ep.exists() else Path("/tmp/cache-track-final.log")).read_text())[0]
 groups={
 "S02-009":("docs/S02-009-company-cache-evidence.json","Realcompanycarbon cache identities nowbindretainedselection/dataset/model/executablesource; oldentriesnotdeleted. Retained2442companies470341observations produce187rows each:miss,miss,miss,hit,hit,hit,hit;3computes4warmhits. Analyticalpayload/manifests equal;3keysdistinct. Fixedcold/warmirregularhistoryordering; no productionDB/cacheclears.","Broadercachefamilies/actualPostgreSQLtransport/HTTPmaterialarchives andgeography/emptybranches remainunproven; do not repeatcompletedretainedwitness unchanged."),
 "S11-040":("docs/s11-040-s15-017-finite-engineering-evidence.json","NamedactualGordon positive/negative/zero/missingearnings fixtures anddatedproducer pass; null/undefinedneverzero/growth. Financialactualsolver returnspermittednot-modelled/refusal. Solver unchanged.","Preserve finitefixtures andsourcebasis; no residualincome modelrequired bypermittedrefusal."),
@@ -11,11 +11,13 @@ for s in x["stages"]:
   if q["id"] not in groups:continue
   f,b,n=groups[q["id"]];q["cache_track_increment"]={"file":f,"sha256":hashlib.sha256(Path(f).read_bytes()).hexdigest(),"evidence":json.loads(Path(f).read_text()),"execution":e};q["behaviour_delivered_this_run"]=b;q["next_action"]=n
   if e not in(q.get("executions")or[]):q["executions"]=(q.get("executions")or[])+[e]
-  if q["id"]=="S11-040":q["status"]="verified";q["proposedStatus"]="verified";q["check_type"]="exact";q["remaining_gaps"]=[];q["remainingGaps"]=[]
+  if q["id"]=="S11-040":
+   q.setdefault("before_cache_track_implementation",{"status":"partial","published_ledger_revision":"619a0d8c91644dad51a84b685e2bbc8dec1dd6fd","reason":"Original missing-earnings fixture gap before this increment; historical proposal remains partial."})
+   q["status"]="verified";q["proposedStatus"]="verified";q["check_type"]="exact";q["remaining_gaps"]=[];q["remainingGaps"]=[]
   else:
    q.setdefault("prior_cache_track_gaps",q.get("remaining_gaps"))
    q["remaining_gaps"]=[n];q["remainingGaps"]=[n]
-x["latest_increment"]["cache_track"]={"execution":e,"counts":"45verified253partial2blocked","semantics":"Original1000/1001unchanged;95conditionaldefinitions;TrackB24definitions/535supplementalslots include serializationmetadata,notoriginalclosure","release":"pending"}
+x["latest_increment"]["cache_track"]={"execution":e,"counts":"45verified253partial2blocked","semantics":"Original1000/1001unchanged;95conditionaldefinitions;TrackB24definitions/535supplementalslots include serializationmetadata,notoriginalclosure","release":"pending","failed_ci":"43074869603: retained historical proposal compared against newly verified status after ledger edit. Prior published619a0d8 S11-040partial independently confirmed; dedicated pre-increment provenance and exact assertions repaired. No calculator/gate weakening; earlier796pass preceded ledger edit; final796pass follows repair.","failure_evidence":"docs/S02-009-public-source-failure-evidence.json"}
 if len(sys.argv)==4:
  r={"github_main":sys.argv[1],"ci":sys.argv[2],"railway_deployment":sys.argv[3],"verified_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"health":200,"build_info":"exactSHAverified","affected":"PubliccompanyAPIcurrentCCSsettlementnull;TrackB503explicitlyunprovisioned successfulreportreader. CachewitnessisolatedDEV only.","tests":"796TS0fail0skip;215Python;mandatoryissuerprivatevalidator;retainedcachewitness separately;typecheck/build;5postledgerchecks","scope":"Code release, no data/sciencepromotion;privateFairbundleunchanged/operatorblocked;docs/localreceipt distinct"}
  x.setdefault("release_history",[]).append(x["current_release"]);x["current_release"]=r;x["latest_increment"]["cache_track"]["release"]=r

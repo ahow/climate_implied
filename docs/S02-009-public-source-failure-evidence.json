@@ -1,0 +1,76 @@
+{
+  "reportedPublicRun": "43074869603",
+  "publicCommit": "86745abd5edcb009eb0733fcfa988cce688ed666",
+  "sourceWorkspaceCommit": "0a3a720eca0e",
+  "purpose": "Identify public source-only TypeScript failure without exporting private bytes, skipping tests, weakening assertions or changing retained/canonical evidence.",
+  "cleanSourceReproduction": {
+    "directory": "generated-artifacts/company-cache-public-ci/public-before-EgFMjY",
+    "method": "Validate every public Git tree entry against ROOT_FILES, SOURCE_DIRS, excluded path components and regular-file modes from existing script/sync-github.py, then git archive the exact public commit into an isolated directory.",
+    "approvedSourceEntries": 1060,
+    "unapprovedOrPrivatePathsExported": 0,
+    "originalPrivateGeneratedArtifactsExported": 0,
+    "privateAttachedAssetsExported": 0,
+    "dependencyMode": "Reused existing node_modules via a dependency-only symlink; public package-lock.json is byte-identical to workspace package-lock.json. No private source/artifact directory was linked.",
+    "nodeVersion": "v20.20.0",
+    "ciNodeVersionFromWorkflow": "22",
+    "command": "env -u DATABASE_URL NODE_ENV=test npx tsx --test script/*.test.ts",
+    "exitCode": 1,
+    "tests": 796,
+    "pass": 795,
+    "fail": 1,
+    "skipped": 0,
+    "failureLog": "generated-artifacts/company-cache-public-ci/public-before-EgFMjY.typescript.log",
+    "failureLogSha256": "6eb9878a1d5a1fc82f2314cdc91856d0423c5ba0b49b32910ef6e8105c71f2bb",
+    "logMode": "0600",
+    "remoteWorkflowLogsFetched": false
+  },
+  "exactFailure": {
+    "file": "script/company-stage-reconciliation.test.ts",
+    "line": 56,
+    "assertion": "No unproved prior verified downgrade",
+    "actual": "partial",
+    "expected": "verified",
+    "criterion": "S11-040",
+    "requirement": "Gordon fixtures pass for positive, negative, zero and missing earnings; the financials method passes its own fixtures.",
+    "canonicalCurrentStatus": "verified",
+    "canonicalBeforeReadyImplementation20261110Status": "absent",
+    "retainedProposalStatus": "partial",
+    "retainedProposalPriorCanonicalStatus": "partial",
+    "rootCause": "The reconciliation test determines priorStatus from before_ready_implementation_20261110.status or falls back to the current canonical status. S11-040 is now verified and has a cache_track_increment receipt but no before_ready_implementation_20261110 field, while the retained stages-10-13 proposal still says partial. Consequently the test treats the later verification as a prior verified state and rejects the retained partial proposal.",
+    "scope": "Reconciliation/provenance contract mismatch outside the company-cache calculator changes; not a private-artifact dependency or cache analytical mismatch."
+  },
+  "publicAndWorkspaceInputsIdentical": {
+    "docs/workplan_completion_ledger.json": "a77f4560806c8eaf2dff84932b323ec6c5f101df8f8f81b1ce611e5c8dd5f513",
+    "docs/reconciliation-stages-10-13.json": "2f2d212edff89a635c70bf37821b1c799dba98b57ab305feb5fa677a67a40d44",
+    "script/company-stage-reconciliation.test.ts": "5657ed87b470614e046b91c647e8e0df8598b1911dbf1f02987ba482d59e29d8"
+  },
+  "workspaceFocusedConfirmation": {
+    "command": "env -u DATABASE_URL NODE_ENV=test npx tsx --test script/company-stage-reconciliation.test.ts",
+    "exitCode": 1,
+    "sameFailure": true,
+    "log": "generated-artifacts/company-cache-public-ci/workspace-reconciliation-focused.log",
+    "logSha256": "1415a5c52c34a379a6b8ba7d9c59d828a0ca2eb9c674118c55a2a48c32bde13a",
+    "meaning": "Current workspace fails the same assertion too. A retained earlier 796-pass receipt does not establish current-tree success after subsequent status/provenance changes."
+  },
+  "companyCachePublicSourceResult": {
+    "command": "env -u DATABASE_URL NODE_ENV=test npx tsx --test script/company-carbon-cache.test.ts",
+    "runIn": "Clean exact public-commit source tree",
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "skipped": 0,
+    "log": "generated-artifacts/company-cache-public-ci/cache-public-focused.log",
+    "logSha256": "8dab0ed1821dc144896ffa6ce0642c464777a8cbd0cf2fe89c70271f3e3ea41a",
+    "codeFixNeededWithinCompanyCacheScope": false
+  },
+  "disposition": {
+    "reportedToParent": "Parent must resolve the S11-040 reconciliation/provenance contract mismatch within its authorized scope. No change made to that test, canonical status, frozen proposal or historical receipts.",
+    "promotion": "Remains blocked; clean source full TypeScript suite is not passing.",
+    "assertionsWeakened": false,
+    "testsSkipped": false,
+    "privateBytesExported": false,
+    "ledgerOrProposalRefrozen": false,
+    "deploymentOrCallbackAttempted": false,
+    "oldScientificStudiesOrNinePathFixtureRerun": false
+  }
+}

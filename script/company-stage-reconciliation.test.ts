@@ -52,7 +52,15 @@ for (const clause of canonical) {
   assert.equal(record.status_review.criterion_regression_evidenced, false);
   // This proposal predates the parent's newly implemented criteria. Compare
   // its status to that retained pre-increment state, not future verification.
-  const priorStatus=clause.before_ready_implementation_20261110?.status ?? clause.status;
+  const cachePrior=clause.before_cache_track_implementation;
+  if(cachePrior){
+    assert.equal(clause.id,"S11-040");
+    assert.equal(cachePrior.published_ledger_revision,"619a0d8c91644dad51a84b685e2bbc8dec1dd6fd");
+    assert.equal(cachePrior.status,"partial");
+    assert.equal(record.status_review.prior_canonical_status,cachePrior.status);
+    assert.ok(clause.cache_track_increment?.execution,"Later verification needs its own execution receipt");
+  }
+  const priorStatus=clause.before_ready_implementation_20261110?.status ?? cachePrior?.status ?? clause.status;
   if (priorStatus === "verified") assert.equal(record.status, "verified", "No unproved prior verified downgrade");
   if(priorStatus!=="verified"&&clause.status==="verified"){
     assert.ok(clause.executions.length>0,"New parent verification needs actual executions");
