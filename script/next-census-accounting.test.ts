@@ -3,6 +3,11 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
+import { fieldSemantics } from "../shared/fieldSemantics";
+import { outputFieldSemantics } from "../shared/outputFieldSemantics";
+import { conditionalCompanySemantics } from "../shared/companyConditionalSemantics";
+import { warmingValidationReferenceSemantics, warmingReferenceExportLeafBindings,
+  warmingReferenceExportDocument } from "../shared/warmingValidationReferenceSemantics";
 const census = JSON.parse(readFileSync("docs/field_semantics_census.json", "utf8"));
 const frozen = JSON.parse(readFileSync("docs/field_semantics_original_cohort.json", "utf8"));
 
@@ -38,22 +43,51 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(census.fullyBoundFields, 1331);
   assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
   assert.equal(census.fields.length, 1028 + added.addedSlots);
-  // Eighteen explicit FSLR cohort facts are supplemental definitions, not
-  // closure of the immutable original 1001-slot cohort.
-  assert.equal(census.definitions, 1774 + 18 + 3 + 4);
-  assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, 88);
-  assert.equal(added.externalTypedApiSlots, 224);
-  assert.equal(added.externalTypedApiBoundSlots, 224);
-  assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots);
+  // Compare against actual concurrent registered domains, not an obsolete issuer
+  // fact count. The reference's exact38-ID contract is independently checked.
+  assert.equal(census.definitions, fieldSemantics.length + outputFieldSemantics.length);
+  assert.equal(census.supplementalQualifiedChanges.conditionalCompany.definitions, conditionalCompanySemantics.length);
+  assert.equal(added.externalTypedApiSlots, 924);
+  assert.equal(added.externalTypedApiBoundSlots, 924);
+  assert.equal(added.externalTypedApiSlots, 28 + added.companyCoverageApiLeafSlots + added.conditionalCompanyApiLeafSlots +
+    added.warmingReferenceApiLeafSlots + added.warmingReferenceJsonExportLeafSlots);
   assert.equal(added.companyCoverageApiLeafSlots, 133);
   assert.equal(added.companyCoverageJsonExportLeafSlots, 133);
   assert.equal(added.conditionalCompanyApiLeafSlots, 63);
   assert.equal(added.conditionalCompanySuccessLeavesPerApi, 30);
   assert.equal(added.conditionalCompanyWorkbookColumns, 2);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 1556);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 1555);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 555);
+  assert.equal(added.warmingReferenceApiLeafSlots, 39);
+  assert.equal(added.warmingReferenceJsonExportLeafSlots, 661);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 2256);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 2255);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 1255);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
+});
+
+test("reference38 definitions and finite JSON serialization are exact supplements, not original closure", () => {
+  const reference = census.supplementalQualifiedChanges.warmingValidationReference;
+  assert.equal(reference.definitions, 38);
+  assert.deepEqual(reference.ids, warmingValidationReferenceSemantics.map(s => s.id));
+  assert.equal(reference.api.successLeaves, 38);
+  assert.equal(reference.jsonExport.primitiveSerializationLeaves, 660);
+  assert.equal(reference.jsonExport.referenceLeaves, 38);
+  assert.equal(reference.jsonExport.rowCount, 2);
+  assert.equal(reference.jsonExport.columnsPerRow, 11);
+  assert.deepEqual(reference.jsonExport.leafBindings, warmingReferenceExportLeafBindings());
+  assert.equal(reference.typedApiFields.length, 700);
+  assert.ok(reference.typedApiFields.every((f: { bound: boolean }) => f.bound));
+  const exportFields = reference.typedApiFields.filter((f: { surface: string; field: string }) =>
+    f.surface === reference.jsonExport.surface && f.field !== "error");
+  assert.equal(exportFields.length, 660);
+  const leaves = (value: unknown, path = ""): string[] => value !== null && typeof value === "object"
+    ? Object.entries(value).flatMap(([key, child]) => leaves(child, path ? `${path}.${key}` : key)) : [path];
+  assert.deepEqual(exportFields.map((f: { field: string }) => f.field).sort(),
+    leaves(warmingReferenceExportDocument()).sort());
+  assert.equal(exportFields.filter((f: { field: string }) => f.field.startsWith("reference.")).length, 38);
+  assert.equal(exportFields.filter((f: { field: string }) => f.field.startsWith("rows.")).length, 22);
+  assert.equal(exportFields.filter((f: { field: string }) =>
+    !f.field.startsWith("reference.") && !f.field.startsWith("rows.")).length, 600);
+  assert.ok(frozen.slots.every((s: { surface: string }) => !s.surface.includes("/api/reference/warming-validation")));
 });
 
 test("S03-002 adds exactly two registry and six native role/admission leaves, never original closure", () => {

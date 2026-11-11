@@ -1,0 +1,16 @@
+{
+  "schemaVersion":1,
+  "frozenBeforeRequests":true,
+  "publisherDocumentation":"https://docs.owid.io/projects/etl/api/catalog-api/",
+  "documentationReceipt":"generated-artifacts/kaya-samerelease-upstream/catalog-dataset-api.body",
+  "documentedPattern":"https://catalog.ourworldindata.org/[channel]/[namespace]/[version]/[dataset]/[table].parquet",
+  "documentedProjectionRoute":"Publisher HTML source contains public Datasette SELECT-to-CSV route,although currently in a commented section. One bounded attempt only;no bypass if unavailable.",
+  "tableURI":"https://catalog.ourworldindata.org/garden/energy/2026-05-05/primary_energy_consumption/primary_energy_consumption.parquet",
+  "scope":"Retrieve ONLY country,year,source categorical provenance for27retained members+native EU27,2010-2024. No energy/GDP/population quantities downloaded or reconstructed,no420numeric audit.",
+  "rights":"Original OWID-generated provider labels defined by retained source code source='ei'/'eia' and OWID README lines127-131 original-material CC BY4.0 with attribution. This permission is NOT extended to third-party EI numbers or workbook.",
+  "queryRestriction":"Read-only SELECT of country,year,source. Reject any projection of energy/GDP/population fields,DDL,unbounded results or third-party numeric columns.",
+  "members":"Read fixed27 country labels from existing paired census EU27 energy check,not new membership construction",
+  "metadataProbe":"One bounded metadata-only .meta.json probe for this exact publisher-documented table namespace;label route a storage-convention probe,not proof the metadata object exists. No numeric fetch if absent.",
+  "sameReleaseGate":"Namespace match alone does NOT prove artifact identity with original export. Require retained original-source versions/snapshot hashes or equivalent atomic artifact binding before declaring same-release provider flags.",
+  "EIBlock":"Actual terms403 and copyright-only snapshot license prevent EI workbook/panel numeric acquisition. This is independent OWID-owned categorical metadata,not an alternate route to blocked EI numbers."
+}

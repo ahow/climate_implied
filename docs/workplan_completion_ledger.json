@@ -1445,6 +1445,31 @@
         "tests": "736TS0fail0skip;196Python;mandatoryissuer/privateenergyvalidators;typecheck/build",
         "scope": "Code only; privatebundleunchanged/unprovisioned; laterdocs/localreceipt distinct"
       }
+    },
+    "reference_parent": {
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+        ],
+        "executed_at": "2026-11-11T16:39:08.561933+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 159.126,
+        "counts": {
+          "tests": 752,
+          "pass": 752,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+        "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "counts": "42verified256partial2blocked",
+      "semantics": "1841definitions;original1000/1001unchanged;newreference700supplementalslots explicitlyincludesmetadata;92conditionaldefinitions",
+      "release": "pending"
     }
   },
   "prior_native_fleet_increment": {
@@ -1540,7 +1565,7 @@
     "scope": "Code only; privatebundleunchanged/unprovisioned; laterdocs/localreceipt distinct"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T16:01:31.887863+00:00",
+  "updated_at": "2026-11-11T16:43:08.937973+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -11640,7 +11665,7 @@
           "id": "S01-010",
           "source_section": "implementation",
           "requirement": "Create a shared constants module for the inventory basis and base year. Store 1.37°C (2025 annual human-induced warming, IGCC 2025) as a dated validation reference, kept distinct from the decadal estimate and the inventory year, not as a constant inside calculations.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Output_Controls_Execution.md"
@@ -11651,7 +11676,7 @@
             "server/calculation/emissionsInputs.ts",
             "server/calculation/nativePathwayContract.ts"
           ],
-          "behaviour_delivered_this_run": "Shared legacy constants distinguish physical/finance versions and2024 inventory basis; candidate inventory and inputs state2024. Direct source scan did not locate a shared dated1.37C annual2025 validation-reference record. Legacy1.1C remains explicitly characterization, not this target.",
+          "behaviour_delivered_this_run": "Shared38leaf datedreference nowAPI/UI/export-bound:2025SR1.5headline1.37,ordinaryannual1.38explicitlydistinct,decadal1.24[1.0–1.5],inventory2024. Nooffset/calculation/acceptance use.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -11726,6 +11751,26 @@
               "worktree_dirty": true,
               "scope": "Focused self-contained engineering checks only; no final fullsuite, unchanged replay, release or scientific acceptance",
               "log_inspected": true
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -11743,12 +11788,10 @@
           "scientific_acceptance": "No scientific/model/owner acceptance inferred from software characterization or metadata coverage",
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Dated requested annual validation datum not implemented as a distinct shared reference; no scientific acceptance of that datum is inferred here."
-          ],
-          "next_action": "Add source-reviewed dated reference metadata with annual/decadal distinction, without changing calculation offsets or claiming climate validation.",
+          "remaining_gaps": [],
+          "next_action": "Maintain source-bound reference and exact source labels; physical attribution acceptance belongs toS07.",
           "blockers": [],
-          "check_type": "judgement",
+          "check_type": "exact",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
           "direct_code_evidence": [
             {
@@ -11871,7 +11914,164 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
-          }
+          },
+          "reference_parent_increment": {
+            "file": "docs/s01-010-reference-engineering-evidence.json",
+            "sha256": "6793250d8dbafeab5fa9ef7cd0422243f4b432f1acc285f26e8fdf0fa8ea1c9b",
+            "evidence": {
+              "criterion": "ORIGINAL S01-010",
+              "recordedAtUtc": "2026-11-11T16:10:06Z",
+              "exactOriginalCriterion": "Create a shared constants module for the inventory basis and base year. Store 1.37°C (2025 annual human-induced warming, IGCC 2025) as a dated validation reference, kept distinct from the decadal estimate and the inventory year, not as a constant inside calculations.",
+              "bindingScope": "S01-011 metadata applies only to changed reference fields here. Source/vintage, temporal-statistic and scientific-promotion restrictions remain binding; this does not relax original clauses or close unrelated display/summary gaps.",
+              "preImplementationFinding": {
+                "existing": "shared/calculationContract.ts already separates physical/finance legacy versions and2024 basis; native inventory/inputs state2024. The protected Python human_warming_reference_contract already pins1.37 SR1.5, distinct ordinary Annual1.38 and2016-2025mean1.24[1.0,1.5], including dated source metadata.",
+                "missing": "No corresponding shared TypeScript dated reference with reusable API/UI/export bindings was located.",
+                "sourceDefinitionCorrection": "The original annual2025 wording must not turn the1.37 SR1.5-labelled headline into the ordinary annual-mean statistic. Reviewed temporal evidence defines a2011-2025 fitted-trend endpoint evaluated at2025. Required1.37 is retained, not replaced by1.38 or a fitted0.01C adjustment."
+              },
+              "implementation": {
+                "sharedReference": "shared/warmingValidationReference.ts: WARMING_VALIDATION_REFERENCE is recursively frozen;38 exact primitive leaves separate2025 SR1.5 headline,2016-2025mean/range,1850-1900baseline and2024candidate inventory metadata.",
+                "metadataAndExport": "shared/warmingValidationReferenceSemantics.ts:38 exact globally registered field definitions;11 export columns;two distinct rows with explicit row-specific value/statistic bindings. Decade-only bounds are null in headline row, not borrowed headline uncertainty. Self-describing JSON includes full reference/source metadata, rows, exact bindings and field semantics. Exact finite serialization has660primitive leaves:38reference,22row cells,600binding/definition metadata leaves; these are not660scientific definitions.",
+                "apiModule": "server/warmingValidationReferenceApi.ts: registerWarmingValidationReferenceRoutes exposes GET /api/reference/warming-validation and GET /api/reference/warming-validation/export.json. Registered in server/index.ts after releaseSafety and before existing routes; protected server/routes.ts untouched. All query overrides reject400; integrated mutation attempts reject403 through unchanged releaseSafety. No runtime evidence reads or model calls.",
+                "uiModule": "client/src/components/warming-validation-reference.tsx: WarmingValidationReference is mounted in methodology.tsx outside archived legacy details. Values have adjacent temporal/GMST/baseline/unit/range/inventory/source qualifications and five exact global data-field-id bindings; source dates are distinguished from publication. Local JSON download uses the same shared export document.",
+                "calculationBoundary": "No numerical engine imports the reference. Legacy offsets remain1.1; inventory remains2024 and candidate-not-promoted. No replacement physical constants, GSAT-to-GMST conversion, calibrated model comparison or scientific acceptance."
+              },
+              "reviewedSources": {
+                "publicReviewReceipts": [
+                  {
+                    "path": "docs/next-physical-evidence.json",
+                    "sha256": "286ffee9c08f93abef49eba9fced2bf2f703112763b90cafd0460ffbb9861666",
+                    "locator": "actual2025HumanWarmingReference",
+                    "finding": "SR15DefinitionP50=1.37;AnnualDefinitionP50=1.38;decadeP05P50P95=[1.0,1.24,1.5];human-induced GMST;baseline1850-1900;IGCC-2025a"
+                  },
+                  {
+                    "path": "docs/physical-attribution-evidence.json",
+                    "sha256": "02665682302b3ef982cb19edc68e3fbf16bb7118e878ce21f06d0ea7730a7ccf",
+                    "locator": "temporalDefinitionEvidence.normativeSource and definition",
+                    "finding": "2011-2025 linear-trend endpoint at2025 is distinct from ordinary Annual and lagged2016-2025mean"
+                  }
+                ],
+                "headline": {
+                  "url": "https://raw.githubusercontent.com/ClimateIndicator/data/d9726573dccd9381652432b58b38f670af493c1c/data/base/anthropogenic_warming/Assessment-Update-2025_GMST_headlines.csv",
+                  "revision": "d9726573dccd9381652432b58b38f670af493c1c",
+                  "sha256": "d419c3f7d513b42052f5635454853610739d8b5f1749f55b5df03862dfe28879",
+                  "metadataDateCreated": "2026-07-22T10:13:14Z",
+                  "retrievedAtUTC": "2026-11-10T12:09:00.306870+00:00",
+                  "publicationDate": null,
+                  "licence": "CC-BY-4.0",
+                  "credit": "Christopher Smith and Tristram Walsh; ROF/Gillett,KCC/Ribes,GWI/Walsh;Forster et al.(2026),section8,doi10.5194/essd-18-3889-2026"
+                },
+                "temporalDefinition": {
+                  "url": "https://essd.copernicus.org/articles/18/3889/2026/essd-18-3889-2026-supplement.pdf",
+                  "sha256": "c533320e534438ef760ac494d2eef030e2b9714d197557a9d6ec4c0d627ecd1d",
+                  "locator": "S8.1.1 PDF29-30;FigureS12 PDF43"
+                },
+                "inventory": {
+                  "path": "server/calculation/data/inventory2024.json",
+                  "sha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+                  "version": "igcc-2024-candidate-1",
+                  "year": 2024,
+                  "basis": "Native gas inventory;AR6GWP100reporting only;candidate-not-promoted"
+                },
+                "boundary": "Existing reviewed metadata/factual values only. No new source requests, private provider bytes, raw source redistribution or protected scientific reruns."
+              },
+              "verification": {
+                "command": "npx tsx script/field-semantics-census.ts && npx tsx --test script/warming-validation-reference.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/research-field-semantics.test.ts script/company-conditional-api.test.ts script/semantics-provenance.test.ts && npx tsc --noEmit && git diff --check",
+                "pass": 36,
+                "fail": 0,
+                "skip": 0,
+                "coverage": "Six dedicated reference tests plus30affected integration/semantics/census tests. Reviewed-source equality and dates/hashes;all38actual reference leaves and660serialization leaf bindings;11-column/two-row XLSX readback including headline-only null bounds;SSR exact displayed values/global metadata/local JSON payload;production registration order and methodology mount;GET/export equality and no-override/write refusals under releaseSafety;unchanged protected constants/inventory/Python-reference hashes and original1000/1001 summary gap. Census freshness check passed.",
+                "additional": [
+                  "npx tsc --noEmit passed",
+                  "git diff --check passed"
+                ],
+                "notExecuted": "Fullsuite,protected/private scientific validators,numerical studies,browser rerun,commit,deployment,callbacks",
+                "sourcePins": {
+                  "shared/warmingValidationReference.ts": "9482c250dc3293da1b4853475fa94cc4cba97dfac5a0918f6b9c1d7e4241ab1e",
+                  "shared/warmingValidationReferenceSemantics.ts": "5bb290681e7f1d40aa4b48a2cf34a4135aa1bcec6943ab3ce116e64512c1d8d5",
+                  "server/warmingValidationReferenceApi.ts": "ba6f268af9167bae58c743b76562ef246fd387bcaea49c1f6f60352d8032f854",
+                  "client/src/components/warming-validation-reference.tsx": "581905f7a4331d0010ab5b998151cbe8e238283694b9e5abba371efbfa5952e8",
+                  "script/warming-validation-reference.test.ts": "59d67d57723cd8b7914b8021accdcb2796be6d02c000931a50b18faa33ae280e"
+                }
+              },
+              "criterionAssessment": "The missing finite shared-reference engineering is implemented, integrated and tested at module/SSR/HTTP-contract level. Existing protected Python metadata was already substantially fulfilled; the TypeScript/API/UI/export bridge was missing. Actual running-app browser UI was not reverified. Required1.37 remains the literal2025SR1.5trend endpoint, not ordinary Annual1.38, an engine input or offset. Reference storage/presentation is not model validation, attribution acceptance or original-summary closure.",
+              "supplementalCensusSnapshot": {
+                "definitions": 1841,
+                "referenceDefinitionDelta": 38,
+                "definitionsWithoutReference": 1803,
+                "concurrentConditionalCompanyDefinitions": 92,
+                "directInventorySlotsUnchanged": 1359,
+                "directBoundSlotsUnchanged": 1331,
+                "externalApiSlotsBefore": 224,
+                "externalApiSlotsAfter": 924,
+                "referenceApiSuccessPlusRefusal": 39,
+                "referenceExportSerializationPlusRefusal": 661,
+                "externalApiDelta": 700,
+                "expandedPublicBefore": 1556,
+                "expandedPublicAfter": 2256,
+                "expandedBoundBefore": 1555,
+                "expandedBoundAfter": 2255,
+                "serializationBreakdown": "Export660=38shared reference leaves+22row cells+600binding/definition metadata leaves. HTTP400 error adds one leaf per new GET surface. No metadata repetition claimed as extra scientific definitions.",
+                "originalPublic": 1001,
+                "originalBound": 1000,
+                "remainingUnknownSummary": 1,
+                "originalClosedGaps": 571,
+                "withheldUnchanged": 27,
+                "concurrency": "Definition test compares exact current imported registries; exact reference38-ID/leaf contract and all700new supplemental API/export/refusal leaves independently asserted. Concurrent issuer facts are not overwritten or credited toward original closure."
+              },
+              "componentStateIntegrationFollowup": {
+                "trigger": "Parent fullsuite found four component-state-census tests failing because the newly reachable reference consumer lacked a reviewed state policy.",
+                "policy": "script/component-state-contracts.ts now records pinned-reference input kind, exact null/publication behavior, no-query/loading/error/selection boundaries, no missing-to-zero substitution and no calculation/acceptance promotion. Existing60focused component policies remain in force; methodology scope now names its actual reference child.",
+                "directRenderEvidence": "script/component-state-census.test.ts directly invokes WarmingValidationReference via SSR, verifies1.37SR1.5headline versus Annual1.38,2016–2025mean1.24[1.0–1.5],separate2024inventory,publication-date-null wording,five global field IDs and decoded local JSON equality. Dedicated six-test reference suite remains prior evidence, not rerun in this followup.",
+                "artifact": "generated-artifacts/rendered-states/component-state-contracts.json",
+                "componentCount": 61,
+                "previousComponentCohort": 60,
+                "newComponent": "client/src/components/warming-validation-reference.tsx#WarmingValidationReference",
+                "newComponentRoutes": [
+                  "/methodology"
+                ],
+                "focusedRenderedComponentCount": 61,
+                "individuallyUnrenderedComponentIds": [],
+                "dynamicExpressionCount": 1789,
+                "newComponentDynamicExpressions": 37,
+                "fieldBindingExpressionCount": 111,
+                "newComponentFieldBindings": 5,
+                "command": "npx tsx script/component-state-census.ts generated-artifacts/rendered-states/component-state-contracts.json && npx tsx --test script/component-state-census.test.ts && npx tsc --noEmit && git diff --check",
+                "pass": 4,
+                "fail": 0,
+                "skip": 0,
+                "boundary": "Only four affected census tests rerun, including direct render of new61stconsumer. No old60component-suite reopening, field/branch gate weakening, source-protected FaIR edits, fullsuite/browser rerun or scientific acceptance."
+              },
+              "parentIntegration": [
+                "Completed: registerWarmingValidationReferenceRoutes(app) in server/index.ts after releaseSafety, not protected server/routes.ts.",
+                "Completed: mount WarmingValidationReference in methodology.tsx before archived legacy details, never as a computed warming headline.",
+                "Completed: register warmingValidationReferenceSemantics in global outputFieldSemantics.ts and regenerate exact supplemental GET success/export/error census. No original denominator additions.",
+                "Keep1000/1001original public slots,571original gaps closed,one unknown historical runs[].summary slot and27withheld unchanged;do not use new reference definitions as original closure credit."
+              ],
+              "protectedBoundary": "No protected FaIR bundle files,server/routes.ts or canonical ledgers were edited. Global supplemental census regenerated as explicitly requested. No denied protected-hash dependency encountered; protected hash assertions remain mandatory."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "proposedStatus": "verified",
+          "remainingGaps": []
         },
         {
           "id": "S01-011",
@@ -11895,7 +12095,7 @@
             "docs/API_Contract.md",
             "client/src/components/download-data-button.tsx"
           ],
-          "behaviour_delivered_this_run": "Qualified semantic annotations and export-column details now cover additional values, while direct JSX-expression inventory exposes unannotated controls/containers/numerics. Specific known legacy warning is retained; this is not complete per-value metadata.",
+          "behaviour_delivered_this_run": "Five newdisplaybindings withadjacentobservable/baseline/source/period/range metadata;61actualcomponentsinvoked,old60evidencepreserved.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -11970,6 +12170,26 @@
               "worktree_dirty": true,
               "scope": "Focused self-contained engineering checks only; no final fullsuite, unchanged replay, release or scientific acceptance",
               "log_inspected": true
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -11989,7 +12209,7 @@
           "remaining_gaps": [
             "Source attributes, chart callback payloads and component-derived numeric displays remain outside complete semantic verification."
           ],
-          "next_action": "Map displayed quantity/equation/unit/population to each runtime value and remove only redundant general banners.",
+          "next_action": "Continue remainingchanged-value metadata withoutgenericunknownsummary formulas or broadUIreruns.",
           "blockers": [],
           "check_type": "judgement",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
@@ -12231,6 +12451,161 @@
               "ci": "42806902864 validate/promote success",
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
+            }
+          },
+          "reference_parent_increment": {
+            "file": "docs/s01-010-reference-engineering-evidence.json",
+            "sha256": "6793250d8dbafeab5fa9ef7cd0422243f4b432f1acc285f26e8fdf0fa8ea1c9b",
+            "evidence": {
+              "criterion": "ORIGINAL S01-010",
+              "recordedAtUtc": "2026-11-11T16:10:06Z",
+              "exactOriginalCriterion": "Create a shared constants module for the inventory basis and base year. Store 1.37°C (2025 annual human-induced warming, IGCC 2025) as a dated validation reference, kept distinct from the decadal estimate and the inventory year, not as a constant inside calculations.",
+              "bindingScope": "S01-011 metadata applies only to changed reference fields here. Source/vintage, temporal-statistic and scientific-promotion restrictions remain binding; this does not relax original clauses or close unrelated display/summary gaps.",
+              "preImplementationFinding": {
+                "existing": "shared/calculationContract.ts already separates physical/finance legacy versions and2024 basis; native inventory/inputs state2024. The protected Python human_warming_reference_contract already pins1.37 SR1.5, distinct ordinary Annual1.38 and2016-2025mean1.24[1.0,1.5], including dated source metadata.",
+                "missing": "No corresponding shared TypeScript dated reference with reusable API/UI/export bindings was located.",
+                "sourceDefinitionCorrection": "The original annual2025 wording must not turn the1.37 SR1.5-labelled headline into the ordinary annual-mean statistic. Reviewed temporal evidence defines a2011-2025 fitted-trend endpoint evaluated at2025. Required1.37 is retained, not replaced by1.38 or a fitted0.01C adjustment."
+              },
+              "implementation": {
+                "sharedReference": "shared/warmingValidationReference.ts: WARMING_VALIDATION_REFERENCE is recursively frozen;38 exact primitive leaves separate2025 SR1.5 headline,2016-2025mean/range,1850-1900baseline and2024candidate inventory metadata.",
+                "metadataAndExport": "shared/warmingValidationReferenceSemantics.ts:38 exact globally registered field definitions;11 export columns;two distinct rows with explicit row-specific value/statistic bindings. Decade-only bounds are null in headline row, not borrowed headline uncertainty. Self-describing JSON includes full reference/source metadata, rows, exact bindings and field semantics. Exact finite serialization has660primitive leaves:38reference,22row cells,600binding/definition metadata leaves; these are not660scientific definitions.",
+                "apiModule": "server/warmingValidationReferenceApi.ts: registerWarmingValidationReferenceRoutes exposes GET /api/reference/warming-validation and GET /api/reference/warming-validation/export.json. Registered in server/index.ts after releaseSafety and before existing routes; protected server/routes.ts untouched. All query overrides reject400; integrated mutation attempts reject403 through unchanged releaseSafety. No runtime evidence reads or model calls.",
+                "uiModule": "client/src/components/warming-validation-reference.tsx: WarmingValidationReference is mounted in methodology.tsx outside archived legacy details. Values have adjacent temporal/GMST/baseline/unit/range/inventory/source qualifications and five exact global data-field-id bindings; source dates are distinguished from publication. Local JSON download uses the same shared export document.",
+                "calculationBoundary": "No numerical engine imports the reference. Legacy offsets remain1.1; inventory remains2024 and candidate-not-promoted. No replacement physical constants, GSAT-to-GMST conversion, calibrated model comparison or scientific acceptance."
+              },
+              "reviewedSources": {
+                "publicReviewReceipts": [
+                  {
+                    "path": "docs/next-physical-evidence.json",
+                    "sha256": "286ffee9c08f93abef49eba9fced2bf2f703112763b90cafd0460ffbb9861666",
+                    "locator": "actual2025HumanWarmingReference",
+                    "finding": "SR15DefinitionP50=1.37;AnnualDefinitionP50=1.38;decadeP05P50P95=[1.0,1.24,1.5];human-induced GMST;baseline1850-1900;IGCC-2025a"
+                  },
+                  {
+                    "path": "docs/physical-attribution-evidence.json",
+                    "sha256": "02665682302b3ef982cb19edc68e3fbf16bb7118e878ce21f06d0ea7730a7ccf",
+                    "locator": "temporalDefinitionEvidence.normativeSource and definition",
+                    "finding": "2011-2025 linear-trend endpoint at2025 is distinct from ordinary Annual and lagged2016-2025mean"
+                  }
+                ],
+                "headline": {
+                  "url": "https://raw.githubusercontent.com/ClimateIndicator/data/d9726573dccd9381652432b58b38f670af493c1c/data/base/anthropogenic_warming/Assessment-Update-2025_GMST_headlines.csv",
+                  "revision": "d9726573dccd9381652432b58b38f670af493c1c",
+                  "sha256": "d419c3f7d513b42052f5635454853610739d8b5f1749f55b5df03862dfe28879",
+                  "metadataDateCreated": "2026-07-22T10:13:14Z",
+                  "retrievedAtUTC": "2026-11-10T12:09:00.306870+00:00",
+                  "publicationDate": null,
+                  "licence": "CC-BY-4.0",
+                  "credit": "Christopher Smith and Tristram Walsh; ROF/Gillett,KCC/Ribes,GWI/Walsh;Forster et al.(2026),section8,doi10.5194/essd-18-3889-2026"
+                },
+                "temporalDefinition": {
+                  "url": "https://essd.copernicus.org/articles/18/3889/2026/essd-18-3889-2026-supplement.pdf",
+                  "sha256": "c533320e534438ef760ac494d2eef030e2b9714d197557a9d6ec4c0d627ecd1d",
+                  "locator": "S8.1.1 PDF29-30;FigureS12 PDF43"
+                },
+                "inventory": {
+                  "path": "server/calculation/data/inventory2024.json",
+                  "sha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+                  "version": "igcc-2024-candidate-1",
+                  "year": 2024,
+                  "basis": "Native gas inventory;AR6GWP100reporting only;candidate-not-promoted"
+                },
+                "boundary": "Existing reviewed metadata/factual values only. No new source requests, private provider bytes, raw source redistribution or protected scientific reruns."
+              },
+              "verification": {
+                "command": "npx tsx script/field-semantics-census.ts && npx tsx --test script/warming-validation-reference.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/research-field-semantics.test.ts script/company-conditional-api.test.ts script/semantics-provenance.test.ts && npx tsc --noEmit && git diff --check",
+                "pass": 36,
+                "fail": 0,
+                "skip": 0,
+                "coverage": "Six dedicated reference tests plus30affected integration/semantics/census tests. Reviewed-source equality and dates/hashes;all38actual reference leaves and660serialization leaf bindings;11-column/two-row XLSX readback including headline-only null bounds;SSR exact displayed values/global metadata/local JSON payload;production registration order and methodology mount;GET/export equality and no-override/write refusals under releaseSafety;unchanged protected constants/inventory/Python-reference hashes and original1000/1001 summary gap. Census freshness check passed.",
+                "additional": [
+                  "npx tsc --noEmit passed",
+                  "git diff --check passed"
+                ],
+                "notExecuted": "Fullsuite,protected/private scientific validators,numerical studies,browser rerun,commit,deployment,callbacks",
+                "sourcePins": {
+                  "shared/warmingValidationReference.ts": "9482c250dc3293da1b4853475fa94cc4cba97dfac5a0918f6b9c1d7e4241ab1e",
+                  "shared/warmingValidationReferenceSemantics.ts": "5bb290681e7f1d40aa4b48a2cf34a4135aa1bcec6943ab3ce116e64512c1d8d5",
+                  "server/warmingValidationReferenceApi.ts": "ba6f268af9167bae58c743b76562ef246fd387bcaea49c1f6f60352d8032f854",
+                  "client/src/components/warming-validation-reference.tsx": "581905f7a4331d0010ab5b998151cbe8e238283694b9e5abba371efbfa5952e8",
+                  "script/warming-validation-reference.test.ts": "59d67d57723cd8b7914b8021accdcb2796be6d02c000931a50b18faa33ae280e"
+                }
+              },
+              "criterionAssessment": "The missing finite shared-reference engineering is implemented, integrated and tested at module/SSR/HTTP-contract level. Existing protected Python metadata was already substantially fulfilled; the TypeScript/API/UI/export bridge was missing. Actual running-app browser UI was not reverified. Required1.37 remains the literal2025SR1.5trend endpoint, not ordinary Annual1.38, an engine input or offset. Reference storage/presentation is not model validation, attribution acceptance or original-summary closure.",
+              "supplementalCensusSnapshot": {
+                "definitions": 1841,
+                "referenceDefinitionDelta": 38,
+                "definitionsWithoutReference": 1803,
+                "concurrentConditionalCompanyDefinitions": 92,
+                "directInventorySlotsUnchanged": 1359,
+                "directBoundSlotsUnchanged": 1331,
+                "externalApiSlotsBefore": 224,
+                "externalApiSlotsAfter": 924,
+                "referenceApiSuccessPlusRefusal": 39,
+                "referenceExportSerializationPlusRefusal": 661,
+                "externalApiDelta": 700,
+                "expandedPublicBefore": 1556,
+                "expandedPublicAfter": 2256,
+                "expandedBoundBefore": 1555,
+                "expandedBoundAfter": 2255,
+                "serializationBreakdown": "Export660=38shared reference leaves+22row cells+600binding/definition metadata leaves. HTTP400 error adds one leaf per new GET surface. No metadata repetition claimed as extra scientific definitions.",
+                "originalPublic": 1001,
+                "originalBound": 1000,
+                "remainingUnknownSummary": 1,
+                "originalClosedGaps": 571,
+                "withheldUnchanged": 27,
+                "concurrency": "Definition test compares exact current imported registries; exact reference38-ID/leaf contract and all700new supplemental API/export/refusal leaves independently asserted. Concurrent issuer facts are not overwritten or credited toward original closure."
+              },
+              "componentStateIntegrationFollowup": {
+                "trigger": "Parent fullsuite found four component-state-census tests failing because the newly reachable reference consumer lacked a reviewed state policy.",
+                "policy": "script/component-state-contracts.ts now records pinned-reference input kind, exact null/publication behavior, no-query/loading/error/selection boundaries, no missing-to-zero substitution and no calculation/acceptance promotion. Existing60focused component policies remain in force; methodology scope now names its actual reference child.",
+                "directRenderEvidence": "script/component-state-census.test.ts directly invokes WarmingValidationReference via SSR, verifies1.37SR1.5headline versus Annual1.38,2016–2025mean1.24[1.0–1.5],separate2024inventory,publication-date-null wording,five global field IDs and decoded local JSON equality. Dedicated six-test reference suite remains prior evidence, not rerun in this followup.",
+                "artifact": "generated-artifacts/rendered-states/component-state-contracts.json",
+                "componentCount": 61,
+                "previousComponentCohort": 60,
+                "newComponent": "client/src/components/warming-validation-reference.tsx#WarmingValidationReference",
+                "newComponentRoutes": [
+                  "/methodology"
+                ],
+                "focusedRenderedComponentCount": 61,
+                "individuallyUnrenderedComponentIds": [],
+                "dynamicExpressionCount": 1789,
+                "newComponentDynamicExpressions": 37,
+                "fieldBindingExpressionCount": 111,
+                "newComponentFieldBindings": 5,
+                "command": "npx tsx script/component-state-census.ts generated-artifacts/rendered-states/component-state-contracts.json && npx tsx --test script/component-state-census.test.ts && npx tsc --noEmit && git diff --check",
+                "pass": 4,
+                "fail": 0,
+                "skip": 0,
+                "boundary": "Only four affected census tests rerun, including direct render of new61stconsumer. No old60component-suite reopening, field/branch gate weakening, source-protected FaIR edits, fullsuite/browser rerun or scientific acceptance."
+              },
+              "parentIntegration": [
+                "Completed: registerWarmingValidationReferenceRoutes(app) in server/index.ts after releaseSafety, not protected server/routes.ts.",
+                "Completed: mount WarmingValidationReference in methodology.tsx before archived legacy details, never as a computed warming headline.",
+                "Completed: register warmingValidationReferenceSemantics in global outputFieldSemantics.ts and regenerate exact supplemental GET success/export/error census. No original denominator additions.",
+                "Keep1000/1001original public slots,571original gaps closed,one unknown historical runs[].summary slot and27withheld unchanged;do not use new reference definitions as original closure credit."
+              ],
+              "protectedBoundary": "No protected FaIR bundle files,server/routes.ts or canonical ledgers were edited. Global supplemental census regenerated as explicitly requested. No denied protected-hash dependency encountered; protected hash assertions remain mandatory."
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           }
         },
@@ -24763,7 +25138,7 @@
             "script/forecast_kaya.py:prepare,evaluate,digest,main",
             "docs/Kaya_Results.md:"
           ],
-          "behaviour_delivered_this_run": "PublisherEIpriority/EIAfallback doesnotrecomputeEU27; regionalandhybridcountrytableboundaries differ.420cellscompared,417exact; Malta2022+.010/2023+2.457TWh explainsresidualchangesexactly;2016−4.027TWhgap persists. TerritorialCO2 excludesinternationalbunkers exceptWorld. No forecastentitynewlyqualified; nofits.",
+          "behaviour_delivered_this_run": "405EI/15EIAactualproviderflags;EIcopyrightfullprecisionacquisition blocked403terms,nobypass. GCBprimaryFrance/Italy/Kosovo45pairs44pass1fail atunchanged±.0005Mt:France2020−.000507. EIA-only32×15=480nativecells separatelyassembled;EUresidualmax.001045227TWh. Nooriginalentitynewlyqualified.",
           "inputs_versions_assumptions": [
             "CO2=GDP*(energy/GDP)*(CO2/energy); compatible definitions and structural breaks required",
             {
@@ -24864,6 +25239,26 @@
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -24878,7 +25273,7 @@
           "remaining_gaps": [
             "Identity decomposition exists, but complete five-region compatible GDP/energy/CO2 histories, all trend/break tests and usable forecast holdouts remain incomplete."
           ],
-          "next_action": "Acquire rights-qualifiedsame-releaseproviderflags/fullprecisionenergy,EIdefinitions/member-regiondata,GCBparentterritorynotes. Original2011PPP gaps remain;2021PPP notsubstitution.",
+          "next_action": "ResolveEIrights/fullprecision lineage,SanMarinoparentnotes andFranceexportdtype discrepancy; keepEIAalternative separate, nooriginalholdouts untilfullcontract.",
           "blockers": [],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
@@ -26639,6 +27034,367 @@
               },
               "log": "generated-artifacts/workplan-completion/20261111T155335417702Z.log",
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "reference_parent_increment": {
+            "file": "docs/kaya-samerelease-upstream-source-evidence.json",
+            "sha256": "bd979e719435bd7de604aeb7a75eb4184617f9a16e69e5948c37d6a17725bb9a",
+            "evidence": {
+              "schemaVersion": 1,
+              "criterion": "S04-003 source qualification;not original forecast admission or S04-005 monthlyCO2 completion",
+              "status": "actual-provider-labels-and-exact-GCB2025-parent-notes-acquired; separate-rights-qualified-EIA-only-fullwindow-energy-basis-assembled; EIworkbook-rights-gate-blocked",
+              "readFirst": [
+                "docs/Kaya_Protocol.md",
+                "docs/Forecast_Kaya_Protocol.md",
+                "docs/kaya-eu-energy-definition-source-evidence.json",
+                "docs/kaya-fullbasis-monthly-source-evidence.json",
+                "docs/climatetrace-monthly-100mb-source-evidence.json",
+                "docs/igcc-alpha1-proof-evidence.json"
+              ],
+              "noOldWorkRepeated": {
+                "old420vs417NumericOverlapAudit": false,
+                "resolvedMaltaRevisionAudit": false,
+                "3285RowCensusRebuilt": false,
+                "miningFreshnessReaudit": false,
+                "completedClimateDiagnosticReruns": false,
+                "originalProtocolsOrCriteriaRefrozen": false
+              },
+              "frozenPlans": [
+                {
+                  "path": "docs/kaya-samerelease-upstream-acquisition-plan.json",
+                  "sha256": "4b47e81b3aef1cb47c0edf69697b43b68378bec5350a337f6126c2804fe534d1"
+                },
+                {
+                  "path": "docs/kaya-samerelease-gcb-numeric-route.json",
+                  "sha256": "7d49a15907ee2f78d28e6e0ca539a6f8f2d9aa6c947be4ef4c241220327ecfd3"
+                },
+                {
+                  "path": "docs/kaya-samerelease-provider-metadata-route.json",
+                  "sha256": "34d847b68e543efc495c8f3a7447cdf773731ebf7c683d81c576f5afc64aae2c"
+                },
+                {
+                  "path": "docs/kaya-samerelease-eia-only-route.json",
+                  "sha256": "95cb9b328ac245aac93ba3bec3309e51fc21a7af4e1e705a3ab5143aa5eb9e6a"
+                }
+              ],
+              "boundedAcquisition": {
+                "requests": 24,
+                "maximumRequests": 24,
+                "bodyBytes": 12766342,
+                "maximumTotalBodyBytes": 45000000,
+                "HTTPStatusCounts": {
+                  "200": 22,
+                  "403": 1,
+                  "404": 1
+                },
+                "curlFailures": 0,
+                "retries": 0,
+                "firstRequestUTC": "2026-11-11T16:06:08.864155+00:00",
+                "lastRequestUTC": "2026-11-11T16:14:58.723856+00:00",
+                "numericRightsQualifiedBeforeRetrieval": true,
+                "EIWorkbookOrPanelDownloaded": false,
+                "mixedRightsPrimaryEnergyNumericTableDownloaded": false,
+                "archivesOrModelControlsDownloaded": false,
+                "paidCallsPurchasesBypasses": 0,
+                "manifest": "generated-artifacts/kaya-samerelease-upstream/requests.json",
+                "manifestSHA256": "661341325b8304e386fa63db7da248cead9036e7a8f93aefe1352502289dbee5",
+                "manifestContents": "Exact original/effective URLs,request start/end,caps,statuses,bytes,48body/header hashes",
+                "routingFailure": "Pinned ETL README's old catalog-library documentation URL returned404. Its actual navigation linked working catalog-api documentation,which returned200 and documented table URI/projection routes. No source identity invented from404."
+              },
+              "actualEIProviderMetadataAssembly": {
+                "projection": "country,year,source only;no mixed-rights energy/GDP/population numerical quantities",
+                "publisherTable": "garden/energy/2026-05-05/primary_energy_consumption/primary_energy_consumption",
+                "projectionSHA256": "b0c96dfa6337f072581c7821be0dc7fc509a185751ac90b99f9efd42b5306dad",
+                "tableMetadataSHA256": "608335fe80b6c88352d6c5fa7534efc038197a5a61310cd2cc8d2af84e966fdf",
+                "sourceMethodCommit": "282a8ef5715e21770167128edb236a68f7b3ed23",
+                "categoricalLabelsAcquired": 420,
+                "countryYearDomain": "27fixed members+nativeEU27,each2010-2024",
+                "actualCounts": {
+                  "ei": 405,
+                  "eia": 15
+                },
+                "actualProviderAssignment": {
+                  "EU27Aggregate": "EI for all15years",
+                  "other26Members": "EI for all390country-years",
+                  "Malta": "EIA for all15years"
+                },
+                "rights": "OWID-generated categorical provenance,created explicitly in processing code;OWID original material CC BY4.0 with attribution per frozen README lines127-131. Permission is NOT extended to underlying third-party EI numbers.",
+                "fieldOriginVersions": [
+                  {
+                    "producer": "Energy Institute",
+                    "release": 2025,
+                    "dateAccessed": "2025-06-27",
+                    "datePublished": "2025-06-26",
+                    "license": "Copyright Energy Institute2025"
+                  },
+                  {
+                    "producer": "U.S. Energy Information Administration",
+                    "release": 2026,
+                    "dateAccessed": "2026-05-05",
+                    "datePublished": "2026-05-05",
+                    "license": "Public domain"
+                  }
+                ],
+                "sourceChecksumOpaque": "472e50c693b9e2ed69d404bccee00b69",
+                "sameDatedSourceVersionFamilyQualified": true,
+                "originalExportAtomicArtifactBindingCertified": false,
+                "vintageLimit": "Actual source column and exact field-origin versions now observed,not merely inferred from missing fuel components. Dated catalog namespaces can be rebuilt;opaque source_checksum is NOT certified original data-artifact identity or historical-origin availability.",
+                "metadataAnomaly": "The table's inherited dataset title is Maddison Project Database;namespace,version,table,field origins and projected schema identify energy. The inherited title is not used as a semantic or rights shortcut.",
+                "sourceBoundaryOutcome": "Current exact source-version family confirms native EU27 is EI while final member table mixes EI26+EIA Malta. No assertion that this alone quantitatively explains every residual or permits forced closure."
+              },
+              "EIActualDefinitionAndRightsResults": {
+                "availableMetadataSHA256": "011400f427105be51637498e6879c6e067cbbcad204c709de54324b30fb91db4",
+                "availablePrimaryDefinition": {
+                  "lines": [
+                    488,
+                    496
+                  ],
+                  "finding": "Commercially-traded fuels including modern renewables for electricity;non-fossil power on an input-equivalent basis."
+                },
+                "newBunkerBoundaryDefinition": {
+                  "lines": [
+                    393,
+                    401
+                  ],
+                  "finding": "Published EI oil-consumption definition explicitly includes international aviation/marine bunkers and refinery fuel/loss. This component boundary must not be conflated with country CO2,whose international bunkers are excluded."
+                },
+                "definitionLimit": "Oil-component metadata is NOT an observed primary-total bunker allocation,EU27territorial membership Definitions sheet,or numerical adjustment. World energy remainder is not assigned to bunkers.",
+                "authoritativeTermsURL": "https://www.energyinst.org/terms",
+                "actualTermsHTTPStatus": 403,
+                "termsBodySHA256": "dcd8cf40b2dbd287bef275f5f56b36001f68021241f5b400328cc9996c720741",
+                "pinnedEI2025SnapshotLicense": "Copyright Energy Institute2025,linked to that exact terms page;no explicit data-use grant in the snapshot declaration",
+                "workbook": {
+                  "originalURL": "https://www.energyinst.org/__data/assets/excel_doc/0008/1656215/EI-Stats-Review-ALL-data.xlsx",
+                  "originalSnapshotBytes": 3929428,
+                  "originalSnapshotMD5": "99805119256ece8c0b5b24181295b66d",
+                  "snapshotMetadataSHA256": "9635ee6c628e30ff345a1b1fbeeab2236de341b3624e9973f73037f69a1cdc36",
+                  "status": "not-admitted-rights-gate: authoritative-terms403/copyright-only;not claimed publisher-unavailable or over-byte-cap"
+                },
+                "fullPrecisionPanel": {
+                  "originalURL": "https://www.energyinst.org/__data/assets/file/0011/1659656/panel.csv",
+                  "originalSnapshotBytes": 3807339,
+                  "originalSnapshotMD5": "248627efb519df288e4125159d0dd3aa",
+                  "snapshotMetadataSHA256": "283d0f9d938f432805cf5c095e7fffe85add3144f99ac915bfaf20d57f2f716c",
+                  "status": "same actual rights gate;numeric retrieval intentionally not authorized"
+                },
+                "nonRedistributableFalseIsBlanketPermission": false,
+                "alternateHostProxyHeaderCredentialBypass": false
+              },
+              "newReadyIndependentEnergySourceTrack": {
+                "purpose": "Executed genuine source assembly independent of blocked EI numeric rights,not another generic missing-input report",
+                "source": "EIA International Energy2026-05-05,garden/eia/2026-05-05/international_energy",
+                "sourceSpecificRights": "Column-specific publisher metadata explicitly attributes U.S.EIA InternationalEnergy2026 and Public domain,linked to https://www.eia.gov/about/copyrights_reuse.php",
+                "metadataSHA256": "b40f896a8d5cefb33121e0af27eec66100bb125937de6807079a7e9ca3fddc34",
+                "numericProjectionSHA256": "21d89a809215793e0fc3d8ea63e08cb748aa478fbb6c1f72025159de2b2edb7f",
+                "sourceChecksumOpaque": "02e0e9f20b296bb69e0c36bc9b583519",
+                "unit": "terawatt-hours;already converted by publisher",
+                "newConversionApplied": false,
+                "nativeAnnualCells": 480,
+                "positiveFiniteNativeCells": 480,
+                "accounts": "27members+nativeEU27+World/China/India/US,all15years2010-2024",
+                "completeEU27MemberSums": 15,
+                "sourceCoherentBasis": "EIA-only nationals and separately retained native EIA EU27 regional observations. No EI values mixed,no source value replaced.",
+                "nativeEU27MinusFull27SumTWh2010to2024": [
+                  "-0.000743865966862",
+                  "-0.000509262084894",
+                  "-0.00043106079099",
+                  "0.000459671020573",
+                  "-0.000272750854491",
+                  "0.001045227050729",
+                  "-0.000490188598631",
+                  "-0.000844955444400",
+                  "-0.000106811523434",
+                  "-0.000976562500077",
+                  "0.000366210937604",
+                  "-0.000602722168024",
+                  "-0.000003814697128",
+                  "-0.000604629516614",
+                  "-0.000551223754788"
+                ],
+                "maximumAbsoluteResidual": {
+                  "year": 2015,
+                  "TWh": "0.001045227050729"
+                },
+                "residualInterpretation": "Exact arithmetic on publisher CSV representations of stored values. Not forced to zero,not attributed to rounding without source-type proof,and no acceptance criterion relaxed to accommodate it.",
+                "precisionQualification": "Stored published-table precision,NOT claimed unrounded original-producer/EI precision.",
+                "sourceAssemblyReady": true,
+                "originalNativeEnergyBasisReplacement": false,
+                "jointScientificContractQualified": false,
+                "WorldWarning": "Retained EIA processing explicitly requests World aggregation with minimum country fraction0.7;do not certify complete territory coverage or manufacture bunker/RoW energy from residual.",
+                "vintage": "Source-version-family-matched,retrieved revised history;not independently archived original forecast-origin observations",
+                "notAMonthlyCO2Substitute": true,
+                "independentScreening": "Retained S07alpha1 track still lacks actual forcing/control permissions/inputs;no completed engineering study rerun. Chose the genuinely permitted EIA-only source assembly instead."
+              },
+              "actualGCB2025v15ParentAndNumericalSourceAssembly": {
+                "publisher": "Andrew,R.M.and Peters,G.P.(2025),GlobalCarbonProject fossilCO2 dataset2025v15,Zenodo17417124",
+                "publisherRecordURL": "https://zenodo.org/api/records/17417124",
+                "publisherRecordSHA256": "2cb32390d761be8863cc6a756ee49b75bbb66d233dccf377cb4b93ccc6723fe1",
+                "specificRecordLicense": "cc-by-4.0",
+                "originalSnapshotExactBinding": {
+                  "OWIDSnapshot": "snapshots/gcp/2025-11-13/global_carbon_budget_fossil_co2_emissions.csv.dvc at pinned original ETLcommit",
+                  "publisherFile": "GCB2025v15_MtCO2_flat.csv",
+                  "bothMD5": "3008e30d913af5926a83d0d0775fb72e",
+                  "bothBytes": 3147221,
+                  "retrievedSHA256": "20650c19b394d91b6b31cddff2fbc9508bcdbbed7c3f93660336f2f655f367ff",
+                  "outcome": "Actual same-release primary numerical file matches original frozen processing input's declared exact bytes/checksum,not a current replacement dataset"
+                },
+                "additionalRightsQualifiedFiles": [
+                  {
+                    "file": "GCP fossilCO2 2025v15.pdf",
+                    "bytes": 893846,
+                    "md5": "927586a5e33a0ba86782a5a2643da7ae",
+                    "sha256": "3476f67ddb0dd46208b61c791312d53ea10174ac52f9ed40a42ae2a5036783f3"
+                  },
+                  {
+                    "file": "GCB2025v15_MtCO2_flat_metadata.json",
+                    "bytes": 3784,
+                    "md5": "ee6955d4409ea110c546ae38660b5592",
+                    "sha256": "b41c76163ac6258fee7203c417a0def6b2e7300dc59943de654b913e824f3cd4"
+                  },
+                  {
+                    "file": "GCB2025v15_sources_flat.csv",
+                    "bytes": 8299006,
+                    "md5": "bb4e63819ea7fbc33196981ab78567e6",
+                    "sha256": "763e4d05be15f2403f3a11a83edb12974e16e5d7b588c8027e44e44d05812b13"
+                  }
+                ],
+                "dataUnit": "millions of tonnes of CO2,not CO2e;no carbon/CO2 factor applied",
+                "newFocusedSourcePairs": "France/Italy/Kosovo,each15years:45actual primary totals paired with native export and primary country-year/component source flags",
+                "absentPrimaryCountryYears": "Monaco/SanMarino/VaticanCity,each15years:45primary country rows absent,not45publisher numeric nulls or45zeros. Existing native nulls remain unchanged.",
+                "newPublishedParentPolicies": {
+                  "Monaco": {
+                    "documentPages": [
+                      20,
+                      28
+                    ],
+                    "textLinePointers": [
+                      781,
+                      782,
+                      783,
+                      1121
+                    ],
+                    "finding": "GCB explicitly maintains grouping Monaco+France and adds official Monaco NGHGI estimates to France from1990."
+                  },
+                  "Vatican": {
+                    "documentPage": 28,
+                    "textLinePointer": 1122,
+                    "finding": "Exact2025v15 document explicitly says HolySee(VaticanCity)included inItaly."
+                  },
+                  "SanMarino": {
+                    "mentionsInExact2025v15Document": 0,
+                    "finding": "No parent assignment found in the acquired original method document. Do NOT infer Italy from proximity or Vatican policy."
+                  }
+                },
+                "policyLimit": "Declared groupings are now source-proved,not per-year numerical deconsolidation. Do not fabricate Monaco/Vatican amounts or automatically equate France/Italy GDP/population/energy coverage to these CO2 reporting groups.",
+                "EU27Implication": "The canonical France/Italy country sums inherit declared Monaco/Vatican reporting consolidation. Nominal27-country labels alone cannot establish exact GDP/energy/CO2territorial identity.",
+                "FrenchOverseasCaveat": {
+                  "documentPage": 21,
+                  "textLinePointer": 800,
+                  "finding": "Exact2025v15 PDF still contains an unresolved NOTE explicitly labelled2024release about French overseas territories. No2025 correction inferred from the document version."
+                },
+                "sourceIdentityCrosswalk": "GCB2025 primary Kosovo code KSV matches namedKosovo and its source flags;native export ISO is blank;WDI usesXKX. Preserve explicit name bridge,not an invented official common ISO.",
+                "strictDisplayOnlyPrecisionOutcome": {
+                  "thresholdMtCO2": "0.0005",
+                  "compatibleCells": 44,
+                  "incompatibleCells": 1,
+                  "exception": {
+                    "country": "France",
+                    "year": 2020,
+                    "nativeMinusPrimaryMtCO2": "-0.000507",
+                    "excessBeyondEnvelopeMtCO2": "0.000007"
+                  },
+                  "all45DisplayOnlyCompatible": false,
+                  "thresholdRelaxed": false,
+                  "outcome": "Simple three-decimal-display-only explanation fails this one cell. Keep exact exception;do not tune a factor or declare datatype/export quantization proved without original lineage."
+                }
+              },
+              "originalContractAdmission": {
+                "original2011PPP": "Unchanged;WorldGDP2011-14/2023-24,China/India/US2023-24,all15frozenEU27GDP fields remain missing. Original MPD sidecar still has54missing2023/24member-years.",
+                "WDI2021PPP": "Separate retained sensitivity basis,never spliced into original GDP",
+                "otherRegions": "RoW/transport missing physical/source accounts not repaired by new national source assembly",
+                "newlyQualifiedOriginalEntities": [],
+                "fits": 0,
+                "holdoutScores": 0,
+                "unavailableCasesAreStatisticalRejections": false,
+                "familyPolicy": "No change to original train-only,both-baseline,uncertainty,break or Holm-family treatment. No invented p-values or rejected hypotheses from missing data.",
+                "centralEligible": false
+              },
+              "preciseRemainingInputsNotGenericUnavailability": {
+                "EI": "Actual copyright-only original snapshots and authoritative terms403 now establish a concrete rights gate. Need verified permitted-use terms/permission for identified2025workbook Definitions and panel,not a larger cap or replacement catalog.",
+                "originalProviderArtifactIdentity": "Labels and exact source-origin version family acquired. Need original primary table artifact checksum/source-dependency binding if claiming literal original-export flag identity,not merely current same namespace.",
+                "EIMemberRegionPrecision": "Full precision original EI2025member/regional legacy primary values and regional/territory definitions remain rights-denied,not declared nonexistent. Keep actual hybrid source assignments and persistent residuals.",
+                "GCBParentAllocation": "Monaco/France and Vatican/Italy policies resolved. Independent15-year enclave component amounts remain absent;SanMarino parent rule not found in the inspected actual2025v15method.",
+                "nativeExportPrecision": "France2020 exact residual -0.000507MtCO2 exceeds simple display envelope by0.000007MtCO2. Need original dtype/unit/export lineage,not a relaxed threshold or corrected value.",
+                "completeOriginalHoldout": "Original full-window2011PPP and regional/territory/bunker contracts still not admitted;separate EIA-only and WDI2021PPP bases do not authorize original scoring."
+              },
+              "implementationAndVerification": {
+                "acquisitionModule": "script/kaya_samerelease_upstream_sources.py",
+                "acquisitionModuleSHA256": "f69b6c23b75517ba834a727eef4f4a591e73c13e75c2ffa811e3bb6fe1870bb3",
+                "assemblyModule": "script/kaya_samerelease_scope_bridge.py",
+                "assemblyModuleSHA256": "153bfee2790574a983df58382c73dcf36b666db416957e95afe9d679f7baf038",
+                "tests": "script/test_kaya_samerelease_scope_bridge.py",
+                "testsSHA256": "f727f758c723e8d4daef09434e54a0aa0231674b90f651748f5e5bc829cdd440",
+                "assemblyCommand": "python script/kaya_samerelease_scope_bridge.py assemble",
+                "privateResult": "generated-artifacts/kaya-samerelease-upstream/same-release-source-assembly.json",
+                "privateResultSHA256": "4ceea428dd7f2cac95081384942e4c4be5fafa80cdcccba4b0ace052500b2883",
+                "publicTestsPassed": 11,
+                "cleanSourceOnlyTestsPassed": 11,
+                "skipsOrDisabledAssertions": 0,
+                "privateValidatorCommand": "python script/kaya_samerelease_scope_bridge.py validate-private",
+                "privateValidatorPassed": true,
+                "responseHashesVerified": 48,
+                "publisherGitObjectsIndependentlyVerified": 8,
+                "privateMissingFilesNegativeControl": "Correctly fails FileNotFoundError in clean source-only context,never skip",
+                "sourceEvidenceCorrections": "Initial private expectation of zeroVatican mentions failed against actual source. Replaced misconception with positive exactVaticanItaly policy requirement. PDF line pointers standardized on newline,not form-feed splitlines. Strict display envelope preserved and its one failure reported,not disabled.",
+                "logs": [
+                  {
+                    "path": "generated-artifacts/kaya-samerelease-upstream/public-tests.log",
+                    "sha256": "9eecca96a0c4c0785b2e69ad00384ea92cab222e97b1e0c0068ff28e6c98dfab"
+                  },
+                  {
+                    "path": "generated-artifacts/kaya-samerelease-upstream/clean-public-tests.log",
+                    "sha256": "9eecca96a0c4c0785b2e69ad00384ea92cab222e97b1e0c0068ff28e6c98dfab"
+                  },
+                  {
+                    "path": "generated-artifacts/kaya-samerelease-upstream/private-validation.log",
+                    "sha256": "b4a9b96f0408bef23ea529538957652418f1460cbb0daae9db1b65d7f47a5765"
+                  },
+                  {
+                    "path": "generated-artifacts/kaya-samerelease-upstream/clean-private-negative.log",
+                    "sha256": "69de5dcc88bd6b7673f20c5da90323d889bc1b2a586569e9a0f840a143ed428f"
+                  },
+                  {
+                    "path": "generated-artifacts/kaya-samerelease-upstream/git-object-checks.json",
+                    "sha256": "147f9f4eedf306cef4b8ee1557a6dcc60a020836d1f0fb2dd2d2dbc16a511928"
+                  },
+                  {
+                    "path": "generated-artifacts/kaya-samerelease-upstream/assembly.log",
+                    "sha256": "c8e8465ab26d6854546855ede329291880094ce03e0923629e39756abeaf8e5d"
+                  }
+                ],
+                "rawAndFullTablesIgnoredPrivate": true
+              },
+              "ledgersProtectedFaIRRuntimeCollectorDeployPublishCallbackChanges": 0
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -118472,7 +119228,7 @@
               "namedFunctions": []
             }
           ],
-          "behaviour_delivered_this_run": "H12026Note5: firstIndia subsidy installmentreceivedJuly2026 afterJune30; amount/day/cashclassificationunknown. FY2025CFO lessselectedcreditreceipts613.405m isdiagnosticnotFCFE;14.435m/.780m unexplainedresiduals retained. Old32rows/outcomes unchanged.",
+          "behaviour_delivered_this_run": "Alabama6.1m assetrecognition notcash; typedaxes H1862.895+Q3638.468=YTD1501.363m. Q3/YTDrecognition-CFO1.997/2.777m andbook-CFO−24.920/−36.097m unexplained. Old32rows/340hashes preserved.",
           "inputs_versions_assumptions": [
             "Distinct NEW FY2025 UNAUDITED issuer release/2026-guidance conditional experiment, not the selected FY2024 10-K case; frozen ten schedules/50 annual rows."
           ],
@@ -118589,6 +119345,26 @@
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -118604,7 +119380,7 @@
           "remaining_gaps": [
             "Conditional revised-history integration is not fully sourced operating case or qualified projection/valuation pair."
           ],
-          "next_action": "Programme-specific grantrollforward/eligiblevolumes stillneeded; Q32026Alabama6.1m recognition isnextretainedsource,notIndiacash.",
+          "next_action": "Programme-specificIndiacash amount/day/classification andeligiblecomponentwatts remainmissing; noforcedclosure.",
           "blockers": [],
           "stage": 12,
           "check_type": "numerical",
@@ -119623,6 +120399,379 @@
               },
               "log": "generated-artifacts/workplan-completion/20261111T155335417702Z.log",
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "reference_parent_increment": {
+            "file": "docs/nee-parent-fslr-programme-evidence.json",
+            "sha256": "452d12b3bcc9c35037949cd074bdb4138b380de626349afe843910ddd75d2d9e",
+            "evidence": {
+              "version": "nee-parent-fslr-programme-1",
+              "scope": "New NEE FY2025 consolidated/legalentity/CSCS crosswalk and retained FSLR Q32026 ASC832 expense-axis reconciliation. Not a common-FCFE insertion, valuation rerun, source-exhaustion claim or qualification.",
+              "informationContext": "Revised history. NEE FY2025annual published2026-02-13 and retained XPLR FY2025annual2026-02-17 were NOT known at retained NEE2025-01-31 reference. FSLR Q32026source published2026-10-29 was NOT known at retained2025-02-21 reference. Original FY2024basis, prices/shares/currency/common-FCFE, stub/five-yearsteps/ten-yearfade/2.5–4%terminal,32cashrows and all frozen negative cases unchanged.",
+              "rights": "Bounded official public SEC issuer filings/contracts; minimal source labels and public derived aggregates. Raw primary/private/provider bytes stay git-ignored and are not exported. SEC hosting does not make issuer-authored contract copyright government-owned.",
+              "sourceRecords": [
+                {
+                  "id": "NEE-FY2025-NEW",
+                  "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-20251231.htm",
+                  "accession": "0000753308-26-000015",
+                  "publicationDate": "2026-02-13",
+                  "reportPeriod": "Year ended2025-12-31",
+                  "legalIdentity": "NextEra Energy, Inc., CIK0000753308; dualregistrant filing also contains FPL, which is NOT the selected entity",
+                  "locator": "NEE consolidated cashflowc-1; Note8equitymethod investments/XPLR servicecost and CSCSreceivables; MD&Aownership",
+                  "page": "44(ownership),67(CFO),98–99(Note8)",
+                  "unit": "USDmillions; ownership percent",
+                  "sha256": "446de5796dab3e9a98f46f6ba0fe79828aa379e4a4068c4c5b30a9702bbba0f4",
+                  "reliability": "New audited annual. Consolidated NEE, not parent-standalone account.446m distributions already included in CFO. XPLR accounted as equitymethod despite52.5%noncontrolling economics."
+                },
+                {
+                  "id": "NEE-FY2025-EX21-NEW",
+                  "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-q42025xex21.htm",
+                  "accession": "0000753308-26-000015",
+                  "exhibit": "21",
+                  "publicationDate": "2026-02-13",
+                  "reportPeriod": "Principal subsidiaries as of2025-12-31",
+                  "legalIdentity": "NEE; NEER LLC is a100%-owned subsidiary of NEECapitalHoldingsInc",
+                  "locator": "Principal-subsidiaries entries2/3 and footnote(b)",
+                  "page": "Exhibit21",
+                  "unit": "legalentity/ownership, not cash",
+                  "sha256": "bc588c590a929f55c4b9b794f3943f3cb4859340136330642bd3e501c8fa853b",
+                  "reliability": "Actual declared attachment. Principal list abbreviates subsidiary chains; NEEEquityLP is NOT individually listed. Its indirectownership/Delaware identity is separately sourced from XPLR organization note, not invented from omission."
+                },
+                {
+                  "id": "NEER-XPLR-CSCS-EX106-NEW",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314525000006/xplr-q42024xex106.htm",
+                  "accession": "0001603145-25-000006",
+                  "exhibit": "10.6",
+                  "publicationDate": "2025-02-21",
+                  "documentDate": "2025-02-17",
+                  "reportPeriod": "SecondAmendedRestatedCashSweepCreditSupportAgreement",
+                  "legalIdentity": "XPLR Infrastructure Operating Partners, LP and NextEra Energy Resources, LLC",
+                  "locator": "Sections3.1.1/3.1.2cashborrowing/repayment,3.2earningsandinterest; ReservedCash and third-partydebt limitations; Article2credit support",
+                  "page": "Article3",
+                  "unit": "contract cash/interest entitlement, NOT observed balance/earnings/fee series",
+                  "sha256": "74d6249720a2fdf5e5e40cf03bb54f30961d22483eec2421044d76defaab0717",
+                  "reliability": "Actual declared executed contract, not another accession inventory or reporting workbook. NEER may borrow eligible UScash subject to debt constraints/ReservedCashexclusion, must repay when distributions/demands require; XPLR has no interest/fee entitlement on CashSweepWithdrawals under3.2. Other credit-support fees are not assumed zero. No dailybank/settlement series disclosed by these terms."
+                },
+                {
+                  "id": "XPLR-FY2025-RETAINED",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000007/xplr-20251231.htm",
+                  "accession": "0001603145-26-000007",
+                  "publicationDate": "2026-02-17",
+                  "reportPeriod": "FY2025",
+                  "legalIdentity": "XPLR Infrastructure, LP, CIK0001603145; NEEEquity=NextEraEnergyEquityPartnersLP; Delaware indirectwhollyownedNEEsubsidiary",
+                  "locator": "Organizationnote:48.8%/51.2%OpCocommonLP and XPLRGPcontrol; CFO48netCSCS116m; Note2NEEcategory61m/47mequity; Note14remainingunitbuyouts; relatedpartyCSCSnote127mto11mheldcash,10mfeeexpense/−11mtrueup and2024exceptioninterest",
+                  "page": "4,48,50–52,71–73",
+                  "unit": "USDmillions and common-LPpercent",
+                  "sha256": "e3c5843bd5e3c02c03bfc2eea2e90a407f284c7a40f8c77639ac52ea69618d20",
+                  "newRequest": false,
+                  "reliability": "Already authenticated. XPLR consolidates OpCo via GPcontrol; NEEEquity's majoritycommonLP remains NCI in XPLR.52.5%NEEtotalXPLReconomics and51.2%OpCoLP have different denominators. NewlyinspectedCSCSannualnote has actualheldbalances, unlikecontractalone; fees/trueup and exceptional2024interest are recognizedP&L, not certifiedcash."
+                },
+                {
+                  "id": "FSLR-Q32026-RETAINED",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449426000212/fslr-20260930.htm",
+                  "accession": "0001274494-26-000212",
+                  "publicationDate": "2026-10-29",
+                  "reportPeriod": "Quarter and nine months ended2026-09-30",
+                  "legalIdentity": "First Solar, Inc.; CIK0001274494; Alabama manufacturing-facility incentives distinct from TamilNadu India subsidy",
+                  "locator": "Note5GovernmentGrants; GovernmentAssistanceOperatingIncome typed StatementOfIncomeLocationBalanceAxis; AwardAmount instantc-6 plus explicit recognition-duration note; allgrantreceivables/CFO",
+                  "page": "13–14(Note5),6(CFO)",
+                  "unit": "Income/receivables/CFOUSDthousands; Alabama6.1mUSDnarrative/nativeawardscale6",
+                  "sha256": "6f110136da3f11dab39578f4e7426481e3319d3f0ed00ccdd34eee57580a679d",
+                  "newRequest": false,
+                  "reliability": "Retained unaudited primary.6.1m recognized BOTHquarter/YTD as PP&Ecost-basis reduction, NOT disclosed cash. AwardAmountnativeinstant does NOT itself establish recognition duration. Note5India paragraph gives installments through2031, no actualJulyreceipt amount/day/classification."
+                },
+                {
+                  "id": "FSLR-H12026-RETAINED",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449426000170/fslr-20260630.htm",
+                  "accession": "0001274494-26-000170",
+                  "publicationDate": "2026-07-30",
+                  "reportPeriod": "Six months ended2026-06-30; subsequentIndiafirstreceiptJuly2026",
+                  "legalIdentity": "First Solar, Inc.",
+                  "locator": "Note5three reported income-grant expense rows; explicitnoassetgrantrecognitionH1; priorfrozen sourcefacts carry212.8mknownpriorcreditcash and monthJulyIndiareceipt",
+                  "page": "6,13–14",
+                  "unit": "USDthousands; receiptmonth, not amount",
+                  "sha256": "2e0c29dd6c8a748b6cf42123a1d41b35f7dc4d955c2dd14e2c868b05f11b4618",
+                  "newRequest": false,
+                  "reliability": "Preserved priorinput; no repeat Q1note, no retraction of Julyreceipt because Q3doesnotrepeatit. H1startupnotreadas missing-tagzero; derived separately from actualQ3/YTDstartup."
+                }
+              ],
+              "calculation": {
+                "nee": {
+                  "neeConsolidatedAffiliateEarningsDistributions2025Usd": 446000000,
+                  "neeConsolidatedServiceCostsIncurred2025Usd": 1387000000,
+                  "neeTotalNoncontrollingXplrOwnershipPercent": 52.5,
+                  "neeEquityOpCoCommonLpPercent": 51.2,
+                  "xplrOpCoCommonLpPercent": 48.8,
+                  "consolidatedCashReconciliationResidualUsd": 0,
+                  "neeConsolidatedCashChangeUsd": 1604000000,
+                  "parentCscsNetFinancingCashUsd": -131000000,
+                  "counterpartyCscsNetInvestingCashUsd": 116000000,
+                  "opposingCscsReportedLegResidualUsd": -15000000,
+                  "cscsReportedLegsCertifiedSameGrossSettlement": false,
+                  "dueFromXplrClosingBookUsd": 681000000,
+                  "dueFromXplrOpeningBookUsd": 287000000,
+                  "dueFromXplrBookIncreaseUsd": 394000000,
+                  "serviceCostsLessBookIncreaseIsCertifiedCash": false,
+                  "actualGrossServiceReimbursementCashUsd": null,
+                  "actualCscsPrincipalOrInterestGrossSettlementsUsd": null,
+                  "actualParentStandaloneXplrCashUsd": null,
+                  "xplr931m219mAreNeeConsolidatedFinancingPayments": false,
+                  "counterpartyDistributions61mAreCertifiedSubsetOfNee446m": false,
+                  "counterparty47mEquityMovementIsCertifiedCash": false,
+                  "originalNeeCommonFcfeCashAddedUsd": 0,
+                  "sourceCounterparty": {
+                    "renewablesIiBuyoutUsd": 931000000,
+                    "pipelinesBuyoutUsd": 219000000,
+                    "categoryDistributionsUsd": 61000000,
+                    "contributionEquityMovementUsd": 47000000
+                  },
+                  "cashFormula": "NEEconsolidatedCFO12485−investing23865+financing12979+currencytranslation5=1604m; affiliateearningsdistributions446m already inCFO. CSCS−131+counterparty116=−15m unexplained; no forcedclosure.",
+                  "legalBoundary": "XPLR is an unconsolidated equitymethod investment for NEE. NEEEquityLP's51.2%commonOpCoLP is NCI in XPLR; XPLR48.8%LP controls OpCo via GP. NEEtotal52.5%XPLRnoncontrolling economics is a different denominator. None is a cashallocation coefficient. Ex21establishes NEER100%ownership underNEECH, not the complete unlistedNEEEquityLPchain. NEEstandalone cash/bank flows not disclosed here.",
+                  "serviceFundingBoundary": "1387mincurred costs, primarilywindrepowering, havebeen/willbereimbursed. Nativeconcept ReimbursementsInterestAndFeeIncomeOtherLoans is not an observedcashlabel; actual source narrative sayscostsincurred. Current498+noncurrent183=681m duefromXPLR versus159+128=287m prior.394mbookincrease does NOT imply993mcollection fromcostminusbook or establish receivable-origin/settlement mapping.",
+                  "parentSweepLegScope": "The−131m NEEconsolidatedcashstatementrow is cashsweptfrom/repaymentstorelatedparties–net, a broader relatedpartylabel, NOT a separately certified XPLR-only banksettlement. Codefield parentCscsNetFinancingCashUsd denotes this candidate comparison leg; its exactXPLRsubset is unverified.15m is only difference of reportedlegs, not certified bilateralshortfall or missingfee/FX.",
+                  "policyActivityBoundary": "Windrepowering services create a source-supported operating/funding channel; not a projectIRR or policycreditreceipt.446mearningsdistributions are mixed equitymethodaffiliates including gaspipeline/other interests, not all climatecash. No HQproxy, MWcashweights or total-solar-revenue eligibility."
+                },
+                "cscsHeldCash": {
+                  "openingHeldSweepUsd": 127000000,
+                  "closingHeldSweepUsd": 11000000,
+                  "reportedNetHeldBalanceReleaseUsd": 116000000,
+                  "counterpartyNetCscsInvestingCashUsd": 116000000,
+                  "heldBalanceVersusCounterpartyNetCashResidualUsd": 0,
+                  "opposingNeeConsolidatedLegResidualUsd": -15000000,
+                  "creditSupportFeeExpense2025Usd": 10000000,
+                  "priorChargeTrueupExpense2025Usd": -11000000,
+                  "netReportedCreditSupportFeeExpense2025Usd": -1000000,
+                  "exceptionalPipelineSweepInterestIncome2024Usd": 36000000,
+                  "exceptionalInterestCashReceipt2024Usd": null,
+                  "actualCreditSupportFeeCash2025Usd": null,
+                  "actualGrossSweepWithdrawalsAndReturnsUsd": null,
+                  "neeCommonFcfeCashAddedUsd": 0,
+                  "boundary": "Separate NEWnee-cscs-held-cash-1, no retuning maincrosswalk. Actual127mto11mheldbalance decline equals XPLR116mNETinvesting cash at reportedmillionprecision; NOT NEEcommonFCFE or grosssettlement series. OppositeNEE−131mstilldiffers15m.10mCSCSO&Mexpense plus−11mpriorchargetrueup gives−1mnetexpensecredit, not cashrefund/zeroCSCSfee.36m2024Texas-pipeline sweepinterest recognized underother-agreedexception, cashreceipt notestablished; nevererase it usingdefault2025contract."
+                },
+                "fslr": {
+                  "alabamaQuarterAssetGrantRecognitionUsd": 6100000,
+                  "alabamaNineMonthAssetGrantRecognitionUsd": 6100000,
+                  "alabamaDerivedFirstHalfAssetGrantRecognitionUsd": 0,
+                  "alabamaAssetGrantObservedCashUsd": null,
+                  "allProgrammeQuarterIncomeBenefitsUsd": 638468000,
+                  "allProgrammeNineMonthIncomeBenefitsUsd": 1501363000,
+                  "allProgrammeFirstHalfBenefitsWithDerivedStartupUsd": 862895000,
+                  "derivedFirstHalfStartupBenefitsUsd": 0,
+                  "firstHalfStartupIsDerivedNotMissingFactZero": true,
+                  "expenseAxisReconciliationResidualsUsd": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "allExpenseAxisReconciliationResidualUsd": 0,
+                  "nineMonthRecognitionCfoLessOnlyKnownPriorCreditCashResidualUsd": 2777000,
+                  "quarterRecognitionCfoUnallocatedResidualUsd": 1997000,
+                  "nineMonthBookCfoResidualUsd": -36097000,
+                  "quarterBookCfoResidualUsd": -24920000,
+                  "nineMonthNoncashProceedsToBeReceivedSupplementUsd": 111681000,
+                  "indiaFirstReceiptMonthPreserved": "2026-07",
+                  "indiaJulyCashAmountUsd": null,
+                  "original32CashRowsChanged": false,
+                  "amountAddedToOriginalCashRowsUsd": 0,
+                  "actualEligibleUsComponentWatts": null,
+                  "currentCompany45xEligibilityCertified": false,
+                  "expenseAxisFormula": "COS1500486−862513=637973;SG&A41−34=7;R&D629−348=281;startup207YTD−207quarter=0H1derived; allUSDthousands.1501363−862895−638468=0. No missingstartupfact convertedtozero.",
+                  "recognitionVersusCash": "Alabama6.1m is quarter/YTDasset-basis recognition. Native GovernmentAssistanceAwardAmount is an instant, not a cashreceipt/duration. H1assetrecognition0 derives from YTDminusquarter and matches earlierexplicitnoamountsrecognized. IndiaJulyactualmonth retained; Q3Note5doesnotdisclose paymentamount, exactday or cashstatementline.",
+                  "residualBoundary": "Quarterincome638.468m plusquartergrantCFO−636.471m=1.997munallocated; YTD1501.363−1285.786−212.8knownpriorcreditcash=2.777munallocated. Not India/Alabama/othergrant cash. YTDbook/CFO−36.097m, quarter−24.920m remain unallocated. Do not infer24.915mIndiareceipt from changein noncashsupplements111.681m−136.596m; duration supplements/carryingbasis/FX/recognition are not exactcash.",
+                  "preservation": "FY2025CFOdiagnostic613.405m and14.435m residual, H1.780m residual, FY2024original8.721m/19.676m gaps,32rows/two outcomes and all negative studies unchanged. No actual eligibleUScomponentwatts/PFE/BOMinputs identified in this Note5;17c/7c expectations are not observedeligiblevolume."
+                }
+              },
+              "fieldSpecificFindings": [
+                {
+                  "field": "NEEversusXPLRconsolidation",
+                  "status": "new-source-closed",
+                  "result": "NEE52.5%noncontrolling XPLR equitymethod; XPLRGPconsolidatesOpCo with48.8%LP versusNEEEquity51.2%NCI. Economicmajority is not control."
+                },
+                {
+                  "field": "NEEEquitylegalidentity",
+                  "status": "primary-counterparty-closed-parent-list-abbreviated",
+                  "result": "NextEraEnergyEquityPartnersLP,Delaware indirectwhollyownedNEEsubsidiary fromactualXPLRorganizationnote. NEEEx21listsprincipalNEER/NEECHbutnotindividualEquityLP; do not invent directNEER-to-LPchain."
+                },
+                {
+                  "field": "931mRenewablesII/219mPipelinesfunding",
+                  "status": "counterparty-only",
+                  "result": "ActualXPLR1150mClassBfinancingbuyout, not NEEconsolidatedfinancing payments; noNNEmoneyinsertion or percentage-timescash."
+                },
+                {
+                  "field": "61mdistributions/47mequitymovement",
+                  "status": "same-period-category-not-commoncash-mapped",
+                  "result": "No exactdirectbank/legalprojectsplit tyingcategory61mtoNEE446mCFOearningsdistributions.47mnotcertifiedcash; preserveoriginal422m/58m and all sourceclaims."
+                },
+                {
+                  "field": "ActualNEEaffiliatecash",
+                  "status": "new-consolidated-source-closed",
+                  "result": "446mreportedearningsdistributions; alreadyin12485mNEECFO. Not parent-standalone cash and not certified all-climatecash."
+                },
+                {
+                  "field": "GrossCSCSbank/investorflows",
+                  "status": "new-retained-note-held-balance-reconciliation-gross-series-unresolved",
+                  "result": "ActualannualCSCSnoteheldcash127mto11mreconcilesXPLR116mNETinvestingrelease; NEE−131mfinancing stilldiffers15m. Actualfeeexpense10m/−11mpriorchargetrueup sourced, not paidcash.36mexceptional2024interest recognizednotcertifiedreceivedcash. No daily/grosssettlement or actualfeecashseries; contractalone was not evidenceofgloballymissingheldbalances."
+                },
+                {
+                  "field": "NEERrepoweringservicefunding",
+                  "status": "incurred-cost-book-exposure-closed-cash-unresolved",
+                  "result": "1387mincurred;duefromXPLR681mvs287m, not observedcashcollection. No costminusreceivable or projectIRR proxy."
+                },
+                {
+                  "field": "FSLRASC832Alabama",
+                  "status": "recognition-closed-cash-undisclosed-here",
+                  "result": "6.1mquarterandYTDPP&Ecostbasisreduction; awardnativeinstant periodbound byNote5. Actualreceiptamount/timingnotdisclosedbythatnote."
+                },
+                {
+                  "field": "FSLRIndiaJulyamount",
+                  "status": "not-disclosed-in-inspected-Q3Note5",
+                  "result": "Q3saysinstallmentsthrough2031, noIndiareceiptamount/day/cashline. PreserveearlierJulyactualmonth, do not infercashfromquarterbook/supplementdifferences."
+                },
+                {
+                  "field": "FSLRprogrammeexpense/receivablecashrollforward",
+                  "status": "expense-axes-reconciled-cash-not-forced",
+                  "result": "H1+Q3=YTDexpensebenefitsatpresentedprecision. Recognition/CFO2.777mYTD/1.997mQ3andbook/CFO−36.097m/−24.920m remain unexplained, not mappedtoold14.435m/.780m orFY2024gaps."
+                },
+                {
+                  "field": "Actualeligibleoperatingvolume",
+                  "status": "not-identified-in-inspected-new-inputs",
+                  "result": "NEERwindrepoweringchannelnowexplicit, not a commissioningreturn. FSLR17c/7cchannels expectationsnotactualeligibleUSsales/componentwatts; no currentlaw/PFEcertification or arbitraryreverse/root."
+                }
+              ],
+              "originalClauseProposals": [
+                {
+                  "clause": "Entitycontrol/legalgrosscashfunding",
+                  "proposal": "Use equitymethod/GPcontrol matrix before any commoncash assembly. Current NEEconsolidated446m is already inCFO; counterparty931/219/61/47 and1387mcosts/394mbookincrease are not extra commoncash.",
+                  "originalCompletion": false
+                },
+                {
+                  "clause": "Climateactivity/geography/policy",
+                  "proposal": "Keep windrepoweringincurred-servicefunding and Alabamaasset-incentive recognition separate from generalaffiliatecash, Indiareceipt and45Xcomponent expectations. No all-solar-revenue/climatecash bucket.",
+                  "originalCompletion": false
+                },
+                {
+                  "clause": "Programmeperiod/recognition/receivable/discount/CFOclass",
+                  "proposal": "Source-definedquarter/YTDtypedexpenseaxes reconcile; preserveoldcashrows and existingnetcohortdiscount/cashcalendar. No grantbook/CFOgap or noncashsupplement balancing into observedIndiareceipts.",
+                  "originalCompletion": false
+                },
+                {
+                  "clause": "Originalterminal/funding/growth",
+                  "proposal": "No newgrowth/return assumption, no originalcase rerun. SameFY2024currency/CFbasis/stub/fiveyear/tenyearfade/2.5–4%terminal and actualnegativebaselinegrowth refusal remain.",
+                  "originalCompletion": false
+                }
+              ],
+              "freeze": {
+                "freezeSha256": "efc45791cd1167ad509244f7836d69de7436710b7ae96941b72056d1d1479e12",
+                "reportSha256": "88075ddf9cac31651a71905897f2f0ac146bf9beead6cdfa73db5bd100487977",
+                "sourceReceiptsSha256": "426c4286403d3da8ddda39b26f5607855a2b4964811d168cdf6d5c6d00e208a6",
+                "newFutureEconomicAssumptions": 0,
+                "sourceInputsAndNoInsertionConditionsFrozenBeforeCalculation": true,
+                "newPrimaryRequests": 3,
+                "maximumPrimaryRequests": 4,
+                "sourceBookSealed": true,
+                "repeated126719InventoriesOrReportingWorkbooks": 0,
+                "financialGridOrOldKernelExecutions": 0,
+                "qualifiedOriginalIssuers": 0,
+                "requiredOriginalIssuers": 3,
+                "ownerReview": "pending-not-requested"
+              },
+              "heldCashFreeze": {
+                "version": "nee-cscs-held-cash-1",
+                "freezeSha256": "7856aecae38e4bfe9ff3164eaba18e7fba39894fbfe8584f7ae8612d2d63ff91",
+                "reportSha256": "406e2c1ea96ca4dc0de58bce223ba1d5bf60e80c0aa4bafd8e5c27a12cba70a1",
+                "newPrimaryRequests": 0,
+                "sourceAndNoCashInferenceConditionsFrozenBeforeCalculation": true,
+                "mainCrosswalkFreezeUnchanged": true,
+                "newFutureEconomicAssumptions": 0,
+                "oldKernelExecutions": 0,
+                "qualifiedOriginalIssuers": 0
+              },
+              "safePublicFieldAllowlist": [
+                "NEE.parentProgrammeAffiliateCash -> calculation.nee.neeConsolidatedAffiliateEarningsDistributions2025Usd",
+                "NEE.parentProgrammeServiceCosts -> calculation.nee.neeConsolidatedServiceCostsIncurred2025Usd",
+                "NEE.parentProgrammeHeldSweepRelease -> calculation.cscsHeldCash.reportedNetHeldBalanceReleaseUsd; XPLRnetleg, not NEEcommonFCFE",
+                "FSLR.parentProgrammeAlabamaRecognition -> calculation.fslr.alabamaQuarterAssetGrantRecognitionUsd"
+              ],
+              "verification": {
+                "mainCalculationCommand": "npx tsx script/run-nee-parent-fslr-programme.ts --private-primary",
+                "heldCashCalculationCommand": "npx tsx script/run-nee-cscs-held-cash.ts --private-primary",
+                "separateNewFrozenCalculationExecutions": 2,
+                "mainInitialTestsAndCalculationLogSha256": "8d32fba54aea415b26c7754977c9b3734b730d065126267dff6a5214b5508d6e",
+                "heldCashCalculationLogSha256": "70e50a1128db48ba55da9b969e695bb39dc6e21293f8292893c59f4b650abf91",
+                "captureCommandPrefix": "npx tsx script/capture-nee-parent-crosswalk.ts --private-primary --one",
+                "captureExactArgvManifest": "Sealed private receipts.json preserves each exact name/url/field argv; corresponding3officialpublicURLs/documenthashes are in sourceRecords.",
+                "captureActualLogicalRequests": 3,
+                "captureMaximumLogicalRequests": 4,
+                "captureStatus200Count": 3,
+                "captureDuplicateUrls": 0,
+                "capturePaidCalls": 0,
+                "captureLogSha256": "429c0c534f98b73cd07139ed5827538094769ae642c7befd4c2b8e68f5c6793c",
+                "publicCommand": "npx tsx --test script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/company-conditional-api.test.ts",
+                "publicTestsPassed": 16,
+                "publicTestsFailed": 0,
+                "publicLogSha256": "82b774ca0d2619301d41c895243e290fc3d19ee2e40f6fe7f6c4d87ec1d7cb85",
+                "mandatoryPrivateCommand": "npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary",
+                "mandatoryPrivatePassed": true,
+                "privateIndependentIdentities": 16,
+                "privatePublicScalarBindings": 4,
+                "privatePriorProtectedArtifactHashes": 340,
+                "privateOriginalAnnualRowsBytePreserved": 32,
+                "private613405m14435m780kPreserved": true,
+                "privateLogSha256": "bb9220f909d33b050b319a90e0024e108663b6d48c1ea7cfa3abcc384a9447ef",
+                "privateReceiptSha256": "9ee95136e2a3f41c27d512367929efcea37249fc37ea845857d462611aaf89dc",
+                "strictOwnFiles": "server/calculation/neeParentEntityCrosswalk.ts server/calculation/fslrAsc832ProgrammeQuarter.ts server/calculation/neeCscsHeldCashBridge.ts script/capture-nee-parent-crosswalk.ts script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/run-nee-parent-fslr-programme.ts script/run-nee-cscs-held-cash.ts script/validate-nee-parent-fslr-programme-private.ts shared/companyConditionalData.ts script/company-conditional-api.test.ts",
+                "strictEs2022ExactCommand": "npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/neeParentEntityCrosswalk.ts server/calculation/fslrAsc832ProgrammeQuarter.ts server/calculation/neeCscsHeldCashBridge.ts script/capture-nee-parent-crosswalk.ts script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/run-nee-parent-fslr-programme.ts script/run-nee-cscs-held-cash.ts script/validate-nee-parent-fslr-programme-private.ts shared/companyConditionalData.ts script/company-conditional-api.test.ts",
+                "strictEs5ExactCommand": "npx tsc --noEmit --strict --target ES5 --lib ES2022,DOM --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/neeParentEntityCrosswalk.ts server/calculation/fslrAsc832ProgrammeQuarter.ts server/calculation/neeCscsHeldCashBridge.ts script/capture-nee-parent-crosswalk.ts script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/run-nee-parent-fslr-programme.ts script/run-nee-cscs-held-cash.ts script/validate-nee-parent-fslr-programme-private.ts shared/companyConditionalData.ts script/company-conditional-api.test.ts",
+                "strictOwnFileCount": 11,
+                "strictEs2022Exit": 0,
+                "strictEs5Exit": 0,
+                "strictCompilerLogSha256BothEmpty": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "actualGetApiJsonAndExcelJsBinaryReadbackPassed": true,
+                "publicFactCounts": {
+                  "NEE": 17,
+                  "FSLR": 33,
+                  "XOM": 9
+                },
+                "liveUniqueSemanticDefinitions": 92,
+                "allIssuerExportLeaves": 540,
+                "formalSuccessApiFieldsUnchanged": 30,
+                "typedApiFieldsIncludingErrorsUnchanged": 63,
+                "protectedLegacyExportLeaves": 308,
+                "protectedLegacyNonstringValues": 44,
+                "protectedLegacyProjectionSha256": "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
+                "publicTestsDependOnPrivateFiles": false,
+                "censusCanonicalLedgersOrFairBundleEdited": false,
+                "appWorkflowOrBrowserStarted": false,
+                "commitDeployPublishCallbackApprovalPurchaseOrDdlCalls": 0,
+                "status": "passed-code-only-and-separate-mandatory-private-validation"
+              },
+              "readyNextSteps": {
+                "NEE": "ActualdirectNEEEquity/project cashdistribution split and grosssettlement/creditfeeCASH needed for61-to446mapping; no directNNEquitystandalone bankflow table identified. Actualheldsweep127mto11m nowclosedagainst116mXPLRnetcash, while broaderNEErelatedpartysweep−131m has no exactXPLR-onlysubset.10mfeeexpense/−11mtrueup and36m2024interestincome are NOT actualcash. Serviceagreementreimbursementcash/receivable-origin mapping remains missing. Broaderlaterfilings/amendments unattemptedhere, not globallyundisclosed.",
+                "FSLR": "Programme-specific45Xgross/netreceivable/discount/collection/currentlawinputs and explicitIndiaJulyamount/cashflowline; do not reread samequarter-note toinventamount. Source-qualifiedfuturecollection/reinvestment assumptions may be versioned when defensible, not by forcingunallocatedcashgaps or positivegrowth.",
+                "technicalSourceComponentComplete": true,
+                "technicalOriginalIssuerCompletion": false,
+                "qualifiedOriginalIssuers": 0
+              }
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -123249,7 +124398,7 @@
               "namedFunctions": []
             }
           ],
-          "behaviour_delivered_this_run": "Actual2019/2020incorporatedcontracts and3accessioninventories126/7/19files; inspected86/1sheetworkbooks. ExhibitB IRRmodel notlocatedwithinexaminedscope. FY2025 source reports ALLremainingexternalRenewablesIIClassB acquiredApril2025 for931m; old30%holding remainscounterfactual.931+219=1150buyoutcash; financing−674;739+630−674=695cashincrease,threezeroresiduals.",
+          "behaviour_delivered_this_run": "NEEequitymethodXPLR52.5%economics distinct51.2%OpCo ownership/control.446mearningsdistributions alreadyCFO;NEE1604mcashbridge incl5mFX. Heldsweeps127→11m explain116mXPLRnetrelease,notparent−131m;15mdifference unresolved.10mCSCSexpense−11mtrueup=−1mexpensecredit,notcashrefund.",
           "inputs_versions_assumptions": [
             "Distinct NEW FY2025 UNAUDITED issuer release/2026-guidance conditional experiment, not the selected FY2024 10-K case; frozen ten schedules/50 annual rows."
           ],
@@ -123366,6 +124515,26 @@
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -123381,7 +124550,7 @@
           "remaining_gaps": [
             "0/3 original fully qualified end-to-end company cases."
           ],
-          "next_action": "Retrieve actualLLCAvailableCash/reserves/datedflows andNEEFY2025parent/legalentitycrosswalk to61m distributions/931m acquisition; noFY2024cash insertion.",
+          "next_action": "SourceNEEEquity/project61mdistribution split,parent−131mXPLR-only/grosssettlement andservice reimbursementcash origins;0/3cases.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -124419,6 +125588,379 @@
               },
               "log": "generated-artifacts/workplan-completion/20261111T155335417702Z.log",
               "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          },
+          "reference_parent_increment": {
+            "file": "docs/nee-parent-fslr-programme-evidence.json",
+            "sha256": "452d12b3bcc9c35037949cd074bdb4138b380de626349afe843910ddd75d2d9e",
+            "evidence": {
+              "version": "nee-parent-fslr-programme-1",
+              "scope": "New NEE FY2025 consolidated/legalentity/CSCS crosswalk and retained FSLR Q32026 ASC832 expense-axis reconciliation. Not a common-FCFE insertion, valuation rerun, source-exhaustion claim or qualification.",
+              "informationContext": "Revised history. NEE FY2025annual published2026-02-13 and retained XPLR FY2025annual2026-02-17 were NOT known at retained NEE2025-01-31 reference. FSLR Q32026source published2026-10-29 was NOT known at retained2025-02-21 reference. Original FY2024basis, prices/shares/currency/common-FCFE, stub/five-yearsteps/ten-yearfade/2.5–4%terminal,32cashrows and all frozen negative cases unchanged.",
+              "rights": "Bounded official public SEC issuer filings/contracts; minimal source labels and public derived aggregates. Raw primary/private/provider bytes stay git-ignored and are not exported. SEC hosting does not make issuer-authored contract copyright government-owned.",
+              "sourceRecords": [
+                {
+                  "id": "NEE-FY2025-NEW",
+                  "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-20251231.htm",
+                  "accession": "0000753308-26-000015",
+                  "publicationDate": "2026-02-13",
+                  "reportPeriod": "Year ended2025-12-31",
+                  "legalIdentity": "NextEra Energy, Inc., CIK0000753308; dualregistrant filing also contains FPL, which is NOT the selected entity",
+                  "locator": "NEE consolidated cashflowc-1; Note8equitymethod investments/XPLR servicecost and CSCSreceivables; MD&Aownership",
+                  "page": "44(ownership),67(CFO),98–99(Note8)",
+                  "unit": "USDmillions; ownership percent",
+                  "sha256": "446de5796dab3e9a98f46f6ba0fe79828aa379e4a4068c4c5b30a9702bbba0f4",
+                  "reliability": "New audited annual. Consolidated NEE, not parent-standalone account.446m distributions already included in CFO. XPLR accounted as equitymethod despite52.5%noncontrolling economics."
+                },
+                {
+                  "id": "NEE-FY2025-EX21-NEW",
+                  "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-q42025xex21.htm",
+                  "accession": "0000753308-26-000015",
+                  "exhibit": "21",
+                  "publicationDate": "2026-02-13",
+                  "reportPeriod": "Principal subsidiaries as of2025-12-31",
+                  "legalIdentity": "NEE; NEER LLC is a100%-owned subsidiary of NEECapitalHoldingsInc",
+                  "locator": "Principal-subsidiaries entries2/3 and footnote(b)",
+                  "page": "Exhibit21",
+                  "unit": "legalentity/ownership, not cash",
+                  "sha256": "bc588c590a929f55c4b9b794f3943f3cb4859340136330642bd3e501c8fa853b",
+                  "reliability": "Actual declared attachment. Principal list abbreviates subsidiary chains; NEEEquityLP is NOT individually listed. Its indirectownership/Delaware identity is separately sourced from XPLR organization note, not invented from omission."
+                },
+                {
+                  "id": "NEER-XPLR-CSCS-EX106-NEW",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314525000006/xplr-q42024xex106.htm",
+                  "accession": "0001603145-25-000006",
+                  "exhibit": "10.6",
+                  "publicationDate": "2025-02-21",
+                  "documentDate": "2025-02-17",
+                  "reportPeriod": "SecondAmendedRestatedCashSweepCreditSupportAgreement",
+                  "legalIdentity": "XPLR Infrastructure Operating Partners, LP and NextEra Energy Resources, LLC",
+                  "locator": "Sections3.1.1/3.1.2cashborrowing/repayment,3.2earningsandinterest; ReservedCash and third-partydebt limitations; Article2credit support",
+                  "page": "Article3",
+                  "unit": "contract cash/interest entitlement, NOT observed balance/earnings/fee series",
+                  "sha256": "74d6249720a2fdf5e5e40cf03bb54f30961d22483eec2421044d76defaab0717",
+                  "reliability": "Actual declared executed contract, not another accession inventory or reporting workbook. NEER may borrow eligible UScash subject to debt constraints/ReservedCashexclusion, must repay when distributions/demands require; XPLR has no interest/fee entitlement on CashSweepWithdrawals under3.2. Other credit-support fees are not assumed zero. No dailybank/settlement series disclosed by these terms."
+                },
+                {
+                  "id": "XPLR-FY2025-RETAINED",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000007/xplr-20251231.htm",
+                  "accession": "0001603145-26-000007",
+                  "publicationDate": "2026-02-17",
+                  "reportPeriod": "FY2025",
+                  "legalIdentity": "XPLR Infrastructure, LP, CIK0001603145; NEEEquity=NextEraEnergyEquityPartnersLP; Delaware indirectwhollyownedNEEsubsidiary",
+                  "locator": "Organizationnote:48.8%/51.2%OpCocommonLP and XPLRGPcontrol; CFO48netCSCS116m; Note2NEEcategory61m/47mequity; Note14remainingunitbuyouts; relatedpartyCSCSnote127mto11mheldcash,10mfeeexpense/−11mtrueup and2024exceptioninterest",
+                  "page": "4,48,50–52,71–73",
+                  "unit": "USDmillions and common-LPpercent",
+                  "sha256": "e3c5843bd5e3c02c03bfc2eea2e90a407f284c7a40f8c77639ac52ea69618d20",
+                  "newRequest": false,
+                  "reliability": "Already authenticated. XPLR consolidates OpCo via GPcontrol; NEEEquity's majoritycommonLP remains NCI in XPLR.52.5%NEEtotalXPLReconomics and51.2%OpCoLP have different denominators. NewlyinspectedCSCSannualnote has actualheldbalances, unlikecontractalone; fees/trueup and exceptional2024interest are recognizedP&L, not certifiedcash."
+                },
+                {
+                  "id": "FSLR-Q32026-RETAINED",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449426000212/fslr-20260930.htm",
+                  "accession": "0001274494-26-000212",
+                  "publicationDate": "2026-10-29",
+                  "reportPeriod": "Quarter and nine months ended2026-09-30",
+                  "legalIdentity": "First Solar, Inc.; CIK0001274494; Alabama manufacturing-facility incentives distinct from TamilNadu India subsidy",
+                  "locator": "Note5GovernmentGrants; GovernmentAssistanceOperatingIncome typed StatementOfIncomeLocationBalanceAxis; AwardAmount instantc-6 plus explicit recognition-duration note; allgrantreceivables/CFO",
+                  "page": "13–14(Note5),6(CFO)",
+                  "unit": "Income/receivables/CFOUSDthousands; Alabama6.1mUSDnarrative/nativeawardscale6",
+                  "sha256": "6f110136da3f11dab39578f4e7426481e3319d3f0ed00ccdd34eee57580a679d",
+                  "newRequest": false,
+                  "reliability": "Retained unaudited primary.6.1m recognized BOTHquarter/YTD as PP&Ecost-basis reduction, NOT disclosed cash. AwardAmountnativeinstant does NOT itself establish recognition duration. Note5India paragraph gives installments through2031, no actualJulyreceipt amount/day/classification."
+                },
+                {
+                  "id": "FSLR-H12026-RETAINED",
+                  "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449426000170/fslr-20260630.htm",
+                  "accession": "0001274494-26-000170",
+                  "publicationDate": "2026-07-30",
+                  "reportPeriod": "Six months ended2026-06-30; subsequentIndiafirstreceiptJuly2026",
+                  "legalIdentity": "First Solar, Inc.",
+                  "locator": "Note5three reported income-grant expense rows; explicitnoassetgrantrecognitionH1; priorfrozen sourcefacts carry212.8mknownpriorcreditcash and monthJulyIndiareceipt",
+                  "page": "6,13–14",
+                  "unit": "USDthousands; receiptmonth, not amount",
+                  "sha256": "2e0c29dd6c8a748b6cf42123a1d41b35f7dc4d955c2dd14e2c868b05f11b4618",
+                  "newRequest": false,
+                  "reliability": "Preserved priorinput; no repeat Q1note, no retraction of Julyreceipt because Q3doesnotrepeatit. H1startupnotreadas missing-tagzero; derived separately from actualQ3/YTDstartup."
+                }
+              ],
+              "calculation": {
+                "nee": {
+                  "neeConsolidatedAffiliateEarningsDistributions2025Usd": 446000000,
+                  "neeConsolidatedServiceCostsIncurred2025Usd": 1387000000,
+                  "neeTotalNoncontrollingXplrOwnershipPercent": 52.5,
+                  "neeEquityOpCoCommonLpPercent": 51.2,
+                  "xplrOpCoCommonLpPercent": 48.8,
+                  "consolidatedCashReconciliationResidualUsd": 0,
+                  "neeConsolidatedCashChangeUsd": 1604000000,
+                  "parentCscsNetFinancingCashUsd": -131000000,
+                  "counterpartyCscsNetInvestingCashUsd": 116000000,
+                  "opposingCscsReportedLegResidualUsd": -15000000,
+                  "cscsReportedLegsCertifiedSameGrossSettlement": false,
+                  "dueFromXplrClosingBookUsd": 681000000,
+                  "dueFromXplrOpeningBookUsd": 287000000,
+                  "dueFromXplrBookIncreaseUsd": 394000000,
+                  "serviceCostsLessBookIncreaseIsCertifiedCash": false,
+                  "actualGrossServiceReimbursementCashUsd": null,
+                  "actualCscsPrincipalOrInterestGrossSettlementsUsd": null,
+                  "actualParentStandaloneXplrCashUsd": null,
+                  "xplr931m219mAreNeeConsolidatedFinancingPayments": false,
+                  "counterpartyDistributions61mAreCertifiedSubsetOfNee446m": false,
+                  "counterparty47mEquityMovementIsCertifiedCash": false,
+                  "originalNeeCommonFcfeCashAddedUsd": 0,
+                  "sourceCounterparty": {
+                    "renewablesIiBuyoutUsd": 931000000,
+                    "pipelinesBuyoutUsd": 219000000,
+                    "categoryDistributionsUsd": 61000000,
+                    "contributionEquityMovementUsd": 47000000
+                  },
+                  "cashFormula": "NEEconsolidatedCFO12485−investing23865+financing12979+currencytranslation5=1604m; affiliateearningsdistributions446m already inCFO. CSCS−131+counterparty116=−15m unexplained; no forcedclosure.",
+                  "legalBoundary": "XPLR is an unconsolidated equitymethod investment for NEE. NEEEquityLP's51.2%commonOpCoLP is NCI in XPLR; XPLR48.8%LP controls OpCo via GP. NEEtotal52.5%XPLRnoncontrolling economics is a different denominator. None is a cashallocation coefficient. Ex21establishes NEER100%ownership underNEECH, not the complete unlistedNEEEquityLPchain. NEEstandalone cash/bank flows not disclosed here.",
+                  "serviceFundingBoundary": "1387mincurred costs, primarilywindrepowering, havebeen/willbereimbursed. Nativeconcept ReimbursementsInterestAndFeeIncomeOtherLoans is not an observedcashlabel; actual source narrative sayscostsincurred. Current498+noncurrent183=681m duefromXPLR versus159+128=287m prior.394mbookincrease does NOT imply993mcollection fromcostminusbook or establish receivable-origin/settlement mapping.",
+                  "parentSweepLegScope": "The−131m NEEconsolidatedcashstatementrow is cashsweptfrom/repaymentstorelatedparties–net, a broader relatedpartylabel, NOT a separately certified XPLR-only banksettlement. Codefield parentCscsNetFinancingCashUsd denotes this candidate comparison leg; its exactXPLRsubset is unverified.15m is only difference of reportedlegs, not certified bilateralshortfall or missingfee/FX.",
+                  "policyActivityBoundary": "Windrepowering services create a source-supported operating/funding channel; not a projectIRR or policycreditreceipt.446mearningsdistributions are mixed equitymethodaffiliates including gaspipeline/other interests, not all climatecash. No HQproxy, MWcashweights or total-solar-revenue eligibility."
+                },
+                "cscsHeldCash": {
+                  "openingHeldSweepUsd": 127000000,
+                  "closingHeldSweepUsd": 11000000,
+                  "reportedNetHeldBalanceReleaseUsd": 116000000,
+                  "counterpartyNetCscsInvestingCashUsd": 116000000,
+                  "heldBalanceVersusCounterpartyNetCashResidualUsd": 0,
+                  "opposingNeeConsolidatedLegResidualUsd": -15000000,
+                  "creditSupportFeeExpense2025Usd": 10000000,
+                  "priorChargeTrueupExpense2025Usd": -11000000,
+                  "netReportedCreditSupportFeeExpense2025Usd": -1000000,
+                  "exceptionalPipelineSweepInterestIncome2024Usd": 36000000,
+                  "exceptionalInterestCashReceipt2024Usd": null,
+                  "actualCreditSupportFeeCash2025Usd": null,
+                  "actualGrossSweepWithdrawalsAndReturnsUsd": null,
+                  "neeCommonFcfeCashAddedUsd": 0,
+                  "boundary": "Separate NEWnee-cscs-held-cash-1, no retuning maincrosswalk. Actual127mto11mheldbalance decline equals XPLR116mNETinvesting cash at reportedmillionprecision; NOT NEEcommonFCFE or grosssettlement series. OppositeNEE−131mstilldiffers15m.10mCSCSO&Mexpense plus−11mpriorchargetrueup gives−1mnetexpensecredit, not cashrefund/zeroCSCSfee.36m2024Texas-pipeline sweepinterest recognized underother-agreedexception, cashreceipt notestablished; nevererase it usingdefault2025contract."
+                },
+                "fslr": {
+                  "alabamaQuarterAssetGrantRecognitionUsd": 6100000,
+                  "alabamaNineMonthAssetGrantRecognitionUsd": 6100000,
+                  "alabamaDerivedFirstHalfAssetGrantRecognitionUsd": 0,
+                  "alabamaAssetGrantObservedCashUsd": null,
+                  "allProgrammeQuarterIncomeBenefitsUsd": 638468000,
+                  "allProgrammeNineMonthIncomeBenefitsUsd": 1501363000,
+                  "allProgrammeFirstHalfBenefitsWithDerivedStartupUsd": 862895000,
+                  "derivedFirstHalfStartupBenefitsUsd": 0,
+                  "firstHalfStartupIsDerivedNotMissingFactZero": true,
+                  "expenseAxisReconciliationResidualsUsd": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "allExpenseAxisReconciliationResidualUsd": 0,
+                  "nineMonthRecognitionCfoLessOnlyKnownPriorCreditCashResidualUsd": 2777000,
+                  "quarterRecognitionCfoUnallocatedResidualUsd": 1997000,
+                  "nineMonthBookCfoResidualUsd": -36097000,
+                  "quarterBookCfoResidualUsd": -24920000,
+                  "nineMonthNoncashProceedsToBeReceivedSupplementUsd": 111681000,
+                  "indiaFirstReceiptMonthPreserved": "2026-07",
+                  "indiaJulyCashAmountUsd": null,
+                  "original32CashRowsChanged": false,
+                  "amountAddedToOriginalCashRowsUsd": 0,
+                  "actualEligibleUsComponentWatts": null,
+                  "currentCompany45xEligibilityCertified": false,
+                  "expenseAxisFormula": "COS1500486−862513=637973;SG&A41−34=7;R&D629−348=281;startup207YTD−207quarter=0H1derived; allUSDthousands.1501363−862895−638468=0. No missingstartupfact convertedtozero.",
+                  "recognitionVersusCash": "Alabama6.1m is quarter/YTDasset-basis recognition. Native GovernmentAssistanceAwardAmount is an instant, not a cashreceipt/duration. H1assetrecognition0 derives from YTDminusquarter and matches earlierexplicitnoamountsrecognized. IndiaJulyactualmonth retained; Q3Note5doesnotdisclose paymentamount, exactday or cashstatementline.",
+                  "residualBoundary": "Quarterincome638.468m plusquartergrantCFO−636.471m=1.997munallocated; YTD1501.363−1285.786−212.8knownpriorcreditcash=2.777munallocated. Not India/Alabama/othergrant cash. YTDbook/CFO−36.097m, quarter−24.920m remain unallocated. Do not infer24.915mIndiareceipt from changein noncashsupplements111.681m−136.596m; duration supplements/carryingbasis/FX/recognition are not exactcash.",
+                  "preservation": "FY2025CFOdiagnostic613.405m and14.435m residual, H1.780m residual, FY2024original8.721m/19.676m gaps,32rows/two outcomes and all negative studies unchanged. No actual eligibleUScomponentwatts/PFE/BOMinputs identified in this Note5;17c/7c expectations are not observedeligiblevolume."
+                }
+              },
+              "fieldSpecificFindings": [
+                {
+                  "field": "NEEversusXPLRconsolidation",
+                  "status": "new-source-closed",
+                  "result": "NEE52.5%noncontrolling XPLR equitymethod; XPLRGPconsolidatesOpCo with48.8%LP versusNEEEquity51.2%NCI. Economicmajority is not control."
+                },
+                {
+                  "field": "NEEEquitylegalidentity",
+                  "status": "primary-counterparty-closed-parent-list-abbreviated",
+                  "result": "NextEraEnergyEquityPartnersLP,Delaware indirectwhollyownedNEEsubsidiary fromactualXPLRorganizationnote. NEEEx21listsprincipalNEER/NEECHbutnotindividualEquityLP; do not invent directNEER-to-LPchain."
+                },
+                {
+                  "field": "931mRenewablesII/219mPipelinesfunding",
+                  "status": "counterparty-only",
+                  "result": "ActualXPLR1150mClassBfinancingbuyout, not NEEconsolidatedfinancing payments; noNNEmoneyinsertion or percentage-timescash."
+                },
+                {
+                  "field": "61mdistributions/47mequitymovement",
+                  "status": "same-period-category-not-commoncash-mapped",
+                  "result": "No exactdirectbank/legalprojectsplit tyingcategory61mtoNEE446mCFOearningsdistributions.47mnotcertifiedcash; preserveoriginal422m/58m and all sourceclaims."
+                },
+                {
+                  "field": "ActualNEEaffiliatecash",
+                  "status": "new-consolidated-source-closed",
+                  "result": "446mreportedearningsdistributions; alreadyin12485mNEECFO. Not parent-standalone cash and not certified all-climatecash."
+                },
+                {
+                  "field": "GrossCSCSbank/investorflows",
+                  "status": "new-retained-note-held-balance-reconciliation-gross-series-unresolved",
+                  "result": "ActualannualCSCSnoteheldcash127mto11mreconcilesXPLR116mNETinvestingrelease; NEE−131mfinancing stilldiffers15m. Actualfeeexpense10m/−11mpriorchargetrueup sourced, not paidcash.36mexceptional2024interest recognizednotcertifiedreceivedcash. No daily/grosssettlement or actualfeecashseries; contractalone was not evidenceofgloballymissingheldbalances."
+                },
+                {
+                  "field": "NEERrepoweringservicefunding",
+                  "status": "incurred-cost-book-exposure-closed-cash-unresolved",
+                  "result": "1387mincurred;duefromXPLR681mvs287m, not observedcashcollection. No costminusreceivable or projectIRR proxy."
+                },
+                {
+                  "field": "FSLRASC832Alabama",
+                  "status": "recognition-closed-cash-undisclosed-here",
+                  "result": "6.1mquarterandYTDPP&Ecostbasisreduction; awardnativeinstant periodbound byNote5. Actualreceiptamount/timingnotdisclosedbythatnote."
+                },
+                {
+                  "field": "FSLRIndiaJulyamount",
+                  "status": "not-disclosed-in-inspected-Q3Note5",
+                  "result": "Q3saysinstallmentsthrough2031, noIndiareceiptamount/day/cashline. PreserveearlierJulyactualmonth, do not infercashfromquarterbook/supplementdifferences."
+                },
+                {
+                  "field": "FSLRprogrammeexpense/receivablecashrollforward",
+                  "status": "expense-axes-reconciled-cash-not-forced",
+                  "result": "H1+Q3=YTDexpensebenefitsatpresentedprecision. Recognition/CFO2.777mYTD/1.997mQ3andbook/CFO−36.097m/−24.920m remain unexplained, not mappedtoold14.435m/.780m orFY2024gaps."
+                },
+                {
+                  "field": "Actualeligibleoperatingvolume",
+                  "status": "not-identified-in-inspected-new-inputs",
+                  "result": "NEERwindrepoweringchannelnowexplicit, not a commissioningreturn. FSLR17c/7cchannels expectationsnotactualeligibleUSsales/componentwatts; no currentlaw/PFEcertification or arbitraryreverse/root."
+                }
+              ],
+              "originalClauseProposals": [
+                {
+                  "clause": "Entitycontrol/legalgrosscashfunding",
+                  "proposal": "Use equitymethod/GPcontrol matrix before any commoncash assembly. Current NEEconsolidated446m is already inCFO; counterparty931/219/61/47 and1387mcosts/394mbookincrease are not extra commoncash.",
+                  "originalCompletion": false
+                },
+                {
+                  "clause": "Climateactivity/geography/policy",
+                  "proposal": "Keep windrepoweringincurred-servicefunding and Alabamaasset-incentive recognition separate from generalaffiliatecash, Indiareceipt and45Xcomponent expectations. No all-solar-revenue/climatecash bucket.",
+                  "originalCompletion": false
+                },
+                {
+                  "clause": "Programmeperiod/recognition/receivable/discount/CFOclass",
+                  "proposal": "Source-definedquarter/YTDtypedexpenseaxes reconcile; preserveoldcashrows and existingnetcohortdiscount/cashcalendar. No grantbook/CFOgap or noncashsupplement balancing into observedIndiareceipts.",
+                  "originalCompletion": false
+                },
+                {
+                  "clause": "Originalterminal/funding/growth",
+                  "proposal": "No newgrowth/return assumption, no originalcase rerun. SameFY2024currency/CFbasis/stub/fiveyear/tenyearfade/2.5–4%terminal and actualnegativebaselinegrowth refusal remain.",
+                  "originalCompletion": false
+                }
+              ],
+              "freeze": {
+                "freezeSha256": "efc45791cd1167ad509244f7836d69de7436710b7ae96941b72056d1d1479e12",
+                "reportSha256": "88075ddf9cac31651a71905897f2f0ac146bf9beead6cdfa73db5bd100487977",
+                "sourceReceiptsSha256": "426c4286403d3da8ddda39b26f5607855a2b4964811d168cdf6d5c6d00e208a6",
+                "newFutureEconomicAssumptions": 0,
+                "sourceInputsAndNoInsertionConditionsFrozenBeforeCalculation": true,
+                "newPrimaryRequests": 3,
+                "maximumPrimaryRequests": 4,
+                "sourceBookSealed": true,
+                "repeated126719InventoriesOrReportingWorkbooks": 0,
+                "financialGridOrOldKernelExecutions": 0,
+                "qualifiedOriginalIssuers": 0,
+                "requiredOriginalIssuers": 3,
+                "ownerReview": "pending-not-requested"
+              },
+              "heldCashFreeze": {
+                "version": "nee-cscs-held-cash-1",
+                "freezeSha256": "7856aecae38e4bfe9ff3164eaba18e7fba39894fbfe8584f7ae8612d2d63ff91",
+                "reportSha256": "406e2c1ea96ca4dc0de58bce223ba1d5bf60e80c0aa4bafd8e5c27a12cba70a1",
+                "newPrimaryRequests": 0,
+                "sourceAndNoCashInferenceConditionsFrozenBeforeCalculation": true,
+                "mainCrosswalkFreezeUnchanged": true,
+                "newFutureEconomicAssumptions": 0,
+                "oldKernelExecutions": 0,
+                "qualifiedOriginalIssuers": 0
+              },
+              "safePublicFieldAllowlist": [
+                "NEE.parentProgrammeAffiliateCash -> calculation.nee.neeConsolidatedAffiliateEarningsDistributions2025Usd",
+                "NEE.parentProgrammeServiceCosts -> calculation.nee.neeConsolidatedServiceCostsIncurred2025Usd",
+                "NEE.parentProgrammeHeldSweepRelease -> calculation.cscsHeldCash.reportedNetHeldBalanceReleaseUsd; XPLRnetleg, not NEEcommonFCFE",
+                "FSLR.parentProgrammeAlabamaRecognition -> calculation.fslr.alabamaQuarterAssetGrantRecognitionUsd"
+              ],
+              "verification": {
+                "mainCalculationCommand": "npx tsx script/run-nee-parent-fslr-programme.ts --private-primary",
+                "heldCashCalculationCommand": "npx tsx script/run-nee-cscs-held-cash.ts --private-primary",
+                "separateNewFrozenCalculationExecutions": 2,
+                "mainInitialTestsAndCalculationLogSha256": "8d32fba54aea415b26c7754977c9b3734b730d065126267dff6a5214b5508d6e",
+                "heldCashCalculationLogSha256": "70e50a1128db48ba55da9b969e695bb39dc6e21293f8292893c59f4b650abf91",
+                "captureCommandPrefix": "npx tsx script/capture-nee-parent-crosswalk.ts --private-primary --one",
+                "captureExactArgvManifest": "Sealed private receipts.json preserves each exact name/url/field argv; corresponding3officialpublicURLs/documenthashes are in sourceRecords.",
+                "captureActualLogicalRequests": 3,
+                "captureMaximumLogicalRequests": 4,
+                "captureStatus200Count": 3,
+                "captureDuplicateUrls": 0,
+                "capturePaidCalls": 0,
+                "captureLogSha256": "429c0c534f98b73cd07139ed5827538094769ae642c7befd4c2b8e68f5c6793c",
+                "publicCommand": "npx tsx --test script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/company-conditional-api.test.ts",
+                "publicTestsPassed": 16,
+                "publicTestsFailed": 0,
+                "publicLogSha256": "82b774ca0d2619301d41c895243e290fc3d19ee2e40f6fe7f6c4d87ec1d7cb85",
+                "mandatoryPrivateCommand": "npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary",
+                "mandatoryPrivatePassed": true,
+                "privateIndependentIdentities": 16,
+                "privatePublicScalarBindings": 4,
+                "privatePriorProtectedArtifactHashes": 340,
+                "privateOriginalAnnualRowsBytePreserved": 32,
+                "private613405m14435m780kPreserved": true,
+                "privateLogSha256": "bb9220f909d33b050b319a90e0024e108663b6d48c1ea7cfa3abcc384a9447ef",
+                "privateReceiptSha256": "9ee95136e2a3f41c27d512367929efcea37249fc37ea845857d462611aaf89dc",
+                "strictOwnFiles": "server/calculation/neeParentEntityCrosswalk.ts server/calculation/fslrAsc832ProgrammeQuarter.ts server/calculation/neeCscsHeldCashBridge.ts script/capture-nee-parent-crosswalk.ts script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/run-nee-parent-fslr-programme.ts script/run-nee-cscs-held-cash.ts script/validate-nee-parent-fslr-programme-private.ts shared/companyConditionalData.ts script/company-conditional-api.test.ts",
+                "strictEs2022ExactCommand": "npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/neeParentEntityCrosswalk.ts server/calculation/fslrAsc832ProgrammeQuarter.ts server/calculation/neeCscsHeldCashBridge.ts script/capture-nee-parent-crosswalk.ts script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/run-nee-parent-fslr-programme.ts script/run-nee-cscs-held-cash.ts script/validate-nee-parent-fslr-programme-private.ts shared/companyConditionalData.ts script/company-conditional-api.test.ts",
+                "strictEs5ExactCommand": "npx tsc --noEmit --strict --target ES5 --lib ES2022,DOM --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/neeParentEntityCrosswalk.ts server/calculation/fslrAsc832ProgrammeQuarter.ts server/calculation/neeCscsHeldCashBridge.ts script/capture-nee-parent-crosswalk.ts script/nee-parent-fslr-programme.test.ts script/nee-cscs-held-cash.test.ts script/run-nee-parent-fslr-programme.ts script/run-nee-cscs-held-cash.ts script/validate-nee-parent-fslr-programme-private.ts shared/companyConditionalData.ts script/company-conditional-api.test.ts",
+                "strictOwnFileCount": 11,
+                "strictEs2022Exit": 0,
+                "strictEs5Exit": 0,
+                "strictCompilerLogSha256BothEmpty": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "actualGetApiJsonAndExcelJsBinaryReadbackPassed": true,
+                "publicFactCounts": {
+                  "NEE": 17,
+                  "FSLR": 33,
+                  "XOM": 9
+                },
+                "liveUniqueSemanticDefinitions": 92,
+                "allIssuerExportLeaves": 540,
+                "formalSuccessApiFieldsUnchanged": 30,
+                "typedApiFieldsIncludingErrorsUnchanged": 63,
+                "protectedLegacyExportLeaves": 308,
+                "protectedLegacyNonstringValues": 44,
+                "protectedLegacyProjectionSha256": "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
+                "publicTestsDependOnPrivateFiles": false,
+                "censusCanonicalLedgersOrFairBundleEdited": false,
+                "appWorkflowOrBrowserStarted": false,
+                "commitDeployPublishCallbackApprovalPurchaseOrDdlCalls": 0,
+                "status": "passed-code-only-and-separate-mandatory-private-validation"
+              },
+              "readyNextSteps": {
+                "NEE": "ActualdirectNEEEquity/project cashdistribution split and grosssettlement/creditfeeCASH needed for61-to446mapping; no directNNEquitystandalone bankflow table identified. Actualheldsweep127mto11m nowclosedagainst116mXPLRnetcash, while broaderNEErelatedpartysweep−131m has no exactXPLR-onlysubset.10mfeeexpense/−11mtrueup and36m2024interestincome are NOT actualcash. Serviceagreementreimbursementcash/receivable-origin mapping remains missing. Broaderlaterfilings/amendments unattemptedhere, not globallyundisclosed.",
+                "FSLR": "Programme-specific45Xgross/netreceivable/discount/collection/currentlawinputs and explicitIndiaJulyamount/cashflowline; do not reread samequarter-note toinventamount. Source-qualifiedfuturecollection/reinvestment assumptions may be versioned when defensible, not by forcingunallocatedcashgaps or positivegrowth.",
+                "technicalSourceComponentComplete": true,
+                "technicalOriginalIssuerCompletion": false,
+                "qualifiedOriginalIssuers": 0
+              }
+            },
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+              ],
+              "executed_at": "2026-11-11T16:39:08.561933+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 159.126,
+              "counts": {
+                "tests": 752,
+                "pass": 752,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+              "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
@@ -148351,6 +149893,46 @@
       "workspace_revision": "1986880df51cc5c7364f1322616596bd21437fc7",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npm run build"
+      ],
+      "executed_at": "2026-11-11T16:35:21.141131+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 108.335,
+      "counts": {
+        "tests": 752,
+        "pass": 748,
+        "fail": 4,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T163521141131Z.log",
+      "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-nee-parent-fslr-programme-private.ts --private-primary && uv run python script/kaya_samerelease_scope_bridge.py validate-private && npm run build"
+      ],
+      "executed_at": "2026-11-11T16:39:08.561933+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 159.126,
+      "counts": {
+        "tests": 752,
+        "pass": 752,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T163908561933Z.log",
+      "workspace_revision": "07d6bada40fbd5ea18defa6b436b8f8c48112c37",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -148618,13 +150200,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Next NEEFY2025parent/legalentitycrosswalk/actualLLCAvailableCash; FSLRQ32026ASC832Alabama recognition notIndiacash; rights-qualifiedsame-releaseEUenergyproviderflags/definitions/GCBterritorynotes. No newlyqualifiedKayaentity; no fakeholdouts. S07operatoraccess dependency confirmed by completedManusinvestigation,notpending.41verified257partial2blocked;0/3cases. Alloriginalscope remains.",
+    "instruction": "S01-010engineeringverified; preserve61components/sourcepinnedreference nooffset. NextNEEEquity/projectcashsettlement attribution,FSLRprogrammeIndiacash/eligiblewatts;EIrights/fullprecision/source-lineage andSanMarinoparentnotes. EIAalternative separate;France2020displaycheckfailed,no tolerancechange.0/3cases,nooriginalKayaentityqualified. Privatebundleoperatordependencyconfirmed. Alloriginalremainingstages persist.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-grants-territorial-1dbe19a",
+    "checkpoint_id": "ckpt-20261111-attachments-energy-7596cb7",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T15:21:48.155922+00:00",
+    "attempted_at": "2026-11-11T16:02:11.040161+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -148718,8 +150300,8 @@
       "partial": 3
     },
     "1": {
-      "partial": 8,
-      "verified": 8
+      "partial": 7,
+      "verified": 9
     },
     "2": {
       "partial": 9,

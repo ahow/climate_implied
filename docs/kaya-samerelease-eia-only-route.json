@@ -1,0 +1,15 @@
+{
+  "schemaVersion":1,
+  "frozenBeforeNumericRequest":true,
+  "purpose":"Genuinely ready,rights-qualified independent energy-source assembly while EI definitions/fullprecision rights are blocked. Separate EIA-only regional energy basis,NOT replacement original fossilenergy contract and NOT monthlyCO2 proxy.",
+  "sourceMethod":"Retained exact2026-05-05 EIA method at ETL282a8ef5715e21770167128edb236a68f7b3ed23 creates international_energy table. Indicator total_energy_consumption is already terawatt-hours after publisher conversion.",
+  "publisherMetadataURL":"https://catalog.ourworldindata.org/garden/eia/2026-05-05/international_energy/international_energy.meta.json",
+  "publisherTableURI":"https://catalog.ourworldindata.org/garden/eia/2026-05-05/international_energy/international_energy.parquet",
+  "rightsProof":"Actual primary-energy2026-05-05 table metadata explicitly attributes EIAInternationalEnergy2026-05-05 as Public domain,with source-specific EIA copyrights/reuse URL. Check EIA table column metadata before request;do not extend to EI numbers.",
+  "projection":"Documented public Datasette read-only SELECT country,year,total_energy_consumption for fixedEU27members+World/China/India/US/nativeEU27,2010-2024,LIMIT481. No DDL or whole-source download.",
+  "aggregation":"Require all27finite nonnegative native national energy cells per year before separately labelled EIA-only EU27 sum. Missing remains missing,no partialsum,zero-fill,hybrid values or forced closure. Retain native EIA EU27 if present separately,never invent observation.",
+  "WorldCaution":"EIA garden method requests World aggregation with min_frac_countries_informed0.7. World row is publisher-garden aggregation,NOT automatically certified complete territorial total or bunker residual.",
+  "units":"AlreadyTWh,no conversion or fittedfactor.",
+  "scientificBoundary":"Original frozen2011PPP/no-splice/nativeenergy contract still unchanged;WDI2021PPP separate. No newlyqualified original entity/no holdout unless all original criteria genuinely satisfied.",
+  "vintage":"Same dated publisher namespace and source-origin metadata qualify version family,NOT archived original publication-at-origin or atomic identity with old CO2export. Preserve explicit revised-history/retrieval-vintage label."
+}

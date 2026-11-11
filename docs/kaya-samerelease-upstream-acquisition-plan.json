@@ -1,0 +1,25 @@
+{
+  "schemaVersion":1,
+  "purpose":"Acquire exact EI2025 definitions/provider/full-precision source boundaries and GCB2025 parent-territory reporting notes beyond the already-completed420cell audit. No repeat audit/revision accounting.",
+  "retainedMethodCommit":"282a8ef5715e21770167128edb236a68f7b3ed23",
+  "originalCO2Commit":"382ee6c662b0ece26e111f263b44c029afad7787",
+  "initialURLs":[
+    "https://api.github.com/repos/owid/etl/contents/etl/steps/data/garden/energy_institute/2025-06-27?ref=282a8ef5715e21770167128edb236a68f7b3ed23",
+    "https://api.github.com/repos/owid/etl/contents/snapshots/energy_institute/2025-06-27?ref=282a8ef5715e21770167128edb236a68f7b3ed23",
+    "https://api.github.com/repos/owid/etl/contents/snapshots/gcp/2025-11-13?ref=282a8ef5715e21770167128edb236a68f7b3ed23",
+    "https://api.github.com/repos/owid/etl/contents/etl/steps/data/garden/energy/2026-05-05?ref=282a8ef5715e21770167128edb236a68f7b3ed23"
+  ],
+  "maximumRequests":24,
+  "maximumEachMetadataBodyBytes":2000000,
+  "maximumEachRightsQualifiedNumericBodyBytes":18000000,
+  "maximumTotalBodyBytes":45000000,
+  "timeoutSeconds":45,
+  "maximumRedirects":5,
+  "retries":0,
+  "followups":"Only publisher-returned exact URLs,public source-linked terms/catalog documentation/metadata,or documented original download routes. Freeze followup route before numeric acquisition. No guessed numeric paths,unbounded archives,purchases or access bypass.",
+  "rightsGate":"Inspect source-specific license/terms before numeric retrieval. Repository code license does NOT license third-party EI data. Permit only explicitly allowed private scientific source analysis;keep originals and full tables private and attribute. If rights scope cannot be established,record exact terms and denied/not-admitted reason rather than asserting data unavailable.",
+  "scope":"No420/417re-audit,noMalta-revision replay,no3285row rebuild,no source factor fitting. Full precision is native producer precision,not reverse-engineered displayed values. No World-residual-as-bunker and no forced hybrid EU closure.",
+  "fallback":"If narrow EI rights/data block persists,inspect retained independent-climate source inventories and execute a genuinely source-ready independent task,not a completed study or mining freshness re-audit.",
+  "admission":"Original2010-2024window and2011PPP contract unchanged,WDI2021PPP separate sensitivity. Run original holdouts only for newly fully-qualified original entity;no window shortening,vintage invention or treating missing as statistical rejection.",
+  "outputs":"Disjoint new climate source scripts/tests/focused evidence;raw/private source bodies ignored. No canonical ledgers,protectedFaIR files,runtime/collector changes,commit/deploy/publish/callback."
+}

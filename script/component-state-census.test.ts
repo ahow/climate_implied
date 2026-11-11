@@ -3,9 +3,16 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { componentStateCensus } from "./component-state-census";
 import { filePolicies, focusedRenderComponents } from "./component-state-contracts";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { WarmingValidationReference } from "../client/src/components/warming-validation-reference";
+import { warmingReferenceExportDocument } from "../shared/warmingValidationReferenceSemantics";
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
+  assert.equal(report.componentCount, 61, "Original60 actual consumers plus one new pinned reference");
+  assert.equal(report.focusedRenderedComponentCount, 61);
+  assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
   for (const component of report.components) {
@@ -44,4 +51,24 @@ test("imported sibling exports are reachable only through actual component tags"
   const report = componentStateCensus();
   assert.deepEqual(report.components.find(component => component.component === "DownloadJsonButton")?.routes, ["/data-management"]);
   assert.ok(report.components.find(component => component.component === "DownloadDataButton")?.routes.includes("/"));
+  const reference = report.components.find(component => component.component === "WarmingValidationReference")!;
+  assert.equal(reference.id, "client/src/components/warming-validation-reference.tsx#WarmingValidationReference");
+  assert.deepEqual(reference.routes, ["/methodology"]);
+  assert.equal(reference.contract.inputKind, "pinned-reference");
+  assert.match(reference.contract.focusedEvidence, /warming-validation-reference\.test\.ts/);
+  assert.equal(report.components.filter(component => component.id !== reference.id).length, 60);
+  assert.equal(reference.fieldBindings.length, 5);
+  const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
+  const text = html.replace(/<[^>]*>/g, "");
+  assert.match(text, /2025 SR1.5 headline: 1.37 °C/);
+  assert.match(text, /2016–2025 mean: 1.24 \[1.0–1.5\] °C/);
+  assert.match(text, /Separate inventory year: 2024/);
+  assert.match(text, /not the ordinary 2025 annual mean/);
+  assert.match(text, /ordinary Annual row is 1.38 C, not a replacement/);
+  assert.match(text, /publication day unknown, not inferred/);
+  assert.match(text, /Reference, not offset\/calculation\/acceptance/);
+  for (const id of ["headline2025.valueC", "decade.meanC", "decade.p05C", "decade.p95C", "inventory.year"])
+    assert.ok(html.includes(`data-field-id="warmingReference.${id}"`));
+  const href = /href="(data:application\/json[^"]+)"/.exec(html)![1];
+  assert.deepEqual(JSON.parse(decodeURIComponent(href.split(",").slice(1).join(","))), warmingReferenceExportDocument());
 });

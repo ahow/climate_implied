@@ -1,0 +1,126 @@
+{
+  "criterion": "ORIGINAL S01-010",
+  "recordedAtUtc": "2026-11-11T16:10:06Z",
+  "exactOriginalCriterion": "Create a shared constants module for the inventory basis and base year. Store 1.37°C (2025 annual human-induced warming, IGCC 2025) as a dated validation reference, kept distinct from the decadal estimate and the inventory year, not as a constant inside calculations.",
+  "bindingScope": "S01-011 metadata applies only to changed reference fields here. Source/vintage, temporal-statistic and scientific-promotion restrictions remain binding; this does not relax original clauses or close unrelated display/summary gaps.",
+  "preImplementationFinding": {
+    "existing": "shared/calculationContract.ts already separates physical/finance legacy versions and2024 basis; native inventory/inputs state2024. The protected Python human_warming_reference_contract already pins1.37 SR1.5, distinct ordinary Annual1.38 and2016-2025mean1.24[1.0,1.5], including dated source metadata.",
+    "missing": "No corresponding shared TypeScript dated reference with reusable API/UI/export bindings was located.",
+    "sourceDefinitionCorrection": "The original annual2025 wording must not turn the1.37 SR1.5-labelled headline into the ordinary annual-mean statistic. Reviewed temporal evidence defines a2011-2025 fitted-trend endpoint evaluated at2025. Required1.37 is retained, not replaced by1.38 or a fitted0.01C adjustment."
+  },
+  "implementation": {
+    "sharedReference": "shared/warmingValidationReference.ts: WARMING_VALIDATION_REFERENCE is recursively frozen;38 exact primitive leaves separate2025 SR1.5 headline,2016-2025mean/range,1850-1900baseline and2024candidate inventory metadata.",
+    "metadataAndExport": "shared/warmingValidationReferenceSemantics.ts:38 exact globally registered field definitions;11 export columns;two distinct rows with explicit row-specific value/statistic bindings. Decade-only bounds are null in headline row, not borrowed headline uncertainty. Self-describing JSON includes full reference/source metadata, rows, exact bindings and field semantics. Exact finite serialization has660primitive leaves:38reference,22row cells,600binding/definition metadata leaves; these are not660scientific definitions.",
+    "apiModule": "server/warmingValidationReferenceApi.ts: registerWarmingValidationReferenceRoutes exposes GET /api/reference/warming-validation and GET /api/reference/warming-validation/export.json. Registered in server/index.ts after releaseSafety and before existing routes; protected server/routes.ts untouched. All query overrides reject400; integrated mutation attempts reject403 through unchanged releaseSafety. No runtime evidence reads or model calls.",
+    "uiModule": "client/src/components/warming-validation-reference.tsx: WarmingValidationReference is mounted in methodology.tsx outside archived legacy details. Values have adjacent temporal/GMST/baseline/unit/range/inventory/source qualifications and five exact global data-field-id bindings; source dates are distinguished from publication. Local JSON download uses the same shared export document.",
+    "calculationBoundary": "No numerical engine imports the reference. Legacy offsets remain1.1; inventory remains2024 and candidate-not-promoted. No replacement physical constants, GSAT-to-GMST conversion, calibrated model comparison or scientific acceptance."
+  },
+  "reviewedSources": {
+    "publicReviewReceipts": [
+      {
+        "path": "docs/next-physical-evidence.json",
+        "sha256": "286ffee9c08f93abef49eba9fced2bf2f703112763b90cafd0460ffbb9861666",
+        "locator": "actual2025HumanWarmingReference",
+        "finding": "SR15DefinitionP50=1.37;AnnualDefinitionP50=1.38;decadeP05P50P95=[1.0,1.24,1.5];human-induced GMST;baseline1850-1900;IGCC-2025a"
+      },
+      {
+        "path": "docs/physical-attribution-evidence.json",
+        "sha256": "02665682302b3ef982cb19edc68e3fbf16bb7118e878ce21f06d0ea7730a7ccf",
+        "locator": "temporalDefinitionEvidence.normativeSource and definition",
+        "finding": "2011-2025 linear-trend endpoint at2025 is distinct from ordinary Annual and lagged2016-2025mean"
+      }
+    ],
+    "headline": {
+      "url": "https://raw.githubusercontent.com/ClimateIndicator/data/d9726573dccd9381652432b58b38f670af493c1c/data/base/anthropogenic_warming/Assessment-Update-2025_GMST_headlines.csv",
+      "revision": "d9726573dccd9381652432b58b38f670af493c1c",
+      "sha256": "d419c3f7d513b42052f5635454853610739d8b5f1749f55b5df03862dfe28879",
+      "metadataDateCreated": "2026-07-22T10:13:14Z",
+      "retrievedAtUTC": "2026-11-10T12:09:00.306870+00:00",
+      "publicationDate": null,
+      "licence": "CC-BY-4.0",
+      "credit": "Christopher Smith and Tristram Walsh; ROF/Gillett,KCC/Ribes,GWI/Walsh;Forster et al.(2026),section8,doi10.5194/essd-18-3889-2026"
+    },
+    "temporalDefinition": {
+      "url": "https://essd.copernicus.org/articles/18/3889/2026/essd-18-3889-2026-supplement.pdf",
+      "sha256": "c533320e534438ef760ac494d2eef030e2b9714d197557a9d6ec4c0d627ecd1d",
+      "locator": "S8.1.1 PDF29-30;FigureS12 PDF43"
+    },
+    "inventory": {
+      "path": "server/calculation/data/inventory2024.json",
+      "sha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+      "version": "igcc-2024-candidate-1",
+      "year": 2024,
+      "basis": "Native gas inventory;AR6GWP100reporting only;candidate-not-promoted"
+    },
+    "boundary": "Existing reviewed metadata/factual values only. No new source requests, private provider bytes, raw source redistribution or protected scientific reruns."
+  },
+  "verification": {
+    "command": "npx tsx script/field-semantics-census.ts && npx tsx --test script/warming-validation-reference.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/research-field-semantics.test.ts script/company-conditional-api.test.ts script/semantics-provenance.test.ts && npx tsc --noEmit && git diff --check",
+    "pass": 36,
+    "fail": 0,
+    "skip": 0,
+    "coverage": "Six dedicated reference tests plus30affected integration/semantics/census tests. Reviewed-source equality and dates/hashes;all38actual reference leaves and660serialization leaf bindings;11-column/two-row XLSX readback including headline-only null bounds;SSR exact displayed values/global metadata/local JSON payload;production registration order and methodology mount;GET/export equality and no-override/write refusals under releaseSafety;unchanged protected constants/inventory/Python-reference hashes and original1000/1001 summary gap. Census freshness check passed.",
+    "additional": ["npx tsc --noEmit passed", "git diff --check passed"],
+    "notExecuted": "Fullsuite,protected/private scientific validators,numerical studies,browser rerun,commit,deployment,callbacks",
+    "sourcePins": {
+      "shared/warmingValidationReference.ts": "9482c250dc3293da1b4853475fa94cc4cba97dfac5a0918f6b9c1d7e4241ab1e",
+      "shared/warmingValidationReferenceSemantics.ts": "5bb290681e7f1d40aa4b48a2cf34a4135aa1bcec6943ab3ce116e64512c1d8d5",
+      "server/warmingValidationReferenceApi.ts": "ba6f268af9167bae58c743b76562ef246fd387bcaea49c1f6f60352d8032f854",
+      "client/src/components/warming-validation-reference.tsx": "581905f7a4331d0010ab5b998151cbe8e238283694b9e5abba371efbfa5952e8",
+      "script/warming-validation-reference.test.ts": "59d67d57723cd8b7914b8021accdcb2796be6d02c000931a50b18faa33ae280e"
+    }
+  },
+  "criterionAssessment": "The missing finite shared-reference engineering is implemented, integrated and tested at module/SSR/HTTP-contract level. Existing protected Python metadata was already substantially fulfilled; the TypeScript/API/UI/export bridge was missing. Actual running-app browser UI was not reverified. Required1.37 remains the literal2025SR1.5trend endpoint, not ordinary Annual1.38, an engine input or offset. Reference storage/presentation is not model validation, attribution acceptance or original-summary closure.",
+  "supplementalCensusSnapshot": {
+    "definitions": 1841,
+    "referenceDefinitionDelta": 38,
+    "definitionsWithoutReference": 1803,
+    "concurrentConditionalCompanyDefinitions": 92,
+    "directInventorySlotsUnchanged": 1359,
+    "directBoundSlotsUnchanged": 1331,
+    "externalApiSlotsBefore": 224,
+    "externalApiSlotsAfter": 924,
+    "referenceApiSuccessPlusRefusal": 39,
+    "referenceExportSerializationPlusRefusal": 661,
+    "externalApiDelta": 700,
+    "expandedPublicBefore": 1556,
+    "expandedPublicAfter": 2256,
+    "expandedBoundBefore": 1555,
+    "expandedBoundAfter": 2255,
+    "serializationBreakdown": "Export660=38shared reference leaves+22row cells+600binding/definition metadata leaves. HTTP400 error adds one leaf per new GET surface. No metadata repetition claimed as extra scientific definitions.",
+    "originalPublic": 1001,
+    "originalBound": 1000,
+    "remainingUnknownSummary": 1,
+    "originalClosedGaps": 571,
+    "withheldUnchanged": 27,
+    "concurrency": "Definition test compares exact current imported registries; exact reference38-ID/leaf contract and all700new supplemental API/export/refusal leaves independently asserted. Concurrent issuer facts are not overwritten or credited toward original closure."
+  },
+  "componentStateIntegrationFollowup": {
+    "trigger": "Parent fullsuite found four component-state-census tests failing because the newly reachable reference consumer lacked a reviewed state policy.",
+    "policy": "script/component-state-contracts.ts now records pinned-reference input kind, exact null/publication behavior, no-query/loading/error/selection boundaries, no missing-to-zero substitution and no calculation/acceptance promotion. Existing60focused component policies remain in force; methodology scope now names its actual reference child.",
+    "directRenderEvidence": "script/component-state-census.test.ts directly invokes WarmingValidationReference via SSR, verifies1.37SR1.5headline versus Annual1.38,2016–2025mean1.24[1.0–1.5],separate2024inventory,publication-date-null wording,five global field IDs and decoded local JSON equality. Dedicated six-test reference suite remains prior evidence, not rerun in this followup.",
+    "artifact": "generated-artifacts/rendered-states/component-state-contracts.json",
+    "componentCount": 61,
+    "previousComponentCohort": 60,
+    "newComponent": "client/src/components/warming-validation-reference.tsx#WarmingValidationReference",
+    "newComponentRoutes": ["/methodology"],
+    "focusedRenderedComponentCount": 61,
+    "individuallyUnrenderedComponentIds": [],
+    "dynamicExpressionCount": 1789,
+    "newComponentDynamicExpressions": 37,
+    "fieldBindingExpressionCount": 111,
+    "newComponentFieldBindings": 5,
+    "command": "npx tsx script/component-state-census.ts generated-artifacts/rendered-states/component-state-contracts.json && npx tsx --test script/component-state-census.test.ts && npx tsc --noEmit && git diff --check",
+    "pass": 4,
+    "fail": 0,
+    "skip": 0,
+    "boundary": "Only four affected census tests rerun, including direct render of new61stconsumer. No old60component-suite reopening, field/branch gate weakening, source-protected FaIR edits, fullsuite/browser rerun or scientific acceptance."
+  },
+  "parentIntegration": [
+    "Completed: registerWarmingValidationReferenceRoutes(app) in server/index.ts after releaseSafety, not protected server/routes.ts.",
+    "Completed: mount WarmingValidationReference in methodology.tsx before archived legacy details, never as a computed warming headline.",
+    "Completed: register warmingValidationReferenceSemantics in global outputFieldSemantics.ts and regenerate exact supplemental GET success/export/error census. No original denominator additions.",
+    "Keep1000/1001original public slots,571original gaps closed,one unknown historical runs[].summary slot and27withheld unchanged;do not use new reference definitions as original closure credit."
+  ],
+  "protectedBoundary": "No protected FaIR bundle files,server/routes.ts or canonical ledgers were edited. Global supplemental census regenerated as explicitly requested. No denied protected-hash dependency encountered; protected hash assertions remain mandatory."
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion":1,
+  "frozenBeforeNumericAcquisition":true,
+  "publisherRecord":"https://zenodo.org/api/records/17417124",
+  "release":"Andrew and Peters2025v15,initial2025release",
+  "rightsProof":"Publisher version-specific record metadata.license.id=cc-by-4.0;original OWID GCB2025-11-13snapshot metadata independently identifies CC BY4.0",
+  "scientificUse":"Private primary numerical/source-method qualification,with attribution. No raw redistribution or source changes.",
+  "sameReleaseExactBinding":"OWID fossil CSV snapshot outs.md5=3008e30d913af5926a83d0d0775fb72e,size3147221. Publisher GCB2025v15_MtCO2_flat.csv has exactly matching MD5 and size. Verify both before any native comparison.",
+  "files":[
+    {"recordKey":"GCP fossilCO2 2025v15.pdf","role":"Exact2025v15method and parent-territory reporting notes","size":893846,"md5":"927586a5e33a0ba86782a5a2643da7ae","requestCapBytes":1200000},
+    {"recordKey":"GCB2025v15_MtCO2_flat_metadata.json","role":"Exact file units,dimensions,missing-value representation","size":3784,"md5":"ee6955d4409ea110c546ae38660b5592","requestCapBytes":100000},
+    {"recordKey":"GCB2025v15_MtCO2_flat.csv","role":"Same-release exact-native source null/parent scope assembly,not fullcensus rebuild","size":3147221,"md5":"3008e30d913af5926a83d0d0775fb72e","requestCapBytes":3500000},
+    {"recordKey":"GCB2025v15_sources_flat.csv","role":"Native country-year-primary-source flag assembly","size":8299006,"md5":"bb4e63819ea7fbc33196981ab78567e6","requestCapBytes":8700000}
+  ],
+  "sourceURLs":"Use only exact file links.self values returned in retained version-specific publisher record,no manually constructed paths",
+  "EIStatus":"Actual publisher terms request returned403. Stop EI numeric/definitions-file acquisition:copyright notice and public download link do not establish permission. No proxy,header manipulation,mirror or alternate-host bypass.",
+  "providerFlags":"May inspect publisher-owned metadata/documented columnar projection,not download mixed-rights numerical tables without verified rights",
+  "exclusions":"No420/417re-audit,noMalta-revision replay,no3285row rebuild,noforcedparentmerges,fulloriginalGDP/energy compatibility remains separate."
+}

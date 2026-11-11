@@ -1,0 +1,220 @@
+{
+  "schemaVersion":1,
+  "criterion":"S04-003 source qualification;not original forecast admission or S04-005 monthlyCO2 completion",
+  "status":"actual-provider-labels-and-exact-GCB2025-parent-notes-acquired; separate-rights-qualified-EIA-only-fullwindow-energy-basis-assembled; EIworkbook-rights-gate-blocked",
+  "readFirst":[
+    "docs/Kaya_Protocol.md",
+    "docs/Forecast_Kaya_Protocol.md",
+    "docs/kaya-eu-energy-definition-source-evidence.json",
+    "docs/kaya-fullbasis-monthly-source-evidence.json",
+    "docs/climatetrace-monthly-100mb-source-evidence.json",
+    "docs/igcc-alpha1-proof-evidence.json"
+  ],
+  "noOldWorkRepeated":{
+    "old420vs417NumericOverlapAudit":false,
+    "resolvedMaltaRevisionAudit":false,
+    "3285RowCensusRebuilt":false,
+    "miningFreshnessReaudit":false,
+    "completedClimateDiagnosticReruns":false,
+    "originalProtocolsOrCriteriaRefrozen":false
+  },
+  "frozenPlans":[
+    {"path":"docs/kaya-samerelease-upstream-acquisition-plan.json","sha256":"4b47e81b3aef1cb47c0edf69697b43b68378bec5350a337f6126c2804fe534d1"},
+    {"path":"docs/kaya-samerelease-gcb-numeric-route.json","sha256":"7d49a15907ee2f78d28e6e0ca539a6f8f2d9aa6c947be4ef4c241220327ecfd3"},
+    {"path":"docs/kaya-samerelease-provider-metadata-route.json","sha256":"34d847b68e543efc495c8f3a7447cdf773731ebf7c683d81c576f5afc64aae2c"},
+    {"path":"docs/kaya-samerelease-eia-only-route.json","sha256":"95cb9b328ac245aac93ba3bec3309e51fc21a7af4e1e705a3ab5143aa5eb9e6a"}
+  ],
+  "boundedAcquisition":{
+    "requests":24,
+    "maximumRequests":24,
+    "bodyBytes":12766342,
+    "maximumTotalBodyBytes":45000000,
+    "HTTPStatusCounts":{"200":22,"403":1,"404":1},
+    "curlFailures":0,
+    "retries":0,
+    "firstRequestUTC":"2026-11-11T16:06:08.864155+00:00",
+    "lastRequestUTC":"2026-11-11T16:14:58.723856+00:00",
+    "numericRightsQualifiedBeforeRetrieval":true,
+    "EIWorkbookOrPanelDownloaded":false,
+    "mixedRightsPrimaryEnergyNumericTableDownloaded":false,
+    "archivesOrModelControlsDownloaded":false,
+    "paidCallsPurchasesBypasses":0,
+    "manifest":"generated-artifacts/kaya-samerelease-upstream/requests.json",
+    "manifestSHA256":"661341325b8304e386fa63db7da248cead9036e7a8f93aefe1352502289dbee5",
+    "manifestContents":"Exact original/effective URLs,request start/end,caps,statuses,bytes,48body/header hashes",
+    "routingFailure":"Pinned ETL README's old catalog-library documentation URL returned404. Its actual navigation linked working catalog-api documentation,which returned200 and documented table URI/projection routes. No source identity invented from404."
+  },
+  "actualEIProviderMetadataAssembly":{
+    "projection":"country,year,source only;no mixed-rights energy/GDP/population numerical quantities",
+    "publisherTable":"garden/energy/2026-05-05/primary_energy_consumption/primary_energy_consumption",
+    "projectionSHA256":"b0c96dfa6337f072581c7821be0dc7fc509a185751ac90b99f9efd42b5306dad",
+    "tableMetadataSHA256":"608335fe80b6c88352d6c5fa7534efc038197a5a61310cd2cc8d2af84e966fdf",
+    "sourceMethodCommit":"282a8ef5715e21770167128edb236a68f7b3ed23",
+    "categoricalLabelsAcquired":420,
+    "countryYearDomain":"27fixed members+nativeEU27,each2010-2024",
+    "actualCounts":{"ei":405,"eia":15},
+    "actualProviderAssignment":{
+      "EU27Aggregate":"EI for all15years",
+      "other26Members":"EI for all390country-years",
+      "Malta":"EIA for all15years"
+    },
+    "rights":"OWID-generated categorical provenance,created explicitly in processing code;OWID original material CC BY4.0 with attribution per frozen README lines127-131. Permission is NOT extended to underlying third-party EI numbers.",
+    "fieldOriginVersions":[
+      {"producer":"Energy Institute","release":2025,"dateAccessed":"2025-06-27","datePublished":"2025-06-26","license":"Copyright Energy Institute2025"},
+      {"producer":"U.S. Energy Information Administration","release":2026,"dateAccessed":"2026-05-05","datePublished":"2026-05-05","license":"Public domain"}
+    ],
+    "sourceChecksumOpaque":"472e50c693b9e2ed69d404bccee00b69",
+    "sameDatedSourceVersionFamilyQualified":true,
+    "originalExportAtomicArtifactBindingCertified":false,
+    "vintageLimit":"Actual source column and exact field-origin versions now observed,not merely inferred from missing fuel components. Dated catalog namespaces can be rebuilt;opaque source_checksum is NOT certified original data-artifact identity or historical-origin availability.",
+    "metadataAnomaly":"The table's inherited dataset title is Maddison Project Database;namespace,version,table,field origins and projected schema identify energy. The inherited title is not used as a semantic or rights shortcut.",
+    "sourceBoundaryOutcome":"Current exact source-version family confirms native EU27 is EI while final member table mixes EI26+EIA Malta. No assertion that this alone quantitatively explains every residual or permits forced closure."
+  },
+  "EIActualDefinitionAndRightsResults":{
+    "availableMetadataSHA256":"011400f427105be51637498e6879c6e067cbbcad204c709de54324b30fb91db4",
+    "availablePrimaryDefinition":{"lines":[488,496],"finding":"Commercially-traded fuels including modern renewables for electricity;non-fossil power on an input-equivalent basis."},
+    "newBunkerBoundaryDefinition":{"lines":[393,401],"finding":"Published EI oil-consumption definition explicitly includes international aviation/marine bunkers and refinery fuel/loss. This component boundary must not be conflated with country CO2,whose international bunkers are excluded."},
+    "definitionLimit":"Oil-component metadata is NOT an observed primary-total bunker allocation,EU27territorial membership Definitions sheet,or numerical adjustment. World energy remainder is not assigned to bunkers.",
+    "authoritativeTermsURL":"https://www.energyinst.org/terms",
+    "actualTermsHTTPStatus":403,
+    "termsBodySHA256":"dcd8cf40b2dbd287bef275f5f56b36001f68021241f5b400328cc9996c720741",
+    "pinnedEI2025SnapshotLicense":"Copyright Energy Institute2025,linked to that exact terms page;no explicit data-use grant in the snapshot declaration",
+    "workbook":{
+      "originalURL":"https://www.energyinst.org/__data/assets/excel_doc/0008/1656215/EI-Stats-Review-ALL-data.xlsx",
+      "originalSnapshotBytes":3929428,
+      "originalSnapshotMD5":"99805119256ece8c0b5b24181295b66d",
+      "snapshotMetadataSHA256":"9635ee6c628e30ff345a1b1fbeeab2236de341b3624e9973f73037f69a1cdc36",
+      "status":"not-admitted-rights-gate: authoritative-terms403/copyright-only;not claimed publisher-unavailable or over-byte-cap"
+    },
+    "fullPrecisionPanel":{
+      "originalURL":"https://www.energyinst.org/__data/assets/file/0011/1659656/panel.csv",
+      "originalSnapshotBytes":3807339,
+      "originalSnapshotMD5":"248627efb519df288e4125159d0dd3aa",
+      "snapshotMetadataSHA256":"283d0f9d938f432805cf5c095e7fffe85add3144f99ac915bfaf20d57f2f716c",
+      "status":"same actual rights gate;numeric retrieval intentionally not authorized"
+    },
+    "nonRedistributableFalseIsBlanketPermission":false,
+    "alternateHostProxyHeaderCredentialBypass":false
+  },
+  "newReadyIndependentEnergySourceTrack":{
+    "purpose":"Executed genuine source assembly independent of blocked EI numeric rights,not another generic missing-input report",
+    "source":"EIA International Energy2026-05-05,garden/eia/2026-05-05/international_energy",
+    "sourceSpecificRights":"Column-specific publisher metadata explicitly attributes U.S.EIA InternationalEnergy2026 and Public domain,linked to https://www.eia.gov/about/copyrights_reuse.php",
+    "metadataSHA256":"b40f896a8d5cefb33121e0af27eec66100bb125937de6807079a7e9ca3fddc34",
+    "numericProjectionSHA256":"21d89a809215793e0fc3d8ea63e08cb748aa478fbb6c1f72025159de2b2edb7f",
+    "sourceChecksumOpaque":"02e0e9f20b296bb69e0c36bc9b583519",
+    "unit":"terawatt-hours;already converted by publisher",
+    "newConversionApplied":false,
+    "nativeAnnualCells":480,
+    "positiveFiniteNativeCells":480,
+    "accounts":"27members+nativeEU27+World/China/India/US,all15years2010-2024",
+    "completeEU27MemberSums":15,
+    "sourceCoherentBasis":"EIA-only nationals and separately retained native EIA EU27 regional observations. No EI values mixed,no source value replaced.",
+    "nativeEU27MinusFull27SumTWh2010to2024":[
+      "-0.000743865966862","-0.000509262084894","-0.00043106079099",
+      "0.000459671020573","-0.000272750854491","0.001045227050729",
+      "-0.000490188598631","-0.000844955444400","-0.000106811523434",
+      "-0.000976562500077","0.000366210937604","-0.000602722168024",
+      "-0.000003814697128","-0.000604629516614","-0.000551223754788"
+    ],
+    "maximumAbsoluteResidual":{"year":2015,"TWh":"0.001045227050729"},
+    "residualInterpretation":"Exact arithmetic on publisher CSV representations of stored values. Not forced to zero,not attributed to rounding without source-type proof,and no acceptance criterion relaxed to accommodate it.",
+    "precisionQualification":"Stored published-table precision,NOT claimed unrounded original-producer/EI precision.",
+    "sourceAssemblyReady":true,
+    "originalNativeEnergyBasisReplacement":false,
+    "jointScientificContractQualified":false,
+    "WorldWarning":"Retained EIA processing explicitly requests World aggregation with minimum country fraction0.7;do not certify complete territory coverage or manufacture bunker/RoW energy from residual.",
+    "vintage":"Source-version-family-matched,retrieved revised history;not independently archived original forecast-origin observations",
+    "notAMonthlyCO2Substitute":true,
+    "independentScreening":"Retained S07alpha1 track still lacks actual forcing/control permissions/inputs;no completed engineering study rerun. Chose the genuinely permitted EIA-only source assembly instead."
+  },
+  "actualGCB2025v15ParentAndNumericalSourceAssembly":{
+    "publisher":"Andrew,R.M.and Peters,G.P.(2025),GlobalCarbonProject fossilCO2 dataset2025v15,Zenodo17417124",
+    "publisherRecordURL":"https://zenodo.org/api/records/17417124",
+    "publisherRecordSHA256":"2cb32390d761be8863cc6a756ee49b75bbb66d233dccf377cb4b93ccc6723fe1",
+    "specificRecordLicense":"cc-by-4.0",
+    "originalSnapshotExactBinding":{
+      "OWIDSnapshot":"snapshots/gcp/2025-11-13/global_carbon_budget_fossil_co2_emissions.csv.dvc at pinned original ETLcommit",
+      "publisherFile":"GCB2025v15_MtCO2_flat.csv",
+      "bothMD5":"3008e30d913af5926a83d0d0775fb72e",
+      "bothBytes":3147221,
+      "retrievedSHA256":"20650c19b394d91b6b31cddff2fbc9508bcdbbed7c3f93660336f2f655f367ff",
+      "outcome":"Actual same-release primary numerical file matches original frozen processing input's declared exact bytes/checksum,not a current replacement dataset"
+    },
+    "additionalRightsQualifiedFiles":[
+      {"file":"GCP fossilCO2 2025v15.pdf","bytes":893846,"md5":"927586a5e33a0ba86782a5a2643da7ae","sha256":"3476f67ddb0dd46208b61c791312d53ea10174ac52f9ed40a42ae2a5036783f3"},
+      {"file":"GCB2025v15_MtCO2_flat_metadata.json","bytes":3784,"md5":"ee6955d4409ea110c546ae38660b5592","sha256":"b41c76163ac6258fee7203c417a0def6b2e7300dc59943de654b913e824f3cd4"},
+      {"file":"GCB2025v15_sources_flat.csv","bytes":8299006,"md5":"bb4e63819ea7fbc33196981ab78567e6","sha256":"763e4d05be15f2403f3a11a83edb12974e16e5d7b588c8027e44e44d05812b13"}
+    ],
+    "dataUnit":"millions of tonnes of CO2,not CO2e;no carbon/CO2 factor applied",
+    "newFocusedSourcePairs":"France/Italy/Kosovo,each15years:45actual primary totals paired with native export and primary country-year/component source flags",
+    "absentPrimaryCountryYears":"Monaco/SanMarino/VaticanCity,each15years:45primary country rows absent,not45publisher numeric nulls or45zeros. Existing native nulls remain unchanged.",
+    "newPublishedParentPolicies":{
+      "Monaco":{"documentPages":[20,28],"textLinePointers":[781,782,783,1121],"finding":"GCB explicitly maintains grouping Monaco+France and adds official Monaco NGHGI estimates to France from1990."},
+      "Vatican":{"documentPage":28,"textLinePointer":1122,"finding":"Exact2025v15 document explicitly says HolySee(VaticanCity)included inItaly."},
+      "SanMarino":{"mentionsInExact2025v15Document":0,"finding":"No parent assignment found in the acquired original method document. Do NOT infer Italy from proximity or Vatican policy."}
+    },
+    "policyLimit":"Declared groupings are now source-proved,not per-year numerical deconsolidation. Do not fabricate Monaco/Vatican amounts or automatically equate France/Italy GDP/population/energy coverage to these CO2 reporting groups.",
+    "EU27Implication":"The canonical France/Italy country sums inherit declared Monaco/Vatican reporting consolidation. Nominal27-country labels alone cannot establish exact GDP/energy/CO2territorial identity.",
+    "FrenchOverseasCaveat":{"documentPage":21,"textLinePointer":800,"finding":"Exact2025v15 PDF still contains an unresolved NOTE explicitly labelled2024release about French overseas territories. No2025 correction inferred from the document version."},
+    "sourceIdentityCrosswalk":"GCB2025 primary Kosovo code KSV matches namedKosovo and its source flags;native export ISO is blank;WDI usesXKX. Preserve explicit name bridge,not an invented official common ISO.",
+    "strictDisplayOnlyPrecisionOutcome":{
+      "thresholdMtCO2":"0.0005",
+      "compatibleCells":44,
+      "incompatibleCells":1,
+      "exception":{"country":"France","year":2020,"nativeMinusPrimaryMtCO2":"-0.000507","excessBeyondEnvelopeMtCO2":"0.000007"},
+      "all45DisplayOnlyCompatible":false,
+      "thresholdRelaxed":false,
+      "outcome":"Simple three-decimal-display-only explanation fails this one cell. Keep exact exception;do not tune a factor or declare datatype/export quantization proved without original lineage."
+    }
+  },
+  "originalContractAdmission":{
+    "original2011PPP":"Unchanged;WorldGDP2011-14/2023-24,China/India/US2023-24,all15frozenEU27GDP fields remain missing. Original MPD sidecar still has54missing2023/24member-years.",
+    "WDI2021PPP":"Separate retained sensitivity basis,never spliced into original GDP",
+    "otherRegions":"RoW/transport missing physical/source accounts not repaired by new national source assembly",
+    "newlyQualifiedOriginalEntities":[],
+    "fits":0,
+    "holdoutScores":0,
+    "unavailableCasesAreStatisticalRejections":false,
+    "familyPolicy":"No change to original train-only,both-baseline,uncertainty,break or Holm-family treatment. No invented p-values or rejected hypotheses from missing data.",
+    "centralEligible":false
+  },
+  "preciseRemainingInputsNotGenericUnavailability":{
+    "EI":"Actual copyright-only original snapshots and authoritative terms403 now establish a concrete rights gate. Need verified permitted-use terms/permission for identified2025workbook Definitions and panel,not a larger cap or replacement catalog.",
+    "originalProviderArtifactIdentity":"Labels and exact source-origin version family acquired. Need original primary table artifact checksum/source-dependency binding if claiming literal original-export flag identity,not merely current same namespace.",
+    "EIMemberRegionPrecision":"Full precision original EI2025member/regional legacy primary values and regional/territory definitions remain rights-denied,not declared nonexistent. Keep actual hybrid source assignments and persistent residuals.",
+    "GCBParentAllocation":"Monaco/France and Vatican/Italy policies resolved. Independent15-year enclave component amounts remain absent;SanMarino parent rule not found in the inspected actual2025v15method.",
+    "nativeExportPrecision":"France2020 exact residual -0.000507MtCO2 exceeds simple display envelope by0.000007MtCO2. Need original dtype/unit/export lineage,not a relaxed threshold or corrected value.",
+    "completeOriginalHoldout":"Original full-window2011PPP and regional/territory/bunker contracts still not admitted;separate EIA-only and WDI2021PPP bases do not authorize original scoring."
+  },
+  "implementationAndVerification":{
+    "acquisitionModule":"script/kaya_samerelease_upstream_sources.py",
+    "acquisitionModuleSHA256":"f69b6c23b75517ba834a727eef4f4a591e73c13e75c2ffa811e3bb6fe1870bb3",
+    "assemblyModule":"script/kaya_samerelease_scope_bridge.py",
+    "assemblyModuleSHA256":"153bfee2790574a983df58382c73dcf36b666db416957e95afe9d679f7baf038",
+    "tests":"script/test_kaya_samerelease_scope_bridge.py",
+    "testsSHA256":"f727f758c723e8d4daef09434e54a0aa0231674b90f651748f5e5bc829cdd440",
+    "assemblyCommand":"python script/kaya_samerelease_scope_bridge.py assemble",
+    "privateResult":"generated-artifacts/kaya-samerelease-upstream/same-release-source-assembly.json",
+    "privateResultSHA256":"4ceea428dd7f2cac95081384942e4c4be5fafa80cdcccba4b0ace052500b2883",
+    "publicTestsPassed":11,
+    "cleanSourceOnlyTestsPassed":11,
+    "skipsOrDisabledAssertions":0,
+    "privateValidatorCommand":"python script/kaya_samerelease_scope_bridge.py validate-private",
+    "privateValidatorPassed":true,
+    "responseHashesVerified":48,
+    "publisherGitObjectsIndependentlyVerified":8,
+    "privateMissingFilesNegativeControl":"Correctly fails FileNotFoundError in clean source-only context,never skip",
+    "sourceEvidenceCorrections":"Initial private expectation of zeroVatican mentions failed against actual source. Replaced misconception with positive exactVaticanItaly policy requirement. PDF line pointers standardized on newline,not form-feed splitlines. Strict display envelope preserved and its one failure reported,not disabled.",
+    "logs":[
+      {"path":"generated-artifacts/kaya-samerelease-upstream/public-tests.log","sha256":"9eecca96a0c4c0785b2e69ad00384ea92cab222e97b1e0c0068ff28e6c98dfab"},
+      {"path":"generated-artifacts/kaya-samerelease-upstream/clean-public-tests.log","sha256":"9eecca96a0c4c0785b2e69ad00384ea92cab222e97b1e0c0068ff28e6c98dfab"},
+      {"path":"generated-artifacts/kaya-samerelease-upstream/private-validation.log","sha256":"b4a9b96f0408bef23ea529538957652418f1460cbb0daae9db1b65d7f47a5765"},
+      {"path":"generated-artifacts/kaya-samerelease-upstream/clean-private-negative.log","sha256":"69de5dcc88bd6b7673f20c5da90323d889bc1b2a586569e9a0f840a143ed428f"},
+      {"path":"generated-artifacts/kaya-samerelease-upstream/git-object-checks.json","sha256":"147f9f4eedf306cef4b8ee1557a6dcc60a020836d1f0fb2dd2d2dbc16a511928"},
+      {"path":"generated-artifacts/kaya-samerelease-upstream/assembly.log","sha256":"c8e8465ab26d6854546855ede329291880094ce03e0923629e39756abeaf8e5d"}
+    ],
+    "rawAndFullTablesIgnoredPrivate":true
+  },
+  "ledgersProtectedFaIRRuntimeCollectorDeployPublishCallbackChanges":0
+}

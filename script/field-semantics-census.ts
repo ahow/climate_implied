@@ -27,6 +27,9 @@ import { nativeCandidateResidualDiagnostics } from "../server/calculation/native
 import { projectNativeEmissions, constantScenario } from "../server/calculation/emissionsCandidate";
 import { conditionalCompanyApiSurfaces, conditionalCompanyWorkbookSurface,
   conditionalCompanyFieldSpecs, conditionalCompanySemantics } from "../shared/companyConditionalSemantics";
+import { warmingReferenceFieldSpecs, warmingValidationReferenceSemantics,
+  warmingReferenceExportDocument, warmingReferenceExportLeafBindings } from "../shared/warmingValidationReferenceSemantics";
+import { WARMING_VALIDATION_REFERENCE } from "../shared/warmingValidationReference";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -45,6 +48,10 @@ const program=ts.createProgram(parsed.fileNames,parsed.options,host),checker=pro
 type Entry={surface:string;field:string;type:string;source:string;line:number;resolution:string};
 const entries:Entry[]=[];
 const supplementalTypedApiEntries:Entry[]=[];
+const warmingReferenceApiSurface='API GET "/api/reference/warming-validation"';
+const warmingReferenceExportSurface='API GET "/api/reference/warming-validation/export.json"';
+const warmingExportLeafBindings=warmingReferenceExportLeafBindings();
+const warmingApiLeafBindings=new Map<string,{id:string;transform:string}>();
 const displayBindings: {source:string;line:number;id:string;expression:string;bound:boolean}[]=[];
 const exportBindingMetadata: {source:string;line:number;rows:string;bindings:string;coverage:string}[]=[];
 const verifiedExportBindings: {surface:string;field:string;id:string;transform:string}[]=[];
@@ -307,6 +314,36 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
 // External route handler's actual typed send arguments are supplemental API
 // inventory, never additions to the frozen original direct-res.json cohort.
 if(!baseline) {
+  const source=program.getSourceFiles().find(s=>relativeSource(s.fileName)==="server/warmingValidationReferenceApi.ts");
+  if(!source) throw new Error("Missing registered warming reference handler");
+  const handler=source.text;
+  if(!handler.includes("res.json(WARMING_VALIDATION_REFERENCE)") ||
+    !handler.includes(".json(warmingReferenceExportDocument())"))
+    throw new Error("Warming reference send contract changed");
+  const index=readFileSync("server/index.ts","utf8");
+  if(index.indexOf("app.use(releaseSafety())")<0 ||
+    index.indexOf("registerWarmingValidationReferenceRoutes(app)")<index.indexOf("app.use(releaseSafety())"))
+    throw new Error("Reference handler must be registered after releaseSafety");
+  const add=(surface:string,field:string,value:unknown,binding:{id:string;transform:string},resolution:string)=>{
+    if(!warmingValidationReferenceSemantics.some(s=>s.id===binding.id))
+      throw new Error(`Unmapped warming API leaf ${binding.id}`);
+    warmingApiLeafBindings.set(`${surface}|${field}`,binding);
+    supplementalTypedApiEntries.push({surface,field,type:value===null?"null":typeof value,
+      source:"server/warmingValidationReferenceApi.ts",line:1,resolution});
+  };
+  const valueAt=(root:unknown,path:string)=>path.split(".").reduce<unknown>((v,key)=>(v as Record<string,unknown>)[key],root);
+  for(const [field] of warmingReferenceFieldSpecs)
+    add(warmingReferenceApiSurface,field,valueAt(WARMING_VALIDATION_REFERENCE,field),
+      {id:`warmingReference.${field}`,transform:"Identity; shared immutable reference"},
+      "exact-qualified-shared-reference-contract");
+  for(const [field,binding] of Object.entries(warmingExportLeafBindings))
+    add(warmingReferenceExportSurface,field,valueAt(warmingReferenceExportDocument(),field),binding,"exact-qualified-finite-json-serialization-contract");
+  for(const surface of [warmingReferenceApiSurface,warmingReferenceExportSurface])
+    add(surface,"error","The dated validation reference accepts no overrides.",{id:"warmingReference.qualification",
+      transform:"HTTP400 control message: all query overrides refused; does not modify reference or grant model acceptance"},
+      "exact-qualified-query-refusal-contract");
+}
+if(!baseline) {
   const source=program.getSourceFiles().find(s=>relativeSource(s.fileName)==="server/companyConditionalApi.ts");
   if(!source) throw new Error("Missing registered conditional company handler");
   let successBindings=0;
@@ -414,6 +451,23 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   },
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
   supplementalQualifiedChanges:{
+    warmingValidationReference:{
+      definitions:warmingValidationReferenceSemantics.length,ids:warmingValidationReferenceSemantics.map(s=>s.id),
+      api:{surface:warmingReferenceApiSurface,successLeaves:warmingReferenceFieldSpecs.length},
+      jsonExport:{surface:warmingReferenceExportSurface,source:"shared/warmingValidationReferenceSemantics.ts",
+        primitiveSerializationLeaves:Object.keys(warmingExportLeafBindings).length,
+        referenceLeaves:warmingReferenceFieldSpecs.length,rowCount:warmingReferenceExportDocument().rows.length,
+        columnsPerRow:Object.keys(warmingReferenceExportDocument().columnBindings).length,
+        leafBindings:warmingExportLeafBindings,
+        metadataQualification:"Binding and field-definition metadata is inventoried as serialization, never additional measured values or scientific definitions"},
+      queryRefusalSurfaces:[warmingReferenceApiSurface,warmingReferenceExportSurface],
+      typedApiFields:supplementalTypedApiEntries.filter(e=>e.surface.startsWith('API GET "/api/reference/warming-validation'))
+        .map(e=>({...e,...warmingApiLeafBindings.get(`${e.surface}|${e.field}`),
+          bound:outputFieldSemantics.some(s=>s.id===warmingApiLeafBindings.get(`${e.surface}|${e.field}`)?.id)})),
+      display:{source:"client/src/pages/methodology.tsx",component:"WarmingValidationReference",
+        ids:["headline2025.valueC","decade.meanC","decade.p05C","decade.p95C","inventory.year"].map(p=>`warmingReference.${p}`)},
+      boundary:"38 new reference definitions; exact finite GET/JSON/display/export contracts only. Literal1.37 is2025 SR1.5 trend endpoint, not ordinary annual mean1.38, calculation input, offset or model acceptance. No original1001 closure credit.",
+    },
     nativeResidualDiagnostics:{
       definitions:nativeThresholdSemantics.length,ids:nativeThresholdSemantics.map(f=>f.id),
       originalNativeApiFields:187,originalNativeWorkbookColumns:35,
@@ -587,6 +641,8 @@ const addedCurrentSlots=unique.filter(e=>!originalKeys.has(originalKeyForCurrent
 const externalTypedApiFields=Array.from(new Map(supplementalTypedApiEntries.filter(e=>e.type!=="undefined")
   .map(e=>[`${e.surface}|${e.field}`,e])).values());
 const externalTypedApiBound=externalTypedApiFields.filter(e=>
+   warmingApiLeafBindings.has(`${e.surface}|${e.field}`)?
+     outputFieldSemantics.some(f=>f.id===warmingApiLeafBindings.get(`${e.surface}|${e.field}`)!.id):
    outputFieldSemantics.some(f=>f.id===`${e.surface.includes("/company-conditional-summaries")?"conditionalCompany":
      e.surface.includes("/company-coverage")?"companyCoverage":"originalNominalAssessment"}.${e.field}`)).length;
 const originalCohortFingerprint=frozenCohort?.slotIdentityFingerprint??slotFingerprint;
@@ -631,6 +687,8 @@ const reconciliation = baseline ? {} : {
      conditionalCompanyApiLeafSlots:externalTypedApiFields.filter(e=>e.surface.includes("/company-conditional-summaries")).length,
      conditionalCompanySuccessLeavesPerApi:conditionalCompanyFieldSpecs.length,
      conditionalCompanyWorkbookColumns:2,
+     warmingReferenceApiLeafSlots:externalTypedApiFields.filter(e=>e.surface===warmingReferenceApiSurface).length,
+     warmingReferenceJsonExportLeafSlots:externalTypedApiFields.filter(e=>e.surface===warmingReferenceExportSurface).length,
     boundary:"All new typed API/export leaves and any removed original identities are separate. New definitions, authenticated sidecars and new sheets do not close the original opaque JSON slot.",
   },
 };

@@ -4,7 +4,7 @@
  * "Inherited" means a parent read/prop contract, not a newly tested branch.
  */
 type Policy = {
-  inputKind: "queried-evidence" | "supplied-result" | "presentation-control";
+  inputKind: "queried-evidence" | "supplied-result" | "presentation-control" | "pinned-reference";
   missing: string; null: string; refusal: string; loading: string; error: string;
   selection: string; zero: string; scope: string;
 };
@@ -153,6 +153,17 @@ export const filePolicies: Record<string, Policy> = {
     refusal: "Supplied diagnostic reason is displayed; positive residual is not net zero.",
     scope: "Selected-2024 threshold/native lineage stays separate from legacy fixed-5gt comparator.",
   }),
+  "warming-validation-reference.tsx": {
+    inputKind: "pinned-reference",
+    missing: "Complete recursively frozen shared reference is imported, not supplied by a query or optional prop. Missing semantic IDs throw; no fabricated absent-data or backfill branch is claimed.",
+    null: "Source publicationDate is explicitly null and rendered as publication day unknown; metadata creation/retrieval dates are not substituted. Headline export decadal bounds remain null, not borrowed headline uncertainty.",
+    refusal: "Reference-only/no-offset/no-calculation/no-model-acceptance qualification is adjacent. Literal1.37 is the2025 SR1.5 trend endpoint, not ordinary Annual1.38 or a replacement physical constant.",
+    loading: "No asynchronous read or loading state: local pinned shared reference renders immediately. No pending-read branch or retained-query-data behavior is claimed.",
+    error: "No network read/error state or silent numeric fallback. Unknown shared semantic IDs fail explicitly; rendering depends on the complete fixed reference contract.",
+    selection: "No selectable year/issuer/archive/model props or query key. Reference2025headline,2016–2025decade and2024inventory remain separate; archive selection cannot rewrite them.",
+    zero: "Published nonzero constants are formatted directly; zero is not used as a missing-data default. No hypothetical zero-input branch is claimed for this immutable reference.",
+    scope: "Dated human-induced GMST reference plus exact source/date/licence metadata; local JSON data URI uses the same shared export document as GET export. Direct SSR/download decoding is evidence, not browser-click coverage or scientific acceptance.",
+  },
   "climate-valuation.tsx": props("Page-level summary/group absent states are independent of public conditional aggregates.", {
     missing: "Summary count missing/invalid has named count-not-returned reason. Partial imputation total/fraction/count remains unavailable. Malformed group collections are refused per section. Missing P/E stays blank, not null→zero; invalid-date rows are withheld with a reason.",
     null: "Null P/E is unavailable, not zero. True finite P/E/count zero remains numeric. Null/missing/invalid source dates never coerce to Unix epoch: those rows cannot reach dated charts or exports. Four physical measures remain explicitly withheld.",
@@ -182,7 +193,7 @@ export const filePolicies: Record<string, Policy> = {
     refusal: "Physical comparison withheld: no defensible valuation-to-activity mapping.",
     selection: "Scoring/geography/dataset keys own group results; pending/error never shows prior selected result.",
   }),
-  "methodology.tsx": controls("Static methodological definitions/caveats plus independently queried DriverEvidenceDisclosure. No market/Tier2/TrackB numeric results."),
+  "methodology.tsx": controls("Static methodological definitions/caveats, pinned WarmingValidationReference and independently queried DriverEvidenceDisclosure. Reference is not a computed result or model input. No market/Tier2/TrackB numeric results."),
   "news-sentiment.tsx": query("Missing cached response, daily volume or positive-count sentiment observations have separate reasons.", {
     null: "No sentiment denominator => no neutral mean/percentage zero; no volume observations => weekly average unavailable. True volume zero remains zero.",
     refusal: "Operator-refresh-required and provider-configuration errors are distinct; UI never makes provider refresh calls.",
@@ -206,6 +217,7 @@ export const focusedRenderComponents = new Set([
   "CustomTooltip", "TargetInputDisclosure", "TemperatureHistogram", "ThemeProvider", "ThemeToggle",
   "ThresholdDiagnosticDownload", "Dashboard", "LegacyDashboard", "DataManagement", "DecarbGapSignal",
   "TimeSeriesChartTooltip", "BacktestTooltip", "DecarbSignal", "Methodology", "NewsSentiment",
+  "WarmingValidationReference",
 ]);
 const remainingCohort = new Set([
   "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
@@ -270,7 +282,9 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: ["IndicatorDetailDialog", "IndicatorSeriesTooltip"].includes(name)
+    focusedEvidence: name === "WarmingValidationReference"
+      ? "script/warming-validation-reference.test.ts: direct imported component SSR verifies1.37SR1.5headline,1.24[1.0–1.5]decade,2024inventory,source/date qualifications,five global field IDs and decoded local JSON equality. script/component-state-census.test.ts directly renders the61stconsumer and checks reachability/policy/finite count; old60component suites are not rerun or claimed reverified."
+      : ["IndicatorDetailDialog", "IndicatorSeriesTooltip"].includes(name)
       ? "script/valuation-indicator-partial-state.test.ts plus script/indicator-portal-followup.test.ts: actual modal construction, persistent accessible header/trigger/refetch handlers and empty-source zero tooltip. Browser focus/portal follow-up remains separate."
       : remainingCohort.has(name)
       ? "script/remaining-component-contracts.test.ts: actual imported component SSR, or actual nested source body invocation for tooltips/LoadingDetails. Exact named fields/states in tests; portal/hover/archive/issuer/download interactions remain planned separately."
