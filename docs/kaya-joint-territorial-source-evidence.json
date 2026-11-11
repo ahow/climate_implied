@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "status": "substantive-full-window-national-and-regional-paired-source-assembly; original-frozen-contract-still-unqualified",
+  "scientificBoundary": {
+    "originalWindow": [2010,2024],
+    "originalEntities": ["World","China","India","United States","European Union (27)","Rest of World","International transport"],
+    "originalGDPBasis": "MPD2023 constant2011internationalPPP",
+    "candidateGDPBasis": "WDI source2 constant2021internationalPPP,separate native full series,NOT a conversion or splice",
+    "originalProtocolsUnchanged": true,
+    "originalMPDEU27MissingMemberYearsPreserved": 54,
+    "originalFrozenContractQualified": false,
+    "fits": 0,
+    "holdoutScores": 0,
+    "demandOrPolicyHoldoutReruns": 0,
+    "miningFreshnessReaudits": 0,
+    "centralEligible": false
+  },
+  "actualNewSourceAcquisition": {
+    "publisher": "World Bank,WDI source2",
+    "authorityAndRights": "Public official API;previously retained series-specific constant2021PPP GDP and midyear population glossary/CC-BY4.0 terms. Native OWID/GCB/EI/EIA third-party rights unchanged. Raw files remain ignored/private.",
+    "retainedFirst": "Original protocols,exact frozen native CSV/codebook,retained465GDP+465population WDI cells and original54 MPD gaps read before new acquisitions",
+    "initialRequests": 3,
+    "followupRequests": 2,
+    "totalAttempts": 5,
+    "successes": 4,
+    "failures": 1,
+    "totalResponseBodyBytes": 1293753,
+    "initialMaximumBodyBytes": 14000000,
+    "additionalMaximumBodyBytes": 2000000,
+    "maximumTotalBodyBytes": 16000000,
+    "timeoutSeconds": 45,
+    "maximumRedirects": 5,
+    "retries": 0,
+    "paidCalls": 0,
+    "purchases": 0,
+    "requests": [
+      {"name":"country-registry","status":"200","curlExit":0,"bytes":113954,"bodySHA256":"c9acf3932785191a649cbc04c3056af4cf64a236e5c3b49d49be25ddb0440bce"},
+      {"name":"remaining-gdp","status":"200","curlExit":0,"bytes":623846,"bodySHA256":"9861e6e3dbb6f9c1f721f101cf0738f7e00c50401580923550d2474db571dc30"},
+      {"name":"remaining-population","status":"200","curlExit":0,"bytes":525603,"bodySHA256":"6711d82335a5536bb02b0ea9836a8a1ed4b6895a00acae3438d371c26062bdb9"},
+      {"name":"world-census-gdp","status":"000","curlExit":28,"bytes":0,"bodySHA256":null},
+      {"name":"world-census-population","status":"200","curlExit":0,"bytes":30350,"bodySHA256":"f2c50c8904133d00a75c9ff5ec6cc2b8f899b23d3336019b292fac03e01f39c9"}
+    ],
+    "newCoreCoverage": {
+      "newNativeTerritorialCountryIdentifiersRequested": 177,
+      "additionalGDPYearCellsReturned": 2655,
+      "additionalGDPYearCellsNumerical": 2483,
+      "additionalGDPYearCellsPublisherNull": 172,
+      "additionalPopulationYearCellsReturnedAndNumerical": 2655,
+      "sameSourceid": "2",
+      "sameLastupdatedAsRetained465": "2026-10-08",
+      "retained31IdentifiersRefetched": 0,
+      "meaning": "Actual new full-window primary GDP/population source assembly,not another unchanged availability pass."
+    },
+    "worldCensusFollowup": {
+      "sourceNonaggregateCountryEconomyRegister": 217,
+      "additionalIdentifiersOutsideFrozenNativeISOCensus": ["ASM","CHI","CYM","GIB","GUM","IMN","MAF","MNP","PRI","VIR"],
+      "additionalGDP150Cells": "ATTEMPTED but network timeout after45001ms,0response bytes. NOT publisher-null or data-unavailable;no retry.",
+      "additionalPopulation150Cells": "Acquired successfully as a separately versioned later-release sidecar",
+      "additionalPopulationLastupdated": "2026-11-11",
+      "coreLastupdated": "2026-10-08",
+      "laterPopulationSplicedIntoRetainedWorldAccount": false,
+      "continuation": "After explicit GDP acquisition failure,continued ONLY the independent unattempted population request. Did not retry GDP or refetch retained countries.",
+      "operationalOnlyPlanExtension": "Exact10 identifiers and2 additional requests frozen before first follow-up. No original scientific criterion/window/basis/tolerance refrozen.",
+      "countryRegisterCaveat": "WDI nonaggregate country/economy classification,not a sovereign-country or exhaustive GCB territorial partition."
+    },
+    "manifest": "generated-artifacts/kaya-joint-territorial/requests.json",
+    "exactURLsResponseHeaderHashesTimes": "Retained in source manifest;all original3 request receipts preserved byte-for-byte in requests-initial3.json"
+  },
+  "actualPairedAssembly": {
+    "nativeSourceRevision": "382ee6c662b0ece26e111f263b44c029afad7787",
+    "nativeEnergy": "Frozen primary_energy_consumption,TWh;EIA2026/EI2025 as native codebook. No replacement energy catalog splice.",
+    "nativeCarbon": "Frozen co2,Mt,fossil/industrial GCB2025,excluding land-use change,NOT CO2e or consumption CO2. Includes non-energy industrial emissions,so C/E is not a pure fuel emission factor.",
+    "fields": ["WDIpopulationPeople","WDIGDP2021InternationalPPP","nativePrimaryEnergyTWh","nativeFossilIndustrialCO2Mt"],
+    "nationalTerritorialCandidateRows": 3285,
+    "nationalTerritorialIdentities": 219,
+    "nationalCompleteNumericFourCellRows": 2844,
+    "originalRegionalRows": 105,
+    "completeNumericRegionalRows": 75,
+    "completeNumericRegionalEntities": ["World","China","India","United States","European Union (27)"],
+    "completeNumericRegionalRowsScientificallyAdmitted": 0,
+    "fullWDICountryRegisterRowsIncludingVersionedSidecars": 3255,
+    "identityRules": "Exact ISO3 joins,plus explicit provisional Kosovo(blank-native-ISO)/XKX name bridge. No fuzzy join or invented parent/dependency attribution.",
+    "memberAggregationRules": "EU27 GDP/population sum requires every exact27 member. Native EU27 energy/CO2 preserved and independently compared with complete27 native member sums.",
+    "regionalStructuralMissingCells": 105,
+    "restOfWorld": "All15 regional source-native quadruples remain null. Actual189 prospective rest-country member cells and partial observed subtotals assembled separately;World-minus-selected vectors are diagnostic accounting only,not invented regional GDP.",
+    "internationalTransport": "All15 native aviation+shipping CO2 subtotals assembled with both source pointers. All15 population/GDP/energy accounts remain null. No World population/GDP assignment or CO2-to-energy conversion.",
+    "cellProvenance": "Every paired input retains source file,logical row,country/year and sourceMetadata where available. Full tables private;no raw redistribution.",
+    "arithmetic": "100digit Decimal,exact source numeric text/JSON parsing,no binary-float calibration or numerical adjustments",
+    "unknownVintage": "All estimates explicitly revised-history;no publication-at-origin certification from lastupdated/download/git dates",
+    "coreWDISourceDateCompatible": true,
+    "allWDISourcesAtomicRevisionCompatible": false
+  },
+  "primaryMetadataQualification": {
+    "GDP": {
+      "source": "Retained official NY.GDP.MKTP.PP.KD glossary",
+      "units": "Constant2021international$",
+      "aggregationMethod": "Gap-filled total",
+      "meaning": "World source GDP is not guaranteed to equal the subtotal of only nonnull country API GDP cells. Never distribute its residual into missing countries or call subtraction a validated native RoW account."
+    },
+    "population": {
+      "source": "Retained official SP.POP.TOTL glossary",
+      "definition": "De-facto resident,midyear estimates",
+      "aggregationMethod": "Sum",
+      "meaning": "Metadata says Sum,but source-country register,coverage and revision must also reconcile. New10-country2026-11-11 sidecar is excluded from2026-10-08 World closure,not silently mixed."
+    }
+  },
+  "numericalSourceReconciliation": {
+    "yearOrderForVectors": [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
+    "engineeringEnvelope": "Sum half each displayed source decimal quantum,including aggregate. Conditional nearest-display-rounding arithmetic envelope,NOT scientific uncertainty or a changed original1e-9 identity/scoring tolerance.",
+    "EU27NativeMinusComplete27NativeMembers": {
+      "CO2MtVector": ["-0.003","0.000","-0.001","0.000","-0.001","-0.001","-0.001","0.002","0.002","0.003","0.001","0.000","0.002","0.001","-0.002"],
+      "CO2MtMaximumAbs": "0.003",
+      "displayEnvelope": "0.0140",
+      "CO2RowsInsideDisplayEnvelope": 15,
+      "primaryEnergyTWhVector": ["-2.246","-1.691","-1.572","-1.456","-1.436","-2.505","-4.027","-1.609","-1.783","-1.818","-1.228","-2.036","-0.647","-0.327","2.233"],
+      "primaryEnergyTWhMaximumAbs": "4.027",
+      "primaryEnergyMaximumAbsYear": 2016,
+      "energyRowsOutsideDisplayEnvelope": 15,
+      "outcome": "Actual native EU27 primary-energy additivity gap exceeds displayed precision in every year. Need source aggregation/territory explanation,not tuning or replacing native EU energy with member sums."
+    },
+    "WorldNativeCO2MinusAvailableCountryCensusMinusNativeBunkersMt": {
+      "vector": ["-0.011","0.000","-0.007","-0.003","0.000","-0.006","-0.001","-0.002","0.003","0.001","-0.001","-0.004","-0.001","-0.009","-0.002"],
+      "maximumAbs": "0.011",
+      "countryCellsAvailableEachYear": 216,
+      "countryCellsMissingEachYear": ["MCO","SMR","VAT"],
+      "displayEnvelope": "0.1095",
+      "rowsInsideDisplayEnvelope": 15,
+      "territorialPartitionQualified": false,
+      "outcome": "Close observed-cell arithmetic is useful source evidence,but does not prove missing countries zero or establish parent-territory assignments."
+    },
+    "WorldNativeEnergyMinusAvailableCountryCensusTWh": {
+      "vector": ["643.479","645.713","591.585","542.048","555.802","687.273","668.881","624.081","735.289","715.976","819.076","912.236","919.359","1031.210","1008.465"],
+      "availableCountryCells2010": 205,
+      "availableCountryCells2024": 206,
+      "nativeBunkerEnergy": null,
+      "outcome": "These are unassigned energy residuals with missing country cells and unknown bunker allocation,NOT measured bunker energy."
+    },
+    "UnassignedWorldMinusSelectedMinusActualProspectiveRestCountrySubtotal": {
+      "interpretation": "Signed source accounting differences,not values imputed to missing countries;CO2 version subtracts explicit native aviation/shipping first",
+      "2010": {"populationPeople":"27611741","GDP2021InternationalPPP":"1896331197872.6533050","primaryEnergyTWh":"645.725","CO2Mt":"-0.008"},
+      "2024": {"populationPeople":"27370818","GDP2021InternationalPPP":"2964403753487.4214705","primaryEnergyTWh":"1006.232","CO2Mt":"0.000"},
+      "prospectiveRestCountryIdentities": 189,
+      "presentMembers2010": {"population":177,"GDP":165,"energy":175,"CO2":186},
+      "presentMembers2024": {"population":177,"GDP":163,"energy":176,"CO2":186},
+      "allCompleteRoWSums": null
+    },
+    "WorldWDIMinusSameRevisionReportedCountrySubtotal": {
+      "registerCountryEconomies": 217,
+      "populationSameRevisionPresentMembers": 207,
+      "laterRevisionPopulationMembersExcluded": 10,
+      "2010PopulationResidualPeople": "27611741",
+      "2024PopulationResidualPeople": "27370818",
+      "2010GDPPresentMembers": 195,
+      "2024GDPPresentMembers": 193,
+      "2010GDPResidual2021InternationalPPP": "1896331197872.6533050",
+      "2024GDPResidual2021InternationalPPP": "2964403753487.4214705",
+      "sameRevisionCompleteCountrySums": null,
+      "outcome": "No single-revision exhaustive WDI World-country closure demonstrated. GDP is publisher gap-filled aggregate;150extra-country GDP cells unacquired due timeout and150population cells later revision. None is treated as a source-null or zero."
+    },
+    "WDIMinusFrozenOWIDPopulation2024People": {
+      "World": "-21075051",
+      "China": "-10346284",
+      "India": "6",
+      "UnitedStates": "-5422769",
+      "EU27": "-31372",
+      "interpretation": "Different source population estimates/definitions/revisions retained. Not a territorial correction factor."
+    }
+  },
+  "exactRemainingCellsAndNextInputs": {
+    "nativeCandidateMissingCells": 774,
+    "sourceReturnedGDPNull": {
+      "cells": 172,
+      "all15YearsCountries": ["CUB","ERI","LIE","MCO","NCL","PRK","PYF","SSD","VEN","VGB","YEM"],
+      "partialYears": {"DJI":[2010,2011,2012],"SYR":[2023,2024],"GRL":[2024],"SMR":[2024]},
+      "meaning": "Publisher returned null in requested WDI GDP series,not an unattempted retrieval"
+    },
+    "nativePrimaryEnergyEmpty": {
+      "cells": 197,
+      "all15YearsCountries": ["AIA","AND","BES","CUW","CXR","LIE","MCO","MHL","PLW","SMR","SXM","VAT","WLF"],
+      "partialYears": {"SSD":[2010,2011]}
+    },
+    "nativeCO2Empty": {"cells":45,"all15YearsCountries":["MCO","SMR","VAT"]},
+    "noWDIRegistryCountryIdentity": {
+      "countries": ["AIA","ATA","BES","COK","CXR","MSR","NIU","SHN","SPM","TWN","VAT","WLF"],
+      "GDPYearCells": 180,
+      "populationYearCells": 180,
+      "numericQueryStatus": "UNATTEMPTED because no matching publisher nonaggregate country identifier;registry absence is not proof all primary GDP/population sources unavailable"
+    },
+    "extraCountryGDP150": "ATTEMPTED acquisition timed out,not unavailable data. All10 original query country identifiers and failure receipt retained;no retry in this bounded plan.",
+    "extraCountryPopulation150": "ACQUIRED but source2026-11-11,not retained2026-10-08. A compatible historical source snapshot is unacquired;later values never spliced into closure.",
+    "territorialDefinitions": "Need publisher-specific World/country dependency and bunker allocation metadata. Resolve exact native EU27 primary-energy/member discrepancy and MCO/SMR/VAT CO2 inclusion before claiming disjoint common GDP/energy/carbon territory.",
+    "RoW": "Need exhaustive source-qualified compatible membership/accounts,not observed-only subtotals or World-minus-four residual relabelled native GDP.",
+    "originalBasis": "Still need an entire original-compatible full-window MPD2011PPP source. WDI2021PPP does not cure original54 EU27 GDP gaps.",
+    "studies": "No original Kaya/demand/policy holdout executed because full original contract does not qualify. No shortened window,missing-zero,benchmark splice,point tuning or new attribution/ensemble."
+  },
+  "execution": {
+    "assemblyCompletedUTC": "2026-11-11T15:00:05.260116+00:00",
+    "acquisitionCommands": [
+      ".pythonlibs/bin/python script/kaya_joint_territorial_bridge.py acquire",
+      ".pythonlibs/bin/python script/kaya_joint_territorial_bridge.py acquire-world-census",
+      "Same acquire-world-census command continued only the independent unattempted population request after failed GDP;no repeated HTTP request"
+    ],
+    "assemblyCommand": ".pythonlibs/bin/python script/kaya_joint_territorial_bridge.py assemble",
+    "publicTestsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_kaya_joint_territorial_bridge -v",
+    "publicTestsPassed": 10,
+    "publicTestsFailed": 0,
+    "publicTestsSkipped": 0,
+    "cleanPublicContext": "Only new bridge and synthetic-fixture test files copied into temporary script directory;no docs or generated-artifacts. All10 tests pass.",
+    "requiredPrivateValidator": "python script/validate_kaya_joint_territorial_private.py",
+    "privateValidatorBoundary": "Explicit required retained-byte assertions;missing private bytes FAIL,never skip. No scientific source assembly,acquisition or forecast rerun.",
+    "privateValidatorExit": 0,
+    "privateArtifactAndPreservedSourceHashesVerified": 25,
+    "privateRequestBodyHeaderHashesVerified": 9,
+    "privateMissingFilesSkipped": 0,
+    "privateValidatorLog": "generated-artifacts/kaya-joint-territorial/private-validation.log",
+    "privateValidatorLogSHA256": "59049d865eb3506ca0c55a587fac72394a0ce81927a7d52f9ad8905c86c86f6d",
+    "privateCleanNegativeControl": "Explicit private validator correctly fails FileNotFoundError without generated-artifacts in source-only context;no skip or fallback",
+    "privateCleanNegativeLog": "generated-artifacts/kaya-joint-territorial/private-clean-negative.log",
+    "privateCleanNegativeLogSHA256": "55a921ff4ce85a5dc86b256778df89775e84d6b365011f320b8f4cc64b3f5775",
+    "initialProgress": "Original3 request manifest,first result,full paired table and log retained separately with initial3 suffix. Later revision mismatch explicitly excluded in final output."
+  },
+  "artifactPins": [
+    {"path":"script/kaya_joint_territorial_bridge.py","sha256":"1b6472beef48272cdbe1951ccec741bc29c15b8498650c2a7a4f4d990ca477a7"},
+    {"path":"script/test_kaya_joint_territorial_bridge.py","sha256":"55258c6cc1fe339992533d29b4267e21f907302d26c5f5e18381198fbd4e1384"},
+    {"path":"script/validate_kaya_joint_territorial_private.py","sha256":"625c53a03fbaf26c27dccab495fda8ead408761c00f29b36d4611f8c500fbec6"},
+    {"path":"docs/kaya-joint-territorial-source-plan.json","sha256":"a6acde8f4471addac6e95b130ec26457315e859bf9caf0b8bf867e2c7a896363"},
+    {"path":"docs/kaya-joint-wdi-country-census-followup.json","sha256":"ced2a235769d61251e024efe9cebbba8022153f069dea2966177a167fb821d01"},
+    {"path":"generated-artifacts/kaya-joint-territorial/requests.json","sha256":"5ce7e4300601ead7d3c53d17b85de54e9436d7e3868e38b4dde2f842bf531beb"},
+    {"path":"generated-artifacts/kaya-joint-territorial/requests-initial3.json","sha256":"d874fc8b98483fdee1fb7c866a149bb4cc087f746759c6b999a9da9ca42a0401"},
+    {"path":"generated-artifacts/kaya-joint-territorial/joint-territorial-source-result.json","sha256":"2572e6d26049eeee34ff88db51e7ba6e2f45657a655109c4e18c4f5dee2c4b2f"},
+    {"path":"generated-artifacts/kaya-joint-territorial/paired-native-source-cells.json","sha256":"4927b432d540a96055fbb8dc35b6184c6879c60b6dbc96627b6430335384a1d5"},
+    {"path":"generated-artifacts/kaya-joint-territorial/focused-tests.log","sha256":"e250ab409c0b82770a3bfebb51a58bd990b9b8733965b9a5c3e74eec5a6e14bd"},
+    {"path":"generated-artifacts/kaya-joint-territorial/public-clean-tests.log","sha256":"e250ab409c0b82770a3bfebb51a58bd990b9b8733965b9a5c3e74eec5a6e14bd"},
+    {"path":"generated-artifacts/kaya-joint-territorial/assembly.log","sha256":"9fbb4eccc0247b2d94054b4a80b15f9d072fe141f8a34899e6c4e5d129ae5030"},
+    {"path":"generated-artifacts/kaya-joint-territorial/joint-territorial-source-result-initial3.json","sha256":"38b3e23c45b5cd8078679766dbe06dc26d21abbd2a26a10f45515f3e70ea3a38"},
+    {"path":"generated-artifacts/kaya-joint-territorial/paired-native-source-cells-initial3.json","sha256":"0ed7dff4426a6be1cb3ef8950970a8409877a9757e7e615cc6aea5846331a38a"},
+    {"path":"generated-artifacts/kaya-joint-territorial/assembly-initial3.log","sha256":"d50f8efc37b962381a1b82b5efe7e0debeaaab2dfe5a58f2f8dad53d4b6a5d50"}
+  ],
+  "preservedSourcePins": [
+    {"path":"docs/Kaya_Protocol.md","sha256":"210d19c643942e739c7a38431b14d682fef0789b5670a847499ea8d31842cdee"},
+    {"path":"docs/Forecast_Kaya_Protocol.md","sha256":"ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f"},
+    {"path":"generated-artifacts/driver-calibration/kaya-co2.csv","sha256":"7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6"},
+    {"path":"generated-artifacts/driver-calibration/kaya-codebook.csv","sha256":"33b4f5e00efd58c7b83863f736beba1af4df946b43642b0400c3ec38648e0e8e"},
+    {"path":"generated-artifacts/kaya-fullbasis-monthly/wdi-gdp.body","sha256":"cf002ee93811f11358636714f7dbda779a001635dac0cfe963105bb8f6cb50f8"},
+    {"path":"generated-artifacts/kaya-fullbasis-monthly/wdi-pop.body","sha256":"603ac3bb3f04eda0d8e716d919821444532ea2ef026d5b11e292786e4555c1a4"},
+    {"path":"generated-artifacts/kaya-fullbasis-monthly/fullbasis-source-result.json","sha256":"41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120"},
+    {"path":"generated-artifacts/kaya-highfrequency-source/source-assembly-result.json","sha256":"e6475e2438acbc3d20a598acf1ce3380be4facd27324f5ffdff06a47710d5e59"},
+    {"path":"generated-artifacts/kaya-fullbasis-monthly/wdi-gdp-definitions.body","sha256":"6ff6d14fd399d22fcd4bdcdaa359d1930160bf7eded95a543e001dd6777d3aee"},
+    {"path":"generated-artifacts/kaya-fullbasis-monthly/wdi-pop-definitions.body","sha256":"b80c5a9486bf2807564fb3e1f9989bfe12c632dec71a364ab76bcba44b217171"}
+  ],
+  "canonicalLedgerChanges": 0,
+  "privateProtectedFaIRBundleChanges": 0,
+  "runtimeAuthCollectorChanges": 0,
+  "commitsDeploymentsPublishingCallbacks": 0
+}

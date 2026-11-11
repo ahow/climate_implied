@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 1792,
+  "definitions": 1795,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -12224,7 +12224,7 @@
       "boundary": "New read-only explicitly conditional endpoint; typed send-argument domain and input/HTTP metadata inventoried separately, never original cohort closure credit."
     },
     "conditionalCompany": {
-      "definitions": 81,
+      "definitions": 84,
       "ids": [
         "conditionalCompany.schemaVersion",
         "conditionalCompany.scope",
@@ -12267,6 +12267,7 @@
         "conditionalCompany.fact.NEE.unknownGrossOutflow",
         "conditionalCompany.fact.NEE.conditionalCases",
         "conditionalCompany.fact.NEE.negativeFunding",
+        "conditionalCompany.fact.NEE.relatedPartnerGrossDistributions",
         "conditionalCompany.fact.FSLR.openingPpe",
         "conditionalCompany.fact.FSLR.capex",
         "conditionalCompany.fact.FSLR.depreciation",
@@ -12295,6 +12296,8 @@
         "conditionalCompany.fact.FSLR.cohortPriorCreditCash2026",
         "conditionalCompany.fact.FSLR.cohortPreCutoffReservePv",
         "conditionalCompany.fact.FSLR.cohortPostCutoffVisaPv",
+        "conditionalCompany.fact.FSLR.grantScopeReported45x",
+        "conditionalCompany.fact.FSLR.grantScopeNoncashSupplement",
         "conditionalCompany.fact.XOM.reportedEmissions",
         "conditionalCompany.fact.XOM.deliveredUnits",
         "conditionalCompany.fact.XOM.shortage",

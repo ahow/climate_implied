@@ -1,0 +1,160 @@
+{
+  "version": "nee-related-partner-cash-2",
+  "status": "new-counterparty-source-cash-partition-and-equity-rollforward-executed-not-consolidated-NEE-NCI-closure",
+  "qualifiedOriginalIssuers": 0,
+  "sourceAcquisition": {
+    "maximumLogicalRequests": 4,
+    "actualLogicalRequests": 4,
+    "statuses": [200,200,200,200],
+    "receipts": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/nee-related-followup/receipts.json",
+    "receiptsSha256": "6643a71bcbcfb75a181b8552af40b2550574b0178f6a74033214b273af19e37f",
+    "candidateIdentityAuthenticated": "XPLR Infrastructure, LP; CIK0001603145",
+    "declaredContractsReceipts": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/nee-related-followup/declared-llc/receipts.json",
+    "declaredContractsReceiptsSha256": "30d9c184ec0e1ed8f02135ae7820f38e13cb0a8cce79177a14842edb4c9d01b8",
+    "commands": ["npx tsx script/capture-nee-related-source-followup.ts --private-primary","npx tsx script/capture-nee-declared-llc.ts --private-primary"],
+    "discovery": "Two original requests authenticate submissions/exact annual; two separately recorded declared contract GETs. Original frozen2request receipt book unchanged. Bound4total exhausted; no guessed filenames/repeated404 or paid providers."
+  },
+  "sourceRecord": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314525000006/xplr-20241231.htm",
+    "urlBasis": "Exact native SECarchive URL retained in discovery.json/receipt, discovered from authenticated submissions",
+    "publicationDate": "2025-02-21",
+    "sha256": "447c18edf112a01161048c9fec3dae2efa01e69d7b85e1d15753985c681db4e3",
+    "period": "FY2024/2023",
+    "unit": "USDmillion native iXBRLscale6",
+    "legalIdentity": "XPLR Infrastructure, LP, formerly NextEra Energy Partners, LP; NEE equity-method counterparty, NOT NEE consolidated subsidiary",
+    "locator": "Note2 printed51–52:noncontrolling-interest activity table NEE's Indirect Noncontrolling Ownership Interests column; footnote(a) and cash-classification paragraph. CFOstatement:partner contributions/distributions. Note14 printed69–70:ClassBLLCallocation/buyout table.",
+    "scope": "Named NEE-category primarily NEEEquity interest in XPLROpCo and NEER interests in SilverState/SunlightRenewablesHoldings/EmeraldBreeze; not sole XPLROpCo distribution.",
+    "reliability": "Official issuer SECannual; actual consolidation/recipient/programme scope preserved. Visible equity-table signs distinguished from native taxonomy debit/credit signs.",
+    "rights": "Bounded public financial facts/derived aggregates only; raw filing retained private/git-ignored."
+  },
+  "capturedSourceFieldsUsd": {
+    "totalPartnerCashDistributions": 816000000,
+    "publicUnitDistributions": 335000000,
+    "allOtherOwnerDistributions": 481000000,
+    "neeCategoryDistributions": 422000000,
+    "neeCategoryContributionsEquityMovement": 58000000,
+    "totalPartnerCashContributions": 63000000,
+    "neeCategoryOpeningEquity": 899000000,
+    "neeCategoryClosingEquity": 549000000,
+    "neeCategoryNoteReceivableMovementVisible": 5000000,
+    "neeCategoryIncomeVisible": 4000000,
+    "neeCategoryOtherEquityMovementVisible": 5000000
+  },
+  "calculation": {
+    "grossDistributionsInNeeIndirectOwnershipCategoryUsd": 422000000,
+    "otherOwnerCashDistributionsUsd": 59000000,
+    "neeCategoryContributionsEquityMovementUsd": 58000000,
+    "distributionsLessContributionEquityMovementUsd": 364000000,
+    "distributionsLessContributionIsCertifiedNetCash": false,
+    "cashPartitionResidualUsd": 0,
+    "equityRollforwardResidualUsd": 0,
+    "exactSubsetOfNee811mOperatingAffiliateCashUsd": null,
+    "contributionCashInNeeCategoryUsd": null,
+    "neeConsolidatedGrossNonDmiCashSolved": false,
+    "futureCommonCashAddedUsd": 0
+  },
+  "formulas": {
+    "cash": "816−335−481=0;481−422=59million; source Note2classifies non-DMI/non-ClassBowner distributions as partner cash distributions",
+    "equity": "899+5+4+58−422+5−549=0million using VISIBLEequity-table signs",
+    "notCash": "422−58=364million is distribution minus EQUITYcontribution movement, not certified net cash.63million consolidated partner cash contributions does not identify exact58million recipient/cash linkage.",
+    "noDoubleCash": "Do not subtract422m from NEE811m CFOdistributions without return-on/return-of-capital and exact recipient mapping. Do not treat5m notes, equity income, cash sweeps, support guarantees or buyout option values as common cash."
+  },
+  "newLlcSourceFields": {
+    "source": "XPLRFY2024Note14ClassBtable/footnotes, NOT a NEE consolidated DMI agreement",
+    "namedEntities": ["XPLR Renewables II, LLC","XPLR Infrastructure Pipelines, LLC","Genesis Solar Holdings, LLC","XPLR Renewables III, LLC","XPLR Renewables IV, LLC"],
+    "initialClassBCashAllocationsInTableOrder": [0.05,0.01,0.25,0.65,0.17],
+    "postInitialClassBCashAllocationsInTableOrder": [0.99,0.99,0.80,0.99,0.99],
+    "buyoutStartsInTableOrder": ["2022-12-11","2023-05-13","2025-12-18","2026-12-28","2027-12-15"],
+    "genesisMinimumBuyoutCondition": "ClassBallocation increases to99%if specified minimum buyouts have not occurred by2026-06-18; January2025extension conditional further deadline/redistribution terms in footnote(d), not automatic fixed future flip.",
+    "cashBuyoutsObserved2024": "RenewablesII187m for15%originalClassBinterests; Pipelines67m for25%; aggregate254m. Counterparty outflows, not NEE consolidated NCI.",
+    "previousAnnualOnlyGapNowAdvanced": "Actual declared execution-copy Exhibits10.16/10.18 obtained below; AvailableCash/reserves, distribution/tax/call provisions and numeric contractual IRRs no longer blanket missing. Not proof of current2026amendments/status, actual dated cash history or NEEconsolidated DMI.",
+    "missing": "Actual contractual AvailableCash/cash-reserve history and dated unit-level contributions/distributions/holdings, later amendments/minimum-buyout status, NEE consolidated project-member mapping and cash-flow classifications remain unresolved. Source IRRReport is described as attachedExcelFile, not an authenticated populated dated cash series in captured HTML.",
+    "notExhaustivelyUndisclosed": true
+  },
+  "freezeAndExecution": {
+    "failedV1": "Native taxonomy-sign equity rollforward explicitly REFUSED. Pre-calculationv1freeze/source/code retained unchanged at2026-11-11T14-53-26-067Z; no scoredv1result.",
+    "newVersionReason": "v2uses actual VISIBLEtable signs for three equity movements; native−5/−4/−5facts separately retained. No numerical coefficient fitted or future cash assumption.",
+    "freezePath": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/nee-related-followup/presentation-v2-2026-11-11T14-55-02-147Z/frozen-before-calculation.json",
+    "freezeSha256": "05528d63c475f8c76ba76595b1e765a43e49a0d7af34629cd0103abad18d8a8a",
+    "reportPath": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/nee-related-followup/presentation-v2-2026-11-11T14-55-02-147Z/report.json",
+    "reportSha256": "9daae97aec8a6ffc6d8d9223c90ba530b0a7435e468c7520335a544872821559",
+    "newFutureAssumptions": 0,
+    "oldFinancialKernelExecutions": 0,
+    "rootAttempts": 0,
+    "originalNeeReferenceDatePreserved": "2025-01-31",
+    "informationContext": "Revised history; newly captured counterparty2025-02-21annual after originalNEE2025-01-31reference. Not point-in-time.",
+    "ownerReview": "pending-not-requested"
+  },
+  "originalClauseProposals": [
+    "NEEactual missing-source advancement: exact counterparty NEE-category gross distributions422m, separate equity contribution58m, financing-cash partition and owner equity rollforward close. Does not certify net364m cash or NEE811m CFOsubset.",
+    "Actual named LLCClassBcash allocation/buyout conditional dates now located in counterparty annual; not blanket missing, not transferable to NEE consolidated DMIcash/tax waterfalls.",
+    "Source-qualified next engineering: populate executed LLCAvailableCash and actual dated ownership/contribution/distribution inputs, trace NEEcash classification/recipient bridge; preserve NEE24/48results, unknown consolidated gross non-DMIlegs and original0/3."
+  ],
+  "declaredExecutedContracts": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314525000006/xplr-q42024xex1016.htm",
+      "publicationDate": "2025-02-21",
+      "agreementDate": "2025-02-17",
+      "sha256": "d722bf17d7cf528cca6f2786bb136cd9298f8cf91e0e075eb7937c95be6e50f6",
+      "identity": "Second Amended and Restated LLCagreement of XPLR RenewablesII,LLC; XPLR RenewablesHoldingsII/KKR Nitrogen group, not NEE consolidated DMI",
+      "locators": "Definitions AvailableCash/FlipDate/InternalRateofReturn;5.01monthlycash printed35–36;5.04capital/taxallocations printed37onward;7.02call printed57onward;9.02XIRRcalculation;ExhibitB/Schedule2",
+      "nativeUnitPeriod": "Monthly legally distributable USDcash, distinct class percentages; annual effective PRETAX per-ClassBunit IRR; dates conditional on agreement path",
+      "fundingBeforeDistribution": "AvailableCash excludes capital/equity contributions and restricted subsidiarycash; deducts managing-member maintenance/capex/expense/credit, scheduled principal/interest and legal/debt covenant reserves. Not EBITDA, all operating CFO or unencumbered equitycash.",
+      "flipDate": "2025-06-11",
+      "cashPriority": "Pre-flip95%A/5%Brestoration depends15%/30%minimum buyout conditions. Post-flip1%A/99%B; if not allBunits acquired,40%of XPLR-ownedBcash reallocated to externalB, capped25%of totalBcash, subject7.01(c)(v) and other agreement provisions.",
+      "callIrr": "7.02:8.32%beforeflip;9.32%afterflip measured only from third anniversary, with preceding segment8.32%. Actual cash chronology still required; not a commissioning return, borrowing rate or NEEcommon discount rate.",
+      "taxBoundary": "5.04capital account allocation95/5or1/99with further special/tax rules, not simply taxcash distribution. Full liquidation/indemnity/tax branches not implemented here.",
+      "activityGeography": "Schedule2names wind/solar assets and legal owners in ND/IL/IA/MN/NM; Rosmar ClassCinterest entitles holder49.99%of project distributions. Does not identify actual generation, AvailableCash, credit eligibility or total NEEcash weights.",
+      "reliabilityRights": "Official declared SECexecution copy; bounded factual contract extraction only. Full HTML retained private; no exhaustive later-amendment/legal-current-status certification."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314525000006/xplr-q42024xex1018.htm",
+      "publicationDate": "2025-02-21",
+      "agreementDate": "2025-02-17",
+      "sha256": "445b73b987042a8f664dd559f624540b27d65fab8867aa516fb34cc247f53102",
+      "identity": "FOURTH Amended and Restated LLCagreement GenesisSolarHoldings,LLC; actual exhibit heading controls over abbreviated annualindex description",
+      "locators": "Definitions AvailableCash/FlipDate;5.01printed50onward;5.04taxcapital allocation;7.02printed78onward;9.02printed105",
+      "nativeUnitPeriod": "Monthly USDAvailableCash/reserves and per-unit annual effective PRETAX IRR, not common-return guidance",
+      "flipDate": "2030-12-18, potentially extended annually through2034only if election and specified conditions met",
+      "cashPriority": "75%A/25%BbeforeJune18,2026; subsequent1%A/99%Bsubject10%/40%minimum buyout restoration and further election conditions. Post-flip85%XPLR-ownedBdiversion capped35%totalBunder specified20%buyout/election conditions; not a single automatic static allocation.",
+      "callIrr": "6.76%base; conditional extension9.75%segment afterDec18,2030or specified notice date. Full branch/election and dated unit cash history needed.",
+      "reliabilityRights": "Official SECexecution-copy factual terms; no raw full contract/model export and no assertion later options exercised."
+    }
+  ],
+  "normalizedContractClaimCalculation": {
+    "version": "nee-renewables-ii-source-claims-1",
+    "freezePath": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/nee-related-followup/llc-claims-2026-11-11T15-02-30-899Z/frozen-before-calculation.json",
+    "freezeSha256": "9eedb44f53f29deee6a5bf45023ce4723670b0bcc8a759cfd8d0266c9034efda",
+    "reportPath": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/nee-related-followup/llc-claims-2026-11-11T15-02-30-899Z/report.json",
+    "reportSha256": "2f4b0ae952aff829f626640fd4b0e4b8e4878d0ab2453ac6a39899be3a65d3f3",
+    "sourceAnchor": "FY2024annual reports cumulative buyout30%originally issuedB; NOT certification current fraction still held.",
+    "frozenConditionsBeforeCalculation": "Assume source-anchored30%ClassBholding retained/no transfers or further buyouts; normalized1USDcontractualAvailableCash legally distributable;7.01exceptionfalse; selected5.01branch only. None is an observed forward cash/ownership fact.",
+    "unit": "USDclaim per1USDcontractually available cash, NOT observed cash/value/commonFCFE",
+    "preFlipRestoredXplrClaim": 0.965,
+    "postFlipXplrClaim": 0.1882,
+    "formula": "Pre95%+5%×30%=96.5%;post1%+99%×30%−min(40%×99%×30%,25%×99%)=18.82%.External81.18%, normalized funded cash rebuilds100%.",
+    "unavailableActualCashStatus": "unresolved-source-inputs",
+    "notImplemented": "Complete Article5other-cash/liquidation/tax/capital-account rules,7.07(b)and all other-priority predicates, call-priceXIRRactualhistory, Genesis complex election branches, NEEcommon allocation and forward funded projectAvailableCash. No claim complete legal/common-cash waterfall.",
+    "actualAvailableCashComputed": false,
+    "newFinancialGridOrRootAttempts": 0,
+    "originalQualifiedIssuers": 0
+  },
+  "nextDependencyReadySourceBlock": {
+    "field": "Actual dated ClassBcash series and project/monthAvailableCash/reserves, not a new grid",
+    "exactLocator": "Exhibit10.16/10.18ExhibitBFinancialModel/IRRReport says See attachedExcelFile. Neither captured contract HTMLhas any XLS/IRRhref; searched actual retained href attributes, zero matches.",
+    "unattemptedNotUndisclosed": "SECfiling archive attachment inventory/Excelretrieval not attempted in this exhausted4request block. No claim workbook absent or globally undisclosed. Official filing-directory inventory is the ready next discovery route.",
+    "downstream": "Feed authenticated series into contractualXIRRcall-price and monthly AvailableCashreserves/ownership waterfall, preserving tax/indemnity/call branches; map counterparty return-of/return-on-capital and actual recipient to NEEcash classification before changing811m/commonFCFE.",
+    "notOwnerApprovalBlock": true
+  },
+  "verification": {
+    "sharedFocusedVerification": "docs/fslr-grant-scope-evidence.json#verification",
+    "publicTests": "14pass/0fail, synthetic code-only fixtures plus actual isolated read-only API/JSON/XLSXbinary readback; no private file dependencies.",
+    "mandatoryPrivateCommand": "npx tsx script/validate-grant-scope-related-private.ts --private-primary",
+    "mandatoryPrivateResult": "PASS; independent counterparty visible-sign equity/cash partition and independently formulated source-contract claim; all captured source/financialcode hashes verified, failedv1immutable, no old financial kernel.",
+    "privateLogSha256": "46b366ab715f4cb59c908574c8f3be93f0125d9c7869880a31c03fe00b2a55a1",
+    "strictEs2022AndEs5": "bothpass; no config relaxation",
+    "financialScenarioOrRootAttempts": 0,
+    "rawPrivateExport": false,
+    "protectedCanonicalFairUiRoutes": "not edited; only existing own read-only company conditional data/tests supplemented"
+  }
+}

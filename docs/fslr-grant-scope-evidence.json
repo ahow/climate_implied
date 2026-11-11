@@ -1,0 +1,150 @@
+{
+  "version": "fslr-grant-scope-1",
+  "status": "source-scope-bridge-executed-not-full-cash-rollforward",
+  "technicalOriginalIssuerCompletion": false,
+  "qualifiedOriginalIssuers": 0,
+  "originalClauseProposals": [
+    "S12-001actual source997.6m specifically reported45Xcost-of-sales recognition is not the1,014.121m all-income-grant table. Split8.721m into16.521m disclosure-scope difference and−7.8m deliberately mixed-scope diagnostic, not invented cash.",
+    "Separate asset-benefit INSTANT balances from ANNUAL-DURATION noncash supplemental proceeds-to-be-received.19.711m/19.712m changes nearly match19.676m but do not establish programme receivable/cash/FX reconciliation.",
+    "Preserve32original integrated annual cash rows and5993/6194million conditional revised-history outputs; no cash, recognition, tax, WC, excesscash, terminal, timing or owner qualification changed."
+  ],
+  "sourceRecords": [
+    {
+      "id": "FSLR-FY2024-GRANT-SCOPE",
+      "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+      "publicationDate": "2025-02-25",
+      "period": "FY2024/2023; USDthousands financial tables and0.1million narrative",
+      "legalIdentity": "First Solar, Inc. and subsidiaries; CIK0001274494; consolidated",
+      "locators": ["MD&A Government Grants printed65:997.6m specific45Xrecognition", "Note9 printed97:income-benefit expense dimensions and cumulative asset-benefit balances", "Consolidated CFOstatement printed80:supplemental NONCASHproceeds-to-be-received171,920/152,208; native annual contextsc-1/c-16", "Consolidated balances/CFOstatements:grants receivable and signed270.3m adjustment"],
+      "reliability": "Retained authenticated native SECiXBRL; entity, annual/instant period, exact dimension and USDscale selected without target-value matching.0.1m narrative precision distinct fromthousands tables.",
+      "rights": "Public issuer financial facts and bounded derived aggregates only; no full HTML/provider/private source export."
+    },
+    {
+      "id": "FSLR-Q12025-VISA-DAY",
+      "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000033/fslr-20250331.htm",
+      "publicationDate": "2025-04-29",
+      "period": "Three months ended2025-03-31",
+      "legalIdentity": "First Solar, Inc. consolidated",
+      "locator": "Note5 printed14:202.6m remaining Visa proceeds received during the three months endedMarch31,2025",
+      "unit": "USDmillion cash received; calendar quarter, NOT exact day",
+      "reliability": "Actual retained unaudited issuer filing, not bank settlement record",
+      "rights": "Bounded financial fact; no full filing export"
+    }
+  ],
+  "calculation": {
+    "reportedSpecific45xCostSalesUsd": 997600000,
+    "allIncomeGrantBenefitsUsd": 1014121000,
+    "selectedCashUsd": 1275700000,
+    "costSalesScopeDifferenceUsd": 11851000,
+    "incomeScopeDifferenceUsd": 16521000,
+    "deliberatelyMixedScopeResidualUsd": -7800000,
+    "priorUnallocatedResidualUsd": 8721000,
+    "exactIncomeScopeIdentityResidualUsd": 0,
+    "priorBookCfoResidualUsd": 19676000,
+    "assetBenefitStockChangeUsd": 19711000,
+    "bookCfoMinusAssetBenefitChangeUsd": -35000,
+    "noncashSupplementCurrentUsd": 171920000,
+    "noncashSupplementDifferenceUsd": 19712000,
+    "bookCfoMinusNoncashSupplementDifferenceUsd": -36000,
+    "cashAdjustmentAppliedUsd": 0,
+    "observedOtherGrantCashUsd": null,
+    "exactVisaQ12025ReceiptDay": null,
+    "unallocatedResidualFullyResolved": false,
+    "fullGrantReceivableCashRollforwardCertified": false
+  },
+  "formulas": {
+    "incomeScope": "1,014,121,000−997,600,000=16,521,000;997,600,000+270,300,000−1,275,700,000=−7,800,000;sum=8,721,000",
+    "assetInstant": "(166,211,000+5,708,000)−(146,348,000+5,860,000)=19,711,000;19,676,000−19,711,000=−35,000",
+    "noncashDurationCrosscheck": "171,920,000−152,208,000=19,712,000;19,676,000−19,712,000=−36,000",
+    "classificationRefusal": "No assumption annual supplement is instant receivable. No assumption cumulative asset-benefit stock is a receivable. Neither near match proves FX/cash/India receipts or eliminates residual.",
+    "rounding": "Specific45Xnarrative±50,000; mixed-scope150,000bound is its narrative-rounding component including two0.1mrounded cash receipts, NOT the total including table rounding. Adding FY2024grant-CFOtable±500gives conservative150,500combined precision bound. Source tablethousands precision separately retained, not guessed exact transaction amounts."
+  },
+  "narrowMissingFields": [
+    "Programme-level gross/net45Xincome recognition and credit-sale carrying adjustments to receivables",
+    "Other-income grant receivable/cash/noncash/FXrollforward by programme",
+    "Instant asset-based grant receivable balance and actual India settlement/certification dates; annual-duration supplemental fact not automatically usable as stock",
+    "Visa202.6m exact Q12025receipt day not located in selected retainedNote5; no request to bank/owner and no invented day. Existing conditional pre-cutoff/March31treatments remain labelled assumptions.",
+    "Actual eligible component watts, USprimary-cost share, PFEattributed direct-material costs/total costs and deemed-sale path remain unavailable; no volume inversion"
+  ],
+  "currentLawBoundary": {
+    "existingSourcesNotRerun": "docs/issuer-contract-law-evidence.json:originalPL119-21 and IRSNotice2026-15; retained FSLRFY2025annual/Q32026issuer risk notes read, no resolved legal kernel rerun",
+    "sourceConstraint": "2026/2027/2028/2029/2030+solarMACRminimum50/60/70/80/85%; actual cost attribution/method/entity requirements needed.65%USprimary-eligible-component cost condition concerns specified embedded-primary deemed-sale path after2026, not blanket direct-module rule.",
+    "currentCompanyEligibilityCertified": false,
+    "companyMissing": "Component/method/year-specific total direct material costs and PFEattributable costs, control/entity compliance, USeligible-sale split, same-facility/65%USprimary costs for embedded path. Global GW/revenue/headquarters are not substitute evidence.",
+    "authorityCaveat": "Existing source framework is not exhaustive current-law amendment certification. No new statutory/current company eligibility verified by this grant component."
+  },
+  "publicAllowlist": {
+    "newEnabledFields": ["FSLR.grantScopeReported45x","FSLR.grantScopeNoncashSupplement","NEE.relatedPartnerGrossDistributions"],
+    "sourceDefinedValuesUsd": [997600000,171920000,422000000],
+    "classification": "sourced-derived;171.92m NONCASHannual-duration, not new CFO.422m counterparty owner category, not NEEconsolidated NCI or811m mapped subset.",
+    "readback": "Existing generic read-only API/JSON/XLSX includes all3new facts, exact unit/formula/source/boundary/classification; FSLRnew rows explicitly checked and all issuer workbook cells losslessly matched. No new UI/routes/server handlers.",
+    "liveConditionalDefinitions": 84,
+    "formalSuccessFieldsUnchanged": 30,
+    "typedApiFieldsUnchanged": 63,
+    "allIssuerFlattenedLeaves": 476,
+    "legacyProtectedLeaves": 308,
+    "legacyProtectedNonstringValues": 44,
+    "parentMetadataOnly": "Protected census untouched; historical conditional definitions63/81can be parent-updated to84. Exact live registry84asserted. Original1001accounting/canonical ledgers unchanged.",
+    "notEnabled": "No whole-equity values, private artifacts/provider/price/share bytes, raw source-object spread, new claim-share scalar or new financial case scoring exposed.",
+    "additionalSafeDerivedProposalsNotEnabled": "Source scope-only11.851m/16.521m/−7.8m and35k/36k crosschecks could be exposed ONLY with explicit NOTcash/NOTclosed-rollforward boundaries. Normalized18.82%LLCclaim would require conditional classification/per-AvailableDollar unit and its separately frozen ownership/legal/exception assumptions; it is NOT observed money."
+  },
+  "verification": {
+    "publicCommand": "npx tsx --test script/fslr-grant-scope.test.ts script/nee-related-partner-cash.test.ts script/nee-related-partner-cash-presentation.test.ts script/nee-renewables-ii-cash-claims.test.ts script/company-conditional-api.test.ts",
+    "publicTestsPassed": 14,
+    "publicTestsFailed": 0,
+    "publicTestsPrivateFileDependencies": false,
+    "publicLog": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/final-public-tests.log",
+    "publicLogSha256": "57d14cba3a2495c73994b03cdd2e7a236c528ecf96175f1f83e8c6b2351e3d6a",
+    "calculationCommandsExecutedOncePerNewVersion": [
+      "npx tsx script/run-fslr-grant-scope.ts --private-primary",
+      "npx tsx script/run-nee-related-partner-cash.ts --private-primary (v1explicit native-sign refusal; no result/retune)",
+      "npx tsx script/run-nee-related-partner-cash-presentation.ts --private-primary",
+      "npx tsx script/run-nee-renewables-ii-source-claims.ts --private-primary"
+    ],
+    "mandatoryPrivateCommand": "npx tsx script/validate-grant-scope-related-private.ts --private-primary",
+    "mandatoryPrivateStatus": "PASS;3new public source scalar bindings,5independent scope/cash/equity/contract claim identities,2executed LLCsources,32old annual rows/two outcomes byte-preserved; no old issuer kernel.",
+    "mandatoryPrivateLog": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/mandatory-private.log",
+    "mandatoryPrivateLogSha256": "46b366ab715f4cb59c908574c8f3be93f0125d9c7869880a31c03fe00b2a55a1",
+    "mandatoryPrivateReceiptSha256": "9e4531fc78e85e120293e9c9480dceeb1f175d2e97efdcf84f9f2a080fede882",
+    "strictFiles": [
+      "server/calculation/fslrGrantScopeBridge.ts","server/calculation/neeRelatedPartnerCash.ts",
+      "server/calculation/neeRelatedPartnerCashPresentation.ts","server/calculation/neeRenewablesIiCashClaims.ts",
+      "script/fslr-grant-scope.test.ts","script/nee-related-partner-cash.test.ts",
+      "script/nee-related-partner-cash-presentation.test.ts","script/nee-renewables-ii-cash-claims.test.ts",
+      "script/run-fslr-grant-scope.ts","script/run-nee-related-partner-cash.ts",
+      "script/run-nee-related-partner-cash-presentation.ts","script/run-nee-renewables-ii-source-claims.ts",
+      "script/capture-nee-related-source-followup.ts","script/capture-nee-declared-llc.ts",
+      "script/validate-grant-scope-related-private.ts","shared/companyConditionalData.ts",
+      "shared/companyConditionalSemantics.ts","script/company-conditional-api.test.ts"
+    ],
+    "strictCommandExactArgumentTemplate": "npx tsc --noEmit --strict --skipLibCheck --esModuleInterop --module commonjs --moduleResolution node --lib ES2022,DOM --types node --target TARGET followed by strictFiles in listed order; TARGET separately ES2022andES5",
+    "strictBothTargets": "PASS; no tsconfig relaxation",
+    "emptyStrictLogsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compilerOnlyLoggingRepair": {
+      "path": "script/run-fslr-grant-scope.ts",
+      "reason": "TS2783duplicate version key in console JSONformatter removed; calculation.version already supplies identical value. No finance/assumption/output changes and calculation NOTrerun.",
+      "frozenHistoricalRunnerSha256": "2178183419b11440ca9e9a158a029b0c6b01ea7f3bf308ed0faedaaf3937e964",
+      "currentRunnerSha256": "41ac9b57ae9e2c6f4fcd312054a06a514af07a6513d7b33d31d00fb384515e90",
+      "validation": "Exact historical runner hash reconstructed by reversing solely the console key removal. Source/calculation/test hashes and old artifact byteguards remain enforced; not arbitrary drift acceptance."
+    },
+    "newExternalPrimaryRequests": 4,
+    "newExternalPrimaryStatuses": [200,200,200,200],
+    "oldGridRootKernelExecutions": 0,
+    "rawPrivateExport": false,
+    "appWorkflowBrowserDeploymentCommitCallback": "none"
+  },
+  "freezeAndExecution": {
+    "freezePath": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/2026-11-11T14-49-39-036Z/frozen-before-calculation.json",
+    "freezeSha256": "431f9c945680660cbfead8523351e60cb0de0b53a824d8d4f71b1f0868009fc1",
+    "reportPath": "generated-artifacts/company-operating-corpus/fslr-grant-scope-v1/2026-11-11T14-49-39-036Z/report.json",
+    "reportSha256": "82423bbb0023030ffdf2c4469399040ef0daaea79b55c32332d6d4d1ed971fd0",
+    "newEconomicAssumptions": 0,
+    "sourceCashFlowsChanged": false,
+    "oldFinancialKernelExecutions": 0,
+    "rootOrGridAttempts": 0,
+    "protectedOriginalAnnualRows": 32,
+    "sameCurrencyCfBasisStubFadeTerminalReference": true,
+    "informationContext": "Revised history; source FY2024annual available2025-02-25was after FSLR2025-02-21reference, later2025/2026facts not backdated.",
+    "ownerReview": "pending-not-requested"
+  }
+}

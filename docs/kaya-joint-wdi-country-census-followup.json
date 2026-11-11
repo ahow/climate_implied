@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Complete actual source-native WDI country census for World/GDP/population residuals after initial native-territory intersection exposed10additional WDI country identifiers. Operational acquisition extension only;no scientific criterion refreeze.",
+  "initialManifest": "generated-artifacts/kaya-joint-territorial/requests-initial3.json",
+  "initialManifestSHA256": "d874fc8b98483fdee1fb7c866a149bb4cc087f746759c6b999a9da9ca42a0401",
+  "countryRegistrySHA256": "c9acf3932785191a649cbc04c3056af4cf64a236e5c3b49d49be25ddb0440bce",
+  "additionalSourceCountryIdentifiers": ["ASM","CHI","CYM","GIB","GUM","IMN","MAF","MNP","PRI","VIR"],
+  "selection": "Exact nonaggregate WDI registry identifiers NOT in frozen native-country/provisionalKosovo census. No fuzzy geographic mapping;retain missing nativeCO2/energy counterpart as unresolved.",
+  "priorRequests": 3,
+  "additionalRequests": 2,
+  "additionalBodyCapBytes": 2000000,
+  "eachNumericBodyCapBytes": 1000000,
+  "combinedMaximumRequests": 5,
+  "combinedBodyCapBytes": 16000000,
+  "timeoutSeconds": 45,
+  "redirectCap": 5,
+  "retries": 0,
+  "series": ["NY.GDP.MKTP.PP.KD","SP.POP.TOTL"],
+  "source": 2,
+  "years": [2010,2024],
+  "reasonForFullCensus": "Retained primary GDP glossary states Aggregation method Gap-filled total;population glossary says Sum. Compare World against actual complete source-country register with nulls explicitly retained,not only the earlier partial country intersection.",
+  "retainedGlossaryPins": {
+    "wdi-gdp-definitions.body": "6ff6d14fd399d22fcd4bdcdaa359d1930160bf7eded95a543e001dd6777d3aee",
+    "wdi-pop-definitions.body": "b80c5a9486bf2807564fb3e1f9989bfe12c632dec71a364ab76bcba44b217171"
+  },
+  "originalProtocolsUnchanged": true,
+  "noPPPBasisSplice": true,
+  "noUnchangedCountriesRefetched": true,
+  "rawSourceLocation": "generated-artifacts/kaya-joint-territorial;ignored/private,no raw redistribution",
+  "noModelsFitsScoresOrLedgerChanges": true
+}

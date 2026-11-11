@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Actual full2010-2024 GDP/population/primary-energy/nativeCO2 paired-cell assembly and territorial/regional/bunker residual accounting,not model fitting",
+  "originalProtocolsReadFirst": {
+    "docs/Kaya_Protocol.md": "210d19c643942e739c7a38431b14d682fef0789b5670a847499ea8d31842cdee",
+    "docs/Forecast_Kaya_Protocol.md": "ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f"
+  },
+  "frozenWindow": [2010,2024],
+  "originalEntities": ["World","China","India","United States","European Union (27)","Rest of World","International transport"],
+  "retainedInputsFirst": {
+    "nativeOWIDRevision": "382ee6c662b0ece26e111f263b44c029afad7787",
+    "nativeCSV": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
+    "nativeCodebook": "33b4f5e00efd58c7b83863f736beba1af4df946b43642b0400c3ec38648e0e8e",
+    "WDI2021PPP465GDPPopResult": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+    "GDP465Raw": "cf002ee93811f11358636714f7dbda779a001635dac0cfe963105bb8f6cb50f8",
+    "population465Raw": "603ac3bb3f04eda0d8e716d919821444532ea2ef026d5b11e292786e4555c1a4"
+  },
+  "newAcquisition": {
+    "maximumRequests": 3,
+    "maximumTotalBodyBytes": 14000000,
+    "maximumCountryMetadataBodyBytes": 2000000,
+    "maximumEachNumericBodyBytes": 6000000,
+    "timeoutSeconds": 45,
+    "maximumRedirects": 5,
+    "retries": 0,
+    "firstRequest": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+    "secondAndThirdRequests": "WDI source2 GDP2021PPP and population2010:2024 ONLY for source-returned nonaggregate country identifiers matching retained native territorial ISO3 rows,plus explicit provisional Kosovo/XKX name crosswalk,and NOT already retained31 identifiers",
+    "pagination": "Require exactly one page and actual returned row count equal published total,no hidden next pages",
+    "sourceRevision": "Compare new and retained sourceid/lastupdated explicitly;never silently claim an atomic common vintage if dates differ",
+    "rights": "Previously retained source-specific WDI CC-BY4.0 glossary/terms;public numeric API. Underlying native OWID/GCB/EI/EIA rights unchanged;raw bytes stay ignored/private.",
+    "notAllowed": ["Paid APIs","purchases","licence bypass","duplicate unchanged31-country data requests","unbounded archives","mining freshness reaudit"]
+  },
+  "assemblyRules": [
+    "Keep WDI2021PPP separate from MPD2011PPP;retain original54 missing cells unchanged",
+    "Pair actual national source cells with source row/hash/revision pointers;ISO joins are candidates,not proof of matching territorial extent",
+    "Use exact frozen native World/China/India/USA/EU27 energy and CO2;compare EU27 with complete fixed27 native member sums without replacing native aggregate",
+    "Assemble every2010-2024 original regional row;structural missing GDP/population/energy for international transport stays missing",
+    "Combine actual native aviation+shipping CO2 only as an explicitly derived transport subtotal;never infer bunker energy from CO2",
+    "Compute World-minus-selected diagnostic vectors,not fabricated native Rest-of-World GDP/population/energy observations",
+    "Compute prospective rest-country observed subtotals with explicit missing members;any incomplete full sum remains null",
+    "Distinguish native World-minus-country CO2 residual before/after explicit bunkers;energy bunker allocation remains unknown without source energy cells",
+    "Report actual unmatched country/territory identities and source missing versus unattempted cells"
+  ],
+  "numericalRules": {
+    "arithmetic": "Exact Decimal parsing of native numeric text and WDI JSON numbers;100digit arithmetic",
+    "positiveFinite": "Original full-contract inputs must be strictly positive finite;native zero quantities can remain in diagnostics but missing never becomes zero",
+    "closureEnvelope": "Sum half of each native displayed decimal quantum,including aggregate. Display-rounding engineering envelope only,not measurement accuracy or scientific qualification.",
+    "eligibility": "No original holdout unless original MPD2011PPP/full original entities/window/territory/energy/bunkers/vintage gates ALL qualify. Arithmetic subtraction closure alone cannot qualify.",
+    "originalScoringThresholds": "Unchanged original protocol;no fit or scoring planned while contract remains blocked"
+  },
+  "outputs": "Disjoint new climate code/unit tests/focused source evidence;full paired-cell tables and raw acquisitions private/ignored",
+  "canonicalLedgerOrProtectedFaIRChanges": false,
+  "commitsDeploymentsPublishing": false
+}

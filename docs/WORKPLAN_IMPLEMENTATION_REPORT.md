@@ -1,3 +1,48 @@
+# Grant/LLC and joint territorial input implementation — release pending
+
+{
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-grant-scope-related-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T15:12:47.449649+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 148.789,
+    "counts": {
+      "tests": 730,
+      "pass": 730,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T151247449649Z.log",
+    "workspace_revision": "8602b72ff58eb86780d5ee463f5c56ace2762b73",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "41verified257partial2blocked",
+  "release": "Local implementation validated; release receipt pending",
+  "clauses": [
+    "S04-003",
+    "S12-008",
+    "S12-017",
+    "S01-001"
+  ]
+}
+
+S04-003: 3285native territorial quadruples/2844numericallycomplete;105regional rows/75numericallycomplete. EUenergy aggregation disagrees all15years;World energy residual notbunker estimate. Originalprotocols unchanged; no forecast scoring.
+Next: Resolve exactnull/identity/territory/bunker andEUenergy aggregation gaps in retained joint census; no PPPsplice or residual imputation.
+
+S12-008: 997.6m specific45Xbenefit differs from1014.121m all-income grants.8.721m bridge decomposed into16.521m scope difference and−7.8m mixedscope residual; neither othergrantcash.19.711/19.712m nativeasset/noncash differences do not explain19.676m cash bridge. Old32rows/conditionalvalues unchanged.
+Next: Obtain programme-specific recognition/receivable/collection rollforward; exactQ1day remains undisclosed in examinednote, retain boundedtiming.
+
+S12-017: ActualexecutedNEE-related LLCcontracts sourcecash/taxpriority/flip/buyout rules.422m scopeddistributions separate58m contributions; no inferred364m netcash orprojectIRR. Conditional normalizedclaim96.5%preflip/18.82%postflip; actualAvailableCash missing.0/3qualified.
+Next: Inspect filingattachment inventory for referencedExhibitB ExcelIRRmodel andactualdatedAvailableCash; do not treat contractualIRR as projectreturn.
+
+S01-001: Three newpublic sourcedfacts/formulas bound inreadonlyAPI/UI/XLSX;84conditionaldefinitions. Original1000/1001unchanged.
+Next: Originalopaque summary leaf stillneeds producer provenance; newfacts do notclose originalgap.
+
 # Verified bundle/cohort engineering release; private transfer remains unavailable
 
 {
@@ -2742,6 +2787,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-fair-components-bc53096",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T13:32:25.036195+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-private-cohorts-085d671",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T14:39:59.119334+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202
