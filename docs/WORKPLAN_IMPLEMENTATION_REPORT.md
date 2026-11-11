@@ -1,4 +1,19 @@
-# Rendered company integration — validated, release pending
+# Latest verified rendered-company release
+
+{
+  "workspace_commit": "330569935a39812c744eb4ccdf0400c47835c822",
+  "github_main": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
+  "ci": "43003874360 success",
+  "railway_deployment": "4ae973c7-7302-40a3-aa4b-5e70a92bf8e2",
+  "verified_at": "2026-11-11T10:32:14.370900+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "affected": "GET conditional XOM summary200,oneissuer,zeroqualified;private/rawinputs never exposed",
+  "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
+  "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
+}
+
+# Rendered company integration — released; historical validation detail
 
 {
   "at": "2026-11-11T10:28:02.943190+00:00",
