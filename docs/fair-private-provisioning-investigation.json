@@ -15,7 +15,7 @@
   },
   "officialTransferReference": "https://docs.railway.com/cli/ssh",
   "requiredAction": "An authorized Railway operator must use their authenticated CLI or registered SSH/SFTP identity to transfer the private bundle and execute the exact install/activate commands in originalS07-002-private-bundle-evidence.json. Use node node_modules/tsx/dist/cli.mjs rather than network-resolving npx. Do not share credentials in chat.",
-  "runtimeConfiguration": "Set FAIR_ARTIFACT_ROOT to the installed absolute store path through the existing authorized environment configuration flow. This investigation did not change variables, credentials, resources or the scheduler.",
+  "runtimeConfiguration": "FIRST configure FAIR_ARTIFACT_ROOT to the intended absolute store path through the existing authorized environment configuration flow and wait for the resulting deployment. THEN transfer/install/activate in that final running container. Configuring variables after upload may replace the ephemeral filesystem and lose the upload. This investigation changed no variables, credentials, resources or scheduler.",
   "recovery": "No existing persistent mount. Replacement deployment may lose bundle/store/pointer/receipts; retain the trusted bundle privately and reinstall the exact source-matching release. Missing store refuses503. Persistent storage would require a separately authorized resource decision; none created.",
   "currentBundleSha256": "155bd3ffe3a9ec17cb00a62d21e059f6441f1b11c2b8104d713e0b071ba2a724",
   "currentBundleBytes": 103204794,

@@ -1331,11 +1331,44 @@
         "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
       },
       "pythonTests": 179,
-      "privateValidators": 3,
+      "privateValidators": 4,
       "browserChangedCases": "3/3pass; prior failures/followups retained",
       "originalSemantics": "1000/1001 unchanged;18supplemental definitions added,1792total",
       "counts": "41verified257partial2blocked",
-      "provisioning": "private authorized transfer unavailable; no new resources"
+      "provisioning": "private authorized transfer unavailable; no new resources",
+      "release": {
+        "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+        "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+        "ci": "43039515013 success",
+        "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+        "verified_at": "2026-11-11T14:38:46.906434+00:00",
+        "build_info": "exact SHA verified",
+        "health": 200,
+        "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+        "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+        "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+        "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+      },
+      "finalAfterLedgerExecution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+        ],
+        "executed_at": "2026-11-11T14:29:47.406945+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 150.626,
+        "counts": {
+          "tests": 722,
+          "pass": 722,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+        "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1420,19 +1453,20 @@
     }
   },
   "current_release": {
-    "workspace_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-    "github_main": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
-    "ci": "43029223643 success",
-    "railway_deployment": "30413e17-b20f-4df5-b288-ad3ca6009fe3",
-    "verified_at": "2026-11-11T13:31:55.516430+00:00",
+    "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+    "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+    "ci": "43039515013 success",
+    "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+    "verified_at": "2026-11-11T14:38:46.906434+00:00",
     "build_info": "exact SHA verified",
     "health": 200,
-    "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
-    "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
-    "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
+    "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+    "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+    "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+    "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T14:32:18.233115+00:00",
+  "updated_at": "2026-11-11T14:38:46.906434+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -26086,6 +26120,26 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -26118,8 +26172,8 @@
             }
           ],
           "scientific_acceptance": "not-promoted",
-          "git_commit": "37b92be048df7a5cfed641350100534ace6219b0",
-          "deployment_revision": "592957cddbdc6a67856cb326f61b6dfa2d0e7eda",
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
             "Full-scope origin-vintage monthly outcomes remain unavailable; no nowcast fitting/scoring performed."
           ],
@@ -26583,16 +26637,17 @@
             }
           ],
           "live_release_observation": {
-            "workspace_commit": "37b92be048df7a5cfed641350100534ace6219b0",
-            "github_main": "592957cddbdc6a67856cb326f61b6dfa2d0e7eda",
-            "ci": "43019539782 success",
-            "railway_deployment": "68d8a8b8-e5e4-4e9b-9d4a-5bc96b4ff71f",
-            "verified_at": "2026-11-11T12:25:04.103100+00:00",
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "affected": "data-management200; closed-modal crash fixed and initialrender screenshots clean before release; no unchanged41browser suite rerun",
-            "tests": "Final623TS/0fail/0skip/typecheck/build;172Python and mandatoryprivate issuer-law validator passed before client-only modalfix, measured code unchanged",
-            "scope": "Code/source only; no data/scientific promotion; later documentation/local receipts distinct."
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
           },
           "component_source_evidence": [
             {
@@ -69706,6 +69761,26 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -69733,8 +69808,8 @@
             }
           ],
           "scientific_acceptance": "not-promoted",
-          "git_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-          "deployment_revision": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
             "Actual live successful selected artifact reads still unproven; authenticated private transfer is required. This is not the production archive-schema dependency."
           ],
@@ -70084,16 +70159,17 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-            "github_main": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
-            "ci": "43029223643 success",
-            "railway_deployment": "30413e17-b20f-4df5-b288-ad3ca6009fe3",
-            "verified_at": "2026-11-11T13:31:55.516430+00:00",
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
-            "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
-            "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
           },
           "bundle_cohort_increment": {
             "directEvidence": [
@@ -70103,7 +70179,7 @@
               },
               {
                 "file": "docs/fair-private-provisioning-investigation.json",
-                "sha256": "7002951c57bb812034fcb59462f735c2f5675d1de17292ada38a0a07d7b5a71e"
+                "sha256": "8c7f491b37c41e48fd01157797198e02e59cbd284a536fd109045fe98bb98bac"
               }
             ],
             "behavior": "Exact16 private bundle with atomic install/activation/recovery,13protected source snapshots,all13456member identities,29refusals,permissions/export identity. Live storage/authorized transfer unavailable: no bucket/volume/CLI session/SSH principal or connector write tool.",
@@ -108522,6 +108598,26 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -108894,8 +108990,8 @@
             "calendar_liability": "Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-          "deployment_revision": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
             "Operating allocation, project crosswalk and approved permit limits remain unresolved."
           ],
@@ -109138,16 +109234,17 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-            "github_main": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
-            "ci": "43029223643 success",
-            "railway_deployment": "30413e17-b20f-4df5-b288-ad3ca6009fe3",
-            "verified_at": "2026-11-11T13:31:55.516430+00:00",
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
-            "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
-            "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -116854,6 +116951,26 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -116864,8 +116981,8 @@
             }
           ],
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
             "Conditional revised-history integration is not fully sourced operating case or qualified projection/valuation pair."
           ],
@@ -117200,7 +117317,20 @@
             "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
-          ]
+          ],
+          "live_release_observation": {
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+          }
         },
         {
           "id": "S12-009",
@@ -117878,6 +118008,26 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -117888,8 +118038,8 @@
             }
           ],
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
             "No newly qualified historical company origin."
           ],
@@ -118212,7 +118362,20 @@
             "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
-          ]
+          ],
+          "live_release_observation": {
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+          }
         },
         {
           "id": "S12-012",
@@ -120847,6 +121010,26 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -120857,8 +121040,8 @@
             }
           ],
           "scientific_acceptance": "not-conferred-by-this-criterion-review",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
             "0/3 original fully qualified end-to-end company cases."
           ],
@@ -121197,7 +121380,20 @@
             "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
-          ]
+          ],
+          "live_release_observation": {
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+          }
         },
         {
           "id": "S12-018",
@@ -137533,14 +137729,34 @@
               "workspace_revision": "17522f3c12d73eee566967754752403cc57a9b40",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && uv run python script/validate_climatetrace_mining_private.py && npx tsx script/validate-fslr-cohort-integrated-private.ts --private-primary && npx tsx script/validate-fslr-public-cohort-private.ts --private-primary && npx tsx script/validate-issuer-financial-followup-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T14:29:47.406945+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 150.626,
+              "counts": {
+                "tests": 722,
+                "pass": 722,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T142947406945Z.log",
+              "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
             "No zero/placeholder market-implied measures may substitute for missing evidence."
           ],
           "scientific_acceptance": "Not a scientific acceptance claim; original engineering criterion verified.",
-          "git_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-          "deployment_revision": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
+          "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+          "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [],
           "next_action": "Preserve these finite engineering regression contracts when components change. Scientific and issuer acceptance remain separate clauses.",
           "blockers": [
@@ -137641,16 +137857,17 @@
             ]
           },
           "live_release_observation": {
-            "workspace_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
-            "github_main": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
-            "ci": "43029223643 success",
-            "railway_deployment": "30413e17-b20f-4df5-b288-ad3ca6009fe3",
-            "verified_at": "2026-11-11T13:31:55.516430+00:00",
+            "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+            "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+            "ci": "43039515013 success",
+            "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+            "verified_at": "2026-11-11T14:38:46.906434+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
-            "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
-            "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
+            "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+            "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+            "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+            "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
           },
           "bundle_cohort_increment": {
             "directEvidence": [
@@ -145771,6 +145988,18 @@
       "affected": "data-management200; closed-modal crash fixed and initialrender screenshots clean before release; no unchanged41browser suite rerun",
       "tests": "Final623TS/0fail/0skip/typecheck/build;172Python and mandatoryprivate issuer-law validator passed before client-only modalfix, measured code unchanged",
       "scope": "Code/source only; no data/scientific promotion; later documentation/local receipts distinct."
+    },
+    {
+      "workspace_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
+      "github_main": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
+      "ci": "43029223643 success",
+      "railway_deployment": "30413e17-b20f-4df5-b288-ad3ca6009fe3",
+      "verified_at": "2026-11-11T13:31:55.516430+00:00",
+      "build_info": "exact SHA verified",
+      "health": 200,
+      "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
+      "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
+      "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
     }
   ],
   "latest_changed_paths": [

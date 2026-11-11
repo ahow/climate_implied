@@ -1,3 +1,21 @@
+# Verified bundle/cohort engineering release; private transfer remains unavailable
+
+{
+  "workspace_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
+  "github_main": "085d6715d9e88f5748b2a95c60381dba2c12a476",
+  "ci": "43039515013 success",
+  "railway_deployment": "094228ec-b3b6-490a-8239-84e901e40a33",
+  "verified_at": "2026-11-11T14:38:46.906434+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "affected": "FSLR GET200 includes newselectedreceipts and revised-history label; exactartifact503 FAIR_ARTIFACT_MISSING withoutfallback; wrongversion409. Private provision not performed.",
+  "tests": "Aftercanonicalcorrection722TS/0fail/0skip,179Python,threeissuerprivatevalidators+miningprivatevalidator,typecheck/build. Isolated16bundle29refusals separately;newbrowser3/3.",
+  "failed_gate": "43037996241 blockedpromotion: invalidledgercheck_type prose, fixed to existing exact enum; no gateweakening. Earlier179pass preceded offendingledgeredit; later179pass followsrepair.",
+  "scope": "Code released, not privatebundleprovisioning/dataactivation/scientificacceptance. Laterdoccommit/localreceipt distinct."
+}
+
+41verified/257partial/2blocked. Original1000/1001;0/3qualified. S16-005 finiteengineering verified; no efficacy claim. See fair-private-provisioning-investigation.json for exactoperator action/order/recovery.
+
 # Private bundle rehearsal, integrated FSLR receipts and finite UI acceptance
 
 {
