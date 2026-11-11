@@ -1,0 +1,85 @@
+{
+  "scope": "S16-005 new interaction branches only. Parent tester executes; no unchanged 41-route inventory rerun or modification.",
+  "status": "planned-not-executed",
+  "rules": [
+    "Use a fresh isolated browser context and intercept only GET responses for synthetic partial fixtures. Never call operator mutation routes.",
+    "Record exact fixture, settled UI condition, assertions, screenshot/download hash and console/page-error evidence per case. No arbitrary sleeps.",
+    "Use current route inventory paths; preserve the existing 41-case report as historical evidence, not evidence for these cases.",
+    "Do not classify successful SSR component invocation as portal mounting, hover positioning, download completion or archive-switch interaction coverage."
+  ],
+  "cases": [
+    {
+      "id": "indicator-portal-partial-definition",
+      "route": "/data-management",
+      "action": "Open an existing reviewed indicator row; intercept /api/data/indicator/<key> with def null, then with a partial def lacking unit/precision.",
+      "settledWait": "Visible dialog containing 'Labels and units cannot be verified'",
+      "assert": ["No time-series download button is mounted", "No undefined export-key error or page error", "Closing dialog returns focus; reopening a valid selected key uses its own definition"],
+      "unitEvidence": "Actual modal construction and definition/selection availability are SSR/unit tested; this checks portal DOM."
+    },
+    {
+      "id": "indicator-portal-empty-versus-missing-series",
+      "route": "/data-management",
+      "action": "Open a real registered indicator with its real definition; compare series [] against missing series and an invalid-year row.",
+      "settledWait": "Visible dialog containing either 'No indicator series observations were returned' or 'No usable indicator series array'",
+      "assert": ["Empty series has disabled export, not invented zero observations", "Missing/invalid series withholds table/download", "Missing proposal array states review completeness is not inferred"]
+    },
+    {
+      "id": "indicator-hover-zero-unknown-observation-status",
+      "route": "/data-management",
+      "action": "Supply a valid dated zero-valued series point with method and source string; omit isNowcast and use an empty source string. Open portal and hover the actual chart point.",
+      "settledWait": "Tooltip visible with the actual formatted zero and supplied year",
+      "assert": ["Value remains 0, not unavailable", "Tooltip says observation/estimate status unavailable and source not returned", "No source verification or invented nowcast flag is inferred"],
+      "unitEvidence": "Observed/estimated zero and absent metadata tooltip contents already SSR-tested."
+    },
+    {
+      "id": "indicator-current-read-withholds-prior-detail",
+      "route": "/data-management",
+      "action": "After a valid selected detail is visible, refetch that same GET under a held response, then fail it; close and reopen another indicator.",
+      "settledWait": "Loading selected indicator details, followed by explicit failed-read reason",
+      "assert": ["No prior detail rows/export remain while pending/error", "Newly selected key never receives old-key labels or rows", "Closed modal remains crash-free"]
+    },
+    {
+      "id": "legacy-sensitivity-hover-zero",
+      "route": "/",
+      "action": "Opt in to legacy diagnostics; supply a valid sensitivity row with baseline 0 and hover its actual bar.",
+      "settledWait": "Sensitivity tooltip with baseline 0.00°C",
+      "assert": ["No default 2.7°C is substituted", "Tooltip retains supplied category/label", "No hover/page error"],
+      "unitEvidence": "Missing low/high/range and absent payload are tested directly against the actual nested tooltip body; do not fabricate a hoverable invalid row filtered out by production."
+    },
+    {
+      "id": "backtest-partial-accounting-hover-and-xlsx",
+      "routes": ["/decarb-signal", "/decarb-gap"],
+      "action": "Use a completed dataset with valid dated backtest rows: one missing/null cumulative multiplier or TE and another genuine multiplier 1 / TE 0. Hover available chart points and download the available cumulative XLSX.",
+      "settledWait": "Named accounting-unavailable field for partial response and +0.0% for the separate valid-zero case",
+      "assert": ["Missing multipliers do not become -100%", "Missing TE/active return do not become 0.00% or bare %", "Actual zero return and zero TE remain formatted numbers", "XLSX missing cells stay blank/null and genuine zero cells remain zero with column bindings"]
+    },
+    {
+      "id": "conditional-issuer-partial-and-valid-selection",
+      "route": "/climate-valuation",
+      "action": "In the existing public aggregate fixture make the selected NEE metadata/disclosure/fact collection incomplete; keep another real issuer complete. Change issuer through the actual control.",
+      "settledWait": "Selected issuer heading and its own named missing-field reason, then the different selected issuer heading",
+      "assert": ["Incomplete selected issuer has no public export links", "No other issuer supplies missing facts or exports", "Valid issuer restores only its own issuer-qualified JSON/XLSX links", "Unknown extra private-byte sentinel key is absent from DOM", "0/3 and immutable/non-promotion disclosures persist"]
+    },
+    {
+      "id": "conditional-public-export-json-xlsx",
+      "route": "/climate-valuation",
+      "action": "Select a complete real issuer and follow the actual public JSON and XLSX GET links. Save and parse both downloads.",
+      "settledWait": "Downloads completed and parsed, not merely button/link visible",
+      "assert": ["Request issuer matches selected issuer", "JSON/XLSX preserve explicit unknown/null and real zero values without private keys", "Qualified public aggregate and provenance limitations are retained", "No operator writes or private source-file requests occur"]
+    },
+    {
+      "id": "archive-preview-provenance-missing-and-mismatch",
+      "route": "/data-management",
+      "action": "Select a real workbook-baseline inventory item via historical-workbook-selection; intercept its summary first with missing IDs/headers and then with conflicting returned snapshot ID/header.",
+      "settledWait": "Historical-summary-preview or the named provenance/mismatch warning after that exact summary request settles",
+      "assert": ["Missing counts/IDs/headers remain unavailable; selection does not fabricate them", "Zero companiesCount and recordCount remain zero", "Mismatch is explicitly labeled returned data, not confirmation of selected baseline", "Current source identity and other page data are unchanged by summary preview"]
+    },
+    {
+      "id": "archive-preview-race-and-inventory-refetch",
+      "route": "/data-management",
+      "action": "Select baseline A and hold its summary GET; select B and resolve B first, then resolve A. Separately hold/fail the infinite inventory refetch and analysis-input selection inventory.",
+      "settledWait": "B's actual response IDs and headers, or the relevant explicit inventory pending/error reason",
+      "assert": ["A cannot overwrite B's preview, counts or provenance", "Pending/error inventory does not offer retained stale options", "No current-data fallback is used", "Analysis-selection verification performs only GET reads; do not apply a production selection or invoke operator mutations"]
+    }
+  ]
+}

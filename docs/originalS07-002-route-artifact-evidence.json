@@ -1,0 +1,119 @@
+{
+  "criterion": "originalS07-002",
+  "scope": "Node retained-artifact route integration and engineering identity; not scientific acceptance",
+  "implementation": [
+    "server/calculation/fairArtifactCatalog.ts",
+    "server/calculation/fairArtifacts.ts",
+    "server/calculation/fairArtifactRoutes.ts",
+    "server/routes.ts",
+    "script/fair-artifact-routes.test.ts",
+    "script/validate-retained-fair-artifacts.ts"
+  ],
+  "inspectedProtocolsAndProducers": [
+    "docs/Independent_FaIR_Benchmark_Protocol.md",
+    "docs/Regional_FaIR_Coupling.md",
+    "script/fair-reference.py",
+    "script/regional_fair_pathway.py",
+    "script/fair_physical_retention.py"
+  ],
+  "version": "s07-offline-fair-v1",
+  "fairVersion": "2.2.4",
+  "upstreamRevision": "ec46fefc8f8c6b560a8b78ab1f4a9a5e04537f79",
+  "selectionContract": {
+    "ensemble": ["artifactId", "version", "manifestSha256", "ensembleSha256", "memberIdsSha256"],
+    "memberAdditionalRequirement": ["exact memberId", "memberSha256 from the verified manifest response"],
+    "manifestHashEncoding": "SHA256 UTF-8 JSON.stringify of catalog manifest in declared property order",
+    "memberHashEncoding": "SHA256 UTF-8 JSON.stringify({baseline,memberId,years,temperature}) in declared property order",
+    "memberIdsSha256": "ce25f929633422b68083893000e43fd574bb24c2c8e49cab22e86a86708c8a56",
+    "identityInventory": "All 16 ensemble and result byte pins are in fairArtifactCatalog.ts; verified manifests expose all 841 member hashes per artifact.",
+    "noLatestAlias": true,
+    "noPositionalMemberFallback": true,
+    "noPythonHttpExecution": true,
+    "noRequestWritesOrNetwork": true,
+    "noMissingDataFallback": true
+  },
+  "routeInventory": {
+    "legacyDefaultFair409UnsupportedEngine400": [
+      "GET /api/projection",
+      "GET /api/projection/categories",
+      "GET /api/projection/regions",
+      "GET /api/projection/sensitivity",
+      "GET /api/projection/historical-trend",
+      "GET /api/projection/categories/historical-trend"
+    ],
+    "nativeInventoryOrReferenceOrReadinessNotFairTemperature": [
+      "GET /api/emissions/candidate",
+      "GET /api/reference-scenarios",
+      "GET /api/indicators/historical",
+      "GET /api/calculation/readiness",
+      "GET /api/calculation-contract"
+    ],
+    "submittedDiagnosticsNotRetainedFairConsumers": [
+      "POST /api/emissions/validate-native-pathways",
+      "POST /api/emissions/regional-residual-diagnostics",
+      "POST /api/calculation/evaluate-holdout",
+      "POST /api/calculation/evaluate-signal",
+      "POST /api/calculation/audit-vintages",
+      "POST /api/calculation/research-contracts"
+    ],
+    "explicitArtifactSelectionOrUnchangedSubmittedDiagnostic": [
+      "POST /api/calculation/ensemble-summary",
+      "POST /api/calculation/validate-history"
+    ],
+    "newReadOnlyCatalog": ["GET /api/calculation/fair-artifacts"],
+    "newExactVersionRetainedArtifactConsumers": [
+      "GET /api/calculation/fair-artifacts/:artifactId/manifest",
+      "GET /api/calculation/fair-artifacts/:artifactId/ensemble",
+      "GET /api/calculation/fair-artifacts/:artifactId/summary",
+      "GET /api/calculation/fair-artifacts/:artifactId/members/:memberId"
+    ],
+    "unsupportedPhysicalWithholding": "Temperature-only artifacts do not supply native emissions, forcing decomposition, anthropogenic attribution, coalition counterfactuals or coherent member emissions/valuation inputs. Explicit artifactSelection on incompatible inventoried routes refuses 409 rather than being silently ignored."
+  },
+  "actualRetainedValidation": {
+    "command": "npx tsx script/validate-retained-fair-artifacts.ts",
+    "executedSeparatelyFromSourceOnlyTests": true,
+    "passed": true,
+    "artifactCount": 16,
+    "memberSeries": 13456,
+    "dimensionsPerArtifact": [351, 841],
+    "years": [1750, 2100],
+    "baseline": "1850-1900",
+    "actualRegisteredConsumerHandlerChecks": 96,
+    "orderedArtifactEvidenceSha256": "a522fcd53cf91229374b5051d0acad175c472eb58dd49495a5e1cbcf276a13b9",
+    "checks": [
+      "Pinned result and ensemble bytes",
+      "Four pinned upstream input files",
+      "Exact calibration member identities and order",
+      "Finite rectangular full annual trajectories",
+      "All individual member baselines and SHA256 identities",
+      "Retained endpoint summary consistency",
+      "All six actual registered artifact-consuming handlers with real retained loader; no app launch"
+    ],
+    "notPerformed": ["Python or climate model execution", "Old full-study reruns", "Production mutation", "Scientific promotion"]
+  },
+  "engineeringTests": {
+    "commandForParentAgent": "npx tsx --test script/fair-artifact-routes.test.ts",
+    "fixtureStatus": "Clearly labeled synthetic engineering fixture only, never persisted or served by production loader",
+    "covers": [
+      "Every registered consumer identity envelope",
+      "Missing, unreadable, corrupt, unknown and version/hash mismatch refusals",
+      "Exact member ID/hash selection",
+      "No caller-supplied ensemble mixed with retained artifact selection",
+      "No total-to-anthropogenic relabeling",
+      "Unsupported physical-route explicit refusal",
+      "All projection routes inventoried; legacy/default and frozen readiness gates unchanged"
+    ]
+  },
+  "exactUnmetAcceptance": [
+    "No scientific acceptance of retained draft reference, regional controls or NGFS infill sensitivities is claimed.",
+    "Independent annual maximum-difference <=0.01 C acceptance remains unestablished; upstream endpoint-only benchmark cannot establish it.",
+    "Complete sourced and approved recent native-gas/forcing histories, including minor-gas histories, remain unresolved.",
+    "No accepted current-policy and all-announced-commitments production ensemble is supplied.",
+    "Separate human-induced historical validation and observational-GMST compatibility remain unestablished.",
+    "No calibrated 10000-member convergence, coherent full emissions/temperature/headline/valuation consumer migration or point-in-time holdout acceptance is supplied.",
+    "Private artifact packaging and deployed-runtime availability have not been certified; absent deployment files intentionally produce 503 refusals.",
+    "Canonical ledgers/matrix, client, auth, collectors, DDL, production records, commits and publishing were not part of this change."
+  ],
+  "scientificAcceptance": "not-accepted",
+  "modelPromoted": false
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, type InfiniteData } from "@tanstack/react-query";
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,14 +39,14 @@ interface HistoricalSummaryPreview {
   manifestHeader: string | null;
 }
 
-function SummaryCount({ value }: { value: number | null | undefined }) {
+export function SummaryCount({ value }: { value: number | null | undefined }) {
   return <>{typeof value === "number" && Number.isFinite(value) ? value.toLocaleString() : "Unavailable — not returned"}</>;
 }
 
-function SnapshotDate({ value }: { value: string | null }) {
+export function SnapshotDate({ value }: { value: string | null | undefined }) {
   if (!value) return <>Not supplied</>;
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return <span className="break-all">{value}</span>;
+  if (Number.isNaN(date.getTime())) return <span className="break-all">Invalid created date: {value}</span>;
   return <time dateTime={value} className="break-words">{date.toLocaleString()} ({value})</time>;
 }
 
@@ -55,9 +55,15 @@ export function AnalysisSnapshotStatus() {
   const current = useQuery<SnapshotStatus>({
     queryKey: ["/api/analysis/snapshot-status"],
   });
-  const inventory = useInfiniteQuery({
+  const inventory = useInfiniteQuery<SnapshotsResponse, Error, InfiniteData<SnapshotsResponse>, string[], string | null>({
     queryKey: ["/api/analysis/snapshots", "workbook-baseline"],
     initialPageParam: null as string | null,
+    select: result => {
+      if (!Array.isArray(result.pages) || result.pages.some(page => !page || !Array.isArray(page.items) ||
+        page.items.some(item => !item || typeof item.id !== "string" || typeof item.kind !== "string")))
+        throw new Error("Snapshot inventory records unavailable.");
+      return result;
+    },
     queryFn: async ({ pageParam }): Promise<SnapshotsResponse> => {
       const query = new URLSearchParams({ kind: "workbook-baseline" });
       if (pageParam) query.set("after", pageParam);
@@ -66,7 +72,7 @@ export function AnalysisSnapshotStatus() {
     },
     getNextPageParam: (page) => page.nextCursor ?? undefined,
   });
-  const history = { ...inventory, data: !inventory.isError && !inventory.isFetching && inventory.data ? {
+  const history = { ...inventory, isLoading: inventory.isLoading || inventory.isFetching, data: !inventory.isError && !inventory.isFetching && inventory.data ? {
     status: inventory.data.pages[0].status,
     items: inventory.data.pages.flatMap(page => page.items),
   } : undefined };
@@ -114,7 +120,7 @@ export function AnalysisSnapshotStatus() {
             </div>
           ) : current.data ? (
             <>
-              <Badge variant="outline" data-testid="snapshot-status">{current.data.status}</Badge>
+              <Badge variant="outline" data-testid="snapshot-status">{current.data.status ?? "Snapshot status not returned"}</Badge>
               {current.data.status === "not-provisioned" && (
                 <p className="text-sm text-muted-foreground">No analysis snapshot is provisioned in this environment.</p>
               )}
@@ -123,11 +129,11 @@ export function AnalysisSnapshotStatus() {
                   <dt className="text-xs text-muted-foreground">Full snapshot ID</dt>
                   <dd className="font-mono break-all" data-testid="snapshot-source-id">{current.data.snapshotId ?? "Not supplied"}</dd>
                 </div>
-                <div><dt className="text-xs text-muted-foreground">Companies</dt><dd>{current.data.companyCount?.toLocaleString() ?? "Unavailable"}</dd></div>
-                <div><dt className="text-xs text-muted-foreground">Observations</dt><dd>{current.data.observationCount?.toLocaleString() ?? "Unavailable"}</dd></div>
+                <div><dt className="text-xs text-muted-foreground">Companies</dt><dd><SummaryCount value={current.data.companyCount} /></dd></div>
+                <div><dt className="text-xs text-muted-foreground">Observations</dt><dd><SummaryCount value={current.data.observationCount} /></dd></div>
                 <div className="min-w-0 sm:col-span-2"><dt className="text-xs text-muted-foreground">Created</dt><dd><SnapshotDate value={current.data.createdAt} /></dd></div>
                 <div className="min-w-0 sm:col-span-2"><dt className="text-xs text-muted-foreground">Source note</dt><dd className="whitespace-pre-wrap break-words">{current.data.sourceNote || "Not supplied"}</dd></div>
-                <div className="sm:col-span-2"><dt className="text-xs text-muted-foreground">Current financial overlays applied</dt><dd>No</dd></div>
+                <div className="sm:col-span-2"><dt className="text-xs text-muted-foreground">Current financial overlays applied</dt><dd>{current.data.currentFinancialOverlaysApplied === false ? "No" : (current.data.currentFinancialOverlaysApplied as boolean | undefined) === true ? "Yes — conflicts with immutable baseline expectation" : "Unavailable — overlay application not returned"}</dd></div>
               </dl>
             </>
           ) : (
@@ -157,7 +163,7 @@ export function AnalysisSnapshotStatus() {
                       <dl className="space-y-2">
                         <div><dt className="text-xs text-muted-foreground">Full snapshot ID</dt><dd className="font-mono break-all">{item.id}</dd></div>
                         <div><dt className="text-xs text-muted-foreground">Kind</dt><dd className="break-words">{item.kind}</dd></div>
-                        <div><dt className="text-xs text-muted-foreground">Coverage</dt><dd>{item.companyCount.toLocaleString()} companies · {item.observationCount.toLocaleString()} observations</dd></div>
+                        <div><dt className="text-xs text-muted-foreground">Coverage</dt><dd><SummaryCount value={item.companyCount} /> companies · <SummaryCount value={item.observationCount} /> observations</dd></div>
                         <div><dt className="text-xs text-muted-foreground">Created</dt><dd><SnapshotDate value={item.createdAt} /></dd></div>
                       </dl>
                     </li>

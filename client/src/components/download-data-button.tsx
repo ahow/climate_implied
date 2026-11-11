@@ -41,11 +41,14 @@ export function DownloadDataButton({
   const resolvedEmpty = typeof rows === "function" ? false : !rows || rows.length === 0;
 
   const handleClick = async () => {
-    const data = typeof rows === "function" ? rows() : rows;
-    if (!data || data.length === 0) return;
     setBusy(true);
     setError(null);
     try {
+      const data = typeof rows === "function" ? rows() : rows;
+      if (!data || data.length === 0) {
+        setError("Export unavailable — no rows returned. No completed download was produced.");
+        return;
+      }
       for (const note of interpretationNotes)
         if (note.SemanticField) requireOutputSemantic(note.SemanticField);
       const XLSX = await import("xlsx");

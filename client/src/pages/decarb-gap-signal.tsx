@@ -17,7 +17,7 @@ import {
 import { Activity, Globe, Layers, BarChart3, TrendingUp, TrendingDown, ArrowUpDown, Beaker } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,groupGapExportColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes } from "@/lib/valuation-claims";
+import { earningsYieldGapPp, gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -151,6 +151,7 @@ interface TimeSeriesDataPoint {
 }
 
 function formatDateLabel(timestamp: number): string {
+  if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) return "Observation date unavailable";
   const d = new Date(timestamp);
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
@@ -292,24 +293,7 @@ export default function DecarbGapSignal() {
   const hasData = !!summary && summary.companyCount > 0;
 
   function computeStats(data: BacktestPoint[] | undefined) {
-    if (!data || data.length === 0) return null;
-    const last = data[data.length - 1];
-    const totalActiveReturn = (last.portfolioCumulative / last.benchmarkCumulative - 1) * 100;
-    const annualizedActive = data.length > 12
-      ? (Math.pow(last.portfolioCumulative / last.benchmarkCumulative, 12 / data.length) - 1) * 100
-      : totalActiveReturn;
-    const avgGreen = Math.round(data.reduce((s, d) => s + d.overweightCount, 0) / data.length);
-    const avgBrown = Math.round(data.reduce((s, d) => s + d.underweightCount, 0) / data.length);
-    return {
-      totalActive: totalActiveReturn,
-      annualizedActive,
-      finalTE: last.trackingError * 100,
-      benchmarkTotal: (last.benchmarkCumulative - 1) * 100,
-      portfolioTotal: (last.portfolioCumulative - 1) * 100,
-      avgGreen,
-      avgBrown,
-      months: data.length,
-    };
+    return backtestDisplayStats(data);
   }
 
   const backtestStats = useMemo(() => computeStats(backtestData), [backtestData]);
@@ -332,17 +316,19 @@ export default function DecarbGapSignal() {
       const bmSource = sd || vd;
       return {
         date,
-        benchmark: bmSource ? Math.round((bmSource.benchmarkCumulative - 1) * 10000) / 100 : undefined,
-        portfolio: sd ? Math.round((sd.portfolioCumulative - 1) * 10000) / 100 : undefined,
-        valuation: vd ? Math.round((vd.portfolioCumulative - 1) * 10000) / 100 : undefined,
-        activeReturn: sd ? Math.round(sd.activeReturn * 10000) / 100 : undefined,
-        trackingError: sd ? Math.round(sd.trackingError * 10000) / 100 : undefined,
+        benchmark: backtestPercent(bmSource?.benchmarkCumulative, true),
+        portfolio: backtestPercent(sd?.portfolioCumulative, true),
+        valuation: backtestPercent(vd?.portfolioCumulative, true),
+        activeReturn: backtestPercent(sd?.activeReturn),
+        trackingError: backtestPercent(sd?.trackingError),
       };
     });
   }, [backtestData, valuationBacktestData]);
 
   const TimeSeriesChartTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active) return null;
+    if (!Array.isArray(payload) || !payload.length || payload.some(entry => !entry || typeof entry !== "object"))
+      return <p role="status">Tooltip series unavailable — no valid observations returned.</p>;
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
         <p className="font-medium text-foreground mb-2">{formatDateLabel(label)}</p>
@@ -350,7 +336,7 @@ export default function DecarbGapSignal() {
           <div key={entry.dataKey} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
-              <span className="text-muted-foreground">{entry.name}</span>
+              <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
               {displayDiagnostic(entry.value, " pp")}
@@ -362,18 +348,20 @@ export default function DecarbGapSignal() {
   };
 
   const BacktestTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active) return null;
+    if (!Array.isArray(payload) || !payload.length || payload.some(entry => !entry || typeof entry !== "object"))
+      return <p role="status">Tooltip series unavailable — no valid observations returned.</p>;
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
-        <p className="font-medium text-foreground mb-2">{label}</p>
+        <p className="font-medium text-foreground mb-2">{label ?? "Observation date unavailable"}</p>
         {payload.map((entry: any) => (
           <div key={entry.dataKey} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
-              <span className="text-muted-foreground">{entry.name}</span>
+              <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {entry.value?.toFixed(2)}%
+              {displayDiagnostic(entry.value, "%")}
             </span>
           </div>
         ))}
@@ -697,19 +685,19 @@ export default function DecarbGapSignal() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                 <div className="p-3 rounded-md border bg-muted/30">
                   <p className="text-xs text-muted-foreground mb-1">Benchmark Total</p>
-                  <p className={`text-lg font-bold tabular-nums ${(backtestStats?.benchmarkTotal ?? 0) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-benchmark-total">
-                    {(backtestStats?.benchmarkTotal ?? 0) >= 0 ? "+" : ""}{(backtestStats?.benchmarkTotal ?? 0).toFixed(1)}%
+                  <p className={`text-lg font-bold tabular-nums ${(backtestStats?.benchmarkTotal ?? NaN) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-benchmark-total">
+                    {backtestDisplay(backtestStats?.benchmarkTotal, 1, true)}
                   </p>
                 </div>
                 <div className="p-3 rounded-md border bg-muted/30">
                   <p className="text-xs mb-1 font-medium" style={{ color: COLORS.portfolio }}>{measureInfo?.label}-Driven</p>
                   {backtestStats ? (
                     <>
-                      <p className={`text-lg font-bold tabular-nums ${backtestStats.portfolioTotal >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-portfolio-total">
-                        {backtestStats.portfolioTotal >= 0 ? "+" : ""}{backtestStats.portfolioTotal.toFixed(1)}%
+                      <p className={`text-lg font-bold tabular-nums ${(backtestStats.portfolioTotal ?? NaN) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-portfolio-total">
+                        {backtestDisplay(backtestStats.portfolioTotal, 1, true)}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Active: {backtestStats.annualizedActive >= 0 ? "+" : ""}{backtestStats.annualizedActive.toFixed(2)}% ann. | TE: {backtestStats.finalTE.toFixed(2)}%
+                        Active: {backtestDisplay(backtestStats.annualizedActive, 2, true)} ann. | TE: {backtestDisplay(backtestStats.finalTE)}
                       </p>
                     </>
                   ) : <p className="text-sm text-muted-foreground">Loading...</p>}
@@ -718,11 +706,11 @@ export default function DecarbGapSignal() {
                   <p className="text-xs mb-1 font-medium" style={{ color: COLORS.valuation }}>Decarb Gap</p>
                   {valBacktestStats ? (
                     <>
-                      <p className={`text-lg font-bold tabular-nums ${valBacktestStats.portfolioTotal >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-valuation-total">
-                        {valBacktestStats.portfolioTotal >= 0 ? "+" : ""}{valBacktestStats.portfolioTotal.toFixed(1)}%
+                      <p className={`text-lg font-bold tabular-nums ${(valBacktestStats.portfolioTotal ?? NaN) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-valuation-total">
+                        {backtestDisplay(valBacktestStats.portfolioTotal, 1, true)}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Active: {valBacktestStats.annualizedActive >= 0 ? "+" : ""}{valBacktestStats.annualizedActive.toFixed(2)}% ann. | TE: {valBacktestStats.finalTE.toFixed(2)}%
+                        Active: {backtestDisplay(valBacktestStats.annualizedActive, 2, true)} ann. | TE: {backtestDisplay(valBacktestStats.finalTE)}
                       </p>
                     </>
                   ) : <p className="text-sm text-muted-foreground">Loading...</p>}

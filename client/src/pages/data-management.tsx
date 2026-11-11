@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { ReadResultReason } from "@/components/read-result-reason";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
@@ -182,6 +182,7 @@ function formatDateTime(iso: string | null): string {
 
 export default function DataManagement() {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const detailTrigger = useRef<HTMLElement | null>(null);
 
   const { data, isLoading, error: indicatorsError } = useQuery<IndicatorsResponse>({
     queryKey: ["/api/data/indicators"],
@@ -332,7 +333,17 @@ export default function DataManagement() {
                 <Card
                   key={ind.key}
                   className="hover-elevate cursor-pointer"
-                  onClick={() => setSelectedKey(ind.key)}
+                  role="button"
+                  tabIndex={0}
+                  aria-haspopup="dialog"
+                  onClick={(event) => { detailTrigger.current = event.currentTarget; setSelectedKey(ind.key); }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      detailTrigger.current = event.currentTarget;
+                      setSelectedKey(ind.key);
+                    }
+                  }}
                   data-testid={`card-indicator-${ind.key}`}
                 >
                   <CardContent className="p-3 flex items-center justify-between gap-4">
@@ -371,6 +382,7 @@ export default function DataManagement() {
       <IndicatorDetailDialog
         indicatorKey={selectedKey}
         onClose={() => setSelectedKey(null)}
+        returnFocusTo={detailTrigger}
       />
     </div>
   );
@@ -379,15 +391,17 @@ export default function DataManagement() {
 export function IndicatorDetailDialog({
   indicatorKey,
   onClose,
+  returnFocusTo,
 }: {
   indicatorKey: string | null;
   onClose: () => void;
+  returnFocusTo?: { current: HTMLElement | null };
 }) {
   const [manualYear, setManualYear] = useState("");
   const [manualValue, setManualValue] = useState("");
   const [manualNote, setManualNote] = useState("");
 
-  const { data: detail, isLoading, isError } = useQuery<IndicatorDetail>({
+  const { data: detail, isLoading, isError, isFetching, refetch } = useQuery<IndicatorDetail>({
     queryKey: ["/api/data/indicator", indicatorKey],
     enabled: !!indicatorKey,
   });
@@ -424,18 +438,29 @@ export function IndicatorDetailDialog({
 
   return (
     <Dialog open={!!indicatorKey} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto" data-testid="dialog-indicator-detail">
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto" data-testid="dialog-indicator-detail"
+        onCloseAutoFocus={(event) => {
+          if (returnFocusTo?.current?.isConnected) {
+            event.preventDefault();
+            returnFocusTo.current.focus();
+          }
+        }}>
+        <DialogHeader>
+          <DialogTitle data-testid="text-detail-title">
+            {hasDefinition ? <>{def?.label} <span className="text-muted-foreground font-normal">({def?.unit})</span></> : "Indicator details"}
+          </DialogTitle>
+          <DialogDescription>
+            {hasDefinition ? <>{def?.source || "Source not returned"} · {def?.category || "Category not returned"} · fetch method: {def?.fetchMethod || "Fetch method not returned"}</> :
+              "Read-only details for the current indicator selection. Missing evidence is unavailable; no values are substituted."}
+          </DialogDescription>
+        </DialogHeader>
+        <Button variant="outline" size="sm" onClick={() => void refetch()} disabled={isFetching} data-testid="button-refresh-indicator-detail">
+          <RefreshCw className="h-3.5 w-3.5 mr-1.5" />
+          {isFetching ? "Refreshing detail…" : "Refresh detail"}
+        </Button>
         <QueryReadErrors prefix="/api/data/indicator" />
         <IndicatorDetailReadState error={isError} loading={isLoading} available={!!detail} definitionAvailable={hasDefinition} seriesAvailable={!!usableSeries} seriesEmpty={usableSeries?.length === 0} proposalHistoryAvailable={!!proposals}>
           <>
-            <DialogHeader>
-              <DialogTitle data-testid="text-detail-title">
-                {def?.label} <span className="text-muted-foreground font-normal">({def?.unit})</span>
-              </DialogTitle>
-              <DialogDescription>
-                {def?.source} · {def?.category} · fetch method: {def?.fetchMethod}
-              </DialogDescription>
-            </DialogHeader>
             <OperatorOnlyNotice />
 
             <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -718,6 +743,6 @@ export function IndicatorSeriesTooltip({ active, payload, label, decimals = 2, u
   const point = entry.payload;
   return <div className="rounded-md border bg-background p-2 text-xs shadow-sm">
     <p className="font-semibold">{label ?? "Year unavailable"}: {formatValue(point.actual ?? point.estimated, decimals)} {unit ?? "Unit unavailable"}</p>
-    <p className="text-muted-foreground">{point.isNowcast === true ? "Estimated — " : point.isNowcast === false ? "Sourced — " : "Observation/estimate status unavailable — "}{point.source ?? "Source not returned"}</p>
+    <p className="text-muted-foreground">{point.isNowcast === true ? "Estimated — " : point.isNowcast === false ? "Sourced — " : "Observation/estimate status unavailable — "}{typeof point.source === "string" && point.source.trim() ? point.source : "Source not returned"}</p>
   </div>;
 }

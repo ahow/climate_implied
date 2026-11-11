@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { currentSelection, parseSelection, selectionKey, selectedRequest } from "@/lib/analysis-selection";
 
 export function AnalysisSelectionControl() {
@@ -15,6 +15,11 @@ export function AnalysisSelectionControl() {
   const [busy, setBusy] = useState(false);
   const inventory = useQuery({
     queryKey: ["analysis-selection-inventory"],
+    select: items => {
+      if (!Array.isArray(items) || items.some(item => !item || typeof item.id !== "string" || typeof item.kind !== "string"))
+        throw new Error("Snapshot inventory records unavailable.");
+      return items;
+    },
     queryFn: async () => {
       const items: { id: string; kind: string; createdAt: string }[] = [];
       for (const kind of ["workbook-baseline", "indicator-overrides", "regional-intensity"]) {
@@ -71,7 +76,7 @@ export function AnalysisSelectionControl() {
           <select className="block border rounded p-2 w-full bg-background" value={workbook} onChange={e => setWorkbook(e.target.value)}>
             <option value="">Select workbook</option>
             {inventory.data?.filter(x => x.kind === "workbook-baseline").map(x =>
-              <option key={x.id} value={x.id}>{x.createdAt} — {x.id}</option>)}
+              <option key={x.id} value={x.id}>{x.createdAt ?? "Created date not returned"} — {x.id}</option>)}
           </select>
         </label>
         <label className="text-sm">Ordered company-overlay IDs (optional, comma separated)
@@ -88,14 +93,14 @@ export function AnalysisSelectionControl() {
           <select className="block border rounded p-2 w-full bg-background" value={indicators} onChange={e => setIndicators(e.target.value)}>
             <option value="">Select indicators</option>
             {inventory.data?.filter(x => x.kind === "indicator-overrides").map(x =>
-              <option key={x.id} value={x.id}>{x.createdAt} — {x.id}</option>)}
+              <option key={x.id} value={x.id}>{x.createdAt ?? "Created date not returned"} — {x.id}</option>)}
           </select>
         </label>
         <label className="text-sm">Regional external-input snapshot (optional)
           <select className="block border rounded p-2 w-full bg-background" value={regional} onChange={e => setRegional(e.target.value)}>
             <option value="">Regional history unavailable</option>
             {inventory.data?.filter(x => x.kind === "regional-intensity").map(x =>
-              <option key={x.id} value={x.id}>{x.createdAt} — {x.id}</option>)}
+              <option key={x.id} value={x.id}>{x.createdAt ?? "Created date not returned"} — {x.id}</option>)}
           </select>
         </label>
         {inventory.isError && <p role="alert">Snapshot inventory unavailable. No current-data fallback is used.</p>}

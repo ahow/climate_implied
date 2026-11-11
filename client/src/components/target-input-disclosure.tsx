@@ -6,6 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 export function TargetInputDisclosure() {
   const registry=useQuery<{qualifiedFields:OutputFieldSemantic[]}>({
     queryKey:["/api/calculation/field-semantics"],
+    select: result => {
+      if (result != null && (!Array.isArray(result.qualifiedFields) || result.qualifiedFields.some(field => !field || typeof field.id !== "string")))
+        throw new Error("Target definition records not returned.");
+      return result;
+    },
   });
   const fields=registry.data?.qualifiedFields?.filter(f=>f.id.startsWith("targetInput."));
   return <Card><CardContent className="p-4 space-y-3">
@@ -26,12 +31,12 @@ export function TargetInputDisclosure() {
       !fields?.length ? <p role="alert">Target input definitions are unavailable in the registry.</p> :
       <details><summary className="cursor-pointer text-sm font-medium">Inspect input rules and conditional annual-rate formula ({fields.length} definitions)</summary>
         <dl className="space-y-4 pt-3 text-sm">{fields.map(field=><div key={field.id}>
-          <dt className="font-medium">{field.id} · {field.role} · {field.unit}</dt>
-          <dd>{field.meaning}</dd><dd>{field.formula}</dd>
-          <dd className="text-muted-foreground">Source: {field.source}</dd>
-          <dd className="text-muted-foreground">As of: {field.asOfRule}</dd>
-          <dd className="text-muted-foreground">Missingness: {field.missingness}</dd>
-          <dd className="text-muted-foreground">Uncertainty: {field.uncertainty}</dd>
+          <dt className="font-medium">{field.id} · {field.role || "Role not returned"} · {field.unit || "Unit not returned"}</dt>
+          <dd>{field.meaning || "Meaning not returned"}</dd><dd>{field.formula || "Formula not returned"}</dd>
+          <dd className="text-muted-foreground">Source: {field.source || "Not returned"}</dd>
+          <dd className="text-muted-foreground">As of: {field.asOfRule || "Not returned"}</dd>
+          <dd className="text-muted-foreground">Missingness: {field.missingness || "Not returned"}</dd>
+          <dd className="text-muted-foreground">Uncertainty: {field.uncertainty || "Not returned"}</dd>
         </div>)}</dl>
       </details>}
   </CardContent></Card>;

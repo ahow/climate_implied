@@ -28,9 +28,13 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
     );
   }
 
+  if (!Array.isArray(trajectory) || trajectory.some(point => !point || typeof point !== "object"))
+    return <Card className="p-6"><p role="status">Legacy trajectory record collection unavailable. No values or downloads are substituted.</p></Card>;
   if (!trajectory.length) return <Card className="p-6"><p role="status">No legacy emissions trajectory was returned for this selection.</p></Card>;
 
   const sampledData = trajectory.filter((_, i) => i % 2 === 0 || i === trajectory.length - 1);
+  const missingFields = (["year", "p10", "p50", "p90"] as const)
+    .filter(field => trajectory.some(point => typeof point[field] !== "number" || !Number.isFinite(point[field])));
 
   const downloadRows = trajectory.map((t) => ({
     Year: t.year,
@@ -41,6 +45,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
 
   return (
     <Card className="p-6" data-testid="card-emissions-chart">
+      {missingFields.length > 0 && <p role="status">Legacy trajectory fields unavailable: {missingFields.join(", ")}. Missing observation cells stay blank, not zero.</p>}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
           <h3 className="text-sm font-medium text-muted-foreground">Global Emissions Trajectory</h3>

@@ -34,6 +34,8 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     );
   }
 
+  if (!Array.isArray(data) || data.some(point => !point || typeof point !== "object"))
+    return <Card className="p-6"><p role="status">Historical observation record collection unavailable. No values or downloads are substituted.</p></Card>;
   if (!data.length) return <Card className="p-6"><p role="status">No legacy historical recalculation observations were returned.</p></Card>;
 
   const hasNowcast = data.some((d) => d.isNowcast);
@@ -46,7 +48,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
         return {
           title: "Historical Temperature Projections",
           subtitle: hasNowcast
-            ? `Observed data (${firstYear}-${lastObservedYear}) with nowcast extrapolation to present`
+            ? `Observed data (${firstYear ?? "unavailable"}-${lastObservedYear ?? "unavailable"}) with nowcast extrapolation to present`
              : `Current model applied retrospectively to each year's inputs (${firstYear ?? "unavailable"}-${lastObservedYear ?? "unavailable"})`,
           dataKey: "median",
           yLabel: "\u00B0C above pre-industrial",
@@ -91,6 +93,8 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
   };
 
   const config = getConfig();
+  const missingFields = (["year", ...(metricView === "temperature" ? ["median", "p10", "p90"] : metricView === "reductionRate" ? ["reductionRate"] : [])] as (keyof HistoricalTrendPoint)[])
+    .filter(field => data.some(point => typeof point[field] !== "number" || !Number.isFinite(point[field])));
 
   const downloadRows = data.map((d) => ({
     Year: d.year,
@@ -123,6 +127,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
 
   return (
     <Card className="p-6" data-testid="card-historical-trend">
+      {missingFields.length > 0 && <p role="status">Historical observation fields unavailable: {missingFields.join(", ")}. No date, numeric value or zero is substituted.</p>}
       <div className="mb-4 flex items-start justify-between gap-2 flex-wrap">
         <div>
           <div className="flex items-center gap-2 flex-wrap">

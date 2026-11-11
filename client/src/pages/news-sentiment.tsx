@@ -106,6 +106,12 @@ export default function NewsSentiment() {
 
   const { data: responseData, isLoading, error } = useQuery<ClimateNewsResult>({
     queryKey: ["/api/news/climate", months],
+    select: result => {
+      if (result != null && [result.volume, result.sentiment, result.topicBreakdown, result.recentArticles]
+        .some(rows => rows != null && (!Array.isArray(rows) || rows.some(row => !row || typeof row !== "object"))))
+        throw new Error("News observation records unavailable.");
+      return result;
+    },
     queryFn: async () => {
       const resp = await fetch(`/api/news/climate?months=${months}`);
       if (!resp.ok) {

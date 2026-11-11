@@ -49,17 +49,20 @@ interface CustomTooltipProps {
 }
 
 function CustomTooltip({ active, payload }: CustomTooltipProps) {
-  if (!active || !payload?.[0]) return null;
+  if (!active) return null;
+  if (!payload?.[0]?.payload) return <p role="status">Sensitivity observation unavailable — no payload returned.</p>;
   const d = payload[0].payload;
+  const format = (value: unknown, field: string, digits: number) =>
+    typeof value === "number" && Number.isFinite(value) ? `${value.toFixed(digits)}°C` : `${field} unavailable — not returned`;
   return (
     <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
-      <p className="font-medium mb-1">{d.label}</p>
-      <p className="text-muted-foreground text-xs mb-1">{d.category}</p>
+      <p className="font-medium mb-1">{d.label || "Sensitivity label not returned"}</p>
+      <p className="text-muted-foreground text-xs mb-1">{d.category || "Category not returned"}</p>
       <div className="space-y-0.5 text-xs">
-        <p>Baseline: <span className="font-medium tabular-nums">{d.baseline.toFixed(2)}</span>&deg;C</p>
-        <p>Low scenario: <span className="font-medium tabular-nums text-blue-500">{d.low.toFixed(2)}</span>&deg;C</p>
-        <p>High scenario: <span className="font-medium tabular-nums text-red-500">{d.high.toFixed(2)}</span>&deg;C</p>
-        <p>Impact range: <span className="font-medium tabular-nums">{d.range.toFixed(3)}</span>&deg;C</p>
+        <p>Baseline: <span className="font-medium tabular-nums">{format(d.baseline, "Baseline", 2)}</span></p>
+        <p>Low scenario: <span className="font-medium tabular-nums text-blue-500">{format(d.low, "Low scenario", 2)}</span></p>
+        <p>High scenario: <span className="font-medium tabular-nums text-red-500">{format(d.high, "High scenario", 2)}</span></p>
+        <p>Impact range: <span className="font-medium tabular-nums">{format(d.range, "Impact range", 3)}</span></p>
       </div>
     </div>
   );

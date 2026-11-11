@@ -1,3 +1,34 @@
+# Offline ensembles and remaining component contracts — validated; release pending
+
+{
+  "at": "2026-11-11T13:26:46.723159+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T13:18:55.199925+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 118.446,
+    "counts": {
+      "tests": 691,
+      "pass": 691,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T131855199925Z.log",
+    "workspace_revision": "572b3903012667a59916900717514d57995331ed",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "fair": "24route surfaces inventoried; explicit exactartifact/version/manifest/ensemble/memberhash selection and refusal.16retained ensembles/13456members independently validated;96actualconsumer invocations. NoPythonHTTP/no scientificpromotion. Deploymentprivateartifact availability still separate.",
+  "component": "60/60actualdynamiccomponents cumulatively invoked;1738JSX/106bindings. New36cohort and focusedportal/hover/export/archive flows. Initial10flowplan6pass2fail1partial1unrun; targeted4residualflows4pass after actualfocus/title/source/refetch fixes. Historicalnull-datehover limitation retained, no all-field/all-branch claim/no unchanged41suite rerun.",
+  "issuer": "Actual FSLR selected3transfercohorts2258.8mface\u21922154.9mreceived/proceeds,103.9mdifference; separate117.6mTreasurycash; selectedobservedreceipts2272.5m. NotfullGAAPgrants/CFO andno doubleaddition. EnLink2024Q3routefinancinguncertain; CF2025interimEOR/Rosepermit dependency invalidates assumedhistoricalroutecontinuity.0/3qualified.",
+  "next": "Complete residual per-field/branch contracts beyond60componentinvocation and preserve targetedbrowser evidence. Deploy authorized exactofflineartifact bundle via existing supported private provisioning, never regeneratePythonHTTP. Separately integrate actualcredit receipts with retained2023origin/othergrant normalization and stubbasis; find laterEnLink/ONEOKarrangement/Rosepermit, actualCCSfees and NEEcashpriorities. Scientificjoint/physical/historicalcorpus gates remain; no proxy efficacy.",
+  "counts": "40verified258partial2blocked; original1000/1001;0/3qualified. No whole-stage acceptance."
+}
+
 # Latest verified component/source release
 
 {
@@ -2593,6 +2624,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-primary-inputs-0a97fab",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T11:27:46.736907+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-components-monthly-592957c",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T12:25:33.453130+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

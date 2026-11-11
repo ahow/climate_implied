@@ -60,7 +60,12 @@ export function EmissionsCandidateReview() {
   const { data, isLoading, isError, refetch, isFetching } = useQuery<CandidateResponse>({
     queryKey: [`/api/emissions/candidate?scenario=${scenario}`],
     select: response => {
+      if (!response) return response;
       if (response.residualDiagnostics) nativeResidualDiagnosticsSchema.parse(response.residualDiagnostics);
+      for (const rows of [response.result?.trajectory, response.inputs?.indicators]) {
+        if (rows != null && (!Array.isArray(rows) || rows.some(row => !row || typeof row !== "object")))
+          throw new Error("Candidate observation records unavailable.");
+      }
       return response;
     },
   });
@@ -255,10 +260,10 @@ export function EmissionsCandidateReview() {
                           </th>
                           <td className="py-2 pr-4 tabular-nums">
                             {year === 2024 ? value : "2024 value not available"}
-                            {year === 2024 && indicator.unit ? ` ${indicator.unit}` : ""}
+                            {year === 2024 ? indicator.unit ? ` ${indicator.unit}` : " — unit not supplied" : ""}
                             {year !== 2024 && (
                               <span className="block text-xs text-muted-foreground">
-                                {year ?? "Undated"} input: {value}{indicator.unit ? ` ${indicator.unit}` : ""}
+                                {year ?? "Undated"} input: {value}{indicator.unit ? ` ${indicator.unit}` : " — unit not supplied"}
                               </span>
                             )}
                           </td>

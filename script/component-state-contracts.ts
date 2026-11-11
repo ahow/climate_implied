@@ -35,13 +35,14 @@ const controls = (scope: string): Policy => ({
 });
 export const filePolicies: Record<string, Policy> = {
   "analysis-selection.tsx": query("Unprovisioned/empty archive inventory is explicit; invalid saved IDs require reset.", {
-    loading: "Snapshot inventory loading is explicit; Apply is busy/disabled during verification.",
+    loading: "useReadQuery suppresses prior inventory options while pending; loading is explicit. Apply is busy/disabled during verification.",
     error: "Inventory errors and apply-verification errors are explicit. Failed verification leaves current selection unchanged.",
     selection: "Verifies workbook/indicator and optional overlay/regional response headers before session selection and full reload; fresh cache prevents late prior-request reuse.",
     scope: "Archive identifiers and availability only, never archive bytes. Current news/provider/review records remain current.",
   }),
   "analysis-snapshot-status.tsx": query("Not-provisioned status, missing archive inventory and missing preview counts/headers have distinct messages.", {
-    null: "Null count means unavailable, not zero. Null date means not supplied. Null preview has no current fallback.",
+    null: "Null/missing/nonfinite company/observation counts mean unavailable, not zero. Null date means not supplied; invalid date explicitly labeled. Missing overlay flag is unavailable, not No. Null preview has no current fallback.",
+    error: "Malformed inventory page/items/identity records and failed reads render inventory-specific failure; no retained choices or preview fallback.",
     selection: "Workbook-only inventory gates the preview query key. Missing selected baseline disables preview. Mismatched returned IDs are explicitly flagged; current implementation shows labeled returned values, not verified selected values.",
   }),
   "app-sidebar.tsx": controls("Navigation labels/href and active route only."),
@@ -76,12 +77,12 @@ export const filePolicies: Record<string, Policy> = {
   }),
   "download-data-button.tsx": props("Empty/invalid rows disable or refuse export rather than fabricating a workbook.", {
     loading: "Export preparation state belongs to the button; it does not fetch analytical results.",
-    error: "Validation/export failures are explicit; prior payload is not silently substituted.",
+    error: "Lazy rows() executes inside the actual export try/catch; builder refusal and empty result have explicit no-completed-download errors and reset busy. JSON validator refusal allocates no URL.",
     null: "Null cells preserved; validators enforce schema-specific finite numeric/nullable requirements.",
     selection: "Download uses only current supplied rows/payload; interpretation and evidence class travel with export.",
     scope: "Client artifact writer, not publication, approval, server write or source-byte escape hatch.",
   }),
-  "driver-evidence-disclosure.tsx": query("Incomplete/duplicate-count registry is flagged; missing evidence records are explicit.", {
+  "driver-evidence-disclosure.tsx": query("Missing/malformed indicator array or IDs refused; partial definition/publisher/rawUnit/role/evidenceState/reason are unavailable. Missing status is named. Full coverage requires actual 22 registered IDs, not 22 unknown unique IDs.", {
     refusal: "Reported role/reason/evidence state does not establish calibration or central eligibility.",
     zero: "Zero returned records is an empty registry, not zero indicator values.",
   }),
@@ -134,7 +135,7 @@ export const filePolicies: Record<string, Policy> = {
     scope: "Legacy global intensity counterfactual, not regional warming or source-evidenced regional inventory.",
   }),
   "sensitivity-chart.tsx": props("Empty sensitivity and incomplete baseline/ranges are withheld; no 2.7°C default.", {
-    scope: "Conditional legacy sensitivity only. Tooltip only renders supplied active finite-series payload.",
+    scope: "Conditional legacy sensitivity only. Active tooltip missing payload has named reason; label/category/baseline/low/high/range each independently unavailable. Actual zero baseline remains 0.00°C, never default 2.7.",
   }),
   "target-input-disclosure.tsx": query("Missing qualifiedFields/target subset explicitly unavailable; no target values inferred.", {
     refusal: "Input semantics registry is not reviewed targets or original-vintage/scientific acceptance.",
@@ -144,7 +145,7 @@ export const filePolicies: Record<string, Policy> = {
     null: "Explicit null fixed-5gt year means no crossing; omitted means unavailable. Selected-2024 threshold is separate and never borrowed.",
     scope: "Opt-in unsupported legacy diagnostic; no standalone market or physical forecast claim.",
   }),
-  "temperature-histogram.tsx": props("Empty PDF explicitly unavailable. Parent requires finite median/P10/P90.", { scope: "Legacy model-conditional density, not calibrated forecast uncertainty." }),
+  "temperature-histogram.tsx": props("Empty PDF explicitly unavailable. Missing median/P10/P90 are independently named unavailable even when supplied PDF exists; true zero quantiles retained.", { scope: "Legacy model-conditional density, not calibrated forecast uncertainty." }),
   "theme-provider.tsx": controls("Theme/context preference only; no analytical results."),
   "theme-toggle.tsx": controls("Light/dark control only; no analytical results."),
   "threshold-diagnostic-details.tsx": props("Null diagnostic is Withheld — 2024 baseline unavailable; no threshold download.", {
@@ -198,6 +199,22 @@ export const focusedRenderComponents = new Set([
   "CompanyConditionalSummary", "ConditionalFactRow", "DisclosureList", "ClimateValuation",
   "AnalysisSection", "SummaryCard", "ValuationPETooltip", "IndicatorDetailReadState",
   "IndicatorSeriesTooltip", "IndicatorCards", "IndicatorDetailDialog",
+  "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
+  "CategoryFilter", "CompanyCoverage", "DownloadDataButton", "DownloadJsonButton", "DriverEvidenceDisclosure",
+  "EmissionsCandidateReview", "EmissionsChart", "LoadingDetails", "HistoricalTrendChart", "MetricToggle",
+  "OperatorOnlyNotice", "PublicationMethodologyNotes", "PublishedScenarioReferences", "QueryReadErrors",
+  "CustomTooltip", "TargetInputDisclosure", "TemperatureHistogram", "ThemeProvider", "ThemeToggle",
+  "ThresholdDiagnosticDownload", "Dashboard", "LegacyDashboard", "DataManagement", "DecarbGapSignal",
+  "TimeSeriesChartTooltip", "BacktestTooltip", "DecarbSignal", "Methodology", "NewsSentiment",
+]);
+const remainingCohort = new Set([
+  "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
+  "CategoryFilter", "CompanyCoverage", "DownloadDataButton", "DownloadJsonButton", "DriverEvidenceDisclosure",
+  "EmissionsCandidateReview", "EmissionsChart", "LoadingDetails", "HistoricalTrendChart", "MetricToggle",
+  "OperatorOnlyNotice", "PublicationMethodologyNotes", "PublishedScenarioReferences", "QueryReadErrors",
+  "CustomTooltip", "TargetInputDisclosure", "TemperatureHistogram", "ThemeProvider", "ThemeToggle",
+  "ThresholdDiagnosticDownload", "Dashboard", "LegacyDashboard", "DataManagement", "DecarbGapSignal",
+  "TimeSeriesChartTooltip", "BacktestTooltip", "DecarbSignal", "Methodology", "NewsSentiment",
 ]);
 const valuationIndicatorCohort = new Set([
   "CompanyConditionalSummary", "ConditionalFactRow", "DisclosureList", "ClimateValuation",
@@ -207,7 +224,7 @@ const valuationIndicatorCohort = new Set([
 export function contractFor(file: string, name: string) {
   const policy = filePolicies[file.split("/").at(-1)!];
   if (!policy) throw new Error(`No reviewed state policy for actual consumer ${file}#${name}`);
-  const inheritedProps = ["SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip"].includes(name);
+  const inheritedProps = ["SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload"].includes(name);
   return {
     ...policy,
     ...(inheritedProps && !["AnalysisSection", "IndicatorDetailReadState"].includes(name) ? {
@@ -224,13 +241,13 @@ export function contractFor(file: string, name: string) {
     } : {}),
     ...(name === "ClimateValuation" ? { inputKind: "queried-evidence" } : {}),
     ...(name === "IndicatorSeriesTooltip" ? {
-      missing: "Inactive => no tooltip; active missing payload => no observation reason; missing value/year/unit/source/status each named.",
+      missing: "Inactive => no tooltip; active missing payload => no observation reason; missing value/year/unit/source/status each named. Empty or whitespace source text is explicitly Source not returned.",
       null: "actual null may use explicitly supplied estimated value; both absent remain unavailable, never zero.",
       zero: "Finite observed/estimated zero remains formatted with source/estimate qualifier.",
     } : {}),
     ...(name === "IndicatorDetailDialog" ? {
       missing: "Closed modal returns before child JSX construction. Missing/invalid/unregistered/mismatched selected definition never constructs DownloadDataButton or calls finiteExportBindings; no placeholder export key is supplied.",
-      scope: "Actual modal SSR tests cover closed state and selected absent/partial/unregistered definition construction. Portal DOM/opening/hover remains unverified by these tests.",
+      scope: "Actual modal SSR tests cover closed state and selected absent/partial/unregistered definition construction. Follow-up structural/handler tests require unconditional DialogTitle/Description, focusable card trigger restoration and genuine same-key read-only refetch. Parent browser confirmation of focus/portal warning clearance remains separate.",
     } : {}),
     ...(name === "LoadingDetails" ? {
       inputKind: "presentation-control",
@@ -238,7 +255,26 @@ export function contractFor(file: string, name: string) {
       null: "No numeric result fields.",
       loading: "Accessible loading label and skeleton only; no prior result content.",
     } : {}),
-    focusedEvidence: valuationIndicatorCohort.has(name)
+    ...(["CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip"].includes(name) && file.includes("decarb") ? {
+      missing: "Inactive => no tooltip; active missing/null/nonobject series rows => explicit unavailable observation. Missing date/name/value has named reason; zero is 0.00 pp or 0.00%, never bare %. Native nested source body is directly executed.",
+      null: "Null return/gap is unavailable, not 0 pp or 0%; actual multiplier zero separately means −100% return, not missing.",
+    } : {}),
+    ...(name === "CustomTooltip" && file.includes("sensitivity") ? {
+      missing: "Inactive has no tooltip; active absent payload has explicit sensitivity-observation-unavailable reason. Missing label/category/baseline/low/high/range has its own named reason.",
+      null: "Null baseline/low/high/range is unavailable. Actual baseline zero stays 0.00°C; no default 2.7.",
+    } : {}),
+    ...(name === "ThresholdDiagnosticDownload" ? {
+      missing: "Empty diagnostics array disables export; supplied withheld diagnostic exports its actual null year/baseline/threshold, status and reason rather than inventing a crossing.",
+      null: "Null selected baseline/year and explicit withheld/right-censored status are preserved by thresholdExportRow; no fixed-5gt substitution.",
+    } : {}),
+    ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
+      null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
+    } : {}),
+    focusedEvidence: ["IndicatorDetailDialog", "IndicatorSeriesTooltip"].includes(name)
+      ? "script/valuation-indicator-partial-state.test.ts plus script/indicator-portal-followup.test.ts: actual modal construction, persistent accessible header/trigger/refetch handlers and empty-source zero tooltip. Browser focus/portal follow-up remains separate."
+      : remainingCohort.has(name)
+      ? "script/remaining-component-contracts.test.ts: actual imported component SSR, or actual nested source body invocation for tooltips/LoadingDetails. Exact named fields/states in tests; portal/hover/archive/issuer/download interactions remain planned separately."
+      : valuationIndicatorCohort.has(name)
       ? "script/valuation-indicator-partial-state.test.ts: exact nested public/valuation/modal-gate/tooltip/card cases named in focused tests; not browser interaction coverage."
       : focusedRenderComponents.has(name)
       ? "script/component-partial-state.test.ts: focused SSR assertions; exact tested states are named in test cases."

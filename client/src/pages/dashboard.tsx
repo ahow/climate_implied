@@ -86,7 +86,7 @@ export default function Dashboard() {
   );
 }
 
-function LegacyDashboard() {
+export function LegacyDashboard() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [metricView, setMetricView] = useState<MetricView>("temperature");
 

@@ -1,0 +1,44 @@
+{
+  "scope": "Focused follow-up only to the 2 failed, 1 partial and 1 unrun new-branch flows. Preserve original 6 passing flows without rerunning them or the unchanged41 harness.",
+  "originalEvidence": "generated-artifacts/rendered-states/component-new-branch-evidence.json",
+  "status": "planned-parent-tester-not-executed-by-implementation-agent",
+  "cases": [
+    {
+      "id": "indicator-portal-partial-definition",
+      "newChecks": [
+        "Open missing/partial-definition refusal via the actual focusable indicator card; await the refusal.",
+        "Assert visible DialogTitle Indicator details and a nonempty DialogDescription.",
+        "Close with dialog close button and separately Escape; await activeElement equal to the same card trigger, not BODY.",
+        "Assert no missing DialogTitle/Description warning; no download or undefined-key error.",
+        "Keyboard Enter/Space may open the same card; ordinary arrow navigation must not open it."
+      ]
+    },
+    {
+      "id": "indicator-hover-zero-unknown-observation-status",
+      "newChecks": [
+        "Keep the prior valid dated zero fixture with empty source and missing isNowcast.",
+        "Hover the actual point and await 0.00, supplied year, Source not returned and observation/estimate status unavailable.",
+        "Do not replace empty source with a test-only provenance label."
+      ]
+    },
+    {
+      "id": "indicator-current-read-withholds-prior-detail",
+      "newChecks": [
+        "Open a successfully settled current detail; click button-refresh-indicator-detail.",
+        "Hold that same-key GET response; await Refreshing detail plus the loading-state gate, with old series/export and old source header withheld.",
+        "Fail the held read; await explicit failed-read gate, no old table/download. Refresh detail must become enabled for a real retry.",
+        "Click Refresh detail again and resolve a distinct same-key fixture; await that response's actual detail contents.",
+        "Confirm only the existing indicator GET is refetched, no operator/provider mutation or fake timer."
+      ]
+    },
+    {
+      "id": "backtest-partial-accounting-hover-and-xlsx",
+      "newChecks": [
+        "Only repeat the previously partial missing-TE/active-return hover branch, not already passing downloads/issuer/archive flows.",
+        "Use a valid supported observation date (e.g. 2024-01), benchmark/portfolio multipliers1, activeReturn0 and missing trackingError on the active-return/TE chart; separately test trackingError0 with missing activeReturn. The zero-valued line supplies an actual hover target for the other missing field.",
+        "Hover the chart for that date; record which series payload Recharts actually supplies and assert missing values are never bare %, NaN or invented 0.00%.",
+        "Retain prior evidence that a null-date row has no hover payload; do not relabel it as passed or fabricate an observation date."
+      ]
+    }
+  ]
+}

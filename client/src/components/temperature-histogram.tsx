@@ -40,6 +40,8 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
     );
   }
 
+  if (!Array.isArray(pdf) || pdf.some(point => !point || typeof point !== "object"))
+    return <Card className="p-6"><p role="status">Temperature density record collection unavailable. No values or downloads are substituted.</p></Card>;
   if (!pdf.length) return <Card className="p-6"><p role="status">No legacy temperature probability-density observations were returned.</p></Card>;
   const filteredPdf = pdf.filter((d) => d.probability > 0.001);
 
@@ -57,9 +59,9 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
         </div>
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
-            <span>P10: {p10.toFixed(1)}&deg;C</span>
-            <span className="font-semibold text-foreground">Median: {median.toFixed(2)}&deg;C</span>
-            <span>P90: {p90.toFixed(1)}&deg;C</span>
+            <span>P10: {typeof p10 === "number" && Number.isFinite(p10) ? `${p10.toFixed(1)}°C` : "Unavailable — P10 not returned"}</span>
+            <span className="font-semibold text-foreground">Median: {typeof median === "number" && Number.isFinite(median) ? `${median.toFixed(2)}°C` : "Unavailable — median not returned"}</span>
+            <span>P90: {typeof p90 === "number" && Number.isFinite(p90) ? `${p90.toFixed(1)}°C` : "Unavailable — P90 not returned"}</span>
           </div>
           <DownloadDataButton
             kind="legacy"

@@ -19,6 +19,10 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 
 | Method | Path expression | Implementation |
 | --- | --- | --- |
+| GET | "/api/calculation/fair-artifacts" | server/calculation/fairArtifactRoutes.ts |
+| GET | `/api/calculation/fair-artifacts/:artifactId/${operation}` | server/calculation/fairArtifactRoutes.ts |
+| POST | "/api/calculation/ensemble-summary" | server/calculation/fairArtifactRoutes.ts |
+| POST | "/api/calculation/validate-history" | server/calculation/fairArtifactRoutes.ts |
 | GET | `${CONDITIONAL_COMPANY_ROUTE}${suffix}` | server/companyConditionalApi.ts |
 | GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |

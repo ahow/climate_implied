@@ -12,6 +12,7 @@ export function CompanyCoverage() {
   const [observationDate, setObservationDate] = useState("");
   const query = useQuery<CompanyCoverageReport>({
     queryKey: ["/api/calculation/company-coverage", observationDate],
+    select: report => { if (report != null) validateCompanyCoverageJson(report); return report; },
     queryFn: async () => {
       const selection = currentSelection();
       if (selection?.overlays?.length) throw new Error("Coverage requires the baseline workbook; remove overlays to report baseline coverage.");
@@ -33,7 +34,7 @@ export function CompanyCoverage() {
       <input type="date" className="block border rounded p-1 mt-1" value={observationDate} onChange={event => setObservationDate(event.target.value)} />
     </label>
     {query.isLoading ? <p>Loading full-workbook coverage…</p> : query.isError ?
-      <div role="alert">Coverage unavailable; this is not zero coverage. {query.error instanceof Error ? query.error.message : ""} <Button onClick={() => void query.refetch()}>Retry</Button></div> :
+      <div role="alert">Coverage unavailable; this is not zero coverage. Current selected-workbook coverage evidence could not be verified. <Button onClick={() => void query.refetch()}>Retry</Button></div> :
       query.data ? <>
         <p className="text-sm">Observation <span data-field-id="companyCoverage.observationDate">{query.data.observationDate}</span>; information cutoff <span data-field-id="companyCoverage.informationCutoff">{query.data.informationCutoff}</span>.</p>
         <p className="text-sm break-all" data-field-id="companyCoverage.sourceId">Workbook: {query.data.sourceId}</p>

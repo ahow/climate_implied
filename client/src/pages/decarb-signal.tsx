@@ -17,7 +17,7 @@ import {
 import { Activity, TrendingDown, Globe, Layers, BarChart3 } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,signalCumulativeColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, displayDiagnostic, gordonBaselineLabel, gordonExportNotes } from "@/lib/valuation-claims";
+import { earningsYieldGapPp, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -132,6 +132,7 @@ const BACKTEST_COLORS = {
 };
 
 function formatDateLabel(timestamp: number): string {
+  if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) return "Observation date unavailable";
   const d = new Date(timestamp);
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
@@ -265,40 +266,23 @@ export default function DecarbSignal() {
     return { carbonIntensity: latest.carbonIntensity, sdgExposure: latest.sdgExposure, decarbAmbition: latest.decarbAmbition };
   }, [chartData]);
 
-  const backtestStats = useMemo(() => {
-    if (!backtestData || backtestData.length === 0) return null;
-    const last = backtestData[backtestData.length - 1];
-    const totalActiveReturn = (last.portfolioCumulative / last.benchmarkCumulative - 1) * 100;
-    const annualizedActive = backtestData.length > 12
-      ? (Math.pow(last.portfolioCumulative / last.benchmarkCumulative, 12 / backtestData.length) - 1) * 100
-      : totalActiveReturn;
-    const avgGreen = Math.round(backtestData.reduce((s, d) => s + d.overweightCount, 0) / backtestData.length);
-    const avgBrown = Math.round(backtestData.reduce((s, d) => s + d.underweightCount, 0) / backtestData.length);
-    return {
-      totalActive: totalActiveReturn,
-      annualizedActive,
-      finalTE: last.trackingError * 100,
-      benchmarkTotal: (last.benchmarkCumulative - 1) * 100,
-      portfolioTotal: (last.portfolioCumulative - 1) * 100,
-      avgGreen,
-      avgBrown,
-      months: backtestData.length,
-    };
-  }, [backtestData]);
+  const backtestStats = useMemo(() => backtestDisplayStats(backtestData), [backtestData]);
 
   const backtestChartData = useMemo(() => {
     if (!backtestData) return [];
     return backtestData.map((d) => ({
       date: d.date,
-      benchmark: Math.round((d.benchmarkCumulative - 1) * 10000) / 100,
-      portfolio: Math.round((d.portfolioCumulative - 1) * 10000) / 100,
-      activeReturn: Math.round(d.activeReturn * 10000) / 100,
-      trackingError: Math.round(d.trackingError * 10000) / 100,
+      benchmark: backtestPercent(d.benchmarkCumulative, true),
+      portfolio: backtestPercent(d.portfolioCumulative, true),
+      activeReturn: backtestPercent(d.activeReturn),
+      trackingError: backtestPercent(d.trackingError),
     }));
   }, [backtestData]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active) return null;
+    if (!Array.isArray(payload) || !payload.length || payload.some(entry => !entry || typeof entry !== "object"))
+      return <p role="status">Tooltip series unavailable — no valid observations returned.</p>;
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm" data-testid="chart-tooltip">
         <p className="font-medium text-foreground mb-2">{formatDateLabel(label)}</p>
@@ -306,7 +290,7 @@ export default function DecarbSignal() {
           <div key={entry.dataKey} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
-              <span className="text-muted-foreground">{entry.name}</span>
+              <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
               {displayDiagnostic(entry.value, " pp")}
@@ -318,18 +302,20 @@ export default function DecarbSignal() {
   };
 
   const BacktestTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active) return null;
+    if (!Array.isArray(payload) || !payload.length || payload.some(entry => !entry || typeof entry !== "object"))
+      return <p role="status">Tooltip series unavailable — no valid observations returned.</p>;
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm" data-testid="backtest-tooltip">
-        <p className="font-medium text-foreground mb-2">{label}</p>
+        <p className="font-medium text-foreground mb-2">{label ?? "Observation date unavailable"}</p>
         {payload.map((entry: any) => (
           <div key={entry.dataKey} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
-              <span className="text-muted-foreground">{entry.name}</span>
+              <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
             </span>
             <span className="font-medium tabular-nums" style={{ color: entry.color }}>
-              {entry.value?.toFixed(2)}%
+              {displayDiagnostic(entry.value, "%")}
             </span>
           </div>
         ))}
@@ -598,29 +584,29 @@ export default function DecarbSignal() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
               <div className="p-3 rounded-md border bg-muted/30">
                 <p className="text-xs text-muted-foreground mb-1">Portfolio Total</p>
-                <p className={`text-lg font-bold tabular-nums ${backtestStats.portfolioTotal >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-portfolio-total">
-                  {backtestStats.portfolioTotal >= 0 ? "+" : ""}{backtestStats.portfolioTotal.toFixed(1)}%
+                <p className={`text-lg font-bold tabular-nums ${(backtestStats.portfolioTotal ?? NaN) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-portfolio-total">
+                  {backtestDisplay(backtestStats.portfolioTotal, 1, true)}
                 </p>
               </div>
               <div className="p-3 rounded-md border bg-muted/30">
                 <p className="text-xs text-muted-foreground mb-1">Benchmark Total</p>
-                <p className={`text-lg font-bold tabular-nums ${backtestStats.benchmarkTotal >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-benchmark-total">
-                  {backtestStats.benchmarkTotal >= 0 ? "+" : ""}{backtestStats.benchmarkTotal.toFixed(1)}%
+                <p className={`text-lg font-bold tabular-nums ${(backtestStats.benchmarkTotal ?? NaN) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-benchmark-total">
+                  {backtestDisplay(backtestStats.benchmarkTotal, 1, true)}
                 </p>
               </div>
               <div className="p-3 rounded-md border bg-muted/30">
                 <p className="text-xs text-muted-foreground mb-1">Active Return (ann.)</p>
-                <p className={`text-lg font-bold tabular-nums ${backtestStats.annualizedActive >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-active-return">
-                  {backtestStats.annualizedActive >= 0 ? "+" : ""}{backtestStats.annualizedActive.toFixed(2)}%
+                <p className={`text-lg font-bold tabular-nums ${(backtestStats.annualizedActive ?? NaN) >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} data-testid="text-active-return">
+                  {backtestDisplay(backtestStats.annualizedActive, 2, true)}
                 </p>
               </div>
               <div className="p-3 rounded-md border bg-muted/30">
                 <p className="text-xs text-muted-foreground mb-1">Tracking Error</p>
                 <p className="text-lg font-bold tabular-nums" data-testid="text-tracking-error">
-                  {backtestStats.finalTE.toFixed(2)}%
+                  {backtestDisplay(backtestStats.finalTE)}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {backtestStats.avgGreen} green / {backtestStats.avgBrown} brown
+                  {backtestStats.avgGreen ?? "Unavailable — overweight count not returned"} green / {backtestStats.avgBrown ?? "Unavailable — underweight count not returned"} brown
                 </p>
               </div>
             </div>

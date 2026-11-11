@@ -41,3 +41,38 @@ export function earningsYieldGapPp(companyPE: unknown, peerPE: unknown): number 
 export function displayDiagnostic(value: unknown, suffix = ""): string {
   return typeof value === "number" && Number.isFinite(value) ? `${value.toFixed(2)}${suffix}` : "Unavailable";
 }
+
+export function backtestPercent(value: unknown, cumulative = false): number | undefined {
+  if (typeof value !== "number" || !Number.isFinite(value)) return undefined;
+  const result = Math.round((value - (cumulative ? 1 : 0)) * 10000) / 100;
+  return Number.isFinite(result) ? result : undefined;
+}
+
+export function backtestDisplay(value: unknown, digits = 2, signed = false): string {
+  return typeof value === "number" && Number.isFinite(value)
+    ? `${signed && value >= 0 ? "+" : ""}${value.toFixed(digits)}%` : "Unavailable — accounting not returned";
+}
+
+export function backtestDisplayStats(rows: readonly {
+  benchmarkCumulative?: number | null; portfolioCumulative?: number | null; trackingError?: number | null;
+  overweightCount?: number | null; underweightCount?: number | null;
+}[] | undefined) {
+  if (!rows?.length) return null;
+  const last = rows[rows.length - 1];
+  const valid = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
+  const percent = (value: unknown, cumulative = false) => {
+    if (!valid(value)) return undefined;
+    const result = (value - (cumulative ? 1 : 0)) * 100;
+    return Number.isFinite(result) ? result : undefined;
+  };
+  const ratio = valid(last.benchmarkCumulative) && last.benchmarkCumulative > 0 &&
+    valid(last.portfolioCumulative) && last.portfolioCumulative >= 0 ? last.portfolioCumulative / last.benchmarkCumulative : undefined;
+  const meanCount = (key: "overweightCount" | "underweightCount") =>
+    rows.every(row => valid(row[key]) && row[key]! >= 0) ? Math.round(rows.reduce((sum, row) => sum + row[key]!, 0) / rows.length) : undefined;
+  return {
+    benchmarkTotal: percent(last.benchmarkCumulative, true), portfolioTotal: percent(last.portfolioCumulative, true),
+    annualizedActive: ratio === undefined ? undefined : percent(rows.length > 12 ? Math.pow(ratio, 12 / rows.length) : ratio, true),
+    finalTE: percent(last.trackingError), avgGreen: meanCount("overweightCount"), avgBrown: meanCount("underweightCount"),
+    months: rows.length,
+  };
+}

@@ -22,10 +22,15 @@ interface DriverRegistry {
 export function DriverEvidenceDisclosure() {
   const registry = useQuery<DriverRegistry>({
     queryKey: ["/api/research/driver-registry"],
+    select: result => {
+      if (result != null && (!Array.isArray(result.indicators) || result.indicators.some(item => !item || typeof item.id !== "string")))
+        throw new Error("Driver registry indicator records not returned.");
+      return result;
+    },
   });
   const indicators = registry.data?.indicators ?? [];
   const uniqueCount = new Set(indicators.map((indicator) => indicator.id)).size;
-  const complete = indicators.length === 22 && uniqueCount === 22;
+  const complete = indicators.length === 22 && uniqueCount === 22 && indicatorFieldSpecs.every(([key]) => indicators.some(item => item.id === key));
 
   return (
     <Card className="p-5 mb-6 space-y-3" data-testid="driver-evidence-disclosure">
@@ -48,12 +53,12 @@ export function DriverEvidenceDisclosure() {
       ) : registry.data ? (
         <>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline" className="break-all" data-field-id="driverRegistry.status">{registry.data.status}</Badge>
+            <Badge variant="outline" className="break-all" data-field-id="driverRegistry.status">{registry.data.status ?? "Registry status not returned"}</Badge>
             <p className="text-xs text-muted-foreground" data-testid="driver-registry-coverage">{uniqueCount} of {indicatorFieldSpecs.length} registered indicators accounted for</p>
           </div>
           {!complete && (
             <p role="alert" className="text-sm text-muted-foreground">
-              Registry coverage is incomplete or contains duplicate IDs. The response returned {indicators.length} entries with {uniqueCount} unique IDs; all 22 indicators cannot be verified.
+              Registry coverage is incomplete or contains duplicate or unknown IDs. The response returned {indicators.length} entries with {uniqueCount} unique IDs; all 22 indicators cannot be verified.
             </p>
           )}
           {indicators.length === 0 ? (
@@ -65,7 +70,7 @@ export function DriverEvidenceDisclosure() {
                 {indicators.map((indicator, index) => (
                   <li key={`${indicator.id}-${index}`} className="py-3 first:pt-0 space-y-2" data-testid={`driver-evidence-${indicator.id}`}>
                     <h3 className="text-sm font-semibold font-mono break-all" data-field-id="driverRegistry.indicators[].id">{indicator.id}</h3>
-                    <p className="text-sm text-muted-foreground break-words" data-field-id="driverRegistry.indicators[].definition">{indicator.definition}</p>
+                    <p className="text-sm text-muted-foreground break-words" data-field-id="driverRegistry.indicators[].definition">{indicator.definition || "Definition not supplied"}</p>
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2 text-xs">
                       <div><dt className="text-muted-foreground">Publisher</dt><dd className="break-words" data-field-id="driverRegistry.indicators[].publisher">{indicator.publisher || "Not supplied"}</dd></div>
                       <div><dt className="text-muted-foreground">Raw unit</dt><dd className="break-words" data-field-id="driverRegistry.indicators[].rawUnit">{indicator.rawUnit || "Not supplied"}</dd></div>

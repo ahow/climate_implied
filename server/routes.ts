@@ -102,6 +102,7 @@ import { summarizeEnsemble } from "./calculation/ensemble";
 import { evaluateHoldout } from "./calculation/evaluation";
 import { evaluateSignal } from "./calculation/signalResearch";
 import { registerCompanyConditionalRoutes } from "./companyConditionalApi";
+import { registerFairArtifactRoutes } from "./calculation/fairArtifactRoutes";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -131,6 +132,7 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
   registerCompanyConditionalRoutes(app);
+  registerFairArtifactRoutes(app);
   // Exact route-qualified metadata for remaining original response slots.
   // No authorization, mutation or run-summary wire-value changes.
   app.use((req, res, next) => {
