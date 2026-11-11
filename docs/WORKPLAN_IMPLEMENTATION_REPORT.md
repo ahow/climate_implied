@@ -1,4 +1,21 @@
-# Component contracts and primary series — validated; release pending
+# Latest verified component/source release
+
+{
+  "workspace_commit": "37b92be048df7a5cfed641350100534ace6219b0",
+  "github_main": "592957cddbdc6a67856cb326f61b6dfa2d0e7eda",
+  "ci": "43019539782 success",
+  "railway_deployment": "68d8a8b8-e5e4-4e9b-9d4a-5bc96b4ff71f",
+  "verified_at": "2026-11-11T12:25:04.103100+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "affected": "data-management200; closed-modal crash fixed and initialrender screenshots clean before release; no unchanged41browser suite rerun",
+  "tests": "Final623TS/0fail/0skip/typecheck/build;172Python and mandatoryprivate issuer-law validator passed before client-only modalfix, measured code unchanged",
+  "scope": "Code/source only; no data/scientific promotion; later documentation/local receipts distinct."
+}
+
+40verified/258partial/2blocked;0/3qualified;original1000/1001. Context boundary, not completion.
+
+# Component contracts and primary series — released; historical validation detail
 
 {
   "at": "2026-11-11T12:20:38.182549+00:00",
