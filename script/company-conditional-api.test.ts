@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import express from "express";
 import ExcelJS from "exceljs";
+import { createHash } from "node:crypto";
 import { conditionalCompanySummary, conditionalExportCells, getConditionalCompanySummary } from "../shared/companyConditionalData";
 import { CONDITIONAL_COMPANY_ROUTE, registerCompanyConditionalRoutes } from "../server/companyConditionalApi";
 import { bindNestedOutput, requireOutputSemantic } from "../shared/outputFieldSemantics";
@@ -172,4 +173,47 @@ test("GET API, JSON and XLSX are the same allowlist; unsupported inputs and writ
   } finally {
     await new Promise<void>((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
   }
+});
+
+test("subsequent XOM primary-source notes qualify units without rewriting frozen numbers or permit gaps", async () => {
+  const summary = getConditionalCompanySummary();
+  const cells = conditionalExportCells(summary);
+  const protectedData = {
+    paths: cells.map(cell => cell.field),
+    primitiveValues: cells.filter(cell => typeof JSON.parse(cell.jsonValue) !== "string"),
+  };
+  assert.equal(cells.length, 308, "No schema, fact or narrative-array count additions");
+  assert.equal(protectedData.primitiveValues.length, 44);
+  assert.equal(createHash("sha256").update(JSON.stringify(protectedData)).digest("hex"),
+    "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
+    "Exact pre-qualification field paths and every numeric/boolean/null value remain frozen");
+  const xom = summary.companies.find(company => company.issuer === "XOM")!;
+  assert.deepEqual([xom.facts.length, xom.sourced.length, xom.conditions.length, xom.missingness.length, xom.refusalReasons.length],
+    [9, 2, 5, 4, 2]);
+  assert.equal(xom.experimentVersion, "xom-permit-geography-incremental-carbon-cash-1");
+  const unitEvidence = JSON.parse(await readFile("docs/xom-source-inputs-evidence.json", "utf8"));
+  const unitSource = unitEvidence.sourceRecords.find((source: { id: string }) => source.id === "UKETS-FULL-FY2024");
+  assert.equal(unitSource.url, "https://www.legislation.gov.uk/uksi/2020/1265/2024-12-31/data.xml");
+  assert.equal(unitSource.madeDate, "2020-11-11");
+  assert.equal(unitSource.asOf, "2024-12-31");
+  assert.equal(unitSource.publicationDate, null);
+  for (const exact of [unitSource.url, unitSource.madeDate, unitSource.asOf])
+    assert.ok(xom.sourced[0].includes(exact));
+  assert.match(xom.sourced[0], /original publication date unestablished/);
+  assert.match(xom.sourced[0], /Article 18\(2\)\/\(3\).*confirms 1 allowance per tonne CO2 equivalent/);
+  assert.match(xom.conditions[0], /originally treated 1 UKA\/tCO2e as conditional/);
+  assert.match(xom.conditions[0], /Subsequent Article 18.*confirms.*without changing that historical experiment or its numbers/);
+  assert.match(xom.missingness.join(" "), /native CO2 gas-specific tonnes.*unverified/);
+  assert.match(xom.missingness.join(" "), /Fawley EPR permit is not proof of UK-E-IN-11402 identity/);
+  assert.match(xom.missingness.join(" "), /banks, purchases and company-paid prices are still unverified/);
+  assert.doesNotMatch(xom.missingness.join(" "), /statutory unit annex/);
+  const contractEvidence = JSON.parse(await readFile("docs/xom-contract-permit-evidence.json", "utf8"));
+  for (const id of ["CF-FY2022-10K", "CF-FY2024-10K"]) {
+    const source = contractEvidence.sourceRecords.find((record: { id: string }) => record.id === id);
+    assert.ok(xom.refusalReasons[1].includes(source.url));
+    assert.ok(xom.refusalReasons[1].includes(source.publicationDate));
+  }
+  assert.match(xom.refusalReasons[1], /FY2024.*metric CO2 capacity.*FY2022.*short tons, not retrospectively metric/);
+  assert.match(xom.refusalReasons[1], /client capex, not XOM transport\/storage capex/);
+  assert.match(xom.refusalReasons[1], /capacity is not minimum billing, realized capture or a fee/);
 });

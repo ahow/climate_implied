@@ -114,7 +114,7 @@ const XOM: ConditionalCompany = {
   facts: [
     { id: "reportedEmissions", label: "Selected permit reported emissions", value: 3070057, unit: "tCO2e/year (FY2024)", classification: "sourced-derived", formula: "564,699 + 2,505,358 = 3,070,057", sourceLocator: "authoritativeClaims.additiveSelectedPermitReportedTco2e", boundary: "Two selected English permits; not native CO2, corporate Scope 1 or global equity emissions." },
     { id: "deliveredUnits", label: "Selected delivered allowances", value: 1509112, unit: "UKA (FY2024)", classification: "sourced-derived", formula: "0 + 1,509,112 = 1,509,112", sourceLocator: "authoritativeClaims.selectedDeliveredUka2024", boundary: "Delivered annual units, not purchased units or allowance bank." },
-    { id: "shortage", label: "Reported tonnes minus delivered units", value: 1560945, unit: "tCO2e minus UKA (annual arithmetic)", classification: "sourced-derived", formula: "3,070,057 - 1,509,112 = 1,560,945", sourceLocator: "authoritativeClaims.selectedReportedTonnesMinusDeliveredUnits", boundary: "Before banks/purchases/transfers. Conversion to purchase need requires conditional 1 UKA/tCO2e; not observed cash expense or group liability." },
+    { id: "shortage", label: "Reported tonnes minus delivered units", value: 1560945, unit: "tCO2e minus UKA (annual arithmetic)", classification: "sourced-derived", formula: "3,070,057 - 1,509,112 = 1,560,945", sourceLocator: "authoritativeClaims.selectedReportedTonnesMinusDeliveredUnits", boundary: "Before banks/purchases/transfers. Subsequent Article 18 source qualification confirms 1 allowance/tCO2e; the frozen experiment is not rerun. This difference is not observed purchase need, cash expense or group liability." },
     { id: "observedExpense", label: "Observed company carbon expense", value: null, unit: "USD", classification: "sourced-derived", formula: "Not identified in retained observations", sourceLocator: "integrationGuard.observedCompanyCarbonExpense", boundary: "Embedded baseline expense remains intact; historical expense is not zero." },
     { id: "observedPrice", label: "Observed company-paid allowance price", value: null, unit: "GBP/UKA", classification: "sourced-derived", formula: "Not identified in retained observations", sourceLocator: "integrationGuard.observedCompanyPaidUkaPrice", boundary: "Auction prices and scenario increments are not company cash observations." },
     { id: "observedBank", label: "Observed uncommitted bank", value: null, unit: "UKA", classification: "sourced-derived", formula: "Not identified in retained observations", sourceLocator: "integrationGuard.observedUncommittedBank", boundary: "Unknown historical holdings must not become zero." },
@@ -123,25 +123,25 @@ const XOM: ConditionalCompany = {
     { id: "cases", label: "Integrated conditional components", value: 24, unit: "components", classification: "conditional", formula: "6 stored original baselines × 4 new component scenarios", sourceLocator: "conditionalForwardCalculation.integratedCases", boundary: "Not twenty-four qualified original whole-company cases." },
   ],
   sourced: [
-    "Selected operating jurisdiction is England from registry regulator evidence, not headquarters or a global-average allocation.",
+    "Selected operating jurisdiction is England from registry regulator evidence, not headquarters or a global-average allocation. Subsequent primary-source qualification: Article 18(2)/(3), https://www.legislation.gov.uk/uksi/2020/1265/2024-12-31/data.xml (made 2020-11-11; historical view 2024-12-31; original publication date unestablished), confirms 1 allowance per tonne CO2 equivalent. See docs/xom-source-inputs-evidence.json; this is not current-law or installation-native-gas certification.",
     "Exact Esso Petroleum Company Limited voting ownership is 100% at 2024-12-31; not a measured equity-emissions allocation or complete common-cash waterfall.",
   ],
   conditions: [
-    "Hold FY2024 absolute permit-reported tCO2e flat. One UKA per reported tCO2e is explicitly conditional; statutory covered-gas annex was not retrieved.",
+    "The frozen experiment holds FY2024 absolute permit-reported tCO2e flat and originally treated 1 UKA/tCO2e as conditional. Subsequent Article 18 primary-source qualification confirms the statutory 1 allowance/tCO2e denomination without changing that historical experiment or its numbers. Complete installation permit/monitoring annex, native-gas mass and permit/site crosswalk remain unverified.",
     "Only incremental price shocks are rebuilt; unidentified baseline carbon expense stays embedded. GBP1/FX1 are normalization coefficients; GBP25/FX1.25 are stress coordinates.",
     "Future opening uncommitted bank zero, bank-first settlement, emissions-year purchases and no speculative sales are prospective conventions, not observed purchase dates or account balances.",
     "Future allocation held at FY2024 units or zero; no pass-through/no shield or half recovery with one-year collection lag. Revenue, collections and incremental receivables reconcile separately.",
     "Preserve original capital, replacement, debt, tax, reserves and dated stub. Reject terminal integration if temporary bank support eventually depletes; no terminal bank liquidation.",
   ],
   missingness: [
-    "Native CO2 gas-specific tonnes and corporate GHG scope/equity reconciliation are unavailable.",
+    "Statutory activity-to-gas rows are source-qualified, but complete installation permit/monitoring annex, native CO2 gas-specific tonnes and corporate GHG scope/equity reconciliation remain unverified; reported tCO2e is not silently relabelled native CO2.",
     "Historical allowance banks, sale cash, company-paid prices, purchase/transfer dates and embedded carbon expense are unknown.",
-    "Specific site address for the generic registry installation is unidentified. The separate chemical operator is excluded because exact ownership linkage is missing.",
-    "Global coverage, other jurisdictions, statutory unit annex, future awards, observed dated FX and measured pass-through/tax realization remain unresolved.",
+    "The exact UK ETS permit/site crosswalk remains unverified. A separately retrieved historical Fawley EPR permit is not proof of UK-E-IN-11402 identity or FY2024 UK ETS monitoring/site coverage. The separate chemical operator is excluded because exact ownership linkage is missing.",
+    "The statutory allowance denomination is now source-qualified, not an outstanding unit gap. Global coverage, other jurisdictions, complete permit/native-gas annex, future awards, observed dated FX and measured pass-through/tax realization remain unresolved; banks, purchases and company-paid prices are still unverified.",
   ],
   refusalReasons: [
     "Two selected permits do not establish whole-company climate liability, global coverage, a market price forecast or current-law certification.",
-    "No historical expense removal, total-price deduction, CCS tariff, reverse scoring or root/uniqueness claim.",
+    "No historical expense removal, total-price deduction, CCS tariff, reverse scoring or root/uniqueness claim. Subsequent CF evidence (docs/xom-contract-permit-evidence.json): FY2024 filing https://www.sec.gov/Archives/edgar/data/1324404/000132440425000006/cf-20241231.htm (filed 2025-02-20) uses metric CO2 capacity; FY2022 filing https://www.sec.gov/Archives/edgar/data/1324404/000132440423000006/cf-20221231.htm (filed 2023-02-23) defines its original tons as short tons, not retrospectively metric. CF capture equipment investment is client capex, not XOM transport/storage capex, replacement or common cash; capacity is not minimum billing, realized capture or a fee.",
   ],
 };
 

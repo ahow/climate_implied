@@ -16,7 +16,7 @@
     "inputs": "Only optional scalar issuer NEE/FSLR/XOM filters presentation. Unknown query keys, unsupported/repeated/structured issuer selections reject400.",
     "writes": "No POST/PUT/PATCH/DELETE handlers added; all four methods reject404 in the focused handler test.",
     "runtimeReads": "Public immutable aggregate module only; no private evidence/runtime filesystem reads, source downloads or study reruns.",
-    "valuesPreserved": "Moved allowlist bytes are unchanged: SHA256 ad960f647b4eed96c2a5330bd42c4d7d23a827dd20557d742eb78de013c066b7 before and after move. All30 individual fact values and source locators agree with public evidence receipts in test-time-only reads.",
+    "valuesPreserved": "At initial integration, allowlist move bytes matched SHA256 ad960f647b4eed96c2a5330bd42c4d7d23a827dd20557d742eb78de013c066b7 before/after move. Subsequent authorized XOM narrative qualification changes only existing strings; current pins and verification are recorded below. All30 fact values/source locators, all44 non-string primitive leaves and all308 leaf paths remain unchanged.",
     "qualification": "0/3 qualified original issuers, zero original pairs, no Tier2/efficacy/original-closure promotion"
   },
   "semantics": {
@@ -52,12 +52,52 @@
   },
   "sourcePins": {
     "server/companyConditionalApi.ts": "cb4d49909795f6c1ffdbb4eae1332baf4972cd4c692f7e2df95593dc0d102084",
-    "shared/companyConditionalData.ts": "ad960f647b4eed96c2a5330bd42c4d7d23a827dd20557d742eb78de013c066b7",
+    "shared/companyConditionalData.ts": "7fadaf0bb18bbed522481ee6e5eb418dfb7e9fb93a4bead38fd85f36b49b912a",
     "shared/companyConditionalSemantics.ts": "8c77549e5bfc1193409a837790a67c119101ba3b368f3149a3f6b98e0cfafaba",
-    "script/company-conditional-api.test.ts": "3e517144c50d27d7c0ea325d841e2105dc77d173c48487828d6c407736d50b8e",
+    "script/company-conditional-api.test.ts": "b4d7de576cd47999b79e924b63dd41caae90fba2b46d448f2bad4107e3fb33a2",
     "script/field-semantics-census.ts": "126c59fd541cbad4531810e141a2540035ac9fd263f8ac74daf2036f92ec0d89",
     "script/next-census-accounting.test.ts": "f12aecdb87b8170714eb565d310c3b09167b0b60dd261719c9e4fa2d565e696a",
     "docs/field_semantics_census.json": "379a63a7bd725e6b9770c94ac41148f8a78e9bb646dd6805532070bdc254b843"
+  },
+  "sourceQualificationUpdate": {
+    "verifiedAtUtc": "2026-11-11T11:16:51Z",
+    "scope": "Existing XOM narrative strings only; no schema keys, array counts, numerical experiments or factual numeric values changed",
+    "statutorySource": {
+      "evidence": "docs/xom-source-inputs-evidence.json",
+      "evidenceSha256": "1e008c1ab9bbda829012b53a4b024f3115953a9ff3e328d0055a04ef3e8af67c",
+      "url": "https://www.legislation.gov.uk/uksi/2020/1265/2024-12-31/data.xml",
+      "locator": "Article18(2)/(3)",
+      "madeDate": "2020-11-11",
+      "asOf": "2024-12-31",
+      "publicationDate": null,
+      "qualification": "Subsequent primary qualification confirms1allowance/tCO2e. Made date/historical view are not silently relabelled publication dates. Original experiment remains frozen and historically conditional; no rerun/retune/current-law certification."
+    },
+    "counterpartySource": {
+      "evidence": "docs/xom-contract-permit-evidence.json",
+      "evidenceSha256": "03072ae0966d2bdc581d97b9422dea512163b6c3f2fb214546c4a41a50e1b1e8",
+      "FY2024Url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440425000006/cf-20241231.htm",
+      "FY2024FilingDate": "2025-02-20",
+      "FY2022Url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440423000006/cf-20221231.htm",
+      "FY2022FilingDate": "2023-02-23",
+      "qualification": "FY2024metricCO2 capacity is not retroactively substituted for FY2022shorttons. CF client capture equipment investment is not XOM transport/storage capex/replacement/common cash. Capacity is not minimum billing, realized capture or a tariff."
+    },
+    "remainingGaps": "Complete installation permit/native-gas/site/monitoring crosswalk remains unverified. Historical EPR document does not establish UKETS11402 identity/FY2024coverage. Banks, purchases, company-paid prices, global/equity scope and actual commercial economics remain unresolved.",
+    "protectedNumericAndSchemaFingerprint": {
+      "sha256": "e255bcf820dea9619affb0f0ec9830fa87845d13fe5510b573464d133c983b5c",
+      "formula": "SHA256(JSON.stringify({paths:ordered308conditionalExportCells.field,primitiveValues:ordered44cells whose decoded JSON primitive is not string})); compared equal before/after narrative edit",
+      "factCount": 30,
+      "xomFactAndNarrativeArrayCounts": [9, 2, 5, 4, 2]
+    },
+    "verification": {
+      "command": "npx tsx --test script/company-conditional-api.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts",
+      "pass": 21,
+      "fail": 0,
+      "skip": 0,
+      "additional": ["npx tsc --noEmit passed", "git diff --check passed", "Census regeneration and freshness check passed; census bytes/counts unchanged"],
+      "boundary": "No fullsuite/browser/private-source validator/old-study reruns. No numerical experiment changes, canonical edits, commit, deployment or callback."
+    },
+    "protectedDependencies": "Read-only inspection of inherited xom-source-inputs/xom-contract-permit preserve/code lists found no pins for the modified public allowlist/test/integration receipt. No denied dependency encountered; no protected study/source hash was rewritten or refrozen.",
+    "publicBoundary": "UI/API/JSON/XLSX consume the same allowlist; only bounded narrative facts and exact public citations are exposed, never private provider bytes or full source objects."
   },
   "s03CanonicalProposal": "docs/s03-002-canonical-update-proposal.json; proposal only, canonical owner is parent"
 }
