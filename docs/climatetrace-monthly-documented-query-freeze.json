@@ -1,0 +1,33 @@
+{
+  "version": "climatetrace-monthly-documented-query-1",
+  "parentAcquisitionPlanSHA256": "882e2e626c7e54f61e5b3727fcc11162c5bff21c235646d4b1cb5ab8c46f2d52",
+  "stateBeforeNumericQuery": "Four requests complete. Exact archived CO2 nested ZIP found. Country CSVs are annual,not monthly; do not disaggregate them. Three source-level mining files show actual monthly CO2 rows2021-01 through2026-01. These are asset estimates,not national total fossil-industrial CO2.",
+  "documentedSpecification": {
+    "URL": "https://api.climatetrace.org/v7/docs/openapi.json",
+    "SHA256": "46b7ec3693da769e057e6a758c9c99c0f974e3cfcf1ee56127381c13d49e1489",
+    "actualEncoding": "YAML despite.json URL suffix; public API version7.3.0. Initial generic JSON inspection failed and made no extra request.",
+    "nativePaths": [
+      "/v7/metadata identifies data release/version and coverage independently from API version",
+      "/v7/sources/emissions documents monthly calendar-year country aggregates,gas,sectors,subsectors,gadmId parameters",
+      "Country identifiers are three-letter codes; GADM level0 represents country"
+    ]
+  },
+  "remainingMaximumRequests": 2,
+  "totalMaximumRequestsUnchanged": 6,
+  "sequence": [
+    {
+      "name": "publisher-live-metadata",
+      "URL": "https://api.climatetrace.org/v7/metadata",
+      "maximumBytes": 2000000
+    },
+    {
+      "name": "publisher-USA-monthly-2026",
+      "URL": "https://api.climatetrace.org/v7/sources/emissions?year=2026&gas=co2&sectors=mineral-extraction&subsectors=bauxite-mining,copper-mining,iron-mining&gadmId=USA",
+      "maximumBytes": 20000000,
+      "why": "First non-global original Kaya geography with documented public country aggregate,USA. Latest target2026 fixed before query outcomes. Exactly three native monthly asset subsectors with verified archive methods; exclude annual other-mining/rock/sand and all other gases,sectors.",
+      "classification": "Independent current publisher release/revised-history monthly country source. Never splice into archivedV5.5.0 or call earlier original forecast availability. No matched-vintage residual/forecast/nowcast score."
+    }
+  ],
+  "admission": "Require exact response location USA,gas co2,native month/year fields,finite nonnegative tonnes,expected sectors/subsectors and current release metadata/cutoff. Empty/error/missing dates remain explicit; never sum totals+sector+subsector representations together. Latest version can have different methods and inventory coverage from archived asset sums.",
+  "stops": "No retries,alternative IDs,staging host,credentials,paid service,BigQuery,range or extra requests beyond6. Do not infer a complete nation/all-sector fossil-CO2 scope from this sectoral source pilot."
+}

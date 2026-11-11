@@ -1,0 +1,61 @@
+{
+  "version": "kaya-fullbasis-monthly-source-1",
+  "criteria": ["S04-003", "S04-005"],
+  "readFirst": [
+    "docs/Forecast_Kaya_Protocol.md",
+    "docs/Kaya_Protocol.md",
+    "docs/Short_Horizon_Emissions_Protocol.md",
+    "docs/kaya-highfrequency-source-evidence.json",
+    "docs/kaya-highfrequency-independent-fallback.json",
+    "docs/highfrequency-author-identity-correction.json",
+    "Retained primary investigation inventories and Maddison release catalogue"
+  ],
+  "originalContract": {
+    "years": [2010, 2024],
+    "training": [2010, 2018],
+    "holdout": [2019, 2024],
+    "GDPBasis": "MPD2023 constant2011 international PPP dollars",
+    "preserveMissingMPDEU27MemberYears": 54,
+    "newGDPSubstitutionPermitted": false
+  },
+  "alternativeFullBasis": {
+    "publisher": "World Bank World Development Indicators,source2",
+    "GDPIndicator": "NY.GDP.MKTP.PP.KD",
+    "populationIndicator": "SP.POP.TOTL",
+    "years": [2010, 2024],
+    "countries": "Fixed EU27 members plus CHN,IND,USA and source-defined WLD",
+    "classification": "Entire separately versioned constant2021PPP revised-history sidecar; never fill missing2011PPP cells or represent historical publication availability",
+    "admission": "GDP/population completeness is not full Kaya contract admission. Original2011PPP mismatch rejects original contract. Any alternative full contract additionally requires explicit jointly reconciled primary-energy, fossil/industrial CO2, population, fixed regional territorial and bunker boundaries; unresolved fields must be unavailable or unattempted individually.",
+    "arithmetic": "Use source-reported total GDP and population directly; sum exactly27 complete EU members, no partial sums. Compare overlapping regional GDP to retained MPD2011PPP as differences and ratios of unlike units, not conversion factors or tuning. No source splice.",
+    "requests": [
+      "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.MKTP.PP.KD",
+      "https://api.worldbank.org/v2/indicator/SP.POP.TOTL?source=2&format=json",
+      "https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets",
+      "One source2 JSON GDP request for all31 identities and all15 years, maximum20000 rows",
+      "One identical source2 population request"
+    ]
+  },
+  "originalMonthlyDailyCO2": {
+    "publisher": "Carbon Monitor authors; follow explicit report/DOI links in already retained official author page",
+    "retainedAuthorPageSHA256": "aa71a525bf231f0439459844e077a7e0af02dd3fce44ed65701b412cccc86b33",
+    "requests": [
+      "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+      "https://doi.org/10.1038/s43017-024-00532-2",
+      "https://doi.org/10.1038/s43017-025-00658-x",
+      "https://doi.org/10.1038/s43017-026-00780-4",
+      "At most4 explicitly returned original release/supplement/data metadata or files, only after exact identity/rights/version/size qualification"
+    ],
+    "admission": "A dated report about daily estimates is not a daily table. Only explicit monthly/daily CO2 numerical rows with stated gas,units,sector,region,period and publisher release identity can enter source assembly. Original dated aggregate estimates can be retained as report evidence, not relabelled monthly/daily observations. No graph digitization, emissions factor, latest history as origin, hidden endpoints, staging hosts, access bypass or quarterly-power substitute.",
+    "outcome": "No new forecast estimator authorized; record exact attempted/unavailable/unattempted monthly/daily2024/2025/2026 fields."
+  },
+  "bounds": {
+    "maximumRequests": 14,
+    "timeoutSecondsPerResource": 45,
+    "maximumBytesPerResource": 20000000,
+    "maximumRedirects": 5,
+    "retry": false,
+    "stopOn403": true,
+    "paidCalls": 0
+  },
+  "prohibitions": "No canonical ledgers,production,collector,DDL,commits,publishing,callbacks,purchases,synthetic attribution,ensemble,conversion factor,window shortening,splicing or origin-vintage fabrication."
+}

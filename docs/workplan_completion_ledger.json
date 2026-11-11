@@ -1219,6 +1219,34 @@
         "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
         "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
       }
+    },
+    "component_source": {
+      "at": "2026-11-11T12:20:38.182549+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+        ],
+        "executed_at": "2026-11-11T12:18:21.720962+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 113.168,
+        "counts": {
+          "tests": 623,
+          "pass": 623,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+        "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "sources": "CF2022original announcement/factsheet/8K acquired; announcementmetric versus annualshortton conflict retained. Exact11402METS sign-in boundary not bypassed. Original45X laws/IRSnotice source-qualified;16statutorypaths14companyeligibility unresolved/2generationzero, cashnull.0/3cases.",
+      "climate": "Full separateWDI2021PPP revision2026-10-08:465GDP+465populationcells;75regionalyears,RoW/transport30null. Original2011PPP54gaps unchanged. ActualmonthlyCO2 archive118279rows/1939listedminingassets/80countries;2024–25sameasset/month23268pairs exactlyequal. Partialportfolio/revisedhistory/freshnessnotqualified; noholdouts orsynthetic outcomes.",
+      "components": "60actualdynamiccomponents/1733JSXexpressions/106fieldbindingexpressions;24directlySSRrendered,36namedunrendered. New missingness/defaultzero/staleexport fixes. Initial preview caught closed-modal eager undefined-export-key crash; fixed before release with actualmodal regressions and clean initial-route screenshots. No schema weakening. Modalportal/hover interactions notbrowserverified.",
+      "next": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
+      "counts": "40verified258partial2blocked;original1000/1001 unchanged;0/3qualified cases."
     }
   },
   "prior_native_fleet_increment": {
@@ -1315,7 +1343,7 @@
     "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T11:19:35.745971+00:00",
+  "updated_at": "2026-11-11T12:20:38.182549+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -24134,7 +24162,7 @@
             "script/forecast_kaya.py:prepare,evaluate,digest,main",
             "docs/Kaya_Results.md:"
           ],
-          "behaviour_delivered_this_run": "FixedEU27nativeMPD351memberyears/13GDPyears2010–22 assembled;54required2023–24cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
+          "behaviour_delivered_this_run": "Full separateWDI2021PPP revision2026-10-08:465GDP+465populationcells;75regionalyears,RoW/transport30null. Original2011PPP54gaps unchanged. ActualmonthlyCO2 archive118279rows/1939listedminingassets/80countries;2024–25sameasset/month23268pairs exactlyequal. Partialportfolio/revisedhistory/freshnessnotqualified; noholdouts orsynthetic outcomes.",
           "inputs_versions_assumptions": [
             "CO2=GDP*(energy/GDP)*(CO2/energy); compatible definitions and structural breaks required",
             {
@@ -24175,6 +24203,26 @@
               "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T12:18:21.720962+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 113.168,
+              "counts": {
+                "tests": 623,
+                "pass": 623,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+              "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -24189,7 +24237,7 @@
           "remaining_gaps": [
             "Identity decomposition exists, but complete five-region compatible GDP/energy/CO2 histories, all trend/break tests and usable forecast holdouts remain incomplete."
           ],
-          "next_action": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
+          "next_action": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
           "blockers": [],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
@@ -24603,7 +24651,373 @@
             "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
             "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
             "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
-          }
+          },
+          "component_source_evidence": [
+            {
+              "file": "docs/kaya-fullbasis-monthly-source-evidence.json",
+              "sha256": "1cdd3ddb8db18ec68ac4ba822b6362bbedbbcf1cd4a00521f9eae2260e4144f0",
+              "details": {
+                "schemaVersion": 1,
+                "criteria": [
+                  "S04-003",
+                  "S04-005"
+                ],
+                "status": "new-full2010-2024-WDI-GDP-and-population-sidecar-assembled; original2011PPP-contract-rejected; dated-CO2-release-archive-discovered-but-original-monthly-daily-rows-not-acquired",
+                "scope": "Disjoint scientific scripts/tests/source evidence only. Original MPD2011PPP and54 missing EU27 member-years retained unchanged. No original window,canonical ledger,production,collector,runtime,auth or model changes.",
+                "readFirst": [
+                  "docs/Forecast_Kaya_Protocol.md",
+                  "docs/Kaya_Protocol.md and previous primary-source assembly context",
+                  "docs/Short_Horizon_Emissions_Protocol.md",
+                  "docs/kaya-highfrequency-source-evidence.json",
+                  "docs/kaya-highfrequency-independent-fallback.json",
+                  "docs/highfrequency-author-identity-correction.json",
+                  "generated-artifacts/kaya-source-investigation/f19cb32dc224480f8cf03c972386390c2c200ed411b61155af7063731cacea86.json",
+                  "generated-artifacts/kaya-source-investigation/c2069b4c5534b9e08e50a85003669f85337241849203e658ce5ae373231217e8.json",
+                  "Retained original Maddison release index,MPD workbook metadata and Carbon Monitor author landing"
+                ],
+                "frozenAcquisitionPlans": [
+                  {
+                    "path": "docs/kaya-fullbasis-monthly-source-plan.json",
+                    "sha256": "14efa3b38494b9eefd0bbe72faa92142eef39539392bee9f57d851d80a9b3283"
+                  },
+                  {
+                    "path": "docs/kaya-fullbasis-monthly-followup-plan.json",
+                    "sha256": "35cbdd1be5118f6cd2722336602eb6c4f448a4b4aa50c2def903a2c2da696607"
+                  },
+                  {
+                    "path": "docs/monthly-co2-last-source-route.json",
+                    "sha256": "524088046401131949a13b7b632a5ab899344382f357646ff56f65abbddde66c"
+                  }
+                ],
+                "methods": {
+                  "module": "script/kaya_fullbasis_monthly_sources.py",
+                  "moduleSHA256": "a63e058c901370830f808a1d83ea3db91401ee9237049fecc940fad4a400613f",
+                  "tests": "script/test_kaya_fullbasis_monthly_sources.py",
+                  "testsSHA256": "91498e48c0f298d0dd6844e7a7c1ea9983794e62ccba4bae59ede842bd4eb7cb",
+                  "GDPAdmissionThresholds": "Exactly source2,one complete response page,unique expected ISO3/year/indicator identities,finite strictly positive native values,all2010-2024 years. Null or absent cells retained as missing. No rounding,interpolation,partial EU sum or currency conversion.",
+                  "regionalAdmission": "Seven original accounts and joint population/GDP/primary-energy/fossil-industrial-CO2 territorial/year/vintage/bunker compatibility required. A GDP-only sidecar or complete five accounts is insufficient.",
+                  "monthlyDailyAdmission": "Require verified source identity,rights,original release version,publisher URL/date,exact source/method SHA256,gas CO2,mass per calendar period,explicit sector/region scope,observation cutoff and monthly/daily frequency. Exact complete calendar month or single-day rows only; reject CO2e,annual-mean daily rates,quarterly power,projections,duplicates,nonfinite values and empty report evidence. Revised history explicitly permitted only as revised history,never certified historical-origin availability.",
+                  "forecastAuthorization": "No fit or holdout execution unless original full contract admitted. Both original and separately versioned alternative contracts fail; no forecast or score was run."
+                },
+                "newPrimaryGDPAssembly": {
+                  "publisher": "World Bank World Development Indicators",
+                  "sourceID": "2",
+                  "GDPIndicator": "NY.GDP.MKTP.PP.KD",
+                  "GDPNativeUnit": "constant2021 international PPP dollars,not MPD constant2011 international PPP dollars",
+                  "populationIndicator": "SP.POP.TOTL",
+                  "populationNativeUnit": "people,midyear de-facto resident population",
+                  "sourceSpecificRights": "Both indicator-specific World Bank metadata glossary pages explicitly identify CC BY-4.0. Generic terms URL redirects to general website terms; the generic page alone is not used as data-license proof.",
+                  "nativeRevision": "Both independently retained source2 indicator responses have lastupdated2026-10-08. Separate request timestamps and exact bytes retained; matching revision date is not an atomic archive or origin-vintage certification.",
+                  "sourceIdentities": 31,
+                  "fixedMembership": "27 EU countries plus CHN,IND,USA and native WLD; no time-varying regional aggregate",
+                  "yearsInclusive": [
+                    2010,
+                    2024
+                  ],
+                  "nativeGDPCells": 465,
+                  "missingNativeGDPCells": 0,
+                  "nativePopulationCells": 465,
+                  "missingNativePopulationCells": 0,
+                  "completeRegionalGDPAndPopulationYearPairs": 75,
+                  "completeAccounts": [
+                    "World",
+                    "China",
+                    "India",
+                    "United States",
+                    "European Union (27)"
+                  ],
+                  "missingOriginalRegionalAccountYears": 30,
+                  "exactMissingRegionalAccountDefinition": "Rest of World and International transport,each15 annual account-years2010-2024; GDP and population both null,exact cells/statuses retained in private result.",
+                  "worldIdentityResolution": "Frozen CSV World has blank iso_code. WDI WLD is mapped to the exact frozen country label World only,not to arbitrary blank-ISO aggregates; an explicit collision test enforces this.",
+                  "newEU27GDP2024": 24466131679264.996,
+                  "newEU27Population2024": 450228188,
+                  "newWorldGDP2024": 174159721560706,
+                  "newWorldPopulation2024": 8140897523,
+                  "originalMPDMissingMemberYearsUnchanged": 54,
+                  "originalMPDMissingDefinition": "All27 EU members in2023/2024,both native gdppc and native population absent. This2021PPP sidecar fills NONE of those2011PPP cells.",
+                  "EU27PrimaryGDPOverlapComparisons": 13,
+                  "EU27UnlikePPPBenchmarkNumericRatioRange": [
+                    1.3771969553839727,
+                    1.4074270466798922
+                  ],
+                  "EU27RatioYear2010": 1.384230909456533,
+                  "EU27RatioYear2022": 1.4074270466798922,
+                  "countryGDPNativeVersusFrozenComparisons": 399,
+                  "countryUnlikePPPBenchmarkNumericRatioRange": [
+                    1.0898367190252574,
+                    2.460638663706385
+                  ],
+                  "GDPRatioMeaning": "Unlike PPP reference years,native GDP source methods and release vintages. Numeric ratios/differences retained solely as incompatibility evidence,not a deflator,GSAT factor,validation residual or allowed substitution.",
+                  "populationNativeVersusFrozenComparisons": 465,
+                  "maxAbsoluteRelativePopulationDifference": 0.05523204497021485,
+                  "populationWorstCell": {
+                    "country": "BGR",
+                    "year": 2020,
+                    "native": 6550696,
+                    "frozen": 6933656,
+                    "nativeMinusFrozen": -382960
+                  },
+                  "worldPopulation2024Difference": {
+                    "native": 8140897523,
+                    "frozen": 8161972574,
+                    "nativeMinusFrozen": -21075051,
+                    "relativeDifference": -0.002582102648462048
+                  },
+                  "populationDecision": "New native population is not source-identical to frozen population; preserve differences,no offset or reweighting. Country/territory and revision differences need source-specific reconciliation.",
+                  "originalContractAdmitted": false,
+                  "alternativeContractAdmitted": false,
+                  "failedGates": [
+                    "GDP basis is2021PPP rather than original2011PPP",
+                    "Two original regional accounts incomplete",
+                    "Independent joint primary-energy native-definition/revision qualification unattempted",
+                    "Independent joint fossil-industrial-CO2 gas/scope/revision qualification unattempted",
+                    "Joint territorial and international-bunker boundary reconciliation unattempted"
+                  ],
+                  "classification": "Separately versioned entire2010-2024 revised-history GDP/population basis; no training2010-2018 or holdout2019-2024 run."
+                },
+                "originalMonthlyDailyCO2Investigation": {
+                  "outcome": "No original monthly/daily numerical CO2 row admitted. This is a qualified GDP-source assembly plus original emissions-release metadata investigation,not S04-005 completion.",
+                  "DESNZQuarterlyPowerSubstitution": false,
+                  "carbonMonitor2025Report": {
+                    "URL": "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+                    "reportPublicationDate": "2025-11-18",
+                    "reportVersion": "1.5",
+                    "officialAuthorLandingNewsDate": "2025-11-10",
+                    "reportClaimedUnderlyingDatasetRelease": "2025-11-01",
+                    "reportClaimedUnderlyingDailyRecords": 175015,
+                    "underlyingCoverage": [
+                      "2019-01-01",
+                      "2025-09-30"
+                    ],
+                    "scope": "Fossil fuel combustion and industrial production processes,IPCC2006 categories1 and2; seven sectors,nine regional breakdowns; page7 includes international bunkers globally and under ROW.",
+                    "actualMonthlyDailyRowsAcquired": 0,
+                    "residual": "Report displays daily curves/monthly averages as figures and annual-average/annual-projection summary tables; no graph digitization or annual means renamed daily rows. Latest updatable dataset endpoint does not identify original2025-11-01 bytes.",
+                    "dateDecision": "Different object dates must remain distinct; current retained version1.5 is not shown publicly available on the earlier news or underlying dataset date.",
+                    "rights": "Author publicly offers report link; private research inspection only,no redistribution license inferred for the report."
+                  },
+                  "carbonMonitor2024And2025PublisherPages": "Followed exact DOIs explicitly linked by official author page. The2025 article data-availability statement links live Carbon Monitor daily data,not a dated original dataset archive.2024 article reviews2023,not2024 monthly outcomes. Main subscription PDFs were not requested.",
+                  "carbonMonitor2026PublicSupplement": {
+                    "articleDOI": "10.1038/s43017-026-00780-4",
+                    "access": "Exact publicly offered supplementary-information attachment only; no main subscription PDF or access bypass.",
+                    "tableFrequency": "Supplementary Table1 is annual2025 growth,not monthly/daily rows.",
+                    "underlyingDailyCoverage": [
+                      "2019-01-01",
+                      "2025-12-31"
+                    ],
+                    "newIndependentSourceLead": "Explicitly cites Climate TRACE near-real-time monthly estimates with2-3months lag,data accessed2026-03-03.",
+                    "actualMonthlyDailyRowsAcquired": 0
+                  },
+                  "figshareCatalogue": {
+                    "request": "One public primary article-search POST,Carbon Monitor,latest10",
+                    "result": "Ten broadly carbon-related titles; none an identified Carbon Monitor original dataset.",
+                    "decision": "Reject candidate qualification; no guessed IDs,neighbor IDs,file downloads or claim that matching datasets do not exist. Exact search response retained."
+                  },
+                  "climateTracePrimaryDiscovery": {
+                    "publisherURL": "https://climatetrace.org/data",
+                    "liveReleaseAdvertised": "5.12.0,published2026-10-29,monthly data through2026-08",
+                    "liveReleaseDatasetFile": "unattempted-no-explicit-version-qualified-CO2-file-with-size-and-schema-proof-on-inspected-page",
+                    "explicitOriginalArchiveURL": "https://zenodo.org/records/19952746",
+                    "archiveDOI": "10.5281/zenodo.19952746",
+                    "nativeVersion": "V5.5.0",
+                    "versionIndex": 15,
+                    "archiveIsLatest": false,
+                    "publisherClaimedRelease": "2026-03-26",
+                    "repositoryCreated": "2026-05-01T18:30:19.483485+00:00",
+                    "repositoryUpdated": "2026-05-01T18:30:20.288210+00:00",
+                    "rights": "CC-BY-4.0 from exact archive metadata",
+                    "dateAndRevisionResidual": "Repository creation postdates claimed release by over one month. Description also references5.6.0/February2026 despite V5.5.0 record version. Do not infer monthly cutoff,March-origin availability or exact archive file vintage.",
+                    "fileInventory": [
+                      {
+                        "name": "agriculture.zip",
+                        "bytes": 13703525518,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "buildings.zip",
+                        "bytes": 5527675850,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "ers_plan_global.zip",
+                        "bytes": 44125851,
+                        "status": "unattempted-over20MB-cap-and-reduction-strategy-not-outcome"
+                      },
+                      {
+                        "name": "fluorinated_gases.zip",
+                        "bytes": 822341,
+                        "status": "unattempted-inapplicable-gas-not-CO2"
+                      },
+                      {
+                        "name": "forestry_and_land_use.zip",
+                        "bytes": 4879447182,
+                        "status": "unattempted-over20MB-cap-and-not-automatically-fossil-CO2"
+                      },
+                      {
+                        "name": "fossil_fuel_operations.zip",
+                        "bytes": 113660927,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "geometries.gpkg.zip",
+                        "bytes": 652530614,
+                        "status": "unattempted-over20MB-cap-and-not-emissions-outcome"
+                      },
+                      {
+                        "name": "manufacturing.zip",
+                        "bytes": 489171106,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "mineral_extraction.zip",
+                        "bytes": 30380440,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "power.zip",
+                        "bytes": 290993556,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "transportation.zip",
+                        "bytes": 5058128085,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "waste.zip",
+                        "bytes": 1842665773,
+                        "status": "unattempted-over20MB-cap"
+                      }
+                    ],
+                    "nativeGasUnitsMonthlyCutoffAndSectorRows": "unverified-content-files-unattempted; broad GHG inventory not automatically fossil/industrial CO2",
+                    "older2024And2025VersionList": "unattempted-request-budget-exhausted",
+                    "originalMonthlyDailyNumericRowsAcquired": 0
+                  }
+                },
+                "exactUnavailableVersusUnattempted": [
+                  {
+                    "field": "MPD2023 EU27GDP2023/2024 in2011PPP",
+                    "status": "unavailable-in-retained-native-source",
+                    "cells": 54,
+                    "note": "Both gdppc and population inputs absent; never filled from2021PPP."
+                  },
+                  {
+                    "field": "New WDI native GDP/population31identities2010-2024",
+                    "status": "retrieved-and-complete",
+                    "cellsPerIndicator": 465
+                  },
+                  {
+                    "field": "Original-compatible alternative full2011PPP basis2010-2024",
+                    "status": "not-obtained",
+                    "note": "Inspected WDI full basis is explicitly2021PPP,incompatible. Do not claim all possible public2011PPP alternatives unavailable. IMF,OECD,PWT alternative catalogues unattempted in this increment."
+                  },
+                  {
+                    "field": "RoW GDP/population for15years",
+                    "status": "unattempted-source-qualified-disjoint-partition",
+                    "note": "Do not automatically subtract current World/national accounts then claim joint carbon/energy territorial compatibility."
+                  },
+                  {
+                    "field": "International transport GDP/population for15years",
+                    "status": "unavailable-source-defined-account-in-inspected-source",
+                    "note": "No source-backed GDP/population account; no share of World invented."
+                  },
+                  {
+                    "field": "Joint new-basis energy,CO2,territorial,bunker and publication-vintage qualifications",
+                    "status": "unattempted",
+                    "note": "Existing frozen columns are not new-version admission proof; this does not mean those source series are absent."
+                  },
+                  {
+                    "field": "Original2024 daily/monthly CO2 numerical rows",
+                    "status": "not-acquired",
+                    "note": "Earlier archive versions and data files unattempted,not demonstrated nonexistent."
+                  },
+                  {
+                    "field": "Original2025 daily/monthly CO2 numerical rows",
+                    "status": "not-acquired",
+                    "note": "Dated report retrieved; original daily file link unavailable in inspected report/article routes. Live latest file deliberately unattempted."
+                  },
+                  {
+                    "field": "Original2026 daily/monthly CO2 numerical rows",
+                    "status": "not-acquired",
+                    "note": "Exact primary archive/license/version/file sizes discovered; relevant files over cap and unattempted,not unavailable or forbidden."
+                  },
+                  {
+                    "field": "Climate TRACE smaller national monthly export or public API contract",
+                    "status": "unattempted",
+                    "note": "No hidden API,script bundle extraction,BigQuery paid call or guessed file path. A separately bounded official documented export/schema investigation remains possible."
+                  }
+                ],
+                "acquisitionAudit": {
+                  "requestManifest": "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+                  "requestManifestSHA256": "c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+                  "requests": 14,
+                  "maximumRequests": 14,
+                  "allFinalHTTPStatuses": 200,
+                  "curlFailures": 0,
+                  "timeoutSecondsPerResource": 45,
+                  "maximumResourceBytes": 20000000,
+                  "maximumRedirects": 5,
+                  "retries": 0,
+                  "paidCalls": 0,
+                  "purchases": 0,
+                  "licenceOrAccessBypasses": 0,
+                  "firstRequestFinishedUTC": "2026-11-11T11:32:26.794924+00:00",
+                  "lastRequestFinishedUTC": "2026-11-11T11:34:58.294316+00:00",
+                  "auditCompleteness": "Manifest retains each exact URL,method/POST body,status,redirect destination,retrieval times,byte counts,body and response-header paths/SHA256. All14 body and14 header pins verified before assembly.",
+                  "sourceBodySHA256": {
+                    "wdi-gdp-definitions": "6ff6d14fd399d22fcd4bdcdaa359d1930160bf7eded95a543e001dd6777d3aee",
+                    "wdi-pop-metadata": "2f8491efc00bf2c0995112ff8e87aba69e5e9d22d0880b22f7e3a4ec757ba05c",
+                    "wdi-terms": "c534067add5e892b5f8a51a4f8a84a7d1f5d6ec51310e1ad3b26f8ec3410de19",
+                    "wdi-gdp": "cf002ee93811f11358636714f7dbda779a001635dac0cfe963105bb8f6cb50f8",
+                    "wdi-pop": "603ac3bb3f04eda0d8e716d919821444532ea2ef026d5b11e292786e4555c1a4",
+                    "cm-2025-report": "d9fdcd1a6f3acb8c5162d078cdfdc207be344eb9b97c22447ad25107fe9addfd",
+                    "cm-2024-doi": "477dbf973c93c5946f15094c3e5d73fb5133800f108bb6eacb21445956f95c82",
+                    "cm-2025-doi": "0452b5cac2a37a8011831e7fff7364507c8ade994415e65b513c69f4aedf6628",
+                    "cm-2026-doi": "d43537890efb21a05a38e2f0e14b54c4fe8d1c70016854a5c169c4bb5a1fabb1",
+                    "wdi-pop-definitions": "b80c5a9486bf2807564fb3e1f9989bfe12c632dec71a364ab76bcba44b217171",
+                    "cm-2026-public-supplement": "4d8bdebcf46727abe07ba6f0dfac239da9b76978436d75a19116fe771a438002",
+                    "figshare-title-search": "3cf615a0f1c7fd67fa56aac83a2bba443db8e07f09930a05f926441239ca2a27",
+                    "climate-trace-data": "43349209ea888fe45e2b886d1d0c25def49670bd7500b9797692ef5a6acbb0c7",
+                    "climate-trace-archive": "a12a52aed90f99094266efa6243dd4d95b5babd6e3d20c11e60f0524d4da1ca3"
+                  }
+                },
+                "execution": {
+                  "acquisitionCommands": [
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py acquire",
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py followup",
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py monthly-primary",
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py monthly-archive"
+                  ],
+                  "textExtractionCommands": [
+                    "pdftotext -layout generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.body generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.txt",
+                    "pdftotext -layout generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.body generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.txt"
+                  ],
+                  "testCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_kaya_fullbasis_monthly_sources -v",
+                  "testsPassed": 9,
+                  "testsFailed": 0,
+                  "testsSkipped": 0,
+                  "testsLog": "generated-artifacts/kaya-fullbasis-monthly/focused-tests.log",
+                  "testsLogSHA256": "3cb518d8b794f62fb70e25afdc73de8799b821d729c56a1733a6244a496a1057",
+                  "assemblyCommand": ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py assemble",
+                  "assemblyExit": 0,
+                  "assemblyCompletedUTC": "2026-11-11T11:38:44.909160+00:00",
+                  "assemblyLog": "generated-artifacts/kaya-fullbasis-monthly/assembly.log",
+                  "assemblyLogSHA256": "3bece0466cfd5f0ad8bdeb0bc6f9c6c044d5fd3d66a98770bb8b97342e845de0",
+                  "result": "generated-artifacts/kaya-fullbasis-monthly/fullbasis-source-result.json",
+                  "resultSHA256": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+                  "retainedOriginalResult": "generated-artifacts/kaya-highfrequency-source/source-assembly-result.json",
+                  "retainedOriginalResultSHA256": "e6475e2438acbc3d20a598acf1ce3380be4facd27324f5ffdff06a47710d5e59",
+                  "oldForecastDiagnosticRuns": 0,
+                  "fits": 0,
+                  "holdoutScores": 0,
+                  "canonicalChanges": 0,
+                  "commits": 0,
+                  "deployments": 0,
+                  "publishing": 0
+                },
+                "centralEligible": false
+              }
+            }
+          ]
         },
         {
           "id": "S04-004",
@@ -25431,7 +25845,7 @@
             "script/short-horizon-emissions.ts:",
             "docs/Historical_Diagnostics_and_Skill_Results.md:"
           ],
-          "behaviour_delivered_this_run": "FixedEU27nativeMPD351memberyears/13GDPyears2010–22 assembled;54required2023–24cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
+          "behaviour_delivered_this_run": "Full separateWDI2021PPP revision2026-10-08:465GDP+465populationcells;75regionalyears,RoW/transport30null. Original2011PPP54gaps unchanged. ActualmonthlyCO2 archive118279rows/1939listedminingassets/80countries;2024–25sameasset/month23268pairs exactlyequal. Partialportfolio/revisedhistory/freshnessnotqualified; noholdouts orsynthetic outcomes.",
           "inputs_versions_assumptions": [
             "origin-specific training only; bias=mean(pred-actual), MAE=mean(abs(pred-actual)); paired baseline improvements",
             {
@@ -25513,6 +25927,26 @@
               "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T12:18:21.720962+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 113.168,
+              "counts": {
+                "tests": 623,
+                "pass": 623,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+              "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -25550,7 +25984,7 @@
           "remaining_gaps": [
             "Annual revised fossil-CO2 trend is not 2024-2026 monthly/daily high-frequency nowcasting; source original releases and scope-compatible outcomes."
           ],
-          "next_action": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
+          "next_action": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
           "blockers": [],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
@@ -26020,7 +26454,852 @@
             "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
             "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
             "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
-          }
+          },
+          "component_source_evidence": [
+            {
+              "file": "docs/kaya-fullbasis-monthly-source-evidence.json",
+              "sha256": "1cdd3ddb8db18ec68ac4ba822b6362bbedbbcf1cd4a00521f9eae2260e4144f0",
+              "details": {
+                "schemaVersion": 1,
+                "criteria": [
+                  "S04-003",
+                  "S04-005"
+                ],
+                "status": "new-full2010-2024-WDI-GDP-and-population-sidecar-assembled; original2011PPP-contract-rejected; dated-CO2-release-archive-discovered-but-original-monthly-daily-rows-not-acquired",
+                "scope": "Disjoint scientific scripts/tests/source evidence only. Original MPD2011PPP and54 missing EU27 member-years retained unchanged. No original window,canonical ledger,production,collector,runtime,auth or model changes.",
+                "readFirst": [
+                  "docs/Forecast_Kaya_Protocol.md",
+                  "docs/Kaya_Protocol.md and previous primary-source assembly context",
+                  "docs/Short_Horizon_Emissions_Protocol.md",
+                  "docs/kaya-highfrequency-source-evidence.json",
+                  "docs/kaya-highfrequency-independent-fallback.json",
+                  "docs/highfrequency-author-identity-correction.json",
+                  "generated-artifacts/kaya-source-investigation/f19cb32dc224480f8cf03c972386390c2c200ed411b61155af7063731cacea86.json",
+                  "generated-artifacts/kaya-source-investigation/c2069b4c5534b9e08e50a85003669f85337241849203e658ce5ae373231217e8.json",
+                  "Retained original Maddison release index,MPD workbook metadata and Carbon Monitor author landing"
+                ],
+                "frozenAcquisitionPlans": [
+                  {
+                    "path": "docs/kaya-fullbasis-monthly-source-plan.json",
+                    "sha256": "14efa3b38494b9eefd0bbe72faa92142eef39539392bee9f57d851d80a9b3283"
+                  },
+                  {
+                    "path": "docs/kaya-fullbasis-monthly-followup-plan.json",
+                    "sha256": "35cbdd1be5118f6cd2722336602eb6c4f448a4b4aa50c2def903a2c2da696607"
+                  },
+                  {
+                    "path": "docs/monthly-co2-last-source-route.json",
+                    "sha256": "524088046401131949a13b7b632a5ab899344382f357646ff56f65abbddde66c"
+                  }
+                ],
+                "methods": {
+                  "module": "script/kaya_fullbasis_monthly_sources.py",
+                  "moduleSHA256": "a63e058c901370830f808a1d83ea3db91401ee9237049fecc940fad4a400613f",
+                  "tests": "script/test_kaya_fullbasis_monthly_sources.py",
+                  "testsSHA256": "91498e48c0f298d0dd6844e7a7c1ea9983794e62ccba4bae59ede842bd4eb7cb",
+                  "GDPAdmissionThresholds": "Exactly source2,one complete response page,unique expected ISO3/year/indicator identities,finite strictly positive native values,all2010-2024 years. Null or absent cells retained as missing. No rounding,interpolation,partial EU sum or currency conversion.",
+                  "regionalAdmission": "Seven original accounts and joint population/GDP/primary-energy/fossil-industrial-CO2 territorial/year/vintage/bunker compatibility required. A GDP-only sidecar or complete five accounts is insufficient.",
+                  "monthlyDailyAdmission": "Require verified source identity,rights,original release version,publisher URL/date,exact source/method SHA256,gas CO2,mass per calendar period,explicit sector/region scope,observation cutoff and monthly/daily frequency. Exact complete calendar month or single-day rows only; reject CO2e,annual-mean daily rates,quarterly power,projections,duplicates,nonfinite values and empty report evidence. Revised history explicitly permitted only as revised history,never certified historical-origin availability.",
+                  "forecastAuthorization": "No fit or holdout execution unless original full contract admitted. Both original and separately versioned alternative contracts fail; no forecast or score was run."
+                },
+                "newPrimaryGDPAssembly": {
+                  "publisher": "World Bank World Development Indicators",
+                  "sourceID": "2",
+                  "GDPIndicator": "NY.GDP.MKTP.PP.KD",
+                  "GDPNativeUnit": "constant2021 international PPP dollars,not MPD constant2011 international PPP dollars",
+                  "populationIndicator": "SP.POP.TOTL",
+                  "populationNativeUnit": "people,midyear de-facto resident population",
+                  "sourceSpecificRights": "Both indicator-specific World Bank metadata glossary pages explicitly identify CC BY-4.0. Generic terms URL redirects to general website terms; the generic page alone is not used as data-license proof.",
+                  "nativeRevision": "Both independently retained source2 indicator responses have lastupdated2026-10-08. Separate request timestamps and exact bytes retained; matching revision date is not an atomic archive or origin-vintage certification.",
+                  "sourceIdentities": 31,
+                  "fixedMembership": "27 EU countries plus CHN,IND,USA and native WLD; no time-varying regional aggregate",
+                  "yearsInclusive": [
+                    2010,
+                    2024
+                  ],
+                  "nativeGDPCells": 465,
+                  "missingNativeGDPCells": 0,
+                  "nativePopulationCells": 465,
+                  "missingNativePopulationCells": 0,
+                  "completeRegionalGDPAndPopulationYearPairs": 75,
+                  "completeAccounts": [
+                    "World",
+                    "China",
+                    "India",
+                    "United States",
+                    "European Union (27)"
+                  ],
+                  "missingOriginalRegionalAccountYears": 30,
+                  "exactMissingRegionalAccountDefinition": "Rest of World and International transport,each15 annual account-years2010-2024; GDP and population both null,exact cells/statuses retained in private result.",
+                  "worldIdentityResolution": "Frozen CSV World has blank iso_code. WDI WLD is mapped to the exact frozen country label World only,not to arbitrary blank-ISO aggregates; an explicit collision test enforces this.",
+                  "newEU27GDP2024": 24466131679264.996,
+                  "newEU27Population2024": 450228188,
+                  "newWorldGDP2024": 174159721560706,
+                  "newWorldPopulation2024": 8140897523,
+                  "originalMPDMissingMemberYearsUnchanged": 54,
+                  "originalMPDMissingDefinition": "All27 EU members in2023/2024,both native gdppc and native population absent. This2021PPP sidecar fills NONE of those2011PPP cells.",
+                  "EU27PrimaryGDPOverlapComparisons": 13,
+                  "EU27UnlikePPPBenchmarkNumericRatioRange": [
+                    1.3771969553839727,
+                    1.4074270466798922
+                  ],
+                  "EU27RatioYear2010": 1.384230909456533,
+                  "EU27RatioYear2022": 1.4074270466798922,
+                  "countryGDPNativeVersusFrozenComparisons": 399,
+                  "countryUnlikePPPBenchmarkNumericRatioRange": [
+                    1.0898367190252574,
+                    2.460638663706385
+                  ],
+                  "GDPRatioMeaning": "Unlike PPP reference years,native GDP source methods and release vintages. Numeric ratios/differences retained solely as incompatibility evidence,not a deflator,GSAT factor,validation residual or allowed substitution.",
+                  "populationNativeVersusFrozenComparisons": 465,
+                  "maxAbsoluteRelativePopulationDifference": 0.05523204497021485,
+                  "populationWorstCell": {
+                    "country": "BGR",
+                    "year": 2020,
+                    "native": 6550696,
+                    "frozen": 6933656,
+                    "nativeMinusFrozen": -382960
+                  },
+                  "worldPopulation2024Difference": {
+                    "native": 8140897523,
+                    "frozen": 8161972574,
+                    "nativeMinusFrozen": -21075051,
+                    "relativeDifference": -0.002582102648462048
+                  },
+                  "populationDecision": "New native population is not source-identical to frozen population; preserve differences,no offset or reweighting. Country/territory and revision differences need source-specific reconciliation.",
+                  "originalContractAdmitted": false,
+                  "alternativeContractAdmitted": false,
+                  "failedGates": [
+                    "GDP basis is2021PPP rather than original2011PPP",
+                    "Two original regional accounts incomplete",
+                    "Independent joint primary-energy native-definition/revision qualification unattempted",
+                    "Independent joint fossil-industrial-CO2 gas/scope/revision qualification unattempted",
+                    "Joint territorial and international-bunker boundary reconciliation unattempted"
+                  ],
+                  "classification": "Separately versioned entire2010-2024 revised-history GDP/population basis; no training2010-2018 or holdout2019-2024 run."
+                },
+                "originalMonthlyDailyCO2Investigation": {
+                  "outcome": "No original monthly/daily numerical CO2 row admitted. This is a qualified GDP-source assembly plus original emissions-release metadata investigation,not S04-005 completion.",
+                  "DESNZQuarterlyPowerSubstitution": false,
+                  "carbonMonitor2025Report": {
+                    "URL": "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+                    "reportPublicationDate": "2025-11-18",
+                    "reportVersion": "1.5",
+                    "officialAuthorLandingNewsDate": "2025-11-10",
+                    "reportClaimedUnderlyingDatasetRelease": "2025-11-01",
+                    "reportClaimedUnderlyingDailyRecords": 175015,
+                    "underlyingCoverage": [
+                      "2019-01-01",
+                      "2025-09-30"
+                    ],
+                    "scope": "Fossil fuel combustion and industrial production processes,IPCC2006 categories1 and2; seven sectors,nine regional breakdowns; page7 includes international bunkers globally and under ROW.",
+                    "actualMonthlyDailyRowsAcquired": 0,
+                    "residual": "Report displays daily curves/monthly averages as figures and annual-average/annual-projection summary tables; no graph digitization or annual means renamed daily rows. Latest updatable dataset endpoint does not identify original2025-11-01 bytes.",
+                    "dateDecision": "Different object dates must remain distinct; current retained version1.5 is not shown publicly available on the earlier news or underlying dataset date.",
+                    "rights": "Author publicly offers report link; private research inspection only,no redistribution license inferred for the report."
+                  },
+                  "carbonMonitor2024And2025PublisherPages": "Followed exact DOIs explicitly linked by official author page. The2025 article data-availability statement links live Carbon Monitor daily data,not a dated original dataset archive.2024 article reviews2023,not2024 monthly outcomes. Main subscription PDFs were not requested.",
+                  "carbonMonitor2026PublicSupplement": {
+                    "articleDOI": "10.1038/s43017-026-00780-4",
+                    "access": "Exact publicly offered supplementary-information attachment only; no main subscription PDF or access bypass.",
+                    "tableFrequency": "Supplementary Table1 is annual2025 growth,not monthly/daily rows.",
+                    "underlyingDailyCoverage": [
+                      "2019-01-01",
+                      "2025-12-31"
+                    ],
+                    "newIndependentSourceLead": "Explicitly cites Climate TRACE near-real-time monthly estimates with2-3months lag,data accessed2026-03-03.",
+                    "actualMonthlyDailyRowsAcquired": 0
+                  },
+                  "figshareCatalogue": {
+                    "request": "One public primary article-search POST,Carbon Monitor,latest10",
+                    "result": "Ten broadly carbon-related titles; none an identified Carbon Monitor original dataset.",
+                    "decision": "Reject candidate qualification; no guessed IDs,neighbor IDs,file downloads or claim that matching datasets do not exist. Exact search response retained."
+                  },
+                  "climateTracePrimaryDiscovery": {
+                    "publisherURL": "https://climatetrace.org/data",
+                    "liveReleaseAdvertised": "5.12.0,published2026-10-29,monthly data through2026-08",
+                    "liveReleaseDatasetFile": "unattempted-no-explicit-version-qualified-CO2-file-with-size-and-schema-proof-on-inspected-page",
+                    "explicitOriginalArchiveURL": "https://zenodo.org/records/19952746",
+                    "archiveDOI": "10.5281/zenodo.19952746",
+                    "nativeVersion": "V5.5.0",
+                    "versionIndex": 15,
+                    "archiveIsLatest": false,
+                    "publisherClaimedRelease": "2026-03-26",
+                    "repositoryCreated": "2026-05-01T18:30:19.483485+00:00",
+                    "repositoryUpdated": "2026-05-01T18:30:20.288210+00:00",
+                    "rights": "CC-BY-4.0 from exact archive metadata",
+                    "dateAndRevisionResidual": "Repository creation postdates claimed release by over one month. Description also references5.6.0/February2026 despite V5.5.0 record version. Do not infer monthly cutoff,March-origin availability or exact archive file vintage.",
+                    "fileInventory": [
+                      {
+                        "name": "agriculture.zip",
+                        "bytes": 13703525518,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "buildings.zip",
+                        "bytes": 5527675850,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "ers_plan_global.zip",
+                        "bytes": 44125851,
+                        "status": "unattempted-over20MB-cap-and-reduction-strategy-not-outcome"
+                      },
+                      {
+                        "name": "fluorinated_gases.zip",
+                        "bytes": 822341,
+                        "status": "unattempted-inapplicable-gas-not-CO2"
+                      },
+                      {
+                        "name": "forestry_and_land_use.zip",
+                        "bytes": 4879447182,
+                        "status": "unattempted-over20MB-cap-and-not-automatically-fossil-CO2"
+                      },
+                      {
+                        "name": "fossil_fuel_operations.zip",
+                        "bytes": 113660927,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "geometries.gpkg.zip",
+                        "bytes": 652530614,
+                        "status": "unattempted-over20MB-cap-and-not-emissions-outcome"
+                      },
+                      {
+                        "name": "manufacturing.zip",
+                        "bytes": 489171106,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "mineral_extraction.zip",
+                        "bytes": 30380440,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "power.zip",
+                        "bytes": 290993556,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "transportation.zip",
+                        "bytes": 5058128085,
+                        "status": "unattempted-over20MB-cap"
+                      },
+                      {
+                        "name": "waste.zip",
+                        "bytes": 1842665773,
+                        "status": "unattempted-over20MB-cap"
+                      }
+                    ],
+                    "nativeGasUnitsMonthlyCutoffAndSectorRows": "unverified-content-files-unattempted; broad GHG inventory not automatically fossil/industrial CO2",
+                    "older2024And2025VersionList": "unattempted-request-budget-exhausted",
+                    "originalMonthlyDailyNumericRowsAcquired": 0
+                  }
+                },
+                "exactUnavailableVersusUnattempted": [
+                  {
+                    "field": "MPD2023 EU27GDP2023/2024 in2011PPP",
+                    "status": "unavailable-in-retained-native-source",
+                    "cells": 54,
+                    "note": "Both gdppc and population inputs absent; never filled from2021PPP."
+                  },
+                  {
+                    "field": "New WDI native GDP/population31identities2010-2024",
+                    "status": "retrieved-and-complete",
+                    "cellsPerIndicator": 465
+                  },
+                  {
+                    "field": "Original-compatible alternative full2011PPP basis2010-2024",
+                    "status": "not-obtained",
+                    "note": "Inspected WDI full basis is explicitly2021PPP,incompatible. Do not claim all possible public2011PPP alternatives unavailable. IMF,OECD,PWT alternative catalogues unattempted in this increment."
+                  },
+                  {
+                    "field": "RoW GDP/population for15years",
+                    "status": "unattempted-source-qualified-disjoint-partition",
+                    "note": "Do not automatically subtract current World/national accounts then claim joint carbon/energy territorial compatibility."
+                  },
+                  {
+                    "field": "International transport GDP/population for15years",
+                    "status": "unavailable-source-defined-account-in-inspected-source",
+                    "note": "No source-backed GDP/population account; no share of World invented."
+                  },
+                  {
+                    "field": "Joint new-basis energy,CO2,territorial,bunker and publication-vintage qualifications",
+                    "status": "unattempted",
+                    "note": "Existing frozen columns are not new-version admission proof; this does not mean those source series are absent."
+                  },
+                  {
+                    "field": "Original2024 daily/monthly CO2 numerical rows",
+                    "status": "not-acquired",
+                    "note": "Earlier archive versions and data files unattempted,not demonstrated nonexistent."
+                  },
+                  {
+                    "field": "Original2025 daily/monthly CO2 numerical rows",
+                    "status": "not-acquired",
+                    "note": "Dated report retrieved; original daily file link unavailable in inspected report/article routes. Live latest file deliberately unattempted."
+                  },
+                  {
+                    "field": "Original2026 daily/monthly CO2 numerical rows",
+                    "status": "not-acquired",
+                    "note": "Exact primary archive/license/version/file sizes discovered; relevant files over cap and unattempted,not unavailable or forbidden."
+                  },
+                  {
+                    "field": "Climate TRACE smaller national monthly export or public API contract",
+                    "status": "unattempted",
+                    "note": "No hidden API,script bundle extraction,BigQuery paid call or guessed file path. A separately bounded official documented export/schema investigation remains possible."
+                  }
+                ],
+                "acquisitionAudit": {
+                  "requestManifest": "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+                  "requestManifestSHA256": "c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+                  "requests": 14,
+                  "maximumRequests": 14,
+                  "allFinalHTTPStatuses": 200,
+                  "curlFailures": 0,
+                  "timeoutSecondsPerResource": 45,
+                  "maximumResourceBytes": 20000000,
+                  "maximumRedirects": 5,
+                  "retries": 0,
+                  "paidCalls": 0,
+                  "purchases": 0,
+                  "licenceOrAccessBypasses": 0,
+                  "firstRequestFinishedUTC": "2026-11-11T11:32:26.794924+00:00",
+                  "lastRequestFinishedUTC": "2026-11-11T11:34:58.294316+00:00",
+                  "auditCompleteness": "Manifest retains each exact URL,method/POST body,status,redirect destination,retrieval times,byte counts,body and response-header paths/SHA256. All14 body and14 header pins verified before assembly.",
+                  "sourceBodySHA256": {
+                    "wdi-gdp-definitions": "6ff6d14fd399d22fcd4bdcdaa359d1930160bf7eded95a543e001dd6777d3aee",
+                    "wdi-pop-metadata": "2f8491efc00bf2c0995112ff8e87aba69e5e9d22d0880b22f7e3a4ec757ba05c",
+                    "wdi-terms": "c534067add5e892b5f8a51a4f8a84a7d1f5d6ec51310e1ad3b26f8ec3410de19",
+                    "wdi-gdp": "cf002ee93811f11358636714f7dbda779a001635dac0cfe963105bb8f6cb50f8",
+                    "wdi-pop": "603ac3bb3f04eda0d8e716d919821444532ea2ef026d5b11e292786e4555c1a4",
+                    "cm-2025-report": "d9fdcd1a6f3acb8c5162d078cdfdc207be344eb9b97c22447ad25107fe9addfd",
+                    "cm-2024-doi": "477dbf973c93c5946f15094c3e5d73fb5133800f108bb6eacb21445956f95c82",
+                    "cm-2025-doi": "0452b5cac2a37a8011831e7fff7364507c8ade994415e65b513c69f4aedf6628",
+                    "cm-2026-doi": "d43537890efb21a05a38e2f0e14b54c4fe8d1c70016854a5c169c4bb5a1fabb1",
+                    "wdi-pop-definitions": "b80c5a9486bf2807564fb3e1f9989bfe12c632dec71a364ab76bcba44b217171",
+                    "cm-2026-public-supplement": "4d8bdebcf46727abe07ba6f0dfac239da9b76978436d75a19116fe771a438002",
+                    "figshare-title-search": "3cf615a0f1c7fd67fa56aac83a2bba443db8e07f09930a05f926441239ca2a27",
+                    "climate-trace-data": "43349209ea888fe45e2b886d1d0c25def49670bd7500b9797692ef5a6acbb0c7",
+                    "climate-trace-archive": "a12a52aed90f99094266efa6243dd4d95b5babd6e3d20c11e60f0524d4da1ca3"
+                  }
+                },
+                "execution": {
+                  "acquisitionCommands": [
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py acquire",
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py followup",
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py monthly-primary",
+                    ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py monthly-archive"
+                  ],
+                  "textExtractionCommands": [
+                    "pdftotext -layout generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.body generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.txt",
+                    "pdftotext -layout generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.body generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.txt"
+                  ],
+                  "testCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_kaya_fullbasis_monthly_sources -v",
+                  "testsPassed": 9,
+                  "testsFailed": 0,
+                  "testsSkipped": 0,
+                  "testsLog": "generated-artifacts/kaya-fullbasis-monthly/focused-tests.log",
+                  "testsLogSHA256": "3cb518d8b794f62fb70e25afdc73de8799b821d729c56a1733a6244a496a1057",
+                  "assemblyCommand": ".pythonlibs/bin/python script/kaya_fullbasis_monthly_sources.py assemble",
+                  "assemblyExit": 0,
+                  "assemblyCompletedUTC": "2026-11-11T11:38:44.909160+00:00",
+                  "assemblyLog": "generated-artifacts/kaya-fullbasis-monthly/assembly.log",
+                  "assemblyLogSHA256": "3bece0466cfd5f0ad8bdeb0bc6f9c6c044d5fd3d66a98770bb8b97342e845de0",
+                  "result": "generated-artifacts/kaya-fullbasis-monthly/fullbasis-source-result.json",
+                  "resultSHA256": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+                  "retainedOriginalResult": "generated-artifacts/kaya-highfrequency-source/source-assembly-result.json",
+                  "retainedOriginalResultSHA256": "e6475e2438acbc3d20a598acf1ce3380be4facd27324f5ffdff06a47710d5e59",
+                  "oldForecastDiagnosticRuns": 0,
+                  "fits": 0,
+                  "holdoutScores": 0,
+                  "canonicalChanges": 0,
+                  "commits": 0,
+                  "deployments": 0,
+                  "publishing": 0
+                },
+                "centralEligible": false
+              }
+            },
+            {
+              "file": "docs/climatetrace-monthly-100mb-source-evidence.json",
+              "sha256": "c9d5696c11c47fb1fe9bda72b6094db81d228e309722ddc61b33abf1ee0da692",
+              "details": {
+                "schemaVersion": 1,
+                "criterion": "S04-005",
+                "status": "actual-native-monthly-CO2-numerical-source-assembled; independent-realized-outcome-and-forecast-qualification-withheld",
+                "newProgress": "Downloaded the smallest potentially CO2-applicable archive under new authorized100MB operational cap. Assembled118279 actual source-provided monthly CO2 asset records,including48475 records in2024/2025/2026Jan. Also retrieved documented current USA monthly publisher response. Exact source repetitions and over-broad API response prevent unqualified independent-outcome or full-scope claims.",
+                "old20MBAcquisitionHistory": {
+                  "unchanged": true,
+                  "priorResult": "generated-artifacts/kaya-fullbasis-monthly/fullbasis-source-result.json",
+                  "priorResultSHA256": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+                  "priorRequestManifest": "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+                  "priorRequestManifestSHA256": "c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+                  "priorFocusedEvidence": "docs/kaya-fullbasis-monthly-source-evidence.json",
+                  "priorFocusedEvidenceSHA256": "1cdd3ddb8db18ec68ac4ba822b6362bbedbbcf1cd4a00521f9eae2260e4144f0",
+                  "interpretation": "Old20MB statuses remain historical acquisition decisions,not scientific unavailability. New separately versioned route supersedes only the operational acquisition block for mineral_extraction.zip. Original MPD2011PPP54 missing member-years and all original Kaya windows remain untouched."
+                },
+                "frozenBeforeNewDownloads": [
+                  {
+                    "path": "docs/climatetrace-monthly-100mb-acquisition-plan.json",
+                    "sha256": "882e2e626c7e54f61e5b3727fcc11162c5bff21c235646d4b1cb5ab8c46f2d52"
+                  },
+                  {
+                    "path": "docs/climatetrace-monthly-documented-query-freeze.json",
+                    "sha256": "bb4e3eebc656b135f5d2ab85e0ba82cf7562bf2b6675adb9ade0ea291ae75b2a"
+                  }
+                ],
+                "inspectedOriginal12Files": [
+                  {
+                    "name": "agriculture.zip",
+                    "bytes": 13703525518,
+                    "newStatus": "unattempted-over100MB"
+                  },
+                  {
+                    "name": "buildings.zip",
+                    "bytes": 5527675850,
+                    "newStatus": "unattempted-over100MB"
+                  },
+                  {
+                    "name": "ers_plan_global.zip",
+                    "bytes": 44125851,
+                    "newStatus": "unattempted-reduction-strategies-not-emissions-outcomes"
+                  },
+                  {
+                    "name": "fluorinated_gases.zip",
+                    "bytes": 822341,
+                    "newStatus": "unattempted-wrong-gas-not-CO2"
+                  },
+                  {
+                    "name": "forestry_and_land_use.zip",
+                    "bytes": 4879447182,
+                    "newStatus": "unattempted-over100MB-and-not-fossil-industrial-scope"
+                  },
+                  {
+                    "name": "fossil_fuel_operations.zip",
+                    "bytes": 113660927,
+                    "newStatus": "unattempted-over100MB"
+                  },
+                  {
+                    "name": "geometries.gpkg.zip",
+                    "bytes": 652530614,
+                    "newStatus": "unattempted-geometry-not-emissions"
+                  },
+                  {
+                    "name": "manufacturing.zip",
+                    "bytes": 489171106,
+                    "newStatus": "unattempted-over100MB"
+                  },
+                  {
+                    "name": "mineral_extraction.zip",
+                    "bytes": 30380440,
+                    "newStatus": "retrieved-size-MD5-SHA256-verified;smallest-potentially-applicable-CO2-archive"
+                  },
+                  {
+                    "name": "power.zip",
+                    "bytes": 290993556,
+                    "newStatus": "unattempted-over100MB"
+                  },
+                  {
+                    "name": "transportation.zip",
+                    "bytes": 5058128085,
+                    "newStatus": "unattempted-over100MB"
+                  },
+                  {
+                    "name": "waste.zip",
+                    "bytes": 1842665773,
+                    "newStatus": "unattempted-over100MB"
+                  }
+                ],
+                "boundedAcquisition": {
+                  "manifest": "generated-artifacts/climatetrace-monthly-100mb/requests.json",
+                  "manifestSHA256": "fa2cb298b4199c1d0ad6f0e389b9916c14a7793bed07197256147dab9bc0b4ea",
+                  "requests": 6,
+                  "maximumRequests": 6,
+                  "allFinalHTTPStatuses": 200,
+                  "curlFailures": 0,
+                  "downloadedBodyBytes": 30605274,
+                  "maximumArchiveBytes": 100000000,
+                  "maximumTotalBodyBytes": 149000000,
+                  "timeoutSeconds": 90,
+                  "maximumRedirects": 5,
+                  "retries": 0,
+                  "paidCalls": 0,
+                  "purchases": 0,
+                  "HTTPRangeRequests": 0,
+                  "rangeEvidence": "Archive response advertises Accept-Ranges:bytes,but no206 request was attempted or verified. No larger archive downloaded,no range-support claim.",
+                  "sources": [
+                    {
+                      "name": "mineral-extraction-archive",
+                      "URL": "https://zenodo.org/api/records/19952746/files/mineral_extraction.zip/content",
+                      "bytes": 30380440,
+                      "retrievalFinishedUTC": "2026-11-11T11:53:40.423726+00:00",
+                      "bodySHA256": "39a59227653de449180fc90c8f32a7c636117b66e54e853ec5c4c4cec11b609e",
+                      "headersSHA256": "90e1d4ab35bba0debc9458930993893784fd6a9c5cf5871765a962f16c1bca37"
+                    },
+                    {
+                      "name": "publisher-data-guide",
+                      "URL": "https://media.climatetrace.org/about_the_data_latest_b6e7b8d419.pdf",
+                      "bytes": 164803,
+                      "bodySHA256": "832aeb36ba8bc45d1d49c520692ee253863ce4ac63273ffb5f39f1bdff8a5715",
+                      "headersSHA256": "4c98f00ba22c1ae37e164e161f0f10d519bb00b53db8279a7de03ed6b839a171",
+                      "nativeIdentity": "Current October2026 Version5.12.0 guide,not silently substituted for archive guide"
+                    },
+                    {
+                      "name": "publisher-api-docs",
+                      "URL": "https://api.climatetrace.org/v7",
+                      "effectiveURL": "https://api.climatetrace.org/v7/docs/index.html",
+                      "bytes": 814,
+                      "bodySHA256": "96bcbc728407411b90b0eafb4350b1cdd15ab3207d37b7387533b2d9218105e5",
+                      "headersSHA256": "bee1f4f89f869bda9c06425a23f1e21c92cd6ecca7482cc45873890aded129d1"
+                    },
+                    {
+                      "name": "publisher-api-spec",
+                      "URL": "https://api.climatetrace.org/v7/docs/openapi.json",
+                      "bytes": 50019,
+                      "bodySHA256": "46b7ec3693da769e057e6a758c9c99c0f974e3cfcf1ee56127381c13d49e1489",
+                      "headersSHA256": "543fcdd5ffc7fc537d534739dab950efc721ddc90564c538a47949128136347c",
+                      "encodingResidual": "Served YAML despite.json suffix. Initial generic JSON inspection failed once;native YAML retained/read directly,no request retry,unsafe YAML evaluator or guessed endpoint.",
+                      "documentation": "API version7.3.0;explicit /v7/metadata and monthly /v7/sources/emissions calendar-year/country/gas/subsector parameters"
+                    },
+                    {
+                      "name": "publisher-live-metadata",
+                      "URL": "https://api.climatetrace.org/v7/metadata",
+                      "bytes": 279,
+                      "bodySHA256": "c8a8bfb052d5d5f09b144e3385d75a2bfa0f95be97b5eee7742a5b80e5ca3f6f",
+                      "headersSHA256": "59bbd36f7c357203647c74cf23eda1d5cb4d08baf1d0598e8fd02bb7988942bd"
+                    },
+                    {
+                      "name": "publisher-USA-monthly-2026",
+                      "URL": "https://api.climatetrace.org/v7/sources/emissions?year=2026&gas=co2&sectors=mineral-extraction&subsectors=bauxite-mining,copper-mining,iron-mining&gadmId=USA",
+                      "bytes": 8919,
+                      "bodySHA256": "af0750ef03fce34b11527b93439a421cbcc91797346531bcf6f85097eafee240",
+                      "headersSHA256": "35d01efd491a88a65e017bff1fc97987e3800206f91e924f21e106d315b97de0"
+                    }
+                  ]
+                },
+                "archiveIdentityRightsAndAvailability": {
+                  "DOI": "10.5281/zenodo.19952746",
+                  "recordVersion": "V5.5.0",
+                  "publisherMD5": "16f2bcdacd40163db3496ce9a5c4dae9",
+                  "publisherMD5Verified": true,
+                  "archiveSHA256": "39a59227653de449180fc90c8f32a7c636117b66e54e853ec5c4c4cec11b609e",
+                  "publisherClaimedReleaseDate": "2026-03-26",
+                  "repositoryCreated": "2026-05-01T18:30:19.483485+00:00",
+                  "repositoryUpdated": "2026-05-01T18:30:20.288210+00:00",
+                  "outerDescriptionResidual": "Description refers to5.6.0/February2026. Actual nested CSV filenames and bundled March2026 guide unequivocally5.5.0 and actual last rows2026-01;description not used to extend cutoff.",
+                  "historyBasis": "Explicit revised-history source assembly of a dated2026 archive,not data available at2024/2025 origins or certified public2026-03-26 byte availability.",
+                  "rights": "Exact record CC-BY4.0 and same-version bundled guide license. Selected bauxite/copper/iron source-level mining subsectors are not exceptions listed in either relevant guide. Unrequested current other-mining country data may have separate underlying-source conditions and is quarantined,not fitted.",
+                  "methodAttribution": "Jolleys,M.(2025),Mineral Extraction sector:Mining and Quarrying Emissions from Copper,Iron,Bauxite,Rock and Sand,Hypervine,UK,Climate TRACE",
+                  "rawStorage": "Ignored generated-artifacts/climatetrace-monthly-100mb only;no raw source or normalized trace in Git,no redistribution."
+                },
+                "archiveSafetyAndNativeMetadata": {
+                  "nestedCO2ArchiveSHA256": "0c08544c345b40004336f722b1f7a0d6edda0a15661d06698b0be00a2be029e1",
+                  "outerGasArchives": 15,
+                  "innerCO2Members": 17,
+                  "membersChecked": 32,
+                  "expandedBytesRead": 60141301,
+                  "maximumExpandedBytesRead": 400000000,
+                  "maximumSelectedMemberBytes": 200000000,
+                  "maximumMetadataMemberBytes": 5000000,
+                  "maximumCompressionRatio": 1000,
+                  "allSelectedMemberCRCsVerified": true,
+                  "unsafePathEncryptedDuplicateSymlinkChecks": true,
+                  "ZIPPathExtraction": false,
+                  "fixedPathWhitelistedMetadataCopies": true,
+                  "other14GasArchivesOpened": false,
+                  "sameVersionSchemaSHA256": "f88612ba3755e826d7efbbdb1bde318246489be0d691e3a4d0cce2172230cb6d",
+                  "sameVersionGuideSHA256": "e07dd3b20a14c7f4a6694996c1d037bf9bb11b059e40b8ecf1c80c77ba3184e7",
+                  "schemaUnitProof": "Selected source schema rows65/66/67 define emissions_quantity in metric tonnes and distinguish CO2 from other gases/CO2e. Native gas field co2 selected;no unit/emissions/GSAT factor.",
+                  "schemaHeaderResidual": "Source repeats sector/subsector headers at zero-based[0,8]/[1,9]. Twelve unrelated schema rows have conflicting repeated values. Selected three rows agree positionally;no silent DictReader header overwrite.",
+                  "sourceMassAdmission": "Finite nonnegative native quantity;zero retained as actual source zero,empty/null/N-A remains missing. Exact native start/end UTC-midnight full calendar months required;annual,partial,CO2e or duplicate rows rejected.",
+                  "nativeQuantityMissingCells": 0
+                },
+                "actualMonthlyNumericalAssembly": {
+                  "gas": "co2",
+                  "unit": "metric tonnes CO2 per native calendar month",
+                  "nativeFirstMonth": "2021-01",
+                  "nativeLastMonth": "2026-01",
+                  "monthlyNativeRows": 118279,
+                  "listedAssets": 1939,
+                  "nativeCountryUnion": 80,
+                  "fullNativeMonthlyPeriods": 61,
+                  "rows2024": 23268,
+                  "rows2025": 23268,
+                  "rows2026January": 1939,
+                  "rowsWithin2024To2026NativeCutoff": 48475,
+                  "perSubsector": [
+                    {
+                      "subsector": "bauxite-mining",
+                      "sourceRows": 16714,
+                      "listedAssets": 274,
+                      "nativeCountries": 24,
+                      "zeroRows": 5380,
+                      "uncompressedBytes": 7933383,
+                      "nativeMemberSHA256": "61ff7aa84019bb7524e78e17a91e143034dc2ee983cf35f7848c6027c7bb8202",
+                      "nativeCRC32": "833ce59e"
+                    },
+                    {
+                      "subsector": "copper-mining",
+                      "sourceRows": 55754,
+                      "listedAssets": 914,
+                      "nativeCountries": 55,
+                      "zeroRows": 19096,
+                      "uncompressedBytes": 26679083,
+                      "nativeMemberSHA256": "b40084ff7e0fca57ca9250f04cdaf9268969e4fc55cd779ff7d8c4ca03e691b7",
+                      "nativeCRC32": "4794753b"
+                    },
+                    {
+                      "subsector": "iron-mining",
+                      "sourceRows": 45811,
+                      "listedAssets": 751,
+                      "nativeCountries": 45,
+                      "zeroRows": 21943,
+                      "uncompressedBytes": 20773294,
+                      "nativeMemberSHA256": "a3ce2163d23928b09cdc596105518f08a87262d6f8d3f51b4843d48901877545",
+                      "nativeCRC32": "40433e06"
+                    }
+                  ],
+                  "countryListedAssetMonthlyCells": 7564,
+                  "globalListedAssetSubsectorMonthlyCells": 183,
+                  "aggregationMeaning": "Exact source-list sums only,not complete national/all-mineral/all-sector fossil-industrial CO2. Preserve native country codes,no GDP/territory/bunker harmonization assumed.",
+                  "normalizedNativeRowTrace": "generated-artifacts/climatetrace-monthly-100mb/native-monthly-CO2-rows.csv",
+                  "normalizedNativeRowTraceSHA256": "2596c5a84ff22865e0f94514dc4a385a4e875dfe1181d328f4db0acf1616b194",
+                  "traceBytes": 27685926,
+                  "tracePreserves": "Native quantity strings,source/subsector/country,start/end dates,gas,frequency,created/modified dates,member names and logical CSV record pointers;mass unit separately annotated from native schema.",
+                  "requested2024To2026MissingCells": {
+                    "assetPanels": 1939,
+                    "missingAssetMonths": 21329,
+                    "exactMonthsForEveryAsset": [
+                      "2026-02",
+                      "2026-03",
+                      "2026-04",
+                      "2026-05",
+                      "2026-06",
+                      "2026-07",
+                      "2026-08",
+                      "2026-09",
+                      "2026-10",
+                      "2026-11",
+                      "2026-12"
+                    ],
+                    "missingWithin2024And2025": 0,
+                    "status": "Unavailable in this exact archive after actual2026-01 cutoff;never filled from newer API."
+                  },
+                  "nativeCountryExports": {
+                    "CSVFiles": 6,
+                    "rowsPerFile": 3024,
+                    "countriesPerFile": 252,
+                    "nativeFrequency": "annual",
+                    "nativeGas": "co2",
+                    "nativeExplicitUnitsColumn": "blank;schema defines metric tonnes",
+                    "monthlyRows": 0,
+                    "decision": "Inspected actual documented country exports,not assumed monthly from website headline. Annual files are not disaggregated or used as monthly observations."
+                  }
+                },
+                "importantSourceFreshnessResidual": {
+                  "type": "Post-assembly exact source-cell consistency audit,triggered by identical native annual sums;not a preregistered predictive result or tuned comparison",
+                  "comparison2024Versus2025": {
+                    "sameAssetSameCalendarMonthPairs": 23268,
+                    "exactDecimalEqualPairs": 23268,
+                    "equalNonzeroPairs": 14160,
+                    "missingPairs": 0,
+                    "maxAbsNativeCO2TonnesDifference": "0"
+                  },
+                  "comparison2024JanuaryVersus2026January": {
+                    "sameAssetPairs": 1939,
+                    "exactDecimalEqualPairs": 1939,
+                    "equalNonzeroPairs": 1180,
+                    "missingPairs": 0,
+                    "maxAbsNativeCO2TonnesDifference": "0"
+                  },
+                  "decision": "Genuine publisher-provided monthly numerical estimates,not independently certified new realized2025/2026 outcomes. Exact repetitions suggest a carry-forward/projection dependency but do not prove the mechanism. Publisher-method/source-activity release verification is still unattempted. No values manufactured or adjusted here;all repetitions retained.",
+                  "independentObservedOutcomeQualification": false
+                },
+                "documentedCurrentNationalMonthlyResponse": {
+                  "country": "USA",
+                  "selectedSubsectors": [
+                    "bauxite-mining",
+                    "copper-mining",
+                    "iron-mining"
+                  ],
+                  "nativeMonthlyCoverage": [
+                    "2026-01",
+                    "2026-08"
+                  ],
+                  "selectedNativeCells": 24,
+                  "responseAdditionalUnrequestedSubsectors": [
+                    "other-mining-quarrying",
+                    "rock-quarrying",
+                    "sand-quarrying"
+                  ],
+                  "unrequestedNativeCellsQuarantined": 24,
+                  "requestScopeCompatible": false,
+                  "publisherTotalsAdmittedAsRequestedThreeSubsectors": false,
+                  "meaning": "Native explicitly typed selected24 rows retained as partial sectoral country source evidence. The source returned6 subsectors despite a3-subsector filter;do not relabel its totals or sum duplicate total/sector/subsector representations.",
+                  "metadata": {
+                    "dataVersion": "v5.12.0",
+                    "releaseDate": "2026-10-28",
+                    "lastUpdated": "2026-10-23T23:12:40.308835Z",
+                    "temporalCoverage": [
+                      "2015-01",
+                      "2026-08"
+                    ],
+                    "frequency": "monthly",
+                    "metadataETag": "W/\"v5.12.0-1792797160\"",
+                    "publisherLandingNewsDate": "2026-10-29",
+                    "dateResidual": "Preserve distinct metadata release/update and publisher news dates;none certifies historical2024/2025 origin availability.",
+                    "atomicBinding": "No version/ETag header on numeric response. Metadata and numeric requests one second apart are not an atomic source snapshot."
+                  },
+                  "monthlyScopeResidualsTonnes": [
+                    {
+                      "month": "2026-01",
+                      "publisherTotal": 880595.0583165515,
+                      "selectedThreeSum": 604287.1824297014,
+                      "totalMinusSelected": 276307.87588685006,
+                      "totalMinusAllSix": 1.1641532182693481e-10
+                    },
+                    {
+                      "month": "2026-02",
+                      "publisherTotal": 863564.9268208139,
+                      "selectedThreeSum": 592600.6642272938,
+                      "totalMinusSelected": 270964.2625935201,
+                      "totalMinusAllSix": -1.1641532182693481e-10
+                    },
+                    {
+                      "month": "2026-03",
+                      "publisherTotal": 896200.6272489007,
+                      "selectedThreeSum": 614996.1288305246,
+                      "totalMinusSelected": 281204.4984183761,
+                      "totalMinusAllSix": 0.0
+                    },
+                    {
+                      "month": "2026-04",
+                      "publisherTotal": 909507.6828373236,
+                      "selectedThreeSum": 624127.7757231796,
+                      "totalMinusSelected": 285379.90711414407,
+                      "totalMinusAllSix": 0.0
+                    },
+                    {
+                      "month": "2026-05",
+                      "publisherTotal": 899460.8982978261,
+                      "selectedThreeSum": 617233.4114356288,
+                      "totalMinusSelected": 282227.4868621973,
+                      "totalMinusAllSix": 1.1641532182693481e-10
+                    },
+                    {
+                      "month": "2026-06",
+                      "publisherTotal": 903982.6576906719,
+                      "selectedThreeSum": 620336.3600807773,
+                      "totalMinusSelected": 283646.29760989454,
+                      "totalMinusAllSix": 0.0
+                    },
+                    {
+                      "month": "2026-07",
+                      "publisherTotal": 867282.0064861798,
+                      "selectedThreeSum": 595151.4207602055,
+                      "totalMinusSelected": 272130.5857259743,
+                      "totalMinusAllSix": 0.0
+                    },
+                    {
+                      "month": "2026-08",
+                      "publisherTotal": 841672.497745107,
+                      "selectedThreeSum": 577577.5112380054,
+                      "totalMinusSelected": 264094.9865071017,
+                      "totalMinusAllSix": 0.0
+                    }
+                  ],
+                  "residualMeaning": "Scope mismatches preserved,not forced tozero or solved with adjustment factors. Tiny total-minus-all-six residuals are native floating summation differences,not a validation threshold pass.",
+                  "historyBasis": "Current release explicit revised history;not spliced intoV5.5.0 and not original forecast-origin data",
+                  "fitEligible": false
+                },
+                "remainingUnavailableVersusUnattempted": [
+                  {
+                    "field": "Native archived asset monthly CO2 numerical rows2024/2025/2026Jan",
+                    "status": "retrieved-source-identified-gas-and-units-qualified",
+                    "note": "Partial mining estimates,not certified independent realized outcomes."
+                  },
+                  {
+                    "field": "Archived February-December2026 asset rows",
+                    "status": "unavailable-in-this-exact-archive",
+                    "cells": 21329
+                  },
+                  {
+                    "field": "Archived native country-level monthly CSVs",
+                    "status": "unavailable-in-inspected-country-members",
+                    "note": "Actual files annual only;documented API is a separate current source,not annual disaggregation."
+                  },
+                  {
+                    "field": "Original2024 and2025 released snapshots",
+                    "status": "unattempted-earlier-release-version-acquisition",
+                    "note": "A2026 archive containing revised2024/2025 numbers is not their original vintage."
+                  },
+                  {
+                    "field": "Publisher explanation/activity inputs behind repeated2024/2025/2026Jan numbers",
+                    "status": "unattempted-method/source-release-followup",
+                    "note": "Do not infer fresh observational outcomes from monthly row labels or exact copies."
+                  },
+                  {
+                    "field": "Complete national/global fossil-industrial CO2 inventory",
+                    "status": "unassembled",
+                    "note": "Only3 source-level mineral subsectors;other sectors/territories/bunkers and complete coverage not reconciled."
+                  },
+                  {
+                    "field": "Scope1/2,offsite electricity,fuel allocation and cross-sector overlap",
+                    "status": "unattempted-method-boundary-reconciliation",
+                    "note": "Do not combine mining values with power or other sectors and claim unique fossil CO2."
+                  },
+                  {
+                    "field": "Exact current national API3-subsector aggregate contract",
+                    "status": "rejected-source-returned6-subsectors",
+                    "note": "Selected typed rows remain separate evidence;no total relabeling."
+                  },
+                  {
+                    "field": "Current API numeric-version atomic binding",
+                    "status": "unproven",
+                    "note": "No numeric-response data-version/ETag header;no matched archive/latest residual experiment."
+                  },
+                  {
+                    "field": "Larger archive or HTTPRange member extraction",
+                    "status": "unattempted-not-needed-for-smallest-applicable-file",
+                    "note": "Accept-Ranges advertisement is not verified206 support. No unbounded acquisition."
+                  }
+                ],
+                "implementationAndChecks": {
+                  "module": "script/climatetrace_monthly_archive_bridge.py",
+                  "moduleSHA256": "90902946b0a638dcc995b0b46a635b34e48351baac423f46d4567f9be3ca6f04",
+                  "tests": "script/test_climatetrace_monthly_archive_bridge.py",
+                  "testsSHA256": "20ae4c74001af3993554601ea148e6438c0003856ca46fb29adcc1b10efb3abf",
+                  "acquisitionCommands": [
+                    ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py acquire",
+                    ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py spec",
+                    ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py documented-query"
+                  ],
+                  "assemblyCommand": ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py assemble",
+                  "metadataConverter": "pdftotext -layout,invoked by assembly on whitelisted same-version archive guide and separately retained current publisher guide",
+                  "assemblyExit": 0,
+                  "assemblyCompletedUTC": "2026-11-11T12:03:36.181571+00:00",
+                  "assemblyLog": "generated-artifacts/climatetrace-monthly-100mb/assembly.log",
+                  "assemblyLogSHA256": "5a456b012bb89641afb940b8d0e9e3326bf0cbbc6086d599c41f0fbd0de4c84a",
+                  "testCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_climatetrace_monthly_archive_bridge -v",
+                  "testsPassed": 11,
+                  "testsFailed": 0,
+                  "testsSkipped": 0,
+                  "testsLog": "generated-artifacts/climatetrace-monthly-100mb/focused-tests.log",
+                  "testsLogSHA256": "4123827376cf4af07ea7c8f9d319ae226e0d34dcc01577c2a05b874fcf7cd30c",
+                  "testCoverage": "Zip bounds/CRC,path traversal,absolute/Windows/symlink paths,ragged/duplicate CSV headers,source zero versus missing,exact leap month,wronggas/annual/partial/nonfinite rejection,duplicate/country/cutoff API rejection,over-broad response quarantine,missing selected panel,exact Decimal repetition audit without source filling.",
+                  "result": "generated-artifacts/climatetrace-monthly-100mb/monthly-source-result.json",
+                  "resultSHA256": "bc6301c83c155dab5a477237468e10452399a8587b33c71fc91c19b8c5d5880f"
+                },
+                "fits": 0,
+                "holdoutScores": 0,
+                "headlineSkillClaims": 0,
+                "newSyntheticAttributionOrEnsemble": false,
+                "canonicalProductionCollectorRuntimeAuthChanges": 0,
+                "commitsPublishingDeploymentsPurchases": 0,
+                "centralEligible": false
+              }
+            }
+          ]
         },
         {
           "id": "S04-006",
@@ -104862,7 +106141,7 @@
             "script/xom-climate-liability-case.test.ts",
             "script/capture-xom-climate-liability-sources.ts"
           ],
-          "behaviour_delivered_this_run": "Actual XOM/CF/UKlaw/EA sources acquired. Corporate sixyear cashcapex arithmetic167–194bn not CCSallocation. Statutory1allowance/tCO2e closed. CF explicit2024metric capacity2m/0.5m; conditional2025–29ceiling11mtonnes, not billings. Clientcapturecapital200m/100m is NOT XOMcost.2022shorttons distinct. ExactEApermitcrosswalk absent; tariffs/opex/funding contract not located, not globally undisclosed.0/3qualified.",
+          "behaviour_delivered_this_run": "CF2022original announcement/factsheet/8K acquired; announcementmetric versus annualshortton conflict retained. Exact11402METS sign-in boundary not bypassed. Original45X laws/IRSnotice source-qualified;16statutorypaths14companyeligibility unresolved/2generationzero, cashnull.0/3cases.",
           "inputs_versions_assumptions": {
             "schemaVersion": "issuer-analytics-evidence-proposal-1",
             "purpose": "Bounded parent-review proposal, not acceptance, identity approval, production data, or a central-ledger update",
@@ -106577,6 +107856,26 @@
               "workspace_revision": "9c247d94ff3efee839d6f3970edd4ec013b94534",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T12:18:21.720962+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 113.168,
+              "counts": {
+                "tests": 623,
+                "pass": 623,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+              "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -106956,7 +108255,7 @@
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
             "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
           ],
-          "next_action": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
+          "next_action": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -112184,6 +113483,470 @@
                   "Actual original2022press release not reached in two CleanEnergy archive pages; next documented archive page2 is unattempted, not another guessed404slug. Exact executed CCS contract was not located from examined annual indexes; other CF8K/exhibit packages remain unattempted.",
                   "Operator-linked EPR document now actually retrieved, but no exactUKETS11402cross-reference. Need correct GHG permit/monitoring record, not more inferential EPR/HQ geolocation. Different-scheme DecisionPDF discovered but unvisited; any direct document-request/contact submission was not made.",
                   "Existing project capacity inputs are dependency-ready for separately frozen funded operating work, with nativeCO2/calendar/capture-client ownership explicit. XOM fee/opex/capital allocation cannot be fabricated from CF100/200USDperannual-tonne capital intensity or45Q expectation."
+                ]
+              }
+            }
+          ],
+          "component_source_evidence": [
+            {
+              "file": "docs/issuer-contract-law-evidence.json",
+              "sha256": "58380bdaf61ed449de4b5c25935ce9163ae41c2460cf118d33cebf02e77f4068",
+              "details": {
+                "version": "issuer-contract-law-1",
+                "status": "bounded-primary-retrieval-and-new-source-constraint-adapters-validated-no-valuation",
+                "technicalQualifiedOriginalIssuers": 0,
+                "qualifiedOriginalPairs": 0,
+                "maximumLogicalAttempts": 24,
+                "actualLogicalAttempts": 24,
+                "sourceProgress": [
+                  "OriginalCF2022announcement and fact-sheet PDF actually retrieved from archivepages2/3/4, plus declared2022Q3 8K/Exhibit99.1",
+                  "Actual original release explicitly metric CO2 conflicts with annual2022short-ton convention; storageVermilionParish/EnLink role now sourced",
+                  "Correct regulator installation guide leads to actual METSgateway/client; observed installation sign-in boundary, no11402permit/crosswalk or account/login attempt",
+                  "Original enactedIRA117-169, amendingPL119-21, IRSNotice2026-15 and originalFSLRFY2025annual captured; solar MACR/integrated-primary/phaseout constraints being validated, not company eligibility"
+                ],
+                "scope": "New disjoint CF original/declared contract discovery, exactUKETS11402crosswalk, then dependency-ready original regulator current45Xlaw input. No resolved unit/capacity kernels rerun; no arbitrary grid/canonical/UI/production/approval/purchases/callback.",
+                "priorEvidence": [
+                  "docs/xom-contract-permit-evidence.json",
+                  "docs/xom-source-inputs-evidence.json",
+                  "docs/fslr-paid-spare-capacity-evidence.json",
+                  "docs/nee-project-cash-waterfall-evidence.json"
+                ],
+                "attemptRecords": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/receipts.json",
+                "attemptRecordsSha256": "59858a10489b72240d89919abb7fe4abaa338795cf4b297b5edd81240cf91de6",
+                "actualRequests": {
+                  "logicalAttempts": 24,
+                  "get": 21,
+                  "readOnlyPublicNewsPost": 3,
+                  "finalStatuses": {
+                    "200": 22,
+                    "403": 1,
+                    "404": 1
+                  },
+                  "countBasis": "Logical attempts; automatic redirects contained within attempt, individual hop counts not invented.",
+                  "boundExhaustedStopped": true,
+                  "failedSources": [
+                    {
+                      "name": "usc-current-45x.html",
+                      "status": 404,
+                      "handling": "One official USCode preliminary granule request failed; no casing/URL retries. Not used as current-law authority. Original enacted statutes used instead; no exhaustive later-amendment certification."
+                    },
+                    {
+                      "name": "irs-pfe-search.html",
+                      "status": 403,
+                      "handling": "Actual official search-form request failed. No search retry, credentials or access-control workaround. Independently published public Notice2026-15 fetched once using preidentified official notice identifier and title/content verified."
+                    }
+                  ],
+                  "commandTemplate": "npx tsx script/capture-issuer-contract-law-sources.ts --private-primary --one NAME URL FIELD [--read-news-json BODY]; exact arguments/timestamps/finalURL/status/hash recorded in receipt rows.",
+                  "attemptNamesInOrder": [
+                    "cf-clean-energy-page2.json",
+                    "cf-2022-q3-8k.html",
+                    "gov-ghg-register-search.json",
+                    "irs-45x-entry.html",
+                    "cf-clean-energy-page3.json",
+                    "cf-2022-q3-ex991.html",
+                    "gov-public-register-guidance.html",
+                    "usc-current-45x.html",
+                    "cf-original-ccs-factsheet.html",
+                    "cf-clean-energy-page4.json",
+                    "irs-pfe-search.html",
+                    "pl119-21.pdf",
+                    "cf-original-2022-announcement.html",
+                    "cf-ccs-factsheet.pdf",
+                    "fslr-sec-submissions.json",
+                    "gov-mets-register-search.json",
+                    "fslr-fy2025-10k.html",
+                    "gov-participating-ukets.html",
+                    "gov-ukets-guide-body.html",
+                    "ira117-169.pdf",
+                    "irs-notice2026-15.pdf",
+                    "gov-ukets-installations-comply.html",
+                    "mets-public-landing.html",
+                    "mets-public-client.js"
+                  ]
+                },
+                "files": [
+                  "script/capture-issuer-contract-law-sources.ts",
+                  "server/calculation/issuerContractLawInputs.ts",
+                  "script/issuer-contract-law.test.ts",
+                  "script/run-issuer-contract-law-inputs.ts",
+                  "script/validate-issuer-contract-law-private.ts",
+                  "docs/issuer-contract-law-evidence.json"
+                ],
+                "rightsRecords": {
+                  "issuer": "Official public issuer/SEC publication; bounded factual extraction/citation/short validation assertions only. No licence to republish complete release, filing or client code claimed; all raw payloads private/git-ignored.",
+                  "usGovernment": "Official enacted public statutes and IRS guidance, not commercial provider data. Only bounded statutory facts/locators and derived constraints reported, not full PDF/text export.",
+                  "ukGovernment": "Official GOV.UK regulator guidance/gateway. Bounded locator and sign-in-boundary observations only; no public client source-code export or authenticated endpoint access. No additional redistribution licence inferred.",
+                  "discovery": "Index/client/search/failed responses are locator evidence only, not company economics, permit contents or legal eligibility authority."
+                },
+                "sourceRecords": [
+                  {
+                    "id": "CF-ORIGINAL-20221012",
+                    "url": "https://www.cfindustries.com/newsroom/2022/donaldsonville-carbon-capture",
+                    "sha256": "02c32c8573f850fb82f8c56140a573a213f51132aaee4ea24ed75bff8105554f",
+                    "publicationDate": "2022-10-12",
+                    "locator": "Headline/bullets and first transport/storage/commercial-agreement paragraphs; actual archivepage4 and fact-sheet previous-post link",
+                    "page": "HTML named paragraphs",
+                    "period": "Original2022announcement/expectedearly2025startup",
+                    "legalIdentity": "CF Industries Holdings, Inc. announces agreement with ExxonMobil group; transport network EnLink Midstream; actual signing SPVs/title entities not supplied",
+                    "unit": "Explicit2million METRIC tons nativeCO2/year;125Kacres storage position, NOT pore/injection capacity",
+                    "reliability": "Official dated original issuer announcement, currently retrieved archival copy; not a full signed commercial contract or historical-byte availability certification",
+                    "rightsRecord": "issuer"
+                  },
+                  {
+                    "id": "CF-FACTSHEET-2022",
+                    "url": "https://www.cfindustries.com/globalassets/cf-industries/media/documents/ccs-factsheet.pdf",
+                    "publicationDate": "2022-10-12",
+                    "publicationDateBasis": "Dated official fact-sheet wrapper; attachment itself has no separate authenticated publication timestamp",
+                    "locator": "Four-page CCS fact sheet; CF project subsection and transport/storage description",
+                    "page": "4pagePDF, whole text reviewed for contract-specific economic disclosures",
+                    "period": "Original2022project communication",
+                    "legalIdentity": "CF corporate educational/project fact sheet, not executed XOM/CF/EnLink contract",
+                    "unit": "Technical/process context and client capture project; no source-qualified XOM tariff/opex/term",
+                    "reliability": "Official issuer attachment; general claims not independently certified regulator findings",
+                    "rightsRecord": "issuer"
+                  },
+                  {
+                    "id": "CF-2022Q3-8K-EX991",
+                    "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440422000026/cf-11022022_ex991xearnings.htm",
+                    "parentFiling": "https://www.sec.gov/Archives/edgar/data/1324404/000132440422000026/cf-20221102.htm",
+                    "publicationDate": "2022-11-02",
+                    "publicationDateBasis": "Declared retained SEC submissions date/actual8K and linked Exhibit99.1",
+                    "locator": "8KItem2.02/9.01; actual Exhibit99.1 Carbon Capture and Sequestration Agreement to Enable Blue Ammonia Production at Donaldsonville Complex",
+                    "page": "HTML named exhibit section",
+                    "period": "Q32022communication after October agreement",
+                    "legalIdentity": "CF Industries Holdings, Inc.; counterparties named at group level",
+                    "unit": "Source says2million tons/year; storage owns statement and EnLink network role, not priced contract",
+                    "reliability": "Actual Form8Kdeclared earnings-release exhibit, not an executed CCScommercial-contract exhibit; no inference of global nondisclosure or legal filed-versus-furnished status",
+                    "rightsRecord": "issuer"
+                  },
+                  {
+                    "id": "CF-RETAINED-2022-ANNUAL",
+                    "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440423000006/cf-20221231.htm",
+                    "publicationDate": "2023-02-23",
+                    "locator": "Retained authenticated FY2022annual MD&A project paragraph and report-wide tons/tonnes definition",
+                    "page": "HTML named sections",
+                    "period": "FY2022",
+                    "legalIdentity": "CF Industries Holdings, Inc.",
+                    "unit": "2million tons/year with explicit report convention tons=shorttons; tonnes=metrictons",
+                    "reliability": "Existing captured original filing rehashed/read only to compare newly found original release; no resolved capacity kernel rerun",
+                    "rightsRecord": "issuer"
+                  },
+                  {
+                    "id": "GOV-UKETS-INSTALLATIONS-GUIDE",
+                    "url": "https://www.gov.uk/government/publications/uk-emissions-trading-scheme-for-installations-how-to-comply/uk-emissions-trading-scheme-for-installations-how-to-comply",
+                    "publicationDate": "2022-05-18",
+                    "updatedDate": "2026-02-09",
+                    "locator": "Your METS online account; submitting applications; apply for GHGEpermit; regulator contact details",
+                    "page": "HTML section anchors",
+                    "period": "Retrieved current guidance; not a FY2024permit",
+                    "legalIdentity": "UK regulator installation guidance, not Esso individual permit",
+                    "unit": "Actual account/document service route and boundary",
+                    "reliability": "Official guidance actually reached via participating-in-UKETS publication/body links",
+                    "rightsRecord": "ukGovernment"
+                  },
+                  {
+                    "id": "METS-GATEWAY",
+                    "url": "https://manage-emissions-reporting.service.gov.uk/landing",
+                    "declaredClientUrl": "https://manage-emissions-reporting.service.gov.uk/main-IFRZ7ZHG.js",
+                    "publicationDate": null,
+                    "responseLastModified": "2026-08-07",
+                    "locator": "Actual regulator-declared landing HTML and its exact public script link; Sign in to installations/Create an installations sign in strings",
+                    "page": "Gateway/client locator only; not rendered signed-in UI",
+                    "period": "Current gateway",
+                    "legalIdentity": "Government Manage your UK ETS reporting service",
+                    "unit": "Sign-in entry boundary, not installation site/gas/cash evidence",
+                    "reliability": "Public shell/client captured; no public-register route string located in this client, not proof no public record exists elsewhere",
+                    "rightsRecord": "ukGovernment"
+                  },
+                  {
+                    "id": "IRA-117-169",
+                    "url": "https://www.govinfo.gov/content/pkg/PLAW-117publ169/pdf/PLAW-117publ169.pdf",
+                    "sha256": "5bd9bebe719d3d1738e751fe7978ef7bf05167ed8150471f306e010185baed4f",
+                    "enactedDate": "2022-08-16",
+                    "publicationDate": null,
+                    "publicationDateCaveat": "Enactment date on law distinguished from capture/response modification metadata; separate original posting date not established",
+                    "locator": "Section13502 establishes26USC45X; subsection45X(b)(3) solar phaseout",
+                    "page": "PDF155section13502onward;274pages total",
+                    "period": "Original enacted2022baseline, read together with2025amendments",
+                    "legalIdentity": "United States statute; eligible US-produced components and eligible sales, not all FSLRworldwide revenue",
+                    "unit": "Credit-generation phaseout percentage by component sale year, NOT cash receipt year",
+                    "reliability": "Official enacted statute, not proposed bill or current-law compilation; subsequent2025changes explicitly joined",
+                    "rightsRecord": "usGovernment"
+                  },
+                  {
+                    "id": "OBBBA-119-21",
+                    "url": "https://www.govinfo.gov/content/pkg/PLAW-119publ21/pdf/PLAW-119publ21.pdf",
+                    "sha256": "42f86c3d408bccb1a663c11a51a90d207b3dbc25e689240da51726154be51c8b",
+                    "enactedDate": "2025-07-04",
+                    "publicationDate": null,
+                    "publicationDateCaveat": "Enactment not silently treated as web-posting date; response2026lastModified is not enactment",
+                    "locator": "Section70514/45X(d)(4),45X(c)(1)(C),45X(d)(7),effective dates; section7701(a)(52) solar threshold definition",
+                    "page": "PDF203section70514onward;PDF190solar threshold table;139Stat273-276and260-261;331pages total",
+                    "period": "Enacted2025changes, including2026calendar-taxpayer PFE/material-assistance and2027embedded-primary rule",
+                    "legalIdentity": "United States statute; solar eligible-component category not wind/critical-mineral special schedules",
+                    "unit": "Solar MACRminimum50/60/70/80/85%;secondary direct-material cost share attributable to US primary eligible components65%",
+                    "reliability": "Official enacted text; no exhaustive certification that no later amendment/interpretation exists",
+                    "rightsRecord": "usGovernment"
+                  },
+                  {
+                    "id": "IRS-NOTICE-2026-15",
+                    "url": "https://www.irs.gov/pub/irs-drop/n-26-15.pdf",
+                    "sha256": "1241c52527a918bc6caab89b9bc85090463920fd1d174c99314f85eb3c1687f3",
+                    "publicationDate": null,
+                    "responseLastModified": "2026-02-12T19:35:34Z",
+                    "publicationDateCaveat": "Notice identifier/title authenticated; precise original public-posting/IRB publication date not separately established, so HTTPmodified not relabelled",
+                    "locator": "Notice2026-15 Purpose; section3.02Eligible Component MACR and PV-module example; section4interim safe harbors",
+                    "page": "95pagePDF;PVmodule2026example at53onward",
+                    "period": "2026interim guidance under2025law",
+                    "legalIdentity": "IRS/Treasury guidance for applicable energy credits including45X, not a FirstSolar eligibility ruling",
+                    "unit": "Component-specific direct/PFE material cost attribution and50%2026solar MACR example",
+                    "reliability": "Official original interim guidance, not final company certification; method/reliance conditions and future guidance not presumed away",
+                    "rightsRecord": "usGovernment"
+                  },
+                  {
+                    "id": "FSLR-FY2025-ANNUAL",
+                    "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449426000021/fslr-20251231.htm",
+                    "sha256": "b492de2291f64290b380303b42a60572c1685a6ef70ca32d1c7866ab258314c3",
+                    "publicationDate": "2026-02-24",
+                    "publicationDateBasis": "Actual SECsubmissions index CIK1274494 and response lastModified",
+                    "locator": "IRA/H.R.1risk discussion; US-produced solar-component credit discussion and phase-down paragraph",
+                    "page": "HTML risk/MD&A named sections",
+                    "period": "FY2025disclosure/current-policy risk context ONLY; FY2024operating cash, shares, prices and old studies not replaced",
+                    "legalIdentity": "FIRST SOLAR, INC.; original issuer",
+                    "unit": "US-component policy channel; no component-specific forecast PFE material-cost/65%primary-cost shares supplied here",
+                    "reliability": "Original issuer filing corroborates phase-down and FEOC/material-assistance risks; not third-party/current-law or future company eligibility certification",
+                    "rightsRecord": "issuer"
+                  }
+                ],
+                "fieldSpecificCaptureRecords": [
+                  {
+                    "field": "OriginalCF2022commercial announcement and unit history",
+                    "status": "retrieved-primary-native-label-conflict-explicit",
+                    "sourceIds": [
+                      "CF-ORIGINAL-20221012",
+                      "CF-RETAINED-2022-ANNUAL",
+                      "CF-2022Q3-8K-EX991"
+                    ],
+                    "period": "October2022announcement/FY2022annual",
+                    "unit": "NativeCO2metrictons in actual original release versus annual tons with short-ton convention",
+                    "value": {
+                      "originalAnnouncement": 2000000,
+                      "originalAnnouncementUnit": "metric tonnes/year",
+                      "annual2022": 2000000,
+                      "annualUnit": "short tons/year"
+                    },
+                    "boundary": "Conflict is document mass label, not proof of physical expansion/revision. Preserve both and FY2024explicit metric source; no retroactive substitution or invented source correction."
+                  },
+                  {
+                    "field": "XOMproject storage/transport geography and contract roles",
+                    "status": "new-source-qualified-announced-project-geography",
+                    "sourceIds": [
+                      "CF-ORIGINAL-20221012",
+                      "CF-2022Q3-8K-EX991"
+                    ],
+                    "period": "Originalproject/expected2025startup",
+                    "unit": "Named capture/storage location and acreage, not CO2capacity or ownership percentage",
+                    "value": {
+                      "captureOrigin": "Donaldsonville, Louisiana",
+                      "storageLocation": "Vermilion Parish, Louisiana",
+                      "announcedStoragePositionAcres": 125000,
+                      "transportNetworkCounterparty": "EnLink Midstream"
+                    },
+                    "boundary": "Issuer says XOMgroup owns storage. Registered SPV/title/working interest, injection permit and contracted economics remain missing. No HQ/global-price proxy or netting US capture against UKEsso liability."
+                  },
+                  {
+                    "field": "ExecutedCF/XOMfee/opex/capex/replacement/funding terms",
+                    "status": "not-located-in-exact-examined-announcement-factsheet-and-declared-8k-exhibit",
+                    "sourceIds": [
+                      "CF-ORIGINAL-20221012",
+                      "CF-FACTSHEET-2022",
+                      "CF-2022Q3-8K-EX991"
+                    ],
+                    "period": "Original2022contract",
+                    "unit": "Missing priced fee/tonne, escalation, term, take-or-pay, XOMtransport/storage cost/replacement and cash waterfall",
+                    "feePerTonne": null,
+                    "contractTermYears": null,
+                    "boundary": "Actual original release, full4pagefact sheet, parent2022-11-02 8K and declared99.1 inspected. The8Kdeclares earnings release, not a full CCScommercial contract. Combined with prior two annual indexes, these are exact searched materials only; other filings/exhibit packages not exhaustively reviewed. Not globally undisclosed."
+                  },
+                  {
+                    "field": "UKETS11402exact permit crosswalk",
+                    "status": "correct-regulator-service-reached-exact-permit-not-retrieved",
+                    "sourceIds": [
+                      "GOV-UKETS-INSTALLATIONS-GUIDE",
+                      "METS-GATEWAY"
+                    ],
+                    "period": "RequiredFY2024monitoring/site identity",
+                    "unit": "Missing exactGHGEpermit/site/gas monitoring annex",
+                    "value": null,
+                    "boundary": "Official guidance actually links METSservice. Public landing/client show installation sign-in/create-sign-in; no public-register route string in this client. No login/account/contact/document-request or authenticated API attempted. No EPRaddress substitution; no claim permit globally absent or no other public route exists."
+                  },
+                  {
+                    "field": "Post2025solar component material-assistance threshold",
+                    "status": "enacted-framework-and-interim-guidance-source-qualified-not-company-eligibility",
+                    "sourceIds": [
+                      "OBBBA-119-21",
+                      "IRS-NOTICE-2026-15",
+                      "FSLR-FY2025-ANNUAL"
+                    ],
+                    "period": "2026+calendar taxpayers; component sold during specified calendar year",
+                    "unit": "MACRminimum/direct-material cost share by eligible solar component type",
+                    "solarMacrMinimum": {
+                      "2026": 0.5,
+                      "2027": 0.6,
+                      "2028": 0.7,
+                      "2029": 0.8,
+                      "2030AndLater": 0.85
+                    },
+                    "derivedMaximumPfeDirectCostFraction": {
+                      "2026": 0.5,
+                      "2027": 0.4,
+                      "2028": 0.3,
+                      "2029": 0.2,
+                      "2030AndLater": 0.15
+                    },
+                    "boundary": "MACR=(total direct material costs minus attributablePFEcosts)/total direct material costs, with source-qualified attribution/method/type/year boundaries. Corporate COGS, nationality averages, NASDAQlisting or zero assumed PFEcosts cannot fill missing component inputs."
+                  },
+                  {
+                    "field": "Embedded-primary component deemed-sale restriction",
+                    "status": "source-qualified-new-distinct-policy-claim-path",
+                    "sourceIds": [
+                      "OBBBA-119-21"
+                    ],
+                    "period": "Components sold in taxable years beginning after2026; adapter limited to calendar taxpayers",
+                    "unit": "65%secondary direct-material costs attributable to primary eligible components mined/produced/manufacturedUS, same facility",
+                    "value": 0.65,
+                    "boundary": "Not a blanket65%gate on direct module-sale claims. Same-facility and primary-eligible-component cost attribution matter; generic domestically sourced glass/material share is not automatically eligible primary-component cost. FSLRactual/frozen forecast eligible-component cost ratios not supplied by examined source."
+                  },
+                  {
+                    "field": "Solar45Xgeneration phaseout versus cash rollover",
+                    "status": "source-qualified-enacted-framework-calendar-not-cash-forecast",
+                    "sourceIds": [
+                      "IRA-117-169",
+                      "OBBBA-119-21",
+                      "FSLR-FY2025-ANNUAL"
+                    ],
+                    "period": "Component sale years2030-2033+",
+                    "unit": "Credit-generation multiplier before other eligibility gates",
+                    "values": {
+                      "through2029": 1,
+                      "2030": 0.75,
+                      "2031": 0.5,
+                      "2032": 0.25,
+                      "2033AndLater": 0
+                    },
+                    "boundary": "Zero new-generation multiplier after2032 is NOT zero cash receipts after2032. Prior-year credit/transfer receivables and settlement timing remain separate. No FY2024cash normalization/rollover/excess-cash bridge changed or omitted by this source unit."
+                  },
+                  {
+                    "field": "FSLRfuture actual or justified-conditional eligibility inputs",
+                    "status": "unresolved-source-inputs-not-a-demand-for-future-observations",
+                    "sourceIds": [
+                      "FSLR-FY2025-ANNUAL",
+                      "OBBBA-119-21",
+                      "IRS-NOTICE-2026-15"
+                    ],
+                    "period": "ForwardUSeligible-component sales",
+                    "unit": "Component-specific PFE/control/production-sale and attributed direct-material costs, not all global solar revenue",
+                    "actualCompanyMacr": null,
+                    "usPrimaryEligibleComponentCostShare": null,
+                    "companyPfeEffectiveControlClearance": null,
+                    "currentEligibilityCertified": false,
+                    "boundary": "Adapter accepts source-supported/frozen justified conditional future inputs; none are invented here. Future observations are not required to calculate conditional models, but actual or justified forecast BOM/control/cost evidence must support eligibility flags. The published framework alone cannot qualify FSLRor restore positive terminal margins."
+                  }
+                ],
+                "computedNewSourceConstraints": {
+                  "financialScenarioGrids": 0,
+                  "financialValuationScoring": false,
+                  "statutoryRequirementRows": 16,
+                  "rowDefinition": "2026-2033calendar multiplied by two legally distinct claim paths; deterministic statute calendar, NOT arbitrary operating/stress grid or valuation cases",
+                  "unresolvedEligibilityRows": 14,
+                  "newGenerationPhaseoutZeroRows2033": 2,
+                  "actualCreditCashAllRows": null,
+                  "actualCompanyEligibilityCertifiedAllRows": false,
+                  "wholeCashModelCompleted": false,
+                  "sourceFrameworkNotExhaustiveCurrentLawCertification": true,
+                  "sourceCut": "Named enacted2022and2025statutes plus IRSinterimNotice2026-15; current-code endpoint failed, no assertion every later amendment/interpretation examined",
+                  "priorYearCreditCashRolloverNotZeroed": true,
+                  "priorStatutoryArticle18ClosurePreserved": true,
+                  "resolvedUnitAndCapacityKernelsRerun": false
+                },
+                "freeze": {
+                  "frozenAt": "2026-11-11T11:43:26.394Z",
+                  "qualifiedAt": "2026-11-11T11:43:26.479Z",
+                  "path": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/2026-11-11T11-43-26-394Z/frozen-before-qualification.json",
+                  "sha256": "d15a0e7fa4f14cae4d7bc4119415ffc1296041b8678cf1cc616ec82e975728d4",
+                  "reportPath": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/2026-11-11T11-43-26-394Z/report.json",
+                  "reportSha256": "5922610ce9d5f9bec85d5d6cb4bf6e482de783884bb15d2b85b24f51714bce77",
+                  "protectedPriorDistinctPaths": 281,
+                  "oldKernelsExecuted": false,
+                  "ownerGatesChanged": false,
+                  "qualifiedOriginalIssuers": 0
+                },
+                "verification": {
+                  "codeOnly": {
+                    "command": "npx tsx --test script/issuer-contract-law.test.ts",
+                    "passed": 5,
+                    "failed": 0,
+                    "skipped": 0,
+                    "privateOrNetworkDependencies": false,
+                    "logSha256": "751f19fecd64b85c00e149c9a733aa3815271870bbf6e713521b8a2a18f76339"
+                  },
+                  "qualification": {
+                    "command": "npx tsx script/run-issuer-contract-law-inputs.ts --private-primary",
+                    "exitCode": 0,
+                    "logSha256": "d17192ab7443373dc903bf4268026bdea7531162a3680d1d72761c5148e62b04"
+                  },
+                  "mandatoryPrivate": {
+                    "command": "npx tsx script/validate-issuer-contract-law-private.ts --private-primary",
+                    "exitCode": 0,
+                    "sourceAttemptHashes": 24,
+                    "independentPdfTextRebuilds": 4,
+                    "protectedPriorDistinctPaths": 281,
+                    "originalCfAndDeclaredEx991": 2,
+                    "regulatorGuideGatewayClientRecords": 3,
+                    "originalLegalAndGuidanceDocuments": 3,
+                    "independentSolarThresholdYears": 5,
+                    "sourceRequirementRows": 16,
+                    "checks": "Actual original CFmetric label versus retained short-ton annual; storage geography/network role not fee/permit/ownership allocation; correct regulator route not exact11402crosswalk or login; actual statute threshold numeral extraction; embedded-primary versus direct-sale gate;2033new-generation phaseout not cash; all actual company cost/credit states unresolved; four PDFbytes independently rebuilt to frozen text; all prior studies/unit/capacity source/code hashes preserved",
+                    "logSha256": "07149c5e58eddd4b29b942fd81b0b28e29823a3f7c416d87e5da024d222662d4"
+                  },
+                  "strictTypecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerContractLawInputs.ts script/capture-issuer-contract-law-sources.ts script/issuer-contract-law.test.ts script/run-issuer-contract-law-inputs.ts script/validate-issuer-contract-law-private.ts",
+                    "exitCode": 0,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "es5Typecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerContractLawInputs.ts script/capture-issuer-contract-law-sources.ts script/issuer-contract-law.test.ts script/run-issuer-contract-law-inputs.ts script/validate-issuer-contract-law-private.ts",
+                    "exitCode": 0,
+                    "tsconfigRelaxed": false,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "logsDirectory": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/",
+                  "pdfRebuildCommandPattern": "pdftotext -layout CAPTURED_PRIMARY_PDF -; private validator recomputes each of4texts independently and compares frozenSHA256",
+                  "productionCollectorsOrCanonicalUiRoutesEdited": false,
+                  "paidProviderCallsPurchasesApprovalsDdlAuthProductionMutationsCommitPublishCallback": false,
+                  "rawPrivateOrProviderDataExport": false
+                },
+                "narrowResidualsAndReadyNextEngineering": [
+                  "XOM original2022announcement/fact sheet/declared8K99.1 now actually examined; full priced executed contract/fee/minimums/opex/gross replacement/funding/credit allocation still not located in those exact documents and prior two annual indexes. Other dated SECpackages or actual EnLink counterparty contract disclosures remain unattempted, not globally undisclosed.",
+                  "UKETS11402crosswalk still needs its actual GHGEpermit/site/monitoring annex. Correct regulator METSroute reached, but no anonymous exact document obtained; public gateway/client sign-in is not a blanket claim no other public route exists. No contact or document-request submission made.",
+                  "Dependency-ready FSLRsource-policy gate now distinguishes direct module versus embedded primary claims and source MACR/PFE requirements. A separately frozen funded experiment may supply justified UScomponent production/BOM/control/material-cost assumptions and explicitly tracked prior-credit cash rollovers; it must not infer future eligibility from historical credit receipts, listed-company status or company-wide COGS.",
+                  "IRSNotice2026-15contains multiple-credit safe-harbor/cost-percentage contexts. This adapter does NOT apply project45Y/48Eassigned cost percentages or crystallinesilicon assumptions to FSLRCdTe45Xmanufacturing. A direct FSLRapplicability/attribution qualification of any such table remains unattempted; general MACRsource rules are not a table-to-company BOM bridge.",
+                  "No supported positive terminal reinvestment/economics or completed CCS fee model added. Existing g2.5-4% studies, negative/no-root results, FY2024cash basis, legacy10cases50rows and qualifications remain untouched.",
+                  "NEEgrossnon-DMI/LLCpriority sourcing was not newly attempted here after selecting dependency-ready FSLRoriginal-regulator law branch; do not mislabel it undisclosed or completed."
+                ],
+                "originalClauseProposalsForParentMergeOnly": [
+                  {
+                    "clause": "Original XOM activity/geography/project funding",
+                    "proposal": "Actual original2022capture/storage/transport roles and source-native unit conflict now authenticated. No priced fee/opex/replacement/funding bridge or whole-cash valuation completed; keep exact source gaps and0/3."
+                  },
+                  {
+                    "clause": "Original FSLR policy channels and sustainable terminal",
+                    "proposal": "Named post2025enacted/IRSframework now implemented as separate component-claim gates. Keep eligible UScomponent manufacturing versus all solar revenue distinct; old future-credit branches remain conditional, current company eligibility unverified, no zeroing of post2032cash from earlier-generated receivables."
+                  },
+                  {
+                    "clause": "S12-001/private scientific evidence and immutable history",
+                    "proposal": "New source-constraint adapter tested publicly without private dependencies and separately against actual private primary payloads. No resolvedArticle18/unit/capacity kernels or old financial experiments rerun;281distinct prior hashes guarded. Original g2.5-4%cash case qualification remains0/3."
+                  }
                 ]
               }
             }
@@ -134060,7 +135823,7 @@
           "files_functions_changed": [
             "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
           ],
-          "behaviour_delivered_this_run": "Reconciled original clause against exact existing functions and retained actual logs. No analytical calculation or source data changed by this record.",
+          "behaviour_delivered_this_run": "60actualdynamiccomponents/1733JSXexpressions/106fieldbindingexpressions;24directlySSRrendered,36namedunrendered. New missingness/defaultzero/staleexport fixes. Initial preview caught closed-modal eager undefined-export-key crash; fixed before release with actualmodal regressions and clean initial-route screenshots. No schema weakening. Modalportal/hover interactions notbrowserverified.",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -134108,6 +135871,26 @@
               "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T12:18:21.720962+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 113.168,
+              "counts": {
+                "tests": 623,
+                "pass": 623,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+              "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -134117,9 +135900,9 @@
           "git_commit": "330569935a39812c744eb4ccdf0400c47835c822",
           "deployment_revision": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
           "remaining_gaps": [
-            "All-route unavailable fixtures and specific missingness reasons are demonstrated; universal every-component partial-state assertion remains broader than the finite route fixture coverage. No missing-render-fixture claim remains."
+            "36of60 dynamiccomponents not individuallySSRrendered; modalportal/hover/issuer-control and export/archivepreview permutations not exhaustively exercised. Existing41route evidence preserved."
           ],
-          "next_action": "Bind per-component partial-field contracts to the existing route inventory; no unrelated scientific/owner prerequisites.",
+          "next_action": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -141426,6 +143209,46 @@
       "workspace_revision": "9c247d94ff3efee839d6f3970edd4ec013b94534",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-issuer-contract-law-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T12:06:46.383651+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 142.385,
+      "counts": {
+        "tests": 621,
+        "pass": 621,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T120646383651Z.log",
+      "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+      ],
+      "executed_at": "2026-11-11T12:18:21.720962+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 113.168,
+      "counts": {
+        "tests": 623,
+        "pass": 623,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+      "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -141693,13 +143516,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies. 40verified258partial2blocked after exact S16-010 engineering acceptance reconciliation; no scientific/owner acceptance. Original1000/1001 unchanged.",
+    "instruction": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes. 40verified258partial2blocked;original1000/1001 unchanged;0/3qualified cases.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-rendered-company-4d234eb",
+    "checkpoint_id": "ckpt-20261111-primary-inputs-0a97fab",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T10:32:39.437743+00:00",
+    "attempted_at": "2026-11-11T11:27:46.736907+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202

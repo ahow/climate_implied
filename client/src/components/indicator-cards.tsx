@@ -244,10 +244,11 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
     );
   }
 
+  if (!historicalData.length) return <p role="status">No indicator history was returned. No values or historical date range are substituted.</p>;
   const hasNowcast = historicalData.some((d) => d.isNowcast);
-  const firstYear = historicalData[0]?.year ?? 2010;
-  const lastObservedYear = historicalData.filter((d) => !d.isNowcast).at(-1)?.year ?? 2024;
-  const latestYear = historicalData[historicalData.length - 1]?.year ?? 2024;
+  const firstYear = historicalData[0]?.year ?? "Year unavailable";
+  const lastObservedYear = historicalData.filter((d) => !d.isNowcast).at(-1)?.year ?? "Observed year unavailable";
+  const latestYear = historicalData[historicalData.length - 1]?.year ?? "Year unavailable";
 
   const downloadRows = certifyFiniteExport("indicatorCards",historicalData.map((d) => {
     const row: Record<string, string | number | undefined> = {

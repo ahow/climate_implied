@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "criterion": "S04-005",
+  "status": "actual-native-monthly-CO2-numerical-source-assembled; independent-realized-outcome-and-forecast-qualification-withheld",
+  "newProgress": "Downloaded the smallest potentially CO2-applicable archive under new authorized100MB operational cap. Assembled118279 actual source-provided monthly CO2 asset records,including48475 records in2024/2025/2026Jan. Also retrieved documented current USA monthly publisher response. Exact source repetitions and over-broad API response prevent unqualified independent-outcome or full-scope claims.",
+  "old20MBAcquisitionHistory": {
+    "unchanged": true,
+    "priorResult":"generated-artifacts/kaya-fullbasis-monthly/fullbasis-source-result.json",
+    "priorResultSHA256":"41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+    "priorRequestManifest":"generated-artifacts/kaya-fullbasis-monthly/requests.json",
+    "priorRequestManifestSHA256":"c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+    "priorFocusedEvidence":"docs/kaya-fullbasis-monthly-source-evidence.json",
+    "priorFocusedEvidenceSHA256":"1cdd3ddb8db18ec68ac4ba822b6362bbedbbcf1cd4a00521f9eae2260e4144f0",
+    "interpretation":"Old20MB statuses remain historical acquisition decisions,not scientific unavailability. New separately versioned route supersedes only the operational acquisition block for mineral_extraction.zip. Original MPD2011PPP54 missing member-years and all original Kaya windows remain untouched."
+  },
+  "frozenBeforeNewDownloads": [
+    {"path":"docs/climatetrace-monthly-100mb-acquisition-plan.json","sha256":"882e2e626c7e54f61e5b3727fcc11162c5bff21c235646d4b1cb5ab8c46f2d52"},
+    {"path":"docs/climatetrace-monthly-documented-query-freeze.json","sha256":"bb4e3eebc656b135f5d2ab85e0ba82cf7562bf2b6675adb9ade0ea291ae75b2a"}
+  ],
+  "inspectedOriginal12Files": [
+    {"name":"agriculture.zip","bytes":13703525518,"newStatus":"unattempted-over100MB"},
+    {"name":"buildings.zip","bytes":5527675850,"newStatus":"unattempted-over100MB"},
+    {"name":"ers_plan_global.zip","bytes":44125851,"newStatus":"unattempted-reduction-strategies-not-emissions-outcomes"},
+    {"name":"fluorinated_gases.zip","bytes":822341,"newStatus":"unattempted-wrong-gas-not-CO2"},
+    {"name":"forestry_and_land_use.zip","bytes":4879447182,"newStatus":"unattempted-over100MB-and-not-fossil-industrial-scope"},
+    {"name":"fossil_fuel_operations.zip","bytes":113660927,"newStatus":"unattempted-over100MB"},
+    {"name":"geometries.gpkg.zip","bytes":652530614,"newStatus":"unattempted-geometry-not-emissions"},
+    {"name":"manufacturing.zip","bytes":489171106,"newStatus":"unattempted-over100MB"},
+    {"name":"mineral_extraction.zip","bytes":30380440,"newStatus":"retrieved-size-MD5-SHA256-verified;smallest-potentially-applicable-CO2-archive"},
+    {"name":"power.zip","bytes":290993556,"newStatus":"unattempted-over100MB"},
+    {"name":"transportation.zip","bytes":5058128085,"newStatus":"unattempted-over100MB"},
+    {"name":"waste.zip","bytes":1842665773,"newStatus":"unattempted-over100MB"}
+  ],
+  "boundedAcquisition": {
+    "manifest":"generated-artifacts/climatetrace-monthly-100mb/requests.json",
+    "manifestSHA256":"fa2cb298b4199c1d0ad6f0e389b9916c14a7793bed07197256147dab9bc0b4ea",
+    "requests":6,
+    "maximumRequests":6,
+    "allFinalHTTPStatuses":200,
+    "curlFailures":0,
+    "downloadedBodyBytes":30605274,
+    "maximumArchiveBytes":100000000,
+    "maximumTotalBodyBytes":149000000,
+    "timeoutSeconds":90,
+    "maximumRedirects":5,
+    "retries":0,
+    "paidCalls":0,
+    "purchases":0,
+    "HTTPRangeRequests":0,
+    "rangeEvidence":"Archive response advertises Accept-Ranges:bytes,but no206 request was attempted or verified. No larger archive downloaded,no range-support claim.",
+    "sources":[
+      {
+        "name":"mineral-extraction-archive",
+        "URL":"https://zenodo.org/api/records/19952746/files/mineral_extraction.zip/content",
+        "bytes":30380440,
+        "retrievalFinishedUTC":"2026-11-11T11:53:40.423726+00:00",
+        "bodySHA256":"39a59227653de449180fc90c8f32a7c636117b66e54e853ec5c4c4cec11b609e",
+        "headersSHA256":"90e1d4ab35bba0debc9458930993893784fd6a9c5cf5871765a962f16c1bca37"
+      },
+      {
+        "name":"publisher-data-guide",
+        "URL":"https://media.climatetrace.org/about_the_data_latest_b6e7b8d419.pdf",
+        "bytes":164803,
+        "bodySHA256":"832aeb36ba8bc45d1d49c520692ee253863ce4ac63273ffb5f39f1bdff8a5715",
+        "headersSHA256":"4c98f00ba22c1ae37e164e161f0f10d519bb00b53db8279a7de03ed6b839a171",
+        "nativeIdentity":"Current October2026 Version5.12.0 guide,not silently substituted for archive guide"
+      },
+      {
+        "name":"publisher-api-docs",
+        "URL":"https://api.climatetrace.org/v7",
+        "effectiveURL":"https://api.climatetrace.org/v7/docs/index.html",
+        "bytes":814,
+        "bodySHA256":"96bcbc728407411b90b0eafb4350b1cdd15ab3207d37b7387533b2d9218105e5",
+        "headersSHA256":"bee1f4f89f869bda9c06425a23f1e21c92cd6ecca7482cc45873890aded129d1"
+      },
+      {
+        "name":"publisher-api-spec",
+        "URL":"https://api.climatetrace.org/v7/docs/openapi.json",
+        "bytes":50019,
+        "bodySHA256":"46b7ec3693da769e057e6a758c9c99c0f974e3cfcf1ee56127381c13d49e1489",
+        "headersSHA256":"543fcdd5ffc7fc537d534739dab950efc721ddc90564c538a47949128136347c",
+        "encodingResidual":"Served YAML despite.json suffix. Initial generic JSON inspection failed once;native YAML retained/read directly,no request retry,unsafe YAML evaluator or guessed endpoint.",
+        "documentation":"API version7.3.0;explicit /v7/metadata and monthly /v7/sources/emissions calendar-year/country/gas/subsector parameters"
+      },
+      {
+        "name":"publisher-live-metadata",
+        "URL":"https://api.climatetrace.org/v7/metadata",
+        "bytes":279,
+        "bodySHA256":"c8a8bfb052d5d5f09b144e3385d75a2bfa0f95be97b5eee7742a5b80e5ca3f6f",
+        "headersSHA256":"59bbd36f7c357203647c74cf23eda1d5cb4d08baf1d0598e8fd02bb7988942bd"
+      },
+      {
+        "name":"publisher-USA-monthly-2026",
+        "URL":"https://api.climatetrace.org/v7/sources/emissions?year=2026&gas=co2&sectors=mineral-extraction&subsectors=bauxite-mining,copper-mining,iron-mining&gadmId=USA",
+        "bytes":8919,
+        "bodySHA256":"af0750ef03fce34b11527b93439a421cbcc91797346531bcf6f85097eafee240",
+        "headersSHA256":"35d01efd491a88a65e017bff1fc97987e3800206f91e924f21e106d315b97de0"
+      }
+    ]
+  },
+  "archiveIdentityRightsAndAvailability": {
+    "DOI":"10.5281/zenodo.19952746",
+    "recordVersion":"V5.5.0",
+    "publisherMD5":"16f2bcdacd40163db3496ce9a5c4dae9",
+    "publisherMD5Verified":true,
+    "archiveSHA256":"39a59227653de449180fc90c8f32a7c636117b66e54e853ec5c4c4cec11b609e",
+    "publisherClaimedReleaseDate":"2026-03-26",
+    "repositoryCreated":"2026-05-01T18:30:19.483485+00:00",
+    "repositoryUpdated":"2026-05-01T18:30:20.288210+00:00",
+    "outerDescriptionResidual":"Description refers to5.6.0/February2026. Actual nested CSV filenames and bundled March2026 guide unequivocally5.5.0 and actual last rows2026-01;description not used to extend cutoff.",
+    "historyBasis":"Explicit revised-history source assembly of a dated2026 archive,not data available at2024/2025 origins or certified public2026-03-26 byte availability.",
+    "rights":"Exact record CC-BY4.0 and same-version bundled guide license. Selected bauxite/copper/iron source-level mining subsectors are not exceptions listed in either relevant guide. Unrequested current other-mining country data may have separate underlying-source conditions and is quarantined,not fitted.",
+    "methodAttribution":"Jolleys,M.(2025),Mineral Extraction sector:Mining and Quarrying Emissions from Copper,Iron,Bauxite,Rock and Sand,Hypervine,UK,Climate TRACE",
+    "rawStorage":"Ignored generated-artifacts/climatetrace-monthly-100mb only;no raw source or normalized trace in Git,no redistribution."
+  },
+  "archiveSafetyAndNativeMetadata": {
+    "nestedCO2ArchiveSHA256":"0c08544c345b40004336f722b1f7a0d6edda0a15661d06698b0be00a2be029e1",
+    "outerGasArchives":15,
+    "innerCO2Members":17,
+    "membersChecked":32,
+    "expandedBytesRead":60141301,
+    "maximumExpandedBytesRead":400000000,
+    "maximumSelectedMemberBytes":200000000,
+    "maximumMetadataMemberBytes":5000000,
+    "maximumCompressionRatio":1000,
+    "allSelectedMemberCRCsVerified":true,
+    "unsafePathEncryptedDuplicateSymlinkChecks":true,
+    "ZIPPathExtraction":false,
+    "fixedPathWhitelistedMetadataCopies":true,
+    "other14GasArchivesOpened":false,
+    "sameVersionSchemaSHA256":"f88612ba3755e826d7efbbdb1bde318246489be0d691e3a4d0cce2172230cb6d",
+    "sameVersionGuideSHA256":"e07dd3b20a14c7f4a6694996c1d037bf9bb11b059e40b8ecf1c80c77ba3184e7",
+    "schemaUnitProof":"Selected source schema rows65/66/67 define emissions_quantity in metric tonnes and distinguish CO2 from other gases/CO2e. Native gas field co2 selected;no unit/emissions/GSAT factor.",
+    "schemaHeaderResidual":"Source repeats sector/subsector headers at zero-based[0,8]/[1,9]. Twelve unrelated schema rows have conflicting repeated values. Selected three rows agree positionally;no silent DictReader header overwrite.",
+    "sourceMassAdmission":"Finite nonnegative native quantity;zero retained as actual source zero,empty/null/N-A remains missing. Exact native start/end UTC-midnight full calendar months required;annual,partial,CO2e or duplicate rows rejected.",
+    "nativeQuantityMissingCells":0
+  },
+  "actualMonthlyNumericalAssembly": {
+    "gas":"co2",
+    "unit":"metric tonnes CO2 per native calendar month",
+    "nativeFirstMonth":"2021-01",
+    "nativeLastMonth":"2026-01",
+    "monthlyNativeRows":118279,
+    "listedAssets":1939,
+    "nativeCountryUnion":80,
+    "fullNativeMonthlyPeriods":61,
+    "rows2024":23268,
+    "rows2025":23268,
+    "rows2026January":1939,
+    "rowsWithin2024To2026NativeCutoff":48475,
+    "perSubsector":[
+      {
+        "subsector":"bauxite-mining",
+        "sourceRows":16714,
+        "listedAssets":274,
+        "nativeCountries":24,
+        "zeroRows":5380,
+        "uncompressedBytes":7933383,
+        "nativeMemberSHA256":"61ff7aa84019bb7524e78e17a91e143034dc2ee983cf35f7848c6027c7bb8202",
+        "nativeCRC32":"833ce59e"
+      },
+      {
+        "subsector":"copper-mining",
+        "sourceRows":55754,
+        "listedAssets":914,
+        "nativeCountries":55,
+        "zeroRows":19096,
+        "uncompressedBytes":26679083,
+        "nativeMemberSHA256":"b40084ff7e0fca57ca9250f04cdaf9268969e4fc55cd779ff7d8c4ca03e691b7",
+        "nativeCRC32":"4794753b"
+      },
+      {
+        "subsector":"iron-mining",
+        "sourceRows":45811,
+        "listedAssets":751,
+        "nativeCountries":45,
+        "zeroRows":21943,
+        "uncompressedBytes":20773294,
+        "nativeMemberSHA256":"a3ce2163d23928b09cdc596105518f08a87262d6f8d3f51b4843d48901877545",
+        "nativeCRC32":"40433e06"
+      }
+    ],
+    "countryListedAssetMonthlyCells":7564,
+    "globalListedAssetSubsectorMonthlyCells":183,
+    "aggregationMeaning":"Exact source-list sums only,not complete national/all-mineral/all-sector fossil-industrial CO2. Preserve native country codes,no GDP/territory/bunker harmonization assumed.",
+    "normalizedNativeRowTrace":"generated-artifacts/climatetrace-monthly-100mb/native-monthly-CO2-rows.csv",
+    "normalizedNativeRowTraceSHA256":"2596c5a84ff22865e0f94514dc4a385a4e875dfe1181d328f4db0acf1616b194",
+    "traceBytes":27685926,
+    "tracePreserves":"Native quantity strings,source/subsector/country,start/end dates,gas,frequency,created/modified dates,member names and logical CSV record pointers;mass unit separately annotated from native schema.",
+    "requested2024To2026MissingCells":{
+      "assetPanels":1939,
+      "missingAssetMonths":21329,
+      "exactMonthsForEveryAsset":["2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08","2026-09","2026-10","2026-11","2026-12"],
+      "missingWithin2024And2025":0,
+      "status":"Unavailable in this exact archive after actual2026-01 cutoff;never filled from newer API."
+    },
+    "nativeCountryExports":{
+      "CSVFiles":6,
+      "rowsPerFile":3024,
+      "countriesPerFile":252,
+      "nativeFrequency":"annual",
+      "nativeGas":"co2",
+      "nativeExplicitUnitsColumn":"blank;schema defines metric tonnes",
+      "monthlyRows":0,
+      "decision":"Inspected actual documented country exports,not assumed monthly from website headline. Annual files are not disaggregated or used as monthly observations."
+    }
+  },
+  "importantSourceFreshnessResidual": {
+    "type":"Post-assembly exact source-cell consistency audit,triggered by identical native annual sums;not a preregistered predictive result or tuned comparison",
+    "comparison2024Versus2025":{
+      "sameAssetSameCalendarMonthPairs":23268,
+      "exactDecimalEqualPairs":23268,
+      "equalNonzeroPairs":14160,
+      "missingPairs":0,
+      "maxAbsNativeCO2TonnesDifference":"0"
+    },
+    "comparison2024JanuaryVersus2026January":{
+      "sameAssetPairs":1939,
+      "exactDecimalEqualPairs":1939,
+      "equalNonzeroPairs":1180,
+      "missingPairs":0,
+      "maxAbsNativeCO2TonnesDifference":"0"
+    },
+    "decision":"Genuine publisher-provided monthly numerical estimates,not independently certified new realized2025/2026 outcomes. Exact repetitions suggest a carry-forward/projection dependency but do not prove the mechanism. Publisher-method/source-activity release verification is still unattempted. No values manufactured or adjusted here;all repetitions retained.",
+    "independentObservedOutcomeQualification":false
+  },
+  "documentedCurrentNationalMonthlyResponse": {
+    "country":"USA",
+    "selectedSubsectors":["bauxite-mining","copper-mining","iron-mining"],
+    "nativeMonthlyCoverage":["2026-01","2026-08"],
+    "selectedNativeCells":24,
+    "responseAdditionalUnrequestedSubsectors":["other-mining-quarrying","rock-quarrying","sand-quarrying"],
+    "unrequestedNativeCellsQuarantined":24,
+    "requestScopeCompatible":false,
+    "publisherTotalsAdmittedAsRequestedThreeSubsectors":false,
+    "meaning":"Native explicitly typed selected24 rows retained as partial sectoral country source evidence. The source returned6 subsectors despite a3-subsector filter;do not relabel its totals or sum duplicate total/sector/subsector representations.",
+    "metadata":{
+      "dataVersion":"v5.12.0",
+      "releaseDate":"2026-10-28",
+      "lastUpdated":"2026-10-23T23:12:40.308835Z",
+      "temporalCoverage":["2015-01","2026-08"],
+      "frequency":"monthly",
+      "metadataETag":"W/\"v5.12.0-1792797160\"",
+      "publisherLandingNewsDate":"2026-10-29",
+      "dateResidual":"Preserve distinct metadata release/update and publisher news dates;none certifies historical2024/2025 origin availability.",
+      "atomicBinding":"No version/ETag header on numeric response. Metadata and numeric requests one second apart are not an atomic source snapshot."
+    },
+    "monthlyScopeResidualsTonnes":[
+      {"month":"2026-01","publisherTotal":880595.0583165515,"selectedThreeSum":604287.1824297014,"totalMinusSelected":276307.87588685006,"totalMinusAllSix":1.1641532182693481e-10},
+      {"month":"2026-02","publisherTotal":863564.9268208139,"selectedThreeSum":592600.6642272938,"totalMinusSelected":270964.2625935201,"totalMinusAllSix":-1.1641532182693481e-10},
+      {"month":"2026-03","publisherTotal":896200.6272489007,"selectedThreeSum":614996.1288305246,"totalMinusSelected":281204.4984183761,"totalMinusAllSix":0.0},
+      {"month":"2026-04","publisherTotal":909507.6828373236,"selectedThreeSum":624127.7757231796,"totalMinusSelected":285379.90711414407,"totalMinusAllSix":0.0},
+      {"month":"2026-05","publisherTotal":899460.8982978261,"selectedThreeSum":617233.4114356288,"totalMinusSelected":282227.4868621973,"totalMinusAllSix":1.1641532182693481e-10},
+      {"month":"2026-06","publisherTotal":903982.6576906719,"selectedThreeSum":620336.3600807773,"totalMinusSelected":283646.29760989454,"totalMinusAllSix":0.0},
+      {"month":"2026-07","publisherTotal":867282.0064861798,"selectedThreeSum":595151.4207602055,"totalMinusSelected":272130.5857259743,"totalMinusAllSix":0.0},
+      {"month":"2026-08","publisherTotal":841672.497745107,"selectedThreeSum":577577.5112380054,"totalMinusSelected":264094.9865071017,"totalMinusAllSix":0.0}
+    ],
+    "residualMeaning":"Scope mismatches preserved,not forced tozero or solved with adjustment factors. Tiny total-minus-all-six residuals are native floating summation differences,not a validation threshold pass.",
+    "historyBasis":"Current release explicit revised history;not spliced intoV5.5.0 and not original forecast-origin data",
+    "fitEligible":false
+  },
+  "remainingUnavailableVersusUnattempted": [
+    {"field":"Native archived asset monthly CO2 numerical rows2024/2025/2026Jan","status":"retrieved-source-identified-gas-and-units-qualified","note":"Partial mining estimates,not certified independent realized outcomes."},
+    {"field":"Archived February-December2026 asset rows","status":"unavailable-in-this-exact-archive","cells":21329},
+    {"field":"Archived native country-level monthly CSVs","status":"unavailable-in-inspected-country-members","note":"Actual files annual only;documented API is a separate current source,not annual disaggregation."},
+    {"field":"Original2024 and2025 released snapshots","status":"unattempted-earlier-release-version-acquisition","note":"A2026 archive containing revised2024/2025 numbers is not their original vintage."},
+    {"field":"Publisher explanation/activity inputs behind repeated2024/2025/2026Jan numbers","status":"unattempted-method/source-release-followup","note":"Do not infer fresh observational outcomes from monthly row labels or exact copies."},
+    {"field":"Complete national/global fossil-industrial CO2 inventory","status":"unassembled","note":"Only3 source-level mineral subsectors;other sectors/territories/bunkers and complete coverage not reconciled."},
+    {"field":"Scope1/2,offsite electricity,fuel allocation and cross-sector overlap","status":"unattempted-method-boundary-reconciliation","note":"Do not combine mining values with power or other sectors and claim unique fossil CO2."},
+    {"field":"Exact current national API3-subsector aggregate contract","status":"rejected-source-returned6-subsectors","note":"Selected typed rows remain separate evidence;no total relabeling."},
+    {"field":"Current API numeric-version atomic binding","status":"unproven","note":"No numeric-response data-version/ETag header;no matched archive/latest residual experiment."},
+    {"field":"Larger archive or HTTPRange member extraction","status":"unattempted-not-needed-for-smallest-applicable-file","note":"Accept-Ranges advertisement is not verified206 support. No unbounded acquisition."}
+  ],
+  "implementationAndChecks": {
+    "module":"script/climatetrace_monthly_archive_bridge.py",
+    "moduleSHA256":"90902946b0a638dcc995b0b46a635b34e48351baac423f46d4567f9be3ca6f04",
+    "tests":"script/test_climatetrace_monthly_archive_bridge.py",
+    "testsSHA256":"20ae4c74001af3993554601ea148e6438c0003856ca46fb29adcc1b10efb3abf",
+    "acquisitionCommands":[
+      ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py acquire",
+      ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py spec",
+      ".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py documented-query"
+    ],
+    "assemblyCommand":".pythonlibs/bin/python script/climatetrace_monthly_archive_bridge.py assemble",
+    "metadataConverter":"pdftotext -layout,invoked by assembly on whitelisted same-version archive guide and separately retained current publisher guide",
+    "assemblyExit":0,
+    "assemblyCompletedUTC":"2026-11-11T12:03:36.181571+00:00",
+    "assemblyLog":"generated-artifacts/climatetrace-monthly-100mb/assembly.log",
+    "assemblyLogSHA256":"5a456b012bb89641afb940b8d0e9e3326bf0cbbc6086d599c41f0fbd0de4c84a",
+    "testCommand":"PYTHONPATH=script .pythonlibs/bin/python -m unittest test_climatetrace_monthly_archive_bridge -v",
+    "testsPassed":11,
+    "testsFailed":0,
+    "testsSkipped":0,
+    "testsLog":"generated-artifacts/climatetrace-monthly-100mb/focused-tests.log",
+    "testsLogSHA256":"4123827376cf4af07ea7c8f9d319ae226e0d34dcc01577c2a05b874fcf7cd30c",
+    "testCoverage":"Zip bounds/CRC,path traversal,absolute/Windows/symlink paths,ragged/duplicate CSV headers,source zero versus missing,exact leap month,wronggas/annual/partial/nonfinite rejection,duplicate/country/cutoff API rejection,over-broad response quarantine,missing selected panel,exact Decimal repetition audit without source filling.",
+    "result":"generated-artifacts/climatetrace-monthly-100mb/monthly-source-result.json",
+    "resultSHA256":"bc6301c83c155dab5a477237468e10452399a8587b33c71fc91c19b8c5d5880f"
+  },
+  "fits":0,
+  "holdoutScores":0,
+  "headlineSkillClaims":0,
+  "newSyntheticAttributionOrEnsemble":false,
+  "canonicalProductionCollectorRuntimeAuthChanges":0,
+  "commitsPublishingDeploymentsPurchases":0,
+  "centralEligible":false
+}

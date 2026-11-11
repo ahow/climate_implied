@@ -53,14 +53,14 @@ export function FinancialProviderStatus() {
           {data && (
             <>
               <Badge variant="outline" data-testid="badge-financial-configured" data-field-id="financialProvider.configured">
-                {data.configured ? "Configured" : "Not configured"}
+                {data.configured === true ? "Configured" : data.configured === false ? "Not configured" : "Configuration unavailable — not returned"}
               </Badge>
               <Badge
                 variant={data.state === "error" ? "destructive" : "outline"}
                 data-testid="badge-financial-provider-state"
                 data-field-id="financialProvider.state"
               >
-                {stateLabels[data.state]}
+                {stateLabels[data.state] ?? "Verification state unavailable — not returned"}
               </Badge>
             </>
           )}
@@ -95,7 +95,8 @@ export function FinancialProviderStatus() {
                   ? "The startup diagnostic is checking provider access. Verification has not completed."
                   : data.state === "not-configured"
                     ? "Provider access is not configured. No successful verification is reported."
-                    : "The startup diagnostic reported an error. Provider access is not verified."}
+                    : data.state === "error" ? "The startup diagnostic reported an error. Provider access is not verified."
+                    : "No recognized verification state was returned. Provider access is not verified."}
             </p>
             {data.error && (
               <p role="alert" className="break-words text-sm text-destructive" data-field-id="financialProvider.error">
@@ -117,7 +118,7 @@ export function FinancialProviderStatus() {
                 <dt className="text-xs text-muted-foreground">Observed quote / currency</dt>
                 <dd className="mt-1 font-mono" data-testid="text-financial-quote">
                   {data.quote ? <>
-                    <span data-field-id="financialProvider.quote.price">{data.quote.price.toLocaleString(undefined, { maximumFractionDigits: 8 })}</span>{" "}
+                    <span data-field-id="financialProvider.quote.price">{typeof data.quote.price === "number" && Number.isFinite(data.quote.price) ? data.quote.price.toLocaleString(undefined, { maximumFractionDigits: 8 }) : "Quote price unavailable — not returned"}</span>{" "}
                     <span data-field-id="financialProvider.quote.currency">{data.quote.currency || "(currency unavailable)"}</span>
                   </> : "Not available"}
                 </dd>
@@ -125,7 +126,7 @@ export function FinancialProviderStatus() {
               <div>
                 <dt className="text-xs text-muted-foreground">Quote observation time (not diagnostic check time)</dt>
                 <dd className="mt-1" data-testid="text-financial-quote-time" data-field-id="financialProvider.quote.timestamp">
-                  {data.quote ? dateTime(data.quote.timestamp * 1000) : "Not available"}
+                  {typeof data.quote?.timestamp === "number" && Number.isFinite(data.quote.timestamp) ? dateTime(data.quote.timestamp * 1000) : "Quote observation time unavailable — not returned"}
                 </dd>
               </div>
               <div>
@@ -157,7 +158,7 @@ export function FinancialProviderStatus() {
             verification. Separate financial snapshots can be staged and approved through the authorized
             operator workflow below; this sample never updates historical workbook inputs.
           </p>
-          {!!data?.limitations.length && (
+          {!!data?.limitations?.length && (
             <ul className="list-disc space-y-1 pl-4">
               {data.limitations.map((limitation, index) => (
                 <li key={`${index}-${limitation}`} data-field-id="financialProvider.limitations[]">{limitation}</li>

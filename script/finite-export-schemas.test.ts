@@ -52,10 +52,18 @@ function productionFormatter(file:ts.SourceFile,name:string) {
   let expression="";
   walk(file,node=>{
     if(ts.isVariableDeclaration(node)&&node.name.getText(file)===name) expression=node.initializer!.getText(file);
-    if(ts.isFunctionDeclaration(node)&&node.name?.text===name) expression=node.getText(file);
+    if(ts.isFunctionDeclaration(node)&&node.name?.text===name) expression=node.getText(file).replace(/^export\s+/,"");
   });
   assert.ok(expression,name);
-  return evaluate(expression,{});
+  return evaluate(expression,{indicatorFieldSpecs});
+}
+function productionInitializer(file:ts.SourceFile,name:string) {
+  let expression="";
+  walk(file,node=>{
+    if(ts.isVariableDeclaration(node)&&node.name.getText(file)===name) expression=node.initializer!.getText(file);
+  });
+  assert.ok(expression,name);
+  return expression;
 }
 function valuationCases(file:ts.SourceFile) {
   const cases:Record<string,Record<string,string>>={};
@@ -117,13 +125,22 @@ test("all35 finite-domain cases execute ACTUAL production row builders and bindi
           {date:Date.UTC(2024,0,1),[chart.highKey]:12.34,[chart.lowKey]:undefined},
           {date:Date.UTC(2024,1,1),[chart.highKey]:0,[chart.lowKey]:-1},
         ];
+        context.isLoading=false;
+        context.error=null;
+        context.roundedPE=productionFormatter(file,"roundedPE");
+        context.currentRows=evaluate(productionInitializer(file,"currentRows"),context);
         break;
       }
-      case "indicatorDetail":
-        context.def={key:c.settings.key};
+      case "indicatorDetail": {
+        context.def=serverRegistry.find(def=>def.key===c.settings.key);
         context.series=[{year:2024,value:0,isNowcast:false,source:"Synthetic engineering fixture",
           method:"manual",asOfDate:null}];
+        const availability=productionFormatter(file,"indicatorDetailAvailability")({def:context.def,series:context.series,proposals:[]});
+        assert.equal(availability.hasDefinition,true,"Actual registered definition must pass the actual presentation guard");
+        context.hasDefinition=availability.hasDefinition;
+        context.series=availability.usableSeries;
         break;
+      }
       case "groupGap":
         context.measure=c.settings.measure;
         context.formatDateLabel=productionFormatter(file,"formatDateLabel");
@@ -157,8 +174,32 @@ test("all35 finite-domain cases execute ACTUAL production row builders and bindi
   }
   assert.equal(covered.size,6);
 });
+test("actual valuation and indicator export preparation withholds pending/error/missing-evidence rows without zero substitution",()=>{
+  const {row,file}=expressions("valuationPE");
+  const chart=valuationCases(file).carbon;
+  const base={
+    ...finite,testIdPrefix:"carbon",peChart:chart,formatTooltipDate:productionFormatter(file,"formatTooltipDate"),
+    roundedPE:productionFormatter(file,"roundedPE"),chartData:[{date:0,[chart.highKey]:null,[chart.lowKey]:0},{date:NaN,[chart.highKey]:5,[chart.lowKey]:6}],
+    isLoading:false,error:null,
+  };
+  for(const state of [{isLoading:true},{error:new Error("engineering-read-refusal")}]) {
+    const context={...base,...state};
+    const currentRows=evaluate(productionInitializer(file,"currentRows"),context);
+    assert.deepEqual(evaluate(row,{...context,currentRows}),[]);
+  }
+  const currentRows=evaluate(productionInitializer(file,"currentRows"),base);
+  const ready=evaluate(row,{...base,currentRows});
+  assert.equal(ready.length,1,"No date is inferred for the invalid-date observation");
+  assert.equal(ready[0][`${chart.highLabel} P/E (x)`],undefined,"Null P/E never becomes zero");
+  assert.equal(ready[0][`${chart.lowLabel} P/E (x)`],0,"Explicit zero P/E remains zero");
+  const detail=expressions("indicatorDetail");
+  const def=serverRegistry[0];
+  const series=[{year:2024,value:0,isNowcast:false,source:"Synthetic engineering fixture",method:"manual",asOfDate:null}];
+  assert.deepEqual(evaluate(detail.row,{...finite,def,series,hasDefinition:false}),[],"Missing label/unit definition cannot export unlabeled values");
+});
 
 test("finite schemas reject unknown cases/keys, duplicate indicators and every row-level mismatch",()=>{
+  assert.throws(()=>finite.finiteExportBindings("indicatorDetail",{}),/Unknown indicator export key: undefined/);
   for(const [family,settings] of [
     ["categoryTrend",{metric:"new-unsupported-metric"}],["indicatorCards",{keys:["unregistered"]}],
     ["indicatorCards",{keys:["evGrowthRate","evGrowthRate"]}],["valuationPE",{case:"other"}],

@@ -1,0 +1,60 @@
+{
+  "version": "climatetrace-monthly-100mb-source-1",
+  "criteria": ["S04-005"],
+  "authority": "User explicitly authorizes a separately versioned bounded acquisition up to100MB for the smallest applicable CO2 archive.20MB was an operational cap,not a scientific-window rule. All previous20MB manifests/plans/evidence remain unchanged.",
+  "beforeAnyNewDownload": {
+    "inspected": "Exact12 native files,sizes,source checksums and links retained from official publisher-linked Zenodo record19952746",
+    "priorResult": "generated-artifacts/kaya-fullbasis-monthly/fullbasis-source-result.json",
+    "priorResultSHA256": "41aadd845ac749535e16a93bf4ccdb77ed4ab78ae544af285ce404acb2087120",
+    "priorRequestManifestSHA256": "c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+    "publisherLandingSHA256": "43349209ea888fe45e2b886d1d0c25def49670bd7500b9797692ef5a6acbb0c7",
+    "archiveMetadataSHA256": "a12a52aed90f99094266efa6243dd4d95b5babd6e3d20c11e60f0524d4da1ca3"
+  },
+  "selectionBeforeNumericInspection": {
+    "file": "mineral_extraction.zip",
+    "nativeBytes": 30380440,
+    "nativeChecksum": "md5:16f2bcdacd40163db3496ce9a5c4dae9",
+    "why": "Smallest potentially CO2-applicable sector emissions archive among12. Smaller fluorinated-gases archive is wrong gas; geometry is not emissions and ERS is counterfactual reduction strategies. Selecting mineral extraction is a sectoral source pilot,not a complete national/global fossil-industrial CO2 inventory.",
+    "URL": "https://zenodo.org/api/records/19952746/files/mineral_extraction.zip/content",
+    "rights": "Exact archive metadata CC-BY-4.0; attribution retained,raw bytes private/ignored,not redistributed.",
+    "date": "Publisher claims release2026-03-26,V5.5.0;repository creation2026-05-01 and description references5.6.0. Native monthly cutoff must come from actual rows. Default explicit revised-history classification; neither claim original2024/2025/2026 forecast availability nor infer an observation cutoff from title."
+  },
+  "initialRequests": [
+    "Exact mineral_extraction.zip content URL above,maximum100000000bytes",
+    "https://media.climatetrace.org/about_the_data_latest_b6e7b8d419.pdf,explicitly linked publisher data guide,maximum20000000bytes",
+    "https://api.climatetrace.org/v7,explicitly linked public API documentation,maximum2000000bytes"
+  ],
+  "conditionalFollowup": [
+    "At most one exact public specification/documentation URL returned by API landing,maximum5000000bytes",
+    "At most one documented national/country-aggregate monthly CO2 query/export,selected from documented parameters and public rights,maximum20000000bytes;latest response is revised-history,not original archived release",
+    "At most one explicit source/schema metadata link only if needed for native gas/units/frequency qualification,maximum2000000bytes"
+  ],
+  "bounds": {
+    "maximumRequests": 6,
+    "timeoutSecondsPerRequest": 90,
+    "maximumRedirects": 5,
+    "maximumArchiveBytes": 100000000,
+    "maximumTotalDownloadedBodyBytes": 149000000,
+    "retry": false,
+    "paidCalls": 0,
+    "rangeRequests": "Not needed for selected30.38MB file. No HTTPRange requested; no larger archive download. A future range operation would require a separately frozen plan and verified206 Content-Range matching exact requested offsets."
+  },
+  "safeArchiveHandling": {
+    "mode": "List central directory and stream named CSV/schema members only;never extract paths,execute files or follow links",
+    "maximumMembers": 2000,
+    "maximumMetadataMemberBytes": 5000000,
+    "maximumSelectedCSVUncompressedBytes": 200000000,
+    "maximumTotalCSVBytesRead": 400000000,
+    "maximumCompressionRatio": 1000,
+    "checks": "Exact archive byte size+publisher MD5+local SHA256;reject encrypted,traversal,absolute-path or symlink members. ZIP CRC checked when selected member fully read."
+  },
+  "assemblyContract": {
+    "frequency": "Actual source start/end dates must be exact full calendar months,not annual totals or annual-average daily rates",
+    "gas": "Select explicit native CO2 only;retain other-gas inventories/counts separately;never turn CO2e/CH4/N2O into CO2",
+    "units": "Prove native emissions_quantity mass units from source schema/guide and gas fields;no inferred GSAT/attribution/emissions factors",
+    "regional": "Country aggregates may be ingested as source-defined;asset sums are separately labelled partial inventory coverage,not national all-sector totals. Preserve native country codes,subsectors,territorial definitions,bunkers,missing periods and all2024/2025/2026 cutoffs.",
+    "revision": "Exact source record/version and repository times retained;unproven original-vintage availability becomes explicit revised-history source assembly. No latest-history-as-origin.",
+    "holdout": "No fitting/scoring authorized. Full temporal/regional/gas/sector/revision contracts required before any later frozen-holdout experiment."
+  },
+  "outputs": "Disjoint new physical source script/tests/focused evidence;new raw source/results only in ignored generated-artifacts/climatetrace-monthly-100mb. No Git raw data,raw redistribution,canonical ledger,production,collector,commit,publishing,callback,purchase or ensemble."
+}

@@ -1,0 +1,19 @@
+{
+  "version": "kaya-fullbasis-monthly-followup-1",
+  "reason": "First9 planned requests completed. WDI provides465 GDP and465 population observations with source2 lastupdated2026-10-08; GDP source-specific metadata saysCC-BY4.0. Nature2026 article is subscription-access but explicitly exposes a public supplementary-information URL. Author2025 report is version1.5 published2025-11-18 and warns that latest daily data differ from previous releases; do not use its annual means as daily observations.",
+  "additionalMaximumRequests": 5,
+  "combinedMaximumRequests": 14,
+  "timeoutSeconds": 45,
+  "maximumBytesPerResource": 20000000,
+  "requests": [
+    "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.POP.TOTL",
+    "Public supplementary information explicitly linked on Nature2026 page,https://static-content.springer.com/esm/art%3A10.1038%2Fs43017-026-00780-4/MediaObjects/43017_2026_780_MOESM1_ESM.pdf; no main paywalled PDF requested",
+    "Primary repository Figshare public article-search endpoint POST https://api.figshare.com/v2/articles/search with search_for Carbon Monitor, order published_date descending, limit10",
+    "At most one exact matching author/dataset/version metadata URL returned by that search; reject wrong identity before file",
+    "At most one directly returned version-qualified and licensed original monthly/daily2024-2026 CO2 data file,only if within20MB"
+  ],
+  "figshareIdentity": "This is title-based primary-repository catalogue discovery,not a retry of invalid article12142824 or adjacent-ID probing. Require exact dataset content and Carbon Monitor author identity; data scope,original published date/version and license before any data file. Never select by numerical outcomes.",
+  "publicSupplement": "Public link inspected for source-scope and monthly/daily table availability only; no main subscription article purchase,credential,access bypass or automated fulltext sweep. Privately retain response; no redistribution license inferred from availability.",
+  "dating": "Retain author landing news date2025-11-10 separately from report own publication2025-11-18 and dataset reported release2025-11-01. Dates conflict or refer to distinct release objects; never collapse them into original forecast availability.",
+  "onFailure": "Retain exact response/error and stop route,without retry,mirror,hidden endpoint or fabricated availability. No forecast authorized."
+}

@@ -151,15 +151,17 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
           label={metricView === "netZero" ? "Download separate legacy fixed-5gt-v1" : "Download data"}
         />
       </div>
+      {data.some(row => CATEGORY_KEYS.some(key => !row[key])) &&
+        <p role="status" className="text-xs text-muted-foreground">Some category cells are missing for the selected reference years. Their values and threshold diagnostics remain unavailable; other categories are not substituted.</p>}
       {metricView === "netZero" && <details className="text-xs text-muted-foreground mb-3" data-testid="category-threshold-statuses">
         <summary>Selected 5%-of-2024 diagnostic status by year and scenario</summary>
         <ul>{data.flatMap(d => CATEGORY_KEYS.map(key =>
-          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key].thresholdDiagnostic)}</li>
+          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)}</li>
         ))}</ul>
       </details>}
       {metricView === "netZero" && <ThresholdDiagnosticDownload diagnostics={
-        data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key].thresholdDiagnostic ? [d[key].thresholdDiagnostic!] : []))
-      } contextLabels={data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key].thresholdDiagnostic
+        data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key]?.thresholdDiagnostic ? [d[key].thresholdDiagnostic!] : []))
+      } contextLabels={data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key]?.thresholdDiagnostic
         ? [`Reference input year ${d.year}: ${CATEGORY_NAMES[key]}`] : []))} />}
 
       <ResponsiveContainer width="100%" height={280}>

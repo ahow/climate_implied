@@ -66,6 +66,11 @@ function LoadingDetails({ label }: { label: string }) {
 }
 
 function Snapshot({ item }: { item: FinancialReviewItem }) {
+  const missing = ["identity", "quote", "statement"].filter(key => !item.payload?.[key as keyof FinancialReviewItem["payload"]]);
+  if (!item.calculation) missing.push("calculation");
+  if (missing.length) return <article className="rounded-md border p-4 text-sm" data-testid={`financial-review-${item.id}`}>
+    <p role="status">Financial snapshot details are incomplete: {missing.join(", ")} not returned. No ratio or approval conclusion is substituted.</p>
+  </article>;
   const { identity, quote, statement, fetchedAt } = item.payload;
   const { calculation } = item;
   const statusLabels = {
@@ -101,7 +106,7 @@ function Snapshot({ item }: { item: FinancialReviewItem }) {
         <p className="font-medium">Price-to-last-annual earnings ratio (not TTM P/E)</p>
         <p className="font-mono">{number(calculation.priceToLastAnnualEarnings)}</p>
         {calculation.reason && <p className="text-xs text-muted-foreground">{calculation.reason}</p>}
-        {calculation.priceToLastAnnualEarnings === null && !calculation.reason && (
+        {calculation.priceToLastAnnualEarnings == null && !calculation.reason && (
           <p className="text-xs text-muted-foreground">No ratio was returned for this snapshot.</p>
         )}
         <p className="text-xs text-muted-foreground">
@@ -122,8 +127,8 @@ export function FinancialReview() {
   const { data, isLoading, isFetching, isError, refetch } = useQuery<FinancialReviewsResponse>({
     queryKey: ["/api/financial-data/reviews"],
   });
-  const active = data?.items.filter((item) => item.status === "pending" || item.status === "approved") ?? [];
-  const history = data?.items.filter((item) => item.status === "rejected" || item.status === "superseded") ?? [];
+  const active = data?.items?.filter((item) => item.status === "pending" || item.status === "approved") ?? [];
+  const history = data?.items?.filter((item) => item.status === "rejected" || item.status === "superseded") ?? [];
 
   return (
     <Card data-testid="card-financial-review" aria-busy={isFetching}>
@@ -153,7 +158,7 @@ export function FinancialReview() {
         )}
         {data && (
           <>
-            {active.length ? (
+            {!Array.isArray(data.items) ? <p role="status">Financial snapshot inventory is unavailable: no items array was returned. An absent inventory is not an empty review queue.</p> : active.length ? (
               <section className="space-y-3" aria-label="Pending and approved financial snapshots">
                 <h3 className="text-sm font-semibold">Pending and approved snapshots</h3>
                 {active.map((item) => <Snapshot key={item.id} item={item} />)}
@@ -219,15 +224,15 @@ export function ScientificValidation() {
           <>
             <dl className="grid grid-cols-1 gap-4 rounded-md border p-4 text-sm md:grid-cols-2">
               <div><dt className="text-xs text-muted-foreground">Default engine</dt><dd className="mt-1 break-words font-mono">{data.defaultEngine || "Not available"}</dd></div>
-              <div><dt className="text-xs text-muted-foreground">Candidate engine</dt><dd className="mt-1"><Badge variant={data.candidateEnabled ? "default" : "outline"}>{data.candidateEnabled ? "Enabled" : "Disabled"}</Badge></dd></div>
+              <div><dt className="text-xs text-muted-foreground">Candidate engine</dt><dd className="mt-1"><Badge variant={data.candidateEnabled === true ? "default" : "outline"}>{data.candidateEnabled === true ? "Enabled" : data.candidateEnabled === false ? "Disabled" : "Unavailable — candidate enablement not returned"}</Badge></dd></div>
             </dl>
-            {data.checks.length > 0 ? (
+            {!Array.isArray(data.checks) ? <p role="status">Readiness checks are unavailable: no checks array was returned.</p> : data.checks.length > 0 ? (
               <ul className="space-y-2" aria-label="Calculation readiness checks">
                 {data.checks.map((check) => (
                   <li key={check.id} className="rounded-md border p-3 text-sm" data-testid={`readiness-check-${check.id}`}>
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <p className="font-medium">{check.label}</p>
-                      <Badge variant={check.passed ? "secondary" : "destructive"}>{check.passed ? "Passed" : "Not passed"}</Badge>
+                      <Badge variant={check.passed === true ? "secondary" : "destructive"}>{check.passed === true ? "Passed" : check.passed === false ? "Not passed" : "Unavailable — check outcome not returned"}</Badge>
                     </div>
                     <p className="mt-1 break-words text-xs text-muted-foreground">{check.reason || "No explanation supplied."}</p>
                   </li>
@@ -241,7 +246,7 @@ export function ScientificValidation() {
             )}
             <div className="space-y-2 rounded-md bg-muted/50 p-3 text-xs text-muted-foreground">
               <p className="font-medium text-foreground">Reported limitations</p>
-              {data.limitations.length > 0 ? (
+              {data.limitations?.length > 0 ? (
                 <ul className="list-disc space-y-1 pl-4">{data.limitations.map((limitation, index) => <li key={`${index}-${limitation}`}>{limitation}</li>)}</ul>
               ) : <p>No limitations were returned. This does not establish scientific validity.</p>}
             </div>

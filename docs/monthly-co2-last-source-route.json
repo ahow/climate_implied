@@ -1,0 +1,14 @@
+{
+  "version": "monthly-co2-last-source-route-1",
+  "preOutcomeReason": "The public2026 Carbon Monitor supplementary table explicitly cites Climate TRACE near-real-time monthly estimates with2-3months lag. That supplementary table is annual growth,not actual monthly cells. The first12 bounded requests remain retained. The Figshare title search returned10 broad carbon-related titles,none an identified Carbon Monitor original dataset; no candidate file or guessed article requested.",
+  "remainingRequestBudget": 2,
+  "combinedMaximumRequests": 14,
+  "timeoutSeconds": 45,
+  "maximumBytesPerResource": 20000000,
+  "sequence": [
+    "Official primary publisher https://climatetrace.org/data",
+    "At most one directly and publicly linked version-qualified national monthly CO2 release file or exact release metadata;no guessed endpoint,hidden API,all-GHG substitution or past-vintage claim"
+  ],
+  "admission": "Require monthly time values and separate carbon-dioxide gas,not aggregate CO2e,source-defined sector/territory and original release/version date. A2026 release may describe its own2024-2026 revised history,but must not be labelled an original2024 or2025 vintage. Unknown release identity,rights,file size,gas or frequency is an explicit failed qualification. Do not download a huge asset archive or protected file.",
+  "stop": "After14 requests total or unavailable explicit link/rights/size qualification,stop. Do not spend unused requests on guesses or retries. Preserve exact unavailable versus unattempted fields."
+}

@@ -39,6 +39,7 @@ import {
 import { RefreshCw, ExternalLink, Clock, Check, X, Database } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { certifyFiniteExport,finiteExportBindings,indicatorValueColumn } from "@shared/finiteExportSchemas";
+import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 import { describePersistedSummary } from "@shared/dataManagementSemantics";
 import type { FetchSummaryEvidence } from "@shared/fetchSummarySemantics";
 import { FinancialProviderStatus } from "@/components/financial-provider-status";
@@ -375,7 +376,7 @@ export default function DataManagement() {
   );
 }
 
-function IndicatorDetailDialog({
+export function IndicatorDetailDialog({
   indicatorKey,
   onClose,
 }: {
@@ -391,13 +392,12 @@ function IndicatorDetailDialog({
     enabled: !!indicatorKey,
   });
 
-  const pending = (detail?.proposals ?? []).filter((p) => p.status === "pending");
-  const decided = (detail?.proposals ?? []).filter(
+  const { proposals, def, hasDefinition, usableSeries } = indicatorDetailAvailability(detail, indicatorKey);
+  const pending = (proposals ?? []).filter((p) => p.status === "pending");
+  const decided = (proposals ?? []).filter(
     (p) => p.status === "approved" || p.status === "rejected",
   );
-  const def = detail?.def;
-
-  const series = detail?.series ?? [];
+  const series = usableSeries ?? [];
   const firstNowcastIdx = series.findIndex((p) => p.isNowcast);
   const chartData = series.map((p, i) => ({
     year: p.year,
@@ -407,11 +407,11 @@ function IndicatorDetailDialog({
         ? p.value
         : null,
     source: p.source,
-    isNowcast: !!p.isNowcast,
+    isNowcast: p.isNowcast,
   }));
   const hasEstimated = firstNowcastIdx !== -1;
 
-  const downloadRows = certifyFiniteExport("indicatorDetail",series.map((p) => ({
+  const downloadRows = certifyFiniteExport("indicatorDetail",(hasDefinition ? series : []).map((p) => ({
     Year: p.year,
     [indicatorValueColumn(def?.key)]: p.value,
     Type: p.isNowcast ? "Estimated (nowcast)" : "Retained (not nowcast)",
@@ -420,16 +420,13 @@ function IndicatorDetailDialog({
     "As Of Date": p.asOfDate ?? "",
   })),{key:def?.key});
 
+  if (!indicatorKey) return null;
+
   return (
     <Dialog open={!!indicatorKey} onOpenChange={(o) => !o && onClose()}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto" data-testid="dialog-indicator-detail">
         <QueryReadErrors prefix="/api/data/indicator" />
-        {isError ? <p className="text-sm text-muted-foreground">Indicator details are unavailable. Retry the read above or close this dialog.</p> : isLoading || !detail ? (
-          <div className="space-y-3">
-            <Skeleton className="h-6 w-1/2" />
-            <Skeleton className="h-48 w-full" />
-          </div>
-        ) : (
+        <IndicatorDetailReadState error={isError} loading={isLoading} available={!!detail} definitionAvailable={hasDefinition} seriesAvailable={!!usableSeries} seriesEmpty={usableSeries?.length === 0} proposalHistoryAvailable={!!proposals}>
           <>
             <DialogHeader>
               <DialogTitle data-testid="text-detail-title">
@@ -443,14 +440,14 @@ function IndicatorDetailDialog({
 
             <div className="flex items-center justify-between gap-2 flex-wrap">
               <h3 className="text-sm font-semibold">Time series</h3>
-              <DownloadDataButton
+              {hasDefinition && <DownloadDataButton
                 kind="indicators"
                 filename={`indicator-time-series-${def?.key ?? "series"}`}
                 sheetName="Time Series"
                 rows={downloadRows}
                 fieldBindings={finiteExportBindings("indicatorDetail",{key:def?.key})}
                 testId="button-download-timeseries"
-              />
+              />}
             </div>
 
             <div className="h-56 w-full" data-testid="chart-timeseries">
@@ -460,24 +457,7 @@ function IndicatorDetailDialog({
                   <XAxis dataKey="year" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} width={56} domain={["auto", "auto"]} />
                   <RechartsTooltip
-                    content={({ active, payload, label }) => {
-                      if (!active || !payload || payload.length === 0) return null;
-                      const entry =
-                        payload.find((p) => p.value != null) ?? payload[0];
-                      const pt = entry.payload as (typeof chartData)[number];
-                      return (
-                        <div className="rounded-md border bg-background p-2 text-xs shadow-sm">
-                          <p className="font-semibold">
-                            {label}: {formatValue(pt.actual ?? pt.estimated ?? 0, def?.decimals ?? 2)}{" "}
-                            {def?.unit}
-                          </p>
-                          <p className="text-muted-foreground">
-                            {pt.isNowcast ? "Estimated — " : "Sourced — "}
-                            {pt.source}
-                          </p>
-                        </div>
-                      );
-                    }}
+                     content={({ active, payload, label }) => <IndicatorSeriesTooltip active={active} payload={payload} label={label} decimals={def?.decimals} unit={def?.unit} />}
                   />
                   <Legend
                     verticalAlign="top"
@@ -645,7 +625,7 @@ function IndicatorDetailDialog({
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {[...detail.series].reverse().map((pt) => (
+                    {[...series].reverse().map((pt) => (
                       <TableRow key={pt.year} data-testid={`row-series-${pt.year}`}>
                         <TableCell>{pt.year}</TableCell>
                         <TableCell className="font-mono">
@@ -691,8 +671,53 @@ function IndicatorDetailDialog({
               </>
             )}
           </>
-        )}
+        </IndicatorDetailReadState>
       </DialogContent>
     </Dialog>
   );
+}
+
+export function IndicatorDetailReadState({ error, loading, available, definitionAvailable, seriesAvailable, seriesEmpty, proposalHistoryAvailable, children }: {
+  error?: boolean; loading?: boolean; available: boolean; definitionAvailable?: boolean;
+  seriesAvailable?: boolean; seriesEmpty?: boolean; proposalHistoryAvailable?: boolean; children?: React.ReactNode;
+}) {
+  if (error) return <p role="alert" className="text-sm text-muted-foreground">Indicator details are unavailable. Retry the read above or close this dialog. No prior indicator details are shown.</p>;
+  if (loading) return <div role="status" aria-label="Loading selected indicator details" className="space-y-3">
+    <Skeleton className="h-6 w-1/2" /><Skeleton className="h-48 w-full" />
+  </div>;
+  if (!available) return <p role="status">No indicator detail response was returned for this selection. No series or values are substituted.</p>;
+  if (definitionAvailable === false) return <p role="status">Indicator definition is missing or invalid for this selection. Labels and units cannot be verified; series and downloads are withheld.</p>;
+  if (seriesAvailable === false) return <p role="status">No usable indicator series array was returned for this selection. Missing or invalid observation rows are not substituted; downloads are withheld.</p>;
+  return <>
+    {seriesEmpty && <p role="status">No indicator series observations were returned. No numeric values are substituted.</p>}
+    {proposalHistoryAvailable === false && <p role="status">Proposal history is unavailable: no usable proposal array was returned. Review completeness is not inferred.</p>}
+    {children}
+  </>;
+}
+
+export function indicatorDetailAvailability(detail?: IndicatorDetail | null, selectedKey?: string | null) {
+  const def = detail?.def;
+  const hasDefinition = [def?.key, def?.label, def?.unit].every(value => typeof value === "string" && value.trim().length > 0) &&
+    typeof def?.decimals === "number" && Number.isInteger(def.decimals) && def.decimals >= 0 && def.decimals <= 20 &&
+    indicatorFieldSpecs.some(([key]) => key === def?.key) && (selectedKey === undefined || selectedKey === def?.key);
+  const usableSeries = Array.isArray(detail?.series) && detail.series.every(row => row && typeof row === "object" &&
+    typeof row.year === "number" && Number.isFinite(row.year) && typeof row.value === "number" && Number.isFinite(row.value) &&
+    typeof row.source === "string" && typeof row.method === "string" &&
+    (row.asOfDate == null || typeof row.asOfDate === "string")) ? detail.series : undefined;
+  const proposals = Array.isArray(detail?.proposals) && detail.proposals.every(row => row && typeof row === "object") ? detail.proposals : undefined;
+  return { def, hasDefinition, usableSeries, proposals };
+}
+
+export function IndicatorSeriesTooltip({ active, payload, label, decimals = 2, unit }: {
+  active?: boolean; payload?: readonly { value?: unknown; payload?: { actual?: number | null; estimated?: number | null; source?: string; isNowcast?: boolean } }[];
+  label?: React.ReactNode; decimals?: number; unit?: string;
+}) {
+  if (!active) return null;
+  const entry = payload?.find(point => point.value != null) ?? payload?.[0];
+  if (!entry?.payload) return <p role="status">No indicator observation was returned for this tooltip. No value is substituted.</p>;
+  const point = entry.payload;
+  return <div className="rounded-md border bg-background p-2 text-xs shadow-sm">
+    <p className="font-semibold">{label ?? "Year unavailable"}: {formatValue(point.actual ?? point.estimated, decimals)} {unit ?? "Unit unavailable"}</p>
+    <p className="text-muted-foreground">{point.isNowcast === true ? "Estimated — " : point.isNowcast === false ? "Sourced — " : "Observation/estimate status unavailable — "}{point.source ?? "Source not returned"}</p>
+  </div>;
 }

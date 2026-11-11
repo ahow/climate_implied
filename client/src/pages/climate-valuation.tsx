@@ -1,7 +1,7 @@
 import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { CompanyConditionalSummary } from "@/components/company-conditional-summary";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { Card } from "@/components/ui/card";
@@ -18,7 +18,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { DownloadDataButton } from "@/components/download-data-button";
-import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows } from "@/lib/valuation-claims";
+import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic } from "@/lib/valuation-claims";
 import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
 import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
 import {
@@ -120,30 +120,33 @@ export default function ClimateValuation() {
   const [costOfEquity, setCostOfEquity] = useState(8);
   const [decarbTercileMethod, setDecarbTercileMethod] = useState<"absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative">("sector_relative");
 
-  const { data: uploads } = useQuery<UploadRecord[]>({
+  const { data: uploads, error: uploadsError } = useQuery<UploadRecord[]>({
     queryKey: ["/api/cv/uploads"],
     refetchInterval: 5000,
+    select: rows => { assertValuationGroupRows(rows); return rows; },
   });
 
-  const { data: summary, isLoading: summaryLoading } = useQuery<Summary>({
+  const { data: summary, isLoading: summaryLoading, error: summaryError } = useQuery<Summary>({
     queryKey: ["/api/cv/summary"],
     refetchInterval: uploads?.some((u) => u.status === "processing") ? 5000 : false,
   });
 
   const latestCompletedUpload = uploads?.find((u) => u.status === "completed");
   const uploadId = hasArchivedSelection() ? "archived" : latestCompletedUpload?.id;
-  const hasTimeSeriesData = summary && summary.dateRange && Number(summary.dateRange.recordCount) > 0;
+  const hasTimeSeriesData = summary && summary.dateRange && typeof summary.dateRange.recordCount === "number" && Number.isFinite(summary.dateRange.recordCount) && summary.dateRange.recordCount > 0;
 
   const carbonPriceUrl = `/api/cv/carbon-price?uploadId=${uploadId}&method=sector_relative&includeScope3=${includeScope3}&winsorize=${winsorize}&inferenceMethod=carbon_intensity`;
-  const { data: carbonPrices, isLoading: carbonPricesLoading } = useQuery<CarbonPricePoint[]>({
+  const { data: carbonPrices, isLoading: carbonPricesLoading, error: carbonPricesError } = useQuery<CarbonPricePoint[]>({
     queryKey: [carbonPriceUrl],
+    select: rows => { assertValuationGroupRows(rows); return rows; },
     enabled: !!uploadId && !!hasTimeSeriesData,
   });
 
   const costOfEquityDecimal = costOfEquity / 100;
   const sdgGrowthUrl = `/api/cv/sdg-growth?costOfEquity=${costOfEquityDecimal}`;
-  const { data: sdgGrowth, isLoading: sdgGrowthLoading } = useQuery<SDGGrowthPoint[]>({
-    queryKey: ["/api/cv/sdg-growth", costOfEquityDecimal],
+  const { data: sdgGrowth, isLoading: sdgGrowthLoading, error: sdgGrowthError } = useQuery<SDGGrowthPoint[]>({
+    queryKey: ["/api/cv/sdg-growth", costOfEquityDecimal, uploadId],
+    select: rows => { assertValuationGroupRows(rows); return rows; },
     queryFn: async () => {
       const res = await fetch(sdgGrowthUrl, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch SDG growth data");
@@ -155,8 +158,9 @@ export default function ClimateValuation() {
   });
 
   const decarbTercileUrl = `/api/cv/decarb-terciles?method=${decarbTercileMethod}&costOfEquity=${costOfEquityDecimal}`;
-  const { data: decarbTerciles, isLoading: decarbTercilesLoading } = useQuery<DecarbTercilePoint[]>({
-    queryKey: ["/api/cv/decarb-terciles", decarbTercileMethod, costOfEquityDecimal],
+  const { data: decarbTerciles, isLoading: decarbTercilesLoading, error: decarbTercilesError } = useQuery<DecarbTercilePoint[]>({
+    queryKey: ["/api/cv/decarb-terciles", decarbTercileMethod, costOfEquityDecimal, uploadId],
+    select: rows => { assertValuationGroupRows(rows); return rows; },
     queryFn: async () => {
       const res = await fetch(decarbTercileUrl, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch decarb terciles");
@@ -178,24 +182,24 @@ export default function ClimateValuation() {
 
   const carbonIntensityChartData = carbonPrices?.map((p) => ({
     date: new Date(p.date).getTime(),
-    cleanPE: Math.round(p.bottomTercilePeRatio * 100) / 100,
-    dirtyPE: Math.round(p.topTercilePeRatio * 100) / 100,
+    cleanPE: roundedPE(p.bottomTercilePeRatio),
+    dirtyPE: roundedPE(p.topTercilePeRatio),
     cleanCount: p.bottomTercileCompanyCount,
     dirtyCount: p.topTercileCompanyCount,
   }));
 
   const sdgChartData = sdgGrowth?.map((p) => ({
     date: new Date(p.date).getTime(),
-    cleanPE: Math.round(p.cleanPE * 100) / 100,
-    dirtyPE: Math.round(p.dirtyPE * 100) / 100,
+    cleanPE: roundedPE(p.cleanPE),
+    dirtyPE: roundedPE(p.dirtyPE),
     cleanCount: p.cleanCount,
     dirtyCount: p.dirtyCount,
   }));
 
   const ambitionChartData = decarbTerciles?.map((p) => ({
     date: new Date(p.date).getTime(),
-    bestPE: Math.round(p.bestTercilePE * 100) / 100,
-    worstPE: Math.round(p.worstTercilePE * 100) / 100,
+    bestPE: roundedPE(p.bestTercilePE),
+    worstPE: roundedPE(p.worstTercilePE),
     bestCount: p.bestTercileCompanyCount,
     worstCount: p.worstTercileCompanyCount,
   }));
@@ -206,6 +210,10 @@ export default function ClimateValuation() {
     <div className="bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         <QueryReadErrors prefix="/api/cv" />
+        {uploadsError && <p role="alert">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>}
+        {summaryError && <p role="alert">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>}
+        {summary?.dateRange && !(typeof summary.dateRange.recordCount === "number" && Number.isFinite(summary.dateRange.recordCount)) &&
+          <p role="status">Historical record count not returned as a finite number. Group-series availability is not inferred.</p>}
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-xl font-bold tracking-tight" data-testid="text-cv-title">
@@ -253,13 +261,15 @@ export default function ClimateValuation() {
             <Info className="h-3.5 w-3.5 mt-0.5 shrink-0" />
             <span>
               <span data-field-id="companySummary.imputation.imputedRecords">{summary.imputation.imputedRecords.toLocaleString()}</span> of{" "}
-              <span data-field-id="companySummary.imputation.totalRecords">{summary.imputation.totalRecords.toLocaleString()}</span> records (
-              <span data-field-id="companySummary.imputation.imputedFraction">{(summary.imputation.imputedFraction * 100).toFixed(1)}%</span>) use carried-forward
+              <span data-field-id="companySummary.imputation.totalRecords">{typeof summary.imputation.totalRecords === "number" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : "Total record count unavailable — not returned"}</span> records (
+              <span data-field-id="companySummary.imputation.imputedFraction">{displayDiagnostic(typeof summary.imputation.imputedFraction === "number" ? summary.imputation.imputedFraction * 100 : null, "%")}</span>) use carried-forward
               (imputed) emissions where a reporting gap exists. Carbon-intensity and pricing
               for these periods rely on the most recent observed scope 1/2/3 values.
             </span>
           </div>
         )}
+        {summary?.imputation && !(typeof summary.imputation.imputedRecords === "number" && Number.isFinite(summary.imputation.imputedRecords)) &&
+          <p role="status">Imputation coverage unavailable: imputed record count not returned. No zero-imputation inference is made.</p>}
 
         {uploads && uploads.length > 0 && (
           <Card className="p-4">
@@ -341,6 +351,7 @@ export default function ClimateValuation() {
               description="Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. This endpoint uses fixed r = 8%; changing the SDG/ambition cost-of-equity control does not change it. Gordon steady-state g = r − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth."
               chartData={carbonIntensityChartData ?? []}
               isLoading={carbonPricesLoading}
+              error={carbonPricesError}
               formatChartDate={formatChartDate}
               formatTooltipDate={formatTooltipDate}
               testIdPrefix="carbon"
@@ -349,15 +360,7 @@ export default function ClimateValuation() {
                 lowKey: "dirtyPE",
                 highLabel: "Low Carbon (Clean)",
                 lowLabel: "High Carbon (Dirty)",
-                tooltip: (d) => (
-                  <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                    <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                    <div className="space-y-0.5">
-                      <div><span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: "hsl(168, 76%, 36%)" }} />Low Carbon P/E: <span className="font-semibold">{d.cleanPE?.toFixed(1)}x</span> ({d.cleanCount} co.)</div>
-                      <div><span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: "hsl(0, 72%, 51%)" }} />High Carbon P/E: <span className="font-semibold">{d.dirtyPE?.toFixed(1)}x</span> ({d.dirtyCount} co.)</div>
-                    </div>
-                  </div>
-                ),
+                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel="Low Carbon" lowLabel="High Carbon" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,
               }}
             />
 
@@ -369,6 +372,7 @@ export default function ClimateValuation() {
               description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}
               chartData={sdgChartData ?? []}
               isLoading={sdgGrowthLoading}
+              error={sdgGrowthError}
               formatChartDate={formatChartDate}
               formatTooltipDate={formatTooltipDate}
               testIdPrefix="sdg"
@@ -377,15 +381,7 @@ export default function ClimateValuation() {
                 lowKey: "dirtyPE",
                 highLabel: "Positive SDG (Clean)",
                 lowLabel: "Negative SDG (Dirty)",
-                tooltip: (d) => (
-                  <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                    <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                    <div className="space-y-0.5">
-                      <div><span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: "hsl(168, 76%, 36%)" }} />Positive SDG P/E: <span className="font-semibold">{d.cleanPE?.toFixed(1)}x</span> ({d.cleanCount} co.)</div>
-                      <div><span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: "hsl(0, 72%, 51%)" }} />Negative SDG P/E: <span className="font-semibold">{d.dirtyPE?.toFixed(1)}x</span> ({d.dirtyCount} co.)</div>
-                    </div>
-                  </div>
-                ),
+                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel="Positive SDG" lowLabel="Negative SDG" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,
               }}
             />
 
@@ -397,6 +393,7 @@ export default function ClimateValuation() {
               description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}
               chartData={ambitionChartData ?? []}
               isLoading={decarbTercilesLoading}
+              error={decarbTercilesError}
               formatChartDate={formatChartDate}
               formatTooltipDate={formatTooltipDate}
               testIdPrefix="ambition"
@@ -418,15 +415,7 @@ export default function ClimateValuation() {
                 lowKey: "worstPE",
                 highLabel: "Most Ambitious",
                 lowLabel: "Least Ambitious",
-                tooltip: (d) => (
-                  <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
-                    <div className="font-medium">{formatTooltipDate(d.date)}</div>
-                    <div className="space-y-0.5">
-                      <div><span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: "hsl(168, 76%, 36%)" }} />Most Ambitious P/E: <span className="font-semibold">{d.bestPE?.toFixed(1)}x</span> ({d.bestCount} co.)</div>
-                      <div><span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: "hsl(0, 72%, 51%)" }} />Least Ambitious P/E: <span className="font-semibold">{d.worstPE?.toFixed(1)}x</span> ({d.worstCount} co.)</div>
-                    </div>
-                  </div>
-                ),
+                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel="Most Ambitious" lowLabel="Least Ambitious" highValue={d.bestPE} lowValue={d.worstPE} highCount={d.bestCount} lowCount={d.worstCount} />,
               }}
             />
 
@@ -464,6 +453,7 @@ interface AnalysisSectionProps {
   description: string;
   chartData: Array<{ date: number; [k: string]: any }>;
   isLoading: boolean;
+  error?: Error | null;
   formatChartDate: (ts: number) => string;
   formatTooltipDate: (ts: number) => string;
   testIdPrefix: string;
@@ -477,7 +467,7 @@ interface AnalysisSectionProps {
   };
 }
 
-function AnalysisSection({
+export function AnalysisSection({
   costOfEquityPct,
   gordonSemanticPrefix,
   icon: Icon,
@@ -485,16 +475,18 @@ function AnalysisSection({
   description,
   chartData,
   isLoading,
+  error,
   formatChartDate,
   formatTooltipDate,
   testIdPrefix,
   headerRight,
   peChart,
 }: AnalysisSectionProps) {
-  const peDownloadRows = certifyFiniteExport("valuationPE",chartData.map((d) => ({
+  const currentRows = isLoading || error ? [] : chartData.filter(row => typeof row.date === "number" && Number.isFinite(row.date));
+  const peDownloadRows = certifyFiniteExport("valuationPE",currentRows.map((d) => ({
     Date: formatTooltipDate(d.date),
-    [`${peChart.highLabel} P/E (x)`]: d[peChart.highKey],
-    [`${peChart.lowLabel} P/E (x)`]: d[peChart.lowKey],
+    [`${peChart.highLabel} P/E (x)`]: roundedPE(d[peChart.highKey]),
+    [`${peChart.lowLabel} P/E (x)`]: roundedPE(d[peChart.lowKey]),
   })),{case:testIdPrefix});
 
   return (
@@ -534,11 +526,15 @@ function AnalysisSection({
               testId={`button-download-${testIdPrefix}-pe`}
             />
           </div>
-          {isLoading ? (
+          {error ? <p role="alert">P/E comparison read failed for {title}. No prior selection values or downloads are shown.</p> : isLoading ? (
             <Skeleton className="h-[300px] w-full" />
-          ) : chartData.length > 0 ? (
+          ) : currentRows.length > 0 ? (
+            <>
+            {currentRows.some(row => roundedPE(row[peChart.highKey]) === undefined || roundedPE(row[peChart.lowKey]) === undefined) &&
+              <p role="status">Some selected P/E observations are missing or invalid. Their chart and export cells remain unavailable, not zero.</p>}
+            {currentRows.length !== chartData.length && <p role="status">Rows with missing or invalid observation dates are withheld; no date is inferred.</p>}
             <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData}>
+              <LineChart data={currentRows.map(row => ({ ...row, [peChart.highKey]: roundedPE(row[peChart.highKey]), [peChart.lowKey]: roundedPE(row[peChart.lowKey]) }))}>
                 <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
                 <XAxis dataKey="date" type="number" domain={["dataMin", "dataMax"]} scale="time" tick={{ fontSize: 11 }} tickFormatter={formatChartDate} className="text-muted-foreground" />
                 <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `${v.toFixed(0)}x`} className="text-muted-foreground" />
@@ -551,8 +547,9 @@ function AnalysisSection({
                 <Line type="monotone" dataKey={peChart.lowKey} stroke="hsl(0, 72%, 51%)" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.lowLabel} />
               </LineChart>
             </ResponsiveContainer>
+            </>
           ) : (
-            <div className="flex items-center justify-center h-[300px] text-sm text-muted-foreground">No data available</div>
+            <div role="status" className="flex items-center justify-center h-[300px] text-sm text-muted-foreground">{chartData.length ? "No P/E observations have a valid observation date; no date is inferred." : `No P/E observations returned for ${title}.`}</div>
           )}
         </Card>
 
@@ -561,7 +558,7 @@ function AnalysisSection({
   );
 }
 
-function SummaryCard({ icon: Icon, label, value, isLoading }: { icon: React.ElementType; label: string; value: number | null; isLoading?: boolean }) {
+export function SummaryCard({ icon: Icon, label, value, isLoading }: { icon: React.ElementType; label: string; value?: number | null; isLoading?: boolean }) {
   if (isLoading) {
     return (
       <Card className="p-4">
@@ -576,7 +573,33 @@ function SummaryCard({ icon: Icon, label, value, isLoading }: { icon: React.Elem
         <Icon className="h-4 w-4 text-muted-foreground" />
         <span className="text-xs text-muted-foreground">{label}</span>
       </div>
-      <p className="text-xl font-semibold">{value?.toLocaleString() ?? "Unavailable"}</p>
+      <p className="text-xl font-semibold">{typeof value === "number" && Number.isFinite(value) ? value.toLocaleString() : "Unavailable"}</p>
+      {!(typeof value === "number" && Number.isFinite(value)) && <p role="status" className="text-xs text-muted-foreground">{label}: count not returned for the current selection.</p>}
     </Card>
   );
+}
+
+export function roundedPE(value: unknown): number | undefined {
+  if (typeof value !== "number" || !Number.isFinite(value)) return undefined;
+  const rounded = Math.round(value * 100) / 100;
+  return Number.isFinite(rounded) ? rounded : undefined;
+}
+
+export function assertValuationGroupRows(rows: unknown): void {
+  if (!Array.isArray(rows) || rows.some(row => !row || typeof row !== "object" || Array.isArray(row))) {
+    throw new Error("Valuation records unavailable: expected an array of observation records.");
+  }
+}
+
+export function ValuationPETooltip({ dateLabel, highLabel, lowLabel, highValue, lowValue, highCount, lowCount }: {
+  dateLabel?: string; highLabel: string; lowLabel: string;
+  highValue?: number | null; lowValue?: number | null; highCount?: number | null; lowCount?: number | null;
+}) {
+  const pe = (value: unknown) => typeof value === "number" && Number.isFinite(value) ? `${value.toFixed(1)}x` : "Unavailable — P/E not returned";
+  const count = (value: unknown) => typeof value === "number" && Number.isFinite(value) ? `${value} co.` : "Company count not returned";
+  return <div className="bg-card border rounded-md p-3 text-xs space-y-1.5 shadow-md" style={{ minWidth: 200 }}>
+    <div className="font-medium">{dateLabel ?? "Observation date unavailable"}</div>
+    <div>{highLabel} P/E: <span className="font-semibold">{pe(highValue)}</span> ({count(highCount)})</div>
+    <div>{lowLabel} P/E: <span className="font-semibold">{pe(lowValue)}</span> ({count(lowCount)})</div>
+  </div>;
 }

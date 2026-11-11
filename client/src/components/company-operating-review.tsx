@@ -12,18 +12,18 @@ export function CompanyOperatingReview(){
       !query.data?.length?<p>No operating review packets available.</p>:
       query.data.map(row=><details key={row.proposalId} className="border rounded p-3">
         <summary className="cursor-pointer">
-          <span data-field-id="companyReview.isin">{row.isin}</span>{" · "}
-          <span data-field-id="companyReview.decision">{row.decision}</span>{" · "}
-          <span data-field-id="companyReview.executable">{row.executable?"Conditional execution eligible":"Not executable"}</span>
+          <span data-field-id="companyReview.isin">{row.isin??"Identity unavailable"}</span>{" · "}
+          <span data-field-id="companyReview.decision">{row.decision??"Decision unavailable"}</span>{" · "}
+          <span data-field-id="companyReview.executable">{row.executable===true?"Conditional execution eligible":row.executable===false?"Not executable":"Execution eligibility unavailable — not returned"}</span>
         </summary>
         <dl className="mt-3 text-sm space-y-2">
           <dt>Proposal</dt><dd data-field-id="companyReview.proposalId" className="break-all">{row.proposalId}</dd>
           <dt>Packet type</dt><dd data-field-id="companyReview.kind">{row.kind}</dd>
           <dt>Decision time, not publication date</dt><dd data-field-id="companyReview.decidedAt">{row.decidedAt??"No decision"}</dd>
-          <dt>Source archive IDs</dt><dd data-field-id="companyReview.sourceArchiveIds[]" className="break-all">{row.sourceArchiveIds.join("; ")}</dd>
+          <dt>Source archive IDs</dt><dd data-field-id="companyReview.sourceArchiveIds[]" className="break-all">{row.sourceArchiveIds?.length?row.sourceArchiveIds.join("; "):"No source archive IDs returned"}</dd>
           <dt>Scientific acceptance</dt><dd data-field-id="companyReview.scientificAcceptance">Not established</dd>
         </dl>
-        <ul className="mt-3 list-disc pl-5 text-sm" data-field-id="companyReview.remainingGaps[]">{row.remainingGaps.map(gap=><li key={gap}>{gap}</li>)}</ul>
+        {row.remainingGaps?.length?<ul className="mt-3 list-disc pl-5 text-sm" data-field-id="companyReview.remainingGaps[]">{row.remainingGaps.map(gap=><li key={gap}>{gap}</li>)}</ul>:<p className="text-sm">No gap details returned; completeness and scientific acceptance are not established.</p>}
       </details>)}
   </CardContent></Card>;
 }

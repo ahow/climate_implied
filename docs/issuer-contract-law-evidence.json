@@ -1,0 +1,354 @@
+{
+  "version": "issuer-contract-law-1",
+  "status": "bounded-primary-retrieval-and-new-source-constraint-adapters-validated-no-valuation",
+  "technicalQualifiedOriginalIssuers": 0,
+  "qualifiedOriginalPairs": 0,
+  "maximumLogicalAttempts": 24,
+  "actualLogicalAttempts": 24,
+  "sourceProgress": [
+    "OriginalCF2022announcement and fact-sheet PDF actually retrieved from archivepages2/3/4, plus declared2022Q3 8K/Exhibit99.1",
+    "Actual original release explicitly metric CO2 conflicts with annual2022short-ton convention; storageVermilionParish/EnLink role now sourced",
+    "Correct regulator installation guide leads to actual METSgateway/client; observed installation sign-in boundary, no11402permit/crosswalk or account/login attempt",
+    "Original enactedIRA117-169, amendingPL119-21, IRSNotice2026-15 and originalFSLRFY2025annual captured; solar MACR/integrated-primary/phaseout constraints being validated, not company eligibility"
+  ],
+  "scope": "New disjoint CF original/declared contract discovery, exactUKETS11402crosswalk, then dependency-ready original regulator current45Xlaw input. No resolved unit/capacity kernels rerun; no arbitrary grid/canonical/UI/production/approval/purchases/callback.",
+  "priorEvidence": ["docs/xom-contract-permit-evidence.json","docs/xom-source-inputs-evidence.json","docs/fslr-paid-spare-capacity-evidence.json","docs/nee-project-cash-waterfall-evidence.json"],
+  "attemptRecords": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/receipts.json",
+  "attemptRecordsSha256": "59858a10489b72240d89919abb7fe4abaa338795cf4b297b5edd81240cf91de6",
+  "actualRequests": {
+    "logicalAttempts": 24, "get": 21, "readOnlyPublicNewsPost": 3,
+    "finalStatuses": {"200": 22, "403": 1, "404": 1},
+    "countBasis": "Logical attempts; automatic redirects contained within attempt, individual hop counts not invented.",
+    "boundExhaustedStopped": true,
+    "failedSources": [
+      {"name": "usc-current-45x.html", "status": 404, "handling": "One official USCode preliminary granule request failed; no casing/URL retries. Not used as current-law authority. Original enacted statutes used instead; no exhaustive later-amendment certification."},
+      {"name": "irs-pfe-search.html", "status": 403, "handling": "Actual official search-form request failed. No search retry, credentials or access-control workaround. Independently published public Notice2026-15 fetched once using preidentified official notice identifier and title/content verified."}
+    ],
+    "commandTemplate": "npx tsx script/capture-issuer-contract-law-sources.ts --private-primary --one NAME URL FIELD [--read-news-json BODY]; exact arguments/timestamps/finalURL/status/hash recorded in receipt rows.",
+    "attemptNamesInOrder": [
+      "cf-clean-energy-page2.json","cf-2022-q3-8k.html","gov-ghg-register-search.json","irs-45x-entry.html",
+      "cf-clean-energy-page3.json","cf-2022-q3-ex991.html","gov-public-register-guidance.html","usc-current-45x.html",
+      "cf-original-ccs-factsheet.html","cf-clean-energy-page4.json","irs-pfe-search.html","pl119-21.pdf",
+      "cf-original-2022-announcement.html","cf-ccs-factsheet.pdf","fslr-sec-submissions.json","gov-mets-register-search.json",
+      "fslr-fy2025-10k.html","gov-participating-ukets.html","gov-ukets-guide-body.html","ira117-169.pdf",
+      "irs-notice2026-15.pdf","gov-ukets-installations-comply.html","mets-public-landing.html","mets-public-client.js"
+    ]
+  },
+  "files": [
+    "script/capture-issuer-contract-law-sources.ts","server/calculation/issuerContractLawInputs.ts",
+    "script/issuer-contract-law.test.ts","script/run-issuer-contract-law-inputs.ts",
+    "script/validate-issuer-contract-law-private.ts","docs/issuer-contract-law-evidence.json"
+  ],
+  "rightsRecords": {
+    "issuer": "Official public issuer/SEC publication; bounded factual extraction/citation/short validation assertions only. No licence to republish complete release, filing or client code claimed; all raw payloads private/git-ignored.",
+    "usGovernment": "Official enacted public statutes and IRS guidance, not commercial provider data. Only bounded statutory facts/locators and derived constraints reported, not full PDF/text export.",
+    "ukGovernment": "Official GOV.UK regulator guidance/gateway. Bounded locator and sign-in-boundary observations only; no public client source-code export or authenticated endpoint access. No additional redistribution licence inferred.",
+    "discovery": "Index/client/search/failed responses are locator evidence only, not company economics, permit contents or legal eligibility authority."
+  },
+  "sourceRecords": [
+    {
+      "id": "CF-ORIGINAL-20221012",
+      "url": "https://www.cfindustries.com/newsroom/2022/donaldsonville-carbon-capture",
+      "sha256": "02c32c8573f850fb82f8c56140a573a213f51132aaee4ea24ed75bff8105554f",
+      "publicationDate": "2022-10-12",
+      "locator": "Headline/bullets and first transport/storage/commercial-agreement paragraphs; actual archivepage4 and fact-sheet previous-post link",
+      "page": "HTML named paragraphs",
+      "period": "Original2022announcement/expectedearly2025startup",
+      "legalIdentity": "CF Industries Holdings, Inc. announces agreement with ExxonMobil group; transport network EnLink Midstream; actual signing SPVs/title entities not supplied",
+      "unit": "Explicit2million METRIC tons nativeCO2/year;125Kacres storage position, NOT pore/injection capacity",
+      "reliability": "Official dated original issuer announcement, currently retrieved archival copy; not a full signed commercial contract or historical-byte availability certification",
+      "rightsRecord": "issuer"
+    },
+    {
+      "id": "CF-FACTSHEET-2022",
+      "url": "https://www.cfindustries.com/globalassets/cf-industries/media/documents/ccs-factsheet.pdf",
+      "publicationDate": "2022-10-12",
+      "publicationDateBasis": "Dated official fact-sheet wrapper; attachment itself has no separate authenticated publication timestamp",
+      "locator": "Four-page CCS fact sheet; CF project subsection and transport/storage description",
+      "page": "4pagePDF, whole text reviewed for contract-specific economic disclosures",
+      "period": "Original2022project communication",
+      "legalIdentity": "CF corporate educational/project fact sheet, not executed XOM/CF/EnLink contract",
+      "unit": "Technical/process context and client capture project; no source-qualified XOM tariff/opex/term",
+      "reliability": "Official issuer attachment; general claims not independently certified regulator findings",
+      "rightsRecord": "issuer"
+    },
+    {
+      "id": "CF-2022Q3-8K-EX991",
+      "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440422000026/cf-11022022_ex991xearnings.htm",
+      "parentFiling": "https://www.sec.gov/Archives/edgar/data/1324404/000132440422000026/cf-20221102.htm",
+      "publicationDate": "2022-11-02",
+      "publicationDateBasis": "Declared retained SEC submissions date/actual8K and linked Exhibit99.1",
+      "locator": "8KItem2.02/9.01; actual Exhibit99.1 Carbon Capture and Sequestration Agreement to Enable Blue Ammonia Production at Donaldsonville Complex",
+      "page": "HTML named exhibit section",
+      "period": "Q32022communication after October agreement",
+      "legalIdentity": "CF Industries Holdings, Inc.; counterparties named at group level",
+      "unit": "Source says2million tons/year; storage owns statement and EnLink network role, not priced contract",
+      "reliability": "Actual Form8Kdeclared earnings-release exhibit, not an executed CCScommercial-contract exhibit; no inference of global nondisclosure or legal filed-versus-furnished status",
+      "rightsRecord": "issuer"
+    },
+    {
+      "id": "CF-RETAINED-2022-ANNUAL",
+      "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440423000006/cf-20221231.htm",
+      "publicationDate": "2023-02-23",
+      "locator": "Retained authenticated FY2022annual MD&A project paragraph and report-wide tons/tonnes definition",
+      "page": "HTML named sections",
+      "period": "FY2022",
+      "legalIdentity": "CF Industries Holdings, Inc.",
+      "unit": "2million tons/year with explicit report convention tons=shorttons; tonnes=metrictons",
+      "reliability": "Existing captured original filing rehashed/read only to compare newly found original release; no resolved capacity kernel rerun",
+      "rightsRecord": "issuer"
+    },
+    {
+      "id": "GOV-UKETS-INSTALLATIONS-GUIDE",
+      "url": "https://www.gov.uk/government/publications/uk-emissions-trading-scheme-for-installations-how-to-comply/uk-emissions-trading-scheme-for-installations-how-to-comply",
+      "publicationDate": "2022-05-18",
+      "updatedDate": "2026-02-09",
+      "locator": "Your METS online account; submitting applications; apply for GHGEpermit; regulator contact details",
+      "page": "HTML section anchors",
+      "period": "Retrieved current guidance; not a FY2024permit",
+      "legalIdentity": "UK regulator installation guidance, not Esso individual permit",
+      "unit": "Actual account/document service route and boundary",
+      "reliability": "Official guidance actually reached via participating-in-UKETS publication/body links",
+      "rightsRecord": "ukGovernment"
+    },
+    {
+      "id": "METS-GATEWAY",
+      "url": "https://manage-emissions-reporting.service.gov.uk/landing",
+      "declaredClientUrl": "https://manage-emissions-reporting.service.gov.uk/main-IFRZ7ZHG.js",
+      "publicationDate": null,
+      "responseLastModified": "2026-08-07",
+      "locator": "Actual regulator-declared landing HTML and its exact public script link; Sign in to installations/Create an installations sign in strings",
+      "page": "Gateway/client locator only; not rendered signed-in UI",
+      "period": "Current gateway",
+      "legalIdentity": "Government Manage your UK ETS reporting service",
+      "unit": "Sign-in entry boundary, not installation site/gas/cash evidence",
+      "reliability": "Public shell/client captured; no public-register route string located in this client, not proof no public record exists elsewhere",
+      "rightsRecord": "ukGovernment"
+    },
+    {
+      "id": "IRA-117-169",
+      "url": "https://www.govinfo.gov/content/pkg/PLAW-117publ169/pdf/PLAW-117publ169.pdf",
+      "sha256": "5bd9bebe719d3d1738e751fe7978ef7bf05167ed8150471f306e010185baed4f",
+      "enactedDate": "2022-08-16",
+      "publicationDate": null,
+      "publicationDateCaveat": "Enactment date on law distinguished from capture/response modification metadata; separate original posting date not established",
+      "locator": "Section13502 establishes26USC45X; subsection45X(b)(3) solar phaseout",
+      "page": "PDF155section13502onward;274pages total",
+      "period": "Original enacted2022baseline, read together with2025amendments",
+      "legalIdentity": "United States statute; eligible US-produced components and eligible sales, not all FSLRworldwide revenue",
+      "unit": "Credit-generation phaseout percentage by component sale year, NOT cash receipt year",
+      "reliability": "Official enacted statute, not proposed bill or current-law compilation; subsequent2025changes explicitly joined",
+      "rightsRecord": "usGovernment"
+    },
+    {
+      "id": "OBBBA-119-21",
+      "url": "https://www.govinfo.gov/content/pkg/PLAW-119publ21/pdf/PLAW-119publ21.pdf",
+      "sha256": "42f86c3d408bccb1a663c11a51a90d207b3dbc25e689240da51726154be51c8b",
+      "enactedDate": "2025-07-04",
+      "publicationDate": null,
+      "publicationDateCaveat": "Enactment not silently treated as web-posting date; response2026lastModified is not enactment",
+      "locator": "Section70514/45X(d)(4),45X(c)(1)(C),45X(d)(7),effective dates; section7701(a)(52) solar threshold definition",
+      "page": "PDF203section70514onward;PDF190solar threshold table;139Stat273-276and260-261;331pages total",
+      "period": "Enacted2025changes, including2026calendar-taxpayer PFE/material-assistance and2027embedded-primary rule",
+      "legalIdentity": "United States statute; solar eligible-component category not wind/critical-mineral special schedules",
+      "unit": "Solar MACRminimum50/60/70/80/85%;secondary direct-material cost share attributable to US primary eligible components65%",
+      "reliability": "Official enacted text; no exhaustive certification that no later amendment/interpretation exists",
+      "rightsRecord": "usGovernment"
+    },
+    {
+      "id": "IRS-NOTICE-2026-15",
+      "url": "https://www.irs.gov/pub/irs-drop/n-26-15.pdf",
+      "sha256": "1241c52527a918bc6caab89b9bc85090463920fd1d174c99314f85eb3c1687f3",
+      "publicationDate": null,
+      "responseLastModified": "2026-02-12T19:35:34Z",
+      "publicationDateCaveat": "Notice identifier/title authenticated; precise original public-posting/IRB publication date not separately established, so HTTPmodified not relabelled",
+      "locator": "Notice2026-15 Purpose; section3.02Eligible Component MACR and PV-module example; section4interim safe harbors",
+      "page": "95pagePDF;PVmodule2026example at53onward",
+      "period": "2026interim guidance under2025law",
+      "legalIdentity": "IRS/Treasury guidance for applicable energy credits including45X, not a FirstSolar eligibility ruling",
+      "unit": "Component-specific direct/PFE material cost attribution and50%2026solar MACR example",
+      "reliability": "Official original interim guidance, not final company certification; method/reliance conditions and future guidance not presumed away",
+      "rightsRecord": "usGovernment"
+    },
+    {
+      "id": "FSLR-FY2025-ANNUAL",
+      "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449426000021/fslr-20251231.htm",
+      "sha256": "b492de2291f64290b380303b42a60572c1685a6ef70ca32d1c7866ab258314c3",
+      "publicationDate": "2026-02-24",
+      "publicationDateBasis": "Actual SECsubmissions index CIK1274494 and response lastModified",
+      "locator": "IRA/H.R.1risk discussion; US-produced solar-component credit discussion and phase-down paragraph",
+      "page": "HTML risk/MD&A named sections",
+      "period": "FY2025disclosure/current-policy risk context ONLY; FY2024operating cash, shares, prices and old studies not replaced",
+      "legalIdentity": "FIRST SOLAR, INC.; original issuer",
+      "unit": "US-component policy channel; no component-specific forecast PFE material-cost/65%primary-cost shares supplied here",
+      "reliability": "Original issuer filing corroborates phase-down and FEOC/material-assistance risks; not third-party/current-law or future company eligibility certification",
+      "rightsRecord": "issuer"
+    }
+  ],
+  "fieldSpecificCaptureRecords": [
+    {
+      "field": "OriginalCF2022commercial announcement and unit history",
+      "status": "retrieved-primary-native-label-conflict-explicit",
+      "sourceIds": ["CF-ORIGINAL-20221012","CF-RETAINED-2022-ANNUAL","CF-2022Q3-8K-EX991"],
+      "period": "October2022announcement/FY2022annual",
+      "unit": "NativeCO2metrictons in actual original release versus annual tons with short-ton convention",
+      "value": {"originalAnnouncement": 2000000, "originalAnnouncementUnit": "metric tonnes/year", "annual2022": 2000000, "annualUnit": "short tons/year"},
+      "boundary": "Conflict is document mass label, not proof of physical expansion/revision. Preserve both and FY2024explicit metric source; no retroactive substitution or invented source correction."
+    },
+    {
+      "field": "XOMproject storage/transport geography and contract roles",
+      "status": "new-source-qualified-announced-project-geography",
+      "sourceIds": ["CF-ORIGINAL-20221012","CF-2022Q3-8K-EX991"],
+      "period": "Originalproject/expected2025startup",
+      "unit": "Named capture/storage location and acreage, not CO2capacity or ownership percentage",
+      "value": {"captureOrigin": "Donaldsonville, Louisiana", "storageLocation": "Vermilion Parish, Louisiana", "announcedStoragePositionAcres": 125000, "transportNetworkCounterparty": "EnLink Midstream"},
+      "boundary": "Issuer says XOMgroup owns storage. Registered SPV/title/working interest, injection permit and contracted economics remain missing. No HQ/global-price proxy or netting US capture against UKEsso liability."
+    },
+    {
+      "field": "ExecutedCF/XOMfee/opex/capex/replacement/funding terms",
+      "status": "not-located-in-exact-examined-announcement-factsheet-and-declared-8k-exhibit",
+      "sourceIds": ["CF-ORIGINAL-20221012","CF-FACTSHEET-2022","CF-2022Q3-8K-EX991"],
+      "period": "Original2022contract",
+      "unit": "Missing priced fee/tonne, escalation, term, take-or-pay, XOMtransport/storage cost/replacement and cash waterfall",
+      "feePerTonne": null,
+      "contractTermYears": null,
+      "boundary": "Actual original release, full4pagefact sheet, parent2022-11-02 8K and declared99.1 inspected. The8Kdeclares earnings release, not a full CCScommercial contract. Combined with prior two annual indexes, these are exact searched materials only; other filings/exhibit packages not exhaustively reviewed. Not globally undisclosed."
+    },
+    {
+      "field": "UKETS11402exact permit crosswalk",
+      "status": "correct-regulator-service-reached-exact-permit-not-retrieved",
+      "sourceIds": ["GOV-UKETS-INSTALLATIONS-GUIDE","METS-GATEWAY"],
+      "period": "RequiredFY2024monitoring/site identity",
+      "unit": "Missing exactGHGEpermit/site/gas monitoring annex",
+      "value": null,
+      "boundary": "Official guidance actually links METSservice. Public landing/client show installation sign-in/create-sign-in; no public-register route string in this client. No login/account/contact/document-request or authenticated API attempted. No EPRaddress substitution; no claim permit globally absent or no other public route exists."
+    },
+    {
+      "field": "Post2025solar component material-assistance threshold",
+      "status": "enacted-framework-and-interim-guidance-source-qualified-not-company-eligibility",
+      "sourceIds": ["OBBBA-119-21","IRS-NOTICE-2026-15","FSLR-FY2025-ANNUAL"],
+      "period": "2026+calendar taxpayers; component sold during specified calendar year",
+      "unit": "MACRminimum/direct-material cost share by eligible solar component type",
+      "solarMacrMinimum": {"2026": 0.5, "2027": 0.6, "2028": 0.7, "2029": 0.8, "2030AndLater": 0.85},
+      "derivedMaximumPfeDirectCostFraction": {"2026": 0.5, "2027": 0.4, "2028": 0.3, "2029": 0.2, "2030AndLater": 0.15},
+      "boundary": "MACR=(total direct material costs minus attributablePFEcosts)/total direct material costs, with source-qualified attribution/method/type/year boundaries. Corporate COGS, nationality averages, NASDAQlisting or zero assumed PFEcosts cannot fill missing component inputs."
+    },
+    {
+      "field": "Embedded-primary component deemed-sale restriction",
+      "status": "source-qualified-new-distinct-policy-claim-path",
+      "sourceIds": ["OBBBA-119-21"],
+      "period": "Components sold in taxable years beginning after2026; adapter limited to calendar taxpayers",
+      "unit": "65%secondary direct-material costs attributable to primary eligible components mined/produced/manufacturedUS, same facility",
+      "value": 0.65,
+      "boundary": "Not a blanket65%gate on direct module-sale claims. Same-facility and primary-eligible-component cost attribution matter; generic domestically sourced glass/material share is not automatically eligible primary-component cost. FSLRactual/frozen forecast eligible-component cost ratios not supplied by examined source."
+    },
+    {
+      "field": "Solar45Xgeneration phaseout versus cash rollover",
+      "status": "source-qualified-enacted-framework-calendar-not-cash-forecast",
+      "sourceIds": ["IRA-117-169","OBBBA-119-21","FSLR-FY2025-ANNUAL"],
+      "period": "Component sale years2030-2033+",
+      "unit": "Credit-generation multiplier before other eligibility gates",
+      "values": {"through2029": 1, "2030": 0.75, "2031": 0.5, "2032": 0.25, "2033AndLater": 0},
+      "boundary": "Zero new-generation multiplier after2032 is NOT zero cash receipts after2032. Prior-year credit/transfer receivables and settlement timing remain separate. No FY2024cash normalization/rollover/excess-cash bridge changed or omitted by this source unit."
+    },
+    {
+      "field": "FSLRfuture actual or justified-conditional eligibility inputs",
+      "status": "unresolved-source-inputs-not-a-demand-for-future-observations",
+      "sourceIds": ["FSLR-FY2025-ANNUAL","OBBBA-119-21","IRS-NOTICE-2026-15"],
+      "period": "ForwardUSeligible-component sales",
+      "unit": "Component-specific PFE/control/production-sale and attributed direct-material costs, not all global solar revenue",
+      "actualCompanyMacr": null,
+      "usPrimaryEligibleComponentCostShare": null,
+      "companyPfeEffectiveControlClearance": null,
+      "currentEligibilityCertified": false,
+      "boundary": "Adapter accepts source-supported/frozen justified conditional future inputs; none are invented here. Future observations are not required to calculate conditional models, but actual or justified forecast BOM/control/cost evidence must support eligibility flags. The published framework alone cannot qualify FSLRor restore positive terminal margins."
+    }
+  ],
+  "computedNewSourceConstraints": {
+    "financialScenarioGrids": 0,
+    "financialValuationScoring": false,
+    "statutoryRequirementRows": 16,
+    "rowDefinition": "2026-2033calendar multiplied by two legally distinct claim paths; deterministic statute calendar, NOT arbitrary operating/stress grid or valuation cases",
+    "unresolvedEligibilityRows": 14,
+    "newGenerationPhaseoutZeroRows2033": 2,
+    "actualCreditCashAllRows": null,
+    "actualCompanyEligibilityCertifiedAllRows": false,
+    "wholeCashModelCompleted": false,
+    "sourceFrameworkNotExhaustiveCurrentLawCertification": true,
+    "sourceCut": "Named enacted2022and2025statutes plus IRSinterimNotice2026-15; current-code endpoint failed, no assertion every later amendment/interpretation examined",
+    "priorYearCreditCashRolloverNotZeroed": true,
+    "priorStatutoryArticle18ClosurePreserved": true,
+    "resolvedUnitAndCapacityKernelsRerun": false
+  },
+  "freeze": {
+    "frozenAt": "2026-11-11T11:43:26.394Z",
+    "qualifiedAt": "2026-11-11T11:43:26.479Z",
+    "path": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/2026-11-11T11-43-26-394Z/frozen-before-qualification.json",
+    "sha256": "d15a0e7fa4f14cae4d7bc4119415ffc1296041b8678cf1cc616ec82e975728d4",
+    "reportPath": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/2026-11-11T11-43-26-394Z/report.json",
+    "reportSha256": "5922610ce9d5f9bec85d5d6cb4bf6e482de783884bb15d2b85b24f51714bce77",
+    "protectedPriorDistinctPaths": 281,
+    "oldKernelsExecuted": false,
+    "ownerGatesChanged": false,
+    "qualifiedOriginalIssuers": 0
+  },
+  "verification": {
+    "codeOnly": {
+      "command": "npx tsx --test script/issuer-contract-law.test.ts",
+      "passed": 5, "failed": 0, "skipped": 0, "privateOrNetworkDependencies": false,
+      "logSha256": "751f19fecd64b85c00e149c9a733aa3815271870bbf6e713521b8a2a18f76339"
+    },
+    "qualification": {
+      "command": "npx tsx script/run-issuer-contract-law-inputs.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "d17192ab7443373dc903bf4268026bdea7531162a3680d1d72761c5148e62b04"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-issuer-contract-law-private.ts --private-primary",
+      "exitCode": 0,
+      "sourceAttemptHashes": 24, "independentPdfTextRebuilds": 4, "protectedPriorDistinctPaths": 281,
+      "originalCfAndDeclaredEx991": 2, "regulatorGuideGatewayClientRecords": 3,
+      "originalLegalAndGuidanceDocuments": 3, "independentSolarThresholdYears": 5,
+      "sourceRequirementRows": 16,
+      "checks": "Actual original CFmetric label versus retained short-ton annual; storage geography/network role not fee/permit/ownership allocation; correct regulator route not exact11402crosswalk or login; actual statute threshold numeral extraction; embedded-primary versus direct-sale gate;2033new-generation phaseout not cash; all actual company cost/credit states unresolved; four PDFbytes independently rebuilt to frozen text; all prior studies/unit/capacity source/code hashes preserved",
+      "logSha256": "07149c5e58eddd4b29b942fd81b0b28e29823a3f7c416d87e5da024d222662d4"
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerContractLawInputs.ts script/capture-issuer-contract-law-sources.ts script/issuer-contract-law.test.ts script/run-issuer-contract-law-inputs.ts script/validate-issuer-contract-law-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5Typecheck": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/issuerContractLawInputs.ts script/capture-issuer-contract-law-sources.ts script/issuer-contract-law.test.ts script/run-issuer-contract-law-inputs.ts script/validate-issuer-contract-law-private.ts",
+      "exitCode": 0, "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logsDirectory": "generated-artifacts/company-operating-corpus/issuer-contract-law-v1/",
+    "pdfRebuildCommandPattern": "pdftotext -layout CAPTURED_PRIMARY_PDF -; private validator recomputes each of4texts independently and compares frozenSHA256",
+    "productionCollectorsOrCanonicalUiRoutesEdited": false,
+    "paidProviderCallsPurchasesApprovalsDdlAuthProductionMutationsCommitPublishCallback": false,
+    "rawPrivateOrProviderDataExport": false
+  },
+  "narrowResidualsAndReadyNextEngineering": [
+    "XOM original2022announcement/fact sheet/declared8K99.1 now actually examined; full priced executed contract/fee/minimums/opex/gross replacement/funding/credit allocation still not located in those exact documents and prior two annual indexes. Other dated SECpackages or actual EnLink counterparty contract disclosures remain unattempted, not globally undisclosed.",
+    "UKETS11402crosswalk still needs its actual GHGEpermit/site/monitoring annex. Correct regulator METSroute reached, but no anonymous exact document obtained; public gateway/client sign-in is not a blanket claim no other public route exists. No contact or document-request submission made.",
+    "Dependency-ready FSLRsource-policy gate now distinguishes direct module versus embedded primary claims and source MACR/PFE requirements. A separately frozen funded experiment may supply justified UScomponent production/BOM/control/material-cost assumptions and explicitly tracked prior-credit cash rollovers; it must not infer future eligibility from historical credit receipts, listed-company status or company-wide COGS.",
+    "IRSNotice2026-15contains multiple-credit safe-harbor/cost-percentage contexts. This adapter does NOT apply project45Y/48Eassigned cost percentages or crystallinesilicon assumptions to FSLRCdTe45Xmanufacturing. A direct FSLRapplicability/attribution qualification of any such table remains unattempted; general MACRsource rules are not a table-to-company BOM bridge.",
+    "No supported positive terminal reinvestment/economics or completed CCS fee model added. Existing g2.5-4% studies, negative/no-root results, FY2024cash basis, legacy10cases50rows and qualifications remain untouched.",
+    "NEEgrossnon-DMI/LLCpriority sourcing was not newly attempted here after selecting dependency-ready FSLRoriginal-regulator law branch; do not mislabel it undisclosed or completed."
+  ],
+  "originalClauseProposalsForParentMergeOnly": [
+    {
+      "clause": "Original XOM activity/geography/project funding",
+      "proposal": "Actual original2022capture/storage/transport roles and source-native unit conflict now authenticated. No priced fee/opex/replacement/funding bridge or whole-cash valuation completed; keep exact source gaps and0/3."
+    },
+    {
+      "clause": "Original FSLR policy channels and sustainable terminal",
+      "proposal": "Named post2025enacted/IRSframework now implemented as separate component-claim gates. Keep eligible UScomponent manufacturing versus all solar revenue distinct; old future-credit branches remain conditional, current company eligibility unverified, no zeroing of post2032cash from earlier-generated receivables."
+    },
+    {
+      "clause": "S12-001/private scientific evidence and immutable history",
+      "proposal": "New source-constraint adapter tested publicly without private dependencies and separately against actual private primary payloads. No resolvedArticle18/unit/capacity kernels or old financial experiments rerun;281distinct prior hashes guarded. Original g2.5-4%cash case qualification remains0/3."
+    }
+  ]
+}

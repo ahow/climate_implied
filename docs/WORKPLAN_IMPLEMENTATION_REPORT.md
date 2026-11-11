@@ -1,3 +1,34 @@
+# Component contracts and primary series — validated; release pending
+
+{
+  "at": "2026-11-11T12:20:38.182549+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+    ],
+    "executed_at": "2026-11-11T12:18:21.720962+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 113.168,
+    "counts": {
+      "tests": 623,
+      "pass": 623,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T121821720962Z.log",
+    "workspace_revision": "b6ad36f7d567ffd5f4908e89cac60a64108cba10",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "sources": "CF2022original announcement/factsheet/8K acquired; announcementmetric versus annualshortton conflict retained. Exact11402METS sign-in boundary not bypassed. Original45X laws/IRSnotice source-qualified;16statutorypaths14companyeligibility unresolved/2generationzero, cashnull.0/3cases.",
+  "climate": "Full separateWDI2021PPP revision2026-10-08:465GDP+465populationcells;75regionalyears,RoW/transport30null. Original2011PPP54gaps unchanged. ActualmonthlyCO2 archive118279rows/1939listedminingassets/80countries;2024\u201325sameasset/month23268pairs exactlyequal. Partialportfolio/revisedhistory/freshnessnotqualified; noholdouts orsynthetic outcomes.",
+  "components": "60actualdynamiccomponents/1733JSXexpressions/106fieldbindingexpressions;24directlySSRrendered,36namedunrendered. New missingness/defaultzero/staleexport fixes. Initial preview caught closed-modal eager undefined-export-key crash; fixed before release with actualmodal regressions and clean initial-route screenshots. No schema weakening. Modalportal/hover interactions notbrowserverified.",
+  "next": "Continue36unrenderedcomponentcontracts and interaction-only branches without repeatingpassedroutefixtures. Obtain actual CCScontracteconomics and issuer-specific45X/material-cost/cash eligibility; NEEcashpriorities/projectreturns remain. Qualify alternativefullGDP/energy/CO2joint boundaries and monthlysource freshness/vintage/fullscope before frozenholdout; retain repeatedpublisherrows, no invented independentoutcomes.",
+  "counts": "40verified258partial2blocked;original1000/1001 unchanged;0/3qualified cases."
+}
+
 # Latest verified primary-input release
 
 {
@@ -2534,6 +2565,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-rendered-company-4d234eb",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T10:32:39.437743+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-primary-inputs-0a97fab",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T11:27:46.736907+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202
