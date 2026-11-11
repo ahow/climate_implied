@@ -1,4 +1,21 @@
-# Primary input acquisition — coherent checks passed; release pending
+# Latest verified primary-input release
+
+{
+  "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+  "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+  "ci": "43011365564 success",
+  "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+  "verified_at": "2026-11-11T11:26:48.532425+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+  "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+  "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
+}
+
+40verified/258partial/2blocked;0/3qualifiedcases. Original1000/1001 unchanged. Context boundary, not completion.
+
+# Primary input acquisition — released; historical checks
 
 {
   "at": "2026-11-11T11:10:52.009612+00:00",

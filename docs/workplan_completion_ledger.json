@@ -1206,7 +1206,19 @@
       "company": "Actual XOM/CF/UKlaw/EA sources acquired. Corporate sixyear cashcapex arithmetic167–194bn not CCSallocation. Statutory1allowance/tCO2e closed. CF explicit2024metric capacity2m/0.5m; conditional2025–29ceiling11mtonnes, not billings. Clientcapturecapital200m/100m is NOT XOMcost.2022shorttons distinct. ExactEApermitcrosswalk absent; tariffs/opex/funding contract not located, not globally undisclosed.0/3qualified.",
       "climate": "FixedEU27nativeMPD351memberyears/13GDPyears2010–22 assembled;54required2023–24cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
       "next": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
-      "counts": "40verified258partial2blocked after exact S16-010 engineering acceptance reconciliation; no scientific/owner acceptance. Original1000/1001 unchanged."
+      "counts": "40verified258partial2blocked after exact S16-010 engineering acceptance reconciliation; no scientific/owner acceptance. Original1000/1001 unchanged.",
+      "release": {
+        "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+        "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+        "ci": "43011365564 success",
+        "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+        "verified_at": "2026-11-11T11:26:48.532425+00:00",
+        "build_info": "exact SHA verified",
+        "health": 200,
+        "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+        "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+        "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1291,16 +1303,16 @@
     }
   },
   "current_release": {
-    "workspace_commit": "330569935a39812c744eb4ccdf0400c47835c822",
-    "github_main": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
-    "ci": "43003874360 success",
-    "railway_deployment": "4ae973c7-7302-40a3-aa4b-5e70a92bf8e2",
-    "verified_at": "2026-11-11T10:32:14.370900+00:00",
+    "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+    "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+    "ci": "43011365564 success",
+    "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+    "verified_at": "2026-11-11T11:26:48.532425+00:00",
     "build_info": "exact SHA verified",
     "health": 200,
-    "affected": "GET conditional XOM summary200,oneissuer,zeroqualified;private/rawinputs never exposed",
-    "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
-    "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
+    "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+    "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+    "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-11T11:19:35.745971+00:00",
@@ -24172,8 +24184,8 @@
             }
           ],
           "scientific_acceptance": "not-promoted",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+          "deployment_revision": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
           "remaining_gaps": [
             "Identity decomposition exists, but complete five-region compatible GDP/energy/CO2 histories, all trend/break tests and usable forecast holdouts remain incomplete."
           ],
@@ -24579,7 +24591,19 @@
                 }
               }
             }
-          ]
+          ],
+          "live_release_observation": {
+            "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+            "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+            "ci": "43011365564 success",
+            "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+            "verified_at": "2026-11-11T11:26:48.532425+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+            "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+            "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
+          }
         },
         {
           "id": "S04-004",
@@ -25521,8 +25545,8 @@
             }
           ],
           "scientific_acceptance": "not-promoted",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+          "deployment_revision": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
           "remaining_gaps": [
             "Annual revised fossil-CO2 trend is not 2024-2026 monthly/daily high-frequency nowcasting; source original releases and scope-compatible outcomes."
           ],
@@ -25984,7 +26008,19 @@
                 }
               }
             }
-          ]
+          ],
+          "live_release_observation": {
+            "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+            "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+            "ci": "43011365564 success",
+            "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+            "verified_at": "2026-11-11T11:26:48.532425+00:00",
+            "build_info": "exact SHA verified",
+            "health": 200,
+            "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+            "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+            "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
+          }
         },
         {
           "id": "S04-006",
@@ -106521,6 +106557,26 @@
               "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && npm run build"
+              ],
+              "executed_at": "2026-11-11T11:17:46.793914+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 108.75,
+              "counts": {
+                "tests": 561,
+                "pass": 561,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T111746793914Z.log",
+              "workspace_revision": "9c247d94ff3efee839d6f3970edd4ec013b94534",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -106893,8 +106949,8 @@
             "calendar_liability": "Two exact permit/legal joins;24 conditional component cases;384 independently reconciled cash rows and768 allowance-unit rows. Price/FX/banking/allocation/pass-through/timing remain explicit conditional assumptions.0/3qualified full issuer cases."
           },
           "scientific_acceptance": "No independent owner/scientific acceptance, issuer approval or central promotion.",
-          "git_commit": "330569935a39812c744eb4ccdf0400c47835c822",
-          "deployment_revision": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
+          "git_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+          "deployment_revision": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
           "remaining_gaps": [
             "0/3qualified original cases. NEE gross non-common waterfalls/project returns; XOM project funding/CCS economics and replacement; FSLR normalization/rollover/excesscash/positive post-credit terminal need evidenced resolution. No invented tariffs or approval.",
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
@@ -107139,16 +107195,16 @@
             }
           },
           "live_release_observation": {
-            "workspace_commit": "330569935a39812c744eb4ccdf0400c47835c822",
-            "github_main": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
-            "ci": "43003874360 success",
-            "railway_deployment": "4ae973c7-7302-40a3-aa4b-5e70a92bf8e2",
-            "verified_at": "2026-11-11T10:32:14.370900+00:00",
+            "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+            "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+            "ci": "43011365564 success",
+            "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+            "verified_at": "2026-11-11T11:26:48.532425+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "affected": "GET conditional XOM summary200,oneissuer,zeroqualified;private/rawinputs never exposed",
-            "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
-            "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
+            "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+            "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+            "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
           },
           "ready_release_checks": {
             "tests": 440,
@@ -134785,8 +134841,8 @@
             "Source inspection regression is not a desktop/mobile interaction or all-page screenshot review."
           ],
           "scientific_acceptance": "not-assessed",
-          "git_commit": "330569935a39812c744eb4ccdf0400c47835c822",
-          "deployment_revision": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
+          "git_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+          "deployment_revision": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
           "remaining_gaps": [],
           "next_action": "Retest affected rendered routes when their implementation changes; no additional science prerequisite belongs to this engineering criterion.",
           "blockers": [
@@ -134887,16 +134943,16 @@
             ]
           },
           "live_release_observation": {
-            "workspace_commit": "330569935a39812c744eb4ccdf0400c47835c822",
-            "github_main": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
-            "ci": "43003874360 success",
-            "railway_deployment": "4ae973c7-7302-40a3-aa4b-5e70a92bf8e2",
-            "verified_at": "2026-11-11T10:32:14.370900+00:00",
+            "workspace_commit": "d91191e73d5b19004eff0d2a3020847fff9d96e1",
+            "github_main": "0a97fab1017803690b9cbc88b3e588d64155f6f4",
+            "ci": "43011365564 success",
+            "railway_deployment": "fc672a66-0c16-4041-9ad7-6b311a79cb31",
+            "verified_at": "2026-11-11T11:26:48.532425+00:00",
             "build_info": "exact SHA verified",
             "health": 200,
-            "affected": "GET conditional XOM summary200,oneissuer,zeroqualified;private/rawinputs never exposed",
-            "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
-            "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
+            "affected": "Public XOM GET contains subsequent Article18qualification and still0qualified; unchanged numeric allowlist fingerprint",
+            "tests": "Final561TS/0fail/0skip+typecheck/build;152Python and two newmandatoryprivate XOM validators passed before narrative-only integration, measured code unchanged",
+            "scope": "Source/code only, no data/scientific approval. Later documentation/local receipts distinct."
           },
           "criterion_reconciliation": {
             "scope": "Every page renders correctly when market-implied measures, Tier 2 outputs or Track B results are unavailable (fixture with all absent).",
@@ -142040,6 +142096,18 @@
       "health": 200,
       "tests": "537TS/0fail/0skip;147Python;mandatory private NEE passed;4private driver assertions preserved/passed focused;typecheck/build passed",
       "scope": "Code only, no data/scientific promotion. Later doc/local receipts distinct."
+    },
+    {
+      "workspace_commit": "330569935a39812c744eb4ccdf0400c47835c822",
+      "github_main": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
+      "ci": "43003874360 success",
+      "railway_deployment": "4ae973c7-7302-40a3-aa4b-5e70a92bf8e2",
+      "verified_at": "2026-11-11T10:32:14.370900+00:00",
+      "build_info": "exact SHA verified",
+      "health": 200,
+      "affected": "GET conditional XOM summary200,oneissuer,zeroqualified;private/rawinputs never exposed",
+      "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
+      "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
     }
   ]
 }
