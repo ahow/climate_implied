@@ -1,3 +1,33 @@
+# Primary input acquisition — coherent checks passed; release pending
+
+{
+  "at": "2026-11-11T11:10:52.009612+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-xom-source-inputs-private.ts --private-primary && npx tsx script/validate-xom-contract-permit-private.ts --private-primary && npm run build"
+    ],
+    "executed_at": "2026-11-11T11:08:05.213267+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 138.156,
+    "counts": {
+      "tests": 560,
+      "pass": 560,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261111T110805213267Z.log",
+    "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "company": "Actual XOM/CF/UKlaw/EA sources acquired. Corporate sixyear cashcapex arithmetic167\u2013194bn not CCSallocation. Statutory1allowance/tCO2e closed. CF explicit2024metric capacity2m/0.5m; conditional2025\u201329ceiling11mtonnes, not billings. Clientcapturecapital200m/100m is NOT XOMcost.2022shorttons distinct. ExactEApermitcrosswalk absent; tariffs/opex/funding contract not located, not globally undisclosed.0/3qualified.",
+  "climate": "FixedEU27nativeMPD351memberyears/13GDPyears2010\u201322 assembled;54required2023\u201324cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
+  "next": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
+  "counts": "40verified258partial2blocked after exact S16-010 engineering acceptance reconciliation; no scientific/owner acceptance. Original1000/1001 unchanged."
+}
+
 # Latest verified rendered-company release
 
 {
@@ -2476,6 +2506,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-nee-admission-2fb18f0",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T09:57:50.970196+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261111-rendered-company-4d234eb",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-11T10:32:39.437743+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

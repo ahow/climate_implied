@@ -1,0 +1,333 @@
+{
+  "version": "xom-contract-permit-1",
+  "status": "bounded-official-contract-discovery-and-source-qualified-capacity-inputs-complete",
+  "technicalQualifiedOriginalIssuers": 0,
+  "qualifiedOriginalPairs": 0,
+  "scope": "NEW source capture/qualification only. Actual new source-backed physical inputs, not fee inventions, valuation scoring or another stress grid. Previous statutory denomination closure and all old freezes preserved.",
+  "files": [
+    "script/capture-xom-contract-permit-sources.ts",
+    "server/calculation/xomCounterpartyPermitInputs.ts",
+    "script/xom-contract-permit.test.ts",
+    "script/run-xom-contract-permit-inputs.ts",
+    "script/validate-xom-contract-permit-private.ts",
+    "docs/xom-contract-permit-evidence.json"
+  ],
+  "priorEvidenceRead": [
+    "docs/xom-source-inputs-evidence.json",
+    "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/receipts.json",
+    "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/sources/receipts.json"
+  ],
+  "actualSourceAttempts": {
+    "maximumLogicalAttemptsFrozenInCaptureScript": 18,
+    "actualLogicalAttempts": 18,
+    "get": 15,
+    "readOnlyIssuerNewsListingPost": 3,
+    "postAuthority": "Official CF newsroom links its client bundle. That bundle explicitly uses POST/api/v1/news/get with newsCategoryId/newsLandingPageId/pageIndex; requests only read public listing data, no mutation/auth/approval.",
+    "finalStatuses": {"200": 16, "403": 1, "500": 1},
+    "new404s": 0,
+    "boundExhaustedStopped": true,
+    "countBasis": "Logical fetch attempts; automatic redirect hops included within attempt, not separately counted.",
+    "failedOrRestricted": [
+      {"source": "cf-ir-press-index.html", "status": 403, "url": "https://cfindustries.q4ir.com/news-market-information/press-releases/default.aspx", "handling": "Discovered corporate-site investor link; no retry, authentication or access-control workaround. Used separately offered public corporate newsroom and SEC filings."},
+      {"source": "cf-robots.txt", "status": 500, "url": "https://www.cfindustries.com/robots.txt", "handling": "Standard discovery file returned actual issuer error page; no retry or guessed contract slug."}
+    ],
+    "receiptPath": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/receipts.json",
+    "receiptSha256": "a902e516b024f3ddd92c626507354d27c51b2cfc91072c962ee3d6b8a9a95dfb",
+    "commandTemplate": "npx tsx script/capture-xom-contract-permit-sources.ts --private-primary --one NAME URL FIELD [--read-news-json BODY]; actual NAME/URL/FIELD/BODY/timestamps/status/finalURL/hashes retained in receipt rows. Do not replay exhausted18bound.",
+    "attemptNamesInOrder": [
+      "cf-news-index.html","cf-sec-submissions.json","ea-register-index.html",
+      "cf-fy2024-10k.html","cf-fy2022-10k.html","cf-ir-press-index.html","ea-exact-permit-search.html",
+      "cf-robots.txt","ea-about.html","ea-esso-search.html","cf-news-discovery.js",
+      "ea-fawley-epr-record.html","cf-news-api-page0.json","ea-epr-issued-page.html",
+      "cf-clean-energy-page0.json","ea-fawley-epr-v008.pdf","cf-clean-energy-page1.json",
+      "cf-yazoo-2024-announcement.html"
+    ]
+  },
+  "rightsRecords": {
+    "cfIssuer": "Public issuer release/SEC filings; bounded factual extraction and short source assertions only. No full-text redistribution licence claimed. Raw filings, web responses and derivative source text private/git-ignored; no provider prices or raw private exports.",
+    "eaRegister": "Register footer explicitly identifies Environment Agency Conditional Licence. Licence link retained; full terms not separately retrieved within bound. No unconditional data licence inferred.",
+    "govPermit": "Official GOV.UK/EA publication and attached regulatory permit. Bounded factual extraction/citation only; no blanket right to republish attached raw PDF asserted.",
+    "discovery": "Public page/client/listing/error responses are locator evidence only. Current2025/2026news/financial teasers not used as FY2024 observations or scoring inputs."
+  },
+  "sourceRecords": [
+    {
+      "id": "CF-SEC-SUBMISSIONS",
+      "url": "https://data.sec.gov/submissions/CIK0001324404.json",
+      "publicationDate": null,
+      "period": "Current SEC submissions index containing historical FY2022/FY2024 filings",
+      "locator": "name/cik; filings.recent form/filingDate/accessionNumber/primaryDocument",
+      "page": "JSON field paths",
+      "legalIdentity": "CF Industries Holdings, Inc.;CIK1324404",
+      "unit": "Issuer identity and actual filing locators, no economics",
+      "reliability": "Official SEC index; used to discover exact annual URLs, not guess accessions",
+      "rightsRecord": "cfIssuer"
+    },
+    {
+      "id": "CF-FY2022-10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440423000006/cf-20221231.htm",
+      "sha256": "5488953ec3ec63cfb5b7f9cda8c33c00d7734a92751861a321c78ce2becf5160",
+      "publicationDate": "2023-02-23",
+      "publicationDateBasis": "SEC submissions filingDate, corroborated final response lastModified",
+      "period": "FY2022; October2022definitive agreement and expected2025startup",
+      "locator": "MD&A Donaldsonville CCS paragraph; report-wide tons/tonnes convention; final PartIV Item15 EXHIBIT INDEX",
+      "page": "HTML named sections/index, not inferred PDF pagination",
+      "legalIdentity": "CF Industries Holdings, Inc. consolidated issuer; narrative names ExxonMobil group, not executed-signature legal entities",
+      "unit": "Original capacity wording2million tons/year; report explicitly defines tons as short tons, tonnes as metric tons",
+      "reliability": "Official issuer annual filing; signed-agreement announcement is not full executed contract or realized operations",
+      "rightsRecord": "cfIssuer"
+    },
+    {
+      "id": "CF-FY2024-10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440425000006/cf-20241231.htm",
+      "sha256": "90a19d4c1d7e8b6920f14ae774e4b9753cedb28e483414594229d3017b25dc9d",
+      "publicationDate": "2025-02-20",
+      "publicationDateBasis": "SEC submissions filingDate, corroborated final response lastModified",
+      "period": "FY2024; prospective Donaldsonville2025/Yazoo2028",
+      "locator": "Business and MD&A decarbonization/low-carbon ammonia project paragraphs; final PartIV Item15 EXHIBIT INDEX",
+      "page": "HTML named sections/index",
+      "legalIdentity": "CF Industries Holdings, Inc.; CF capture-origin projects. XOM transport/storage is a contracted service, not ownership of CF capture equipment",
+      "unit": "Explicit metric tons CO2/year; approximate lifetime CF dehydration/compression-unit capitalUSD",
+      "reliability": "Official annual filing; expected capacity/startup/total cost are forward disclosures, not observed utilization, paid capex or minimum take-or-pay",
+      "rightsRecord": "cfIssuer"
+    },
+    {
+      "id": "CF-YAZOO-20240725",
+      "url": "https://www.cfindustries.com/newsroom/2024/yazoo-city-ccs-exxonmobil",
+      "sha256": "7dc35c2db19345b4fbe8e127ad4341618159f6491a2c4e4b4fafd4fc34d2bcf6",
+      "publicationDate": "2024-07-25",
+      "period": "Proposed project; expected sequestration2028",
+      "locator": "Headline/date and first three project/commercial-agreement paragraphs",
+      "page": "HTML named paragraphs",
+      "legalIdentity": "CF Industries Holdings, Inc. announces agreement with ExxonMobil group; signed operating entity/SPV identities and contractual cash allocation not provided",
+      "unit": "Up to500,000metric tons nativeCO2/year; approximately100millionUSD CF capture-unit investment",
+      "reliability": "Official actual dated counterparty announcement, discovered via public client/listing, corroborates FY2024annual",
+      "rightsRecord": "cfIssuer"
+    },
+    {
+      "id": "CF-OFFICIAL-DISCOVERY",
+      "url": "https://www.cfindustries.com/newsroom",
+      "publicationDate": null,
+      "period": "Current index; CleanEnergy archive page1 reaches July2024",
+      "locator": "data-news-landing-page-id9; linked /static/cfi/js/cfi-main.bundle.js; documented /api/v1/news/get; categories5456CleanEnergy; page0/page1",
+      "page": "HTML/client metadata and actual JSON result links",
+      "legalIdentity": "CF public corporate newsroom, independently offered from restricted investor host",
+      "unit": "Discovery only",
+      "reliability": "Primary publisher index; original2022release not reached/retrieved in bound, no guessed repeat404",
+      "rightsRecord": "discovery"
+    },
+    {
+      "id": "EA-EXACT-11402-SEARCH",
+      "url": "https://environment.data.gov.uk/public-register/api/search?name-number-search=UK-E-IN-11402",
+      "publicationDate": null,
+      "period": "Current online register query",
+      "locator": "Index actual quick-search form action/name-number-search; exact permit result0",
+      "page": "Search Results",
+      "legalIdentity": "Environmental Agency public registers; exact UK-E-IN-11402 queried",
+      "unit": "0search results, not proof of permit nonexistence",
+      "reliability": "Official direct register query, no GHG monitoring document returned",
+      "rightsRecord": "eaRegister"
+    },
+    {
+      "id": "EA-LEGAL-OPERATOR-SEARCH",
+      "url": "https://environment.data.gov.uk/public-register/api/search?name-number-search=Esso%20Petroleum%20Company%20Limited",
+      "publicationDate": null,
+      "period": "Current register query",
+      "locator": "36results; exact company operator and EPR/BR6996IC installation link",
+      "page": "Search results and discovered /public-register/industrial-installations/registration/EPR-BR6996IC",
+      "legalIdentity": "Esso Petroleum Company,Limited; multiple schemes/sites returned, only actual Fawley EPR record inspected",
+      "unit": "Registration/site metadata, not GHG emissions",
+      "reliability": "Official operator-linked result but different regulatory permit scheme; no join to UKETS11402 inferred",
+      "rightsRecord": "eaRegister"
+    },
+    {
+      "id": "EA-EPR-ISSUED-PUBLICATION",
+      "url": "https://www.gov.uk/government/publications/so45-1tx-esso-petroleum-company-limited-environmental-permit-issued-eprbr6996icv008",
+      "publicationDate": "2019-03-05",
+      "publicationDateBasis": "Visible Published5March2019 and datePublished2019-03-05T14:23:52+00:00",
+      "period": "2019consolidation, not certified currentFY2024",
+      "locator": "Documents: Variation and consolidation notice; Decision document",
+      "page": "GOV.UK publication document links",
+      "legalIdentity": "Esso Petroleum Company,Limited;EPR/BR6996IC/V008",
+      "unit": "Environmental permitting document locator",
+      "reliability": "Official EA publication linked from actual installation record. Decision PDF link discovered but not retrieved after choosing operative consolidation notice within bound",
+      "rightsRecord": "govPermit"
+    },
+    {
+      "id": "EA-EPR-V008-PDF",
+      "url": "https://assets.publishing.service.gov.uk/media/5c7d56daed915d4067f2b333/Variation_and_consolidation_notice.pdf",
+      "sha256": "a9eba7899082b976065b04f82c6e9640c88b66ea5f11d043b45a9e96ba4c7ae8",
+      "publicationDate": "2019-03-05",
+      "publicationDateBasis": "Linked GOV.UK publication; PDF response lastModified2019-03-04 is separate metadata",
+      "effectiveDate": "2019-03-04",
+      "period": "Historical2019EPR variation/consolidation",
+      "locator": "PDF page9 Notice of variation and consolidation; full68page text searched for11402/UK-E-IN identifiers",
+      "page": 9,
+      "legalIdentity": "Esso Petroleum Company, Limited; company registration00026538;EPR/BR6996IC",
+      "unit": "Actual facility address and EPR conditions; NOT UKETS nativeCO2 inventory",
+      "reliability": "Official operative historical EPR document; no UKETS11402/corporate GHG boundary/CO2monitoring qualified",
+      "rightsRecord": "govPermit"
+    }
+  ],
+  "fieldSpecificCaptureRecords": [
+    {
+      "field": "Donaldsonville/Yazoo contracted CCS service capacity",
+      "status": "source-qualified-forward-native-CO2-capacity-not-minimum-billings",
+      "sourceIds": ["CF-FY2024-10K","CF-YAZOO-20240725"],
+      "period": "Expected starts2025and2028",
+      "unit": "Metric tonnes nativeCO2/year, NOT CO2e or observed captured tonnes",
+      "values": {"Donaldsonville": 2000000, "YazooCity": 500000},
+      "boundary": "CF ammonia-process capture-origin facilities in Louisiana/Mississippi; not proof of storage-site geography, XOM equity share or corporate Scope1/2/3 allocation. Do not net against unrelated UK Esso tCO2e obligations."
+    },
+    {
+      "field": "CF capture equipment cost/source funding identity",
+      "status": "source-qualified-approximate-total-investment-not-XOM-capex",
+      "sourceIds": ["CF-FY2024-10K","CF-YAZOO-20240725"],
+      "period": "Lifetime project estimates; future phased construction cash not disclosed",
+      "unit": "USD CF dehydration/compression-unit total cost",
+      "values": {"Donaldsonville": 200000000, "YazooCity": 100000000},
+      "boundary": "CF invests in capture infrastructure. These300mUSD are never charged to XOM transport/storage capex, replacement or common cash. No paid-to-date capex/opex timeline inferred."
+    },
+    {
+      "field": "Original2022native mass convention",
+      "status": "source-qualified-short-tons-not-retrospective-metric",
+      "sourceIds": ["CF-FY2022-10K"],
+      "period": "Original2022Donaldsonville forecast",
+      "unit": "Short tons/year; report explicitly distinguishes tons/tonnes",
+      "value": 2000000,
+      "metricTonnesValue": null,
+      "boundary": "2024explicit2million metric tons kept separately. No silent2022metric relabelling or unsupported claim that physical contract expanded/restated."
+    },
+    {
+      "field": "CCS commercial agreement existence versus fee/opex terms",
+      "status": "agreement-announcements-qualified-executed-terms-not-located-in-examined-material",
+      "sourceIds": ["CF-FY2022-10K","CF-FY2024-10K","CF-YAZOO-20240725"],
+      "period": "October2022Donaldsonville and July2024Yazoo agreements",
+      "unit": "Group-level signed agreement disclosure; missing currency/metric-tonne fee, escalation, take-or-pay and XOM costs",
+      "feePerTonne": null,
+      "xomOpex": null,
+      "boundary": "Read actual project paragraphs and both final annual exhibit indexes. No ExxonMobil/carbon-capture/sequestration contract descriptions found in those indexes. Actual full contracts were not located, not proven globally undisclosed/unfiled."
+    },
+    {
+      "field": "Exact searched annual exhibit indexes",
+      "status": "attempted-specific-filings-no-named-contract-candidate",
+      "sourceIds": ["CF-FY2022-10K","CF-FY2024-10K"],
+      "locator": "Final EXHIBIT INDEX through end of each filed HTML",
+      "unit": "Normalized index characters and named candidate matches",
+      "values": {"FY2022IndexCharacters": 23205, "FY2024IndexCharacters": 22572, "MatchingNamedCcsAgreementDescriptions": 0},
+      "boundary": "Scope is these two complete retrieved annual exhibit indexes plus their narratives; no invented confidentiality exemption/redaction or global SEC absence claim. Other8-K/exhibit packages unattempted."
+    },
+    {
+      "field": "45Q entitlement/economics",
+      "status": "issuer-project-expectation-qualified-statutory-beneficiary-and-cash-unqualified",
+      "sourceIds": ["CF-YAZOO-20240725","CF-FY2024-10K"],
+      "period": "Expected after sequestration commences",
+      "unit": "Expected credit per metric tonne, rate/allocation/cash dates absent",
+      "creditRate": null,
+      "creditBeneficiaryContractAllocation": null,
+      "currentEligibilityCertified": false,
+      "boundary": "CF expects project to qualify. No85USD XOM tariff, automatic credit beneficiary, current-law eligibility or paid credit receipt assumed. IRS/contract-specific statutory allocation not attempted in this18source bound."
+    },
+    {
+      "field": "Actual EPR facility/company identity",
+      "status": "source-qualified-historical-EPR-only",
+      "sourceIds": ["EA-LEGAL-OPERATOR-SEARCH","EA-EPR-ISSUED-PUBLICATION","EA-EPR-V008-PDF"],
+      "period": "Effective2019-03-04/published2019-03-05",
+      "unit": "Company number/site address",
+      "value": {"operator": "Esso Petroleum Company, Limited", "companyRegistrationNumber": "00026538", "facility": "Esso Refinery, Marsh Lane, Fawley, Southampton, Hampshire SO45 1TX"},
+      "boundary": "Site is operative facility clause onpage9, NOT registered office Leatherhead. No certificate that historicalV008was currentFY2024."
+    },
+    {
+      "field": "Exact UKETS11402 site/native-gas monitoring link",
+      "status": "direct-register-attempted-no-exact-document-cross-scheme-candidate-not-qualified",
+      "sourceIds": ["EA-EXACT-11402-SEARCH","EA-LEGAL-OPERATOR-SEARCH","EA-EPR-V008-PDF"],
+      "period": "RequiredFY2024UKETSboundary",
+      "unit": "Missing exact UK-E-IN-11402 operative monitoring/site annex",
+      "value": null,
+      "boundary": "Exact online register search0hits; operator search36records found different EPR permit. Full68page EPR text has zero UK-E-IN identifiers/11402 and no CO2monitoring basis. EPR address/gas conditions cannot substitute for the missing UKETS permit. Decision PDF remains discovered-unretrieved; no request-document/contact submission made."
+    }
+  ],
+  "frozenConditionalCalculation": {
+    "newFinancialGrids": 0,
+    "financialValuationScoring": false,
+    "expectedStartupCondition": "Only if source expected2025/2028commissioning is met; no assumed full first-year operation or take-or-pay billing",
+    "fiveYear2025To2029PhysicalAnnualCapacityCeilingsMetricTonnes": [2000000,2000000,2000000,2500000,2500000],
+    "fiveYearCumulativePhysicalCapacityCeilingMetricTonnes": 11000000,
+    "matureAnnualCapacityCeilingMetricTonnes": 2500000,
+    "cfCaptureUnitApproximateTotalCapitalUsd": 300000000,
+    "atStatedUpperCapacityCfCapitalUsdPerAnnualMetricTonne": {"Donaldsonville": 100, "YazooCity": 200, "aggregate": 120},
+    "capitalRatioMeaning": "Approximate client capture-equipment capital divided by stated annual capacity. NOT annual opex, cash cost/tonne, LCOE, XOM cost, customer fee or project return.",
+    "xomCashRevenue": null,
+    "xomProjectCashValue": null,
+    "wholeXomCashValuationStatus": "explicitly-refused-missing-fee-opex-replacement-funding-and-common-cash-terms",
+    "baselineCarbonExpenseDeductedAgain": false,
+    "priorUkOneAllowancePerTco2eClosureUnchanged": true
+  },
+  "freeze": {
+    "frozenAt": "2026-11-11T11:02:29.824Z",
+    "qualifiedAt": "2026-11-11T11:02:29.864Z",
+    "path": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/2026-11-11T11-02-29-824Z/frozen-before-qualification.json",
+    "sha256": "405aaf2e625cb2caa38060c093e235d056d8192b3325cffc1d19db6c6c332371",
+    "reportPath": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/2026-11-11T11-02-29-824Z/report.json",
+    "reportSha256": "addb8df04b5774d3a600cb3a55404ed54ce69c261c014d78295ee2543b89feae",
+    "protectedPriorDistinctPaths": 254,
+    "oldKernelsExecuted": false,
+    "ownerGatesChanged": false,
+    "qualifiedOriginalIssuers": 0
+  },
+  "verification": {
+    "codeOnly": {
+      "command": "npx tsx --test script/xom-contract-permit.test.ts",
+      "passed": 5, "failed": 0, "skipped": 0, "privateDependencies": false,
+      "logSha256": "b67e5e290d43cbd7115d8cfa226f0604641e159bc1ea351f0d0650a34162bb27"
+    },
+    "qualification": {
+      "command": "npx tsx script/run-xom-contract-permit-inputs.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "14769817a835990b96a6984157d638cdd113451be6160843b7cfb98daee91dac"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-xom-contract-permit-private.ts --private-primary",
+      "exitCode": 0,
+      "actualPrimaryAttemptHashes": 18, "priorDistinctHashGuards": 254, "independentAnnualCapacityChecks": 5,
+      "counterpartyProjects": 2, "annualExhibitIndexes": 2, "datedCounterpartyAnnouncement": 1, "eprPdfPages": 68, "operativeNoticePage": 9,
+      "checks": "Independent source numeral/year extraction; physical ceilings not billings; short-ton history not metric substitution; client investment not XOM capital; exact annual-index scope;45Q expectation not tariff/current eligibility; EPR facility not registered office/UKETS11402; prior statutory unit unchanged; all prior source/code/study hashes preserved",
+      "logSha256": "c951af8a6b601d054ca48f86b0e60916334f5b44d04cd3e6c041660c60de56f5"
+    },
+    "independentPdfTextRebuild": {
+      "command": "pdftotext -layout generated-artifacts/company-operating-corpus/xom-contract-permit-v1/ea-fawley-epr-v008.pdf - | sha256sum",
+      "matchesRetainedFrozenDerivedText": true,
+      "derivedTextSha256": "ec80ef14a21b3affe7e6e5c8b46409fec36726845e428a4664a8f48c11d393a0",
+      "logSha256": "980c31a1816505ad9dcfcddc34da95162f24e57714625427a49d0292060d3728"
+    },
+    "additionalPrivateExhibitSourceSearch": {
+      "scope": "Both exact retrieved final annual exhibit indexes",
+      "searchRegex": "Exxon|EnLink|carbon|\\bCO\\s*2\\b|sequest|storage|offtake|transport",
+      "FY2022Matches": 0,
+      "FY2024Matches": 0,
+      "log": "additional-exhibit-source-search.log",
+      "logSha256": "114659842d7700e751dc39733e6e1ded87c11018313f8f078166704742c21a53",
+      "meaning": "Additional offline bounded source check, not a global disclosure-absence assertion or an old cash-kernel rerun."
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomCounterpartyPermitInputs.ts script/capture-xom-contract-permit-sources.ts script/xom-contract-permit.test.ts script/run-xom-contract-permit-inputs.ts script/validate-xom-contract-permit-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5Typecheck": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomCounterpartyPermitInputs.ts script/capture-xom-contract-permit-sources.ts script/xom-contract-permit.test.ts script/run-xom-contract-permit-inputs.ts script/validate-xom-contract-permit-private.ts",
+      "exitCode": 0, "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logsDirectory": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/",
+    "rawSourceOrProviderDataExport": false,
+    "productionCollectorsEdited": false,
+    "privateCaptureOnly": true,
+    "noPaidProviderPurchasesProductionDdlAuthCollectorCanonicalUiRouteCommitPublishCallbackChanges": true
+  },
+  "narrowResidualsAndReadyNextFields": [
+    "Fee/minimum contracted volume/escalation, XOM pipeline/storage opex and gross capex/replacement/common-funding/credit waterfall remain missing from these specific project narratives and two annual exhibit indexes. No blanket global undisclosed claim.",
+    "Actual original2022press release not reached in two CleanEnergy archive pages; next documented archive page2 is unattempted, not another guessed404slug. Exact executed CCS contract was not located from examined annual indexes; other CF8K/exhibit packages remain unattempted.",
+    "Operator-linked EPR document now actually retrieved, but no exactUKETS11402cross-reference. Need correct GHG permit/monitoring record, not more inferential EPR/HQ geolocation. Different-scheme DecisionPDF discovered but unvisited; any direct document-request/contact submission was not made.",
+    "Existing project capacity inputs are dependency-ready for separately frozen funded operating work, with nativeCO2/calendar/capture-client ownership explicit. XOM fee/opex/capital allocation cannot be fabricated from CF100/200USDperannual-tonne capital intensity or45Q expectation."
+  ]
+}

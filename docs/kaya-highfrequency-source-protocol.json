@@ -1,0 +1,46 @@
+{
+  "version": "kaya-highfrequency-source-1",
+  "readBeforeSelection": [
+    "docs/Forecast_Kaya_Protocol.md",
+    "docs/Kaya_Protocol.md",
+    "docs/Kaya_Results.md",
+    "docs/Short_Horizon_Emissions_Protocol.md",
+    "script/kaya_source_assembly.py",
+    "script/kaya_primary_history_sources.py",
+    "generated-artifacts/kaya-source-investigation/f19cb32dc224480f8cf03c972386390c2c200ed411b61155af7063731cacea86.json",
+    "generated-artifacts/kaya-source-investigation/c2069b4c5534b9e08e50a85003669f85337241849203e658ce5ae373231217e8.json",
+    "Original ledger S04-003 and S04-005 requirements and gaps"
+  ],
+  "KayaPriority": {
+    "knownBindingGap": "Frozen2011PPP Maddison GDP ends2022. China/India/US lack2023-24 GDP; World additionally lacks2011-14 GDP. EU27 aggregate GDP absent. World Bank constant2021PPP cannot fill2011PPP cells. RoW country partition and international transport population/GDP remain unresolved.",
+    "newAssembly": "Use already-retained exact primary MPD2023 workbook to construct source-native fixed-EU27 GDP=sum(gdppc2011PPP*populationThousands*1000) for2010-2024, preserving every missing member-year and original source notes. Sidecar only: do not insert into frozen OWID CSV or fill2023-24.",
+    "GDPUnit": "Constant2011 international PPP dollars; population in thousands from the primary workbook, not a separately spliced population vintage",
+    "regionalMembership": "Exactly existing fixed27 ISO codes from kaya_source_assembly.py. Duplicate/missing/nonfinite/nonpositive cells fail; any incomplete regional sum is null, never a partial observation.",
+    "fitRule": "No frozen forecast run unless all complete original population/GDP/primary-energy/fossil-industrial-CO2 pairs2010-2024 qualify. Otherwise save exact residual cells; no shortened-window fit, interpolation or alternative PPP conversion."
+  },
+  "highFrequencyFallback": {
+    "criterion": "S04-005",
+    "source": "Original publisher EIA Monthly Energy Review archived September2024,September2025,September2026 issues",
+    "boundedRequests": {
+      "maximum": 5,
+      "timeoutSeconds": 45,
+      "maximumBytesPerResource": 20000000,
+      "sequence": [
+        "Official https://www.eia.gov/totalenergy/data/monthly/archive/ index",
+        "At most three exact linked September2024/2025/2026 issue PDFs or linked original issue workbooks; no URL sweep",
+        "At most one linked original table companion or dataset-specific terms/definitions page if essential"
+      ],
+      "paidCalls": 0,
+      "onBlock": "Save exact errors and source gaps. No bypassing HTTP restrictions or replacing an original issue with current revised monthly history."
+    },
+    "fixedMetricBeforeOutcomes": "Table Carbon Dioxide Emissions From Energy Consumption: Electric Power Sector, total across fuels, million metric tons CO2, United States. This is power-sector combustion CO2, not all-GHG, fossil-industrial national CO2, signed land or a Kaya replacement.",
+    "fixedMonthlyWindow": "January-May of each issue year2024,2025,2026, plus same January-May of previous year and previous full calendar year, all within that exact issue. No shortening the five-month window.",
+    "sourceReadyEstimator": "Seasonal-ratio full-year estimate=issue-year Jan-May sum * previous-year annual total / previous-year Jan-May sum. No fitted momentum, pandemic adjustment or future-month input.",
+    "baseline": "Previous full-calendar-year total from the same original issue; no fitted annual trend.",
+    "outcome": "Same-boundary actual2024/2025 annual total in the original September2026 issue. Preserve preliminary/revised labels.2026 annual outcome is unavailable; do not fabricate or score it.",
+    "comparison": "For2024/2025 only, conditional retrospective original-release reconstruction error in MtCO2 if exact cells and dates qualify. No publication-vintage predictive skill claim or acceptance threshold from two cases.",
+    "ifSourceDefinitionMissing": "Source assembly only, no estimator or score. Explicit missing required cells, dates, scope or revision evidence.",
+    "sourceVintage": "Record issue date, observation months, source flags, retrieval time and SHA separately. Publisher-hosted archived issue bytes retrieved2026 are not independently certified first-publication byte identity; HTTP dates cannot establish original availability."
+  },
+  "preservation": "No unchanged diagnostics or forecast studies rerun, existing frozen windows/protocols changed, source splice, production/collector edits, paid calls, purchases, canonical-ledger edits, commits, deployment, publication or callbacks. New disjoint climate-source module/tests/focused JSON evidence only."
+}

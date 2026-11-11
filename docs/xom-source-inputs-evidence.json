@@ -1,0 +1,372 @@
+{
+  "version": "xom-source-inputs-1",
+  "status": "bounded-primary-retrieval-and-source-qualified-adapters-complete-no-valuation",
+  "technicalQualifiedOriginalIssuers": 0,
+  "qualifiedOriginalPairs": 0,
+  "scope": "NEW field-specific primary source retrieval and qualified adapters only. No arbitrary grids or old kernel reruns; no canonical ledger/UI/routes/commit/publish/callback/production mutations.",
+  "priorAttemptsRead": [
+    "generated-artifacts/company-operating-corpus/issuer-original-v3/funding-sources/receipts.json",
+    "generated-artifacts/company-operating-corpus/issuer-original-v3/supplements/receipts.json",
+    "docs/xom-climate-liability-evidence.json",
+    "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/sources/receipts.json"
+  ],
+  "maximumNewPublicAttempts": 16,
+  "priority": ["XOM CCS fee/price/volume/opex/capex/replacement/project funding", "UK ETS statutory gas/unit and permit-site boundary", "Bank/purchase/cash timing"],
+  "networkPolicy": "Free public issuer/IR/counterparty/regulator/legislation only. Identified agent. No paid provider, purchases, billing or access-control workaround.",
+  "attemptRecords": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/receipts.json",
+  "attemptRecordSha256": "938eb49c0f15c733dc97ce833e69fbe1b315d5b98a62c194577a97f46a8a4b40",
+  "actualAttempts": {
+    "captureCommandTemplate": "npx tsx script/capture-xom-source-inputs.ts --private-primary --one NAME URL FIELD; exact NAME/URL/FIELD arguments and per-attempt timestamps are persisted in attemptRecords.attempts[name,url,field,attemptedAt]. No replay:16bound is exhausted.",
+    "countBasis": "16logical public fetch attempts;200/404 counts are final responses. Automatic HTTP redirects are included within each logical attempt; individual redirect-hop counts were not retained or invented.",
+    "newPublicGets": 16,
+    "http200": 13,
+    "http404": 3,
+    "paidProviderCalls": 0,
+    "boundExhaustedAndStopped": true,
+    "old24AttemptSourcePackChanged": false,
+    "failureDetails": [
+      {"source": "xom-ir.html", "result": "404 wrong legacy IR index path; page supplied official /company-information/press-releases link subsequently captured200"},
+      {"source": "cf-ccs-contract.html", "result": "404 guessed CF original contract-announcement slug; no counterparty economics extracted"},
+      {"source": "cf-ccs-contract-fullslug.html", "result": "404 longer guessed headline/site suffix; no third retry, no claim terms are globally undisclosed"}
+    ],
+    "searchDetails": [
+      {"source": "gov-permit-search.json", "query": "exact quoted UK-E-IN-11402", "result": "200 with0results; not proof a site permit does not exist"},
+      {"source": "gov-fawley-search.json", "query": "Esso Fawley greenhouse gas permit", "result": "200 broad OR-like search43898hits; first5not exact permit evidence. No installation address inferred."}
+    ],
+    "nonAuthorityDiscovery": "Current undated corporate-plan index,2024press archive and current-law article4/schedule2 captured for discovery. Only dated2024issuer releases and requested2024-12-31 statutory views enter adapters. No current2026IR-template entity/ticker information used to alter FY2024 security identity."
+  },
+  "files": [
+    "script/capture-xom-source-inputs.ts",
+    "server/calculation/xomSourceInputQualification.ts",
+    "script/xom-source-inputs.test.ts",
+    "script/run-xom-source-inputs.ts",
+    "script/validate-xom-source-inputs-private.ts",
+    "docs/xom-source-inputs-evidence.json"
+  ],
+  "rightsRecords": {
+    "issuer": "Official public issuer IR release; company copyright applies. Bounded factual extraction/citation and short validation strings only; full payload private and git-ignored. No licence to republish full release/provider data asserted.",
+    "legislation": "Official UK statutory XML. Made date and requested historical view recorded separately; no invented original publication date. Licensing terms were not separately captured from a rights page within16requests, so no additional redistribution licence is asserted. Only bounded statutory facts/locators and derived unit checks exposed; raw2.37MB XML stays private.",
+    "registry": "Existing official UK registry reports and SEC Exhibit21 retained/hashes verified. New unit adapter consumes previously authenticated two-permit evidence, not raw workbook/legal-row public export; no provider-market data.",
+    "discovery": "Discovery/error/search payloads are not economic authority, do not evidence commercial terms or absence globally, and remain private."
+  },
+  "sourceRecords": [
+    {
+      "id": "XOM-PLAN-20241211",
+      "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1178/exxonmobil-announces-plans-to-2030-that-build-on-its-unique",
+      "captureFile": "xom-plan-2030.html",
+      "sha256": "b68ed08ccb997f0d8f69ff1ab9786a6c67d409c9d75e48783e146902e90981ee",
+      "publicationDate": "2024-12-11",
+      "publicationTimeDisplayed": "December 11, 2024 6:00 AM CST",
+      "period": "Prospective2025-2030;2030earnings potential vs2024",
+      "locator": "Key elements bullets; Low Carbon Solutions paragraphs; footnotes1/3/4/5; non-GAAP Cash capital expenditures definition",
+      "page": "HTML named sections, not a paginated document",
+      "legalIdentity": "Dated ExxonMobil corporate issuer plan; corporate/LCS/multi-business lower-emissions scopes distinguished. Current IR template corporate name not a successor/security mapping.",
+      "unit": "USD cash-capex forecast ranges; USD annual incremental earnings potential; NOT CCS fee or common FCFE",
+      "reliability": "Official issuer forward disclosure; high provenance, conditional expectations, not observed future cash or audited project economics",
+      "rightsRecord": "issuer"
+    },
+    {
+      "id": "XOM-ADNOC-20240904",
+      "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1171/khaled-bin-mohamed-bin-zayed-witnesses-signing-ceremony-for",
+      "captureFile": "xom-adnoc-baytown.html",
+      "sha256": "a4ec59f1e6dea80f321409a6842038d4034cbcf6932e9aeab77c160db750bc46",
+      "publicationDate": "2024-09-04",
+      "publicationTimeDisplayed": "September 04, 2024 7:00 AM CDT",
+      "period": "Announced agreement2024;expectedFID2025/startup2029",
+      "locator": "Title/bullets; first agreement paragraph; contingent-policy and production/FID paragraph",
+      "page": "HTML named paragraphs",
+      "legalIdentity": "Exxon Mobil Corporation proposed Baytown Texas hydrogen/ammonia facility and ADNOC; project SPV/full cap table not supplied",
+      "unit": "Proposed equity%; hydrogen cubic feet/day; CO2 removal percentage, not tonnes",
+      "reliability": "Official issuer announcement of agreement and conditional proposed facility; no closed transaction/cash contribution or observed commissioning evidence",
+      "rightsRecord": "issuer"
+    },
+    {
+      "id": "UKETS-ARTICLE4-FY2024",
+      "url": "https://www.legislation.gov.uk/uksi/2020/1265/article/4/2024-12-31/data.xml",
+      "captureFile": "ukets-article4-fy2024.xml",
+      "sha256": "8ddc24a6ef325b0ba87825951325267b821988128528bf3e935c4e9395661c1c",
+      "madeDate": "2020-11-11",
+      "publicationDate": null,
+      "publicationDateCaveat": "Separate original publication/consolidation publication date not established in captured metadata; Made date is not silently relabelled publication. HTTP last-modified2026-10-15 is retrieval metadata, not2024legal availability.",
+      "asOf": "2024-12-31",
+      "locator": "Article4 term-reportable-emissions; scheme-year definition",
+      "page": "Official legal provision identifier",
+      "legalIdentity": "UK ETS installations/reportable specified emissions, not corporate GHG Protocol boundary",
+      "unit": "Tonnes CO2 equivalent for specified emissions from regulated activities",
+      "reliability": "Official point-in-time statutory view requested forFY2024; no future-law certification",
+      "rightsRecord": "legislation"
+    },
+    {
+      "id": "UKETS-SCHEDULE2-FY2024",
+      "url": "https://www.legislation.gov.uk/uksi/2020/1265/schedule/2/2024-12-31/data.xml",
+      "captureFile": "ukets-schedule2-fy2024.xml",
+      "sha256": "f190e9c82a3e2d8b9077af6235283f9664e4e340309bed3ea69004810a34eb97",
+      "madeDate": "2020-11-11",
+      "publicationDate": null,
+      "asOf": "2024-12-31",
+      "locator": "Schedule2 paragraph3/Table1 activity and greenhouse-gas rows: combustion of fuels, refining mineral oil, production hydrogen/synthesis gas",
+      "page": "Official legal table/provision identifiers",
+      "legalIdentity": "Statutory activities matching retained Esso permit registry codes; not a complete retrieved installation monitoring-plan annex",
+      "unit": "Named specified gas carbon dioxide for each of three activity rows; no corporate scope/equity conversion",
+      "reliability": "Official statutory activity-to-gas mapping; installation-specific exhaustive gas boundary remains unverified",
+      "rightsRecord": "legislation"
+    },
+    {
+      "id": "UKETS-FULL-FY2024",
+      "url": "https://www.legislation.gov.uk/uksi/2020/1265/2024-12-31/data.xml",
+      "captureFile": "ukets-full-fy2024.xml",
+      "sha256": "f290aafb302118f30d19af7a59db417102ded8e436a59b47ebdf9979ca7e5a7b",
+      "madeDate": "2020-11-11",
+      "publicationDate": null,
+      "asOf": "2024-12-31",
+      "locator": "Article18(2)/(3); Schedule6 paragraph4(2)(b) and4(3); paragraph4(1)(b/c/f) identifies required permit site/activity/monitoring fields",
+      "page": "Official provision identifiers; statutory order2.37MB, not republished",
+      "legalIdentity": "UK ETS installation operators; NOT aviation Article34 deadline used by mistake",
+      "unit": "1allowance per1tCO2e; annual report/surrender calendar; registry holding rule",
+      "reliability": "Official point-in-time statutory view; exact body clauses checked, not current2026view substituted",
+      "rightsRecord": "legislation"
+    },
+    {
+      "id": "RETAINED-UKETS-ALLOCATIONS",
+      "url": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section1/uk_ets_Standard_Report_OHA_Participants_Allocations_2024_20261111010000000.xlsx",
+      "captureFile": "Previously authenticated xom-climate-liability-v1/sources/operators-2024.xlsx; not re-retrieved",
+      "sha256": "c3626c758accdea4ee0bb6ffea1cdaa9f7ba604ebbbfe54382a22735b1702ddc",
+      "publicationDate": null,
+      "publicationDateCaveat": "Original publication not established; filename generation marker20261111010000000 not silently treated as FY2024 public-availability date",
+      "period": "2024",
+      "locator": "Data sheet Installation ID1000118/1000119, Permit ID, Account Holder Name, Regulator, Regulated activity, Allocation Delivered_2024",
+      "page": "Workbook Data sheet named columns/exact identifiers",
+      "legalIdentity": "Esso Petroleum Company Limited, EA, UK-E-IN-12019/11402",
+      "unit": "UKETS delivered allowance units/registry activities",
+      "reliability": "Previously authenticated official registry and exact operator joins, source bytes rehash-verified only; revised history, not real-time availability certification",
+      "rightsRecord": "registry"
+    },
+    {
+      "id": "RETAINED-UKETS-COMPLIANCE",
+      "url": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section5/UK_ETS_Compliance_Report_Emissions_&_Surrenders_2026.xlsx",
+      "captureFile": "Previously authenticated xom-climate-liability-v1/sources/compliance-2026.xlsx; not re-retrieved",
+      "sha256": "21c8670a2642686b2cf50c9afbaa58e8e4dd481689e7a33d3313dce4cb602439",
+      "publicationDate": null,
+      "period": "2024emissions in2026report",
+      "locator": "Data Operator ID1000118/1000119, Permit ID or Monitoring plan ID, Recorded emissions2024; Field Categorisation/Recorded emissions[year] native-unit definition",
+      "page": "Workbook named Data and Field Categorisation sheets",
+      "legalIdentity": "Esso Petroleum Company Limited; EA OPERATOR_HOLDING_ACCOUNT; exact permit/operator/installation matches",
+      "unit": "Verified installationtCO2e, not automatic nativeCO2/corporate scope",
+      "reliability": "Previously authenticated official registry, rehash-verified only; no purchase/bank ledger",
+      "rightsRecord": "registry"
+    },
+    {
+      "id": "RETAINED-XOM-EXHIBIT21",
+      "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xomexhibit21123124.htm",
+      "captureFile": "Previously authenticated xom-climate-liability-v1/sources/xom-ex21-identified.html; not re-retrieved",
+      "sha256": "3eb6cbbd71d0224a9100e915c59d007850c93c2365d642ceddabdcc4e7f31fa1",
+      "publicationDate": "2025-02-19",
+      "publicationDateBasis": "Retained authenticated FY2024 parent filing availableAt2025-02-19T21:39:37.000Z, same SEC accession",
+      "period": "2024-12-31",
+      "locator": "Exhibit21 subsidiary table; exact Esso Petroleum Company Limited100United Kingdom row; heading Percentage of Voting Securities Owned Directly or Indirectly by Registrant",
+      "page": "HTML table exact legal row",
+      "legalIdentity": "Exxon Mobil Corporation registrant/Esso Petroleum Company Limited legal subsidiary, NOT separate ExxonMobil Chemical Limited",
+      "unit": "100%direct/indirect voting securities, NOT measured equity-emissions allocation or project cash ownership",
+      "reliability": "Previously authenticated SEC issuer exhibit with exact identity, source hash reverified only",
+      "rightsRecord": "registry"
+    }
+  ],
+  "fieldSpecificCaptureRecords": [
+    {
+      "field": "Whole-company capital funding/replacement envelope",
+      "status": "source-qualified-forward",
+      "sourceIds": ["XOM-PLAN-20241211"],
+      "locator": "Key plan bullet and non-GAAP Cash Capex definition",
+      "period": "2025 and2026-2030",
+      "unit": "USD/year net cash capex",
+      "values": {"2025Range": [27000000000,29000000000], "2026To2030EachYearRange": [28000000000,33000000000]},
+      "boundary": "Net includes advance collections and subtracts major-project NCI inflows. Not gross no-funding replacement spend; not CCS-only allocation. Future annual funding amounts and sustaining/growth split still missing."
+    },
+    {
+      "field": "Lower-emissions project capex",
+      "status": "source-qualified-forward-upper-opportunity-not-CCS-budget",
+      "sourceIds": ["XOM-PLAN-20241211"],
+      "locator": "Up-to30bn bullet/footnote4",
+      "period": "2025-2030 aggregate",
+      "unit": "USD net cash-capex opportunities",
+      "valueUpper": 30000000000,
+      "boundary": "Includes CCS,hydrogen,lithium,biofuels,Proxxima,Carbon Materials,own/third-party emission reduction. Already within corporate capital plan; never add30bn again or allocate all to CCS."
+    },
+    {
+      "field": "LCS operating-return evidence",
+      "status": "source-qualified-conditional-earnings-not-cash",
+      "sourceIds": ["XOM-PLAN-20241211"],
+      "locator": "Final Low Carbon Solutions paragraph",
+      "period": "2030increment versus2024",
+      "unit": "USD/year incremental earnings potential",
+      "value": 2000000000,
+      "boundary": "LCS covers CCS/hydrogen/lithium. Separate3bn all-new-business earnings headline is not2bnLCS or CCS alone. No price-per-tonne, opex margin, cash remittance or FCFE conversion inferred."
+    },
+    {
+      "field": "Baytown proposed project funding/equity",
+      "status": "source-qualified-announced-agreement-not-paid-funding",
+      "sourceIds": ["XOM-ADNOC-20240904"],
+      "locator": "ADNOC35% equity agreement paragraph",
+      "period": "Announced2024,conditional future project",
+      "unit": "Fraction of proposed equity",
+      "value": 0.35,
+      "paidContributionUsd": null,
+      "exxonFinalEquityFraction": null,
+      "boundary": "Do not assume XOM65% cash share, price of stake, actual closure or capital-contribution schedule."
+    },
+    {
+      "field": "Baytown production/commissioning",
+      "status": "source-qualified-forward-not-CO2-billable-volume",
+      "sourceIds": ["XOM-ADNOC-20240904","XOM-PLAN-20241211"],
+      "locator": "Production/contingency paragraph; LCS Baytown paragraph",
+      "period": "ExpectedFID2025,potentialstartup2029",
+      "unit": "Hydrogen up to1bn cubic feet/day; approximately98% CO2 removed",
+      "absoluteCapturedCo2TonnesPerYear": null,
+      "boundary": "Hydrogen volume is not CO2 mass; standard reference state/feed/stoichiometry unavailable. September ammonia 'tons' unit ambiguous; December 'metric tons' forecast not actual product/capture cash. No invented billable tonnes."
+    },
+    {
+      "field": "CCS fee/price and billable CO2 volume",
+      "status": "not-disclosed-in-two-retrieved-issuer-releases-counterparty-retrieval-failed",
+      "sourceIds": ["XOM-PLAN-20241211","XOM-ADNOC-20240904"],
+      "locator": "Entire CCS/LCS and Baytown release bodies reviewed; CF guessed contract announcement URLs404twice",
+      "period": "Proposed contracts/project",
+      "unit": "Missing currency/tonne, minimum billable volume and fee escalation",
+      "value": null,
+      "boundary": "Executed fee schedule/full commercial contract and standalone CF filing NOT retrieved; not proof terms globally undisclosed. Statutory45Q credit is NOT a CCS tariff; fresh IRS45Q retrieval not attempted in16bound."
+    },
+    {
+      "field": "CCS project opex/replacement/gross capex and common-funding waterfall",
+      "status": "not-disclosed-in-retrieved-releases-other-contract-filings-unattempted",
+      "sourceIds": ["XOM-PLAN-20241211","XOM-ADNOC-20240904"],
+      "locator": "Capital-plan definition and Baytown project paragraphs",
+      "period": "Construction/operating life",
+      "unit": "Missing project USD/year cost/capex, cash draw/contribution/advance/rollover/priorities",
+      "value": null,
+      "boundary": "Corporate net budget and proposed equity percentage do not identify project replacement cash, debt, common ownership waterfall or fee economics. No future return/margin invented."
+    },
+    {
+      "field": "Statutory allowance denomination/reportable gas basis",
+      "status": "source-qualified-FY2024",
+      "sourceIds": ["UKETS-ARTICLE4-FY2024","UKETS-FULL-FY2024"],
+      "locator": "Article18(2)/(3),Article4 reportable-emissions definition",
+      "period": "FY2024law view",
+      "unit": "1UKETS allowance authorizes1tonne CO2 equivalent; specified regulated-activity emissions reportedtCO2e",
+      "value": 1,
+      "boundary": "This closes the old unit-convention source gap in NEW adapter only; no retune of frozen oldXOM24 or blanket current-law eligibility certification."
+    },
+    {
+      "field": "Statutory activity-to-gas and native CO2",
+      "status": "activity-gas-rows-qualified-installation-native-mass-not-certified",
+      "sourceIds": ["UKETS-SCHEDULE2-FY2024"],
+      "locator": "Schedule2 Table1 three rows matched to retained registry activity codes",
+      "period": "2024",
+      "unit": "Specified gasCO2 for combustion/refining/hydrogen-synthesis activities",
+      "nativeCo2Tonnes": null,
+      "boundary": "No complete permit monitoring-plan/gas annex retrieved. ReportedtCO2e is retained; no automatic nativeCO2/corporateScope1/equity/global conversion, despite listed activities having CO2-only statutory rows."
+    },
+    {
+      "field": "Emissions year versus statutory compliance versus purchase timing",
+      "status": "statutory-report-and-surrender-calendar-qualified-cash-purchase-unidentified",
+      "sourceIds": ["UKETS-FULL-FY2024"],
+      "locator": "Schedule6 paragraph4(2)(b),4(3), NOT aviationArticle34",
+      "period": "2024emissions/2025compliance",
+      "unit": "Report due2025-03-31;surrender due2025-04-30",
+      "actualCashPurchaseDate": null,
+      "actualCashSettlementYear": null,
+      "boundary": "Legal surrender deadline is not a company cash-purchase date or price. Prior holdings/transfers/free allocations can satisfy obligations."
+    },
+    {
+      "field": "Selected permits free allocation/bank/purchases",
+      "status": "known-delivered-units-reconciled-bank-and-purchase-ledgers-not-retrieved",
+      "sourceIds": ["UKETS-FULL-FY2024","RETAINED-UKETS-ALLOCATIONS","RETAINED-UKETS-COMPLIANCE","RETAINED-XOM-EXHIBIT21"],
+      "locator": "Article18(3) registry holding rule plus retained two-permit verified/allocation workbook evidence",
+      "period": "2024",
+      "unit": "UKA units/tCO2e, NOT cash",
+      "knownDeliveredUnits": 1509112,
+      "actualUncommittedBankUnits": null,
+      "actualPurchasedUnits": null,
+      "actualPaidPrice": null,
+      "boundary": "Statutory accounts rule is not an account bank balance. Public allocation/surrender reports do not identify actual purchase ledgers. No zero bank, auction-price-as-paid-cash or assumed banking rights invented."
+    },
+    {
+      "field": "Generic permitUK-E-IN-11402 site/monitoring boundary",
+      "status": "attempted-regulator-index-search-unresolved",
+      "sourceIds": ["UKETS-FULL-FY2024"],
+      "locator": "Exact permit search0hits; broader Fawley search unhelpful. Schedule6 paragraph4(1)(b/c/f) says permit must hold address/grid/activity/monitoring details.",
+      "period": "FY2024permit identity",
+      "unit": "Missing installation address/grid and permit annex",
+      "value": null,
+      "boundary": "A direct EnvironmentAgency individual permit PDF/registry-document lookup was NOT retrieved/attempted after locator discovery within bound; no Fawley address assigned from Esso brand/HQ. This is retrieval unresolved, not proven absence."
+    }
+  ],
+  "newSourceQualifiedCalculations": {
+    "financialScenarioGrids": 0,
+    "valuationScoringPerformed": false,
+    "corporatePlanNetCashCapex2025To2030ArithmeticEnvelopeUsd": [167000000000,194000000000],
+    "capitalEnvelopeMeaning": "27+5x28 to29+5x33bn interval arithmetic on disclosed annual ranges, NOT issuer joint endpoint guidance, gross replacement spending, CCS allocation, observed cash, sustainable terminal or new hypothetical margin.",
+    "selectedPermitCount": 2,
+    "reportedCoveredTco2e": 3070057,
+    "deliveredFreeUka": 1509112,
+    "uncoveredUkaBeforeBankOrTransfers": 1560945,
+    "uncoveredByPermit": {"UK-E-IN-12019": 564699, "UK-E-IN-11402": 996246},
+    "unitCalculationMeaning": "Newly source-qualified1allowance/tCO2e; sum per-permit nonnegative shortfalls, no inter-account free-allocation offset assumed. This is units needing allocations/bank/transfers/surrender, NOT observed purchases or incremental cost.",
+    "nativeCo2Tonnes": null,
+    "actualPurchasedUnits": null,
+    "actualPaidCash": null,
+    "wholeCcsCashValuation": "explicitly-refused-missing-project-economics",
+    "baselineCarbonExpenseDeductedAgain": false
+  },
+  "freeze": {
+    "frozenAt": "2026-11-11T10:45:58.823Z",
+    "qualifiedAt": "2026-11-11T10:45:58.849Z",
+    "path": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/2026-11-11T10-45-58-823Z/frozen-before-qualification.json",
+    "sha256": "f60e1eab6db6a115e19c7299049d6800b59c8726ab76c31391fdf9b1d5ec868e",
+    "reportPath": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/2026-11-11T10-45-58-823Z/report.json",
+    "reportSha256": "74c94e8cf3ba59e13ccf0e629e90d1ef2c2b1223ec9b8e4a645bd621747ea7f9",
+    "newFinancialAssumptions": false,
+    "protectedPriorHashReferences": 277,
+    "distinctProtectedPriorPaths": 230,
+    "oldKernelsExecuted": false,
+    "ownerGatesChanged": false,
+    "qualifiedOriginalIssuers": 0
+  },
+  "verification": {
+    "codeOnly": {
+      "command": "npx tsx --test script/xom-source-inputs.test.ts",
+      "passed": 5, "failed": 0, "skipped": 0, "privateFileOrNetworkDependencies": false,
+      "logSha256": "bcebee8c04114dfdbc7b6d63752b34eb13b561acf1279add2d8c7807440aa890"
+    },
+    "qualification": {
+      "command": "npx tsx script/run-xom-source-inputs.ts --private-primary",
+      "exitCode": 0,
+      "logSha256": "9dab2e9283a27f9fce86d12ef1e33e2dd400900af0fcfdc2697f557c2c885b45"
+    },
+    "mandatoryPrivate": {
+      "command": "npx tsx script/validate-xom-source-inputs-private.ts --private-primary",
+      "exitCode": 0,
+      "sourceResponseHashChecks": 16, "legalGasRows": 3, "independentPermitUnitCalendarChecks": 2, "issuerPlanFundingSources": 2,
+      "checks": "Actual retrieval statuses/hashes and bounded stop; exact point-date/source clauses; corporate net-versus-gross budget arithmetic; LCS-versus-CCS scope; ADNOC announced-not-paid ownership; H2 volume notCO2mass; legal gas table; per-permit units/calendar notbank/purchasecash; all protected originals unchanged.",
+      "logSha256": "af16ad541370b2ecbea2f4f5c75802be3fc3e14e106e171d7a62083d36d7d3a4"
+    },
+    "strictTypecheck": {
+      "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomSourceInputQualification.ts script/capture-xom-source-inputs.ts script/xom-source-inputs.test.ts script/run-xom-source-inputs.ts script/validate-xom-source-inputs-private.ts",
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "es5Typecheck": {
+      "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomSourceInputQualification.ts script/capture-xom-source-inputs.ts script/xom-source-inputs.test.ts script/run-xom-source-inputs.ts script/validate-xom-source-inputs-private.ts",
+      "exitCode": 0, "tsconfigRelaxed": false,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logsDirectory": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/",
+    "noPaidCallsPurchasesBillingProductionDdlAuthCollectorUiRoutesCommitPublishCallbackChanges": true,
+    "rawPrimaryOrProviderDataExported": false
+  },
+  "readyNextSourceFields": [
+    "Discover CF Industries original CCS announcement/SEC contract or later counterparty filing from official index, rather than additional guessed slugs. Capture billable tonnes, transport/storage fee terms or explicit confidentiality/redaction; counterparty capture capex must not be assigned to XOM.",
+    "Retrieve exact EnvironmentAgencyUK-E-IN-11402 permit/monitoring plan via direct public-register document index; Schedule6 now supplies exact required site/activity/gas locator. Existing keywordsearch is not a permit retrieval.",
+    "Retrieve IRS45Q statutory owner/credit-duration/tonne/cash-claim provisions if needed; credit rate cannot substitute for undisclosed customer tariff, and no future legal eligibility assertion is made here.",
+    "Seek actual operator registry account holdings/transfer/trade ledger if publicly available. Annual emissions/free-allocation/surrender and legal dates alone cannot establish company-paid cash timing/prices or an uncommitted bank.",
+    "New2026-2030 corporate NET cash-capex ranges and LCS2bn conditional earnings disclosure are dependency-ready source inputs for a separately frozen funded operating experiment only after gross funding/working-capital/project-cash boundaries are respected. No new grid is proposed merely to fit a price."
+  ]
+}

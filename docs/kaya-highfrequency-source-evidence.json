@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "criteria": ["S04-003", "S04-005"],
+  "status": "new-primary-EU27-GDP-sidecar-and-three-original-dated-quarterly-power-releases-assembled; full-Kaya-and-emissions-nowcast-withheld",
+  "sourcePlans": [
+    {"path":"docs/kaya-highfrequency-source-protocol.json","sha256":"d67c812a4b914b8fec77e7986ac792314ef65f42ab490a71b6539ce012a5a692"},
+    {"path":"docs/kaya-highfrequency-independent-fallback.json","sha256":"c03fcd69f3fbf4361a14fd0613b44234f03bdb92340370e322691769bc0b5bff"},
+    {"path":"docs/highfrequency-author-identity-correction.json","sha256":"da554d5a2ff1e484f7154d7a77f697f955df8e51295731a7646fc5da1e80babc"},
+    {"path":"docs/highfrequency-original-release-freeze.json","sha256":"80b69dd4bfa22a7f09c268310e81200d429880860fd77bab5c52278764c5697b"}
+  ],
+  "readBeforeSourceSelection": [
+    "docs/Forecast_Kaya_Protocol.md",
+    "docs/Kaya_Protocol.md",
+    "docs/Kaya_Results.md",
+    "docs/Short_Horizon_Emissions_Protocol.md",
+    "Existing kaya-source-investigation inventories and source attempts",
+    "Original S04-003 and S04-005 clauses"
+  ],
+  "primaryGDPAssembly": {
+    "publisher": "Maddison Project, University of Groningen / DataverseNL",
+    "dataset": "MPD2023, DOI10.34894/INZBF2, Dataverse version1.0",
+    "publisherReleaseTimestamp": "2024-04-26T08:43:37Z",
+    "workbook": "generated-artifacts/kaya-source-investigation/ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6.source",
+    "workbookSHA256": "ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6",
+    "metadata": "generated-artifacts/kaya-source-investigation/85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669.source",
+    "metadataSHA256": "85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669",
+    "rights": "Metadata CC-BY-4.0; workbook citation policy and underlying original source requirements retained. Native source sheets privately retained; no redistribution.",
+    "unitProof": "Native Notes sheet specifies real GDP per capita in2011$ and population mid-year in thousands. Frozen source-linked codebook explicitly defines GDP as international dollars in2011 prices, adjusted for inflation and living-cost differences, and identifies MPD2023.",
+    "frozenCodebookSHA256": "33b4f5e00efd58c7b83863f736beba1af4df946b43642b0400c3ec38648e0e8e",
+    "frozenOWIDSourceSHA256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
+    "fixedRegion": "EU27 exactly AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE; no UK or time-varying membership",
+    "formula": "For each original member-year: native gdppc * native populationThousands *1000; region=sum27 complete member products. Neither OWID population nor another GDP vintage is spliced in.",
+    "newExactAssembly": {
+      "memberYearsEnumerated": 405,
+      "nativeMemberYearsAvailable": 351,
+      "completeRegionalAnnualGDPYears": 13,
+      "completeYearsInclusive": [2010,2022],
+      "missingMemberYears": 54,
+      "missingDefinition": "All27 members ×2023/2024; both native gdppc and pop absent. Exact member/year/source-row/input cells retained in private result.",
+      "GDP2010Constant2011InternationalDollars": 14452036879082.492,
+      "GDP2022Constant2011InternationalDollars": 17087505117901.738,
+      "primaryVersusFrozenMatchedMemberYearGDPComparisons": 351,
+      "maxAbsPrimaryMinusFrozenGDP2011Dollars": 237115.4150390625,
+      "maxRelativePrimaryMinusFrozenGDP": 9.932972994836845e-8,
+      "relativeWorstCell": {"member":"HRV","year":2014,"primaryGDP":79720250778.5902,"frozenGDP":79720242860.0},
+      "precisionDecision": "The primary arithmetic and frozen GDP values are not byte-identical. Differences are preserved, not removed by a fitted offset, guessed float-storage conversion or relaxed acceptance tolerance. No substitution authorized."
+    },
+    "fullWindowDecision": "No complete compatible2010-2024 regional P/GDP/primary-energy/fossil-industrial-CO2 input set. Training2010-2018 and holdout2019-2024 remain untouched; no shortened-window forecast or unchanged study rerun.",
+    "unchangedPhysicalDefinitions": {
+      "GDP": "Constant2011 international PPP dollars,not nominal or constant2021PPP; source-primary product uses its own population rather than substituting the frozen OWID population factor.",
+      "energy": "Frozen source primary_energy_consumption in TWh from the specified EI2025/EIA2026 release,not an interchangeable total-energy-supply measure. New UK quarterly electricity generation is a different denominator and never fills primary-energy cells.",
+      "carbon": "Frozen CO2 is annual fossil/industrial CO2 in Mt from GCB2025,excluding land-use change,not all-GHG CO2e. Industrial-process CO2 means C/E remains an accounting ratio,not a pure fuel emission factor.",
+      "regionBoundary": "A fixed ISO membership sum establishes an explicit GDP aggregation,not independent compatibility of every primary-energy/carbon national territory or international-bunker boundary. Those joint boundary reconciliations remain required before use."
+    },
+    "otherExactResidualGaps": [
+      "China/India/US missing frozen GDP2023-2024",
+      "World additionally missing frozen GDP2011-2014",
+      "RoW lacks authorized disjoint complete country partition with energy/CO2 bunker reconciliation",
+      "International transport has no source-defined population/GDP account",
+      "World Bank constant2021PPP metadata is incompatible with frozen2011PPP and is not a deflator or gap fill"
+    ],
+    "vintageClassification": "Source-native primary release assembled as revised-history sidecar, not data available at2010-2018 forecast origins. No historical publication vintage is inferred from fetch time."
+  },
+  "boundedNetwork": {
+    "totalRequests": 9,
+    "paidCalls": 0,
+    "maximumSecondsEach": 45,
+    "maximumBytesEach": 20000000,
+    "transportPattern": "curl --max-time 45 --max-filesize 20000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+    "preservedFailedAndRejectedAttempts": [
+      {
+        "url":"https://www.eia.gov/totalenergy/data/monthly/archive/",
+        "retrievalStartedUTC":"2026-11-11T10:37:05Z",
+        "httpStatus":403,
+        "bytes":58,
+        "body":"generated-artifacts/kaya-highfrequency-source/eia-archive.html",
+        "bodySHA256":"c54008cfaffe2e6442ed8bfedc1c3511572980a7af2796ff3a76fedd5d4d1fba",
+        "headers":"generated-artifacts/kaya-highfrequency-source/eia-archive.headers",
+        "headersSHA256":"15a5fecd5e9d92dcfb92cc1a7313255ef381d0390d03590dbaad374c53297189",
+        "decision":"Stop EIA route; no guessed original PDFs,mirrors,credentials or HTTP bypass. Frozen EIA seasonal-ratio estimator was not executed."
+      },
+      {
+        "url":"https://api.figshare.com/v2/articles/12142824",
+        "retrievalStartedUTC":"2026-11-11T10:37:54Z",
+        "httpStatus":200,
+        "body":"generated-artifacts/kaya-highfrequency-source/carbonmonitor-metadata.json",
+        "bodySHA256":"baac0a2956ca652650cad49e4fd35385c86301a8cd54fe2ca4995c4f601f4242",
+        "headers":"generated-artifacts/kaya-highfrequency-source/carbonmonitor-metadata.headers",
+        "headersSHA256":"625523ea2c90ab739e2234475440a44ab1d521d16f652b1e537d32e5557c8cc3",
+        "decision":"Rejected mistaken candidate identity: actual record is an unrelated syllogistic-reasoning supplement,not Carbon Monitor. No attached file downloaded,no adjacent IDs searched,no data attribution carried forward."
+      },
+      {
+        "url":"https://carbonmonitor.org/",
+        "retrievalStartedUTC":"2026-11-11T10:38:40Z",
+        "httpStatus":200,
+        "body":"generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+        "bodySHA256":"aa71a525bf231f0439459844e077a7e0af02dd3fce44ed65701b412cccc86b33",
+        "headers":"generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.headers",
+        "headersSHA256":"005aeaa8295e975e6a2c3640fd6c4edcf0e1fa20d2baabead9ea2af767c2c644",
+        "decision":"Author identity confirmed; page exposes live downloadFullDataset but no qualified dated original2024-26 file versions. No live latest history downloaded or mislabelled an earlier origin snapshot."
+      }
+    ],
+    "successfulOriginalReleaseRequests": [
+      {
+        "year":2024,
+        "metadataURL":"https://www.gov.uk/api/content/government/statistics/energy-trends-june-2024",
+        "metadataRetrievedUTC":"2026-11-11T10:39:29Z",
+        "metadataPath":"generated-artifacts/kaya-highfrequency-source/desnz-2024.json",
+        "metadataSHA256":"047e0f0ef3017fb65f759b43453f883cca4fc5d720b00ef2e9ebb28c4602aba6",
+        "originalPDFURL":"https://assets.publishing.service.gov.uk/media/667c0c3e7d26b2be17a4b38e/Energy_Trends_June_2024.pdf",
+        "pdfRetrievedUTC":"2026-11-11T10:39:39Z",
+        "pdfPath":"generated-artifacts/kaya-highfrequency-source/desnz-2024.pdf",
+        "pdfSHA256":"97b98debc06c7776b0d270cc884e4b40353ce6df8ecdb18719ff097df2547682",
+        "publisherFirstPublished":"2024-06-27T09:30:04+01:00"
+      },
+      {
+        "year":2025,
+        "metadataURL":"https://www.gov.uk/api/content/government/statistics/energy-trends-june-2025",
+        "metadataRetrievedUTC":"2026-11-11T10:39:29Z",
+        "metadataPath":"generated-artifacts/kaya-highfrequency-source/desnz-2025.json",
+        "metadataSHA256":"d3ddadc36458ca5bdbe282ca0f92dc31e3ed499817d951a1e341051511b41dde",
+        "originalPDFURL":"https://assets.publishing.service.gov.uk/media/685bd5d8c07c71e5a87097e5/Energy_Trends_June_2025.pdf",
+        "pdfRetrievedUTC":"2026-11-11T10:39:41Z",
+        "pdfPath":"generated-artifacts/kaya-highfrequency-source/desnz-2025.pdf",
+        "pdfSHA256":"ab303ab7f8ce55c77d3c778c028bc4abef56968bfca4bafbbe72c6490fa37e4d",
+        "publisherFirstPublished":"2025-06-26T09:30:13+01:00"
+      },
+      {
+        "year":2026,
+        "metadataURL":"https://www.gov.uk/api/content/government/statistics/energy-trends-june-2026",
+        "metadataRetrievedUTC":"2026-11-11T10:39:29Z",
+        "metadataPath":"generated-artifacts/kaya-highfrequency-source/desnz-2026.json",
+        "metadataSHA256":"48e2b40ceba0fe92b01b955fb6fc34d65aecb670e7260f275f2f5382155f0c42",
+        "originalPDFURL":"https://assets.publishing.service.gov.uk/media/6ac7b5f2ab368efeb4c933ee/Energy_Trends_June_2026.pdf",
+        "pdfRetrievedUTC":"2026-11-11T10:39:42Z",
+        "pdfPath":"generated-artifacts/kaya-highfrequency-source/desnz-2026.pdf",
+        "pdfSHA256":"7c3fdf64ab82af957f911d308dedab3f7c63f4a1d057697a19a48394f911572d",
+        "publisherFirstPublished":"2026-06-30T09:30:00+01:00"
+      }
+    ],
+    "allSixGovernmentRequestsHTTP200":true,
+    "headersRetained":"generated-artifacts/kaya-highfrequency-source/desnz-{year}.headers and desnz-{year}-pdf.headers",
+    "newDataLicensing":"Original DESNZ publications explicitly carry Crown copyright/Open Government Licence v3.0 except identified third-party content; extracted government statistical narrative cells used only,not charts or third-party graphics."
+  },
+  "actualNewHighFrequencyAssembly": {
+    "publisher":"UK Department for Energy Security and Net Zero",
+    "originalIssues":["Energy Trends June2024","Energy Trends June2025","Energy Trends June2026"],
+    "region":"United Kingdom,not EU27 and not an automatic RoW allocation",
+    "observationFrequency":"Quarterly: January-March2024,2025,2026",
+    "monthlyOrDailyClaim":false,
+    "unit":"TWh electricity generation,not CO2/CO2e",
+    "publishedSourceCells":18,
+    "metrics":["total_generation","renewable_generation","nuclear_generation","fossil_generation","gas_generation","wind_generation"],
+    "sourceLocations":"2024 PDFpage12;2025 and2026 PDFpages12-13,Section5 electricity narrative",
+    "numericPrecision":"Exactly transcribed published rounded narrative numbers; not asserted to be unrounded underlying table values and never digitized/backsolved from charts/percentage changes",
+    "totalGenerationTWhByYear":{"2024":77.0,"2025":79.8,"2026":82.3},
+    "gasGenerationTWhByYear":{"2024":25.4,"2025":30.4,"2026":26.6},
+    "unallocatedTotalMinusRenewableNuclearFossilTWhByYear":{"2024":2.0,"2025":2.5999999999999943,"2026":2.799999999999997},
+    "residualDecision":"Retain source categories/rounding residual; these three aggregates do not exhaust all source generation classes. No balancing correction,fitted carbon factor or fake zero residual.",
+    "revisionFlags":"Each original issue states latest periods are provisional and liable to subsequent revision. Metadata first_published_at/public_updated_at retained separately from retrieval timestamps.",
+    "vintageCaveat":"These are publisher-linked original dated issues,not latest tables relabelled as earlier releases. Current downloaded issue bytes are not independently certified identical to first-publication bytes. No historical-origin skill claim.",
+    "CO2OutcomeAvailable":false,
+    "forecastOrNowcastScore":null
+  },
+  "implementation": {
+    "module":"script/kaya_highfrequency_source_bridge.py",
+    "moduleSHA256":"d5f746759778cc80138712a38ea5dbb9ff65ccee735bec6045b1c0c999f0efe2",
+    "tests":"script/test_kaya_highfrequency_source_bridge.py",
+    "testsSHA256":"0c1730af567355fc71ed245f40c9e3a970d4ee6c7fc6e4cc944066299e69abe1",
+    "newBehaviors":[
+      "Native OOXML primary workbook reader preserving exact source rows and units; formulas rejected rather than executed",
+      "Complete fixed-EU27 native GDP arithmetic and missing-member-year matrix",
+      "Source-primary versus frozen-country GDP residuals,without replacing frozen values",
+      "Hash/date/title/rights/provisional-status-qualified original power release loader",
+      "Source-specific published-cell extraction with page,period,unit,precision and revision identity"
+    ],
+    "unitTestsRequirePrivateSources":false
+  },
+  "execution": {
+    "testsCommand":"PYTHONPATH=script .pythonlibs/bin/python -m unittest test_kaya_highfrequency_source_bridge -v",
+    "testsExitCode":0,
+    "pass":5,
+    "fail":0,
+    "skip":0,
+    "testsLog":"generated-artifacts/kaya-highfrequency-source/focused-tests.log",
+    "testsLogSHA256":"d0b8c625556e8d46dabfb8ab084a5999ecd340bbad874748960d4f57323982f9",
+    "assemblyCommand":".pythonlibs/bin/python script/kaya_highfrequency_source_bridge.py",
+    "assemblyExitCode":0,
+    "assemblyCompletedUTC":"2026-11-11T10:42:31.578394+00:00",
+    "assemblyLog":"generated-artifacts/kaya-highfrequency-source/assembly-execution.log",
+    "assemblyLogSHA256":"8189b002f22f205fb460fae829362e22d7ca9fa05073d406ec445af4cd9f0709",
+    "textExtractionCommand":"For y=2024,2025,2026: pdftotext -layout generated-artifacts/kaya-highfrequency-source/desnz-$y.pdf generated-artifacts/kaya-highfrequency-source/desnz-$y.txt",
+    "textExtractionCaveat":"2026 PDF emitted a bad-annotation-destination warning; selected narrative text,source hashes,date and value-presence gates all passed. No chart extraction used.",
+    "result":"generated-artifacts/kaya-highfrequency-source/source-assembly-result.json",
+    "resultSHA256":"e6475e2438acbc3d20a598acf1ce3380be4facd27324f5ffdff06a47710d5e59"
+  },
+  "scientificDecision": {
+    "S04-003":"New primary regional GDP sidecar and exact351-member comparison delivered,not a full-window forecast.54 required2023-24 member-year GDP products absent; no existing frozen window changed,no alternate PPP or energy definition inserted.",
+    "S04-005":"Three genuine dated original quarterly UK power releases provide18 observed/provisional activity outcomes across2024-26. This advances original-release provenance but does not complete monthly/daily CO2 estimation. Monthly/daily source-specific native CO2/intensity boundaries and compatible dated outcomes remain missing.",
+    "newForecastFits":0,
+    "unchangedDiagnosticsRerun":0,
+    "holdoutScoring":false,
+    "centralEligible":false,
+    "noPromotion":true
+  },
+  "preservation": {
+    "existingFrozenSourceFilesChanged":false,
+    "existingForecastProtocolsOrWindowsChanged":false,
+    "canonicalLedgersEditedByThisTask":false,
+    "productionCollectorAuthDDLChanges":false,
+    "purchasesPaidCallsLicenseBypass":false,
+    "commitsDeployPublicationCallbacks":false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": "highfrequency-author-identity-correction-1",
+  "reasonBeforeAnyDatasetDownload": "The candidate Figshare12142824 returned an unrelated syllogistic-reasoning supplement. Reject identity immediately; no file downloaded and no adjacent article IDs probed. Retain the failed attribution attempt.",
+  "authoritativeCorrection": "Use Carbon Monitor's own https://carbonmonitor.org/ landing page, not another guessed dataset DOI. This is a distinct author identity resolution step,not bypassing EIA403.",
+  "maximumRequests": 3,
+  "timeoutSeconds": 45,
+  "maximumBytesEach": 20000000,
+  "sequence": [
+    "Official author landing page",
+    "At most one explicitly linked data/release metadata page",
+    "At most one explicitly linked dated original release file,only after identity,rights,size and version metadata qualify"
+  ],
+  "onInsufficientLinks": "Stop. No JavaScript credential extraction,API guessing or page-source endpoint sweep.",
+  "classification": "Any latest daily history is explicitly revised-history,not an origin snapshot. Exact dated release metadata required for original-vintage qualification. Source assembly only; no invented scope/intensity/nowcast outcome.",
+  "numericalMethods": "Existing frozen Kaya window and missing-cell gates unchanged. No new fallback estimator or scientific score is authorized by this identity correction."
+}

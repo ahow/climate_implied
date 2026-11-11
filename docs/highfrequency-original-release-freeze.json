@@ -1,0 +1,21 @@
+{
+  "version": "highfrequency-original-release-1",
+  "reason": "EIA archive403; first Figshare identity rejected; Carbon Monitor author page exposes a live download but no independently dated version/rights metadata for original2024-26 snapshots. Do not mislabel that latest history as origin data.",
+  "lastIndependentSourceFamily": "UK DESNZ Energy Trends June2024,June2025,June2026 original government statistical releases",
+  "maximumRequests": 6,
+  "timeoutSeconds": 45,
+  "maximumBytesEach": 20000000,
+  "sequence": [
+    "Exact GOV.UK content metadata for energy-trends-june-2024",
+    "Exact GOV.UK content metadata for energy-trends-june-2025",
+    "Exact GOV.UK content metadata for energy-trends-june-2026",
+    "At most one directly attached original Energy Trends issue PDF per returned release,three files maximum"
+  ],
+  "identityGate": "Returned title,publication date and official document attachment must explicitly match the selected issue. Do not use a generic live table or current revision as an earlier release.",
+  "sourceAssembly": "Extract source-published electricity generation/supply by fuel and observation periods from each exact original issue. Require actual original cells,units and provisional/revision flags. If tables are quarterly rather than monthly,record that exact frequency; do not call them monthly.",
+  "CO2Boundary": "Electricity activity inputs only unless the exact issue supplies a compatible directly observed emissions metric. Do not multiply by invented factors or call generation an emissions outcome.",
+  "numericalMethods": "Source assembly/revision bridge only; no forecast fit,holdout score or promoted2024-26 CO2 estimate. Preserve all exact observation periods/cells and publication/retrieval dates.",
+  "datingCaveat": "GOV.UK first_published_at and original issue cover date are source evidence. Current downloaded bytes may contain publisher corrections; hash/fetch dates do not certify original release byte identity.",
+  "onFailure": "Stop this final source family and save exact errors; no further publisher sweep.",
+  "prohibitions": "No access-control bypass,paid calls,purchases,source splice,fake vintage,current-history-as-origin,production/collector changes,canonical edits,commits,deployment,publication or callbacks."
+}

@@ -1180,6 +1180,33 @@
         "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
         "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
       }
+    },
+    "primary_inputs": {
+      "at": "2026-11-11T11:10:52.009612+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-xom-source-inputs-private.ts --private-primary && npx tsx script/validate-xom-contract-permit-private.ts --private-primary && npm run build"
+        ],
+        "executed_at": "2026-11-11T11:08:05.213267+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 138.156,
+        "counts": {
+          "tests": 560,
+          "pass": 560,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261111T110805213267Z.log",
+        "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "company": "Actual XOM/CF/UKlaw/EA sources acquired. Corporate sixyear cashcapex arithmetic167–194bn not CCSallocation. Statutory1allowance/tCO2e closed. CF explicit2024metric capacity2m/0.5m; conditional2025–29ceiling11mtonnes, not billings. Clientcapturecapital200m/100m is NOT XOMcost.2022shorttons distinct. ExactEApermitcrosswalk absent; tariffs/opex/funding contract not located, not globally undisclosed.0/3qualified.",
+      "climate": "FixedEU27nativeMPD351memberyears/13GDPyears2010–22 assembled;54required2023–24cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
+      "next": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
+      "counts": "40verified258partial2blocked after exact S16-010 engineering acceptance reconciliation; no scientific/owner acceptance. Original1000/1001 unchanged."
     }
   },
   "prior_native_fleet_increment": {
@@ -1276,7 +1303,7 @@
     "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T10:28:02.943190+00:00",
+  "updated_at": "2026-11-11T11:10:52.009612+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -24095,7 +24122,7 @@
             "script/forecast_kaya.py:prepare,evaluate,digest,main",
             "docs/Kaya_Results.md:"
           ],
-          "behaviour_delivered_this_run": "Kaya decomposition and forecast-window refusal logic exist; complete compatible regional histories are not established.",
+          "behaviour_delivered_this_run": "FixedEU27nativeMPD351memberyears/13GDPyears2010–22 assembled;54required2023–24cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
           "inputs_versions_assumptions": [
             "CO2=GDP*(energy/GDP)*(CO2/energy); compatible definitions and structural breaks required",
             {
@@ -24116,7 +24143,28 @@
             },
             "No accepted calibration promotion; current-revision histories are not original publication vintages"
           ],
-          "executions": [],
+          "executions": [
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-xom-source-inputs-private.ts --private-primary && npx tsx script/validate-xom-contract-permit-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T11:08:05.213267+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 138.156,
+              "counts": {
+                "tests": 560,
+                "pass": 560,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T110805213267Z.log",
+              "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          ],
           "numerical_results": [
             {
               "result": "Direct source and named focused fixture evidence only; no accepted real full-ensemble result established",
@@ -24129,7 +24177,7 @@
           "remaining_gaps": [
             "Identity decomposition exists, but complete five-region compatible GDP/energy/CO2 histories, all trend/break tests and usable forecast holdouts remain incomplete."
           ],
-          "next_action": "Identity decomposition exists, but complete five-region compatible GDP/energy/CO2 histories, all trend/break tests and usable forecast holdouts remain incomplete.",
+          "next_action": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
           "blockers": [],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
@@ -24265,7 +24313,273 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
-          }
+          },
+          "primary_source_increment": [
+            {
+              "file": "docs/kaya-highfrequency-source-evidence.json",
+              "sha256": "da9e2ae360d0046d50a35a226c510332cb49ae446fb407bbe14587219bda17bb",
+              "details": {
+                "schemaVersion": 1,
+                "criteria": [
+                  "S04-003",
+                  "S04-005"
+                ],
+                "status": "new-primary-EU27-GDP-sidecar-and-three-original-dated-quarterly-power-releases-assembled; full-Kaya-and-emissions-nowcast-withheld",
+                "sourcePlans": [
+                  {
+                    "path": "docs/kaya-highfrequency-source-protocol.json",
+                    "sha256": "d67c812a4b914b8fec77e7986ac792314ef65f42ab490a71b6539ce012a5a692"
+                  },
+                  {
+                    "path": "docs/kaya-highfrequency-independent-fallback.json",
+                    "sha256": "c03fcd69f3fbf4361a14fd0613b44234f03bdb92340370e322691769bc0b5bff"
+                  },
+                  {
+                    "path": "docs/highfrequency-author-identity-correction.json",
+                    "sha256": "da554d5a2ff1e484f7154d7a77f697f955df8e51295731a7646fc5da1e80babc"
+                  },
+                  {
+                    "path": "docs/highfrequency-original-release-freeze.json",
+                    "sha256": "80b69dd4bfa22a7f09c268310e81200d429880860fd77bab5c52278764c5697b"
+                  }
+                ],
+                "readBeforeSourceSelection": [
+                  "docs/Forecast_Kaya_Protocol.md",
+                  "docs/Kaya_Protocol.md",
+                  "docs/Kaya_Results.md",
+                  "docs/Short_Horizon_Emissions_Protocol.md",
+                  "Existing kaya-source-investigation inventories and source attempts",
+                  "Original S04-003 and S04-005 clauses"
+                ],
+                "primaryGDPAssembly": {
+                  "publisher": "Maddison Project, University of Groningen / DataverseNL",
+                  "dataset": "MPD2023, DOI10.34894/INZBF2, Dataverse version1.0",
+                  "publisherReleaseTimestamp": "2024-04-26T08:43:37Z",
+                  "workbook": "generated-artifacts/kaya-source-investigation/ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6.source",
+                  "workbookSHA256": "ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6",
+                  "metadata": "generated-artifacts/kaya-source-investigation/85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669.source",
+                  "metadataSHA256": "85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669",
+                  "rights": "Metadata CC-BY-4.0; workbook citation policy and underlying original source requirements retained. Native source sheets privately retained; no redistribution.",
+                  "unitProof": "Native Notes sheet specifies real GDP per capita in2011$ and population mid-year in thousands. Frozen source-linked codebook explicitly defines GDP as international dollars in2011 prices, adjusted for inflation and living-cost differences, and identifies MPD2023.",
+                  "frozenCodebookSHA256": "33b4f5e00efd58c7b83863f736beba1af4df946b43642b0400c3ec38648e0e8e",
+                  "frozenOWIDSourceSHA256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
+                  "fixedRegion": "EU27 exactly AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE; no UK or time-varying membership",
+                  "formula": "For each original member-year: native gdppc * native populationThousands *1000; region=sum27 complete member products. Neither OWID population nor another GDP vintage is spliced in.",
+                  "newExactAssembly": {
+                    "memberYearsEnumerated": 405,
+                    "nativeMemberYearsAvailable": 351,
+                    "completeRegionalAnnualGDPYears": 13,
+                    "completeYearsInclusive": [
+                      2010,
+                      2022
+                    ],
+                    "missingMemberYears": 54,
+                    "missingDefinition": "All27 members ×2023/2024; both native gdppc and pop absent. Exact member/year/source-row/input cells retained in private result.",
+                    "GDP2010Constant2011InternationalDollars": 14452036879082.492,
+                    "GDP2022Constant2011InternationalDollars": 17087505117901.738,
+                    "primaryVersusFrozenMatchedMemberYearGDPComparisons": 351,
+                    "maxAbsPrimaryMinusFrozenGDP2011Dollars": 237115.4150390625,
+                    "maxRelativePrimaryMinusFrozenGDP": 9.932972994836845e-08,
+                    "relativeWorstCell": {
+                      "member": "HRV",
+                      "year": 2014,
+                      "primaryGDP": 79720250778.5902,
+                      "frozenGDP": 79720242860.0
+                    },
+                    "precisionDecision": "The primary arithmetic and frozen GDP values are not byte-identical. Differences are preserved, not removed by a fitted offset, guessed float-storage conversion or relaxed acceptance tolerance. No substitution authorized."
+                  },
+                  "fullWindowDecision": "No complete compatible2010-2024 regional P/GDP/primary-energy/fossil-industrial-CO2 input set. Training2010-2018 and holdout2019-2024 remain untouched; no shortened-window forecast or unchanged study rerun.",
+                  "unchangedPhysicalDefinitions": {
+                    "GDP": "Constant2011 international PPP dollars,not nominal or constant2021PPP; source-primary product uses its own population rather than substituting the frozen OWID population factor.",
+                    "energy": "Frozen source primary_energy_consumption in TWh from the specified EI2025/EIA2026 release,not an interchangeable total-energy-supply measure. New UK quarterly electricity generation is a different denominator and never fills primary-energy cells.",
+                    "carbon": "Frozen CO2 is annual fossil/industrial CO2 in Mt from GCB2025,excluding land-use change,not all-GHG CO2e. Industrial-process CO2 means C/E remains an accounting ratio,not a pure fuel emission factor.",
+                    "regionBoundary": "A fixed ISO membership sum establishes an explicit GDP aggregation,not independent compatibility of every primary-energy/carbon national territory or international-bunker boundary. Those joint boundary reconciliations remain required before use."
+                  },
+                  "otherExactResidualGaps": [
+                    "China/India/US missing frozen GDP2023-2024",
+                    "World additionally missing frozen GDP2011-2014",
+                    "RoW lacks authorized disjoint complete country partition with energy/CO2 bunker reconciliation",
+                    "International transport has no source-defined population/GDP account",
+                    "World Bank constant2021PPP metadata is incompatible with frozen2011PPP and is not a deflator or gap fill"
+                  ],
+                  "vintageClassification": "Source-native primary release assembled as revised-history sidecar, not data available at2010-2018 forecast origins. No historical publication vintage is inferred from fetch time."
+                },
+                "boundedNetwork": {
+                  "totalRequests": 9,
+                  "paidCalls": 0,
+                  "maximumSecondsEach": 45,
+                  "maximumBytesEach": 20000000,
+                  "transportPattern": "curl --max-time 45 --max-filesize 20000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+                  "preservedFailedAndRejectedAttempts": [
+                    {
+                      "url": "https://www.eia.gov/totalenergy/data/monthly/archive/",
+                      "retrievalStartedUTC": "2026-11-11T10:37:05Z",
+                      "httpStatus": 403,
+                      "bytes": 58,
+                      "body": "generated-artifacts/kaya-highfrequency-source/eia-archive.html",
+                      "bodySHA256": "c54008cfaffe2e6442ed8bfedc1c3511572980a7af2796ff3a76fedd5d4d1fba",
+                      "headers": "generated-artifacts/kaya-highfrequency-source/eia-archive.headers",
+                      "headersSHA256": "15a5fecd5e9d92dcfb92cc1a7313255ef381d0390d03590dbaad374c53297189",
+                      "decision": "Stop EIA route; no guessed original PDFs,mirrors,credentials or HTTP bypass. Frozen EIA seasonal-ratio estimator was not executed."
+                    },
+                    {
+                      "url": "https://api.figshare.com/v2/articles/12142824",
+                      "retrievalStartedUTC": "2026-11-11T10:37:54Z",
+                      "httpStatus": 200,
+                      "body": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-metadata.json",
+                      "bodySHA256": "baac0a2956ca652650cad49e4fd35385c86301a8cd54fe2ca4995c4f601f4242",
+                      "headers": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-metadata.headers",
+                      "headersSHA256": "625523ea2c90ab739e2234475440a44ab1d521d16f652b1e537d32e5557c8cc3",
+                      "decision": "Rejected mistaken candidate identity: actual record is an unrelated syllogistic-reasoning supplement,not Carbon Monitor. No attached file downloaded,no adjacent IDs searched,no data attribution carried forward."
+                    },
+                    {
+                      "url": "https://carbonmonitor.org/",
+                      "retrievalStartedUTC": "2026-11-11T10:38:40Z",
+                      "httpStatus": 200,
+                      "body": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+                      "bodySHA256": "aa71a525bf231f0439459844e077a7e0af02dd3fce44ed65701b412cccc86b33",
+                      "headers": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.headers",
+                      "headersSHA256": "005aeaa8295e975e6a2c3640fd6c4edcf0e1fa20d2baabead9ea2af767c2c644",
+                      "decision": "Author identity confirmed; page exposes live downloadFullDataset but no qualified dated original2024-26 file versions. No live latest history downloaded or mislabelled an earlier origin snapshot."
+                    }
+                  ],
+                  "successfulOriginalReleaseRequests": [
+                    {
+                      "year": 2024,
+                      "metadataURL": "https://www.gov.uk/api/content/government/statistics/energy-trends-june-2024",
+                      "metadataRetrievedUTC": "2026-11-11T10:39:29Z",
+                      "metadataPath": "generated-artifacts/kaya-highfrequency-source/desnz-2024.json",
+                      "metadataSHA256": "047e0f0ef3017fb65f759b43453f883cca4fc5d720b00ef2e9ebb28c4602aba6",
+                      "originalPDFURL": "https://assets.publishing.service.gov.uk/media/667c0c3e7d26b2be17a4b38e/Energy_Trends_June_2024.pdf",
+                      "pdfRetrievedUTC": "2026-11-11T10:39:39Z",
+                      "pdfPath": "generated-artifacts/kaya-highfrequency-source/desnz-2024.pdf",
+                      "pdfSHA256": "97b98debc06c7776b0d270cc884e4b40353ce6df8ecdb18719ff097df2547682",
+                      "publisherFirstPublished": "2024-06-27T09:30:04+01:00"
+                    },
+                    {
+                      "year": 2025,
+                      "metadataURL": "https://www.gov.uk/api/content/government/statistics/energy-trends-june-2025",
+                      "metadataRetrievedUTC": "2026-11-11T10:39:29Z",
+                      "metadataPath": "generated-artifacts/kaya-highfrequency-source/desnz-2025.json",
+                      "metadataSHA256": "d3ddadc36458ca5bdbe282ca0f92dc31e3ed499817d951a1e341051511b41dde",
+                      "originalPDFURL": "https://assets.publishing.service.gov.uk/media/685bd5d8c07c71e5a87097e5/Energy_Trends_June_2025.pdf",
+                      "pdfRetrievedUTC": "2026-11-11T10:39:41Z",
+                      "pdfPath": "generated-artifacts/kaya-highfrequency-source/desnz-2025.pdf",
+                      "pdfSHA256": "ab303ab7f8ce55c77d3c778c028bc4abef56968bfca4bafbbe72c6490fa37e4d",
+                      "publisherFirstPublished": "2025-06-26T09:30:13+01:00"
+                    },
+                    {
+                      "year": 2026,
+                      "metadataURL": "https://www.gov.uk/api/content/government/statistics/energy-trends-june-2026",
+                      "metadataRetrievedUTC": "2026-11-11T10:39:29Z",
+                      "metadataPath": "generated-artifacts/kaya-highfrequency-source/desnz-2026.json",
+                      "metadataSHA256": "48e2b40ceba0fe92b01b955fb6fc34d65aecb670e7260f275f2f5382155f0c42",
+                      "originalPDFURL": "https://assets.publishing.service.gov.uk/media/6ac7b5f2ab368efeb4c933ee/Energy_Trends_June_2026.pdf",
+                      "pdfRetrievedUTC": "2026-11-11T10:39:42Z",
+                      "pdfPath": "generated-artifacts/kaya-highfrequency-source/desnz-2026.pdf",
+                      "pdfSHA256": "7c3fdf64ab82af957f911d308dedab3f7c63f4a1d057697a19a48394f911572d",
+                      "publisherFirstPublished": "2026-06-30T09:30:00+01:00"
+                    }
+                  ],
+                  "allSixGovernmentRequestsHTTP200": true,
+                  "headersRetained": "generated-artifacts/kaya-highfrequency-source/desnz-{year}.headers and desnz-{year}-pdf.headers",
+                  "newDataLicensing": "Original DESNZ publications explicitly carry Crown copyright/Open Government Licence v3.0 except identified third-party content; extracted government statistical narrative cells used only,not charts or third-party graphics."
+                },
+                "actualNewHighFrequencyAssembly": {
+                  "publisher": "UK Department for Energy Security and Net Zero",
+                  "originalIssues": [
+                    "Energy Trends June2024",
+                    "Energy Trends June2025",
+                    "Energy Trends June2026"
+                  ],
+                  "region": "United Kingdom,not EU27 and not an automatic RoW allocation",
+                  "observationFrequency": "Quarterly: January-March2024,2025,2026",
+                  "monthlyOrDailyClaim": false,
+                  "unit": "TWh electricity generation,not CO2/CO2e",
+                  "publishedSourceCells": 18,
+                  "metrics": [
+                    "total_generation",
+                    "renewable_generation",
+                    "nuclear_generation",
+                    "fossil_generation",
+                    "gas_generation",
+                    "wind_generation"
+                  ],
+                  "sourceLocations": "2024 PDFpage12;2025 and2026 PDFpages12-13,Section5 electricity narrative",
+                  "numericPrecision": "Exactly transcribed published rounded narrative numbers; not asserted to be unrounded underlying table values and never digitized/backsolved from charts/percentage changes",
+                  "totalGenerationTWhByYear": {
+                    "2024": 77.0,
+                    "2025": 79.8,
+                    "2026": 82.3
+                  },
+                  "gasGenerationTWhByYear": {
+                    "2024": 25.4,
+                    "2025": 30.4,
+                    "2026": 26.6
+                  },
+                  "unallocatedTotalMinusRenewableNuclearFossilTWhByYear": {
+                    "2024": 2.0,
+                    "2025": 2.5999999999999943,
+                    "2026": 2.799999999999997
+                  },
+                  "residualDecision": "Retain source categories/rounding residual; these three aggregates do not exhaust all source generation classes. No balancing correction,fitted carbon factor or fake zero residual.",
+                  "revisionFlags": "Each original issue states latest periods are provisional and liable to subsequent revision. Metadata first_published_at/public_updated_at retained separately from retrieval timestamps.",
+                  "vintageCaveat": "These are publisher-linked original dated issues,not latest tables relabelled as earlier releases. Current downloaded issue bytes are not independently certified identical to first-publication bytes. No historical-origin skill claim.",
+                  "CO2OutcomeAvailable": false,
+                  "forecastOrNowcastScore": null
+                },
+                "implementation": {
+                  "module": "script/kaya_highfrequency_source_bridge.py",
+                  "moduleSHA256": "d5f746759778cc80138712a38ea5dbb9ff65ccee735bec6045b1c0c999f0efe2",
+                  "tests": "script/test_kaya_highfrequency_source_bridge.py",
+                  "testsSHA256": "0c1730af567355fc71ed245f40c9e3a970d4ee6c7fc6e4cc944066299e69abe1",
+                  "newBehaviors": [
+                    "Native OOXML primary workbook reader preserving exact source rows and units; formulas rejected rather than executed",
+                    "Complete fixed-EU27 native GDP arithmetic and missing-member-year matrix",
+                    "Source-primary versus frozen-country GDP residuals,without replacing frozen values",
+                    "Hash/date/title/rights/provisional-status-qualified original power release loader",
+                    "Source-specific published-cell extraction with page,period,unit,precision and revision identity"
+                  ],
+                  "unitTestsRequirePrivateSources": false
+                },
+                "execution": {
+                  "testsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_kaya_highfrequency_source_bridge -v",
+                  "testsExitCode": 0,
+                  "pass": 5,
+                  "fail": 0,
+                  "skip": 0,
+                  "testsLog": "generated-artifacts/kaya-highfrequency-source/focused-tests.log",
+                  "testsLogSHA256": "d0b8c625556e8d46dabfb8ab084a5999ecd340bbad874748960d4f57323982f9",
+                  "assemblyCommand": ".pythonlibs/bin/python script/kaya_highfrequency_source_bridge.py",
+                  "assemblyExitCode": 0,
+                  "assemblyCompletedUTC": "2026-11-11T10:42:31.578394+00:00",
+                  "assemblyLog": "generated-artifacts/kaya-highfrequency-source/assembly-execution.log",
+                  "assemblyLogSHA256": "8189b002f22f205fb460fae829362e22d7ca9fa05073d406ec445af4cd9f0709",
+                  "textExtractionCommand": "For y=2024,2025,2026: pdftotext -layout generated-artifacts/kaya-highfrequency-source/desnz-$y.pdf generated-artifacts/kaya-highfrequency-source/desnz-$y.txt",
+                  "textExtractionCaveat": "2026 PDF emitted a bad-annotation-destination warning; selected narrative text,source hashes,date and value-presence gates all passed. No chart extraction used.",
+                  "result": "generated-artifacts/kaya-highfrequency-source/source-assembly-result.json",
+                  "resultSHA256": "e6475e2438acbc3d20a598acf1ce3380be4facd27324f5ffdff06a47710d5e59"
+                },
+                "scientificDecision": {
+                  "S04-003": "New primary regional GDP sidecar and exact351-member comparison delivered,not a full-window forecast.54 required2023-24 member-year GDP products absent; no existing frozen window changed,no alternate PPP or energy definition inserted.",
+                  "S04-005": "Three genuine dated original quarterly UK power releases provide18 observed/provisional activity outcomes across2024-26. This advances original-release provenance but does not complete monthly/daily CO2 estimation. Monthly/daily source-specific native CO2/intensity boundaries and compatible dated outcomes remain missing.",
+                  "newForecastFits": 0,
+                  "unchangedDiagnosticsRerun": 0,
+                  "holdoutScoring": false,
+                  "centralEligible": false,
+                  "noPromotion": true
+                },
+                "preservation": {
+                  "existingFrozenSourceFilesChanged": false,
+                  "existingForecastProtocolsOrWindowsChanged": false,
+                  "canonicalLedgersEditedByThisTask": false,
+                  "productionCollectorAuthDDLChanges": false,
+                  "purchasesPaidCallsLicenseBypass": false,
+                  "commitsDeployPublicationCallbacks": false
+                }
+              }
+            }
+          ]
         },
         {
           "id": "S04-004",
@@ -25093,7 +25407,7 @@
             "script/short-horizon-emissions.ts:",
             "docs/Historical_Diagnostics_and_Skill_Results.md:"
           ],
-          "behaviour_delivered_this_run": "Revised-history annual fossil-CO2 trend diagnostics exist, not monthly/daily 2024-2026 nowcasts.",
+          "behaviour_delivered_this_run": "FixedEU27nativeMPD351memberyears/13GDPyears2010–22 assembled;54required2023–24cells absent. PPP2011 unchanged, no splice/windowshortening. OriginalDESNZ June2024/2025/2026releases provide18quarterly power outcomes; not daily/monthlyCO2 or accepted nowcast. No holdout scored.",
           "inputs_versions_assumptions": [
             "origin-specific training only; bias=mean(pred-actual), MAE=mean(abs(pred-actual)); paired baseline improvements",
             {
@@ -25155,6 +25469,26 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-xom-source-inputs-private.ts --private-primary && npx tsx script/validate-xom-contract-permit-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T11:08:05.213267+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 138.156,
+              "counts": {
+                "tests": 560,
+                "pass": 560,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T110805213267Z.log",
+              "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -25192,7 +25526,7 @@
           "remaining_gaps": [
             "Annual revised fossil-CO2 trend is not 2024-2026 monthly/daily high-frequency nowcasting; source original releases and scope-compatible outcomes."
           ],
-          "next_action": "Annual revised fossil-CO2 trend is not 2024-2026 monthly/daily high-frequency nowcasting; source original releases and scope-compatible outcomes.",
+          "next_action": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
           "blockers": [],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
@@ -25384,7 +25718,273 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
-          }
+          },
+          "primary_source_increment": [
+            {
+              "file": "docs/kaya-highfrequency-source-evidence.json",
+              "sha256": "da9e2ae360d0046d50a35a226c510332cb49ae446fb407bbe14587219bda17bb",
+              "details": {
+                "schemaVersion": 1,
+                "criteria": [
+                  "S04-003",
+                  "S04-005"
+                ],
+                "status": "new-primary-EU27-GDP-sidecar-and-three-original-dated-quarterly-power-releases-assembled; full-Kaya-and-emissions-nowcast-withheld",
+                "sourcePlans": [
+                  {
+                    "path": "docs/kaya-highfrequency-source-protocol.json",
+                    "sha256": "d67c812a4b914b8fec77e7986ac792314ef65f42ab490a71b6539ce012a5a692"
+                  },
+                  {
+                    "path": "docs/kaya-highfrequency-independent-fallback.json",
+                    "sha256": "c03fcd69f3fbf4361a14fd0613b44234f03bdb92340370e322691769bc0b5bff"
+                  },
+                  {
+                    "path": "docs/highfrequency-author-identity-correction.json",
+                    "sha256": "da554d5a2ff1e484f7154d7a77f697f955df8e51295731a7646fc5da1e80babc"
+                  },
+                  {
+                    "path": "docs/highfrequency-original-release-freeze.json",
+                    "sha256": "80b69dd4bfa22a7f09c268310e81200d429880860fd77bab5c52278764c5697b"
+                  }
+                ],
+                "readBeforeSourceSelection": [
+                  "docs/Forecast_Kaya_Protocol.md",
+                  "docs/Kaya_Protocol.md",
+                  "docs/Kaya_Results.md",
+                  "docs/Short_Horizon_Emissions_Protocol.md",
+                  "Existing kaya-source-investigation inventories and source attempts",
+                  "Original S04-003 and S04-005 clauses"
+                ],
+                "primaryGDPAssembly": {
+                  "publisher": "Maddison Project, University of Groningen / DataverseNL",
+                  "dataset": "MPD2023, DOI10.34894/INZBF2, Dataverse version1.0",
+                  "publisherReleaseTimestamp": "2024-04-26T08:43:37Z",
+                  "workbook": "generated-artifacts/kaya-source-investigation/ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6.source",
+                  "workbookSHA256": "ecc5916ca12789b983fc4be437f8a354bbf4291323605324ac3e0aea4c57cbb6",
+                  "metadata": "generated-artifacts/kaya-source-investigation/85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669.source",
+                  "metadataSHA256": "85c46881789c8ad3a89dd4478ac7c7888f50580e9c4e6f290f93e6672a1e3669",
+                  "rights": "Metadata CC-BY-4.0; workbook citation policy and underlying original source requirements retained. Native source sheets privately retained; no redistribution.",
+                  "unitProof": "Native Notes sheet specifies real GDP per capita in2011$ and population mid-year in thousands. Frozen source-linked codebook explicitly defines GDP as international dollars in2011 prices, adjusted for inflation and living-cost differences, and identifies MPD2023.",
+                  "frozenCodebookSHA256": "33b4f5e00efd58c7b83863f736beba1af4df946b43642b0400c3ec38648e0e8e",
+                  "frozenOWIDSourceSHA256": "7f78e2b218ce4bb8c538bbec04fdc9a7982e8d40bff972e650df603899edd5f6",
+                  "fixedRegion": "EU27 exactly AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE; no UK or time-varying membership",
+                  "formula": "For each original member-year: native gdppc * native populationThousands *1000; region=sum27 complete member products. Neither OWID population nor another GDP vintage is spliced in.",
+                  "newExactAssembly": {
+                    "memberYearsEnumerated": 405,
+                    "nativeMemberYearsAvailable": 351,
+                    "completeRegionalAnnualGDPYears": 13,
+                    "completeYearsInclusive": [
+                      2010,
+                      2022
+                    ],
+                    "missingMemberYears": 54,
+                    "missingDefinition": "All27 members ×2023/2024; both native gdppc and pop absent. Exact member/year/source-row/input cells retained in private result.",
+                    "GDP2010Constant2011InternationalDollars": 14452036879082.492,
+                    "GDP2022Constant2011InternationalDollars": 17087505117901.738,
+                    "primaryVersusFrozenMatchedMemberYearGDPComparisons": 351,
+                    "maxAbsPrimaryMinusFrozenGDP2011Dollars": 237115.4150390625,
+                    "maxRelativePrimaryMinusFrozenGDP": 9.932972994836845e-08,
+                    "relativeWorstCell": {
+                      "member": "HRV",
+                      "year": 2014,
+                      "primaryGDP": 79720250778.5902,
+                      "frozenGDP": 79720242860.0
+                    },
+                    "precisionDecision": "The primary arithmetic and frozen GDP values are not byte-identical. Differences are preserved, not removed by a fitted offset, guessed float-storage conversion or relaxed acceptance tolerance. No substitution authorized."
+                  },
+                  "fullWindowDecision": "No complete compatible2010-2024 regional P/GDP/primary-energy/fossil-industrial-CO2 input set. Training2010-2018 and holdout2019-2024 remain untouched; no shortened-window forecast or unchanged study rerun.",
+                  "unchangedPhysicalDefinitions": {
+                    "GDP": "Constant2011 international PPP dollars,not nominal or constant2021PPP; source-primary product uses its own population rather than substituting the frozen OWID population factor.",
+                    "energy": "Frozen source primary_energy_consumption in TWh from the specified EI2025/EIA2026 release,not an interchangeable total-energy-supply measure. New UK quarterly electricity generation is a different denominator and never fills primary-energy cells.",
+                    "carbon": "Frozen CO2 is annual fossil/industrial CO2 in Mt from GCB2025,excluding land-use change,not all-GHG CO2e. Industrial-process CO2 means C/E remains an accounting ratio,not a pure fuel emission factor.",
+                    "regionBoundary": "A fixed ISO membership sum establishes an explicit GDP aggregation,not independent compatibility of every primary-energy/carbon national territory or international-bunker boundary. Those joint boundary reconciliations remain required before use."
+                  },
+                  "otherExactResidualGaps": [
+                    "China/India/US missing frozen GDP2023-2024",
+                    "World additionally missing frozen GDP2011-2014",
+                    "RoW lacks authorized disjoint complete country partition with energy/CO2 bunker reconciliation",
+                    "International transport has no source-defined population/GDP account",
+                    "World Bank constant2021PPP metadata is incompatible with frozen2011PPP and is not a deflator or gap fill"
+                  ],
+                  "vintageClassification": "Source-native primary release assembled as revised-history sidecar, not data available at2010-2018 forecast origins. No historical publication vintage is inferred from fetch time."
+                },
+                "boundedNetwork": {
+                  "totalRequests": 9,
+                  "paidCalls": 0,
+                  "maximumSecondsEach": 45,
+                  "maximumBytesEach": 20000000,
+                  "transportPattern": "curl --max-time 45 --max-filesize 20000000 -L -sS -D <headersPath> -o <bodyPath> -w 'HTTP %{http_code}; bytes %{size_download}\\n' <url>",
+                  "preservedFailedAndRejectedAttempts": [
+                    {
+                      "url": "https://www.eia.gov/totalenergy/data/monthly/archive/",
+                      "retrievalStartedUTC": "2026-11-11T10:37:05Z",
+                      "httpStatus": 403,
+                      "bytes": 58,
+                      "body": "generated-artifacts/kaya-highfrequency-source/eia-archive.html",
+                      "bodySHA256": "c54008cfaffe2e6442ed8bfedc1c3511572980a7af2796ff3a76fedd5d4d1fba",
+                      "headers": "generated-artifacts/kaya-highfrequency-source/eia-archive.headers",
+                      "headersSHA256": "15a5fecd5e9d92dcfb92cc1a7313255ef381d0390d03590dbaad374c53297189",
+                      "decision": "Stop EIA route; no guessed original PDFs,mirrors,credentials or HTTP bypass. Frozen EIA seasonal-ratio estimator was not executed."
+                    },
+                    {
+                      "url": "https://api.figshare.com/v2/articles/12142824",
+                      "retrievalStartedUTC": "2026-11-11T10:37:54Z",
+                      "httpStatus": 200,
+                      "body": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-metadata.json",
+                      "bodySHA256": "baac0a2956ca652650cad49e4fd35385c86301a8cd54fe2ca4995c4f601f4242",
+                      "headers": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-metadata.headers",
+                      "headersSHA256": "625523ea2c90ab739e2234475440a44ab1d521d16f652b1e537d32e5557c8cc3",
+                      "decision": "Rejected mistaken candidate identity: actual record is an unrelated syllogistic-reasoning supplement,not Carbon Monitor. No attached file downloaded,no adjacent IDs searched,no data attribution carried forward."
+                    },
+                    {
+                      "url": "https://carbonmonitor.org/",
+                      "retrievalStartedUTC": "2026-11-11T10:38:40Z",
+                      "httpStatus": 200,
+                      "body": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+                      "bodySHA256": "aa71a525bf231f0439459844e077a7e0af02dd3fce44ed65701b412cccc86b33",
+                      "headers": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.headers",
+                      "headersSHA256": "005aeaa8295e975e6a2c3640fd6c4edcf0e1fa20d2baabead9ea2af767c2c644",
+                      "decision": "Author identity confirmed; page exposes live downloadFullDataset but no qualified dated original2024-26 file versions. No live latest history downloaded or mislabelled an earlier origin snapshot."
+                    }
+                  ],
+                  "successfulOriginalReleaseRequests": [
+                    {
+                      "year": 2024,
+                      "metadataURL": "https://www.gov.uk/api/content/government/statistics/energy-trends-june-2024",
+                      "metadataRetrievedUTC": "2026-11-11T10:39:29Z",
+                      "metadataPath": "generated-artifacts/kaya-highfrequency-source/desnz-2024.json",
+                      "metadataSHA256": "047e0f0ef3017fb65f759b43453f883cca4fc5d720b00ef2e9ebb28c4602aba6",
+                      "originalPDFURL": "https://assets.publishing.service.gov.uk/media/667c0c3e7d26b2be17a4b38e/Energy_Trends_June_2024.pdf",
+                      "pdfRetrievedUTC": "2026-11-11T10:39:39Z",
+                      "pdfPath": "generated-artifacts/kaya-highfrequency-source/desnz-2024.pdf",
+                      "pdfSHA256": "97b98debc06c7776b0d270cc884e4b40353ce6df8ecdb18719ff097df2547682",
+                      "publisherFirstPublished": "2024-06-27T09:30:04+01:00"
+                    },
+                    {
+                      "year": 2025,
+                      "metadataURL": "https://www.gov.uk/api/content/government/statistics/energy-trends-june-2025",
+                      "metadataRetrievedUTC": "2026-11-11T10:39:29Z",
+                      "metadataPath": "generated-artifacts/kaya-highfrequency-source/desnz-2025.json",
+                      "metadataSHA256": "d3ddadc36458ca5bdbe282ca0f92dc31e3ed499817d951a1e341051511b41dde",
+                      "originalPDFURL": "https://assets.publishing.service.gov.uk/media/685bd5d8c07c71e5a87097e5/Energy_Trends_June_2025.pdf",
+                      "pdfRetrievedUTC": "2026-11-11T10:39:41Z",
+                      "pdfPath": "generated-artifacts/kaya-highfrequency-source/desnz-2025.pdf",
+                      "pdfSHA256": "ab303ab7f8ce55c77d3c778c028bc4abef56968bfca4bafbbe72c6490fa37e4d",
+                      "publisherFirstPublished": "2025-06-26T09:30:13+01:00"
+                    },
+                    {
+                      "year": 2026,
+                      "metadataURL": "https://www.gov.uk/api/content/government/statistics/energy-trends-june-2026",
+                      "metadataRetrievedUTC": "2026-11-11T10:39:29Z",
+                      "metadataPath": "generated-artifacts/kaya-highfrequency-source/desnz-2026.json",
+                      "metadataSHA256": "48e2b40ceba0fe92b01b955fb6fc34d65aecb670e7260f275f2f5382155f0c42",
+                      "originalPDFURL": "https://assets.publishing.service.gov.uk/media/6ac7b5f2ab368efeb4c933ee/Energy_Trends_June_2026.pdf",
+                      "pdfRetrievedUTC": "2026-11-11T10:39:42Z",
+                      "pdfPath": "generated-artifacts/kaya-highfrequency-source/desnz-2026.pdf",
+                      "pdfSHA256": "7c3fdf64ab82af957f911d308dedab3f7c63f4a1d057697a19a48394f911572d",
+                      "publisherFirstPublished": "2026-06-30T09:30:00+01:00"
+                    }
+                  ],
+                  "allSixGovernmentRequestsHTTP200": true,
+                  "headersRetained": "generated-artifacts/kaya-highfrequency-source/desnz-{year}.headers and desnz-{year}-pdf.headers",
+                  "newDataLicensing": "Original DESNZ publications explicitly carry Crown copyright/Open Government Licence v3.0 except identified third-party content; extracted government statistical narrative cells used only,not charts or third-party graphics."
+                },
+                "actualNewHighFrequencyAssembly": {
+                  "publisher": "UK Department for Energy Security and Net Zero",
+                  "originalIssues": [
+                    "Energy Trends June2024",
+                    "Energy Trends June2025",
+                    "Energy Trends June2026"
+                  ],
+                  "region": "United Kingdom,not EU27 and not an automatic RoW allocation",
+                  "observationFrequency": "Quarterly: January-March2024,2025,2026",
+                  "monthlyOrDailyClaim": false,
+                  "unit": "TWh electricity generation,not CO2/CO2e",
+                  "publishedSourceCells": 18,
+                  "metrics": [
+                    "total_generation",
+                    "renewable_generation",
+                    "nuclear_generation",
+                    "fossil_generation",
+                    "gas_generation",
+                    "wind_generation"
+                  ],
+                  "sourceLocations": "2024 PDFpage12;2025 and2026 PDFpages12-13,Section5 electricity narrative",
+                  "numericPrecision": "Exactly transcribed published rounded narrative numbers; not asserted to be unrounded underlying table values and never digitized/backsolved from charts/percentage changes",
+                  "totalGenerationTWhByYear": {
+                    "2024": 77.0,
+                    "2025": 79.8,
+                    "2026": 82.3
+                  },
+                  "gasGenerationTWhByYear": {
+                    "2024": 25.4,
+                    "2025": 30.4,
+                    "2026": 26.6
+                  },
+                  "unallocatedTotalMinusRenewableNuclearFossilTWhByYear": {
+                    "2024": 2.0,
+                    "2025": 2.5999999999999943,
+                    "2026": 2.799999999999997
+                  },
+                  "residualDecision": "Retain source categories/rounding residual; these three aggregates do not exhaust all source generation classes. No balancing correction,fitted carbon factor or fake zero residual.",
+                  "revisionFlags": "Each original issue states latest periods are provisional and liable to subsequent revision. Metadata first_published_at/public_updated_at retained separately from retrieval timestamps.",
+                  "vintageCaveat": "These are publisher-linked original dated issues,not latest tables relabelled as earlier releases. Current downloaded issue bytes are not independently certified identical to first-publication bytes. No historical-origin skill claim.",
+                  "CO2OutcomeAvailable": false,
+                  "forecastOrNowcastScore": null
+                },
+                "implementation": {
+                  "module": "script/kaya_highfrequency_source_bridge.py",
+                  "moduleSHA256": "d5f746759778cc80138712a38ea5dbb9ff65ccee735bec6045b1c0c999f0efe2",
+                  "tests": "script/test_kaya_highfrequency_source_bridge.py",
+                  "testsSHA256": "0c1730af567355fc71ed245f40c9e3a970d4ee6c7fc6e4cc944066299e69abe1",
+                  "newBehaviors": [
+                    "Native OOXML primary workbook reader preserving exact source rows and units; formulas rejected rather than executed",
+                    "Complete fixed-EU27 native GDP arithmetic and missing-member-year matrix",
+                    "Source-primary versus frozen-country GDP residuals,without replacing frozen values",
+                    "Hash/date/title/rights/provisional-status-qualified original power release loader",
+                    "Source-specific published-cell extraction with page,period,unit,precision and revision identity"
+                  ],
+                  "unitTestsRequirePrivateSources": false
+                },
+                "execution": {
+                  "testsCommand": "PYTHONPATH=script .pythonlibs/bin/python -m unittest test_kaya_highfrequency_source_bridge -v",
+                  "testsExitCode": 0,
+                  "pass": 5,
+                  "fail": 0,
+                  "skip": 0,
+                  "testsLog": "generated-artifacts/kaya-highfrequency-source/focused-tests.log",
+                  "testsLogSHA256": "d0b8c625556e8d46dabfb8ab084a5999ecd340bbad874748960d4f57323982f9",
+                  "assemblyCommand": ".pythonlibs/bin/python script/kaya_highfrequency_source_bridge.py",
+                  "assemblyExitCode": 0,
+                  "assemblyCompletedUTC": "2026-11-11T10:42:31.578394+00:00",
+                  "assemblyLog": "generated-artifacts/kaya-highfrequency-source/assembly-execution.log",
+                  "assemblyLogSHA256": "8189b002f22f205fb460fae829362e22d7ca9fa05073d406ec445af4cd9f0709",
+                  "textExtractionCommand": "For y=2024,2025,2026: pdftotext -layout generated-artifacts/kaya-highfrequency-source/desnz-$y.pdf generated-artifacts/kaya-highfrequency-source/desnz-$y.txt",
+                  "textExtractionCaveat": "2026 PDF emitted a bad-annotation-destination warning; selected narrative text,source hashes,date and value-presence gates all passed. No chart extraction used.",
+                  "result": "generated-artifacts/kaya-highfrequency-source/source-assembly-result.json",
+                  "resultSHA256": "e6475e2438acbc3d20a598acf1ce3380be4facd27324f5ffdff06a47710d5e59"
+                },
+                "scientificDecision": {
+                  "S04-003": "New primary regional GDP sidecar and exact351-member comparison delivered,not a full-window forecast.54 required2023-24 member-year GDP products absent; no existing frozen window changed,no alternate PPP or energy definition inserted.",
+                  "S04-005": "Three genuine dated original quarterly UK power releases provide18 observed/provisional activity outcomes across2024-26. This advances original-release provenance but does not complete monthly/daily CO2 estimation. Monthly/daily source-specific native CO2/intensity boundaries and compatible dated outcomes remain missing.",
+                  "newForecastFits": 0,
+                  "unchangedDiagnosticsRerun": 0,
+                  "holdoutScoring": false,
+                  "centralEligible": false,
+                  "noPromotion": true
+                },
+                "preservation": {
+                  "existingFrozenSourceFilesChanged": false,
+                  "existingForecastProtocolsOrWindowsChanged": false,
+                  "canonicalLedgersEditedByThisTask": false,
+                  "productionCollectorAuthDDLChanges": false,
+                  "purchasesPaidCallsLicenseBypass": false,
+                  "commitsDeployPublicationCallbacks": false
+                }
+              }
+            }
+          ]
         },
         {
           "id": "S04-006",
@@ -104226,7 +104826,7 @@
             "script/xom-climate-liability-case.test.ts",
             "script/capture-xom-climate-liability-sources.ts"
           ],
-          "behaviour_delivered_this_run": "24conditional paths/384cash/768capitalrows. Historical DMI2.257bn/payment740m; cash including DMI2.183bn versus negative74m without. FPL3.7bn dividend less3.4bn contribution=300m netparent cash. Conditional terminals2.499–3.986bn,values10.567–26.668bn;48negative annual funding rows. No root/qualified original case;0/3.",
+          "behaviour_delivered_this_run": "Actual XOM/CF/UKlaw/EA sources acquired. Corporate sixyear cashcapex arithmetic167–194bn not CCSallocation. Statutory1allowance/tCO2e closed. CF explicit2024metric capacity2m/0.5m; conditional2025–29ceiling11mtonnes, not billings. Clientcapturecapital200m/100m is NOT XOMcost.2022shorttons distinct. ExactEApermitcrosswalk absent; tariffs/opex/funding contract not located, not globally undisclosed.0/3qualified.",
           "inputs_versions_assumptions": {
             "schemaVersion": "issuer-analytics-evidence-proposal-1",
             "purpose": "Bounded parent-review proposal, not acceptance, identity approval, production data, or a central-ledger update",
@@ -105901,6 +106501,26 @@
               "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-xom-source-inputs-private.ts --private-primary && npx tsx script/validate-xom-contract-permit-private.ts --private-primary && npm run build"
+              ],
+              "executed_at": "2026-11-11T11:08:05.213267+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 138.156,
+              "counts": {
+                "tests": 560,
+                "pass": 560,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261111T110805213267Z.log",
+              "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": {
@@ -106280,7 +106900,7 @@
             "Next separately freeze source-supported paid-spare-capacity FSLR experiment without widening v4 bounds to force a root; source NEE project/FFO allocation and XOM CCS economics; verify current-law45X and genuine identity/date pairing.",
             "Resolve source statutory gas/unit boundaries, permit/site scope and actual banking/purchase/cash timing; qualify full original operating inputs and owner identity separately; preserve all prior no-root findings."
           ],
-          "next_action": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+          "next_action": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies.",
           "blockers": [],
           "stage": 12,
           "check_type": "judgement",
@@ -110636,7 +111256,882 @@
                 "sha256": "ca2d45989197e34d8a2122ef8e78241493d880fe06543c8b36efa1ef9542cf23"
               }
             ]
-          }
+          },
+          "primary_source_increment": [
+            {
+              "file": "docs/xom-source-inputs-evidence.json",
+              "sha256": "1e008c1ab9bbda829012b53a4b024f3115953a9ff3e328d0055a04ef3e8af67c",
+              "details": {
+                "version": "xom-source-inputs-1",
+                "status": "bounded-primary-retrieval-and-source-qualified-adapters-complete-no-valuation",
+                "technicalQualifiedOriginalIssuers": 0,
+                "qualifiedOriginalPairs": 0,
+                "scope": "NEW field-specific primary source retrieval and qualified adapters only. No arbitrary grids or old kernel reruns; no canonical ledger/UI/routes/commit/publish/callback/production mutations.",
+                "priorAttemptsRead": [
+                  "generated-artifacts/company-operating-corpus/issuer-original-v3/funding-sources/receipts.json",
+                  "generated-artifacts/company-operating-corpus/issuer-original-v3/supplements/receipts.json",
+                  "docs/xom-climate-liability-evidence.json",
+                  "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/sources/receipts.json"
+                ],
+                "maximumNewPublicAttempts": 16,
+                "priority": [
+                  "XOM CCS fee/price/volume/opex/capex/replacement/project funding",
+                  "UK ETS statutory gas/unit and permit-site boundary",
+                  "Bank/purchase/cash timing"
+                ],
+                "networkPolicy": "Free public issuer/IR/counterparty/regulator/legislation only. Identified agent. No paid provider, purchases, billing or access-control workaround.",
+                "attemptRecords": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/receipts.json",
+                "attemptRecordSha256": "938eb49c0f15c733dc97ce833e69fbe1b315d5b98a62c194577a97f46a8a4b40",
+                "actualAttempts": {
+                  "captureCommandTemplate": "npx tsx script/capture-xom-source-inputs.ts --private-primary --one NAME URL FIELD; exact NAME/URL/FIELD arguments and per-attempt timestamps are persisted in attemptRecords.attempts[name,url,field,attemptedAt]. No replay:16bound is exhausted.",
+                  "countBasis": "16logical public fetch attempts;200/404 counts are final responses. Automatic HTTP redirects are included within each logical attempt; individual redirect-hop counts were not retained or invented.",
+                  "newPublicGets": 16,
+                  "http200": 13,
+                  "http404": 3,
+                  "paidProviderCalls": 0,
+                  "boundExhaustedAndStopped": true,
+                  "old24AttemptSourcePackChanged": false,
+                  "failureDetails": [
+                    {
+                      "source": "xom-ir.html",
+                      "result": "404 wrong legacy IR index path; page supplied official /company-information/press-releases link subsequently captured200"
+                    },
+                    {
+                      "source": "cf-ccs-contract.html",
+                      "result": "404 guessed CF original contract-announcement slug; no counterparty economics extracted"
+                    },
+                    {
+                      "source": "cf-ccs-contract-fullslug.html",
+                      "result": "404 longer guessed headline/site suffix; no third retry, no claim terms are globally undisclosed"
+                    }
+                  ],
+                  "searchDetails": [
+                    {
+                      "source": "gov-permit-search.json",
+                      "query": "exact quoted UK-E-IN-11402",
+                      "result": "200 with0results; not proof a site permit does not exist"
+                    },
+                    {
+                      "source": "gov-fawley-search.json",
+                      "query": "Esso Fawley greenhouse gas permit",
+                      "result": "200 broad OR-like search43898hits; first5not exact permit evidence. No installation address inferred."
+                    }
+                  ],
+                  "nonAuthorityDiscovery": "Current undated corporate-plan index,2024press archive and current-law article4/schedule2 captured for discovery. Only dated2024issuer releases and requested2024-12-31 statutory views enter adapters. No current2026IR-template entity/ticker information used to alter FY2024 security identity."
+                },
+                "files": [
+                  "script/capture-xom-source-inputs.ts",
+                  "server/calculation/xomSourceInputQualification.ts",
+                  "script/xom-source-inputs.test.ts",
+                  "script/run-xom-source-inputs.ts",
+                  "script/validate-xom-source-inputs-private.ts",
+                  "docs/xom-source-inputs-evidence.json"
+                ],
+                "rightsRecords": {
+                  "issuer": "Official public issuer IR release; company copyright applies. Bounded factual extraction/citation and short validation strings only; full payload private and git-ignored. No licence to republish full release/provider data asserted.",
+                  "legislation": "Official UK statutory XML. Made date and requested historical view recorded separately; no invented original publication date. Licensing terms were not separately captured from a rights page within16requests, so no additional redistribution licence is asserted. Only bounded statutory facts/locators and derived unit checks exposed; raw2.37MB XML stays private.",
+                  "registry": "Existing official UK registry reports and SEC Exhibit21 retained/hashes verified. New unit adapter consumes previously authenticated two-permit evidence, not raw workbook/legal-row public export; no provider-market data.",
+                  "discovery": "Discovery/error/search payloads are not economic authority, do not evidence commercial terms or absence globally, and remain private."
+                },
+                "sourceRecords": [
+                  {
+                    "id": "XOM-PLAN-20241211",
+                    "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1178/exxonmobil-announces-plans-to-2030-that-build-on-its-unique",
+                    "captureFile": "xom-plan-2030.html",
+                    "sha256": "b68ed08ccb997f0d8f69ff1ab9786a6c67d409c9d75e48783e146902e90981ee",
+                    "publicationDate": "2024-12-11",
+                    "publicationTimeDisplayed": "December 11, 2024 6:00 AM CST",
+                    "period": "Prospective2025-2030;2030earnings potential vs2024",
+                    "locator": "Key elements bullets; Low Carbon Solutions paragraphs; footnotes1/3/4/5; non-GAAP Cash capital expenditures definition",
+                    "page": "HTML named sections, not a paginated document",
+                    "legalIdentity": "Dated ExxonMobil corporate issuer plan; corporate/LCS/multi-business lower-emissions scopes distinguished. Current IR template corporate name not a successor/security mapping.",
+                    "unit": "USD cash-capex forecast ranges; USD annual incremental earnings potential; NOT CCS fee or common FCFE",
+                    "reliability": "Official issuer forward disclosure; high provenance, conditional expectations, not observed future cash or audited project economics",
+                    "rightsRecord": "issuer"
+                  },
+                  {
+                    "id": "XOM-ADNOC-20240904",
+                    "url": "https://investor.exxonmobil.com/company-information/press-releases/detail/1171/khaled-bin-mohamed-bin-zayed-witnesses-signing-ceremony-for",
+                    "captureFile": "xom-adnoc-baytown.html",
+                    "sha256": "a4ec59f1e6dea80f321409a6842038d4034cbcf6932e9aeab77c160db750bc46",
+                    "publicationDate": "2024-09-04",
+                    "publicationTimeDisplayed": "September 04, 2024 7:00 AM CDT",
+                    "period": "Announced agreement2024;expectedFID2025/startup2029",
+                    "locator": "Title/bullets; first agreement paragraph; contingent-policy and production/FID paragraph",
+                    "page": "HTML named paragraphs",
+                    "legalIdentity": "Exxon Mobil Corporation proposed Baytown Texas hydrogen/ammonia facility and ADNOC; project SPV/full cap table not supplied",
+                    "unit": "Proposed equity%; hydrogen cubic feet/day; CO2 removal percentage, not tonnes",
+                    "reliability": "Official issuer announcement of agreement and conditional proposed facility; no closed transaction/cash contribution or observed commissioning evidence",
+                    "rightsRecord": "issuer"
+                  },
+                  {
+                    "id": "UKETS-ARTICLE4-FY2024",
+                    "url": "https://www.legislation.gov.uk/uksi/2020/1265/article/4/2024-12-31/data.xml",
+                    "captureFile": "ukets-article4-fy2024.xml",
+                    "sha256": "8ddc24a6ef325b0ba87825951325267b821988128528bf3e935c4e9395661c1c",
+                    "madeDate": "2020-11-11",
+                    "publicationDate": null,
+                    "publicationDateCaveat": "Separate original publication/consolidation publication date not established in captured metadata; Made date is not silently relabelled publication. HTTP last-modified2026-10-15 is retrieval metadata, not2024legal availability.",
+                    "asOf": "2024-12-31",
+                    "locator": "Article4 term-reportable-emissions; scheme-year definition",
+                    "page": "Official legal provision identifier",
+                    "legalIdentity": "UK ETS installations/reportable specified emissions, not corporate GHG Protocol boundary",
+                    "unit": "Tonnes CO2 equivalent for specified emissions from regulated activities",
+                    "reliability": "Official point-in-time statutory view requested forFY2024; no future-law certification",
+                    "rightsRecord": "legislation"
+                  },
+                  {
+                    "id": "UKETS-SCHEDULE2-FY2024",
+                    "url": "https://www.legislation.gov.uk/uksi/2020/1265/schedule/2/2024-12-31/data.xml",
+                    "captureFile": "ukets-schedule2-fy2024.xml",
+                    "sha256": "f190e9c82a3e2d8b9077af6235283f9664e4e340309bed3ea69004810a34eb97",
+                    "madeDate": "2020-11-11",
+                    "publicationDate": null,
+                    "asOf": "2024-12-31",
+                    "locator": "Schedule2 paragraph3/Table1 activity and greenhouse-gas rows: combustion of fuels, refining mineral oil, production hydrogen/synthesis gas",
+                    "page": "Official legal table/provision identifiers",
+                    "legalIdentity": "Statutory activities matching retained Esso permit registry codes; not a complete retrieved installation monitoring-plan annex",
+                    "unit": "Named specified gas carbon dioxide for each of three activity rows; no corporate scope/equity conversion",
+                    "reliability": "Official statutory activity-to-gas mapping; installation-specific exhaustive gas boundary remains unverified",
+                    "rightsRecord": "legislation"
+                  },
+                  {
+                    "id": "UKETS-FULL-FY2024",
+                    "url": "https://www.legislation.gov.uk/uksi/2020/1265/2024-12-31/data.xml",
+                    "captureFile": "ukets-full-fy2024.xml",
+                    "sha256": "f290aafb302118f30d19af7a59db417102ded8e436a59b47ebdf9979ca7e5a7b",
+                    "madeDate": "2020-11-11",
+                    "publicationDate": null,
+                    "asOf": "2024-12-31",
+                    "locator": "Article18(2)/(3); Schedule6 paragraph4(2)(b) and4(3); paragraph4(1)(b/c/f) identifies required permit site/activity/monitoring fields",
+                    "page": "Official provision identifiers; statutory order2.37MB, not republished",
+                    "legalIdentity": "UK ETS installation operators; NOT aviation Article34 deadline used by mistake",
+                    "unit": "1allowance per1tCO2e; annual report/surrender calendar; registry holding rule",
+                    "reliability": "Official point-in-time statutory view; exact body clauses checked, not current2026view substituted",
+                    "rightsRecord": "legislation"
+                  },
+                  {
+                    "id": "RETAINED-UKETS-ALLOCATIONS",
+                    "url": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section1/uk_ets_Standard_Report_OHA_Participants_Allocations_2024_20261111010000000.xlsx",
+                    "captureFile": "Previously authenticated xom-climate-liability-v1/sources/operators-2024.xlsx; not re-retrieved",
+                    "sha256": "c3626c758accdea4ee0bb6ffea1cdaa9f7ba604ebbbfe54382a22735b1702ddc",
+                    "publicationDate": null,
+                    "publicationDateCaveat": "Original publication not established; filename generation marker20261111010000000 not silently treated as FY2024 public-availability date",
+                    "period": "2024",
+                    "locator": "Data sheet Installation ID1000118/1000119, Permit ID, Account Holder Name, Regulator, Regulated activity, Allocation Delivered_2024",
+                    "page": "Workbook Data sheet named columns/exact identifiers",
+                    "legalIdentity": "Esso Petroleum Company Limited, EA, UK-E-IN-12019/11402",
+                    "unit": "UKETS delivered allowance units/registry activities",
+                    "reliability": "Previously authenticated official registry and exact operator joins, source bytes rehash-verified only; revised history, not real-time availability certification",
+                    "rightsRecord": "registry"
+                  },
+                  {
+                    "id": "RETAINED-UKETS-COMPLIANCE",
+                    "url": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports/section5/UK_ETS_Compliance_Report_Emissions_&_Surrenders_2026.xlsx",
+                    "captureFile": "Previously authenticated xom-climate-liability-v1/sources/compliance-2026.xlsx; not re-retrieved",
+                    "sha256": "21c8670a2642686b2cf50c9afbaa58e8e4dd481689e7a33d3313dce4cb602439",
+                    "publicationDate": null,
+                    "period": "2024emissions in2026report",
+                    "locator": "Data Operator ID1000118/1000119, Permit ID or Monitoring plan ID, Recorded emissions2024; Field Categorisation/Recorded emissions[year] native-unit definition",
+                    "page": "Workbook named Data and Field Categorisation sheets",
+                    "legalIdentity": "Esso Petroleum Company Limited; EA OPERATOR_HOLDING_ACCOUNT; exact permit/operator/installation matches",
+                    "unit": "Verified installationtCO2e, not automatic nativeCO2/corporate scope",
+                    "reliability": "Previously authenticated official registry, rehash-verified only; no purchase/bank ledger",
+                    "rightsRecord": "registry"
+                  },
+                  {
+                    "id": "RETAINED-XOM-EXHIBIT21",
+                    "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xomexhibit21123124.htm",
+                    "captureFile": "Previously authenticated xom-climate-liability-v1/sources/xom-ex21-identified.html; not re-retrieved",
+                    "sha256": "3eb6cbbd71d0224a9100e915c59d007850c93c2365d642ceddabdcc4e7f31fa1",
+                    "publicationDate": "2025-02-19",
+                    "publicationDateBasis": "Retained authenticated FY2024 parent filing availableAt2025-02-19T21:39:37.000Z, same SEC accession",
+                    "period": "2024-12-31",
+                    "locator": "Exhibit21 subsidiary table; exact Esso Petroleum Company Limited100United Kingdom row; heading Percentage of Voting Securities Owned Directly or Indirectly by Registrant",
+                    "page": "HTML table exact legal row",
+                    "legalIdentity": "Exxon Mobil Corporation registrant/Esso Petroleum Company Limited legal subsidiary, NOT separate ExxonMobil Chemical Limited",
+                    "unit": "100%direct/indirect voting securities, NOT measured equity-emissions allocation or project cash ownership",
+                    "reliability": "Previously authenticated SEC issuer exhibit with exact identity, source hash reverified only",
+                    "rightsRecord": "registry"
+                  }
+                ],
+                "fieldSpecificCaptureRecords": [
+                  {
+                    "field": "Whole-company capital funding/replacement envelope",
+                    "status": "source-qualified-forward",
+                    "sourceIds": [
+                      "XOM-PLAN-20241211"
+                    ],
+                    "locator": "Key plan bullet and non-GAAP Cash Capex definition",
+                    "period": "2025 and2026-2030",
+                    "unit": "USD/year net cash capex",
+                    "values": {
+                      "2025Range": [
+                        27000000000,
+                        29000000000
+                      ],
+                      "2026To2030EachYearRange": [
+                        28000000000,
+                        33000000000
+                      ]
+                    },
+                    "boundary": "Net includes advance collections and subtracts major-project NCI inflows. Not gross no-funding replacement spend; not CCS-only allocation. Future annual funding amounts and sustaining/growth split still missing."
+                  },
+                  {
+                    "field": "Lower-emissions project capex",
+                    "status": "source-qualified-forward-upper-opportunity-not-CCS-budget",
+                    "sourceIds": [
+                      "XOM-PLAN-20241211"
+                    ],
+                    "locator": "Up-to30bn bullet/footnote4",
+                    "period": "2025-2030 aggregate",
+                    "unit": "USD net cash-capex opportunities",
+                    "valueUpper": 30000000000,
+                    "boundary": "Includes CCS,hydrogen,lithium,biofuels,Proxxima,Carbon Materials,own/third-party emission reduction. Already within corporate capital plan; never add30bn again or allocate all to CCS."
+                  },
+                  {
+                    "field": "LCS operating-return evidence",
+                    "status": "source-qualified-conditional-earnings-not-cash",
+                    "sourceIds": [
+                      "XOM-PLAN-20241211"
+                    ],
+                    "locator": "Final Low Carbon Solutions paragraph",
+                    "period": "2030increment versus2024",
+                    "unit": "USD/year incremental earnings potential",
+                    "value": 2000000000,
+                    "boundary": "LCS covers CCS/hydrogen/lithium. Separate3bn all-new-business earnings headline is not2bnLCS or CCS alone. No price-per-tonne, opex margin, cash remittance or FCFE conversion inferred."
+                  },
+                  {
+                    "field": "Baytown proposed project funding/equity",
+                    "status": "source-qualified-announced-agreement-not-paid-funding",
+                    "sourceIds": [
+                      "XOM-ADNOC-20240904"
+                    ],
+                    "locator": "ADNOC35% equity agreement paragraph",
+                    "period": "Announced2024,conditional future project",
+                    "unit": "Fraction of proposed equity",
+                    "value": 0.35,
+                    "paidContributionUsd": null,
+                    "exxonFinalEquityFraction": null,
+                    "boundary": "Do not assume XOM65% cash share, price of stake, actual closure or capital-contribution schedule."
+                  },
+                  {
+                    "field": "Baytown production/commissioning",
+                    "status": "source-qualified-forward-not-CO2-billable-volume",
+                    "sourceIds": [
+                      "XOM-ADNOC-20240904",
+                      "XOM-PLAN-20241211"
+                    ],
+                    "locator": "Production/contingency paragraph; LCS Baytown paragraph",
+                    "period": "ExpectedFID2025,potentialstartup2029",
+                    "unit": "Hydrogen up to1bn cubic feet/day; approximately98% CO2 removed",
+                    "absoluteCapturedCo2TonnesPerYear": null,
+                    "boundary": "Hydrogen volume is not CO2 mass; standard reference state/feed/stoichiometry unavailable. September ammonia 'tons' unit ambiguous; December 'metric tons' forecast not actual product/capture cash. No invented billable tonnes."
+                  },
+                  {
+                    "field": "CCS fee/price and billable CO2 volume",
+                    "status": "not-disclosed-in-two-retrieved-issuer-releases-counterparty-retrieval-failed",
+                    "sourceIds": [
+                      "XOM-PLAN-20241211",
+                      "XOM-ADNOC-20240904"
+                    ],
+                    "locator": "Entire CCS/LCS and Baytown release bodies reviewed; CF guessed contract announcement URLs404twice",
+                    "period": "Proposed contracts/project",
+                    "unit": "Missing currency/tonne, minimum billable volume and fee escalation",
+                    "value": null,
+                    "boundary": "Executed fee schedule/full commercial contract and standalone CF filing NOT retrieved; not proof terms globally undisclosed. Statutory45Q credit is NOT a CCS tariff; fresh IRS45Q retrieval not attempted in16bound."
+                  },
+                  {
+                    "field": "CCS project opex/replacement/gross capex and common-funding waterfall",
+                    "status": "not-disclosed-in-retrieved-releases-other-contract-filings-unattempted",
+                    "sourceIds": [
+                      "XOM-PLAN-20241211",
+                      "XOM-ADNOC-20240904"
+                    ],
+                    "locator": "Capital-plan definition and Baytown project paragraphs",
+                    "period": "Construction/operating life",
+                    "unit": "Missing project USD/year cost/capex, cash draw/contribution/advance/rollover/priorities",
+                    "value": null,
+                    "boundary": "Corporate net budget and proposed equity percentage do not identify project replacement cash, debt, common ownership waterfall or fee economics. No future return/margin invented."
+                  },
+                  {
+                    "field": "Statutory allowance denomination/reportable gas basis",
+                    "status": "source-qualified-FY2024",
+                    "sourceIds": [
+                      "UKETS-ARTICLE4-FY2024",
+                      "UKETS-FULL-FY2024"
+                    ],
+                    "locator": "Article18(2)/(3),Article4 reportable-emissions definition",
+                    "period": "FY2024law view",
+                    "unit": "1UKETS allowance authorizes1tonne CO2 equivalent; specified regulated-activity emissions reportedtCO2e",
+                    "value": 1,
+                    "boundary": "This closes the old unit-convention source gap in NEW adapter only; no retune of frozen oldXOM24 or blanket current-law eligibility certification."
+                  },
+                  {
+                    "field": "Statutory activity-to-gas and native CO2",
+                    "status": "activity-gas-rows-qualified-installation-native-mass-not-certified",
+                    "sourceIds": [
+                      "UKETS-SCHEDULE2-FY2024"
+                    ],
+                    "locator": "Schedule2 Table1 three rows matched to retained registry activity codes",
+                    "period": "2024",
+                    "unit": "Specified gasCO2 for combustion/refining/hydrogen-synthesis activities",
+                    "nativeCo2Tonnes": null,
+                    "boundary": "No complete permit monitoring-plan/gas annex retrieved. ReportedtCO2e is retained; no automatic nativeCO2/corporateScope1/equity/global conversion, despite listed activities having CO2-only statutory rows."
+                  },
+                  {
+                    "field": "Emissions year versus statutory compliance versus purchase timing",
+                    "status": "statutory-report-and-surrender-calendar-qualified-cash-purchase-unidentified",
+                    "sourceIds": [
+                      "UKETS-FULL-FY2024"
+                    ],
+                    "locator": "Schedule6 paragraph4(2)(b),4(3), NOT aviationArticle34",
+                    "period": "2024emissions/2025compliance",
+                    "unit": "Report due2025-03-31;surrender due2025-04-30",
+                    "actualCashPurchaseDate": null,
+                    "actualCashSettlementYear": null,
+                    "boundary": "Legal surrender deadline is not a company cash-purchase date or price. Prior holdings/transfers/free allocations can satisfy obligations."
+                  },
+                  {
+                    "field": "Selected permits free allocation/bank/purchases",
+                    "status": "known-delivered-units-reconciled-bank-and-purchase-ledgers-not-retrieved",
+                    "sourceIds": [
+                      "UKETS-FULL-FY2024",
+                      "RETAINED-UKETS-ALLOCATIONS",
+                      "RETAINED-UKETS-COMPLIANCE",
+                      "RETAINED-XOM-EXHIBIT21"
+                    ],
+                    "locator": "Article18(3) registry holding rule plus retained two-permit verified/allocation workbook evidence",
+                    "period": "2024",
+                    "unit": "UKA units/tCO2e, NOT cash",
+                    "knownDeliveredUnits": 1509112,
+                    "actualUncommittedBankUnits": null,
+                    "actualPurchasedUnits": null,
+                    "actualPaidPrice": null,
+                    "boundary": "Statutory accounts rule is not an account bank balance. Public allocation/surrender reports do not identify actual purchase ledgers. No zero bank, auction-price-as-paid-cash or assumed banking rights invented."
+                  },
+                  {
+                    "field": "Generic permitUK-E-IN-11402 site/monitoring boundary",
+                    "status": "attempted-regulator-index-search-unresolved",
+                    "sourceIds": [
+                      "UKETS-FULL-FY2024"
+                    ],
+                    "locator": "Exact permit search0hits; broader Fawley search unhelpful. Schedule6 paragraph4(1)(b/c/f) says permit must hold address/grid/activity/monitoring details.",
+                    "period": "FY2024permit identity",
+                    "unit": "Missing installation address/grid and permit annex",
+                    "value": null,
+                    "boundary": "A direct EnvironmentAgency individual permit PDF/registry-document lookup was NOT retrieved/attempted after locator discovery within bound; no Fawley address assigned from Esso brand/HQ. This is retrieval unresolved, not proven absence."
+                  }
+                ],
+                "newSourceQualifiedCalculations": {
+                  "financialScenarioGrids": 0,
+                  "valuationScoringPerformed": false,
+                  "corporatePlanNetCashCapex2025To2030ArithmeticEnvelopeUsd": [
+                    167000000000,
+                    194000000000
+                  ],
+                  "capitalEnvelopeMeaning": "27+5x28 to29+5x33bn interval arithmetic on disclosed annual ranges, NOT issuer joint endpoint guidance, gross replacement spending, CCS allocation, observed cash, sustainable terminal or new hypothetical margin.",
+                  "selectedPermitCount": 2,
+                  "reportedCoveredTco2e": 3070057,
+                  "deliveredFreeUka": 1509112,
+                  "uncoveredUkaBeforeBankOrTransfers": 1560945,
+                  "uncoveredByPermit": {
+                    "UK-E-IN-12019": 564699,
+                    "UK-E-IN-11402": 996246
+                  },
+                  "unitCalculationMeaning": "Newly source-qualified1allowance/tCO2e; sum per-permit nonnegative shortfalls, no inter-account free-allocation offset assumed. This is units needing allocations/bank/transfers/surrender, NOT observed purchases or incremental cost.",
+                  "nativeCo2Tonnes": null,
+                  "actualPurchasedUnits": null,
+                  "actualPaidCash": null,
+                  "wholeCcsCashValuation": "explicitly-refused-missing-project-economics",
+                  "baselineCarbonExpenseDeductedAgain": false
+                },
+                "freeze": {
+                  "frozenAt": "2026-11-11T10:45:58.823Z",
+                  "qualifiedAt": "2026-11-11T10:45:58.849Z",
+                  "path": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/2026-11-11T10-45-58-823Z/frozen-before-qualification.json",
+                  "sha256": "f60e1eab6db6a115e19c7299049d6800b59c8726ab76c31391fdf9b1d5ec868e",
+                  "reportPath": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/2026-11-11T10-45-58-823Z/report.json",
+                  "reportSha256": "74c94e8cf3ba59e13ccf0e629e90d1ef2c2b1223ec9b8e4a645bd621747ea7f9",
+                  "newFinancialAssumptions": false,
+                  "protectedPriorHashReferences": 277,
+                  "distinctProtectedPriorPaths": 230,
+                  "oldKernelsExecuted": false,
+                  "ownerGatesChanged": false,
+                  "qualifiedOriginalIssuers": 0
+                },
+                "verification": {
+                  "codeOnly": {
+                    "command": "npx tsx --test script/xom-source-inputs.test.ts",
+                    "passed": 5,
+                    "failed": 0,
+                    "skipped": 0,
+                    "privateFileOrNetworkDependencies": false,
+                    "logSha256": "bcebee8c04114dfdbc7b6d63752b34eb13b561acf1279add2d8c7807440aa890"
+                  },
+                  "qualification": {
+                    "command": "npx tsx script/run-xom-source-inputs.ts --private-primary",
+                    "exitCode": 0,
+                    "logSha256": "9dab2e9283a27f9fce86d12ef1e33e2dd400900af0fcfdc2697f557c2c885b45"
+                  },
+                  "mandatoryPrivate": {
+                    "command": "npx tsx script/validate-xom-source-inputs-private.ts --private-primary",
+                    "exitCode": 0,
+                    "sourceResponseHashChecks": 16,
+                    "legalGasRows": 3,
+                    "independentPermitUnitCalendarChecks": 2,
+                    "issuerPlanFundingSources": 2,
+                    "checks": "Actual retrieval statuses/hashes and bounded stop; exact point-date/source clauses; corporate net-versus-gross budget arithmetic; LCS-versus-CCS scope; ADNOC announced-not-paid ownership; H2 volume notCO2mass; legal gas table; per-permit units/calendar notbank/purchasecash; all protected originals unchanged.",
+                    "logSha256": "af16ad541370b2ecbea2f4f5c75802be3fc3e14e106e171d7a62083d36d7d3a4"
+                  },
+                  "strictTypecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomSourceInputQualification.ts script/capture-xom-source-inputs.ts script/xom-source-inputs.test.ts script/run-xom-source-inputs.ts script/validate-xom-source-inputs-private.ts",
+                    "exitCode": 0,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "es5Typecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomSourceInputQualification.ts script/capture-xom-source-inputs.ts script/xom-source-inputs.test.ts script/run-xom-source-inputs.ts script/validate-xom-source-inputs-private.ts",
+                    "exitCode": 0,
+                    "tsconfigRelaxed": false,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "logsDirectory": "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/",
+                  "noPaidCallsPurchasesBillingProductionDdlAuthCollectorUiRoutesCommitPublishCallbackChanges": true,
+                  "rawPrimaryOrProviderDataExported": false
+                },
+                "readyNextSourceFields": [
+                  "Discover CF Industries original CCS announcement/SEC contract or later counterparty filing from official index, rather than additional guessed slugs. Capture billable tonnes, transport/storage fee terms or explicit confidentiality/redaction; counterparty capture capex must not be assigned to XOM.",
+                  "Retrieve exact EnvironmentAgencyUK-E-IN-11402 permit/monitoring plan via direct public-register document index; Schedule6 now supplies exact required site/activity/gas locator. Existing keywordsearch is not a permit retrieval.",
+                  "Retrieve IRS45Q statutory owner/credit-duration/tonne/cash-claim provisions if needed; credit rate cannot substitute for undisclosed customer tariff, and no future legal eligibility assertion is made here.",
+                  "Seek actual operator registry account holdings/transfer/trade ledger if publicly available. Annual emissions/free-allocation/surrender and legal dates alone cannot establish company-paid cash timing/prices or an uncommitted bank.",
+                  "New2026-2030 corporate NET cash-capex ranges and LCS2bn conditional earnings disclosure are dependency-ready source inputs for a separately frozen funded operating experiment only after gross funding/working-capital/project-cash boundaries are respected. No new grid is proposed merely to fit a price."
+                ]
+              }
+            },
+            {
+              "file": "docs/xom-contract-permit-evidence.json",
+              "sha256": "03072ae0966d2bdc581d97b9422dea512163b6c3f2fb214546c4a41a50e1b1e8",
+              "details": {
+                "version": "xom-contract-permit-1",
+                "status": "bounded-official-contract-discovery-and-source-qualified-capacity-inputs-complete",
+                "technicalQualifiedOriginalIssuers": 0,
+                "qualifiedOriginalPairs": 0,
+                "scope": "NEW source capture/qualification only. Actual new source-backed physical inputs, not fee inventions, valuation scoring or another stress grid. Previous statutory denomination closure and all old freezes preserved.",
+                "files": [
+                  "script/capture-xom-contract-permit-sources.ts",
+                  "server/calculation/xomCounterpartyPermitInputs.ts",
+                  "script/xom-contract-permit.test.ts",
+                  "script/run-xom-contract-permit-inputs.ts",
+                  "script/validate-xom-contract-permit-private.ts",
+                  "docs/xom-contract-permit-evidence.json"
+                ],
+                "priorEvidenceRead": [
+                  "docs/xom-source-inputs-evidence.json",
+                  "generated-artifacts/company-operating-corpus/xom-source-inputs-v1/receipts.json",
+                  "generated-artifacts/company-operating-corpus/xom-climate-liability-v1/sources/receipts.json"
+                ],
+                "actualSourceAttempts": {
+                  "maximumLogicalAttemptsFrozenInCaptureScript": 18,
+                  "actualLogicalAttempts": 18,
+                  "get": 15,
+                  "readOnlyIssuerNewsListingPost": 3,
+                  "postAuthority": "Official CF newsroom links its client bundle. That bundle explicitly uses POST/api/v1/news/get with newsCategoryId/newsLandingPageId/pageIndex; requests only read public listing data, no mutation/auth/approval.",
+                  "finalStatuses": {
+                    "200": 16,
+                    "403": 1,
+                    "500": 1
+                  },
+                  "new404s": 0,
+                  "boundExhaustedStopped": true,
+                  "countBasis": "Logical fetch attempts; automatic redirect hops included within attempt, not separately counted.",
+                  "failedOrRestricted": [
+                    {
+                      "source": "cf-ir-press-index.html",
+                      "status": 403,
+                      "url": "https://cfindustries.q4ir.com/news-market-information/press-releases/default.aspx",
+                      "handling": "Discovered corporate-site investor link; no retry, authentication or access-control workaround. Used separately offered public corporate newsroom and SEC filings."
+                    },
+                    {
+                      "source": "cf-robots.txt",
+                      "status": 500,
+                      "url": "https://www.cfindustries.com/robots.txt",
+                      "handling": "Standard discovery file returned actual issuer error page; no retry or guessed contract slug."
+                    }
+                  ],
+                  "receiptPath": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/receipts.json",
+                  "receiptSha256": "a902e516b024f3ddd92c626507354d27c51b2cfc91072c962ee3d6b8a9a95dfb",
+                  "commandTemplate": "npx tsx script/capture-xom-contract-permit-sources.ts --private-primary --one NAME URL FIELD [--read-news-json BODY]; actual NAME/URL/FIELD/BODY/timestamps/status/finalURL/hashes retained in receipt rows. Do not replay exhausted18bound.",
+                  "attemptNamesInOrder": [
+                    "cf-news-index.html",
+                    "cf-sec-submissions.json",
+                    "ea-register-index.html",
+                    "cf-fy2024-10k.html",
+                    "cf-fy2022-10k.html",
+                    "cf-ir-press-index.html",
+                    "ea-exact-permit-search.html",
+                    "cf-robots.txt",
+                    "ea-about.html",
+                    "ea-esso-search.html",
+                    "cf-news-discovery.js",
+                    "ea-fawley-epr-record.html",
+                    "cf-news-api-page0.json",
+                    "ea-epr-issued-page.html",
+                    "cf-clean-energy-page0.json",
+                    "ea-fawley-epr-v008.pdf",
+                    "cf-clean-energy-page1.json",
+                    "cf-yazoo-2024-announcement.html"
+                  ]
+                },
+                "rightsRecords": {
+                  "cfIssuer": "Public issuer release/SEC filings; bounded factual extraction and short source assertions only. No full-text redistribution licence claimed. Raw filings, web responses and derivative source text private/git-ignored; no provider prices or raw private exports.",
+                  "eaRegister": "Register footer explicitly identifies Environment Agency Conditional Licence. Licence link retained; full terms not separately retrieved within bound. No unconditional data licence inferred.",
+                  "govPermit": "Official GOV.UK/EA publication and attached regulatory permit. Bounded factual extraction/citation only; no blanket right to republish attached raw PDF asserted.",
+                  "discovery": "Public page/client/listing/error responses are locator evidence only. Current2025/2026news/financial teasers not used as FY2024 observations or scoring inputs."
+                },
+                "sourceRecords": [
+                  {
+                    "id": "CF-SEC-SUBMISSIONS",
+                    "url": "https://data.sec.gov/submissions/CIK0001324404.json",
+                    "publicationDate": null,
+                    "period": "Current SEC submissions index containing historical FY2022/FY2024 filings",
+                    "locator": "name/cik; filings.recent form/filingDate/accessionNumber/primaryDocument",
+                    "page": "JSON field paths",
+                    "legalIdentity": "CF Industries Holdings, Inc.;CIK1324404",
+                    "unit": "Issuer identity and actual filing locators, no economics",
+                    "reliability": "Official SEC index; used to discover exact annual URLs, not guess accessions",
+                    "rightsRecord": "cfIssuer"
+                  },
+                  {
+                    "id": "CF-FY2022-10K",
+                    "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440423000006/cf-20221231.htm",
+                    "sha256": "5488953ec3ec63cfb5b7f9cda8c33c00d7734a92751861a321c78ce2becf5160",
+                    "publicationDate": "2023-02-23",
+                    "publicationDateBasis": "SEC submissions filingDate, corroborated final response lastModified",
+                    "period": "FY2022; October2022definitive agreement and expected2025startup",
+                    "locator": "MD&A Donaldsonville CCS paragraph; report-wide tons/tonnes convention; final PartIV Item15 EXHIBIT INDEX",
+                    "page": "HTML named sections/index, not inferred PDF pagination",
+                    "legalIdentity": "CF Industries Holdings, Inc. consolidated issuer; narrative names ExxonMobil group, not executed-signature legal entities",
+                    "unit": "Original capacity wording2million tons/year; report explicitly defines tons as short tons, tonnes as metric tons",
+                    "reliability": "Official issuer annual filing; signed-agreement announcement is not full executed contract or realized operations",
+                    "rightsRecord": "cfIssuer"
+                  },
+                  {
+                    "id": "CF-FY2024-10K",
+                    "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440425000006/cf-20241231.htm",
+                    "sha256": "90a19d4c1d7e8b6920f14ae774e4b9753cedb28e483414594229d3017b25dc9d",
+                    "publicationDate": "2025-02-20",
+                    "publicationDateBasis": "SEC submissions filingDate, corroborated final response lastModified",
+                    "period": "FY2024; prospective Donaldsonville2025/Yazoo2028",
+                    "locator": "Business and MD&A decarbonization/low-carbon ammonia project paragraphs; final PartIV Item15 EXHIBIT INDEX",
+                    "page": "HTML named sections/index",
+                    "legalIdentity": "CF Industries Holdings, Inc.; CF capture-origin projects. XOM transport/storage is a contracted service, not ownership of CF capture equipment",
+                    "unit": "Explicit metric tons CO2/year; approximate lifetime CF dehydration/compression-unit capitalUSD",
+                    "reliability": "Official annual filing; expected capacity/startup/total cost are forward disclosures, not observed utilization, paid capex or minimum take-or-pay",
+                    "rightsRecord": "cfIssuer"
+                  },
+                  {
+                    "id": "CF-YAZOO-20240725",
+                    "url": "https://www.cfindustries.com/newsroom/2024/yazoo-city-ccs-exxonmobil",
+                    "sha256": "7dc35c2db19345b4fbe8e127ad4341618159f6491a2c4e4b4fafd4fc34d2bcf6",
+                    "publicationDate": "2024-07-25",
+                    "period": "Proposed project; expected sequestration2028",
+                    "locator": "Headline/date and first three project/commercial-agreement paragraphs",
+                    "page": "HTML named paragraphs",
+                    "legalIdentity": "CF Industries Holdings, Inc. announces agreement with ExxonMobil group; signed operating entity/SPV identities and contractual cash allocation not provided",
+                    "unit": "Up to500,000metric tons nativeCO2/year; approximately100millionUSD CF capture-unit investment",
+                    "reliability": "Official actual dated counterparty announcement, discovered via public client/listing, corroborates FY2024annual",
+                    "rightsRecord": "cfIssuer"
+                  },
+                  {
+                    "id": "CF-OFFICIAL-DISCOVERY",
+                    "url": "https://www.cfindustries.com/newsroom",
+                    "publicationDate": null,
+                    "period": "Current index; CleanEnergy archive page1 reaches July2024",
+                    "locator": "data-news-landing-page-id9; linked /static/cfi/js/cfi-main.bundle.js; documented /api/v1/news/get; categories5456CleanEnergy; page0/page1",
+                    "page": "HTML/client metadata and actual JSON result links",
+                    "legalIdentity": "CF public corporate newsroom, independently offered from restricted investor host",
+                    "unit": "Discovery only",
+                    "reliability": "Primary publisher index; original2022release not reached/retrieved in bound, no guessed repeat404",
+                    "rightsRecord": "discovery"
+                  },
+                  {
+                    "id": "EA-EXACT-11402-SEARCH",
+                    "url": "https://environment.data.gov.uk/public-register/api/search?name-number-search=UK-E-IN-11402",
+                    "publicationDate": null,
+                    "period": "Current online register query",
+                    "locator": "Index actual quick-search form action/name-number-search; exact permit result0",
+                    "page": "Search Results",
+                    "legalIdentity": "Environmental Agency public registers; exact UK-E-IN-11402 queried",
+                    "unit": "0search results, not proof of permit nonexistence",
+                    "reliability": "Official direct register query, no GHG monitoring document returned",
+                    "rightsRecord": "eaRegister"
+                  },
+                  {
+                    "id": "EA-LEGAL-OPERATOR-SEARCH",
+                    "url": "https://environment.data.gov.uk/public-register/api/search?name-number-search=Esso%20Petroleum%20Company%20Limited",
+                    "publicationDate": null,
+                    "period": "Current register query",
+                    "locator": "36results; exact company operator and EPR/BR6996IC installation link",
+                    "page": "Search results and discovered /public-register/industrial-installations/registration/EPR-BR6996IC",
+                    "legalIdentity": "Esso Petroleum Company,Limited; multiple schemes/sites returned, only actual Fawley EPR record inspected",
+                    "unit": "Registration/site metadata, not GHG emissions",
+                    "reliability": "Official operator-linked result but different regulatory permit scheme; no join to UKETS11402 inferred",
+                    "rightsRecord": "eaRegister"
+                  },
+                  {
+                    "id": "EA-EPR-ISSUED-PUBLICATION",
+                    "url": "https://www.gov.uk/government/publications/so45-1tx-esso-petroleum-company-limited-environmental-permit-issued-eprbr6996icv008",
+                    "publicationDate": "2019-03-05",
+                    "publicationDateBasis": "Visible Published5March2019 and datePublished2019-03-05T14:23:52+00:00",
+                    "period": "2019consolidation, not certified currentFY2024",
+                    "locator": "Documents: Variation and consolidation notice; Decision document",
+                    "page": "GOV.UK publication document links",
+                    "legalIdentity": "Esso Petroleum Company,Limited;EPR/BR6996IC/V008",
+                    "unit": "Environmental permitting document locator",
+                    "reliability": "Official EA publication linked from actual installation record. Decision PDF link discovered but not retrieved after choosing operative consolidation notice within bound",
+                    "rightsRecord": "govPermit"
+                  },
+                  {
+                    "id": "EA-EPR-V008-PDF",
+                    "url": "https://assets.publishing.service.gov.uk/media/5c7d56daed915d4067f2b333/Variation_and_consolidation_notice.pdf",
+                    "sha256": "a9eba7899082b976065b04f82c6e9640c88b66ea5f11d043b45a9e96ba4c7ae8",
+                    "publicationDate": "2019-03-05",
+                    "publicationDateBasis": "Linked GOV.UK publication; PDF response lastModified2019-03-04 is separate metadata",
+                    "effectiveDate": "2019-03-04",
+                    "period": "Historical2019EPR variation/consolidation",
+                    "locator": "PDF page9 Notice of variation and consolidation; full68page text searched for11402/UK-E-IN identifiers",
+                    "page": 9,
+                    "legalIdentity": "Esso Petroleum Company, Limited; company registration00026538;EPR/BR6996IC",
+                    "unit": "Actual facility address and EPR conditions; NOT UKETS nativeCO2 inventory",
+                    "reliability": "Official operative historical EPR document; no UKETS11402/corporate GHG boundary/CO2monitoring qualified",
+                    "rightsRecord": "govPermit"
+                  }
+                ],
+                "fieldSpecificCaptureRecords": [
+                  {
+                    "field": "Donaldsonville/Yazoo contracted CCS service capacity",
+                    "status": "source-qualified-forward-native-CO2-capacity-not-minimum-billings",
+                    "sourceIds": [
+                      "CF-FY2024-10K",
+                      "CF-YAZOO-20240725"
+                    ],
+                    "period": "Expected starts2025and2028",
+                    "unit": "Metric tonnes nativeCO2/year, NOT CO2e or observed captured tonnes",
+                    "values": {
+                      "Donaldsonville": 2000000,
+                      "YazooCity": 500000
+                    },
+                    "boundary": "CF ammonia-process capture-origin facilities in Louisiana/Mississippi; not proof of storage-site geography, XOM equity share or corporate Scope1/2/3 allocation. Do not net against unrelated UK Esso tCO2e obligations."
+                  },
+                  {
+                    "field": "CF capture equipment cost/source funding identity",
+                    "status": "source-qualified-approximate-total-investment-not-XOM-capex",
+                    "sourceIds": [
+                      "CF-FY2024-10K",
+                      "CF-YAZOO-20240725"
+                    ],
+                    "period": "Lifetime project estimates; future phased construction cash not disclosed",
+                    "unit": "USD CF dehydration/compression-unit total cost",
+                    "values": {
+                      "Donaldsonville": 200000000,
+                      "YazooCity": 100000000
+                    },
+                    "boundary": "CF invests in capture infrastructure. These300mUSD are never charged to XOM transport/storage capex, replacement or common cash. No paid-to-date capex/opex timeline inferred."
+                  },
+                  {
+                    "field": "Original2022native mass convention",
+                    "status": "source-qualified-short-tons-not-retrospective-metric",
+                    "sourceIds": [
+                      "CF-FY2022-10K"
+                    ],
+                    "period": "Original2022Donaldsonville forecast",
+                    "unit": "Short tons/year; report explicitly distinguishes tons/tonnes",
+                    "value": 2000000,
+                    "metricTonnesValue": null,
+                    "boundary": "2024explicit2million metric tons kept separately. No silent2022metric relabelling or unsupported claim that physical contract expanded/restated."
+                  },
+                  {
+                    "field": "CCS commercial agreement existence versus fee/opex terms",
+                    "status": "agreement-announcements-qualified-executed-terms-not-located-in-examined-material",
+                    "sourceIds": [
+                      "CF-FY2022-10K",
+                      "CF-FY2024-10K",
+                      "CF-YAZOO-20240725"
+                    ],
+                    "period": "October2022Donaldsonville and July2024Yazoo agreements",
+                    "unit": "Group-level signed agreement disclosure; missing currency/metric-tonne fee, escalation, take-or-pay and XOM costs",
+                    "feePerTonne": null,
+                    "xomOpex": null,
+                    "boundary": "Read actual project paragraphs and both final annual exhibit indexes. No ExxonMobil/carbon-capture/sequestration contract descriptions found in those indexes. Actual full contracts were not located, not proven globally undisclosed/unfiled."
+                  },
+                  {
+                    "field": "Exact searched annual exhibit indexes",
+                    "status": "attempted-specific-filings-no-named-contract-candidate",
+                    "sourceIds": [
+                      "CF-FY2022-10K",
+                      "CF-FY2024-10K"
+                    ],
+                    "locator": "Final EXHIBIT INDEX through end of each filed HTML",
+                    "unit": "Normalized index characters and named candidate matches",
+                    "values": {
+                      "FY2022IndexCharacters": 23205,
+                      "FY2024IndexCharacters": 22572,
+                      "MatchingNamedCcsAgreementDescriptions": 0
+                    },
+                    "boundary": "Scope is these two complete retrieved annual exhibit indexes plus their narratives; no invented confidentiality exemption/redaction or global SEC absence claim. Other8-K/exhibit packages unattempted."
+                  },
+                  {
+                    "field": "45Q entitlement/economics",
+                    "status": "issuer-project-expectation-qualified-statutory-beneficiary-and-cash-unqualified",
+                    "sourceIds": [
+                      "CF-YAZOO-20240725",
+                      "CF-FY2024-10K"
+                    ],
+                    "period": "Expected after sequestration commences",
+                    "unit": "Expected credit per metric tonne, rate/allocation/cash dates absent",
+                    "creditRate": null,
+                    "creditBeneficiaryContractAllocation": null,
+                    "currentEligibilityCertified": false,
+                    "boundary": "CF expects project to qualify. No85USD XOM tariff, automatic credit beneficiary, current-law eligibility or paid credit receipt assumed. IRS/contract-specific statutory allocation not attempted in this18source bound."
+                  },
+                  {
+                    "field": "Actual EPR facility/company identity",
+                    "status": "source-qualified-historical-EPR-only",
+                    "sourceIds": [
+                      "EA-LEGAL-OPERATOR-SEARCH",
+                      "EA-EPR-ISSUED-PUBLICATION",
+                      "EA-EPR-V008-PDF"
+                    ],
+                    "period": "Effective2019-03-04/published2019-03-05",
+                    "unit": "Company number/site address",
+                    "value": {
+                      "operator": "Esso Petroleum Company, Limited",
+                      "companyRegistrationNumber": "00026538",
+                      "facility": "Esso Refinery, Marsh Lane, Fawley, Southampton, Hampshire SO45 1TX"
+                    },
+                    "boundary": "Site is operative facility clause onpage9, NOT registered office Leatherhead. No certificate that historicalV008was currentFY2024."
+                  },
+                  {
+                    "field": "Exact UKETS11402 site/native-gas monitoring link",
+                    "status": "direct-register-attempted-no-exact-document-cross-scheme-candidate-not-qualified",
+                    "sourceIds": [
+                      "EA-EXACT-11402-SEARCH",
+                      "EA-LEGAL-OPERATOR-SEARCH",
+                      "EA-EPR-V008-PDF"
+                    ],
+                    "period": "RequiredFY2024UKETSboundary",
+                    "unit": "Missing exact UK-E-IN-11402 operative monitoring/site annex",
+                    "value": null,
+                    "boundary": "Exact online register search0hits; operator search36records found different EPR permit. Full68page EPR text has zero UK-E-IN identifiers/11402 and no CO2monitoring basis. EPR address/gas conditions cannot substitute for the missing UKETS permit. Decision PDF remains discovered-unretrieved; no request-document/contact submission made."
+                  }
+                ],
+                "frozenConditionalCalculation": {
+                  "newFinancialGrids": 0,
+                  "financialValuationScoring": false,
+                  "expectedStartupCondition": "Only if source expected2025/2028commissioning is met; no assumed full first-year operation or take-or-pay billing",
+                  "fiveYear2025To2029PhysicalAnnualCapacityCeilingsMetricTonnes": [
+                    2000000,
+                    2000000,
+                    2000000,
+                    2500000,
+                    2500000
+                  ],
+                  "fiveYearCumulativePhysicalCapacityCeilingMetricTonnes": 11000000,
+                  "matureAnnualCapacityCeilingMetricTonnes": 2500000,
+                  "cfCaptureUnitApproximateTotalCapitalUsd": 300000000,
+                  "atStatedUpperCapacityCfCapitalUsdPerAnnualMetricTonne": {
+                    "Donaldsonville": 100,
+                    "YazooCity": 200,
+                    "aggregate": 120
+                  },
+                  "capitalRatioMeaning": "Approximate client capture-equipment capital divided by stated annual capacity. NOT annual opex, cash cost/tonne, LCOE, XOM cost, customer fee or project return.",
+                  "xomCashRevenue": null,
+                  "xomProjectCashValue": null,
+                  "wholeXomCashValuationStatus": "explicitly-refused-missing-fee-opex-replacement-funding-and-common-cash-terms",
+                  "baselineCarbonExpenseDeductedAgain": false,
+                  "priorUkOneAllowancePerTco2eClosureUnchanged": true
+                },
+                "freeze": {
+                  "frozenAt": "2026-11-11T11:02:29.824Z",
+                  "qualifiedAt": "2026-11-11T11:02:29.864Z",
+                  "path": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/2026-11-11T11-02-29-824Z/frozen-before-qualification.json",
+                  "sha256": "405aaf2e625cb2caa38060c093e235d056d8192b3325cffc1d19db6c6c332371",
+                  "reportPath": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/2026-11-11T11-02-29-824Z/report.json",
+                  "reportSha256": "addb8df04b5774d3a600cb3a55404ed54ce69c261c014d78295ee2543b89feae",
+                  "protectedPriorDistinctPaths": 254,
+                  "oldKernelsExecuted": false,
+                  "ownerGatesChanged": false,
+                  "qualifiedOriginalIssuers": 0
+                },
+                "verification": {
+                  "codeOnly": {
+                    "command": "npx tsx --test script/xom-contract-permit.test.ts",
+                    "passed": 5,
+                    "failed": 0,
+                    "skipped": 0,
+                    "privateDependencies": false,
+                    "logSha256": "b67e5e290d43cbd7115d8cfa226f0604641e159bc1ea351f0d0650a34162bb27"
+                  },
+                  "qualification": {
+                    "command": "npx tsx script/run-xom-contract-permit-inputs.ts --private-primary",
+                    "exitCode": 0,
+                    "logSha256": "14769817a835990b96a6984157d638cdd113451be6160843b7cfb98daee91dac"
+                  },
+                  "mandatoryPrivate": {
+                    "command": "npx tsx script/validate-xom-contract-permit-private.ts --private-primary",
+                    "exitCode": 0,
+                    "actualPrimaryAttemptHashes": 18,
+                    "priorDistinctHashGuards": 254,
+                    "independentAnnualCapacityChecks": 5,
+                    "counterpartyProjects": 2,
+                    "annualExhibitIndexes": 2,
+                    "datedCounterpartyAnnouncement": 1,
+                    "eprPdfPages": 68,
+                    "operativeNoticePage": 9,
+                    "checks": "Independent source numeral/year extraction; physical ceilings not billings; short-ton history not metric substitution; client investment not XOM capital; exact annual-index scope;45Q expectation not tariff/current eligibility; EPR facility not registered office/UKETS11402; prior statutory unit unchanged; all prior source/code/study hashes preserved",
+                    "logSha256": "c951af8a6b601d054ca48f86b0e60916334f5b44d04cd3e6c041660c60de56f5"
+                  },
+                  "independentPdfTextRebuild": {
+                    "command": "pdftotext -layout generated-artifacts/company-operating-corpus/xom-contract-permit-v1/ea-fawley-epr-v008.pdf - | sha256sum",
+                    "matchesRetainedFrozenDerivedText": true,
+                    "derivedTextSha256": "ec80ef14a21b3affe7e6e5c8b46409fec36726845e428a4664a8f48c11d393a0",
+                    "logSha256": "980c31a1816505ad9dcfcddc34da95162f24e57714625427a49d0292060d3728"
+                  },
+                  "additionalPrivateExhibitSourceSearch": {
+                    "scope": "Both exact retrieved final annual exhibit indexes",
+                    "searchRegex": "Exxon|EnLink|carbon|\\bCO\\s*2\\b|sequest|storage|offtake|transport",
+                    "FY2022Matches": 0,
+                    "FY2024Matches": 0,
+                    "log": "additional-exhibit-source-search.log",
+                    "logSha256": "114659842d7700e751dc39733e6e1ded87c11018313f8f078166704742c21a53",
+                    "meaning": "Additional offline bounded source check, not a global disclosure-absence assertion or an old cash-kernel rerun."
+                  },
+                  "strictTypecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES2022 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomCounterpartyPermitInputs.ts script/capture-xom-contract-permit-sources.ts script/xom-contract-permit.test.ts script/run-xom-contract-permit-inputs.ts script/validate-xom-contract-permit-private.ts",
+                    "exitCode": 0,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "es5Typecheck": {
+                    "command": "npx tsc --noEmit --strict --target ES5 --lib esnext,dom --module ESNext --moduleResolution bundler --skipLibCheck --esModuleInterop server/calculation/xomCounterpartyPermitInputs.ts script/capture-xom-contract-permit-sources.ts script/xom-contract-permit.test.ts script/run-xom-contract-permit-inputs.ts script/validate-xom-contract-permit-private.ts",
+                    "exitCode": 0,
+                    "tsconfigRelaxed": false,
+                    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                  },
+                  "logsDirectory": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/",
+                  "rawSourceOrProviderDataExport": false,
+                  "productionCollectorsEdited": false,
+                  "privateCaptureOnly": true,
+                  "noPaidProviderPurchasesProductionDdlAuthCollectorCanonicalUiRouteCommitPublishCallbackChanges": true
+                },
+                "narrowResidualsAndReadyNextFields": [
+                  "Fee/minimum contracted volume/escalation, XOM pipeline/storage opex and gross capex/replacement/common-funding/credit waterfall remain missing from these specific project narratives and two annual exhibit indexes. No blanket global undisclosed claim.",
+                  "Actual original2022press release not reached in two CleanEnergy archive pages; next documented archive page2 is unattempted, not another guessed404slug. Exact executed CCS contract was not located from examined annual indexes; other CF8K/exhibit packages remain unattempted.",
+                  "Operator-linked EPR document now actually retrieved, but no exactUKETS11402cross-reference. Need correct GHG permit/monitoring record, not more inferential EPR/HQ geolocation. Different-scheme DecisionPDF discovered but unvisited; any direct document-request/contact submission was not made.",
+                  "Existing project capacity inputs are dependency-ready for separately frozen funded operating work, with nativeCO2/calendar/capture-client ownership explicit. XOM fee/opex/capital allocation cannot be fabricated from CF100/200USDperannual-tonne capital intensity or45Q expectation."
+                ]
+              }
+            }
+          ]
         },
         {
           "id": "S12-002",
@@ -132566,9 +134061,9 @@
           "git_commit": "330569935a39812c744eb4ccdf0400c47835c822",
           "deployment_revision": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
           "remaining_gaps": [
-            "Rendered synthetic all-route state coverage and conditional panel/export checks now exist; genuine data/owner/scientific acceptance and exhaustive future dynamic combinations are not established."
+            "All-route unavailable fixtures and specific missingness reasons are demonstrated; universal every-component partial-state assertion remains broader than the finite route fixture coverage. No missing-render-fixture claim remains."
           ],
-          "next_action": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+          "next_action": "Bind per-component partial-field contracts to the existing route inventory; no unrelated scientific/owner prerequisites.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -133223,7 +134718,7 @@
           "id": "S16-010",
           "source_section": "acceptance",
           "requirement": "Every page renders correctly when market-implied measures, Tier 2 outputs or Track B results are unavailable (fixture with all absent).",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md",
@@ -133235,7 +134730,7 @@
           "files_functions_changed": [
             "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
           ],
-          "behaviour_delivered_this_run": "Reconciled original clause against exact existing functions and retained actual logs. No analytical calculation or source data changed by this record.",
+          "behaviour_delivered_this_run": "All seven actual routes plus fallback have retained passing all-absent browser checks; exact written all-pages-unavailable acceptance met. Historical partial timing failure and focused correction retained separately.",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -133292,10 +134787,8 @@
           "scientific_acceptance": "not-assessed",
           "git_commit": "330569935a39812c744eb4ccdf0400c47835c822",
           "deployment_revision": "4d234ebb1c64534508f615d4a6754d3a4e29f77c",
-          "remaining_gaps": [
-            "Rendered synthetic all-route state coverage and conditional panel/export checks now exist; genuine data/owner/scientific acceptance and exhaustive future dynamic combinations are not established."
-          ],
-          "next_action": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps.",
+          "remaining_gaps": [],
+          "next_action": "Retest affected rendered routes when their implementation changes; no additional science prerequisite belongs to this engineering criterion.",
           "blockers": [
             {
               "kind": "specific missing original-scope evidence/implementation",
@@ -133404,6 +134897,14 @@
             "affected": "GET conditional XOM summary200,oneissuer,zeroqualified;private/rawinputs never exposed",
             "tests": "550TS/0fail/0skip;147Python;mandatory private NEE remittance passed;typecheck/build;41browsercases40pass1historicaltimingfailure plus1/1focusedfixconfirmation;independentpanel/103leaf XLSX equality",
             "scope": "Code/UI only; no data/scientific activation; later doc/local receipts distinct."
+          },
+          "criterion_reconciliation": {
+            "scope": "Every page renders correctly when market-implied measures, Tier 2 outputs or Track B results are unavailable (fixture with all absent).",
+            "evidence": [
+              "generated-artifacts/rendered-states/rendered-state-report-41.json",
+              "generated-artifacts/rendered-states/rendered-state-remainder-report.json"
+            ],
+            "scientific_or_owner_acceptance": "not implied"
           }
         },
         {
@@ -139829,6 +141330,26 @@
       "workspace_revision": "c00787b2fa04e408d43fe07efdba6484966ffd12",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-xom-source-inputs-private.ts --private-primary && npx tsx script/validate-xom-contract-permit-private.ts --private-primary && npm run build"
+      ],
+      "executed_at": "2026-11-11T11:08:05.213267+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 138.156,
+      "counts": {
+        "tests": 560,
+        "pass": 560,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261111T110805213267Z.log",
+      "workspace_revision": "1d14db5ca70ac8f6f8268c6d854df35db6050a80",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -140096,13 +141617,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue NEE undisclosed gross distributions/LLC priorities/project marginalreturns and XOM source economics; realhistorical control/forcing/native-boundary evidence and genuine dated11–15corpus. Preserve rendered fixture coverage, extend futurechangedcomponents only; originalopaque summary and authenticated isolatedmutation/provisioning remain narrow gaps. 41 distinct synthetic GET-only cases executed:40pass/1timing-assertion failure; narrow correctedcase subsequently1/1pass. Historical failures retained. Independent NEE/FSLR/XOM panel loading/error/partial/selection checked;XOM103JSONleaves=103XLSXrows. Not scientific/whole-stage acceptance. New NEE remittance/counterparty48assessments/768cashrows:48positive terminals,47positive planvalues,1refused NPV; signedPV -477.512m to17.945bn.156negative annual rows.0/3qualified. No previouskernel reruns.",
+    "instruction": "Continue actual CF2022primary announcement via documented archivepage2, full executedcontract/fee/funding discovery and exactETS11402crosswalk; NEEgrosscash/LLC/projecteconomics and FSLRlaw remain. Need missingcompatibleGDPcells and originalmonthly/dailyCO2releases before frozenholdouts; no substitutequarterlypower acceptance. Preserve all completed sourceassemblies/negative studies. 40verified258partial2blocked after exact S16-010 engineering acceptance reconciliation; no scientific/owner acceptance. Original1000/1001 unchanged.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-nee-admission-2fb18f0",
+    "checkpoint_id": "ckpt-20261111-rendered-company-4d234eb",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T09:57:50.970196+00:00",
+    "attempted_at": "2026-11-11T10:32:39.437743+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -140249,7 +141770,8 @@
       "partial": 19
     },
     "16": {
-      "partial": 14
+      "partial": 13,
+      "verified": 1
     },
     "17": {
       "verified": 1,

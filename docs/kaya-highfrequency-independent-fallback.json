@@ -1,0 +1,20 @@
+{
+  "version": "kaya-highfrequency-independent-fallback-1",
+  "parentProtocolSHA256": "d67c812a4b914b8fec77e7986ac792314ef65f42ab490a71b6539ce012a5a692",
+  "preDataReason": "Official EIA archive index returned403 on the single bounded request. Stop EIA route: no guessed PDFs, mirror, credential, header manipulation or access-control bypass.",
+  "independentPublisher": "Carbon Monitor author-published Figshare record12142824; metadata-only identity/coverage/rights inspection before any data acquisition",
+  "maximumRequests": 8,
+  "timeoutSeconds": 45,
+  "maximumBytesPerResource": 20000000,
+  "sequence": [
+    "https://api.figshare.com/v2/articles/12142824",
+    "Only if exact dataset identity and rights/coverage qualify, its explicit version list",
+    "At most three exact author version metadata objects, selected by publication-date coverage of2024,2025,2026 without inspecting numerical outcomes",
+    "At most three directly returned version-specific original data files; only if data-specific permitted use and file-size cap qualify"
+  ],
+  "selection": "Not an EIA mirror or substitute for its fixed estimator. Separate independent primary daily CO2 source. If incompatible identity/coverage/rights, stop with retained response. Do not search adjacent article IDs or publishers.",
+  "dating": "Version published_date and version number define original author release snapshot, not origin availability inferred from latest file history or fetch time. A latest revised series can be assembled only under explicit revised-history label and must never be scored as data available at an earlier origin.",
+  "numericalGate": "No forecast experiment or nowcast scoring from this fallback without separately frozen source-specific boundaries and pre-outcome operational methods. Default outcome is source assembly only.",
+  "scope": "Daily fossil/industrial CO2 as explicitly defined by author, not all-GHG or a compatible GDP/energy/CO2 Kaya full-window replacement. Preserve country/sector/bunker boundary definitions and missing cells.",
+  "prohibitions": "No paid calls,purchases,license bypass,source splice,current-history-as-original-vintage,canonical edits,production changes or unchanged diagnostic reruns."
+}
