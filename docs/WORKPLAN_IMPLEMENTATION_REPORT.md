@@ -1,4 +1,21 @@
-# Offline ensembles and remaining component contracts — validated; release pending
+# Latest verified offline-route/component release
+
+{
+  "workspace_commit": "eca2c0aea516c16efecc59c3203a68e65ea3b910",
+  "github_main": "bc53096928a93e71c6d9f54a177c7f98afe89eb3",
+  "ci": "43029223643 success",
+  "railway_deployment": "30413e17-b20f-4df5-b288-ad3ca6009fe3",
+  "verified_at": "2026-11-11T13:31:55.516430+00:00",
+  "build_info": "exact SHA verified",
+  "health": 200,
+  "affected": "catalog200; exact pinned ensemble selection503 FAIR_ARTIFACT_MISSING, fallbackUsedfalse. Private bundles not deployed; no requestPython/fallback/scientificpromotion.",
+  "tests": "Final691TS/0fail/0skip/typecheck/build;172Python/newprivateissuer checks passed beforeclient-onlyinteractionfix; actual16artifact validator separatelypassed. Browserinitial6pass2fail1partial1unrun, focused4residual4pass; historicalevidencepreserved.",
+  "scope": "Code release only; sourceartifactvalidation is not deployedartifactavailability orscience. Laterdoc/localreceiptsdistinct."
+}
+
+40verified/258partial/2blocked;0/3qualified;original1000/1001. Context boundary, not completion.
+
+# Offline ensembles and remaining component contracts — released; historical validation detail
 
 {
   "at": "2026-11-11T13:26:46.723159+00:00",
