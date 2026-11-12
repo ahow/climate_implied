@@ -2246,5 +2246,319 @@
       "No release, deployed revision, callback or full browser click-through is claimed. Parent owns release and running-server refresh.",
       "Legacy default export documents/bodies and all original numerical model constants remain unchanged; only explicit metadata opt-in changes API download envelopes/sheets."
     ]
+  },
+  "selectionRaceCorrection": {
+    "generatedAt": "2026-11-12T01:34:15.859Z",
+    "parentReviewFinding": "DownloadDataButton read currentSelection after awaiting SHA256, allowing old rows to be labelled with a newly selected UI state. UI selection was also presented too much like producer provenance.",
+    "reviewFindingEvidenceBoundary": "Parent source review; no fabricated pre-fix failing test or retrospective red-run receipt claimed.",
+    "actualFunctions": [
+      {
+        "path": "client/src/lib/download-selection.ts",
+        "functions": [
+          "captureDownloadSelection",
+          "requireUnchangedDownloadSelection"
+        ],
+        "behavior": "Deep-copy parsed requested UI selection before the first click-handler await. Compare current parsed UI selection before delivery; changed, removed, newly selected, reordered or malformed selection refuses instead of substituting current inputs."
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "functions": [
+          "DownloadDataButton.handleClick",
+          "DownloadJsonButton.download"
+        ],
+        "behavior": "Capture at click; deep-copy lazy/supplied rows, notes, bindings and JSON payload before asynchronous work. XLSX compares before writeFile; JSON compares before URL allocation and immediately before anchor click, revoking any allocated URL on refusal."
+      },
+      {
+        "path": "client/src/lib/export-contract.ts",
+        "functions": [
+          "exportNotes",
+          "prepareQualifiedJsonExport"
+        ],
+        "behavior": "Snapshot passed explicitly through notes and JSON hashing/envelope preparation; no post-await currentSelection read. Notes say requested UI selection, not producer provenance. JSON hashes and delivers the same deep-copied data."
+      },
+      {
+        "path": "shared/downloadManifest.ts",
+        "functions": [
+          "createDownloadManifest"
+        ],
+        "behavior": "requestedUiSelection explicitly identifies UI request state only. producerIdentity is null, not an inferred input/model/run identity. Missing UI state stays null with no certified-current-input fallback."
+      },
+      {
+        "path": "server/downloadManifestMiddleware.ts",
+        "functions": [
+          "downloadManifestMiddleware"
+        ],
+        "behavior": "Server attachments put query/response pins under requestContext, not requestedUiSelection. No complete authenticated producer input/model/run binding is asserted; producerIdentity remains null. Default API body bytes still unchanged."
+      }
+    ],
+    "actualAsyncTests": {
+      "path": "script/download-selection-race.test.ts",
+      "count": 5,
+      "method": "Extract and execute checked-in click/preparer bodies, with genuine production capture/compare/hash/manifest/notes/semantics code. Deferred package/digest boundaries and final browser delivery are instrumented; no rewritten handler replica.",
+      "assertions": [
+        "Real XLSX handler deep-copies lazy rows, interpretation notes and bindings before deferred import; readback retains original zero/date/value and exact old binding/note despite mutation of caller objects.",
+        "Real XLSX handler refuses five changed-state variants while SHA preparation is pending and never invokes writeFile.",
+        "Real JSON handler/preparer deep-copy nested payload before deferred digest; exact payload SHA256 still agrees after caller mutates the original object.",
+        "JSON changed UI state during digest prevents URL allocation and anchor delivery.",
+        "JSON final pre-click recheck refuses an intervening selection change and revokes its allocated URL.",
+        "Actual manifests expose requestedUiSelection and producerIdentity:null; interpretation explicitly rejects certified input/model/run identity."
+      ],
+      "focusedLog": "/tmp/methodology-selection-focused-final.log",
+      "focusedLogSha256": "7bf52716c4f4dd680f9ed63c0e0981aecafb0dc2739fcc9b477e75e5116e9e83",
+      "focusedCounts": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "publicPortableTest": {
+      "path": "script/methodology-download-portable.test.ts",
+      "outcome": "Passed in the coherent full TS run; copies full public client/src,server,shared plus methodology and async race tests into a temp directory with no Git/private/docs/generated evidence. All11 child tests required to pass; dependencies only symlinked."
+    },
+    "execution": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+      ],
+      "executed_at": "2026-11-12T01:29:37.760483+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 202.512,
+      "counts": {
+        "tests": 955,
+        "pass": 955,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "/tmp/methodology-selection-final.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+      "suite_counts": {
+        "typescript": {
+          "tests": 955,
+          "pass": 955,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": {
+          "tests": 217,
+          "pass": 217,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "receiptPath": "/tmp/methodology-selection-final-receipt.json",
+    "receiptSha256": "acc12ef28b4e98ef98801fe59c29cd68526c183ca78c8ca348fb7595894bca3d",
+    "failedChecks": [
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+        ],
+        "executed_at": "2026-11-12T01:26:23.876861+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 151.869,
+        "counts": {
+          "tests": 955,
+          "pass": 954,
+          "fail": 1,
+          "skipped": 0
+        },
+        "log": "/tmp/methodology-selection-attempt1.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "45ba63fa3c63a15666eff6980b80364f8ff89eae4fd09a19c6dde3f1b4ff53c3",
+        "suite_counts": {
+          "typescript": {
+            "tests": 955,
+            "pass": 954,
+            "fail": 1,
+            "skipped": 0
+          },
+          "python": null
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim",
+        "originalReceiptLogPath": "/tmp/methodology-selection-final.log",
+        "receiptPath": "/tmp/methodology-selection-attempt1-receipt.json",
+        "correction": "954/955 passed; frozen next-valuation-evidence source assertion required original additive-note spread. Snapshot now deep-clones [...interpretationNotes] before awaiting and still appends captured notes. Frozen test/protocol/guard files and hashes were not edited or repinned. Final coherent955/955 then passed."
+      },
+      {
+        "command": "npx tsx script/field-semantics-census.ts --check",
+        "outcome": "Failed after actual writer source lines changed; subsequent authorized regeneration and full-suite stale-census checks passed. Slot/definition/bound counts did not change.",
+        "executionTime": null,
+        "boundary": "Observed focused command failure; no invented timestamp, log hash or separate runner receipt."
+      },
+      {
+        "outcome": "Initial legacy handler-extraction checks passed via missing capture helper ReferenceError rather than reaching their intended lazy-row/validation branches.",
+        "correction": "Injected the genuine new capture/compare dependencies into those existing extracted-handler tests. New actual async tests verify the real branches and delivery outcomes, not generic catch success."
+      }
+    ],
+    "changedPaths": [
+      {
+        "path": "client/src/lib/download-selection.ts",
+        "beforeSha256": null,
+        "afterSha256": "3f76a44679cc41f429fdebada76e7639032d60e6796e447ee2222b04e77a1219",
+        "changed": true
+      },
+      {
+        "path": "client/src/lib/export-identity.ts",
+        "beforeSha256": "9754536b00f52fd2f9fe30802174e0d79bf5f8099200a65d0fbe79060332f275",
+        "afterSha256": "841f237d99694c1afc2e997c0619c4d38d280e2fc4ad09bcc87c7e6d5eaadb40",
+        "changed": true
+      },
+      {
+        "path": "client/src/lib/export-contract.ts",
+        "beforeSha256": "037ae3d0673cc5632834b2a810630105ee8ed53fb0a15b3f98d918e4444ab73e",
+        "afterSha256": "68f2323ae13fe884b56862db5420e8d1e7b3071914c0728dfb56cdec24040dce",
+        "changed": true
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "beforeSha256": "3b004eff44b946a087605af9b7504c38b747672fc9972f3facbba77f5ddf0377",
+        "afterSha256": "ea73596b448339b6318574d85cff2a8200e22d225e92f0576c25a004a1fb42f4",
+        "changed": true
+      },
+      {
+        "path": "shared/downloadManifest.ts",
+        "beforeSha256": "dee5a318ba29a93f591f404bddbca1f8b3b2c558d13ad23a56baf6b07f7f11d5",
+        "afterSha256": "99e5343829a3901febca9f82abf0ab68a5fd09f679a78792bb46f2cfa02a7ba4",
+        "changed": true
+      },
+      {
+        "path": "server/downloadManifestMiddleware.ts",
+        "beforeSha256": "0af2c96ee7cffea9dd0759fedb77b66d48d85fd4fce719b1a7f173aea4e610dc",
+        "afterSha256": "38b3cce276af7bf5903bb0a50c500e43e7db38d3f4a488c8f1a72cf8b37ed9cc",
+        "changed": true
+      },
+      {
+        "path": "client/src/components/registry-methodology.tsx",
+        "beforeSha256": "122f62a3dd906c872af78ac2c3df80fd7598de2e826f2073beaa9bbaf7f53c05",
+        "afterSha256": "4171a7ce8eacbc0801dc89f4bc64d63ebd4b4903e4a4e126eca9352d0f8dece8",
+        "changed": true
+      },
+      {
+        "path": "script/download-selection-race.test.ts",
+        "beforeSha256": null,
+        "afterSha256": "b9bd5c200c076d7fa4a6d8f33ea10db8ae356a7b3e2782ea8ba55dd35a360480",
+        "changed": true
+      },
+      {
+        "path": "script/methodology-download-portable.test.ts",
+        "beforeSha256": "299ed34521c1d39ce294fcea98d692a37a8cccd441431e42b181f1d2001f0c6f",
+        "afterSha256": "be8e199e2490dbb5f3e6c0135e821d1bc28e447ec74960d35079cb7a04cecf33",
+        "changed": true
+      },
+      {
+        "path": "script/remaining-component-contracts.test.ts",
+        "beforeSha256": null,
+        "afterSha256": "ed630e98bf67c052dd27847c47357ab14da7a74bd06aa27aff24d842c1e5584e",
+        "changed": true
+      },
+      {
+        "path": "script/component-state-contracts.ts",
+        "beforeSha256": "9c7930c36c32f8d4b26d140a81dd9c11d022b1091b57dd1605006e77e468adc3",
+        "afterSha256": "0486712b09e3cbc314e3fea48272a4f6c96eba9af83537ae1135b04d41f1bbaa",
+        "changed": true
+      },
+      {
+        "path": "script/record-download-selection-fix.ts",
+        "beforeSha256": null,
+        "afterSha256": "6a9f076b2efa7d96ff2296146d5477d071cebc8b16a45d85536d4a29ccdbf1c2",
+        "changed": true
+      },
+      {
+        "path": "docs/field_semantics_census.json",
+        "beforeSha256": "8349073055ae6cbba95732b32dedbe376cd2355f644710cc098f7a7ad2143fad",
+        "afterSha256": "ac1a1fa4777797912926c9a14c6e398fcdcc248d2baa6dfbd658d30692702453",
+        "changed": true
+      }
+    ],
+    "reviewedUnchangedGeneratedPaths": [
+      {
+        "path": "docs/System_Output_Register.md",
+        "beforeSha256": "57b8c8714dbcf878c68a57b22946d3f3560151ef7908c4b6ca26f46883d37b95",
+        "afterSha256": "57b8c8714dbcf878c68a57b22946d3f3560151ef7908c4b6ca26f46883d37b95",
+        "changed": false
+      }
+    ],
+    "protectedCanonical": [
+      {
+        "path": "docs/workplan_completion_ledger.json",
+        "sha256": "b9c28953bc2ff8cabfce6e2b2d1c9b4465f1d1c28a7b1bec325de0d5d54c24b6",
+        "unchanged": true
+      },
+      {
+        "path": "docs/WORKPLAN_COMPLETION_LEDGER.md",
+        "sha256": "046a5cb982f684a862515de29c2f7b0e4bbd33eff665e38dadd4c818f539efa6",
+        "unchanged": true
+      },
+      {
+        "path": "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+        "sha256": "69a45d32f0f6a1600aa81c0e1e70f2a33be70f3f80f0f0efc14d88bd31335d40",
+        "unchanged": true
+      }
+    ],
+    "census": {
+      "beforeSha256": "8349073055ae6cbba95732b32dedbe376cd2355f644710cc098f7a7ad2143fad",
+      "afterSha256": "ac1a1fa4777797912926c9a14c6e398fcdcc248d2baa6dfbd658d30692702453",
+      "before": {
+        "definitions": 2189,
+        "typedSlots": 1465,
+        "bound": 1437
+      },
+      "after": {
+        "definitions": 2189,
+        "typedSlots": 1465,
+        "bound": 1437
+      },
+      "original": {
+        "bound": 1000,
+        "total": 1001,
+        "remaining": 1,
+        "completion": false
+      },
+      "centralDownloadSites": 26,
+      "directLinks": 10,
+      "browserWriters": 2,
+      "boundary": "Only source-located metadata inventory regenerated. No denominator/gate/old opaque-summary closure changes."
+    },
+    "exactRemainingProducerBindingGap": [
+      "Capture/compare prevents late UI-state substitution, but does NOT establish that supplied rows/payload already belonged to that UI selection at click time.",
+      "No producer-asserted, authenticated complete input-revision/model-version/run manifest is attached to these view exports. producerIdentity remains null on every generated download manifest; source/request/response pins are not silently upgraded into that identity.",
+      "The data hash identifies captured exported rows or original response bytes, not scientific acceptance, original vintage, approved inputs or a model/run identity.",
+      "Comparison checks current requested UI selection at delivery, not a complete selection-transition history. It is not a proof of cache/response provenance or an original-vintage replay.",
+      "No certified-current-input fallback is assigned when requestedUiSelection is null. Completing source/producer identity binding remains separate implementation work."
+    ],
+    "boundaries": "All26 central paths retained; legacy default API bodies/goldens, private source bytes, mandatory monetary/issuer guard hashes, scientific/auth/strict completeness gates preserved. No commit, CI cancellation, deployment or callback performed; parent owns release."
+  },
+  "latestVerifiedExecution": {
+    "correction": "selectionRaceCorrection",
+    "receiptPath": "/tmp/methodology-selection-final-receipt.json",
+    "log": "/tmp/methodology-selection-final.log",
+    "logSha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+    "suiteCounts": {
+      "typescript": {
+        "tests": 955,
+        "pass": 955,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 217,
+        "pass": 217,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "exitCode": 0
   }
 }

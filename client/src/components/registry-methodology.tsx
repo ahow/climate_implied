@@ -40,6 +40,7 @@ export function RegistryMethodology() {
     </details>
     <p className="text-xs text-muted-foreground">Every central spreadsheet includes a Download manifest sheet; JSON includes a manifest.
       Server attachments carry X-Download-Manifest (base64url JSON) and an exact claim header. UI server-download links opt in to embedded
-      metadata; default API bodies remain unchanged. Manifests identify exported data, not approved inputs or a complete immutable analysis archive.</p>
+      metadata; default API bodies remain unchanged. Requested UI selections are not certified producer input/model/run identities.
+      Producer identity is unavailable (null); data hashes do not close that binding gap. Manifests identify exported data, not approved inputs or a complete immutable analysis archive.</p>
   </Card>;
 }

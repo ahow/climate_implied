@@ -1,4 +1,5 @@
-import { currentSelection } from "./analysis-selection";
+import { currentSelection, type AnalysisSelection } from "./analysis-selection";
+import { captureDownloadSelection } from "./download-selection";
 import { z } from "zod";
 import { bindNestedOutput } from "@shared/outputFieldSemantics";
 import { exportJsonIdentity } from "./export-identity";
@@ -8,14 +9,14 @@ import { scientificEvidenceExportNotes } from "@shared/scientificEvidence";
 export { exportContracts, type ExportKind } from "@shared/downloadClaims";
 /** Interpretation travels with downloaded data, rather than only with its page. */
 
-export function exportNotes(kind: ExportKind, filename: string, exportedAt: string) {
-  const selection = currentSelection();
+export function exportNotes(kind: ExportKind, filename: string, exportedAt: string,
+  selection: AnalysisSelection | null = captureDownloadSelection()) {
   const contract = exportContracts[kind];
   if (!contract) throw new Error("Unknown export interpretation");
   return [
-    { Field: "Analysis input selection", Value: selection
-      ? `Workbook ${selection.workbook}; indicators ${selection.indicators}; regional inputs ${selection.regional ?? "not selected"}; ordered company overlays ${selection.overlays?.join(",") ?? "none"}; cutoff ${selection.asOf ?? "not specified"}. Applies only to supported analytical views, not news, published references or provider/data-management records. Current-code replay, not original-vintage evidence.`
-      : "Current inputs; no archived analysis selection" },
+    { Field: "Requested UI selection (not producer provenance)", Value: selection
+      ? `Requested UI workbook ${selection.workbook}; indicators ${selection.indicators}; regional inputs ${selection.regional ?? "not selected"}; ordered company overlays ${selection.overlays?.join(",") ?? "none"}; cutoff ${selection.asOf ?? "not specified"}. NOT certified input/model/run identity and not proof these data were produced from that selection. Producer identity unavailable (null); no original-vintage evidence.`
+      : "No archived UI selection requested. Producer input/model/run identity unavailable (null); no certified-current-input fallback or original-vintage claim." },
     { Field: "File", Value: filename },
     { Field: "Export time (not observation or publication date)", Value: exportedAt },
     { Field: "Evidence status", Value: contract.status },
@@ -64,13 +65,15 @@ export function validateCompanyCoverageJson(payload: unknown) {
 /** Shared central-writer contract; data is retained exactly, metadata travels
  * beside it in an envelope, and SHA-256 identifies the lossless data member. */
 export async function prepareQualifiedJsonExport(payload: unknown, kind: ExportKind, filename: string,
-  exportedAt: string, validatePayload: (value: unknown) => unknown) {
-  validatePayload(payload);
-  const identity = await exportJsonIdentity(payload);
+  exportedAt: string, validatePayload: (value: unknown) => unknown,
+  requestedUiSelection: AnalysisSelection | null = captureDownloadSelection()) {
+  const selection = structuredClone(requestedUiSelection), data = structuredClone(payload);
+  validatePayload(data);
+  const identity = await exportJsonIdentity(data);
   const manifest = createDownloadManifest({ filename, kind, exportedAt, dataHash: identity.hash,
     hashMethod: "UTF-8 JSON.stringify(data, null, 2); no normalization",
-    selection: currentSelection(), rows: Array.isArray(payload) ? payload : undefined });
-  const envelope = { data: payload, interpretation: exportNotes(kind, filename, exportedAt),
+    selection, rows: Array.isArray(data) ? data : undefined });
+  const envelope = { data, interpretation: exportNotes(kind, filename, exportedAt, selection),
     dataIdentity: { algorithm: "SHA-256", hash: identity.hash, serialization: "UTF-8 JSON.stringify(data, null, 2); no normalization" },
     manifest };
   return { text: JSON.stringify(envelope, null, 2), hash: identity.hash };

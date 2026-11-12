@@ -40,7 +40,8 @@ export function downloadManifestMiddleware(): RequestHandler {
         ...createDownloadManifest({ filename, kind: entry.kind, exportedAt: new Date().toISOString(),
           dataHash: createHash("sha256").update(bytes).digest("hex"),
           hashMethod: "SHA-256 of original response body bytes before optional metadata embedding",
-          selection: {
+          selection: null,
+          requestContext: {
             query: Object.fromEntries(selected.searchParams),
             responsePins: Object.fromEntries(Object.entries(res.getHeaders()).filter(([key]) =>
               /(?:sha256|x-analysis|x-indicator)/i.test(key))),

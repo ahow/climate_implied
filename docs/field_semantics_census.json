@@ -1404,35 +1404,35 @@
   "workbookBuilderInventory": [
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 60,
+      "line": 63,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheetName.slice(0, 31)",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 61,
+      "line": 64,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheetName.slice(0, 31) === \"Interpretation\" ? \"Export Notes\" : \"Interpretation\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 67,
+      "line": 70,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheetName.slice(0,31)===\"Field semantics\" ? \"Semantic definitions\" : \"Field semantics\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 69,
+      "line": 72,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Column bindings\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 79,
+      "line": 82,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Download manifest\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1446,7 +1446,7 @@
     },
     {
       "source": "server/downloadManifestMiddleware.ts",
-      "line": 60,
+      "line": 61,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Download manifest\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1934,109 +1934,109 @@
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 101,
+      "line": 105,
       "expression": "busy ? \"Preparing\\u2026\" : label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 103,
+      "line": 107,
       "expression": "error",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 105,
+      "line": 109,
       "expression": "Object.keys(fieldBindings).length",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 106,
+      "line": 110,
       "expression": "Object.entries(fieldBindings).map(([column,binding])=>\n        <li key={column}><strong>{column}</strong>: <code>{binding.id}</code> — {binding.transform}</li>\n      )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 107,
+      "line": 111,
       "expression": "column",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 107,
+      "line": 111,
       "expression": "binding.id",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 107,
+      "line": 111,
       "expression": "binding.transform",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 113,
+      "line": 117,
       "expression": "semanticRows().map(row=><div key={row.Field} className=\"my-2\">\n        <dt className=\"font-medium\">{row.Field} — {row.Classification} ({row.Unit})</dt>\n        <dd>{row.Formula}. Depends on: {row.Dependencies || \"source input\"}.</dd>\n        <dd>{row.Source}. {row.Vintage}. {row.AsOf}.</dd>\n      </div>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 114,
+      "line": 118,
       "expression": "row.Field",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 114,
+      "line": 118,
       "expression": "row.Classification",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 114,
+      "line": 118,
       "expression": "row.Unit",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 115,
+      "line": 119,
       "expression": "row.Formula",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 115,
+      "line": 119,
       "expression": "row.Dependencies || \"source input\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 116,
+      "line": 120,
       "expression": "row.Source",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 116,
+      "line": 120,
       "expression": "row.Vintage",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 116,
+      "line": 120,
       "expression": "row.AsOf",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 146,
+      "line": 154,
       "expression": "busy ? \"Preparing…\" : label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 147,
+      "line": 155,
       "expression": "error",
       "explicitSemanticAncestor": false
     },

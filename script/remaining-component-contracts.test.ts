@@ -1,3 +1,4 @@
+import { captureDownloadSelection, requireUnchangedDownloadSelection } from "../client/src/lib/download-selection";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -175,7 +176,8 @@ test("DownloadDataButton empty/explicit-disabled versus real zero rows; Download
 test("actual XLSX handler catches lazy builder refusal and empty rows, resets busy and never declares completed export", async () => {
   for (const rows of [() => { throw Error("engineering-row-builder-refused"); }, () => []]) {
     const busy: boolean[] = [], errors: unknown[] = [];
-    const click = actualSourceValue("client/src/components/download-data-button.tsx", "handleClick", { rows, setBusy: (v: boolean) => busy.push(v), setError: (v: unknown) => errors.push(v) });
+    const click = actualSourceValue("client/src/components/download-data-button.tsx", "handleClick", { rows, captureDownloadSelection, requireUnchangedDownloadSelection,
+      setBusy: (v: boolean) => busy.push(v), setError: (v: unknown) => errors.push(v) });
     await click(); assert.deepEqual(busy, [true, false]);
     assert.ok(errors.some(value => typeof value === "string" && value.includes("No completed download")));
   }
@@ -185,6 +187,7 @@ test("actual JSON handler validation failure has explicit refusal and does not a
   const download = actualSourceValue("client/src/components/download-data-button.tsx", "download", {
     setBusy: (v: boolean) => busy.push(v), setError: (v: unknown) => errors.push(v),
     payload: null, kind: "coverage", filename: "engineering",
+    captureDownloadSelection, requireUnchangedDownloadSelection,
     prepareQualifiedJsonExport, validatePayload: () => { throw new Error("engineering-invalid-report"); },
   });
   await download(); assert.deepEqual(busy, [true, false]);

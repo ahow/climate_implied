@@ -9,6 +9,7 @@ export interface DownloadManifestInput {
   dataHash: string;
   hashMethod: string;
   selection: unknown;
+  requestContext?: unknown;
   rows?: Record<string, unknown>[];
   columnBindings?: unknown;
   sheets?: string[];
@@ -30,7 +31,7 @@ export function downloadHistoricalTypes(rows: Record<string, unknown>[] = []) {
 }
 
 /** Manifest is metadata, never an immutable analysis archive or source approval.
- * Null selection explicitly means the source identity was not supplied.
+ * UI state and transport pins are not authenticated producer provenance.
  */
 export function createDownloadManifest(input: DownloadManifestInput) {
   if (!Object.hasOwn(exportContracts, input.kind)) throw new Error("Unknown download claim");
@@ -42,8 +43,10 @@ export function createDownloadManifest(input: DownloadManifestInput) {
     exportedAt: input.exportedAt,
     claim: { kind: input.kind, ...exportContracts[input.kind] },
     dataIdentity: { algorithm: "SHA-256", hash: input.dataHash, method: input.hashMethod },
-    analysisSelection: input.selection,
-    selectionBoundary: "Only the supplied selected IDs are recorded; null is unversioned/not supplied. Export time is not publication time. No original-vintage or immutable analysis archive claim.",
+    requestedUiSelection: structuredClone(input.selection ?? null),
+    producerIdentity: null,
+    requestContext: structuredClone(input.requestContext ?? null),
+    selectionBoundary: "Requested UI selection only, NOT certified input/model/run identity or proof that these data were produced from those selections. Null requestedUiSelection means no archived UI selection was supplied, not certified current inputs. Producer identity is unavailable (null); response/query pins are transport context only, not an authenticated complete input/model/run binding. Export time is not publication time or original-vintage evidence.",
     historicalTypes,
     historicalTypeBoundary: historicalTypes.length
       ? "Exact declarations retained from exported rows; declarations alone do not authenticate vintage."

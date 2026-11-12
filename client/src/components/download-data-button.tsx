@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { exportNotes, prepareQualifiedJsonExport, type ExportKind } from "@/lib/export-contract";
 import { semanticRows, requireOutputSemantic } from "@shared/fieldSemantics";
 import { bindExportColumns,type ExportFieldBinding } from "@shared/outputFieldSemantics";
-import { exportDataIdentity } from "@/lib/export-identity";
+import { exportDataIdentity, loadExportWorkbook } from "@/lib/export-identity";
 import { certifySupplementalSheetRows } from "@shared/supplementalSheetBindings";
 import { createDownloadManifest, downloadManifestRows } from "@shared/downloadManifest";
-import { currentSelection } from "@/lib/analysis-selection";
+import { captureDownloadSelection, requireUnchangedDownloadSelection } from "@/lib/download-selection";
 
 type Cell = string | number | boolean | null | undefined;
 export type DownloadRow = Record<string, Cell>;
@@ -46,41 +46,45 @@ export function DownloadDataButton({
     setBusy(true);
     setError(null);
     try {
-      const data = typeof rows === "function" ? rows() : rows;
+      const requestedUiSelection = captureDownloadSelection();
+      const data = structuredClone(typeof rows === "function" ? rows() : rows);
       if (!data || data.length === 0) {
         setError("Export unavailable — no rows returned. No completed download was produced.");
         return;
       }
-      for (const note of interpretationNotes)
+      const capturedNotes = structuredClone([...interpretationNotes]);
+      const capturedBindings = fieldBindings ? structuredClone(fieldBindings) : undefined;
+      for (const note of capturedNotes)
         if (note.SemanticField) requireOutputSemantic(note.SemanticField);
-      const XLSX = await import("xlsx");
+      const XLSX = await loadExportWorkbook();
       const identity=await exportDataIdentity(data);
       const ws = XLSX.utils.json_to_sheet(identity.normalized);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, sheetName.slice(0, 31));
       XLSX.utils.book_append_sheet(wb,
-        XLSX.utils.json_to_sheet([...exportNotes(kind, filename, new Date().toISOString()),
-          ...interpretationNotes,
+        XLSX.utils.json_to_sheet([...exportNotes(kind, filename, new Date().toISOString(), requestedUiSelection),
+          ...capturedNotes,
           {Field:"Exported data SHA-256",Value:identity.hash},
           {Field:"Export hash method",Value:"SHA-256 of JSON array in exported row order; object keys sorted; missing cells normalized to null. Identifies exported data, not scientific acceptance."}]),
         sheetName.slice(0, 31) === "Interpretation" ? "Export Notes" : "Interpretation");
       XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(certifySupplementalSheetRows("Field semantics",semanticRows())),
         sheetName.slice(0,31)==="Field semantics" ? "Semantic definitions" : "Field semantics");
-      if(fieldBindings) XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(
+      if(capturedBindings) XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(
         certifySupplementalSheetRows("Column bindings",
-          bindExportColumns(identity.normalized,fieldBindings).map(row=>({...row,dependencies:row.dependencies.join(", ")})))
+          bindExportColumns(identity.normalized,capturedBindings).map(row=>({...row,dependencies:row.dependencies.join(", ")})))
       ),"Column bindings");
       const name = filename.endsWith(".xlsx") ? filename : `${filename}.xlsx`;
       const manifest = createDownloadManifest({ filename: name, kind, exportedAt: new Date().toISOString(),
         dataHash: identity.hash,
         hashMethod: "SHA-256 of JSON array in exported row order; object keys sorted; missing cells normalized to null",
-        selection: currentSelection(), rows: identity.normalized, columnBindings: fieldBindings,
+        selection: requestedUiSelection, rows: identity.normalized, columnBindings: capturedBindings,
         sheets: [...wb.SheetNames, "Download manifest"] });
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(downloadManifestRows(manifest)), "Download manifest");
+      requireUnchangedDownloadSelection(requestedUiSelection);
       XLSX.writeFile(wb, name);
     } catch (err) {
       console.error("Failed to export data to Excel:", err);
-      setError("Export failed. No completed download was produced. Please try again.");
+      setError(err instanceof Error ? `${err.message} No completed download was produced.` : "Export failed. No completed download was produced. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -132,12 +136,16 @@ export function DownloadJsonButton({ kind, filename, payload, validatePayload, l
     setBusy(true); setError(null);
     let url: string | undefined;
     try {
-      const prepared = await prepareQualifiedJsonExport(payload, kind, filename, new Date().toISOString(), validatePayload);
+      const requestedUiSelection = captureDownloadSelection();
+      const prepared = await prepareQualifiedJsonExport(payload, kind, filename, new Date().toISOString(), validatePayload, requestedUiSelection);
+      requireUnchangedDownloadSelection(requestedUiSelection);
       url = URL.createObjectURL(new Blob([prepared.text], { type: "application/json" }));
       const link = document.createElement("a");
-      link.href = url; link.download = filename.endsWith(".json") ? filename : `${filename}.json`; link.click();
-    } catch {
-      setError("Export failed validation or serialization. No completed JSON download was produced.");
+      link.href = url; link.download = filename.endsWith(".json") ? filename : `${filename}.json`;
+      requireUnchangedDownloadSelection(requestedUiSelection);
+      link.click();
+    } catch (error) {
+      setError(error instanceof Error ? `${error.message} No completed JSON download was produced.` : "Export failed validation or serialization. No completed JSON download was produced.");
     } finally {
       if (url) URL.revokeObjectURL(url);
       setBusy(false);

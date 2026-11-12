@@ -154,10 +154,10 @@ export const filePolicies: Record<string, Policy> = {
   }),
   "download-data-button.tsx": props("Empty/invalid rows disable or refuse export rather than fabricating a workbook.", {
     loading: "Export preparation state belongs to the button; it does not fetch analytical results.",
-    error: "Lazy rows() executes inside the actual export try/catch; builder refusal and empty result have explicit no-completed-download errors and reset busy. JSON validator refusal allocates no URL.",
+    error: "Lazy rows() executes inside the actual export try/catch; builder refusal, empty result and changed/malformed click-time UI selection explicitly refuse delivery and reset busy. JSON validation/stale-selection refusal allocates no URL; a final pre-click refusal revokes any allocated URL.",
     null: "Null cells preserved; validators enforce schema-specific finite numeric/nullable requirements.",
-    selection: "Download uses only current supplied rows/payload; interpretation and evidence class travel with export.",
-    scope: "Client artifact writer, not publication, approval, server write or source-byte escape hatch.",
+    selection: "Rows/payload, notes, bindings and requested UI selection are deep-copied before the first await; UI selection is compared before delivery. Requested UI state is not certified producer input/model/run identity; producerIdentity stays null.",
+    scope: "Client artifact writer, not publication, approval, server write or source-byte escape hatch. Actual async handler/digest/package-boundary tests in download-selection-race.test.ts verify snapshots and delivery refusal, not producer provenance.",
   }),
   "driver-evidence-disclosure.tsx": query("Missing/malformed indicator array or IDs refused; partial definition/publisher/rawUnit/role/evidenceState/reason are unavailable. Missing status is named. Full coverage requires actual 22 registered IDs, not 22 unknown unique IDs.", {
     refusal: "Reported role/reason/evidence state does not establish calibration or central eligibility.",

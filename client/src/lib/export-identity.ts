@@ -1,3 +1,9 @@
+/** Shared lazy package boundary, injected only by actual-handler engineering
+ * tests; the production central writer still owns all file delivery. */
+export function loadExportWorkbook() {
+  return import("xlsx");
+}
+
 /** Hash exactly the exported normalized data, independent of filename or clock. */
 export function normalizedExportRows(rows: Record<string,unknown>[]) {
   return rows.map(row=>Object.fromEntries(Object.keys(row).sort().map(key=>[key,row[key] ?? null])));
