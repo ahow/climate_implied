@@ -1843,31 +1843,31 @@
       }
     },
     "producer_source": {
-      "updated_at": "2026-11-12T02:51:49.048713+00:00",
+      "updated_at": "2026-11-12T03:17:05.499964+00:00",
       "execution": {
         "command": [
           "bash",
-          "-c",
-          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+          "-lc",
+          "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
         ],
-        "executed_at": "2026-11-12T02:47:06.491942+00:00",
+        "executed_at": "2026-11-12T03:08:18.559273+00:00",
         "exit_code": 0,
-        "elapsed_seconds": 205.792,
+        "elapsed_seconds": 208.624,
         "counts": {
-          "tests": 978,
-          "pass": 978,
+          "tests": 982,
+          "pass": 982,
           "fail": 0,
           "skipped": 0
         },
-        "log": "/tmp/producer-final-checks.log",
+        "log": "/tmp/producer-final-check.log",
         "workspace_revision": null,
         "worktree_dirty": null,
         "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-        "log_sha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+        "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
         "suite_counts": {
           "typescript": {
-            "tests": 978,
-            "pass": 978,
+            "tests": 982,
+            "pass": 982,
             "fail": 0,
             "skipped": 0
           },
@@ -1889,8 +1889,15 @@
         "S03-007": "docs/remaining-source-inputs-evidence.json"
       },
       "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
-      "scope": "Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Actual browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived XLSX/JSON readback not exercised. No scientific promotion or issuer-case completion.",
-      "release": "Pending existing code validation/promotion; prior verified runtime remains distinct."
+      "scope": "Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived chart XLSX/JSON readback not exercised. Read-only124 retained records had no originalXLSX attachment. New prospective XLSX capture/reader passed actual retained DEV result private ephemeral roundtrip and tamper checks; uninstalled/unpublished, not recovered historical bytes. No scientific promotion or issuer-case completion.",
+      "release": {
+        "github_main": "592e92fcfe401fc34810b05a88f3527f0da972e1",
+        "ci": "43144317499 success",
+        "railway_deployment": "8def2883-5617-4242-8093-33481e2745ac",
+        "verified_at": "2026-11-12T03:17:05.499964+00:00",
+        "health": 200,
+        "scope": "Code-only; no data/owner/scientific activation."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1975,15 +1982,15 @@
     }
   },
   "current_release": {
-    "github_main": "d099e806cd2dba6dcaaf34cf31b99888939dae20",
-    "ci": "43135649774 success",
-    "railway_deployment": "e2cf00cd-171c-4162-aeb2-28e7c037eae6",
-    "verified_at": "2026-11-12T01:49:44.346228+00:00",
+    "github_main": "592e92fcfe401fc34810b05a88f3527f0da972e1",
+    "ci": "43144317499 success",
+    "railway_deployment": "8def2883-5617-4242-8093-33481e2745ac",
+    "verified_at": "2026-11-12T03:17:05.499964+00:00",
     "health": 200,
     "scope": "Code-only; no data/owner/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T02:51:49.048713+00:00",
+  "updated_at": "2026-11-12T03:17:05.499964+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -22985,6 +22992,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 208.624,
+              "counts": {
+                "tests": 982,
+                "pass": 982,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 982,
+                  "pass": 982,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -23995,27 +24039,27 @@
             "coherent_execution": {
               "command": [
                 "bash",
-                "-c",
-                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
               ],
-              "executed_at": "2026-11-12T02:47:06.491942+00:00",
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 205.792,
+              "elapsed_seconds": 208.624,
               "counts": {
-                "tests": 978,
-                "pass": 978,
+                "tests": 982,
+                "pass": 982,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "/tmp/producer-final-checks.log",
+              "log": "/tmp/producer-final-check.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
               "suite_counts": {
                 "typescript": {
-                  "tests": 978,
-                  "pass": 978,
+                  "tests": 982,
+                  "pass": 982,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -77060,6 +77104,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 208.624,
+              "counts": {
+                "tests": 982,
+                "pass": 982,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 982,
+                  "pass": 982,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -78056,27 +78137,27 @@
             "coherent_execution": {
               "command": [
                 "bash",
-                "-c",
-                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
               ],
-              "executed_at": "2026-11-12T02:47:06.491942+00:00",
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 205.792,
+              "elapsed_seconds": 208.624,
               "counts": {
-                "tests": 978,
-                "pass": 978,
+                "tests": 982,
+                "pass": 982,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "/tmp/producer-final-checks.log",
+              "log": "/tmp/producer-final-check.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
               "suite_counts": {
                 "typescript": {
-                  "tests": 978,
-                  "pass": 978,
+                  "tests": 982,
+                  "pass": 982,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -102865,6 +102946,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 208.624,
+              "counts": {
+                "tests": 982,
+                "pass": 982,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 982,
+                  "pass": 982,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -103411,27 +103529,27 @@
             "coherent_execution": {
               "command": [
                 "bash",
-                "-c",
-                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
               ],
-              "executed_at": "2026-11-12T02:47:06.491942+00:00",
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 205.792,
+              "elapsed_seconds": 208.624,
               "counts": {
-                "tests": 978,
-                "pass": 978,
+                "tests": 982,
+                "pass": 982,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "/tmp/producer-final-checks.log",
+              "log": "/tmp/producer-final-check.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
               "suite_counts": {
                 "typescript": {
-                  "tests": 978,
-                  "pass": 978,
+                  "tests": 982,
+                  "pass": 982,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -139887,6 +140005,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 208.624,
+              "counts": {
+                "tests": 982,
+                "pass": 982,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 982,
+                  "pass": 982,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -140417,27 +140572,27 @@
             "coherent_execution": {
               "command": [
                 "bash",
-                "-c",
-                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
               ],
-              "executed_at": "2026-11-12T02:47:06.491942+00:00",
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 205.792,
+              "elapsed_seconds": 208.624,
               "counts": {
-                "tests": 978,
-                "pass": 978,
+                "tests": 982,
+                "pass": 982,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "/tmp/producer-final-checks.log",
+              "log": "/tmp/producer-final-check.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
               "suite_counts": {
                 "typescript": {
-                  "tests": 978,
-                  "pass": 978,
+                  "tests": 982,
+                  "pass": 982,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -154060,6 +154215,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 208.624,
+              "counts": {
+                "tests": 982,
+                "pass": 982,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 982,
+                  "pass": 982,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -156877,27 +157069,27 @@
             "coherent_execution": {
               "command": [
                 "bash",
-                "-c",
-                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
               ],
-              "executed_at": "2026-11-12T02:47:06.491942+00:00",
+              "executed_at": "2026-11-12T03:08:18.559273+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 205.792,
+              "elapsed_seconds": 208.624,
               "counts": {
-                "tests": 978,
-                "pass": 978,
+                "tests": 982,
+                "pass": 982,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "/tmp/producer-final-checks.log",
+              "log": "/tmp/producer-final-check.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+              "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
               "suite_counts": {
                 "typescript": {
-                  "tests": 978,
-                  "pass": 978,
+                  "tests": 982,
+                  "pass": 982,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -157017,6 +157209,288 @@
                   "description": "Carbon comparison shows no P/E observations and disabled Download data control."
                 }
               ]
+            },
+            "stored_xlsx_inspection": {
+              "increment": "S16-007-exact-stored-XLSX-readiness-inspection",
+              "status": "blocked-no-authorized-recorded-original-XLSX-for-retained-analysis-results",
+              "productionCodePathAdded": false,
+              "exactStoredXlsxRoute": null,
+              "exactStoredXlsxLink": null,
+              "exactRemainingFieldGap": {
+                "originalXlsxBytes": null,
+                "recordedOriginalXlsxSha256": null,
+                "immutableParentAnalysisResultBinding": null,
+                "recordedExportContractAndSheetDomain": null,
+                "sameReaderPublicAuthorization": null,
+                "meaning": "Existing analysis-result-1 persists only version, analytical manifest and native JSON result. Neither its producer nor reader records an original XLSX attachment, recorded export-byte hash, parent-result export record, export contract/sheet domain or authorization to publish a retained workbook. A JSON result hash cannot be substituted for an original workbook byte hash."
+              },
+              "actualReadOnlyArchiveInspection": {
+                "databaseAccess": "Existing workspace DEV database; inspection used BEGIN READ ONLY with transaction_read_only=on. Actual loadAnalysisResult readback separately used PGOPTIONS=-c default_transaction_read_only=on.",
+                "writes": 0,
+                "analysisResultRecords": 124,
+                "analysisResultChunks": 124,
+                "topLevelExportOrXlsxReferences": 0,
+                "manifestSettingsExportOrXlsxReferences": 0,
+                "binaryOrExportColumnsOnExistingAnalysisTables": [],
+                "archiveKinds": {
+                  "analysis-result": 124,
+                  "calculation-source": 23,
+                  "company-operating-source": 3,
+                  "company-operating-source-proposal": 3,
+                  "indicator-overrides": 1,
+                  "material-inputs": 23,
+                  "regional-intensity": 1,
+                  "workbook-baseline": 1
+                },
+                "actualStoredNineProducerScenarioInventory": {
+                  "descriptive-valuation:/backtest": 14,
+                  "descriptive-valuation:/carbon-price": 19,
+                  "descriptive-valuation:/decarb-bands": 5,
+                  "descriptive-valuation:/decarb-gap/summary": 8,
+                  "descriptive-valuation:/decarb-gap/timeseries": 7,
+                  "descriptive-valuation:/decarb-terciles": 19,
+                  "descriptive-valuation:/pe-comparison": 7,
+                  "descriptive-valuation:/sdg-growth": 23,
+                  "descriptive-valuation:/summary": 22
+                },
+                "existingDevRecordReadback": {
+                  "id": "017cea5d0d46fcbaf3931a45e3669d558dd4707a8352bfac9c25786cc368fbfa",
+                  "version": "analysis-result-1",
+                  "scenario": "descriptive-valuation:/decarb-terciles",
+                  "manifestId": "d1c70a4cfaa68a112845ac556516f75e3ea6d4279635344decbd5cf5d91f8d45",
+                  "materialInputsId": "25f14ae5db910b0fbd8dbcd01dcf04341c769338bf2a998c7b06e4918ffa5ac6",
+                  "payloadKeys": [
+                    "manifest",
+                    "result",
+                    "version"
+                  ],
+                  "materialReplayState": "referenced-material-archives-verified",
+                  "canonicalResultHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+                  "actualStoredJsonReadback": true,
+                  "originalXlsx": null,
+                  "recordedXlsxHash": null,
+                  "corruptInMemoryResultRejected": true,
+                  "callerAddedXlsxReferenceRejected": true,
+                  "missingStoredResultRejected": true,
+                  "rawRowsOrSourceBundlesPrinted": false
+                }
+              },
+              "otherExistingWorkbookEvidence": {
+                "files": [
+                  "generated-artifacts/company-projection-replay/fresh-1.xlsx",
+                  "generated-artifacts/company-projection-replay/fresh-2.xlsx"
+                ],
+                "existingBytesReadWithoutRegeneration": true,
+                "recordedOfflineBinaryHashesMatch": true,
+                "identitySheetsMatchOfflineManifestAndResultMetadata": true,
+                "sheets": [
+                  "Semantics",
+                  "Identity",
+                  "Ledger",
+                  "FullResult"
+                ],
+                "recordedAnalysisResultId": null,
+                "recordedSameReaderPublicAuthorization": null,
+                "sameAnalysisResultReader": false,
+                "notAnEligibleSubstitute": "These existing offline conditional-company replay engineering workbooks use a different bundle/manifest/result contract. Their offline binary/cell identities do not bind any of the nine retained analysis-result-1 producers or authorize public delivery of a private/local artifact. No files or bundles were exposed, imported into the public catalog or used as fallback."
+              },
+              "sourceInspection": {
+                "jsonArchiveWriterAndReader": [
+                  "server/snapshots/resultContract.ts",
+                  "server/snapshots/results.ts"
+                ],
+                "sameReaderExistingExport": "server/producerDownload.ts exposes exact retained JSON only",
+                "offlineWorkbookHelper": "server/calculation/companyProjectionReplay.ts exportCompanyProjectionReplay constructs a new workbook; it is not an original-XLSX archive reader",
+                "offlineWorkbookCli": "script/replay-company-projection.ts writes separate local XLSX/metadata; no database archive integration or authorization",
+                "overlayVerification": "script/verify-overlay-replay.ts constructs test workbooks and records canonical exported-row identity/readback, not original pinned XLSX bytes in analysis-result-1"
+              },
+              "focusedChecks": {
+                "command": "npx tsx --test script/analysis-result-archive.test.ts script/producer-download.test.ts script/methodology-download-portable.test.ts",
+                "tests": 10,
+                "passed": 10,
+                "failed": 0,
+                "skipped": 0,
+                "addedAssertions": [
+                  "immutable analysis-result-1 rejects caller-appended export/XLSX/hash metadata instead of authenticating it",
+                  "missing manifest and corrupt retained result fail closed",
+                  "known retained result and missing result both have no export.xlsx attachment route",
+                  "request producer-attestation headers cannot activate a missing XLSX reader or attach a producer proof"
+                ],
+                "typecheck": "npx tsc --noEmit --pretty false: passed",
+                "diffWhitespace": "git diff --check: passed",
+                "sourceOnlyPortability": "Existing source-only test passes with the enhanced producer assertions; no Git/docs/generated/private evidence dependency introduced",
+                "fullSuite": "Not rerun for this gap-only inspection, per request to report before full suite if no genuine eligible code path"
+              },
+              "customSheetBoundary": {
+                "closed": false,
+                "reason": "JSON native-result readback and unrelated offline workbook integrity cannot certify original custom-sheet bytes or original producer-linked export identity.",
+                "nextDependency": "A genuine already-recorded original workbook with independently verifiable byte hash, exact retained parent producer/result association and same-reader publication authorization; adding an unauthenticated transform or substituting newly generated bytes is not acceptable."
+              },
+              "preservation": {
+                "productionModulesChanged": false,
+                "legacyBytesOrHashesChanged": false,
+                "all14FaIRPinsChanged": false,
+                "privateBundleOrRawInputDisclosure": false,
+                "publicWritesOrAuthChanges": false,
+                "canonicalLedgersOrMatrixChanged": false,
+                "ciOrRailwayCancelledOrRestarted": false,
+                "commitDeployCallback": false
+              }
+            },
+            "prospective_xlsx": {
+              "increment": "S16-007-prospective-offline-retained-result-XLSX-capture",
+              "status": "pure-versioned-capture-and-reader-implemented-not-installed-or-published",
+              "implementation": {
+                "module": "server/snapshots/prospectiveResultExport.ts",
+                "captureVersion": "prospective-retained-result-xlsx-1",
+                "sheetContractVersion": "retained-result-json-chunks-1",
+                "captureEntry": "captureProspectiveResultXlsx(resultId, trustedRetainedLoader)",
+                "readerEntry": "readProspectiveResultXlsx(captureId, recordedMetadata, exactBytes, expectedParentResultId, trustedRetainedLoader)",
+                "trustedRetainedLoader": "Existing loadAnalysisResult is the intended trusted-code dependency. It is not an HTTP-submitted proof, approval, path, selection, source bundle or caller identity.",
+                "newCaptureTime": "Generated inside capture with new Date().toISOString(); no caller-supplied/backdated capture-time input",
+                "historicalExportClaim": false,
+                "scientificAcceptance": false,
+                "persistenceOrPublishingPerformedByModule": false
+              },
+              "boundedExportContract": {
+                "payload": "Only the same verified retained parent's already-disclosed native JSON result, serialized losslessly as bounded canonical JSON chunks. No chart-column transform or current recalculation.",
+                "serializerCompatibility": "Uses the existing nine-path replay verification serializer's bounded field/value canonical-JSON chunk pattern. Its command script is not imported because it has command/database side effects. New identity metadata and Unicode-safe16000-codepoint chunks are separately versioned, not relabelled as an old original workbook.",
+                "sheets": [
+                  "Data",
+                  "Identity"
+                ],
+                "dataColumns": [
+                  "field",
+                  "value"
+                ],
+                "identityColumns": [
+                  "Field",
+                  "Value"
+                ],
+                "metadataAssociation": [
+                  "exact parent result id and canonical native result hash",
+                  "analytical manifest id",
+                  "producer code archive id and model version",
+                  "material-inputs archive id",
+                  "ordered workbook/overlay/indicator snapshot identities",
+                  "allowlisted producer scenario",
+                  "new capture timestamp and explicit non-historical/non-accepted meaning",
+                  "strict sheet/column/chunk contract",
+                  "captured original binary SHA256 and byte length",
+                  "decoded worksheet-cell hash",
+                  "content-addressed immutable capture-record id"
+                ],
+                "notCopied": [
+                  "manifest.settings",
+                  "raw workbook inputs",
+                  "material archive contents",
+                  "source bundle contents",
+                  "private operator identities",
+                  "provider rows"
+                ],
+                "binaryPreservation": "SheetJS receives copies on read; returned byte buffers are detached copies. Reader verifies recorded binary identity before parsing, never regenerates or repairs a workbook.",
+                "recordTrustBoundary": "An installed caller must obtain the expected capture id/metadata/bytes from a trusted immutable private operator store, not a submitted public capture id. Content hashing is not an operator signature, approval, timestamp authority or publication authorization."
+              },
+              "installationDependency": {
+                "supportedExistingExportAttachmentPersistence": null,
+                "existingAnalysisArchive": "analysis-result-1 stores JSON only and its strict immutable payload cannot be extended in place. No dedicated authorized export-attachment writer/reader installation was found.",
+                "fallbackChosen": "Pure capture/reader with private isolated file roundtrip; no ambient DB schema, new archive kind, migration, default directory, public resource, CLI approval or automatic installation invented.",
+                "requiredBeforeRealActivation": [
+                  "Existing legitimate authorized operator workflow must explicitly adopt a separately versioned export record and persist exact returned bytes/metadata immutably under the trusted capture id",
+                  "Operator workflow must preserve parent result/manifest/code/material references and verified existing retained reader dependencies",
+                  "Private store must supply trusted capture pins, bounded exact-byte retrieval and rights/output disclosure controls; arbitrary paths and caller-supplied approval are not accepted",
+                  "Any later public delivery requires separately established publication authorization and read-only mount review; this module grants neither"
+                ],
+                "actualInstalledExportAvailability": false,
+                "historicalMissingXlsxGapClosed": false,
+                "engineeringGapClosed": "Versioned prospective result-to-captured-bytes association and strict readback are implemented and verified. Installation/authorization and historical original-byte availability remain separate honest gaps."
+              },
+              "actualDevEngineeringRoundtrip": {
+                "usedExistingRetainedRecord": true,
+                "databaseReadOnlyDefault": "Per-process PGOPTIONS=-c default_transaction_read_only=on",
+                "parentResultId": "102d005b0437c31eced43aa4eb33e7470279de0a423dbb62191f4f1ebc62862c",
+                "scenario": "descriptive-valuation:/summary",
+                "parentManifestId": "5607205e6a35c2d4e7d29a3856083f6d596b6c97c42dd89336edfd1c65080405",
+                "parentMaterialInputsId": "bcdc05ee4390b9f6ee307b559d1a77aea5bb1b4e6ff4044de9a897ee0ea3c8f4",
+                "parentCodeArchiveId": "44bf3a6563ddf8c47c377bf6eb901643fe12f24319771d8d58ef5df011171ea6",
+                "parentResultHash": "0f4f659373395afb56ae0e9f192b8c9aa85c4b244b1c857792e75f78fdc3e78d",
+                "captureRecordId": "6df22c3f00160b20a2f0eca7c7eddb3ce703f060299841e461ba757b52b89e04",
+                "newCapturedAt": "2026-11-12T03:07:07.110Z",
+                "capturedBinarySha256": "1b1744f566f95a0d82a687459d08802a0a797bc774beae4930be6b137d0756ef",
+                "capturedByteLength": 11048,
+                "capturedCellsHash": "d1a91e8098dcd291b2bfbf45842d85a1058bf99b365e4c08aecc439b81684dbc",
+                "privateDirectoryPermissions": "0700",
+                "recordAndBinaryPermissions": "0600",
+                "exactCapturedByteReadback": true,
+                "corruptBytesRejected": true,
+                "wrongParentRejected": true,
+                "ephemeralPrivateDirectoryRemovedAfterVerification": true,
+                "durableExportInstalled": false,
+                "publicAuthorizationGranted": false,
+                "rawOutputRowsPrintedOrSourceBundlesCopied": false,
+                "qualification": "Actual existing retained DEV parent and real new bytes, but isolated engineering verification only; not an operator approval, publication or historical original export."
+              },
+              "tests": {
+                "newTestFile": "script/prospective-result-export.test.ts",
+                "newTests": 4,
+                "coverage": [
+                  "all nine existing retained producer scenarios: new timestamp, lossless result, unchanged parent and exact parent/code/material/binary/sheet association",
+                  "private isolated wx/0600 file roundtrip and unchanged captured bytes",
+                  "Unicode-safe multi-cell JSON chunks, null and genuine zero readback",
+                  "missing bytes/metadata/parent dependencies, corrupt record ids and wrong parents refuse",
+                  "unknown versions, legacy unverified material, malformed path-like identifiers and conflicting producer dependencies refuse",
+                  "rehashed tampered results, wrong chunk order, altered embedded identity and extra sheets refuse",
+                  "no current fallback, regeneration, version upgrade, publication or installation"
+                ],
+                "focusedSuite": {
+                  "command": "npx tsx --test script/prospective-result-export.test.ts script/methodology-download-portable.test.ts script/analysis-result-archive.test.ts script/producer-download.test.ts",
+                  "tests": 14,
+                  "passed": 14,
+                  "failed": 0,
+                  "skipped": 0
+                },
+                "sourceOnlyPortability": "Enhanced existing portability test executes22 nested source tests without Git/docs/generated artifacts/private fixtures. Only installed package dependencies are symlinked; the new pure tests create explicitly synthetic isolated engineering parents, never production fallback data.",
+                "coherentFinalReceipt": {
+                  "path": "/tmp/producer-final-receipt.json",
+                  "log": "/tmp/producer-final-check.log",
+                  "logSha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+                  "runner": "script/workplan-evidence-run.py --receipt-only",
+                  "exitCode": 0,
+                  "typescript": {
+                    "tests": 982,
+                    "passed": 982,
+                    "failed": 0,
+                    "skipped": 0
+                  },
+                  "python": {
+                    "tests": 218,
+                    "passed": 218,
+                    "failed": 0,
+                    "skipped": 0
+                  },
+                  "fieldCensusFreshness": "passed",
+                  "typecheck": "passed",
+                  "mandatoryPrivateWorkplanValidator": "passed: original byte assertion1, original clause assertions14, missing files skipped0",
+                  "mandatoryPrivateMonetaryIntegration": "passed with --private-primary",
+                  "mandatoryPrivateIssuerCashflow": "passed",
+                  "mandatoryPrivateIssuerCashflowReconciliation": "passed",
+                  "productionBuild": "passed with existing size/Browserslist/PostCSS warnings",
+                  "gitOrPrivateHistoryNeededByReceiptRunner": false,
+                  "canonicalLedgersModifiedByReceiptRunner": false
+                }
+              },
+              "preservation": {
+                "oldRetainedResultsOrOriginalWorkbookBytesModified": false,
+                "nineExistingOutputContractsOrGoldensModified": false,
+                "all14FaIRPinsModified": false,
+                "runtimeMountsOrPublicRoutesChanged": false,
+                "publicWritesOrAuthChanges": false,
+                "databaseDdlNewKindsOrResourcesCreated": false,
+                "deploymentEnvironmentChanged": false,
+                "canonicalLedgersOrMatrixModified": false,
+                "sourceCensus": "Mechanically refreshed supplemental workbook-builder inventory only; no new original closure credit. Definitions2200, original1000/1001 bound,571/572 gaps closed,27 withheld,four aliases,original identities unchanged.",
+                "ciRailwayRestartCancelCommitDeployCallback": false
+              }
             }
           }
         },
@@ -166153,6 +166627,14 @@
       "verified_at": "2026-11-12T00:36:40.765627+00:00",
       "health": 200,
       "affected": "history-types200; pass-through evidence200; missingness403; invalid explicit-version diff422; no data/approval activation"
+    },
+    {
+      "github_main": "d099e806cd2dba6dcaaf34cf31b99888939dae20",
+      "ci": "43135649774 success",
+      "railway_deployment": "e2cf00cd-171c-4162-aeb2-28e7c037eae6",
+      "verified_at": "2026-11-12T01:49:44.346228+00:00",
+      "health": 200,
+      "scope": "Code-only; no data/owner/scientific activation."
     }
   ],
   "latest_changed_paths": [

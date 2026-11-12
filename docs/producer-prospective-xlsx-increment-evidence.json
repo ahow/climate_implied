@@ -1,0 +1,129 @@
+{
+  "increment": "S16-007-prospective-offline-retained-result-XLSX-capture",
+  "status": "pure-versioned-capture-and-reader-implemented-not-installed-or-published",
+  "implementation": {
+    "module": "server/snapshots/prospectiveResultExport.ts",
+    "captureVersion": "prospective-retained-result-xlsx-1",
+    "sheetContractVersion": "retained-result-json-chunks-1",
+    "captureEntry": "captureProspectiveResultXlsx(resultId, trustedRetainedLoader)",
+    "readerEntry": "readProspectiveResultXlsx(captureId, recordedMetadata, exactBytes, expectedParentResultId, trustedRetainedLoader)",
+    "trustedRetainedLoader": "Existing loadAnalysisResult is the intended trusted-code dependency. It is not an HTTP-submitted proof, approval, path, selection, source bundle or caller identity.",
+    "newCaptureTime": "Generated inside capture with new Date().toISOString(); no caller-supplied/backdated capture-time input",
+    "historicalExportClaim": false,
+    "scientificAcceptance": false,
+    "persistenceOrPublishingPerformedByModule": false
+  },
+  "boundedExportContract": {
+    "payload": "Only the same verified retained parent's already-disclosed native JSON result, serialized losslessly as bounded canonical JSON chunks. No chart-column transform or current recalculation.",
+    "serializerCompatibility": "Uses the existing nine-path replay verification serializer's bounded field/value canonical-JSON chunk pattern. Its command script is not imported because it has command/database side effects. New identity metadata and Unicode-safe16000-codepoint chunks are separately versioned, not relabelled as an old original workbook.",
+    "sheets": ["Data", "Identity"],
+    "dataColumns": ["field", "value"],
+    "identityColumns": ["Field", "Value"],
+    "metadataAssociation": [
+      "exact parent result id and canonical native result hash",
+      "analytical manifest id",
+      "producer code archive id and model version",
+      "material-inputs archive id",
+      "ordered workbook/overlay/indicator snapshot identities",
+      "allowlisted producer scenario",
+      "new capture timestamp and explicit non-historical/non-accepted meaning",
+      "strict sheet/column/chunk contract",
+      "captured original binary SHA256 and byte length",
+      "decoded worksheet-cell hash",
+      "content-addressed immutable capture-record id"
+    ],
+    "notCopied": ["manifest.settings", "raw workbook inputs", "material archive contents", "source bundle contents", "private operator identities", "provider rows"],
+    "binaryPreservation": "SheetJS receives copies on read; returned byte buffers are detached copies. Reader verifies recorded binary identity before parsing, never regenerates or repairs a workbook.",
+    "recordTrustBoundary": "An installed caller must obtain the expected capture id/metadata/bytes from a trusted immutable private operator store, not a submitted public capture id. Content hashing is not an operator signature, approval, timestamp authority or publication authorization."
+  },
+  "installationDependency": {
+    "supportedExistingExportAttachmentPersistence": null,
+    "existingAnalysisArchive": "analysis-result-1 stores JSON only and its strict immutable payload cannot be extended in place. No dedicated authorized export-attachment writer/reader installation was found.",
+    "fallbackChosen": "Pure capture/reader with private isolated file roundtrip; no ambient DB schema, new archive kind, migration, default directory, public resource, CLI approval or automatic installation invented.",
+    "requiredBeforeRealActivation": [
+      "Existing legitimate authorized operator workflow must explicitly adopt a separately versioned export record and persist exact returned bytes/metadata immutably under the trusted capture id",
+      "Operator workflow must preserve parent result/manifest/code/material references and verified existing retained reader dependencies",
+      "Private store must supply trusted capture pins, bounded exact-byte retrieval and rights/output disclosure controls; arbitrary paths and caller-supplied approval are not accepted",
+      "Any later public delivery requires separately established publication authorization and read-only mount review; this module grants neither"
+    ],
+    "actualInstalledExportAvailability": false,
+    "historicalMissingXlsxGapClosed": false,
+    "engineeringGapClosed": "Versioned prospective result-to-captured-bytes association and strict readback are implemented and verified. Installation/authorization and historical original-byte availability remain separate honest gaps."
+  },
+  "actualDevEngineeringRoundtrip": {
+    "usedExistingRetainedRecord": true,
+    "databaseReadOnlyDefault": "Per-process PGOPTIONS=-c default_transaction_read_only=on",
+    "parentResultId": "102d005b0437c31eced43aa4eb33e7470279de0a423dbb62191f4f1ebc62862c",
+    "scenario": "descriptive-valuation:/summary",
+    "parentManifestId": "5607205e6a35c2d4e7d29a3856083f6d596b6c97c42dd89336edfd1c65080405",
+    "parentMaterialInputsId": "bcdc05ee4390b9f6ee307b559d1a77aea5bb1b4e6ff4044de9a897ee0ea3c8f4",
+    "parentCodeArchiveId": "44bf3a6563ddf8c47c377bf6eb901643fe12f24319771d8d58ef5df011171ea6",
+    "parentResultHash": "0f4f659373395afb56ae0e9f192b8c9aa85c4b244b1c857792e75f78fdc3e78d",
+    "captureRecordId": "6df22c3f00160b20a2f0eca7c7eddb3ce703f060299841e461ba757b52b89e04",
+    "newCapturedAt": "2026-11-12T03:07:07.110Z",
+    "capturedBinarySha256": "1b1744f566f95a0d82a687459d08802a0a797bc774beae4930be6b137d0756ef",
+    "capturedByteLength": 11048,
+    "capturedCellsHash": "d1a91e8098dcd291b2bfbf45842d85a1058bf99b365e4c08aecc439b81684dbc",
+    "privateDirectoryPermissions": "0700",
+    "recordAndBinaryPermissions": "0600",
+    "exactCapturedByteReadback": true,
+    "corruptBytesRejected": true,
+    "wrongParentRejected": true,
+    "ephemeralPrivateDirectoryRemovedAfterVerification": true,
+    "durableExportInstalled": false,
+    "publicAuthorizationGranted": false,
+    "rawOutputRowsPrintedOrSourceBundlesCopied": false,
+    "qualification": "Actual existing retained DEV parent and real new bytes, but isolated engineering verification only; not an operator approval, publication or historical original export."
+  },
+  "tests": {
+    "newTestFile": "script/prospective-result-export.test.ts",
+    "newTests": 4,
+    "coverage": [
+      "all nine existing retained producer scenarios: new timestamp, lossless result, unchanged parent and exact parent/code/material/binary/sheet association",
+      "private isolated wx/0600 file roundtrip and unchanged captured bytes",
+      "Unicode-safe multi-cell JSON chunks, null and genuine zero readback",
+      "missing bytes/metadata/parent dependencies, corrupt record ids and wrong parents refuse",
+      "unknown versions, legacy unverified material, malformed path-like identifiers and conflicting producer dependencies refuse",
+      "rehashed tampered results, wrong chunk order, altered embedded identity and extra sheets refuse",
+      "no current fallback, regeneration, version upgrade, publication or installation"
+    ],
+    "focusedSuite": {
+      "command": "npx tsx --test script/prospective-result-export.test.ts script/methodology-download-portable.test.ts script/analysis-result-archive.test.ts script/producer-download.test.ts",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sourceOnlyPortability": "Enhanced existing portability test executes22 nested source tests without Git/docs/generated artifacts/private fixtures. Only installed package dependencies are symlinked; the new pure tests create explicitly synthetic isolated engineering parents, never production fallback data.",
+    "coherentFinalReceipt": {
+      "path": "/tmp/producer-final-receipt.json",
+      "log": "/tmp/producer-final-check.log",
+      "logSha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+      "runner": "script/workplan-evidence-run.py --receipt-only",
+      "exitCode": 0,
+      "typescript": { "tests": 982, "passed": 982, "failed": 0, "skipped": 0 },
+      "python": { "tests": 218, "passed": 218, "failed": 0, "skipped": 0 },
+      "fieldCensusFreshness": "passed",
+      "typecheck": "passed",
+      "mandatoryPrivateWorkplanValidator": "passed: original byte assertion1, original clause assertions14, missing files skipped0",
+      "mandatoryPrivateMonetaryIntegration": "passed with --private-primary",
+      "mandatoryPrivateIssuerCashflow": "passed",
+      "mandatoryPrivateIssuerCashflowReconciliation": "passed",
+      "productionBuild": "passed with existing size/Browserslist/PostCSS warnings",
+      "gitOrPrivateHistoryNeededByReceiptRunner": false,
+      "canonicalLedgersModifiedByReceiptRunner": false
+    }
+  },
+  "preservation": {
+    "oldRetainedResultsOrOriginalWorkbookBytesModified": false,
+    "nineExistingOutputContractsOrGoldensModified": false,
+    "all14FaIRPinsModified": false,
+    "runtimeMountsOrPublicRoutesChanged": false,
+    "publicWritesOrAuthChanges": false,
+    "databaseDdlNewKindsOrResourcesCreated": false,
+    "deploymentEnvironmentChanged": false,
+    "canonicalLedgersOrMatrixModified": false,
+    "sourceCensus": "Mechanically refreshed supplemental workbook-builder inventory only; no new original closure credit. Definitions2200, original1000/1001 bound,571/572 gaps closed,27 withheld,four aliases,original identities unchanged.",
+    "ciRailwayRestartCancelCommitDeployCallback": false
+  }
+}

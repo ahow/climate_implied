@@ -1,0 +1,115 @@
+{
+  "increment": "S16-007-exact-stored-XLSX-readiness-inspection",
+  "status": "blocked-no-authorized-recorded-original-XLSX-for-retained-analysis-results",
+  "productionCodePathAdded": false,
+  "exactStoredXlsxRoute": null,
+  "exactStoredXlsxLink": null,
+  "exactRemainingFieldGap": {
+    "originalXlsxBytes": null,
+    "recordedOriginalXlsxSha256": null,
+    "immutableParentAnalysisResultBinding": null,
+    "recordedExportContractAndSheetDomain": null,
+    "sameReaderPublicAuthorization": null,
+    "meaning": "Existing analysis-result-1 persists only version, analytical manifest and native JSON result. Neither its producer nor reader records an original XLSX attachment, recorded export-byte hash, parent-result export record, export contract/sheet domain or authorization to publish a retained workbook. A JSON result hash cannot be substituted for an original workbook byte hash."
+  },
+  "actualReadOnlyArchiveInspection": {
+    "databaseAccess": "Existing workspace DEV database; inspection used BEGIN READ ONLY with transaction_read_only=on. Actual loadAnalysisResult readback separately used PGOPTIONS=-c default_transaction_read_only=on.",
+    "writes": 0,
+    "analysisResultRecords": 124,
+    "analysisResultChunks": 124,
+    "topLevelExportOrXlsxReferences": 0,
+    "manifestSettingsExportOrXlsxReferences": 0,
+    "binaryOrExportColumnsOnExistingAnalysisTables": [],
+    "archiveKinds": {
+      "analysis-result": 124,
+      "calculation-source": 23,
+      "company-operating-source": 3,
+      "company-operating-source-proposal": 3,
+      "indicator-overrides": 1,
+      "material-inputs": 23,
+      "regional-intensity": 1,
+      "workbook-baseline": 1
+    },
+    "actualStoredNineProducerScenarioInventory": {
+      "descriptive-valuation:/backtest": 14,
+      "descriptive-valuation:/carbon-price": 19,
+      "descriptive-valuation:/decarb-bands": 5,
+      "descriptive-valuation:/decarb-gap/summary": 8,
+      "descriptive-valuation:/decarb-gap/timeseries": 7,
+      "descriptive-valuation:/decarb-terciles": 19,
+      "descriptive-valuation:/pe-comparison": 7,
+      "descriptive-valuation:/sdg-growth": 23,
+      "descriptive-valuation:/summary": 22
+    },
+    "existingDevRecordReadback": {
+      "id": "017cea5d0d46fcbaf3931a45e3669d558dd4707a8352bfac9c25786cc368fbfa",
+      "version": "analysis-result-1",
+      "scenario": "descriptive-valuation:/decarb-terciles",
+      "manifestId": "d1c70a4cfaa68a112845ac556516f75e3ea6d4279635344decbd5cf5d91f8d45",
+      "materialInputsId": "25f14ae5db910b0fbd8dbcd01dcf04341c769338bf2a998c7b06e4918ffa5ac6",
+      "payloadKeys": ["manifest", "result", "version"],
+      "materialReplayState": "referenced-material-archives-verified",
+      "canonicalResultHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "actualStoredJsonReadback": true,
+      "originalXlsx": null,
+      "recordedXlsxHash": null,
+      "corruptInMemoryResultRejected": true,
+      "callerAddedXlsxReferenceRejected": true,
+      "missingStoredResultRejected": true,
+      "rawRowsOrSourceBundlesPrinted": false
+    }
+  },
+  "otherExistingWorkbookEvidence": {
+    "files": [
+      "generated-artifacts/company-projection-replay/fresh-1.xlsx",
+      "generated-artifacts/company-projection-replay/fresh-2.xlsx"
+    ],
+    "existingBytesReadWithoutRegeneration": true,
+    "recordedOfflineBinaryHashesMatch": true,
+    "identitySheetsMatchOfflineManifestAndResultMetadata": true,
+    "sheets": ["Semantics", "Identity", "Ledger", "FullResult"],
+    "recordedAnalysisResultId": null,
+    "recordedSameReaderPublicAuthorization": null,
+    "sameAnalysisResultReader": false,
+    "notAnEligibleSubstitute": "These existing offline conditional-company replay engineering workbooks use a different bundle/manifest/result contract. Their offline binary/cell identities do not bind any of the nine retained analysis-result-1 producers or authorize public delivery of a private/local artifact. No files or bundles were exposed, imported into the public catalog or used as fallback."
+  },
+  "sourceInspection": {
+    "jsonArchiveWriterAndReader": ["server/snapshots/resultContract.ts", "server/snapshots/results.ts"],
+    "sameReaderExistingExport": "server/producerDownload.ts exposes exact retained JSON only",
+    "offlineWorkbookHelper": "server/calculation/companyProjectionReplay.ts exportCompanyProjectionReplay constructs a new workbook; it is not an original-XLSX archive reader",
+    "offlineWorkbookCli": "script/replay-company-projection.ts writes separate local XLSX/metadata; no database archive integration or authorization",
+    "overlayVerification": "script/verify-overlay-replay.ts constructs test workbooks and records canonical exported-row identity/readback, not original pinned XLSX bytes in analysis-result-1"
+  },
+  "focusedChecks": {
+    "command": "npx tsx --test script/analysis-result-archive.test.ts script/producer-download.test.ts script/methodology-download-portable.test.ts",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "addedAssertions": [
+      "immutable analysis-result-1 rejects caller-appended export/XLSX/hash metadata instead of authenticating it",
+      "missing manifest and corrupt retained result fail closed",
+      "known retained result and missing result both have no export.xlsx attachment route",
+      "request producer-attestation headers cannot activate a missing XLSX reader or attach a producer proof"
+    ],
+    "typecheck": "npx tsc --noEmit --pretty false: passed",
+    "diffWhitespace": "git diff --check: passed",
+    "sourceOnlyPortability": "Existing source-only test passes with the enhanced producer assertions; no Git/docs/generated/private evidence dependency introduced",
+    "fullSuite": "Not rerun for this gap-only inspection, per request to report before full suite if no genuine eligible code path"
+  },
+  "customSheetBoundary": {
+    "closed": false,
+    "reason": "JSON native-result readback and unrelated offline workbook integrity cannot certify original custom-sheet bytes or original producer-linked export identity.",
+    "nextDependency": "A genuine already-recorded original workbook with independently verifiable byte hash, exact retained parent producer/result association and same-reader publication authorization; adding an unauthenticated transform or substituting newly generated bytes is not acceptable."
+  },
+  "preservation": {
+    "productionModulesChanged": false,
+    "legacyBytesOrHashesChanged": false,
+    "all14FaIRPinsChanged": false,
+    "privateBundleOrRawInputDisclosure": false,
+    "publicWritesOrAuthChanges": false,
+    "canonicalLedgersOrMatrixChanged": false,
+    "ciOrRailwayCancelledOrRestarted": false,
+    "commitDeployCallback": false
+  }
+}

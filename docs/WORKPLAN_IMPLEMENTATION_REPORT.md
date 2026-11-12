@@ -1,6 +1,66 @@
 # Producer identity, prospective contracts and new source evidence
 
 {
+  "updated_at": "2026-11-12T03:17:05.499964+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-lc",
+      "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private original-workplan validator ===\"; uv run python script/validate_status_choice_width_private.py; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+    ],
+    "executed_at": "2026-11-12T03:08:18.559273+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 208.624,
+    "counts": {
+      "tests": 982,
+      "pass": 982,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/producer-final-check.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "c9d21ac4518641727c8b51138e5a4e52a78bdc0f1fd45f6f7dc2ed31372136fe",
+    "suite_counts": {
+      "typescript": {
+        "tests": 982,
+        "pass": 982,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 218,
+        "pass": 218,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": "docs/producer-download-increment-evidence.json",
+    "S07-003": "docs/status-choice-width-increment-evidence.json",
+    "S11-001": "docs/status-choice-width-increment-evidence.json",
+    "S13-010": "docs/status-choice-width-increment-evidence.json",
+    "S03-007": "docs/remaining-source-inputs-evidence.json"
+  },
+  "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
+  "scope": "Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived chart XLSX/JSON readback not exercised. Read-only124 retained records had no originalXLSX attachment. New prospective XLSX capture/reader passed actual retained DEV result private ephemeral roundtrip and tamper checks; uninstalled/unpublished, not recovered historical bytes. No scientific promotion or issuer-case completion.",
+  "release": {
+    "github_main": "592e92fcfe401fc34810b05a88f3527f0da972e1",
+    "ci": "43144317499 success",
+    "railway_deployment": "8def2883-5617-4242-8093-33481e2745ac",
+    "verified_at": "2026-11-12T03:17:05.499964+00:00",
+    "health": 200,
+    "scope": "Code-only; no data/owner/scientific activation."
+  }
+}
+
+# Producer identity, prospective contracts and new source evidence
+
+{
   "updated_at": "2026-11-12T02:51:49.048713+00:00",
   "execution": {
     "command": [

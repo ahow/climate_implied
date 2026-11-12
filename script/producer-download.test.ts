@@ -129,6 +129,14 @@ test("unretained current inputs and forged request headers stay unbound without 
     assert.equal((await fetch(`${origin}/api/analysis/results/${"f".repeat(64)}/export.json`)).status, 422);
     assert.equal((await fetch(`${origin}/api/analysis/results/${a.id}/export.json?snapshotId=current`)).status, 422);
     assert.equal((await fetch(`${origin}/api/analysis/results/${a.id}/export.json`, { method: "POST" })).status, 403);
+    for (const id of [a.id, "f".repeat(64)]) {
+      const unrecordedWorkbook = await fetch(`${origin}/api/analysis/results/${id}/export.xlsx`, {
+        headers: { "X-Producer-Identity": Buffer.from(JSON.stringify(verifiedProducer(a.id, a, a.result))).toString("base64url") },
+      });
+      assert.equal(unrecordedWorkbook.status, 404, "No recorded original XLSX reader or regeneration fallback exists");
+      assert.equal(unrecordedWorkbook.headers.get("X-Producer-Identity"), null);
+      assert.equal(unrecordedWorkbook.headers.get("Content-Disposition"), null);
+    }
     const mismatch = await fetch(`${origin}/api/cv/carbon-price?mode=wrong-resolved-selection`);
     assert.equal(mismatch.status, 503);
     assert.equal(mismatch.headers.get("X-Producer-Identity"), null);

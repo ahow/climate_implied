@@ -22,6 +22,9 @@ for stage in x["stages"]:
   q["producer_source_increment"]={"file":f,"sha256":hashlib.sha256(Path(f).read_bytes()).hexdigest(),"evidence":json.loads(Path(f).read_text()),"coherent_execution":receipt}
   if q["id"] in ["S16-007","S07-003"]:
    q["producer_source_increment"]["actual_browser"]=json.loads(Path("docs/producer-chart-browser-evidence.json").read_text())
+  if q["id"]=="S16-007":
+   q["producer_source_increment"]["stored_xlsx_inspection"]=json.loads(Path("docs/producer-stored-xlsx-increment-evidence.json").read_text())
+   q["producer_source_increment"]["prospective_xlsx"]=json.loads(Path("docs/producer-prospective-xlsx-increment-evidence.json").read_text())
   if receipt not in (q.get("executions")or[]):q["executions"]=(q.get("executions")or[])+[receipt]
   q["behaviour_delivered_this_run"]="Implementation, sources and actual tests: "+f
   q["remaining_gaps"]=[gaps[q["id"]]]
@@ -29,7 +32,7 @@ for stage in x["stages"]:
   q["blockers"]=[{"kind":"remaining original scope","detail":gaps[q["id"]]}]
 summary={"updated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"execution":receipt,
 "evidence":files,"counts":"56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
-"scope":"Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Actual browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived XLSX/JSON readback not exercised. No scientific promotion or issuer-case completion.",
+"scope":"Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived chart XLSX/JSON readback not exercised. Read-only124 retained records had no originalXLSX attachment. New prospective XLSX capture/reader passed actual retained DEV result private ephemeral roundtrip and tamper checks; uninstalled/unpublished, not recovered historical bytes. No scientific promotion or issuer-case completion.",
 "release":"Pending existing code validation/promotion; prior verified runtime remains distinct."}
 if len(sys.argv)==4:
  r={"github_main":sys.argv[1],"ci":sys.argv[2],"railway_deployment":sys.argv[3],"verified_at":summary["updated_at"],"health":200,"scope":"Code-only; no data/owner/scientific activation."}

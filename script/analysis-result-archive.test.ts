@@ -18,4 +18,15 @@ test("result archive rejects result or manifest tampering and invalid numbers", 
   assert.throws(() => unpackAnalysisResult(packed.id, { ...packed.payload, result: { x: 3 } }));
   assert.throws(() => packAnalysisResult({ ...manifest, id: "b".repeat(64) }, {}));
   assert.throws(() => packAnalysisResult(manifest, { x: NaN }));
+  // This existing immutable contract records JSON only. A caller cannot turn
+  // an unrecorded workbook/hash into an authenticated original XLSX attachment.
+  assert.throws(() => unpackAnalysisResult(packed.id, {
+    ...packed.payload, export: { format: "xlsx", binaryHash: "b".repeat(64) },
+  }), /Unrecognized key/);
+  assert.throws(() => unpackAnalysisResult(packed.id, {
+    ...packed.payload, exports: [{ format: "xlsx", parentResultId: packed.id }],
+  }), /Unrecognized key/);
+  const missing = structuredClone(packed.payload) as Partial<typeof packed.payload>;
+  delete missing.manifest;
+  assert.throws(() => unpackAnalysisResult(packed.id, missing));
 });
