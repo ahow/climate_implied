@@ -1,6 +1,65 @@
 # Registry methodology, download identity and separate scientific evidence
 
 {
+  "updated_at": "2026-11-12T01:49:44.346228+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+    ],
+    "executed_at": "2026-11-12T01:29:37.760483+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 202.512,
+    "counts": {
+      "tests": 955,
+      "pass": 955,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/methodology-selection-final.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+    "suite_counts": {
+      "typescript": {
+        "tests": 955,
+        "pass": 955,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 217,
+        "pass": 217,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": "docs/methodology-download-increment-evidence.json",
+    "S07-003": "docs/scientific-strands-warning-evidence.json",
+    "S16-008": "docs/scientific-strands-warning-evidence.json",
+    "S03-007": "docs/indicator-source-fields-increment-evidence.json"
+  },
+  "counts": "56verified242partial2blocked;original1000/1001;0eligiblehistories;0/3cases",
+  "scope": "Registry methodology, manifest-bearing downloads, three separate scientific statuses and authenticated warning inventory implemented. NOAA/Pew metadata proposals are not historical source authentication. No new accepted scientific study or issuer economics. Exact remaining limitations in per-clause evidence.",
+  "release": {
+    "github_main": "d099e806cd2dba6dcaaf34cf31b99888939dae20",
+    "ci": "43135649774 success",
+    "railway_deployment": "e2cf00cd-171c-4162-aeb2-28e7c037eae6",
+    "verified_at": "2026-11-12T01:49:44.346228+00:00",
+    "health": 200,
+    "scope": "Code-only; no data/owner/scientific activation."
+  }
+}
+
+# Registry methodology, download identity and separate scientific evidence
+
+{
   "updated_at": "2026-11-12T01:36:05.465458+00:00",
   "execution": {
     "command": [

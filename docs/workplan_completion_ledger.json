@@ -1787,7 +1787,7 @@
       ]
     },
     "methodology_strands": {
-      "updated_at": "2026-11-12T01:36:05.465458+00:00",
+      "updated_at": "2026-11-12T01:49:44.346228+00:00",
       "execution": {
         "command": [
           "bash",
@@ -1833,7 +1833,14 @@
       },
       "counts": "56verified242partial2blocked;original1000/1001;0eligiblehistories;0/3cases",
       "scope": "Registry methodology, manifest-bearing downloads, three separate scientific statuses and authenticated warning inventory implemented. NOAA/Pew metadata proposals are not historical source authentication. No new accepted scientific study or issuer economics. Exact remaining limitations in per-clause evidence.",
-      "release": "Pending code validation/promotion; previous verifiedruntime remains distinct."
+      "release": {
+        "github_main": "d099e806cd2dba6dcaaf34cf31b99888939dae20",
+        "ci": "43135649774 success",
+        "railway_deployment": "e2cf00cd-171c-4162-aeb2-28e7c037eae6",
+        "verified_at": "2026-11-12T01:49:44.346228+00:00",
+        "health": 200,
+        "scope": "Code-only; no data/owner/scientific activation."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -1918,15 +1925,15 @@
     }
   },
   "current_release": {
-    "github_main": "a8b9501f1ca1f193ae4c515740f4f1fb501deb57",
-    "ci": "43127303134 success",
-    "railway_deployment": "fd9637ad-a9a6-497f-a9e8-15349e363865",
-    "verified_at": "2026-11-12T00:36:40.765627+00:00",
+    "github_main": "d099e806cd2dba6dcaaf34cf31b99888939dae20",
+    "ci": "43135649774 success",
+    "railway_deployment": "e2cf00cd-171c-4162-aeb2-28e7c037eae6",
+    "verified_at": "2026-11-12T01:49:44.346228+00:00",
     "health": 200,
-    "affected": "history-types200; pass-through evidence200; missingness403; invalid explicit-version diff422; no data/approval activation"
+    "scope": "Code-only; no data/owner/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T01:36:05.465458+00:00",
+  "updated_at": "2026-11-12T01:49:44.346228+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -22768,6 +22775,43 @@
                 "typescript": {
                   "tests": 950,
                   "pass": 950,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T01:29:37.760483+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 202.512,
+              "counts": {
+                "tests": 955,
+                "pass": 955,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/methodology-selection-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 955,
+                  "pass": 955,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -76281,6 +76325,43 @@
                 "typescript": {
                   "tests": 950,
                   "pass": 950,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T01:29:37.760483+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 202.512,
+              "counts": {
+                "tests": 955,
+                "pass": 955,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/methodology-selection-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 955,
+                  "pass": 955,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -151928,6 +152009,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T01:29:37.760483+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 202.512,
+              "counts": {
+                "tests": 955,
+                "pass": 955,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/methodology-selection-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 955,
+                  "pass": 955,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -154678,6 +154796,43 @@
                 "typescript": {
                   "tests": 950,
                   "pass": 950,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T01:29:37.760483+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 202.512,
+              "counts": {
+                "tests": 955,
+                "pass": 955,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/methodology-selection-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "53eba9e3ac1421fc560e4c8fa3476e7522123509f0a81a13d6e6caf17eb20c1d",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 955,
+                  "pass": 955,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -163697,6 +163852,14 @@
       "tests": "Local coherent892TS0fail0skip+215Python+mandatoryprivateintegration/cashflow+typecheck/build. Final clean shallow Node22/default-concurrency public candidate893/893; current focused/census/postledger checks passed. Distinct execution boundaries retained.",
       "affected": "Reference API200; Stage10 API503 source/storage unavailable; monetaryaudit503 pendingreview with nulltotals, no FX/currencyfallback. This is code deployment,not private-data activation.",
       "scope": "56engineeringcriteria verified;0eligiblehistoricalrecords/0of3cases. Bundle2025sourcecompatiblecandidate remainsunprovisioned;source/rights/approval constraints remain."
+    },
+    {
+      "github_main": "a8b9501f1ca1f193ae4c515740f4f1fb501deb57",
+      "ci": "43127303134 success",
+      "railway_deployment": "fd9637ad-a9a6-497f-a9e8-15349e363865",
+      "verified_at": "2026-11-12T00:36:40.765627+00:00",
+      "health": 200,
+      "affected": "history-types200; pass-through evidence200; missingness403; invalid explicit-version diff422; no data/approval activation"
     }
   ],
   "latest_changed_paths": [
