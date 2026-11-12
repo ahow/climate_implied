@@ -1,3 +1,155 @@
+## Current verified native-v3 code release — 2026-11-12
+
+Workspace implementation `4822023fcdd5ae539150856749bad6fc778dc564`; public/runtime `d75e183a5be95b4fca5cfb97f083362b41c1516e`; CI `43218750710` validate/promote success; Railway `50315982-10b4-4edf-b2b8-a969b68f27a7` SUCCESS; actual build-info exact and health200.
+
+**61 verified finite engineering /237 partial /2 provisioning-blocked; all300 original clauses.** Only S05-004/S05-010/S06-006/S07-020 finite engineering criteria reconciled. **Scientific/source/owner acceptance remains unpromoted.**
+
+Retained parent full gate: **1188 TypeScript tests,1187pass,0fail,1optional PostgreSQL skip; 255Python pass** plus mandatory original choice/width, monetary and issuer private checks, typecheck and build. CI job/step success is independently observed; these counts are local, not CI counts. Separate actual isolated PostgreSQL succeeded (company311 queries/8analytical receipts; namespace12queries/5receipts), not production PostgreSQL acceptance and not removal of the full-suite skip. All prior failed/incomplete receipts and14FaIR/frozen-negative pins remain preserved.
+
+Native candidate GET retains analysis records as normal app behavior. It was NOT called in production, including via a dashboard screenshot. Exact hosted code identity and static native-v3 client artifact were checked read-only; no claim of live native numerical/retention execution.
+
+Verified runtime base: `https://dashboard-production-4d39.up.railway.app`. Custom domain `https://climatetracking.live` returned200 identical non-JSON HTML on API paths, not successful API checks; custom-domain routing is unverified and requires owner/platform investigation. No DNS/domain/config changes were made.
+
+This subsequent local documentation/receipt script is distinct from implementation workspace source and verified public/runtime source. Any docs-only export through existing sync is a later revision, not this measured runtime.
+
+Older local-only/runtime statements below remain historical observations, superseded for code deployment only by this verified release. Remaining science/source/data/owner dependencies are not closed.
+
+### Exact verified release receipt
+
+{
+  "workspace_commit": "4822023fcdd5ae539150856749bad6fc778dc564",
+  "github_main": "d75e183a5be95b4fca5cfb97f083362b41c1516e",
+  "production_validated": "d75e183a5be95b4fca5cfb97f083362b41c1516e",
+  "ci": "43218750710 validate/promote success",
+  "ci_url": "https://github.com/ahow/climate_implied/actions/runs/43218750710",
+  "ci_steps": "Existing public TypeScript/Python, typecheck and build steps succeeded. CI counts/logs not inspected; local counts and private checks are not CI counts.",
+  "railway_deployment": "50315982-10b4-4edf-b2b8-a969b68f27a7",
+  "railway_status": "SUCCESS",
+  "railway_completed_at": "2026-11-12T12:43:22.272Z",
+  "verified_at": "2026-11-12T12:44:51.999Z",
+  "build_info_source_commit": "d75e183a5be95b4fca5cfb97f083362b41c1516e",
+  "health": 200,
+  "runtime": "Railway service-domain exact build-info and health200; read-only empty paired catalog200, override400 and missing-pins400; private missingness/read-export and prospective-export403, all no-store/no attachment/no producer binding. Native-v3 string in fetched client asset. Native candidate GET deliberately not called because it retains records. Custom domain returned non-JSON HTML, so no custom-domain release claim.",
+  "verified_base": "https://dashboard-production-4d39.up.railway.app",
+  "static_artifact": {
+    "root_status": 200,
+    "path": "/assets/index-Cm0eR5HK.js",
+    "status": 200,
+    "bytes": 1661791,
+    "sha256": "88fc3b7cfab4da2b01d8d1c9ff6c2c8c07466c2f6a605681d40b3ddba9616657",
+    "native_v3_version_present": true,
+    "execution": "Root HTML and JS fetched as bytes only, not executed. No production browser or native candidate request."
+  },
+  "custom_domain_observation": {
+    "base": "https://climatetracking.live",
+    "verified_at": "2026-11-12T12:44:40.330Z",
+    "observation": "All eight corresponding API paths returned200 non-JSON identical HTML, private,max-age=0, bodySHA256 a381d0c80d14807a32bb581665e02a6e7f184e4af9399a74afe85b7790cb3f06. They are NOT successful application API checks.",
+    "static_asset": "/assets/index-CxDIw_Sr.js",
+    "static_asset_sha256": "8408e340a41aa33bccd49db4ee08e0ddfa570a3745760d90ed67b508f7b2ed5e",
+    "native_v3_version_present": false,
+    "limit": "Verified release claim applies only to the Railway service domain. Custom-domain routing is not verified and needs owner/platform investigation; no DNS/domain/config changes made."
+  },
+  "receipt": "generated-artifacts/native-v3-verified-release.json",
+  "receipt_sha256": "be8595bcbbf41272e3db50102074b4b0b9ba318a45f1ceb9663c9eeccdd5ed76",
+  "local_execution": {
+    "receipt": "generated-artifacts/s05-s07-integration/parent-full.json",
+    "receipt_sha256": "7fd2237a157f06a9730575e43293738637081fcf77d49fcf356e6044ed625318",
+    "log_sha256": "1e0b30cc7fa3835c2ad7a56e02a2342e8739541efaef53bab3b641e7b879a943",
+    "counts": {
+      "typescript": {
+        "tests": 1188,
+        "pass": 1187,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "private_checks": "Original choice/width document, monetary integration, issuer cashflow and issuer reconciliation passed in the retained parent full command; no duplicate execution."
+  },
+  "separate_local_postgresql": {
+    "evidence": "docs/disposable-cache-transport-evidence.json",
+    "sha256": "30a788fec0995ed65223f081313d74841e311adc03afe2010e9dced9a02641bd",
+    "passed": true,
+    "started_at": "2026-11-12T12:24:36.459Z",
+    "finished_at": "2026-11-12T12:28:00.446Z",
+    "actual_postgresql_witnesses": [
+      {
+        "path": "/home/runner/workspace/generated-artifacts/company-cache-extension/http-WJFoOd/evidence.json",
+        "sha256": "3f3c5d08bba66c8e72e7abc8bf050130d6521a865b40ea98cd9e8a24744cfadf",
+        "passed": true,
+        "postgresqlTransportExecuted": true,
+        "analyticalReceipts": 8,
+        "actualPostgresQueries": 311,
+        "companyPhases": {
+          "lookup-miss": 4,
+          "compute": 4,
+          "write": 4,
+          "lookup-hit": 4
+        }
+      },
+      {
+        "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/postgres-namespace-NkW7Rv/evidence.json",
+        "sha256": "6a461657a13c3153b4ae93206953b2c56d756c8ca6b5d08858dbd45a617fc1cd",
+        "passed": true,
+        "postgresqlTransportExecuted": true,
+        "analyticalReceipts": 5,
+        "actualPostgresQueries": 12,
+        "namespaceKeys": [
+          "finance-projected-rate:135ec499a36f86c5a3eec625805ea409239d79d36b7689afec5dfba614262d6a",
+          "projection:47bfe4f88336db1960d43bd0fb10ac80711f0316e1eca0a732f70cc32fbbe41c",
+          "projection:5d3039308389bdc762bdb513a33d026cab76164b729ab0909477d82865b72f57"
+        ]
+      }
+    ],
+    "full_gate_optional_case": "authorized disposable PostgreSQL preserves actual full/reduced namespaces and revision isolation",
+    "full_gate_optional_case_status": "skipped in full suite; executed successfully in the separate isolated PostgreSQL run, never subtracted from full-suite skipped count",
+    "isolation": {
+      "database": "s02_009_disposable_cache",
+      "localClusterDirectory": "/tmp/s02-cache-VR5rY7",
+      "privateUnixSocket": "/tmp/s02-cache-VR5rY7/socket",
+      "tcpListening": false,
+      "ambientDatabaseUrlUsed": false,
+      "ambientPgVariablesUsed": false,
+      "productionAccess": false,
+      "paidResources": 0,
+      "productionDDL": 0,
+      "productionDeletes": 0,
+      "cacheClears": 0,
+      "clusterStopped": true,
+      "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+    },
+    "boundary": "Separate isolated local PostgreSQL execution, not the full gate's database transport. Memory route matrices are not PostgreSQL witnesses. No deployed PostgreSQL acceptance."
+  },
+  "scientific_acceptance": false,
+  "counts": {
+    "verified": 61,
+    "partial": 237,
+    "blocked-production-provisioning": 2
+  },
+  "finite_engineering_criteria": [
+    "S05-004",
+    "S05-010",
+    "S06-006",
+    "S07-020"
+  ],
+  "native_behavior_limit": "Native candidate GET retains analysis records as normal app behavior. It was NOT called in production, including via a dashboard screenshot. Exact hosted code identity and static native-v3 client artifact were checked read-only; no claim of live native numerical/retention execution.",
+  "remaining_dependencies": [
+    "Source-qualified regional generation-share saturation K, complete compatible vintage/rights panel, reviewed whole-draw joint law/dependence and genuine prefit receipt; no new qualified calibration or joint bundle.",
+    "Approved native joint distribution/inventory, empirical mechanism calibration and curated-to-regional central bridge; adapter readiness is not an actual accepted Phase VI dataset or production ensemble.",
+    "FSLR actual India/Alabama cash reconciliation and component/cohort eligibility/material/PFE evidence; NEE gross dated LLC cash waterfall and marginal commissioning economics; XOM executed priced transport/storage, serviced quantities, collections and own funding waterfall.",
+    "No newly qualified operating-FCFE economic pairs or dated11-15 preparation/valuation runs; scientific efficacy, authorized retained-report publication and independent owner acceptance remain absent.",
+    "Two original production-provisioning clauses remain blocked; separate isolated local PostgreSQL success does not accept deployed PostgreSQL.",
+    "Custom-domain API paths returned identical non-JSON HTML, not this verified Railway API; owner/platform routing investigation remains, with no domain/DNS/config changes authorized or made."
+  ],
+  "documentation_boundary": "This subsequent local documentation/receipt script is distinct from implementation workspace source and verified public/runtime source. Any docs-only export through existing sync is a later revision, not this measured runtime.",
+  "scope": "61 verified finite engineering /237 partial /2 provisioning-blocked; all300 original clauses retained. Four exact finite engineering criteria only; scientific/source/owner acceptance remains unpromoted. No manual CI bypass, dispatch, new monitoring, privileged POST, production mutations, data activation, callback, frozen negative protocol or14FaIR-pin changes."
+}
+
 ## Native-v3 finite engineering reconciliation — local evidence
 
 {
