@@ -1,6 +1,125 @@
 # Persisted missingness, historical identity and source-qualified pass-through
 
 {
+  "executed_at": "2026-11-12T00:36:40.765627+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+    ],
+    "executed_at": "2026-11-12T00:21:16.709305+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 253.557,
+    "counts": {
+      "tests": 931,
+      "pass": 931,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+    "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+    "worktree_dirty": true,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+  },
+  "counts": "56 verified /242 partial /2 blocked; original1000/1001;0eligible histories;0/3qualified issuers",
+  "failures": "First integrated923TS:908pass15fail. Second930TS:928pass2fail. Actual missing-type fixture, SSR env, component policies and precise semantics/export census corrected. Legacy workbook metadata was wrongly broadened; restored EXACT old meaning/formula/golden, scoped new semantics to opt-in only. No golden repin or weakened gates. Detailed logs retained.",
+  "semantics": "Original1000/1001 unchanged. New22 diff export slots exactly bound; supplemental360/360, public1360/1361;2111definitions;68components. No new original closure credit.",
+  "scientific": "No old negative study rerun; no calibrated ensemble or actual issuer/history efficacy claimed.",
+  "release": {
+    "github_main": "a8b9501f1ca1f193ae4c515740f4f1fb501deb57",
+    "ci": "43127303134 success",
+    "railway_deployment": "fd9637ad-a9a6-497f-a9e8-15349e363865",
+    "verified_at": "2026-11-12T00:36:40.765627+00:00",
+    "health": 200,
+    "affected": "history-types200; pass-through evidence200; missingness403; invalid explicit-version diff422; no data/approval activation"
+  },
+  "changed_paths": [
+    ".agents/memory/captured-input-resolvers.md",
+    "client/src/components/carbon-pass-through-review.tsx",
+    "client/src/components/category-trend-chart.tsx",
+    "client/src/components/historical-trend-chart.tsx",
+    "client/src/components/qualified-missingness-review.tsx",
+    "client/src/components/readonly-version-diff.tsx",
+    "client/src/lib/types.ts",
+    "client/src/pages/climate-valuation.tsx",
+    "client/src/pages/data-management.tsx",
+    "docs/S03-004-persistence-evidence.json",
+    "docs/System_Output_Register.md",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/carbon-pass-through-consumer-protocol.json",
+    "docs/carbon-pass-through-legacy-workbook-preservation-evidence.json",
+    "docs/carbon-pass-through-protocol.json",
+    "docs/carbon-pass-through-source-evidence.json",
+    "docs/field_semantics_census.json",
+    "docs/readonly-diff-history-evidence.json",
+    "docs/readonly-diff-semantics-accounting-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "script/carbon-pass-through-admission.test.ts",
+    "script/carbon-pass-through-consumer.test.ts",
+    "script/company-projection-abatement-replay.test.ts",
+    "script/component-partial-state.test.ts",
+    "script/component-state-census.test.ts",
+    "script/component-state-contracts.ts",
+    "script/export-contract.test.ts",
+    "script/finite-export-schemas.test.ts",
+    "script/legacy-driver-admission.test.ts",
+    "script/next-census-accounting.test.ts",
+    "script/operational-field-semantics.test.ts",
+    "script/output-field-semantics.test.ts",
+    "script/qualified-missingness-persistence.test.ts",
+    "script/qualified-missingness-review.ts",
+    "script/quantity-label-contracts.test.ts",
+    "script/readonly-diff-history.test.ts",
+    "script/readonly-new-card-states.test.ts",
+    "script/record-review-history.py",
+    "script/remaining-component-contracts.test.ts",
+    "script/research-field-semantics.test.ts",
+    "server/calculation/carbonPassThroughAdmission.ts",
+    "server/calculation/categoryHistoricalTrend.ts",
+    "server/calculation/companyProjection.ts",
+    "server/calculation/companyProjectionReplay.ts",
+    "server/calculation/driverConsumptionTrace.ts",
+    "server/calculation/forwardProjection.ts",
+    "server/calculation/historicalRecalculation.ts",
+    "server/calculation/legacyDriverAdmission.ts",
+    "server/carbonPassThroughApi.ts",
+    "server/dataIngestion/qualifiedMissingnessStore.ts",
+    "server/index.ts",
+    "server/qualifiedMissingnessApi.ts",
+    "server/readonlyDiffApi.ts",
+    "server/snapshots/readonlyDiffContract.ts",
+    "server/snapshots/readonlyDiffStore.ts",
+    "server/snapshots/results.ts",
+    "shared/carbonPassThroughEvidence.ts",
+    "shared/carbonPassThroughSemantics.ts",
+    "shared/fieldSemantics.ts",
+    "shared/finiteExportSchemas.ts",
+    "shared/historicalFieldSemantics.ts",
+    "shared/historicalTypes.ts",
+    "shared/outputFieldSemantics.ts",
+    "shared/readonlyDiffSemantics.ts",
+    "shared/researchFieldSemantics.ts"
+  ]
+}
+
+S03-004: Added append-only DEVELOPMENT source/review persistence, pinned historical selection and calculator/API-test/UI/XLSX roundtrip. Four states preserved, interior blanks and supplied paired draws only. Public reads corrected to403 before private-store access; default application never mounts engineering injection.
+Remaining: Actual private HTTP/UI access requires genuine operator principal or independently trusted disclosure. Production persistence and real source uncertainty remain unqualified.
+
+S16-006: Mounted read-only explicit-version carbon/SDG/financial/driver comparisons and paginated exact affected-analysis references. Counts/hashes only, no private source values. Missing/corrupt/version mismatch refuses without current fallback.
+Remaining: Privileged refresh/import/restore remains unavailable; readonly comparison is not a completed operational refresh.
+
+S09-001: Three exact original type codes/labels bound to recalculations, reviewed response headers, charts and historical/affected-analysis exports. Current-model reconstructions explicitly revised history; missing or inconsistent labels withhold downloads.
+Remaining: Authentic archived-forecast/verified-past-input corpus and cutoff-only parameter estimation remain absent. Do not infer universal run coverage from selected paths.
+
+S12-007: Retrieved original pass-through literature and added frozen source admission plus actual optional companyProjection carbonDrag/tax/FCFE consumption. German peak117% preserved; refinery ratios distinguished from log elasticities and insignificance. Exact regime/product/geography and incremental Scope1 accounting gates; no issuer cash evidence invented.
+Remaining: No actual issuer assumption admitted. Need issuer-owned activity, paid/net allowance costs, recovery collection/lag, taxes, working capital and common-owner cash; source price formation is not cash.
+
+# Persisted missingness, historical identity and source-qualified pass-through
+
+{
   "executed_at": "2026-11-12T00:26:17.242318+00:00",
   "execution": {
     "command": [
