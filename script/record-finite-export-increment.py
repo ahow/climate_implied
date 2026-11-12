@@ -176,8 +176,8 @@ if len(sys.argv) == 4:
         q["id"] for s in x["stages"] for q in s["requirements"] if q["status"] != "verified"
     ]
     x["restart"]["next_requirement"] = (
-        "S16-014 remaining original responsive-view acceptance; S04-001 qualified regional "
-        "saturation/joint source inputs; S12-017 actual issuer economics and genuinely dated11–15 corpus"
+        "S04-001 qualified regional saturation/joint source inputs; S12-017 actual issuer "
+        "economics and genuinely dated11–15 corpus; select other dependency-ready unverified clauses"
     )
     x["restart"]["instruction"] = (
         "Continue ALL original0–17/amendments then actualefficacy, PlanOFF. "
@@ -212,6 +212,24 @@ if len(sys.argv) == 4:
         "live": observed,
         "scientific_acceptance": False
     }
+    for stage in x["stages"]:
+        for requirement in stage["requirements"]:
+            if requirement["id"] == "S16-014" and requirement["status"] == "verified":
+                stale = [b for b in requirement.get("blockers", [])
+                         if "remains unperformed" in b.get("detail", "")]
+                if stale:
+                    requirement.setdefault("superseded_blockers", []).extend(stale)
+                    requirement["blockers"] = [b for b in requirement["blockers"] if b not in stale]
+                    requirement["stale_blocker_reconciliation"] = (
+                        "Existing verified 8-route desktop/mobile and42 applicable controlled-state "
+                        "evidence supersedes the old unperformed-review note. No browser rerun, "
+                        "new acceptance or status change claimed in this increment."
+                    )
+    x["restart"]["instruction"] += (
+        " S16-014 was already VERIFIED with existing8-route desktop/mobile/42controlled-state "
+        "evidence; stale unperformed blocker was archived, not a new acceptance. Do not rerun it "
+        "or use it as the next incomplete clause without a real changed-code invalidation."
+    )
 LEDGER.write_text(json.dumps(x, indent=2, ensure_ascii=False) + "\n")
 spec = importlib.util.spec_from_file_location("merge", "script/merge-clause-reconciliation.py")
 module = importlib.util.module_from_spec(spec)
