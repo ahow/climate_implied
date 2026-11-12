@@ -23,6 +23,7 @@ class WorkplanEvidenceReceiptTests(unittest.TestCase):
         for required in (
             "npm run check", "script/*.test.ts", "unittest discover",
             "uv run python script/validate_status_choice_width_private.py",
+            "npx tsx --test script/validate-valuation-rule-chronology-private.ts",
             "validate-workbook-money-integration-private.ts --private-primary",
             "validate-issuer-cashflow-private.ts",
             "validate-issuer-cashflow-reconciliation-private.ts", "npm run build",

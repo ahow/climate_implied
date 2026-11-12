@@ -2,6 +2,7 @@ import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 import { THRESHOLD_DIAGNOSTIC_LABEL } from "./thresholdDiagnostic";
 import { requireHistoricalType } from "./historicalTypes";
 import { categoryExportNames, indicatorExportColumn, indicatorValueColumn } from "./finiteExportSchemas";
+import { regionalCounterfactualRows } from "./regionalCounterfactual";
 
 /** Finite new export metadata. These are not original field observations or
  * scientific closure. No native/valuation producer can certify these paths. */
@@ -169,10 +170,7 @@ export function deriveLegacyExport(parent: any, key: LegacyConsumerKey, metric: 
       break;
     case "regional":
       path = "/api/projection/regions";
-      rows = parent.map((r: any) => ({ Region: r.regionName,
-        "Legacy global counterfactual warming (°C)": r.temperatureRise, "Reduction Rate (%/yr)": r.reductionRate,
-        "Carbon Intensity (kg/$GDP)": r.carbonIntensity, "Intensity basis": r.carbonIntensityBasis,
-        [FIXED_5GT_DESCRIPTOR.label]: r.netZeroYear, "Milestone definition": r.milestoneDefinition, Claim: r.claim }));
+      rows = regionalCounterfactualRows(parent);
       chartRows = parent;
       filter += "; regional intensity global counterfactual, not regional temperature; OWID PPP and static nominal bases remain distinct";
       break;

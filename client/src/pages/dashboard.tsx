@@ -11,6 +11,7 @@ import { IndicatorCards } from "@/components/indicator-cards";
 import { CategoryFilter } from "@/components/category-filter";
 import { HistoricalTrendChart } from "@/components/historical-trend-chart";
 import { RegionalComparison } from "@/components/regional-comparison";
+import { REGIONAL_COUNTERFACTUAL } from "@shared/regionalCounterfactual";
 import { MetricToggle } from "@/components/metric-toggle";
 import { CategoryComparison } from "@/components/category-comparison";
 import { SensitivityChart } from "@/components/sensitivity-chart";
@@ -75,7 +76,7 @@ export default function Dashboard() {
           The legacy calculation applies a CO2-only response to aggregate GHG (CO2e), plus a fixed 1.1°C offset.
           Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.
           “Year emissions reach 5% of 2024” uses only the same selected trajectory's evidenced 2024 baseline; if it is missing the diagnostic is withheld. No crossing means not reached by the actual simulated horizon. The separate fixed-5gt-v1 legacy comparator is not 5% of 2024. Neither residual diagnostic is net zero.
-          Regional temperatures are not standalone regional warming estimates. Historical recalculations are not forecast validation.
+          Regional-intensity results are legacy global counterfactuals, not regional temperatures or inventories. Historical recalculations are not forecast validation.
         </p>
         <Button variant="outline" aria-expanded={showLegacy} aria-describedby="legacy-warning" onClick={() => setShowLegacy(!showLegacy)} data-testid="button-toggle-legacy">
           {showLegacy ? "Hide legacy diagnostics" : "Show legacy diagnostics"}
@@ -189,7 +190,7 @@ export function LegacyDashboard() {
             />
           </div>
           <div className="lg:col-span-2">
-            <h2 className="text-lg font-semibold mb-4">Regional Analysis</h2>
+            <h2 className="text-lg font-semibold mb-4">{REGIONAL_COUNTERFACTUAL.title}</h2>
             <RegionalComparison
               regions={regionalProjections ?? []}
               isLoading={regionsLoading}

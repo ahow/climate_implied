@@ -1,0 +1,62 @@
+{
+  "scope": "Read-only source-closure review of the new regional counterfactual helper; no production code defect found.",
+  "helper": "shared/regionalCounterfactual.ts",
+  "runtimeDependencyProof": [
+    {
+      "entry": "server/calculation/regionalProjections.ts",
+      "closure": [
+        "shared/regionalCounterfactual.ts",
+        "shared/quantityDescriptors.ts"
+      ],
+      "use": "calculateRegionalFromInputs returns claim and milestoneDefinition from REGIONAL_COUNTERFACTUAL."
+    },
+    {
+      "entry": "shared/legacyExportConsumer.ts",
+      "closure": [
+        "shared/regionalCounterfactual.ts",
+        "shared/quantityDescriptors.ts"
+      ],
+      "use": "deriveLegacyExport regional branch calls regionalCounterfactualRows on the actual retained parent."
+    }
+  ],
+  "producerIdentityProof": {
+    "sourceCapture": "server/snapshots/calculationSourceArtifact.ts recursively archives all server, shared and client/src TS/TSX/JSON/CSV bytes plus package/config/lock bytes. The helper is not an omitted allowlist dependency.",
+    "sourceIdentity": "contentHash(payload) includes the actual helper text; changing only that text changes the source archive identity.",
+    "loadedImplementation": "server/snapshots/legacyExportProducer.ts captures supportedCodeArchiveId alongside loaded producer modules and rejects captureSource returning a different release.",
+    "materialAndManifest": "retainLegacyProducer records sourceArchive in legacy-export-material-1 and as manifest.codeVersion; createManifest hashes codeVersion with modelVersion, snapshots, scenario and settings.",
+    "modelVersionBoundary": "CALCULATION_VERSION continues to identify the unchanged numerical model contract, not a byte-level build. The full producer manifest identity changes with helper bytes even when that numerical model version is unchanged."
+  },
+  "retainedReplayProof": {
+    "entry": "server/snapshots/results.ts loadAnalysisResultNode routes legacy-export scenarios through verifyLegacyExportMaterial.",
+    "archiveIntegrity": "server/snapshots/materialInputs.ts loadMaterialArchive authenticates the retained archive content hash. verifyLegacyExportMaterial additionally checks the source payload hash itself.",
+    "historicalReleasePolicy": "Legacy replay supports only the exact source release loaded by the process. An older or independently rehashed helper-less/helper-corrupt archive is rejected as unsupported; it is not rebuilt using current helper bytes.",
+    "targetedFaults": [
+      "Delete helper from archive while preserving claimed source ID: code archive corrupt.",
+      "Corrupt helper text while preserving claimed source ID: code archive corrupt.",
+      "Delete helper and rehash archive/material/manifest consistently: unsupported release.",
+      "Corrupt helper and rehash archive/material/manifest consistently: unsupported release."
+    ],
+    "faultBoundary": "All four targeted faults reject before reading retained input or invoking whole producer replay."
+  },
+  "routeCacheReview": {
+    "source": "server/routes.ts",
+    "state": "regionalCacheResult starts null and regionalCacheFetchedAt starts zero in module-local memory.",
+    "namespace": "regions:${PROJECTION_RESPONSE_VERSION}",
+    "ttl": "24 hours",
+    "readWriteClosure": "The regional route only reads this process-local object and writes results from its loaded calculateRegionalProjections implementation. It does not load regional response rows from projection_cache or storage. Selected regionalSnapshotId requests bypass this cache.",
+    "mutationBoundary": "respond uses detachProjectionCacheResponse, which structured-clones the cached object before downstream response consumers receive it.",
+    "conclusion": "The unchanged string namespace cannot import an old process's cached claim into a new process. A source edit without process reload also does not replace already-loaded executable modules. No actual new-code/old-claim cross-release cache path was found; no namespace change or blanket cache clear is warranted."
+  },
+  "verification": {
+    "test": "script/regional-source-closure.test.ts",
+    "command": "node --import tsx --test script/regional-source-closure.test.ts",
+    "result": "2 tests passed, 0 failed",
+    "method": "esbuild metadata of both actual runtime dependency graphs, exact archive/helper byte comparison, source and full-manifest identity sensitivity, and four in-memory retained-code refusal probes.",
+    "notRun": [
+      "No full producer rerun; parent's old-source full run left untouched.",
+      "No workflow start/restart, app launch or browser interaction.",
+      "No private publication, production mutation, commit or callback.",
+      "No routes.ts or 14 FaIR pin edits."
+    ]
+  }
+}

@@ -27,6 +27,7 @@ import { requireOutputSemantic, bindExportColumns } from "../shared/outputFieldS
 import { describeQuantityResponse, quantityDescriptionMiddleware } from "../server/quantityDescriptionApi";
 import { residualLabelScan, classifyResidualText, residualTextExceptions, residualTextExceptionIndex } from "./residual-label-scan";
 import { LEGACY_CLIMATE, LEGACY_FINANCE } from "../shared/calculationContract";
+import { regionalCounterfactualRows, regionalCounterfactualBindings, regionalCounterfactualExportNotes } from "../shared/regionalCounterfactual";
 
 (globalThis as any).React = React;
 const read = (file: string) => readFileSync(file, "utf8");
@@ -63,7 +64,8 @@ function productionRows(file: string, context: Record<string, unknown>) {
   };
   visit(source);
   assert.ok(rows && bindings && notes, file);
-  const env = { ...context, FIXED_5GT_DESCRIPTOR: fixed, THRESHOLD_DIAGNOSTIC_LABEL: selected.label, residualQuantityExportNotes, requireHistoricalType };
+  const env = { ...context, FIXED_5GT_DESCRIPTOR: fixed, THRESHOLD_DIAGNOSTIC_LABEL: selected.label, residualQuantityExportNotes, requireHistoricalType,
+    regionalCounterfactualRows, regionalCounterfactualBindings, regionalCounterfactualExportNotes };
   return { rows: evaluate(rows, env), bindings: evaluate(bindings, env), notes: evaluate(notes, env) };
 }
 test("exact original S01-014/S01-016 criteria remain the assessment, not descriptor presence alone", () => {
@@ -135,7 +137,7 @@ test("actual fixed-year UI and three production XLSX row/binding/note builders p
       assert.equal(built.rows[0]["Milestone definition"], fixed.description);
     } else assert.equal(built.rows[0][selected.label], 2025);
     assert.deepEqual(roundtrip(built.rows), built.rows);
-    assert.deepEqual(built.notes, residualQuantityExportNotes());
+    assert.deepEqual(built.notes, name === "regional-comparison" ? regionalCounterfactualExportNotes() : residualQuantityExportNotes());
     const bound = bindExportColumns(built.rows, built.bindings);
     assert.equal(requireOutputSemantic(built.bindings[fixed.label].id).meaning, fixed.label);
     if (name !== "regional-comparison") assert.equal(requireOutputSemantic(built.bindings[selected.label].id).meaning, selected.label);
@@ -161,7 +163,7 @@ test("GET API description boundary normalizes only reviewed text; every numeric/
   const oldPhysical = "Legacy 5 Gt annual residual (not net zero)";
   const oldRegional = "Legacy 5 Gt milestone; not net zero; null means not reached by 2100";
   assert.ok(read("server/routes.ts").includes(`physicalResidualThreshold: "${oldPhysical}"`));
-  assert.ok(read("server/calculation/regionalProjections.ts").includes(`milestoneDefinition: "${oldRegional}"`));
+  assert.ok(read("server/calculation/regionalProjections.ts").includes("milestoneDefinition: REGIONAL_COUNTERFACTUAL.milestoneDefinition"));
   const oldFinanceResidual = "Legacy 5% of starting annual emissions (not net zero)";
   const oldFinanceGrowth = "Legacy r - E/P; not a calibrated emissions-decline inference";
   assert.ok(read("server/routes.ts").includes(`financeResidualThreshold: "${oldFinanceResidual}"`));

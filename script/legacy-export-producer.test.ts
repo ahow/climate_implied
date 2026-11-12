@@ -20,6 +20,7 @@ import { certifySupplementalSheetRows } from "../shared/supplementalSheetBinding
 import { createDownloadManifest, downloadManifestRows } from "../shared/downloadManifest";
 import { requireHistoricalType } from "../shared/historicalTypes";
 import { FIXED_5GT_DESCRIPTOR } from "../shared/quantityDescriptors";
+import { regionalCounterfactualRows } from "../shared/regionalCounterfactual";
 import { THRESHOLD_DIAGNOSTIC_LABEL } from "../shared/thresholdDiagnostic";
 import * as finite from "../shared/finiteExportSchemas";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
@@ -136,7 +137,7 @@ for (const consumer of consumers) for (const metric of consumer.metrics ?? ["tem
     const context = {
       ...finite, bindProducerLegacyConsumer, requireHistoricalType, FIXED_5GT_DESCRIPTOR, THRESHOLD_DIAGNOSTIC_LABEL,
       trajectory: data.emissionsTrajectory, pdf: data.temperatureDistribution?.pdf, categories: data, data,
-      regions: data,
+      regions: data, regionalCounterfactualRows,
       historicalData: data, baseline: Array.isArray(data) ? data[0]?.baselineTemperature : undefined, metricView: metric,
       config: { metricKey: metric === "temperature" ? "median" : metric === "reductionRate" ? "reductionRate" : "netZeroYear" },
       CATEGORY_KEYS: finite.categoryExportKeys, CATEGORY_NAMES: finite.categoryExportNames,

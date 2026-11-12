@@ -11,6 +11,7 @@ import { Stage10FinancialCoverage } from "@/components/stage10-financial-coverag
 import { WorkbookMoneyAudit } from "@/components/workbook-money-audit";
 import { RETIRED_FINANCE_RESIDUAL_DESCRIPTOR } from "@shared/quantityDescriptors";
 import { RegistryMethodology } from "@/components/registry-methodology";
+import { REGIONAL_COUNTERFACTUAL } from "@shared/regionalCounterfactual";
 
 export default function Methodology() {
   return (
@@ -228,14 +229,12 @@ export default function Methodology() {
           <section>
             <div className="flex items-center gap-2 mb-3">
               <Globe className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-semibold m-0">Regional Analysis</h2>
+              <h2 className="text-lg font-semibold m-0">{REGIONAL_COUNTERFACTUAL.title}</h2>
             </div>
             <Card className="p-5">
               <p className="text-sm text-muted-foreground m-0">
-                Regional projections show what global warming would be if the entire world followed a specific
-                region&apos;s carbon intensity path. Each region (EU, US, China, India) has a different carbon intensity
-                (kg CO2 per $ GDP), which is used to scale the baseline emissions in the model. This approach
-                highlights the gap between leaders (EU) and emerging economies (India) in decarbonization progress.
+                {REGIONAL_COUNTERFACTUAL.question} {REGIONAL_COUNTERFACTUAL.claim}.
+                {" "}{REGIONAL_COUNTERFACTUAL.description} {REGIONAL_COUNTERFACTUAL.source}
               </p>
             </Card>
           </section>

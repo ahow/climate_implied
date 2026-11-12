@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "chronology-portability-evidence-1",
+  "criterion": "S11-041",
+  "status": "targeted-repair-verified-new-full-receipt-required",
+  "oldSource": {
+    "file": "script/valuation-rule-chronology-evidence.test.ts",
+    "sha256": "73ae5927cdccc51b2ce7603346438d7b34a7ffd870e75150b4d0ea712a033181",
+    "tests": 2,
+    "releaseBlocker": "First public test required actual workspace Git commits/blobs absent from the public source export. A private workspace pass does not establish public portability."
+  },
+  "exactOldVersusNewAssertions": [
+    {
+      "oldTest": "S11-041 immutable rule hashes and later-result ancestry are real, not chronology repair",
+      "newPrivateTest": "Same name and body, verbatim, in script/validate-valuation-rule-chronology-private.ts",
+      "mandatoryHistoricalAssertions": [
+        "SHA256(git show ruleCommit.hash:path) equals each of the five ruleCommit.sourceHashes entries.",
+        "git merge-base --is-ancestor succeeds for ruleCommit.hash, laterAsOfProtocol.initialCommit and laterAsOfProtocol.amendmentCommit against laterFirstRetainedPairedResult.resultDocumentCommit.",
+        "SHA256(git show resultDocumentCommit:path) equals ruleCommit.sourceHashes[path] for docs/Valuation_Comparison_Protocol.md, script/compare-valuation-models.ts and server/calculation/valuationComparison.ts.",
+        "SHA256(git show resultDocumentCommit:path) equals each of the two resultCommitSourceHashes entries.",
+        "SHA256(git show amendmentCommit:amendedProtocolPath) equals amendedProtocolSha256."
+      ],
+      "expandedChecks": 14,
+      "newPublicReplacement": "Public hash formats, declared parent relationships, embedded protocol hash identity and declared timestamp ordering only. Explicitly not authentic Git proof; no synthetic commit impersonates historical evidence."
+    },
+    {
+      "oldTest": "S11-041 retains adverse FIRST ANY observation and explicitly unproven execution revision",
+      "newPrivateTest": "Same name and body, verbatim, in script/validate-valuation-rule-chronology-private.ts",
+      "mandatoryHistoricalAssertions": [
+        "conclusion equals not-verified.",
+        "earliestRetainedAnyResultCandidate.filesystemMtime precedes ruleCommit.committerDate.",
+        "earliestRetainedAnyResultCandidate.exactExecutingRevision equals null.",
+        "timestampBasis matches not a signed execution.",
+        "remainingGap matches precedes rule commit.",
+        "laterFirstRetainedPairedResult.decisionPreserved matches Gordon remains primary."
+      ],
+      "expandedChecks": 6,
+      "newPublicRetention": "Same six assertions also remain in the public test. Additional public adverse/unknown contracts assert the exact 356568ms adverse gap, weak mtime basis, no exclusion of incomplete ANY outcomes, unknown first-ever/executing revision, no retrospective chronology repair, failed gate, no promotion/refreeze/rerun."
+    }
+  ],
+  "mandatoryGate": {
+    "file": "script/workplan-evidence-run.py",
+    "addedUnconditionalCommand": "npx tsx --test script/validate-valuation-rule-chronology-private.ts",
+    "originalValidatorsRetained": [
+      "uv run python script/validate_status_choice_width_private.py",
+      "NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary",
+      "NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts",
+      "NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts"
+    ],
+    "policy": "set -e retained; no conditional availability check, skip, catch-and-pass, workflow change, timeout weakening or assertion removal. Python runner regression now also requires the chronology command."
+  },
+  "execution": [
+    {
+      "command": "npx tsx --test --test-reporter=tap script/valuation-rule-chronology-evidence.test.ts script/valuation-rule-chronology-portability.test.ts script/validate-valuation-rule-chronology-private.ts",
+      "log": "generated-artifacts/chronology-portability/final-combined.log",
+      "exitCode": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "skipped": 0,
+      "scope": "Final targeted rerun after public evidence metadata update, including actual historical Git validation and source-only sandbox."
+    },
+    {
+      "command": "npx tsx --test --test-reporter=tap script/valuation-rule-chronology-evidence.test.ts script/valuation-rule-chronology-portability.test.ts",
+      "log": "generated-artifacts/chronology-portability/public-final.log",
+      "exitCode": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "skipped": 0,
+      "sandbox": "Copies only public chronology test, public JSON record and minimal module package metadata to an OS temporary directory; no .git, generated-artifacts, private, attached_assets, .local, exports or private validator. GIT_DIR points at nonexistent history. Nested TAP explicitly requires 3 tests/3 pass/0 fail/0 skip and all three test names; altered conclusion=verified must fail without skipping. NODE_TEST_CONTEXT alone removed so nested runner actually executes and emits TAP."
+    },
+    {
+      "command": "npx tsx --test --test-reporter=tap script/validate-valuation-rule-chronology-private.ts",
+      "log": "generated-artifacts/chronology-portability/private.log",
+      "exitCode": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0,
+      "scope": "Actual workspace historical Git blobs/ancestry verified read-only; no valuation computation or private payload export."
+    },
+    {
+      "command": "GIT_DIR=/tmp/chronology-deliberately-unavailable-history npx tsx --test --test-reporter=tap script/validate-valuation-rule-chronology-private.ts",
+      "log": "generated-artifacts/chronology-portability/private-missing-history.log",
+      "exitCode": 1,
+      "expectedFailure": true,
+      "scope": "Real historical check fails when history unavailable; mandatory validator does not skip or substitute public declarations."
+    },
+    {
+      "command": "uv run python -m unittest script/test_workplan_evidence_receipt.py",
+      "log": "generated-artifacts/chronology-portability/runner.log",
+      "exitCode": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "command": "npm run check",
+      "log": "generated-artifacts/chronology-portability/typecheck.log",
+      "exitCode": 0
+    }
+  ],
+  "logSha256": {
+    "generated-artifacts/chronology-portability/final-combined.log": "434381f6acea11db681310d2535d65e0d6b3ede6c7ed921a8e14134b0f4fb5c6",
+    "generated-artifacts/chronology-portability/private.log": "910ca5b311b3c2f0b1591f4ea6438f7ceafc36924024b16c49dd85a84e9e2834",
+    "generated-artifacts/chronology-portability/private-missing-history.log": "74e71cc0c690006c85d0c29707b9b013dc0b65ae8d93ae40e235a0d0480120e0",
+    "generated-artifacts/chronology-portability/public-final.log": "9796fe7cc3fedb7b8ee1f4f4b05a042b33bfb8e8bcc915850535e7076d3d2717",
+    "generated-artifacts/chronology-portability/public.log": "743e7121dca4b21354589879577e1a02f30ef8c4daf5d6b1c610383e199da450",
+    "generated-artifacts/chronology-portability/runner.log": "f60168b64ec92fdd99d65113e1162d963bc32232f20ddeec3ac892c95d894e8e",
+    "generated-artifacts/chronology-portability/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27"
+  },
+  "failuresPreserved": [
+    {
+      "log": "generated-artifacts/chronology-portability/public.log",
+      "tests": 4,
+      "pass": 3,
+      "fail": 1,
+      "skipped": 0,
+      "cause": "Initial sandbox inherited NODE_TEST_CONTEXT: child returned success without TAP, and mandatory actual-execution count assertion rejected it.",
+      "repair": "Remove inherited nested runner context; retain exact 3-test execution counts and negative control. Final rerun passed."
+    }
+  ],
+  "scope": "Portability and mandatory validation separation only. S11-041 remains partial/not-verified; earliest ANY local mtime weakness and adverse ordering retained. No historical proof fabricated, no frozen source/pin/results changed, no result rerun/refreeze, no main ledger/commit/release/callback.",
+  "parentAction": {
+    "existingRun": "qmEe5dWD runs old source; not duplicated, interrupted or claimed as new-source evidence.",
+    "required": "Parent must run workplan-evidence-run.py --receipt-only --full-checks in its long-lived shell after this repair, retain a new-source receipt/log and reconcile separately. Targeted passes do not replace the coherent full command.",
+    "newSourceFullReceipt": null
+  }
+}

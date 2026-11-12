@@ -24,6 +24,7 @@ FULL_CHECK_COMMAND = [
     "echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; "
     "echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; "
     "echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; "
+    "echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; "
     "echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; "
     "echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; "
     "echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; "

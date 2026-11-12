@@ -2053,9 +2053,9 @@
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "rows": "downloadRows",
-      "bindings": "{{\n            Region:{id:\"regional.regionName\",transform:\"Identity\"},\n            \"Legacy global counterfactual warming (\\u00B0C)\":{id:\"regional.temperatureRise\",transform:\"Identity\"},\n            \"Reduction Rate (%/yr)\":{id:\"regional.reductionRate\",transform:\"Identity\"},\n            \"Carbon Intensity (kg/$GDP)\":{id:\"regional.carbonIntensity\",transform:\"Identity; read companion basis column\"},\n            \"Intensity basis\":{id:\"regional.carbonIntensityBasis\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"regional.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            \"Milestone definition\":{id:\"regional.milestoneDefinition\",transform:\"Identity\"},\n            Claim:{id:\"regional.claim\",transform:\"Identity\"},\n          }}",
+      "bindings": "{regionalCounterfactualBindings}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
@@ -2548,7 +2548,7 @@
     },
     {
       "source": "script/quantity-label-contracts.test.ts",
-      "line": 41,
+      "line": 42,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Data\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -4039,61 +4039,115 @@
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 49,
+      "line": 50,
       "expression": "Array.from({ length: 4 }).map((_, i) => (\n            <Skeleton key={i} className=\"h-16 w-full\" />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 105,
-      "expression": "regions.map((region) => {\n          const hasTemperature = typeof region.temperatureRise === \"number\" && Number.isFinite(region.temperatureRise);\n          const barWidth = hasTemperature ? Math.min(100, Math.max(5, ((region.temperatureRise - 1.0) / 4.0) * 100)) : 0;\n          const color = getRegionColor(region.region);\n\n          return (\n            <div key={region.region} className=\"group\" data-testid={`card-region-${region.region}`}>\n              <div className=\"flex items-center justify-between mb-1.5\">\n                <div className=\"flex items-center gap-2\">\n                  <MapPin className=\"h-3.5 w-3.5\" style={{ color }} />\n                  <span className=\"text-sm font-medium\">{region.regionName}</span>\n                </div>\n                <span className={`text-lg font-bold tabular-nums ${getTempColor(region.temperatureRise)}`} data-testid={`text-region-temp-${region.region}`}>\n                   {displayDiagnostic(region.temperatureRise, \"°C\")}\n                </span>\n              </div>\n\n              <div className=\"relative h-2 bg-muted rounded-full overflow-hidden\">\n                <div\n                  className={`absolute inset-y-0 left-0 rounded-full transition-all ${getTempBgColor(region.temperatureRise)}`}\n                  style={{ width: `${barWidth}%`, opacity: 0.7 }}\n                />\n              </div>\n\n              <div className=\"flex items-center gap-3 mt-1.5 text-xs text-muted-foreground\">\n                <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {displayDiagnostic(region.reductionRate, \"%/yr\")}</span>\n                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {displayDiagnostic(region.carbonIntensity)} — {region.carbonIntensityBasis ?? \"Basis not returned\"}</span>\n                <span title={FIXED_5GT_DESCRIPTOR.description} data-testid={`text-region-netzero-${region.region}`}>{FIXED_5GT_DESCRIPTOR.label}: {region.netZeroYear === undefined ? \"Unavailable — not returned\" : region.netZeroYear === null ? \"Not reached by 2100\" : region.netZeroYear}</span>\n              </div>\n              {![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                <p role=\"status\" className=\"text-xs text-muted-foreground\">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}\n              <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={region.regionName} />\n            </div>\n          );\n        })",
+      "line": 58,
+      "expression": "REGIONAL_COUNTERFACTUAL.title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 115,
+      "line": 58,
+      "expression": "REGIONAL_COUNTERFACTUAL.unavailable",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 70,
+      "expression": "REGIONAL_COUNTERFACTUAL.title",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 71,
+      "expression": "REGIONAL_COUNTERFACTUAL.question",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 72,
+      "expression": "REGIONAL_COUNTERFACTUAL.claim",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 72,
+      "expression": "REGIONAL_COUNTERFACTUAL.description",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 72,
+      "expression": "FIXED_5GT_DESCRIPTOR.description",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 73,
+      "expression": "REGIONAL_COUNTERFACTUAL.source",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 89,
+      "expression": "REGIONAL_COUNTERFACTUAL.warmingLabel",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 90,
+      "expression": "regions.map((region) => {\n          const hasTemperature = typeof region.temperatureRise === \"number\" && Number.isFinite(region.temperatureRise);\n          const barWidth = hasTemperature ? Math.min(100, Math.max(5, ((region.temperatureRise - 1.0) / 4.0) * 100)) : 0;\n          const color = getRegionColor(region.region);\n\n          return (\n            <div key={region.region} className=\"group\" data-testid={`card-region-${region.region}`}>\n              <div className=\"flex items-center justify-between mb-1.5\">\n                <div className=\"flex items-center gap-2\">\n                  <MapPin className=\"h-3.5 w-3.5\" style={{ color }} />\n                  <span className=\"text-sm font-medium\">{region.regionName}</span>\n                </div>\n                 <span title={REGIONAL_COUNTERFACTUAL.warmingLabel} aria-label={REGIONAL_COUNTERFACTUAL.warmingLabel} className={`text-lg font-bold tabular-nums ${getTempColor(region.temperatureRise)}`} data-testid={`text-region-temp-${region.region}`}>\n                   {displayDiagnostic(region.temperatureRise, \"°C\")}\n                </span>\n              </div>\n\n              <div className=\"relative h-2 bg-muted rounded-full overflow-hidden\">\n                <div\n                  className={`absolute inset-y-0 left-0 rounded-full transition-all ${getTempBgColor(region.temperatureRise)}`}\n                  style={{ width: `${barWidth}%`, opacity: 0.7 }}\n                />\n              </div>\n\n              <div className=\"flex items-center gap-3 mt-1.5 text-xs text-muted-foreground\">\n                <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {displayDiagnostic(region.reductionRate, \"%/yr\")}</span>\n                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {displayDiagnostic(region.carbonIntensity)} — {region.carbonIntensityBasis ?? \"Basis not returned\"}</span>\n                <span title={FIXED_5GT_DESCRIPTOR.description} data-testid={`text-region-netzero-${region.region}`}>{FIXED_5GT_DESCRIPTOR.label}: {region.netZeroYear === undefined ? \"Unavailable — not returned\" : region.netZeroYear === null ? \"Not reached by 2100\" : region.netZeroYear}</span>\n              </div>\n              {![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                <p role=\"status\" className=\"text-xs text-muted-foreground\">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}\n              <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={`${region.regionName} intensity — global counterfactual`} />\n            </div>\n          );\n        })",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/regional-comparison.tsx",
+      "line": 100,
       "expression": "region.regionName",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 118,
+      "line": 103,
       "expression": "displayDiagnostic(region.temperatureRise, \"°C\")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 130,
+      "line": 115,
       "expression": "displayDiagnostic(region.reductionRate, \"%/yr\")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 131,
+      "line": 116,
       "expression": "displayDiagnostic(region.carbonIntensity)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 131,
+      "line": 116,
       "expression": "region.carbonIntensityBasis ?? \"Basis not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 132,
+      "line": 117,
       "expression": "FIXED_5GT_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 132,
+      "line": 117,
       "expression": "region.netZeroYear === undefined ? \"Unavailable — not returned\" : region.netZeroYear === null ? \"Not reached by 2100\" : region.netZeroYear",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 134,
+      "line": 119,
       "expression": "![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                <p role=\"status\" className=\"text-xs text-muted-foreground\">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>",
       "explicitSemanticAncestor": false
     },
@@ -4357,50 +4411,56 @@
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 56,
+      "line": 57,
       "expression": "reload.isPending ? \"Reloading views…\" : \"Re-run Analysis\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 68,
+      "line": 69,
       "expression": "isError ? <div role=\"alert\" className=\"rounded-md border p-4\">Indicator evidence could not be loaded. <Button variant=\"outline\" onClick={() => void refetch()}>Retry</Button></div>\n          : !isLoading && !indicators?.length ? <p className=\"rounded-md border p-4 text-sm text-muted-foreground\">No indicator evidence is available. No values have been substituted.</p>\n          : <IndicatorCards historicalData={indicators ?? []} isLoading={isLoading} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 81,
+      "line": 82,
       "expression": "showLegacy ? \"Hide legacy diagnostics\" : \"Show legacy diagnostics\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 83,
+      "line": 84,
       "expression": "showLegacy && <LegacyDashboard />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 144,
+      "line": 145,
       "expression": "projection?.temperatureDistribution && projection.metrics ? <TemperatureGauge\n            temperature={projection.temperatureDistribution.median}\n            p10={projection.temperatureDistribution.p10}\n            p90={projection.temperatureDistribution.p90}\n            reductionRate={projection.metrics.reductionRate}\n            netZeroYear={projection.metrics.netZeroYear}\n            thresholdDiagnostic={projection.metrics.thresholdDiagnostic}\n            metricView={metricView}\n            isLoading={projectionLoading}\n          /> : <p role={projectionError ? \"alert\" : \"status\"} className=\"rounded-md border p-4 text-sm\">Legacy calculation {projectionError ? \"read failed for the selected category. No previous result is shown.\" : projectionLoading ? \"loading the selected category…\" : \"unavailable: the selected response has no complete distribution and metrics. No diagnostic values are substituted.\"}</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 153,
+      "line": 154,
       "expression": "projectionError ? \"read failed for the selected category. No previous result is shown.\" : projectionLoading ? \"loading the selected category…\" : \"unavailable: the selected response has no complete distribution and metrics. No diagnostic values are substituted.\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 163,
+      "line": 164,
       "expression": "projection?.temperatureDistribution && [projection.temperatureDistribution.median, projection.temperatureDistribution.p10, projection.temperatureDistribution.p90].every(value => typeof value === \"number\" && Number.isFinite(value)) && <TemperatureHistogram\n          pdf={projection?.temperatureDistribution.pdf ?? []}\n          median={projection.temperatureDistribution.median}\n          p10={projection.temperatureDistribution.p10}\n          p90={projection.temperatureDistribution.p90}\n          isLoading={projectionLoading}\n        />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/dashboard.tsx",
-      "line": 175,
+      "line": 176,
       "expression": "indicatorFieldSpecs.length",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/dashboard.tsx",
+      "line": 193,
+      "expression": "REGIONAL_COUNTERFACTUAL.title",
       "explicitSemanticAncestor": false
     },
     {
@@ -5473,235 +5533,271 @@
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 117,
+      "line": 118,
       "expression": "indicatorFieldSpecs.length",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 120,
+      "line": 121,
       "expression": "[\n                  { category: \"Technology\", sources: [\"IRENA Renewable Capacity Statistics\", \"IEA Global EV Outlook\"], color: \"bg-emerald-500/10 text-emerald-600 dark:text-emerald-400\" },\n                  { category: \"Policy\", sources: [\"Climate Action Tracker\", \"Net Zero Tracker\"], color: \"bg-amber-500/10 text-amber-600 dark:text-amber-400\" },\n                  { category: \"Corporate\", sources: [\"Science Based Targets initiative (SBTi)\"], color: \"bg-orange-500/10 text-orange-600 dark:text-orange-400\" },\n                  { category: \"Socioeconomic\", sources: [\"Gallup Environment Poll\", \"Pew Research Climate Surveys\", \"World Bank / IMF WDI\"], color: \"bg-pink-500/10 text-pink-600 dark:text-pink-400\" },\n                  { category: \"Financial Flows\", sources: [\"IEA World Energy Investment\", \"Climate Bonds Initiative\", \"Stand.earth Divestment Database\"], color: \"bg-teal-500/10 text-teal-600 dark:text-teal-400\" },\n                  { category: \"Emissions Outcomes\", sources: [\"Global Carbon Project (GCP)\", \"NOAA Mauna Loa Observatory\", \"IPCC AR6 Carbon Budget\"], color: \"bg-red-500/10 text-red-600 dark:text-red-400\" },\n                ].map((cat) => (\n                  <div key={cat.category}>\n                    <Badge variant=\"secondary\" className={`mb-2 ${cat.color}`}>{cat.category}</Badge>\n                    <ul className=\"text-xs text-muted-foreground space-y-1 list-none p-0 m-0\">\n                      {cat.sources.map((s) => (\n                        <li key={s} className=\"flex items-start gap-1.5\">\n                          <span className=\"text-primary mt-0.5\">-</span>\n                          {s}\n                        </li>\n                      ))}\n                    </ul>\n                  </div>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 129,
+      "line": 130,
       "expression": "cat.category",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 131,
+      "line": 132,
       "expression": "cat.sources.map((s) => (\n                        <li key={s} className=\"flex items-start gap-1.5\">\n                          <span className=\"text-primary mt-0.5\">-</span>\n                          {s}\n                        </li>\n                      ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 134,
+      "line": 135,
       "expression": "s",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 164,
+      "line": 165,
       "expression": "[\n                      [\"Power\", \"26.9%\", \"16.2\", \"Renewable energy displacement\"],\n                      [\"Transport\", \"14.4%\", \"8.7\", \"Electric vehicle adoption\"],\n                      [\"Industry\", \"24.1%\", \"14.5\", \"Electrification, efficiency\"],\n                      [\"Buildings\", \"9.6%\", \"5.8\", \"Heat pumps, insulation\"],\n                      [\"Agriculture\", \"17.1%\", \"10.3\", \"Methane reduction\"],\n                      [\"Other\", \"8.0%\", \"4.8\", \"Waste management, forestry\"],\n                    ].map(([sector, share, baseline, driver]) => (\n                      <tr key={sector} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"py-2 font-medium text-foreground\">{sector}</td>\n                        <td className=\"text-right py-2\">{share}</td>\n                        <td className=\"text-right py-2\">{baseline}</td>\n                        <td className=\"py-2 pl-4\">{driver}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 173,
+      "line": 174,
       "expression": "sector",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 174,
+      "line": 175,
       "expression": "share",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 175,
+      "line": 176,
       "expression": "baseline",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 176,
+      "line": 177,
       "expression": "driver",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 196,
+      "line": 197,
       "expression": "[\n                  \"Renewable growth rate uncertainty: \\u00B115%\",\n                  \"EV adoption uncertainty: \\u00B120%\",\n                  \"Policy effectiveness: sampled around implementation rate\",\n                  \"Carbon intensity decline: \\u00B112%\",\n                  \"Economic growth: 2.5% \\u00B1 0.8%\",\n                  \"Climate sensitivity (ECS): 3.0 \\u00B1 0.5\\u00B0C\",\n                ].map((item, i) => (\n                  <li key={i} className=\"flex items-start gap-2\">\n                    <span className=\"text-primary font-bold\">-</span>\n                    {item}\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 206,
+      "line": 207,
       "expression": "item",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 263,
+      "line": 232,
+      "expression": "REGIONAL_COUNTERFACTUAL.title",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 236,
+      "expression": "REGIONAL_COUNTERFACTUAL.question",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 236,
+      "expression": "REGIONAL_COUNTERFACTUAL.claim",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 237,
+      "expression": "\" \"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 237,
+      "expression": "REGIONAL_COUNTERFACTUAL.description",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 237,
+      "expression": "REGIONAL_COUNTERFACTUAL.source",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/methodology.tsx",
+      "line": 262,
       "expression": "RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 296,
+      "line": 295,
       "expression": "RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 357,
+      "line": 356,
       "expression": "[\n                  \"Empirical semi-elasticity: ex-post evaluation of 39 countries' carbon pricing policies (Rafaty, Dolphin & Pretis 2025; Doebbeling-Hildebrandt et al. 2024)\",\n                  \"IAM shadow prices: IPCC AR6 integrated assessment model carbon prices consistent with 1.5-2\\u00B0C pathways\",\n                  \"Marginal abatement cost curves (MACCs): bottom-up engineering analysis of techno-economic abatement potential at each price level (McKinsey, EDF)\"\n                ].map((item, i) => (\n                  <li key={i} className=\"flex items-start gap-2\">\n                    <span className=\"text-primary font-bold\">{i + 1}.</span>\n                    {item}\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 363,
+      "line": 362,
       "expression": "i + 1",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 364,
+      "line": 363,
       "expression": "item",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 393,
+      "line": 392,
       "expression": "[\n                      [\"$10\", \"4%\", \"Marginal\"],\n                      [\"$25\", \"8%\", \"Low\"],\n                      [\"$50\", \"16%\", \"Moderate\"],\n                      [\"$75\", \"23%\", \"Substantial\"],\n                      [\"$100\", \"29%\", \"Strong\"],\n                      [\"$150\", \"38%\", \"Very strong\"],\n                      [\"$200\", \"45%\", \"1.5\\u00B0C-aligned\"],\n                      [\"$300\", \"55%\", \"Very high\"],\n                      [\"$500\", \"65%\", \"Near-complete fossil exit\"],\n                    ].map(([price, reduction, signal]) => (\n                      <tr key={price} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"text-right py-1.5 font-medium text-foreground\">{price}</td>\n                        <td className=\"text-right py-1.5\">{reduction}</td>\n                        <td className=\"py-1.5 pl-4\">{signal}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 405,
+      "line": 404,
       "expression": "price",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 406,
+      "line": 405,
       "expression": "reduction",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 407,
+      "line": 406,
       "expression": "signal",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 452,
+      "line": 451,
       "expression": "[\n                      [\"0%/yr\", \"4,643\", \"3.19\\u00B0C\", \"No action (flat emissions)\"],\n                      [\"2%/yr\", \"2,379\", \"2.17\\u00B0C\", \"Moderate decline\"],\n                      [\"5%/yr\", \"1,183\", \"1.63\\u00B0C\", \"Ambitious (near 2\\u00B0C)\"],\n                      [\"7%/yr\", \"858\", \"1.49\\u00B0C\", \"1.5\\u00B0C-consistent\"],\n                      [\"10%/yr\", \"603\", \"1.37\\u00B0C\", \"Aggressive decarbonization\"],\n                      [\"-1%/yr\", \"6,944\", \"4.22\\u00B0C\", \"Rising emissions\"],\n                    ].map(([rate, emissions, temp, pathway]) => (\n                      <tr key={rate} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"text-right py-1.5 font-medium text-foreground\">{rate}</td>\n                        <td className=\"text-right py-1.5\">{emissions}</td>\n                        <td className=\"text-right py-1.5\">{temp}</td>\n                        <td className=\"py-1.5 pl-4\">{pathway}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 461,
+      "line": 460,
       "expression": "rate",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 462,
+      "line": 461,
       "expression": "emissions",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 463,
+      "line": 462,
       "expression": "temp",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 464,
+      "line": 463,
       "expression": "pathway",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 492,
+      "line": 491,
       "expression": "RETIRED_FINANCE_RESIDUAL_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 496,
+      "line": 495,
       "expression": "[\n                      [\"2%/yr\", \"~2172\"],\n                      [\"3%/yr\", \"~2122\"],\n                      [\"5%/yr\", \"~2082\"],\n                      [\"7%/yr\", \"~2065\"],\n                      [\"10%/yr\", \"~2052\"],\n                      [\"15%/yr\", \"~2042\"],\n                    ].map(([rate, year]) => (\n                      <tr key={rate} className=\"border-b border-dashed last:border-0\">\n                        <td className=\"text-right py-1.5 font-medium text-foreground\">{rate}</td>\n                        <td className=\"text-right py-1.5\">{year}</td>\n                      </tr>\n                    ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 505,
+      "line": 504,
       "expression": "rate",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 506,
+      "line": 505,
       "expression": "year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 529,
+      "line": 528,
       "expression": "[\n                  { method: \"Absolute\", desc: \"All companies ranked globally by target ambition. The top third are 'best' and bottom third are 'worst'.\" },\n                  { method: \"Sector Relative\", desc: \"Companies ranked within their sector (e.g., Industrials, Financials). This controls for sectors where high decarbonization targets are structurally harder to achieve.\" },\n                  { method: \"Sub-Sector Relative\", desc: \"Companies ranked within their sub-sector (e.g., Ind. Goods & Services, Banks). Provides finer-grained comparison among closer peers.\" },\n                  { method: \"Industry Relative\", desc: \"Companies ranked within their industry (e.g., Ind. Transportation, Retail Banking). The most granular level, comparing companies with very similar emission profiles.\" },\n                ].map((item) => (\n                  <li key={item.method} className=\"flex items-start gap-2\">\n                    <Badge variant=\"secondary\" className=\"shrink-0 mt-0.5\">{item.method}</Badge>\n                    <span>{item.desc}</span>\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 536,
+      "line": 535,
       "expression": "item.method",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 537,
+      "line": 536,
       "expression": "item.desc",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 684,
+      "line": 683,
       "expression": "[\n                  { strategy: \"Selected signal\", desc: \"Carbon intensity, SDG and ambition use fixed company scores ranked across the filtered universe. They are retrospective comparisons, not point-in-time investable backtests. Peer-relative methods are not supported for these backtests.\" },\n                  { strategy: \"Decarb Gap\", desc: \"Formerly labelled Valuation-Aware. Requested with signal=decarb_gap; no separate strategy parameter exists. Ranks projected rate minus company implied rate within the selected peer groups. Lower P/E means lower implied growth, not higher growth.\" },\n                ].map((item) => (\n                  <li key={item.strategy} className=\"flex items-start gap-2\">\n                    <Badge variant=\"secondary\" className=\"shrink-0 mt-0.5\">{item.strategy}</Badge>\n                    <span>{item.desc}</span>\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 689,
+      "line": 688,
       "expression": "item.strategy",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 690,
+      "line": 689,
       "expression": "item.desc",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 717,
+      "line": 716,
       "expression": "[\n                  \"IPCC AR6 WG3 (2022). Climate Change 2022: Mitigation of Climate Change. Chapter 3, Figure 3.34.\",\n                  \"IPCC SR1.5 (2018). Global Warming of 1.5\\u00B0C. Chapter 2, Figure 2.26.\",\n                  \"Rafaty, R., Dolphin, G. & Pretis, F. (2025). Carbon pricing and the elasticity of CO2 emissions. Energy Economics, 144.\",\n                  \"Doebbeling-Hildebrandt, N. et al. (2024). Systematic review and meta-analysis of ex-post evaluations on the effectiveness of carbon pricing. Nature Communications, 15, 4147.\",\n                  \"Parry, I. et al. (2021). Proposal for an International Carbon Price Floor Among Large Emitters. IMF Staff Climate Note 2021/001.\",\n                  \"Naucler, T. & Enkvist, P.-A. (2009). Pathways to a Low-Carbon Economy. McKinsey Global GHG Abatement Cost Curve v2.\",\n                  \"Gordon, M.J. (1959). Dividends, Earnings, and Stock Prices. Review of Economics and Statistics, 41(2).\",\n                ].map((ref, i) => (\n                  <li key={i} className=\"flex items-start gap-2\">\n                    <span className=\"text-primary font-bold shrink-0\">[{i + 1}]</span>\n                    {ref}\n                  </li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 727,
+      "line": 726,
       "expression": "i + 1",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/methodology.tsx",
-      "line": 728,
+      "line": 727,
       "expression": "ref",
       "explicitSemanticAncestor": false
     },
@@ -11020,49 +11116,49 @@
       "transform": "true -> yes; false -> no, not vintage certification"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Region",
       "id": "regional.regionName",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Legacy global counterfactual warming (°C)",
       "id": "regional.temperatureRise",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Reduction Rate (%/yr)",
       "id": "regional.reductionRate",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Carbon Intensity (kg/$GDP)",
       "id": "regional.carbonIntensity",
       "transform": "Identity; read companion basis column"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Intensity basis",
       "id": "regional.carbonIntensityBasis",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "id": "regional.netZeroYear",
       "transform": "Identity; fixed-5gt-v1; null preserved; not 5% or net zero"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Milestone definition",
       "id": "regional.milestoneDefinition",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Claim",
       "id": "regional.claim",
       "transform": "Identity"
@@ -57390,7 +57486,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "total": 8,
       "bound": 8,
       "unbound": [],
@@ -68820,67 +68916,67 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Carbon Intensity (kg/$GDP)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Claim",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Intensity basis",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Legacy global counterfactual warming (°C)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Milestone definition",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Reduction Rate (%/yr)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:83",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:76",
       "field": "[].Region",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 83,
+      "line": 76,
       "resolution": "typed-field"
     },
     {

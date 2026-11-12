@@ -11,6 +11,7 @@ import type { ThresholdDiagnostic } from "../../shared/thresholdDiagnostic";
 import { selectedTrajectoryThresholdContext, type ThresholdContext } from "./thresholdDiagnostic";
 import { calculationKey } from "./identity";
 import { getAllHistoricalIndicators } from "./historicalIndicators";
+import { REGIONAL_COUNTERFACTUAL } from "../../shared/regionalCounterfactual";
 
 export interface RegionalProjection {
   region: string;
@@ -160,8 +161,8 @@ export function calculateRegionalFromInputs(baseIndicators: IndicatorData,
       carbonIntensityBasis: intensity.source === "owid"
         ? "kg CO2 per international dollar GDP (PPP); OWID"
         : "kg CO2 per nominal dollar GDP; legacy static assumption, not comparable to PPP",
-      claim: "Legacy global intensity counterfactual; not a regional temperature forecast",
-      milestoneDefinition: "Legacy 5 Gt milestone; not net zero; null means not reached by 2100",
+      claim: REGIONAL_COUNTERFACTUAL.claim,
+      milestoneDefinition: REGIONAL_COUNTERFACTUAL.milestoneDefinition,
     };
   });
 }

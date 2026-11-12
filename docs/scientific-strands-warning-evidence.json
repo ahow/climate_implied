@@ -134,7 +134,9 @@
     {
       "path": "client/src/pages/dashboard.tsx",
       "originalSha256": "f77303a463354f95059878a7bb5916208f2427c918cdf116040918cfc47b7ebc",
-      "currentSha256": "7655249d19553c0ed9a678912b5ddbc6710e0fde64fd756494d15498f8319af8",
+      "currentSha256": "1a037992ca50a35bd82f3b085cba448160f119eb1e0d25d78b4ff0b4cd56167d",
+      "priorCurrentSha256": "7655249d19553c0ed9a678912b5ddbc6710e0fde64fd756494d15498f8319af8",
+      "currentSourceRefreshReason": "Inspected dashboard diff: heading now consumes shared/regionalCounterfactual.ts; the regional qualification now says Regional-intensity results are legacy global counterfactuals, not regional temperatures or inventories. This preserves and strengthens the scope warning rather than resolving it. Original hash, exact historical scan lines and all other physical/vintage warnings are retained.",
       "exactScanLines": [
         {"line":58,"text":"        No new scientific model is ready for use; legacy calculations are not validated climate forecasts."},
         {"line":71,"text":"        <p className=\"text-sm text-muted-foreground\" id=\"legacy-warning\">"},
@@ -180,7 +182,9 @@
     {
       "path": "client/src/pages/methodology.tsx",
       "originalSha256": "c9f2495a4ac6f5cff70d7afd610891dd3c1c93c82a2a8dce951ce93c972237b8",
-      "currentSha256": "e6c02ebe8a1f4a37482fb1c4fd64346770408032bd3b91ce56e3f8253f6317ac",
+      "currentSha256": "f4c1492397f766de89c16ecf139c32f3e251b76f62b1a1fbd74d0d870cfe2000",
+      "priorCurrentSha256": "e6c02ebe8a1f4a37482fb1c4fd64346770408032bd3b91ce56e3f8253f6317ac",
+      "currentSourceRefreshReason": "Inspected methodology diff: regional heading/explanation now consume the shared counterfactual title, question, claim, description and source. The explanation explicitly excludes regional forecasts/inventories and distinguishes OWID PPP from static nominal assumptions. Original historical scan lines and unresolved physical/vintage/investment warnings remain unchanged.",
       "exactScanLines": [
         {"line":24,"text":"          <p className=\"text-sm text-muted-foreground\">Published references are read from /api/reference-scenarios, with their own sources, release, licence and caveats. They are external references, not our forecasts or proof of model readiness.</p>"},
         {"line":27,"text":"          <p className=\"text-sm text-muted-foreground\">Temperature, carbon-price and net-zero results inferred from valuations are withheld. No defensible valuation-to-activity mapping or identified market climate expectation is established. No new scientific model is ready. Retrospective portfolio research is not validated investment evidence.</p>"},

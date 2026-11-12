@@ -1,0 +1,390 @@
+{
+  "schemaVersion": "counterfactual-run-primary-evidence-1",
+  "status": "bounded-new-primary-content-reviewed-no-qualified-production-input",
+  "scope": "Original S04-001, Stage3 native buildings split, and NEE/FSLR/XOM source qualification. Documentary findings only; no counterfactual, efficacy, valuation, approval or original-completion claim.",
+  "inventoryReview": {
+    "method": "Read latest mechanism-run-source evidence first, then prior regional/issuer inventories and targeted source/field sections. Local exact-URL checks before selecting documents; not an exhaustive archive review.",
+    "sha256AtInspection": {
+      "docs/mechanism-run-source-evidence.json": "22311cdb78781f92750c3399a55f8bc53f299064b98a0a146266cd3a2bf6eaee",
+      "docs/qualified-primary-inputs-evidence.json": "7ebe881164a34095d7066a05e1e769b70cf45b36517a85cb95712b73fe16f9ab",
+      "docs/regional-diffusion-uncertainty-evidence.json": "32cc29c693c1c077fb68a55a75826810dad740fcbd57bb47bb63592b35b13863",
+      "docs/issuer-economics-next-evidence.json": "abeb77d3646cc24fbdfb41527bb518d1cb62afa3b59a4d041041d493a22feeb4",
+      "docs/issuer-source-next-evidence.json": "40a2d1a2e4f610dbf872f9871e3d9530e3cc2e8eed7ce527408772989d712994",
+      "docs/mechanism-matrix-evidence.json": "6939b6e867eabae88647ce04745d20e2fced4623b24f985d425fc14fcec4a1bc",
+      "docs/issuer-contract-law-evidence.json": "58380bdaf61ed449de4b5c25935ce9163ae41c2460cf118d33cebf02e77f4068",
+      "docs/issuer-cash-source-followup-evidence.json": "e87b78c01ea5030e0e1dcdd4ebf7624209b693bca02685679110574c2bbcabf9",
+      "docs/nee-related-source-followup-evidence.json": "8e41a96d514039d7054b4671d48e36779e73f8aac9205ab33bca47bcb4bb26aa",
+      "docs/issuer-attachment-grant-evidence.json": "175399ec91baca924d730627f760747e8bb9b44e169a5b6ec59134be6fb8e868",
+      "docs/nee-parent-fslr-programme-evidence.json": "452d12b3bcc9c35037949cd074bdb4138b380de626349afe843910ddd75d2d9e",
+      "docs/fslr-cohort-integrated-evidence.json": "267ceeb4c823026fd5daa375528404427c3a03281b9cc3dc384846a36dad2867"
+    },
+    "avoidedRepeat": [
+      "All eleven requests in mechanism-run-source-evidence, including the Nature challenge, First Solar IR denial, NEE conference notice, CF environment/startup pages and six discovery requests.",
+      "Prior DOE routes, IRS programme summaries, current section45X compilation, PMC/NewClimate studies, Q3 NEE release/XPLR deck, XOM Nucor and Williams announcements.",
+      "Prior denied XOM June2026 and XPLR September2026 interims; no alternate-host or identity retry.",
+      "XPLR FY2024 accession index and Financial_Report.xlsx: local inventory review established these were already inspected, so the older proposed next-index action was NOT repeated. Original2019/2020 indices and workbooks were also already inspected.",
+      "Retained First Solar Q2/Q3 filings/releases, annual financials and previously reviewed LLC contracts."
+    ],
+    "noveltyLimit": "EDGAR report/workbook/definitions and the IPCC chapter were not found in the targeted retained evidence URL checks. Two issuer exact new filings were located from existing primary submissions metadata, not guessed filenames. First Solar corporate source routes were separate untried content, not an alternate route to denied IR financial documents. Newly inspected does not mean newly published or a globally novel fact."
+  },
+  "acquisition": {
+    "method": "Native unauthenticated fetch; SHA256 of exact response arrayBuffer bytes after HTTP content decoding. XLSX parsed in memory with installed xlsx; PDF text extracted with pdftotext through stdin/stdout, without saving PDF bytes.",
+    "logicalNetworkRequests": 9,
+    "searchEngineRequests": 0,
+    "http200": 7,
+    "http403": 2,
+    "reportOrWorkbookOrStatementContentsObtained": 4,
+    "otherPublisherHtmlObtained": 3,
+    "repeatedLatestElevenRequests": 0,
+    "unchangedFailedSearches": 0,
+    "accessBoundaryRetriesOrBypasses": 0,
+    "stopDecision": "Stop after nine logical requests. Actual EDGAR category definitions reveal a material overlap mismatch, IPCC gives the required disaggregation taxonomy, and the First Solar signed statement identifies actual material categories but not costs. Two genuinely new issuer filings were denied. No additional generic programme/search expansion, repeat financial notes, invented allocation or economics.",
+    "countLimit": "Actual stopping point, not an externally preregistered budget. Automatic redirect hop counts were not captured. HTML catalog/routing pages are counted honestly, not as financial or numeric split successes.",
+    "localExecutionErrors": [
+      "Initial EDGAR helper preparation referenced unavailable AbortSignal before fetch could execute; no network request or response hash resulted. Corrected the helper before the single actual B1 request.",
+      "Two First Solar helper invocations failed with executeJs is not defined before returning acquisition receipts. Notebook check still showed six completed receipts. Inline impure acquisition then produced the single recorded F1 response. These tool/preparation failures are not additional successful source acquisitions."
+    ],
+    "hashLimit": "Response digests identify received content, not issuer signatures, original wire compression, external notarization or independently reviewed source qualification. Denial hashes identify denial pages, not requested filings.",
+    "datePolicy": "requestedAt and receivedAt were captured during actual UTC acquisition. Source publication year, approval date, financial period and future expectations are separately identified. No 2026 document is backdated into pre2019 training or an original valuation cutoff.",
+    "retentionPolicy": "Only minimal attributed facts, short definition/field labels, locators, metadata and hashes saved. No complete publisher PDF, spreadsheet, filing, HTML, source numerical panel or private source bytes written/published. Memory-only parsing is not a redistribution licence."
+  },
+  "primaryContentAttempts": [
+    {
+      "id": "B1-EDGAR-2025",
+      "url": "https://edgar.jrc.ec.europa.eu/report_2025",
+      "effectiveUrl": "https://edgar.jrc.ec.europa.eu/report_2025",
+      "requestedAt": "2026-11-12T13:03:11.837Z",
+      "receivedAt": "2026-11-12T13:03:13.324Z",
+      "status": 200,
+      "responseBytes": 251540,
+      "responseSha256": "e7e5b536d06030f34c6fdc7de5e880e437126557af76a12de7488dc3939dcb57",
+      "contentType": "text/html; charset=UTF-8",
+      "publicationDate": null,
+      "sourceVersion": "EDGAR_2025_GHG (2025), mutable report page identified by response hash; exact publication day not established.",
+      "sourcePeriod": "1970-2024 anthropogenic GHG emissions; country/territory list updated2025-06-30.",
+      "locator": "Data Download, country-boundary note, Conditions of use.",
+      "sourceContent": [
+        "Publisher directly declares the B2 spreadsheet and B3 report PDF; not search-snippet authority.",
+        "Data are metric units and country terminology includes territories according to the publisher list.",
+        "Conditions distinguish EU-owned material generally CC BY4.0 from IEA-EDGAR CO2(v4) fuel-combustion data based on IEA2024, licensed CC BY-NC-ND4.0."
+      ],
+      "qualification": "Authentic primary release/rights context and attachment locators, not an account split. Same label2025 alone does not authenticate equality to each IGCC-retained upstream workbook or grant production adaptation rights to CO2 data.",
+      "rights": "EU CC BY4.0 subject to stated exceptions; IEA-EDGAR CO2 noncommercial/no-derivatives restriction explicitly retained. No permission contact or commercial-adaptation clearance obtained."
+    },
+    {
+      "id": "B2-EDGAR-2025-sector-workbook",
+      "url": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2025_GHG_booklet_2025.xlsx",
+      "effectiveUrl": "https://edgar.jrc.ec.europa.eu/booklet/EDGAR_2025_GHG_booklet_2025.xlsx",
+      "requestedAt": "2026-11-12T13:03:37.214Z",
+      "receivedAt": "2026-11-12T13:03:42.338Z",
+      "status": 200,
+      "responseBytes": 4608243,
+      "responseSha256": "8bd6b8a405b9c40548d8df11d06aaed8838d31acce1d4dee1cb858d7eade3597",
+      "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "publicationDate": null,
+      "sourceVersion": "GHG emissions of all world countries,2025 Report; actual workbook response-hash bound, not identical to retained individual-gas workbooks.",
+      "sourcePeriod": "GHG_by_sector_and_country columns1970-2024; no2026 observation imputed.",
+      "locator": "info; Citations and references; GHG_by_sector_and_country header and complete label scan.",
+      "sourceContent": {
+        "worksheets": [
+          "info",
+          "Citations and references",
+          "GHG_totals_by_country",
+          "GHG_by_sector_and_country",
+          "GHG_per_GDP_by_country",
+          "GHG_per_capita_by_country",
+          "LULUCF_macroregions",
+          "LULUCF_countries"
+        ],
+        "sectorSheetRowCountIncludingHeader": 4850,
+        "sectorSheetIdentificationColumns": ["Substance", "Sector", "EDGAR Country Code", "Country"],
+        "infoBuildingsDefinition": "Buildings – Small scale non-industrial stationary combustion",
+        "matchedSectorLabels": ["Agriculture", "Buildings"],
+        "scanDefinition": "Case-insensitive building,1.A.4,residential,commercial,agriculture matching in the first eight cells of every row. Distinct matched strings retained; no numeric rows republished.",
+        "splitResult": "No residential/commercial or1.A.4.a/b/c label surfaced in this complete label scan. B3 positively identifies what the broad Buildings category includes."
+      },
+      "qualification": "Real country/year/substance data acquired, but broad Buildings is not the requested account split. The numerical rows were not transformed into native subcells. Source CO2/CO2eq and GWP conventions require explicit review; total GHG cannot be treated as native CH4/N2O mass.",
+      "rights": "Workbook Citations and references repeats EU CC BY4.0 with IEA-EDGAR CO2(v4) CC BY-NC-ND4.0 exception. No blanket production reuse qualification."
+    },
+    {
+      "id": "B3-EDGAR-report-definitions",
+      "url": "https://edgar.jrc.ec.europa.eu/booklet/GHG_emissions_of_all_world_countries_booklet_2025report.pdf",
+      "effectiveUrl": "https://edgar.jrc.ec.europa.eu/booklet/GHG_emissions_of_all_world_countries_booklet_2025report.pdf",
+      "requestedAt": "2026-11-12T13:04:02.217Z",
+      "receivedAt": "2026-11-12T13:04:08.235Z",
+      "status": 200,
+      "responseBytes": 6707639,
+      "responseSha256": "7fe3123717aa552c490ccf5559611ee10aaa5ff78b72c6514d626608673b1ff6",
+      "contentType": "application/pdf",
+      "publicationDate": null,
+      "publicationYear": 2025,
+      "sourceVersion": "JRC143227, EUR40443, DOI10.2760/9816914, PDF ISBN978-92-68-31401-2.",
+      "sourcePeriod": "2025 edition, estimates through2024; exact original release day unestablished.",
+      "locator": "Annex1 Table3, printed46/PDF48; printed16 footnote28; copyright/front matter.",
+      "sourceContent": {
+        "exactCategoryCode": "1A4+1A5",
+        "categoryLabel": "BUILDINGS",
+        "activityLabel": "Small scale non-industrial stationary combustion",
+        "unitFinding": "Printed16 footnote28 explicitly states total GHG CO2eq uses Fifth Assessment Report global-warming-potential values.",
+        "materialPositiveFinding": "The publisher's Buildings aggregate includes1.A.5 in addition to1.A.4. This is a concrete source-defined overlap mismatch, not simply an unlocated split."
+      },
+      "qualification": "Definition qualified as documentary evidence. Reject using report/workbook Buildings as1.A.4.a+1.A.4.b or replacing unsplit1.A.4:1.A.5 is separately present in the native inventory, and1.A.4 itself also contains agricultural/forestry/fishing combustion. Report AR5 CO2eq is not the native inventory's AR6 reporting basis. Within-gas share cancellation would still need authentic subcategory values and matching boundaries; none supplied here.",
+      "rights": "Report EU-owned text generally CC BY4.0, third-party material excepted. Underlying fuel-combustion data retain B1/B2 IEA exception; report text licence does not erase it."
+    },
+    {
+      "id": "N1-NEE-Nov5-current-report",
+      "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000084/nee-20261105.htm",
+      "effectiveUrl": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000084/nee-20261105.htm",
+      "requestedAt": "2026-11-12T13:04:58.351Z",
+      "receivedAt": "2026-11-12T13:04:58.489Z",
+      "status": 403,
+      "responseBytes": 4818,
+      "responseSha256": "5575d07644dc16c1c5755468d7767f54af70c3d771d56954ddf7e3392cbd16f7",
+      "contentType": "text/html",
+      "publicationDate": null,
+      "routingMetadata": {
+        "path": "generated-artifacts/company-operating-corpus/next-company-evidence/NEE-submissions-response.txt",
+        "sha256": "9693784cd74acfce477c1b90aa036fc4f1e72f0c177b79ee09b758cce332aa1c",
+        "form": "8-K",
+        "filingDate": "2026-11-05",
+        "accessionNumber": "0000753308-26-000084",
+        "primaryDocument": "nee-20261105.htm"
+      },
+      "sourceContent": "SEC undeclared-automated-tool denial only. No current-report body, event scope or exhibit contents obtained.",
+      "qualification": "Unassessed filing, not evidence of absent gross LLC cash, recipient rights or marginal returns. This is distinct from the prior conference notice and prior Q3 interim/release. Stop without retry, changed identity or mirror.",
+      "rights": "No issuer filing contents or reuse rights acquired."
+    },
+    {
+      "id": "X1-CF-Q32026-counterparty-interim",
+      "url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000025/cf-20260930.htm",
+      "effectiveUrl": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000025/cf-20260930.htm",
+      "requestedAt": "2026-11-12T13:04:58.542Z",
+      "receivedAt": "2026-11-12T13:04:58.575Z",
+      "status": 403,
+      "responseBytes": 4818,
+      "responseSha256": "840c874593ba3c5c0e5950234d3f6d57fa2f6b24efe26cbc7910b6c3542c0412",
+      "contentType": "text/html",
+      "publicationDate": null,
+      "routingMetadata": {
+        "path": "generated-artifacts/company-operating-corpus/xom-contract-permit-v1/cf-sec-submissions.json",
+        "sha256": "8b9f643b017960619e9405777161b69e5f9db1492b2c058821f4d4e596802fb7",
+        "form": "10-Q",
+        "filingDate": "2026-11-05",
+        "accessionNumber": "0001324404-26-000025",
+        "primaryDocument": "cf-20260930.htm",
+        "metadataPeriodCandidate": "Quarter/nine months ended2026-09-30; filing body not authenticated."
+      },
+      "sourceContent": "SEC undeclared-automated-tool denial only; no CF interim commitments, CCS operating cash or contract attachment acquired.",
+      "qualification": "New counterparty filing attempt, not the prior XOM June interim denial, CF2022 contract announcement or July2025 startup release. Cannot assess fees, billings, operating parties, novation, opex or funding from this denial. No absence, zero-payment or current commissioning inference.",
+      "rights": "No issuer contents or licence acquired; no alternate-host retry."
+    },
+    {
+      "id": "B4-IPCC-native-category-definitions",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf",
+      "effectiveUrl": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf",
+      "requestedAt": "2026-11-12T13:04:58.633Z",
+      "receivedAt": "2026-11-12T13:05:00.234Z",
+      "status": 200,
+      "responseBytes": 756401,
+      "responseSha256": "a25d9f96d7672df391b328de79d4cfd812c07fe79d5cf4a30d23d82d8f02985b",
+      "contentType": "application/pdf",
+      "publicationDate": null,
+      "publicationYear": 2006,
+      "sourceVersion": "2006 IPCC Guidelines, Volume2 Energy, Chapter2 Stationary Combustion; retrieved chapter bytes, no full-guidelines revision certification.",
+      "sourcePeriod": "Category/method definitions; no2024 numerical observation.",
+      "locator": "Table2.1 continued, printed/PDF2.9 and2.10; Table2.16 printed2.42.",
+      "sourceContent": [
+        "1.A.4.a is commercial/institutional building fuel combustion;1.A.4.b is household fuel combustion.",
+        "1.A.4.c is agriculture/forestry/fishing/fish farms, with stationary, off-road machinery and fishing subcategories.",
+        "1.A.5 is non-specified combustion with separate stationary/mobile branches, not an alias for commercial/residential.",
+        "Own-use electricity/heat generation belongs to the consuming sector; mobile-source methods for1.A.4/1.A.5 are discussed in Chapter3 although reported under these categories."
+      ],
+      "qualification": "Authentic taxonomy proves why all1.A.4 cannot be declared buildings and why report Buildings cannot be substituted. It does not supply gas/territory/year-specific a/b/c masses or allocation fractions. No taxonomy-to-numeric-allocation inference.",
+      "rights": "IPCC primary guidance; no unrestricted underlying-data licence established from this chapter. Only minimal factual category descriptions retained."
+    },
+    {
+      "id": "F1-FSLR-technical-disclosures",
+      "url": "https://www.firstsolar.com/en/Resources/Technical-Documents",
+      "effectiveUrl": "https://www.firstsolar.com/Resources/Downloads",
+      "requestedAt": "2026-11-12T13:05:34.737Z",
+      "receivedAt": "2026-11-12T13:05:35.226Z",
+      "status": 200,
+      "responseBytes": 53092,
+      "responseSha256": "431ead7454a713fe263882f1181704068966cf89fda7a35767a79361dcadc9d1",
+      "contentType": "text/html; charset=utf-8",
+      "publicationDate": null,
+      "sourceVersion": "Mutable issuer technical-download catalog at actual request time.",
+      "locator": "Dated Series7/Series6 technical document entries and Environmental Stewardship link.",
+      "sourceContent": "Page lists module datasheets/user guides, including2026 revisions. It is a routing/catalog response, not module production/sale records, grant remittances, cash settlement records or a company component-cost BOM. No datasheet watts substituted for actual eligible cohort watts.",
+      "qualification": "Navigation success only; no economic input. First Solar corporate content was obtained, but that does not mean the separate IR challenge was bypassed or the missing financial documents retrieved.",
+      "rights": "First Solar all rights reserved; no catalog/document republication."
+    },
+    {
+      "id": "F2-FSLR-materials-environmental-disclosure",
+      "url": "https://www.firstsolar.com/Responsible-Solar/Environmental",
+      "effectiveUrl": "https://www.firstsolar.com/Responsible-Solar/Environmental",
+      "requestedAt": "2026-11-12T13:05:45.495Z",
+      "receivedAt": "2026-11-12T13:05:45.676Z",
+      "status": 200,
+      "responseBytes": 30230,
+      "responseSha256": "071fe58609e588c4e5255f538cb4d658ddebbea21db440c26fcc2301e304d1bc",
+      "contentType": "text/html; charset=utf-8",
+      "publicationDate": null,
+      "sourceVersion": "Mutable corporate Environmental Stewardship page at request time.",
+      "locator": "Materials/recycling narrative and linked Transparency in Supply Chains and Modern Slavery Statement.",
+      "sourceContent": "Contains environmental/material-efficiency claims and directly links F3. Those sustainability claims are not cost-based MACR/PFE attestations or proof of US component eligibility. No conversion of recycling recovery or semiconductor-material comparisons into dollar BOM shares.",
+      "qualification": "Primary route to actual F3 statement; no tax/cash input from promotional footprint claims.",
+      "rights": "Issuer copyright; limited factual attribution only."
+    },
+    {
+      "id": "F3-FSLR-supplier-entity-statement",
+      "url": "https://www.firstsolar.com/-/media/First-Solar/Sustainability-Documents/Transparency-in-Supply-Chains-and-Modern-Slavery-Statement.pdf",
+      "effectiveUrl": "https://www.firstsolar.com/-/media/First-Solar/Sustainability-Documents/Transparency-in-Supply-Chains-and-Modern-Slavery-Statement.pdf",
+      "requestedAt": "2026-11-12T13:06:17.286Z",
+      "receivedAt": "2026-11-12T13:06:17.520Z",
+      "status": 200,
+      "responseBytes": 144788,
+      "responseSha256": "bd933937e5be2e24869636dc112c9ae284d724cda1246fd650787101b3f7875c",
+      "contentType": "application/pdf",
+      "publicationDate": null,
+      "sourceApprovalDate": "2026-04-23",
+      "approvalDateMeaning": "Statement reports its own board approval/signature. Not approval of this research, tax eligibility or any model; exact first-publication day unestablished.",
+      "sourceVersion": "Four-page issuer statement for financial year ending2025-12-31, signed by Mark R. Widmar; response-hash bound.",
+      "sourcePeriod": "FY2025 operations/due diligence; sixth-US-facility second-half2026 startup is an expectation as expressed in this statement, not observed commissioning.",
+      "legalEntity": "First Solar, Inc. and subsidiaries/affiliates collectively; not individual component-producing LLC or supplier counterparty ledger.",
+      "locator": "Section1 Our Business and Supply Chain pp1-2; Section3 Risk Assessment and Due Diligence pp3-4; final signature paragraph p4.",
+      "sourceContent": {
+        "materialCategories": "Approximately30 raw-material/component types; names cadmium telluride, transparent-conductive-oxide-coated front glass, other semiconductor materials, adhesives/organics, heat-strengthened back glass, frames, interlayer/packaging, junction boxes, wire assemblies and solar connectors.",
+        "manufacturingRouteFinding": "Distinguishes vertically integrated thin-film production from planned onshoring of final production for internationally initiated modules. It does not quantify actual eligible US production/sale watts by route.",
+        "dueDiligenceFinding": "Issuer reports2025 assessment of100% of tier1 manufacturing materials/components suppliers and100% of new suppliers using social/environmental criteria, plus21 onsite supplier audits.",
+        "scopeWarning": "Human-rights/social-environmental supplier due diligence and non-reliance on Chinese crystalline-silicon supply chains do not certify section45X PFE status, material-assistance cost ratios, effective control or company tax eligibility."
+      },
+      "qualification": "Material positive: actual named thin-film input categories and dated issuer supplier-diligence scope, rather than a crystalline-silicon assumed BOM. Still lacks component/cohort/year direct-material dollar denominator, PFE-attributable numerator, supplier ownership/control attestation and applicable tax-method allocation. No actual collection amount/day, eligible watts, tax credit or FCFE inserted.",
+      "rights": "Copyrighted issuer statement. Only concise factual paraphrases retained; no complete statement, images, supplier records or private data publication."
+    }
+  ],
+  "qualificationAndMissingFields": {
+    "Stage3Buildings": {
+      "qualifiedNumericalSplits": 0,
+      "productionIntegration": false,
+      "retainedInventory": {
+        "path": "server/calculation/data/inventory2024.json",
+        "sha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+        "version": "igcc-2024-candidate-1",
+        "territory": "Global; regional allocation has its own separately retained source/territory bindings.",
+        "year": 2024,
+        "nativeUnit": "Mt of each named gas, not MtCO2e",
+        "separateUnsplitCodes": ["1.A.4", "1.A.5"],
+        "nativeGasesAtTheseCodes": ["CO2", "CH4", "N2O"],
+        "co2Basis": "GCB total allocated using EDGAR2025 sector weights, not an independent observed sector CO2 account.",
+        "nonCo2Basis": "Retained EDGAR2025 native masses; reporting separately uses AR6 GWP100."
+      },
+      "materialNewFinding": "EDGAR2025 Report Table3 explicitly aggregates1A4+1A5 as Buildings. Using that field as1.A.4 or as commercial+residential would import a separately represented1.A.5 stock and retain non-building1.A.4.c combustion. IPCC Table2.1 supplies the exact native taxonomy, not allocation numbers.",
+      "missingFields": [
+        "Same-release/defined-version1.A.4.a commercial/institutional,1.A.4.b residential and1.A.4.c residual by CO2/CH4/N2O,2024 and each retained territory/country membership.",
+        "Native mass units, biomass/fossil and own-use heat/power/mobile boundaries, missing/negative-cell handling, country/bunker treatment and authentic source-publication/version/hash lineage.",
+        "Reconciliation proving a+b+c equals the retained1.A.4 account without importing1.A.5 or double-counting power/industry/agriculture; each original cell must be replaced, not augmented.",
+        "For retained GCB-scaled CO2, explicitly reviewed treatment preserving its existing scaling/source boundary; do not transplant a new raw CO2 level or silently rescale another release.",
+        "Reviewed reuse rights, including the IEA fuel-combustion exception, and explicit overlap mapping to native mechanisms. A same-year national CRF or another EDGAR edition is not automatically a compatible split."
+      ],
+      "retainedNegative": "All three buildings pathways remain inert for the unsplit retained inventory. Existing synthetic1.A.4.a/b engine probes demonstrate wiring only; neither those fixtures nor new broad Buildings data justify production allocation."
+    },
+    "S04-001": {
+      "newQualifiedRegionalCeilings": 0,
+      "newQualifiedReviewedJointBundles": 0,
+      "status": "UNEXECUTED",
+      "frozenSpecification": {
+        "replications": 1000,
+        "circularResidualBlockLength": 3,
+        "seed": 20261108,
+        "trainingYears": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
+        "holdoutYears": [2019, 2020, 2021, 2022, 2023, 2024],
+        "familyOrder": "World,UnitedStates,China,India,EU27; solar then wind; fixed10 cells."
+      },
+      "missingFields": [
+        "Independent region/technology ceiling on share of total electricity generation, not installed capacity, combined-VRE scenario, emissions-sector share or a fitted heldout ceiling.",
+        "Authentic complete numerical9/6 panel with source/version/publication/rights and correct release-vintage classification.",
+        "Reviewed hash-bound whole joint draws supplying all available cells' nine training shares,K and six externally identified structural logit offsets.",
+        "Source-authored empirical sampling law plus cross-region/source/structural dependence and compatible rights, numerical-byte binding and genuine reviewed prefit receipt."
+      ],
+      "newSourceAssessment": "New EDGAR/IPCC emissions-account sources do not measure electricity-generation saturation or its joint law. No new directly identified compatible joint-law source was ready; no search shell, blocked study or arbitrary prior/source splice substituted.",
+      "retainedNegatives": "Nine original baseline failures remain; EU solar remains a point-only winner, not acceptance. Zero fits, bootstrap replications, heldout scoring, old-study reruns or promotions."
+    },
+    "NEE": {
+      "newQualifiedEconomicPairs": 0,
+      "newSourceAssessment": "Exact new November5 current report denied; filing contents unassessed. No gross recipient/marginal-return finding from the denial.",
+      "preservedMaterialPositives": [
+        "Executed RenewablesII/Genesis AvailableCash/reserve/class-priority and conditional flip/call/buyout terms are known in their dated contractual scopes; not blanket absent.",
+        "Prior FY2025XPLR source reports purchase of ALL remaining external RenewablesIIClassB units inApril2025 for approximatelyUSD931m. Do not retain an obsolete30%-external-hold assumption or label this historic event wholly unknown.",
+        "Prior FY2025NEE-category distributionsUSD61m are a sourced category gross amount, not a unique recipient partition;USD47m contribution equity movement is not certified cash.",
+        "Prior NEE FY2025USD446m equity-method earnings distributions are already inside consolidated CFO; cash-sweep contracts/held balances and later Q3 segment/payer categories retain separate scopes."
+      ],
+      "missingFields": [
+        "Gross dated payments naming payer project LLC and receiving NEE subsidiary: distributions, contributions, service reimbursements and consolidated cash-flow classification.",
+        "Return-on versus return-of-capital; actual monthly AvailableCash, reserve balances and debt/tax-equity/class priority; current holdings/elections/remaining contractual branches beyond separately sourced historical events.",
+        "Commissioning cohort/in-service dates, incremental net operating cash, actual funded construction/replacement outlays, financing priorities and marginal common-owner returns."
+      ],
+      "decision": "No percentage-times-category allocation, net-to-gross residual, contractual investor IRR as project return, ownership gain as free cash, or double counting subsidiary cash inside consolidated CFO."
+    },
+    "FSLR": {
+      "newQualifiedEconomicPairs": 0,
+      "materialNewPositive": "FY2025 signed supplier statement supplies issuer-specific thin-film raw-material categories and actual due-diligence scope. This narrows the BOM inquiry to named CdTe-module inputs, not a presumed crystalline-silicon materials structure.",
+      "missingFields": [
+        "India manufacturing operating entity/programme, actual installment amount/native currency/payment day/FX and cash-flow classification; separate Alabama actual collection.",
+        "Transfer-credit origin/receivable reduction/discount/gross-versus-net/settlement-date cash reconciliation with no CFO/working-capital double count.",
+        "Actual eligible US component production and sale watts by component/cohort/year and fully-US versus internationally initiated/US-completed route; module technical rating is not eligible produced/sold watts.",
+        "Component/year/applicable-method direct-material cost denominator and PFE-attributable cost numerator, supplier/entity/control attestations and tax-method allocation with current-law/reliance dates."
+      ],
+      "lawTimingPreserved": "No new law source acquired. Prior official45X compilation places same-facility integrated-primary65% rule in amendment applying to taxable years beginning after2026-12-31. Do not silently impose that future clause on2026 sales. Separate applicable2026PFE/material-assistance rules and guidance remain relevant; supplier social audits do not certify them.",
+      "retainedPositivesAndNegatives": "July2026India first-receipt month remains sourced; amount/day/currency/classification are distinct unknowns. AlabamaUSD6.1m recognition is not collection. Prior actual transfer-cohort cash and conditional ledger results remain; no global/guidanceGW, inverted credit dollars, grant residual or supply-chain marketing converted to cash/eligibility."
+    },
+    "XOM": {
+      "newQualifiedEconomicPairs": 0,
+      "newSourceAssessment": "Exact new CF counterparty interim denied; no priced instrument or financial note inspected. Denial is not global nondisclosure or zero fees.",
+      "preservedMaterialPositives": [
+        "EnLink historicalUSD844m expected-recognition schedule remains a distinct sourced forecast disclosure, not current billings or collection.",
+        "Williams commercial announcement, Nucor operating status and CF July2025 interimEOR-versus-future-dedicated-storage distinction remain in their dated scopes.",
+        "CF45Q/product premiums and third-party project funding are not automatically XOM revenue, own funded capital or available common cash."
+      ],
+      "missingFields": [
+        "Executed transportation/storage instrument naming actual operating subsidiaries; effective/current status and assignment/novation/termination.",
+        "Actual priced fee/tariff/escalator/minimum-payment schedule, serviced CO2 mass in native units/service period, invoice amounts and collected cash/date/classification.",
+        "Transport/storage opex, maintenance/replacement, funded draws/capital calls, debt/reserve/ownership priorities and available-to-XOM-common bridge."
+      ],
+      "decision": "No announced tonnes or enabled storage capacity converted into revenue; no statutory45Q rate used as customer fee, no parent acquisition presumed novation, and no CF client-funded facilities assigned as XOM project capital."
+    },
+    "operatingFcfeAndDates11To15": {
+      "newQualifiedDatedInputPairs": 0,
+      "newFinancialModelOrDatedPreparationRuns": 0,
+      "commonFcfeInsertedUsd": 0,
+      "originalFiscalBasisAndCutoffPreserved": true,
+      "originalStubFiveYearStepsTenYearFadeAndTerminalRangePreserved": true,
+      "securityIdentitySharesAndTickerJoinsChanged": false,
+      "decision": "Still source-blocked, not merely approval-blocked. No2026backdating, market-pair invention, positive terminal restoration or financial stress-grid substitute."
+    }
+  },
+  "verificationAndPreservation": {
+    "ownedFiles": ["docs/counterfactual-run-primary-evidence.json"],
+    "validationScope": "JSON/receipt integrity and selected retained-file hashes only. No app, workflow, UI, full-suite, model-efficacy or legal-compliance verification claim.",
+    "validationResults": "JSON.parse passed; all nine saved IDs/URLs/effective URLs/request and receipt times/statuses/byte counts/response digests/content types matched actual in-memory receipts exactly. IDs and URLs unique; seven200/two403. All twelve inspected evidence hashes, fourteen prior negative hashes and ten selected issuer preservation hashes matched current bytes. Owned-file whitespace check passed. No app/UI changes to verify; parent owns application checks.",
+    "sourceRequestsWithActualUtcAndResponseHashes": 9,
+    "qualifiedNumericAccountSplits": 0,
+    "qualifiedReviewedScientificBundles": 0,
+    "qualifiedIssuerEconomicPairs": 0,
+    "sourceBodiesOrNumericPanelsPersisted": 0,
+    "codeOrProductionInputEdits": 0,
+    "actualRegionalFitsBootstrapReplicationsOrHeldoutScores": 0,
+    "issuerFcfeOrDatedValuationRuns": 0,
+    "retainedNegativeFilesCheckedAgainstPriorHashes": 14,
+    "retainedNegativeHashMismatches": 0,
+    "selectedIssuerHistoryProtocolCatalogFilesCheckedAgainstIssuerSourceNextHashes": 10,
+    "selectedIssuerPreservationHashMismatches": 0,
+    "nativeInventorySha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+    "regionalInventorySha256": "333f3cc35d6fe389c02df9437c3b684da295da808b41f95efcc1a4c4cd4c4b29",
+    "canonicalLedgerEdits": 0,
+    "approvalsCommitsReleasesOrCallbacks": 0,
+    "purchasesCredentialsPermissionRequestsOrPrivatePublication": 0,
+    "appWorkflowOrLogOperations": 0,
+    "receiptLimit": "Local request timestamps and response digests are not independent research notarization, externally reviewed qualification or permission. Other working-tree changes are outside this task."
+  }
+}

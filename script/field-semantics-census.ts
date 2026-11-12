@@ -3,6 +3,7 @@ import { existsSync,readFileSync,writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { fieldSemantics } from "../shared/fieldSemantics";
 import { outputFieldSemantics, bindExportColumns } from "../shared/outputFieldSemantics";
+import { regionalCounterfactualBindings } from "../shared/regionalCounterfactual";
 import { evidenceApiBindings } from "../shared/evidenceFieldSemantics";
 import { diagnosticMetadataBindings } from "../shared/diagnosticMetadataSemantics";
 import { remainingApiBindings } from "../shared/remainingFieldSemantics";
@@ -332,7 +333,26 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
                 verifiedExportBindings.push({surface:exportSurface,field:`[].${name}`,id,transform});
             }
           }
-          if(relativeSource(source.fileName)==="client/src/components/threshold-diagnostic-details.tsx" &&
+           if(relativeSource(source.fileName)==="client/src/components/regional-comparison.tsx" &&
+             initializer && ts.isCallExpression(initializer) &&
+             initializer.expression.getText(source)==="regionalCounterfactualRows" &&
+             initializer.arguments.length===1 && initializer.arguments[0].getText(source)==="regions" &&
+             bindingExpression?.getText(source)==="regionalCounterfactualBindings") {
+             // Follow the exact imported production builder and binding symbol,
+             // never an arbitrary same-named helper or a wildcard column match.
+             for(const expression of [initializer.expression,bindingExpression]) {
+               const symbol=checker.getSymbolAtLocation(expression);
+               const target=symbol && (symbol.flags & ts.SymbolFlags.Alias ? checker.getAliasedSymbol(symbol) : symbol);
+               if(!target?.declarations?.some(d=>relativeSource(d.getSourceFile().fileName)==="shared/regionalCounterfactual.ts"))
+                 throw new Error(`Regional export contract import mismatch: ${exportSurface}`);
+             }
+             for(const [column,binding] of Object.entries(regionalCounterfactualBindings)) {
+               if(!outputFieldSemantics.some(f=>f.id===binding.id))
+                 throw new Error(`Unknown regional column semantic: ${column}`);
+               verifiedExportBindings.push({surface:exportSurface,field:`[].${column}`,...binding});
+             }
+           }
+           if(relativeSource(source.fileName)==="client/src/components/threshold-diagnostic-details.tsx" &&
             ["diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))",
               "producerThresholdExportRows(diagnostics, contextLabels)"].includes(prop.initializer.expression.getText(source)) &&
             node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&

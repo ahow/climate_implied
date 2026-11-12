@@ -3147,6 +3147,344 @@
         "documentation_boundary": "This subsequent local documentation/receipt script is distinct from implementation workspace source and verified public/runtime source. Any docs-only export through existing sync is a later revision, not this measured runtime.",
         "scope": "61 verified finite engineering /237 partial /2 provisioning-blocked; all300 original clauses retained. Four exact finite engineering criteria only; scientific/source/owner acceptance remains unpromoted. No manual CI bypass, dispatch, new monitoring, privileged POST, production mutations, data activation, callback, frozen negative protocol or14FaIR-pin changes."
       }
+    },
+    "original_counterfactual_reconciliation": {
+      "at": "2026-11-12T13:42:03.887004+00:00",
+      "status_before": {
+        "verified": 61,
+        "partial": 237,
+        "blocked-production-provisioning": 2
+      },
+      "status_after": {
+        "verified": 63,
+        "partial": 235,
+        "blocked-production-provisioning": 2
+      },
+      "scope": "Original S05-009/S08-003 finite criteria verified; S11-041 remains adverse partial. All300 original criteria; no existing verified clause reopened.",
+      "evidence_sha256": {
+        "docs/boundary-fixture-evidence.json": "3245147ed8e364195bf652557125b21942ed49fba9ad68db0197282964921296",
+        "docs/regional-counterfactual-surface-evidence.json": "8a756f2689528b31b780b5a05e8d0bf51e5f39d14dc1bab9f63b69bf075d7331",
+        "docs/valuation-rule-chronology-evidence.json": "ce0a25647aa39d21805dd58111238646f4da6fc07fa8c8bba09543761a4f6ab4",
+        "docs/counterfactual-run-primary-evidence.json": "2107133d01344a9f475810a853f8a591c25a68a7ea11cb999ea6942cb7f67ee5"
+      },
+      "focused_receipt": "generated-artifacts/original-counterfactual-integration/focused-final.receipt.json",
+      "focused_counts": {
+        "typescript": {
+          "tests": 138,
+          "pass": 138,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "private_receipt": "generated-artifacts/original-counterfactual-integration/private.receipt.json",
+      "private_counts": {
+        "typescript": null,
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "reconciliation_receipt": "generated-artifacts/original-counterfactual-integration/reconciliation.receipt.json",
+      "reconciliation_counts": {
+        "typescript": {
+          "tests": 18,
+          "pass": 18,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "full_receipt": "generated-artifacts/original-counterfactual-integration/full-portable-final.receipt.json",
+      "full_exit_code": 0,
+      "full_counts": {
+        "typescript": {
+          "tests": 1199,
+          "pass": 1198,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "full_gate_passed": true,
+      "gate_boundary": "No publication, release or callback before the exact coherent full gate passes, including unconditional private chronology and all previous mandatory validators. Focused/private receipts do not substitute for that gate.",
+      "pending_gate_action": "Coherent full receipt attached; no scientific or runtime promotion follows automatically.",
+      "failure_history": [
+        {
+          "receipt": "generated-artifacts/original-counterfactual-integration/focused.receipt.json",
+          "command": [
+            "bash",
+            "-c",
+            "set -e; npm run check; npx tsx --test script/boundary-fixture-evidence.test.ts script/emissions-candidate.test.ts script/native-mechanism-matrix.test.ts script/valuation-rule-chronology-evidence.test.ts script/regional-counterfactual-labels.test.ts script/regional-replay.test.ts script/regional-archive.test.ts script/legacy-export-producer.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/integrated-readonly-contracts.test.ts"
+          ],
+          "executed_at": "2026-11-12T13:11:22.997029+00:00",
+          "exit_code": 1,
+          "elapsed_seconds": 157.29,
+          "counts": {
+            "tests": 122,
+            "pass": 119,
+            "fail": 3,
+            "skipped": 0
+          },
+          "log": "generated-artifacts/original-counterfactual-integration/focused.log",
+          "workspace_revision": null,
+          "worktree_dirty": null,
+          "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+          "log_sha256": "8742d888ed15dc84ec3fdd974e91e2d6743defdb2c837df34b9a79472f46d931",
+          "suite_counts": {
+            "typescript": {
+              "tests": 122,
+              "pass": 119,
+              "fail": 3,
+              "skipped": 0
+            },
+            "python": null
+          },
+          "canonical_ledgers_modified": false,
+          "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+        },
+        {
+          "receipt": "generated-artifacts/original-counterfactual-integration/full-final.receipt.json",
+          "command": [
+            "bash",
+            "-c",
+            "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+          ],
+          "executed_at": "2026-11-12T13:25:01.082333+00:00",
+          "exit_code": 1,
+          "elapsed_seconds": 353.124,
+          "counts": {
+            "tests": 1196,
+            "pass": 1191,
+            "fail": 4,
+            "skipped": 1
+          },
+          "log": "generated-artifacts/original-counterfactual-integration/full-final.log",
+          "workspace_revision": null,
+          "worktree_dirty": null,
+          "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+          "log_sha256": "ab201bd722d09d4c9a0cd9ebc612084f3643738e48f119c51d696471e02e54ff",
+          "suite_counts": {
+            "typescript": {
+              "tests": 1196,
+              "pass": 1191,
+              "fail": 4,
+              "skipped": 1
+            },
+            "python": null
+          },
+          "canonical_ledgers_modified": false,
+          "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+        }
+      ],
+      "separate_local_postgresql": {
+        "path": "docs/disposable-cache-transport-evidence.json",
+        "sha256": "30a788fec0995ed65223f081313d74841e311adc03afe2010e9dced9a02641bd",
+        "passed": true,
+        "finished_at": "2026-11-12T12:28:00.446Z",
+        "actual_postgresql_witnesses": [
+          {
+            "path": "/home/runner/workspace/generated-artifacts/company-cache-extension/http-WJFoOd/evidence.json",
+            "sha256": "3f3c5d08bba66c8e72e7abc8bf050130d6521a865b40ea98cd9e8a24744cfadf",
+            "passed": true,
+            "postgresqlTransportExecuted": true,
+            "analyticalReceipts": 8,
+            "actualPostgresQueries": 311,
+            "companyPhases": {
+              "lookup-miss": 4,
+              "compute": 4,
+              "write": 4,
+              "lookup-hit": 4
+            }
+          },
+          {
+            "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/postgres-namespace-NkW7Rv/evidence.json",
+            "sha256": "6a461657a13c3153b4ae93206953b2c56d756c8ca6b5d08858dbd45a617fc1cd",
+            "passed": true,
+            "postgresqlTransportExecuted": true,
+            "analyticalReceipts": 5,
+            "actualPostgresQueries": 12,
+            "namespaceKeys": [
+              "finance-projected-rate:135ec499a36f86c5a3eec625805ea409239d79d36b7689afec5dfba614262d6a",
+              "projection:47bfe4f88336db1960d43bd0fb10ac80711f0316e1eca0a732f70cc32fbbe41c",
+              "projection:5d3039308389bdc762bdb513a33d026cab76164b729ab0909477d82865b72f57"
+            ]
+          }
+        ],
+        "boundary": "Historical separate isolated local PostgreSQL success, not rerun here, not production acceptance. Any optional full-suite skip remains a skip, never subtracted or replaced by memory-route success."
+      },
+      "supporting_evidence_sha256": {
+        "docs/chronology-portability-evidence.json": "12a57b7087dd0439481d5e600f8e24d7a77155c57ceb4cfaa17ae810ff8466a0",
+        "docs/regional-source-closure-evidence.json": "a42ffa8b09aeb3b6c158ada4bdebcbd07847cd86576b1503a809ac83408a7211",
+        "generated-artifacts/original-counterfactual-integration/focused-portable-final-repair-evidence.json": "e6311ef4f1ef57ef1857de52b87abd453df35fa5469803459bae0a67ff397ab8"
+      },
+      "supplementary_executions": [
+        {
+          "receipt": "generated-artifacts/original-counterfactual-integration/focused-portable-final.receipt.json",
+          "sha256": "a421032d8edb8b2440e6d9d8e65c2f3e6aa8c41a6593fef96b49f4d72d670a91",
+          "execution": {
+            "command": [
+              "npx",
+              "tsx",
+              "--test",
+              "--test-reporter=tap",
+              "script/scientific-strands-warning.test.ts",
+              "script/status-choice-width-increment.test.ts",
+              "script/warning-and-pathway-label-contracts.test.ts",
+              "script/regional-counterfactual-labels.test.ts",
+              "script/valuation-rule-chronology-evidence.test.ts",
+              "script/valuation-rule-chronology-portability.test.ts",
+              "script/validate-valuation-rule-chronology-private.ts"
+            ],
+            "executed_at": "2026-11-12T13:33:50.043638+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 5.744,
+            "counts": {
+              "tests": 34,
+              "pass": 34,
+              "fail": 0,
+              "skipped": 0
+            },
+            "log": "generated-artifacts/original-counterfactual-integration/focused-portable-final.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "f3d07d8efe250b73eaccd76cc19cc19f1cd4ec3c07f668479d489c4ccc533a24",
+            "suite_counts": {
+              "typescript": {
+                "tests": 34,
+                "pass": 34,
+                "fail": 0,
+                "skipped": 0
+              },
+              "python": null
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          }
+        },
+        {
+          "receipt": "generated-artifacts/original-counterfactual-integration/focused-private-runner-final.receipt.json",
+          "sha256": "ad77de50866f77c83f954896d107129ee5c19e3c93b6b35e90556561afdab9ee",
+          "execution": {
+            "command": [
+              "bash",
+              "-c",
+              "set -e; uv run python -m unittest script/test_workplan_evidence_receipt.py; uv run python script/validate_status_choice_width_private.py"
+            ],
+            "executed_at": "2026-11-12T13:33:55.976772+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 0.416,
+            "counts": {
+              "tests": 3,
+              "pass": 3,
+              "fail": 0,
+              "skipped": 0
+            },
+            "log": "generated-artifacts/original-counterfactual-integration/focused-private-runner-final.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "28ceed7d13243edff555a586bacd9dd3e84f87d9bd22d2ca6220a0cb7784a205",
+            "suite_counts": {
+              "typescript": null,
+              "python": {
+                "tests": 3,
+                "pass": 3,
+                "fail": 0,
+                "skipped": 0
+              }
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          }
+        }
+      ],
+      "receipt_sha256": {
+        "generated-artifacts/original-counterfactual-integration/focused-final.receipt.json": "89762921064086887846fef5870c9f536642ad03752d42e689caa46b750d1e58",
+        "generated-artifacts/original-counterfactual-integration/private.receipt.json": "3ad02b5e76f09b8f05ada2d12da31ff396d694fa4ca0ad2de3ee057b09009951",
+        "generated-artifacts/original-counterfactual-integration/reconciliation.receipt.json": "74948b0312f0cfc86978c7140b8fabbdfbc2a0f25df7b18b825490fe8e65920d",
+        "generated-artifacts/original-counterfactual-integration/full-portable-final.receipt.json": "48e9ecb5982c5a9d111b383622b9a6e03a69a7ce3c643d0429fff76c4dfe265d"
+      },
+      "protected_fair_pins": 14,
+      "protected_frozen_negative_files": 14,
+      "source_hashes": {
+        "S05-009": {
+          "server/calculation/emissionsCandidate.ts": "48c667d8144d0a5e3605de5f222a9a07cbe42e0fdf4e642cb2a8a2c105c479f4",
+          "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+          "server/calculation/data/inventory2024.json": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+          "script/boundary-fixture-evidence.test.ts": "4a459f5a6f583ec5af2ff776d676e4ed1587c573a7ef1a595cdde1bc8032c970",
+          "script/emissions-candidate.test.ts": "55e25c905c98d3f4c4f77a2bb7ccf6763e76e73e39abcabb6d1a2a11e70fc093",
+          "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6"
+        },
+        "S08-003": {
+          "shared/regionalCounterfactual.ts": "783210eef44aee6c941c73799369a3f0c25b117c0ea1e36fa204a606381f6782",
+          "shared/regionalFieldSemantics.ts": "493b702755e39d150728fb55dcc0aad52c5bc977ede3cf9d4b3722bc00b75352",
+          "shared/legacyExportConsumer.ts": "5fd6fa4a5410412992cdb2f95a43d8491756f641dd0b4075f4bb221ded73e13b",
+          "server/calculation/regionalProjections.ts": "be039d01c19bcee06bd956416b829330d2a8767a7c33a2873e41b0f9a1dbfc2f",
+          "server/routes.ts": "44f3b7ceaffb042e0c8dc1980cb13c41011dc475d38a49be21aa7468b64fcc97",
+          "client/src/components/regional-comparison.tsx": "86f2f6fae1f149f7a8f127c6dfb70e3174ca01f7a8216ad733fc2d8cb96dfeb2",
+          "client/src/pages/dashboard.tsx": "1a037992ca50a35bd82f3b085cba448160f119eb1e0d25d78b4ff0b4cd56167d",
+          "client/src/pages/methodology.tsx": "f4c1492397f766de89c16ecf139c32f3e251b76f62b1a1fbd74d0d870cfe2000",
+          "script/regional-counterfactual-labels.test.ts": "614aacdc0b7e120cffb6fa43134d8856916c06264795e6f1e90cf0bb70bd4844",
+          "script/legacy-export-producer.test.ts": "1177718f8f63e210e64d6569e03daccc9575764e5f2b2e67ad1f05f1f165d17b",
+          "script/quantity-label-contracts.test.ts": "39b9af420817bb28c68fea889031578e86922df696cb6e20bbd6194ae248c4b1",
+          "script/residual-label-scan.ts": "f90781ce21cb776d87f11b90cbcaa7d83acf77cb1b0188127fc63a52b0cb3e93",
+          "script/field-semantics-census.ts": "03d499bbbb87511642e12f136ed3f6b8cbb5bc0a13221cf0b21bc6627feab1ae",
+          "docs/field_semantics_census.json": "2bab03463804ac76b95105849d23baf75b6d506783c046f91f6c9da68c0c245c",
+          "script/regional-source-closure.test.ts": "c0b0ad0bf231cc534ada48ac7fa3323234210169201f07eb3e85400fcf2e0c9f"
+        },
+        "S11-041": {
+          "script/valuation-rule-chronology-evidence.test.ts": "97ed93dbd2edcfed12962005ddebfd3b1b46af43beba4f1dc66e89f3175ba7c2",
+          "script/valuation-rule-chronology-portability.test.ts": "7d59490ec8a377d2c82a4e34555c258a6d9292c9dbc18678b05af8a428c44be8",
+          "script/validate-valuation-rule-chronology-private.ts": "846f8f22fd5fee68dad3b6bad0a772699bcb2991e665b5bde54696bd44634adc",
+          "script/workplan-evidence-run.py": "bb6acbfac37683a7014b8bd49fd84a1e4f80e76e15df295cb7d4ba7fafc0f605",
+          "script/test_workplan_evidence_receipt.py": "f0a82430278c92573097ae96eb4211863da61bf5ef8c53fff811b43c62e0e1e5"
+        }
+      },
+      "source_contract_accounting": {
+        "definitions": 2654,
+        "typed_entries": 1467,
+        "fully_bound_fields": 1439,
+        "original_public_slots": 1001,
+        "original_fully_bound": 1000,
+        "remaining_original_unbound": 1,
+        "current_public_slots": 1440,
+        "supplemental_slots": 439,
+        "expanded_public_slots": 4206,
+        "expanded_bound_slots": 4205,
+        "regional_surfaces": 20,
+        "regional_export_columns": 8,
+        "new_original_closure_credit": 0
+      },
+      "repairs": [
+        "Initial recorder rejected the proposed server/routes.ts byte change against its existing FaIR source pin. Reverted only the two regional error-string edits; success claims still come from the shared regional calculator. No pin updated or exception added.",
+        "Actual shared regional row-builder and bindings are followed by exact imported-symbol/source identity in the census; eight existing columns restored, no wildcard certification or denominator edits.",
+        "Quantity-label AST evaluation receives the actual moved shared functions; exact notes asserted against the regional contract, retaining every fixed5Gt/null/numerical assertion.",
+        "One exact residual-text exception moved verbatim to its new shared source; no broad exemption, no altered lexical classifier.",
+        "Historical chronology assertions moved verbatim into an unconditional mandatory private validator; public source-only execution and an adverse negative control verify portability without impersonating historical Git proof.",
+        "Retained the actual failed full receipt (1196 tests,1191 pass,4 fail,1 skip). Inspected warning/source-hash repairs and retained prior lines/hashes; focused portability/runner receipts do not replace the new complete gate.",
+        "Regional source closure reviewed through actual calculator/producer dependency graphs, source archive and manifest identity, four retained-code refusal probes and process-local cache lifetime. No cache/replay bug found; no FaIR pin or route namespace changed."
+      ],
+      "runtime": "No workflow restart, native production GET, data mutation, private export, auth/DDL/resource/domain change, commit, release or callback. Existing current_release remains historical.",
+      "visual_check": {
+        "path": "screenshots/original-counterfactual-methodology-integration.jpg",
+        "sha256": "a618d63a7393c8e35e1447e1666dc369af6ac0c8a1292668e8eaffa062c66933",
+        "boundary": "Already-running local /methodology renders normally. First viewport only, not the lower counterfactual section or an interactive regional panel. Actual regional rendered markup/XLSX checked by focused contracts; no runtime restart or hosted-app claim."
+      },
+      "source_findings": "0 qualified numerical buildings splits,0 new regional ceilings/joint bundles,0 new issuer economic pairs; nine requests7 HTTP200/2 HTTP403, not seven qualified data sources. Original1000/1001 and all14FaIR pins preserved. Original1000-replication S04-001 remains UNEXECUTED; nine baseline failures and point-only EU solar preserved. Gordon remains primary."
     }
   },
   "prior_native_fleet_increment": {
@@ -3364,7 +3702,7 @@
     "scope": "61 verified finite engineering /237 partial /2 provisioning-blocked; all300 original clauses retained. Four exact finite engineering criteria only; scientific/source/owner acceptance remains unpromoted. No manual CI bypass, dispatch, new monitoring, privileged POST, production mutations, data activation, callback, frozen negative protocol or14FaIR-pin changes."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T12:44:51.999Z",
+  "updated_at": "2026-11-12T13:42:03.887004+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -31939,6 +32277,13 @@
             },
             "delivered": "New Zealand logistic article discusses uncertain early saturation and capacity ceilings; NewClimate draft's combined VRE 70%/30% scenario ceilings and Denmark historical illustration are not technology-specific regional generation-share priors. No numerical prior borrowed or actual fit run. Five discovery calls/six new primary contents/11 fetch calls (five continuations), no request UTC timestamps recorded; extraction hashes identify transformed markdown, not original authenticated PDF/HTTP bytes. Supplementary appendix not acquired; licensing and joint-draw qualification remain unresolved.",
             "remaining_original_scope": "Two new primary research/policy contents supply contextual capacity/scenario ceilings only, not independently sourced regional solar/wind generation-share K or reviewed machine-readable whole joint source/structural/dependence bundles with rights and immutable binding. Zero newly qualified regional saturations/joint bundles; actual fitting/bootstrap/heldout run UNEXECUTED. Preserve fixed 2010–2018 nine-observation train/2019–2024 six-observation holdout, ten cells, 1000 circular-block-3 replications and seed20261108. Nine original baseline failures and EU-solar point-only win remain. Original EV/heat-pump/storage-specific source/window/interval gates also remain; no arbitrary prior, shortened window, independent marginal synthesis or science/central promotion."
+          },
+          "counterfactual_primary_source_review": {
+            "path": "docs/counterfactual-run-primary-evidence.json",
+            "sha256": "2107133d01344a9f475810a853f8a591c25a68a7ea11cb999ea6942cb7f67ee5",
+            "qualified_production_inputs": 0,
+            "scientific_promotion": false,
+            "boundary": "Nine authentic primary requests:7 HTTP200/2 HTTP403; four report/workbook/statements, three routing/context HTML. EDGAR Buildings=1A4+1A5 overlap mismatch and issuer-specific materials are documentary positives, not qualified splits/joint laws/economic pairs. No study rerun."
           }
         },
         {
@@ -77174,22 +77519,28 @@
           "id": "S05-009",
           "source_section": "acceptance",
           "requirement": "Boundary fixtures pass: renewables cannot displace more than eligible fossil generation; EVs cannot make transport emissions negative; overlap groups prevent double counting.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/calculation/emissionsCandidate.ts",
             "shared/nativeScenarioSemantics.ts",
             "shared/nativeOutputSemantics.ts",
-            "script/fleet_transition.py"
+            "script/fleet_transition.py",
+            "docs/boundary-fixture-evidence.json",
+            "server/calculation/nativeMechanisms.ts",
+            "server/calculation/data/inventory2024.json",
+            "script/boundary-fixture-evidence.test.ts",
+            "script/emissions-candidate.test.ts",
+            "script/native-mechanism-matrix.test.ts"
           ],
-          "evidence_caveat": "Original numerical criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble.",
+          "evidence_caveat": "Finite numerical boundary criterion only. Independent sourced calibration, production ensemble and central/scientific admission remain unpromoted.",
           "files_functions_changed": [
             "server/calculation/emissionsCandidate.ts:sectorOf,validate,projectNativeEmissions,projectInventoryEmissions,candidateInventory",
             "shared/nativeScenarioSemantics.ts:definition",
             "shared/nativeOutputSemantics.ts:",
             "script/fleet_transition.py:quantile,fit,forecast,evaluate,load,main"
           ],
-          "behaviour_delivered_this_run": "Conditional mechanism fixtures exercise renewable/EV/overlap bounds without certifying production calibrations.",
+          "behaviour_delivered_this_run": "Original finite renewables/EV/overlap boundary fixtures pass in the real native engine. A calibrated production ensemble is not a prerequisite of this clause; no calibration or science acceptance is inferred.",
           "inputs_versions_assumptions": [
             "Eligibility-limited effects, bounded adoption and complete-overlap groups; EV electricity enters power once",
             {
@@ -77255,6 +77606,38 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npm run check; npx tsx --test script/boundary-fixture-evidence.test.ts script/emissions-candidate.test.ts script/native-mechanism-matrix.test.ts script/valuation-rule-chronology-evidence.test.ts script/regional-counterfactual-labels.test.ts script/regional-replay.test.ts script/regional-archive.test.ts script/legacy-export-producer.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/integrated-readonly-contracts.test.ts script/next-census-accounting.test.ts script/finite-export-schemas.test.ts"
+              ],
+              "executed_at": "2026-11-12T13:20:43.555324+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 145.781,
+              "counts": {
+                "tests": 138,
+                "pass": 138,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/original-counterfactual-integration/focused-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "6a5fc3b50056db169178b6a40f9dac9b2db24381c2073a1061a038d2095fb3f2",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 138,
+                  "pass": 138,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": null
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -77266,10 +77649,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble."
-          ],
-          "next_action": "Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble.",
+          "remaining_gaps": [],
+          "next_action": "No remaining exact finite-clause work; independent scientific/source gates remain unchanged.",
           "blockers": [],
           "stage": 5,
           "stageName": "Coherent emissions ensemble",
@@ -77281,14 +77662,20 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "not-yet-reconciled",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "numerical",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
             "server/calculation/emissionsCandidate.ts",
             "shared/nativeScenarioSemantics.ts",
             "shared/nativeOutputSemantics.ts",
-            "script/fleet_transition.py"
+            "script/fleet_transition.py",
+            "docs/boundary-fixture-evidence.json",
+            "server/calculation/nativeMechanisms.ts",
+            "server/calculation/data/inventory2024.json",
+            "script/boundary-fixture-evidence.test.ts",
+            "script/emissions-candidate.test.ts",
+            "script/native-mechanism-matrix.test.ts"
           ],
           "filesFunctions": [
             {
@@ -77400,10 +77787,8 @@
           "retainedExecutions": [],
           "priorNumericalResults": [],
           "directResultCatalog": "native",
-          "exactRemainingGaps": [
-            "Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble."
-          ],
-          "nextAction": "Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble.",
+          "exactRemainingGaps": [],
+          "nextAction": "No remaining exact finite-clause work; independent scientific/source gates remain unchanged.",
           "scientificAcceptance": "not-promoted",
           "git": {
             "baseRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -77475,9 +77860,14 @@
             "script/regional-replay.test.ts": "eda552f325e5506ab17d0a5a9f07a6c37062aaa52dd14a75328ffafd465d26dc",
             "script/regional-sampling.test.ts": "31633ef67730e436f57591c0a9b2a97a2bbb8ed28e92fe15fa89153c3c18f84c",
             "script/short-horizon-emissions.test.ts": "c4c4e4e8e516bfe89f147b89b1fb2f9ed712b08b631840d865e1801c9aae5ee8",
-            "server/calculation/emissionsCandidate.ts": "d53b1c79e13588dcd9570942fd70c22892ccc6df75707fa35908cc27f2f08218",
+            "server/calculation/emissionsCandidate.ts": "48c667d8144d0a5e3605de5f222a9a07cbe42e0fdf4e642cb2a8a2c105c479f4",
             "shared/nativeOutputSemantics.ts": "e3c8c6e7f5cf7e25689d63ef7d8c5752436aeb623b9d330d0ebc9531a646e429",
-            "shared/nativeScenarioSemantics.ts": "61c323c8b6482b2bb238a5854b9eaf80a2e822ef638d47ceaba325a931fccb47"
+            "shared/nativeScenarioSemantics.ts": "61c323c8b6482b2bb238a5854b9eaf80a2e822ef638d47ceaba325a931fccb47",
+            "docs/boundary-fixture-evidence.json": "3245147ed8e364195bf652557125b21942ed49fba9ad68db0197282964921296",
+            "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+            "server/calculation/data/inventory2024.json": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+            "script/boundary-fixture-evidence.test.ts": "4a459f5a6f583ec5af2ff776d676e4ed1587c573a7ef1a595cdde1bc8032c970",
+            "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -77490,6 +77880,30 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "original_counterfactual_prior": {
+            "status": "partial",
+            "behaviour_delivered_this_run": "Conditional mechanism fixtures exercise renewable/EV/overlap bounds without certifying production calibrations.",
+            "remaining_gaps": [
+              "Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble."
+            ],
+            "next_action": "Boundary fixture mechanisms are implemented; connect sourced calibrated inputs and prove all overlap/renewable/EV boundaries for the production ensemble."
+          },
+          "gaps": [],
+          "original_counterfactual_reconciliation": {
+            "criterion": "Boundary fixtures pass: renewables cannot displace more than eligible fossil generation; EVs cannot make transport emissions negative; overlap groups prevent double counting.",
+            "source_sha256": {
+              "docs/boundary-fixture-evidence.json": "3245147ed8e364195bf652557125b21942ed49fba9ad68db0197282964921296",
+              "server/calculation/emissionsCandidate.ts": "48c667d8144d0a5e3605de5f222a9a07cbe42e0fdf4e642cb2a8a2c105c479f4",
+              "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+              "server/calculation/data/inventory2024.json": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+              "script/boundary-fixture-evidence.test.ts": "4a459f5a6f583ec5af2ff776d676e4ed1587c573a7ef1a595cdde1bc8032c970",
+              "script/emissions-candidate.test.ts": "55e25c905c98d3f4c4f77a2bb7ccf6763e76e73e39abcabb6d1a2a11e70fc093",
+              "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6"
+            },
+            "delivered": "Original finite renewables/EV/overlap boundary fixtures pass in the real native engine. A calibrated production ensemble is not a prerequisite of this clause; no calibration or science acceptance is inferred.",
+            "independent_limits": "Finite numerical boundary criterion only. Independent sourced calibration, production ensemble and central/scientific admission remain unpromoted.",
+            "focused_receipt": "generated-artifacts/original-counterfactual-integration/focused-final.receipt.json"
           }
         },
         {
@@ -95691,18 +96105,32 @@
           "id": "S08-003",
           "source_section": "implementation",
           "requirement": "Keep “what if the world followed this region's intensity” only as a named counterfactual.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/calculation/regionalProjections.ts",
-            "script/regional-counterfactual-labels.test.ts"
+            "script/regional-counterfactual-labels.test.ts",
+            "docs/regional-counterfactual-surface-evidence.json",
+            "shared/regionalCounterfactual.ts",
+            "shared/regionalFieldSemantics.ts",
+            "shared/legacyExportConsumer.ts",
+            "server/routes.ts",
+            "client/src/components/regional-comparison.tsx",
+            "client/src/pages/dashboard.tsx",
+            "client/src/pages/methodology.tsx",
+            "script/legacy-export-producer.test.ts",
+            "script/quantity-label-contracts.test.ts",
+            "script/residual-label-scan.ts",
+            "script/field-semantics-census.ts",
+            "docs/field_semantics_census.json",
+            "script/regional-source-closure.test.ts"
           ],
-          "evidence_caveat": "Original exact criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming.",
+          "evidence_caveat": "Legacy global conditional diagnostic only, not regional temperature, regional inventory, source-qualified intensity pathway or net zero. Ordinary exports are not verified producer lineage.",
           "files_functions_changed": [
             "server/calculation/regionalProjections.ts:getRegionalCarbonIntensities,calculateRegionalProjections,calculateRegionalFromInputs",
             "script/regional-counterfactual-labels.test.ts:"
           ],
-          "behaviour_delivered_this_run": "Regional-intensity global-response counterfactual has explicit separate naming fixtures.",
+          "behaviour_delivered_this_run": "All20 actual API/UI/ordinary and retained XLSX/JSON surfaces audited. Exact shared global-intensity counterfactual question/claim, eight columns, source-basis caveats and selected/unavailable/null/zero behavior verified; no numerical changes.",
           "inputs_versions_assumptions": [
             "Global response to regional intensity is named counterfactual, never regional temperature",
             {
@@ -95760,6 +96188,38 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npm run check; npx tsx --test script/boundary-fixture-evidence.test.ts script/emissions-candidate.test.ts script/native-mechanism-matrix.test.ts script/valuation-rule-chronology-evidence.test.ts script/regional-counterfactual-labels.test.ts script/regional-replay.test.ts script/regional-archive.test.ts script/legacy-export-producer.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/integrated-readonly-contracts.test.ts script/next-census-accounting.test.ts script/finite-export-schemas.test.ts"
+              ],
+              "executed_at": "2026-11-12T13:20:43.555324+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 145.781,
+              "counts": {
+                "tests": 138,
+                "pass": 138,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/original-counterfactual-integration/focused-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "6a5fc3b50056db169178b6a40f9dac9b2db24381c2073a1061a038d2095fb3f2",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 138,
+                  "pass": 138,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": null
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -95771,10 +96231,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming."
-          ],
-          "next_action": "Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming.",
+          "remaining_gaps": [],
+          "next_action": "No remaining exact finite-clause work; independent scientific/source gates remain unchanged.",
           "blockers": [],
           "stage": 8,
           "stageName": "Regional pathways and driver attribution",
@@ -95786,12 +96244,26 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "not-yet-reconciled",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "exact",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
             "server/calculation/regionalProjections.ts",
-            "script/regional-counterfactual-labels.test.ts"
+            "script/regional-counterfactual-labels.test.ts",
+            "docs/regional-counterfactual-surface-evidence.json",
+            "shared/regionalCounterfactual.ts",
+            "shared/regionalFieldSemantics.ts",
+            "shared/legacyExportConsumer.ts",
+            "server/routes.ts",
+            "client/src/components/regional-comparison.tsx",
+            "client/src/pages/dashboard.tsx",
+            "client/src/pages/methodology.tsx",
+            "script/legacy-export-producer.test.ts",
+            "script/quantity-label-contracts.test.ts",
+            "script/residual-label-scan.ts",
+            "script/field-semantics-census.ts",
+            "docs/field_semantics_census.json",
+            "script/regional-source-closure.test.ts"
           ],
           "filesFunctions": [
             {
@@ -95843,10 +96315,8 @@
           "retainedExecutions": [],
           "priorNumericalResults": [],
           "directResultCatalog": "counterfactual",
-          "exactRemainingGaps": [
-            "Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming."
-          ],
-          "nextAction": "Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming.",
+          "exactRemainingGaps": [],
+          "nextAction": "No remaining exact finite-clause work; independent scientific/source gates remain unchanged.",
           "scientificAcceptance": "not-promoted",
           "git": {
             "baseRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -95911,13 +96381,27 @@
             "script/member-metrics.test.ts": "2093955c45e564a7b3252d79840f259deee2dc180fa63110a5788428b86be8f7",
             "script/native-pathway-contract.test.ts": "eaa1f18a0571c1d72c22528d6346105667d0446bdcb5573fecd615def9b5a746",
             "script/reference-scenarios.test.ts": "07954bf8b4b0ae0c185895a5bb488c2cd1bd474f4931296d3132ad4a2a8bc5e0",
-            "script/regional-counterfactual-labels.test.ts": "a3b7cccd49d0e1f3c5ca867776fdec7d8439da1d6242342116d4955836d88f91",
+            "script/regional-counterfactual-labels.test.ts": "614aacdc0b7e120cffb6fa43134d8856916c06264795e6f1e90cf0bb70bd4844",
             "script/regional-engine.test.ts": "f9b56b54e5fa62031670efd000a4e6a3e435c709bf87cbd0c3d412fc0405739d",
             "script/regional-inventory.test.ts": "eb965f604dbae390426bc1730f75a03f51b020ffc3c450eafd6b5c72a4885b0c",
             "script/regional-replay.test.ts": "eda552f325e5506ab17d0a5a9f07a6c37062aaa52dd14a75328ffafd465d26dc",
             "script/regional-sampling.test.ts": "31633ef67730e436f57591c0a9b2a97a2bbb8ed28e92fe15fa89153c3c18f84c",
             "script/short-horizon-emissions.test.ts": "c4c4e4e8e516bfe89f147b89b1fb2f9ed712b08b631840d865e1801c9aae5ee8",
-            "server/calculation/regionalProjections.ts": "b61d4321f4a5add43bc325cd941d370a3759360d95da3af63dca278deb55e728"
+            "server/calculation/regionalProjections.ts": "be039d01c19bcee06bd956416b829330d2a8767a7c33a2873e41b0f9a1dbfc2f",
+            "docs/regional-counterfactual-surface-evidence.json": "8a756f2689528b31b780b5a05e8d0bf51e5f39d14dc1bab9f63b69bf075d7331",
+            "shared/regionalCounterfactual.ts": "783210eef44aee6c941c73799369a3f0c25b117c0ea1e36fa204a606381f6782",
+            "shared/regionalFieldSemantics.ts": "493b702755e39d150728fb55dcc0aad52c5bc977ede3cf9d4b3722bc00b75352",
+            "shared/legacyExportConsumer.ts": "5fd6fa4a5410412992cdb2f95a43d8491756f641dd0b4075f4bb221ded73e13b",
+            "server/routes.ts": "44f3b7ceaffb042e0c8dc1980cb13c41011dc475d38a49be21aa7468b64fcc97",
+            "client/src/components/regional-comparison.tsx": "86f2f6fae1f149f7a8f127c6dfb70e3174ca01f7a8216ad733fc2d8cb96dfeb2",
+            "client/src/pages/dashboard.tsx": "1a037992ca50a35bd82f3b085cba448160f119eb1e0d25d78b4ff0b4cd56167d",
+            "client/src/pages/methodology.tsx": "f4c1492397f766de89c16ecf139c32f3e251b76f62b1a1fbd74d0d870cfe2000",
+            "script/legacy-export-producer.test.ts": "1177718f8f63e210e64d6569e03daccc9575764e5f2b2e67ad1f05f1f165d17b",
+            "script/quantity-label-contracts.test.ts": "39b9af420817bb28c68fea889031578e86922df696cb6e20bbd6194ae248c4b1",
+            "script/residual-label-scan.ts": "f90781ce21cb776d87f11b90cbcaa7d83acf77cb1b0188127fc63a52b0cb3e93",
+            "script/field-semantics-census.ts": "03d499bbbb87511642e12f136ed3f6b8cbb5bc0a13221cf0b21bc6627feab1ae",
+            "docs/field_semantics_census.json": "2bab03463804ac76b95105849d23baf75b6d506783c046f91f6c9da68c0c245c",
+            "script/regional-source-closure.test.ts": "c0b0ad0bf231cc534ada48ac7fa3323234210169201f07eb3e85400fcf2e0c9f"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -95930,6 +96414,39 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "original_counterfactual_prior": {
+            "status": "partial",
+            "behaviour_delivered_this_run": "Regional-intensity global-response counterfactual has explicit separate naming fixtures.",
+            "remaining_gaps": [
+              "Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming."
+            ],
+            "next_action": "Counterfactual naming fixtures pass; audit all API/UI/download surfaces and prevent legacy intensity counterfactual from becoming regional net-zero/warming."
+          },
+          "gaps": [],
+          "original_counterfactual_reconciliation": {
+            "criterion": "Keep “what if the world followed this region's intensity” only as a named counterfactual.",
+            "source_sha256": {
+              "docs/regional-counterfactual-surface-evidence.json": "8a756f2689528b31b780b5a05e8d0bf51e5f39d14dc1bab9f63b69bf075d7331",
+              "shared/regionalCounterfactual.ts": "783210eef44aee6c941c73799369a3f0c25b117c0ea1e36fa204a606381f6782",
+              "shared/regionalFieldSemantics.ts": "493b702755e39d150728fb55dcc0aad52c5bc977ede3cf9d4b3722bc00b75352",
+              "shared/legacyExportConsumer.ts": "5fd6fa4a5410412992cdb2f95a43d8491756f641dd0b4075f4bb221ded73e13b",
+              "server/calculation/regionalProjections.ts": "be039d01c19bcee06bd956416b829330d2a8767a7c33a2873e41b0f9a1dbfc2f",
+              "server/routes.ts": "44f3b7ceaffb042e0c8dc1980cb13c41011dc475d38a49be21aa7468b64fcc97",
+              "client/src/components/regional-comparison.tsx": "86f2f6fae1f149f7a8f127c6dfb70e3174ca01f7a8216ad733fc2d8cb96dfeb2",
+              "client/src/pages/dashboard.tsx": "1a037992ca50a35bd82f3b085cba448160f119eb1e0d25d78b4ff0b4cd56167d",
+              "client/src/pages/methodology.tsx": "f4c1492397f766de89c16ecf139c32f3e251b76f62b1a1fbd74d0d870cfe2000",
+              "script/regional-counterfactual-labels.test.ts": "614aacdc0b7e120cffb6fa43134d8856916c06264795e6f1e90cf0bb70bd4844",
+              "script/legacy-export-producer.test.ts": "1177718f8f63e210e64d6569e03daccc9575764e5f2b2e67ad1f05f1f165d17b",
+              "script/quantity-label-contracts.test.ts": "39b9af420817bb28c68fea889031578e86922df696cb6e20bbd6194ae248c4b1",
+              "script/residual-label-scan.ts": "f90781ce21cb776d87f11b90cbcaa7d83acf77cb1b0188127fc63a52b0cb3e93",
+              "script/field-semantics-census.ts": "03d499bbbb87511642e12f136ed3f6b8cbb5bc0a13221cf0b21bc6627feab1ae",
+              "docs/field_semantics_census.json": "2bab03463804ac76b95105849d23baf75b6d506783c046f91f6c9da68c0c245c",
+              "script/regional-source-closure.test.ts": "c0b0ad0bf231cc534ada48ac7fa3323234210169201f07eb3e85400fcf2e0c9f"
+            },
+            "delivered": "All20 actual API/UI/ordinary and retained XLSX/JSON surfaces audited. Exact shared global-intensity counterfactual question/claim, eight columns, source-basis caveats and selected/unavailable/null/zero behavior verified; no numerical changes.",
+            "independent_limits": "Legacy global conditional diagnostic only, not regional temperature, regional inventory, source-qualified intensity pathway or net zero. Ordinary exports are not verified producer lineage.",
+            "focused_receipt": "generated-artifacts/original-counterfactual-integration/focused-final.receipt.json"
           }
         },
         {
@@ -126211,15 +126728,21 @@
             "generated-artifacts/valuation-comparison/6969aecefbcde9427d7b597181bc1fc62534eff3e9dbd2be776a0bb6b3f835a9.json",
             "docs/AsOf_Valuation_Comparison_Results.md",
             "docs/Valuation_Comparison_Protocol.md",
-            "generated-artifacts/workplan-completion/20261110T083052610508Z.log"
+            "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
+            "docs/valuation-rule-chronology-evidence.json",
+            "script/valuation-rule-chronology-evidence.test.ts",
+            "script/valuation-rule-chronology-portability.test.ts",
+            "script/validate-valuation-rule-chronology-private.ts",
+            "script/workplan-evidence-run.py",
+            "script/test_workplan_evidence_receipt.py"
           ],
-          "evidence_caveat": "S11-041: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Exact commit-before-any-results ordering evidence remains missing.",
+          "evidence_caveat": "No immutable first-ever-result execution receipt bound to an exact executing source revision; literal earliest retained any-result candidate precedes rule commit. Later paired-result ordering cannot repair original chronology.",
           "files_functions_changed": [
             "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Checked evidence that the criteria/rule commit precedes first results, rather than merely that protocols now exist.",
+          "behaviour_delivered_this_run": "Partial, NOT verified. Earliest retained ANY-result candidate is the14:35:14.432Z cash-flow outcomes audit, before14:41:11Z rule commit. Local mtime is not immutable execution proof; executing revision unknown. Later paired-result order does not repair chronology; no rerun/refreeze/backdating.",
           "inputs_versions_assumptions": [
             "Existing 88 completed common pairs, six annual origins, three-origin blocks/2,000 draws/seed20261110; failed selection result remains frozen."
           ],
@@ -126274,6 +126797,38 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npm run check; npx tsx --test script/boundary-fixture-evidence.test.ts script/emissions-candidate.test.ts script/native-mechanism-matrix.test.ts script/valuation-rule-chronology-evidence.test.ts script/regional-counterfactual-labels.test.ts script/regional-replay.test.ts script/regional-archive.test.ts script/legacy-export-producer.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/integrated-readonly-contracts.test.ts script/next-census-accounting.test.ts script/finite-export-schemas.test.ts"
+              ],
+              "executed_at": "2026-11-12T13:20:43.555324+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 145.781,
+              "counts": {
+                "tests": 138,
+                "pass": 138,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/original-counterfactual-integration/focused-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "6a5fc3b50056db169178b6a40f9dac9b2db24381c2073a1061a038d2095fb3f2",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 138,
+                  "pass": 138,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": null
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -126283,13 +126838,13 @@
               "scope": "Partial evidence for this criterion only"
             }
           ],
-          "scientific_acceptance": "not-conferred-by-this-criterion-review",
+          "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Exact commit-before-any-results ordering evidence remains missing."
+            "No immutable first-ever-result execution receipt bound to an exact executing source revision; literal earliest retained any-result candidate precedes rule commit. Later paired-result ordering cannot repair original chronology."
           ],
-          "next_action": "Attach immutable rule-commit and first-result timestamps/revisions without inventing chronology.",
+          "next_action": "Preserve adverse FIRST ANY audit and unknown executing revision; only authentic immutable historical evidence could resolve chronology, never a new rerun or refreeze.",
           "blockers": [],
           "stage": 11,
           "check_type": "exact",
@@ -126393,11 +126948,9 @@
             "Atomic partial finding: only this criterion's own missing evidence/conjunct is listed; no stage-wide gap is substituted."
           ],
           "gaps": [
-            "Exact commit-before-any-results ordering evidence remains missing."
+            "No immutable first-ever-result execution receipt bound to an exact executing source revision; literal earliest retained any-result candidate precedes rule commit. Later paired-result ordering cannot repair original chronology."
           ],
-          "nextAction": [
-            "Attach immutable rule-commit and first-result timestamps/revisions without inventing chronology."
-          ],
+          "nextAction": "Preserve adverse FIRST ANY audit and unknown executing revision; only authentic immutable historical evidence could resolve chronology, never a new rerun or refreeze.",
           "direct_code_inspections": [
             {
               "path": "server/calculation/valuationComparison.ts",
@@ -126456,7 +127009,13 @@
             "script/reconcile-company-stages-10-13.ts": "1c920bd36158d2b681ff3044ac8932fc548e6a27a65df0fe3b7ae3fe86443379",
             "script/valuation-comparison.test.ts": "954d7dbff65d64f50451900f79d4928f42f29e1c53eb784f5b2a5b7e1785b5cd",
             "server/calculation/valuationComparison.ts": "20417ca43a73e299c8527b8eb72e9b192a274fb6a6823dcd06ec47ad5a54c435",
-            "server/financialData/asOfValuation.ts": "2079093ebee1aa5a39c1391dfadd07671193c5f442d384c24cfab90c38bda0ac"
+            "server/financialData/asOfValuation.ts": "2079093ebee1aa5a39c1391dfadd07671193c5f442d384c24cfab90c38bda0ac",
+            "docs/valuation-rule-chronology-evidence.json": "ce0a25647aa39d21805dd58111238646f4da6fc07fa8c8bba09543761a4f6ab4",
+            "script/valuation-rule-chronology-evidence.test.ts": "97ed93dbd2edcfed12962005ddebfd3b1b46af43beba4f1dc66e89f3175ba7c2",
+            "script/valuation-rule-chronology-portability.test.ts": "7d59490ec8a377d2c82a4e34555c258a6d9292c9dbc18678b05af8a428c44be8",
+            "script/validate-valuation-rule-chronology-private.ts": "846f8f22fd5fee68dad3b6bad0a772699bcb2991e665b5bde54696bd44634adc",
+            "script/workplan-evidence-run.py": "bb6acbfac37683a7014b8bd49fd84a1e4f80e76e15df295cb7d4ba7fafc0f605",
+            "script/test_workplan_evidence_receipt.py": "f0a82430278c92573097ae96eb4211863da61bf5ef8c53fff811b43c62e0e1e5"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -126500,6 +127059,41 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
+          },
+          "original_counterfactual_prior": {
+            "status": "partial",
+            "behaviour_delivered_this_run": "Checked evidence that the criteria/rule commit precedes first results, rather than merely that protocols now exist.",
+            "remaining_gaps": [
+              "Exact commit-before-any-results ordering evidence remains missing."
+            ],
+            "next_action": "Attach immutable rule-commit and first-result timestamps/revisions without inventing chronology."
+          },
+          "proposedStatus": "partial",
+          "exactRemainingGaps": [
+            "No immutable first-ever-result execution receipt bound to an exact executing source revision; literal earliest retained any-result candidate precedes rule commit. Later paired-result ordering cannot repair original chronology."
+          ],
+          "scientificAcceptance": "not-promoted",
+          "directEvidenceFiles": [
+            "docs/valuation-rule-chronology-evidence.json",
+            "script/valuation-rule-chronology-evidence.test.ts",
+            "script/valuation-rule-chronology-portability.test.ts",
+            "script/validate-valuation-rule-chronology-private.ts",
+            "script/workplan-evidence-run.py",
+            "script/test_workplan_evidence_receipt.py"
+          ],
+          "original_counterfactual_reconciliation": {
+            "criterion": "The criteria-and-rule commit predates any results.",
+            "source_sha256": {
+              "docs/valuation-rule-chronology-evidence.json": "ce0a25647aa39d21805dd58111238646f4da6fc07fa8c8bba09543761a4f6ab4",
+              "script/valuation-rule-chronology-evidence.test.ts": "97ed93dbd2edcfed12962005ddebfd3b1b46af43beba4f1dc66e89f3175ba7c2",
+              "script/valuation-rule-chronology-portability.test.ts": "7d59490ec8a377d2c82a4e34555c258a6d9292c9dbc18678b05af8a428c44be8",
+              "script/validate-valuation-rule-chronology-private.ts": "846f8f22fd5fee68dad3b6bad0a772699bcb2991e665b5bde54696bd44634adc",
+              "script/workplan-evidence-run.py": "bb6acbfac37683a7014b8bd49fd84a1e4f80e76e15df295cb7d4ba7fafc0f605",
+              "script/test_workplan_evidence_receipt.py": "f0a82430278c92573097ae96eb4211863da61bf5ef8c53fff811b43c62e0e1e5"
+            },
+            "delivered": "Partial, NOT verified. Earliest retained ANY-result candidate is the14:35:14.432Z cash-flow outcomes audit, before14:41:11Z rule commit. Local mtime is not immutable execution proof; executing revision unknown. Later paired-result order does not repair chronology; no rerun/refreeze/backdating.",
+            "independent_limits": "No immutable first-ever-result execution receipt bound to an exact executing source revision; literal earliest retained any-result candidate precedes rule commit. Later paired-result ordering cannot repair original chronology.",
+            "focused_receipt": "generated-artifacts/original-counterfactual-integration/focused-final.receipt.json"
           }
         },
         {
@@ -135473,7 +136067,14 @@
             "script/validate-xom-climate-liability-private.ts",
             "script/xom-climate-liability-case.test.ts",
             "script/capture-xom-climate-liability-sources.ts"
-          ]
+          ],
+          "counterfactual_primary_source_review": {
+            "path": "docs/counterfactual-run-primary-evidence.json",
+            "sha256": "2107133d01344a9f475810a853f8a591c25a68a7ea11cb999ea6942cb7f67ee5",
+            "qualified_production_inputs": 0,
+            "scientific_promotion": false,
+            "boundary": "Nine authentic primary requests:7 HTTP200/2 HTTP403; four report/workbook/statements, three routing/context HTML. EDGAR Buildings=1A4+1A5 overlap mismatch and issuer-specific materials are documentary positives, not qualified splits/joint laws/economic pairs. No study rerun."
+          }
         },
         {
           "id": "S12-002",
@@ -184445,6 +185046,216 @@
       },
       "canonical_ledgers_modified": false,
       "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; npm run check; npx tsx --test script/boundary-fixture-evidence.test.ts script/emissions-candidate.test.ts script/native-mechanism-matrix.test.ts script/valuation-rule-chronology-evidence.test.ts script/regional-counterfactual-labels.test.ts script/regional-replay.test.ts script/regional-archive.test.ts script/legacy-export-producer.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/integrated-readonly-contracts.test.ts script/next-census-accounting.test.ts script/finite-export-schemas.test.ts"
+      ],
+      "executed_at": "2026-11-12T13:20:43.555324+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 145.781,
+      "counts": {
+        "tests": 138,
+        "pass": 138,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/original-counterfactual-integration/focused-final.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "6a5fc3b50056db169178b6a40f9dac9b2db24381c2073a1061a038d2095fb3f2",
+      "suite_counts": {
+        "typescript": {
+          "tests": 138,
+          "pass": 138,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; uv run python -m unittest discover -s script -p \"test_*.py\"; uv run python script/validate_status_choice_width_private.py; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts"
+      ],
+      "executed_at": "2026-11-12T13:18:08.131869+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 52.831,
+      "counts": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/original-counterfactual-integration/private.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "3311d67028c08defb97360184c4f7a6cf37478c2c09b43e390300846d87d58c5",
+      "suite_counts": {
+        "typescript": null,
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; uv run python -m unittest discover -s script -p \"test_*.py\"; npx tsx --test script/workplan-corrections.test.ts script/reconciliation-stages-14-17.test.ts script/company-stage-reconciliation.test.ts script/valuation-rule-chronology-evidence.test.ts script/quantity-label-contracts.test.ts; git diff --check"
+      ],
+      "executed_at": "2026-11-12T13:23:22.057965+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 18.583,
+      "counts": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/original-counterfactual-integration/reconciliation.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "b19681508fbedc58a53cc8d810adde26e068526ad0b0529e0b3a30d64f6ab559",
+      "suite_counts": {
+        "typescript": {
+          "tests": 18,
+          "pass": 18,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T13:34:42.274476+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 437.002,
+      "counts": {
+        "tests": 1199,
+        "pass": 1198,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/original-counterfactual-integration/full-portable-final.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "81eccb9bdeff8d52753db5308e9adda097720484afbdd31e65ea38386828a4ee",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1199,
+          "pass": 1198,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "--test-reporter=tap",
+        "script/scientific-strands-warning.test.ts",
+        "script/status-choice-width-increment.test.ts",
+        "script/warning-and-pathway-label-contracts.test.ts",
+        "script/regional-counterfactual-labels.test.ts",
+        "script/valuation-rule-chronology-evidence.test.ts",
+        "script/valuation-rule-chronology-portability.test.ts",
+        "script/validate-valuation-rule-chronology-private.ts"
+      ],
+      "executed_at": "2026-11-12T13:33:50.043638+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.744,
+      "counts": {
+        "tests": 34,
+        "pass": 34,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/original-counterfactual-integration/focused-portable-final.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "f3d07d8efe250b73eaccd76cc19cc19f1cd4ec3c07f668479d489c4ccc533a24",
+      "suite_counts": {
+        "typescript": {
+          "tests": 34,
+          "pass": 34,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; uv run python -m unittest script/test_workplan_evidence_receipt.py; uv run python script/validate_status_choice_width_private.py"
+      ],
+      "executed_at": "2026-11-12T13:33:55.976772+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.416,
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/original-counterfactual-integration/focused-private-runner-final.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "28ceed7d13243edff555a586bacd9dd3e84f87d9bd22d2ca6220a0cb7784a205",
+      "suite_counts": {
+        "typescript": null,
+        "python": {
+          "tests": 3,
+          "pass": 3,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
     }
   ],
   "restart": {
@@ -184698,9 +185509,9 @@
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261112-transport-drilldown-1c1cb2d",
+    "checkpoint_id": "ckpt-20261112-mechanisms-pathways-d75e183",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-12T11:31:59.200691+00:00",
+    "attempted_at": "2026-11-12T12:58:31.102181+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -184810,8 +185621,8 @@
       "partial": 12
     },
     "5": {
-      "partial": 11,
-      "verified": 2
+      "partial": 10,
+      "verified": 3
     },
     "6": {
       "partial": 8,
@@ -184822,7 +185633,8 @@
       "verified": 2
     },
     "8": {
-      "partial": 10
+      "partial": 9,
+      "verified": 1
     },
     "9": {
       "partial": 14

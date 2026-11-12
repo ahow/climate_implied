@@ -1,4 +1,5 @@
-import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
+import { FIXED_5GT_DESCRIPTOR } from "@shared/quantityDescriptors";
+import { REGIONAL_COUNTERFACTUAL, regionalCounterfactualRows, regionalCounterfactualBindings, regionalCounterfactualExportNotes } from "@shared/regionalCounterfactual";
 import { Card } from "@/components/ui/card";
 import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -54,18 +55,9 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
     );
   }
 
-  if (!regions.length) return <Card className="p-6"><p role="status">No regional counterfactual results were returned. Regional diagnostics are unavailable, not zero.</p></Card>;
+  if (!regions.length) return <Card className="p-6"><h3>{REGIONAL_COUNTERFACTUAL.title}</h3><p role="status">{REGIONAL_COUNTERFACTUAL.unavailable}</p></Card>;
 
-  const downloadRows = regions.map((r) => ({
-    Region: r.regionName,
-    "Legacy global counterfactual warming (\u00B0C)": r.temperatureRise,
-    "Reduction Rate (%/yr)": r.reductionRate,
-    "Carbon Intensity (kg/$GDP)": r.carbonIntensity,
-    "Intensity basis": r.carbonIntensityBasis,
-    [FIXED_5GT_DESCRIPTOR.label]: r.netZeroYear,
-    "Milestone definition": r.milestoneDefinition,
-    Claim: r.claim,
-  }));
+  const downloadRows = regionalCounterfactualRows(regions);
   bindProducerLegacyConsumer(regions, "regional", downloadRows);
 
   return (
@@ -75,9 +67,10 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
         <div className="flex items-center gap-2">
           <Globe className="h-5 w-5 text-muted-foreground" />
           <div>
-            <h3 className="text-sm font-medium text-muted-foreground">Global intensity counterfactual</h3>
-            <p className="text-xs text-muted-foreground mt-0.5">What if the world followed each region's carbon intensity?</p>
-            <p className="text-xs text-muted-foreground mt-1">Legacy diagnostic, not a regional temperature forecast. The Legacy 5 Gt milestone (fixed-5gt-v1) is a positive-emissions comparator, not net zero or the 5%-of-2024 diagnostic. These values are global intensity counterfactuals, not source-evidenced regional inventories. No date means not reached by 2100; dates are not extrapolated.</p>
+            <h3 className="text-sm font-medium text-muted-foreground">{REGIONAL_COUNTERFACTUAL.title}</h3>
+            <p className="text-xs text-muted-foreground mt-0.5">{REGIONAL_COUNTERFACTUAL.question}</p>
+            <p className="text-xs text-muted-foreground mt-1">{REGIONAL_COUNTERFACTUAL.claim}. {REGIONAL_COUNTERFACTUAL.description} {FIXED_5GT_DESCRIPTOR.description} No date means not reached by 2100; dates are not extrapolated.</p>
+            <p className="text-xs text-muted-foreground mt-1">{REGIONAL_COUNTERFACTUAL.source}</p>
           </div>
         </div>
         <DownloadDataButton
@@ -86,22 +79,14 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           sheetName="Global Counterfactual"
           rows={downloadRows}
           jsonCompanion
-          interpretationNotes={residualQuantityExportNotes()}
-          fieldBindings={{
-            Region:{id:"regional.regionName",transform:"Identity"},
-            "Legacy global counterfactual warming (\u00B0C)":{id:"regional.temperatureRise",transform:"Identity"},
-            "Reduction Rate (%/yr)":{id:"regional.reductionRate",transform:"Identity"},
-            "Carbon Intensity (kg/$GDP)":{id:"regional.carbonIntensity",transform:"Identity; read companion basis column"},
-            "Intensity basis":{id:"regional.carbonIntensityBasis",transform:"Identity"},
-            [FIXED_5GT_DESCRIPTOR.label]:{id:"regional.netZeroYear",transform:"Identity; fixed-5gt-v1; null preserved; not 5% or net zero"},
-            "Milestone definition":{id:"regional.milestoneDefinition",transform:"Identity"},
-            Claim:{id:"regional.claim",transform:"Identity"},
-          }}
+          interpretationNotes={regionalCounterfactualExportNotes()}
+          fieldBindings={regionalCounterfactualBindings}
           testId="button-download-regional"
         />
       </div>
 
       <div className="space-y-3">
+        <p className="text-xs text-muted-foreground">{REGIONAL_COUNTERFACTUAL.warmingLabel}</p>
         {regions.map((region) => {
           const hasTemperature = typeof region.temperatureRise === "number" && Number.isFinite(region.temperatureRise);
           const barWidth = hasTemperature ? Math.min(100, Math.max(5, ((region.temperatureRise - 1.0) / 4.0) * 100)) : 0;
@@ -114,7 +99,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
                   <MapPin className="h-3.5 w-3.5" style={{ color }} />
                   <span className="text-sm font-medium">{region.regionName}</span>
                 </div>
-                <span className={`text-lg font-bold tabular-nums ${getTempColor(region.temperatureRise)}`} data-testid={`text-region-temp-${region.region}`}>
+                 <span title={REGIONAL_COUNTERFACTUAL.warmingLabel} aria-label={REGIONAL_COUNTERFACTUAL.warmingLabel} className={`text-lg font-bold tabular-nums ${getTempColor(region.temperatureRise)}`} data-testid={`text-region-temp-${region.region}`}>
                    {displayDiagnostic(region.temperatureRise, "°C")}
                 </span>
               </div>
@@ -133,7 +118,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
               </div>
               {![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === "number" && Number.isFinite(value)) &&
                 <p role="status" className="text-xs text-muted-foreground">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}
-              <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={region.regionName} />
+              <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={`${region.regionName} intensity — global counterfactual`} />
             </div>
           );
         })}
