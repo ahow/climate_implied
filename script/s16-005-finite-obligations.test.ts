@@ -9,6 +9,7 @@ import * as XLSX from "xlsx";
 import { Tooltip as RechartsTooltip } from "recharts";
 import * as claims from "../client/src/lib/valuation-claims";
 import * as finite from "../shared/finiteExportSchemas";
+import { deriveProducerSignalConsumer } from "../client/src/lib/producer-download";
 import ClimateValuation from "../client/src/pages/climate-valuation";
 import DecarbSignal from "../client/src/pages/decarb-signal";
 import DecarbGapSignal from "../client/src/pages/decarb-gap-signal";
@@ -32,7 +33,16 @@ function production(path: string, name: string, context: Record<string, unknown>
     }
   });
   assert.ok(expression, `Actual declaration ${path}#${name}`);
-  const dependencies = { React, ...claims, ...finite, ...context };
+  const dependencies: Record<string, unknown> = { React, ...claims, ...finite, deriveProducerSignalConsumer,
+    measure: "sdg_alignment", backtestSignal: "carbon_intensity",
+    backtestResponse: context.backtestData ? { series: context.backtestData } : undefined,
+    valuationBacktestResponse: context.valuationBacktestData ? { series: context.valuationBacktestData } : undefined,
+    ...context };
+  // Resolve the actual checked-in consumer initializers now owning chart/row
+  // construction, rather than reimplementing the migrated transformation here.
+  for (const dependency of ["comparisonConsumer", "timeseriesConsumer", "cumulativeConsumer", "activeConsumer"])
+    if (new RegExp(`\\b${dependency}\\b`).test(expression) && !(dependency in dependencies))
+      dependencies[dependency] = production(path, dependency, dependencies);
   const js = ts.transpileModule(`const value=(${expression});`, { compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
   return new Function(...Object.keys(dependencies), `${js}; return value;`)(...Object.values(dependencies));
 }
@@ -100,7 +110,7 @@ test("actual selected SDG gap cannot substitute present carbon or ambition field
   assert.equal(rows[0].impliedRate, null);
   assert.equal(claims.selectedGroupGapPp(row, "carbon_intensity"), 5);
   assert.equal(claims.selectedGroupGapPp(row, "decarb_ambition"), 0);
-  const exported = production(gap, "timeseriesDownloadRows", { chartData: rows, measure: "sdg_alignment", formatDateLabel: context.formatDateLabel });
+  const exported = production(gap, "timeseriesDownloadRows", { ...context, chartData: rows });
   assert.equal(exported[0][finite.groupGapExportColumn("sdg_alignment")], null);
   const cache = client([[groupKey, [row]]]);
   try {
@@ -126,10 +136,11 @@ for (const path of [signal, gap]) test(`${path} actual dated return/export build
   const chartData = production(path, "backtestChartData", { backtestData: data, valuationBacktestData: undefined });
   assert.equal(chartData.length, 1); assert.equal(chartData[0].date, "2024-01");
   assert.equal(chartData[0].benchmark, 0); assert.equal(chartData[0].portfolio, 0);
-  assert.equal(chartData[0].trackingError, undefined);
+  assert.equal(chartData[0].trackingError, null, "Closed chart identity explicitly normalizes unavailable values to null");
+  assert.equal(claims.backtestPercent(null), undefined, "Original helper missingness remains unchanged");
   if (path === signal) assert.equal(production(path, "backtestStats", { backtestData: data }), null);
   else assert.equal(production(path, "computeStats")(data), null);
-  const rows = production(path, "activeReturnDownloadRows", { backtestChartData: chartData });
+  const rows = production(path, "activeReturnDownloadRows", { backtestChartData: chartData, backtestData: data });
   const book = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(book, XLSX.utils.json_to_sheet(rows), "Actual rows");
   const decoded = XLSX.read(XLSX.write(book, { type: "buffer", bookType: "xlsx" }), { type: "buffer" });

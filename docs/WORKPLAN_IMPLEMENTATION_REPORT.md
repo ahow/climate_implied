@@ -1,3 +1,100 @@
+# Signal/chained consumer integration and new issuer source evidence
+
+```json
+{
+  "updated_at": "2026-11-12T05:21:21.098206+00:00",
+  "release": {
+    "status": "new code not yet verified deployed",
+    "last_verified": {
+      "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+      "ci": "43153785349 success",
+      "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+      "verified_at": "2026-11-12T04:41:14.454237+00:00",
+      "health": 200,
+      "scope": "Code-only; no permanent export/data/owner/scientific activation."
+    }
+  },
+  "coherent_execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T05:15:52.415331+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 219.542,
+    "counts": {
+      "tests": 1030,
+      "pass": 1030,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/chained-final-v2-check.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "2a5a0073f389547e7186a3eb816eed6fb8ee623a6354a4c1d5457b45bcbe8d9d",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1030,
+        "pass": 1030,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 218,
+        "pass": 218,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "initial_failed_execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T05:02:54.599577+00:00",
+    "exit_code": 1,
+    "elapsed_seconds": 272.103,
+    "counts": {
+      "tests": 1030,
+      "pass": 1015,
+      "fail": 10,
+      "skipped": 0
+    },
+    "log": "/tmp/chained-final-check.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "a2d77d16d2f97afadb753a68508fca53974cb76a8f68abfcfea6c1464a07ff95",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1030,
+        "pass": 1015,
+        "fail": 10,
+        "skipped": 0
+      },
+      "python": null
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": [
+      "docs/signal-chained-lineage-evidence.json"
+    ],
+    "S12-017": [
+      "docs/issuer-source-next-evidence.json"
+    ]
+  },
+  "decision": "Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged."
+}
+```
+
 # Private export lifecycle, derived consumers and new source findings
 
 {
@@ -4677,6 +4774,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-producer-width-f49f653",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T03:40:35.134782+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-lifecycle-lineage-aa275c2",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T04:44:14.316555+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

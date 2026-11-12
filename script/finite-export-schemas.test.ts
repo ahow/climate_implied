@@ -6,6 +6,7 @@ import { semanticsCompletionGateError,type SemanticsGateEvidence } from "./field
 import ts from "typescript";
 import * as XLSX from "xlsx";
 import * as finite from "../shared/finiteExportSchemas";
+import { deriveSignalConsumer, valuationPEDerivations, type SignalConsumerSelection } from "../shared/derivedConsumer";
 import { requireHistoricalType, revisedHistoryType } from "../shared/historicalTypes";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
 import { bindExportColumns,bindNestedOutput,requireOutputSemantic } from "../shared/outputFieldSemantics";
@@ -148,11 +149,24 @@ test("all35 finite-domain cases execute ACTUAL production row builders and bindi
         context.formatDateLabel=productionFormatter(file,"formatDateLabel");
         context.chartData=[{date:Date.UTC(2024,0,1),impliedRate:0},{date:Date.UTC(2024,1,1),impliedRate:null},
           {date:Date.UTC(2024,2,1),impliedRate:-2.5}];
+        {
+          const spec=valuationPEDerivations[c.settings.measure==="carbon_intensity"?"carbon":
+            c.settings.measure==="sdg_alignment"?"sdg":"ambition"];
+          context.timeseriesConsumer=deriveSignalConsumer([[
+            {date:"2024-01-01",[spec.high]:10,[spec.low]:10},
+            {date:"2024-02-01",[spec.high]:null,[spec.low]:10},
+            {date:"2024-03-01",[spec.high]:20,[spec.low]:40},
+          ]],"group-gap",c.settings.measure as SignalConsumerSelection);
+        }
         break;
       case "signalCumulative":
         context.backtestSignal=c.settings.signal;
         context.backtestChartData=[{date:"2024-01",benchmark:-2.5,portfolio:undefined},
           {date:"2024-02",benchmark:0,portfolio:0}];
+        context.cumulativeConsumer=deriveSignalConsumer([{series:[
+          {date:"2024-01",benchmarkCumulative:.975,portfolioCumulative:null},
+          {date:"2024-02",benchmarkCumulative:1,portfolioCumulative:1},
+        ]}],"signal-cumulative",c.settings.signal as SignalConsumerSelection);
         break;
     }
     const rows=evaluate(row,context) as Record<string,unknown>[];

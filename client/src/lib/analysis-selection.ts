@@ -80,5 +80,5 @@ export async function analysisFetch(url: string, init?: RequestInit) {
   if (response.ok && request.indicators &&
     response.headers.get("X-Indicator-Data-State") !== "archived-approved-indicators")
     throw new Error("Response does not confirm archived indicator inputs");
-  return retainProducerDownload(response);
+  return retainProducerDownload(response, selection);
 }

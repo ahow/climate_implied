@@ -62,7 +62,7 @@ function actualClick(rows: unknown[], key: ValuationPEDerivation, deliver: (byte
     appendDerivedConsumerWorkbookLineage, exportDataIdentity, exportNotes, semanticRows, requireOutputSemantic,
     bindExportColumns, certifySupplementalSheetRows, createDownloadManifest, downloadManifestRows,
     setBusy() {}, setError(error: unknown) { errors.push(error); },
-    kind: "valuation", filename: `engineering-only-${key}`, sheetName: "P-E Ratio", rows,
+    kind: "valuation", filename: `engineering-only-${key}`, sheetName: "P-E Ratio", rows, requireDerivedParent: false,
     interpretationNotes: [{ Field: "Engineering boundary", Value: "Not scientific acceptance or data approval" }],
     fieldBindings: finiteExportBindings("valuationPE", { case: key }),
     loadExportWorkbook: async () => ({ ...XLSX, writeFile(book: XLSX.WorkBook) {
@@ -138,6 +138,14 @@ test("all three production P/E downloads execute actual writer and read back exa
     assert.deepEqual(expected.parent, trusted!.parent);
     assert.deepEqual(expected.derivation, trusted!.derivation);
     const book = XLSX.read(Buffer.from(bytes), { type: "buffer" });
+    for (const kind of ["formula", "link"]) {
+      const poisoned = XLSX.read(Buffer.from(bytes), { type: "buffer" });
+      const cell = poisoned.Sheets["P-E Ratio"].B2;
+      if (kind === "formula") cell.f = "1+1";
+      else cell.l = { Target: "https://example.invalid/untrusted" };
+      await assert.rejects(() => verifyDerivedConsumerWorkbook(XLSX,
+        XLSX.write(poisoned, { type: "array", bookType: "xlsx" }), expected), /formulas and links/);
+    }
     book.Sheets["P-E Ratio"].B2.v = 999;
     await assert.rejects(() => verifyDerivedConsumerWorkbook(XLSX,
       XLSX.write(book, { type: "array", bookType: "xlsx" }), expected), /cells conflict/);

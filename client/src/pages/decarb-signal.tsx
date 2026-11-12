@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/select";
 import { Activity, TrendingDown, Globe, Layers, BarChart3 } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
-import { certifyFiniteExport,finiteExportBindings,signalCumulativeColumn } from "@shared/finiteExportSchemas";
-import { earningsYieldGapPp, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats, observationTimestamp, datedObservations, hasUndatedObservations, tooltipObservation } from "@/lib/valuation-claims";
+import { deriveProducerSignalConsumer } from "@/lib/producer-download";
+import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
+import { displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestDisplay, backtestDisplayStats, observationTimestamp, hasUndatedObservations, tooltipObservation } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -94,14 +95,6 @@ interface DimensionsData {
 
 type ScoringMethod = "absolute" | "sector_relative" | "sub_sector_relative" | "industry_relative";
 type BacktestSignal = "carbon_intensity" | "sdg_exposure" | "decarb_ambition";
-
-interface ChartDataPoint {
-  date: number;
-  dateLabel: string;
-  carbonIntensity?: number | null;
-  sdgExposure?: number | null;
-  decarbAmbition?: number | null;
-}
 
 const SCORING_METHODS: { value: ScoringMethod; label: string }[] = [
   { value: "absolute", label: "Absolute" },
@@ -203,59 +196,10 @@ export default function DecarbSignal() {
   const isGeoFiltered = geography !== "all";
   const expectedLabel = "Physical comparison withheld";
 
-  const chartData = useMemo(() => {
-    const dateMap = new Map<number, ChartDataPoint>();
-
-    if (carbonPriceData) {
-      for (const pt of datedObservations(carbonPriceData)) {
-        const ts = observationTimestamp(pt.date)!;
-        const existing = dateMap.get(ts);
-        if (existing) {
-          existing.carbonIntensity = earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio);
-        } else {
-          dateMap.set(ts, {
-            date: ts,
-            dateLabel: formatDateLabel(ts),
-            carbonIntensity: earningsYieldGapPp(pt.bottomTercilePeRatio, pt.topTercilePeRatio),
-          });
-        }
-      }
-    }
-
-    if (sdgData) {
-      for (const pt of datedObservations(sdgData)) {
-        const ts = observationTimestamp(pt.date)!;
-        const existing = dateMap.get(ts);
-        if (existing) {
-          existing.sdgExposure = earningsYieldGapPp(pt.cleanPE, pt.dirtyPE);
-        } else {
-          dateMap.set(ts, {
-            date: ts,
-            dateLabel: formatDateLabel(ts),
-            sdgExposure: earningsYieldGapPp(pt.cleanPE, pt.dirtyPE),
-          });
-        }
-      }
-    }
-
-    if (decarbTercileData) {
-      for (const pt of datedObservations(decarbTercileData)) {
-        const ts = observationTimestamp(pt.date)!;
-        const existing = dateMap.get(ts);
-        if (existing) {
-          existing.decarbAmbition = earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE);
-        } else {
-          dateMap.set(ts, {
-            date: ts,
-            dateLabel: formatDateLabel(ts),
-            decarbAmbition: earningsYieldGapPp(pt.bestTercilePE, pt.worstTercilePE),
-          });
-        }
-      }
-    }
-
-    return Array.from(dateMap.values()).sort((a, b) => a.date - b.date);
-  }, [carbonPriceData, sdgData, decarbTercileData]);
+  const comparisonConsumer = useMemo(() => deriveProducerSignalConsumer(
+    [carbonPriceData, sdgData, decarbTercileData], "signal-comparison", "carbon_intensity",
+  ), [carbonPriceData, sdgData, decarbTercileData]);
+  const chartData = comparisonConsumer.chartRows;
 
   const latestValues = useMemo(() => {
     if (chartData.length === 0) return null;
@@ -272,16 +216,13 @@ export default function DecarbSignal() {
 
   const backtestStats = useMemo(() => hasUndatedObservations(backtestData) ? null : backtestDisplayStats(backtestData), [backtestData]);
 
-  const backtestChartData = useMemo(() => {
-    if (!backtestData) return [];
-    return datedObservations(backtestData).map((d) => ({
-      date: d.date,
-      benchmark: backtestPercent(d.benchmarkCumulative, true),
-      portfolio: backtestPercent(d.portfolioCumulative, true),
-      activeReturn: backtestPercent(d.activeReturn),
-      trackingError: backtestPercent(d.trackingError),
-    }));
-  }, [backtestData]);
+  const cumulativeConsumer = useMemo(() => deriveProducerSignalConsumer(
+    [backtestResponse], "signal-cumulative", backtestSignal,
+  ), [backtestResponse, backtestSignal]);
+  const activeConsumer = useMemo(() => deriveProducerSignalConsumer(
+    [backtestResponse], "signal-active", backtestSignal,
+  ), [backtestResponse, backtestSignal]);
+  const backtestChartData = cumulativeConsumer.chartRows;
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active) return null;
@@ -329,24 +270,10 @@ export default function DecarbSignal() {
 
   const signalLabel = BACKTEST_SIGNALS.find(s => s.value === backtestSignal)?.label || backtestSignal;
 
-  const comparisonDownloadRows = chartData.map((d) => ({
-    Date: d.dateLabel,
-    "Carbon intensity group earnings-yield gap (pp)": d.carbonIntensity,
-    "SDG group earnings-yield gap (pp)": d.sdgExposure,
-    "Ambition group earnings-yield gap (pp)": d.decarbAmbition,
-  }));
-
-  const cumulativeReturnDownloadRows = certifyFiniteExport("signalCumulative",backtestChartData.map((d) => ({
-    Date: d.date,
-    "Benchmark Cumulative Return (%)": d.benchmark,
-    [signalCumulativeColumn(backtestSignal)]: d.portfolio,
-  })),{signal:backtestSignal});
-
-  const activeReturnDownloadRows = backtestChartData.map((d) => ({
-    Date: d.date,
-    "Active Return (%)": d.activeReturn,
-    "Tracking Error (ann.) (%)": d.trackingError,
-  }));
+  const comparisonDownloadRows = comparisonConsumer.rows;
+  const cumulativeReturnDownloadRows = certifyFiniteExport("signalCumulative",
+    cumulativeConsumer.rows, {signal:backtestSignal});
+  const activeReturnDownloadRows = activeConsumer.rows;
 
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-signal">
@@ -458,6 +385,7 @@ export default function DecarbSignal() {
           <div className="flex items-center gap-2">
             {isLoading && <Badge variant="secondary">Loading...</Badge>}
             <DownloadDataButton
+              requireDerivedParent
               interpretationNotes={gordonExportNotes(8)}
               filename="group-earnings-yield-gaps"
               kind="valuation"
@@ -632,6 +560,7 @@ export default function DecarbSignal() {
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <h3 className="text-xs font-medium text-muted-foreground">Cumulative Return (%)</h3>
                   <DownloadDataButton
+                    requireDerivedParent
                     filename="signal-backtest-cumulative-return"
                     kind="backtest"
                     sheetName="Cumulative Return"
@@ -683,6 +612,7 @@ export default function DecarbSignal() {
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <h3 className="text-xs font-medium text-muted-foreground">Monthly Active Return & Expanding Tracking Error (%)</h3>
                   <DownloadDataButton
+                    requireDerivedParent
                     filename="signal-backtest-active-return"
                     kind="backtest"
                     sheetName="Active Return & TE"

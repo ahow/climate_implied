@@ -49,6 +49,7 @@ const sharedDependencies = {
   semanticRows, requireOutputSemantic, bindExportColumns, certifySupplementalSheetRows,
   createDownloadManifest, downloadManifestRows,
   captureDerivedConsumer, derivedConsumerIdentity, appendDerivedConsumerWorkbookLineage,
+  requireDerivedParent: false,
 };
 const componentPath = "client/src/components/download-data-button.tsx";
 

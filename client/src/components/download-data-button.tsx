@@ -26,6 +26,7 @@ interface DownloadDataButtonProps {
   disabled?: boolean;
   className?: string;
   testId?: string;
+  requireDerivedParent?: boolean;
 }
 
 export function DownloadDataButton({
@@ -39,6 +40,7 @@ export function DownloadDataButton({
   disabled,
   className,
   testId = "button-download-data",
+  requireDerivedParent = false,
 }: DownloadDataButtonProps) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -52,6 +54,8 @@ export function DownloadDataButton({
       const requestedUiSelection = captureDownloadSelection();
       const sourceRows = typeof rows === "function" ? rows() : rows;
       const capturedConsumer = captureDerivedConsumer(sourceRows);
+      if (requireDerivedParent && !capturedConsumer)
+        throw new Error("Export unavailable — required retained producer parent is missing. No current-data fallback.");
       const data = structuredClone(sourceRows);
       if (!data || data.length === 0) {
         setError("Export unavailable — no rows returned. No completed download was produced.");
@@ -99,6 +103,40 @@ export function DownloadDataButton({
     }
   };
 
+  const handleJsonClick = async () => {
+    setBusy(true); setError(null);
+    let url: string | undefined;
+    try {
+      const selection = captureDownloadSelection();
+      const source = typeof rows === "function" ? rows() : rows;
+      const captured = captureDerivedConsumer(source);
+      if (!captured) throw new Error("Export unavailable — required retained producer parent is missing.");
+      const data = structuredClone(source);
+      const notes = structuredClone(interpretationNotes);
+      if (!data.length) throw new Error("Export unavailable — no rows returned.");
+      const identity = await derivedConsumerIdentity(captured, data);
+      const prepared = await prepareQualifiedJsonExport(data, kind, filename, new Date().toISOString(),
+        value => {
+          if (JSON.stringify(value) !== JSON.stringify(data)) throw new Error("Derived JSON rows conflict");
+          return value;
+        }, selection);
+      const envelope = JSON.parse(prepared.text);
+      envelope.manifest.derivedConsumerIdentity = identity;
+      envelope.interpretation.push(...notes);
+      requireUnchangedDownloadSelection(selection);
+      url = URL.createObjectURL(new Blob([JSON.stringify(envelope, null, 2)], { type: "application/json" }));
+      const link = document.createElement("a");
+      link.href = url; link.download = `${filename.replace(/\.xlsx$/, "")}.json`;
+      requireUnchangedDownloadSelection(selection);
+      link.click();
+    } catch (err) {
+      setError(`${err instanceof Error ? err.message : "Export failed"} No completed JSON download was produced.`);
+    } finally {
+      if (url) URL.revokeObjectURL(url);
+      setBusy(false);
+    }
+  };
+
   return (
     <>
     <Button
@@ -113,6 +151,9 @@ export function DownloadDataButton({
       <Download className="h-3.5 w-3.5 mr-1.5" />
       {busy ? "Preparing\u2026" : label}
     </Button>
+    {requireDerivedParent && <Button type="button" variant="outline" size="sm"
+      disabled={disabled || busy || resolvedEmpty} onClick={() => void handleJsonClick()}
+      data-testid={`${testId}-json`}>Download JSON</Button>}
     {error && <span role="alert" className="text-sm text-destructive">{error}</span>}
     {fieldBindings && <details className="basis-full text-xs text-muted-foreground">
       <summary className="cursor-pointer">Export column bindings ({Object.keys(fieldBindings).length})</summary>

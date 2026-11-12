@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "issuer-source-next-evidence-1",
+  "criterion": "ORIGINAL S12-017",
+  "status": "new-primary-XPLR-cash-priority-scope-and-XOM-contract-announcement-integrated-not-complete-FCFE",
+  "originalCriterion": "Three worked companies are documented end to end: a utility, an oil and gas producer and an industrial.",
+  "originalAcceptance": "Not satisfied by these additional source adapters. FSLR does not automatically replace the original industrial requirement. No self-approval.",
+  "inventoryReadFirst": [
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md: S12-017 original wording and latest retained finding",
+    "docs/indicator-issuer-new-evidence.json",
+    "docs/remaining-source-inputs-evidence.json",
+    "docs/next-company-evidence.json",
+    "docs/issuer-cash-source-followup-evidence.json",
+    "docs/nee-parent-fslr-programme-evidence.json",
+    "docs/issuer-contract-law-evidence.json",
+    "docs/issuer-financial-followup-evidence.json",
+    "docs/cf-enlink-current-cash-evidence.json",
+    "docs/enlink-operating-successor-evidence.json"
+  ],
+  "novelty": "Read the latest retained inventory before requesting. FSLR/XOM were unattempted in the last increment, not globally unavailable. Exact new Williams announcement, XPLR November 3 release/interim and parliamentary July 29 response were not found in targeted retained source URL searches. Existing Q3 FSLR, October 29 release, enacted law/Notice 2026-15, CF releases, ONEOK financial disclosures, EnLink mergers/contracts/guarantees and NEE Q3 interim were not reacquired.",
+  "acquisition": {
+    "skillRead": ".local/skills/web-search/SKILL.md",
+    "functions": ["webSearch", "webFetch", "native fetch inside impure CodeExecution", "node:crypto.createHash", "shellExec"],
+    "searchCalls": 5,
+    "searchBudget": 5,
+    "directRequests": 4,
+    "directRequestBudget": 4,
+    "extractedPrimaryDocuments": 3,
+    "directDenied": 1,
+    "retriesOrBypasses": 0,
+    "searchQueries": [
+      "First Solar Tamil Nadu July 2026 incentive received; First Solar 2026 prohibited foreign material costs eligible production",
+      "ExxonMobil CCS executed agreement 2026 fees novation; CF ExxonMobil carbon storage 2026 service payment operating",
+      "XPLR 2026 third quarter distributions NextEra Energy Equity; XPLR 2026 cash sweep reimbursements project distributions",
+      "site.firstsolar.com 2026 Tamil Nadu subsidy July payment; site.mnre.gov.in First Solar 2026 PLI disbursement; site.firstsolar.com 2026 material assistance foreign entity",
+      "site.sec.gov/Archives/edgar/data/1603145/ 20260930; site.firstsolar.com 2026 material foreign"
+    ],
+    "stop": "Bounded primary scope completed. Denied interim not retried through extraction, mirrors, another host or credentials. Search-returned commercial sample sales-plan PDF, secondary press, mirrored filings and previously acquired First Solar annual/Q2/Q3 sources not used as new financial evidence.",
+    "hashMethod": "For the three webFetch documents: SHA256 and byte length over exact UTF-8 extracted markdown returned by the tool, complete/truncated=false; no independent transport-byte hash, status, archive authentication or raw replay claimed. receiptAt is digest-recording time after acquisition, not first-publication time. Fourth record hashes actual native HTTP403 response body, not filing content.",
+    "retention": "No complete issuer filing, report, PDF, proprietary table or image saved/published. Only attributed minimal financial facts, short parser locators, paraphrases, links, hashes and results retained. Full extracted documents stayed in tool memory and were passed to an offline adapter invocation, not production exports.",
+    "purchasesCredentialsPermissionRequestsOrPrivatePublication": 0
+  },
+  "sourceRecords": [
+    {
+      "id": "xom-williams-2026",
+      "url": "https://lowcarbon.exxonmobil.com/newsroom/news-and-announcements/williams-selects-exxonmobil-for-co2-transportation-and-storage",
+      "publicationDate": "2026-07-28",
+      "dateBasis": "Explicit issuer news release date",
+      "receiptAt": "2026-11-12T04:49:45.161Z",
+      "bytes": 4584,
+      "sha256": "dac96b36534037315697f220ba7eac0d1622aa0378afcf3b74d2cf0ebd2156fa",
+      "rawSha256": null,
+      "rights": "Public ExxonMobil-authored announcement; copyright retained. Minimal facts and attributed paraphrase only, no inferred open licence or image republication.",
+      "locator": "Headline; contracted-up-to introduction; seventh-commercial-contract paragraph",
+      "result": "Actual new commercial-contract announcement and upper annual CO2 volume. Not a retrieved signed operating instrument, effective-date proof, legal-subsidiary identification, fee schedule, EnLink novation or invoice."
+    },
+    {
+      "id": "xplr-2026q3-release",
+      "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000037/xplrq32026exhibit99.htm",
+      "publicationDate": "2026-11-03",
+      "dateBasis": "Explicit issuer release date; independent immutable accession acceptance not acquired",
+      "receiptAt": "2026-11-12T04:49:45.161Z",
+      "period": "Quarter/nine months ended 2026-09-30; calculations use nine months only",
+      "bytes": 33229,
+      "sha256": "4ce6a847c13e9d298101848bbe5ad3db4e970752772bdb2dce5f85004ff642b3",
+      "rawSha256": null,
+      "rights": "Public issuer-authored SEC exhibit; SEC hosting does not create a government/open-data licence. Minimal public financial facts and calculations, no complete exhibit publication.",
+      "locator": "Page 6 preliminary non-GAAP reconciliation; page 8 unaudited preliminary consolidated cash flows; page 1 completed interconnection asset sales",
+      "legalScope": "XPLR Infrastructure LP consolidated, CIK0001603145; not consolidated NEE or a project LLC/sole NEE Equity receiving entity",
+      "result": "New signed GAAP partner/investor cash rows, net CSCS investing cash and restricted-cash reconciliation; distinct non-GAAP investor/payment/maintenance scopes calculated. No contractual legal ranking or NEE recipient allocation."
+    },
+    {
+      "id": "fslr-government-scope-2026",
+      "url": "https://sansad.in/getFile/lsapps/loksabhaquestions/annex/188/AU1840_chQxTI.pdf?source=lsapps",
+      "publicationDate": "2026-07-29",
+      "dateBasis": "Explicit question answer date, not independently authenticated first upload",
+      "receiptAt": "2026-11-12T04:49:45.161Z",
+      "bytes": 16067,
+      "sha256": "8e4d5a75fc5b4b259c78920bbe3eb2b9ba1102674c60b209c74f909dc4087f89",
+      "rawSha256": null,
+      "rights": "Public Indian parliamentary/MNRE answer. No open redistribution licence established; links and minimal paraphrase only. PDF not retained/republished.",
+      "locator": "Lok Sabha unstarred question1840 answer(c), Annexure II; distinct rooftop subsidy and TANTRANSCO transmission disbursements",
+      "result": "Actual primary regional incentives response, but its identified disbursement recipients/programmes are rooftop systems and TANTRANSCO, not First Solar's Tamil Nadu manufacturing-incentive installment. No issuer receipt amount/date/FX/classification, eligible US watts or component BOM supplied. None of its amounts assigned to FSLR."
+    },
+    {
+      "id": "xplr-2026q3-interim-denied",
+      "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000039/xplr-20260930.htm",
+      "publicationDate": null,
+      "searchCandidateFilingDateNotAuthenticated": "2026-11-03",
+      "requestedAt": "2026-11-12T04:49:19.075Z",
+      "status": 403,
+      "rawBytes": 4818,
+      "rawSha256": "eeccaf88b1ad26c799da5de3a83c8cedf773ea238aa2738878af06dd659c3963",
+      "rights": "No filing content obtained. No denial bypass or retry.",
+      "locator": "Search-discovered exact primary document; one native unauthenticated request",
+      "result": "Cannot inspect the current NCI/related-party note or sale-payment disclosure through this request. No claim absent from filing or globally unavailable."
+    }
+  ],
+  "implementation": {
+    "existingFilesExtended": [
+      "server/calculation/issuerCashSourceQuarterFollowup.ts",
+      "server/calculation/xomSourceInputQualification.ts"
+    ],
+    "namedFunctions": [
+      "extractXplr2026ReleaseCash",
+      "reconcileXplr2026ReleaseCash",
+      "extractWilliams2026CcsAnnouncement"
+    ],
+    "tests": "script/issuer-source-next-evidence.test.ts",
+    "sourceExecution": "node --import tsx --input-type=module -e <imports plus exact complete in-memory webFetch markdown for XPLR and Williams; extract then reconcile>; executed through CodeExecution shellExec, no raw-source file",
+    "inputTreatment": "Explicit release USD-million scale and current/prior column order; signed cash rows; unique exact row labels; quarter and YTD scopes not interchanged. Wrong statement order, date, units, duplicated rows and failed reported identities throw explicit errors. No failed disclosure becomes zero."
+  },
+  "results": {
+    "actualSourceAdapterExecutionExitCode": 0,
+    "actualSourceDocumentsParsed": 2,
+    "qualifiedOriginalIssuers": 0,
+    "completedApprovedCases": 0,
+    "newWholeIssuerForecastOrGridRuns": 0,
+    "XPLR": {
+      "currency": "USD",
+      "period": "2026-01-01/2026-09-30",
+      "cashRows": {
+        "operatingCashUsd": 407000000,
+        "investingCashUsd": -467000000,
+        "financingCashUsd": -397000000,
+        "cashChangeUsd": -457000000,
+        "openingCashIncludingRestrictedUsd": 1023000000,
+        "closingCashIncludingRestrictedUsd": 566000000,
+        "netCscsInvestingCashUsd": 7000000,
+        "partnerContributionsUsd": 89000000,
+        "partnerDistributionsSignedUsd": -85000000,
+        "classBPaymentsSignedUsd": -67000000,
+        "classBBuyoutSignedUsd": -149000000,
+        "differentialMembershipProceedsUsd": 261000000,
+        "differentialMembershipPaymentsSignedUsd": -142000000,
+        "differentialMembershipBuyoutSignedUsd": -181000000,
+        "capexAndOtherInvestmentsSignedUsd": -510000000
+      },
+      "nonGaapRows": {
+        "adjustedEbitdaUsd": 1429000000,
+        "taxCreditAdjustmentSignedUsd": -487000000,
+        "cashInterestSignedUsd": -330000000,
+        "classBPaymentsSignedUsd": -67000000,
+        "taxEquityPaymentsSignedUsd": -20000000,
+        "capitalMaintenanceAndOtherSignedUsd": -15000000,
+        "freeCashBeforeGrowthUsd": 510000000
+      },
+      "calculated": {
+        "cashReconciliationResidualUsd": 0,
+        "cashChangeResidualUsd": 0,
+        "nonGaapReconciliationResidualUsd": 0,
+        "consolidatedNetPartnerCashUsd": 4000000,
+        "nonGaapMinusOperatingCashUsd": 103000000,
+        "gaapMinusNonGaapInvestorPaymentMagnitudeUsd": 122000000,
+        "originalNeeCommonFcfeCashAddedUsd": 0
+      },
+      "interpretation": "4m is net consolidated partner cash, not NEE cash; 7m is net CSCS, not gross remittance. 103m and 122m are presentation/scope differences, not balancing cash or missing fees. Do not combine FCFBG with CFO or subtract its investor/maintenance expenses twice. The new cash rows identify paid investor categories but neither legal priority nor marginal project returns."
+    },
+    "XOM": {
+      "announcedAnnualCo2UpperTonnes": 1000000,
+      "announcedPortfolioApproximateAnnualTonnes": 9000000,
+      "actualServicedCo2Tonnes": null,
+      "feeOrBillingsInsertedUsd": 0,
+      "executedInstrumentAcquired": false,
+      "interpretation": "New distinct Williams commercial announcement. Up-to contracted volumes are not actual mass or minimum billings; no actual fee inferred from 45Q or old EnLink recognition. No assignment/novation of the distinct EnLink/CF arrangement established."
+    }
+  },
+  "fieldAssessment": {
+    "FSLR": {
+      "status": "new-primary-government-scope-inspected-not-issuer-payment-record; other targeted fields not located in bounded search",
+      "programmeCashUsd": null,
+      "actualEligibleUsComponentWatts": null,
+      "companyDirectMaterialCostOrMacr": null,
+      "currentCompanyEligibilityCertified": false,
+      "commonFcfeInsertedUsd": 0,
+      "exactNextInputs": "Manufacturing programme remittance naming First Solar operating entity, installment amount/native currency, payment day, FX and statement classification for India July 2026; separately Alabama cash and credit-transfer cohort/receivable/discount settlements. Actual or explicitly justified frozen component production/eligible-sale watts by fully-US versus internationally initiated/US-completed path and sale period. Component/year/method direct material and PFE-attributable cost, effective-control/entity compliance and same-facility US-primary-component attribution plus supported current-law/reliance date.",
+      "exactAccessActions": "A public manufacturer-specific remittance or issuer cash-reconciliation/BOM disclosure is needed; exact new issuer-payment URL still unlocated. Do not reuse the acquired state-level parliamentary totals as that receipt. No contact, account or purchase made. No repeat acquisition of Q3 Note5, release, annual law or Notice2026-15. New law search did not establish an exhaustive current-law clearance; prior sourced framework remains conditional, not company certification.",
+      "frozenNegativePreserved": "Earlier July receipt month is not retracted because the new regional document does not mention it. Unallocated grant-book/CFO/noncash differences not converted to cash; global sales, guidance or inverted credit dollars not eligible watts. No positive terminal margins restored."
+    },
+    "NEE": {
+      "status": "new-actual-consolidated-counterparty-cash-integrated-recipient-waterfall-still-unqualified",
+      "grossLlcOrCscsCash": null,
+      "actualNeeRecipientDistributionsUsd": null,
+      "contractualPriorityOrAvailableCash": null,
+      "projectCommissioningMarginalReturns": null,
+      "commonFcfeInsertedUsd": 0,
+      "exactNextInputs": "Per-LLC gross distributions/contributions, service reimbursements and settlement dates with named payer/receiving subsidiary and NEE consolidated line; return-on versus return-of-capital classification; debt/tax-equity/operating/capex reserve priorities; incremental commissioning cash, funded capex and reinvestment by project.",
+      "exactAccessActions": "Current 10-Q primary URL is specified in denied-source record; a permitted public acquisition or issuer-published LLC/payment annex is still needed. This increment stopped after403, did not retry or certify a recipient from aggregate partner cash. Approximately400MW completed interconnection sales in release have no price/settlement bridge in selected text and are not commissioning returns. Do not allocate by52.4% economics or replace net-settlement gaps with cost-minus-receivable cash."
+    },
+    "XOM": {
+      "status": "new-direct-issuer-commercial-announcement-not-executed-priced-operating-contract",
+      "executedLegalOperatingPartiesOrNovation": null,
+      "actualBillingsCollectionsOpexFunding": null,
+      "commonFcfeInsertedUsd": 0,
+      "exactNextInputs": "Executed transportation/storage/financial-arrangement instrument naming both operating subsidiaries, effective date/current status and actual assignment/novation/termination; priced fee/escalator/minimum schedule; actual serviced CO2 and billed/collected dates/amounts; transport/storage opex, maintenance/replacement, funded draws/capital calls and available-to-XOM-common waterfall.",
+      "exactAccessActions": "A direct published signed instrument/annex or explicit counterparty operating-cash disclosure remains required; exact new URL unlocated by bounded search. Williams announcement is linked and parsed but is not that instrument. No operating-contract continuity inferred from parent acquisition/debt succession/subsidiary existence; no CF JV funding, CF45Q or historical844m/2029–2050 recognition assigned to XOM cash."
+    }
+  },
+  "compatiblePreparation": {
+    "newCompatibleFrozen11To15Input": false,
+    "new22IndicatorFullWindowCalibrationInput": false,
+    "decision": "New actual issuer financial facts were found and integrated into existing source adapters, so no unchanged fallback study/grid was rerun. These disclosures are not a permissioned original22-key 2010–2025 history/uncertainty series or constant2011PPP GDP/energy/CO2 regional accounts. Full-window uncertainty/calibration and dated11–15 preparation remain separate and require compatible data; no coefficient, shortened window or nominal-to-PPP substitution."
+  },
+  "preservedHashes": {
+    "server/calculation/issuerOriginalOperatingCase.ts": "c30e83b49a918cb0987ea63589ad9f62db5bb73d93cdf0a3fe2d0dc3d2084dfd",
+    "server/calculation/fslrFullCashflowCase.ts": "e0752dd04de8599c5c3056b6e2ab50720c400ca089045d0a53355dc8c43354b2",
+    "server/calculation/issuerConditionalFiveYear.ts": "b847f77eddb93dbfc897cd911c63ce3b61f898e4cee0c3deef2055895b9720f6",
+    "server/calculation/companyFullCashflowCase.ts": "54fe89144ea8ad1fcb65f802de4998195a2c7ff1c360d87643ca73776ed5b087",
+    "server/calculation/fslrCohortIntegratedLedger.ts": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+    "shared/companyConditionalData.ts": "32ee6f37af286eef8e194a4f4867c0c81e4f14d38baea0b577ef7982bd7f2510",
+    "server/calculation/historicalIndicators.ts": "e716ce9997bc28d490189a25fc45cf553318328eb12f7e46f830651a2e73705b",
+    "docs/Kaya_Protocol.md": "210d19c643942e739c7a38431b14d682fef0789b5670a847499ea8d31842cdee",
+    "docs/Forecast_Kaya_Protocol.md": "ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f",
+    "server/calculation/fairArtifactCatalog.ts": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"
+  },
+  "controls": {
+    "originalFy2024FiscalBasisFrozenNegativesAnd32CashRowsChanged": false,
+    "originalStubFiveYearStepsTenYearFadeOrTerminal2_5To4Changed": false,
+    "original14FairPinsOrBundlesModified": false,
+    "original14BundleRuntimeReplayedOrReauthenticated": false,
+    "baselineCashWorkingCapitalOrExpensesDuplicated": false,
+    "scientificAcceptanceSelfApprovalOrBackdating": false,
+    "sharedDerivedConsumerClientDownloadsOrCanonicalLedgersEditedByThisTask": false,
+    "rawSourcePublicationPurchaseOrBypass": false,
+    "workflowRunRestartAppLogsCommitDeployOrCallback": false,
+    "appUi": "No UI/routes changed or rendered; parent owns application checks."
+  },
+  "verification": {
+    "status": "passed-focused-tests-and-strict-owned-file-typecheck",
+    "command": "node --import tsx --test script/issuer-source-next-evidence.test.ts script/issuer-cash-source-followup.test.ts script/xom-source-inputs.test.ts",
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0,
+    "newFocusedTests": 5,
+    "strictTypecheckCommand": "npx tsc --noEmit --strict --target ES2022 --lib ES2022,DOM --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node server/calculation/issuerCashSourceQuarterFollowup.ts server/calculation/xomSourceInputQualification.ts script/issuer-source-next-evidence.test.ts",
+    "strictTypecheckExitCode": 0,
+    "whitespaceCommand": "git diff --check",
+    "whitespaceExitCode": 0,
+    "actualFullSourceVerification": "Exact complete new XPLR and Williams extracted markdown was executed against the adapters successfully before the explicit unit guard and again after that guard was added; no second network acquisition. First output includes all fields/results; final actual-source invocation exited0. No private raw-byte replay claimed.",
+    "coverage": [
+      "Actual new consolidated XPLR cash/non-GAAP rows reconcile; receipt distinguishes denied primary interim from successfully extracted release.",
+      "Wrong dates, unit scale, comparative order, duplicate and malformed cash rows throw; altered closing cash, FCFBG, cash change and nonfinite cash throw rather than balance.",
+      "Williams up-to contracted CO2 does not become serviced mass, fees, billings, novation, opex or funding; wrong date/serviced-volume replacement rejected.",
+      "New recipient/gross-settlement/AvailableCash/project-return fields remain null; original common FCFE insertion zero.",
+      "Ten selected original financial/history/protocol/catalog hashes verified without re-running their valuation or scientific studies."
+    ],
+    "limitations": "Focused parser/calculation and preservation checks plus actual in-memory complete-source execution; no raw replay authentication, full issuer forecast, market pair, approved model, executed CCS instrument or app/UI verification. No full-project check claimed; parent coordinates parallel consumer changes."
+  },
+  "implementationHashes": {
+    "server/calculation/issuerCashSourceQuarterFollowup.ts": "ec50ef415735b46d1e436614f28cda430df78f894c1d837c0be789db924719cc",
+    "server/calculation/xomSourceInputQualification.ts": "b25b20489a046e2a89fcac3f709c184ce41aeddb81ce2df8e43ce8f3ff068370",
+    "script/issuer-source-next-evidence.test.ts": "9add527b98baedcb1f18a2ab05a45c3c66a1d803d86271e03f20539fbd4e8567"
+  }
+}

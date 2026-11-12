@@ -1,0 +1,252 @@
+{
+  "request": "S16-007 remaining signal/chained downloads beyond the three completed P/E consumers",
+  "scope": "Prospective closed consumer engineering lineage for six real signal/gap downloads. This is not scientific acceptance, source admission, historical original-export recovery, or a rebased original 1000/1001 census.",
+  "implementation": [
+    {
+      "path": "shared/derivedConsumer.ts",
+      "functions": ["deriveSignalConsumer", "gap", "percent", "monthLabel"],
+      "sha256": "e68e50a11e7abf772c093eb7e5b15bd75af39cae0cf08efc4e61c5abe4e18a13",
+      "details": "Closed six-key registry; exact native field maps, whole backtest response parents, per-parent retained/excluded indices, intermediate projected rows, numeric/date transforms, chart joins, exported projections, units, timezone and explicit nulls. SignalConsumerRow<K> now preserves guaranteed concrete columns in actual consumer types; dynamic finite labels still require runtime finite-schema certification. This restores truthful compiler census extraction without changing its scanner or original cohort. Existing deriveValuationPE is unchanged."
+    },
+    {
+      "path": "client/src/lib/producer-download.ts",
+      "functions": ["retainProducerDownload", "deriveProducerSignalConsumer", "captureSignalConsumer", "captureDerivedConsumer", "derivedConsumerIdentity"],
+      "sha256": "1600417055682e42f5fc0854ce63097d83b15395312c8e126636453cc5fd7b82",
+      "details": "Response-object WeakMap binding; request-bound optional selection context; ordered exact parent proofs; replay and actual visible-chart mutation checks; explicit refusal for incomplete, unretained, cloned, stale, wrong-scenario, wrong-signal, mixed-material/source or changed rows. No arbitrary proof/manifest setter."
+    },
+    {
+      "path": "shared/derivedConsumerSemantics.ts",
+      "functions": ["derivedConsumerSemantics"],
+      "sha256": "46b29224849e10c8d01a47fa940132798628218003a4f202b1ee9818993bc524",
+      "details": "Exact finite nested semantic paths for ordered parents, intermediate stages, native field maps, actual chart keys, finite column labels/units and declared timezone. No wildcard semantic acceptance."
+    },
+    {
+      "path": "client/src/pages/decarb-signal.tsx",
+      "functions": ["DecarbSignal"],
+      "sha256": "abc9b57124ea344e3ce712b9c05e6a32640c8611306a380f396d835f070b76bd",
+      "consumerKeys": ["signal-comparison", "signal-cumulative", "signal-active"],
+      "testIds": ["button-download-decarb-comparison", "button-download-backtest-cumulative", "button-download-backtest-active"],
+      "details": "Actual charts and download rows now share closed derivations. All three actual DownloadDataButton consumers requireDerivedParent; parent central writer supplies their JSON companions."
+    },
+    {
+      "path": "client/src/pages/decarb-gap-signal.tsx",
+      "functions": ["DecarbGapSignal"],
+      "sha256": "e3c2575c167483675aa8e48fdb959a72641e0cfde4b8bf3629dd6f53bcd6381c",
+      "consumerKeys": ["group-gap", "gap-cumulative", "gap-active"],
+      "testIds": ["button-download-gap-timeseries", "button-download-cumulative-return", "button-download-active-return"],
+      "details": "Selected group gap and both paired-backtest chart/export chains use actual retained whole response parents. All three consumers requireDerivedParent."
+    }
+  ],
+  "parentOwnedIntegrationValidated": [
+    {"path": "client/src/lib/analysis-selection.ts", "function": "analysisFetch", "interface": "retainProducerDownload(response, selection), passing the selection captured before awaiting fetch"},
+    {"path": "client/src/components/download-data-button.tsx", "functions": ["DownloadDataButton.handleClick", "DownloadDataButton.handleJsonClick"], "interface": "requireDerivedParent; same response-derived capture for XLSX and JSON"},
+    {"path": "client/src/lib/derived-consumer-workbook.ts", "functions": ["appendDerivedConsumerWorkbookLineage", "verifyDerivedConsumerWorkbook"]},
+    {"path": "client/src/lib/export-contract.ts", "function": "prepareQualifiedJsonExport"}
+  ],
+  "exactPolicies": {
+    "signalComparison": "Parents are carbon-price, sdg-growth, decarb-terciles in that order. Native P/E pairs project to (8-100/firstPE)-(8-100/secondPE), requiring finite positive denominators and finite result. Union by parsed numeric timestamp, ascending; last duplicate timestamp per parent wins. Absent merged chart keys explicitly null. Month labels use en-US short month/numeric year and captured runtime timezone.",
+    "groupGap": "Exactly one selected carbon/SDG/ambition native parent, same gap/date projection and numeric timestamp ordering/last-duplicate policy; selected native P/E pair never substituted.",
+    "singleBacktest": "Whole response retained, including summary.signal. Valid-date series observations preserve native order and duplicate dates. Cumulative percent Math.round((value-1)*10000)/100; active/TE percent Math.round(value*10000)/100. Missing/nonfinite/overflow values null; genuine zero retained.",
+    "pairedBacktest": "Whole selected-signal response followed by whole decarb_gap comparison response. Exact native date-key union lexicographically sorted; last duplicate exact key per parent wins. Primary row provides benchmark if it exists, even when benchmark value is missing; only a missing primary row permits comparison-row benchmark fallback. Active export includes comparison-only dates with null primary values.",
+    "parentCompatibility": "Every slot must have an unchanged same-origin consumed server response binding and exact required scenario. All parents must share orderedSnapshotHashes, materialInputsId, codeArchiveId and modelVersion. Active archived selection must match request-bound selection, first workbook hash, final indicator hash and the exact full ordered hash list when overlays are explicitly selected.",
+    "materialCompatibilityBasis": [
+      "server/snapshots/materialInputs.ts:captureMaterialInputs captures workbook, ordered overlays, cutoff, readsIndicators, sourceArchive, approved values, indicator hash and effective historical indicators.",
+      "Its material-inputs-1 payload does NOT contain scenario or calculator query settings.",
+      "server/snapshots/requestContract.ts:historicalRequestPolicy sets readsIndicators for all workbook readers used here.",
+      "server/routes.ts:the /api/cv retention middleware passes workbook/overlays/cutoff/readsIndicators to captureMaterialInputs and separately places req.query and scenario in the analysis manifest.",
+      "Therefore different scenarios/settings legitimately have different manifest/result IDs but not different material IDs solely due to those settings. Equal snapshot pins alone cannot excuse a changed material ID."
+    ],
+    "identity": "Canonical finite JSON SHA-256 for derivation and actual replayed chart rows; normalized sorted-key/null-cell preserved-order row hash for derived dataIdentity. JSON envelope additionally declares and verifies its distinct UTF-8 JSON.stringify(data,null,2) hash. Native exact producerIdentity remains null on transformed output; ordered retained parent proofs travel in derivedConsumerIdentity.",
+    "tolerances": "Exact structural/byte/hash equality, zero numerical tolerance. Original JavaScript floating-point subtraction and Math.round behavior preserved, including 0.02005 tracking error converting to 2 rather than an idealized decimal 2.01."
+  },
+  "tests": {
+    "newFile": "script/signal-chained-lineage.test.ts",
+    "newFileSha256": "1e56818591c9c56954ed62148a9d8edb283f4d0fb951a0807609941bd2750b65",
+    "helpers": ["fixture", "consume", "actualProps", "actualClick", "actualJsonClick", "decodedLineage", "mounted", "requestPaths"],
+    "newPassingTests": 24,
+    "focusedPassingTestsTotal": 43,
+    "failedFinal": 0,
+    "skippedFinal": 0,
+    "coverage": {
+      "actualCheckedInJsxAttributeExtraction": "All six consumers: actual rows/fieldBindings/kind/sheetName/notes/filename/requireDerivedParent.",
+      "actualCheckedInXlsxHandlers": 6,
+      "successfulXlsxReadbacks": 6,
+      "actualCheckedInJsonHandlerPerConsumerTests": 6,
+      "additionalCurrentArchiveCurrentJsonReadbacks": 18,
+      "allSixCurrentArchiveCurrentTransitions": true,
+      "allSixConcurrentIndependentSourceChains": true,
+      "concurrentChainsPerConsumer": 4,
+      "missingOrClonedEveryParentSlot": true,
+      "changedParentRowsExportRowsAndVisibleCharts": true,
+      "allSixRetainedEmptyChainsRefuseFiles": true,
+      "allSixJsonAndXlsxSelectionChangeRefusals": true,
+      "delayedResponseAndLateJsonConsumptionSelectionRace": true,
+      "mixedSnapshotsMaterialCodeModelRefuse": true,
+      "sameMaterialDifferentScenarioAndSettingsAllowed": true,
+      "wrongScenarioAndWrongRetainedSummarySignalRefuse": true,
+      "detachedSeriesAndForgedCaptureRefuse": true,
+      "explicitSparseComparisonChartNulls": true,
+      "xlsxDataTamperRefusesReadback": true,
+      "privateCliAndHttp403Regression": "script/release-safety.test.ts and script/producer-download.test.ts included",
+      "existingPeRegression": "All four script/derived-consumer.test.ts tests included, including all three actual P/E workbook writers and parent-added formula/link tamper checks."
+    },
+    "finiteSchemaTestAdaptation": {
+      "path": "script/finite-export-schemas.test.ts",
+      "sha256": "6525601f74bafe125acab3d9b3c83df98c9884e968f73f3f3030890cc0ff7d85",
+      "reason": "Actual AST-extracted row builders now consume timeseriesConsumer/cumulativeConsumer, so isolated finite-schema fixtures provide these actual closed derivations from engineering native inputs. Existing 35-case finite census, assertions and strict original source-gate residual checks unchanged."
+    }
+  },
+  "commands": [
+    {
+      "command": "npx tsx --test script/signal-chained-lineage.test.ts script/derived-consumer.test.ts script/producer-download.test.ts script/finite-export-schemas.test.ts script/release-safety.test.ts > generated-artifacts/signal-chained-lineage-contracts.log 2>&1",
+      "executionBoundary": "Initial focused increment before the integration followup; latest source snapshot is covered by the passing 80-test failed-check rerun and coherent full receipt below.",
+      "exitCode": 0,
+      "tests": 43,
+      "pass": 43,
+      "fail": 0,
+      "logPath": "generated-artifacts/signal-chained-lineage-contracts.log",
+      "logSha256": "acdb1d07e025c3a619a7233a94451adfc94776d578ff232ae0126aa7be78bd07"
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false > generated-artifacts/signal-chained-lineage-types.log 2>&1",
+      "exitCode": 0,
+      "diagnostics": 0,
+      "logPath": "generated-artifacts/signal-chained-lineage-types.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "developmentFailuresResolved": [
+    {
+      "logPath": "/tmp/signal-chained-focused.log",
+      "logSha256": "e96d90c03290e7904f849f590837638ad293f4a31b4fb369be2581165d35987f",
+      "result": "Initial 10/12 pass. Two test-oracle issues corrected: idealized decimal rounding expectation, and mutation of an array expando excluded from JSON rather than actual observation data. Production numeric rounding was not altered."
+    },
+    {
+      "logPath": "/tmp/signal-chained-contracts.log",
+      "logSha256": "7c80238e657afbe342c202ec9d84b4738926245f5173977af5c114ed578484d3",
+      "result": "Initial 39/40 combined pass. Finite-schema AST harness lacked the new timeseriesConsumer variable. Adapted its real engineering inputs to actual closed derivation contexts; no assertion/census relaxation."
+    }
+  ],
+  "dataAndAuthorityBoundary": {
+    "inputsUsed": "Nonempty explicitly isolated public engineering fixtures in tests. Four native observation positions per parent, including invalid date, missing value, genuine zero and duplicate dates; actual middleware, response headers, request selection, client registration, checked-in JSX attributes, checked-in central handlers, serialization and readback exercised.",
+    "retentionFixtureBoundary": "Fixture material/source identities and loader verified-state flags are isolated engineering stand-ins, not claims of genuine production SQL material archives, real company data, historical original bytes or scientific approval. Fixtures never enter production paths.",
+    "genuineDatasetReads": "No genuine retained company native-producer archive downloaded for chained-consumer certification: no admissible live retained archive was supplied. The later user-requested coherent full run did execute its configured mandatory private evidence validators; that does not convert isolated chained fixtures into genuine producer-archive evidence. No app/workflow restart and no empty/live data replaced by fixtures.",
+    "mutations": "No dataset edits, public writes, canonical ledger edits, commits, deploys or callbacks.",
+    "protectedGates": "Existing three P/E consumers, private-CLI/public HTTP403 controls and original 1000/1001 census preserved. Existing finite-schema source-gate residual assertions pass unchanged. All fourteen FaIR/source-pin files were not edited by this work. The coherent full TypeScript/Python suites and configured mandatory validators subsequently passed; no scientific/source-acceptance upgrade is inferred."
+  },
+  "fullIntegrationFollowup": {
+    "status": "completed-passing",
+    "originalFailureReceipt": {
+      "path": "/tmp/chained-final-receipt.json",
+      "sha256": "62b64f73f5111d21cf73b1ee3534ba93d351c863dbab3f75f68340ddcb09af99",
+      "logPath": "/tmp/chained-final-check.log",
+      "logSha256": "a2d77d16d2f97afadb753a68508fca53974cb76a8f68abfcfea6c1464a07ff95",
+      "exitCode": 1,
+      "typescript": {"tests": 1030, "pass": 1015, "fail": 10, "cancelled": 5, "skipped": 0},
+      "unreached": ["Python suite", "mandatory private validators", "production build"],
+      "failures": [
+        "download-selection-race actual handler harness omitted new requireDerivedParent dependency: five tests cancelled after the first wait gate was never reached.",
+        "methodology-download-portable failed because its copied public-source run correctly reproduced the stale handler harness failure.",
+        "next-census-accounting found stale definition count 2274 versus actual 2370; its strict unknown-summary gate and output-field-semantics also correctly rejected the stale census.",
+        "remaining-field-semantics conditional export harness omitted the actual cumulativeConsumer initializer.",
+        "s16-005 actual chart/export initializer harnesses omitted comparisonConsumer, timeseriesConsumer and cumulativeConsumer dependencies after the real transforms migrated.",
+        "scientific-strands warning evidence had stale current-source checksum for the changed signal/gap host; original source hashes, exact warning scan lines and warning status were not changed."
+      ]
+    },
+    "corrections": [
+      {
+        "path": "script/download-selection-race.test.ts",
+        "reason": "Inject requireDerivedParent:false for existing ordinary indicator downloads. All original async selection, capture, payload/notes/bindings and no-file refusal assertions remain."
+      },
+      {
+        "path": "script/s16-005-finite-obligations.test.ts",
+        "reason": "Resolve the actual checked-in consumer initializers recursively, supplying whole engineering response series rather than duplicating their transforms. Existing zero/date/no-substitution/export assertions retained. Chart missing TE assertion now checks explicit null declared by closed chart identity; unchanged legacy helper undefined behavior is separately asserted."
+      },
+      {
+        "path": "script/remaining-field-semantics.test.ts",
+        "reason": "Supply actual deriveSignalConsumer output from engineering native backtest inputs to the extracted row expression. Both comparison-on/off column/binding/count and XLSX zero/null assertions retained."
+      },
+      {
+        "paths": ["shared/derivedConsumer.ts", "client/src/lib/producer-download.ts", "client/src/pages/decarb-gap-signal.tsx"],
+        "reason": "Preserve the real guaranteed concrete consumer columns in SignalConsumerRow<K> and generic client wrapper types. Explicit optional comparison columns and historical no-comparison projection remain honest: active finite UI always compares, while no-comparison projected rows are unregistered and mandatory parent capture refuses them. Actual registered comparison rows retain their object identity. This restores compiler-extracted old slot identities, rather than changing or bypassing the census scanner."
+      },
+      {
+        "path": "docs/field_semantics_census.json",
+        "command": "npx tsx script/field-semantics-census.ts",
+        "sha256": "5b027afaee5f99f347eb5342cfc08d1c6ae3e2944baab3bc2fd73e7168d6844c",
+        "reason": "Regenerated current census only, after concrete consumer type preservation. No --baseline option, scanner edits or frozen cohort edits.",
+        "definitions": 2370,
+        "typedEntries": 1465,
+        "fullyBoundFields": 1437,
+        "supplementalAddedSlots": 437,
+        "originalPublicSlots": 1001,
+        "originalFullyBoundFields": 1000,
+        "originalRemainingUnbound": 1,
+        "missingOriginalSlots": [],
+        "originalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+        "originalCohortComplete": false,
+        "completion": false
+      },
+      {
+        "path": "docs/scientific-strands-warning-evidence.json",
+        "sha256": "de953d457e2c0abcca23b69d7a421d8743ea717bb5f9cb9b641b00efd9aa41d0",
+        "reason": "Refresh ONLY currentSha256 for the two actually changed signal/gap hosts, with per-host currentSourceRefreshReason. Original hashes/scan lines, retained warning dispositions, resolution records and not-promoted scientific status remain unchanged."
+      }
+    ],
+    "intermediateFailureNotHidden": {
+      "logPath": "/tmp/chained-failed-focused.log",
+      "logSha256": "4ee6ec4e2633b4c8f35b4694910e81d6b4ff5dd18db1213fd5691585eb154ffd",
+      "tests": 50,
+      "pass": 42,
+      "fail": 8,
+      "reason": "First raw census regeneration exposed generic Record return types as genuinely missing old typed slots (984/1000) and extra dynamic placeholders. Assertions were not relaxed. Concrete real consumer column contracts restored all original identities before regeneration; final census has 1000/1001 and exactly437 supplemental slots."
+    },
+    "focusedFailedChecksRerun": {
+      "command": "npx tsx --test script/download-selection-race.test.ts script/s16-005-finite-obligations.test.ts script/remaining-field-semantics.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/scientific-strands-warning.test.ts script/signal-chained-lineage.test.ts script/methodology-download-portable.test.ts > /tmp/chained-failed-focused-v2.log 2>&1",
+      "exitCode": 0,
+      "tests": 80,
+      "pass": 80,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "logPath": "/tmp/chained-failed-focused-v2.log",
+      "logSha256": "78a6811b5597a8906e1162b378263e3417e4596f82a79ab64f3bf984665d6bba",
+      "typecheck": {"command": "npx tsc --noEmit --pretty false > /tmp/chained-types-v2.log 2>&1", "exitCode": 0, "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    },
+    "coherentFullCheck": {
+      "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 1200 --receipt /tmp/chained-final-v2-receipt.json --log /tmp/chained-final-v2-check.log",
+      "execution": "Foreground coherent receipt-only command; no replacement command or ledger attachment. Earlier background wrapper launches were terminated by the shell-tool lifecycle before typecheck finished and produced no receipt; no suite result or completion is claimed for those launches.",
+      "exitCode": 0,
+      "elapsedSeconds": 219.542,
+      "receiptPath": "/tmp/chained-final-v2-receipt.json",
+      "receiptSha256": "6899ad16359afa65b02b355d203f3c9c49ba408df02712780a48988e3bce9c3a",
+      "logPath": "/tmp/chained-final-v2-check.log",
+      "logSha256": "2a5a0073f389547e7186a3eb816eed6fb8ee623a6354a4c1d5457b45bcbe8d9d",
+      "typescript": {"tests": 1030, "pass": 1030, "fail": 0, "cancelled": 0, "skipped": 0},
+      "python": {"tests": 218, "pass": 218, "fail": 0, "skipped": 0},
+      "mandatoryStages": {
+        "typecheck": "passed",
+        "originalChoiceWidthDocument": "passed",
+        "privateMonetaryIntegration": "passed",
+        "privateIssuerCashflow": "passed",
+        "privateIssuerReconciliation": "passed",
+        "productionBuild": "passed"
+      },
+      "canonicalLedgersModified": false,
+      "noScientificAcceptanceClaim": true,
+      "nonfatalBuildWarnings": ["Existing stale caniuse-lite database", "Existing PostCSS plugin missing from option", "Existing bundle chunk-size warning"]
+    },
+    "frozenArtifactsUnchanged": [
+      {"path": "docs/field_semantics_original_cohort.json", "sha256": "646e9c341badfc5e218736a01809c5d69be9fb5f80a223b339e75205d84aea57"},
+      {"path": "docs/field_semantics_baseline.json", "sha256": "2da664aa4aba6c526492879e1d8a94493c59be1b8a01ea084df3d23ab968082c"}
+    ],
+    "closure": "All requested integration failures fixed; original opaque-summary unknown remains unresolved by design. No canonical ledgers, commits, deploy, release or callback. No app/workflow restart and no related background processes remain. Parent owns any subsequent record/docs/release action."
+  },
+  "residuals": [
+    "This does not close the original canonical semantics/source census or opaque-summary residual; no census rebasing or acceptance upgrade.",
+    "Browser DOM delivery is exercised through exact checked-in handler extraction with final URL/Blob/document or XLSX.writeFile substituted; browser-interactive UI itself was not visually verified.",
+    "Engineering middleware fixtures verify response-local identity transport and refusal, not genuine production archive availability or scientific data admission.",
+    "Generated log files are present under generated-artifacts, which is gitignored; hashes and exact commands are retained here.",
+    "No app/workflow started or restarted; isolated HTTP test servers close in finally blocks. No background jobs remain."
+  ]
+}

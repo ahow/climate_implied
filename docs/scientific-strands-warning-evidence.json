@@ -149,7 +149,8 @@
     {
       "path": "client/src/pages/decarb-gap-signal.tsx",
       "originalSha256": "38e22c96503bd44d3a63cbbe900eb8e0ac3d23b72e4ed12f4915f86ebc6371f9",
-      "currentSha256": "d6d2fa80defa9b831bfc62f40c1f2ffee570983ff45b2b10a05ffe4032d19e3c",
+      "currentSha256": "e3c2575c167483675aa8e48fdb959a72641e0cfde4b8bf3629dd6f53bcd6381c",
+      "currentSourceRefreshReason": "S16-007 replaces the actual group-gap and paired-backtest chart/export transforms with closed retained-parent chains, mandatory lineage and JSON companions. Explicit native column types preserve the unchanged original cohort and the historical disabled comparison projection. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
         {"line":410,"text":"            Gordon steady-state baselines and peer-relative earnings-yield gaps — not decarbonization estimates"},
         {"line":499,"text":"                Withheld"},
@@ -163,7 +164,8 @@
     {
       "path": "client/src/pages/decarb-signal.tsx",
       "originalSha256": "19ad42a6581453abfbc135d6fbaa61c3b3886ef47a8cddd2578cd3a29a14ffa0",
-      "currentSha256": "9fcebfefb58f659c6b8fc1cb36971f53baf9f52e03f3c405cc4886700a9f5031",
+      "currentSha256": "abc9b57124ea344e3ce712b9c05e6a32640c8611306a380f396d835f070b76bd",
+      "currentSourceRefreshReason": "S16-007 routes actual comparison and signal-backtest chart/export transforms through closed retained-parent chains and mandatory lineage/JSON companions. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
         {"line":198,"text":"  const expectedLabel = \"Physical comparison withheld\";"},
         {"line":419,"text":"          <p className=\"text-xs text-muted-foreground\">No defensible valuation-to-activity mapping</p>"},

@@ -1,5 +1,89 @@
 import { attachmentPlain, nativeAttachmentReader } from "./issuerAttachmentGrantInputs";
 import { sourceExhibit } from "./issuerSourceExhibits";
+/** Source-specific markdown adapter for the NEW November 3, 2026 preliminary release.
+ * Values are XPLR consolidated, never the missing NEE recipient/project waterfall.
+ */
+export function extractXplr2026ReleaseCash(markdown: string) {
+  for (const clause of ["XPLR Infrastructure, LP reports third-quarter 2026 financial results",
+    "Nov. 3, 2026", "PRELIMINARY", "Nine Months Ended September 30,",
+    "Payments from related parties under CSCS agreement – net"]) {
+    if (!markdown.includes(clause)) throw new Error(`Missing XPLR release locator: ${clause}`);
+  }
+  const cashStart = markdown.indexOf("CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS");
+  const reconciliationStart = markdown.indexOf("Reconciliation of Net Income (Loss) to Adjusted EBITDA");
+  const balanceStart = markdown.indexOf("CONDENSED CONSOLIDATED BALANCE SHEETS");
+  if (cashStart < 0 || reconciliationStart < 0 || balanceStart <= reconciliationStart || cashStart <= balanceStart)
+    throw new Error("Actual release statement ordering required");
+  const cash = markdown.slice(cashStart), nonGaap = markdown.slice(reconciliationStart, balanceStart);
+  if (!cash.includes("(millions)") || !nonGaap.includes("(millions)"))
+    throw new Error("Explicit release USD-million presentation required");
+  if (!/\|\s*2026\s*\|\s*\|\s*2025\s*\|/.test(cash))
+    throw new Error("Exact 2026/2025 cash statement column order required");
+  if (!/\|\s*2026\s*\|\s*\|\s*2025\s*\|\s*\|\s*2026\s*\|\s*\|\s*2025\s*\|/.test(nonGaap))
+    throw new Error("Exact quarter/year-to-date comparative column order required");
+  function row(section: string, label: string, columns: number, index: number) {
+    const rows = section.split("\n").filter(line => line.startsWith(`| ${label} |`));
+    if (rows.length !== 1) throw new Error(`Unique release cash row required: ${label}`);
+    const values = rows[0].split("|").slice(2).map(cell => cell.trim())
+      .filter(cell => cell !== "" && cell !== "$")
+      .map(cell => cell === "—" ? 0 : /^\(?[\d,]+\)?$/.test(cell) ?
+        Number(cell.replace(/[(),]/g, "")) * (cell.startsWith("(") ? -1 : 1) : NaN);
+    if (values.length !== columns || values.some(value => !Number.isFinite(value)))
+      throw new Error(`Exact comparative values required: ${label}`);
+    return values[index] * 1e6;
+  }
+  const c = (label: string) => row(cash, label, 2, 0);
+  const n = (label: string) => row(nonGaap, label, 4, 2);
+  return {
+    periodEnd: "2026-09-30" as const, periodStart: "2026-01-01" as const,
+    publicationDate: "2026-11-03" as const, currency: "USD" as const,
+    operatingCashUsd: c("Net cash provided by operating activities"),
+    investingCashUsd: c("Net cash provided by (used in) investing activities"),
+    financingCashUsd: c("Net cash used in financing activities"),
+    cashChangeUsd: c("NET INCREASE (DECREASE) IN CASH, CASH EQUIVALENTS AND RESTRICTED CASH"),
+    openingCashIncludingRestrictedUsd: c("CASH, CASH EQUIVALENTS AND RESTRICTED CASH – BEGINNING OF PERIOD"),
+    closingCashIncludingRestrictedUsd: c("CASH, CASH EQUIVALENTS AND RESTRICTED CASH – END OF PERIOD"),
+    netCscsInvestingCashUsd: c("Payments from related parties under CSCS agreement – net"),
+    partnerContributionsUsd: c("Partner contributions"), partnerDistributionsSignedUsd: c("Partner distributions"),
+    classBPaymentsSignedUsd: c("Payments to Class B noncontrolling interest investors"),
+    classBBuyoutSignedUsd: c("Buyout of Class B noncontrolling interest investors"),
+    differentialMembershipProceedsUsd: c("Proceeds from differential membership investors"),
+    differentialMembershipPaymentsSignedUsd: c("Payments to differential membership investors"),
+    differentialMembershipBuyoutSignedUsd: c("Buyout of differential membership investors"),
+    capexAndOtherInvestmentsSignedUsd: c("Capital expenditures and other investments"),
+    adjustedEbitdaUsd: n("Adjusted EBITDA"), taxCreditAdjustmentSignedUsd: n("Tax credits(a)"),
+    cashInterestSignedUsd: n("Cash interest paid"), nonGaapClassBPaymentsSignedUsd: n("Payments to Class B noncontrolling investors"),
+    nonGaapTaxEquityPaymentsSignedUsd: n("Payments to tax equity investors"),
+    capitalMaintenanceAndOtherSignedUsd: n("Capital maintenance and other"), freeCashBeforeGrowthUsd: n("Free cash flow before growth")
+  };
+}
+export function reconcileXplr2026ReleaseCash(s: ReturnType<typeof extractXplr2026ReleaseCash>) {
+  if (s.periodStart !== "2026-01-01" || s.periodEnd !== "2026-09-30" ||
+    s.publicationDate !== "2026-11-03" || s.currency !== "USD" ||
+    Object.values(s).some(v => typeof v === "number" && !Number.isFinite(v)))
+    throw new Error("Finite actual 2026 XPLR release cash required");
+  const cashResidual = s.openingCashIncludingRestrictedUsd + s.operatingCashUsd + s.investingCashUsd +
+    s.financingCashUsd - s.closingCashIncludingRestrictedUsd;
+  const changeResidual = s.operatingCashUsd + s.investingCashUsd + s.financingCashUsd - s.cashChangeUsd;
+  const fcfResidual = s.adjustedEbitdaUsd + s.taxCreditAdjustmentSignedUsd + s.cashInterestSignedUsd +
+    s.nonGaapClassBPaymentsSignedUsd + s.nonGaapTaxEquityPaymentsSignedUsd +
+    s.capitalMaintenanceAndOtherSignedUsd - s.freeCashBeforeGrowthUsd;
+  if (cashResidual !== 0 || changeResidual !== 0 || fcfResidual !== 0)
+    throw new Error("Reported release cash/non-GAAP reconciliation did not close");
+  return {
+    cashReconciliationResidualUsd: cashResidual, cashChangeResidualUsd: changeResidual,
+    nonGaapReconciliationResidualUsd: fcfResidual,
+    consolidatedNetPartnerCashUsd: s.partnerContributionsUsd + s.partnerDistributionsSignedUsd,
+    nonGaapMinusOperatingCashUsd: s.freeCashBeforeGrowthUsd - s.operatingCashUsd,
+    gaapMinusNonGaapInvestorPaymentMagnitudeUsd: -s.differentialMembershipPaymentsSignedUsd + s.nonGaapTaxEquityPaymentsSignedUsd,
+    netCscsInvestingCashUsd: s.netCscsInvestingCashUsd,
+    grossCscsWithdrawalsUsd: null, grossCscsRepaymentsUsd: null,
+    neeLegalRecipientDistributionsUsd: null, neeServiceReimbursementCashUsd: null,
+    projectCommissioningMarginalReturns: null, contractualAvailableCash: null,
+    originalNeeCommonFcfeCashAddedUsd: 0, qualifiedOriginalIssuers: 0,
+    boundary: "New preliminary XPLR consolidated cash, not NEE consolidated or per-LLC common cash. Partner contribution/distribution rows have no legal-recipient allocation. Net CSCS is not gross settlement. FCFBG excludes growth and is not GAAP CFO or whole-issuer FCFE; its tax-equity adjustment/payment scope differs from GAAP differential-membership cash. Do not double deduct investor cash/maintenance already represented in a chosen bridge, combine these non-GAAP rows with CFO, divide by ownership or infer contractual priority/project returns. Revised history only; original FY2024/reference/stub/terminal inputs unchanged."
+  };
+}
 export function extractNewNeeCashQuarter(nee: string, xplr: string) {
   const a = nativeAttachmentReader(nee, "0000753308"), b = nativeAttachmentReader(xplr, "0001603145");
   const end = "2025-09-30", start = "2025-01-01";

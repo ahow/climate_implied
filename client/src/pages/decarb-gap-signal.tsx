@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/select";
 import { Activity, Globe, Layers, BarChart3, TrendingUp, TrendingDown, ArrowUpDown, Beaker } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
-import { certifyFiniteExport,finiteExportBindings,groupGapExportColumn } from "@shared/finiteExportSchemas";
-import { gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestPercent, backtestDisplay, backtestDisplayStats, observationTimestamp, datedObservations, hasUndatedObservations, tooltipObservation, selectedGroupGapPp } from "@/lib/valuation-claims";
+import { deriveProducerSignalConsumer } from "@/lib/producer-download";
+import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
+import { gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestDisplay, backtestDisplayStats, observationTimestamp, hasUndatedObservations, tooltipObservation, selectedGroupGapPp } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
 import type { BacktestResponse } from "@shared/backtest";
@@ -144,12 +145,6 @@ const COLORS = {
   gapFill: "hsl(168, 76%, 36%)",
 };
 
-interface TimeSeriesDataPoint {
-  date: number;
-  dateLabel: string;
-  impliedRate?: number | null;
-}
-
 function formatDateLabel(timestamp: number): string {
   if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) return "Observation date unavailable";
   const d = new Date(timestamp);
@@ -259,28 +254,10 @@ export default function DecarbGapSignal() {
   }, [selectedMeasureData, measure]);
 
 
-  const chartData = useMemo(() => {
-    const dateMap = new Map<number, TimeSeriesDataPoint>();
-
-    if (selectedMeasureData) {
-      for (const pt of datedObservations<CarbonPricePoint | SDGGrowthPoint | DecarbTercilePoint>(selectedMeasureData)) {
-        const ts = observationTimestamp(pt.date)!;
-        const existing = dateMap.get(ts);
-        const impliedRate = selectedGroupGapPp(pt, measure);
-        if (existing) {
-          existing.impliedRate = impliedRate;
-        } else {
-          dateMap.set(ts, {
-            date: ts,
-            dateLabel: formatDateLabel(ts),
-            impliedRate,
-          });
-        }
-      }
-    }
-
-    return Array.from(dateMap.values()).sort((a, b) => a.date - b.date);
-  }, [selectedMeasureData, measure]);
+  const timeseriesConsumer = useMemo(() => deriveProducerSignalConsumer(
+    [selectedMeasureData], "group-gap", measure,
+  ), [selectedMeasureData, measure]);
+  const chartData = timeseriesConsumer.chartRows;
 
   const loadingMeasure = (measure === "carbon_intensity" && loadingCP) ||
     (measure === "sdg_alignment" && loadingSDG) ||
@@ -296,31 +273,13 @@ export default function DecarbGapSignal() {
   const backtestStats = useMemo(() => computeStats(backtestData), [backtestData]);
   const valBacktestStats = useMemo(() => computeStats(valuationBacktestData), [valuationBacktestData]);
 
-  const backtestChartData = useMemo(() => {
-    if (!backtestData && !valuationBacktestData) return [];
-    const signalMap = new Map<string, BacktestPoint>();
-    const valMap = new Map<string, BacktestPoint>();
-    if (backtestData) {
-      for (const d of datedObservations(backtestData)) signalMap.set(d.date, d);
-    }
-    if (valuationBacktestData) {
-      for (const d of datedObservations(valuationBacktestData)) valMap.set(d.date, d);
-    }
-    const allDates = Array.from(new Set([...Array.from(signalMap.keys()), ...Array.from(valMap.keys())])).sort();
-    return allDates.map((date) => {
-      const sd = signalMap.get(date);
-      const vd = valMap.get(date);
-      const bmSource = sd || vd;
-      return {
-        date,
-        benchmark: backtestPercent(bmSource?.benchmarkCumulative, true),
-        portfolio: backtestPercent(sd?.portfolioCumulative, true),
-        valuation: backtestPercent(vd?.portfolioCumulative, true),
-        activeReturn: backtestPercent(sd?.activeReturn),
-        trackingError: backtestPercent(sd?.trackingError),
-      };
-    });
-  }, [backtestData, valuationBacktestData]);
+  const cumulativeConsumer = useMemo(() => deriveProducerSignalConsumer(
+    [backtestResponse, valuationBacktestResponse], "gap-cumulative", measure,
+  ), [backtestResponse, valuationBacktestResponse, measure]);
+  const activeConsumer = useMemo(() => deriveProducerSignalConsumer(
+    [backtestResponse, valuationBacktestResponse], "gap-active", measure,
+  ), [backtestResponse, valuationBacktestResponse, measure]);
+  const backtestChartData = cumulativeConsumer.chartRows;
 
   const TimeSeriesChartTooltip = ({ active, payload, label }: any) => {
     if (!active) return null;
@@ -368,23 +327,19 @@ export default function DecarbGapSignal() {
 
   const measureInfo = MEASURE_TYPES.find(m => m.value === measure);
 
-  const timeseriesDownloadRows = certifyFiniteExport("groupGap",chartData.map((d) => ({
-    "Date": formatDateLabel(d.date),
-    [groupGapExportColumn(measure)]: d.impliedRate,
-  })),{measure});
-
-  const cumulativeReturnDownloadRows = backtestChartData.map((d) => ({
-    "Date": d.date,
+  const timeseriesDownloadRows = certifyFiniteExport("groupGap", timeseriesConsumer.rows, {measure});
+  // The finite measure UI currently always enables comparison. Preserve the
+  // historical no-comparison projection for callers inspecting that branch;
+  // it is deliberately unbound and the required-parent writer refuses it.
+  const cumulativeReturnDownloadRows: Array<{
+    Date: string | number; "Benchmark Cumulative Return (%)": number | null;
+    "Legacy peer-yield ranking cumulative return (%)"?: number | null;
+  }> = compareGap ? cumulativeConsumer.rows : backtestChartData.map((d) => ({
+    Date: d.date,
     "Benchmark Cumulative Return (%)": d.benchmark,
     [`${measureInfo?.label ?? "Measure"}-Driven Cumulative Return (%)`]: d.portfolio,
-    ...(compareGap ? { "Legacy peer-yield ranking cumulative return (%)": d.valuation } : {}),
   }));
-
-  const activeReturnDownloadRows = backtestChartData.map((d) => ({
-    "Date": d.date,
-    "Active Return (%)": d.activeReturn,
-    "Tracking Error (ann. %)": d.trackingError,
-  }));
+  const activeReturnDownloadRows = activeConsumer.rows;
 
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-gap-signal">
@@ -531,6 +486,7 @@ export default function DecarbGapSignal() {
                   </p>
                 </div>
                 <DownloadDataButton
+                  requireDerivedParent
                   kind="valuation"
                   filename="group-earnings-yield-gap-over-time"
                   sheetName="Group valuation gap"
@@ -730,7 +686,8 @@ export default function DecarbGapSignal() {
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <h3 className="text-xs font-medium text-muted-foreground">Cumulative Return (%)</h3>
                     <DownloadDataButton
-                  interpretationNotes={gordonExportNotes(8)}
+                      requireDerivedParent
+                      interpretationNotes={gordonExportNotes(8)}
                       filename="backtest-cumulative-return"
                       kind="backtest"
                       sheetName="Cumulative Return"
@@ -771,6 +728,7 @@ export default function DecarbGapSignal() {
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <h3 className="text-xs font-medium text-muted-foreground">Monthly Active Return & Expanding Tracking Error (%)</h3>
                     <DownloadDataButton
+                      requireDerivedParent
                       filename="backtest-active-return-tracking-error"
                       kind="backtest"
                       sheetName="Active Return & TE"

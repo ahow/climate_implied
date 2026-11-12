@@ -120,3 +120,25 @@ export function qualifiedPlanEnvelope(p:QualifiedXomPlan){
       "project gross capex/commissioning/replacement schedule","NCI/advance funding cash and common ownership waterfall",
       "policy credit cash entitlement/timing","earnings-to-common-cash reconciliation"]};
 }
+/** An actual new issuer announcement, NOT an executed operating instrument or billings. */
+export function extractWilliams2026CcsAnnouncement(markdown:string){
+  const s=markdown.replace(/\s+/g," ");
+  for(const clause of ["News releaseJuly 28, 2026",
+    "Williams selects ExxonMobil for CO2", "transportation and storage",
+    "We’re contracted to transport and store up to 1 MTA of CO2",
+    "Williams’ natural gas gathering and processing facility in southwest Louisiana",
+    "This is our seventh commercial contract, for a total of ~9 MTA"])
+    if(!s.includes(clause))throw new Error(`Missing Williams announcement locator: ${clause}`);
+  return {
+    publicationDate:"2026-07-28",informationContext:"revised-history-not-original-cutoff",
+    counterpartyBrand:"Williams",location:"southwest Louisiana",
+    announcedAnnualCo2UpperTonnes:1e6,announcedPortfolioApproximateAnnualTonnes:9e6,
+    volumeBasis:"contracted-up-to-not-observed-service-or-minimum-billing",
+    executedInstrumentAcquired:false,legalOperatingSubsidiaries:null,executionOrEffectiveDate:null,
+    enlinkAssignmentOrNovation:null,actualServicedCo2Tonnes:null,
+    feePerTonneUsd:null,minimumBillingsUsd:null,invoicedOrCollectedUsd:null,
+    operatingExpensesUsd:null,fundedProjectCapitalUsd:null,
+    amountInsertedIntoXomOriginalCashflowsUsd:0,qualifiedOriginalIssuers:0,
+    boundary:"New issuer statement of commercial contracting, not a retrieved signed/priced operating agreement. Portfolio and up-to volumes cannot supply current billings, actual serviced mass, capacity utilization, fees, opex, funding or common FCFE. No implication that this distinct Williams contract novates the EnLink/CF arrangement, no 45Q entitlement assumed, no additional baseline carbon expense."
+  };
+}

@@ -7,6 +7,7 @@ import { nativePathwayGasIds } from "../shared/nativePathwaySemantics";
 import { nativeInventory, validateNativePair } from "../server/calculation/nativePathwayContract";
 import * as XLSX from "xlsx";
 import ts from "typescript";
+import { deriveSignalConsumer } from "../shared/derivedConsumer";
 import { resolve } from "node:path";
 import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 
@@ -162,9 +163,13 @@ test("actual conditional-spread export rows and bindings agree with comparison b
   // Evaluate only these trusted, pure, checked-in production expressions:
   // no app/server/collector is started and no private data is read.
   const evaluate=(expression:string,points:object[],compare:boolean)=>{
-    const js=ts.transpileModule(`const evaluate=(backtestChartData,compareGap,measureInfo)=>(${expression});`,
+    const consumer=deriveSignalConsumer([{series:[
+      {date:"2024-01",benchmarkCumulative:.975,portfolioCumulative:null},
+    ]},{series:[{date:"2024-01",benchmarkCumulative:1,portfolioCumulative:1}]}],
+      "gap-cumulative","carbon_intensity");
+    const js=ts.transpileModule(`const evaluate=(backtestChartData,compareGap,measureInfo,cumulativeConsumer)=>(${expression});`,
       {compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.None}}).outputText;
-    return new Function(`${js};return evaluate;`)()(points,compare,{label:"Carbon Intensity"});
+    return new Function(`${js};return evaluate;`)()(points,compare,{label:"Carbon Intensity"},consumer);
   };
   const points=[{date:"2024-01",benchmark:-2.5,portfolio:undefined,valuation:0}];
   for(const compare of [false,true]) {

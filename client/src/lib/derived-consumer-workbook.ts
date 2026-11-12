@@ -9,6 +9,23 @@ async function hash(value: unknown) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(consumerCanonicalJson(value)));
   return Array.from(new Uint8Array(digest)).map(x => x.toString(16).padStart(2, "0")).join("");
 }
+/** Closed exports contain literal cells only, never executable formulas/links.
+ * Raw value hashes alone cannot detect a formula with an unchanged cached value. */
+function assertLiteralCells(XLSX: typeof Workbook, book: Workbook.WorkBook) {
+  for (const name of book.SheetNames) {
+    const sheet = book.Sheets[name];
+    const range = sheet["!ref"] ? XLSX.utils.decode_range(sheet["!ref"]) : null;
+    for (const [address, cell] of Object.entries(sheet)) {
+      if (address.startsWith("!")) continue;
+      if (!/^[A-Z]+[1-9]\d*$/.test(address)) throw new Error("Unexpected workbook cell address");
+      const point = XLSX.utils.decode_cell(address);
+      if (!range || point.r < range.s.r || point.r > range.e.r || point.c < range.s.c || point.c > range.e.c)
+        throw new Error("Workbook cell outside declared range");
+      if (cell.f !== undefined || cell.F !== undefined || cell.l !== undefined)
+        throw new Error("Derived workbook formulas and links are forbidden");
+    }
+  }
+}
 /** Supplemental sheets are exact captured consumer metadata, not additional
  * native producer outputs. No claim that dictionary prose existed historically.
  * The lineage sheet excludes itself to avoid a circular cell-hash assertion. */
@@ -16,6 +33,7 @@ export async function appendDerivedConsumerWorkbookLineage(
   XLSX: typeof Workbook, book: Workbook.WorkBook, identity: Identity | null,
 ) {
   if (!identity) return null;
+  assertLiteralCells(XLSX, book);
   if (book.SheetNames.includes("Derived lineage")) throw new Error("Reserved derived lineage worksheet name");
   const sheets = await Promise.all(book.SheetNames.map(async (name, index) => {
     const cells = XLSX.utils.sheet_to_json<unknown[]>(book.Sheets[name], { header: 1, defval: null, raw: true });
@@ -42,6 +60,7 @@ export async function verifyDerivedConsumerWorkbook(
   XLSX: typeof Workbook, bytes: Uint8Array, expected: NonNullable<Awaited<ReturnType<typeof appendDerivedConsumerWorkbookLineage>>>,
 ) {
   const book = XLSX.read(bytes, { type: "array" });
+  assertLiteralCells(XLSX, book);
   if (consumerCanonicalJson(book.SheetNames) !== consumerCanonicalJson([...expected.sheets.map(sheet => sheet.name), "Derived lineage"]))
     throw new Error("Derived workbook sheet order conflicts");
   const lineageCells = XLSX.utils.sheet_to_json<unknown[]>(book.Sheets["Derived lineage"],
