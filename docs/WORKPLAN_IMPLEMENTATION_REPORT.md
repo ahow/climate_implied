@@ -6924,7 +6924,7 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
 
 ```json
 {
-  "recorded_at": "2026-11-12T16:43:12.208710+00:00",
+  "recorded_at": "2026-11-12T17:02:10.700378+00:00",
   "files": {
     "server/calculation/utilityRetirement.ts": "b5a65b0065b046fa8cc619a0215a25a5f9075bdd6ba00835cc923dae6b498529",
     "script/controlled_growth_association.py": "266a4540a02ba318d3c766c96a26ca60a66838842afeddbe777b18e01638b01c",
@@ -6950,7 +6950,7 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
     "script/component-state-census.test.ts": "d6017ceb2c4deaad693d1e9a8881dcd41dd0fbf73cec3c5c43611ca5e5321e42",
     "script/methodology-download.test.ts": "c965383bb00ce535081903afaba895f67331dc22549ba536a1036359450a776b",
     "script/methodology-download-portable.test.ts": "44252493ed1125038b16d79a0f02e2be15e0f41803d3d8cf44ea3a771260be05",
-    "script/record-retirement-association.py": "431189ccde37a7e56a2f0d252b93d56907efdbaa80cd406d13d7b2de40a9a522"
+    "script/record-retirement-association.py": "28da9a25aa827418fe6181e82e8c2db782b04799084cc94c5bfea6f1d6cac0de"
   },
   "new_vs_old": "New S13-003 retirement cash engine and S13-006 unscored association estimator/public source report. Prior producer/electricity models, negative studies, original1001 and closed finite export criteria unchanged.",
   "source": "PacifiCorp FY2023 issuer filing submitted to Utah PSC, cover2024-03-07, printed Note4 p234 and Item2. Exact publication instant unknown. Private PDF/text hashes recorded separately; no raw publication.",
@@ -6973,7 +6973,81 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
     "OLS/HC3 independent direct-matrix oracle tolerance1e-12",
     "n>=max(30,3p), full rank, condition<=1e8, leverage<1-1e-10"
   ],
-  "release": "Unreleased working increment until separate observed gated promotion receipt; prior live0e2870d5 and implementationb8d98f6 remain distinct.",
+  "release": {
+    "path": "generated-artifacts/retirement-association/release-observation.json",
+    "sha256": "ff05a88e824f45382ce89481089078cd1233d0a8b473b2e6fb669070485ffbfb",
+    "observation": {
+      "observedAt": "2026-11-12T17:00:28.058Z",
+      "workspaceImplementation": "593608905d42e15f1c900723ebef18c0292e580c",
+      "publicSource": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+      "ci": {
+        "id": 43261776788,
+        "status": "completed",
+        "conclusion": "success",
+        "observedAt": "2026-11-12T16:51:49.896Z",
+        "url": "https://github.com/ahow/climate_implied/actions/runs/43261776788"
+      },
+      "live": {
+        "build": {
+          "body": {
+            "calculationVersion": "historical-diagnostics-7",
+            "sourceCommit": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+            "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+          },
+          "status": 200
+        },
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ok"
+          }
+        },
+        "base": "https://dashboard-production-4d39.up.railway.app",
+        "readback": {
+          "at": "2026-11-12T17:00:28.058Z",
+          "sourceCommit": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+          "api": 200,
+          "json": 200,
+          "xlsx": 200,
+          "health": 200,
+          "identity": "30c62e7ff41399f2ec9be487587d32db8b0a926d9a5be117d3cd6a31fc8300fb",
+          "codeClosureFiles": 167,
+          "bookUsdMillion": 206,
+          "retirement": null,
+          "association": null,
+          "boundary": "Per-deployment integrity and exact code closure/literal readback; not local/deployed whole-archive equality or scientific acceptance"
+        }
+      },
+      "githubDeployment": {
+        "id": 7743689097,
+        "state": "success",
+        "railwayId": "68cf9708-426b-45ce-9f9f-026f3265d4fc",
+        "observedAt": "2026-11-12T16:58:34.055Z"
+      },
+      "boundary": "Existing CI promotion succeeded; exact live public source dc2d702c and API/JSON/XLSX/health200 verified. Documentation receipts remain separate. No actual issuer valuation/association or scientific/owner promotion.",
+      "cleanCheckoutEvidence": "Existing CI fresh checkout, Node22 setup, npm ci, uv sync --locked and public validation/promotion succeeded. Bounded source reproduction, not full S17/private data recovery or scientific acceptance.",
+      "devReadback": {
+        "path": "generated-artifacts/retirement-association/dev-readback.log",
+        "api": 200,
+        "json": 200,
+        "xlsx": 200,
+        "identity": "a99ce3c2f93df2870f00671d8e3ebf015caa7b27b07489ebbaf579d4a57411c9",
+        "bookUsdMillion": 206,
+        "retirementValuation": null,
+        "association": null
+      },
+      "postLedger": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "skip": 0,
+        "log": "generated-artifacts/retirement-association/post-ledger.log"
+      },
+      "unmodifiedBoundaries": "Original1000/1001;0qualified cases;300 originalIDs;63verified/235partial/2blocked;14FaIR pins and old124/179/416 preserved.",
+      "failureHistory": "Initial live verification against the local current whole archive refused, correctly: the local and deployed whole archives are distinct. Subsequent verification checked all own identity hashes, actual167code-closure file hashes, report, JSON and literal XLSX within the deployed identity; no cross-archive replay or gate weakening.",
+      "liveReadbackLog": "generated-artifacts/retirement-association/live-readback-final.log"
+    }
+  },
   "executions": [
     {
       "path": "generated-artifacts/retirement-association/full-1.receipt.json",

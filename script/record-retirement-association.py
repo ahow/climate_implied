@@ -24,6 +24,7 @@ FILES=[
 def sha(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 parser=argparse.ArgumentParser()
 parser.add_argument("--receipt",action="append",default=[])
+parser.add_argument("--release-receipt")
 args=parser.parse_args()
 ledger=json.loads((ROOT/"docs/workplan_completion_ledger.json").read_text())
 now=datetime.now(timezone.utc).isoformat()
@@ -47,6 +48,9 @@ evidence={"recorded_at":now,"files":{p:sha(p) for p in FILES},
  "release":"Unreleased working increment until separate observed gated promotion receipt; prior live0e2870d5 and implementationb8d98f6 remain distinct.",
  "executions":[]}
 previous=ledger.get("retirement_association_increment",{})
+if args.release_receipt:
+ evidence["release"]={"path":args.release_receipt,"sha256":sha(args.release_receipt),
+                      "observation":json.loads((ROOT/args.release_receipt).read_text())}
 evidence["executions"]=previous.get("executions",[])
 for path in args.receipt:
  r=json.loads((ROOT/path).read_text())
@@ -97,6 +101,15 @@ def walk(value):
    value["next_action"]=gaps[key][0];value["nextAction"]=gaps[key]
    value["numerical_results"]=[evidence["numerics"] if key=="S13-003" else "Actual issuer coefficients unavailable; synthetic coefficient/oracle controls are engineering only"]
    value["scientific_acceptance"]=evidence["scientific_decision"]
+   value.setdefault("prior_evidence_caveat",value.get("evidence_caveat"))
+   value["evidence_caveat"]="New numerical engines, source book arithmetic and read-only integration are tested engineering. "+ " ".join(gaps[key])
+   if args.release_receipt:
+    observation=evidence["release"]["observation"]
+    value["git_commit"]=observation["workspaceImplementation"]
+    value.setdefault("revision_boundary",{})["retirement_association_release"]={
+     "workspaceImplementation":observation["workspaceImplementation"],"publicSource":observation["publicSource"],
+     "ci":observation["ci"],"lastObservedRuntime":observation["live"]["build"],
+     "newRuntimeVerified":observation["live"]["build"]["body"].get("sourceCommit")==observation["publicSource"]}
    new_functions=(["calculateUtilityRetirement","freezeUtilityRetirement","invertUtilityRetirement",
                    "buildRetirementAssociationPublic","retirementAssociationAdapter"]
                   if key=="S13-003" else ["estimate","digest","instant","buildRetirementAssociationPublic"])
@@ -128,6 +141,27 @@ def walk(value):
   for child in value:walk(child)
 walk(ledger)
 ledger["restart"]["next_requirement"]="S13-003 source actual unit cash/recovery/commitments and compatible target; S13-006 assemble exact frozen qualified issuer controls/exposure and execute only admissible actual association. Preserve new engine/HC3/source206USDm evidence, distinguish engineering from science; continue independent original source/corpus requirements."
+if args.release_receipt:
+ obs=evidence["release"]["observation"]
+ if obs["live"]["build"]["body"].get("sourceCommit")==obs["publicSource"] and obs["live"].get("readback"):
+  prior=ledger.get("current_release",{})
+  history=ledger.setdefault("release_history",[])
+  if prior and not any(x.get("github_main")==prior.get("github_main") for x in history):
+   history.append(prior)
+  ledger["current_release"]={
+   "workspace_commit":obs["workspaceImplementation"],"github_main":obs["publicSource"],
+   "production_validated":obs["publicSource"],"ci":"43261776788 validation/promotion success",
+   "ci_url":obs["ci"]["url"],"ci_steps":"Fresh checkout/Node22/npm ci/locked Python/public validation/promote succeeded; public suite totals not inspected separately.",
+   "railway_deployment":obs["githubDeployment"]["railwayId"],"railway_status":"SUCCESS",
+   "verified_at":obs["observedAt"],"verified_base":obs["live"]["base"],
+   "build_info_source_commit":obs["publicSource"],"health":200,
+   "receipt":args.release_receipt,"receipt_sha256":sha(args.release_receipt),
+   "runtime":obs["live"]["readback"],"failure_history":obs["failureHistory"],
+   "documentation_boundary":"Later docs/local receipts remain separate from this measured economic implementation; do not recursively rewrite this SHA.",
+   "scope":"S13-003/006 remain partial. Engineering/code deployment only; no actual issuer valuation/association or science/owner activation."}
+  ledger["restart"]["next_requirement"]="Preserve verified live dc2d702c/CI43261776788 and167-file JSON/XLSX identity readback; later docs/local receipts are separate. "+ledger["restart"]["next_requirement"]
+ else:
+  ledger["restart"]["next_requirement"]="FIRST verify completion of existing Railway deployment for dc2d702c; CI43261776788 succeeded. Do not restart active builds. "+ledger["restart"]["next_requirement"]
 (ROOT/"docs/workplan_completion_ledger.json").write_text(json.dumps(ledger,indent=2,ensure_ascii=False)+"\n")
 spec=importlib.util.spec_from_file_location("ledger",ROOT/"script/completion-ledger.py")
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);module.render(ledger)
