@@ -130,7 +130,9 @@ function formatDateLabel(timestamp: number): string {
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
-export default function DecarbSignal() {
+export default function DecarbSignal() { return <DecarbSignalView legacyComparators={import.meta.env?.DEV === true} />; }
+/** Retained implementation for development/regression evidence; production entry fixes false. */
+export function DecarbSignalView({legacyComparators=false}:{legacyComparators?:boolean}) {
   const [scoringMethod, setScoringMethod] = useState<ScoringMethod>("sector_relative");
   const [geography, setGeography] = useState<string>("all");
   const [backtestSignal, setBacktestSignal] = useState<BacktestSignal>("carbon_intensity");
@@ -184,7 +186,7 @@ export default function DecarbSignal() {
     queryFn: async () => {
       return fetchBacktest(`/api/cv/backtest?signal=${backtestSignal}&trackingError=${trackingErrorLimit}&trackingErrorUnit=percent&method=absolute${geoParam}`);
     },
-    enabled: !!uploadId,
+    enabled: !!uploadId && legacyComparators,
   });
   const backtestData = backtestResponse?.series;
 
@@ -469,7 +471,7 @@ export default function DecarbSignal() {
         )}
       </Card>
 
-      {uploadId && (
+      {legacyComparators && uploadId && (
         <Card className="p-4" data-testid="card-backtest">
           <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
             <div>
@@ -677,6 +679,7 @@ export default function DecarbSignal() {
         </Card>
       )}
 
+      {!legacyComparators && <p>Legacy signal backtests and their comparison controls are retired from production. Retained paired research and source diagnostics remain available separately.</p>}
       <Card className="p-4">
         <h3 className="text-sm font-semibold mb-2">Methodology Notes</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground leading-relaxed">

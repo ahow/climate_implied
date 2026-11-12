@@ -220,7 +220,7 @@
     {
       "path": "client/src/pages/dashboard.tsx",
       "originalSha256": "f77303a463354f95059878a7bb5916208f2427c918cdf116040918cfc47b7ebc",
-      "currentSha256": "1a037992ca50a35bd82f3b085cba448160f119eb1e0d25d78b4ff0b4cd56167d",
+      "currentSha256": "893304ae0fa5cb2cda436147621eec4e53534a9d7e49db6e17e0959994641156",
       "priorCurrentSha256": "7655249d19553c0ed9a678912b5ddbc6710e0fde64fd756494d15498f8319af8",
       "currentSourceRefreshReason": "Inspected dashboard diff: heading now consumes shared/regionalCounterfactual.ts; the regional qualification now says Regional-intensity results are legacy global counterfactuals, not regional temperatures or inventories. This preserves and strengthens the scope warning rather than resolving it. Original hash, exact historical scan lines and all other physical/vintage warnings are retained.",
       "exactScanLines": [
@@ -255,7 +255,7 @@
     {
       "path": "client/src/pages/decarb-gap-signal.tsx",
       "originalSha256": "38e22c96503bd44d3a63cbbe900eb8e0ac3d23b72e4ed12f4915f86ebc6371f9",
-      "currentSha256": "496853058738714fa2cb11561bf109a32dbd7c213a22ce87de3ac2511dc131ca",
+      "currentSha256": "3f141fb7167433e87cbe0494076e942b91eceb52ea26dcfb0e9443aecdbb3834",
       "currentSourceRefreshReason": "S16-007 replaces the actual group-gap and paired-backtest chart/export transforms with closed retained-parent chains, mandatory lineage and JSON companions. Explicit native column types preserve the unchanged original cohort and the historical disabled comparison projection. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
         {
@@ -285,7 +285,7 @@
     {
       "path": "client/src/pages/decarb-signal.tsx",
       "originalSha256": "19ad42a6581453abfbc135d6fbaa61c3b3886ef47a8cddd2578cd3a29a14ffa0",
-      "currentSha256": "9fc8ebb2087d89fa633a615cd1ab3396444bdc95ce2c710dd63ae21dcc97b96e",
+      "currentSha256": "3b7986b05656cd8f2f3e3cb8c0ba469cb899f5c10600e04104306648c251d1d5",
       "currentSourceRefreshReason": "S16-007 routes actual comparison and signal-backtest chart/export transforms through closed retained-parent chains and mandatory lineage/JSON companions. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
         {

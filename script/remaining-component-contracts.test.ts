@@ -33,8 +33,8 @@ import { ThemeToggle } from "../client/src/components/theme-toggle";
 import { ThresholdDiagnosticDownload } from "../client/src/components/threshold-diagnostic-details";
 import Dashboard, { LegacyDashboard } from "../client/src/pages/dashboard";
 import DataManagement from "../client/src/pages/data-management";
-import DecarbGapSignal from "../client/src/pages/decarb-gap-signal";
-import DecarbSignal from "../client/src/pages/decarb-signal";
+import DecarbGapSignal, {DecarbGapSignalView} from "../client/src/pages/decarb-gap-signal";
+import DecarbSignal, {DecarbSignalView} from "../client/src/pages/decarb-signal";
 import Methodology from "../client/src/pages/methodology";
 import NewsSentiment from "../client/src/pages/news-sentiment";
 import { companyCoverage } from "../server/calculation/companyCoverage";
@@ -397,27 +397,37 @@ test("backtest accounting exact fields preserve multiplier zero, omit null perce
   assert.equal(backtestDisplay(ready.finalTE), `${(0.012345 * 100).toFixed(2)}%`);
 });
 test("actual signal/gap backtest root fields: null return/TE/accounting not fabricated as -100%, 0.00% or NaN", () => {
+  const DecarbSignal=DecarbSignalView, DecarbGapSignal=DecarbGapSignalView;
   for (const Component of [DecarbSignal, DecarbGapSignal]) {
     const response = { series: [{ date: "2024-01", benchmarkCumulative: null, portfolioCumulative: null, activeReturn: null, trackingError: null }], summary: null };
     const result = render(Component, [
       [["/api/cv/uploads"], [{ id: 1, status: "completed" }]],
       [Component === DecarbSignal ? ["/api/cv/backtest", "carbon_intensity", 2, "sector_relative", "all", 1] : ["/api/cv/backtest", "sdg_exposure", 2, "sector_relative", "all", 1], response],
       ...(Component === DecarbGapSignal ? [[[ "/api/cv/backtest", "valuation", "decarb_gap", 2, "sector_relative", "all", 1], response] as [readonly unknown[], unknown]] : []),
-    ]);
+    ], {legacyComparators:true});
     const stats = [...result.matchAll(/data-testid="text-(?:portfolio-total|benchmark-total|active-return|tracking-error)">([\s\S]*?)<\/p>/g)].map(match => match[1]);
     assert.ok(stats.length >= 2, Component.name);
     assert.ok(stats.every(value => value === "Unavailable — accounting not returned"), Component.name);
   }
 });
 test("actual signal/gap backtest ready zero returns keep signed formatting and tracking-error zero", () => {
+  const DecarbSignal=DecarbSignalView, DecarbGapSignal=DecarbGapSignalView;
   for (const Component of [DecarbSignal, DecarbGapSignal]) {
     const response = { series: [{ date: "2024-01", benchmarkCumulative: 1, portfolioCumulative: 1, activeReturn: 0, trackingError: 0, overweightCount: 0, underweightCount: 0 }], summary: null };
     const result = render(Component, [
       [["/api/cv/uploads"], [{ id: 1, status: "completed" }]],
       [Component === DecarbSignal ? ["/api/cv/backtest", "carbon_intensity", 2, "sector_relative", "all", 1] : ["/api/cv/backtest", "sdg_exposure", 2, "sector_relative", "all", 1], response],
       ...(Component === DecarbGapSignal ? [[[ "/api/cv/backtest", "valuation", "decarb_gap", 2, "sector_relative", "all", 1], response] as [readonly unknown[], unknown]] : []),
-    ]);
+    ], {legacyComparators:true});
     for (const field of ["portfolio-total", "benchmark-total"]) assert.ok(result.includes(`data-testid="text-${field}">+0.0%</p>`), `${Component.name}:${field}`);
     if (Component === DecarbSignal) assert.ok(result.includes('data-testid="text-tracking-error">0.00%</p>'));
   }
+});
+test("production signal entries retire legacy comparator controls and retain explicit limitations",()=>{
+ for(const Component of [DecarbSignal,DecarbGapSignal]){
+  const html=render(Component,[[["/api/cv/uploads"],[{id:1,status:"completed"}]]]);
+  assert.ok(!html.includes('data-testid="card-backtest"'));
+  assert.ok(!html.includes('data-testid="card-top-companies"'));
+  assert.ok(html.includes("retired from production"));
+ }
 });

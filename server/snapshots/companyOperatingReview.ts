@@ -4,6 +4,8 @@ import {snapshotsAvailable} from "./store";
 import {contentHash} from "../calculation/analysisManifest";
 import {packCompanySource,resolveCompanySourceEvidence} from "../calculation/companySourceArchive";
 import {projectCompanyMembers} from "../calculation/companyProjection";
+import {projectCompanyCohorts} from "../calculation/companyCohortProjection";
+import {readCalculationSourceArtifact} from "./materialInputs";
 type Connection=Pick<typeof db,"execute">;
 async function lock(tx:Connection){
   if(!await snapshotsAvailable(tx)) throw new Error("Immutable operating review storage unavailable");
@@ -28,6 +30,19 @@ async function load(tx:Connection,id:string,kind:string){
     throw new Error("Missing or corrupt operating archive");
   return r.rows[0].payload as any;
 }
+async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:string[]){
+ if(proposal.input?.version!=="company-cohort-input-1")return null;
+ const p=proposal.producer;
+ if(!p||p.modelVersion!=="company-cohort-input-1"||p.inputHash!==contentHash(proposal.input)||
+   contentHash(p.sourceIds)!==contentHash(sourceIds))throw Error("Missing/conflicting retained producer manifest");
+ const code=await load(tx,p.codeId,"company-cohort-code");
+ const result=await load(tx,p.resultId,"company-cohort-result");
+ if(contentHash(code)!==readCalculationSourceArtifact().id)throw Error("Pinned cohort code unavailable in this executable; no current-code fallback");
+ if(contentHash(projectCompanyCohorts(proposal.input))!==contentHash(result))throw Error("Retained cohort result mismatch");
+ if(result.covered.scenarios.some((s:any)=>s.status!=="conditional"))
+   throw Error("Incomplete cohort scenario domain cannot be admitted");
+ return result;
+}
 /** Source-only packets are pending review, never executable projections. */
 export async function stageCompanySourcePacketInTransaction(tx:Connection,identity:{companyId:string;isin:string},sources:unknown[],gaps:string[]){
   await lock(tx);
@@ -50,7 +65,9 @@ export async function stageCompanyOperatingInTransaction(tx:Connection,input:any
   await lock(tx);
   const company=await tx.execute(sql`SELECT isin FROM cv_companies WHERE id=${identity.companyId}`);
   if(company.rows[0]?.isin!==identity.isin||input?.companyId!==identity.companyId) throw new Error("Company identity conflict");
-  const projection=projectCompanyMembers(input);
+  const isCohort=input?.version==="company-cohort-input-1";
+  if(isCohort&&input.cutoff!==cutoff)throw Error("Cohort cutoff mismatch");
+  const projection=isCohort?projectCompanyCohorts(input):projectCompanyMembers(input);
   if(!("members" in projection)) throw new Error("Company model unavailable");
   const ids=[];
   for(const source of sources){
@@ -59,7 +76,14 @@ export async function stageCompanyOperatingInTransaction(tx:Connection,input:any
   }
   const resolved=await resolveCompanySourceEvidence(input,evidence,cutoff,identity,id=>load(tx,id,"company-operating-source"));
   if(ids.some(id=>!resolved.archiveHashes.includes(id))) throw new Error("Unreferenced supplied source");
+  const producer=isCohort?{
+    codeId:await save(tx,"company-cohort-code",readCalculationSourceArtifact().payload),
+    resultId:await save(tx,"company-cohort-result",projection),
+    modelVersion:"company-cohort-input-1",inputHash:contentHash(input),
+    sourceIds:resolved.archiveHashes,
+  }:null;
   return save(tx,"company-operating-proposal",{version:"company-operating-proposal-1",identity,input,evidence,cutoff,
+    ...(producer?{producer}:{}),
     sourceArchiveIds:resolved.archiveHashes,status:"pending-owner-review",scientificAcceptance:false});
 }
 export async function decideCompanyOperatingInTransaction(tx:Connection,proposalId:string,decision:"approved"|"rejected",financialReviewId:string){
@@ -75,6 +99,7 @@ export async function decideCompanyOperatingInTransaction(tx:Connection,proposal
     if(old.decision==="approved"){
       await load(tx,old.financialIdentityArchive,"company-operating-identity");
       await resolveCompanySourceEvidence(proposal.input,proposal.evidence,old.decidedAt,proposal.identity,id=>load(tx,id,"company-operating-source"));
+      await validateCohortProducer(tx,proposal,proposal.sourceArchiveIds);
     }
     return {id:previous.rows[0].id,...old};
   }
@@ -95,6 +120,7 @@ export async function decideCompanyOperatingInTransaction(tx:Connection,proposal
       version:"company-operating-identity-1",financialReviewId,reviewedAt:financialReviewedAt,payload:row.payload,status:"approved",
     });
     await resolveCompanySourceEvidence(proposal.input,proposal.evidence,decidedAt,proposal.identity,id=>load(tx,id,"company-operating-source"));
+    await validateCohortProducer(tx,proposal,proposal.sourceArchiveIds);
   }
   const payload={version:"company-operating-decision-1",proposalId,decision,financialReviewId,financialIdentityArchive,financialReviewedAt,decidedAt,scientificAcceptance:false};
   return {id:await save(tx,"company-operating-decision",payload),...payload};
@@ -112,6 +138,11 @@ export async function projectReviewedCompanyInTransaction(tx:Connection,decision
     String(financial.payload.identity.companyId)!==proposal.identity.companyId||financial.payload.identity.isin!==proposal.identity.isin)
     throw new Error("Conflicting archived financial identity");
   const sources=await resolveCompanySourceEvidence(proposal.input,proposal.evidence,cutoff,proposal.identity,id=>load(tx,id,"company-operating-source"));
+  if(proposal.input?.version==="company-cohort-input-1"){
+    const result=await validateCohortProducer(tx,proposal,sources.archiveHashes);
+    return {...result,operatingDecisionId:decisionId,financialReviewId:decision.financialReviewId,
+      sourceEvidence:sources,producerManifest:proposal.producer,informationCutoff:cutoff,scientificAcceptance:false};
+  }
   return {...projectCompanyMembers(proposal.input),sourceEvidence:sources,operatingDecisionId:decisionId,
     financialReviewId:decision.financialReviewId,informationCutoff:cutoff,scientificAcceptance:false,
     historicalWarning:"Approval after the origin cannot be backdated; source resolution is not original-vintage or calibrated acceptance"};

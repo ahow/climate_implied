@@ -6,7 +6,7 @@ export interface PhysicalCell {
   issuer: string; unitId: string; year: number; geography: string;
   scope: "1" | "2-location" | "3-downstream";
   gas: "CO2" | "CH4" | "N2O";
-  activity: number; activityUnit: "MWh" | "boe" | "vehicle" | "module-W-shipped" | "battery-kWh-shipped";
+  activity: number; activityUnit: "MWh" | "boe" | "vehicle" | "vehicle-km" | "kWh-delivered" | "kWh-charged" | "module-W-shipped" | "battery-kWh-shipped";
   intensity: number; intensityDenominator: PhysicalCell["activityUnit"];
   intensityNumerator: "tonnes-native-gas";
   ownership: number;
@@ -77,7 +77,7 @@ export function calculateCoveredPhysicalPaths(raw: CoveredPathInput) {
       if(!input.population.includes(c.issuer)||!input.years.includes(c.year)||!c.unitId||!c.geography)
         reasons.push(`Outside declared population/period ${key}`);
       if(!["1","2-location","3-downstream"].includes(c.scope)||!["CO2","CH4","N2O"].includes(c.gas)||
-        !["MWh","boe","vehicle","module-W-shipped","battery-kWh-shipped"].includes(c.activityUnit)||
+        !["MWh","boe","vehicle","vehicle-km","kWh-delivered","kWh-charged","module-W-shipped","battery-kWh-shipped"].includes(c.activityUnit)||
         c.activityUnit!==c.intensityDenominator||c.intensityNumerator!=="tonnes-native-gas"||
         c.basis!=="full-unit-before-ownership"||!hash(c.parentResultHash))
         reasons.push(`Incompatible physical/parent identity ${key}`);

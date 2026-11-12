@@ -1,3 +1,343 @@
+# Dated cohort admission — latest local increment
+
+{
+  "current_release": {
+    "runtime": "f3ef9067abb42b4e0f6825ded0375b0e0675339d",
+    "build_info_source_commit": "f3ef9067abb42b4e0f6825ded0375b0e0675339d",
+    "ci": 43289646254,
+    "ci_conclusion": "success",
+    "health": {
+      "status": "ok"
+    },
+    "railway_deployment": null,
+    "verified_at": "2026-11-12T20:16:52.155966+00:00",
+    "scope": "Prior cohort promotion verified; this dated/admission/UI increment LOCAL ONLY",
+    "readback": {
+      "JSON_XLSX_exact_literal_cells": 1051,
+      "identity": "5d42662b3f9ed3bfd6823830e783f05949060e180bdf53532e0835d077b93121",
+      "log": "generated-artifacts/dated-cohort/prior-live-readback.log"
+    },
+    "local_workspace_head": "8041bbf4dea6cb79090b91c81791173db7ece3ab",
+    "new_increment_deployed": false
+  },
+  "increment": {
+    "recorded_at": "2026-11-12T20:24:34.850424+00:00",
+    "files": {
+      "server/calculation/operatingCohorts.ts": "919eabd2e7c7cdfd9c2937cb77a3f6517cb061c3b3cec211c6e527454c20ce54",
+      "server/calculation/companyCohortProjection.ts": "4dc8073b43f08ee8bc71979d4f5af05f1e95a4a5ef26cdcbed7f6cd1e4efe99b",
+      "server/calculation/coveredPhysicalPaths.ts": "2b824ddec5c22500eb092b0b2b94643f2a89f54668d0f98557c27485a61ed505",
+      "server/snapshots/companyOperatingReview.ts": "9fd8b51c722812609eba550578342643bc3ac461513441c17a559c31d9e229ae",
+      "script/datedOperatingCohorts.test.ts": "4ee3d080a6a4a0ae20862d61aa1d4ffeadb9f0ebcfac1eed9529472814044f1b",
+      "script/companyCohortProjection.test.ts": "2510a443a889d90ce15fd53cb6b185918cce53be57ae71ceea767f8802959aab",
+      "client/src/pages/dashboard.tsx": "893304ae0fa5cb2cda436147621eec4e53534a9d7e49db6e17e0959994641156",
+      "client/src/pages/decarb-signal.tsx": "3b7986b05656cd8f2f3e3cb8c0ba469cb899f5c10600e04104306648c251d1d5",
+      "client/src/pages/decarb-gap-signal.tsx": "3f141fb7167433e87cbe0494076e942b91eceb52ea26dcfb0e9443aecdbb3834",
+      "script/remaining-component-contracts.test.ts": "dffacc8af9e3e210bc77b8b0d3fb2a49410cba42cf38dec4304f7fa978e2a984",
+      "script/component-state-contracts.ts": "a1faa6dd38ddafea50ed708f66824a246b9748c2d58f33e26ee98f6914e89053",
+      "script/component-state-census.test.ts": "c4073f6a6b50c209bbca1fb3f2c351ff94c9478adacb5772f83cb14fe9304e11"
+    },
+    "functions": [
+      "calculateOperatingCohorts",
+      "projectCompanyCohorts",
+      "stageCompanyOperatingInTransaction",
+      "validateCohortProducer",
+      "decideCompanyOperatingInTransaction",
+      "projectReviewedCompanyInTransaction"
+    ],
+    "new": "UTC civil-day commissioning/retirement and legacy stock; explicit storage charge/loss/cash; actual operating review lifecycle retains server-calculated cohort result and code, authentic source/evidence and financial identity. Current-executable mismatch refuses instead of current-code substitution. Missing/corrupt dependencies refuse; duplicate cohort channels/ownership refuse; incomplete declared scenario domain cannot be admitted.",
+    "numerics": {
+      "fixture_only": true,
+      "leap_year_service": 182,
+      "charge_kWh": 227.5,
+      "loss_kWh": 45.5,
+      "grid_cash": 22.75,
+      "fcfe": 331.25,
+      "energy_tolerance": 1e-10,
+      "cash_tolerance": 1e-09,
+      "owned_native_CO2_tonnes": 100
+    },
+    "commands": [
+      "npx tsx --test script/datedOperatingCohorts.test.ts script/operatingCohorts.test.ts script/cohortGrowthInverse.test.ts",
+      "npx tsx --test script/companyCohortProjection.test.ts script/datedOperatingCohorts.test.ts",
+      "npm run check",
+      "npx tsx script/field-semantics-census.ts",
+      "npx tsx script/output-register.ts",
+      "python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 7200 --log generated-artifacts/dated-cohort/coherent-final.log --receipt generated-artifacts/dated-cohort/coherent-final.receipt.json"
+    ],
+    "focused": "Earlier10/10; admission initial3pass1fail (duplicate shared parent), corrected4pass0fail0skip. Memory transport exercises actual helpers, NOT PostgreSQL/auth proof.",
+    "failure_history": "First coherent1333TS:1328pass/4fail/1optionalPGskip. Two stale census checks, browser-environment reference and stale warning source fingerprint; retained, not hidden. Second coherent1335TS:1332pass/2fail/1skip; retained legacy-view assertions needed explicit development view after production retirement. Assertions retained; production absence assertion added. Third coherent1336TS:1333pass/2fail/1skip; census correctly detected two new internal retained views. Total95 explicitly includes these two additions; original60 component denominator preserved.",
+    "scientific_decision": "Engineering only; no qualified company case, calibrated ensemble, historical efficacy, actual new source retrieval or owner approval.",
+    "remaining": [
+      "Finite liquidation/replacement/steady-state economics and full claim/valuation continuation remain incomplete.",
+      "Real source-complete future cohorts and genuine owner/identity approval absent; no production activation.",
+      "Broader production comparator inventory/rendered deployment verification remains separate from three changed routes.",
+      "New XPLR primary release examined; other issuer/calibration source attempts not executed this increment. Exact missing economics remain, not global unavailability."
+    ],
+    "logs": {
+      "generated-artifacts/dated-cohort/focused.log": {
+        "sha256": "850bc752e531e1e2b33d02ddcec0e65526246726abe9674b541bead9668ce033",
+        "completed_at": "2026-11-12T19:31:32.451732+00:00"
+      },
+      "generated-artifacts/dated-cohort/typecheck.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "completed_at": "2026-11-12T19:31:32.935732+00:00"
+      },
+      "generated-artifacts/dated-cohort/coherent.log": {
+        "sha256": "cb1e314e2e94dd20ae074a9fa1298cbe9218fc9f0b7bae68f08e756e02532c00",
+        "completed_at": "2026-11-12T19:40:41.030881+00:00"
+      },
+      "generated-artifacts/dated-cohort/static-server.log": {
+        "sha256": "943bf241e937d53242463232509886aa4c017a2eb629d9e2a8e17ce0798d8a68",
+        "completed_at": "2026-11-12T19:37:05.091532+00:00"
+      },
+      "generated-artifacts/dated-cohort/typecheck-admission.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "completed_at": "2026-11-12T19:39:05.195564+00:00"
+      },
+      "generated-artifacts/dated-cohort/admission.log": {
+        "sha256": "3504cb1fdcd3f043817dde0d21dd613578eed7140c4363f76f36a6e8d619bee5",
+        "completed_at": "2026-11-12T19:42:09.355197+00:00"
+      },
+      "generated-artifacts/dated-cohort/check.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "completed_at": "2026-11-12T19:42:09.779197+00:00"
+      },
+      "generated-artifacts/dated-cohort/census.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "completed_at": "2026-11-12T19:42:31.067287+00:00"
+      },
+      "generated-artifacts/dated-cohort/admission-corrected.log": {
+        "sha256": "5e7fdf6ccecbb71c8218bd8d01c3ff2f87c5fedcc7686c4e87bb1e31744c6624",
+        "completed_at": "2026-11-12T19:46:46.819500+00:00"
+      },
+      "generated-artifacts/dated-cohort/latest-check.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "completed_at": "2026-11-12T19:48:41.494776+00:00"
+      },
+      "generated-artifacts/dated-cohort/prior-live-readback.log": {
+        "sha256": "9689b821731f47d2adfa3b6de18f34e651951192d678525413394da1b67dcba7",
+        "completed_at": "2026-11-12T19:49:12.210777+00:00"
+      },
+      "generated-artifacts/dated-cohort/census-final.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "completed_at": "2026-11-12T20:15:30.768372+00:00"
+      },
+      "generated-artifacts/dated-cohort/focused-final.log": {
+        "sha256": "e9dd49932d07224329c6f423d8e556d68b55552ba9ab0b64020f89d2ccc875e5",
+        "completed_at": "2026-11-12T19:50:26.174845+00:00"
+      },
+      "generated-artifacts/dated-cohort/coherent-final.log": {
+        "sha256": "29cfbe5f9c323e06999977b3eb3e223bf3f13023661770e74dcc1e989a1b31fe",
+        "completed_at": "2026-11-12T19:59:56.619121+00:00"
+      },
+      "generated-artifacts/dated-cohort/preflight.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "completed_at": "2026-11-12T19:53:16.611071+00:00"
+      },
+      "generated-artifacts/dated-cohort/render-corrected.log": {
+        "sha256": "4ab4b92af12cc2b578a662a4d5d57b4ffa264701e0af5c91b0720b9804237b39",
+        "completed_at": "2026-11-12T20:07:16.376368+00:00"
+      },
+      "generated-artifacts/dated-cohort/coherent-complete.log": {
+        "sha256": "0a76b9c4c85388de49792fb03bd4835e46c6b0c44bd7f3ac5ef88be49b7498d4",
+        "completed_at": "2026-11-12T20:13:34.605121+00:00"
+      },
+      "generated-artifacts/dated-cohort/census-corrected.log": {
+        "sha256": "6e24fbb33a098a7281fe85780f0f78e46e8ecbf917bed8af3d02509278d2fe3c",
+        "completed_at": "2026-11-12T20:15:40.020371+00:00"
+      },
+      "generated-artifacts/dated-cohort/coherent-verified.log": {
+        "sha256": "41382af35b5af69b3b673ee90a61c1b20ab1c263a66dc8a5698007a7dc67dd77",
+        "completed_at": "2026-11-12T20:22:47.236298+00:00"
+      },
+      "generated-artifacts/dated-cohort/static-build.log": {
+        "sha256": "5a142bf3f122060fbc31eb7beae76bc438a6b04ca00e85e36be2e8f5b38efe31",
+        "completed_at": "2026-11-12T20:17:32.701672+00:00"
+      }
+    },
+    "coherent_receipt": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T20:16:01.104894+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 406.233,
+      "counts": {
+        "tests": 1336,
+        "pass": 1335,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cohort/coherent-verified.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "41382af35b5af69b3b673ee90a61c1b20ab1c263a66dc8a5698007a7dc67dd77",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1336,
+          "pass": 1335,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "new_source_attempt": {
+      "issuer": "XPLR, not consolidated NEE common equity",
+      "url": "https://www.investor.xplrinfrastructure.com/~/media/Files/x/xplr-infrastructure-ir/reports-and-fillings/quartely-earnings/2026/2026-1103%20XPLRQ32026News%20Release%20vFinal.pdf",
+      "document_date": "2026-11-03",
+      "availability": "publication day, not exact timestamp or earlier historical vintage",
+      "retained_extract": "generated-artifacts/dated-cohort/xplr-q3-source.md",
+      "sha256": "91f4404902efc60ce1baf8cb06e1f317da6f391b5c67399efd2571e566550756",
+      "locator": "Condensed consolidated cash flows, nine months ended September30; investing activities",
+      "finding": "Payments FROM related parties under CSCS agreement NET $7m (2026), $114m comparator. Not gross NEER recipient cash. Current/noncurrent due-to-related balances do not establish cash settlement.",
+      "decision": "No new NEE common-FCFE coefficient; named gross recipients, settlement dates and attribution remain absent from examined release. Not a global nondisclosure claim."
+    },
+    "subsequent_primary_filing": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000039/xplr-20260930.htm",
+      "accession": "0001603145-26-000039",
+      "period": "2026-09-30",
+      "filed_day": "2026-11-03",
+      "locator": "Note9 Related Party Transactions, Due to Related Parties",
+      "retained_extract": "generated-artifacts/dated-cohort/xplr-q3-note9.md",
+      "sha256": "3a40188f943fec142cf57e956f7abfb61a10230564d524f051ad2da75fb6e5a1",
+      "hash_surface": "Retained webFetch markdown extraction of the SEC URL; not raw SEC bytes, exact acceptance timestamp or independent authentication",
+      "observed_statement": {
+        "approximate_paid_USD_millions": 40,
+        "paid_month": "2026-10",
+        "exact_day": null,
+        "recipient_description": "NEER; filing abbreviation may include subsidiaries",
+        "purpose": "repowering payables",
+        "average_terms_days": 165
+      },
+      "not_established": [
+        "Named legal recipient/project allocation",
+        "Parent common cash or project margin",
+        "Same cohort as June246m payable",
+        "Exact payment day",
+        "2024/2025-origin availability"
+      ],
+      "decision": "Material new cash-timing evidence, not recognition-to-cash inference. Retain as subsequent-period input; no common-FCFE allocation or prior frozen-study rerun."
+    },
+    "browser": "Production-browser assignment cancelled after it failed to return a result; no browser passing receipt claimed. Actual production-entry SSR assertions retained separately.",
+    "static_render": {
+      "initial": "Static harness404 from Vite client-relative output directory; build moved into ignored root artifact directory, no app-code workaround",
+      "corrected": "Production-built dashboard renders explicit unavailable-data states; static server has no backend and was stopped after capture",
+      "screenshot": "screenshots/dated-cohort-production-static-corrected.jpg",
+      "scope": "Single static viewport, not interactive/live-route acceptance"
+    },
+    "build_warnings": [
+      "Existing retainedPairedResearchProjection import.meta/CJS warning remains; build success is not proof that all historical report paths are executable.",
+      "Existing frontend chunk-size warning retained."
+    ]
+  }
+}
+
+<!-- prior-dated-cohort-report -->
+## Latest cohort release observation — local receipt, promotion pending
+
+64verified/234partial/2provisioning-blocked; original1000/1001;0/3qualified cases. Not completion or efficacy.
+
+```json
+{
+  "observed_at": "2026-11-12T19:24:40.575314+00:00",
+  "implementation": "4cb9d34adf3d89d835102af3be201dc0be275413",
+  "local_evidence": "a7da3b269e8e8b038e83b59b543650764b1331ef",
+  "github": "f3ef9067abb42b4e0f6825ded0375b0e0675339d",
+  "ci": {
+    "id": 43289646254,
+    "status": "in_progress",
+    "conclusion": null,
+    "html_url": "https://github.com/ahow/climate_implied/actions/runs/43289646254"
+  },
+  "runtime_last_observed": "ca8c59cbc2e0ffc002d419594aad568caece02ee",
+  "health": {
+    "status": "ok"
+  },
+  "new_release_verified": false,
+  "scope": "Final local gates passed; existing CI observed in progress. No CI counts or new runtime confirmation inferred. Do not restart or supersede active promotion.",
+  "gate": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T19:14:02.359331+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 505.988,
+    "counts": {
+      "tests": 1331,
+      "pass": 1330,
+      "fail": 0,
+      "skipped": 1
+    },
+    "log": "generated-artifacts/cohort-continuation/final-coherent.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "b43862a4d408db72040f38c7e6079641f779b7c83b24c2c49fdf09eda5286178",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1331,
+        "pass": 1330,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 264,
+        "pass": 264,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "dev_readback": {
+    "literalRows": 1051,
+    "identity": "8f9689a10827b0cb2625fe8889131e8fa3dba9013d12db5e300f2870c18bb8fb",
+    "exact": true
+  },
+  "changed_paths": [
+    ".agents/memory/workplan-evidence-reconciliation.md",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/field_semantics_census.json",
+    "docs/reconciliation-stages-10-13.json",
+    "docs/workplan_completion_ledger.json",
+    "script/cohort-continuation-run.ts",
+    "script/cohortGrowthInverse.test.ts",
+    "script/coveredProducerAdmission.test.ts",
+    "script/operatingCohorts.test.ts",
+    "script/polynomialDomain.test.ts",
+    "script/record-cohort-continuation.py",
+    "server/calculation/cleanCoveredReport.ts",
+    "server/calculation/cohortGrowthInverse.ts",
+    "server/calculation/operatingCohorts.ts",
+    "server/calculation/polynomialDomain.ts",
+    "server/coveredProducerAdmission.ts",
+    "server/producerReserveApi.ts"
+  ],
+  "stopping_reason": "Execution context boundary, not completion or exhausted actionable scope.",
+  "science": "No actual issuer inversion or efficacy established;0/3qualified cases; exact finite polynomial engineering only."
+}
+```
+
+## Exact continuation
+
+Continue ALL original0–17/amendments. First inspect existing CI43289646254 for f3ef9067; do not restart/supersede it. Verify gated runtime/health/clean-covered JSON+XLSX when complete; current observed runtimeca8c59c is the previous docs sync, not cohort deployment. Preserve final1331TS=1330pass/0fail/1optionalPGskip,264Python and mandatory private checks on implementation4cb9d34. Next complete authenticated retained future-cohort producer/approval/manifest integration (current admission covers EPA observation only), legacy/mid-year stock, energy-loss and sustainable perpetual cash/stock/claim branches; finite proportional-project polynomial is not whole-equity identification. S13-018 finite lineage verified; do not reopen with unrelated owner/science gates. Follow new XPLR Q22026 Note9 named NEER246m payable/average150days without calling it received cash; Nucor FY2025 says XOM pays supplier fee and receives credits, not a fee amount or XOM fee revenue; retain later September2026 operating update. Qualify source economics/current-law/components and full-window calibration/dates, no synthetic efficacy, refits or selfapproval. All original remaining clauses remain actionable; no blanket external halt.
+
 ## Cohort continuation — latest increment
 
 {
@@ -7504,6 +7844,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-clean-covered-8835a42",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T18:28:17.024820+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-cohort-domain-f3ef906",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T19:25:35.489467+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

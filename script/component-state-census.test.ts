@@ -29,8 +29,9 @@ const economicConsumers = [
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 93, "Prior90 plus3 actual clean-covered consumers; original scope unchanged");
-  assert.equal(report.focusedRenderedComponentCount, 93);
+  assert.equal(report.componentCount, 95, "Prior93 plus two retained implementation views; original scope unchanged");
+  assert.equal(report.focusedRenderedComponentCount, 95);
+  for(const name of ["DecarbSignalView","DecarbGapSignalView"])assert.ok(report.components.some(c=>c.component===name));
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -128,7 +129,7 @@ test("imported sibling exports are reachable only through actual component tags"
           ? "supplied-result" : "queried-evidence");
       return component.id;
     });
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions, ...integrated, ...economicConsumers].includes(component.id)).length, 60);
+  assert.equal(report.components.filter(component => !["DecarbSignalView","DecarbGapSignalView"].includes(component.component)&&![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions, ...integrated, ...economicConsumers].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

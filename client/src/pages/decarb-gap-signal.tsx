@@ -158,7 +158,9 @@ function formatDateStr(dateStr: string): string {
   return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
-export default function DecarbGapSignal() {
+export default function DecarbGapSignal() { return <DecarbGapSignalView legacyComparators={import.meta.env?.DEV === true} />; }
+/** Retained implementation for development/regression evidence; production entry fixes false. */
+export function DecarbGapSignalView({legacyComparators=false}:{legacyComparators?:boolean}) {
   const [scoringMethod, setScoringMethod] = useState<ScoringMethod>("sector_relative");
   const [geography, setGeography] = useState<string>("all");
   const [trackingErrorLimit, setTrackingErrorLimit] = useState(2);
@@ -228,7 +230,7 @@ export default function DecarbGapSignal() {
     queryFn: async () => {
       return fetchBacktest(`/api/cv/backtest?signal=${backtestSignal}&trackingError=${trackingErrorLimit}&trackingErrorUnit=percent&method=${compareGap ? "absolute" : scoringMethod}${geoParam}`);
     },
-    enabled: !!uploadId,
+    enabled: !!uploadId && legacyComparators,
   });
 
   const { data: valuationBacktestResponse, isLoading: loadingValBacktest, error: valuationBacktestError } = useQuery<BacktestResponse>({
@@ -236,7 +238,7 @@ export default function DecarbGapSignal() {
     queryFn: async () => {
       return fetchBacktest(`/api/cv/backtest?signal=decarb_gap&trackingError=${trackingErrorLimit}&trackingErrorUnit=percent&${methodParam}${geoParam}`);
     },
-    enabled: !!uploadId && compareGap,
+    enabled: !!uploadId && compareGap && legacyComparators,
   });
   const backtestData = backtestResponse?.series;
   const valuationBacktestData = compareGap ? valuationBacktestResponse?.series : undefined;
@@ -539,7 +541,7 @@ export default function DecarbGapSignal() {
             </Card>
           </div>
 
-          {hasData && (
+          {legacyComparators && hasData && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <Card className="p-4" data-testid="card-top-companies">
                 <div className="flex items-center gap-2 mb-3">
@@ -607,7 +609,7 @@ export default function DecarbGapSignal() {
             </div>
           )}
 
-          <Card className="p-4" data-testid="card-backtest">
+          {legacyComparators && <Card className="p-4" data-testid="card-backtest">
             <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
               <div>
                 <h2 className="text-base font-semibold flex items-center gap-2" data-testid="text-backtest-title">
@@ -768,7 +770,8 @@ export default function DecarbGapSignal() {
                 </div>
               </div>
             )}
-          </Card>
+          </Card>}
+          {!legacyComparators && <p>Legacy ranking backtests and selected-company tables are retired from production. Retained paired research and ordinary valuation diagnostics remain separate.</p>}
 
           <Card className="p-4" data-testid="card-methodology">
             <h3 className="text-sm font-semibold mb-3">Methodology</h3>

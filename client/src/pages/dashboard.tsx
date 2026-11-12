@@ -71,17 +71,18 @@ export default function Dashboard() {
           : <IndicatorCards historicalData={indicators ?? []} isLoading={isLoading} />}
       </section>
       <section className="rounded-md border p-4 space-y-3">
-        <h2 className="text-lg font-semibold">Legacy diagnostic view — opt in</h2>
+        <h2 className="text-lg font-semibold">{import.meta.env?.DEV ? "Legacy diagnostic view — opt in" : "Retired legacy comparators"}</h2>
         <p className="text-sm text-muted-foreground" id="legacy-warning">
           The legacy calculation applies a CO2-only response to aggregate GHG (CO2e), plus a fixed 1.1°C offset.
           Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts.
           “Year emissions reach 5% of 2024” uses only the same selected trajectory's evidenced 2024 baseline; if it is missing the diagnostic is withheld. No crossing means not reached by the actual simulated horizon. The separate fixed-5gt-v1 legacy comparator is not 5% of 2024. Neither residual diagnostic is net zero.
           Regional-intensity results are legacy global counterfactuals, not regional temperatures or inventories. Historical recalculations are not forecast validation.
         </p>
-        <Button variant="outline" aria-expanded={showLegacy} aria-describedby="legacy-warning" onClick={() => setShowLegacy(!showLegacy)} data-testid="button-toggle-legacy">
+        {import.meta.env?.DEV && <Button variant="outline" aria-expanded={showLegacy} aria-describedby="legacy-warning" onClick={() => setShowLegacy(!showLegacy)} data-testid="button-toggle-legacy">
           {showLegacy ? "Hide legacy diagnostics" : "Show legacy diagnostics"}
-        </Button>
-        {showLegacy && <LegacyDashboard />}
+        </Button>}
+        {!import.meta.env?.DEV && <p>Legacy comparator controls and results have been retired from this production view. Historical evidence and test implementations are retained.</p>}
+        {import.meta.env?.DEV && showLegacy && <LegacyDashboard />}
       </section>
     </div>
   );
