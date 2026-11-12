@@ -13,7 +13,10 @@ failure=json.loads(Path("/tmp/chained-final-receipt.json").read_text())
 release={"status":"new code not yet verified deployed","last_verified":x["current_release"]}
 if len(sys.argv)==4:
  release={"github_main":sys.argv[1],"ci":sys.argv[2],"railway_deployment":sys.argv[3],"verified_at":stamp,"health":200,"scope":"Code-only; private HTTP403, no data/issuer/science activation."}
- x.setdefault("release_history",[]).append(x["current_release"]);x["current_release"]=release
+ if x["current_release"].get("github_main") == sys.argv[1]:
+  release=x["current_release"]
+ else:
+  x.setdefault("release_history",[]).append(x["current_release"]);x["current_release"]=release
 summary={"updated_at":stamp,"release":release,"coherent_execution":receipt,"initial_failed_execution":failure,"evidence":files,
 "decision":"Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged."}
 if Path("/tmp/chained-live-receipt.json").exists():
@@ -29,6 +32,8 @@ for stage in x["stages"]:
   q["executions"]=(q.get("executions")or[])+([receipt] if receipt not in (q.get("executions")or[]) else [])
   q["check_scope_this_increment"]="Engineering/source qualification, not independent scientific or owner acceptance."
 x["latest_increment"]["signal_chained"]=summary;x["updated_at"]=stamp
+x["restart"]["unfinished_requirement_ids"]=[q["id"] for stage in x["stages"] for q in stage["requirements"] if q["status"]!="verified"]
+x["restart"]["next_requirement"]="S16-007 remaining non-signal/custom consumers; S12-017 qualified issuer economics; source-compatible original climate and dated11–15 inputs"
 x["restart"]["instruction"]="Continue original0–17. SIX signal/gap JSON/XLSX chains now implemented/tested beyond prior threePE. Preserve exact ordered parents/material/code/model/snapshots/intermediates/filter/order/units; request-start selection pin fixes delayedresponse race; literal-cell checks refuse formulas/links. Nonempty evidence engineeringfixtures, not genuine historical efficacy. Continue OTHER non-signal/custom consumers and qualifiedrealinput journeys, not restart completednine. DEVoperatorCLI export lifecycle preserved; HTTP403 requires genuineprincipal, no activation/oldXLSXrecovery; old124/179/416 untouched. NewXPLR cash/FCFBG closes but notNEErecipientcash; Williams capacity notpricedCCS; TamilNadu programme notFSLR; Q3filing403 unverified. Continue named issuer economic fields and compatible22driver/fullwindow/historical11–15 evidence;0eligiblehistories/0of3cases. Frozennegative studies/Gordon/14FaIRpins/original1000of1001 unchanged. Inspectcurrent_release vsdocs/localreceipt; existingpromotion only."
 p.write_text(json.dumps(x,indent=2,ensure_ascii=False)+"\n")
 spec=importlib.util.spec_from_file_location("m","script/merge-clause-reconciliation.py");m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
