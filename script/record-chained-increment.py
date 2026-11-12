@@ -16,6 +16,9 @@ if len(sys.argv)==4:
  x.setdefault("release_history",[]).append(x["current_release"]);x["current_release"]=release
 summary={"updated_at":stamp,"release":release,"coherent_execution":receipt,"initial_failed_execution":failure,"evidence":files,
 "decision":"Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged."}
+if Path("/tmp/chained-live-receipt.json").exists():
+ summary["live_readonly_receipt"]=json.loads(Path("/tmp/chained-live-receipt.json").read_text())
+summary["release_observation_note"]="Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass."
 for stage in x["stages"]:
  for q in stage["requirements"]:
   if q["id"] not in files:continue

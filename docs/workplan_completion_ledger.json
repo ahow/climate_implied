@@ -1965,17 +1965,14 @@
       }
     },
     "signal_chained": {
-      "updated_at": "2026-11-12T05:21:21.098206+00:00",
+      "updated_at": "2026-11-12T05:32:48.445836+00:00",
       "release": {
-        "status": "new code not yet verified deployed",
-        "last_verified": {
-          "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
-          "ci": "43153785349 success",
-          "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
-          "verified_at": "2026-11-12T04:41:14.454237+00:00",
-          "health": 200,
-          "scope": "Code-only; no permanent export/data/owner/scientific activation."
-        }
+        "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+        "ci": "43160860130 validate/promote success",
+        "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
+        "verified_at": "2026-11-12T05:32:48.445836+00:00",
+        "health": 200,
+        "scope": "Code-only; private HTTP403, no data/issuer/science activation."
       },
       "coherent_execution": {
         "command": [
@@ -2054,7 +2051,21 @@
           "docs/issuer-source-next-evidence.json"
         ]
       },
-      "decision": "Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged."
+      "decision": "Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged.",
+      "live_readonly_receipt": {
+        "observedAt": "2026-11-12T05:31:15.714770+00:00",
+        "build": {
+          "sourceCommit": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+          "calculationVersion": "historical-diagnostics-7",
+          "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+        },
+        "health": 200,
+        "clientSignalContractPresent": true,
+        "semanticsStatus": 200,
+        "GET": 403,
+        "POST": 403
+      },
+      "release_observation_note": "Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass."
     }
   },
   "prior_native_fleet_increment": {
@@ -2139,15 +2150,15 @@
     }
   },
   "current_release": {
-    "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
-    "ci": "43153785349 success",
-    "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
-    "verified_at": "2026-11-12T04:41:14.454237+00:00",
+    "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+    "ci": "43160860130 validate/promote success",
+    "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
+    "verified_at": "2026-11-12T05:32:48.445836+00:00",
     "health": 200,
-    "scope": "Code-only; no permanent export/data/owner/scientific activation."
+    "scope": "Code-only; private HTTP403, no data/issuer/science activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T05:21:21.098206+00:00",
+  "updated_at": "2026-11-12T05:32:48.445836+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -137625,17 +137636,14 @@
           "check_scope_this_increment": "Engineering/source qualification, not independent scientific or owner acceptance.",
           "scientific_decision_this_increment": "No calibration, numeric-history replacement, issuer-case qualification or efficacy promotion.",
           "chained_increment": {
-            "updated_at": "2026-11-12T05:21:21.098206+00:00",
+            "updated_at": "2026-11-12T05:32:48.445836+00:00",
             "release": {
-              "status": "new code not yet verified deployed",
-              "last_verified": {
-                "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
-                "ci": "43153785349 success",
-                "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
-                "verified_at": "2026-11-12T04:41:14.454237+00:00",
-                "health": 200,
-                "scope": "Code-only; no permanent export/data/owner/scientific activation."
-              }
+              "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+              "ci": "43160860130 validate/promote success",
+              "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
+              "verified_at": "2026-11-12T05:32:48.445836+00:00",
+              "health": 200,
+              "scope": "Code-only; private HTTP403, no data/issuer/science activation."
             },
             "coherent_execution": {
               "command": [
@@ -137715,6 +137723,20 @@
               ]
             },
             "decision": "Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged.",
+            "live_readonly_receipt": {
+              "observedAt": "2026-11-12T05:31:15.714770+00:00",
+              "build": {
+                "sourceCommit": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+                "calculationVersion": "historical-diagnostics-7",
+                "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+              },
+              "health": 200,
+              "clientSignalContractPresent": true,
+              "semanticsStatus": 200,
+              "GET": 403,
+              "POST": 403
+            },
+            "release_observation_note": "Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass.",
             "sources": [
               {
                 "path": "docs/issuer-source-next-evidence.json",
@@ -159932,17 +159954,14 @@
           "check_scope_this_increment": "Engineering/source qualification, not independent scientific or owner acceptance.",
           "scientific_decision_this_increment": "No calibration, numeric-history replacement, issuer-case qualification or efficacy promotion.",
           "chained_increment": {
-            "updated_at": "2026-11-12T05:21:21.098206+00:00",
+            "updated_at": "2026-11-12T05:32:48.445836+00:00",
             "release": {
-              "status": "new code not yet verified deployed",
-              "last_verified": {
-                "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
-                "ci": "43153785349 success",
-                "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
-                "verified_at": "2026-11-12T04:41:14.454237+00:00",
-                "health": 200,
-                "scope": "Code-only; no permanent export/data/owner/scientific activation."
-              }
+              "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+              "ci": "43160860130 validate/promote success",
+              "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
+              "verified_at": "2026-11-12T05:32:48.445836+00:00",
+              "health": 200,
+              "scope": "Code-only; private HTTP403, no data/issuer/science activation."
             },
             "coherent_execution": {
               "command": [
@@ -160022,6 +160041,20 @@
               ]
             },
             "decision": "Engineering lineage delivered; no new empirical efficacy or qualified issuer case. Original denominators/frozen studies unchanged.",
+            "live_readonly_receipt": {
+              "observedAt": "2026-11-12T05:31:15.714770+00:00",
+              "build": {
+                "sourceCommit": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+                "calculationVersion": "historical-diagnostics-7",
+                "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+              },
+              "health": 200,
+              "clientSignalContractPresent": true,
+              "semanticsStatus": 200,
+              "GET": 403,
+              "POST": 403
+            },
+            "release_observation_note": "Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass.",
             "sources": [
               {
                 "path": "docs/signal-chained-lineage-evidence.json",
@@ -169540,6 +169573,14 @@
       "verified_at": "2026-11-12T03:31:54.810115+00:00",
       "health": 200,
       "scope": "Code-only; no data/owner/scientific activation."
+    },
+    {
+      "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+      "ci": "43153785349 success",
+      "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+      "verified_at": "2026-11-12T04:41:14.454237+00:00",
+      "health": 200,
+      "scope": "Code-only; no permanent export/data/owner/scientific activation."
     }
   ],
   "latest_changed_paths": [
