@@ -2,6 +2,122 @@
 
 ```json
 {
+  "updated_at": "2026-11-12T07:29:50.044223+00:00",
+  "release": {
+    "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+    "ci": "43174101497 validate/promote success",
+    "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+    "verified_at": "2026-11-12T07:29:50.044223+00:00",
+    "health": 200,
+    "scope": "Code only; no issuer/science/private HTTP activation."
+  },
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T07:09:16.832492+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 217.729,
+    "counts": {
+      "tests": 1068,
+      "pass": 1068,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/remaining-export-fullchecks-v3.native.complete.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "3c98320622c13813898da76c19e97caf455c8e7dd6e640bf6c01a32db7b1bffe",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1068,
+        "pass": 1068,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 226,
+        "pass": 226,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "finite_export_counts": {
+    "newClosed": 6,
+    "newCentralClosed": 4,
+    "newStaticPublicJsonClosed": 2,
+    "remainingUnimplemented": 22,
+    "remainingSourceblocked": 1,
+    "centralSourceBackedProducerContracts": 4,
+    "centralAvailableWithLegacyNullProducer": 15,
+    "customServerContractsNotChanged": 8
+  },
+  "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+  "changed_paths_since_handoff": [
+    "client/src/components/emissions-candidate-review.tsx",
+    "client/src/components/readonly-version-diff.tsx",
+    "client/src/lib/producer-download.ts",
+    "docs/System_Output_Register.md",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/field_semantics_census.json",
+    "docs/finite-export-runtime-receipts.json",
+    "docs/regional-diffusion-next-evidence.json",
+    "docs/remaining-export-evidence.json",
+    "docs/scientific-strands-warning-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "script/carbon-pass-through-admission.test.ts",
+    "script/field-semantics-census.ts",
+    "script/methodology-download-portable.test.ts",
+    "script/native-producer-exports.test.ts",
+    "script/native-semantics.test.ts",
+    "script/native-threshold-integration.test.ts",
+    "script/record-finite-export-increment.py",
+    "script/regional-diffusion-primary-attempts.mjs",
+    "script/regional_diffusion_next.py",
+    "script/remaining-export-contracts.test.ts",
+    "script/residual-label-scan.ts",
+    "script/static-reference-lineage.test.ts",
+    "script/test_regional_diffusion_next.py",
+    "server/carbonPassThroughApi.ts",
+    "server/downloadManifestMiddleware.ts",
+    "server/index.ts",
+    "server/nativeCandidateApi.ts",
+    "server/producerDownload.ts",
+    "server/readonlyDiffApi.ts",
+    "server/routes.ts",
+    "server/snapshots/materialInputs.ts",
+    "server/snapshots/nativeCandidateProducer.ts",
+    "server/snapshots/readonlyDiffProducer.ts",
+    "server/snapshots/resultVerificationGraph.ts",
+    "server/snapshots/results.ts",
+    "server/staticReferenceLineage.ts",
+    "server/warmingValidationReferenceApi.ts",
+    "shared/derivedConsumerSemantics.ts",
+    "shared/nativeConsumer.ts",
+    "shared/producerDownloadSemantics.ts",
+    "shared/readonlyConsumer.ts",
+    "shared/remainingExportContracts.ts"
+  ],
+  "sources": [
+    "docs/remaining-export-evidence.json",
+    "docs/regional-diffusion-next-evidence.json"
+  ],
+  "scientific_decision": "No new accepted calibration, historical efficacy or issuer case; safeguards/fixtures are engineering only."
+}
+```
+
+# Finite non-signal exports and regional diffusion evidence
+
+```json
+{
   "updated_at": "2026-11-12T07:16:37.511293+00:00",
   "release": {
     "status": "new source not yet verified deployed",

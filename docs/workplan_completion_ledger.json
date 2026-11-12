@@ -2068,17 +2068,14 @@
       "release_observation_note": "Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass."
     },
     "finite_exports_and_diffusion": {
-      "updated_at": "2026-11-12T07:16:37.511293+00:00",
+      "updated_at": "2026-11-12T07:29:50.044223+00:00",
       "release": {
-        "status": "new source not yet verified deployed",
-        "last_verified": {
-          "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
-          "ci": "43160860130 validate/promote success",
-          "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
-          "verified_at": "2026-11-12T05:32:48.445836+00:00",
-          "health": 200,
-          "scope": "Code-only; private HTTP403, no data/issuer/science activation."
-        }
+        "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+        "ci": "43174101497 validate/promote success",
+        "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+        "verified_at": "2026-11-12T07:29:50.044223+00:00",
+        "health": 200,
+        "scope": "Code only; no issuer/science/private HTTP activation."
       },
       "execution": {
         "command": [
@@ -2127,6 +2124,54 @@
         "centralAvailableWithLegacyNullProducer": 15,
         "customServerContractsNotChanged": 8
       },
+      "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+      "changed_paths_since_handoff": [
+        "client/src/components/emissions-candidate-review.tsx",
+        "client/src/components/readonly-version-diff.tsx",
+        "client/src/lib/producer-download.ts",
+        "docs/System_Output_Register.md",
+        "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+        "docs/WORKPLAN_COMPLETION_LEDGER.md",
+        "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+        "docs/field_semantics_census.json",
+        "docs/finite-export-runtime-receipts.json",
+        "docs/regional-diffusion-next-evidence.json",
+        "docs/remaining-export-evidence.json",
+        "docs/scientific-strands-warning-evidence.json",
+        "docs/workplan_completion_ledger.json",
+        "script/carbon-pass-through-admission.test.ts",
+        "script/field-semantics-census.ts",
+        "script/methodology-download-portable.test.ts",
+        "script/native-producer-exports.test.ts",
+        "script/native-semantics.test.ts",
+        "script/native-threshold-integration.test.ts",
+        "script/record-finite-export-increment.py",
+        "script/regional-diffusion-primary-attempts.mjs",
+        "script/regional_diffusion_next.py",
+        "script/remaining-export-contracts.test.ts",
+        "script/residual-label-scan.ts",
+        "script/static-reference-lineage.test.ts",
+        "script/test_regional_diffusion_next.py",
+        "server/carbonPassThroughApi.ts",
+        "server/downloadManifestMiddleware.ts",
+        "server/index.ts",
+        "server/nativeCandidateApi.ts",
+        "server/producerDownload.ts",
+        "server/readonlyDiffApi.ts",
+        "server/routes.ts",
+        "server/snapshots/materialInputs.ts",
+        "server/snapshots/nativeCandidateProducer.ts",
+        "server/snapshots/readonlyDiffProducer.ts",
+        "server/snapshots/resultVerificationGraph.ts",
+        "server/snapshots/results.ts",
+        "server/staticReferenceLineage.ts",
+        "server/warmingValidationReferenceApi.ts",
+        "shared/derivedConsumerSemantics.ts",
+        "shared/nativeConsumer.ts",
+        "shared/producerDownloadSemantics.ts",
+        "shared/readonlyConsumer.ts",
+        "shared/remainingExportContracts.ts"
+      ],
       "sources": [
         "docs/remaining-export-evidence.json",
         "docs/regional-diffusion-next-evidence.json"
@@ -2216,15 +2261,15 @@
     }
   },
   "current_release": {
-    "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
-    "ci": "43160860130 validate/promote success",
-    "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
-    "verified_at": "2026-11-12T05:32:48.445836+00:00",
+    "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+    "ci": "43174101497 validate/promote success",
+    "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+    "verified_at": "2026-11-12T07:29:50.044223+00:00",
     "health": 200,
-    "scope": "Code-only; private HTTP403, no data/issuer/science activation."
+    "scope": "Code only; no issuer/science/private HTTP activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T07:16:37.511293+00:00",
+  "updated_at": "2026-11-12T07:29:50.044223+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -26614,17 +26659,14 @@
             }
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T07:16:37.511293+00:00",
+            "updated_at": "2026-11-12T07:29:50.044223+00:00",
             "release": {
-              "status": "new source not yet verified deployed",
-              "last_verified": {
-                "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
-                "ci": "43160860130 validate/promote success",
-                "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
-                "verified_at": "2026-11-12T05:32:48.445836+00:00",
-                "health": 200,
-                "scope": "Code-only; private HTTP403, no data/issuer/science activation."
-              }
+              "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+              "ci": "43174101497 validate/promote success",
+              "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+              "verified_at": "2026-11-12T07:29:50.044223+00:00",
+              "health": 200,
+              "scope": "Code only; no issuer/science/private HTTP activation."
             },
             "execution": {
               "command": [
@@ -26673,6 +26715,54 @@
               "centralAvailableWithLegacyNullProducer": 15,
               "customServerContractsNotChanged": 8
             },
+            "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+            "changed_paths_since_handoff": [
+              "client/src/components/emissions-candidate-review.tsx",
+              "client/src/components/readonly-version-diff.tsx",
+              "client/src/lib/producer-download.ts",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/finite-export-runtime-receipts.json",
+              "docs/regional-diffusion-next-evidence.json",
+              "docs/remaining-export-evidence.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/carbon-pass-through-admission.test.ts",
+              "script/field-semantics-census.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/native-producer-exports.test.ts",
+              "script/native-semantics.test.ts",
+              "script/native-threshold-integration.test.ts",
+              "script/record-finite-export-increment.py",
+              "script/regional-diffusion-primary-attempts.mjs",
+              "script/regional_diffusion_next.py",
+              "script/remaining-export-contracts.test.ts",
+              "script/residual-label-scan.ts",
+              "script/static-reference-lineage.test.ts",
+              "script/test_regional_diffusion_next.py",
+              "server/carbonPassThroughApi.ts",
+              "server/downloadManifestMiddleware.ts",
+              "server/index.ts",
+              "server/nativeCandidateApi.ts",
+              "server/producerDownload.ts",
+              "server/readonlyDiffApi.ts",
+              "server/routes.ts",
+              "server/snapshots/materialInputs.ts",
+              "server/snapshots/nativeCandidateProducer.ts",
+              "server/snapshots/readonlyDiffProducer.ts",
+              "server/snapshots/resultVerificationGraph.ts",
+              "server/snapshots/results.ts",
+              "server/staticReferenceLineage.ts",
+              "server/warmingValidationReferenceApi.ts",
+              "shared/derivedConsumerSemantics.ts",
+              "shared/nativeConsumer.ts",
+              "shared/producerDownloadSemantics.ts",
+              "shared/readonlyConsumer.ts",
+              "shared/remainingExportContracts.ts"
+            ],
             "sources": [
               "docs/remaining-export-evidence.json",
               "docs/regional-diffusion-next-evidence.json"
@@ -138768,17 +138858,14 @@
             ]
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T07:16:37.511293+00:00",
+            "updated_at": "2026-11-12T07:29:50.044223+00:00",
             "release": {
-              "status": "new source not yet verified deployed",
-              "last_verified": {
-                "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
-                "ci": "43160860130 validate/promote success",
-                "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
-                "verified_at": "2026-11-12T05:32:48.445836+00:00",
-                "health": 200,
-                "scope": "Code-only; private HTTP403, no data/issuer/science activation."
-              }
+              "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+              "ci": "43174101497 validate/promote success",
+              "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+              "verified_at": "2026-11-12T07:29:50.044223+00:00",
+              "health": 200,
+              "scope": "Code only; no issuer/science/private HTTP activation."
             },
             "execution": {
               "command": [
@@ -138827,6 +138914,54 @@
               "centralAvailableWithLegacyNullProducer": 15,
               "customServerContractsNotChanged": 8
             },
+            "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+            "changed_paths_since_handoff": [
+              "client/src/components/emissions-candidate-review.tsx",
+              "client/src/components/readonly-version-diff.tsx",
+              "client/src/lib/producer-download.ts",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/finite-export-runtime-receipts.json",
+              "docs/regional-diffusion-next-evidence.json",
+              "docs/remaining-export-evidence.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/carbon-pass-through-admission.test.ts",
+              "script/field-semantics-census.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/native-producer-exports.test.ts",
+              "script/native-semantics.test.ts",
+              "script/native-threshold-integration.test.ts",
+              "script/record-finite-export-increment.py",
+              "script/regional-diffusion-primary-attempts.mjs",
+              "script/regional_diffusion_next.py",
+              "script/remaining-export-contracts.test.ts",
+              "script/residual-label-scan.ts",
+              "script/static-reference-lineage.test.ts",
+              "script/test_regional_diffusion_next.py",
+              "server/carbonPassThroughApi.ts",
+              "server/downloadManifestMiddleware.ts",
+              "server/index.ts",
+              "server/nativeCandidateApi.ts",
+              "server/producerDownload.ts",
+              "server/readonlyDiffApi.ts",
+              "server/routes.ts",
+              "server/snapshots/materialInputs.ts",
+              "server/snapshots/nativeCandidateProducer.ts",
+              "server/snapshots/readonlyDiffProducer.ts",
+              "server/snapshots/resultVerificationGraph.ts",
+              "server/snapshots/results.ts",
+              "server/staticReferenceLineage.ts",
+              "server/warmingValidationReferenceApi.ts",
+              "shared/derivedConsumerSemantics.ts",
+              "shared/nativeConsumer.ts",
+              "shared/producerDownloadSemantics.ts",
+              "shared/readonlyConsumer.ts",
+              "shared/remainingExportContracts.ts"
+            ],
             "sources": [
               "docs/remaining-export-evidence.json",
               "docs/regional-diffusion-next-evidence.json"
@@ -161804,17 +161939,14 @@
             ]
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T07:16:37.511293+00:00",
+            "updated_at": "2026-11-12T07:29:50.044223+00:00",
             "release": {
-              "status": "new source not yet verified deployed",
-              "last_verified": {
-                "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
-                "ci": "43160860130 validate/promote success",
-                "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
-                "verified_at": "2026-11-12T05:32:48.445836+00:00",
-                "health": 200,
-                "scope": "Code-only; private HTTP403, no data/issuer/science activation."
-              }
+              "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+              "ci": "43174101497 validate/promote success",
+              "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+              "verified_at": "2026-11-12T07:29:50.044223+00:00",
+              "health": 200,
+              "scope": "Code only; no issuer/science/private HTTP activation."
             },
             "execution": {
               "command": [
@@ -161863,6 +161995,54 @@
               "centralAvailableWithLegacyNullProducer": 15,
               "customServerContractsNotChanged": 8
             },
+            "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+            "changed_paths_since_handoff": [
+              "client/src/components/emissions-candidate-review.tsx",
+              "client/src/components/readonly-version-diff.tsx",
+              "client/src/lib/producer-download.ts",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/finite-export-runtime-receipts.json",
+              "docs/regional-diffusion-next-evidence.json",
+              "docs/remaining-export-evidence.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/carbon-pass-through-admission.test.ts",
+              "script/field-semantics-census.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/native-producer-exports.test.ts",
+              "script/native-semantics.test.ts",
+              "script/native-threshold-integration.test.ts",
+              "script/record-finite-export-increment.py",
+              "script/regional-diffusion-primary-attempts.mjs",
+              "script/regional_diffusion_next.py",
+              "script/remaining-export-contracts.test.ts",
+              "script/residual-label-scan.ts",
+              "script/static-reference-lineage.test.ts",
+              "script/test_regional_diffusion_next.py",
+              "server/carbonPassThroughApi.ts",
+              "server/downloadManifestMiddleware.ts",
+              "server/index.ts",
+              "server/nativeCandidateApi.ts",
+              "server/producerDownload.ts",
+              "server/readonlyDiffApi.ts",
+              "server/routes.ts",
+              "server/snapshots/materialInputs.ts",
+              "server/snapshots/nativeCandidateProducer.ts",
+              "server/snapshots/readonlyDiffProducer.ts",
+              "server/snapshots/resultVerificationGraph.ts",
+              "server/snapshots/results.ts",
+              "server/staticReferenceLineage.ts",
+              "server/warmingValidationReferenceApi.ts",
+              "shared/derivedConsumerSemantics.ts",
+              "shared/nativeConsumer.ts",
+              "shared/producerDownloadSemantics.ts",
+              "shared/readonlyConsumer.ts",
+              "shared/remainingExportContracts.ts"
+            ],
             "sources": [
               "docs/remaining-export-evidence.json",
               "docs/regional-diffusion-next-evidence.json"
@@ -171031,7 +171211,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue all original0–17. Read finite29-handler matrix in docs/remaining-export-evidence.json; do NOT reopen nine prior chains or newly closed entries. Ordinary downloads were not blanket disabled. Remaining unimplemented parent/code/material/derivation contracts are engineering, not source blockers. Preserve genuine privateHTTP403/operatorCLI, old124/179/416/no originalXLSXrecovery. Regional diffusion: actual150observations per separately retained release, ten combinations nine training/six heldout; zero new fits because no sourced saturation qualifies. Preserve original negatives/point win, windows/baselines/bootstrap; no invented ceilings. New programme-level primary sources/403/404 do not qualify issuer cash economics. Continue named FSLR/NEE/XOM fields and actual dated11–15/22-driver inputs, not repeated old kernels. Original1000/1001 and scientific/owner gates unchanged. Verify current_release vs docs/local receipts; existing promotion only.",
+    "instruction": "Continue ALL original0–17, no plan/package pause. Finite29-handler matrix now6newlyclosed/22unimplemented/1privateHTTP403. Preserve closed readonly-version-diff, affected-analyses, warming-referenceJSON, carbon-pass-throughJSON, native-thresholds/native-trajectory and prior9PE/signal chains. NEXT15central: category-scenarios/category-trends/company-coverage/emissions/historical-trend/indicator-cards/regional/sensitivity/temperature/threshold-diagnostic/indicator-detail/news-volume/news-sentiment-trend/news-sentiment-breakdown/news-topic. NEXT7custom: company-conditional JSON+XLSX, Stage10coverage JSON+XLSX, TrackBadmission JSON+XLSX, workbook-money-audit XLSX. Implement realparent/code/material/derivation; do not blanketdisable correctordinaryexports or call missingcode externalblocker. Native deterministic/no randomseed: archivefailure retains realresult and ordinaryunboundXLSX, neverproducerattestation; boundclaims/exactarchivereads refusecorruption. Preserve privateHTTP403/operatorCLI, old124/179/416/no originalXLSXrecovery,14FaIRpins. Regionaldiffusion150observations/release, ten combinations9train/6heldout: no sourced saturation qualified; new evaluator POINTONLY, original bootstrap/source-structural-dependence uncertainty stillrequired; zero newefficacyfits. No arbitrarypriors/retuning. NewDOE/IRSprogramme facts/403/404 do not supply FSLRcollections/eligiblewatts/BOM/currentlaw, NEEgrossrecipient/priorities/commissioning/returns, XOMexecutedfees/novation/billing/opex/funding. Continue exactqualifiedinputs and genuine11–15corpus/22drivers, not repeatedkernels. Original1000/1001,0eligiblehistories/0of3cases; scientific/owner gates unchanged. Verify current_release vs local/docs; existingpromotiononly.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -171639,6 +171819,14 @@
       "verified_at": "2026-11-12T04:41:14.454237+00:00",
       "health": 200,
       "scope": "Code-only; no permanent export/data/owner/scientific activation."
+    },
+    {
+      "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+      "ci": "43160860130 validate/promote success",
+      "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
+      "verified_at": "2026-11-12T05:32:48.445836+00:00",
+      "health": 200,
+      "scope": "Code-only; private HTTP403, no data/issuer/science activation."
     }
   ],
   "latest_changed_paths": [

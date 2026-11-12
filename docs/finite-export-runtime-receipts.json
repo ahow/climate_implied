@@ -1,4 +1,24 @@
 {
+  "latest": {
+    "observedAt": "2026-11-12T07:28:43Z",
+    "sourceCommit": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+    "workspaceImplementation": "04cf227cd7f53dd4d234ac217194d9163d76a817",
+    "ci": "43174101497 validate/promote success",
+    "railwayDeployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+    "railwayStatus": "SUCCESS",
+    "health": 200,
+    "nativeScenarios": {
+      "constant": {"status": 200, "trajectoryRows": 77},
+      "transition": {"status": 200, "trajectoryRows": 77},
+      "dashboard": {"status": 200, "trajectoryRows": 77}
+    },
+    "nativeBinding": "All three explicitly unavailable-no-producer-attestation; no live retained-native proof claimed",
+    "snapshotStatus": {"status": "not-provisioned", "snapshotId": null, "currentFinancialOverlaysApplied": false},
+    "wrongNativeScenario": 400,
+    "privateExportPOST": 403,
+    "boundary": "Engineering storage/handler fixtures pass; production remains not provisioned. Generic native retention refusal does not independently identify its internal failed operation.",
+    "previewBoundary": "Mistaken /scenario-analyzer screenshot was404; corrected configured dashboard / rendered. No native click-through certification claimed. Guessed /api/analysis/storage-status was not JSON; actual supported snapshot-status supplied the status."
+  },
   "scope": "Observed code release, not data activation or science acceptance",
   "observedAt": "2026-11-12T06:39:15Z",
   "sourceCommit": "01f57d6a4324524858aa1ee83026c0573fa1ae70",
