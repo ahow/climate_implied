@@ -16,8 +16,9 @@ OUTPUTS = ["docs/workplan_completion_ledger.json", "docs/WORKPLAN_ACCEPTANCE_MAT
            "docs/WORKPLAN_IMPLEMENTATION_REPORT.md"]
 EXPORT = "docs/remaining-export-evidence.json"
 STUDY = "docs/regional-diffusion-uncertainty-evidence.json"
+ISSUER = "docs/issuer-economics-next-evidence.json"
 RUNTIME = "docs/finite-export-runtime-receipts.json"
-RECEIPT = "generated-artifacts/remaining-export-all22.ready.receipt.json"
+RECEIPT = "generated-artifacts/remaining-export-all22.portable-final.receipt.json"
 
 
 def read(path):
@@ -37,7 +38,7 @@ x, export, study, receipt = read(LEDGER), read(EXPORT), read(STUDY), read(RECEIP
 original_contract = contract(x)
 original_statuses = {q["id"]: q["status"] for s in x["stages"] for q in s["requirements"]}
 assert receipt["exit_code"] == 0 and receipt["canonical_ledgers_modified"] is False
-assert receipt["suite_counts"]["typescript"] == {"tests": 1089, "pass": 1089, "fail": 0, "skipped": 0}
+assert receipt["suite_counts"]["typescript"] == {"tests": 1090, "pass": 1090, "fail": 0, "skipped": 0}
 assert receipt["suite_counts"]["python"] == {"tests": 248, "pass": 248, "fail": 0, "skipped": 0}
 assert digest(receipt["log"]) == receipt["log_sha256"]
 assert export["matrixCounts"]["implementedThisIncrement"] == 22
@@ -76,10 +77,11 @@ summary = {
     "updated_at": now, "release": release, "execution": receipt,
     "execution_receipt": {"path": RECEIPT, "sha256": digest(RECEIPT)},
     "finite_export_counts": export["matrixCounts"], "runtime_receipts": RUNTIME,
-    "changed_paths_since_handoff": sorted(changed), "sources": [EXPORT, STUDY],
+    "changed_paths_since_handoff": sorted(changed), "sources": [EXPORT, STUDY, ISSUER],
     "failure_history": export["tests"]["failedFullChecksPreserved"],
+    "public_ci_failure_and_test_repair": export["tests"]["publicCiPortabilityRepair"],
     "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
-    "scientific_decision": "Regional joint uncertainty implementation tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. No new issuer source, issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
+    "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
 }
 gaps = {
     "S16-007": (
@@ -95,9 +97,15 @@ gaps = {
         "Twenty-two synthetic engineering tests and retained-study regression tests pass. Actual execution remains UNEXECUTED: zero qualified regional saturation priors/joint source bundles, zero new actual candidate fits/bootstrap/heldout scores. "
         "Need independently sourced regional generation-share ceilings and authenticated, reviewed source/structural/dependence law/numerical draws plus original input/vintage/holdout gates; no arbitrary priors, independent marginal synthesis, default zero offsets, shortened windows, MW/shipments ceilings or release splicing. "
         "Retain all nine original baseline failures and EU-solar point win only. Original EV/heat-pump/storage technology-specific source/window/interval and acceptance gaps remain; no scientific/central/owner promotion."
+    ),
+    "S12-017": (
+        "Original0of3qualified issuer cases unchanged, including original industrial criterion; FSLR does not automatically replace it. "
+        "Bounded new discovery: six search200responses were off-topic/redirect shells, not usable search coverage; one exact new XOM interim filing from retained accession metadata returned403, not filing-content evidence or global unavailability. Seven logical requests stopped without bypass/retry or qualified new primary economic input; no adapter/model/case changed. "
+        "Preserve positive evidence: FSLR India July2026receipt month is sourced but amount/day/currency-FX/classification and eligible-US-watts/BOM/current-law qualifications remain separate unknowns. NEE-related executed LLC AvailableCash/reserves/class priorities/conditional flip-buyout dates/investorIRRs are sourced, not blanket absent; actual current holdings/elections, gross dated legal-recipient cash and marginal commissioning returns still required. XOM historical expected-recognition schedule/subsidiary identities and Williams up-to volume remain sourced, not priced operating instruments or invoiced/collected CCS cash. "
+        "Need exact executed current fees/novation/billing/opex/funding and common cash waterfall; no expected recognition or tax/contracted-tonnes proxy, future backdating, double expense/WC deduction, source approval or accepted FCFE insertion. Preserve all original case/market/stub/identity/cutoff/terminal/fade gates and prior complete studies without rerunning them as substitute source work."
     )
 }
-evidence = {"S16-007": (EXPORT, export), "S04-001": (STUDY, study)}
+evidence = {"S16-007": (EXPORT, export), "S04-001": (STUDY, study), "S12-017": (ISSUER, read(ISSUER))}
 for stage in x["stages"]:
     for requirement in stage["requirements"]:
         if requirement["id"] not in evidence:
@@ -132,7 +140,9 @@ x["restart"]["instruction"] = (
     "Preserve original1000/1001, old124/179/416,14FaIRpins,0eligiblehistories/0of3issuer cases and all scientific/owner gates. "
     "Regional uncertainty is now implemented but actual execution UNEXECUTED: zero qualified saturation/joint bundles and zero actual fits/bootstrap/scores; authentic full source/structural/dependence numerical draws required. No retuning known nine failures or EUsolar pointwin, priors, splicing or default offsets. "
     "No new issuer source or model work claimed; preserve existing FSLR/NEE/XOM exact economic-input gaps and every other partial original clause. "
-    "Latest local1089TS/248Python plus original/private/type/build receipt is engineering only. Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.")
+    "Latest local1090TS/248Python plus original/private/type/build receipt is engineering only; publicCI43186463787failed/promote-skipped due test-private-file dependency, now isolated-source regression repaired, NOT a successful new public release. "
+    "Issuer seven-request discovery adds no qualified economic input or code: preserve positive LLC/receipt-month evidence and distinguish unusable200/one scoped403 from global unavailability. "
+    "Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.")
 assert contract(x) == original_contract
 assert {q["id"]: q["status"] for s in x["stages"] for q in s["requirements"]} == original_statuses
 LEDGER.write_text(json.dumps(x, indent=2, ensure_ascii=False) + "\n")

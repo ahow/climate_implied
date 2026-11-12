@@ -4,7 +4,7 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
 
 ```json
 {
-  "updated_at": "2026-11-12T08:48:51.612125+00:00",
+  "updated_at": "2026-11-12T09:09:52.433190+00:00",
   "release": {
     "status": "New local source validated; new release not yet observed",
     "last_verified": {
@@ -22,24 +22,24 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
       "-c",
       "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
     ],
-    "executed_at": "2026-11-12T08:37:37.737681+00:00",
+    "executed_at": "2026-11-12T09:03:04.676951+00:00",
     "exit_code": 0,
-    "elapsed_seconds": 288.936,
+    "elapsed_seconds": 280.029,
     "counts": {
-      "tests": 1089,
-      "pass": 1089,
+      "tests": 1090,
+      "pass": 1090,
       "fail": 0,
       "skipped": 0
     },
-    "log": "generated-artifacts/remaining-export-all22.ready.log",
+    "log": "generated-artifacts/remaining-export-all22.portable-final.log",
     "workspace_revision": null,
     "worktree_dirty": null,
     "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-    "log_sha256": "2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
+    "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
     "suite_counts": {
       "typescript": {
-        "tests": 1089,
-        "pass": 1089,
+        "tests": 1090,
+        "pass": 1090,
         "fail": 0,
         "skipped": 0
       },
@@ -54,8 +54,8 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
     "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
   },
   "execution_receipt": {
-    "path": "generated-artifacts/remaining-export-all22.ready.receipt.json",
-    "sha256": "df9df71022f7fad835536b24f5044c8df36a2e249852343033dbf1457d8623e4"
+    "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+    "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
   },
   "finite_export_counts": {
     "newClosed": 28,
@@ -96,6 +96,7 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
     "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
     "docs/field_semantics_census.json",
     "docs/finite-export-runtime-receipts.json",
+    "docs/issuer-economics-next-evidence.json",
     "docs/regional-diffusion-next-evidence.json",
     "docs/regional-diffusion-uncertainty-evidence.json",
     "docs/remaining-export-evidence.json",
@@ -105,6 +106,7 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
     "script/company-coverage-route.test.ts",
     "script/download-selection-race.test.ts",
     "script/field-semantics-census.ts",
+    "script/fixtures/isolatedRetainedReports.ts",
     "script/legacy-export-producer.test.ts",
     "script/methodology-download-portable.test.ts",
     "script/native-producer-exports.test.ts",
@@ -160,7 +162,8 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
   ],
   "sources": [
     "docs/remaining-export-evidence.json",
-    "docs/regional-diffusion-uncertainty-evidence.json"
+    "docs/regional-diffusion-uncertainty-evidence.json",
+    "docs/issuer-economics-next-evidence.json"
   ],
   "failure_history": [
     {
@@ -192,8 +195,39 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
       "failure": "Existing company-cache HTTP30s transport timeout under full-suite load. Unchanged focused transport suite5/5passed; final full rerun passed with unchanged timeout/assertions. No gate relaxed."
     }
   ],
+  "public_ci_failure_and_test_repair": {
+    "failure": {
+      "ciRunId": 43186463787,
+      "validate": "failure",
+      "promote": "skipped",
+      "failingTest": "414 all five custom retained report paths",
+      "error": "ENOENT generated-artifacts/financial-data/mapping-audit.json at original script/legacy-export-producer.test.ts:287 readStage10RetainedFiles",
+      "privateLog": "generated-artifacts/all22-failed-ci.log",
+      "privateLogSha256": "21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b",
+      "newReleaseClaim": false
+    },
+    "fix": "Test-only isolatedRetainedReports creates explicitly SYNTHETIC files in a temporary CWD: exact100-row50+50 audit/root-cause selection, two hash-authenticated retained statement envelopes and safe monetary summary/private audit/reconciliation bytes with valid hashes. The SAME unchanged actual fixed-root readers, full producer replay, HTTP handlers and every existing attachment/manifest/literal-cell/corruption assertion execute. No production source bytes, generated artifacts or DB are used, copied, published or conditionally skipped; no production reader or mandatory private validator changed.",
+    "focused": {
+      "log": "generated-artifacts/all22-ci-fixture-focused.log",
+      "sha256": "5fc091b32855061e32582d988c2d9622881f8a7b997fe3fe937974249bd6046b",
+      "selectedTests": 1,
+      "pass": 1,
+      "fail": 0,
+      "deliberatelyUnselectedOtherTests": 20
+    },
+    "sourceOnlyRegression": {
+      "file": "script/methodology-download-portable.test.ts",
+      "log": "generated-artifacts/all22-ci-fixture-portable.log",
+      "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0,
+      "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+    }
+  },
   "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
-  "scientific_decision": "Regional joint uncertainty implementation tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. No new issuer source, issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
+  "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
 }
 ```
 

@@ -153,7 +153,13 @@
     "priorBoundary": "Prior6closed paths and9PE/signal chains retain existing tests/claims. No old124results/179headers/416chunks modified; no original XLSX bytes recovered."
   },
   "tests": {
-    "newFocusedSuite": {"command":"npx tsx --test script/legacy-export-producer.test.ts","tests":21,"pass":21,"fail":0,"cancelled":0,"skipped":0,"log":"/tmp/all-ready-focused-final.txt","boundary":"Whole actual checked-in legacy engines, authentic retained Stage10 and money source files, full-source private material fixtures, original production row expressions, actual central JSON/XLSX handler bodies and actual registered custom HTTP routes. Only storage/transport/cohort fixtures are isolated; Track publication is explicitly synthetic DEV-only negative engineering, never real approval."},
+    "newFocusedSuite": {"command":"npx tsx --test script/legacy-export-producer.test.ts","tests":21,"pass":21,"fail":0,"cancelled":0,"skipped":0,"log":"/tmp/all-ready-focused-final.txt","boundary":"HISTORICAL local-only receipt before public CI found the custom test's private generated-file dependency. Not source-only portability proof. Current synthetic fixture and final1090-test receipt below supersede that dependency without publishing private source files."},
+    "publicCiPortabilityRepair": {
+      "failure": {"ciRunId":43186463787,"validate":"failure","promote":"skipped","failingTest":"414 all five custom retained report paths","error":"ENOENT generated-artifacts/financial-data/mapping-audit.json at original script/legacy-export-producer.test.ts:287 readStage10RetainedFiles","privateLog":"generated-artifacts/all22-failed-ci.log","privateLogSha256":"21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b","newReleaseClaim":false},
+      "fix":"Test-only isolatedRetainedReports creates explicitly SYNTHETIC files in a temporary CWD: exact100-row50+50 audit/root-cause selection, two hash-authenticated retained statement envelopes and safe monetary summary/private audit/reconciliation bytes with valid hashes. The SAME unchanged actual fixed-root readers, full producer replay, HTTP handlers and every existing attachment/manifest/literal-cell/corruption assertion execute. No production source bytes, generated artifacts or DB are used, copied, published or conditionally skipped; no production reader or mandatory private validator changed.",
+      "focused":{"log":"generated-artifacts/all22-ci-fixture-focused.log","sha256":"5fc091b32855061e32582d988c2d9622881f8a7b997fe3fe937974249bd6046b","selectedTests":1,"pass":1,"fail":0,"deliberatelyUnselectedOtherTests":20},
+      "sourceOnlyRegression":{"file":"script/methodology-download-portable.test.ts","log":"generated-artifacts/all22-ci-fixture-portable.log","sha256":"649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7","tests":2,"pass":2,"fail":0,"skipped":0,"proof":"Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."}
+    },
     "preservationRegression": {"command":"npx tsx --test script/next-census-accounting.test.ts script/methodology-download-portable.test.ts script/static-reference-lineage.test.ts script/track-b-admission.test.ts script/download-selection-race.test.ts script/quantity-label-contracts.test.ts","tests":52,"pass":52,"fail":0,"skipped":0,"log":"/tmp/final-changed-a.txt"},
     "newCoverage": "All15central families, all3category/history metrics, all22indicator detail keys, all4conditional issuer selections, every5custom retained report format path, exactJSON retained concurrent A/B material identities, missing/corrupt input/material/code/result refusal, original-parent/row mutation refusal and actual literal formula/cell refusal. All21new tests rerun without skips inside the successful final complete suite; standalone and focused receipts above are earlier incremental evidence, not substituted for final tests.",
     "initialFullcheckFailurePreserved": {"receipt":"generated-artifacts/remaining-export-all22.first.receipt.json","log":"generated-artifacts/remaining-export-all22.first.log","typescript":{"tests":1081,"pass":1066,"fail":12,"cancelled":3,"skipped":0},"fixes":"Preserved ordinary row expressions and exact quantity wrapper accounting, supplied real added dependencies to AST/VM harnesses, corrected ExcelJS literal header-cell verification, split pure material context/source artifacts from DB modules to preserve offline CLI portability, regenerated census/register and refreshed current-only warning hashes. No gates/assertions/scientific thresholds relaxed."},
@@ -161,7 +167,7 @@
       {"receipt":"generated-artifacts/remaining-export-all22.final-v2.receipt.json","log":"generated-artifacts/remaining-export-all22.final-v2.log","typescript":{"tests":1089,"pass":1089,"fail":0,"skipped":0},"python":{"tests":248,"pass":248,"fail":0,"skipped":0},"failure":"Mandatory private monetary freeze rejected edited original safe reader/API. Restored original reader/API and protected Track test byte-for-byte; implemented additive release wrappers instead. No private hash/gate/threshold relaxed."},
       {"receipt":"generated-artifacts/remaining-export-all22.complete.receipt.json","log":"generated-artifacts/remaining-export-all22.complete.log","typescript":{"tests":1089,"pass":1088,"fail":1,"skipped":0},"failure":"Existing company-cache HTTP30s transport timeout under full-suite load. Unchanged focused transport suite5/5passed; final full rerun passed with unchanged timeout/assertions. No gate relaxed."}
     ],
-    "finalFullChecks": {
+    "preCiLocalFullChecks": {
       "command":"uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.ready.log --receipt generated-artifacts/remaining-export-all22.ready.receipt.json",
       "receipt":"generated-artifacts/remaining-export-all22.ready.receipt.json",
       "log":"generated-artifacts/remaining-export-all22.ready.log",
@@ -179,6 +185,21 @@
       "canonicalLedgersModified":false,
       "acceptance":"Engineering source/file-handler evidence only; not scientific acceptance, source approval, publication permission or original-history recovery",
       "visualCheck":"Attempted already-running preview only;127.0.0.1:5000 refused connection. No server/workflow was started. Live or signed-in UI not verified."
+    },
+    "finalFullChecks": {
+      "command":"uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.portable-final.log --receipt generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+      "receipt":"generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+      "log":"generated-artifacts/remaining-export-all22.portable-final.log",
+      "logSha256":"a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+      "exitCode":0,"elapsedSeconds":280.029,
+      "typescript":{"tests":1090,"pass":1090,"fail":0,"skipped":0},
+      "python":{"tests":248,"pass":248,"fail":0,"skipped":0},
+      "typecheck":"passed","originalChoiceWidthDocument":"passed",
+      "mandatoryPrivateMonetaryIntegration":"passed; original sources and validators unchanged",
+      "mandatoryPrivateIssuerCashflow":"passed","mandatoryPrivateIssuerReconciliation":"passed",
+      "productionBuild":"passed; existing Browserslist/PostCSS/large-chunk warnings unchanged",
+      "canonicalLedgersModified":false,
+      "boundary":"Final full local engineering checks after fixture/portability repair; NOT a successful public CI/promote/deployed receipt. Parent owns CI. No app/workflow/publish/callback."
     }
   },
   "priorImplementation": {
@@ -315,7 +336,9 @@
     "shared/safeReportExportSemantics.ts": "a9387203495ffdadd418198a660c58322bb126318790f648a3a5f46cc6d72df5",
     "shared/remainingExportContracts.ts": "4ca5b0d6e4164bfe72a8217e62b4928f7894f7b7b008e46eaa7d536795ca73a2",
     "client/src/lib/producer-download.ts": "9edb2f144fdac50d80a9dd0a5a24bd0e5a518e7ceb220ee78bb80ad8ce749ae0",
-    "script/legacy-export-producer.test.ts": "c8f99d743cf281fbf449b2724845ac61e377fd69222416cb66cb13343146538d"
+    "script/legacy-export-producer.test.ts": "d98fa1a9f8654550e10e095d82d560e87221c13a0bf93b13d9d0e2227fc5b2ef",
+    "script/fixtures/isolatedRetainedReports.ts": "09d4a27c3e100212625c4a5184fec26768080f5aa9e16e68ff8782f8bc76392a",
+    "script/methodology-download-portable.test.ts": "9820e280d1a5c74b335249f07c47527670dd6cabe47ee15c86d225a83e34c869"
   },
   "priorFrozenSourceHashes": {
     "shared/remainingExportContracts.ts": "b2e4593518179d68996eefed1cd4f3ac9937c8cb11896b6aa3c8b7bce86ddbfa",
@@ -361,5 +384,5 @@
     "No canonical ledger edits, commit, deployment, callback, workflow start/restart or app run."
   ],
   "remainingWorkBoundary": "No finite22producer/derivation contract is left as an unexplained implementation gap or relabelled external data blocker. Engineering closure is prospective and supported by actual retained-parent/file-handler readbacks, not live persistence activation. Old full TrackB assessment companions and original upstream news HTTP bytes are not retroactively reconstructed or claimed. The one unauthorized private HTTP path stays403. No full ORIGINAL S16-007, scientific, owner, publication or original-history acceptance claim.",
-  "freeze": "Executable source frozen before successful complete receipt-only checks (1089TS+248Python, every mandatory private validator, production build). Only this evidence JSON was finalized afterward. No canonical ledger, commit, deployment, callback, workflow start/restart, app run, data approval or private publication performed. Live/signed-in UI and live persistence activation not verified."
+  "freeze": "Runtime application code unchanged by CI fixture repair. Final test/fixture code frozen before successful complete local receipt-only checks (1090TS+248Python, original/private/type/build). Evidence/recorder/ledgers finalized afterward. Public CI43186463787failure/promote-skipped preserved, no new successful CI/release invented. No workflow, publication, callback, production mutation or auth bypass in repair; parent owns CI/deployment. Prior committed engineering evidence/history remains historical."
 }

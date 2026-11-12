@@ -1,7 +1,24 @@
 {
   "pendingIntegration": {
     "scope": "New local finite22contracts and guarded regional joint uncertainty code; not yet a new deployed receipt. Prior latest runtime observation below remains historical.",
+    "ciFailure": {
+      "runId": 43186463787, "validate": "failure", "promote": "skipped",
+      "error": "Test414 depended on missing private generated-artifacts/financial-data/mapping-audit.json; no release promoted",
+      "privateLog": "generated-artifacts/all22-failed-ci.log",
+      "privateLogSha256": "21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b",
+      "repair": "Synthetic isolated fixed-root files through same actual readers; source-only regression prohibits DB access; no private files or validators changed."
+    },
     "localFullChecks": {
+      "receipt": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+      "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+      "logSha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+      "exitCode": 0,
+      "typescript": {"tests": 1090, "pass": 1090, "fail": 0, "skipped": 0},
+      "python": {"tests": 248, "pass": 248, "fail": 0, "skipped": 0},
+      "typecheckOriginalPrivateValidatorsAndBuild": "passed",
+      "releaseBoundary": "Local CI repair checks only; no successful new public CI/Railway/deployed observation."
+    },
+    "preCiLocalFullChecks": {
       "receipt": "generated-artifacts/remaining-export-all22.ready.receipt.json",
       "log": "generated-artifacts/remaining-export-all22.ready.log",
       "logSha256": "2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
@@ -11,6 +28,13 @@
       "typecheckOriginalPrivateValidatorsAndBuild": "passed"
     },
     "postLedgerFiveModules": {
+      "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
+      "receipt": "generated-artifacts/finite-export-post-ledger.portable.receipt.json",
+      "log": "generated-artifacts/finite-export-post-ledger.portable.log",
+      "logSha256": "c6a77dd8907bd2e83e4c6d1bd9b104bbe189b3a749a30e7609d87ec381a0fc37",
+      "tests": 16, "pass": 16, "fail": 0, "skipped": 0
+    },
+    "preCiPostLedgerFiveModules": {
       "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
       "receipt": "generated-artifacts/finite-export-post-ledger.ready.receipt.json",
       "log": "generated-artifacts/finite-export-post-ledger.ready.log",

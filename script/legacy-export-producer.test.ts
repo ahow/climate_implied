@@ -37,8 +37,8 @@ import { verifyStaticReferenceIdentity } from "../server/staticReferenceLineage"
 import { registerStage10CoverageRoutes } from "../server/stage10CoverageApi";
 import { registerTrackBAdmissionRoutes } from "../server/trackBAdmissionApi";
 import { registerWorkbookMoneyAuditExportApi as registerWorkbookMoneyAuditApi } from "../server/workbookMoneyAuditExportApi";
-import { readWorkbookMoneyExportRelease as readWorkbookMoneyAudit } from "../server/financialData/workbookMoneyExportRelease";
-import { readStage10RetainedFiles, replayStage10FromSources } from "../server/financialData/stage10Source";
+import { replayStage10FromSources } from "../server/financialData/stage10Source";
+import { isolatedRetainedReportInputs } from "./fixtures/isolatedRetainedReports";
 import { packDataset } from "../server/snapshots/contract";
 import { consumedReportRelease } from "../server/snapshots/reportMaterialContext";
 import { assessTrackBAdmission } from "../server/calculation/trackBAdmission";
@@ -284,15 +284,19 @@ test("conditional issuer JSON/XLSX: all four actual allowlisted selections, exac
 test("all five custom retained report paths execute actual HTTP and custom JSON/XLSX projections; no private material in manifest", async () => {
   const f = fixture(), previous = process.env.NODE_ENV; process.env.NODE_ENV = "development";
   try {
-    const files = await readStage10RetainedFiles();
-    // Actual authenticated retained file release; only the workbook/storage
-    // transport is an isolated two-issuer engineering cohort. Never persisted
-    // as an approved or historical production workbook.
+    const { files, money } = await isolatedRetainedReportInputs();
+    // Same actual authenticating readers and whole-source replay, using ONLY
+    // explicit isolated synthetic files, never workspace/private production data.
+    assert.equal(files.audit.engineeringFixture, true);
+    assert.equal(files.audit.results.length, 100);
+    assert.equal(files.rootCause.rows.length, 100);
+    assert.equal(files.versions.length, 2);
     const companies = files.audit.results.slice(0, 2).map((r: any) => ({ id: r.companyId, isin: r.isin }));
     const packed = packDataset(companies as any, []);
     const stage = replayStage10FromSources(files, { id: packed.id, company_count: companies.length,
       observation_count: 0, chunk_count: packed.chunks.length }, packed.chunks.map((payload, ordinal) => ({ ordinal, payload })), [], [], {});
-    const money = await readWorkbookMoneyAudit();
+    assert.equal(money.sourceCompanyCount, 2);
+    assert.equal(money.monetaryTotals, null);
     // Expose fixture locals only in this test VM; the immutable original
     // guarded test source itself is not edited or relaxed.
     const fixtureExpression = initializer("script/track-b-admission.test.ts", "disclosureFixture")
