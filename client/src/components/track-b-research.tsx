@@ -1,3 +1,4 @@
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
@@ -61,8 +62,8 @@ export function TrackBResearch({ readState }: { readState?: TrackBResearchReadSt
             <dl className="text-xs break-all">{(["reportHash", "disclosureHash", "pipelineResultHash", "periodDomainHash"] as const).map(key =>
               <div key={key} data-field-id={`trackBPublicCatalog.reports[].${key}`}><dt>{key}</dt><dd>{pin[key]}</dd></div>)}</dl>
             <p data-field-id="trackBAdmission.limitation" className="text-xs">{report.limitation}</p>
-            <nav className="flex gap-4 text-sm"><a className="underline" href={trackBReportUrl(pin, "/export.json")}>Download exact JSON</a>
-              <a className="underline" href={trackBReportUrl(pin, "/export.xlsx")}>Download exact XLSX</a></nav>
+            <nav className="flex gap-4 text-sm"><a className="underline" href={withDownloadManifest(trackBReportUrl(pin, "/export.json"))}>Download exact JSON</a>
+              <a className="underline" href={withDownloadManifest(trackBReportUrl(pin, "/export.xlsx"))}>Download exact XLSX</a></nav>
             {report.periods.map((period, index) => <section key={`${period.specification}-${period.origin}-${index}`} className="border rounded p-3 text-xs space-y-2">
               <p data-field-id="trackBAdmission.periods[].specification">{period.specification}</p>
               <p data-field-id="trackBAdmission.periods[].origin">Origin: {period.origin}</p>

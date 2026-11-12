@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "indicator-source-fields-increment-1",
+  "criterion": "S03-007",
+  "status": "bounded-source-product-metadata-proposals-not-owner-acceptance",
+  "receiptRecordedAt": "2026-11-12T00:45:30Z",
+  "scope": "Three existing original-cohort keys; no collector, provider, curated-history, frozen study, window, central admission, owner-review or canonical-ledger changes.",
+  "selection": {
+    "retainedInventory": [
+      "server/dataIngestion/indicatorRegistry.ts",
+      "server/dataIngestion/adapters/noaa.ts",
+      "server/calculation/driverEvidence.ts",
+      "docs/Driver_Evidence_Audit.md",
+      "docs/driver-source-continuation-evidence.json",
+      "generated-artifacts/driver-calibration/ev-sales-share.metadata.json",
+      "generated-artifacts/driver-calibration/source-compatibility.json"
+    ],
+    "noveltyCheck": "Targeted rg over docs/script/server found the two NOAA file URLs already in the collector and retained missingness fixture, but no source-specific uncertainty, rights or regional proposal. NOAA numeric endpoints are NOT new discoveries; their unused metadata comments, original methodology and terms are the bounded new fields. Pew 2021 report/method/terms URLs were absent in that search. Not a claim that every ignored historical capture has been exhaustively searched.",
+    "selected": [
+      {"key": "atmosphericCO2ppm", "registeredPublisher": "NOAA Mauna Loa", "reason": "Original registered product; unattempted annual uncertainty, rights and station-versus-global applicability fields."},
+      {"key": "co2GrowthRatePpm", "registeredPublisher": "NOAA Mauna Loa", "reason": "Original registered product; unattempted trend-growth definition, March cadence, measurement-versus-representativeness uncertainty and terms."},
+      {"key": "sacrificeWillingnessPct", "registeredPublisher": "Survey (Pew/UN)", "reason": "Original registry explicitly names Pew as one survey family. One dated primary report investigated as candidate, not authenticated as origin of the supplied annual history."}
+    ],
+    "notRepeated": "No IRENA exact-cost retry, World Bank carbon-pricing retry, EV recalibration or generic 22-key sweep. Other 19 keys left unchanged, not labelled attempted."
+  },
+  "acquisition": {
+    "webFetchCalls": 8,
+    "webSearchCalls": 2,
+    "paidResources": 0,
+    "retries": 0,
+    "authOrPrivateExport": false,
+    "hashMeaning": "SHA256 of UTF-8 markdown returned by webFetch, not raw HTTP/PDF bytes, original annual vintage, publication timestamp or retained-history hash. Extraction hashes computed with node:crypto in the tool runtime. No response HTTP status was exposed; success means nontruncated extracted content returned.",
+    "captureRetention": "Public-safe facts, URLs, extraction hashes and locators only; copyrighted Pew report, media and microdata not copied into this repository.",
+    "searches": [
+      {
+        "query": "What original 2021 Pew Research climate survey reports willingness to change daily life and government climate action across 17 advanced economies?",
+        "searchQueries": ["Pew 2021 climate change willing lifestyle 17 economies"],
+        "includeDomains": ["pewresearch.org"],
+        "count": 3,
+        "followed": "Canonical primary report URL, stripping the search result's ref parameter; followed its explicit Methodology link."
+      },
+      {
+        "query": "What terms of use apply to Pew Research Center reports and survey data?",
+        "searchQueries": ["Pew Research Center terms use data copyright"],
+        "includeDomains": ["pewresearch.org"],
+        "count": 2,
+        "followed": "Primary /about/terms-and-conditions URL; no dataset download or further acquisition after terms inspection."
+      }
+    ],
+    "attempts": [
+      {
+        "id": "noaa-trends",
+        "url": "https://gml.noaa.gov/ccgg/trends/",
+        "sha256": "1f540eb7f1a74a7054b80648e5f81dc87f91d7ba89adb601d24e7f305581b182",
+        "bytes": 5766,
+        "truncated": false,
+        "publicationDate": null,
+        "publisherLastUpdatedLabel": "Oct 09, 2026",
+        "rights": "NOAA terms linked in noaa-rights; no images retained.",
+        "locator": "Background means, preliminary data, 3400m northern-subtropical location and Maunakea substitution paragraphs.",
+        "result": "Station geography, preliminary status and measurement construction qualified at product level. No original annual publication archive found on this page."
+      },
+      {
+        "id": "noaa-growth-method",
+        "url": "https://gml.noaa.gov/ccgg/trends/gr.html",
+        "sha256": "90f8207ae34039b81507fec78469be1e2443047f7e222a8bfbaf655ba98f4e74",
+        "bytes": 6052,
+        "truncated": false,
+        "publicationDate": null,
+        "rights": "NOAA government data terms with acknowledgement and no endorsement; no graph retained.",
+        "locator": "Annual mean growth definition; March finalization; 0.11ppm/yr measurement uncertainty; 0.26ppm/yr MLO-minus-global difference.",
+        "result": "Precise temporal construction and distinct uncertainty concepts qualified. March is cadence, not original exact annual release date."
+      },
+      {
+        "id": "noaa-rights",
+        "url": "https://gml.noaa.gov/about/disclaimer.html",
+        "sha256": "3b415541d3dca70d2850b82316c7aee7e135bba3087c8baaf0d596dcc8e97492",
+        "bytes": 5831,
+        "truncated": false,
+        "publicationDate": null,
+        "rights": "Public domain unless specifically annotated otherwise; GML acknowledgement, separate data citation, no implied endorsement, no modifications presented as official; third-party annotations respected.",
+        "locator": "Data and Products.",
+        "result": "Conditional government-data use identified, not blanket approval of mixed-provenance curated history."
+      },
+      {
+        "id": "noaa-annual-file",
+        "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt",
+        "sha256": "42acfe30569dd7134bda3ac3eb74e347a55b5133c3926557410e1b4ec4423f7f",
+        "bytes": 3696,
+        "truncated": false,
+        "publicationDate": null,
+        "fileCreationLabel": "Fri Oct 9 13:08:13 2026",
+        "timezone": null,
+        "rights": "USE OF NOAA GML DATA: freely available with relevant citation requested; pre-May1974 Scripps provenance explicit.",
+        "locator": "File header, uncertainty definition, revision warning, year/mean/unc columns.",
+        "result": "Annual measurement uncertainty metadata and full retained-window current comparison available; exact historical original releases unavailable."
+      },
+      {
+        "id": "noaa-growth-file",
+        "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt",
+        "sha256": "eca1f3f7159270cf4d11cf3d834315e1e25002bac56e21026f8fb9cdee128939",
+        "bytes": 4211,
+        "truncated": false,
+        "publicationDate": null,
+        "fileCreationLabel": "Fri Oct 9 13:08:13 2026",
+        "timezone": null,
+        "rights": "USE OF NOAA GML DATA: freely available with relevant citation requested; no inference of curated-row approval.",
+        "locator": "Jan1–Dec31 increment definition, uncertainty comment, year/ann inc/unc columns.",
+        "result": "Current growth-product rows do not reconcile with any of the 16 curated growth values; source uncertainty cannot be attached as if they did."
+      },
+      {
+        "id": "pew-release",
+        "url": "https://www.pewresearch.org/global/2021/09/14/in-response-to-climate-change-citizens-in-advanced-economies-are-willing-to-alter-how-they-live-and-work/",
+        "sha256": "4c009a85709a8f5f71ba862df7c0f06f72ba9640ad69a79e4220967f8fa9d38c",
+        "bytes": 48063,
+        "truncated": false,
+        "publicationDate": "2021-09-14",
+        "laterCorrectionDate": "2021-10-13",
+        "correctionMeaning": "Economic-impact chart don't-know tabulation; current page is not an immutable publication-day snapshot.",
+        "rights": "Pew copyrighted report; facts and minimal paraphrase/attribution only, no media or full report redistribution.",
+        "citation": "In Response to Climate Change, Citizens in Advanced Economies Are Willing To Alter How They Live and Work. Pew Research Center, Washington, D.C. (September 14, 2021).",
+        "locator": "Dateline; How we did this; willingness to change life/work section; correction.",
+        "result": "17-public median and stated-willingness definition. Candidate report release date authenticated, but not origin of the curated global annual series."
+      },
+      {
+        "id": "pew-method",
+        "url": "https://www.pewresearch.org/global/2021/09/14/climate-change-spring-2021-methodology/",
+        "sha256": "536c1a5c571b5356e719d2cceb5c11a44ab03ffc2e0cfaed72671860bd07a0ad",
+        "bytes": 15965,
+        "truncated": false,
+        "publicationDate": "2021-09-14",
+        "rights": "Pew copyrighted methodology; facts/links/paraphrases only, no charts copied.",
+        "locator": "International telephone design; ATP overview; weighting; sampling error.",
+        "result": "US sample2596 and ±2.7pp sampling error apply to US full sample, not global median or six-region distribution."
+      },
+      {
+        "id": "pew-rights",
+        "url": "https://www.pewresearch.org/about/terms-and-conditions",
+        "sha256": "dc1f224879374c0799cf1a2376416054a0a9f23a231755ace3f5933c207509a1",
+        "bytes": 18255,
+        "truncated": false,
+        "publicationDate": null,
+        "termsEffectiveDate": "2018-05-25",
+        "rights": "Conditional copyrighted use; attribution and notices; no endorsement; no full/principal-part reproduction, unauthorized scraping or standalone third-party material; datasets and ATP have additional/distinct terms.",
+        "locator": "Sections1–4 and13–14.",
+        "result": "No open-licence or public-domain claim. Stopped at public report/method/terms; no authenticated downloads, microdata, media, bulk compilation or further requests."
+      }
+    ]
+  },
+  "admission": {
+    "implementation": "server/calculation/indicatorSourceMetadata.ts",
+    "consumer": "driverEvidenceRegistry().sourceMetadataProposal",
+    "proposalKeys": ["atmosphericCO2ppm", "co2GrowthRatePpm", "sacrificeWillingnessPct"],
+    "sourceProductQualifiedFields": 8,
+    "candidateOnlyFields": 4,
+    "attemptedUnavailableFields": 3,
+    "countMeaning": "Five bounded field families for each of three keys. Product qualification is descriptive source metadata only, not acceptance of original curated-row metadata.",
+    "originalObservationAvailableAt": null,
+    "originalVintage": null,
+    "topLevelInformationAvailableAtChanged": false,
+    "topLevelLicenceUncertaintyOrGeographyOverwritten": false,
+    "ownerReview": "pending-not-requested",
+    "centralPromotion": false,
+    "guard": "Strict schema, actual registered key/publisher and relationship checks, immutable source-reference allowlist, required source locators and claims; explicit null original dates/vintage; no extra model/approval properties. Runtime proposal clones cannot mutate originals."
+  },
+  "fullWindowComparison": {
+    "meaning": "Current revised source versus unchanged curated inputs, not historical-vintage verification or a calibration exercise. Annual values compared at registered1decimal via Math.round(mean*10)/10; growth at registered2decimals via Math.round(growth*100)/100. Every retained2010–2025 row compared; no truncation. Not a fit/acceptance metric.",
+    "columns": ["year", "sourceAnnualPpm", "sourceAnnualUncertaintyPpm", "sourceGrowthPpmPerYear", "sourceGrowthUncertaintyPpmPerYear"],
+    "sourceRows": [
+      [2010,390.10,0.12,2.30,0.11],
+      [2011,391.85,0.12,1.92,0.11],
+      [2012,394.06,0.12,2.65,0.11],
+      [2013,396.74,0.12,1.99,0.11],
+      [2014,398.81,0.12,2.17,0.11],
+      [2015,401.01,0.12,2.95,0.11],
+      [2016,404.41,0.12,3.03,0.11],
+      [2017,406.76,0.12,1.90,0.11],
+      [2018,408.72,0.12,2.85,0.11],
+      [2019,411.65,0.12,2.49,0.11],
+      [2020,414.21,0.12,2.30,0.11],
+      [2021,416.41,0.12,2.35,0.11],
+      [2022,418.53,0.12,1.84,0.11],
+      [2023,421.08,0.12,3.32,0.11],
+      [2024,424.61,0.12,3.33,0.11],
+      [2025,427.35,0.12,2.23,0.11]
+    ],
+    "expectedGrowthMismatchCount": 16,
+    "expectedAnnualMismatchYears": [2021, 2022, 2025],
+    "decision": "Do not replace curated series or attach source uncertainty to it. Mean-growth-definition mismatch/revisions remain explicit; matching rounded levels also do not establish original provenance."
+  },
+  "issuerNewSourceTriage": {
+    "inspected": [
+      "docs/issuer-cash-source-followup-evidence.json",
+      "docs/issuer-financial-followup-evidence.json",
+      "docs/issuer-attachment-grant-evidence.json"
+    ],
+    "result": "No materially new unattempted operating-economic primary URL identified in these retained followups. Latest specific ONEOK arrangement/settlement terms, NEE/XPLR counterparty actual cash scope, FSLR grant-period/eligible-watts and Rose operating cash gaps already have named attempted sources. Did not repeat them, old CF credit work, accession-index audits or request invented source URLs.",
+    "newRequests": 0,
+    "issuerQualificationOrValuationChanged": false,
+    "limitation": "Local retained-followup triage only, not a claim no new public disclosure exists anywhere."
+  },
+  "preservedHashes": {
+    "server/dataIngestion/indicatorRegistry.ts": "333ce1f17e89bad3a50ed9018e36848655fc735597be2bc11fe40885b72689c3",
+    "server/dataIngestion/adapters/noaa.ts": "23ae216a58db5e027dc78b6583cfc9676e70ccea1a603be1b9bef88ed8cb9551",
+    "server/calculation/historicalIndicators.ts": "e716ce9997bc28d490189a25fc45cf553318328eb12f7e46f830651a2e73705b",
+    "docs/Driver_Evidence_Audit.md": "a3f359c2b18c96d003014a26b83e31cc55d17cb43603ba8b4820cf7b63adb5d4",
+    "docs/issuer-cash-source-followup-evidence.json": "e87b78c01ea5030e0e1dcdd4ebf7624209b693bca02685679110574c2bbcabf9",
+    "docs/issuer-financial-followup-evidence.json": "d633b6ff5616be95d27bfaaa60614bb1ae5be517183ba327740f35cb25869009",
+    "docs/issuer-attachment-grant-evidence.json": "175399ec91baca924d730627f760747e8bb9b44e169a5b6ec59134be6fb8e868"
+  },
+  "tests": {
+    "status": "executed",
+    "command": "node --import tsx --test script/indicator-source-metadata.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts",
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "newFocusedTests": 5,
+    "coverage": [
+      "Actual22registry integration and three proposal keys with unchanged role/admission/original dates.",
+      "Negative unknown-key, publisher substitution, source-reference swap, fabricated original date/vintage, review, promotion and extra-coefficient controls.",
+      "Real16year full-window source-versus-curated comparison;16growth mismatches and3annual-mean mismatches at registered presentation precision. Uncertainties not attached to curated values.",
+      "All8actual extraction receipts reconciled;8qualified product fields,4candidate fields and3precise attempted unavailability fields;7untouched source/inventory/followup hashes checked.",
+      "Mutation isolation and existing native/legacy central-rejection regression tests."
+    ],
+    "typecheck": {
+      "command": "npx tsc --noEmit --incremental false --pretty false",
+      "qualification": "Filtered full-project output contained no diagnostics in indicatorSourceMetadata.ts or driverEvidence.ts. Not a claim of project-wide success; pipeline did not retain tsc exit status.",
+      "ownedFileDiagnosticCount": 0
+    },
+    "diffWhitespace": "git diff --check passed",
+    "appOrSignedInUi": "Not run or modified; source-metadata-only work."
+  },
+  "implementationHashes": {
+    "server/calculation/indicatorSourceMetadata.ts": "50a71a97c357abf7d993ed923f187a397fcc1c0e601a3e1a43077e142ecaff77",
+    "server/calculation/driverEvidence.ts": "8508db324f125a917e5740492b8c7a190a52eda4e26a2aeacf35ffd5557693d1"
+  },
+  "remainingGaps": [
+    "Original per-observation publication archives and authenticated original vintages remain missing for selected curated histories; report/file timestamps are not substituted.",
+    "NOAA uncertainty is product-specific, not validated for mismatched retained rows; covariance and regional transfer remain unavailable.",
+    "Pew exact question/country/weight/release mapping to the original annual series is unconfirmed; 17-public medians and US sampling error cannot be converted into global observations/distributions.",
+    "Other19indicator metadata not attempted in this bounded increment; no broad completion claim.",
+    "Owner/scientific review and central-model promotion neither performed nor requested."
+  ]
+}

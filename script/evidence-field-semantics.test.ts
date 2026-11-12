@@ -18,7 +18,7 @@ function check(prefix:string,response:unknown,count:number) {
 const ensemble={baseline:"1850-1900",memberIds:["a","b"],years:[2020,2021],temperature:[[1,3],[2,4]]};
 test("ensemble exact quantiles, strict exceedance and bin mass bind without changing response",()=>{
   const response=summarizeEnsemble(ensemble);
-  check("ensembleSummary",response,23);
+   check("ensembleSummary",response,37);
   assert.equal(response.headline.median,3);
   assert.equal(response.headline.p10,2.2);
   assert.equal(response.headline.probabilityAbove2,.5);
@@ -34,7 +34,7 @@ test("holdout and reference-window calculations bind all submitted-evidence leav
     baseline:"persistence",maxDeteriorationFraction:0,nominalCoverage:.9,coverageTolerance:.1,
   },Array.from({length:5},()=>({origin:"2020-01-01",inputsAvailableThrough:"2019-12-31",
     targetYear:2021,actual:2,candidate:3,persistence:4,trend:3,lower:1,upper:3,revisedHistory:true})));
-  check("holdoutEvaluation",response,9);
+   check("holdoutEvaluation",response,23);
   assert.equal(response.mae,1); assert.equal(response.baselineMAE,2);
   assert.equal(response.pointInTime,false); assert.equal(response.passed,false);
   const history=historicalValidation({ensemble,simulationKind:"total",reference:{
@@ -76,7 +76,7 @@ test("conditional signal modes bind readback and retain deterministic coefficien
 test("original API cohort closure is exact and backed by real route bindings",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
   const routes=readFileSync("server/routes.ts","utf8");
-  assert.equal(evidenceFieldSemantics.length,73);
+  assert.equal(evidenceFieldSemantics.length,101, "Original73 plus fourteen exact scientific-policy leaves on each of two actual producers");
   for(const {surface,prefix} of evidenceApiBindings) {
     const family=census.families.find((f:{surface:string})=>f.surface===surface);
     const expected=evidenceFieldSemantics.filter(f=>f.id.startsWith(`${prefix}.`)).length;

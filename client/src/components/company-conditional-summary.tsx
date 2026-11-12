@@ -1,3 +1,4 @@
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import { useState } from "react";
 import { Download, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -78,8 +79,8 @@ export function CompanyConditionalSummary() {
               </Select>
             </div>
             {company && issues.length === 0 ? <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" asChild><a href={`${exportBase}.json?issuer=${issuer}`} download><Download className="mr-2 h-3.5 w-3.5" />Public JSON</a></Button>
-              <Button variant="outline" size="sm" asChild><a href={`${exportBase}.xlsx?issuer=${issuer}`} download><Download className="mr-2 h-3.5 w-3.5" />Public XLSX</a></Button>
+              <Button variant="outline" size="sm" asChild><a href={withDownloadManifest(`${exportBase}.json?issuer=${issuer}`)} download><Download className="mr-2 h-3.5 w-3.5" />Public JSON</a></Button>
+              <Button variant="outline" size="sm" asChild><a href={withDownloadManifest(`${exportBase}.xlsx?issuer=${issuer}`)} download><Download className="mr-2 h-3.5 w-3.5" />Public XLSX</a></Button>
             </div> : <p role="status" className="text-xs text-muted-foreground">Public exports unavailable: the selected issuer summary is missing required fields. No complete result is substituted.</p>}
           </div>
           {company ? (

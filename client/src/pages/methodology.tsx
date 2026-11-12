@@ -10,6 +10,7 @@ import { TrackBResearch } from "@/components/track-b-research";
 import { Stage10FinancialCoverage } from "@/components/stage10-financial-coverage";
 import { WorkbookMoneyAudit } from "@/components/workbook-money-audit";
 import { RETIRED_FINANCE_RESIDUAL_DESCRIPTOR } from "@shared/quantityDescriptors";
+import { RegistryMethodology } from "@/components/registry-methodology";
 
 export default function Methodology() {
   return (
@@ -35,6 +36,7 @@ export default function Methodology() {
           <p className="mt-3 text-sm text-muted-foreground">“Year emissions reach 5% of 2024” is a separate diagnostic (selected-2024-five-percent-v2), not net zero or a policy verdict. Its threshold is 0.05 times the evidenced 2024 baseline for the same selected trajectory, member, gas basis and unit. Missing or mismatched baseline evidence withholds the diagnostic; current inputs and another selection are never substituted. The legacy engine's60.3×carbon-intensity scaling is an unverified model assumption, not a source-evidenced inventory or an explicitly captured emissions initial condition. Hashing a generated2024 point does not authenticate that assumption. An explicitly selected/captured model initial condition may support a clearly conditional model-baseline diagnostic only when its own input lineage is supplied. The first annual value at or below the exact threshold counts, including the final simulated year. No crossing means “Not reached by [horizon]”, with no interpolation or extrapolation. The older fixed 5 GtCO₂e result is separately retained as legacy fixed-5gt-v1, not relabelled as a percentage.</p>
           <p className="mt-3 text-sm text-muted-foreground">The separate native candidate review can use its pinned, captured source-derived2024 inventory cells as a conditional baseline: species masses remain in Mt of that same gas, with fossil/industrial CO2 and net land-use CO2 separated. These are not GWP-weighted CO2e residuals, a calibrated forecast or physical net zero. Supplied regional-member diagnostics use explicit captured MODEL initial conditions; no missing regional2024 land-use observation is fabricated.</p>
         </Card>
+        <RegistryMethodology />
         <WarmingValidationReference />
         <TrackBResearch />
         <Stage10FinancialCoverage />

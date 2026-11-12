@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { scientificEvidenceStatuses } from "../../shared/scientificEvidence";
 export const ensembleSchema = z.object({
   baseline: z.literal("1850-1900"),
   memberIds: z.array(z.string().min(1)).min(2).max(10000),
@@ -31,7 +32,8 @@ export function summarizeEnsemble(input: unknown) {
   const width = hi === lo ? 1 : (hi - lo) / 20;
   const counts = Array(20).fill(0) as number[];
   for (const value of last) counts[Math.min(19, Math.floor((value - lo) / width))]++;
-  return { baseline: e.baseline, members: e.memberIds.length, trajectory,
+  return { scientificEvidence: scientificEvidenceStatuses(),
+    baseline: e.baseline, members: e.memberIds.length, trajectory,
     headline: trajectory[trajectory.length - 1],
     density: counts.map((count, i) => ({ lower: lo + i * width, upper: lo + (i + 1) * width,
       count, probability: count / last.length })),

@@ -2,46 +2,11 @@ import { currentSelection } from "./analysis-selection";
 import { z } from "zod";
 import { bindNestedOutput } from "@shared/outputFieldSemantics";
 import { exportJsonIdentity } from "./export-identity";
+import { exportContracts, type ExportKind } from "@shared/downloadClaims";
+import { createDownloadManifest } from "@shared/downloadManifest";
+import { scientificEvidenceExportNotes } from "@shared/scientificEvidence";
+export { exportContracts, type ExportKind } from "@shared/downloadClaims";
 /** Interpretation travels with downloaded data, rather than only with its page. */
-export const exportContracts = {
-  coverage: {
-    status: "Descriptive revised-workbook company coverage",
-    interpretation: "Full-workbook and eligible financial-identity denominators, separate emissions scopes and explicit operating-geography versus HQ-fallback mapping; no geography inferred from headquarters.",
-    limitation: "Known-value shares exclude unknown values and are not total-universe estimates. Workbook market cap uses its USD-million convention without implied FX. Company scope3 sums are not a global physical inventory. Source/review integrity is not scientific acceptance or original-vintage proof.",
-  },
-  native: {
-    status:"Uncalibrated native-emissions candidate",
-    interpretation:"Global deterministic conditional emissions using native gas masses and AR6 GWP100 reporting. No temperature, regional climate or ensemble probability claim.",
-    limitation:"Control/illustrative/dashboard inputs are not approved calibrated policy forecasts. Published inventory uncertainty is not forecast uncertainty; retained hashes are not publication-vintage proof. Separate residual diagnostics use5% of the same captured2024 native-gas baseline, not CO2e or physical net zero; no crossing is censored at the actual simulated horizon.",
-  },
-  legacy: {
-    status: "Unsupported legacy diagnostic",
-    interpretation: "Not a validated climate forecast. Aggregate GHG is passed through a CO2-only response with a fixed warming offset. Regional values are global counterfactuals, not regional temperatures.",
-    limitation: "Positive residual-emissions thresholds are not net zero. No threshold date is extrapolated beyond 2100; null means not reached within the simulated horizon. Quantile labels do not establish calibrated predictive uncertainty.",
-  },
-  indicators: {
-    status: "Source indicator data",
-    interpretation: "Source observations and available estimates, not a climate forecast.",
-    limitation: "Current revised history is not original publication-vintage evidence. Collection and approval status must be checked separately.",
-  },
-  valuation: {
-    status: "Descriptive valuation diagnostic",
-    interpretation: "P/E and earnings-yield comparisons. Gordon growth is a steady-state comparator, not five-year cash-flow growth or an inferred emissions reduction.",
-    limitation: "Does not identify market climate expectations. Carbon intensity, where reported, is per market capitalisation, not revenue. Missing financial or identity evidence is not an approval.",
-  },
-  backtest: {
-    status: "Retrospective research",
-    interpretation: "Historical strategy diagnostics, not validated investment evidence or a forecast of future returns.",
-    limitation: "Revised-history inputs, legacy selections and incomplete lifecycle/borrow/FX evidence limit inference. This is not acceptance of the new paired valuation-gap model.",
-  },
-  news: {
-    status: "Descriptive news analysis",
-    interpretation: "Article coverage and sentiment summaries, not climate projections or market expectations.",
-    limitation: "Coverage depends on the source and retrieval window; sentiment is not a verified causal effect.",
-  },
-} as const;
-
-export type ExportKind = keyof typeof exportContracts;
 
 export function exportNotes(kind: ExportKind, filename: string, exportedAt: string) {
   const selection = currentSelection();
@@ -58,6 +23,7 @@ export function exportNotes(kind: ExportKind, filename: string, exportedAt: stri
     { Field: "Limitations", Value: contract.limitation },
     { Field: "Reproducibility", Value: "This is a view export, not an immutable analysis archive. An export timestamp does not identify the input vintage or model run." },
     { Field: "Units and missingness", Value: "Use the column headings for units. Empty cells mean missing or unavailable, not zero. Do not combine different growth definitions or horizons." },
+    ...scientificEvidenceExportNotes(),
   ];
 }
 
@@ -101,7 +67,11 @@ export async function prepareQualifiedJsonExport(payload: unknown, kind: ExportK
   exportedAt: string, validatePayload: (value: unknown) => unknown) {
   validatePayload(payload);
   const identity = await exportJsonIdentity(payload);
+  const manifest = createDownloadManifest({ filename, kind, exportedAt, dataHash: identity.hash,
+    hashMethod: "UTF-8 JSON.stringify(data, null, 2); no normalization",
+    selection: currentSelection(), rows: Array.isArray(payload) ? payload : undefined });
   const envelope = { data: payload, interpretation: exportNotes(kind, filename, exportedAt),
-    dataIdentity: { algorithm: "SHA-256", hash: identity.hash, serialization: "UTF-8 JSON.stringify(data, null, 2); no normalization" } };
+    dataIdentity: { algorithm: "SHA-256", hash: identity.hash, serialization: "UTF-8 JSON.stringify(data, null, 2); no normalization" },
+    manifest };
   return { text: JSON.stringify(envelope, null, 2), hash: identity.hash };
 }

@@ -1,4 +1,5 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
+import { scientificEvidenceSemantics } from "./scientificEvidenceSemantics";
 
 type Spec = [string, string, string, string, ("Input" | "Calculated" | "Output")?];
 const families: { prefix:string; implementation:string; period:string; specs:Spec[] }[] = [
@@ -80,7 +81,7 @@ export const evidenceApiBindings = families.map(f=>({
   prefix:f.prefix,
   surface:`API POST "/api/calculation/${({ensembleSummary:"ensemble-summary",holdoutEvaluation:"evaluate-holdout",historyValidation:"validate-history",vintageAudit:"audit-vintages",signalEvaluation:"evaluate-signal"} as Record<string,string>)[f.prefix]}"`,
 }));
-export const evidenceFieldSemantics:OutputFieldSemantic[] = families.flatMap(f=>f.specs.map(([field,meaning,formula,unit,role="Output"])=>({
+export const evidenceFieldSemantics:OutputFieldSemantic[] = [...families.flatMap(f=>f.specs.map(([field,meaning,formula,unit,role="Output"])=>({
   id:`${f.prefix}.${field}`,meaning,formula,unit,role,
   dependencies:[`submitted request to ${f.implementation}`,formula],
   source:`server/calculation/${f.implementation}; caller-supplied evidence, no independently authenticated source archive`,
@@ -90,4 +91,5 @@ export const evidenceFieldSemantics:OutputFieldSemantic[] = families.flatMap(f=>
   uncertainty:"Conditional on submitted evidence. Ensemble fractions are empirical equal-member summaries, not calibrated probabilities; holdout coverage uses supplied bounds; signal bootstrap assumptions remain unverified; audit and range checks establish no uncertainty distribution.",
   scope:"Existing gated diagnostic POST response; public write policy unchanged",
   asOfRule:"Request-time computation is not original publication time. Submitted publication, availability and freeze dates are declarations, not independently verified original vintages.",
-})));
+}))), ...scientificEvidenceSemantics("ensembleSummary.scientificEvidence"),
+  ...scientificEvidenceSemantics("holdoutEvaluation.scientificEvidence")];

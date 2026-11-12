@@ -1,4 +1,5 @@
 import inventory from "./data/inventory2024.json";
+import { scientificEvidenceStatuses } from "../../shared/scientificEvidence";
 import { calculationKey } from "./identity";
 
 export const EMISSIONS_ENGINE_VERSION = "native-emissions-candidate-2";
@@ -231,7 +232,8 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
       power: { capacityGW: capacity, renewableTWh, utilizedRenewableTWh, nuclearTWh,
         utilizedNuclearTWh, fossilTWh, demandTWh, evDemandTWh, totalEvTWh } });
   }
-  return { version: EMISSIONS_ENGINE_VERSION, key: calculationKey("native-emissions",
+  return { scientificEvidence: scientificEvidenceStatuses(),
+    version: EMISSIONS_ENGINE_VERSION, key: calculationKey("native-emissions",
     cells === inventory.cells ? inventory : { year: 2024, cells }, { scenario: s, endYear }, EMISSIONS_ENGINE_VERSION),
     validation: "mechanism-tests-only", use: "diagnostic", productionEligible: false,
     centralConsumptionAllowed: false, temperature: null, inventoryYear: 2024, scenario: s, trajectory };

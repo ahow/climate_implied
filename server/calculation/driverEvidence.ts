@@ -4,6 +4,7 @@ import { contentHash } from "./analysisManifest";
 import { driverConsumerTrace } from "./driverConsumptionTrace";
 import { curatedDriverRole } from "../../shared/driverAdmission";
 import { validSourceCell, type WorkbookSourceCell } from "../climateValuation/workbookMissingness";
+import { indicatorSourceMetadataProposal } from "./indicatorSourceMetadata";
 
 export function driverEvidenceRegistry() {
   return INDICATORS.map(d => {
@@ -53,6 +54,7 @@ export function driverEvidenceRegistry() {
       calibrationDecision:studies[d.key] ? "Existing frozen evidence retained; not central promotion" :
         "No source-compatible frozen causal calibration; context or validation role retained",
     },
+    sourceMetadataProposal: indicatorSourceMetadataProposal(d.key),
     updateCadence: "existing-monthly-collection-review-approval",
     uncertainty: { status: "unavailable", reason: "Source-specific uncertainty distribution not established" },
     licence: { status: "review-required", publisher: d.source },

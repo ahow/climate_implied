@@ -1,3 +1,55 @@
+# Registry methodology, download identity and separate scientific evidence
+
+{
+  "updated_at": "2026-11-12T01:19:29.390771+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+    ],
+    "executed_at": "2026-11-12T01:12:49.193467+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 201.128,
+    "counts": {
+      "tests": 950,
+      "pass": 950,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/methodology-final.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "9df1eb9babb82c0a29795b42e5e2810c4b0ab33c8690847f82d1882526642169",
+    "suite_counts": {
+      "typescript": {
+        "tests": 950,
+        "pass": 950,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 217,
+        "pass": 217,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": "docs/methodology-download-increment-evidence.json",
+    "S07-003": "docs/scientific-strands-warning-evidence.json",
+    "S16-008": "docs/scientific-strands-warning-evidence.json",
+    "S03-007": "docs/indicator-source-fields-increment-evidence.json"
+  },
+  "counts": "56verified242partial2blocked;original1000/1001;0eligiblehistories;0/3cases",
+  "scope": "Registry methodology, manifest-bearing downloads, three separate scientific statuses and authenticated warning inventory implemented. NOAA/Pew metadata proposals are not historical source authentication. No new accepted scientific study or issuer economics. Exact remaining limitations in per-clause evidence.",
+  "release": "Pending code validation/promotion; previous verifiedruntime remains distinct."
+}
+
 # Persisted missingness, historical identity and source-qualified pass-through
 
 {
@@ -4076,6 +4128,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261111-lifecycle-money-3413ebc",
   "event": "continuation_ready",
   "attempted_at": "2026-11-11T23:40:44.463262+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-review-history-a8b9501",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T00:38:10.523332+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

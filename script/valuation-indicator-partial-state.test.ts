@@ -42,7 +42,7 @@ test("conditional canonical public snapshot retains null/zero, qualifies facts a
   assert.deepEqual(publicCompanyIssues(payload.companies[0]), []);
   const result = conditional(payload);
   for (const text of ["Unknown (null)", ">0<", "Conditional, not qualified", "0/3 qualified", "no Tier 2 or efficacy promotion", "Public JSON", "Public XLSX"]) assert.ok(result.includes(text), text);
-  assert.ok(result.includes('href="/api/cv/company-conditional-summaries/export.json?issuer=NEE"'));
+  assert.ok(result.includes('href="/api/cv/company-conditional-summaries/export.json?issuer=NEE&amp;downloadMetadata=manifest-v1"'));
 });
 test("conditional reconciliation mobile containment wraps the actual NEE dividend row without changing facts or exports", async () => {
   const payload = getConditionalCompanySummary("NEE");
@@ -82,7 +82,7 @@ test("conditional reconciliation mobile containment wraps the actual NEE dividen
   for (const [size, value] of [["40", "10rem"], ["32", "8rem"], ["64", "16rem"]])
     assert.deepEqual(declaration(`.sm\\:min-w-${size}`, "min-width"), { value, media: "(min-width: 640px)" });
   assert.ok(result.includes("Unknown (null)"));
-  assert.ok(result.includes('href="/api/cv/company-conditional-summaries/export.xlsx?issuer=NEE"'));
+  assert.ok(result.includes('href="/api/cv/company-conditional-summaries/export.xlsx?issuer=NEE&amp;downloadMetadata=manifest-v1"'));
   assert.equal(JSON.stringify(payload), before, "Rendering changes containment only, never public source facts");
 });
 test("missing selected issuer never links to another issuer's complete exports", () => {

@@ -1,4 +1,6 @@
 import { PROMOTION_REQUIREMENTS, promotionDecision } from "./evaluation";
+import { scientificEvidenceStatuses } from "../../shared/scientificEvidence";
+import { interimWarningSummary } from "../../shared/interimWarningEvidence";
 export function calculationReadiness() {
   // No external evidence is silently inferred from passing engineering fixtures.
   const verifiedEvidence: Record<string, boolean> = {};
@@ -12,6 +14,8 @@ export function calculationReadiness() {
     "production-runtime": "FaIR runs offline; the production Node service does not execute Python.",
   };
   return {
+    scientificEvidence: scientificEvidenceStatuses(),
+    interimWarnings: interimWarningSummary(),
     defaultEngine: "published-scenario-references",
     candidateEnabled: promotionDecision(verifiedEvidence).canPromote,
     checks: PROMOTION_REQUIREMENTS.map(id => ({ id, label: id.replaceAll("-", " "), passed: verifiedEvidence[id] === true, reason: reasons[id] })),

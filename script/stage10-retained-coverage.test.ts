@@ -1,3 +1,5 @@
+import { downloadManifestMiddleware } from "../server/downloadManifestMiddleware";
+import { withDownloadManifest } from "../shared/serverDownloadRegistry";
 import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
@@ -141,7 +143,7 @@ test("actual aggregate API/JSON/XLSX use same input hash,dates,denominators,null
     exchange: "ENGINEERING", isActivelyTrading: true }, "2021-03-01T00:00:00Z", source.workbookHash, "retained-worked-profile");
   const report = buildStage10Coverage({ ...source, lifecycleEvidence, years: Array.from({ length: 11 }, (_, i) => 2015 + i) }), document = stage10ExportDocument(report), app = express();
   let unavailable = false;
-  app.use(releaseSafety()); registerStage10CoverageRoutes(app, async () => {
+  app.use(releaseSafety()); app.use(downloadManifestMiddleware()); registerStage10CoverageRoutes(app, async () => {
     if (unavailable) throw new Error("Source failure; never expose raw provider/private error bytes");
     return report;
   });
@@ -154,6 +156,14 @@ test("actual aggregate API/JSON/XLSX use same input hash,dates,denominators,null
     assert.deepEqual(await (await fetch(base + stage10DownloadUrl(report, "/export.json"))).json(), document);
     const binary = await fetch(base + stage10DownloadUrl(report, "/export.xlsx"));
     assert.equal(binary.headers.get("x-stage10-input-sha256"), report.inputHash);
+    assert.ok(binary.headers.get("x-download-manifest"));
+    const embeddedJson = await (await fetch(base + withDownloadManifest(stage10DownloadUrl(report, "/export.json")))).json();
+    assert.deepEqual(embeddedJson.data, document);
+    assert.equal(embeddedJson.manifest.scientificEvidence.stage9Skill.status, "not-established");
+    const embeddedXlsx = await fetch(base + withDownloadManifest(stage10DownloadUrl(report, "/export.xlsx")));
+    assert.equal(embeddedXlsx.status, 200);
+    const embeddedBook = XLSX.read(Buffer.from(await embeddedXlsx.arrayBuffer()), { type: "buffer" });
+    assert.ok(embeddedBook.SheetNames.includes("Download manifest"));
     const book = XLSX.read(Buffer.from(await binary.arrayBuffer()), { type: "buffer" });
     const rows = XLSX.utils.sheet_to_json<any>(book.Sheets["Aggregate coverage"]);
     const lifecycleAudit = XLSX.utils.sheet_to_json<any>(book.Sheets["Lifecycle source audit"]);

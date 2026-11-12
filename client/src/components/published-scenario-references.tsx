@@ -1,5 +1,6 @@
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { Button } from "@/components/ui/button";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { ALL_COMMITMENTS_LABEL, hasReviewedAllCommitmentsLabel } from "@shared/referenceScenarioLabels";
 
 type PublishedReferences = {
@@ -104,6 +105,7 @@ export function PublishedScenarioReferences() {
         <span className="rounded-md border px-2.5 py-1 text-xs font-medium">Read-only reference</span>
       </div>
 
+      <ScientificEvidenceStrands />
       {isLoading ? (
         <div role="status" aria-label="Loading published scenario references" className="space-y-3">
           <span className="sr-only">Loading published scenario references…</span>

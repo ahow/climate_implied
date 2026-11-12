@@ -6,6 +6,8 @@ import { semanticRows, requireOutputSemantic } from "@shared/fieldSemantics";
 import { bindExportColumns,type ExportFieldBinding } from "@shared/outputFieldSemantics";
 import { exportDataIdentity } from "@/lib/export-identity";
 import { certifySupplementalSheetRows } from "@shared/supplementalSheetBindings";
+import { createDownloadManifest, downloadManifestRows } from "@shared/downloadManifest";
+import { currentSelection } from "@/lib/analysis-selection";
 
 type Cell = string | number | boolean | null | undefined;
 export type DownloadRow = Record<string, Cell>;
@@ -69,6 +71,12 @@ export function DownloadDataButton({
           bindExportColumns(identity.normalized,fieldBindings).map(row=>({...row,dependencies:row.dependencies.join(", ")})))
       ),"Column bindings");
       const name = filename.endsWith(".xlsx") ? filename : `${filename}.xlsx`;
+      const manifest = createDownloadManifest({ filename: name, kind, exportedAt: new Date().toISOString(),
+        dataHash: identity.hash,
+        hashMethod: "SHA-256 of JSON array in exported row order; object keys sorted; missing cells normalized to null",
+        selection: currentSelection(), rows: identity.normalized, columnBindings: fieldBindings,
+        sheets: [...wb.SheetNames, "Download manifest"] });
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(downloadManifestRows(manifest)), "Download manifest");
       XLSX.writeFile(wb, name);
     } catch (err) {
       console.error("Failed to export data to Excel:", err);

@@ -1,4 +1,38 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
+/** Exact proposal serialization from indicatorSourceMetadataProposal. Null is
+ * bound separately for the nineteen indicators without a retained proposal. */
+export const driverSourceProposalSpecs: [string, string, string, string][] = [
+  ["indicators[].sourceMetadataProposal", "No retained source-metadata proposal for this indicator", "indicatorSourceMetadataProposal(key) returns null when no proposal matches; not approval or zero evidence", "null when absent"],
+  ...([
+    ["indicatorKey", "Exact registered indicator key", "admitted.indicatorKey", "indicator identifier"],
+    ["registeredPublisher", "Publisher checked against the registered indicator", "admitted.registeredPublisher; must equal getIndicatorDef(key).source", "publisher label"],
+    ["sourceRelationship", "Registered NOAA product versus unconfirmed survey candidate", "admitted.sourceRelationship; registered-product for NOAA keys, unconfirmed-survey-candidate for sacrificeWillingnessPct", "relationship classification"],
+    ["scope", "Proposal is source-product metadata, not curated-value verification", "literal source-product-metadata-only", "scope label"],
+    ["ownerReview", "Owner review has not been requested or supplied", "literal pending-not-requested", "review label"],
+    ["centralModelEligible", "No proposal qualifies the central scientific model", "literal false", "boolean"],
+    ["originalObservationAvailableAt", "Original retained-observation availability remains unknown", "literal null; current file creation and retrieval timestamps are not original observation availability", "unknown original date"],
+    ["originalVintage", "No original curated-observation vintage is supplied", "literal null; metadata capture hashes are not source-vintage identifiers", "unknown original vintage"],
+    ["admission", "Structural source linkage is not owner or scientific acceptance", "literal metadata-proposal-only after admitIndicatorSourceMetadataProposal", "admission label"],
+    ["captureHashMeaning", "Exact meaning of document SHA256 digests", "literal sha256-utf8-webFetch-markdown-not-source-vintage", "hash scope disclosure"],
+    ["evidencePath", "Public-safe incremental source-metadata evidence receipt location", "literal docs/indicator-source-fields-increment-evidence.json", "document path"],
+  ] as [string, string, string, string][]).map(([key, meaning, formula, unit]): [string, string, string, string] =>
+    [`indicators[].sourceMetadataProposal.${key}`, meaning, formula, unit]),
+  ...["informationAvailability", "licence", "regionalApplicability", "uncertainty", "calibration"].flatMap(field =>
+    ([
+      ["status", `Qualification of the ${field} source-product finding, not approval of curated values`, `admitted.fields.${field}.status; source-product-qualified | candidate-only | attempted-unavailable; unconfirmed survey never source-product-qualified`, "qualification label"],
+      ["sourceIds[]", `Explicit public source-document IDs supporting ${field}`, `admitted.fields.${field}.sourceIds; all IDs must resolve in indicatorSourceDocuments with the same NOAA/Pew family`, "source document identifier"],
+      ["locator", `Exact section/header locator for the ${field} finding`, `admitted.fields.${field}.locator; required nonempty text`, "source locator"],
+      ["finding", `Paraphrased ${field} qualification and explicit remaining evidence limits`, `admitted.fields.${field}.finding; no private dataset or original observation acceptance`, "source finding disclosure"],
+    ] as [string, string, string, string][]).map(([key, meaning, formula, unit]): [string, string, string, string] =>
+      [`indicators[].sourceMetadataProposal.fields.${field}.${key}`, meaning, formula, unit])),
+  ...([
+    ["id", "Public source-document identity", "indicatorSourceDocuments[].id selected by admitted field.sourceIds", "source document identifier"],
+    ["url", "Public source page or product URL", "indicatorSourceDocuments[].url", "HTTPS URL"],
+    ["sha256", "SHA256 of captured UTF8 webFetch markdown, not original release bytes", "indicatorSourceDocuments[].sha256; does not authenticate original observation vintage or grant redistribution rights", "SHA-256"],
+    ["bytes", "Captured UTF8 markdown byte length, not the size of an original publication", "indicatorSourceDocuments[].bytes", "UTF8 bytes"],
+  ] as [string, string, string, string][]).map(([key, meaning, formula, unit]): [string, string, string, string] =>
+    [`indicators[].sourceMetadataProposal.documents[].${key}`, meaning, formula, unit]),
+];
 
 // Exact new driver-registry leaves: none is accepted by a wildcard/default
 // semantic binding. Status distinguishes a code-consumer trace from evidence.
@@ -25,6 +59,7 @@ export const driverConsumerFieldSpecs: [string, string, string, string, string][
 
 // Each tuple identifies a concrete response leaf and its implemented derivation.
 export const driverFieldSpecs: [string, string, string, string][] = [
+  ...driverSourceProposalSpecs,
   ["status", "Evidence disclosure status", 'literal "evidence-gaps-explicit"', "label"],
   ["indicators[].id", "Retained indicator identifier", "INDICATORS[].key", "identifier"],
   ["indicators[].definition", "Registry indicator label, not a causal effect", "INDICATORS[].label", "text"],

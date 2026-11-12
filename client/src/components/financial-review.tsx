@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
+import type { ScientificEvidenceStatuses } from "@shared/scientificEvidence";
+import type { interimWarningSummary } from "@shared/interimWarningEvidence";
 
 interface FinancialReviewItem {
   id: string;
@@ -36,6 +39,8 @@ interface FinancialReviewsResponse {
 }
 
 interface CalculationReadiness {
+  scientificEvidence?: ScientificEvidenceStatuses;
+  interimWarnings?: ReturnType<typeof interimWarningSummary>;
   defaultEngine: string;
   candidateEnabled: boolean;
   checks: { id: string; label: string; passed: boolean; reason: string }[];
@@ -222,6 +227,14 @@ export function ScientificValidation() {
         )}
         {data && (
           <>
+            {data.scientificEvidence ? <ScientificEvidenceStrands evidence={data.scientificEvidence} /> :
+              <p role="status">Separate scientific evidence statuses were not returned. Acceptance cannot be inferred.</p>}
+            {data.interimWarnings && <section className="rounded-md border p-3 space-y-2 text-xs" aria-label="Interim warning evidence">
+              <h3 className="font-semibold">Interim warnings remain limitation-specific</h3>
+              <p>{data.interimWarnings.policy}</p>
+              <p>{data.interimWarnings.originalHostCount} retained-source warning hosts; {data.interimWarnings.recordedRemovalBindings} recorded removal bindings. Existing resolution records only, not new scientific acceptance.</p>
+              <p className="text-muted-foreground">{data.interimWarnings.coverageLimit}</p>
+            </section>}
             <dl className="grid grid-cols-1 gap-4 rounded-md border p-4 text-sm md:grid-cols-2">
               <div><dt className="text-xs text-muted-foreground">Default engine</dt><dd className="mt-1 break-words font-mono">{data.defaultEngine || "Not available"}</dd></div>
               <div><dt className="text-xs text-muted-foreground">Candidate engine</dt><dd className="mt-1"><Badge variant={data.candidateEnabled === true ? "default" : "outline"}>{data.candidateEnabled === true ? "Enabled" : data.candidateEnabled === false ? "Disabled" : "Unavailable — candidate enablement not returned"}</Badge></dd></div>

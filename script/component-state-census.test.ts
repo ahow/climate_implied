@@ -10,8 +10,8 @@ import { warmingReferenceExportDocument } from "../shared/warmingValidationRefer
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 68, "Original60 plus four prior reviewed additions and four actual declarations in three new review cards");
-  assert.equal(report.focusedRenderedComponentCount, 68);
+  assert.equal(report.componentCount, 70, "Prior68 plus registry-driven methodology and separate scientific-evidence strand components");
+  assert.equal(report.focusedRenderedComponentCount, 70);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -78,7 +78,12 @@ test("imported sibling exports are reachable only through actual component tags"
         name === "VersionDiffResult" ? "supplied-result" : "queried-evidence");
       return component.id;
     });
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, ...additions].includes(component.id)).length, 60);
+  const registry = report.components.find(component => component.component === "RegistryMethodology")!;
+  assert.deepEqual(registry.routes, ["/methodology"]);
+  assert.match(registry.contract.focusedEvidence, /methodology-download\.test\.ts/);
+  const strands = report.components.find(component => component.component === "ScientificEvidenceStrands")!;
+  assert.match(strands.contract.focusedEvidence, /scientific-strands-warning\.test\.ts/);
+  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, ...additions].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");
@@ -91,6 +96,5 @@ test("imported sibling exports are reachable only through actual component tags"
   assert.match(text, /Reference, not offset\/calculation\/acceptance/);
   for (const id of ["headline2025.valueC", "decade.meanC", "decade.p05C", "decade.p95C", "inventory.year"])
     assert.ok(html.includes(`data-field-id="warmingReference.${id}"`));
-  const href = /href="(data:application\/json[^"]+)"/.exec(html)![1];
-  assert.deepEqual(JSON.parse(decodeURIComponent(href.split(",").slice(1).join(","))), warmingReferenceExportDocument());
+  assert.match(html, /href="\/api\/reference\/warming-validation\/export\.json\?downloadMetadata=manifest-v1"/);
 });

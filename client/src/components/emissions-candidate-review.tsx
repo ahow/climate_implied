@@ -7,6 +7,7 @@ import type { NativeResidualDiagnostics } from "@shared/nativeThresholdDiagnosti
 import { thresholdDiagnosticDisplay, THRESHOLD_DIAGNOSTIC_LABEL } from "@shared/thresholdDiagnostic";
 import { nativeThresholdExportRows, nativeThresholdExportBindings } from "@/lib/native-threshold-export";
 import { nativeResidualDiagnosticsSchema } from "@shared/nativeThresholdSchema";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 
 type CandidateResponse = {
   residualDiagnostics?: NativeResidualDiagnostics;
@@ -103,6 +104,7 @@ export function EmissionsCandidateReview() {
         </div>
       </div>
 
+      <ScientificEvidenceStrands />
       <p className="rounded-md border p-3 text-sm font-medium">
         Package 2 remains incomplete: the native-gas scenarios are not yet calibrated.
         The published CAT references above are independent comparisons, not outputs of this candidate model.

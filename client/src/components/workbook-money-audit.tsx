@@ -1,3 +1,4 @@
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
@@ -50,7 +51,7 @@ export function WorkbookMoneyAudit({ readState }: {
         </details>
         <div className="flex gap-4 text-sm">
           <a className="underline" href={`/api/financial-data/workbook-money-audit?expectedAuditHash=${state.auditHash}`}>Exact audit JSON</a>
-          <a className="underline" href={`/api/financial-data/workbook-money-audit.xlsx?expectedAuditHash=${state.auditHash}`}>Exact audit XLSX</a>
+          <a className="underline" href={withDownloadManifest(`/api/financial-data/workbook-money-audit.xlsx?expectedAuditHash=${state.auditHash}`)}>Exact audit XLSX</a>
         </div>
       </section>}
   </Card>;

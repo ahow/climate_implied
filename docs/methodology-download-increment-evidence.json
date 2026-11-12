@@ -1,0 +1,2250 @@
+{
+  "version": "methodology-download-increment-evidence-v1",
+  "originalRequirement": {
+    "id": "S16-007",
+    "text": "Generate methodology pages from the registries; attach the manifest and claim label to every download.",
+    "source": "docs/workplan_completion_ledger.json",
+    "sourceReadOnly": true
+  },
+  "generatedAt": "2026-11-12T01:12:48.959Z",
+  "boundary": "Engineering increment only; no scientific/owner acceptance, deployment, commits, callbacks, approvals or production mutation. All census input is public checked-in TypeScript/TSX; no private evidence bytes or Git object/history reads.",
+  "implementation": [
+    {
+      "path": "shared/methodologyRegistry.ts",
+      "functions": [
+        "methodologyRegistry"
+      ],
+      "behavior": "Returns actual core/qualified registries, exact seven claim contracts, historical classes, supplemental column bindings and three separate scientific evidence strands."
+    },
+    {
+      "path": "client/src/components/registry-methodology.tsx",
+      "functions": [
+        "RegistryMethodology"
+      ],
+      "behavior": "Mounted in methodology.tsx outside closed legacy archive; displays exact formulas, dependencies, units, source, period, geography, status, missingness, uncertainty, scope and as-of rules from those registries."
+    },
+    {
+      "path": "server/methodologyApi.ts",
+      "functions": [
+        "registerMethodologyApi"
+      ],
+      "behavior": "GET /api/methodology/registry, no query overrides, mounted from index.ts."
+    },
+    {
+      "path": "shared/downloadManifest.ts",
+      "functions": [
+        "createDownloadManifest",
+        "downloadHistoricalTypes",
+        "downloadManifestRows"
+      ],
+      "behavior": "Exact claim, selected IDs or explicit unversioned state, data SHA256, hash method, declared historical classes, column bindings, sheet inventory and three independent scientific statuses. Historical partial/mismatched classes refuse; absent class is never promoted."
+    },
+    {
+      "path": "client/src/components/download-data-button.tsx",
+      "functions": [
+        "DownloadDataButton",
+        "DownloadJsonButton"
+      ],
+      "behavior": "All26 central chart/data/JSON call sites use manifest-bound writers; spreadsheet manifest is additive, underlying normalized rows/legacy column-binding logic unchanged."
+    },
+    {
+      "path": "client/src/lib/export-contract.ts",
+      "functions": [
+        "exportNotes",
+        "prepareQualifiedJsonExport"
+      ],
+      "behavior": "Shared claim registry re-export preserves seven exact legacy claim texts; three strand notes added. Lossless JSON envelope includes manifest and original exact data identity."
+    },
+    {
+      "path": "server/downloadManifestMiddleware.ts",
+      "functions": [
+        "downloadManifestMiddleware"
+      ],
+      "behavior": "All successful registered attachments carry base64url JSON manifest and exact claim headers. Legacy default bodies remain unchanged. Explicit downloadMetadata=manifest-v1 embeds JSON envelope or additive XLSX sheet while retaining strict original query validation, source pins and authorization."
+    },
+    {
+      "path": "shared/serverDownloadRegistry.ts",
+      "functions": [
+        "withDownloadManifest"
+      ],
+      "behavior": "Ten explicit HTTP attachment routes, including denied private route; all ten actual UI attachment links request embedded metadata. Existing public reference data-URI bypass replaced by qualified API link; legacy export document function unchanged."
+    },
+    {
+      "path": "script/methodology-download-census.ts",
+      "functions": [
+        "methodologyDownloadCensus"
+      ],
+      "behavior": "Public-source AST census of central buttons, direct links, attachment declarations, custom XLSX/ExcelJS sheets and browser writers; no Git/history dependency."
+    }
+  ],
+  "counts": {
+    "centralDownloadSites": 26,
+    "directAttachmentLinks": 10,
+    "attachmentDeclarations": 10,
+    "attachmentRoutes": 10,
+    "deniedPrivateRoutes": 1,
+    "browserWriters": 2,
+    "worksheetConstructionSites": 25,
+    "coreDefinitions": 16,
+    "qualifiedDefinitions": 2173,
+    "historicalTypes": 3,
+    "claimContracts": 7
+  },
+  "executions": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "startedAt": "2026-11-12T01:12:38.365Z",
+      "finishedAt": "2026-11-12T01:12:40.516Z",
+      "exitCode": 0,
+      "outputSha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "counts": {
+        "tests": null,
+        "pass": null,
+        "fail": null,
+        "skipped": null
+      },
+      "tests": []
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "--test-reporter=tap",
+        "script/methodology-download.test.ts",
+        "script/methodology-download-portable.test.ts",
+        "script/methodology-track-b-download.test.ts",
+        "script/methodology-workbook-money-download.test.ts",
+        "script/export-contract.test.ts",
+        "script/export-identity.test.ts",
+        "script/supplemental-sheet-bindings.test.ts",
+        "script/finite-export-schemas.test.ts",
+        "script/warming-validation-reference.test.ts",
+        "script/component-state-census.test.ts",
+        "script/company-conditional-api.test.ts",
+        "script/stage10-retained-coverage.test.ts",
+        "script/workbook-money-api.test.ts",
+        "script/track-b-admission.test.ts",
+        "script/scientific-strands-warning.test.ts",
+        "script/quantity-label-contracts.test.ts",
+        "script/ui-claims.test.ts"
+      ],
+      "startedAt": "2026-11-12T01:12:40.517Z",
+      "finishedAt": "2026-11-12T01:12:48.460Z",
+      "exitCode": 0,
+      "outputSha256": "3e4ebb6687d9010a950d3f249592aa0e0c230c3902fa53ced9a2f6800eab2e93",
+      "counts": {
+        "tests": 84,
+        "pass": 84,
+        "fail": 0,
+        "skipped": 0
+      },
+      "tests": [
+        "registered shared contract has exact API leaves, fact units and lossless export bindings",
+        "new GET APIs and binary workbook remain qualified supplements outside original1001",
+        "exact supplemental semantics, public allowlist and source aggregate bindings",
+        "GET API, JSON and XLSX are the same allowlist; unsupported inputs and writes cannot mutate",
+        "subsequent XOM primary-source notes qualify units without rewriting frozen numbers or permit gaps",
+        "FSLR18new public cohort facts retain exact conditional vintages, cash identities and unknowns",
+        "new actual attachment/grant facts distinguish bought-out units, receipt month, cash amount and CFOdiagnostic",
+        "new historical MVC disclosure and borrowed-cash perimeter preserve cash/current-contract unknowns",
+        "new parent/equitymethod and ASC832recognition facts cannot masquerade as incremental common cash",
+        "actual domain consumers have source-located expressions and explicit state policies, not placeholder slots",
+        "state policy denominator exactly matches reachable source files, without unused registry entries",
+        "nested local tooltip JSX is not double-counted in page component denominator",
+        "imported sibling exports are reachable only through actual component tags",
+        "every client download declares a valid evidence contract; no alternate writer bypasses it",
+        "interpretation survives XLSX serialization with missingness and exact data unchanged",
+        "export identity ignores column insertion order, retains zero/null and row order",
+        "all35 finite-domain cases execute ACTUAL production row builders and bindings with XLSX readback",
+        "actual valuation and indicator export preparation withholds pending/error/missing-evidence rows without zero substitution",
+        "finite schemas reject unknown cases/keys, duplicate indicators and every row-level mismatch",
+        "actual runs handler preserves every raw summary JSON value; optional known-producer interpretation never replaces it",
+        "134 of135 original gaps close; raw opaque summary stays unresolved and both strict gates still fail",
+        "registry-derived22 counts and honest band labels do not change any numeric band assignment or representative",
+        "S16-007 full public source and tests pass without Git history or private/generated evidence",
+        "S16-007 public portable AST census includes chart, JSON, direct-link, attachment and custom-sheet paths",
+        "S16-007 methodology is exactly registry-derived and historical labels fail closed",
+        "S16-007 actual methodology UI renders registry formulas, claims, historical types and separate statuses",
+        "S16-007 actual JSON writer retains exact data and attaches manifest plus three independent statuses",
+        "S16-007 manifest/custom supplemental sheets read back without changing legacy data cells",
+        "S16-007 mounted public APIs preserve legacy default bodies; opt-in JSON/XLSX embed exact manifest; private HTTP stays403",
+        "manifest-bound TrackB JSON/XLSX retain every unavailable engineering period without editing frozen historical test sources",
+        "monetary attachment manifests are additive while frozen source-qualification tests and null totals remain unchanged",
+        "exact original S01-014/S01-016 criteria remain the assessment, not descriptor presence alone",
+        "actual variable-r UI, API metadata and workbook descriptors are identical at every tested r",
+        "actual fixed-year UI and three production XLSX row/binding/note builders preserve exact labels, values and nulls",
+        "selected5% API calculation, actual UI control/details and production export label are equal, never relabelled fixed5Gt",
+        "GET API description boundary normalizes only reviewed text; every numeric/key assignment remains unchanged",
+        "all runtime source routes/exports/legacy descriptions scan with individual exceptions, no broad whitelist",
+        "original1000/1001 and all legacy numerical constant assignments remain frozen",
+        "actual readiness API producer, candidate and ensemble keep all three statuses separate",
+        "perfect submitted holdout and all engineering booleans cannot promote scientific strands",
+        "actual strand UI and download note producer serialize identical separate statuses",
+        "retained authenticated source scan exactly reconciles warning hosts; every removal stays linked",
+        "public evidence report identifies exact original warning lines and current required bindings",
+        "exact S10-002/006/014 original criteria retain seven states,all fields and sector×region provenance",
+        "all seven actual identity states remain distinct; provider error cannot become approval,unmatched or unqueried",
+        "full and verified-eligible fixed domains keep missing/null/observed0/conflicts and unknown categories without survivor filtering",
+        "unknown restatement is never0%not-restated; known denominator,unknown share and filing date classes reconcile",
+        "retained field adapter preserves each filing date,unknown false flags,negative debt/earnings and correct FCFE/WC/shares classifications",
+        "only genuine original dated exact-identity cells can advance11–15; proxies,future sources and duplicates refuse",
+        "actual retained-version authenticator rejects corrupt hash/identity/security/endpoint without provider refresh or source writes",
+        "actual aggregate API/JSON/XLSX use same input hash,dates,denominators,nulls; no private identifiers/values/public writes",
+        "exact JSON leaf serialization and51 definitions include independent lifecycle audit metadata",
+        "actual new UI SSR hides stale error/loading/invalid inputs and exposes same safe input/download identity without original approval",
+        "actual metadata row builders have 31 concrete registered supplemental worksheet bindings",
+        "supplemental metadata guards preserve actual workbook cells and explicit core-row omissions",
+        "unsupported metadata columns, missing required cells, wrong identity and empty transforms fail closed",
+        "exact S15-017 criterion and Stage9 AND original-filing amendment are retained",
+        "every frozen period remains present with exact unavailable reasons; no mode-only or current-data substitution",
+        "Stage9 and original filings are separately conjunctive; structural passes never authenticate fixtures",
+        "actual period cutoffs, precommitted filing lag and parameter-fit dates fail the precise affected periods",
+        "hash/manifest/identity/capture failures are period failures, not authenticity or global survivor selection",
+        "actual research pipeline embeds exact period admission JSON and withholds historical efficacy",
+        "exact API/export semantics preserve every failed period/reason, dates, hashes and explicit null result",
+        "unconfigured API instance explicitly503; production index installs genuine source-pinned disclosure reader",
+        "actual pipeline CLI produces immutable JSON/XLSX and unreviewed disclosure candidate; DEV-only pinned publication roundtrip",
+        "genuine production catalog has no fabricated real approvals; exact operator publication prerequisite and11 registered metadata definitions",
+        "trusted source pin and retained disclosure refuse unpublished/unreviewed/hash/domain/private keys and production synthetic authorization",
+        "actual DEV filesystem resolver HTTP JSON/XLSX/client hashes preserve absent periods and refuse missing/corrupt/changed/unauthorized paths",
+        "new actual UI SSR covers loading/error/empty/missing/corrupt/selected absence and exact period reasons/download IDs, no old UI rerun",
+        "default dashboard mounts no legacy model consumers; diagnostics require explicit opt-in",
+        "no client HTTP mutation call sites remain",
+        "operator controls are explicitly disabled, not merely guarded by a server error",
+        "company views and exports do not consume unsupported climate outputs or physical gap",
+        "published references come from the real endpoint and retain validation and missing states",
+        "actual routes and archived methodology remain contained",
+        "valuation diagnostics have honest units and no missing-value substitution",
+        "source-reviewed 2025 SR1.5 headline, decadal mean and inventory year remain distinct",
+        "every actual reference leaf and export cell has a precise qualified equation/unit",
+        "standalone UI places precise period/observable/unit/source metadata beside changed values",
+        "GET-only integration handler returns the same immutable reference/export and rejects overrides",
+        "production wiring registers after release safety, outside archived methodology, with exactly38 global definitions",
+        "reference work neither changes protected calculations nor closes unknown original summary",
+        "Actual read-only API/XLSX binary readback contains only safe counts, original dates, pending label and literal null money",
+        "Unknown/provider/private fields or missing audit fail explicit503, never accidental raw export or default monetary zero"
+      ]
+    }
+  ],
+  "portableEvidence": "methodology-download-portable.test.ts copies complete client/src, server and shared public source plus the focused test/census into a temporary directory with no .git/docs/generated-artifacts/attached_assets/.local/exports; dependency packages only are symlinked. Child executes all6 focused tests with GIT_DIR pointing to a nonexistent path. No Git CLI dependency or shallow-history requirement.",
+  "inspectedSourceSha256": {
+    "client/src/App.tsx": "70d046e22b8e38a9da7d893eca016dd79bf9732bcbcc93eb2c092f036f5cbd53",
+    "client/src/components/analysis-selection.tsx": "f942036460ae77a6fb179df94fdb273d174cc3f16a5af8340bcf6048fb43c61f",
+    "client/src/components/analysis-snapshot-status.tsx": "b89f15e5a1d5d494e52318a2ce31d08a9f14368cdd790c4d7cd517fd45869844",
+    "client/src/components/app-sidebar.tsx": "2f03d8934cb1b361fbc9bb0b1a0db178e05fc67dc2ba2f434b42bf508db289b3",
+    "client/src/components/backtest-summary.tsx": "e6f6b42709be1614e4482c965ad3cdb060732345bb401574b8267681f73beec1",
+    "client/src/components/carbon-pass-through-review.tsx": "29c4ae2843deb6557cb121f43dcb1d21ee930e1c26a099970e928f988e4647aa",
+    "client/src/components/category-comparison.tsx": "a5515514e566148722e01f7f740797566a35864922a2c34bfe86fc4ad5b4cd17",
+    "client/src/components/category-filter.tsx": "06b4c8aed5403f2dba3467e9c9e3458ef42955d6931d0f6a815f6c7988270d77",
+    "client/src/components/category-trend-chart.tsx": "f9d45ff761d4e5d94f81c9ee828763734de04a1d5ec431fb7cd1e4dd8dc3bb25",
+    "client/src/components/company-conditional-summary.tsx": "0acbd8e931b8fd27637e4abaace569617b8b5a8503936fbbcb1444de17071ded",
+    "client/src/components/company-coverage.tsx": "c8be829ffb7dcfcaa5e243a0cf0f9c5e48a4357c021d3c18570a5e78d5fa407a",
+    "client/src/components/company-operating-review.tsx": "485d7eaa29dde233d88f5107daf60f666b84bda5d6be2656403d4265539e4819",
+    "client/src/components/company-replay-upload.tsx": "f9dbab8b176badcd5ceecd855aeabae62294eba3d5fe017c5a1b78350182f481",
+    "client/src/components/download-data-button.tsx": "3b004eff44b946a087605af9b7504c38b747672fc9972f3facbba77f5ddf0377",
+    "client/src/components/driver-evidence-disclosure.tsx": "f6ea5c1948797614f8b3f0c21975679b59e6b8315e69988f50990dc8b1c2f275",
+    "client/src/components/emissions-candidate-review.tsx": "ce8d2dc7b94de970ac36336a885cd7b642fe37030059a742077d1fc8a63e7124",
+    "client/src/components/emissions-chart.tsx": "21b7e65ca4d8d73ad55ef94d6261ff0e7e5a4362cd33edb29efce4eff21f1d11",
+    "client/src/components/financial-provider-status.tsx": "52161436f789121dc3c64c22a846c27aa3a2d722a8d5b86393f8df3d7b40f72e",
+    "client/src/components/financial-review.tsx": "ca8821a43d893a8b93003f0089762315fdfb502783fe025ce44e0bc87349fa0c",
+    "client/src/components/historical-trend-chart.tsx": "2265e12e3a1403b1a37fd8888623f5d59e9043f61e556d2b2c66d924b5fdebf5",
+    "client/src/components/indicator-cards.tsx": "0c2cbf59986336d6792bbac1128bc612307a5bef8546fe6bf2142774cf39eb41",
+    "client/src/components/metric-toggle.tsx": "5a3343f6d28cdb143f65abada376fb27a5d698119dd9421c02e5c49545d72048",
+    "client/src/components/operator-only-notice.tsx": "1f439acf335ad56cb5b511a8cf12b4efae081f6daa07780b082a822fc9a7cb5a",
+    "client/src/components/publication-methodology-notes.tsx": "ee005ec5eb488223957198b06836a805eeaaea8309631307f4d58db2544e041d",
+    "client/src/components/published-scenario-references.tsx": "447e616aab116db355eb3b72d1be3967bcc43fe17ff3ffe32ae7a84730e97dfe",
+    "client/src/components/qualified-missingness-review.tsx": "b3de171394678e20af28a8c135bf36dd390e6a17a1d52853f7588c99a47189c5",
+    "client/src/components/query-read-errors.tsx": "a543ec0fbac865a126fd36917cc6e2fafea1ad37952c4af702bb26036a374487",
+    "client/src/components/read-result-reason.tsx": "c5e1879a501338edba7d8414d156c1975e5c5f2e2a1a9a8ebe1aa78e2c2cc984",
+    "client/src/components/readonly-version-diff.tsx": "3036ba10acd3f0ba0517d2bf1be34b04cf425b957b51d5047dc62950bb99c43c",
+    "client/src/components/regional-comparison.tsx": "914dcdfcf738c89f973fea2adbf7803dec6a1e97da523a0e909ac1d11fd595cb",
+    "client/src/components/registry-methodology.tsx": "122f62a3dd906c872af78ac2c3df80fd7598de2e826f2073beaa9bbaf7f53c05",
+    "client/src/components/scientific-evidence-strands.tsx": "245f4a3ad63ca9ff50ef164573b29ea9a28372490700f53083098467080c2507",
+    "client/src/components/sensitivity-chart.tsx": "09ad41a3bbe7c477bdb4e179ecd36df86b53df7c393506b804d0dd695425bdf6",
+    "client/src/components/stage10-financial-coverage.tsx": "d0f29b6aa5f7ed9c4ee2aeaa70871b99629305221c002881890a98ecb8eae507",
+    "client/src/components/target-input-disclosure.tsx": "230730211323a970cbf16f4d72dd5c1d2d671539fa6a5e08646127d20436f2cb",
+    "client/src/components/temperature-gauge.tsx": "bd3cea2e95052ada84324179c80454377c7cabc8a07aa990f314c5923ca93d53",
+    "client/src/components/temperature-histogram.tsx": "1740b1ce6505b7f780d3d56aa0c0c6d16deb72891ff00d4e3c45792aa862915b",
+    "client/src/components/theme-provider.tsx": "f4f346396c01fcc0739b15be798fb356c5724714c1df49f3354bbf384845cab2",
+    "client/src/components/theme-toggle.tsx": "cde53c39db9fb9f7de84a5a89ed630799c8a6801d140df6126a5f125d9e3a3fc",
+    "client/src/components/threshold-diagnostic-details.tsx": "d61b39a8854be20bb74d778c0e353005e95245f650aaac88f55026748897e9c8",
+    "client/src/components/track-b-research.tsx": "b5745e2973bc19e8970b2cb743a98eb52dded5c1c1f021fdcfe03102030e82d4",
+    "client/src/components/ui/accordion.tsx": "6b84cb28b5c8e2129d854cffb8c5ba0161758d577db6db30a380cf593a8c0705",
+    "client/src/components/ui/alert-dialog.tsx": "5ab57317c19d0edd8e2d6d9c98992bcefa1e023a4f90072e40364451dc18456f",
+    "client/src/components/ui/alert.tsx": "ed78a053a9db783f48d5dfab7398b630f87c17ed2e237b6f30a3eb153675960c",
+    "client/src/components/ui/aspect-ratio.tsx": "08b0aa0b05efc573c7d63363c03e83d4b101bfeb54140764e96ddea30659cfcc",
+    "client/src/components/ui/avatar.tsx": "f83b4d3f868442e571d9cf8737a9e36ba5de373f6d599c7a6ddd59c1b5c78dfa",
+    "client/src/components/ui/badge.tsx": "f1f149c9db40e787a6c2ae8ee6b0fedceb4ccb68b3944f6fdca10d7fd540312e",
+    "client/src/components/ui/breadcrumb.tsx": "c3d3dcb0d82fc5e91d8830bac7fead905686fe876f1f42c3ed872bb0a6b6584e",
+    "client/src/components/ui/button.tsx": "d6a9b9d04cb882af71199a3cf4cb87f6cfaab44d17f871ff8a78ec2a1830511d",
+    "client/src/components/ui/calendar.tsx": "a7873d2b249506009a6f018b10a58c7cb38cc583d0d9391e2d90ed288cf6d013",
+    "client/src/components/ui/card.tsx": "48dfcf29c71644ebe3dd5d70319ac1e663c9094c7c524be0cf492048b2989eb1",
+    "client/src/components/ui/carousel.tsx": "5a4ff73c804e86c873382da80c453f1399006326ef042fb984c24162ec86666e",
+    "client/src/components/ui/chart.tsx": "e30219cedb35c55c2f9069f6470d60514c54c43fe0a3b641615275a2acd25f12",
+    "client/src/components/ui/checkbox.tsx": "60a0084cbdfcb96e54c9f6438e9066dfe7ed0a7e421b33985d5eb57975d110a4",
+    "client/src/components/ui/collapsible.tsx": "f4cdd104de29928bfcd40b865c7d08eed9157a537fbb8b5e6d0921f02b63cc04",
+    "client/src/components/ui/command.tsx": "924fef47d5e04a133ecc700e5881175cef1f71a338eee7c4db5cf5fc46b9c5e1",
+    "client/src/components/ui/context-menu.tsx": "b3abf3bb92fc028dd9a4c5dc6a10093b7f1346be8841fabb214fa08e5f40b181",
+    "client/src/components/ui/dialog.tsx": "60d5246653c714fc12a67743ee5951331ecd2548cdaef9a599922bcb14da26db",
+    "client/src/components/ui/drawer.tsx": "774316527ddc577fc54012a0c898ebcf7cf8f11152126e550828b53004a5b70c",
+    "client/src/components/ui/dropdown-menu.tsx": "aca10633792d03bb541e09ea106b5e1f3de429b69b3cade5ccfb7dca20289424",
+    "client/src/components/ui/form.tsx": "0d812c11a1afa799fb2bfa8f1e11052eacb64252c4b52be969a5f89aae1f52fb",
+    "client/src/components/ui/hover-card.tsx": "dcb793b8b1202b1634d791a993acadca0cfc3043a93b98c91a627fbff794f384",
+    "client/src/components/ui/input-otp.tsx": "b06b6294edee39d817586b3cf4766de1720b06e184624d45d2bfd0f38d2a5e72",
+    "client/src/components/ui/input.tsx": "b5c4ff4e0a57cf16c4519165745550029d66a2e25b8b018654b60ac2c5764e79",
+    "client/src/components/ui/label.tsx": "e69cfc27d78c9ef31b248ab8ea4fa54327c1038843f70efb5cd85d54c0bf1e0e",
+    "client/src/components/ui/menubar.tsx": "da0c7ace239ead75f7fbc46ffbae8ddf177477445354500d7304a276065ea7b3",
+    "client/src/components/ui/navigation-menu.tsx": "74f3b1b937e42582093a1671cf7f5c7250cd884922d51f201632317af9c24209",
+    "client/src/components/ui/pagination.tsx": "6d66283fc04f3901772f15f3108bda732efc75ce878e0d8ecf8f9fc3b0c63c26",
+    "client/src/components/ui/popover.tsx": "d853c561833e545879a56e2c4de18a92653de1e55e9e7fae463540679924ac0c",
+    "client/src/components/ui/progress.tsx": "8c036da4baed076de68d27719929dc98151a81b51456bfa6a2488d835303b1d7",
+    "client/src/components/ui/radio-group.tsx": "74f87531da1fde8d3c07dbd7b380ee6508a70d5c0af1c22e2d2c33d66cc79f10",
+    "client/src/components/ui/resizable.tsx": "70d1e35a5fb0897af7063cdd841d8ed636e1c332ef7ea6469f0f175a5a93dddf",
+    "client/src/components/ui/scroll-area.tsx": "d7d02600effca55d0dcadce8c09c97ebddda3a19c5fa1d52dc9f6f727b26c6b1",
+    "client/src/components/ui/select.tsx": "544172f40b3ae1d86d518dbc428e4bed58b3a733644564f4907bbf0b60ba3218",
+    "client/src/components/ui/separator.tsx": "c956c4cca4b8442fa9314d6079b9f975e1ee39d5804aaf2966990f6258ac342a",
+    "client/src/components/ui/sheet.tsx": "9051eb9d885a18c0521c63c945480effcfca29282d2a342cb3ce7f9d080c6d38",
+    "client/src/components/ui/sidebar.tsx": "b023ff6245be1930e152a18c6aaa2b6dd1a11df7b05fcf41bbe483968bfb1c39",
+    "client/src/components/ui/skeleton.tsx": "a72a9d8fc1c1999b5411a33391c5e70048863c5865629077280e943ca85689a8",
+    "client/src/components/ui/slider.tsx": "61e959d046f72e295d73a822b9afc7cc87ec6d1007905f2572e6117d7b2067b6",
+    "client/src/components/ui/switch.tsx": "bd29ce723e952bc7f8fab367320347ca82fbb933f4da9872c7120d6765662ebe",
+    "client/src/components/ui/table.tsx": "1da243956282c040db49d5718d2f0093a705fbbdfa3a25f51c1a31a069c45093",
+    "client/src/components/ui/tabs.tsx": "d9958fd005db42bcca4f2c12ede63500e74f1a9bd82ddc3a6bf6fcb369706f07",
+    "client/src/components/ui/textarea.tsx": "aaf46918c590c2bf59e2afb7904dfd8e69317e12ee34ff93ed2746dd06cc994a",
+    "client/src/components/ui/toast.tsx": "99f9f4a3e897f71d89b01c6772b2f5db51b888cecb2c8214fb2c2dbb2b3e6356",
+    "client/src/components/ui/toaster.tsx": "1348f1a1f9820e2f1394b93cecc156a7e22f03636ab9270753985549aae2be74",
+    "client/src/components/ui/toggle-group.tsx": "dba95ead40d163af6959198ded9853a2cc9282b2cb534980f99937a65edf4e2d",
+    "client/src/components/ui/toggle.tsx": "c9a401b2e134f28d870f3f44330b9d91d66bd2ac7ced3ad67039a2bb3d52e8f0",
+    "client/src/components/ui/tooltip.tsx": "2f26d20816448c630faccbda5ae9b4fe47c36f1fb14dbbd85b6652b7c24c1d51",
+    "client/src/components/valuation-notice.tsx": "dbe35681436532a0b8029960937178a231da22ecec1a5e582276b41a6ebde290",
+    "client/src/components/warming-validation-reference.tsx": "048b7f99b400350798e735a8d52c252c4e7398ca731a1b03d7cb46c66efbff95",
+    "client/src/components/workbook-money-audit.tsx": "04bb2783c50d55398e47e69e61dd897d6643b3c2dad57f9d4f28bdd6ea1dae69",
+    "client/src/hooks/use-company-conditional-summaries.ts": "57699349975c4dce335a4b1b3b3a15780ef34a9aad7bd3bdc5a680acc6fd65c9",
+    "client/src/hooks/use-mobile.tsx": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b",
+    "client/src/hooks/use-toast.ts": "5aab0623ee24bddf9420c259a23a06996292e38ea70eccbac2715516f6d01a0b",
+    "client/src/lib/analysis-selection.ts": "10664a63baf0f193493ddece0fc6123c43ea277096c13b821118c40082b8ed79",
+    "client/src/lib/export-contract.ts": "037ae3d0673cc5632834b2a810630105ee8ed53fb0a15b3f98d918e4444ab73e",
+    "client/src/lib/export-identity.ts": "9754536b00f52fd2f9fe30802174e0d79bf5f8099200a65d0fbe79060332f275",
+    "client/src/lib/native-threshold-export.ts": "5ab6b2af0b92c9af184bff1a2cf90cdb71f3c1f14ca682876e52ae2b5ce56930",
+    "client/src/lib/queryClient.ts": "9160bedda4906b9dcc9486dfbc803d7eed8600a7d8cd50d3fe7844ee5bd73b5c",
+    "client/src/lib/threshold-export.ts": "6aec0ab846c588926392422768f41ab4c919754e79c650e875763ee4e299eb17",
+    "client/src/lib/trackBPublicReports.ts": "e555a1c765e5ed10620675ec36b06348d66123d22452fc6fcee8d2b8aab8476c",
+    "client/src/lib/types.ts": "8aed5a6dfece82c155bfb403d3950fa2f49cd32a5b0f371822afc2b64709201e",
+    "client/src/lib/ui-claim-register.ts": "0a9e7da257e6e8184458407da67c85bf711447ea19bbea0e070cd734c9f350cb",
+    "client/src/lib/use-read-query.ts": "9b89cd7b6eb4ff5df8546d8b877e3dbbe52cdc52cb628ee5f413a5c8797cbea8",
+    "client/src/lib/utils.ts": "7c8c3dfc0cdd370d44932828eb067ef771c8fe7996693221d5d4b90af6d54f2d",
+    "client/src/lib/valuation-claims.ts": "529ecbcea9531f07ca8da34a495249515ac269e4adac0c62d3172baefbe7410d",
+    "client/src/main.tsx": "29946f51942fba11605c7595fd82b50b0d7e50148e0194fd356dacbc958f18ec",
+    "client/src/pages/climate-valuation.tsx": "530e34e343ee6610cd50eabdcdc4e19a2485f1f0f213c7d8ebdd97407554584b",
+    "client/src/pages/dashboard.tsx": "7655249d19553c0ed9a678912b5ddbc6710e0fde64fd756494d15498f8319af8",
+    "client/src/pages/data-management.tsx": "965be25c863a167bffbac9b569f34c80521367072651fee026c51564fa2ea245",
+    "client/src/pages/decarb-gap-signal.tsx": "d6d2fa80defa9b831bfc62f40c1f2ffee570983ff45b2b10a05ffe4032d19e3c",
+    "client/src/pages/decarb-signal.tsx": "9fcebfefb58f659c6b8fc1cb36971f53baf9f52e03f3c405cc4886700a9f5031",
+    "client/src/pages/methodology.tsx": "e6c02ebe8a1f4a37482fb1c4fd64346770408032bd3b91ce56e3f8253f6317ac",
+    "client/src/pages/news-sentiment.tsx": "fa72dc06f4edbc56f7b3926059c59ed37ab72ed406a30131aa3814f30ad1d204",
+    "client/src/pages/not-found.tsx": "718a41bd05a163d1db32480aba013f5fe754894e656b6542a8e4b302275b172e",
+    "server/calculation/analysisManifest.ts": "3f7c57b93fca064303d4c4fc47a5e1fb630433ee13f23a1743c181b4fe6b4ff1",
+    "server/calculation/carbonPassThroughAdmission.ts": "d33ffc8c1b4e22acad028f5fbd85e21464441a8cea90d1ee6d9b072320566a49",
+    "server/calculation/cashFlowValuation.ts": "dcb0b8185fb6b6f25003cf8de46446f2b5195a15bd5ea10fd82cb9823318c3a2",
+    "server/calculation/categoryHistoricalTrend.ts": "9765eccfdde7527c91f7d937c06c9f1258beafa83d7107bab86e96ec2b33cea4",
+    "server/calculation/categoryProjections.ts": "7ddadc162a4c72bb6de3890a002c3efecb75c5dd10946b842633dcc48fd7a40c",
+    "server/calculation/cfEnlinkCurrentEconomics.ts": "a9a6a7d92ac9295203f784052075172c9009c7ea85298cfb69693b5feacec4c7",
+    "server/calculation/companyCaseEvidence.ts": "9a363f9f3d4669414b91c2dcabe8ba997559bb64db23d4bcebe491005b5a84f2",
+    "server/calculation/companyCashflowBridge.ts": "cb8c92ca92e6b25ab189f7d09b945b218f2d7829166683d4f36d241665d5fe7e",
+    "server/calculation/companyConditionalCases.ts": "b2978b5af1f43f3e1131eaa1500ecc3a27e1e4f453088ee0b827b66c20cf3ebd",
+    "server/calculation/companyCoverage.ts": "653d4713e87d17b67c2f53eb5401fe779b52803e2611186ac28e443da7c3e4ca",
+    "server/calculation/companyFilingPair.ts": "d974dc55bcb1bdd3ec6c8d4e678aae739c88c7a897d684beccede70433c2e0e7",
+    "server/calculation/companyFullCashflowCase.ts": "54fe89144ea8ad1fcb65f802de4998195a2c7ff1c360d87643ca73776ed5b087",
+    "server/calculation/companyProjection.ts": "1b0d2a6f3af6b3caa73f8f88b4141362a50f5b358b2b468935bd39f61b85b443",
+    "server/calculation/companyProjectionAsOf.ts": "2469f82e4de5c82fb38dda05960f1786a210a89eb66973da1b1c2daad5cc7cce",
+    "server/calculation/companyProjectionReplay.ts": "0f11ce3014f69a919a6251bebf9243a4eb9a0aad71a06f8f67e07a76ade029c0",
+    "server/calculation/companyShareEvidence.ts": "85ea0b9fbbdc0c7c21d02ce4c99b4e88fdc03e37df4a137f3e695543598d1fda",
+    "server/calculation/companySourceArchive.ts": "c4db7c393027483bb2639784753fbc0401db25edbb74d9f4c404ed505d529de0",
+    "server/calculation/driverConsumptionTrace.ts": "a96a92702493216b663a6c83747f22594f5027c39446d996f7f3a71a15f95370",
+    "server/calculation/driverEvidence.ts": "8508db324f125a917e5740492b8c7a190a52eda4e26a2aeacf35ffd5557693d1",
+    "server/calculation/driverParameterRegistry.ts": "178276bd63c6b5766fb0060408babce552985624aeba5a7954436f2a34a43ebb",
+    "server/calculation/emissionsCandidate.ts": "78cf109699347f907e43a4e2be06e27c6a2f9e89fcc39e3137d244efb35c1673",
+    "server/calculation/emissionsInputs.ts": "699c169d7f049a794210c4ba205d068f9557917acd240774756799d4add2f6b8",
+    "server/calculation/enlinkOperatingSuccessorEvidence.ts": "0c723e9e6c9c4f65ef7d45f3db0b6772daba0aef538231bd59dbb04c4a5e6e69",
+    "server/calculation/ensemble.ts": "c9a4aaf431186038a42e92ed4fb892730b4034b48e19be8a314776a7eb20b81a",
+    "server/calculation/evaluation.ts": "7a8a6a5437bf4af66130cbf5eeb2c171be74dfc5accdfc10d27bd55a906d02f3",
+    "server/calculation/fairArtifactCatalog.ts": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c",
+    "server/calculation/fairArtifactFiles.ts": "8e36184ef09af22295b71999a643e10831e7c2c2d6fe0bf0c1b4260d554c1b5e",
+    "server/calculation/fairArtifactRoutes.ts": "b9103279e26f54ae636e86812d77846d41197d3e666ed893a8cfe18843b5eb82",
+    "server/calculation/fairArtifacts.ts": "6420215db8620c9d7c6903b5544392f6c79ec47f8a12d46716c0133909626400",
+    "server/calculation/forwardProjection.ts": "ba358e8bf8476df31b98d1b433350da271e8cb5cd85ceaf1b0fac6d0febceac5",
+    "server/calculation/fslrAsc832ProgrammeQuarter.ts": "aeb14a4481373fcac2df1828760abccaafd0fda7a0d5a0646508b4815210ccb8",
+    "server/calculation/fslrCohortIntegratedLedger.ts": "c7be52cca6416d9284a14cc75a9f570086452d4a879882c6f45d365635bb1bc0",
+    "server/calculation/fslrFullCashflowCase.ts": "e0752dd04de8599c5c3056b6e2ab50720c400ca089045d0a53355dc8c43354b2",
+    "server/calculation/fslrGrantScopeBridge.ts": "6f9d090fc96e56128a3fcb5829642ca8a548006c604c5d8d92fa8988cfd45578",
+    "server/calculation/fslrPaidSpareCapacityCase.ts": "1797be365f9c6fb0705662c0c7d22cc29263395786acaec99ec7ac6c80191f16",
+    "server/calculation/historicalIndicators.ts": "e716ce9997bc28d490189a25fc45cf553318328eb12f7e46f830651a2e73705b",
+    "server/calculation/historicalMetrics.ts": "d7370be55c60fe28e0e58ce153ee09d470cbe3a5c49229b8bb4e587ee45280aa",
+    "server/calculation/historicalRecalculation.ts": "8608656a82088b6fb8c4414c9dc951eb4ac5a341e2d0c9d852587b8ddf9bd03a",
+    "server/calculation/historicalValidation.ts": "3bd60107252b4a5e4031228e6624e3411c6f2bca531b8872efbbb78a490a2964",
+    "server/calculation/identity.ts": "2269cd86b1f74ea698a3417da804fc45225ce57e29807efdec00c7465ca08cb6",
+    "server/calculation/indicatorSourceMetadata.ts": "50a71a97c357abf7d993ed923f187a397fcc1c0e601a3e1a43077e142ecaff77",
+    "server/calculation/issuerAttachmentGrantInputs.ts": "8caef629cbd3425ab05cdcbdd610c90109fc0dd40bd8326344f4265c01d45048",
+    "server/calculation/issuerCashCollectionInputs.ts": "0762c8ba615633f4c55a814997580f8cb71fa0ca6dc3cae74cf4b671dc6d80fd",
+    "server/calculation/issuerCashSourceQuarterFollowup.ts": "6f7ab62235e7a3e5697a2e097cfd649a2d2ed085a4cb26a482df13c1033847c8",
+    "server/calculation/issuerCashflowCase.ts": "e45e49bd87ed955d31f6dd352cd82b2ab6a8108a9f6e7c022e072287633e1b90",
+    "server/calculation/issuerCashflowReconciliation.ts": "e84a81313358d74c96faa82c3a8e6cf0de0c602197963b3d368c216948a3d9c0",
+    "server/calculation/issuerConditionalFiveYear.ts": "b847f77eddb93dbfc897cd911c63ce3b61f898e4cee0c3deef2055895b9720f6",
+    "server/calculation/issuerContractLawInputs.ts": "f4e0551ca48ef9d9821b634b425f6722dad74fbd08192e29491b02bd7a69cbd5",
+    "server/calculation/issuerFinancialFollowupInputs.ts": "20f4d3b487b267afdcf48ca4c3d4977e46d2e74696adcfd71f41dc645e8016ec",
+    "server/calculation/issuerOperatingDriverReverse.ts": "7edbdf6193bfd88f1fd6d83dd9e08110aa72608fed84672d454c09f187f2bbdd",
+    "server/calculation/issuerOriginalOperatingCase.ts": "c30e83b49a918cb0987ea63589ad9f62db5bb73d93cdf0a3fe2d0dc3d2084dfd",
+    "server/calculation/issuerSourceExhibits.ts": "f3ba27f6e8cf7063042b5efdc53d30ef616262d615f5476e68c9a59aabaa342b",
+    "server/calculation/legacyDriverAdmission.ts": "481477668fe313f92aa29c05327927878a296b7a495fb817f17b7e59f5625070",
+    "server/calculation/memberAnalysis.ts": "3d90884d3069053b97d3a93e004edde3479f7379203707fc8fae87d3b99fc903",
+    "server/calculation/memberAttribution.ts": "2780f751b82ff11f19f1f3086564f7c6674676b459219bfe0389ba9880ac3bd1",
+    "server/calculation/memberConvergence.ts": "eda2f362d75abdd69df77213eb2a2a0bfae3a8087c1f37872e7cba364ca79eee",
+    "server/calculation/memberMetrics.ts": "de597bf66bb9ccf0985ecbb51884466b7e20dc88c98d4c431f2060740d32e280",
+    "server/calculation/minorGasHistory.ts": "9edd4b84ca879c45f8eb21976909773be0c29aae9170998cb6c7bb4915744044",
+    "server/calculation/nativePathwayContract.ts": "dbb3d34924b122925a0ed0c8ebf9cd2dab300e67c4e15fa9fde41a929799023d",
+    "server/calculation/nativeThresholdDiagnostics.ts": "c0a982ed5aba97228556b86e9a302e96cb1d2387d283c419003d2086423af13f",
+    "server/calculation/neeBorrowedCashPerimeter.ts": "4a31b4ee8a4cd854d176793dce4f1bcfd5eddff84d200824d3307f229ccaf66d",
+    "server/calculation/neeCscsHeldCashBridge.ts": "cc44ea6b5a1b129a5caa19690f10e3c1a3e91d998eb1bc5c5d556597f052973c",
+    "server/calculation/neeParentEntityCrosswalk.ts": "c9fd8ca109662b43721160548372d7743ad5d2f5e3abba3020a743d06e51e7dc",
+    "server/calculation/neeProjectCashWaterfall.ts": "e0e65e77b5d5896eae49329a1aa00395467d6cc2f5f32160a2345e75a5613867",
+    "server/calculation/neeRelatedPartnerCash.ts": "6d7e6a5650910b4fc0e0554eb3305ed1d6cfeba30967578edf7ea677d78460c1",
+    "server/calculation/neeRelatedPartnerCashPresentation.ts": "54d7a1b2648688470704964d4e171cd222217baef2104999baadbc6325ebfa4d",
+    "server/calculation/neeRemittanceCounterparty.ts": "6ddc4abb3ef2e976456cefb0c171bc16545c92dbfed896dd923b93e8aed9041d",
+    "server/calculation/neeRenewablesIiCashClaims.ts": "3ffb537ea0e38a477fd385435defd7ce4b649fc206f75a7851db9d1dd3935fbb",
+    "server/calculation/originalNominalAssessmentHandler.ts": "453b5a8610b7b70291060fe5baf1577f2ad83cf5d54da425cde59fc8f3ca5f15",
+    "server/calculation/pairedCompanyGap.ts": "fd2e48ce63a56f47ca253ff04ed14e57cd6a8f8e76005901f655e19dca241ebd",
+    "server/calculation/pairedResearchCorpus.ts": "dbb93f1520e9191a52353b00b26956232d0d0a7f4777fa735692b1fe78407a3a",
+    "server/calculation/pairedResearchEvents.ts": "9f70b3af8af8dceb0553c79ff068c64da0559cb7251b9a96a14129709016ef47",
+    "server/calculation/pairedResearchFrequency.ts": "8d0741b06aed54975d4362316ab153768de86264c4d47d5a27fe2a11ecc562ae",
+    "server/calculation/pairedResearchLongOnly.ts": "0b2a7fe977a3ce51fcdae336bcda239e6add0c222b9ecf34381d40d8f64c522a",
+    "server/calculation/pairedResearchPipeline.ts": "2173a6340cb8d633e6ce5416f116cbbba35e919fb1f1c5076fb398f8e3cde451",
+    "server/calculation/pairedResearchSleeves.ts": "29baa7f6ebe5f430b79c45cd3c75bb68083ba61e4299069f8335e0fb15385772",
+    "server/calculation/projectionCacheResponse.ts": "cef7e8d66c3bd7a5c95f695636b904cbc9311306bf366353f2e95e605edc91c8",
+    "server/calculation/prospectiveSignal.ts": "636e032662825414e6dee9bb1a2c1b968b8b3529efe8753a36cc147db88b3103",
+    "server/calculation/publicValuationContract.ts": "b967b1ee1fb50d71ef38b7774b2112952d27ed3f2755dc5e9a1ea8518af87231",
+    "server/calculation/random.ts": "4dcdbee541936229654d6d82fe32843a1104c4ba4f2e0897df3f5c03b713fc41",
+    "server/calculation/readiness.ts": "0006f7c3641ea2d33627d7405370b3d3be610058f9ccb7a26b50d0e90557c0a3",
+    "server/calculation/regionalEngine.ts": "a030163eee28cebf2804151c483089ab1244d37d73b204cb3fff18eb4970c63a",
+    "server/calculation/regionalInventory.ts": "4429cece8c041885d8aa6eba07e21d082e4af9e23af9829f5c2ab579213926a8",
+    "server/calculation/regionalLandUse.ts": "323d6decf0e75a89d02eba8724962bbb96fe39223dcf63227a8d031384ba5b7e",
+    "server/calculation/regionalProjections.ts": "5b4b3514bf447b31f31cc09a3cae80043a0b44be630f218802fa841cbd43e7af",
+    "server/calculation/regionalSampling.ts": "96b5c29a5489e935c9eda82891f4bea85ed76c51b38fbc6aa2713f60cc7a59a9",
+    "server/calculation/researchCorrections.ts": "d44ed7824ba6f23859a5da603b40d6cdabb3159957ced8df99365d3917460340",
+    "server/calculation/researchFamily.ts": "179ff9d5bd1aad1027b21de1f40718181d2a8197248aec3a6170e13cef40fce5",
+    "server/calculation/returnQuality.ts": "e95bd0bf9552e3814454db7b94ed76f109c3e3a382340bc599ce68b30ce1e4ed",
+    "server/calculation/returnQualitySourceConvention.ts": "5ea825be16f193f1beb2dc18981931549af580b6bc1813488d2e1b233e063141",
+    "server/calculation/reverseValuation.ts": "0fce324af40986222546b5b0d03191b15382a58fb7fe29fa983b9fcbabc4c953",
+    "server/calculation/shortHorizonEmissions.ts": "1275e44a3f07251b45f0ee8db49f6d5e8794972f3eb2ee604b954c5c0f5fa317",
+    "server/calculation/signalResearch.ts": "b864a37bfd9f08a54a1d14ce818dc4c686018f2930ce41058bc0514ef22f30d3",
+    "server/calculation/solarManufacturingCase.ts": "ae409ab9e4a3dd35e4a23bdaf6a1820d3950f1b4a4407b8878c2df2c26191e2f",
+    "server/calculation/thresholdDiagnostic.ts": "ec677bc8970b17887e57c8ad8ae3c3b07640c87df64f106830eb4bd7eed70303",
+    "server/calculation/trackBAdmission.ts": "b5e7c0b2b9a49e746c268a90b45e79f42c9641f5cd5e26df95c04ceb9b411d8d",
+    "server/calculation/trackBAdmissionWorkbook.ts": "138b55a6ed359e57e4f434b8699cba528f0ceaa83ab9136d1a50067e5c51aa96",
+    "server/calculation/valuationComparison.ts": "20417ca43a73e299c8527b8eb72e9b192a274fb6a6823dcd06ec47ad5a54c435",
+    "server/calculation/vintageAudit.ts": "92fd6f24d02050283a514421e59e47010a4fc8f14e4b18197c68a93772b6564a",
+    "server/calculation/xomClimateLiabilityCase.ts": "0a331ae289a1394934eca303e332c6df735ca12f9d76f61fe8bdf9faea6310d2",
+    "server/calculation/xomCounterpartyPermitInputs.ts": "81d3ebc1d21f39e527623a334302bb3d55ce6d36aff54be977ec3f2a7427d1f5",
+    "server/calculation/xomSourceInputQualification.ts": "f3832e2cb3d8af0ceb3e5b432beb5e1f26b5f7ee922fe2bf9aed9984f7ec26e2",
+    "server/carbonPassThroughApi.ts": "6758707c44b4e61244631bf28fb34a2438c8f29bd20099cdcc99e9d2eef4ff9b",
+    "server/climateValuation/backtestCalculator.ts": "f7e0642a993c2afac35a1936005b501bb0d0da27a5db11c6efae79b461a1f160",
+    "server/climateValuation/carbonPriceCalculator.ts": "6ca6b640c7c16787470efb8f6aa9db010bf6273d00be60a4af62bbe4af144872",
+    "server/climateValuation/companyCarbonCache.ts": "d3d276993804a566022fd30e662474c9610ffde48637ed34e591e44ccd382b30",
+    "server/climateValuation/dataProcessor.ts": "b170bd9afb02a66bf5c2011f872069ad2053fc60e6ec61a9ce5c45b760a79ed6",
+    "server/climateValuation/decarbBandCalculator.ts": "3baf3b7138cc8ddf2689fef5f7d30febfa1ac663e2b6e2fb5a9f9887ff2ee666",
+    "server/climateValuation/decarbConversion.ts": "9f5420029eba8200c45c273eb899b9f219b428b23650eaf8b67071328d65d4f5",
+    "server/climateValuation/decarbGapCalculator.ts": "4fd66b436abd8ece8bdadea8494cb9cf2752d3e72383bd6ff30c0204f0d88e68",
+    "server/climateValuation/decarbTercileCalculator.ts": "ef79b4ab3819d9b68ccda43bf30f89686cc038f0bff600daafab957ce75894d9",
+    "server/climateValuation/emissionsCarryForward.ts": "179fa6820787a77319f95ed1a9c71299bdde51122894654aab113df9f87b9084",
+    "server/climateValuation/longShortResearch.ts": "912f0a90469c6aabd18e196de2dd0b97208a6e014a9f719dfe58e3dc298c3567",
+    "server/climateValuation/queryValidation.ts": "8e6acfaaa70ee3a2e7d037bb573d1b036c17512832b6aa2689a4bf59088c9355",
+    "server/climateValuation/sdgGrowthCalculator.ts": "deff620a1cdd7fdd0907e3331175e5954bb7edd5578c1e2bd86409e0eb73b9da",
+    "server/climateValuation/sharedUtils.ts": "c405d4fdbbad1a0278739d40dd73b32fea58be940b65720cbe96648e86d38b49",
+    "server/climateValuation/tercileCalculator.ts": "c00966e774af8b5fcb82f0d5b6aa0cb56b9b7df321d3391579eff55f87da9d68",
+    "server/climateValuation/valuationStatistics.ts": "fdf229615bc72fda99e50b551244a6437148d98070af4ddcaea8f76f4cd57780",
+    "server/climateValuation/walkForward.ts": "640cb1c69fe1b7d442aa6a660e42653afa3a384f738c2055612dc58e77573691",
+    "server/climateValuation/walkForwardBacktest.ts": "f949912b27ed281a02b2205e6ccbe3077d88e0f363522fd6efe2341d5db959da",
+    "server/climateValuation/workbookMissingness.ts": "4a980c2b20935c6741bd4d0db811294661387d361764a493d47fe5b22cf76bff",
+    "server/climateValuation/workbookMissingnessExport.ts": "68adbbaf60081463c3f075c8aa899639ea0a35a20a94f70751397d2ab1b16d88",
+    "server/companyConditionalApi.ts": "cb4d49909795f6c1ffdbb4eae1332baf4972cd4c692f7e2df95593dc0d102084",
+    "server/dataIngestion/adapters/derived.ts": "fd675f63e28f989d5de158bfef3a8728da72de3196d3701877e76a9a28e0f708",
+    "server/dataIngestion/adapters/index.ts": "00f13033bd85f0ae678ad6694ad89e613cc5e6c71d5309f4f6f67ad51a0045b3",
+    "server/dataIngestion/adapters/noaa.ts": "23ae216a58db5e027dc78b6583cfc9676e70ccea1a603be1b9bef88ed8cb9551",
+    "server/dataIngestion/adapters/owid.ts": "38b8eb8a3e86c39d7c92d0c2a1644c639a426f996896454cbf79dcb14c4a9af7",
+    "server/dataIngestion/adapters/perplexity.ts": "1a29636d918345651502ec1532c988927d1b87ef1c75dde82dae274a0d376f68",
+    "server/dataIngestion/adapters/qualifiedArchive.ts": "80c72432556452b98a42e19e867d14e60ef3a082118bab814098e0b95b6d943a",
+    "server/dataIngestion/adapters/types.ts": "03214b937773be92084c4433403423d0d82873ec23df470776bd53df77ba236c",
+    "server/dataIngestion/adapters/worldBank.ts": "0006bed0739dfbc5509eebc3853f01d573d8fdceaae141a3adcdab521b2d56df",
+    "server/dataIngestion/collectionLock.ts": "16298a7a0616163a849199ea0ed7d7dba209719068e9d22e7cc4460c37362600",
+    "server/dataIngestion/dataStore.ts": "752843b7ecece91b5e44236bfc43ca7e5324c57082747a3fb7a8353157491964",
+    "server/dataIngestion/indicatorRegistry.ts": "333ce1f17e89bad3a50ed9018e36848655fc735597be2bc11fe40885b72689c3",
+    "server/dataIngestion/orchestrator.ts": "955b69a111c641108ca3fe1f80e706340fabaabc923447040ea95c1a498b3c16",
+    "server/dataIngestion/overrideStore.ts": "e6f8a15eff1786cb0ea134e87f10039c2a04c8636567050d55fb6c4329ccac0b",
+    "server/dataIngestion/qualifiedMissingnessStore.ts": "f127b845a2019017c0f3bf88687130fa7b40a16e4f4108c08f4ebe8faf1f5b46",
+    "server/dataIngestion/requestOverrides.ts": "80c86502b80fff11cbecbdfb5aff6a1783253c356b533e1eddd7884d7c387f52",
+    "server/dataIngestion/scheduler.ts": "3b04cc42ecfe1cbcfc69d1b6c7ad05d04a14539fa47aea6014d7d4484c407117",
+    "server/dataIngestion/summaryArchive.ts": "94ea9d33f55f0c30e2a44ccf4648ab0348cbc9c1f9103d877241cc024b065907",
+    "server/dataIngestion/summaryContract.ts": "1022fabc6f412cd11ba07716108955c242c8236e0aa6448c4c871c3b083eb129",
+    "server/db.ts": "6dbe1201aa87e2e896a32c37a51181fdb19e4a0d1584be2f7344e4536f3bf28a",
+    "server/downloadManifestMiddleware.ts": "0af2c96ee7cffea9dd0759fedb77b66d48d85fd4fce719b1a7f173aea4e610dc",
+    "server/financialData/approvalArchive.ts": "2d45ef9bbb4a636e954781f7179151f66c6d420321d5a4e84a2ae728364c4240",
+    "server/financialData/asOfValuation.ts": "2079093ebee1aa5a39c1391dfadd07671193c5f442d384c24cfab90c38bda0ac",
+    "server/financialData/companyBaseline.ts": "16eeb0a19615f30c152522cdf7795d4826838dc6d834514139a1d0fc80348d11",
+    "server/financialData/completedCashFlow.ts": "12adba80d5fc784b763be2597746214a4750da1d3de8d72708fc31582543c80f",
+    "server/financialData/currencies.ts": "e33a16920980c4c408be0bab5f72dc8ed522290e96c1d73fe6381c7ecc4db135",
+    "server/financialData/historicalBeta.ts": "c2dc28f28d4f5393396c89d88287838d7b99d1dfd0ef739930a37d2ddc978d02",
+    "server/financialData/identity.ts": "44054325c69f073595f5a61e36a5d4bbdf124422be02a6677cb24e87cf3d4ff5",
+    "server/financialData/isin.ts": "b31c37d72462279a57d84b628258a672c5196ab9f4307402c327a02217b20856",
+    "server/financialData/mappingDiagnostics.ts": "79ac2ee9dc3d6f0f4a3ebd8739aff2596041d27de6d7f6ccfe8d93c1756cb95b",
+    "server/financialData/provider.ts": "602428cf6200641382179043fa76cf3d39e571254417f058b1450bd5aeb78884",
+    "server/financialData/review.ts": "3b1c2d72aea41b4f25e700fc82b74595953a56a6712191d9bcf2056c84ab2214",
+    "server/financialData/reviewStore.ts": "b8ee0b923eb0d7b1a084884abc8a26986120176dc9521c8049a79eac9dff7620",
+    "server/financialData/stage10Coverage.ts": "f5381d7197ebf7039c3e2d4476041332fdaad20ef33f7c5d8655e4b76e430b0d",
+    "server/financialData/stage10Export.ts": "70569d0ad56ab20d610be1197716ccb73e5da9600fa303c3811d2562b1e28fc0",
+    "server/financialData/stage10Lifecycle.ts": "4477e3467f263473dfea2253a03af962eb32de211de4155558adc7c58efab7fe",
+    "server/financialData/stage10Source.ts": "a180e5cacbe982af49cb6ffdd6b63490472b8b02dcd278e7ea0624baf2ae2eda",
+    "server/financialData/statementHistory.ts": "03893f2421d85e4d297031a77513f7b69368338c444e83a172d0cb0503119346",
+    "server/financialData/status.ts": "31c2466aed41b5121029e84e50dda5e6fe96132497472b54cc711f1e6beb9f50",
+    "server/financialData/workbookMoney.ts": "265feef1744852733698c74995b601141797267ce50a46f4c21f12c3d785b343",
+    "server/financialData/workbookMoneyConsumers.ts": "936a60f3a6b4615a8520b997d21447cf60bcedc68268c11854c94641ddf9eff6",
+    "server/financialData/workbookMoneyExport.ts": "891b1a931e57943e797e529237e4fd062d46214c6fbc3e0b9c87b516e90aef2e",
+    "server/index.ts": "98220065a3553bea17867c80099900e804da05d65c039f12938e6fafa93295b7",
+    "server/methodologyApi.ts": "00bc6a78daa50818636d741bbb985ac69e179eac8e6b8f906cb545965c8d880f",
+    "server/newsApi/newsService.ts": "e278edecbd95ac584767bd298af31580cfa93ae3f820e832e646752675daed9b",
+    "server/newsApi/providerAccess.ts": "af9c6287c1658b575a0b09c8ac15d5cdf1bfeed20dd4adfde01f51e0353c9943",
+    "server/newsApi/requestOptions.ts": "7e622e238a528803ec1f82599054d7eb5a10005ceaf882b2476e1b5f92da40e4",
+    "server/operatorContract.ts": "8aa2ceb30dd8057ccc70f792623f325574f94de2c32cc824dc01ac880c7d5552",
+    "server/qualifiedMissingnessApi.ts": "c1806c76b23ba6576eda0ce6042c121deec491aa6cd9952633ea0460ffb93216",
+    "server/quantityDescriptionApi.ts": "1d086693fafccc06da0e4aaa9ebd391f3e53a8f0ff2e4b9cc7a3a63de40f1fb4",
+    "server/readonlyDiffApi.ts": "90e39fdbbeecf16e40b3a4dee9e9b8fba20aaf9c0cc22a99693c31452b22edfe",
+    "server/releaseSafety.ts": "d9a1b654acd60ce4904263bc333274a95ab12f69037836ad042bb91c75422b59",
+    "server/routes.ts": "1171228a36fa145d5371c4c9a9d79172960dc1ba350a05f8eaac1276a7873a8a",
+    "server/snapshots/companyCoverage.ts": "bb203a4c5d643633c284d8769ca152d52325c69ba00a09fedc24f259bceef94b",
+    "server/snapshots/companyOperatingReview.ts": "0ca53e8809d5a06bda76ab55e15358ff96446725522a556851ad9ef0e3cf6d9e",
+    "server/snapshots/contract.ts": "f371dc33bd84612432bc930a81e9796294e8436c3347b9ec298ba7eb1c3e8127",
+    "server/snapshots/guards.ts": "7576fb6a5b73f773c695e00f7423753acd20d3a843df1221fb3524ba9531a778",
+    "server/snapshots/indicatorContract.ts": "1b03e9ffaed4cff1226c740f1c865a42c171c95dc998c0a0c4918345ea01ca3c",
+    "server/snapshots/indicators.ts": "2f735e625563d838c209a93337bf9a26935b1ae7a5c12bd46a2d6365c9b90629",
+    "server/snapshots/materialInputs.ts": "f14af409356d893b8be1edf3238970f5be72a55311d7bbb8d680dea91afe874b",
+    "server/snapshots/overlayContract.ts": "8d50235e50140706ccdcb7bad6299efc8d4fabace5133f14ed89aafa55d0f053",
+    "server/snapshots/overlayReview.ts": "bd628a7bed4343eda550ff105e1bdfa26ae9a70e0895370b7a2b7f814daa63f0",
+    "server/snapshots/overlays.ts": "19b13fea88924d076d78afd5b3ef675548b2d1385aaa6ddd0a116de910487df2",
+    "server/snapshots/prospectiveSignal.ts": "259a0e7580abcdd8febf6b1a609c3425c2947c4664d123ef9e27e038e850b413",
+    "server/snapshots/readonlyDiffContract.ts": "2068b08c5c8c1f4ac3728a71fc460b95645fe7f8166f4372e23967961baa35e4",
+    "server/snapshots/readonlyDiffStore.ts": "4db66ac163f1ae4e072ed2a1a154b6342db7444cc6f49f9d9f0c4f8cbaabb2d0",
+    "server/snapshots/recoveryContract.ts": "efba03e0afa71c4e11fec5a4377502edd5b25eb86adf306b0e984528bbc775e1",
+    "server/snapshots/regional.ts": "4f7991fbd47e7edc41e06e91a61eb614217085323be30fe374793caf8c21cc4c",
+    "server/snapshots/regionalContract.ts": "45909e1b72da3112ab7f05dc20228955bbf72d1a9390e883ea0578f3908241b1",
+    "server/snapshots/requestContract.ts": "5efeb9af302e7b58501c1a0dc4d9b41f260c73fec3a06cbe759491246883ca74",
+    "server/snapshots/resultContract.ts": "e418e37e52b31ef0fdb024408bda12ad25580db9ac94fdbbbda88fe18e564fdb",
+    "server/snapshots/results.ts": "bc1bd7acf400ab11424a34876af272f760101cd00f73aacb11e0a5f65a1400f6",
+    "server/snapshots/store.ts": "916d962f691d263400f1a80872b32d708016efb8bb95109d7de110e28ed6ef8c",
+    "server/stage10CoverageApi.ts": "592e90e388e6dd4eff6d7b64dc39396617a0914728f77b1dc313cf048314fc90",
+    "server/static.ts": "7ad68ceb8da0fe0b29af6d517e66cfc14f106a641de845aac4f1bd995ad24f4a",
+    "server/storage.ts": "c1c84a1304753672fc373b9902231eb56f616dcc309856a7df56b593913f5ecd",
+    "server/trackBAdmissionApi.ts": "1c24d252f4f12e482d7d0ebe25bba1072ad45086bbb004afb68328a9479e76ee",
+    "server/trackBDisclosurePublisher.ts": "522413e6bd6231d41ad696213ee8a0071d5d44f50ec5df49bf422eb2a0dfd9d0",
+    "server/trackBDisclosureStore.ts": "96e9df47a6574a29ba9b7ef3e1fef5e4600568b9cd2bedb6ffc5d2f4306bbffa",
+    "server/trackBPublicCatalog.ts": "61209de4c025394a5c2b585a4891e11cf1c3c624580d65810e0f7c64e5b26f3c",
+    "server/vite.ts": "b95341d19c1b83bb314467283568d9d6e72b02e21d6aff0037689c6b6be0528c",
+    "server/warmingValidationReferenceApi.ts": "ba6f268af9167bae58c743b76562ef246fd387bcaea49c1f6f60352d8032f854",
+    "server/workbookMoneyAuditApi.ts": "8a6c7d08abbc57402683012c200b8c27c440c78cdb423fca8ef3d16484bb48bc",
+    "shared/backtest.ts": "a59850a0cb085b0b079f020be0287ed184218223edca139e25b0dc5481c37f73",
+    "shared/backtestFieldSemantics.ts": "852e4fef68df740cc51f25b90ff6548bf31cff8157ad91342de1626f70632436",
+    "shared/calculationContract.ts": "7700217420661611987a9443dedb94a9fb4b3603fd106a9aca55e70bae34a2c9",
+    "shared/carbonPassThroughEvidence.ts": "451d6cdc08c300d54e1a493336842d1642683c8b9db95620c46d326cd6619dc6",
+    "shared/carbonPassThroughSemantics.ts": "a129fabdf1af949af3ff42b227943bf199a2da41fe7ccfb0ee8580f8dbcf6dda",
+    "shared/companyAbatementSemantics.ts": "7d5384396259386689257f0f59bdf53cfb676751aab2db8df736b774423dac43",
+    "shared/companyConditionalData.ts": "32ee6f37af286eef8e194a4f4867c0c81e4f14d38baea0b577ef7982bd7f2510",
+    "shared/companyConditionalSemantics.ts": "163f7aab055df0e884d55e6da1eebbd9042789a2e9162356b77a9fbc5c7461ae",
+    "shared/companyCoverageSemantics.ts": "511a29e06476048dbb7aeadfce99082f607fbb5089fba46b6e6274bd3c07f09c",
+    "shared/companyReplaySemantics.ts": "0ac1cca00d04acd754d1a19ae3a53b51580a68d0f35c43c7f1eb44f211224887",
+    "shared/companyReviewSemantics.ts": "79a0c11217c3efe50005df76df3901d25f8c520730af0e9fb49fff84e8427552",
+    "shared/companySummarySemantics.ts": "eff3728106b2ad9c60224076d80655c68b79e4431c4a674847998dbb0d585f75",
+    "shared/dataManagementSemantics.ts": "7089d203a547bf00c7fd283882a0b58c38c58c373a5ecd3c4c4102837c95a395",
+    "shared/diagnosticMetadataSemantics.ts": "0a885fcaea4ed3628a6c74c1521a263c498459b7f2c6bd750b87ab99ca2209d5",
+    "shared/downloadClaims.ts": "35e78702037884317eb705a0ed3e9afc058300dec379acad5610ea8cf3554946",
+    "shared/downloadManifest.ts": "dee5a318ba29a93f591f404bddbca1f8b3b2c558d13ad23a56baf6b07f7f11d5",
+    "shared/driverAdmission.ts": "e0758ef85f7189592aa10058c90d22d3145b42bba3aa549dcb2b60ac3bb53159",
+    "shared/evidenceFieldSemantics.ts": "03fb3a125528e17f10e302beb3be59c6385d20b4ba40a02377aca0c805ddc7b6",
+    "shared/fetchSummarySemantics.ts": "7bed9a73f41f93fc4f7f0d1b4de04d7d89199159321636b689ede3e3c0b67261",
+    "shared/fieldSemantics.ts": "c3669301f702123f2cf115167476578f273efc868443c7248d423f9febec14cb",
+    "shared/financialData.ts": "a95fe244f89b6e55020496cf9bc81a3c4ab2c50b81d84e677dccc8bd437bacd3",
+    "shared/finiteExportSchemas.ts": "ee5cf007b2f8516e541e99ba92b33b51c77e26d4b77bbb1380a9c999a2f33a0e",
+    "shared/gordonBaselineSemantics.ts": "059cf98870e86e33b4ca2bfaa055b7ed4415d2a35cb1c0da779e56a524bb3c66",
+    "shared/historicalFieldSemantics.ts": "76ea1005724b8846e5dda54c5aace51406d0f2848b9486cf8fb89c6b35cc2516",
+    "shared/historicalTypes.ts": "9562564a4690e4d0b42c41b26b32471a9cbc722a69a9368b99b0c03f620f3ddd",
+    "shared/indicatorFieldSemantics.ts": "7050a34e99145cb34f8518ee9e03ab82b11d17042e886ea6d830191967479486",
+    "shared/interimWarningEvidence.ts": "40e47bde7cf9ba4bc76dd4d506c1f55e161dae0bd763c6e92b21418fd974ddc5",
+    "shared/methodologyRegistry.ts": "4ca23e5aaeac13c87a51f836dc94155864a0d7f66ff81be0b599792218971579",
+    "shared/nativeExport.ts": "27b308a1a59c0644a68aa4ab715c18be70781bf0704efb887c4687f0fe6288e4",
+    "shared/nativeOutputSemantics.ts": "f33f927e1a522ff44a9019aef91e018f3e1b8cbefde498d16b7f3d5cebcc297a",
+    "shared/nativePathwaySemantics.ts": "9a6242184c7ffe596f810a4eaff84acd8358543a2ff1c5634778a3881f15f361",
+    "shared/nativeScenarioSemantics.ts": "61c323c8b6482b2bb238a5854b9eaf80a2e822ef638d47ceaba325a931fccb47",
+    "shared/nativeThresholdDiagnostics.ts": "1171be265e52f84ba225eaebbc53268af6bc500b3bb2392f6fe32aafc86626de",
+    "shared/nativeThresholdSchema.ts": "ad1e39093c9f15d6f8912cf9b37803c359baca2db9bad55af1e0f6b0d32fb229",
+    "shared/nativeThresholdSemantics.ts": "1e69009b0b962abc3cd792d69d81b56f192acebd09256d62974bb75833e5e0c7",
+    "shared/newsFieldSemantics.ts": "e1eae0a67cf293e0456a7c410fa4cdba5d3e82a1b4cd964ac006d779d4d53a3b",
+    "shared/originalNominalAssessmentSemantics.ts": "55287c3e23f369d0079b883276143c18792b82e8edbb1f7297eb56ee8797a8c0",
+    "shared/outputFieldSemantics.ts": "ad1def643b71fd02f5b5c9bbc70a5567ec8e67c8b8d1bd69a4ca0ad86e73eab5",
+    "shared/peerValuationSemantics.ts": "f2ba1d54f68c4682ea206b4c8fdbbbd541dd0b52083e415f27ecf20621848430",
+    "shared/projectionFieldSemantics.ts": "4c020925ff3f777198028c7bcf1c834b208d6104a44d881b70c0af341b905271",
+    "shared/projectionResponse.ts": "3a26587b1ca0147246fecab90e585157e39a82c000703e0271258e7cbe453b6b",
+    "shared/quantityDescriptors.ts": "678666236d065f92bec8a7f90acfb4f690c3481113a0929dadfbb3319e664bd3",
+    "shared/readonlyDiffSemantics.ts": "a557a268debceecbaddd0e7681fc37359d9471ef7482d72c781fb6a7ce2551d1",
+    "shared/referenceScenarioLabels.ts": "2161635a71114b35c84c13b889fd7cb9232fc97e947d40ad732e51bbaf7f2ee4",
+    "shared/regionalFieldSemantics.ts": "faea5fe21340819cde0c25fbe28f2304e2186fff94dd13740e311e1ab181adfe",
+    "shared/remainingFieldSemantics.ts": "a46d997a42cbe11bb9f7bda67219e811d3f447fc7f07b035fd3184b9d88d4108",
+    "shared/researchFieldSemantics.ts": "a0ce24248f057e0b95e96b4dfab81e7cbb10c968a153adc49f56bdc085543c5f",
+    "shared/schema.ts": "cdac5c19e325d4af3f9c3852b5df61dac9afd0ad0dd4896ec4c8c1687ceb402e",
+    "shared/scientificEvidence.ts": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4",
+    "shared/scientificEvidenceSemantics.ts": "c23f018d46523b15bb5490335aaa0317f52c8126f1f83c39f13e6d2a35c2fa70",
+    "shared/sensitivityFieldSemantics.ts": "4a0ad5f53c0393567c88504c0c016b23b72e506789da1c1bb5b6c27bead09deb",
+    "shared/serverDownloadRegistry.ts": "cc8ebb0798fcd2bbd0ab4de779139db8372b5d594192e9387a339fe2d8323ef7",
+    "shared/stage10Coverage.ts": "7273f14cda616502ae078322cfe2be13ead74a9a1a6d5731a828e15c9f5d2e16",
+    "shared/supplementalSheetBindings.ts": "96eaf65fedf50615e666ddd859a64033d2a9dfdac1edd0ec4ab85e08e2b2040f",
+    "shared/targetInputSemantics.ts": "bd14fa1ff73a44b2a55fbc5e1ca937d121b59401c821eabf6a2a4c44eb8c9bd4",
+    "shared/thresholdDiagnostic.ts": "abff6a6390ccdc8f806135b81d219b41093676aeb6045b2565796d128ead1dd1",
+    "shared/thresholdDiagnosticSchema.ts": "54c8a2a9eb4d3500792d1a5516b69e1c1e0fbf7e2044793f2198e22d7683f03a",
+    "shared/thresholdDiagnosticSemantics.ts": "b9ce0ff600580fdd610d07793d706d08aa6cebb20760128df0cc0eae0fe11385",
+    "shared/trackBAdmissionContract.ts": "0f6dfd317ec5878f56afe7cb46615b139a2f23f1cef9b7f438cdff33607e53ca",
+    "shared/trackBDisclosureContract.ts": "78535b22a7b593488a7a5db14509994b7d9e20abc6f57c6f19d36c94c8ca843b",
+    "shared/warmingValidationReference.ts": "9482c250dc3293da1b4853475fa94cc4cba97dfac5a0918f6b9c1d7e4241ab1e",
+    "shared/warmingValidationReferenceSemantics.ts": "5bb290681e7f1d40aa4b48a2cf34a4135aa1bcec6943ab3ce116e64512c1d8d5",
+    "shared/workbookMoneyAudit.ts": "f45eea7f4403403c62edfadce1f8cff22af776f3ba58eeca6bf99c3621044d21",
+    "script/methodology-download.test.ts": "eec44bac5ad69386c777f3e46522da79b4d9053723e58da39283f4aea2431570",
+    "script/methodology-download-portable.test.ts": "299ed34521c1d39ce294fcea98d692a37a8cccd441431e42b181f1d2001f0c6f",
+    "script/methodology-track-b-download.test.ts": "eba07c520a913ae390c267d71b7daf23db86de676da496c4e8526cba574aa479",
+    "script/methodology-workbook-money-download.test.ts": "47ff36618a94b1192aeffe3f231f74a15f752a895c1306f31dcbcb4d167ef24d",
+    "script/export-contract.test.ts": "9556545e7e6dbaf9f9c4cadbb3798d120a99384bd48f96363c658ff20f2961b3",
+    "script/export-identity.test.ts": "b4a4cb6f9f747b83b0f14d85f80d53a0b4ac994d06bf18c9ce04ff458ba10044",
+    "script/supplemental-sheet-bindings.test.ts": "38ed4c4c1cc9e45f55f3a2ad9c1790469fc0787a3386eb8dd963859e8ee5ef0e",
+    "script/finite-export-schemas.test.ts": "7adf25dc344f8bccb3387c82a60dbd4ae3b4c21ffe269193ceee669aa2651222",
+    "script/warming-validation-reference.test.ts": "9d8d06f0561b9be23d50d55bb2ee6c8957a76e44dba3d64d2e37d184a5b28efd",
+    "script/component-state-census.test.ts": "6a37731b2887ad011ed3d421703882ae83b5bd511262cab09967d8d69779f46e",
+    "script/company-conditional-api.test.ts": "7c121455c6c4eebb63298ff40fe8a62071ee1f5e726d99eba1ca3a515dda5598",
+    "script/stage10-retained-coverage.test.ts": "02c2ecb1cfca22afc9c02d9e7588f51aa0b514336122ef792a16a5f227bb6c60",
+    "script/workbook-money-api.test.ts": "c914f9e7d72d1d536005f92f906dd503d3d96849282a61fdeba6002ca8dc64e0",
+    "script/track-b-admission.test.ts": "723162017a21d96f6c7d6bc2cd3ac03cf772d41300efc5b8c12d796218703f60",
+    "script/scientific-strands-warning.test.ts": "3ec9e1da111935c7819a561e01c902461f8a9a69890da8594a57f75535392b28",
+    "script/quantity-label-contracts.test.ts": "cac3e7ac9dab95f145e0bba5cb2de314e973883fcd2bc7ab94fce69cfcf7f1ee",
+    "script/ui-claims.test.ts": "3d58df980090a38c9e6e09fa44192367e7df429eb50f7a5664b845c04e2668dc",
+    "script/methodology-download-census.ts": "c5dbc1acd056d1590537377bff5f3ebe7785fe6a89f66161c683fd587df48e33",
+    "script/component-state-contracts.ts": "9c7930c36c32f8d4b26d140a81dd9c11d022b1091b57dd1605006e77e468adc3",
+    "script/residual-label-scan.ts": "6bb3bff33445978be51836d616a25d725d809a5563dc481d6b4e1a39302d3f3a",
+    "script/record-methodology-download-evidence.ts": "25a9d2406071e51a800f8f4235d6233b043c04b2a98d9662f01a667aa0cdeb00"
+  },
+  "registryJsonSha256": "dfe545da70b2b26c93da4b6b4610574967aae6311b6ff5d05302989fbbf9ff37",
+  "census": {
+    "version": "public-source-download-census-v1",
+    "centralSites": [
+      {
+        "path": "client/src/components/category-comparison.tsx",
+        "line": 80,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "\"category-scenario-analysis\"",
+          "sheetName": "\"Category Scenarios\"",
+          "rows": "{downloadRows}",
+          "interpretationNotes": "{residualQuantityExportNotes()}",
+          "fieldBindings": "{{\n            Category:{id:\"category.categoryName\",transform:\"Identity\"},\n            \"Temperature (\\u00B0C)\":{id:\"category.temperatureRise\",transform:\"Identity\"},\n            \"Reduction Rate (%/yr)\":{id:\"category.reductionRate\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"category.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:\"category.thresholdDiagnostic.year\",transform:\"Identity; null preserved; not fixed 5 Gt\"},\n            \"5% diagnostic status\":{id:\"category.thresholdDiagnostic.status\",transform:\"Identity; missing archived diagnostic -> withheld\"},\n          }}",
+          "testId": "\"button-download-category-scenarios\""
+        }
+      },
+      {
+        "path": "client/src/components/category-trend-chart.tsx",
+        "line": 150,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "{`category-trends-${metricView===\"netZero\"?\"legacy-fixed-5gt-v1\":metricView}`}",
+          "sheetName": "\"Category Trends\"",
+          "rows": "{downloadRows}",
+          "fieldBindings": "{finiteExportBindings(\"categoryTrend\",{metric:config.metricKey})}",
+          "testId": "\"button-download-category-trends\"",
+          "label": "{metricView === \"netZero\" ? `Download ${FIXED_5GT_DESCRIPTOR.label}` : \"Download data\"}",
+          "interpretationNotes": "{residualQuantityExportNotes()}"
+        }
+      },
+      {
+        "path": "client/src/components/company-coverage.tsx",
+        "line": 64,
+        "component": "DownloadJsonButton",
+        "attributes": {
+          "kind": "\"coverage\"",
+          "filename": "{`company-coverage-${query.data.observationDate}.json`}",
+          "payload": "{query.data}",
+          "validatePayload": "{validateCompanyCoverageJson}",
+          "label": "\"Export complete coverage JSON\""
+        }
+      },
+      {
+        "path": "client/src/components/emissions-candidate-review.tsx",
+        "line": 134,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"native\"",
+          "filename": "\"native-mass-five-percent-2024-diagnostics\"",
+          "sheetName": "\"Native residual diagnostic\"",
+          "label": "\"Download separate native threshold diagnostics\"",
+          "rows": "{nativeThresholdExportRows(data.residualDiagnostics.records)}",
+          "fieldBindings": "{nativeThresholdExportBindings}",
+          "testId": "\"button-download-native-thresholds\""
+        }
+      },
+      {
+        "path": "client/src/components/emissions-candidate-review.tsx",
+        "line": 188,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"native\"",
+          "filename": "{`native-emissions-${scenario}`}",
+          "rows": "{data.result.trajectory.map(nativeExportRow)}",
+          "fieldBindings": "{nativeExportBindings}"
+        }
+      },
+      {
+        "path": "client/src/components/emissions-chart.tsx",
+        "line": 67,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "\"global-emissions-trajectory\"",
+          "sheetName": "\"Emissions Trajectory\"",
+          "rows": "{downloadRows}",
+          "fieldBindings": "{{\n            Year:{id:\"projection.emissionsTrajectory[].year\",transform:\"Identity\"},\n            \"P10 (GtCO2e)\":{id:\"projection.emissionsTrajectory[].p10\",transform:\"Identity; annual conditional emissions, not calibrated uncertainty\"},\n            \"Median P50 (GtCO2e)\":{id:\"projection.emissionsTrajectory[].p50\",transform:\"Identity\"},\n            \"P90 (GtCO2e)\":{id:\"projection.emissionsTrajectory[].p90\",transform:\"Identity; annual conditional emissions, not calibrated uncertainty\"},\n          }}",
+          "testId": "\"button-download-emissions\""
+        }
+      },
+      {
+        "path": "client/src/components/historical-trend-chart.tsx",
+        "line": 152,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "{`historical-trend-${metricView}`}",
+          "sheetName": "\"Historical Trend\"",
+          "rows": "{downloadRows}",
+          "interpretationNotes": "{residualQuantityExportNotes()}",
+          "fieldBindings": "{{\n            \"Historical type code\":{id:\"historical.historicalTypeCode\",transform:\"Exact S09-001 evidence class; missing/inconsistent class refuses export\"},\n            \"Historical type label\":{id:\"historical.historicalTypeLabel\",transform:\"Exact original S09-001 child-clause label\"},\n            Year:{id:\"historical.year\",transform:\"Identity\"},\n            \"Temperature Median (\\u00B0C)\":{id:\"historical.median\",transform:\"Identity\"},\n            \"P10 (\\u00B0C)\":{id:\"historical.p10\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"P90 (\\u00B0C)\":{id:\"historical.p90\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"Reduction Rate (%/yr)\":{id:\"historical.reductionRate\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"historical.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:\"historical.thresholdDiagnostic.year\",transform:\"Identity; null preserved; not fixed 5 Gt\"},\n            \"5% diagnostic status\":{id:\"historical.thresholdDiagnostic.status\",transform:\"Identity; missing archived diagnostic -> withheld\"},\n            Estimated:{id:\"historical.isNowcast\",transform:\"true -> yes; false -> no, not vintage certification\"},\n          }}",
+          "testId": "\"button-download-historical-trend\""
+        }
+      },
+      {
+        "path": "client/src/components/indicator-cards.tsx",
+        "line": 270,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"indicators\"",
+          "filename": "\"climate-indicators\"",
+          "sheetName": "\"Indicators\"",
+          "rows": "{downloadRows}",
+          "fieldBindings": "{finiteExportBindings(\"indicatorCards\",{keys:INDICATORS.map(ind=>ind.key)})}",
+          "testId": "\"button-download-indicators\""
+        }
+      },
+      {
+        "path": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"indicators\"",
+          "filename": "\"readonly-version-diff\"",
+          "rows": "{() => versionDiffExportRows(data)}",
+          "disabled": "{!data.fields.length}",
+          "sheetName": "\"Version diff\"",
+          "fieldBindings": "{{\n        From: { id: \"readonlyDiff.from\", transform: \"Identity: selected before source SHA-256\" },\n        To: { id: \"readonlyDiff.to\", transform: \"Identity: selected after source SHA-256\" },\n        Kind: { id: \"readonlyDiff.kind\", transform: \"Identity: validated archive kind\" },\n        Domain: { id: \"readonlyDiff.domain\", transform: \"Identity: exact compared cell domain\" },\n        Field: { id: \"readonlyDiff.field\", transform: \"Identity: exact grouped source field\" },\n        Added: { id: \"readonlyDiff.added\", transform: \"Identity integer count; zero retained\" },\n        Removed: { id: \"readonlyDiff.removed\", transform: \"Identity integer count; zero retained\" },\n        Changed: { id: \"readonlyDiff.changed\", transform: \"Identity integer count; zero retained\" },\n        \"Before content SHA-256\": { id: \"readonlyDiff.beforeHash\", transform: \"Identity: sorted before-group cell content hash\" },\n        \"After content SHA-256\": { id: \"readonlyDiff.afterHash\", transform: \"Identity: sorted after-group cell content hash\" },\n        \"Approval state\": { id: \"readonlyDiff.approvalState\", transform: \"Identity: retained archive review state, no new approval\" },\n        \"History basis\": { id: \"readonlyDiff.historicalBasis\", transform: \"Identity: revised-history caveat, not original vintage\" },\n      }}"
+        }
+      },
+      {
+        "path": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"indicators\"",
+          "filename": "\"affected-archived-analyses\"",
+          "sheetName": "\"Affected analyses\"",
+          "rows": "{() => affectedAnalysisExportRows(data)}",
+          "disabled": "{!data.affectedAnalyses.length}",
+          "fieldBindings": "{{\n        From: { id: \"readonlyDiff.from\", transform: \"Identity: selected before source SHA-256\" },\n        To: { id: \"readonlyDiff.to\", transform: \"Identity: selected after source SHA-256\" },\n        \"Result ID\": { id: \"readonlyDiff.resultId\", transform: \"Identity: exact referencing archived result\" },\n        \"Manifest ID\": { id: \"readonlyDiff.manifestId\", transform: \"Identity: retained result manifest\" },\n        Scenario: { id: \"readonlyDiff.scenario\", transform: \"Identity: recorded scenario label\" },\n        \"Recorded at\": { id: \"readonlyDiff.recordedAt\", transform: \"Identity ISO datetime; not source publication\" },\n        Relation: { id: \"readonlyDiff.relation\", transform: \"Identity: exact before/after/both reference enum\" },\n        \"Historical type code\": { id: \"readonlyDiff.historicalTypeCode\", transform: \"requireHistoricalType exact validated code; no fallback\" },\n        \"Historical type label\": { id: \"readonlyDiff.historicalTypeLabel\", transform: \"requireHistoricalType exact matching S09-001 label\" },\n        \"Result scan scope\": { id: \"readonlyDiff.affectedMeaning\", transform: \"Identity: paginated exact-reference scan caveat\" },\n      }}"
+        }
+      },
+      {
+        "path": "client/src/components/regional-comparison.tsx",
+        "line": 79,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "\"legacy-global-intensity-counterfactual\"",
+          "sheetName": "\"Global Counterfactual\"",
+          "rows": "{downloadRows}",
+          "interpretationNotes": "{residualQuantityExportNotes()}",
+          "fieldBindings": "{{\n            Region:{id:\"regional.regionName\",transform:\"Identity\"},\n            \"Legacy global counterfactual warming (\\u00B0C)\":{id:\"regional.temperatureRise\",transform:\"Identity\"},\n            \"Reduction Rate (%/yr)\":{id:\"regional.reductionRate\",transform:\"Identity\"},\n            \"Carbon Intensity (kg/$GDP)\":{id:\"regional.carbonIntensity\",transform:\"Identity; read companion basis column\"},\n            \"Intensity basis\":{id:\"regional.carbonIntensityBasis\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"regional.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            \"Milestone definition\":{id:\"regional.milestoneDefinition\",transform:\"Identity\"},\n            Claim:{id:\"regional.claim\",transform:\"Identity\"},\n          }}",
+          "testId": "\"button-download-regional\""
+        }
+      },
+      {
+        "path": "client/src/components/sensitivity-chart.tsx",
+        "line": 129,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "\"indicator-sensitivity\"",
+          "sheetName": "\"Sensitivity\"",
+          "rows": "{downloadRows}",
+          "fieldBindings": "{{\n              Indicator:{id:\"sensitivity.label\",transform:\"Identity\"},\n              Category:{id:\"sensitivity.category\",transform:\"Identity\"},\n              \"Baseline (\\u00B0C)\":{id:\"sensitivity.baselineTemperature\",transform:\"Row baseline, or shared chart baseline if row field missing\"},\n              \"Lower scenario median (\\u00B0C)\":{id:\"sensitivity.p10Temperature\",transform:\"Identity; not a probability quantile\"},\n              \"Upper scenario median (\\u00B0C)\":{id:\"sensitivity.p90Temperature\",transform:\"Identity; not a probability quantile\"},\n              \"Impact Range (\\u00B0C)\":{id:\"sensitivity.temperatureRange\",transform:\"Identity\"},\n            }}",
+          "testId": "\"button-download-sensitivity\""
+        }
+      },
+      {
+        "path": "client/src/components/temperature-histogram.tsx",
+        "line": 66,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "\"temperature-distribution\"",
+          "sheetName": "\"Temp Distribution\"",
+          "rows": "{downloadRows}",
+          "fieldBindings": "{{\n            \"Temperature (\\u00B0C)\":{id:\"projection.temperatureDistribution.pdf[].temperature\",transform:\"Identity\"},\n            \"Probability density (1/\\u00B0C)\":{id:\"projection.temperatureDistribution.pdf[].probability\",transform:\"Identity; density, not point probability\"},\n          }}",
+          "testId": "\"button-download-temperature\""
+        }
+      },
+      {
+        "path": "client/src/components/threshold-diagnostic-details.tsx",
+        "line": 21,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"legacy\"",
+          "filename": "\"selected-2024-five-percent-diagnostic-v2\"",
+          "sheetName": "\"5 percent diagnostic\"",
+          "label": "\"Download threshold diagnostic\"",
+          "interpretationNotes": "{residualQuantityExportNotes()}",
+          "rows": "{diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))}",
+          "fieldBindings": "{thresholdExportBindings}",
+          "testId": "\"button-download-threshold-diagnostic\""
+        }
+      },
+      {
+        "path": "client/src/pages/climate-valuation.tsx",
+        "line": 527,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"valuation\"",
+          "interpretationNotes": "{gordonExportNotes(costOfEquityPct, gordonSemanticPrefix)}",
+          "filename": "{`${testIdPrefix}-pe-ratio-comparison`}",
+          "sheetName": "\"P-E Ratio\"",
+          "rows": "{peDownloadRows}",
+          "fieldBindings": "{finiteExportBindings(\"valuationPE\",{case:testIdPrefix})}",
+          "testId": "{`button-download-${testIdPrefix}-pe`}"
+        }
+      },
+      {
+        "path": "client/src/pages/data-management.tsx",
+        "line": 472,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"indicators\"",
+          "filename": "{`indicator-time-series-${def?.key ?? \"series\"}`}",
+          "sheetName": "\"Time Series\"",
+          "rows": "{downloadRows}",
+          "fieldBindings": "{finiteExportBindings(\"indicatorDetail\",{key:def?.key})}",
+          "testId": "\"button-download-timeseries\""
+        }
+      },
+      {
+        "path": "client/src/pages/decarb-gap-signal.tsx",
+        "line": 533,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"valuation\"",
+          "filename": "\"group-earnings-yield-gap-over-time\"",
+          "sheetName": "\"Group valuation gap\"",
+          "rows": "{timeseriesDownloadRows}",
+          "fieldBindings": "{finiteExportBindings(\"groupGap\",{measure})}",
+          "testId": "\"button-download-gap-timeseries\""
+        }
+      },
+      {
+        "path": "client/src/pages/decarb-gap-signal.tsx",
+        "line": 732,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "interpretationNotes": "{gordonExportNotes(8)}",
+          "filename": "\"backtest-cumulative-return\"",
+          "kind": "\"backtest\"",
+          "sheetName": "\"Cumulative Return\"",
+          "rows": "{cumulativeReturnDownloadRows}",
+          "fieldBindings": "{{\n                        Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                        \"Benchmark Cumulative Return (%)\":{id:\"backtest.benchmarkCumulative\",transform:\"Math.round((wealth-1)*10000)/100; primary response month or comparison response fallback; absent month remains blank\"},\n                        [`${measureInfo?.label ?? \"Measure\"}-Driven Cumulative Return (%)`]:{id:\"backtest.portfolioCumulative\",transform:\"Math.round((wealth-1)*10000)/100; selected measure signal; absent primary month remains blank\"},\n                        ...(compareGap ? {\"Legacy peer-yield ranking cumulative return (%)\":{id:\"backtest.portfolioCumulative\",transform:\"Comparison decarb_gap response: Math.round((wealth-1)*10000)/100; absent comparison month remains blank\"}} : {}),\n                      }}",
+          "testId": "\"button-download-cumulative-return\""
+        }
+      },
+      {
+        "path": "client/src/pages/decarb-gap-signal.tsx",
+        "line": 773,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "filename": "\"backtest-active-return-tracking-error\"",
+          "kind": "\"backtest\"",
+          "sheetName": "\"Active Return & TE\"",
+          "rows": "{activeReturnDownloadRows}",
+          "fieldBindings": "{{\n                        Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                        \"Active Return (%)\":{id:\"backtest.activeReturn\",transform:\"Math.round(fraction*10000)/100; absent primary month remains blank\"},\n                        \"Tracking Error (ann. %)\":{id:\"backtest.trackingError\",transform:\"Math.round(fraction*10000)/100; absent primary month remains blank\"},\n                      }}",
+          "testId": "\"button-download-active-return\""
+        }
+      },
+      {
+        "path": "client/src/pages/decarb-signal.tsx",
+        "line": 460,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "interpretationNotes": "{gordonExportNotes(8)}",
+          "filename": "\"group-earnings-yield-gaps\"",
+          "kind": "\"valuation\"",
+          "sheetName": "\"Valuation gaps\"",
+          "rows": "{comparisonDownloadRows}",
+          "fieldBindings": "{{\n                Date:{id:\"signalComparison.date\",transform:\"Identity of chart dateLabel; en-US short month and numeric year in browser timezone\"},\n                \"Carbon intensity group earnings-yield gap (pp)\":{id:\"signalComparison.carbonIntensity\",transform:\"Identity; null or absent month preserved as blank\"},\n                \"SDG group earnings-yield gap (pp)\":{id:\"signalComparison.sdgExposure\",transform:\"Identity; null or absent month preserved as blank\"},\n                \"Ambition group earnings-yield gap (pp)\":{id:\"signalComparison.decarbAmbition\",transform:\"Identity; null or absent month preserved as blank\"},\n              }}",
+          "testId": "\"button-download-decarb-comparison\""
+        }
+      },
+      {
+        "path": "client/src/pages/decarb-signal.tsx",
+        "line": 634,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "filename": "\"signal-backtest-cumulative-return\"",
+          "kind": "\"backtest\"",
+          "sheetName": "\"Cumulative Return\"",
+          "rows": "{cumulativeReturnDownloadRows}",
+          "fieldBindings": "{finiteExportBindings(\"signalCumulative\",{signal:backtestSignal})}",
+          "testId": "\"button-download-backtest-cumulative\""
+        }
+      },
+      {
+        "path": "client/src/pages/decarb-signal.tsx",
+        "line": 685,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "filename": "\"signal-backtest-active-return\"",
+          "kind": "\"backtest\"",
+          "sheetName": "\"Active Return & TE\"",
+          "rows": "{activeReturnDownloadRows}",
+          "fieldBindings": "{{\n                      Date:{id:\"backtest.date\",transform:\"Identity UTC YYYY-MM\"},\n                      \"Active Return (%)\":{id:\"backtest.activeReturn\",transform:\"Math.round(fraction*10000)/100\"},\n                      \"Tracking Error (ann.) (%)\":{id:\"backtest.trackingError\",transform:\"Math.round(fraction*10000)/100\"},\n                    }}",
+          "testId": "\"button-download-backtest-active\""
+        }
+      },
+      {
+        "path": "client/src/pages/news-sentiment.tsx",
+        "line": 322,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "kind": "\"news\"",
+          "filename": "\"weekly-news-volume\"",
+          "sheetName": "\"News Volume\"",
+          "rows": "{volumeRows}",
+          "fieldBindings": "{{\n                  \"Week Of\":{id:\"news.volume[].date\",transform:\"Group daily dates by Sunday: local setDate(getDate() - getDay()), then toISOString().split('T')[0]\"},\n                  \"Article Count\":{id:\"news.volume[].count\",transform:\"Sum daily provider counts in Sunday week bucket\"},\n                }}",
+          "testId": "\"button-download-volume\""
+        }
+      },
+      {
+        "path": "client/src/pages/news-sentiment.tsx",
+        "line": 375,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "filename": "\"monthly-sentiment-trend\"",
+          "kind": "\"news\"",
+          "sheetName": "\"Sentiment Trend\"",
+          "rows": "{sentimentTrendRows}",
+          "fieldBindings": "{{\n                    Month:{id:\"news.sentiment[].date\",transform:\"Identity\"},\n                    \"Avg Sentiment\":{id:\"news.sentiment[].avgSentiment\",transform:\"Identity; sampled mean or pooled fallback\"},\n                    \"Positive Articles\":{id:\"news.sentiment[].positive\",transform:\"Identity; allocated estimate, not observed classifications\"},\n                    \"Neutral Articles\":{id:\"news.sentiment[].neutral\",transform:\"Identity; allocated estimate\"},\n                    \"Negative Articles\":{id:\"news.sentiment[].negative\",transform:\"Identity; allocated estimate\"},\n                    \"Total Articles\":{id:\"news.sentiment[].total\",transform:\"Identity; provider monthly volume\"},\n                  }}",
+          "testId": "\"button-download-sentiment-trend\""
+        }
+      },
+      {
+        "path": "client/src/pages/news-sentiment.tsx",
+        "line": 432,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "filename": "\"monthly-sentiment-breakdown\"",
+          "kind": "\"news\"",
+          "sheetName": "\"Sentiment Breakdown\"",
+          "rows": "{sentimentBreakdownRows}",
+          "fieldBindings": "{{\n                    Month:{id:\"news.sentiment[].date\",transform:\"Identity\"},\n                    \"Positive (%)\":{id:\"news.sentiment[].positive\",transform:\"total > 0 ? Math.round(positive / total * 100) : null; no denominator means unavailable\"},\n                    \"Neutral (%)\":{id:\"news.sentiment[].neutral\",transform:\"total > 0 ? Math.round(neutral / total * 100) : null; no denominator means unavailable\"},\n                    \"Negative (%)\":{id:\"news.sentiment[].negative\",transform:\"total > 0 ? Math.round(negative / total * 100) : null; no denominator means unavailable\"},\n                  }}",
+          "testId": "\"button-download-sentiment-breakdown\""
+        }
+      },
+      {
+        "path": "client/src/pages/news-sentiment.tsx",
+        "line": 474,
+        "component": "DownloadDataButton",
+        "attributes": {
+          "filename": "\"coverage-by-topic\"",
+          "kind": "\"news\"",
+          "sheetName": "\"Topic Coverage\"",
+          "rows": "{topicRows}",
+          "fieldBindings": "{{\n                    Topic:{id:\"news.topicBreakdown[].topic\",transform:\"Identity\"},\n                    \"Article Count\":{id:\"news.topicBreakdown[].count\",transform:\"Identity; extrapolated with 5% floor\"},\n                    \"Avg Sentiment\":{id:\"news.topicBreakdown[].avgSentiment\",transform:\"Identity; matched sample mean or pooled fallback\"},\n                  }}",
+          "testId": "\"button-download-topic\""
+        }
+      }
+    ],
+    "downloadLinks": [
+      {
+        "path": "client/src/components/carbon-pass-through-review.tsx",
+        "line": 12,
+        "href": "{withDownloadManifest(\"/api/cv/carbon-pass-through-evidence/export.json\")}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/company-conditional-summary.tsx",
+        "line": 82,
+        "href": "{withDownloadManifest(`${exportBase}.json?issuer=${issuer}`)}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/company-conditional-summary.tsx",
+        "line": 83,
+        "href": "{withDownloadManifest(`${exportBase}.xlsx?issuer=${issuer}`)}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/qualified-missingness-review.tsx",
+        "line": 122,
+        "href": "{withDownloadManifest(`/api/development/qualified-missingness/export?revision=${data.revision}`)}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/stage10-financial-coverage.tsx",
+        "line": 46,
+        "href": "{withDownloadManifest(stage10DownloadUrl(report, \"/export.json\"))}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/stage10-financial-coverage.tsx",
+        "line": 47,
+        "href": "{withDownloadManifest(stage10DownloadUrl(report, \"/export.xlsx\"))}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/track-b-research.tsx",
+        "line": 65,
+        "href": "{withDownloadManifest(trackBReportUrl(pin, \"/export.json\"))}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/track-b-research.tsx",
+        "line": 66,
+        "href": "{withDownloadManifest(trackBReportUrl(pin, \"/export.xlsx\"))}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/warming-validation-reference.tsx",
+        "line": 46,
+        "href": "{download}",
+        "embeddedManifest": true
+      },
+      {
+        "path": "client/src/components/workbook-money-audit.tsx",
+        "line": 54,
+        "href": "{withDownloadManifest(`/api/financial-data/workbook-money-audit.xlsx?expectedAuditHash=${state.auditHash}`)}",
+        "embeddedManifest": true
+      }
+    ],
+    "attachmentSites": [
+      {
+        "path": "server/carbonPassThroughApi.ts",
+        "line": 17,
+        "expression": "res.attachment(\"s12-007-price-evidence-not-issuer-validation.json\")",
+        "registered": true
+      },
+      {
+        "path": "server/companyConditionalApi.ts",
+        "line": 36,
+        "expression": "res.attachment(`${filename}.json`)",
+        "registered": true
+      },
+      {
+        "path": "server/companyConditionalApi.ts",
+        "line": 53,
+        "expression": "res.attachment(`${filename}.xlsx`)",
+        "registered": true
+      },
+      {
+        "path": "server/qualifiedMissingnessApi.ts",
+        "line": 50,
+        "expression": "res.set(\"Content-Disposition\", 'attachment; filename=\"development-qualified-review.xlsx\"')",
+        "registered": true
+      },
+      {
+        "path": "server/stage10CoverageApi.ts",
+        "line": 28,
+        "expression": "res.type(\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\")\n        .attachment(`stage10-${report.inputHash}.xlsx`)",
+        "registered": true
+      },
+      {
+        "path": "server/stage10CoverageApi.ts",
+        "line": 30,
+        "expression": "res.attachment(`stage10-${report.inputHash}.json`)",
+        "registered": true
+      },
+      {
+        "path": "server/trackBAdmissionApi.ts",
+        "line": 54,
+        "expression": "res.type(\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\")\n        .attachment(`track-b-${identity.reportHash}.xlsx`)",
+        "registered": true
+      },
+      {
+        "path": "server/trackBAdmissionApi.ts",
+        "line": 56,
+        "expression": "res.attachment(`track-b-${identity.reportHash}.json`)",
+        "registered": true
+      },
+      {
+        "path": "server/warmingValidationReferenceApi.ts",
+        "line": 22,
+        "expression": "res.attachment(\"igcc-2025-validation-reference-not-model-acceptance.json\")",
+        "registered": true
+      },
+      {
+        "path": "server/workbookMoneyAuditApi.ts",
+        "line": 18,
+        "expression": "res.setHeader(\"Content-Disposition\", 'attachment; filename=\"workbook-money-audit-pending-review.xlsx\"')",
+        "registered": true
+      }
+    ],
+    "serverDownloads": [
+      {
+        "source": "server/warmingValidationReferenceApi.ts",
+        "paths": [
+          "/api/reference/warming-validation/export.json"
+        ],
+        "kind": "indicators",
+        "claim": "Dated human-warming validation reference; not a model result",
+        "availability": "public-reference"
+      },
+      {
+        "source": "server/carbonPassThroughApi.ts",
+        "paths": [
+          "/api/cv/carbon-pass-through-evidence/export.json"
+        ],
+        "kind": "valuation",
+        "claim": "Public carbon-price evidence review; not issuer validation",
+        "availability": "public-source-review"
+      },
+      {
+        "source": "server/companyConditionalApi.ts",
+        "paths": [
+          "/api/cv/company-conditional-summaries/export.json",
+          "/api/cv/company-conditional-summaries/export.xlsx"
+        ],
+        "kind": "valuation",
+        "claim": "Conditional company summaries; not identified market climate expectations",
+        "availability": "public-conditional-summary"
+      },
+      {
+        "source": "server/stage10CoverageApi.ts",
+        "paths": [
+          "/api/research/stage10-coverage/export.json",
+          "/api/research/stage10-coverage/export.xlsx"
+        ],
+        "kind": "coverage",
+        "claim": "Retained aggregate financial coverage; no model approval",
+        "availability": "retained-source-required"
+      },
+      {
+        "source": "server/trackBAdmissionApi.ts",
+        "paths": [
+          "/api/research/track-b-admission/export.json",
+          "/api/research/track-b-admission/export.xlsx"
+        ],
+        "kind": "backtest",
+        "claim": "Exact published Track B period assessment; not independent scientific acceptance",
+        "availability": "rights-qualified-public-catalog-required"
+      },
+      {
+        "source": "server/workbookMoneyAuditApi.ts",
+        "paths": [
+          "/api/financial-data/workbook-money-audit.xlsx"
+        ],
+        "kind": "coverage",
+        "claim": "Pending-review monetary audit; no inferred currency or FX",
+        "availability": "retained-audit-required"
+      },
+      {
+        "source": "server/qualifiedMissingnessApi.ts",
+        "paths": [
+          "/api/development/qualified-missingness/export"
+        ],
+        "kind": "indicators",
+        "claim": "Private qualified-source review; operator CLI required",
+        "availability": "http-denied-403"
+      }
+    ],
+    "workbookSheets": [
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 60,
+        "expression": "sheetName.slice(0, 31)"
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 61,
+        "expression": "sheetName.slice(0, 31) === \"Interpretation\" ? \"Export Notes\" : \"Interpretation\""
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 67,
+        "expression": "sheetName.slice(0,31)===\"Field semantics\" ? \"Semantic definitions\" : \"Field semantics\""
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 69,
+        "expression": "\"Column bindings\""
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 79,
+        "expression": "\"Download manifest\""
+      },
+      {
+        "path": "server/calculation/companyProjectionReplay.ts",
+        "line": 192,
+        "expression": "name"
+      },
+      {
+        "path": "server/calculation/trackBAdmissionWorkbook.ts",
+        "line": 37,
+        "expression": "\"Period reasons\""
+      },
+      {
+        "path": "server/calculation/trackBAdmissionWorkbook.ts",
+        "line": 38,
+        "expression": "\"Assessment identity\""
+      },
+      {
+        "path": "server/calculation/trackBAdmissionWorkbook.ts",
+        "line": 39,
+        "expression": "\"Field semantics\""
+      },
+      {
+        "path": "server/calculation/trackBAdmissionWorkbook.ts",
+        "line": 40,
+        "expression": "\"Column bindings\""
+      },
+      {
+        "path": "server/climateValuation/workbookMissingnessExport.ts",
+        "line": 81,
+        "expression": "name"
+      },
+      {
+        "path": "server/companyConditionalApi.ts",
+        "line": 44,
+        "expression": "\"Public allowlist\""
+      },
+      {
+        "path": "server/dataIngestion/adapters/qualifiedArchive.ts",
+        "line": 131,
+        "expression": "name"
+      },
+      {
+        "path": "server/dataIngestion/qualifiedMissingnessStore.ts",
+        "line": 192,
+        "expression": "\"ReviewHistory\""
+      },
+      {
+        "path": "server/dataIngestion/qualifiedMissingnessStore.ts",
+        "line": 193,
+        "expression": "\"ReviewSelection\""
+      },
+      {
+        "path": "server/downloadManifestMiddleware.ts",
+        "line": 60,
+        "expression": "\"Download manifest\""
+      },
+      {
+        "path": "server/financialData/stage10Export.ts",
+        "line": 16,
+        "expression": "\"Aggregate coverage\""
+      },
+      {
+        "path": "server/financialData/stage10Export.ts",
+        "line": 17,
+        "expression": "\"Exact input identity\""
+      },
+      {
+        "path": "server/financialData/stage10Export.ts",
+        "line": 20,
+        "expression": "\"Lifecycle source audit\""
+      },
+      {
+        "path": "server/financialData/stage10Export.ts",
+        "line": 21,
+        "expression": "\"Field semantics\""
+      },
+      {
+        "path": "server/financialData/stage10Export.ts",
+        "line": 26,
+        "expression": "\"Column bindings\""
+      },
+      {
+        "path": "server/financialData/workbookMoneyExport.ts",
+        "line": 22,
+        "expression": "\"Safe source counts\""
+      },
+      {
+        "path": "server/financialData/workbookMoneyExport.ts",
+        "line": 23,
+        "expression": "\"Qualification and dates\""
+      },
+      {
+        "path": "server/financialData/workbookMoneyExport.ts",
+        "line": 26,
+        "expression": "\"Field semantics\""
+      },
+      {
+        "path": "server/financialData/workbookMoneyExport.ts",
+        "line": 35,
+        "expression": "\"Column bindings\""
+      }
+    ],
+    "writers": [
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 80,
+        "expression": "XLSX.writeFile"
+      },
+      {
+        "path": "client/src/components/download-data-button.tsx",
+        "line": 136,
+        "expression": "URL.createObjectURL"
+      }
+    ],
+    "inlineDataDownloads": [],
+    "boundary": "Browser/UI and HTTP attachment census, including custom XLSX sheets and denied engineering-test-only attachment code. Operator CLI files and internal archive serialization are not browser downloads. AST coverage plus isolated transport/readback tests, not a live click-through of every data-dependent view. Denied private routes remain denied; no private bytes inspected."
+  },
+  "priorObservedFailures": [
+    "Initial focused implementation caught a Map iteration target mismatch and incorrect census/readback fixture assumptions; repaired without changing application TS target or legacy null serialization.",
+    "Public-source child initially inherited NODE_TEST_CONTEXT and returned no test counts; now removed explicitly, and6 passing child tests are required.",
+    "Exact native-claim label scanner exception was moved with its unchanged literal from client export-contract to shared/downloadClaims; no broad whitelist added.",
+    "Initial broader output-field-semantics regression was blocked by stale canonical docs/field_semantics_census.json under the initial no-regeneration instruction. Parent subsequently authorized final regeneration; finalIntegration records the final census and coherent full-suite outcome without weakening a gate."
+  ],
+  "residuals": [
+    "No canonical ledgers, canonical field census or scientific acceptance status were promoted. The original opaque-summary gap remains unresolved.",
+    "Transport readback covers the actual public reference/carbon review/conditional APIs plus isolated engineering-only retained Stage10/TrackB/monetary reader fixtures. Genuine production TrackB catalog/rights and private source availability are not invented.",
+    "Ten routes include the private review export that remains HTTP403. It is inventoried, not made publicly downloadable.",
+    "Manifests record declared historical classes only; absent class is explicitly undeclared. No original-vintage forecast eligibility is inferred from labels or hashes.",
+    "AST census and isolated tests are not a browser click-through of every dataset-dependent chart or an immutable full analysis archive.",
+    "Preview screenshot showed the public methodology page and registry section without a manifestly broken layout; one existing preview resource500 was reported. Main agent must verify newly mounted server routes after its own workflow refresh; this unit did not run/restart a workflow."
+  ],
+  "finalIntegration": {
+    "generatedAt": "2026-11-12T01:18:00.215Z",
+    "authorizationBoundary": "Parent authorized final census regeneration after workers finished. No canonical three ledger/matrix documents, protected model pins, private source bytes, scientific acceptance gates, commits, deployments or callbacks changed.",
+    "finalExecution": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+      ],
+      "executed_at": "2026-11-12T01:12:49.193467+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 201.128,
+      "counts": {
+        "tests": 950,
+        "pass": 950,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "/tmp/methodology-final.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "9df1eb9babb82c0a29795b42e5e2810c4b0ab33c8690847f82d1882526642169",
+      "suite_counts": {
+        "typescript": {
+          "tests": 950,
+          "pass": 950,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": {
+          "tests": 217,
+          "pass": 217,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "finalReceiptPath": "/tmp/methodology-final-receipt.json",
+    "finalReceiptSha256": "05785a8e659e46c5ddd2cbf94a05357d4099f634f1de206c0e833aa4bc8a1858",
+    "mandatoryPrivateChecks": [
+      {
+        "command": "NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary",
+        "outcome": "passed",
+        "boundary": "Source money, exact source-day FX and approved identity remain required; original private bytes/fingerprints unchanged. Aggregate validation receipt only, no new private export."
+      },
+      {
+        "command": "NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts",
+        "outcome": "passed",
+        "boundary": "Original primary-source/price/share/stub checks and retained experiments unchanged; complete approved issuer cases remain zero."
+      },
+      {
+        "command": "NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts",
+        "outcome": "passed",
+        "boundary": "Exact retained three-issuer cashflow reconciliations and prior experiments preserved; original issuer/market qualification remains zero."
+      }
+    ],
+    "failedChecks": [
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; npm run check; npx tsx --test --test-reporter=tap script/*.test.ts; uv run python -m unittest discover -s script -p \"test_*.py\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; npm run build"
+        ],
+        "executed_at": "2026-11-12T01:00:02.058646+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 157.863,
+        "counts": {
+          "tests": 948,
+          "pass": 935,
+          "fail": 13,
+          "skipped": 0
+        },
+        "log": "/tmp/methodology-final-attempt1.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "32275fb50f730ab20bc444df8c4a645dd100ae03987bf57370f2c82b90162729",
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim",
+        "originalReceiptLogPath": "/tmp/methodology-final-attempt1.log",
+        "receiptPath": "/tmp/methodology-final-attempt1-receipt.json",
+        "receiptSha256": "b93c3633261b228078fa11235165d456033747d426c296d775d46374d6df723b",
+        "logPathBoundary": "Archived failed-run log; original receipt preserved unchanged"
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+        ],
+        "executed_at": "2026-11-12T01:08:07.084085+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 173.195,
+        "counts": {
+          "tests": 949,
+          "pass": 949,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "/tmp/methodology-final-attempt2.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "7bc104504d4e1e0565a0dd529f26eb60edd6c1d40fb9d3109a5bd70e5abc2dc5",
+        "suite_counts": {
+          "typescript": {
+            "tests": 949,
+            "pass": 949,
+            "fail": 0,
+            "skipped": 0
+          },
+          "python": {
+            "tests": 217,
+            "pass": 217,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim",
+        "originalReceiptLogPath": "/tmp/methodology-final.log",
+        "receiptPath": "/tmp/methodology-final-attempt2-receipt.json",
+        "receiptSha256": "b84e9c03c5638c095c23aacf2b174c68519bc28126373a34fb2bfaad0a1add98",
+        "logPathBoundary": "Archived failed-run log; original receipt preserved unchanged"
+      }
+    ],
+    "failureCorrections": [
+      {
+        "check": "Initial coherent attempt: 935/948 TS passed,13 failed; later stages not executed",
+        "correction": "Added exact fourteen-leaf independent scientific-evidence bindings at three actual producer namespaces,35 source-product proposal object leaves and the explicit absent-proposal null binding. Updated source-derived supplemental counts and manifest-bearing UI-link assertions; regenerated output register. No numeric source/formula/threshold or golden changed."
+      },
+      {
+        "check": "Next coherent attempt: all949 TS and217 Python passed; monetary integration failed its existing original guard-source hash",
+        "correction": "Restored script/track-b-admission.test.ts and script/workbook-money-api.test.ts byte-for-byte to their existing frozen guard-source hashes, rather than repinning or exempting them. New metadata assertions moved into separate isolated tests. Mandatory private preflight and final coherent execution then passed."
+      },
+      {
+        "check": "Intermediate focused census check became stale after a test-file line shift",
+        "correction": "Regenerated the source-located workbook-builder inventory after edits settled; strict completeness gates remain required failures for the original opaque summary."
+      },
+      {
+        "check": "Receipt assembly initially asserted77 raw source-located additions and observed133",
+        "correction": "Recorded the56 unchanged native XLSX columns relocated by two import lines separately:133 raw additions/56 removals, net77 genuinely added typed leaves. No census, test or source formula changed to satisfy this receipt assertion."
+      }
+    ],
+    "frozenTestSourcesRestored": [
+      {
+        "path": "script/track-b-admission.test.ts",
+        "sha256": "723162017a21d96f6c7d6bc2cd3ac03cf772d41300efc5b8c12d796218703f60",
+        "matchesExistingUnmodifiedFreeze": true
+      },
+      {
+        "path": "script/workbook-money-api.test.ts",
+        "sha256": "c914f9e7d72d1d536005f92f906dd503d3d96849282a61fdeba6002ca8dc64e0",
+        "matchesExistingUnmodifiedFreeze": true
+      }
+    ],
+    "preciseChangedPaths": [
+      {
+        "path": "script/workplan-evidence-run.py",
+        "sha256": "4d136dedac1c9e80d5fd890d74b85c36cfc0b907dfbdd05141623b826a119137"
+      },
+      {
+        "path": "script/test_workplan_evidence_receipt.py",
+        "sha256": "b5d342fa8879ecba288f6e55c65ee2dfdd8201d6c412250fd2f3b8600f7c3616"
+      },
+      {
+        "path": "shared/scientificEvidenceSemantics.ts",
+        "sha256": "c23f018d46523b15bb5490335aaa0317f52c8126f1f83c39f13e6d2a35c2fa70"
+      },
+      {
+        "path": "shared/evidenceFieldSemantics.ts",
+        "sha256": "03fb3a125528e17f10e302beb3be59c6385d20b4ba40a02377aca0c805ddc7b6"
+      },
+      {
+        "path": "shared/nativeOutputSemantics.ts",
+        "sha256": "f33f927e1a522ff44a9019aef91e018f3e1b8cbefde498d16b7f3d5cebcc297a"
+      },
+      {
+        "path": "shared/researchFieldSemantics.ts",
+        "sha256": "a0ce24248f057e0b95e96b4dfab81e7cbb10c968a153adc49f56bdc085543c5f"
+      },
+      {
+        "path": "script/evidence-field-semantics.test.ts",
+        "sha256": "96d8706878cd734c82d62bfc8facf63399c46dda6261523d4aba52f182b2c78c"
+      },
+      {
+        "path": "script/native-semantics.test.ts",
+        "sha256": "ffede241b36a3e5455618ee7d8553105d0c63e8b8998126beb29c0f69e78ad48"
+      },
+      {
+        "path": "script/research-field-semantics.test.ts",
+        "sha256": "d38fe5a54e9b8b883758e5d8a0135c0ca8951195b27f90bce5860669e58230ee"
+      },
+      {
+        "path": "script/next-census-accounting.test.ts",
+        "sha256": "b41cae399f010c3edbce284d9d2d13ea3e6c06f966a8433a0cb08e2114e5efa5"
+      },
+      {
+        "path": "script/valuation-indicator-partial-state.test.ts",
+        "sha256": "78c66147870d82263af8a0a99d3f319403dc772917a9cbdc5f0e236d3baec8f1"
+      },
+      {
+        "path": "script/track-b-admission.test.ts",
+        "sha256": "723162017a21d96f6c7d6bc2cd3ac03cf772d41300efc5b8c12d796218703f60"
+      },
+      {
+        "path": "script/workbook-money-api.test.ts",
+        "sha256": "c914f9e7d72d1d536005f92f906dd503d3d96849282a61fdeba6002ca8dc64e0"
+      },
+      {
+        "path": "script/methodology-track-b-download.test.ts",
+        "sha256": "eba07c520a913ae390c267d71b7daf23db86de676da496c4e8526cba574aa479"
+      },
+      {
+        "path": "script/methodology-workbook-money-download.test.ts",
+        "sha256": "47ff36618a94b1192aeffe3f231f74a15f752a895c1306f31dcbcb4d167ef24d"
+      },
+      {
+        "path": "script/record-methodology-download-evidence.ts",
+        "sha256": "25a9d2406071e51a800f8f4235d6233b043c04b2a98d9662f01a667aa0cdeb00"
+      },
+      {
+        "path": "script/record-methodology-final-integration.ts",
+        "sha256": "49e4d799541f4f230e028a913e235fc76dd7e35c3adf74d85f0c79c8f1052233"
+      },
+      {
+        "path": "docs/field_semantics_census.json",
+        "sha256": "8349073055ae6cbba95732b32dedbe376cd2355f644710cc098f7a7ad2143fad"
+      },
+      {
+        "path": "docs/System_Output_Register.md",
+        "sha256": "57b8c8714dbcf878c68a57b22946d3f3560151ef7908c4b6ca26f46883d37b95"
+      },
+      {
+        "path": "docs/methodology-download-increment-evidence.json",
+        "sha256": null,
+        "reason": "This public-safe evidence file contains this receipt; no self-referential hash claimed."
+      }
+    ],
+    "protectedCanonicalDocuments": [
+      {
+        "path": "docs/workplan_completion_ledger.json",
+        "sha256": "04e8b76252eaacb361538cac85b1337c37ed9ff1517f25b89ed3b716acbdc8ff",
+        "unchanged": true
+      },
+      {
+        "path": "docs/WORKPLAN_COMPLETION_LEDGER.md",
+        "sha256": "c912be4e1e7de350d4aa3317194bc5d4c0263d3de2a856ae58690109742b5595",
+        "unchanged": true
+      },
+      {
+        "path": "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+        "sha256": "1c67b73a968d44338f051185303a3b2e952008b1efac0a465a2cb622a785160e",
+        "unchanged": true
+      }
+    ],
+    "censusDelta": {
+      "beforeSha256": "ffccd19380ec0b3be35acac04ca197883a63715c0422cfe4c6b21336515429de",
+      "afterSha256": "8349073055ae6cbba95732b32dedbe376cd2355f644710cc098f7a7ad2143fad",
+      "definitions": {
+        "before": 2111,
+        "after": 2189,
+        "delta": 78
+      },
+      "typedSlots": {
+        "before": 1388,
+        "after": 1465,
+        "delta": 77
+      },
+      "publicBound": {
+        "before": 1360,
+        "after": 1437,
+        "delta": 77
+      },
+      "currentPublic": {
+        "before": 1361,
+        "after": 1438
+      },
+      "originalPublic": 1001,
+      "originalBound": 1000,
+      "originalRemaining": 1,
+      "supplementalAddedPublicSlots": 437,
+      "supplementalAddedBoundSlots": 437,
+      "expandedPublicSlots": 4204,
+      "expandedBoundSlots": 4203,
+      "newlyBoundSlots": [
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.physicalResponse.evidence[]"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.physicalResponse.label"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.physicalResponse.reason"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.physicalResponse.status"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.scenarioInterpretation.evidence[]"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.scenarioInterpretation.label"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.scenarioInterpretation.reason"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.scenarioInterpretation.status"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.scope"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.stage9Skill.evidence[]"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.stage9Skill.label"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.stage9Skill.reason"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.stage9Skill.status"
+        },
+        {
+          "surface": "API GET \"/api/emissions/candidate\"",
+          "field": "result.scientificEvidence.version"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.admission"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.captureHashMeaning"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.centralModelEligible"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.documents[].bytes"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.documents[].id"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.documents[].sha256"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.documents[].url"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.evidencePath"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.calibration.finding"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.calibration.locator"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.calibration.sourceIds[]"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.calibration.status"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.informationAvailability.finding"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.informationAvailability.locator"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.informationAvailability.sourceIds[]"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.informationAvailability.status"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.licence.finding"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.licence.locator"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.licence.sourceIds[]"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.licence.status"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.regionalApplicability.finding"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.regionalApplicability.locator"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.regionalApplicability.sourceIds[]"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.regionalApplicability.status"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.uncertainty.finding"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.uncertainty.locator"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.uncertainty.sourceIds[]"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.fields.uncertainty.status"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.indicatorKey"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.originalObservationAvailableAt"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.originalVintage"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.ownerReview"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.registeredPublisher"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.scope"
+        },
+        {
+          "surface": "API GET \"/api/research/driver-registry\"",
+          "field": "indicators[].sourceMetadataProposal.sourceRelationship"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.physicalResponse.evidence[]"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.physicalResponse.label"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.physicalResponse.reason"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.physicalResponse.status"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.scenarioInterpretation.evidence[]"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.scenarioInterpretation.label"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.scenarioInterpretation.reason"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.scenarioInterpretation.status"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.scope"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.stage9Skill.evidence[]"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.stage9Skill.label"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.stage9Skill.reason"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.stage9Skill.status"
+        },
+        {
+          "surface": "API POST \"/api/calculation/ensemble-summary\"",
+          "field": "scientificEvidence.version"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.physicalResponse.evidence[]"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.physicalResponse.label"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.physicalResponse.reason"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.physicalResponse.status"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.scenarioInterpretation.evidence[]"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.scenarioInterpretation.label"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.scenarioInterpretation.reason"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.scenarioInterpretation.status"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.scope"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.stage9Skill.evidence[]"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.stage9Skill.label"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.stage9Skill.reason"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.stage9Skill.status"
+        },
+        {
+          "surface": "API POST \"/api/calculation/evaluate-holdout\"",
+          "field": "scientificEvidence.version"
+        }
+      ],
+      "removedFields": [],
+      "rawSourceLocatedSlotsAdded": 133,
+      "rawSourceLocatedSlotsRemoved": 56,
+      "sourceLocationMoves": [
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Baseline evidence"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Baseline year"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Context"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Crossing rule"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Diagnostic"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Gas"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Gas basis"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Horizon year"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Member"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Not net zero"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Reason"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Region"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Selected 2024 baseline"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Selection"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Status"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Threshold fraction"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Threshold value"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Trajectory"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Unit"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Version"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:132",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:134",
+          "field": "[].Year emissions reach 5% of 2024"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].agriculture (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].buildings (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].c-C4F8 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].C2F6 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].C3F8 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].C4F10 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].C5F12 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].C6F14 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].CF4 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].CH4 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].CO2 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-125 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-134 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-134a (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-143 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-143a (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-152a (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-227ea (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-23 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-236fa (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-245fa (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-32 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-365mfc (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-41 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].HFC-43-10-mee (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].industry (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].land (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].N2O (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].NF3 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].other (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].power (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].Reporting emissions (GtCO2e, AR6 GWP100)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].SF6 (Mt gas/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].transport (GtCO2e/year)"
+        },
+        {
+          "before": "XLSX client/src/components/emissions-candidate-review.tsx:186",
+          "after": "XLSX client/src/components/emissions-candidate-review.tsx:188",
+          "field": "[].Year"
+        }
+      ],
+      "explanation": "77 new typed leaves =42 independent-status leaves (14×3 actual producers) plus35 source-product proposal leaves. 78 definitions =those77 plus explicit absent-proposal null. In addition56 unchanged native workbook columns move from source lines132/186 to134/188; source-location moves are not new logical columns or old-cohort closure. Raw identity changes are133 added/56 removed, net77.",
+      "unresolvedOriginal": [
+        {
+          "surface": "API GET \"/api/data/runs\"",
+          "field": "runs[].summary",
+          "type": "unknown",
+          "source": "server/routes.ts",
+          "line": 1395,
+          "resolution": "unresolved-type"
+        }
+      ],
+      "unresolvedDynamicKeys": [],
+      "completion": false,
+      "strictGateBoundary": "Both --require-original-complete and --require-complete are still required to fail; full TS tests verify exact original1000/1001 and current1437/1438 rather than removing or bypassing strict gates."
+    },
+    "buildWarnings": [
+      "Browserslist data is old; no dependency refresh or lockfile rewrite performed.",
+      "Existing PostCSS from-option warning; production build succeeded.",
+      "Large client chunks/server bundle warning; no warning threshold relaxed."
+    ],
+    "remainingBoundaries": [
+      "Original opaque runs[].summary remains unknown and unresolved; hashes or new sidecars do not close it.",
+      "Engineering transport/status/source-metadata tests are not scientific/owner acceptance, original-vintage skill, real issuer approval or rights grants.",
+      "No release, deployed revision, callback or full browser click-through is claimed. Parent owns release and running-server refresh.",
+      "Legacy default export documents/bodies and all original numerical model constants remain unchanged; only explicit metadata opt-in changes API download envelopes/sheets."
+    ]
+  }
+}

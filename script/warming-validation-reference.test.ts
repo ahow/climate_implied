@@ -109,8 +109,7 @@ test("standalone UI places precise period/observable/unit/source metadata beside
   for (const id of ["headline2025.valueC", "decade.meanC", "decade.p05C", "decade.p95C", "inventory.year"])
     assert.ok(html.includes(`data-field-id="warmingReference.${id}"`) &&
       html.includes(`data-warming-reference-field="warmingReference.${id}"`));
-  const href = /href="(data:application\/json[^"]+)"/.exec(html)![1];
-  assert.deepEqual(JSON.parse(decodeURIComponent(href.split(",").slice(1).join(","))), warmingReferenceExportDocument());
+  assert.match(html, /href="\/api\/reference\/warming-validation\/export\.json\?downloadMetadata=manifest-v1"/);
 });
 
 test("GET-only integration handler returns the same immutable reference/export and rejects overrides", async () => {

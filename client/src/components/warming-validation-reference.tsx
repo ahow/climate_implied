@@ -1,6 +1,7 @@
 import React from "react";
 import { WARMING_VALIDATION_REFERENCE as reference } from "@shared/warmingValidationReference";
-import { requireWarmingReferenceSemantic, warmingReferenceExportDocument } from "@shared/warmingValidationReferenceSemantics";
+import { requireWarmingReferenceSemantic } from "@shared/warmingValidationReferenceSemantics";
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -12,7 +13,7 @@ export function WarmingValidationReference() {
   const lower = requireWarmingReferenceSemantic("warmingReference.decade.p05C");
   const upper = requireWarmingReferenceSemantic("warmingReference.decade.p95C");
   const inventory = requireWarmingReferenceSemantic("warmingReference.inventory.year");
-  const download = `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(warmingReferenceExportDocument(), null, 2))}`;
+  const download = withDownloadManifest("/api/reference/warming-validation/export.json");
   return (
     <Card className="p-4 sm:p-6 space-y-4" data-testid="warming-validation-reference">
       <h3 className="text-sm font-semibold">Dated human-warming validation reference · not a model result</h3>

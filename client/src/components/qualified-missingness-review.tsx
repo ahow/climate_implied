@@ -1,3 +1,4 @@
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import React, { useState } from "react";
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { z } from "zod";
@@ -118,7 +119,7 @@ export function QualifiedMissingnessReview() {
           <td className="p-2">{cell.result.reason}{cell.result.samples.length > 0 && `; ${cell.result.samples.length} source-paired draws`}</td>
         </tr>)}</tbody>
       </table></div>
-      {data.sourceId && <a className="underline" href={`/api/development/qualified-missingness/export?revision=${data.revision}`}>Download selected review XLSX</a>}
+      {data.sourceId && <a className="underline" href={withDownloadManifest(`/api/development/qualified-missingness/export?revision=${data.revision}`)}>Download selected review XLSX</a>}
     </>}
   </section>;
 }

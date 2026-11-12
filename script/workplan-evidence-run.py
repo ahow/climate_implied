@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Execute one command and retain actual results, never planned pass counts."""
 import argparse
+import hashlib
 from datetime import datetime, timezone
 import importlib.util
 import json
@@ -34,15 +35,24 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--requirements", default="")
     parser.add_argument("--timeout", type=int, default=1200)
+    parser.add_argument("--receipt-only", action="store_true",
+                        help="Retain execution evidence without reading/writing canonical ledgers or Git history")
+    parser.add_argument("--log", default="", help="Explicit execution log path")
+    parser.add_argument("--receipt", default="", help="Receipt JSON path; requires --receipt-only")
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
     command = args.command[1:] if args.command[:1] == ["--"] else args.command
     if not command:
         parser.error("command required")
+    if args.receipt and not args.receipt_only:
+        parser.error("--receipt requires --receipt-only")
+    if args.receipt_only and args.requirements:
+        parser.error("--receipt-only does not attach or amend canonical requirement records")
     started = datetime.now(timezone.utc)
     output_dir = ROOT / "generated-artifacts/workplan-completion"
     output_dir.mkdir(parents=True, exist_ok=True)
-    log = output_dir / f"{started.strftime('%Y%m%dT%H%M%S%fZ')}.log"
+    log = Path(args.log).resolve() if args.log else output_dir / f"{started.strftime('%Y%m%dT%H%M%S%fZ')}.log"
+    log.parent.mkdir(parents=True, exist_ok=True)
     begin = time.monotonic()
     with log.open("w") as handle:
         try:
@@ -58,11 +68,27 @@ def main():
     entry = {
         "command": command, "executed_at": started.isoformat(), "exit_code": code,
         "elapsed_seconds": round(time.monotonic() - begin, 3),
-        "counts": counts(text), "log": str(log.relative_to(ROOT)),
-        "workspace_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
-        "worktree_dirty": bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).strip()),
+        "counts": counts(text), "log": str(log.relative_to(ROOT)) if log.is_relative_to(ROOT) else str(log),
+        "workspace_revision": None if args.receipt_only else subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "worktree_dirty": None if args.receipt_only else bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).strip()),
         "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
     }
+    if args.receipt_only:
+        entry["log_sha256"] = hashlib.sha256(log.read_bytes()).hexdigest()
+        py = re.search(r"Ran \d+ tests? in", text)
+        entry["suite_counts"] = {
+            "typescript": counts(text) if re.search(r"^# tests \d+", text, re.M) else None,
+            "python": counts(text[py.start():]) if py else None,
+        }
+        entry["canonical_ledgers_modified"] = False
+        entry["revision_boundary"] = "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+        if args.receipt:
+            receipt = Path(args.receipt).resolve()
+            receipt.parent.mkdir(parents=True, exist_ok=True)
+            receipt.write_text(json.dumps(entry, indent=2) + "\n")
+        print(json.dumps(entry, indent=2))
+        print(text[-2500:])
+        raise SystemExit(code)
     ledger_path = ROOT / "docs/workplan_completion_ledger.json"
     ledger = json.loads(ledger_path.read_text())
     ledger["run_executions"].append(entry)

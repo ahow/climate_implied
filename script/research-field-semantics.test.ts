@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { driverEvidenceRegistry } from "../server/calculation/driverEvidence";
 import references from "../server/calculation/data/catReferences.json";
 import { bindNestedOutput, requireOutputSemantic } from "../shared/outputFieldSemantics";
-import { driverFieldSpecs, driverConsumerFieldSpecs, referenceFieldSpecs } from "../shared/researchFieldSemantics";
+import { driverFieldSpecs, driverConsumerFieldSpecs, driverSourceProposalSpecs, referenceFieldSpecs } from "../shared/researchFieldSemantics";
 import { companySummarySpecs } from "../shared/companySummarySemantics";
 import { carryForwardEmissions, computeImputationStats } from "../server/climateValuation/emissionsCarryForward";
 import type { CvTimeSeries } from "../shared/schema";
@@ -18,7 +18,16 @@ test("all actual research and pinned reference leaves bind without numerical mod
   const original=JSON.stringify(response);
   const driver=bindNestedOutput("driverRegistry",response);
   assert.equal(response.indicators.length,22);
-  assert.equal(driver.length,54,"Previous53 plus exact acceptedForecastUse refusal disclosure; supplemental denominator only, not original closure");
+  assert.equal(driver.length,90,"Prior54 plus35 exact proposal leaves and one explicit absent-proposal null binding; not original closure");
+  assert.equal(driverSourceProposalSpecs.length,36);
+  assert.equal(response.indicators.filter(row=>row.sourceMetadataProposal===null).length,19);
+  for (const [field, meaning, formula, unit] of driverSourceProposalSpecs) {
+    const semantic=requireOutputSemantic(`driverRegistry.${field}`);
+    assert.equal(semantic.meaning,meaning);
+    assert.equal(semantic.formula,formula);
+    assert.equal(semantic.unit,unit);
+    assert.ok(driver.some(row=>row.id===semantic.id),field);
+  }
   assert.equal(new Set(driver.map(f=>f.id)).size,driverFieldSpecs.length);
   assert.equal(JSON.stringify(response),original);
   const reference=bindNestedOutput("publishedReference",references);
@@ -95,9 +104,9 @@ test("census counts exact response bindings and keeps explicit displays separate
   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(census.supplementalQualifiedChanges.companyCoverage.definitions,133);
   assert.equal(new Set(census.supplementalQualifiedChanges.companyCoverage.ids).size,133);
-  // One newly emitted acceptedForecastUse leaf adds a supplemental response slot:
-  // 53→54 is disclosure-denominator growth, not closure of the frozen original1001 cohort.
-  for(const [path,count] of [["/api/research/driver-registry",54],["/api/reference-scenarios",28],
+  // Prior54 plus35 object leaves. Nullable parent is an additional runtime
+  // binding, not another typed API leaf or frozen-original closure.
+  for(const [path,count] of [["/api/research/driver-registry",89],["/api/reference-scenarios",28],
     ["/api/cv/summary",21],["/api/cv/dimensions",2]] as const) {
     const family=census.families.find((f:{surface:string})=>f.surface===`API GET "${path}"`);
     assert.equal(family.total,count);

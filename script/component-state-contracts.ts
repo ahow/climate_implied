@@ -34,6 +34,28 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "scientific-evidence-strands.tsx": {
+    inputKind: "pinned-reference",
+    missing: "Shared program-level strand defaults are explicit imported evidence policy, not substitutes for submitted analytical inputs.",
+    null: "Strand status/reason strings are rendered directly; no scientific result or missing observation is converted to zero.",
+    refusal: "The three strands remain separate; diagnostic passes cannot change readiness gates or establish independent acceptance.",
+    loading: "Synchronous supplied/shared evidence object; asynchronous financial-review loading belongs to its existing parent.",
+    error: "No independent query in this component; parent financial-review read failure still withholds its supplied evidence.",
+    selection: "Program-level policy does not certify caller-selected inputs, model output, vintage or source rights.",
+    zero: "No numeric analytical result is consumed; statuses are not converted to booleans or readiness scores.",
+    scope: "Direct SSR evidence in script/scientific-strands-warning.test.ts renders physical response, Stage9 skill and scenario interpretation independently.",
+  },
+  "registry-methodology.tsx": {
+    inputKind: "pinned-reference",
+    missing: "Synchronous checked-in definition registry, not caller-supplied analytical result rows; no fabricated source values.",
+    null: "Registry strings are rendered verbatim; no unavailable analytical values are coerced to zero or assigned a vintage.",
+    refusal: "Definitions explicitly do not establish scientific acceptance; historical declarations alone do not authenticate vintage.",
+    loading: "Synchronous imported registries only; no asynchronous loading branch or previous selection cache exists.",
+    error: "No independent network read in the card; the linked API is a separate read-only public definition endpoint.",
+    selection: "No source selection, provider refresh or model rerun; exact current registry definitions are displayed.",
+    zero: "Definition prose is rendered verbatim; numeric model results and their zero/missing branches are not consumed.",
+    scope: "Registry-driven methodology, exact formulas/units/source/as-of/missingness/uncertainty and three separate scientific strands; direct SSR test, not browser interaction coverage.",
+  },
   "carbon-pass-through-review.tsx": props("No caller-supplied analytical values: source-qualified evidence comes from the checked-in factual register; missing issuer inputs remain listed, never default coefficients.", {
     inputKind: "pinned-reference",
     null: "No nullable result props or substitute issuer outputs. Lower-bound-only evidence stays a strict bound; log-price elasticity is explicitly not a recovery ratio.",
@@ -218,7 +240,7 @@ export const filePolicies: Record<string, Policy> = {
     error: "No network read/error state or silent numeric fallback. Unknown shared semantic IDs fail explicitly; rendering depends on the complete fixed reference contract.",
     selection: "No selectable year/issuer/archive/model props or query key. Reference2025headline,2016–2025decade and2024inventory remain separate; archive selection cannot rewrite them.",
     zero: "Published nonzero constants are formatted directly; zero is not used as a missing-data default. No hypothetical zero-input branch is claimed for this immutable reference.",
-    scope: "Dated human-induced GMST reference plus exact source/date/licence metadata; local JSON data URI uses the same shared export document as GET export. Direct SSR/download decoding is evidence, not browser-click coverage or scientific acceptance.",
+    scope: "Dated human-induced GMST reference plus exact source/date/licence metadata; API download explicitly opts in to a manifest while the legacy export document stays unchanged. Direct SSR/isolated API readback is evidence, not browser-click coverage or scientific acceptance.",
   },
   "climate-valuation.tsx": props("Page-level summary/group absent states are independent of public conditional aggregates.", {
     missing: "Summary count missing/invalid has named count-not-returned reason. Partial imputation total/fraction/count remains unavailable. Malformed group collections are refused per section. Missing P/E stays blank, not null→zero; invalid-date rows are withheld with a reason.",
@@ -259,6 +281,8 @@ export const filePolicies: Record<string, Policy> = {
 };
 
 export const focusedRenderComponents = new Set([
+  "ScientificEvidenceStrands",
+  "RegistryMethodology",
   "FinancialProviderStatus", "FinancialReview", "ScientificValidation", "Snapshot",
   "CompanyOperatingReview", "ReadResultReason", "TemperatureGauge", "BacktestSummary",
   "CategoryComparison", "RegionalComparison", "SensitivityChart", "ThresholdDiagnosticDetails",
@@ -342,7 +366,11 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: ["CarbonPassThroughReview", "QualifiedMissingnessReview", "ReadonlyVersionDiff", "VersionDiffResult"].includes(name)
+    focusedEvidence: name === "ScientificEvidenceStrands"
+      ? "script/scientific-strands-warning.test.ts: direct SSR of each shared status/reason; no implied asynchronous branch or input certification."
+      : name === "RegistryMethodology"
+      ? "script/methodology-download.test.ts: direct SSR of exact registry definitions, historical labels and three independent evidence strands; no asynchronous result branches."
+      : ["CarbonPassThroughReview", "QualifiedMissingnessReview", "ReadonlyVersionDiff", "VersionDiffResult"].includes(name)
       ? "script/readonly-new-card-states.test.ts: actual imported SSR covers static factual source card, development review loading/error/null/invalid/empty/ready/zero and background pending suppression; idle diff controls and supplied-result malformed/empty/zero/ready states. No interactive selection/pagination browser coverage claimed. script/readonly-diff-history.test.ts separately checks isolated HTTP and XLSX readback."
       : name === "WorkbookMoneyAudit"
       ? "script/workbook-money-integration.test.ts: actual imported component SSR loading/error/absent/invalid/ready with strict full-report hash and pinned downloads; real HTTP/XLSX safe-count/date/reason equality and source/query/hash refusals. Synthetic engineering is not real approval; old63component browser suite not rerun."

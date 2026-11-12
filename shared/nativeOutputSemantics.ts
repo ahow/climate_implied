@@ -1,5 +1,6 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { nativeScenarioSemantics } from "./nativeScenarioSemantics";
+import { scientificEvidenceSemantics } from "./scientificEvidenceSemantics";
 const rows:[string,string,string,string][]=[
   ["promotion","Promotion decision","status","blocked-pending-calibration-and-Packages-3-4"],
   ["result.version","Native model version","identifier","EMISSIONS_ENGINE_VERSION"],
@@ -100,6 +101,7 @@ const cellDependencies=["inventory.cells[].nativeMt","inventory.cells[].sector",
 for(const gas of nativeGasIds) rows.push([`result.trajectory[].nativeMt.${gas}`,`${gas} annual native mass`,`Mt ${gas}/year`,`sum transformed cells with gas=${gas}; ${balance}`]);
 for(const sector of nativeSectorIds) rows.push([`result.trajectory[].sectorsGtCO2e.${sector}`,`${sector} annual reporting emissions`,"Gt CO2e/year",`sum transformed nativeMt*gwp100/1000 where sectorOf(code)=${sector}; ${balance}`]);
 export const nativeOutputSemantics:OutputFieldSemantic[]=[
+  ...scientificEvidenceSemantics("native.result.scientificEvidence"),
   ...nativeScenarioSemantics,
   ...rows.map(([path,meaning,unit,formula])=>({
     id:`native.${path}`,meaning,unit,formula,

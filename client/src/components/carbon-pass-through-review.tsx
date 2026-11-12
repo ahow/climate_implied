@@ -1,3 +1,4 @@
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import {
   carbonPassThroughEvidence, carbonPassThroughSources, carbonPassThroughRemainingInputs,
 } from "@shared/carbonPassThroughEvidence";
@@ -8,7 +9,7 @@ export function CarbonPassThroughReview() {
     <h2 id="carbon-pass-through-heading" className="text-lg font-semibold">Carbon-price pass-through: source-qualified context</h2>
     <p className="text-sm">Historical price evidence, not issuer profit or collected cash. No actual issuer assumption admitted;
       0 qualified cases. No old cases changed. Indicative points and sensitivity spans are not universal causal ranges.</p>
-    <a className="text-sm underline" href="/api/cv/carbon-pass-through-evidence/export.json">Export public source review (JSON)</a>
+    <a className="text-sm underline" href={withDownloadManifest("/api/cv/carbon-pass-through-evidence/export.json")}>Export public source review (JSON)</a>
     <div className="overflow-x-auto"><table className="w-full text-sm">
       <thead><tr>{["Product / market", "Location / period", "Reported result", "Qualification"].map(h =>
         <th className="p-2 text-left" key={h}>{h}</th>)}</tr></thead>

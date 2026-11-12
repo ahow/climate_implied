@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
+import { scientificEvidenceStatuses } from "../../shared/scientificEvidence";
 const protocolSchema = z.object({
   frozenAt: z.string().date(), trainingEnd: z.string().date(), holdoutStart: z.string().date(),
   baseline: z.enum(["persistence", "trend"]),
@@ -27,7 +28,8 @@ export function evaluateHoldout(protocolInput: unknown, rowInput: unknown) {
   const baselineMAE = mean(rows.map(r => Math.abs(r[protocol.baseline] - r.actual)));
   const coverage = mean(rows.map(r => Number(r.actual >= r.lower && r.actual <= r.upper)));
   const pointInTime = rows.every(r => !r.revisedHistory);
-  return { protocolId: createHash("sha256").update(JSON.stringify(protocol)).digest("hex"),
+  return { scientificEvidence: scientificEvidenceStatuses(),
+    protocolId: createHash("sha256").update(JSON.stringify(protocol)).digest("hex"),
     count: rows.length, bias: mean(errors), mae, baselineMAE, coverage, pointInTime,
     passed: pointInTime && mae <= baselineMAE * (1 + protocol.maxDeteriorationFraction) &&
       Math.abs(coverage - protocol.nominalCoverage) <= protocol.coverageTolerance,

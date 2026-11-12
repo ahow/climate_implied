@@ -13,6 +13,8 @@ import { registerQualifiedMissingnessApi } from "./qualifiedMissingnessApi";
 import { registerCarbonPassThroughRoutes } from "./carbonPassThroughApi";
 import { registerReadonlyDiffApi } from "./readonlyDiffApi";
 import { readonlyDiffRepository } from "./snapshots/readonlyDiffStore";
+import { registerMethodologyApi } from "./methodologyApi";
+import { downloadManifestMiddleware } from "./downloadManifestMiddleware";
 
 const app = express();
 const httpServer = createServer(app);
@@ -71,6 +73,8 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  app.use(downloadManifestMiddleware());
+  registerMethodologyApi(app);
   app.use(quantityDescriptionMiddleware());
   registerWarmingValidationReferenceRoutes(app);
   // Exact source-pinned public disclosures only; no private archive fallback.

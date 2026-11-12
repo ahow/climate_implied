@@ -1,3 +1,4 @@
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
@@ -42,8 +43,8 @@ export function Stage10FinancialCoverage({ readState }: { readState?: { loading?
           <span data-field-id="stage10Coverage.selectedSourceVersions">Selected as-of versions: {report.selectedSourceVersions}</span>; neither count establishes identity or publication approval.</p>
         <p className="text-xs" data-field-id="stage10Coverage.informationCutoff">Information cutoff: {report.informationCutoff}; fiscal years {report.fiscalYears.join(", ")}</p>
         <p className="text-xs" data-field-id="stage10Coverage.limitation">{report.limitation}</p>
-        <nav className="flex flex-wrap gap-4 text-sm"><a className="underline" href={stage10DownloadUrl(report, "/export.json")}>Exact aggregate JSON</a>
-          <a className="underline" href={stage10DownloadUrl(report, "/export.xlsx")}>Exact aggregate XLSX</a></nav>
+        <nav className="flex flex-wrap gap-4 text-sm"><a className="underline" href={withDownloadManifest(stage10DownloadUrl(report, "/export.json"))}>Exact aggregate JSON</a>
+          <a className="underline" href={withDownloadManifest(stage10DownloadUrl(report, "/export.xlsx"))}>Exact aggregate XLSX</a></nav>
         <div className="text-sm space-y-1">{report.rows.filter(r => r.sector === "All sectors" &&
           r.population === population && r.dimension === "identity").map(r => <p key={r.key}>
             <span data-field-id="stage10Coverage.rows[].key">{r.key}</span>:{" "}
