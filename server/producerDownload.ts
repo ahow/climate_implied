@@ -2,6 +2,7 @@ import type { Express, RequestHandler, Response } from "express";
 import { contentHash } from "./calculation/analysisManifest";
 import { unpackAnalysisResult } from "./snapshots/resultContract";
 import type { RetainedProducerIdentity } from "../shared/downloadManifest";
+import { READONLY_PRODUCER_SCENARIO } from "../shared/readonlyConsumer";
 
 /** Only these completed-response producers retain material inputs today.
  * Headers, query pins, caller payloads and source hashes alone are not proof. */
@@ -27,7 +28,8 @@ export function verifiedProducer(id: string, loaded: any, result: unknown, produ
   if (loaded.materialReplayState !== "referenced-material-archives-verified" ||
       typeof material !== "string" || !/^[a-f0-9]{64}$/.test(material) ||
       !/^[a-f0-9]{64}$/.test(manifest.codeVersion) ||
-      !retainedProducerPaths.some(path => manifest.scenario === `descriptive-valuation:${path.slice("/api/cv".length)}`) ||
+      !(manifest.scenario === READONLY_PRODUCER_SCENARIO ||
+        retainedProducerPaths.some(path => manifest.scenario === `descriptive-valuation:${path.slice("/api/cv".length)}`)) ||
       (producerPath !== undefined && manifest.scenario !== `descriptive-valuation:${producerPath.slice("/api/cv".length)}`) ||
       // The existing completed-result writer archives Express JSON encoding,
       // including Date/optional-field serialization, not route object identity.
@@ -43,7 +45,7 @@ export function verifiedProducer(id: string, loaded: any, result: unknown, produ
     scientificAcceptance: false,
   };
 }
-function bind(res: Response, proof: ReturnType<typeof verifiedProducer>) {
+export function bindProducerIdentity(res: Response, proof: ReturnType<typeof verifiedProducer>) {
   proofs.set(res, proof);
   res.set("X-Producer-Identity", Buffer.from(JSON.stringify(proof)).toString("base64url"));
   res.set("X-Producer-Identity-Encoding", "base64url-json-utf8");
@@ -81,7 +83,7 @@ export function producerDownloadMiddleware(load: Loader): RequestHandler {
               JSON.stringify(expected) !== JSON.stringify(proof.orderedSnapshotHashes))
             throw new Error("Completed producer conflicts with resolved server input context");
         }
-        bind(res, proof);
+        bindProducerIdentity(res, proof);
         json(body);
       }).catch(() => {
         res.status(503);
@@ -101,7 +103,7 @@ export function registerProducerDownloadRoutes(app: Express, load: Loader) {
       if (Object.keys(req.query).length) throw new Error("Unexpected export selection");
       const loaded = await load(String(req.params.id));
       const proof = verifiedProducer(String(req.params.id), loaded, loaded.result);
-      bind(res, proof);
+      bindProducerIdentity(res, proof);
       res.set("Cache-Control", "no-store");
       res.set("Content-Type", "application/json; charset=utf-8");
       res.set("Content-Disposition", `attachment; filename="analysis-${proof.resultId}.json"`);

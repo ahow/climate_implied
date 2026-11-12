@@ -5,6 +5,7 @@ import { consumerCanonicalJson, deriveValuationPE, deriveSignalConsumer,
   type ValuationPEDerivation, type SignalConsumerKey, type SignalConsumerSelection } from "../../../shared/derivedConsumer";
 import { exportDataIdentity } from "./export-identity";
 import { currentSelection, type AnalysisSelection } from "./analysis-selection";
+import { deriveReadonlyConsumer, READONLY_PRODUCER_SCENARIO, type ReadonlyConsumerKey } from "../../../shared/readonlyConsumer";
 
 const retainedResults = new WeakMap<object, {
   proof: RetainedProducerIdentity; source: string; selection: string;
@@ -17,6 +18,7 @@ const signalResults = new WeakMap<object, {
   chartRows: unknown; chartOutput: string;
 }>();
 const capturedConsumers = new WeakMap<object, string>();
+const readonlyResults = new WeakMap<object, { parent: object; key: ReadonlyConsumerKey; output: string }>();
 async function canonicalHash(value: unknown) {
   const bytes = new TextEncoder().encode(consumerCanonicalJson(value));
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)))
@@ -38,9 +40,9 @@ export function retainProducerDownload(response: Response, requestedSelection: A
       !Array.isArray(proof.orderedSnapshotHashes) || !proof.orderedSnapshotHashes.length ||
       !proof.orderedSnapshotHashes.every((id: unknown) => typeof id === "string" && /^[a-f0-9]{64}$/.test(id)) ||
       typeof proof.modelVersion !== "string" || !proof.modelVersion ||
-      !["summary", "carbon-price", "pe-comparison", "sdg-growth", "decarb-bands",
+      !(proof.scenario === READONLY_PRODUCER_SCENARIO || ["summary", "carbon-price", "pe-comparison", "sdg-growth", "decarb-bands",
         "decarb-terciles", "decarb-gap/summary", "decarb-gap/timeseries", "backtest"]
-        .some(path => proof.scenario === `descriptive-valuation:/${path}`) ||
+         .some(path => proof.scenario === `descriptive-valuation:/${path}`)) ||
       proof.scientificAcceptance !== false)
     throw new Error("Invalid server retained-result identity; result withheld");
   const json = response.json.bind(response);
@@ -86,6 +88,39 @@ export function deriveProducerSignalConsumer<K extends SignalConsumerKey>(
     output: consumerCanonicalJson(result.rows), chartRows: result.chartRows,
     chartOutput: consumerCanonicalJson(result.chartRows) });
   return result;
+}
+
+/** Existing typed UI row builders remain the public column domain. Their
+ * output must exactly equal this closed replay; neither mapped rows nor
+ * caller-supplied metadata can authenticate the parent. */
+export function bindProducerReadonlyConsumer<T extends Record<string, unknown>>(
+  parent: object, key: ReadonlyConsumerKey, rows: T[],
+): T[] {
+  const replay = deriveReadonlyConsumer(parent, key);
+  if (consumerCanonicalJson(replay.rows) !== consumerCanonicalJson(rows))
+    throw new Error("Readonly consumer projection conflicts with closed replay");
+  readonlyResults.set(rows, { parent, key, output: consumerCanonicalJson(rows) });
+  return rows;
+}
+function captureReadonlyConsumer(rows: unknown, binding: NonNullable<ReturnType<typeof readonlyResults.get>>) {
+  const retained = retainedResults.get(binding.parent);
+  if (!retained) throw new Error("Readonly consumer retained producer parent unavailable; bound download refused");
+  const replay = deriveReadonlyConsumer(binding.parent, binding.key);
+  const data = binding.parent as { from: string; to: string };
+  if (retained.proof.scenario !== READONLY_PRODUCER_SCENARIO ||
+    consumerCanonicalJson(retained.proof.orderedSnapshotHashes) !== consumerCanonicalJson([data.from, data.to]) ||
+    retained.source !== consumerCanonicalJson(binding.parent))
+    throw new Error("Readonly consumer parent changed or source identity conflicts");
+  if (retained.selection !== consumerCanonicalJson(currentSelection()))
+    throw new Error("Readonly consumer belongs to a stale requested UI selection");
+  if (binding.output !== consumerCanonicalJson(rows) || binding.output !== consumerCanonicalJson(replay.rows))
+    throw new Error("Readonly consumer rows changed or replay conflicts");
+  const captured = structuredClone({ version: "derived-consumer-lineage-1", parent: retained.proof,
+    derivation: replay.derivation, rows: replay.rows, chartRows: replay.chartRows,
+    originalHistoricalExport: false, scientificAcceptance: false,
+    meaning: "Prospective safe source-comparison view from verified retained archives and exact paginated scan; not model execution, original vintage, source approval or private publication" });
+  capturedConsumers.set(captured, consumerCanonicalJson(captured));
+  return captured;
 }
 
 function captureSignalConsumer(rows: unknown, binding: NonNullable<ReturnType<typeof signalResults.get>>) {
@@ -141,6 +176,8 @@ function captureSignalConsumer(rows: unknown, binding: NonNullable<ReturnType<ty
 /** Capture before any async export preparation. Returns null for arbitrary
  * rows/clones, and refuses a mutated registered derivation instead of degrading. */
 export function captureDerivedConsumer(rows: unknown) {
+  const readonly = rows && typeof rows === "object" ? readonlyResults.get(rows) : undefined;
+  if (readonly) return captureReadonlyConsumer(rows, readonly);
   const signal = rows && typeof rows === "object" ? signalResults.get(rows) : undefined;
   if (signal) return captureSignalConsumer(rows, signal);
   const binding = rows && typeof rows === "object" ? derivedResults.get(rows) : undefined;

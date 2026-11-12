@@ -8,14 +8,14 @@ const fields = [
   ["materialInputsId", "Verified referenced consumed-material archive identity", "manifest.settings.materialInputsId; loadAnalysisResult verifies referenced material bundle", "SHA-256"],
   ["codeArchiveId", "Verified retained source/config/dependency-lock bundle identity", "manifest.codeVersion equals verified material.sourceArchive; not a running executable attestation", "SHA-256"],
   ["modelVersion", "Declared model contract version in completed producer manifest", "manifest.modelVersion, authenticated as retained content, not model acceptance", "version label"],
-  ["orderedSnapshotHashes[]", "Workbook then ordered overlays then consumed indicator context when present", "manifest.snapshotHashes retained in order; current response additionally matches resolved server snapshot/overlay/indicator headers", "ordered SHA-256 identities"],
-  ["scenario", "Exact allowlisted retained producer identity", "manifest.scenario; current completed response must match descriptive-valuation plus the actual captured producer route", "producer route label"],
+  ["orderedSnapshotHashes[]", "Valuation workbook/ordered overlays/indicators, or readonly comparison from/to archives", "manifest.snapshotHashes retained in order; valuation additionally matches resolved server context; readonly matches both exact verified source archive IDs", "ordered SHA-256 identities"],
+  ["scenario", "Exact allowlisted retained producer identity", "manifest.scenario; descriptive-valuation actual captured producer route or source-backed:readonly-diff-1 with private retained material and safe report replay", "producer route label"],
   ["meaning", "Explicit stored-output and acceptance limitation", "fixed server explanation: retained completed response is not recalculation, original vintage or scientific acceptance", "text"],
   ["scientificAcceptance", "Producer identity does not establish scientific acceptance", "literal false", "boolean"],
 ] as const;
 export const producerDownloadSemantics: OutputFieldSemantic[] = fields.map(([path, meaning, formula, unit]) => ({
   id: `retainedProducer.${path}`, role: "Output", meaning, formula, unit,
-  dependencies: ["verified retained analysis-result-1", "referenced material-inputs/source/workbook/overlay archives"],
+  dependencies: ["verified retained analysis-result-1", "referenced material-inputs/source/workbook/overlay archives or readonly-diff-material/source/from/to/scanned-result archives"],
   source: "server/producerDownload.ts verifiedProducer and response-private WeakMap; server archive reader only",
   period: "Completed retained response; no original publication vintage or unique wall-clock execution identity",
   geography: "Selected retained workbook population; no inferred operating geography",

@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 import { createDownloadManifest, downloadManifestRows } from "../shared/downloadManifest";
 import { serverDownloadRegistry } from "../shared/serverDownloadRegistry";
 import { responseProducerIdentity } from "./producerDownload";
+import { responseStaticReference } from "./staticReferenceLineage";
 
 /** Always attach the exact manifest as a base64url response header. Existing
  * default response bodies (and their goldens) are byte-for-byte unchanged.
@@ -39,6 +40,7 @@ export function downloadManifestMiddleware(): RequestHandler {
         : Array.isArray(json) ? json : json?.rows ?? [];
       const disposition = String(res.getHeader("Content-Disposition"));
       const filename = /filename="([^"]+)"/.exec(disposition)?.[1] ?? "attachment";
+      const referenceArtifactIdentity = responseStaticReference(res, json);
       const manifest = {
         ...createDownloadManifest({ filename, kind: entry.kind, exportedAt: new Date().toISOString(),
           dataHash: createHash("sha256").update(bytes).digest("hex"),
@@ -53,6 +55,9 @@ export function downloadManifestMiddleware(): RequestHandler {
           columnBindings: json?.columnBindings ?? null }),
         transportClaim: entry.claim,
         producerIdentity: responseProducerIdentity(res),
+        ...(referenceArtifactIdentity ? { referenceArtifactIdentity,
+          selectionBoundary: "Exact static public reference/evidence and release-local code artifact identity. UI selection is not provenance. Model, model run and calculation material inputs are explicitly not applicable; no execution, source approval or scientific acceptance is claimed.",
+        } : {}),
         ...(responseProducerIdentity(res) ? {
           selectionBoundary: "Producer identity was bound server-side to the exact verified retained result and material archives. Requested UI selection is not provenance. Stored output is not recalculation, original-vintage evidence or scientific acceptance.",
         } : {}),

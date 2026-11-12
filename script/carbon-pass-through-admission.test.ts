@@ -105,20 +105,20 @@ test("no geographic/sector/regime extrapolation, Scope2/3 confusion, elasticity 
   assert.throws(() => calculateQualifiedCarbonDrag(a, { ...x, accountingBasis: "common-cash" }));
 });
 
-test("public GET and JSON export return identical admitted evidence; no calculation endpoint", () => {
+test("public GET and JSON export return identical admitted evidence; no calculation endpoint", async () => {
   const handlers = new Map<string, Function>();
   registerCarbonPassThroughRoutes({ get: (path: string, handler: Function) => handlers.set(path, handler) } as any);
   assert.deepEqual([...handlers.keys()], [CARBON_PASS_THROUGH_ROUTE, `${CARBON_PASS_THROUGH_ROUTE}/export.json`]);
-  function invoke(path: string, query = {}) {
+  async function invoke(path: string, query = {}) {
     let body: any, status = 200;
     const res = { setHeader() {}, attachment() {}, json(value: unknown) { body = value; },
       status(code: number) { status = code; return res; } };
-    handlers.get(path)!({ query }, res);
+    await handlers.get(path)!({ query }, res);
     return { body, status };
   }
-  assert.deepEqual(invoke(CARBON_PASS_THROUGH_ROUTE), invoke(`${CARBON_PASS_THROUGH_ROUTE}/export.json`));
-  assert.equal(invoke(CARBON_PASS_THROUGH_ROUTE, { recoveryFraction: ".8" }).status, 400);
-  assert.equal(invoke(CARBON_PASS_THROUGH_ROUTE).body.registerHash, getCarbonPassThroughReview().registerHash);
+  assert.deepEqual(await invoke(CARBON_PASS_THROUGH_ROUTE), await invoke(`${CARBON_PASS_THROUGH_ROUTE}/export.json`));
+  assert.equal((await invoke(CARBON_PASS_THROUGH_ROUTE, { recoveryFraction: ".8" })).status, 400);
+  assert.equal((await invoke(CARBON_PASS_THROUGH_ROUTE)).body.registerHash, getCarbonPassThroughReview().registerHash);
 });
 
 test("separate pre-study protocol remains frozen; consumer source binding is explicit opt-in", () => {

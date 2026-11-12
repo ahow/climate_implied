@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { HISTORICAL_TYPES, requireHistoricalType } from "@shared/historicalTypes";
 import { z } from "zod";
+import { bindProducerReadonlyConsumer } from "@/lib/producer-download";
 
 export interface VersionDiffResponse {
   version: string; from: string; to: string; kind: string; approvalState: string;
@@ -40,17 +41,17 @@ const diffViewSchema = z.object({
 });
 export function versionDiffExportRows(data: VersionDiffResponse) {
   diffViewSchema.parse(data);
-  return data.fields.map(field => ({ From: data.from, To: data.to, Kind: data.kind,
+  return bindProducerReadonlyConsumer(data, "version-diff", data.fields.map(field => ({ From: data.from, To: data.to, Kind: data.kind,
     Domain: field.domain, Field: field.field, Added: field.added, Removed: field.removed,
     Changed: field.changed, "Before content SHA-256": field.beforeHash, "After content SHA-256": field.afterHash,
-    "Approval state": data.approvalState, "History basis": data.historicalBasis }));
+    "Approval state": data.approvalState, "History basis": data.historicalBasis })));
 }
 export function affectedAnalysisExportRows(data: VersionDiffResponse) {
   diffViewSchema.parse(data);
-  return data.affectedAnalyses.map(a => ({ From: data.from, To: data.to,
+  return bindProducerReadonlyConsumer(data, "affected-analyses", data.affectedAnalyses.map(a => ({ From: data.from, To: data.to,
     "Result ID": a.resultId, "Manifest ID": a.manifestId, Scenario: a.scenario,
     "Recorded at": a.recordedAt, Relation: a.relation, ...requireHistoricalType(a),
-    "Result scan scope": data.affectedMeaning }));
+    "Result scan scope": data.affectedMeaning })));
 }
 /** Read-only view: no raw provider rows, source excerpts or mutation controls. */
 export function ReadonlyVersionDiff() {
@@ -111,7 +112,8 @@ export function VersionDiffResult({ data, onNext }: { data: VersionDiffResponse;
         <td>{f.domain} / {f.field}</td><td className="text-center">{f.added}</td><td className="text-center">{f.removed}</td><td className="text-center">{f.changed}</td>
       </tr>)}</tbody></table></div>
     {!data.fields.length && <p>No comparable cells in these retained versions.</p>}
-    <DownloadDataButton kind="indicators" filename="readonly-version-diff" rows={() => versionDiffExportRows(data)}
+    <DownloadDataButton requireDerivedParent kind="indicators" filename="readonly-version-diff" rows={() => versionDiffExportRows(data)}
+      interpretationNotes={[{ Field: "Readonly comparison claim", Value: "Exact source-cell counts and content hashes from verified retained source archives. Not source observation values, model execution, inferred impacts or original-vintage evidence." }]}
       disabled={!data.fields.length} sheetName="Version diff" fieldBindings={{
         From: { id: "readonlyDiff.from", transform: "Identity: selected before source SHA-256" },
         To: { id: "readonlyDiff.to", transform: "Identity: selected after source SHA-256" },
@@ -133,7 +135,8 @@ export function VersionDiffResult({ data, onNext }: { data: VersionDiffResponse;
       <p>{a.scenario} · {a.relation}</p><p>Result: {a.resultId}</p><p>Manifest: {a.manifestId}</p>
       <p>Recorded: {a.recordedAt} · {a.historicalTypeLabel} ({a.historicalTypeCode})</p>
     </div>)}
-    <DownloadDataButton kind="indicators" filename="affected-archived-analyses" sheetName="Affected analyses"
+    <DownloadDataButton requireDerivedParent kind="indicators" filename="affected-archived-analyses" sheetName="Affected analyses"
+      interpretationNotes={[{ Field: "Readonly dependency claim", Value: "Exact retained result references on this frozen scan page only. Not recomputed impacts, exhaustive dependency discovery, model execution or scientific acceptance." }]}
       rows={() => affectedAnalysisExportRows(data)} disabled={!data.affectedAnalyses.length} fieldBindings={{
         From: { id: "readonlyDiff.from", transform: "Identity: selected before source SHA-256" },
         To: { id: "readonlyDiff.to", transform: "Identity: selected after source SHA-256" },

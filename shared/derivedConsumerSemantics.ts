@@ -1,6 +1,7 @@
 import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { producerDownloadSemantics } from "./producerDownloadSemantics";
 import { valuationPEDerivations } from "./derivedConsumer";
+import { readonlyConsumerFieldMaps, readonlyConsumerColumnUnit } from "./readonlyConsumer";
 
 type Field = [path: string, meaning: string, formula: string, unit: string];
 const fields: Field[] = [
@@ -13,8 +14,8 @@ const fields: Field[] = [
   ["originalHistoricalExport", "New prospective export is not recovered original historical bytes", "Literal false", "boolean"],
   ["scientificAcceptance", "Consumer lineage does not grant scientific acceptance or data approval", "Literal false", "boolean"],
   ["meaning", "Explicit prospective-output and acceptance boundary", "Fixed response-derived consumer explanation", "text"],
-  ["derivation.version", "Closed producer-to-consumer transformation version", "valuation-pe-consumer-1 or signal-chained-consumer-1", "contract label"],
-  ["derivation.key", "One exact supported consumer, not an arbitrary formula", "carbon, sdg, ambition, signal-comparison, group-gap, signal-cumulative, signal-active, gap-cumulative or gap-active", "enum"],
+  ["derivation.version", "Closed producer-to-consumer transformation version", "valuation-pe-consumer-1, signal-chained-consumer-1 or readonly-diff-consumer-1", "contract label"],
+  ["derivation.key", "One exact supported consumer, not an arbitrary formula", "carbon, sdg, ambition, signal-comparison, group-gap, signal-cumulative, signal-active, gap-cumulative, gap-active, version-diff or affected-analyses", "enum"],
   ["derivation.scenario", "Required exact first server producer scenario for this consumer", "Closed registry scenario; additional parents checked individually by slot; mismatches refuse", "producer scenario label"],
   ["derivation.filter", "Date-only exclusion rule; unavailable P/E is not filtered into a complete-case population", "Exclude missing or invalid parsed observation dates only", "text"],
   ["derivation.order", "Versioned exact ordering and duplicate policy", "P/E preserves native order/duplicates; signal comparison uses timestamp union ascending last per-parent duplicate; paired backtests use exact native-date-key union sorted with last per-parent duplicate. No current-source replacement", "text"],
@@ -83,6 +84,17 @@ for (const field of ["value", "dateLabel", "carbonIntensity", "sdgExposure", "de
   fields.push([`derivation.chartFields.${field}`, "Closed field map for chained chart stage",
     "Whole response series field or native P/E pair; second-parent valuation portfolio selected explicitly", "source field path"]);
 const columnUnits = new Set<string>(["Date"]);
+// Finite readonly projections, not wildcard column acceptance. Empty native
+// arrays still declare their complete closed field/unit domains.
+const readonlyColumns = new Set(Object.values(readonlyConsumerFieldMaps).flatMap(map => Object.keys(map)));
+for (const column of Array.from(readonlyColumns)) {
+    for (const prefix of ["derivation.fields", "derivation.chartFields"])
+      fields.push([`${prefix}.${column}`, "Exact readonly source-report projection field",
+        "Closed readonly-diff-consumer-1 map; source and scanned result values never published", "source report field path"]);
+    for (const prefix of ["derivation.units", "sheets[].units"])
+      fields.push([`${prefix}.${column}`, "Exact readonly comparison column unit",
+        "Native source-cell count or exact retained report identifier/text; no model or investment inference", readonlyConsumerColumnUnit(column)]);
+}
 const nativeChartFields = new Set<string>(["date"]);
 for (const spec of Object.values(valuationPEDerivations)) {
   columnUnits.add(`${spec.highLabel} P/E (x)`);
@@ -105,14 +117,14 @@ for (const key of Array.from(nativeChartFields))
 
 const context = {
   role: "Output" as const,
-   dependencies: ["verified retained producer responses", "closed valuation-pe-consumer-1 or signal-chained-consumer-1 derivation", "actual central workbook writer"],
-  source: "shared/derivedConsumer.ts; client/src/lib/producer-download.ts; client/src/lib/derived-consumer-workbook.ts",
+   dependencies: ["verified retained producer responses", "closed valuation-pe-consumer-1, signal-chained-consumer-1 or readonly-diff-consumer-1 derivation", "actual central workbook writer"],
+  source: "shared/derivedConsumer.ts; shared/readonlyConsumer.ts; client/src/lib/producer-download.ts; client/src/lib/derived-consumer-workbook.ts",
   period: "Retained parent observation periods; prospective export capture is not original publication time",
   geography: "Exact retained parent population; no additional geography inference",
   status: "Supplemental consumer engineering lineage, not scientific acceptance or source approval",
    missingness: "Unregistered rows/clones remain unbound; changed registered source/output, wrong scenario or caller-supplied capture refuses. Signal chains additionally require every ordered parent, request-bound active selection, equal materialInputsId/codeArchiveId/modelVersion/orderedSnapshotHashes. Material archives exclude scenario and calculator settings, so different material IDs here cannot be excused by different scenarios. No fallback to current inputs.",
   uncertainty: "Identity and deterministic transformation only; no calibrated uncertainty, signature, execution-container attestation or causal validation",
-   scope: "Three P/E and six signal/gap chart/export consumers, exact intermediate chains and captured supplemental metadata sheets only. No original cohort closure, arbitrary callback certification or historical export recovery. Original 1000/1001 census unchanged.",
+   scope: "Three P/E, six signal/gap and two readonly source-comparison consumers, exact intermediate chains and captured supplemental metadata sheets only. No original cohort closure, arbitrary callback certification or historical export recovery. Original 1000/1001 census unchanged.",
   asOfRule: "Parent source availability remains its retained declaration; export time does not authenticate original vintage",
 };
 export const derivedConsumerSemantics: OutputFieldSemantic[] = [

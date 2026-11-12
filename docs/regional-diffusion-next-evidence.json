@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "regional-diffusion-next-evidence-1",
+  "criteria": ["S04-001", "S04-011"],
+  "status": "executed-full-window-two-release-source-audit-saturation-blocked-no-old-study-rerun",
+  "scope": "Study/source scripts and this evidence only. No client/shared exports, ledger, approval, commit, deployment or callback.",
+  "readFirst": [
+    "docs/Driver_Calibration_Protocol.md",
+    "docs/Driver_Uncertainty_Protocol.md",
+    "docs/Cost_Deployment_Protocol.md",
+    "docs/Fleet_Transition_Protocol.md",
+    "docs/EV_Calibration_Protocol.md",
+    "docs/driver-consumption-protocol.json",
+    "docs/driver-source-continuation-protocol.json",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md:S04-001,S04-011",
+    "docs/workplan_completion_ledger.json:S04-001 targeted original record",
+    "generated-artifacts/driver-calibration/result.json",
+    "generated-artifacts/driver-calibration/uncertainty.json",
+    "generated-artifacts/driver-calibration/source-compatibility.json",
+    "generated-artifacts/driver-calibration/catalog-owid_energy.codebook.csv",
+    "generated-artifacts/driver-calibration/catalog-owid_energy.sources.csv",
+    "script/validate-driver-retained-private.ts",
+    "docs/remaining-source-inputs-evidence.json",
+    "docs/issuer-source-next-evidence.json",
+    "docs/issuer-cash-source-followup-evidence.json",
+    "docs/issuer-financial-followup-evidence.json",
+    "docs/issuer-contract-law-evidence.json",
+    "docs/nee-parent-fslr-programme-evidence.json",
+    "docs/indicator-issuer-new-evidence.json"
+  ],
+  "freeze": {
+    "meaning": "Operational source-readiness decision written before new audit/acquisition; old results already known, not externally preregistered/blinded.",
+    "entities": ["World", "United States", "China", "India", "European Union (27)"],
+    "technologies": ["solar_share_elec", "wind_share_elec"],
+    "unit": "fraction of total electricity generation; source percent divided by100",
+    "training": [2010, 2018],
+    "heldout": [2019, 2024],
+    "eligibility": "At least six strictly interior training shares and all six heldout shares, finite, unique geography/year. Do not shorten windows or substitute capacity/shipments.",
+    "baselines": ["last training share persistence", "OLS share trend bounded[0,1]"],
+    "acceptance": "Logistic six-year MAE in percentage points strictly less than BOTH baseline MAEs. No automatic scientific/central acceptance.",
+    "bootstrap": "Original1000 circular training-logit residual block draws, block3, seed20261108; unchanged retained paired parameters, no rerun.",
+    "saturation": "Require separately identified regional/technology long-run generation-share saturation, explicit version, publication date, unit, locator, hash, rights and independence from heldout outcomes. A policy target, observed maximum, technical MW potential or scenario is not an identified ceiling. K=1 is only physical bound, not sourced regional prior.",
+    "prospectiveChoice": "No unchanged fit/bootstrap execution. Audit and privately assemble exact retained actual source rows first. Two primary DOE source checks for distinct solar/wind study hypotheses. Do not fit a new K unless independently identified evidence qualifies and an additional pre-fit specification is frozen; otherwise report candidate-specific blocks.",
+    "classification": "Original is revised-history evaluation, never original-vintage prediction. New post-cutoff source dates cannot be backdated.",
+    "sourceBudget": "Five initial public unauthenticated requests: DOE Solar Futures, DOE Wind Vision, First Solar quarterly IR page, NEE presentation IR page, ExxonMobil CCS primary page. At most one explicitly linked materially new primary document per issuer, only if discovered, not previously acquired, no deny bypass; total maximum8. No old XPLR/Williams/TamilNadu requests.",
+    "financialFields": {
+      "FSLR": ["cash collection", "US eligible watts", "component bill of materials", "current-law applicability"],
+      "NEE": ["gross legal cash recipient", "priority", "commissioning", "marginal project return"],
+      "XOM": ["executed fee", "novation", "billing", "opex", "funding"]
+    },
+    "stop": "Denied source stops that request; no alternate host, credentials, licence bypass, resource provisioning, purchases or synthetic efficacy. No cashflow grids."
+  },
+  "implementation": {
+    "script/regional_diffusion_next.py": ["digest", "qualify_prior", "assemble", "evaluate_qualified", "audit"],
+    "script/test_regional_diffusion_next.py": ["RegionalDiffusionGateTests"],
+    "script/regional-diffusion-primary-attempts.mjs": ["request"]
+  },
+  "finalImplementationHashes": {
+    "algorithm": "SHA256 exact UTF-8 file bytes",
+    "script/regional_diffusion_next.py": "ddcd684854a29b7ff90aee5cfed44518aade683d65b4dd8ce0968c23508a9fcf",
+    "script/test_regional_diffusion_next.py": "18f40185ab1323589d5e4f209bd28b4e9b00019990b97872ae97d739c0cd5ecd",
+    "script/regional-diffusion-primary-attempts.mjs": "2ebf127b1aea2189a42f90c4c7f1173514d709b7fe985cef19c79bb7a9c4230e",
+    "limitation": "Earlier request producer extraction revisions differ as recorded in parserVersions; hashes here identify final replay implementation, not unrecorded historical producer hashes."
+  },
+  "acquisitionAmendmentBeforeAdditionalRequests": {
+    "reason": "Initial issuer routes yielded one403 and two404; no issuer content was obtained. Distinct official government programme sources can clarify current legal credit/funding boundaries, but cannot bypass those denials or provide signed issuer contracts. Wind Vision returned a direct full-report link.",
+    "selection": [
+      "https://www.energy.gov/cmei/systems/wind-vision",
+      "https://www.irs.gov/credits-deductions/advanced-manufacturing-production-credit",
+      "https://www.irs.gov/credits-deductions/credit-for-carbon-oxide-sequestration"
+    ],
+    "maximumAdditionalRequests": 3,
+    "totalMaximum": 8,
+    "notClaimed": "No new NEE legal-recipient/priority source discovered; NEE remains blocked. IRS programme applicability is not an issuer cash receipt, executed fee or funding award. No retry of403/404 source, no XPLR/Williams/TamilNadu."
+  },
+  "freezeReceipts": {
+    "initialFreezeBeforeExecution": {
+      "recordedAt": "2026-11-12T05:42:55Z",
+      "sha256": "ec25efe0724e866ddb0fa300ad93b50a174c8a66251bdc008b1606d81e699957"
+    },
+    "amendedFreezeBeforeAdditionalRequests": {
+      "sha256": "f589f1486d19894ed58a97f80f8c983d32ff758ea2257bff5222e5946abb9171",
+      "additionalRequestStart": "2026-11-12T05:44:27.290Z"
+    },
+    "meaning": "Hashes identify earlier versions of this evolving evidence file, not its final self-hash. No external preregistration or historical publication timestamp is claimed."
+  },
+  "sourceVersions": {
+    "legacy": {
+      "url": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv",
+      "sha256": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+      "publicationDate": null,
+      "sourceVersion": "Retained exact byte snapshot; mutable master URL is not immutable source version or publication proof",
+      "unit": "percent of total electricity generation, converted to fraction",
+      "rights": "Existing privately retained extract only; underlying-series redistribution licence not authenticated, no row export"
+    },
+    "replacement": {
+      "file": "generated-artifacts/driver-calibration/catalog-owid_energy.csv",
+      "sha256": "9d8efc4a9b1cc2ffdfa7f7f6f1e171b2922e0be2d97c0edf2982e874357ed6de",
+      "publicationDate": null,
+      "sourceVersion": "Retained separately hashed replacement catalog, not spliced with legacy",
+      "mapping": {
+        "solar_share_elec": "solar_electricity_share_pct",
+        "wind_share_elec": "wind_electricity_share_pct"
+      },
+      "mappingSha256": "dfc538a95dffd98c0f03e61c820bf6e206f1fbe0f03cc314a0e8028a91846cfc",
+      "codebookSha256": "b00441944a4f84110709a858ae4ed3d54694df95f98286777dfad1c94c544cf9",
+      "sourcesSha256": "770690aa9c81ca1b53bc59c835ed06ef227ffdbb466496ddb508f033c145b4e8",
+      "attribution": "Catalog codebook identifies Ember Europe2026, Ember Yearly Electricity2026, Energy Institute2026, Pinto historical electricity2023 and UK DESNZ historical data2023. These are catalog lineage labels, not authenticated legacy publication dates or an independent replication.",
+      "rights": "No new open licence claim for the mixed-source legacy/replacement extracts; private audit only"
+    },
+    "retainedResultSha256": "9b3ec4c77c1116dfcdd1fa7638d9ea4f11f51de5d377f7643b0709d227048176",
+    "retainedUncertaintySha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed"
+  },
+  "executions": [
+    {
+      "command": "uv run python script/regional_diffusion_next.py",
+      "startedAt": "2026-11-12T05:42:55Z",
+      "exitCode": 1,
+      "pass": false,
+      "reason": "Initial metadata lookup used legacy column names against renamed replacement codebook: KeyError solar_share_elec. Repaired with retained publisher column mapping, never a numerical outcome/model/window change.",
+      "logHash": null,
+      "logLimitation": "Failure traceback in tool receipt; no independent stderr file retained for this initial command"
+    },
+    {
+      "command": "uv run python script/regional_diffusion_next.py > generated-artifacts/regional-diffusion-next/readiness.json 2> generated-artifacts/regional-diffusion-next/audit.log",
+      "executionWindowUTC": ["2026-11-12T05:43:08.452Z", "2026-11-12T05:44:27.700Z"],
+      "exitCode": 0,
+      "pass": true,
+      "log": "generated-artifacts/regional-diffusion-next/readiness.json",
+      "logHash": "6a92e9b674c116d9b6d8448cf2f0030abefce115a0861c34ea2c9ba430e96655",
+      "scope": "Actual source-row audit only. Ten candidates,150 matched share observations per release, no missing frozen years; all90 training and60 evaluation values available in each separate release. No new fit, bootstrap or heldout score computed."
+    },
+    {
+      "command": "uv run python -m unittest discover -s script -p test_regional_diffusion_next.py -v > generated-artifacts/regional-diffusion-next/tests-final.log 2>&1",
+      "startedAt": "2026-11-12T05:45:06Z",
+      "exitCode": 0,
+      "pass": true,
+      "counts": {"tests": 8, "pass": 8, "fail": 0, "skip": 0},
+      "log": "generated-artifacts/regional-diffusion-next/tests-final.log",
+      "logHash": "964f2ef32bd2470215a5b2e968317b835a6c49855cd245586a59e67421621ecc",
+      "scope": "Synthetic engineering gate fixtures only; zero efficacy fitting. Missing source and absent pre-fit specification reject before regression."
+    },
+    {
+      "command": "node --check script/regional-diffusion-primary-attempts.mjs && node script/regional-diffusion-primary-attempts.mjs > generated-artifacts/regional-diffusion-next/primary-attempts.json",
+      "executionWindowUTC": ["2026-11-12T05:42:57.252Z", "2026-11-12T05:43:08.452Z"],
+      "exitCode": 0,
+      "pass": true,
+      "scientificPass": false,
+      "logHash": "2246acd7212ae857aae0fb98b433d66c44278c1d6a4b1f902d003bf5eb1de338",
+      "scope": "Five bounded requests, not five valid data sources"
+    },
+    {
+      "command": "node --input-type=module - > generated-artifacts/regional-diffusion-next/additional-primary.json",
+      "stdin": "Import request from ./script/regional-diffusion-primary-attempts.mjs; sequentially call the exact three [id,url,purpose] tuples now retained as supplementalPlan in that script; emit {maximumRequests:3,actualRequests:receipts.length,receipts}.",
+      "replayCommandNotReexecuted": "node script/regional-diffusion-primary-attempts.mjs --supplemental",
+      "executionWindowUTC": ["2026-11-12T05:44:27.290Z", "2026-11-12T05:44:27.700Z"],
+      "exitCode": 0,
+      "pass": true,
+      "scientificPass": false,
+      "logHash": "69e0ace593fb4a92ebbda720192d7913188c499cf042d9a63a7eff317a24fcaa",
+      "scope": "Three additional bounded primary requests, not issuer-specific cash/contract evidence"
+    },
+    {
+      "commands": [
+        "node --check script/regional-diffusion-primary-attempts.mjs",
+        "uv run python -m py_compile script/regional_diffusion_next.py script/test_regional_diffusion_next.py"
+      ],
+      "startedAt": "2026-11-12T05:45:06Z",
+      "exitCodes": [0, 0],
+      "pass": true,
+      "logHash": null,
+      "scope": "Syntax checks only; no app run/restart or full-suite claim"
+    }
+  ],
+  "candidateDecisions": [
+    {"entity": "World", "technology": "solar_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.00047845, "decision": "Retain known failure, no unchanged rerun; sourced regionalK missing"},
+    {"entity": "World", "technology": "wind_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.000462, "decision": "Retain known failure, no unchanged rerun; US wind report cannot establish WorldK"},
+    {"entity": "United States", "technology": "solar_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.000488924, "decision": "Retain known failure; DOE Solar Futures route404, no new prior or shortened window"},
+    {"entity": "United States", "technology": "wind_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.000465, "decision": "Retain known failure; DOE navigation/report pages retrieved but no authenticated numerical independently identified K obtained by this bounded extraction"},
+    {"entity": "China", "technology": "solar_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.0004467, "decision": "Retain known failure, no unchanged rerun; no geographically compatible new saturation evidence"},
+    {"entity": "China", "technology": "wind_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.000477, "decision": "Retain known failure, no unchanged rerun; no geographically compatible new saturation evidence"},
+    {"entity": "India", "technology": "solar_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.00044707, "decision": "Retain known failure, no unchanged rerun; no geographically compatible new saturation evidence"},
+    {"entity": "India", "technology": "wind_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.000454, "decision": "Retain known failure, no unchanged rerun; no geographically compatible new saturation evidence"},
+    {"entity": "European Union (27)", "technology": "solar_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": true, "maxReleaseRevisionPP": 0.0004791, "decision": "Retain prior point-metric winner only, not scientific acceptance; independent regionalK/source/structural/dependence qualification missing"},
+    {"entity": "European Union (27)", "technology": "wind_share_elec", "training": 9, "heldout": 6, "retainedStrictBaselinePass": false, "maxReleaseRevisionPP": 0.000473, "decision": "Retain known failure, no unchanged rerun; no geographically compatible new saturation evidence"}
+  ],
+  "newPrimaryReceipts": [
+    {
+      "id": "solar-futures",
+      "url": "https://www.energy.gov/eere/solar/solar-futures-study",
+      "finalUrl": "https://www.energy.gov/cmei/systems/solar-futures-study",
+      "requestedAt": "2026-11-12T05:42:57.252Z",
+      "receiptAt": "2026-11-12T05:42:58.149Z",
+      "status": 404,
+      "bytes": 106729,
+      "sha256": "663464bde0d5e66363f85da2d14eff751ed072c503f1a22cde326bb566e4faff",
+      "publicationDate": null,
+      "sourceVersion": "404response, not Solar Futures study edition",
+      "unit": null,
+      "decision": "No study content admitted; no retry"
+    },
+    {
+      "id": "wind-vision",
+      "url": "https://www.energy.gov/eere/wind/wind-vision",
+      "finalUrl": "https://www.energy.gov/cmei/systems/wind-vision-1",
+      "requestedAt": "2026-11-12T05:42:58.150Z",
+      "receiptAt": "2026-11-12T05:42:58.373Z",
+      "status": 200,
+      "bytes": 134655,
+      "sha256": "8247d98cabe754b8058469f9e6b3976eb5dac032001378d0e2cd935526d58876",
+      "publicationDate": null,
+      "sourceVersion": "Mutable DOE Wind Vision page at receipt, not authenticated report vintage",
+      "locator": "Wind Vision full report link",
+      "unit": null,
+      "decision": "Direct primary report link found; initial snippet extraction hit navigation, no numerical K accepted"
+    },
+    {
+      "id": "fslr-quarterly",
+      "url": "https://investor.firstsolar.com/financials/quarterly-results/default.aspx",
+      "requestedAt": "2026-11-12T05:42:58.373Z",
+      "receiptAt": "2026-11-12T05:42:58.507Z",
+      "status": 403,
+      "bytes": 5760,
+      "sha256": "2ee2445460eb72fdb861378f1e65b9463aaa192ea67c56f8e662aae90323115a",
+      "publicationDate": null,
+      "sourceVersion": "Denied response, not issuer financial document",
+      "unit": null,
+      "decision": "No prepared remarks/new cash/watts/BOM obtained; no bypass"
+    },
+    {
+      "id": "nee-presentations",
+      "url": "https://www.investor.nexteraenergy.com/news-and-events/presentations",
+      "requestedAt": "2026-11-12T05:42:58.507Z",
+      "receiptAt": "2026-11-12T05:42:58.799Z",
+      "status": 404,
+      "bytes": 31168,
+      "sha256": "0fa12b34e12d2aae92363c0627cd2af26ca95d11bdcbc69a9ccb87c703b391e6",
+      "publicationDate": null,
+      "sourceVersion": "404response, not issuer presentation",
+      "unit": null,
+      "decision": "No new gross recipient, legal priority, commissioning or marginal return evidence obtained"
+    },
+    {
+      "id": "xom-ccs",
+      "url": "https://lowcarbon.exxonmobil.com/what-we-do/carbon-capture-and-storage",
+      "requestedAt": "2026-11-12T05:42:58.799Z",
+      "receiptAt": "2026-11-12T05:43:08.452Z",
+      "status": 404,
+      "bytes": 61879,
+      "sha256": "286c4ecfb31fae114a312a777f0a7b0c0aa2c1ed51b1385f86183a77caebf4af",
+      "publicationDate": null,
+      "sourceVersion": "Redirected official404response, not a CCS contract",
+      "unit": null,
+      "decision": "No signed contract, fee, novation, billing, opex or funded award admitted; no old Williams/XPLR retry"
+    },
+    {
+      "id": "wind-vision-full-report",
+      "url": "https://www.energy.gov/cmei/systems/wind-vision",
+      "requestedAt": "2026-11-12T05:44:27.290Z",
+      "receiptAt": "2026-11-12T05:44:27.407Z",
+      "status": 200,
+      "bytes": 173422,
+      "sha256": "e02fe6f1fe22d4e71ad0fa2f27bf62fccd757f1aa694fd99811c8e9e1621aea0",
+      "publicationDate": null,
+      "sourceVersion": "Mutable official linked report page; no PDF edition authenticated",
+      "unit": null,
+      "decision": "No numerical independently identified saturation field extracted. Report scenarios/targets, if later extracted, must not be reclassified as empirical ceiling."
+    },
+    {
+      "id": "irs-45x",
+      "url": "https://www.irs.gov/credits-deductions/advanced-manufacturing-production-credit",
+      "requestedAt": "2026-11-12T05:44:27.408Z",
+      "receiptAt": "2026-11-12T05:44:27.621Z",
+      "status": 200,
+      "bytes": 104259,
+      "sha256": "2d80fef64f01b1011f4c078ac79976c8fc3f016cb1bcf612d9c09d4b22f40763",
+      "publicationDate": null,
+      "sourceVersion": "Mutable IRS programme guidance page, version identified by response hash; complete current-law amendment freshness not authenticated",
+      "locator": "Who can claim the credit; eligible component production and sale requirements",
+      "unit": "legal eligibility conditions, not USD/watts",
+      "facts": "IRS describes credit based on eligible components produced in the US/possessions and sold within the taxable year, with unrelated-party/integration/election sale conditions.",
+      "decision": "New primary programme-level gating evidence, not FSLR component-specific qualification, current BOM, actual credit cash receipt or US eligible-watt count. Does not supersede retained enacted-law/Notice2026-15 evidence."
+    },
+    {
+      "id": "irs-45q",
+      "url": "https://www.irs.gov/credits-deductions/credit-for-carbon-oxide-sequestration",
+      "requestedAt": "2026-11-12T05:44:27.621Z",
+      "receiptAt": "2026-11-12T05:44:27.700Z",
+      "status": 200,
+      "bytes": 101392,
+      "sha256": "eb001abea8d3872ce87a82c5e9651c1b7ad8702be2547eb7cc62659ae8ebfb13",
+      "publicationDate": null,
+      "sourceVersion": "Mutable IRS programme guidance page, response-hash pinned, not a specific project financing agreement",
+      "locator": "Direct payment or transfer; How to claim the credit",
+      "unit": "legal claim/payment route, not USD or USD/tCO2 fee",
+      "facts": "IRS describes possible direct-payment/transfer route and Form8933 claim requirement for the carbon-oxide sequestration credit.",
+      "decision": "Potential statutory monetization route only; not XOM eligibility, executed customer tariff, actual billing, opex, novation, funding commitment or received cash."
+    }
+  ],
+  "acquisitionSummary": {
+    "requests": 8,
+    "maximum": 8,
+    "statusCounts": {"200": 4, "403": 1, "404": 3},
+    "retries": 0,
+    "purchasesCredentialsResourcesLicenceBypasses": 0,
+    "retention": "Hashes over full raw HTTP response bytes and limited attributed text/link excerpts only. Full HTML/report bodies discarded, no private rows published.",
+    "parserVersions": "First five receipts used whole-page extraction, which exposed navigation noise on Wind Vision. Later three used article/main selection and word-boundary matching. Raw transport hashes remain independent of text parser. No former source re-requested after parser correction.",
+    "rights": "Public official primary-source access does not establish all embedded-content redistribution rights. No third-party images or complete reports copied.",
+    "noveltyBoundary": "Targeted latest retained inventories read first; these exact route attempts and IRS page receipts are new to this increment, not a claim no one has used those facts before."
+  },
+  "scientificOutcome": {
+    "newFittedCandidates": 0,
+    "newHeldoutExecutions": 0,
+    "newSaturationPriorsQualified": 0,
+    "centralPromotions": 0,
+    "originalCriterionComplete": false,
+    "reason": "All ten actual full windows exist, but changing their OWID schema/rounding is not a new study and cannot rescue known failures. No independent regional saturation prior has qualified. No arbitrary K, MW/shipments ceiling, scenario ceiling, shortened window or synthetic efficacy substituted.",
+    "newImplementation": "Source-qualified future point diagnostic evaluate_qualified implements log(y/(K-y)) training transform, K*expit prediction and original six-year MAE against both original baselines. It is not called by the source audit and was never executed on actual or synthetic efficacy data. Requires a separate pre-fit frozen source/K/window receipt. Central eligibility remains false."
+  },
+  "issuerOutcome": {
+    "FSLR": "Only additional programme-level eligibility source obtained. Cash receipt, eligible US watts and component BOM remain missing; current-law freshness of mutable IRS summary is not established.",
+    "NEE": "New attempted primary route404; no materially new issuer-specific gross recipient/priority/commissioning/marginal-return fields obtained. No repetition of old XPLR path or substitution of consolidated return.",
+    "XOM": "Only statutory potential credit-monetization route obtained. Executed fee, novation, billing, opex and funding fields remain missing. No customer tonnes converted to revenue.",
+    "boundary": "These bounded attempts did not materially close the issuer-specific financial fields. Do not count source access/summary facts as finished issuer models or scientific acceptance."
+  },
+  "gaps": [
+    "Independently identified region/technology-specific generation-share saturation evidence, with authentic version/date/rights and no heldout tuning, remains missing for all ten candidates.",
+    "Legacy OWID snapshot original publisher commit/publication vintage and independent underlying-series rights remain unresolved. Replacement publisher dates must not be imputed to legacy bytes.",
+    "Retained paired bootstrap is parameter uncertainty only; structural/source/process uncertainty and cross-region dependence remain separate limitations.",
+    "FSLR cash/watts/BOM/current-law application, NEE gross recipient/priority/commissioning/marginal-return and XOM executed fee/novation/billing/opex/funding remain explicit issuer-specific evidence gaps.",
+    "No UI/app changes; parent handles application testing. No original ledger/approval or criterion-completion mutation."
+  ]
+}

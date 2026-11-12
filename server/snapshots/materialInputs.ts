@@ -15,7 +15,7 @@ function sourceBundle() {
     for(const entry of readdirSync(directory,{ withFileTypes:true }).sort((a,b)=>a.name.localeCompare(b.name))) {
       const path = join(directory,entry.name);
       if(entry.isDirectory()) walk(path);
-      else if(/\.(ts|json|csv)$/.test(path)) files[path]=readFileSync(path,"utf8");
+      else if(/\.(tsx?|json|csv)$/.test(path)) files[path]=readFileSync(path,"utf8");
     }
   }
   // Explicit allowlist: never env files, uploads, credentials or private fixtures.
@@ -27,6 +27,21 @@ function sourceBundle() {
   return sourceArchive;
 }
 export function currentSourceArchiveId() { return sourceBundle().id; }
+/** Read-only access to the existing source/config archive representation.
+ * Static public references identify checked-in bytes, not database persistence
+ * or an executed model. Never call the persistence helpers from their GETs. */
+export function readCalculationSourceArtifact() {
+  return structuredClone(sourceBundle());
+}
+/** Reuse the existing private immutable source archive; no new storage/schema. */
+export async function captureCalculationSource() {
+  const source = sourceBundle();
+  await save("calculation-source", source.payload);
+  return source.id;
+}
+export async function saveReadonlyDiffMaterial(payload: unknown) {
+  return save("readonly-diff-material", payload);
+}
 async function save(kind:string,payload:unknown) {
   const id=contentHash(payload);
   await db.transaction(async tx=>{
@@ -59,7 +74,7 @@ export async function captureMaterialInputs(input: {
     nonConsumed:["provider quotes","unapproved financial proposals","news","unselected regional scenario"] };
   return { id:await save("material-inputs",payload),sourceId:source.id };
 }
-export async function loadMaterialArchive(id:string,kind:"material-inputs"|"calculation-source") {
+export async function loadMaterialArchive(id:string,kind:"material-inputs"|"calculation-source"|"readonly-diff-material") {
   if(!/^[a-f0-9]{64}$/.test(id) || !await snapshotsAvailable()) throw new Error("Material archive unavailable");
   const rows=await db.execute(sql`SELECT s.chunk_count,c.ordinal,c.payload FROM cv_analysis_snapshots s
     JOIN cv_analysis_chunks c ON c.snapshot_id=s.id WHERE s.id=${id} AND s.kind=${kind}`);

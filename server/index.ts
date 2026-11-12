@@ -12,6 +12,7 @@ import { registerWorkbookMoneyAuditApi } from "./workbookMoneyAuditApi";
 import { registerQualifiedMissingnessApi } from "./qualifiedMissingnessApi";
 import { registerCarbonPassThroughRoutes } from "./carbonPassThroughApi";
 import { registerReadonlyDiffApi } from "./readonlyDiffApi";
+import { retainReadonlyDiffProducer } from "./snapshots/readonlyDiffProducer";
 import { readonlyDiffRepository } from "./snapshots/readonlyDiffStore";
 import { registerMethodologyApi } from "./methodologyApi";
 import { downloadManifestMiddleware } from "./downloadManifestMiddleware";
@@ -94,7 +95,7 @@ app.use((req, res, next) => {
   registerWorkbookMoneyAuditApi(app);
   registerQualifiedMissingnessApi(app);
   registerCarbonPassThroughRoutes(app);
-  registerReadonlyDiffApi(app, readonlyDiffRepository);
+  registerReadonlyDiffApi(app, readonlyDiffRepository, retainReadonlyDiffProducer);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {

@@ -14,7 +14,7 @@ test("S16-007 full public source and tests pass without Git history or private/g
         !/(?:^|\/)(?:\.git|node_modules|__pycache__)(?:\/|$)/.test(path) });
     }
     mkdirSync(join(root, "script"), { recursive: true });
-    for (const file of ["package.json", "tsconfig.json", "script/methodology-download.test.ts", "script/methodology-download-census.ts",
+    for (const file of ["package.json", "package-lock.json", "tsconfig.json", "script/methodology-download.test.ts", "script/methodology-download-census.ts",
       "script/download-selection-race.test.ts", "script/producer-download.test.ts", "script/prospective-result-export.test.ts"])
       cpSync(file, join(root, file));
     for (const file of ["script/derived-consumer.test.ts", "script/prospective-result-export-lifecycle.test.ts",

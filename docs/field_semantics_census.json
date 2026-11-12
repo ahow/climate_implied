@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 2370,
+  "definitions": 2450,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -1336,14 +1336,14 @@
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "rows": "() => versionDiffExportRows(data)",
       "bindings": "{{\n        From: { id: \"readonlyDiff.from\", transform: \"Identity: selected before source SHA-256\" },\n        To: { id: \"readonlyDiff.to\", transform: \"Identity: selected after source SHA-256\" },\n        Kind: { id: \"readonlyDiff.kind\", transform: \"Identity: validated archive kind\" },\n        Domain: { id: \"readonlyDiff.domain\", transform: \"Identity: exact compared cell domain\" },\n        Field: { id: \"readonlyDiff.field\", transform: \"Identity: exact grouped source field\" },\n        Added: { id: \"readonlyDiff.added\", transform: \"Identity integer count; zero retained\" },\n        Removed: { id: \"readonlyDiff.removed\", transform: \"Identity integer count; zero retained\" },\n        Changed: { id: \"readonlyDiff.changed\", transform: \"Identity integer count; zero retained\" },\n        \"Before content SHA-256\": { id: \"readonlyDiff.beforeHash\", transform: \"Identity: sorted before-group cell content hash\" },\n        \"After content SHA-256\": { id: \"readonlyDiff.afterHash\", transform: \"Identity: sorted after-group cell content hash\" },\n        \"Approval state\": { id: \"readonlyDiff.approvalState\", transform: \"Identity: retained archive review state, no new approval\" },\n        \"History basis\": { id: \"readonlyDiff.historicalBasis\", transform: \"Identity: revised-history caveat, not original vintage\" },\n      }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "rows": "() => affectedAnalysisExportRows(data)",
       "bindings": "{{\n        From: { id: \"readonlyDiff.from\", transform: \"Identity: selected before source SHA-256\" },\n        To: { id: \"readonlyDiff.to\", transform: \"Identity: selected after source SHA-256\" },\n        \"Result ID\": { id: \"readonlyDiff.resultId\", transform: \"Identity: exact referencing archived result\" },\n        \"Manifest ID\": { id: \"readonlyDiff.manifestId\", transform: \"Identity: retained result manifest\" },\n        Scenario: { id: \"readonlyDiff.scenario\", transform: \"Identity: recorded scenario label\" },\n        \"Recorded at\": { id: \"readonlyDiff.recordedAt\", transform: \"Identity ISO datetime; not source publication\" },\n        Relation: { id: \"readonlyDiff.relation\", transform: \"Identity: exact before/after/both reference enum\" },\n        \"Historical type code\": { id: \"readonlyDiff.historicalTypeCode\", transform: \"requireHistoricalType exact validated code; no fallback\" },\n        \"Historical type label\": { id: \"readonlyDiff.historicalTypeLabel\", transform: \"requireHistoricalType exact matching S09-001 label\" },\n        \"Result scan scope\": { id: \"readonlyDiff.affectedMeaning\", transform: \"Identity: paginated exact-reference scan caveat\" },\n      }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -1453,7 +1453,7 @@
     },
     {
       "source": "server/downloadManifestMiddleware.ts",
-      "line": 68,
+      "line": 73,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Download manifest\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -7181,199 +7181,199 @@
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 73,
+      "line": 74,
       "expression": "Object.entries(HISTORICAL_TYPES).map(([code, label]) => <li key={code}>{label} — {code}</li>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 73,
+      "line": 74,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 73,
+      "line": 74,
       "expression": "code",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 94,
+      "line": 95,
       "expression": "unchanged && isLoading && <p role=\"status\">Reading retained versions…</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 95,
+      "line": 96,
       "expression": "unchanged && error && <p role=\"alert\">Version diff unavailable: {error.message}. No values are substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 95,
+      "line": 96,
       "expression": "error.message",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 96,
+      "line": 97,
       "expression": "unchanged && !isLoading && !error && !data &&\n      <p role=\"status\">No retained version diff response was returned. Counts, analysis references and downloads are unavailable.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 98,
+      "line": 99,
       "expression": "identityMismatch && <p role=\"alert\">Returned version identities do not match the current selection. Diff and exports withheld; no source substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 99,
+      "line": 100,
       "expression": "data && !identityMismatch && <VersionDiffResult data={data} onNext={() => setSelection({ from, to, kind, after: data.nextCursor! })} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 106,
+      "line": 107,
       "expression": "data.from",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 106,
+      "line": 107,
       "expression": "data.to",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 107,
+      "line": 108,
       "expression": "data.approvalState",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 107,
+      "line": 108,
       "expression": "data.historicalBasis",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 107,
+      "line": 108,
       "expression": "data.disclosure",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 110,
+      "line": 111,
       "expression": "data.fields.map(f => <tr key={`${f.domain}:${f.field}`}>\n        <td>{f.domain} / {f.field}</td><td className=\"text-center\">{f.added}</td><td className=\"text-center\">{f.removed}</td><td className=\"text-center\">{f.changed}</td>\n      </tr>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 111,
+      "line": 112,
       "expression": "f.domain",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 111,
+      "line": 112,
       "expression": "f.field",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 111,
+      "line": 112,
       "expression": "f.added",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 111,
+      "line": 112,
       "expression": "f.removed",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 111,
+      "line": 112,
       "expression": "f.changed",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 113,
+      "line": 114,
       "expression": "!data.fields.length && <p>No comparable cells in these retained versions.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 130,
+      "line": 132,
       "expression": "data.affectedMeaning",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 130,
+      "line": 132,
       "expression": "data.scannedResults",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 131,
+      "line": 133,
       "expression": "!data.affectedAnalyses.length && <p className=\"text-sm\">No exact references found on this page; this does not establish absence elsewhere.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 132,
+      "line": 134,
       "expression": "data.affectedAnalyses.map(a => <div key={a.resultId} className=\"text-xs border rounded-md p-2 break-all\">\n      <p>{a.scenario} · {a.relation}</p><p>Result: {a.resultId}</p><p>Manifest: {a.manifestId}</p>\n      <p>Recorded: {a.recordedAt} · {a.historicalTypeLabel} ({a.historicalTypeCode})</p>\n    </div>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 133,
+      "line": 135,
       "expression": "a.scenario",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 133,
+      "line": 135,
       "expression": "a.relation",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 133,
+      "line": 135,
       "expression": "a.resultId",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 133,
+      "line": 135,
       "expression": "a.manifestId",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 134,
+      "line": 136,
       "expression": "a.recordedAt",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 134,
+      "line": 136,
       "expression": "a.historicalTypeLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 134,
+      "line": 136,
       "expression": "a.historicalTypeCode",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 149,
+      "line": 152,
       "expression": "data.nextCursor && <Button variant=\"outline\" onClick={onNext}>Next affected-analysis page</Button>",
       "explicitSemanticAncestor": false
     },
@@ -9850,133 +9850,133 @@
       "transform": "Identity; matched sample mean or pooled fallback"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].From",
       "id": "readonlyDiff.from",
       "transform": "Identity: selected before source SHA-256"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].To",
       "id": "readonlyDiff.to",
       "transform": "Identity: selected after source SHA-256"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Kind",
       "id": "readonlyDiff.kind",
       "transform": "Identity: validated archive kind"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Domain",
       "id": "readonlyDiff.domain",
       "transform": "Identity: exact compared cell domain"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Field",
       "id": "readonlyDiff.field",
       "transform": "Identity: exact grouped source field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Added",
       "id": "readonlyDiff.added",
       "transform": "Identity integer count; zero retained"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Removed",
       "id": "readonlyDiff.removed",
       "transform": "Identity integer count; zero retained"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Changed",
       "id": "readonlyDiff.changed",
       "transform": "Identity integer count; zero retained"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Before content SHA-256",
       "id": "readonlyDiff.beforeHash",
       "transform": "Identity: sorted before-group cell content hash"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].After content SHA-256",
       "id": "readonlyDiff.afterHash",
       "transform": "Identity: sorted after-group cell content hash"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Approval state",
       "id": "readonlyDiff.approvalState",
       "transform": "Identity: retained archive review state, no new approval"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].History basis",
       "id": "readonlyDiff.historicalBasis",
       "transform": "Identity: revised-history caveat, not original vintage"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].From",
       "id": "readonlyDiff.from",
       "transform": "Identity: selected before source SHA-256"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].To",
       "id": "readonlyDiff.to",
       "transform": "Identity: selected after source SHA-256"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Result ID",
       "id": "readonlyDiff.resultId",
       "transform": "Identity: exact referencing archived result"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Manifest ID",
       "id": "readonlyDiff.manifestId",
       "transform": "Identity: retained result manifest"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Scenario",
       "id": "readonlyDiff.scenario",
       "transform": "Identity: recorded scenario label"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Recorded at",
       "id": "readonlyDiff.recordedAt",
       "transform": "Identity ISO datetime; not source publication"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Relation",
       "id": "readonlyDiff.relation",
       "transform": "Identity: exact before/after/both reference enum"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Historical type code",
       "id": "readonlyDiff.historicalTypeCode",
       "transform": "requireHistoricalType exact validated code; no fallback"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Historical type label",
       "id": "readonlyDiff.historicalTypeLabel",
       "transform": "requireHistoricalType exact matching S09-001 label"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Result scan scope",
       "id": "readonlyDiff.affectedMeaning",
       "transform": "Identity: paginated exact-reference scan caveat"
@@ -12641,7 +12641,7 @@
     "boundary": "Supplemental provenance metadata only. Does not alter original public denominator, close opaque result slots, certify transformed chart rows, attest a running executable or establish scientific acceptance. Exact path and resolved server input-context checks apply to current producer responses; stored exports retain their own allowlisted scenario."
   },
   "derivedConsumerMetadata": {
-    "definitions": 170,
+    "definitions": 250,
     "fields": [
       {
         "id": "derivedConsumer.version",
@@ -12690,12 +12690,12 @@
       },
       {
         "id": "derivedConsumer.derivation.version",
-        "formula": "valuation-pe-consumer-1 or signal-chained-consumer-1",
+        "formula": "valuation-pe-consumer-1, signal-chained-consumer-1 or readonly-diff-consumer-1",
         "unit": "contract label"
       },
       {
         "id": "derivedConsumer.derivation.key",
-        "formula": "carbon, sdg, ambition, signal-comparison, group-gap, signal-cumulative, signal-active, gap-cumulative or gap-active",
+        "formula": "carbon, sdg, ambition, signal-comparison, group-gap, signal-cumulative, signal-active, gap-cumulative, gap-active, version-diff or affected-analyses",
         "unit": "enum"
       },
       {
@@ -13234,6 +13234,406 @@
         "unit": "source field path"
       },
       {
+        "id": "derivedConsumer.derivation.fields.From",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.From",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.From",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.From",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.To",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.To",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.To",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.To",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Kind",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Kind",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Kind",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Kind",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Domain",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Domain",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Domain",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Domain",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Field",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Field",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Field",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Field",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Added",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Added",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Added",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "integer source-cell count"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Added",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "integer source-cell count"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Removed",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Removed",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Removed",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "integer source-cell count"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Removed",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "integer source-cell count"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Changed",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Changed",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Changed",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "integer source-cell count"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Changed",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "integer source-cell count"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Before content SHA-256",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Before content SHA-256",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Before content SHA-256",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Before content SHA-256",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.After content SHA-256",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.After content SHA-256",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.After content SHA-256",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.After content SHA-256",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Approval state",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Approval state",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Approval state",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Approval state",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.History basis",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.History basis",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.History basis",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.History basis",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Result ID",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Result ID",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Result ID",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Result ID",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Manifest ID",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Manifest ID",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Manifest ID",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Manifest ID",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "SHA-256"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Scenario",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Scenario",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Scenario",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Scenario",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Recorded at",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Recorded at",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Recorded at",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "UTC recorded timestamp; not publication time"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Recorded at",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "UTC recorded timestamp; not publication time"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Relation",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Relation",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Relation",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Relation",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Historical type code",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Historical type code",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Historical type code",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Historical type code",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Historical type label",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Historical type label",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Historical type label",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Historical type label",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.derivation.fields.Result scan scope",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.chartFields.Result scan scope",
+        "formula": "Closed readonly-diff-consumer-1 map; source and scanned result values never published",
+        "unit": "source report field path"
+      },
+      {
+        "id": "derivedConsumer.derivation.units.Result scan scope",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
+        "id": "derivedConsumer.sheets[].units.Result scan scope",
+        "formula": "Native source-cell count or exact retained report identifier/text; no model or investment inference",
+        "unit": "text"
+      },
+      {
         "id": "derivedConsumer.derivation.fields.Date",
         "formula": "Native date",
         "unit": "source field name"
@@ -13420,12 +13820,12 @@
       },
       {
         "id": "derivedConsumer.parent.orderedSnapshotHashes[]",
-        "formula": "Exact unchanged consumed server parent proof: manifest.snapshotHashes retained in order; current response additionally matches resolved server snapshot/overlay/indicator headers",
+        "formula": "Exact unchanged consumed server parent proof: manifest.snapshotHashes retained in order; valuation additionally matches resolved server context; readonly matches both exact verified source archive IDs",
         "unit": "ordered SHA-256 identities"
       },
       {
         "id": "derivedConsumer.parent.scenario",
-        "formula": "Exact unchanged consumed server parent proof: manifest.scenario; current completed response must match descriptive-valuation plus the actual captured producer route",
+        "formula": "Exact unchanged consumed server parent proof: manifest.scenario; descriptive-valuation actual captured producer route or source-backed:readonly-diff-1 with private retained material and safe report replay",
         "unit": "producer route label"
       },
       {
@@ -13475,12 +13875,12 @@
       },
       {
         "id": "derivedConsumer.parents[].orderedSnapshotHashes[]",
-        "formula": "Exact ordered consumed server parent proof; not current-source substitution: manifest.snapshotHashes retained in order; current response additionally matches resolved server snapshot/overlay/indicator headers",
+        "formula": "Exact ordered consumed server parent proof; not current-source substitution: manifest.snapshotHashes retained in order; valuation additionally matches resolved server context; readonly matches both exact verified source archive IDs",
         "unit": "ordered SHA-256 identities"
       },
       {
         "id": "derivedConsumer.parents[].scenario",
-        "formula": "Exact ordered consumed server parent proof; not current-source substitution: manifest.scenario; current completed response must match descriptive-valuation plus the actual captured producer route",
+        "formula": "Exact ordered consumed server parent proof; not current-source substitution: manifest.scenario; descriptive-valuation actual captured producer route or source-backed:readonly-diff-1 with private retained material and safe report replay",
         "unit": "producer route label"
       },
       {
@@ -54624,7 +55024,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "total": 12,
       "bound": 12,
       "unbound": [],
@@ -54633,7 +55033,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "total": 10,
       "bound": 10,
       "unbound": [],
@@ -65880,179 +66280,179 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Added",
       "type": "number",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].After content SHA-256",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Approval state",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Before content SHA-256",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Changed",
       "type": "number",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Domain",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Field",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].From",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].History basis",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Kind",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].Removed",
       "type": "number",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
       "field": "[].To",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 114,
+      "line": 115,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].From",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Historical type code",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Historical type label",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Manifest ID",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Recorded at",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Relation",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Result ID",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Result scan scope",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].Scenario",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
       "field": "[].To",
       "type": "string",
       "source": "client/src/components/readonly-version-diff.tsx",
-      "line": 136,
+      "line": 138,
       "resolution": "typed-field"
     },
     {
@@ -82966,200 +83366,200 @@
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Added",
         "type": "number",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].After content SHA-256",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Approval state",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Before content SHA-256",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Changed",
         "type": "number",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Domain",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Field",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].From",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].History basis",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Kind",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].Removed",
         "type": "number",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:115",
         "field": "[].To",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 114,
+        "line": 115,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].From",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Historical type code",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Historical type label",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Manifest ID",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Recorded at",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Relation",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Result ID",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Result scan scope",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].Scenario",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:138",
         "field": "[].To",
         "type": "string",
         "source": "client/src/components/readonly-version-diff.tsx",
-        "line": 136,
+        "line": 138,
         "resolution": "typed-field",
         "bound": true
       },

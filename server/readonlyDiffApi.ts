@@ -1,14 +1,17 @@
 import type { Express } from "express";
 import { z } from "zod";
-import { diffQuerySchema, compareReadonlyArchives, type DiffArchive } from "./snapshots/readonlyDiffContract";
-import { unpackAnalysisResult } from "./snapshots/resultContract";
+import { diffQuerySchema, type DiffArchive } from "./snapshots/readonlyDiffContract";
 import { historicalType, revisedHistoryType } from "../shared/historicalTypes";
+import { replayReadonlyDiff, type ReadonlyDiffInputs } from "./snapshots/readonlyDiffProducer";
+import { bindProducerIdentity } from "./producerDownload";
+import type { RetainedProducerIdentity } from "../shared/downloadManifest";
 
 export interface ReadonlyDiffRepository {
   load(id: string, kind: DiffArchive["kind"]): Promise<DiffArchive>;
   results(after?: string): Promise<{ items: { id: string; payload: unknown; recordedAt: string }[]; nextCursor: string | null }>;
 }
-export function registerReadonlyDiffApi(app: Express, repository: ReadonlyDiffRepository) {
+export function registerReadonlyDiffApi(app: Express, repository: ReadonlyDiffRepository,
+  retain?: (input: ReadonlyDiffInputs, result: unknown) => Promise<RetainedProducerIdentity>) {
   // Presentation metadata only: keep stored response bytes/analytical hashes intact.
   // A descriptive valuation archive is never promoted to an archived forecast.
   const revisedPaths = new Set(["/api/cv/summary", "/api/cv/carbon-price", "/api/cv/pe-comparison",
@@ -35,20 +38,10 @@ export function registerReadonlyDiffApi(app: Express, repository: ReadonlyDiffRe
       const [before, next, page] = await Promise.all([
         repository.load(query.from, query.kind), repository.load(query.to, query.kind), repository.results(after),
       ]);
-      const diff = compareReadonlyArchives(query, before, next);
-      const affectedAnalyses = page.items.flatMap(item => {
-        const result = unpackAnalysisResult(item.id, item.payload);
-        const references = [...result.manifest.snapshotHashes, result.manifest.settings.materialInputsId];
-        if (!references.includes(query.from) && !references.includes(query.to)) return [];
-        return [{ resultId: item.id, manifestId: result.manifest.id,
-          scenario: result.manifest.scenario, recordedAt: item.recordedAt,
-          ...revisedHistoryType,
-          relation: references.includes(query.from) && references.includes(query.to) ? "consumed-both-versions" :
-            references.includes(query.from) ? "consumed-before-version" : "consumed-after-version" }];
-      });
-      return res.set("Cache-Control", "no-store").json({ ...diff, affectedAnalyses,
-        scannedResults: page.items.length, nextCursor: page.nextCursor,
-        affectedMeaning: "Exact archived dependency references on this page, not recomputed impacts or all possible consumers" });
+      const input = { query: { ...query, ...(after ? { after } : {}) }, before, next, page };
+      const report = replayReadonlyDiff(input);
+      if (retain) bindProducerIdentity(res, await retain(input, report));
+      return res.set("Cache-Control", "no-store").json(report);
     } catch {
       return res.status(422).json({ error: "Requested version diff unavailable: missing, corrupt, unsupported-version or mismatched archive; no current fallback" });
     }

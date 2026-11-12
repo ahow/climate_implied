@@ -8,6 +8,9 @@ import { loadMaterialArchive } from "./materialInputs";
 import { resolveSnapshot, loadSnapshot } from "./store";
 import { loadOverlay } from "./overlays";
 import { revisedHistoryType } from "../../shared/historicalTypes";
+import { READONLY_PRODUCER_SCENARIO } from "../../shared/readonlyConsumer";
+import { verifyReadonlyDiffMaterial } from "./readonlyDiffProducer";
+import { boundedResultGraphReader } from "./resultVerificationGraph";
 
 export async function saveAnalysisResult(manifest: ReturnType<typeof createManifest>, result: unknown) {
   const packed = packAnalysisResult(manifest, result);
@@ -25,6 +28,9 @@ export async function saveAnalysisResult(manifest: ReturnType<typeof createManif
   return packed.id;
 }
 export async function loadAnalysisResult(id: string) {
+  return boundedResultGraphReader(loadAnalysisResultNode)(id);
+}
+async function loadAnalysisResultNode(id: string, loadParent: (id: string) => Promise<any>) {
   if (!/^[a-f0-9]{64}$/.test(id)) throw new Error("Invalid analysis result identity");
   if (!await snapshotsAvailable()) throw new Error("Immutable analysis archive is unavailable");
   const [header] = await db.select().from(cvAnalysisSnapshots).where(and(
@@ -35,7 +41,10 @@ export async function loadAnalysisResult(id: string) {
   if (chunks.length !== 1 || chunks[0].ordinal !== 0) throw new Error("Incomplete analysis result");
   const payload=unpackAnalysisResult(id, chunks[0].payload);
   const materialId=payload.manifest.settings.materialInputsId;
-  if(materialId !== undefined) {
+  if (payload.manifest.scenario === READONLY_PRODUCER_SCENARIO) {
+    if (typeof materialId !== "string") throw new Error("Readonly diff material unavailable");
+    await verifyReadonlyDiffMaterial(materialId, payload.manifest, payload.result, loadParent);
+  } else if(materialId !== undefined) {
     if(typeof materialId!=="string") throw new Error("Invalid material identity");
     const material=await loadMaterialArchive(materialId,"material-inputs");
     if(material.sourceArchive!==payload.manifest.codeVersion ||
