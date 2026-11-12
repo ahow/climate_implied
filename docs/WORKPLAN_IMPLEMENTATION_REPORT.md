@@ -1,7 +1,7 @@
 ## Latest clean/covered release observation
 
 {
-  "observed_at": "2026-11-12T18:24:39.776530+00:00",
+  "observed_at": "2026-11-12T18:26:16.640534+00:00",
   "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
   "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
   "ci": {
@@ -53,7 +53,18 @@
     "shared/economicBridgeSchema.ts",
     "shared/serverDownloadRegistry.ts",
     "script/record-clean-covered-state.py"
-  ]
+  ],
+  "affected_live_readback": {
+    "verifiedAt": "2026-11-12T18:25:27.657Z",
+    "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+    "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+    "jsonExact": true,
+    "xlsxExact": true,
+    "literalRows": 1042,
+    "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+    "scientificAcceptance": false
+  },
+  "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
 }
 
 63verified/235partial/2provisioning-blocked; original1000/1001;0/3qualified cases. Complete workplan and efficacy are NOT complete.

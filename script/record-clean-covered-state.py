@@ -17,6 +17,12 @@ receipt={"observed_at":datetime.now(timezone.utc).isoformat(),
  "boundary":"Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
  "private_source_assertions":16}
 receipt["changed_paths"]=subprocess.check_output(["git","diff-tree","--no-commit-id","--name-only","-r",receipt["workspace_implementation"]],cwd=root,text=True).splitlines()+["script/record-clean-covered-state.py"]
+readback=folder/"live-readback.json"
+if readback.exists():
+ proof=json.loads(readback.read_text())
+ assert proof["sourceCommit"]==sha and proof["jsonExact"] and proof["xlsxExact"]
+ receipt["affected_live_readback"]=proof
+ receipt["affected_live_readback_sha256"]=hashlib.sha256(readback.read_bytes()).hexdigest()
 (folder/"state-receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
 p=root/"docs/workplan_completion_ledger.json";x=json.loads(p.read_text())
 x["clean_covered_release"]=receipt

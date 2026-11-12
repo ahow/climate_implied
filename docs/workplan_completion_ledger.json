@@ -4684,7 +4684,7 @@
         "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
       ],
       "release": {
-        "observed_at": "2026-11-12T18:24:39.776530+00:00",
+        "observed_at": "2026-11-12T18:26:16.640534+00:00",
         "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
         "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
         "ci": {
@@ -4736,7 +4736,18 @@
           "shared/economicBridgeSchema.ts",
           "shared/serverDownloadRegistry.ts",
           "script/record-clean-covered-state.py"
-        ]
+        ],
+        "affected_live_readback": {
+          "verifiedAt": "2026-11-12T18:25:27.657Z",
+          "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+          "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+          "jsonExact": true,
+          "xlsxExact": true,
+          "literalRows": 1042,
+          "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+          "scientificAcceptance": false
+        },
+        "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
       },
       "focused": {
         "date": "2026-11-12",
@@ -4895,7 +4906,7 @@
     "ci_steps": "Fresh checkout/Node22/npm ci/locked Python/public validation/promote succeeded; public suite totals not inspected separately.",
     "railway_deployment": null,
     "railway_status": "SHA/health verified; deployment UUID unavailable",
-    "verified_at": "2026-11-12T18:24:39.776530+00:00",
+    "verified_at": "2026-11-12T18:26:16.640534+00:00",
     "verified_base": "https://dashboard-production-4d39.up.railway.app",
     "build_info_source_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
     "health": {
@@ -4908,7 +4919,7 @@
     "documentation_boundary": "Prior dc2d702c economic implementation;17e67cc6 subsequently observed docs/runtime sync. New candidate and measured runtime are distinct.",
     "scope": "Clean/covered code verified live; no issuer, data or scientific promotion",
     "current_candidate": {
-      "observed_at": "2026-11-12T18:24:39.776530+00:00",
+      "observed_at": "2026-11-12T18:26:16.640534+00:00",
       "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
       "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
       "ci": {
@@ -4960,7 +4971,18 @@
         "shared/economicBridgeSchema.ts",
         "shared/serverDownloadRegistry.ts",
         "script/record-clean-covered-state.py"
-      ]
+      ],
+      "affected_live_readback": {
+        "verifiedAt": "2026-11-12T18:25:27.657Z",
+        "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+        "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+        "jsonExact": true,
+        "xlsxExact": true,
+        "literalRows": 1042,
+        "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+        "scientificAcceptance": false
+      },
+      "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
     },
     "ci_scope": "Current candidate validation/promotion; runtime identity independently recorded"
   },
@@ -154356,7 +154378,7 @@
             }
           ],
           "revisions": {
-            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "observed_at": "2026-11-12T18:26:16.640534+00:00",
             "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
             "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
             "ci": {
@@ -154408,7 +154430,18 @@
               "shared/economicBridgeSchema.ts",
               "shared/serverDownloadRegistry.ts",
               "script/record-clean-covered-state.py"
-            ]
+            ],
+            "affected_live_readback": {
+              "verifiedAt": "2026-11-12T18:25:27.657Z",
+              "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+              "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+              "jsonExact": true,
+              "xlsxExact": true,
+              "literalRows": 1042,
+              "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+              "scientificAcceptance": false
+            },
+            "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
           },
           "gaps": [
             "Deployment-to-cash economics and a defensible price inversion are not identified."
@@ -158278,7 +158311,7 @@
             }
           ],
           "revisions": {
-            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "observed_at": "2026-11-12T18:26:16.640534+00:00",
             "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
             "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
             "ci": {
@@ -158330,7 +158363,18 @@
               "shared/economicBridgeSchema.ts",
               "shared/serverDownloadRegistry.ts",
               "script/record-clean-covered-state.py"
-            ]
+            ],
+            "affected_live_readback": {
+              "verifiedAt": "2026-11-12T18:25:27.657Z",
+              "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+              "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+              "jsonExact": true,
+              "xlsxExact": true,
+              "literalRows": 1042,
+              "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+              "scientificAcceptance": false
+            },
+            "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
           },
           "gaps": [
             "Mapped Tier1 segment scenarios/four Stage7 metrics and a justified optional global expansion model are not implemented."
@@ -159984,7 +160028,7 @@
             }
           ],
           "revisions": {
-            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "observed_at": "2026-11-12T18:26:16.640534+00:00",
             "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
             "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
             "ci": {
@@ -160036,7 +160080,18 @@
               "shared/economicBridgeSchema.ts",
               "shared/serverDownloadRegistry.ts",
               "script/record-clean-covered-state.py"
-            ]
+            ],
+            "affected_live_readback": {
+              "verifiedAt": "2026-11-12T18:25:27.657Z",
+              "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+              "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+              "jsonExact": true,
+              "xlsxExact": true,
+              "literalRows": 1042,
+              "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+              "scientificAcceptance": false
+            },
+            "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
           },
           "gaps": [
             "No complete declared Tier1 scenario/assumption manifest and all-set range report."
@@ -160558,7 +160613,7 @@
             }
           ],
           "revisions": {
-            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "observed_at": "2026-11-12T18:26:16.640534+00:00",
             "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
             "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
             "ci": {
@@ -160610,7 +160665,18 @@
               "shared/economicBridgeSchema.ts",
               "shared/serverDownloadRegistry.ts",
               "script/record-clean-covered-state.py"
-            ]
+            ],
+            "affected_live_readback": {
+              "verifiedAt": "2026-11-12T18:25:27.657Z",
+              "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+              "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+              "jsonExact": true,
+              "xlsxExact": true,
+              "literalRows": 1042,
+              "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+              "scientificAcceptance": false
+            },
+            "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
           },
           "gaps": [
             "Retained Tier1-specific lineage test from valuation through physical activity/intensity is absent."
@@ -161416,7 +161482,7 @@
             }
           ],
           "revisions": {
-            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "observed_at": "2026-11-12T18:26:16.640534+00:00",
             "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
             "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
             "ci": {
@@ -161468,7 +161534,18 @@
               "shared/economicBridgeSchema.ts",
               "shared/serverDownloadRegistry.ts",
               "script/record-clean-covered-state.py"
-            ]
+            ],
+            "affected_live_readback": {
+              "verifiedAt": "2026-11-12T18:25:27.657Z",
+              "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+              "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+              "jsonExact": true,
+              "xlsxExact": true,
+              "literalRows": 1042,
+              "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+              "scientificAcceptance": false
+            },
+            "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
           },
           "gaps": [
             "No actual covered/expanded population reconciliation with emissions totals."
@@ -192742,7 +192819,7 @@
     ]
   },
   "clean_covered_release": {
-    "observed_at": "2026-11-12T18:24:39.776530+00:00",
+    "observed_at": "2026-11-12T18:26:16.640534+00:00",
     "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
     "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
     "ci": {
@@ -192794,7 +192871,18 @@
       "shared/economicBridgeSchema.ts",
       "shared/serverDownloadRegistry.ts",
       "script/record-clean-covered-state.py"
-    ]
+    ],
+    "affected_live_readback": {
+      "verifiedAt": "2026-11-12T18:25:27.657Z",
+      "sourceCommit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+      "identity": "667175ba8d840a71d1c8ba5a485b6f8a17a31c67344093f8523057297c88fd9b",
+      "jsonExact": true,
+      "xlsxExact": true,
+      "literalRows": 1042,
+      "sourceHash": "3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab",
+      "scientificAcceptance": false
+    },
+    "affected_live_readback_sha256": "a129718f43e250c7b463e15a4647e0dab65f43e3ee8d0648d3edcf3366b65149"
   },
   "clean_covered_prior_release": {
     "workspace_commit": "593608905d42e15f1c900723ebef18c0292e580c",
