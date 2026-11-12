@@ -146,6 +146,68 @@ x["restart"]["instruction"] = (
     "Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.")
 assert contract(x) == original_contract
 assert {q["id"]: q["status"] for s in x["stages"] for q in s["requirements"]} == original_statuses
+# Apply only the original finite engineering criterion after observed runtime
+# evidence. Private provisioning and scientific acceptance are not extra
+# conditions on generating methodology and attaching manifest/claim metadata.
+if len(sys.argv) == 4:
+    observed = read(RUNTIME)["latest"]
+    assert observed["methodologyRegistry"] == 200
+    assert observed["conditionalJSON"] == observed["conditionalXLSX"] == 200
+    assert observed["literalReadback"] == {"rows": 564, "cells": 1128, "equal": True}
+    assert observed["referenceEmbeddedManifest"] == 200 and observed["privatePOST"] == 403
+    for stage in x["stages"]:
+        for requirement in stage["requirements"]:
+            if requirement["id"] != "S16-007":
+                continue
+            requirement["status"] = "verified"
+            requirement["verification_scope"] = (
+                "Original engineering criterion only: authoritative registry methodology, "
+                "finite download manifest/claim contracts and actual available public "
+                "JSON/XLSX readback; no scientific, issuer, private publication or persistence acceptance."
+            )
+            requirement["live_verification"] = observed
+            requirement["remaining_gaps"] = []
+            requirement["next_action"] = (
+                "Preserve the verified methodology/download contracts. Source availability, "
+                "private authorization, production provisioning and scientific efficacy remain "
+                "tracked in their original clauses; do not reopen this finite criterion for those gates."
+            )
+    x["restart"]["unfinished_requirement_ids"] = [
+        q["id"] for s in x["stages"] for q in s["requirements"] if q["status"] != "verified"
+    ]
+    x["restart"]["instruction"] = (
+        "Continue ALL original0–17/amendments then actualefficacy, PlanOFF. "
+        "S16-007 original finite engineering VERIFIED: all22 requested contracts implemented; "
+        "fixed29matrix28closed+1private403, prior9PE/signal preserved. Live registry200, "
+        "conditional JSON/XLSX200 with564rows/1128literalcells equal, embedded manifest200. "
+        "Do not reopen closed contracts or add owner/science criteria to this engineering clause. "
+        "Live Stage10 source/storage503, snapshot not-provisioned, news operator-refresh503, "
+        "TrackB without exactprotocol400 and privatePOST403 remain honest narrow boundaries; "
+        "no live retained-persistence/private publication/issuer/science activation claimed. "
+        "Actual release is recorded in current_release and finite-export-runtime-receipts.json; "
+        "keep docs/local/code/runtime distinct. FailedCI43186463787 and43189261486 preserved "
+        "and repaired without private publication/skips/gate weakening. Final1090TS/248Python "
+        "plus mandatoryprivate/typecheck/build passed; currentCI43191233892 succeeded. "
+        "NEXT independent originalwork: S04-001 uncertainty CODE now includes frozen1000/block3/"
+        "seed20261108 joint bootstrap, source/structural/dependence and guarded full9train/6heldout. "
+        "No actual-data fit/bootstrap/score/promotion: qualify authentic reviewed regional "
+        "saturation/joint numerical sources before execution; do not invent priors/default "
+        "offsets/splice releases/retune nine failures or EUsolar pointwin. "
+        "S12-017 seven new discovery attempts yielded no qualified input; newXOMinterim403 "
+        "was uninspected, not globally unavailable. Need FSLRcollections/eligiblewatts/BOM/"
+        "currentlaw, NEEgrossrecipient/LLCpriorities/commissioning/marginalreturns and "
+        "XOMexecutedCCSfee/novation/billings/opex/funding. Continue source-qualified operating "
+        "FCFE/valuation and genuinely dated11–15corpus, not componentgrids as wholecases. "
+        "Other original dependency-ready partials remain in ledger; do not treat these narrow "
+        "source/auth blocks as halt-all or manufacture warning/old200cohort evidence. "
+        "Preserve original1000/1001,0eligiblehistories/0of3cases,14FaIRpins,old124/179/416, "
+        "Gordonprimary and all frozen negativebeta/fleet/EV/storage/issuer decisions."
+    )
+    summary["engineering_reconciliation"] = {
+        "S16-007": "verified original written criterion only",
+        "live": observed,
+        "scientific_acceptance": False
+    }
 LEDGER.write_text(json.dumps(x, indent=2, ensure_ascii=False) + "\n")
 spec = importlib.util.spec_from_file_location("merge", "script/merge-clause-reconciliation.py")
 module = importlib.util.module_from_spec(spec)
@@ -156,5 +218,5 @@ previous_report = report.read_text()
 if previous_report.startswith("# Finite export contracts and guarded regional joint uncertainty"):
     previous_report = previous_report.split("\n```\n\n", 1)[1]
 report.write_text("# Finite export contracts and guarded regional joint uncertainty — engineering increment\n\n"
-                  "Original criteria/statuses preserved; no new issuer source or actual diffusion efficacy execution.\n\n```json\n"
+                  "Original criteria preserved; finite S16-007 engineering is reconciled only after observed runtime evidence. No actual diffusion efficacy or qualified issuer case is claimed.\n\n```json\n"
                   + json.dumps(summary, indent=2) + "\n```\n\n" + previous_report)

@@ -2,14 +2,18 @@
   "pendingIntegration": {
     "scope": "New local finite22contracts and guarded regional joint uncertainty code; not yet a new deployed receipt. Prior latest runtime observation below remains historical.",
     "ciFailure": {
-      "runId": 43186463787, "validate": "failure", "promote": "skipped",
+      "runId": 43186463787,
+      "validate": "failure",
+      "promote": "skipped",
       "error": "Test414 depended on missing private generated-artifacts/financial-data/mapping-audit.json; no release promoted",
       "privateLog": "generated-artifacts/all22-failed-ci.log",
       "privateLogSha256": "21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b",
       "repair": "Synthetic isolated fixed-root files through same actual readers; source-only regression prohibits DB access; no private files or validators changed."
     },
     "secondCiFailure": {
-      "runId": 43189261486, "validate": "failure", "promote": "skipped",
+      "runId": 43189261486,
+      "validate": "failure",
+      "promote": "skipped",
       "privateLog": "generated-artifacts/all22-second-failed-ci.log",
       "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
       "actualSelectedHttpTest": "Passed once; Node24 emitted tests1/pass1/skipped0",
@@ -21,8 +25,18 @@
       "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
       "logSha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
       "exitCode": 0,
-      "typescript": {"tests": 1090, "pass": 1090, "fail": 0, "skipped": 0},
-      "python": {"tests": 248, "pass": 248, "fail": 0, "skipped": 0},
+      "typescript": {
+        "tests": 1090,
+        "pass": 1090,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 248,
+        "pass": 248,
+        "fail": 0,
+        "skipped": 0
+      },
       "typecheckOriginalPrivateValidatorsAndBuild": "passed; validators unchanged",
       "releaseBoundary": "Local complete checks only; both actual CI failures/promote-skipped preserved. No new CI/Railway/deployed success."
     },
@@ -31,8 +45,18 @@
       "log": "generated-artifacts/remaining-export-all22.portable-final.log",
       "logSha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
       "exitCode": 0,
-      "typescript": {"tests": 1090, "pass": 1090, "fail": 0, "skipped": 0},
-      "python": {"tests": 248, "pass": 248, "fail": 0, "skipped": 0},
+      "typescript": {
+        "tests": 1090,
+        "pass": 1090,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 248,
+        "pass": 248,
+        "fail": 0,
+        "skipped": 0
+      },
       "typecheckOriginalPrivateValidatorsAndBuild": "passed",
       "releaseBoundary": "Local CI repair checks only; no successful new public CI/Railway/deployed observation."
     },
@@ -41,8 +65,18 @@
       "log": "generated-artifacts/remaining-export-all22.ready.log",
       "logSha256": "2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
       "exitCode": 0,
-      "typescript": {"tests": 1089, "pass": 1089, "fail": 0, "skipped": 0},
-      "python": {"tests": 248, "pass": 248, "fail": 0, "skipped": 0},
+      "typescript": {
+        "tests": 1089,
+        "pass": 1089,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 248,
+        "pass": 248,
+        "fail": 0,
+        "skipped": 0
+      },
       "typecheckOriginalPrivateValidatorsAndBuild": "passed"
     },
     "postLedgerFiveModules": {
@@ -50,47 +84,67 @@
       "receipt": "generated-artifacts/finite-export-post-ledger.node-tap.receipt.json",
       "log": "generated-artifacts/finite-export-post-ledger.node-tap.log",
       "logSha256": "181bbbccabf1b7e90ec12102ae3581bfd086e5ef3c419a688242e47ebda87514",
-      "tests": 16, "pass": 16, "fail": 0, "skipped": 0
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "skipped": 0
     },
     "preNodeTapPostLedgerFiveModules": {
       "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
       "receipt": "generated-artifacts/finite-export-post-ledger.portable.receipt.json",
       "log": "generated-artifacts/finite-export-post-ledger.portable.log",
       "logSha256": "c6a77dd8907bd2e83e4c6d1bd9b104bbe189b3a749a30e7609d87ec381a0fc37",
-      "tests": 16, "pass": 16, "fail": 0, "skipped": 0
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "skipped": 0
     },
     "preCiPostLedgerFiveModules": {
       "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
       "receipt": "generated-artifacts/finite-export-post-ledger.ready.receipt.json",
       "log": "generated-artifacts/finite-export-post-ledger.ready.log",
       "logSha256": "bcde11da693e1703011dc98790d8649e3fbffb192f72c71a59fa30fb90d45b8f",
-      "tests": 16, "pass": 16, "fail": 0, "skipped": 0
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "skipped": 0
     },
-    "finiteInventory": {"total": 29, "engineeringClosed": 28, "unauthorizedPrivateHttp403": 1},
+    "finiteInventory": {
+      "total": 29,
+      "engineeringClosed": 28,
+      "unauthorizedPrivateHttp403": 1
+    },
     "regionalScientificExecution": "UNEXECUTED: zero new actual candidate fits/bootstrap/heldout scores and zero qualified saturation/joint bundles. No issuer source or model inserted.",
     "preview": "Earlier snapshot attempt failed with port5000 connection refused. No workflow was started; new-code configured-route preview and runtime-log verification remain unobserved.",
     "release": "Pending actual code source/CI validate+promote/Railway/HTTP observation; no new success inferred.",
     "boundary": "No production mutations, auth bypass, schema/resource changes, private publication or callback."
   },
   "latest": {
-    "observedAt": "2026-11-12T07:28:43Z",
-    "sourceCommit": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-    "workspaceImplementation": "04cf227cd7f53dd4d234ac217194d9163d76a817",
-    "ci": "43174101497 validate/promote success",
-    "railwayDeployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+    "observedAt": "2026-11-12T09:36:18.459Z",
+    "sourceCommit": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+    "ci": "43191233892",
+    "ciConclusion": "success",
+    "railwayDeployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
     "railwayStatus": "SUCCESS",
     "health": 200,
-    "nativeScenarios": {
-      "constant": {"status": 200, "trajectoryRows": 77},
-      "transition": {"status": 200, "trajectoryRows": 77},
-      "dashboard": {"status": 200, "trajectoryRows": 77}
+    "methodologyRegistry": 200,
+    "conditionalJSON": 200,
+    "conditionalXLSX": 200,
+    "literalReadback": {
+      "rows": 564,
+      "cells": 1128,
+      "equal": true
     },
-    "nativeBinding": "All three explicitly unavailable-no-producer-attestation; no live retained-native proof claimed",
-    "snapshotStatus": {"status": "not-provisioned", "snapshotId": null, "currentFinancialOverlaysApplied": false},
-    "wrongNativeScenario": 400,
-    "privateExportPOST": 403,
-    "boundary": "Engineering storage/handler fixtures pass; production remains not provisioned. Generic native retention refusal does not independently identify its internal failed operation.",
-    "previewBoundary": "Mistaken /scenario-analyzer screenshot was404; corrected configured dashboard / rendered. No native click-through certification claimed. Guessed /api/analysis/storage-status was not JSON; actual supported snapshot-status supplied the status."
+    "referenceEmbeddedManifest": 200,
+    "stage10": 503,
+    "stage10Reason": "Retained source/storage unavailable; no zero fallback",
+    "trackBWithoutProtocol": 400,
+    "news": 503,
+    "newsReason": "operator-news-refresh-required",
+    "snapshotStatus": "not-provisioned",
+    "privatePOST": 403,
+    "preview": "Methodology rendered in current development app; news correctly requires operator refresh; no signed-in or live persistence acceptance",
+    "scope": "Actual public metadata/download behavior only; no issuer/science/provisioning activation"
   },
   "scope": "Observed code release, not data activation or science acceptance",
   "observedAt": "2026-11-12T06:39:15Z",
@@ -116,5 +170,38 @@
     "command": "node --import tsx --input-type=module; live fetch default/embedded documents; compare using server/calculation/analysisManifest.ts contentHash"
   },
   "readonlyBoundary": "Actual handler/storage fixtures passed; no claim of live private-archive/provisioning activation.",
-  "preview": "Data Management rendered after workflow restart. Existing operator-only HTTP403 remains visible; this screenshot does not certify signed-in interactions."
+  "preview": "Data Management rendered after workflow restart. Existing operator-only HTTP403 remains visible; this screenshot does not certify signed-in interactions.",
+  "previousObserved": {
+    "observedAt": "2026-11-12T07:28:43Z",
+    "sourceCommit": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+    "workspaceImplementation": "04cf227cd7f53dd4d234ac217194d9163d76a817",
+    "ci": "43174101497 validate/promote success",
+    "railwayDeployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+    "railwayStatus": "SUCCESS",
+    "health": 200,
+    "nativeScenarios": {
+      "constant": {
+        "status": 200,
+        "trajectoryRows": 77
+      },
+      "transition": {
+        "status": 200,
+        "trajectoryRows": 77
+      },
+      "dashboard": {
+        "status": 200,
+        "trajectoryRows": 77
+      }
+    },
+    "nativeBinding": "All three explicitly unavailable-no-producer-attestation; no live retained-native proof claimed",
+    "snapshotStatus": {
+      "status": "not-provisioned",
+      "snapshotId": null,
+      "currentFinancialOverlaysApplied": false
+    },
+    "wrongNativeScenario": 400,
+    "privateExportPOST": 403,
+    "boundary": "Engineering storage/handler fixtures pass; production remains not provisioned. Generic native retention refusal does not independently identify its internal failed operation.",
+    "previewBoundary": "Mistaken /scenario-analyzer screenshot was404; corrected configured dashboard / rendered. No native click-through certification claimed. Guessed /api/analysis/storage-status was not JSON; actual supported snapshot-status supplied the status."
+  }
 }

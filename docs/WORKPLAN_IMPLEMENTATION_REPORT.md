@@ -1,20 +1,17 @@
 # Finite export contracts and guarded regional joint uncertainty — engineering increment
 
-Original criteria/statuses preserved; no new issuer source or actual diffusion efficacy execution.
+Original criteria preserved; finite S16-007 engineering is reconciled only after observed runtime evidence. No actual diffusion efficacy or qualified issuer case is claimed.
 
 ```json
 {
-  "updated_at": "2026-11-12T09:23:30.400618+00:00",
+  "updated_at": "2026-11-12T09:42:30.740060+00:00",
   "release": {
-    "status": "New local source validated; new release not yet observed",
-    "last_verified": {
-      "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-      "ci": "43174101497 validate/promote success",
-      "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
-      "verified_at": "2026-11-12T07:29:50.044223+00:00",
-      "health": 200,
-      "scope": "Code only; no issuer/science/private HTTP activation."
-    }
+    "github_main": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+    "ci": "43191233892",
+    "railway_deployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+    "verified_at": "2026-11-12T09:36:18.459Z",
+    "health": 200,
+    "scope": "Observed code only; no issuer/science/source approval/private HTTP activation."
   },
   "execution": {
     "command": [
@@ -73,6 +70,8 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
   },
   "runtime_receipts": "docs/finite-export-runtime-receipts.json",
   "changed_paths_since_handoff": [
+    ".agents/memory/MEMORY.md",
+    ".agents/memory/public-ci-boundary.md",
     "client/src/components/category-comparison.tsx",
     "client/src/components/category-trend-chart.tsx",
     "client/src/components/company-coverage.tsx",
@@ -248,7 +247,38 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
     }
   },
   "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
-  "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
+  "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance.",
+  "engineering_reconciliation": {
+    "S16-007": "verified original written criterion only",
+    "live": {
+      "observedAt": "2026-11-12T09:36:18.459Z",
+      "sourceCommit": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+      "ci": "43191233892",
+      "ciConclusion": "success",
+      "railwayDeployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+      "railwayStatus": "SUCCESS",
+      "health": 200,
+      "methodologyRegistry": 200,
+      "conditionalJSON": 200,
+      "conditionalXLSX": 200,
+      "literalReadback": {
+        "rows": 564,
+        "cells": 1128,
+        "equal": true
+      },
+      "referenceEmbeddedManifest": 200,
+      "stage10": 503,
+      "stage10Reason": "Retained source/storage unavailable; no zero fallback",
+      "trackBWithoutProtocol": 400,
+      "news": 503,
+      "newsReason": "operator-news-refresh-required",
+      "snapshotStatus": "not-provisioned",
+      "privatePOST": 403,
+      "preview": "Methodology rendered in current development app; news correctly requires operator refresh; no signed-in or live persistence acceptance",
+      "scope": "Actual public metadata/download behavior only; no issuer/science/provisioning activation"
+    },
+    "scientific_acceptance": false
+  }
 }
 ```
 

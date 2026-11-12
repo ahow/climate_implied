@@ -2068,17 +2068,14 @@
       "release_observation_note": "Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass."
     },
     "finite_exports_and_diffusion": {
-      "updated_at": "2026-11-12T09:23:30.400618+00:00",
+      "updated_at": "2026-11-12T09:42:30.740060+00:00",
       "release": {
-        "status": "New local source validated; new release not yet observed",
-        "last_verified": {
-          "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-          "ci": "43174101497 validate/promote success",
-          "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
-          "verified_at": "2026-11-12T07:29:50.044223+00:00",
-          "health": 200,
-          "scope": "Code only; no issuer/science/private HTTP activation."
-        }
+        "github_main": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+        "ci": "43191233892",
+        "railway_deployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+        "verified_at": "2026-11-12T09:36:18.459Z",
+        "health": 200,
+        "scope": "Observed code only; no issuer/science/source approval/private HTTP activation."
       },
       "execution": {
         "command": [
@@ -2137,6 +2134,8 @@
       },
       "runtime_receipts": "docs/finite-export-runtime-receipts.json",
       "changed_paths_since_handoff": [
+        ".agents/memory/MEMORY.md",
+        ".agents/memory/public-ci-boundary.md",
         "client/src/components/category-comparison.tsx",
         "client/src/components/category-trend-chart.tsx",
         "client/src/components/company-coverage.tsx",
@@ -2312,7 +2311,38 @@
         }
       },
       "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
-      "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
+      "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance.",
+      "engineering_reconciliation": {
+        "S16-007": "verified original written criterion only",
+        "live": {
+          "observedAt": "2026-11-12T09:36:18.459Z",
+          "sourceCommit": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+          "ci": "43191233892",
+          "ciConclusion": "success",
+          "railwayDeployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+          "railwayStatus": "SUCCESS",
+          "health": 200,
+          "methodologyRegistry": 200,
+          "conditionalJSON": 200,
+          "conditionalXLSX": 200,
+          "literalReadback": {
+            "rows": 564,
+            "cells": 1128,
+            "equal": true
+          },
+          "referenceEmbeddedManifest": 200,
+          "stage10": 503,
+          "stage10Reason": "Retained source/storage unavailable; no zero fallback",
+          "trackBWithoutProtocol": 400,
+          "news": 503,
+          "newsReason": "operator-news-refresh-required",
+          "snapshotStatus": "not-provisioned",
+          "privatePOST": 403,
+          "preview": "Methodology rendered in current development app; news correctly requires operator refresh; no signed-in or live persistence acceptance",
+          "scope": "Actual public metadata/download behavior only; no issuer/science/provisioning activation"
+        },
+        "scientific_acceptance": false
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -2397,15 +2427,15 @@
     }
   },
   "current_release": {
-    "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-    "ci": "43174101497 validate/promote success",
-    "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
-    "verified_at": "2026-11-12T07:29:50.044223+00:00",
+    "github_main": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+    "ci": "43191233892",
+    "railway_deployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+    "verified_at": "2026-11-12T09:36:18.459Z",
     "health": 200,
-    "scope": "Code only; no issuer/science/private HTTP activation."
+    "scope": "Observed code only; no issuer/science/source approval/private HTTP activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T09:23:30.400618+00:00",
+  "updated_at": "2026-11-12T09:42:30.740060+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -26910,17 +26940,14 @@
             }
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T09:23:30.400618+00:00",
+            "updated_at": "2026-11-12T09:42:30.740060+00:00",
             "release": {
-              "status": "New local source validated; new release not yet observed",
-              "last_verified": {
-                "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-                "ci": "43174101497 validate/promote success",
-                "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
-                "verified_at": "2026-11-12T07:29:50.044223+00:00",
-                "health": 200,
-                "scope": "Code only; no issuer/science/private HTTP activation."
-              }
+              "github_main": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+              "ci": "43191233892",
+              "railway_deployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+              "verified_at": "2026-11-12T09:36:18.459Z",
+              "health": 200,
+              "scope": "Observed code only; no issuer/science/source approval/private HTTP activation."
             },
             "execution": {
               "command": [
@@ -26979,6 +27006,8 @@
             },
             "runtime_receipts": "docs/finite-export-runtime-receipts.json",
             "changed_paths_since_handoff": [
+              ".agents/memory/MEMORY.md",
+              ".agents/memory/public-ci-boundary.md",
               "client/src/components/category-comparison.tsx",
               "client/src/components/category-trend-chart.tsx",
               "client/src/components/company-coverage.tsx",
@@ -139666,17 +139695,14 @@
             ]
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T09:23:30.400618+00:00",
+            "updated_at": "2026-11-12T09:42:30.740060+00:00",
             "release": {
-              "status": "New local source validated; new release not yet observed",
-              "last_verified": {
-                "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-                "ci": "43174101497 validate/promote success",
-                "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
-                "verified_at": "2026-11-12T07:29:50.044223+00:00",
-                "health": 200,
-                "scope": "Code only; no issuer/science/private HTTP activation."
-              }
+              "github_main": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+              "ci": "43191233892",
+              "railway_deployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+              "verified_at": "2026-11-12T09:36:18.459Z",
+              "health": 200,
+              "scope": "Observed code only; no issuer/science/source approval/private HTTP activation."
             },
             "execution": {
               "command": [
@@ -139735,6 +139761,8 @@
             },
             "runtime_receipts": "docs/finite-export-runtime-receipts.json",
             "changed_paths_since_handoff": [
+              ".agents/memory/MEMORY.md",
+              ".agents/memory/public-ci-boundary.md",
               "client/src/components/category-comparison.tsx",
               "client/src/components/category-trend-chart.tsx",
               "client/src/components/company-coverage.tsx",
@@ -158661,7 +158689,7 @@
           "id": "S16-007",
           "source_section": "implementation",
           "requirement": "Generate methodology pages from the registries; attach the manifest and claim label to every download.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "docs/Analysis_Wide_Historical_Selection.md",
@@ -159213,10 +159241,8 @@
           "scientific_acceptance": "not-assessed",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Original written criterion remains unchanged: registry-generated methodology and a manifest/claim label on every download. Finite engineering inventory now28closed+1unauthorized privateHTTP403, including all22previously unimplemented contracts; no remaining finite producer-code/derivation gap is called an external data blocker. Default public custom bytes preserve compatibility with manifest/claim headers; embedded metadata is opt-in. Ordinary exports may honestly have null producer identity when retained storage/source material is unavailable; identity is not the UI selection. Original clause remains partial pending new-code deployed verification of registry-linked pages and representative actual completed default/embedded downloads across available contexts, plus genuinely authorized/provisioned contexts where required. This is a live-verification/availability boundary, not a demand for independent model validation added to the written criterion. No private auth bypass, recovered original XLSX, original-history or scientific acceptance claim; old124/179/416 immutable. Remaining original1000/1001 cohort gaps and other clauses are not promoted by this finite engineering increment."
-          ],
-          "next_action": "Original written criterion remains unchanged: registry-generated methodology and a manifest/claim label on every download. Finite engineering inventory now28closed+1unauthorized privateHTTP403, including all22previously unimplemented contracts; no remaining finite producer-code/derivation gap is called an external data blocker. Default public custom bytes preserve compatibility with manifest/claim headers; embedded metadata is opt-in. Ordinary exports may honestly have null producer identity when retained storage/source material is unavailable; identity is not the UI selection. Original clause remains partial pending new-code deployed verification of registry-linked pages and representative actual completed default/embedded downloads across available contexts, plus genuinely authorized/provisioned contexts where required. This is a live-verification/availability boundary, not a demand for independent model validation added to the written criterion. No private auth bypass, recovered original XLSX, original-history or scientific acceptance claim; old124/179/416 immutable. Remaining original1000/1001 cohort gaps and other clauses are not promoted by this finite engineering increment.",
+          "remaining_gaps": [],
+          "next_action": "Preserve the verified methodology/download contracts. Source availability, private authorization, production provisioning and scientific efficacy remain tracked in their original clauses; do not reopen this finite criterion for those gates.",
           "blockers": [
             {
               "kind": "remaining original scope",
@@ -163358,17 +163384,14 @@
             ]
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T09:23:30.400618+00:00",
+            "updated_at": "2026-11-12T09:42:30.740060+00:00",
             "release": {
-              "status": "New local source validated; new release not yet observed",
-              "last_verified": {
-                "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
-                "ci": "43174101497 validate/promote success",
-                "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
-                "verified_at": "2026-11-12T07:29:50.044223+00:00",
-                "health": 200,
-                "scope": "Code only; no issuer/science/private HTTP activation."
-              }
+              "github_main": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+              "ci": "43191233892",
+              "railway_deployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+              "verified_at": "2026-11-12T09:36:18.459Z",
+              "health": 200,
+              "scope": "Observed code only; no issuer/science/source approval/private HTTP activation."
             },
             "execution": {
               "command": [
@@ -163427,6 +163450,8 @@
             },
             "runtime_receipts": "docs/finite-export-runtime-receipts.json",
             "changed_paths_since_handoff": [
+              ".agents/memory/MEMORY.md",
+              ".agents/memory/public-ci-boundary.md",
               "client/src/components/category-comparison.tsx",
               "client/src/components/category-trend-chart.tsx",
               "client/src/components/company-coverage.tsx",
@@ -167710,7 +167735,35 @@
                 }
               }
             }
-          ]
+          ],
+          "verification_scope": "Original engineering criterion only: authoritative registry methodology, finite download manifest/claim contracts and actual available public JSON/XLSX readback; no scientific, issuer, private publication or persistence acceptance.",
+          "live_verification": {
+            "observedAt": "2026-11-12T09:36:18.459Z",
+            "sourceCommit": "6584856eda62dd84e2d951eb767f0d3518f4e075",
+            "ci": "43191233892",
+            "ciConclusion": "success",
+            "railwayDeployment": "0b4e8aa5-7f26-4d51-a859-81af7f5e7a9e",
+            "railwayStatus": "SUCCESS",
+            "health": 200,
+            "methodologyRegistry": 200,
+            "conditionalJSON": 200,
+            "conditionalXLSX": 200,
+            "literalReadback": {
+              "rows": 564,
+              "cells": 1128,
+              "equal": true
+            },
+            "referenceEmbeddedManifest": 200,
+            "stage10": 503,
+            "stage10Reason": "Retained source/storage unavailable; no zero fallback",
+            "trackBWithoutProtocol": 400,
+            "news": 503,
+            "newsReason": "operator-news-refresh-required",
+            "snapshotStatus": "not-provisioned",
+            "privatePOST": 403,
+            "preview": "Methodology rendered in current development app; news correctly requires operator refresh; no signed-in or live persistence acceptance",
+            "scope": "Actual public metadata/download behavior only; no issuer/science/provisioning activation"
+          }
         },
         {
           "id": "S16-008",
@@ -176231,7 +176284,6 @@
       "S16-003",
       "S16-004",
       "S16-006",
-      "S16-007",
       "S16-008",
       "S16-009",
       "S16-011",
@@ -176252,7 +176304,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue ALL original0–17, no plan/package pause. Finite29now28engineering-closed+1privateHTTP403; all22remaining contracts implemented, prior6and9PE/signal preserved. Exact manifests/claim labels/registry pages are the S16-007 criterion; local engineering is not deployed evidence. Use existing validated promotion only, inspect actual contexts without auth bypass/production mutations; do not fabricate retained identity under source/archive outage. Preserve original1000/1001, old124/179/416,14FaIRpins,0eligiblehistories/0of3issuer cases and all scientific/owner gates. Regional uncertainty is now implemented but actual execution UNEXECUTED: zero qualified saturation/joint bundles and zero actual fits/bootstrap/scores; authentic full source/structural/dependence numerical draws required. No retuning known nine failures or EUsolar pointwin, priors, splicing or default offsets. No new issuer source or model work claimed; preserve existing FSLR/NEE/XOM exact economic-input gaps and every other partial original clause. Latest local1090TS/248Python plus original/private/type/build receipt is engineering only; publicCI43186463787failed/promote-skipped due test-private-file dependency, then43189261486failed/promote-skipped ONLY on version-specific filter-bookkeeping assertion despite actual selected HTTP test PASS. Both are repaired and preserved; TAP checks still require exact selected test executed once/pass1/fail0/cancel0 with no skipped actual test. No new successful public release inferred. Issuer seven-request discovery adds no qualified economic input or code: preserve positive LLC/receipt-month evidence and distinguish unusable200/one scoped403 from global unavailability. Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.",
+    "instruction": "Continue ALL original0–17/amendments then actualefficacy, PlanOFF. S16-007 original finite engineering VERIFIED: all22 requested contracts implemented; fixed29matrix28closed+1private403, prior9PE/signal preserved. Live registry200, conditional JSON/XLSX200 with564rows/1128literalcells equal, embedded manifest200. Do not reopen closed contracts or add owner/science criteria to this engineering clause. Live Stage10 source/storage503, snapshot not-provisioned, news operator-refresh503, TrackB without exactprotocol400 and privatePOST403 remain honest narrow boundaries; no live retained-persistence/private publication/issuer/science activation claimed. Actual release is recorded in current_release and finite-export-runtime-receipts.json; keep docs/local/code/runtime distinct. FailedCI43186463787 and43189261486 preserved and repaired without private publication/skips/gate weakening. Final1090TS/248Python plus mandatoryprivate/typecheck/build passed; currentCI43191233892 succeeded. NEXT independent originalwork: S04-001 uncertainty CODE now includes frozen1000/block3/seed20261108 joint bootstrap, source/structural/dependence and guarded full9train/6heldout. No actual-data fit/bootstrap/score/promotion: qualify authentic reviewed regional saturation/joint numerical sources before execution; do not invent priors/default offsets/splice releases/retune nine failures or EUsolar pointwin. S12-017 seven new discovery attempts yielded no qualified input; newXOMinterim403 was uninspected, not globally unavailable. Need FSLRcollections/eligiblewatts/BOM/currentlaw, NEEgrossrecipient/LLCpriorities/commissioning/marginalreturns and XOMexecutedCCSfee/novation/billings/opex/funding. Continue source-qualified operating FCFE/valuation and genuinely dated11–15corpus, not componentgrids as wholecases. Other original dependency-ready partials remain in ledger; do not treat these narrow source/auth blocks as halt-all or manufacture warning/old200cohort evidence. Preserve original1000/1001,0eligiblehistories/0of3cases,14FaIRpins,old124/179/416, Gordonprimary and all frozen negativebeta/fleet/EV/storage/issuer decisions.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -176409,8 +176461,8 @@
       "verified": 1
     },
     "16": {
-      "partial": 11,
-      "verified": 3
+      "partial": 10,
+      "verified": 4
     },
     "17": {
       "verified": 1,
@@ -176868,6 +176920,14 @@
       "verified_at": "2026-11-12T05:32:48.445836+00:00",
       "health": 200,
       "scope": "Code-only; private HTTP403, no data/issuer/science activation."
+    },
+    {
+      "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+      "ci": "43174101497 validate/promote success",
+      "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+      "verified_at": "2026-11-12T07:29:50.044223+00:00",
+      "health": 200,
+      "scope": "Code only; no issuer/science/private HTTP activation."
     }
   ],
   "latest_changed_paths": [
