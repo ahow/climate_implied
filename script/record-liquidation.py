@@ -54,7 +54,7 @@ e["new_source_attempt"]={"url":"https://www.sec.gov/Archives/edgar/data/73309/00
 e["new_nee_source"]={"url":"https://www.sec.gov/Archives/edgar/data/37634/000075330826000081/nee-20260930.htm",
  "accession":"0000753308-26-000081","period_end":"2026-09-30","currency_unit":"USD millions",
  "locator":"Related-party transactions paragraph beginning Through XPLR OpCo; retained fifth markdown chunk",
- "retrieved_at":now,"publication_timestamp":None,"surface":"webFetch extraction, not raw-byte authentication",
+ "retrieved_at":datetime.fromtimestamp(min(f.stat().st_mtime for f in root.glob("nee-q3-part*.md")),timezone.utc).isoformat(),"publication_timestamp":None,"surface":"webFetch extraction, not raw-byte authentication",
  "parts":{str(f):sha(f) for f in root.glob("nee-q3-part*.md")},
  "facts":{"NEE_noncontrolling_XPLR_percent":52.4,"service_costs_Q3_2026":20,"service_costs_nine_months_2026":120,
  "current_due_from_XPLR_Sep2026":178,"noncurrent_due_from_XPLR_Sep2026":170,
@@ -71,7 +71,7 @@ for s in x["stages"]:
     "S13-017":"Complete assumption-set accounting across remaining actual producer maps; keep failed/missing sets visible.",
     "S13-020":"Finish separately source-bound expanded population accounting; retain exact covered reconciliation without invented denominator.",
     "S17-009":"Verify updated production methodology assets after existing gates/promotion; rendered production-build journey passed, historical evidence remains in developer view.",
-    "S17-002":"Extend actual Node22 fresh-checkout observed reproduction with locked Python/DB/archive pack; copied dependencies and bounded calculator checks are not full acceptance.",
+    "S17-002":"Bounded Node22 fresh-checkout observed reproduction, selected locked Python packages and isolated PostgreSQL/archive pack passed. Complete fresh dependency installation/full private recovery and supported genuine future-review transport; these bounded checks are not full acceptance.",
     "S17-015":"Verify exact promoted source, health and displayed selected model/data/manifest agreement; routine promotion already authorized, not an additional owner-only gate.",
     "S12-017":"Obtain executed priced CCS instrument/project cash terms; this new Nucor quarter did not disclose them. Qualify named NEER recipient/project for the retained October40m payment; other issuer gaps remain."
    }[r["id"]]
@@ -86,12 +86,25 @@ if live.exists():
  "boundary":"Verified observed2023 accounting only, NOT future cohort/private review execution. New liquidation changes local, not deployed.",
  "local_receipt":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),"railway_deployment":None}
  x.pop("pending_release",None)
-x["next_action"]="Finish coherent liquidation gates and existing promotion/readback, then sustainable continuation, source-qualified future admission, staging reproduction and original issuer/calibration work. Do not rerun completed frozen negative studies."
+ci_file=root/"ci.json"
+if ci_file.exists():
+ runs=json.loads(ci_file.read_text()).get("workflow_runs",[])
+ if runs:
+  run=runs[0]
+  x["pending_release"]={"source":run["head_sha"],"ci":run["id"],"status":run["status"],
+   "conclusion":run["conclusion"],"observed_at":datetime.fromtimestamp(ci_file.stat().st_mtime,timezone.utc).isoformat(),
+   "boundary":"Existing promotion only; do not restart, cancel, supersede or push receipt-only documents over this run."}
+e["latest_coherent_gate"]=json.loads((root/"cjs-release-gate.receipt.json").read_text()) if (root/"cjs-release-gate.receipt.json").exists() else None
+e["postledger_checks"]={"command":"npx tsx --test script/reconciliation-stages-14-17.test.ts script/workplan-corrections.test.ts",
+ "tests":7,"pass":7,"fail":0,"skip":0,"log":str(root/"postledger.log"),"sha256":sha(root/"postledger.log")} if (root/"postledger.log").exists() else None
+e["execution_stop"]="Execution-context checkpoint, not task completion or exhausted actionable work. Existing CI remains active; no receipt-only push may supersede it."
+e["source_entity_boundary"]="NEE Q32026 defines NEER as an operating segment and NextEra Energy Resources as LLC. XPLR glossary defines NEER as LLC but expressly permits subsidiary/group shorthand. Do not join acronym-only or infer the named project recipient or cash collection from these costs/receivables."
+x["next_action"]="First reconcile existing CI43312646996 for GitHub4a10e455; do not supersede it. Verify exact runtime/health and safe clean-covered JSON/XLSX and deployed UI retirement. Then complete sustainable replacement/steady-state and compatible claim/inversion (dated liquidation remains excluded from annual polynomial), actual future-review PostgreSQL/principal integration and source-qualified issuer/Stage11–15 inputs. Bounded fresh Node22/Python/PG reproduction is not the full S17 pack. Preserve all frozen negatives."
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 p.write_text(json.dumps(x,indent=2)+"\n")
 report=Path("docs/WORKPLAN_IMPLEMENTATION_REPORT.md");marker="<!-- prior-finite-liquidation-report -->\n";text=report.read_text()
 if marker in text:text=text.split(marker,1)[1]
-report.write_text("# Finite liquidation and production retirement — latest increment\n\n"+json.dumps({"current_release":x["current_release"],"increment":e},indent=2)+"\n\n"+marker+text)
+report.write_text("# Finite liquidation and production retirement — latest increment\n\n"+json.dumps({"current_release":x["current_release"],"pending_release":x.get("pending_release"),"next_action":x["next_action"],"increment":e},indent=2)+"\n\n"+marker+text)
 spec=importlib.util.spec_from_file_location("m","script/merge-clause-reconciliation.py");m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 Path("docs/WORKPLAN_ACCEPTANCE_MATRIX.md").write_text(m.matrix(x))
 subprocess.run(["python","script/completion-ledger.py"],check=True)

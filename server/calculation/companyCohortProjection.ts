@@ -1,10 +1,12 @@
 import {contentHash} from "./analysisManifest";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {calculateCoveredPhysicalPaths,type PhysicalCell,type CoveredPathInput} from "./coveredPhysicalPaths";
+import {evaluatePeriodicRenewal,type RenewalDeclaration} from "./cohortRenewal";
 export interface CompanyCohortInput {
  version:"company-cohort-input-1";companyId:string;cutoff:string;
  years:number[];cells:CoveredPathInput["cells"];
  scenarios:{id:string;specification:CohortSpecification;
+   renewal?:RenewalDeclaration;
    physical:(Omit<PhysicalCell,"activity"|"activityUnit"|"parentResultHash"|"parentActivityPointer"|"parentYearPointer"|"parentUnitPointer"> & {cohortId:string;activityChannel:"service"|"charge-energy"})[]}[];
 }
 /** Executed by the existing operating review lifecycle. Calling this calculation
@@ -38,13 +40,19 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     parentResultHash:id,parentActivityPointer:`/activity/${i}/activity`,
     parentYearPointer:`/activity/${i}/year`,parentUnitPointer:`/activity/${i}/unit`};
   });
-  members.push({id:s.id,physical,parentResultHash:id});
-  return {id:s.id,assumptions:{specification:s.specification,physical:s.physical},cells};
+  let renewal;
+  if(s.renewal){
+   const boundary=s.renewal.transition?.specification??s.renewal.specification;
+   if(contentHash(boundary)!==contentHash(s.specification))throw Error("Swapped renewal/producer physical boundary");
+   renewal=evaluatePeriodicRenewal(s.renewal);
+  }
+  members.push({id:s.id,physical,parentResultHash:id,...(renewal?{renewal}:{})});
+  return {id:s.id,assumptions:{specification:s.specification,physical:s.physical,...(s.renewal?{renewal:s.renewal}:{})},cells};
  });
  const covered=calculateCoveredPhysicalPaths({cutoff:input.cutoff,population:[input.companyId],
   years:input.years,cells:input.cells,parents,scenarios});
  return {version:"company-cohort-projection-2",status:"conditional-cohort-projection",members,covered,inputHash:contentHash(input),
   assumptionHash:contentHash(input.scenarios),
-  modelVersions:members.map(m=>({scenarioId:m.id,cohort:m.physical.version,liquidation:m.physical.liquidation?.version??null})),
+  modelVersions:members.map(m=>({scenarioId:m.id,cohort:m.physical.version,liquidation:m.physical.liquidation?.version??null,...(m.renewal?{renewal:m.renewal.version}:{})})),
   scientificAcceptance:false,marketIdentified:false};
 }

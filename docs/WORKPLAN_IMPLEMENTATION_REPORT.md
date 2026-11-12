@@ -1,3 +1,217 @@
+# Latest renewal integration — conditional engineering
+
+{
+  "at": "2026-11-12T22:09:43.975775+00:00",
+  "status": "local integrated calculation; remaining engineering and scientific scope open",
+  "files": {
+    "server/calculation/cohortRenewal.ts": "082274d7f0b25c28ff9755f1849a493a0de9e1a23b8d898d06808d089c27fdb6",
+    "server/calculation/companyCohortProjection.ts": "db9790911665c4d312607459a94d6562654a6723d1234d241840c06f0f6b0659",
+    "script/cohortRenewal.test.ts": "dc7604f6b49555b7f182c0148292d751d13c119ad2dae5a7ce66a1dbeb7008eb",
+    "script/companyCohortProjection.test.ts": "8e8aa45e16eed76047f4f6d917bc59ee237422d2657fb882aa05db0d443503d5"
+  },
+  "functions": [
+    "evaluatePeriodicRenewal",
+    "projectCompanyCohorts"
+  ],
+  "new": "Annual finite transition hands exact surviving cohorts and debt/WC balances into stationary renewal. Company projection binds the matching physical specification, renewal assumptions and model version. Swapped physical boundary refuses.",
+  "numerics": {
+    "engineering_only": true,
+    "periodic_project_value": 900,
+    "finite_transition_combined_pv": 818.1818181818181,
+    "tolerance": 1e-09
+  },
+  "focused": {
+    "command": "npx tsx --test script/cohortRenewal.test.ts script/companyCohortProjection.test.ts",
+    "pass": 7,
+    "fail": 0,
+    "skip": 0,
+    "log": "generated-artifacts/renewal/integrated-focused.log"
+  },
+  "claims": "No issuer/common-equity identification, scientific acceptance or real approval. Memory lifecycle remains memory, not PostgreSQL.",
+  "remaining": [
+    "Dated storage/charge/loss renewal, complete accrual/AR/tax/legal-claim reconciliation",
+    "Bounded inverse/full-domain certification and owner width gates",
+    "Actual future-review PostgreSQL/principal execution",
+    "UI/API/custom export exposure for admitted genuine future results",
+    "Actual issuer/source qualification, original calibration and historical corpus"
+  ],
+  "coherent_gate": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T22:01:14.213955+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 462.557,
+    "counts": {
+      "tests": 1347,
+      "pass": 1346,
+      "fail": 0,
+      "skipped": 1
+    },
+    "log": "generated-artifacts/renewal/integrated-full.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "01bc2b374e4999ac250c32cdda9e38e3cb0fcb3ac4d6f57b6159314e821852f6",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1347,
+        "pass": 1346,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 264,
+        "pass": 264,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "clean_install": {
+    "scope": "Fresh public4a10e455 checkout, Node22.23.4, npm ci; no copied node_modules",
+    "result": "FAILED HTTP403 package firewall for locked proxy-addr2.0.7; calculations never started",
+    "log": "generated-artifacts/renewal/clean-install.log",
+    "latest_registry_version": "2.0.8",
+    "boundary": "Candidate upgrade not installed; original lock and protected bundle pins unchanged. No firewall bypass or claimed clean reproduction."
+  },
+  "deployed_ui": {
+    "assignmentId": "7e61b147-9404-4f85-9f88-f74ac60e99ae",
+    "jobId": "deployed-retirement-verification:2348",
+    "kind": "testing",
+    "name": "deployed-retirement-verification",
+    "screenshots": [
+      {
+        "description": "Dashboard view showing the current-input replay caveat, ordinary evidence/limitation content, and production notice that legacy comparator controls/results are retired.",
+        "id": "tprg9g"
+      },
+      {
+        "description": "Decarb Signal view showing the unavailable restricted-read state, ordinary diagnostic selectors/caveats, and unavailable diagnostics.",
+        "id": "vhgm79"
+      },
+      {
+        "description": "Decarb Gap view showing valuation interpretation limitations, unavailable reads, and failed retained-report catalog.",
+        "id": "3m6q8t"
+      },
+      {
+        "description": "Scrolled Decarb Gap view showing current diagnostic selectors and unavailable-read/catalog messages; no legacy comparator table or download controls are shown.",
+        "id": "v9sxu4"
+      }
+    ],
+    "status": "completed",
+    "text": "Completed the bounded read-only production journey: `/methodology` \u2192 Dashboard \u2192 Decarb Signal \u2192 Decarb Gap \u2192 back to `/methodology`. Network restrictions were installed before navigation and remained active: same-origin static assets, the initial Methodology document GET, and GET `/api/build-info` and `/api/health` were allowed; all other API requests, non-GET requests, and cross-origin requests were aborted. No code, workflow, database, auth, or application data was changed.\n\nThe permitted build-info response reported source commit `4a10e455c1a4618c2e9c5bc51b26419aa5d71c71`, matching expected prefix `4a10e455`.\n\nObserved headings included:\n- Methodology \u2014 with sections \u201cCurrent claim boundaries,\u201d \u201cAuthoritative implemented definitions,\u201d \u201cDownload claim labels,\u201d \u201cIndependent scientific evidence strands,\u201d \u201cDated human-warming validation reference \u00b7 not a model result,\u201d \u201cTrack B \u00b7 retained per-period evidence,\u201d \u201cStage10 \u00b7 retained identity and financial-field coverage,\u201d \u201cWorkbook monetary qualification \u00b7 totals intentionally withheld,\u201d and \u201cDriver evidence registry.\u201d No archived legacy opt-in summary/details were present; the page instead cautions that current-code input replay is not original-vintage evidence.\n- Dashboard \u2014 \u201cGlobal Decarbonization Dashboard & Climate Scenario Analyzer.\u201d The page states legacy comparator controls/results are retired from this production view and retains ordinary evidence/limitation notices.\n- Decarb Signal \u2014 \u201cValuation Signal Comparison.\u201d It explicitly says legacy signal backtests and comparison controls are retired. Ordinary diagnostic selectors and caveats remain; chart download buttons were disabled while company data was unavailable.\n- Decarb Gap \u2014 \u201cPeer-Relative Valuation Diagnostics.\u201d Ordinary valuation caveats and diagnostic selectors remain; no legacy comparator controls, tables, or download links appeared in the rendered view.\n\nImportant interpretation: the visible unavailable/failed-fetch state was caused by the requested network restrictions (for example, reads for published references, company dimensions/uploads, and research catalogs were aborted). It is **not** evidence of a genuine historical selection, complete historical data, or data acceptance. The Methodology page itself says input replay uses current code and is not original-vintage evidence. No source files were edited; this validates the deployed production UI only, not the retained development-only views in `client/src/pages/methodology.tsx`.",
+    "verdict": "success"
+  }
+}
+
+<!-- renewal-integration-history -->
+# Latest continuation — renewal draft and completed prior promotion
+
+{
+  "at": "2026-11-12T21:53:56.515731+00:00",
+  "status": "local draft; not integrated or promoted",
+  "original_ids": [
+    "S13-004",
+    "S17-009",
+    "S17-015"
+  ],
+  "command": "npx tsx --test script/cohortRenewal.test.ts",
+  "executed_at": "2026-11-12T21:53:56.515731+00:00",
+  "exit_code": 0,
+  "counts": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "skip": 0
+  },
+  "log": "generated-artifacts/renewal/test.log",
+  "failure_history": [
+    "First ledger render rejected missing execution metadata; repaired to the existing required schema without changing validation."
+  ],
+  "files": [
+    "server/calculation/cohortRenewal.ts",
+    "script/cohortRenewal.test.ts"
+  ],
+  "new": "Explicit two-cycle stationary renewal evaluator reuses operating cohorts; checks age-stock, replacement capital, cash repetition and debt/WC boundaries. Project periodic value only; no market identification.",
+  "formulas": [
+    "cyclePV=sum(FCFE_t/(1+r)^t)",
+    "conditionalPeriodicProjectValue=cyclePV/(1-(1+r)^(-L))"
+  ],
+  "engineering_oracle": {
+    "annual_revenue": 100,
+    "replacement": 10,
+    "annual_cash": 90,
+    "rate": 0.1,
+    "periodic_value": 900,
+    "tolerance": 1e-09
+  },
+  "tests": "npx tsx --test script/cohortRenewal.test.ts:2pass/0fail/0skip; synthetic engineering, no scientific result",
+  "remaining": [
+    "Draft not integrated with companyProjection/API/UI/export or reviewed producer lifecycle",
+    "No complete transition, accrual/receivable/claim waterfall or dated storage continuation",
+    "No bounded inverse or full-domain certification; no growth perpetuity",
+    "Full coherent/private gates not yet run for this draft"
+  ],
+  "deployment": {
+    "ci": 43312646996,
+    "validate": "success",
+    "promote": "success",
+    "validated_branch": "4a10e455c1a4618c2e9c5bc51b26419aa5d71c71",
+    "fresh_runtime": "4a10e455c1a4618c2e9c5bc51b26419aa5d71c71",
+    "method": "cache-busted safe build-info read",
+    "boundary": "New deployed UI/export readback not yet executed; no deployment failure inferred or intervention made"
+  }
+}
+
+# Latest continuation — renewal draft and completed prior promotion
+
+{
+  "at": "2026-11-12T21:53:31.472193+00:00",
+  "status": "local draft; not integrated or promoted",
+  "original_ids": [
+    "S13-004",
+    "S17-009",
+    "S17-015"
+  ],
+  "files": [
+    "server/calculation/cohortRenewal.ts",
+    "script/cohortRenewal.test.ts"
+  ],
+  "new": "Explicit two-cycle stationary renewal evaluator reuses operating cohorts; checks age-stock, replacement capital, cash repetition and debt/WC boundaries. Project periodic value only; no market identification.",
+  "formulas": [
+    "cyclePV=sum(FCFE_t/(1+r)^t)",
+    "conditionalPeriodicProjectValue=cyclePV/(1-(1+r)^(-L))"
+  ],
+  "engineering_oracle": {
+    "annual_revenue": 100,
+    "replacement": 10,
+    "annual_cash": 90,
+    "rate": 0.1,
+    "periodic_value": 900,
+    "tolerance": 1e-09
+  },
+  "tests": "npx tsx --test script/cohortRenewal.test.ts:2pass/0fail/0skip; synthetic engineering, no scientific result",
+  "remaining": [
+    "Draft not integrated with companyProjection/API/UI/export or reviewed producer lifecycle",
+    "No complete transition, accrual/receivable/claim waterfall or dated storage continuation",
+    "No bounded inverse or full-domain certification; no growth perpetuity",
+    "Full coherent/private gates not yet run for this draft"
+  ],
+  "deployment": {
+    "ci": 43312646996,
+    "validate": "success",
+    "promote": "success",
+    "validated_branch": "4a10e455c1a4618c2e9c5bc51b26419aa5d71c71",
+    "fresh_runtime": "4a10e455c1a4618c2e9c5bc51b26419aa5d71c71",
+    "method": "cache-busted safe build-info read",
+    "boundary": "New deployed UI/export readback not yet executed; no deployment failure inferred or intervention made"
+  }
+}
+
 # Finite liquidation and production retirement — latest increment
 
 {
@@ -19,11 +233,20 @@
       "scope": "Fresh public checkout; explicitly copied lock-matching dependencies, not clean dependency installation or full staging reproduction"
     },
     "boundary": "Verified observed2023 accounting only, NOT future cohort/private review execution. New liquidation changes local, not deployed.",
-    "local_receipt": "3bed859ee42b906af59e2711b8b01f924f2e36f1",
+    "local_receipt": "aa070ca2a66795a12cafcf948227013e1db28ef7",
     "railway_deployment": null
   },
+  "pending_release": {
+    "source": "4a10e455c1a4618c2e9c5bc51b26419aa5d71c71",
+    "ci": 43312646996,
+    "status": "in_progress",
+    "conclusion": null,
+    "observed_at": "2026-11-12T21:44:33.768304+00:00",
+    "boundary": "Existing promotion only; do not restart, cancel, supersede or push receipt-only documents over this run."
+  },
+  "next_action": "First reconcile existing CI43312646996 for GitHub4a10e455; do not supersede it. Verify exact runtime/health and safe clean-covered JSON/XLSX and deployed UI retirement. Then complete sustainable replacement/steady-state and compatible claim/inversion (dated liquidation remains excluded from annual polynomial), actual future-review PostgreSQL/principal integration and source-qualified issuer/Stage11\u201315 inputs. Bounded fresh Node22/Python/PG reproduction is not the full S17 pack. Preserve all frozen negatives.",
   "increment": {
-    "recorded_at": "2026-11-12T21:40:40.841555+00:00",
+    "recorded_at": "2026-11-12T21:44:37.160292+00:00",
     "files": {
       "server/calculation/cohortLiquidation.ts": "e50fee9d3a1399bcdcaa60b4bb0bd27f7dd25e05c444919993a0b7204a422cba",
       "server/calculation/operatingCohorts.ts": "486b1728e00b784852b68cabaad1b7e7876b49375743aaebe3c25f3307746515",
@@ -171,6 +394,10 @@
       "generated-artifacts/liquidation/cjs-release-gate.log": {
         "sha256": "2492565bd575b8f8f16a9b01091cdcf687e50ee0c190136e63c849757766aeae",
         "finished_at": "2026-11-12T21:40:40.548373+00:00"
+      },
+      "generated-artifacts/liquidation/postledger.log": {
+        "sha256": "105bfbb06e7273bd672050df3ccf2da2a6e95e3a88d9c20c2a9df17e1d0fda26",
+        "finished_at": "2026-11-12T21:43:46.924495+00:00"
       }
     },
     "executions": [
@@ -774,7 +1001,7 @@
       "issuer": "Nucor",
       "fiscal_period_end": "2026-10-03",
       "publication_timestamp": null,
-      "retrieved_at": "2026-11-12T21:40:40.841555+00:00",
+      "retrieved_at": "2026-11-12T21:44:37.160292+00:00",
       "surface": "Complete139450-character webFetch markdown, not raw SEC authentication",
       "parts": {
         "generated-artifacts/liquidation/nucor-q3-part1.md": "9c1bdb722b94d439f0502e0c6a574b0caf48cce2110498181da639d6773448b9",
@@ -790,7 +1017,7 @@
       "period_end": "2026-09-30",
       "currency_unit": "USD millions",
       "locator": "Related-party transactions paragraph beginning Through XPLR OpCo; retained fifth markdown chunk",
-      "retrieved_at": "2026-11-12T21:40:40.841555+00:00",
+      "retrieved_at": "2026-11-12T21:15:11.828845+00:00",
       "publication_timestamp": null,
       "surface": "webFetch extraction, not raw-byte authentication",
       "parts": {
@@ -811,7 +1038,55 @@
       },
       "meaning": "Costs under several service agreements, primarily wind repowering, have been or will be reimbursed. These are costs and receivable balances, NOT gross cash collection, project return, named LLC allocation or parent common FCFE.",
       "decision": "Material new cost/boundary evidence; no receivable-difference cash inference, no inference that June246m was settled, no insertion into FY2024 or original historical origins. Further filing content beyond250000 characters was not examined in this bounded attempt."
-    }
+    },
+    "latest_coherent_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T21:33:50.811540+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 409.942,
+      "counts": {
+        "tests": 1343,
+        "pass": 1342,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/liquidation/cjs-release-gate.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "2492565bd575b8f8f16a9b01091cdcf687e50ee0c190136e63c849757766aeae",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1343,
+          "pass": 1342,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "postledger_checks": {
+      "command": "npx tsx --test script/reconciliation-stages-14-17.test.ts script/workplan-corrections.test.ts",
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/liquidation/postledger.log",
+      "sha256": "105bfbb06e7273bd672050df3ccf2da2a6e95e3a88d9c20c2a9df17e1d0fda26"
+    },
+    "execution_stop": "Execution-context checkpoint, not task completion or exhausted actionable work. Existing CI remains active; no receipt-only push may supersede it.",
+    "source_entity_boundary": "NEE Q32026 defines NEER as an operating segment and NextEra Energy Resources as LLC. XPLR glossary defines NEER as LLC but expressly permits subsidiary/group shorthand. Do not join acronym-only or infer the named project recipient or cash collection from these costs/receivables."
   }
 }
 
@@ -8704,6 +8979,28 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-dated-admission-7b6c70b",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T20:36:50.848143+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-liquidation-cjs-4a10e45",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T21:45:15.349425+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-renewal-draft-27b77c8",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T21:54:10.491423+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

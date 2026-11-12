@@ -31,6 +31,28 @@ test("future activity comes from real cohort computation; complete declared rang
  const y=cohortFixture();y.scenarios[0].physical[0].cohortId="forged";
  assert.throws(()=>projectCompanyCohorts(y),/Missing genuine/);
 });
+test("renewal enters company projection with matching physical source and full assumption identity",()=>{
+ const x=cohortFixture(),s=x.scenarios[0],base=structuredClone(s.physical[0]);
+ x.years=[2027,2028];
+ s.specification.years=[2027,2028].map(year=>({...s.specification.years[0],year,replacementCashUsd:10}));
+ s.specification.cohorts=[2026,2027,2028].map(year=>({...s.specification.cohorts[0],
+  id:String(year),commissionedYear:year,retiredYear:year+1}));
+ x.cells=x.years.map(year=>({...x.cells[0],year}));
+ s.physical=x.years.map(year=>({...structuredClone(base),year,cohortId:String(year),
+  activitySource:{...base.activitySource,year,periodStart:`${year}-01-01`,periodEnd:`${year}-12-31`},
+  intensitySource:{...base.intensitySource,year,periodStart:`${year}-01-01`,periodEnd:`${year}-12-31`}}));
+ s.renewal={version:"periodic-renewal-1",claim:"conditional-project-common-residual",
+  specification:structuredClone(s.specification),cycleYears:1,discountRate:.1,
+  openingAgeStock:[1],closingAgeStock:[1],openingDebtUsd:0,closingDebtUsd:0,
+  openingWorkingCapitalUsd:0,closingWorkingCapitalUsd:0,openingUnpaidTaxUsd:0,closingUnpaidTaxUsd:0,
+  replacementCostPerUnitUsd:10,evidenceIds:["fixture"]};
+ const result=projectCompanyCohorts(x);
+ assert.ok(Math.abs(result.members[0].renewal.conditionalPeriodicProjectValueUsd-900)<1e-9);
+ assert.equal(result.modelVersions[0].renewal,"periodic-renewal-1");
+ assert.equal(result.assumptionHash,contentHash(x.scenarios));
+ s.renewal.specification.years[0].pricePerServiceUsd=2;
+ assert.throws(()=>projectCompanyCohorts(x),/Swapped renewal/);
+});
 for(const liquidation of [false,true])test(`actual operating lifecycle with isolated memory transport, liquidation=${liquidation}: approvals, retained code/result/source, conflicts; NOT PostgreSQL proof`,async()=>{
  const records=new Map<string,{kind:string;payload:any}>(),dialect=new PgDialect();
  const identity={companyId:"42",isin:"ZZ0000000010"},now="2026-01-02T00:00:00Z";
