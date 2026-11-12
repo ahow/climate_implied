@@ -392,7 +392,7 @@ export const economicBridgeComponentPolicies: Record<string, Policy> = {
 };
 
 export const focusedRenderComponents = new Set([
-  "DecarbSignalView", "DecarbGapSignalView",
+  "DecarbSignalView", "DecarbGapSignalView", "MethodologyView",
   "CleanCoveredPanel","CleanCoveredPanelContent","CleanCoveredReportView",
   "ProducerReservePanel", "ProducerReservePanelContent", "ProducerReserveReportView", "ReserveLiteral", "Disclosure", "Result",
   "RetirementAssociationPanel", "RetirementAssociationPanelContent", "RetirementAssociationReportView",

@@ -68,20 +68,33 @@ for s in x["stages"]:
    r["files_functions_changed"]=files
    r["behaviour_delivered_this_run"]=e["new"] if r["id"]!="S17-009" else "Production-only retirement of dashboard legacy toggle and two legacy ranking backtest/table surfaces; ordinary diagnostics and retained paired research preserved; developer implementations retained."
    r["next_action"]={"S13-004":e["remaining"][0],"S13-012":e["remaining"][1],"S13-017":"Finish authoritative assumption/range coverage across all actual Tier1 producers; no unrelated scientific criterion added.","S13-020":"Retain covered reconciliation and explicit unavailable expanded population; no invented global denominator.","S17-009":e["remaining"][2]}[r["id"]]
+   r["remaining_gaps"]=[r["next_action"]];r["gaps"]=[r["next_action"]]
 old=x.get("current_release")
 if old and old.get("runtime")!="f3ef9067abb42b4e0f6825ded0375b0e0675339d":x.setdefault("release_history",[]).append(old)
 x["current_release"]={"runtime":"f3ef9067abb42b4e0f6825ded0375b0e0675339d","build_info_source_commit":"f3ef9067abb42b4e0f6825ded0375b0e0675339d","ci":43289646254,"ci_conclusion":"success","health":{"status":"ok"},"railway_deployment":None,"verified_at":now,"scope":"Prior cohort promotion verified; this dated/admission/UI increment LOCAL ONLY","readback":{"JSON_XLSX_exact_literal_cells":1051,"identity":"5d42662b3f9ed3bfd6823830e783f05949060e180bdf53532e0835d077b93121","log":"generated-artifacts/dated-cohort/prior-live-readback.log"}}
 x["current_release"]["verified_at"]=datetime.fromtimestamp(Path("generated-artifacts/dated-cohort/promoted-build.json").stat().st_mtime,timezone.utc).isoformat()
 x["current_release"]["local_workspace_head"]=subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip()
 x["current_release"]["new_increment_deployed"]=False
+ci_file=Path("generated-artifacts/dated-cohort/new-ci-latest.json")
+if ci_file.exists():
+ ci=json.loads(ci_file.read_text())
+ x["pending_release"]={"workspace_implementation":"555a7facba1b97704c6a87e1400052408a63ecfb",
+ "github_source":ci["head_sha"],"ci":{k:ci.get(k) for k in ["id","status","conclusion","html_url","updated_at"]},
+ "boundary":"Local receipt only; do not supersede the existing promotion or claim runtime equivalence until actual runtime readback matches."}
+ x["current_release"]["pending_candidate"]=x["pending_release"]
+ x["current_release"]["scope"]="Prior runtime verified; new source published, promotion/runtime not yet verified"
 x["next_action"]="Finish dated cohort terminal/claim continuation, real source/approval-bound future activity and remaining production comparator routes. Inspect final dated-cohort gate and browser receipts; promote only after coherent mandatory checks. Continue original source/case/calibration work; no new science acceptance."
 x.setdefault("restart",{})["instruction"]=x["next_action"]
+if ci_file.exists():
+ first="CI43300128977 succeeded and production-validated points to source7b6c70be. First verify Railway runtime/health/affected safe readback; last observed runtime remains f3ef9067. Do not restart/cancel/supersede this promotion. " if ci.get("conclusion")=="success" else "First reconcile existing CI43300128977/source7b6c70be without restarting/cancelling/superseding; verify actual runtime/health/readback if promoted. "
+ x["restart"]["instruction"]=first+x["next_action"]+" Integrate new SEC Note9 October2026 approximately40m repowering payment only after named recipient/project/cost/common-claim qualification; no June246m inference or backdating."
 e["browser"]="Production-browser assignment cancelled after it failed to return a result; no browser passing receipt claimed. Actual production-entry SSR assertions retained separately."
 e["static_render"]={"initial":"Static harness404 from Vite client-relative output directory; build moved into ignored root artifact directory, no app-code workaround",
 "corrected":"Production-built dashboard renders explicit unavailable-data states; static server has no backend and was stopped after capture",
 "screenshot":"screenshots/dated-cohort-production-static-corrected.jpg","scope":"Single static viewport, not interactive/live-route acceptance"}
 e["build_warnings"]=["Existing retainedPairedResearchProjection import.meta/CJS warning remains; build success is not proof that all historical report paths are executable.","Existing frontend chunk-size warning retained."]
 x["latest_changed_paths"]=files
+x["stopping_reason"]="Execution-context checkpoint, not completion or exhaustion of actionable work. Existing source promotion remains unsuperseded; reconcile its actual outcome first on continuation."
 p.write_text(json.dumps(x,indent=2)+"\n")
 report=Path("docs/WORKPLAN_IMPLEMENTATION_REPORT.md");marker="<!-- prior-dated-cohort-report -->\n";text=report.read_text()
 if marker in text:text=text.split(marker,1)[1]

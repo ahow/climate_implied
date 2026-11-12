@@ -1,6 +1,5 @@
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { contentHash } from "./calculation/analysisManifest";
 import { corpusSchema, specificationKey } from "./calculation/pairedResearchCorpus";
@@ -39,13 +38,18 @@ function inference(label: string, input: unknown): RetainedPairedSection {
 
 /** Offline producer. Always executes the actual frozen paired pipeline. Neither
  * caller-provided result objects nor review/approval inputs are accepted. */
-export async function buildRetainedPairedResearch(protocolInput: unknown, protocolHash: string, corpusInput: unknown) {
-  const pipeline = runPairedResearchPipeline(protocolInput, protocolHash, corpusInput);
-  const p = protocolInput as PairedResearchProtocol, c = corpusSchema.parse(corpusInput);
-  const sourceRoot = fileURLToPath(new URL("../", import.meta.url));
-  const codeEntries = await Promise.all(pairedProjectionModules.map(async module => ({
+/** Trusted executable setup only, never an HTTP-supplied path. The offline CLI
+ * supplies its checkout root; server execution uses its declared working
+ * directory. Missing files refuse rather than search another checkout. */
+export async function pairedProjectionCodeEntries(sourceRoot=process.cwd()) {
+  return Promise.all(pairedProjectionModules.map(async module => ({
     module, hash: createHash("sha256").update(await readFile(resolve(sourceRoot, module))).digest("hex"),
   })));
+}
+export async function buildRetainedPairedResearch(protocolInput: unknown, protocolHash: string, corpusInput: unknown, sourceRoot=process.cwd()) {
+  const pipeline = runPairedResearchPipeline(protocolInput, protocolHash, corpusInput);
+  const p = protocolInput as PairedResearchProtocol, c = corpusSchema.parse(corpusInput);
+  const codeEntries = await pairedProjectionCodeEntries(sourceRoot);
   const report = retainedPairedReportSchema.parse({
     contract: "retained-paired-research-report-1", producer: "paired-research-pipeline",
     classification: c.mode === "engineering-fixture" ? "engineering-fixture" : "retained-research",

@@ -33,10 +33,14 @@ async function load(tx:Connection,id:string,kind:string){
 async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:string[]){
  if(proposal.input?.version!=="company-cohort-input-1")return null;
  const p=proposal.producer;
- if(!p||p.modelVersion!=="company-cohort-input-1"||p.inputHash!==contentHash(proposal.input)||
+ if(!p||p.modelVersion!=="company-cohort-projection-2"||p.inputVersion!==proposal.input.version||
+   p.assumptionHash!==contentHash(proposal.input.scenarios)||p.inputHash!==contentHash(proposal.input)||
    contentHash(p.sourceIds)!==contentHash(sourceIds))throw Error("Missing/conflicting retained producer manifest");
  const code=await load(tx,p.codeId,"company-cohort-code");
  const result=await load(tx,p.resultId,"company-cohort-result");
+  if(p.modelVersion!==result.version||p.assumptionHash!==result.assumptionHash||
+    contentHash(p.modelVersions)!==contentHash(result.modelVersions))
+    throw Error("Retained cohort model/assumption manifest mismatch");
  if(contentHash(code)!==readCalculationSourceArtifact().id)throw Error("Pinned cohort code unavailable in this executable; no current-code fallback");
  if(contentHash(projectCompanyCohorts(proposal.input))!==contentHash(result))throw Error("Retained cohort result mismatch");
  if(result.covered.scenarios.some((s:any)=>s.status!=="conditional"))
@@ -67,7 +71,8 @@ export async function stageCompanyOperatingInTransaction(tx:Connection,input:any
   if(company.rows[0]?.isin!==identity.isin||input?.companyId!==identity.companyId) throw new Error("Company identity conflict");
   const isCohort=input?.version==="company-cohort-input-1";
   if(isCohort&&input.cutoff!==cutoff)throw Error("Cohort cutoff mismatch");
-  const projection=isCohort?projectCompanyCohorts(input):projectCompanyMembers(input);
+  const cohortProjection=isCohort?projectCompanyCohorts(input):null;
+  const projection=cohortProjection??projectCompanyMembers(input);
   if(!("members" in projection)) throw new Error("Company model unavailable");
   const ids=[];
   for(const source of sources){
@@ -76,10 +81,11 @@ export async function stageCompanyOperatingInTransaction(tx:Connection,input:any
   }
   const resolved=await resolveCompanySourceEvidence(input,evidence,cutoff,identity,id=>load(tx,id,"company-operating-source"));
   if(ids.some(id=>!resolved.archiveHashes.includes(id))) throw new Error("Unreferenced supplied source");
-  const producer=isCohort?{
+  const producer=cohortProjection?{
     codeId:await save(tx,"company-cohort-code",readCalculationSourceArtifact().payload),
     resultId:await save(tx,"company-cohort-result",projection),
-    modelVersion:"company-cohort-input-1",inputHash:contentHash(input),
+    modelVersion:cohortProjection.version,inputVersion:input.version,
+    assumptionHash:contentHash(input.scenarios),modelVersions:cohortProjection.modelVersions,inputHash:contentHash(input),
     sourceIds:resolved.archiveHashes,
   }:null;
   return save(tx,"company-operating-proposal",{version:"company-operating-proposal-1",identity,input,evidence,cutoff,

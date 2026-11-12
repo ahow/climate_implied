@@ -43,6 +43,8 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
  });
  const covered=calculateCoveredPhysicalPaths({cutoff:input.cutoff,population:[input.companyId],
   years:input.years,cells:input.cells,parents,scenarios});
- return {status:"conditional-cohort-projection",members,covered,inputHash:contentHash(input),
+ return {version:"company-cohort-projection-2",status:"conditional-cohort-projection",members,covered,inputHash:contentHash(input),
+  assumptionHash:contentHash(input.scenarios),
+  modelVersions:members.map(m=>({scenarioId:m.id,cohort:m.physical.version,liquidation:m.physical.liquidation?.version??null})),
   scientificAcceptance:false,marketIdentified:false};
 }

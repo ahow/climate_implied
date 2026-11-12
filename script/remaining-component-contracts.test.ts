@@ -35,7 +35,7 @@ import Dashboard, { LegacyDashboard } from "../client/src/pages/dashboard";
 import DataManagement from "../client/src/pages/data-management";
 import DecarbGapSignal, {DecarbGapSignalView} from "../client/src/pages/decarb-gap-signal";
 import DecarbSignal, {DecarbSignalView} from "../client/src/pages/decarb-signal";
-import Methodology from "../client/src/pages/methodology";
+import Methodology, {MethodologyView} from "../client/src/pages/methodology";
 import NewsSentiment from "../client/src/pages/news-sentiment";
 import { companyCoverage } from "../server/calculation/companyCoverage";
 import { displayDiagnostic, backtestPercent, backtestDisplayStats, backtestDisplay, observationTimestamp, tooltipObservation } from "../client/src/lib/valuation-claims";
@@ -346,8 +346,14 @@ test("DecarbSignal and DecarbGapSignal actual roots refuse dataset absence befor
   }
 });
 test("Methodology actual root retains current/legacy separation with missing driver evidence", () => {
-  const result = render(Methodology);
+  const result = render(() => element(MethodologyView,{legacyEvidence:true}));
   assert.ok(result.includes("Archived legacy methodology")); assert.ok(result.includes("Driver evidence is unavailable"));
+});
+test("production Methodology has no legacy evidence control or legacy table mount",()=>{
+ const result=render(Methodology);
+ assert.ok(!result.includes("Archived legacy methodology"));
+ assert.ok(!result.includes('data-testid="text-gap-signal-heading"'));
+ assert.ok(result.includes("Current claim boundaries"));
 });
 test("NewsSentiment actual root partial/zero/malformed observations never fabricates neutral sentiment", () => {
   const partial = render(NewsSentiment, [[["/api/news/climate", "12"], {}]]);

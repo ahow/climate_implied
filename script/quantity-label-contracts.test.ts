@@ -9,7 +9,7 @@ import ts from "typescript";
 import express from "express";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Router } from "wouter";
-import Methodology from "../client/src/pages/methodology";
+import {MethodologyView} from "../client/src/pages/methodology";
 import { FIXED_5GT_DESCRIPTOR as fixed, SELECTED_FIVE_PERCENT_DESCRIPTOR as selected,
   RETIRED_FINANCE_RESIDUAL_DESCRIPTOR as retired, GORDON_DEFINITION, residualQuantityExportNotes } from "../shared/quantityDescriptors";
 import { gordonBaselineMetadata } from "../server/calculation/publicValuationContract";
@@ -79,7 +79,7 @@ test("exact original S01-014/S01-016 criteria remain the assessment, not descrip
   const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
   try {
     const rendered = renderToStaticMarkup(React.createElement(QueryClientProvider, { client },
-      React.createElement(Router, { ssrPath: "/methodology" }, React.createElement(Methodology))));
+      React.createElement(Router, { ssrPath: "/methodology" }, React.createElement(MethodologyView,{legacyEvidence:true}))));
     assert.equal((rendered.match(new RegExp(retired.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) ?? []).length, 3);
     assert.ok(rendered.includes(retired.description));
     assert.ok(!rendered.includes(">Net Zero Year<"));

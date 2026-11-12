@@ -14,6 +14,9 @@ import { RegistryMethodology } from "@/components/registry-methodology";
 import { REGIONAL_COUNTERFACTUAL } from "@shared/regionalCounterfactual";
 
 export default function Methodology() {
+  return <MethodologyView legacyEvidence={import.meta.env?.DEV === true} />;
+}
+export function MethodologyView({legacyEvidence=false}:{legacyEvidence?:boolean}) {
   return (
     <div className="bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -43,7 +46,7 @@ export default function Methodology() {
         <Stage10FinancialCoverage />
         <WorkbookMoneyAudit />
         <DriverEvidenceDisclosure />
-        <details className="rounded-md border p-4">
+        {legacyEvidence && <details className="rounded-md border p-4">
         <summary className="cursor-pointer text-sm font-semibold">Archived legacy methodology — opt in; superseded claims, not current scientific guidance</summary>
         <p className="my-4 text-sm text-muted-foreground">The historical documentation below records old formulas and interpretations. Claims of climate inference, validation, net-zero, pricing and investment opportunity are unsupported and superseded by the current boundaries above. It is retained for diagnostic audit only.</p>
         <PublicationMethodologyNotes />
@@ -733,7 +736,7 @@ export default function Methodology() {
 
         </div>
 
-        </details>
+        </details>}
         <div className="mt-8 text-center">
           <Link href="/" className="inline-flex items-center rounded-md border px-4 py-2 text-sm" data-testid="button-back-to-dashboard">
             <ArrowLeft className="h-4 w-4 mr-2" />

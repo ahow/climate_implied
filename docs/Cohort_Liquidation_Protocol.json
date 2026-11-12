@@ -1,0 +1,11 @@
+{
+  "version": "cohort-liquidation-1",
+  "scope": "Prospective engineering specification; not an empirical protocol or owner identification threshold",
+  "policy": "Finite liquidation only. No perpetual output, replacement or whole-equity claim.",
+  "timing": "UTC civil-day dispositions and payments after the complete final operating year; assets explicitly offline after cutoff, with separately declared holding costs; ACT/365.25 discounting at the explicitly supplied nonnegative rate below one. Advance salvage receipts require a different receivable contract and refuse here.",
+  "stock": "Every cohort is included exactly once. Remaining installed units must equal the producer's closing stock and are disposed once, with no subsequent modeled service.",
+  "balances": "Opening undistributed cash, working capital, unpaid tax, debt, non-common liabilities and cohort retirement/remediation liabilities must be explicit. Cash settlements fully reconcile to these balances plus separately declared subsequent interest, tax and remediation accruals.",
+  "cash": "Salvage plus released working capital less cash costs, tax, retirement, debt and non-common settlements. Opening cash is distributed once. Negative common residual is an unfunded shortfall, not silently floored.",
+  "identification": "No inversion or certified continuous uniqueness is supplied by this finite liquidation calculation. Existing inversion domains and owner gates remain unchanged.",
+  "tolerance": "Balance equality uses eight machine epsilons times the larger absolute magnitude or one; independent cash tests use absolute 1e-9 USD."
+}

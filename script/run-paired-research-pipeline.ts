@@ -15,7 +15,8 @@ async function main() {
     throw new Error("Usage: npx tsx script/run-paired-research-pipeline.ts frozen-protocol.json PRECOMMITTED_SHA256 retained-corpus.json");
   const protocol = JSON.parse(await readFile(protocolPath, "utf8"));
   const corpus = JSON.parse(await readFile(corpusPath, "utf8"));
-  const paired = await buildRetainedPairedResearch(protocol, expectedHash, corpus);
+  const paired = await buildRetainedPairedResearch(protocol, expectedHash, corpus,
+    fileURLToPath(new URL("../", import.meta.url)));
   const result = paired.pipeline;
   const directory = "generated-artifacts/paired-research-pipeline";
   await mkdir(directory, { recursive: true });

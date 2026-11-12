@@ -1,3 +1,821 @@
+# Finite liquidation and production retirement — latest increment
+
+{
+  "current_release": {
+    "runtime": "7b6c70be50ba1943be7c9d435d264772df9015cd",
+    "ci": 43300128977,
+    "ci_conclusion": "success",
+    "verified_at": "2026-11-12T20:58:16.671249+00:00",
+    "health": {
+      "status": "ok"
+    },
+    "readback": {
+      "node": "v22.23.4",
+      "source": "7b6c70be50ba1943be7c9d435d264772df9015cd",
+      "actualObservedReportExact": true,
+      "rows": 1051,
+      "cells": 2102,
+      "identity": "cd3e64a58c1b28b623983f51243eb3dca8bf38134c2b805eff9684af2070fee8",
+      "scope": "Fresh public checkout; explicitly copied lock-matching dependencies, not clean dependency installation or full staging reproduction"
+    },
+    "boundary": "Verified observed2023 accounting only, NOT future cohort/private review execution. New liquidation changes local, not deployed.",
+    "local_receipt": "3bed859ee42b906af59e2711b8b01f924f2e36f1",
+    "railway_deployment": null
+  },
+  "increment": {
+    "recorded_at": "2026-11-12T21:40:40.841555+00:00",
+    "files": {
+      "server/calculation/cohortLiquidation.ts": "e50fee9d3a1399bcdcaa60b4bb0bd27f7dd25e05c444919993a0b7204a422cba",
+      "server/calculation/operatingCohorts.ts": "486b1728e00b784852b68cabaad1b7e7876b49375743aaebe3c25f3307746515",
+      "server/calculation/cohortGrowthInverse.ts": "a8424714ad4048da65dd9b52da4e10c269563768448dce79a81b634a362faebd",
+      "server/retainedPairedResearchProjection.ts": "cb27279b44786b232f6b03d11f4680098dfbddc6325e65a62af7a93f3dc7a01a",
+      "script/run-paired-research-pipeline.ts": "4f46ad2ca422fea2da710c648f92fbd5d62f7c92938bbc161e9231eaaf3542f1",
+      "script/paired-projection-cjs.test.ts": "e29acb1471ff6fe98d171a07a7870406ce848187623cbe8de10ce94fecaa29ce",
+      "server/calculation/companyCohortProjection.ts": "dc3ca04283fe8aeccc3702cf90c7c12367518adb48c7abdf3389410da8c2d8bd",
+      "server/snapshots/companyOperatingReview.ts": "92e579c7327297526a828e929d267e9ce55502bd945b75ee327c9fa7d651fa51",
+      "script/companyCohortProjection.test.ts": "1c1c202235b4941140d26e2052c040e317e94d34a4455497dca023947a018c66",
+      "docs/Cohort_Liquidation_Protocol.json": "17996601b2a60924662cbed444438d0d51e9bed984a1cb87a41d762230b92d42",
+      "script/cohortLiquidation.test.ts": "3610a7c11a7429a4c01f5a0094b460267174ecf1f87b064117cbc96e80b175c6",
+      "client/src/pages/methodology.tsx": "e0e12e6383f7fbc838e133d36d94b624cdbf0cd90ee466c245a93773a5297c49",
+      "script/remaining-component-contracts.test.ts": "416ad6c32d59b0c825e91100e5ce09439a00b0002cf234caeca03f9a970c674b",
+      "script/quantity-label-contracts.test.ts": "09043aea9943c7442217fea52e5a78d2dfe2e77674e64657e507a421385130e5",
+      "script/component-state-contracts.ts": "8da5a4fdcc5339ec4cd2d15fc136210bd550628c9386e2d92fdbb1ca08cc75a7",
+      "script/component-state-census.test.ts": "f63e013d9786d50bda0edbb44155b06dd31a870ac7fd871d701e9ee16149af67"
+    },
+    "functions": [
+      "calculateCohortLiquidation",
+      "calculateOperatingCohorts",
+      "MethodologyView"
+    ],
+    "previous": "Dated stock/storage, future review helpers, proportional polynomial and source-bound observed report retained.",
+    "new": "Explicit finite offline liquidation: surviving units, dated salvage, retirement/remediation, tax/WC/debt/non-common balances, holding/transaction cash, ACT365.25 PV and interim funding shortfalls. No perpetual/whole-equity inference. Methodology legacy evidence mounts only in developer view; original regression assertions retained there.",
+    "inputs": "Explicit USD balances and future payment dates, source evidence IDs, declared offline service and rate. Subsequent accruals separate from opening liabilities; annual cash is not deducted again.",
+    "numerics": {
+      "engineering_only": true,
+      "surviving_units": 2,
+      "opening_cash": 10,
+      "net_settlement_cash": 57,
+      "common_residual": 67,
+      "zero_salvage_residual": -33,
+      "early_tax_interim_funding": 6,
+      "cash_test_tolerance": 1e-09
+    },
+    "claims": "No issuer case, original-vintage history, Stage7 ensemble, scientific efficacy or owner approval conferred.",
+    "failure_history": [
+      "Focused Node20 mixed test command timed out after300s; no final count or passing claim.",
+      "First full Node22 gate1339 tests:1333pass/5fail/1optionalPGskip. Stale field census, two preserved legacy-render expectations and current warning fingerprints; no Python/private gate run after failed TS stage."
+    ],
+    "remaining": [
+      "Sustainable replacement/steady-state stock/cash and compatible issuer valuation are not implemented by finite liquidation.",
+      "Future source-complete approved producer still unavailable; memory helper tests do not prove PostgreSQL/principal acceptance.",
+      "Clean reproduction uses explicitly copied dependencies; not a fresh locked dependency install or complete S17 pack.",
+      "Production comparator runtime of this changed methodology is not yet verified."
+    ],
+    "logs": {
+      "generated-artifacts/liquidation/focused.log": {
+        "sha256": "c04ba2756c3139c9537e47ee25c7a75cbc351346d6f66cc5a5e691794e04ac0d",
+        "finished_at": "2026-11-12T20:45:00.332636+00:00"
+      },
+      "generated-artifacts/liquidation/typecheck.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "finished_at": "2026-11-12T20:45:00.716636+00:00"
+      },
+      "generated-artifacts/liquidation/ui-build.log": {
+        "sha256": "32a42b81990237fb9b41dff4ebeeba179cf824d384a8b5cbaa916884dbc53b3e",
+        "finished_at": "2026-11-12T20:48:13.944307+00:00"
+      },
+      "generated-artifacts/liquidation/changed.log": {
+        "sha256": "c4217c1e3efa254ec00aa20817f81a27701232b07ba9d2d3d88871ac4bd435dc",
+        "finished_at": "2026-11-12T20:48:24.416654+00:00"
+      },
+      "generated-artifacts/liquidation/full.log": {
+        "sha256": "1787977fdd8a20538796c568d93a450dc06e749eb0c29590f8e3d752e7940306",
+        "finished_at": "2026-11-12T21:00:56.788712+00:00"
+      },
+      "generated-artifacts/liquidation/fresh-node.log": {
+        "sha256": "cac9d040111d8514c6cfea25adbe85a3d778481f6a667527b43c173194e4bcec",
+        "finished_at": "2026-11-12T20:57:57.537089+00:00"
+      },
+      "generated-artifacts/liquidation/fresh-actual.log": {
+        "sha256": "cded7aadb6fa2f89ad28165d2f19fa24818f6ca97f05d8295effb99a7d7b49c1",
+        "finished_at": "2026-11-12T20:58:49.601310+00:00"
+      },
+      "generated-artifacts/liquidation/census.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "finished_at": "2026-11-12T21:04:23.228287+00:00"
+      },
+      "generated-artifacts/liquidation/corrected.log": {
+        "sha256": "041de53db8fec926c64af44159194f468e117296dd4f1063d5ac1d834a6b5bc0",
+        "finished_at": "2026-11-12T21:04:49.264287+00:00"
+      },
+      "generated-artifacts/liquidation/coherent.log": {
+        "sha256": "35c32c34cfbe32af3ebc32fc4f8dcf567fcc1ba3f72b20ed45c9f979c9d24062",
+        "finished_at": "2026-11-12T21:11:40.464385+00:00"
+      },
+      "generated-artifacts/liquidation/fresh-pg.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "finished_at": "2026-11-12T21:06:01.800613+00:00"
+      },
+      "generated-artifacts/liquidation/fresh-python.log": {
+        "sha256": "c6adfd5bbab24cf5c89707d7f2314c44423d9e47c7b02e33b7d19f8130f4d905",
+        "finished_at": "2026-11-12T21:06:35.720294+00:00"
+      },
+      "generated-artifacts/liquidation/fresh-python-corrected.log": {
+        "sha256": "66dc16cde4c8df6123a3859af29192dbc7b41cad4e5d3eb53cf688b042e33500",
+        "finished_at": "2026-11-12T21:07:54.957329+00:00"
+      },
+      "generated-artifacts/liquidation/census-final.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "finished_at": "2026-11-12T21:10:13.608739+00:00"
+      },
+      "generated-artifacts/liquidation/typecheck-final.log": {
+        "sha256": "ba9165268f8ce5d20d8cc5d79b16365a20b3ef2382587662c59d28a366438ef4",
+        "finished_at": "2026-11-12T21:10:37.364294+00:00"
+      },
+      "generated-artifacts/liquidation/admission-final.log": {
+        "sha256": "1fb42778349d24ec9b0716fa770ed2b731869e67861a466ebfbe5530b999744a",
+        "finished_at": "2026-11-12T21:10:42.716294+00:00"
+      },
+      "generated-artifacts/liquidation/typecheck-corrected.log": {
+        "sha256": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+        "finished_at": "2026-11-12T21:11:34.540385+00:00"
+      },
+      "generated-artifacts/liquidation/census-frozen.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "finished_at": "2026-11-12T21:12:34.453324+00:00"
+      },
+      "generated-artifacts/liquidation/frozen-final.log": {
+        "sha256": "f5abee36846a1d3feb9ae664aa2236e15514c1a118631db4d802c76c917dae40",
+        "finished_at": "2026-11-12T21:21:20.348614+00:00"
+      },
+      "generated-artifacts/liquidation/inversion-exclusion.log": {
+        "sha256": "3d25e2bb1962e4884f6156489a0d15f4673c7ea021cd567ead1dfb9bfb4d19c4",
+        "finished_at": "2026-11-12T21:21:16.224247+00:00"
+      },
+      "generated-artifacts/liquidation/census-terminal.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "finished_at": "2026-11-12T21:21:25.084614+00:00"
+      },
+      "generated-artifacts/liquidation/release-gate.log": {
+        "sha256": "dd373b44632d4f6ba521ae7ff1eaec44148d5d38975fcae20402158f951fb243",
+        "finished_at": "2026-11-12T21:28:44.384253+00:00"
+      },
+      "generated-artifacts/liquidation/cjs-focused.log": {
+        "sha256": "8f91228438aae7c608e6d5501732e7b9ac39dfd0bac4e42c6ef19ed691ada36b",
+        "finished_at": "2026-11-12T21:31:35.832755+00:00"
+      },
+      "generated-artifacts/liquidation/census-cjs.log": {
+        "sha256": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+        "finished_at": "2026-11-12T21:32:32.416398+00:00"
+      },
+      "generated-artifacts/liquidation/cjs-release-gate.log": {
+        "sha256": "2492565bd575b8f8f16a9b01091cdcf687e50ee0c190136e63c849757766aeae",
+        "finished_at": "2026-11-12T21:40:40.548373+00:00"
+      }
+    },
+    "executions": [
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T20:55:23.672366+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 333.041,
+        "counts": {
+          "tests": 1339,
+          "pass": 1333,
+          "fail": 5,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/liquidation/full.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "1787977fdd8a20538796c568d93a450dc06e749eb0c29590f8e3d752e7940306",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1339,
+            "pass": 1333,
+            "fail": 5,
+            "skipped": 1
+          },
+          "python": null
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T21:05:38.050289+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 362.379,
+        "counts": {
+          "tests": 1341,
+          "pass": 1339,
+          "fail": 1,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/liquidation/coherent.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "35c32c34cfbe32af3ebc32fc4f8dcf567fcc1ba3f72b20ed45c9f979c9d24062",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1341,
+            "pass": 1339,
+            "fail": 1,
+            "skipped": 1
+          },
+          "python": null
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T21:14:11.484087+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 428.991,
+        "counts": {
+          "tests": 1341,
+          "pass": 1340,
+          "fail": 0,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/liquidation/frozen-final.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "f5abee36846a1d3feb9ae664aa2236e15514c1a118631db4d802c76c917dae40",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1341,
+            "pass": 1340,
+            "fail": 0,
+            "skipped": 1
+          },
+          "python": {
+            "tests": 264,
+            "pass": 264,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T21:21:53.166668+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 411.456,
+        "counts": {
+          "tests": 1342,
+          "pass": 1341,
+          "fail": 0,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/liquidation/release-gate.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "dd373b44632d4f6ba521ae7ff1eaec44148d5d38975fcae20402158f951fb243",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1342,
+            "pass": 1341,
+            "fail": 0,
+            "skipped": 1
+          },
+          "python": {
+            "tests": 264,
+            "pass": 264,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T21:33:50.811540+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 409.942,
+        "counts": {
+          "tests": 1343,
+          "pass": 1342,
+          "fail": 0,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/liquidation/cjs-release-gate.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "2492565bd575b8f8f16a9b01091cdcf687e50ee0c190136e63c849757766aeae",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1343,
+            "pass": 1342,
+            "fail": 0,
+            "skipped": 1
+          },
+          "python": {
+            "tests": 264,
+            "pass": 264,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      }
+    ],
+    "browser": {
+      "verdict": "success",
+      "text": "Completed the bounded UI-only journey on the production-built preview at `http://127.0.0.1:5101`:\n\n- Dashboard `/` \u2192 Methodology `/methodology` \u2192 Decarb Signal `/decarb-signal` \u2192 Decarb Gap `/decarb-gap`, using visible sidebar navigation. The requested gap-signal view is rendered at `/decarb-gap` (component `page-decarb-gap-signal`); the app does not expose a sidebar route literally named `/decarb-gap-signal`.\n- Browser Back from the gap view returned to `/decarb-signal`; sidebar navigation then returned to the dashboard.\n- Dashboard: no legacy comparator toggle/control was present. The \u201cRetired legacy comparators\u201d section states controls and results are retired from the production view. The normal published-reference, candidate-emissions, and indicator areas render explicit load-unavailable messages; no values are shown.\n- Methodology: no separate archived legacy-methodology section appeared in the visible headings. Current claim-boundary caveats still describe legacy calculations and their limits, so legacy mentions are not wholly absent.\n- Decarb Signal: legacy backtest/comparison controls are explicitly retired; no legacy ranking/backtest tables or downloads appeared. All four ordinary comparison diagnostics were \u201cUnavailable,\u201d with failed reads for `/api/cv/dimensions`, `/api/cv/uploads`, and the company dataset. Current chart download buttons were disabled.\n- Decarb Gap (`page-decarb-gap-signal`): the paired-research reader remained present and explicitly reported its catalog unavailable (`response is not valid JSON (200)`); company data and current reads were also unavailable. The page displayed valuation limits rather than substitute results.\n\nThese unavailable states match the stated no-backend test environment. No backend, workflow, DB, collector, data, auth, or source code was touched. This verifies rendered retirement/unavailable-state behavior only\u2014not live data, model selection, or runtime acceptance.",
+      "screenshots": [
+        {
+          "description": "Final dashboard view after returning from the supported journey; sidebar navigation is visible and no legacy toggle is shown.",
+          "id": "djiy6w"
+        },
+        {
+          "description": "Decarb Signal after browser Back; diagnostics are unavailable, legacy backtest/comparison controls are retired, and current downloads are disabled.",
+          "id": "ywuyv7"
+        },
+        {
+          "description": "Decarb Gap paired-research view; catalog and current-read unavailable states are explicit.",
+          "id": "4444e6"
+        },
+        {
+          "description": "Initial dashboard evidence and published-reference area at the start of the journey.",
+          "id": "pdqwia"
+        }
+      ]
+    },
+    "fresh_observed_reproduction": {
+      "node": "v22.23.4",
+      "source": "7b6c70be50ba1943be7c9d435d264772df9015cd",
+      "actualObservedReportExact": true,
+      "rows": 1051,
+      "cells": 2102,
+      "identity": "cd3e64a58c1b28b623983f51243eb3dca8bf38134c2b805eff9684af2070fee8",
+      "scope": "Fresh public checkout; explicitly copied lock-matching dependencies, not clean dependency installation or full staging reproduction"
+    },
+    "python_lock": {
+      "python": "3.13.11 (main, Dec  5 2025, 16:06:33) [GCC 15.2.0]",
+      "platform": "linux",
+      "selected": [
+        {
+          "name": "pooch",
+          "locked": "1.9.0",
+          "installed": "1.9.0",
+          "matches": true
+        },
+        {
+          "name": "requests",
+          "locked": "2.34.2",
+          "installed": "2.34.2",
+          "matches": true
+        },
+        {
+          "name": "urllib3",
+          "locked": "2.8.0",
+          "installed": "2.8.0",
+          "matches": true
+        },
+        {
+          "name": "idna",
+          "locked": "3.20",
+          "installed": "3.20",
+          "matches": true
+        },
+        {
+          "name": "charset-normalizer",
+          "locked": "3.5.2",
+          "installed": "3.5.2",
+          "matches": true
+        },
+        {
+          "name": "certifi",
+          "locked": "2026.7.22",
+          "installed": "2026.7.22",
+          "matches": true
+        },
+        {
+          "name": "platformdirs",
+          "locked": "4.13.0",
+          "installed": "4.13.0",
+          "matches": true
+        },
+        {
+          "name": "packaging",
+          "locked": "26.3",
+          "installed": "26.3",
+          "matches": true
+        },
+        {
+          "name": "matplotlib",
+          "locked": "3.11.2",
+          "installed": "3.11.2",
+          "matches": true
+        },
+        {
+          "name": "python-dateutil",
+          "locked": "2.9.0.post0",
+          "installed": "2.9.0.post0",
+          "matches": true
+        },
+        {
+          "name": "six",
+          "locked": "1.17.0",
+          "installed": "1.17.0",
+          "matches": true
+        },
+        {
+          "name": "pyparsing",
+          "locked": "3.3.3",
+          "installed": "3.3.3",
+          "matches": true
+        },
+        {
+          "name": "pillow",
+          "locked": "12.3.0",
+          "installed": "12.3.0",
+          "matches": true
+        },
+        {
+          "name": "numpy",
+          "locked": "2.5.4",
+          "installed": "2.5.4",
+          "matches": true
+        },
+        {
+          "name": "kiwisolver",
+          "locked": "1.5.1",
+          "installed": "1.5.1",
+          "matches": true
+        },
+        {
+          "name": "fonttools",
+          "locked": "4.66.1",
+          "installed": "4.66.1",
+          "matches": true
+        },
+        {
+          "name": "cycler",
+          "locked": "0.12.1",
+          "installed": "0.12.1",
+          "matches": true
+        },
+        {
+          "name": "contourpy",
+          "locked": "1.4.0",
+          "installed": "1.4.0",
+          "matches": true
+        },
+        {
+          "name": "h5py",
+          "locked": "3.16.0",
+          "installed": "3.16.0",
+          "matches": true
+        },
+        {
+          "name": "h5netcdf",
+          "locked": "1.8.2",
+          "installed": "1.8.2",
+          "matches": true
+        },
+        {
+          "name": "fair",
+          "locked": "2.2.4",
+          "installed": "2.2.4",
+          "matches": true
+        },
+        {
+          "name": "xarray",
+          "locked": "2026.9.0",
+          "installed": "2026.9.0",
+          "matches": true
+        },
+        {
+          "name": "pandas",
+          "locked": "3.0.6",
+          "installed": "3.0.6",
+          "matches": true
+        },
+        {
+          "name": "tqdm",
+          "locked": "4.70.1",
+          "installed": "4.70.1",
+          "matches": true
+        },
+        {
+          "name": "scipy",
+          "locked": "1.18.1",
+          "installed": "1.18.1",
+          "matches": true
+        }
+      ],
+      "allMatch": true,
+      "excluded": "colorama and tzdata markers do not select Linux"
+    },
+    "fresh_postgres": {
+      "startedAt": "2026-11-12T21:06:03.381Z",
+      "finishedAt": "2026-11-12T21:08:53.200Z",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T21:06:03.392Z",
+          "durationMs": 23.444259999999986,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T21:06:03.416Z",
+          "durationMs": 158.1225219999999,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T21:06:03.575Z",
+          "durationMs": 18.798375999999962,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T21:06:03.594Z",
+          "durationMs": 3.5994989999999234,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T21:06:03.597Z",
+          "durationMs": 15.902229999999918,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T21:06:03.613Z",
+          "durationMs": 120.1713420000001,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T21:06:03.733Z",
+          "durationMs": 16.134940000000142,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T21:06:03.750Z",
+          "durationMs": 24.873194000000012,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-0TsNX4/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T21:06:03.775Z",
+          "durationMs": 1025.5852840000002,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/8-initdb.log",
+          "logSha256": "e0331d9aa8d933c6db0728d154503737cabbfd2b73134e8da9ede481e1055589"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-0TsNX4/data",
+            "-l",
+            "/tmp/s02-cache-0TsNX4/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-0TsNX4/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T21:06:04.801Z",
+          "durationMs": 125.70988899999975,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/node_modules/.bin/tsx",
+            "--test",
+            "script/company-cache-transport.test.ts"
+          ],
+          "startedAt": "2026-11-12T21:06:04.989Z",
+          "durationMs": 26044.152793,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/10-tsx.log",
+          "logSha256": "0cd9cecd70bcd881e9d1c59d187af7a68a79900e60ad714ee4ea3f6a1e67bb5a"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/node_modules/.bin/tsx",
+            "--test",
+            "script/projection-route-cache.test.ts"
+          ],
+          "startedAt": "2026-11-12T21:06:31.036Z",
+          "durationMs": 142038.88304900003,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/11-tsx.log",
+          "logSha256": "2269841f3775456476de6ee3ef303bcabc9ee8ba4606bee8fa19874ac241e076"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-0TsNX4/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T21:08:53.089Z",
+          "durationMs": 110.47689699998591,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/liquidation/fresh-public/generated-artifacts/disposable-cache-QhJl10/12-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "counts": {
+        "cache_rows": 7,
+        "archive_headers": 13,
+        "archive_chunks": 16,
+        "enabled_guard_count": 5
+      },
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-0TsNX4",
+        "privateUnixSocket": "/tmp/s02-cache-0TsNX4/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      },
+      "scope": [
+        "Existing actual company HTTP/calculator/material/result archive suite on real PostgreSQL, not memory ORM.",
+        "Six completed route-local matrices preserved, plus actual full/reduced helper namespace and persistent JSONB round-trip with fresh route state.",
+        "TTL remains actual regional route cache clock-boundary test, not an invented PostgreSQL row TTL.",
+        "Synthetic declared engineering money/indicator datasets; real calculator values, not real issuer evidence.",
+        "Application default storage is MemStorage. Projection PostgreSQL test substitutes only the storage I/O dependency; this is not deployed PostgreSQL application acceptance."
+      ],
+      "blockers": []
+    },
+    "additional_failure_history": "Fresh Python module-qualified invocation failed two imports; documented unittest discovery corrected5/5. Universal lock check initially flagged two absent packages; their Windows/Emscripten markers exclude Linux. All25 selected Linux packages exactly match the retained lock; no packages installed or assertions skipped. Second full gate1341TS:1339pass/1fail/1optionalPGskip; Track B immutable assessment retry refused changed source bytes while model manifest edits were being integrated. Guard retained; final gate must run on frozen code. Intermediate union typecheck failed; fixed by narrowing the actual cohort projection, not an any cast.",
+    "cjs_fix": "Removed server producer dependence on import.meta.url in CommonJS. Trusted CLI passes its checkout root; server uses declared working directory; missing files refuse. Actual bundled CommonJS hashes all11 source modules correctly from isolated cwd. Focused CJS/TrackB14/14 passed before final coherent gate.",
+    "publication_history": "First source synchronization correctly refused the dirty memory working tree; nothing published by that attempt. Memory changes committed with the next coherent increment, no export guard bypass.",
+    "fslr_search": "Targeted US volumes/PFE search returned the Q32026 release already retained in issuer-cash-source-followup-evidence.json. Did not re-fetch it; no new actual eligible watts/BOM/cost inputs acquired.",
+    "new_source_attempt": {
+      "url": "https://www.sec.gov/Archives/edgar/data/73309/000119312526454565/nue-20261003.htm",
+      "accession": "0001193125-26-454565",
+      "issuer": "Nucor",
+      "fiscal_period_end": "2026-10-03",
+      "publication_timestamp": null,
+      "retrieved_at": "2026-11-12T21:40:40.841555+00:00",
+      "surface": "Complete139450-character webFetch markdown, not raw SEC authentication",
+      "parts": {
+        "generated-artifacts/liquidation/nucor-q3-part1.md": "9c1bdb722b94d439f0502e0c6a574b0caf48cce2110498181da639d6773448b9",
+        "generated-artifacts/liquidation/nucor-q3-part2.md": "5328dcc0827596751ed04556f4b39e8fcd65bffaaf8fe938ddc77c8b0f09e93b",
+        "generated-artifacts/liquidation/nucor-q3-part3.md": "0db51f6340da84cb089dd28c588ad81668259a8fb36fa6d52d5873766b2c6a1b"
+      },
+      "finding": "No Exxon/carbon capture/carbon dioxide/45Q/sequestration matches in this examined quarterly filing. No priced CCS instrument, billings, project operating costs or funding term acquired.",
+      "decision": "No numerical model update or global nondisclosure claim. Existing FY2025 payment direction retained. Exact missing contract fields remain."
+    },
+    "new_nee_source": {
+      "url": "https://www.sec.gov/Archives/edgar/data/37634/000075330826000081/nee-20260930.htm",
+      "accession": "0000753308-26-000081",
+      "period_end": "2026-09-30",
+      "currency_unit": "USD millions",
+      "locator": "Related-party transactions paragraph beginning Through XPLR OpCo; retained fifth markdown chunk",
+      "retrieved_at": "2026-11-12T21:40:40.841555+00:00",
+      "publication_timestamp": null,
+      "surface": "webFetch extraction, not raw-byte authentication",
+      "parts": {
+        "generated-artifacts/liquidation/nee-q3-part1.md": "614503ff82d4887e86d955f383dfc16b42eb735c62eef2df370984410ffa6878",
+        "generated-artifacts/liquidation/nee-q3-part2.md": "5f9d111c2ae48ac6a900147a3360fb6700c1d02fce5130074003ce68579c6484",
+        "generated-artifacts/liquidation/nee-q3-part3.md": "59b70d0087fcf6d50935f76e075752caa9487f9d4023fb03de0fe86e15a171a8",
+        "generated-artifacts/liquidation/nee-q3-part4.md": "dd99062d81f3a9610d0ee8d42edea725ac6a46964982ad91a679eb7fa833ff59",
+        "generated-artifacts/liquidation/nee-q3-part5.md": "0b404fb66d5a05a006f8e7229620b6f0a4a155e81bfe7f658f10a0d2de60590c"
+      },
+      "facts": {
+        "NEE_noncontrolling_XPLR_percent": 52.4,
+        "service_costs_Q3_2026": 20,
+        "service_costs_nine_months_2026": 120,
+        "current_due_from_XPLR_Sep2026": 178,
+        "noncurrent_due_from_XPLR_Sep2026": 170,
+        "current_due_from_XPLR_Dec2025": 498,
+        "noncurrent_due_from_XPLR_Dec2025": 183
+      },
+      "meaning": "Costs under several service agreements, primarily wind repowering, have been or will be reimbursed. These are costs and receivable balances, NOT gross cash collection, project return, named LLC allocation or parent common FCFE.",
+      "decision": "Material new cost/boundary evidence; no receivable-difference cash inference, no inference that June246m was settled, no insertion into FY2024 or original historical origins. Further filing content beyond250000 characters was not examined in this bounded attempt."
+    }
+  }
+}
+
+<!-- prior-finite-liquidation-report -->
 # Dated cohort admission — latest local increment
 
 {
@@ -11,17 +829,29 @@
     },
     "railway_deployment": null,
     "verified_at": "2026-11-12T20:16:52.155966+00:00",
-    "scope": "Prior cohort promotion verified; this dated/admission/UI increment LOCAL ONLY",
+    "scope": "Prior runtime verified; new source published, promotion/runtime not yet verified",
     "readback": {
       "JSON_XLSX_exact_literal_cells": 1051,
       "identity": "5d42662b3f9ed3bfd6823830e783f05949060e180bdf53532e0835d077b93121",
       "log": "generated-artifacts/dated-cohort/prior-live-readback.log"
     },
-    "local_workspace_head": "8041bbf4dea6cb79090b91c81791173db7ece3ab",
-    "new_increment_deployed": false
+    "local_workspace_head": "65fca431e014e82285fdb53ed91eb517a9954fa3",
+    "new_increment_deployed": false,
+    "pending_candidate": {
+      "workspace_implementation": "555a7facba1b97704c6a87e1400052408a63ecfb",
+      "github_source": "7b6c70be50ba1943be7c9d435d264772df9015cd",
+      "ci": {
+        "id": 43300128977,
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/ahow/climate_implied/actions/runs/43300128977",
+        "updated_at": "2026-11-12T20:30:54Z"
+      },
+      "boundary": "Local receipt only; do not supersede the existing promotion or claim runtime equivalence until actual runtime readback matches."
+    }
   },
   "increment": {
-    "recorded_at": "2026-11-12T20:24:34.850424+00:00",
+    "recorded_at": "2026-11-12T20:35:31.265958+00:00",
     "files": {
       "server/calculation/operatingCohorts.ts": "919eabd2e7c7cdfd9c2937cb77a3f6517cb061c3b3cec211c6e527454c20ce54",
       "server/calculation/companyCohortProjection.ts": "4dc8073b43f08ee8bc71979d4f5af05f1e95a4a5ef26cdcbed7f6cd1e4efe99b",
@@ -153,6 +983,14 @@
       "generated-artifacts/dated-cohort/static-build.log": {
         "sha256": "5a142bf3f122060fbc31eb7beae76bc438a6b04ca00e85e36be2e8f5b38efe31",
         "completed_at": "2026-11-12T20:17:32.701672+00:00"
+      },
+      "generated-artifacts/dated-cohort/post-ledger.log": {
+        "sha256": "e246240f6d00ecf235260afed304d5aeff2418ec14c5b74c1928f6c1a9f6d98b",
+        "completed_at": "2026-11-12T20:25:01.745012+00:00"
+      },
+      "generated-artifacts/dated-cohort/receipt-ledger-check.log": {
+        "sha256": "e7214a5c7a36d80fc18c85b36550540347e1ea4ade40f9fda21b04698015f2f5",
+        "completed_at": "2026-11-12T20:29:47.671100+00:00"
       }
     },
     "coherent_receipt": {
@@ -7855,6 +8693,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-cohort-domain-f3ef906",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T19:25:35.489467+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-dated-admission-7b6c70b",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T20:36:50.848143+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

@@ -16,6 +16,7 @@ export function freezeCohortGrowthDeck(input:CohortGrowthDeck){
  const ids=deck.projects.flatMap(p=>p.cohorts.map(c=>c.id));
  if(new Set(ids).size!==ids.length)throw Error("Project cohorts overlap");
  const calculations=deck.projects.map(p=>{
+   if(p.liquidation)throw Error("Dated liquidation is outside this certified annual polynomial; terminal cash must not be omitted");
   if(p.cohorts.length!==1)throw Error("Per-cohort cash allocation required, no MW allocation of pooled issuer cash");
   const c=p.cohorts[0];
   if(p.years[0].year>c.commissionedYear||p.years.at(-1)!.year<c.retiredYear)

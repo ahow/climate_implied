@@ -31,7 +31,7 @@ test("future activity comes from real cohort computation; complete declared rang
  const y=cohortFixture();y.scenarios[0].physical[0].cohortId="forged";
  assert.throws(()=>projectCompanyCohorts(y),/Missing genuine/);
 });
-test("actual operating lifecycle with isolated memory transport: approvals, retained code/result/source, conflicts; NOT PostgreSQL proof",async()=>{
+for(const liquidation of [false,true])test(`actual operating lifecycle with isolated memory transport, liquidation=${liquidation}: approvals, retained code/result/source, conflicts; NOT PostgreSQL proof`,async()=>{
  const records=new Map<string,{kind:string;payload:any}>(),dialect=new PgDialect();
  const identity={companyId:"42",isin:"ZZ0000000010"},now="2026-01-02T00:00:00Z";
  const tx:any={execute:async(q:any)=>{
@@ -50,7 +50,18 @@ test("actual operating lifecycle with isolated memory transport: approvals, reta
   return {rows};
  }};
  try{
-  const input=cohortFixture(),claims=Object.entries(materialLeaves(input)).map(([path,value])=>({
+  const input=cohortFixture();
+  if(liquidation)input.scenarios[0].specification.liquidation={
+   version:"cohort-liquidation-1",policy:"finite-liquidation",currency:"USD",cashBoundary:"undistributed-at-cutoff",
+   openingCashDistributionOn:"2028-01-01",postHorizonService:"none-offline",discountRate:.08,
+   evidenceIds:["fixture"],transactionCostsUsd:0,holdingCostsUsd:0,
+   opening:{cash:0,workingCapital:0,unpaidTax:0,debt:0,nonCommonLiability:0},
+   subsequentAccrual:{tax:0,interest:0,remediation:0},
+   dispositions:[{cohortId:"asset",units:1,on:"2028-01-01",retirementLiability:4,remediationLiability:0}],
+   payments:[{id:"sale",on:"2028-01-01",kind:"salvage",usd:2,cohortId:"asset",evidenceIds:["fixture"]},
+    {id:"retire",on:"2028-01-01",kind:"retirement",usd:4,cohortId:"asset",evidenceIds:["fixture"]}]
+  };
+  const claims=Object.entries(materialLeaves(input)).map(([path,value])=>({
    path,valueHash:contentHash(value),value,locator:path,unit:"synthetic declared field",period:"2027",geography:"fixture",
    basis:"assumption" as const,availableAt:input.cutoff,method:"isolated fixture",dependencies:[]}));
   const source=packCompanySource({version:"company-operating-source-1",...identity,url:"https://example.invalid/fixture",
@@ -64,6 +75,15 @@ test("actual operating lifecycle with isolated memory transport: approvals, reta
   const result=await project(tx,decision.id,"2026-02-01T00:00:00Z");
   assert.equal(result.covered.scenarios[0].rows[0].emissionsTonnes,100);
   const proposal=records.get(id)!.payload;
+  assert.equal(proposal.producer.modelVersion,"company-cohort-projection-2");
+  assert.equal(proposal.producer.inputVersion,input.version);
+  assert.equal(proposal.producer.assumptionHash,contentHash(input.scenarios));
+  assert.deepEqual(proposal.producer.modelVersions,result.modelVersions);
+  assert.ok(records.get(proposal.producer.codeId)!.payload.files["server/calculation/cohortLiquidation.ts"]);
+  if(liquidation){
+   assert.equal(result.members[0].physical.liquidation.commonResidual,-2);
+   assert.equal(result.members[0].physical.liquidation.unfundedShortfall,true);
+  }
   for(const dependency of [proposal.producer.codeId,proposal.producer.resultId,source.id,decision.financialIdentityArchive]){
    const saved=records.get(dependency)!;
    records.delete(dependency);

@@ -1,5 +1,6 @@
 import {contentHash} from "./analysisManifest";
 import {calculateCompanyFullCashflowCase} from "./companyFullCashflowCase";
+import {calculateCohortLiquidation,type CohortLiquidation} from "./cohortLiquidation";
 
 /** Explicit annual cohort accounting. No shipment -> commissioned stock inference,
  * no inferred revenue/avoided emissions and no automatic perpetual stock. */
@@ -29,6 +30,7 @@ export interface CohortSpecification {
  boundary:"conditional-project-FCFE-not-whole-equity";
  currency:"USD";
  timing:"commission-at-year-start-retire-before-year-service"|"utc-civil-day-service";
+ liquidation?:CohortLiquidation;
 }
 export function calculateOperatingCohorts(input:CohortSpecification){
  const x: CohortSpecification=JSON.parse(JSON.stringify(input));
@@ -111,9 +113,14 @@ export function calculateOperatingCohorts(input:CohortSpecification){
    return {year:y.year,opening,added,retired,closing,service,contributions,revenue,variableCost,
      operatingCashBeforeTax,capital,fcfe,chargeEnergyKwh,energyCost,inputs:y};
  });
- return {version:x.timing==="utc-civil-day-service"?"operating-cohorts-2-dated":"operating-cohorts-1",inputHash:contentHash(x),rows,
+ const liquidation=x.liquidation?calculateCohortLiquidation(x,rows.at(-1)!.closing,x.liquidation):undefined;
+ return {version:liquidation?"operating-cohorts-3-liquidation":x.timing==="utc-civil-day-service"?"operating-cohorts-2-dated":"operating-cohorts-1",inputHash:contentHash(x),rows,
+   ...(liquidation?{liquidation}:{}),
    serviceUnit:x.cohorts[0].serviceUnit,capacityUnit:x.cohorts[0].capacityUnit,
-   terminal:{value:null,remainingStock:rows.at(-1)!.closing,
+   terminal:liquidation?{value:null,remainingStock:rows.at(-1)!.closing,stockAfterLiquidation:0,
+     finiteLiquidationPresentResidual:liquidation.presentResidual,
+     reason:"Explicit finite project liquidation, not perpetual cash, whole-equity valuation or identified market claim"}:
+     {value:null,remainingStock:rows.at(-1)!.closing,
      reason:"Finite cohort cash schedule only; continuing replacement/stock/cash policy and compatible claim required"},
    marketImplied:false,sourceAuthenticated:false,scientificAcceptance:false};
 }
