@@ -1,3 +1,64 @@
+## Latest clean/covered release observation
+
+{
+  "observed_at": "2026-11-12T18:24:39.776530+00:00",
+  "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+  "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+  "ci": {
+    "id": 43277284147,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+  },
+  "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+  "health": {
+    "status": "ok"
+  },
+  "release_verified": true,
+  "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+  "private_source_assertions": 16,
+  "changed_paths": [
+    ".agents/memory/continuation-contract.md",
+    "client/src/components/clean-covered-panel.test.ts",
+    "client/src/components/clean-covered-panel.tsx",
+    "client/src/hooks/use-clean-covered.ts",
+    "client/src/lib/clean-covered-reader.ts",
+    "client/src/pages/climate-valuation.tsx",
+    "docs/System_Output_Register.md",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/field_semantics_census.json",
+    "docs/scientific-strands-warning-evidence.json",
+    "docs/status-choice-width-increment-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "script/cleanManufacturingMap.test.ts",
+    "script/completion-ledger.py",
+    "script/component-state-census.test.ts",
+    "script/component-state-contracts.ts",
+    "script/coveredPhysicalPaths.test.ts",
+    "script/economic-bridge-api.test.ts",
+    "script/economic-bridge-ui.test.ts",
+    "script/methodology-download-portable.test.ts",
+    "script/methodology-download.test.ts",
+    "script/record-clean-covered.py",
+    "script/residual-label-scan.ts",
+    "script/validate-clean-covered-private.ts",
+    "script/workplan-evidence-run.py",
+    "server/calculation/cleanCoveredReport.ts",
+    "server/calculation/cleanManufacturingMap.ts",
+    "server/calculation/coveredPhysicalPaths.ts",
+    "server/producerReserveApi.ts",
+    "shared/cleanCoveredSource.ts",
+    "shared/economicBridgeSchema.ts",
+    "shared/serverDownloadRegistry.ts",
+    "script/record-clean-covered-state.py"
+  ]
+}
+
+63verified/235partial/2provisioning-blocked; original1000/1001;0/3qualified cases. Complete workplan and efficacy are NOT complete.
+
+<!-- prior-clean-report -->
 ## Clean manufacturing and covered paths — current work
 
 Latest measured runtime: **dc2d702c93a354da3c6c7846cd63b2c45254034b**, CI43261776788; later published docs17e67cc6 separate. Prior retirement local1299TS/1298pass/0fail/1skip and264Python are local receipts, not CI totals or efficacy.

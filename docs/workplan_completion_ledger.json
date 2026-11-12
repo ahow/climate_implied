@@ -4683,7 +4683,61 @@
         "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
         "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
       ],
-      "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+      "release": {
+        "observed_at": "2026-11-12T18:24:39.776530+00:00",
+        "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+        "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+        "ci": {
+          "id": 43277284147,
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+        },
+        "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+        "health": {
+          "status": "ok"
+        },
+        "release_verified": true,
+        "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+        "private_source_assertions": 16,
+        "changed_paths": [
+          ".agents/memory/continuation-contract.md",
+          "client/src/components/clean-covered-panel.test.ts",
+          "client/src/components/clean-covered-panel.tsx",
+          "client/src/hooks/use-clean-covered.ts",
+          "client/src/lib/clean-covered-reader.ts",
+          "client/src/pages/climate-valuation.tsx",
+          "docs/System_Output_Register.md",
+          "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+          "docs/WORKPLAN_COMPLETION_LEDGER.md",
+          "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+          "docs/field_semantics_census.json",
+          "docs/scientific-strands-warning-evidence.json",
+          "docs/status-choice-width-increment-evidence.json",
+          "docs/workplan_completion_ledger.json",
+          "script/cleanManufacturingMap.test.ts",
+          "script/completion-ledger.py",
+          "script/component-state-census.test.ts",
+          "script/component-state-contracts.ts",
+          "script/coveredPhysicalPaths.test.ts",
+          "script/economic-bridge-api.test.ts",
+          "script/economic-bridge-ui.test.ts",
+          "script/methodology-download-portable.test.ts",
+          "script/methodology-download.test.ts",
+          "script/record-clean-covered.py",
+          "script/residual-label-scan.ts",
+          "script/validate-clean-covered-private.ts",
+          "script/workplan-evidence-run.py",
+          "server/calculation/cleanCoveredReport.ts",
+          "server/calculation/cleanManufacturingMap.ts",
+          "server/calculation/coveredPhysicalPaths.ts",
+          "server/producerReserveApi.ts",
+          "shared/cleanCoveredSource.ts",
+          "shared/economicBridgeSchema.ts",
+          "shared/serverDownloadRegistry.ts",
+          "script/record-clean-covered-state.py"
+        ]
+      },
       "focused": {
         "date": "2026-11-12",
         "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
@@ -4833,37 +4887,82 @@
     }
   },
   "current_release": {
-    "workspace_commit": "593608905d42e15f1c900723ebef18c0292e580c",
-    "github_main": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
-    "production_validated": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
-    "ci": "43261776788 validation/promotion success",
-    "ci_url": "https://github.com/ahow/climate_implied/actions/runs/43261776788",
+    "workspace_commit": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+    "github_main": "8835a42d906a7c578c306eaf2225d43b852727e4",
+    "production_validated": "8835a42d906a7c578c306eaf2225d43b852727e4",
+    "ci": 43277284147,
+    "ci_url": "https://github.com/ahow/climate_implied/actions/runs/43277284147",
     "ci_steps": "Fresh checkout/Node22/npm ci/locked Python/public validation/promote succeeded; public suite totals not inspected separately.",
-    "railway_deployment": "68cf9708-426b-45ce-9f9f-026f3265d4fc",
-    "railway_status": "SUCCESS",
-    "verified_at": "2026-11-12T17:00:28.058Z",
+    "railway_deployment": null,
+    "railway_status": "SHA/health verified; deployment UUID unavailable",
+    "verified_at": "2026-11-12T18:24:39.776530+00:00",
     "verified_base": "https://dashboard-production-4d39.up.railway.app",
-    "build_info_source_commit": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
-    "health": 200,
+    "build_info_source_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+    "health": {
+      "status": "ok"
+    },
     "receipt": "generated-artifacts/retirement-association/release-observation.json",
     "receipt_sha256": "ff05a88e824f45382ce89481089078cd1233d0a8b473b2e6fb669070485ffbfb",
-    "runtime": {
-      "at": "2026-11-12T17:00:28.058Z",
-      "sourceCommit": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
-      "api": 200,
-      "json": 200,
-      "xlsx": 200,
-      "health": 200,
-      "identity": "30c62e7ff41399f2ec9be487587d32db8b0a926d9a5be117d3cd6a31fc8300fb",
-      "codeClosureFiles": 167,
-      "bookUsdMillion": 206,
-      "retirement": null,
-      "association": null,
-      "boundary": "Per-deployment integrity and exact code closure/literal readback; not local/deployed whole-archive equality or scientific acceptance"
-    },
+    "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
     "failure_history": "Initial live verification against the local current whole archive refused, correctly: the local and deployed whole archives are distinct. Subsequent verification checked all own identity hashes, actual167code-closure file hashes, report, JSON and literal XLSX within the deployed identity; no cross-archive replay or gate weakening.",
-    "documentation_boundary": "Later docs/local receipts remain separate from this measured economic implementation; do not recursively rewrite this SHA.",
-    "scope": "S13-003/006 remain partial. Engineering/code deployment only; no actual issuer valuation/association or science/owner activation."
+    "documentation_boundary": "Prior dc2d702c economic implementation;17e67cc6 subsequently observed docs/runtime sync. New candidate and measured runtime are distinct.",
+    "scope": "Clean/covered code verified live; no issuer, data or scientific promotion",
+    "current_candidate": {
+      "observed_at": "2026-11-12T18:24:39.776530+00:00",
+      "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+      "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+      "ci": {
+        "id": 43277284147,
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+      },
+      "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+      "health": {
+        "status": "ok"
+      },
+      "release_verified": true,
+      "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+      "private_source_assertions": 16,
+      "changed_paths": [
+        ".agents/memory/continuation-contract.md",
+        "client/src/components/clean-covered-panel.test.ts",
+        "client/src/components/clean-covered-panel.tsx",
+        "client/src/hooks/use-clean-covered.ts",
+        "client/src/lib/clean-covered-reader.ts",
+        "client/src/pages/climate-valuation.tsx",
+        "docs/System_Output_Register.md",
+        "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+        "docs/WORKPLAN_COMPLETION_LEDGER.md",
+        "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+        "docs/field_semantics_census.json",
+        "docs/scientific-strands-warning-evidence.json",
+        "docs/status-choice-width-increment-evidence.json",
+        "docs/workplan_completion_ledger.json",
+        "script/cleanManufacturingMap.test.ts",
+        "script/completion-ledger.py",
+        "script/component-state-census.test.ts",
+        "script/component-state-contracts.ts",
+        "script/coveredPhysicalPaths.test.ts",
+        "script/economic-bridge-api.test.ts",
+        "script/economic-bridge-ui.test.ts",
+        "script/methodology-download-portable.test.ts",
+        "script/methodology-download.test.ts",
+        "script/record-clean-covered.py",
+        "script/residual-label-scan.ts",
+        "script/validate-clean-covered-private.ts",
+        "script/workplan-evidence-run.py",
+        "server/calculation/cleanCoveredReport.ts",
+        "server/calculation/cleanManufacturingMap.ts",
+        "server/calculation/coveredPhysicalPaths.ts",
+        "server/producerReserveApi.ts",
+        "shared/cleanCoveredSource.ts",
+        "shared/economicBridgeSchema.ts",
+        "shared/serverDownloadRegistry.ts",
+        "script/record-clean-covered-state.py"
+      ]
+    },
+    "ci_scope": "Current candidate validation/promotion; runtime identity independently recorded"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-12T18:11:21.437690+00:00",
@@ -154074,8 +154173,8 @@
           ],
           "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
           "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+          "deployment_revision": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "remaining_gaps": [
             "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
             "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
@@ -154256,9 +154355,61 @@
               "no_new_thresholds": true
             }
           ],
-          "revisions": [
-            "Atomic partial finding: only this criterion's own missing evidence/conjunct is listed; no stage-wide gap is substituted."
-          ],
+          "revisions": {
+            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+            "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "ci": {
+              "id": 43277284147,
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+            },
+            "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "health": {
+              "status": "ok"
+            },
+            "release_verified": true,
+            "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+            "private_source_assertions": 16,
+            "changed_paths": [
+              ".agents/memory/continuation-contract.md",
+              "client/src/components/clean-covered-panel.test.ts",
+              "client/src/components/clean-covered-panel.tsx",
+              "client/src/hooks/use-clean-covered.ts",
+              "client/src/lib/clean-covered-reader.ts",
+              "client/src/pages/climate-valuation.tsx",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/status-choice-width-increment-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/cleanManufacturingMap.test.ts",
+              "script/completion-ledger.py",
+              "script/component-state-census.test.ts",
+              "script/component-state-contracts.ts",
+              "script/coveredPhysicalPaths.test.ts",
+              "script/economic-bridge-api.test.ts",
+              "script/economic-bridge-ui.test.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/methodology-download.test.ts",
+              "script/record-clean-covered.py",
+              "script/residual-label-scan.ts",
+              "script/validate-clean-covered-private.ts",
+              "script/workplan-evidence-run.py",
+              "server/calculation/cleanCoveredReport.ts",
+              "server/calculation/cleanManufacturingMap.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/producerReserveApi.ts",
+              "shared/cleanCoveredSource.ts",
+              "shared/economicBridgeSchema.ts",
+              "shared/serverDownloadRegistry.ts",
+              "script/record-clean-covered-state.py"
+            ]
+          },
           "gaps": [
             "Deployment-to-cash economics and a defensible price inversion are not identified."
           ],
@@ -157948,8 +158099,8 @@
           ],
           "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
           "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+          "deployment_revision": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "remaining_gaps": [
             "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
             "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
@@ -158126,9 +158277,61 @@
               "no_new_thresholds": true
             }
           ],
-          "revisions": [
-            "Atomic partial finding: only this criterion's own missing evidence/conjunct is listed; no stage-wide gap is substituted."
-          ],
+          "revisions": {
+            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+            "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "ci": {
+              "id": 43277284147,
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+            },
+            "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "health": {
+              "status": "ok"
+            },
+            "release_verified": true,
+            "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+            "private_source_assertions": 16,
+            "changed_paths": [
+              ".agents/memory/continuation-contract.md",
+              "client/src/components/clean-covered-panel.test.ts",
+              "client/src/components/clean-covered-panel.tsx",
+              "client/src/hooks/use-clean-covered.ts",
+              "client/src/lib/clean-covered-reader.ts",
+              "client/src/pages/climate-valuation.tsx",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/status-choice-width-increment-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/cleanManufacturingMap.test.ts",
+              "script/completion-ledger.py",
+              "script/component-state-census.test.ts",
+              "script/component-state-contracts.ts",
+              "script/coveredPhysicalPaths.test.ts",
+              "script/economic-bridge-api.test.ts",
+              "script/economic-bridge-ui.test.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/methodology-download.test.ts",
+              "script/record-clean-covered.py",
+              "script/residual-label-scan.ts",
+              "script/validate-clean-covered-private.ts",
+              "script/workplan-evidence-run.py",
+              "server/calculation/cleanCoveredReport.ts",
+              "server/calculation/cleanManufacturingMap.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/producerReserveApi.ts",
+              "shared/cleanCoveredSource.ts",
+              "shared/economicBridgeSchema.ts",
+              "shared/serverDownloadRegistry.ts",
+              "script/record-clean-covered-state.py"
+            ]
+          },
           "gaps": [
             "Mapped Tier1 segment scenarios/four Stage7 metrics and a justified optional global expansion model are not implemented."
           ],
@@ -159602,8 +159805,8 @@
           ],
           "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
           "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+          "deployment_revision": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "remaining_gaps": [
             "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
             "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
@@ -159780,9 +159983,61 @@
               "no_new_thresholds": true
             }
           ],
-          "revisions": [
-            "Atomic partial finding: only this criterion's own missing evidence/conjunct is listed; no stage-wide gap is substituted."
-          ],
+          "revisions": {
+            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+            "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "ci": {
+              "id": 43277284147,
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+            },
+            "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "health": {
+              "status": "ok"
+            },
+            "release_verified": true,
+            "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+            "private_source_assertions": 16,
+            "changed_paths": [
+              ".agents/memory/continuation-contract.md",
+              "client/src/components/clean-covered-panel.test.ts",
+              "client/src/components/clean-covered-panel.tsx",
+              "client/src/hooks/use-clean-covered.ts",
+              "client/src/lib/clean-covered-reader.ts",
+              "client/src/pages/climate-valuation.tsx",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/status-choice-width-increment-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/cleanManufacturingMap.test.ts",
+              "script/completion-ledger.py",
+              "script/component-state-census.test.ts",
+              "script/component-state-contracts.ts",
+              "script/coveredPhysicalPaths.test.ts",
+              "script/economic-bridge-api.test.ts",
+              "script/economic-bridge-ui.test.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/methodology-download.test.ts",
+              "script/record-clean-covered.py",
+              "script/residual-label-scan.ts",
+              "script/validate-clean-covered-private.ts",
+              "script/workplan-evidence-run.py",
+              "server/calculation/cleanCoveredReport.ts",
+              "server/calculation/cleanManufacturingMap.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/producerReserveApi.ts",
+              "shared/cleanCoveredSource.ts",
+              "shared/economicBridgeSchema.ts",
+              "shared/serverDownloadRegistry.ts",
+              "script/record-clean-covered-state.py"
+            ]
+          },
           "gaps": [
             "No complete declared Tier1 scenario/assumption manifest and all-set range report."
           ],
@@ -160124,8 +160379,8 @@
           ],
           "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
           "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+          "deployment_revision": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "remaining_gaps": [
             "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
             "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
@@ -160302,9 +160557,61 @@
               "no_new_thresholds": true
             }
           ],
-          "revisions": [
-            "Atomic partial finding: only this criterion's own missing evidence/conjunct is listed; no stage-wide gap is substituted."
-          ],
+          "revisions": {
+            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+            "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "ci": {
+              "id": 43277284147,
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+            },
+            "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "health": {
+              "status": "ok"
+            },
+            "release_verified": true,
+            "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+            "private_source_assertions": 16,
+            "changed_paths": [
+              ".agents/memory/continuation-contract.md",
+              "client/src/components/clean-covered-panel.test.ts",
+              "client/src/components/clean-covered-panel.tsx",
+              "client/src/hooks/use-clean-covered.ts",
+              "client/src/lib/clean-covered-reader.ts",
+              "client/src/pages/climate-valuation.tsx",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/status-choice-width-increment-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/cleanManufacturingMap.test.ts",
+              "script/completion-ledger.py",
+              "script/component-state-census.test.ts",
+              "script/component-state-contracts.ts",
+              "script/coveredPhysicalPaths.test.ts",
+              "script/economic-bridge-api.test.ts",
+              "script/economic-bridge-ui.test.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/methodology-download.test.ts",
+              "script/record-clean-covered.py",
+              "script/residual-label-scan.ts",
+              "script/validate-clean-covered-private.ts",
+              "script/workplan-evidence-run.py",
+              "server/calculation/cleanCoveredReport.ts",
+              "server/calculation/cleanManufacturingMap.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/producerReserveApi.ts",
+              "shared/cleanCoveredSource.ts",
+              "shared/economicBridgeSchema.ts",
+              "shared/serverDownloadRegistry.ts",
+              "script/record-clean-covered-state.py"
+            ]
+          },
           "gaps": [
             "Retained Tier1-specific lineage test from valuation through physical activity/intensity is absent."
           ],
@@ -160930,8 +161237,8 @@
           ],
           "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
           "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
-          "git_commit": null,
-          "deployment_revision": null,
+          "git_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
+          "deployment_revision": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "remaining_gaps": [
             "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
             "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
@@ -161108,9 +161415,61 @@
               "no_new_thresholds": true
             }
           ],
-          "revisions": [
-            "Atomic partial finding: only this criterion's own missing evidence/conjunct is listed; no stage-wide gap is substituted."
-          ],
+          "revisions": {
+            "observed_at": "2026-11-12T18:24:39.776530+00:00",
+            "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+            "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "ci": {
+              "id": 43277284147,
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+            },
+            "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+            "health": {
+              "status": "ok"
+            },
+            "release_verified": true,
+            "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+            "private_source_assertions": 16,
+            "changed_paths": [
+              ".agents/memory/continuation-contract.md",
+              "client/src/components/clean-covered-panel.test.ts",
+              "client/src/components/clean-covered-panel.tsx",
+              "client/src/hooks/use-clean-covered.ts",
+              "client/src/lib/clean-covered-reader.ts",
+              "client/src/pages/climate-valuation.tsx",
+              "docs/System_Output_Register.md",
+              "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+              "docs/WORKPLAN_COMPLETION_LEDGER.md",
+              "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+              "docs/field_semantics_census.json",
+              "docs/scientific-strands-warning-evidence.json",
+              "docs/status-choice-width-increment-evidence.json",
+              "docs/workplan_completion_ledger.json",
+              "script/cleanManufacturingMap.test.ts",
+              "script/completion-ledger.py",
+              "script/component-state-census.test.ts",
+              "script/component-state-contracts.ts",
+              "script/coveredPhysicalPaths.test.ts",
+              "script/economic-bridge-api.test.ts",
+              "script/economic-bridge-ui.test.ts",
+              "script/methodology-download-portable.test.ts",
+              "script/methodology-download.test.ts",
+              "script/record-clean-covered.py",
+              "script/residual-label-scan.ts",
+              "script/validate-clean-covered-private.ts",
+              "script/workplan-evidence-run.py",
+              "server/calculation/cleanCoveredReport.ts",
+              "server/calculation/cleanManufacturingMap.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/producerReserveApi.ts",
+              "shared/cleanCoveredSource.ts",
+              "shared/economicBridgeSchema.ts",
+              "shared/serverDownloadRegistry.ts",
+              "script/record-clean-covered-state.py"
+            ]
+          },
           "gaps": [
             "No actual covered/expanded population reconciliation with emissions totals."
           ],
@@ -190658,7 +191017,7 @@
     }
   ],
   "restart": {
-    "next_requirement": "Preserve new clean-manufacturing/covered-path engines and real EPA2023 Wyodak reconstruction/API/UI/JSON/XLSX; verify final gate/release receipts. Complete physical continuation/cohorts/full-domain inverse and source-qualified issuer economics, future native/member coupling, original dated corpus/calibration. No repeat source-case fixtures or old b8d98 restart; scientific acceptance remains unearned.",
+    "next_requirement": "Continue ALL original requirements. Preserve tested manufacturer/covered-path engines, real2023 EPA Wyodak observations and read-only API/UI/JSON/XLSX. Check existing CI43277284147/deployment only if pending; do not restart it. Complete physical continuation/cohorts/certified full-domain inversion, actual issuer economics/claim allocation, covered future native/member Stage7 inputs and original dated corpus/calibration. No reruns of unchanged source reconstruction/frozen negatives;0/3qualified cases and scientific acceptance remain unearned.",
     "unfinished_requirement_ids": [
       "S00-004",
       "S00-006",
@@ -190904,7 +191263,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Preserve new clean-manufacturing/covered-path engines and real EPA2023 Wyodak reconstruction/API/UI/JSON/XLSX; verify final gate/release receipts. Complete physical continuation/cohorts/full-domain inverse and source-qualified issuer economics, future native/member coupling, original dated corpus/calibration. No repeat source-case fixtures or old b8d98 restart; scientific acceptance remains unearned.",
+    "instruction": "Continue ALL original requirements. Preserve tested manufacturer/covered-path engines, real2023 EPA Wyodak observations and read-only API/UI/JSON/XLSX. Check existing CI43277284147/deployment only if pending; do not restart it. Complete physical continuation/cohorts/certified full-domain inversion, actual issuer economics/claim allocation, covered future native/member Stage7 inputs and original dated corpus/calibration. No reruns of unchanged source reconstruction/frozen negatives;0/3qualified cases and scientific acceptance remain unearned.",
     "background_tasks": []
   },
   "last_handoff": {
@@ -192381,5 +192740,93 @@
         }
       }
     ]
+  },
+  "clean_covered_release": {
+    "observed_at": "2026-11-12T18:24:39.776530+00:00",
+    "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
+    "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
+    "ci": {
+      "id": 43277284147,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ahow/climate_implied/actions/runs/43277284147"
+    },
+    "runtime": "8835a42d906a7c578c306eaf2225d43b852727e4",
+    "health": {
+      "status": "ok"
+    },
+    "release_verified": true,
+    "boundary": "Local1317TS=1316pass/0fail/1optionalPGskip;264Python; mandatory private checks passed. These are not CI counts or scientific acceptance. Railway deployment UUID not obtained.",
+    "private_source_assertions": 16,
+    "changed_paths": [
+      ".agents/memory/continuation-contract.md",
+      "client/src/components/clean-covered-panel.test.ts",
+      "client/src/components/clean-covered-panel.tsx",
+      "client/src/hooks/use-clean-covered.ts",
+      "client/src/lib/clean-covered-reader.ts",
+      "client/src/pages/climate-valuation.tsx",
+      "docs/System_Output_Register.md",
+      "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+      "docs/WORKPLAN_COMPLETION_LEDGER.md",
+      "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+      "docs/field_semantics_census.json",
+      "docs/scientific-strands-warning-evidence.json",
+      "docs/status-choice-width-increment-evidence.json",
+      "docs/workplan_completion_ledger.json",
+      "script/cleanManufacturingMap.test.ts",
+      "script/completion-ledger.py",
+      "script/component-state-census.test.ts",
+      "script/component-state-contracts.ts",
+      "script/coveredPhysicalPaths.test.ts",
+      "script/economic-bridge-api.test.ts",
+      "script/economic-bridge-ui.test.ts",
+      "script/methodology-download-portable.test.ts",
+      "script/methodology-download.test.ts",
+      "script/record-clean-covered.py",
+      "script/residual-label-scan.ts",
+      "script/validate-clean-covered-private.ts",
+      "script/workplan-evidence-run.py",
+      "server/calculation/cleanCoveredReport.ts",
+      "server/calculation/cleanManufacturingMap.ts",
+      "server/calculation/coveredPhysicalPaths.ts",
+      "server/producerReserveApi.ts",
+      "shared/cleanCoveredSource.ts",
+      "shared/economicBridgeSchema.ts",
+      "shared/serverDownloadRegistry.ts",
+      "script/record-clean-covered-state.py"
+    ]
+  },
+  "clean_covered_prior_release": {
+    "workspace_commit": "593608905d42e15f1c900723ebef18c0292e580c",
+    "github_main": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+    "production_validated": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+    "ci": "43261776788 validation/promotion success",
+    "ci_url": "https://github.com/ahow/climate_implied/actions/runs/43261776788",
+    "ci_steps": "Fresh checkout/Node22/npm ci/locked Python/public validation/promote succeeded; public suite totals not inspected separately.",
+    "railway_deployment": "68cf9708-426b-45ce-9f9f-026f3265d4fc",
+    "railway_status": "SUCCESS",
+    "verified_at": "2026-11-12T17:00:28.058Z",
+    "verified_base": "https://dashboard-production-4d39.up.railway.app",
+    "build_info_source_commit": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+    "health": 200,
+    "receipt": "generated-artifacts/retirement-association/release-observation.json",
+    "receipt_sha256": "ff05a88e824f45382ce89481089078cd1233d0a8b473b2e6fb669070485ffbfb",
+    "runtime": {
+      "at": "2026-11-12T17:00:28.058Z",
+      "sourceCommit": "dc2d702c93a354da3c6c7846cd63b2c45254034b",
+      "api": 200,
+      "json": 200,
+      "xlsx": 200,
+      "health": 200,
+      "identity": "30c62e7ff41399f2ec9be487587d32db8b0a926d9a5be117d3cd6a31fc8300fb",
+      "codeClosureFiles": 167,
+      "bookUsdMillion": 206,
+      "retirement": null,
+      "association": null,
+      "boundary": "Per-deployment integrity and exact code closure/literal readback; not local/deployed whole-archive equality or scientific acceptance"
+    },
+    "failure_history": "Initial live verification against the local current whole archive refused, correctly: the local and deployed whole archives are distinct. Subsequent verification checked all own identity hashes, actual167code-closure file hashes, report, JSON and literal XLSX within the deployed identity; no cross-archive replay or gate weakening.",
+    "documentation_boundary": "Later docs/local receipts remain separate from this measured economic implementation; do not recursively rewrite this SHA.",
+    "scope": "S13-003/006 remain partial. Engineering/code deployment only; no actual issuer valuation/association or science/owner activation."
   }
 }
