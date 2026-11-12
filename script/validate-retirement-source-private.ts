@@ -1,0 +1,14 @@
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import assert from "node:assert/strict";
+import { retirementAssociationPublic } from "../shared/retirementAssociationPublic";
+const root="generated-artifacts/retirement-association/";
+const pdf=readFileSync(root+"pacificorp-2023.pdf");
+const text=readFileSync(root+"pacificorp-2023.txt","utf8");
+assert.equal(createHash("sha256").update(pdf).digest("hex"),retirementAssociationPublic.source.sha256);
+assert.equal(createHash("sha256").update(text).digest("hex"),"8c6bc9b27251bc9fe23155814251e483c832e76a203997ba96ca2a552eadba03");
+assert.match(text,/Wyodak No\. 1\s+Gillette, WY\s+Coal\s+1978\s+332\s+266/);
+assert.match(text,/Wyodak\s+80\s+491\s+285\s+—/);
+assert.match(text,/percentage of ownership or energy production/);
+assert.equal(retirementAssociationPublic.source.ownedPlantInServiceUsdMillion-retirementAssociationPublic.source.ownedAccumulatedDepreciationUsdMillion,206);
+console.log("6 mandatory private retirement source assertions passed; no cash recovery or issuer valuation inferred");

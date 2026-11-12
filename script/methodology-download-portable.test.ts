@@ -39,8 +39,8 @@ test("S16-007 full public source and tests pass without Git history or private/g
       { cwd: root, encoding: "utf8", timeout: 120_000, maxBuffer: 4_000_000,
         env });
     assert.equal(result.status, 0, result.stdout + result.stderr);
-    assert.match(result.stdout, /# tests 53\b/);
-    assert.match(result.stdout, /# pass 53\b/);
+    assert.match(result.stdout, /# tests 58\b/);
+    assert.match(result.stdout, /# pass 58\b/);
     assert.match(result.stdout, /# fail 0\b/);
     assert.match(result.stdout, /# skipped 0\b/);
   } finally { rmSync(root, { recursive: true, force: true }); }

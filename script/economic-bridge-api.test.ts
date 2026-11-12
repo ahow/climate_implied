@@ -41,9 +41,9 @@ test("new route/schema/census inventory is explicitly additive and registered ou
   assert.equal(economicBridgeSupplementalCensus.fixedPriorMatrixDelta, 0);
   assert.equal(economicBridgeSupplementalCensus.old124Delta, 0);
   assert.equal(economicBridgeSupplementalCensus.fairPinDelta, 0);
-  assert.equal(economicBridgeSupplementalCensus.routes.length, 6);
-  assert.equal(economicBridgeSupplementalCensus.jsonSuccessSurfaces.length, 4);
-  assert.equal(economicBridgeSupplementalCensus.binarySuccessSurfaces.length, 2);
+  assert.equal(economicBridgeSupplementalCensus.routes.length, 9);
+  assert.equal(economicBridgeSupplementalCensus.jsonSuccessSurfaces.length, 6);
+  assert.equal(economicBridgeSupplementalCensus.binarySuccessSurfaces.length, 3);
   assert.match(file("server/companyConditionalApi.ts"), /registerProducerReserveRoutes\(app\)/);
   assert.doesNotMatch(file("server/routes.ts"), /producerReserveApi|economicBridgeIdentity|locationElectricity/);
   for (const contract of Object.values(economicBridgeContracts)) {

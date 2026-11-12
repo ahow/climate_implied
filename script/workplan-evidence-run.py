@@ -28,6 +28,7 @@ FULL_CHECK_COMMAND = [
     "echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; "
     "echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; "
     "echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; "
+    "echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; "
     "echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; "
     "echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; "
     "echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; "

@@ -6908,3 +6908,186 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "continuation_matched": "unverified",
   "http_status": 202
 }
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-producer-electricity-b8d98f6",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T15:39:14.822593+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Retirement and controlled association — original S13-003/S13-006
+
+```json
+{
+  "recorded_at": "2026-11-12T16:43:12.208710+00:00",
+  "files": {
+    "server/calculation/utilityRetirement.ts": "b5a65b0065b046fa8cc619a0215a25a5f9075bdd6ba00835cc923dae6b498529",
+    "script/controlled_growth_association.py": "266a4540a02ba318d3c766c96a26ca60a66838842afeddbe777b18e01638b01c",
+    "docs/retirement-association-protocol.json": "933edf11425625e6432b6d1fda37a41505dcc6fc1992e459f31212d09b2162b5",
+    "docs/controlled-association-protocol-v2.json": "814b9ad263300957817e8d804d99cd5d46e9d716c728e5cf73414c5c0eec21c0",
+    "docs/utility-retirement-source-evidence.json": "9375250b9d684261b36d137e29bdeba060f89b075d4a9d59259364a0800d734c",
+    "shared/retirementAssociationPublic.ts": "1ab975b463a1c31936edf8c2efeb7710afcd5e292d384325d63fbcb750eff612",
+    "server/producerReserveApi.ts": "dc7bce299ba7c0fe36309bfa26e1acadb4b6bfd19339e974a34e8fbbc4a7fd1d",
+    "shared/economicBridgeSchema.ts": "57649c13847b7b742a90ada481176ee1dca04c30f421436be0879e152733d069",
+    "shared/serverDownloadRegistry.ts": "fad1fd57eaa5cc9d82c8cfdb57f10074ab06e9f425282dfe37afeea476a3b865",
+    "client/src/components/retirement-association-panel.tsx": "5537a033630c8bca9ecf3aa9dd7b2ae7b820622eed1826399db865265001830a",
+    "client/src/components/retirement-association-panel.test.ts": "6c1044ee6e9c8f53ac093ab1598b421a59f69279d7e19bc326a5937fd47d1700",
+    "client/src/lib/retirement-association-reader.ts": "17c9baa107fdd623cada85c5ba53244dfaba1c67568bd31722f66239d312b386",
+    "client/src/hooks/use-retirement-association.ts": "2335ab556219ae37484e72a97d5e869be227d8cf44a427956e45225820fcb2f1",
+    "client/src/pages/climate-valuation.tsx": "a68a2a472f9c3753e59225ab0e35bb519fb7511aab6c7a8e105a1818d5beecca",
+    "script/utilityRetirement.test.ts": "4b3d0c180d69126d9802a7997722df98cb32e9c4a42305b26c568dfab1423da7",
+    "script/test_controlled_growth_association.py": "a5def63194f611dcea5093667fe50c33043e432808a8bd7c697d69373a0150df",
+    "script/validate-retirement-source-private.ts": "748e9a9b14d8ea64c89252751848508cb9d1f1b67b3189c17a5722da4523ae0e",
+    "script/component-state-contracts.ts": "5e58a72ff5c21c4e8fbd1450498381526de402573d7a8258857490e10d831ac0",
+    "script/economic-bridge-ui.test.ts": "1a75312c9a7ca631b7aa228864b86a9fff9e7da42a5956756049643195a5532a",
+    "script/economic-bridge-api.test.ts": "4c813c5b8dd7cb62292e0877f26b5336787de3fc7ef8e2791c7f4990a5a52b3e",
+    "script/workplan-evidence-run.py": "f5be56a480256902eccd279da6f6a30138e0a9aa814021c09b4bc91ec70de2b7",
+    "script/component-state-census.test.ts": "d6017ceb2c4deaad693d1e9a8881dcd41dd0fbf73cec3c5c43611ca5e5321e42",
+    "script/methodology-download.test.ts": "c965383bb00ce535081903afaba895f67331dc22549ba536a1036359450a776b",
+    "script/methodology-download-portable.test.ts": "44252493ed1125038b16d79a0f02e2be15e0f41803d3d8cf44ea3a771260be05",
+    "script/record-retirement-association.py": "431189ccde37a7e56a2f0d252b93d56907efdbaa80cd406d13d7b2de40a9a522"
+  },
+  "new_vs_old": "New S13-003 retirement cash engine and S13-006 unscored association estimator/public source report. Prior producer/electricity models, negative studies, original1001 and closed finite export criteria unchanged.",
+  "source": "PacifiCorp FY2023 issuer filing submitted to Utah PSC, cover2024-03-07, printed Note4 p234 and Item2. Exact publication instant unknown. Private PDF/text hashes recorded separately; no raw publication.",
+  "numerics": "Wyodak332MW facility net,266MW reported owned,80% ownership; owned491-285=206USDm book arithmetic;0.4MW rounding residual. Not a recoverable regulatory asset or market value.",
+  "retirement": "calculateUtilityRetirement / invertUtilityRetirement: explicit unit/legal entity, ownership once, calendar/leap generation, annual cash cost/replacement/tax/WC/recovery/decommissioning, discounting, zero explicit terminal, discrete candidate roots; book balance never cash deduction. No actual unit cash schedule or issuer valuation executed.",
+  "association": "estimate: frozen definitions, full sample denominator, complete cases with per-field reasons, cutoff/identity/source/period checks, fixed controls/categories, rank/condition/leverage gates, OLS and original-unit HC3 covariance/Student-t intervals. No actual issuer regression performed.",
+  "correction_history": "V1 incorrectly named five-year FCFE Gordon;7 synthetic engineering tests passed before inspection caught mismatch with shared/quantityDescriptors.ts. Retained V1; separately declared V2 steady-state g=r-E/P at2026-11-12T15:52:36Z before V2 tests. No actual data scored, no old study refit.",
+  "focused": "62TS pass/0fail/0skip;7Python V2 pass;6mandatory private-source assertions. Logs retained. Full coherent gate only as recorded by subsequent supplied receipt.",
+  "later_source_finding": "Primary March31 2023 IRP p19 announces Wyodak2039 planning retirement, not legal commitment. Table6.2 nameplate268MW is distinct from filing net-owned266MW. Separate retained source finding, not fed into an actual issuer valuation; public source report remains explicitly filing/book arithmetic.",
+  "intermediate_failures": "First full gate1297TS/1289pass/7fail/1skip, Python not run. Two focused repair logs each43TS/41pass/2fail exposed further stale census assertions. Second full gate1298TS/1296pass/1fail/1skip, Python not run: isolated public suite actually58passed but old outer assertion expected53. Exact new population registered; no original sets or guards removed.",
+  "later_engineering": "freezeUtilityRetirement binds cloned full candidates/target/tolerance with present-process timestamp/hash; not independent chronology. Retirement rejects day-only source availability. Offline association binds model bytes/dependency lock/runtime and deep-copied inputs; fresh-process equality fixture remains engineering only.",
+  "focused_log_sha256": {
+    "generated-artifacts/retirement-association/focused.log": "fe1139fa1e3515483511462afc5f3fb640e316f7f2d625a48a81cc4a0e73bb46",
+    "generated-artifacts/retirement-association/association-v2-tests.log": "29a813d29476b74d8a35078336f0d1bdd7b103abe6df028b1be7c9bfaf075069"
+  },
+  "scientific_decision": "No market-implied retirement/qualified issuer case/actual association/causal claim. Original clauses remain partial.",
+  "thresholds": [
+    "retirement hand cash reconciliation tolerance1e-12 USDm",
+    "discrete matching fixture1e-8USDm, all candidates enumerated",
+    "OLS/HC3 independent direct-matrix oracle tolerance1e-12",
+    "n>=max(30,3p), full rank, condition<=1e8, leverage<1-1e-10"
+  ],
+  "release": "Unreleased working increment until separate observed gated promotion receipt; prior live0e2870d5 and implementationb8d98f6 remain distinct.",
+  "executions": [
+    {
+      "path": "generated-artifacts/retirement-association/full-1.receipt.json",
+      "sha256": "ab59b5e491b1bc9d00ee3c0aaa6d539a3c2216f29e7ef83cb51bb8e411310dfc",
+      "receipt": {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T16:01:21.698733+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 412.308,
+        "counts": {
+          "tests": 1297,
+          "pass": 1289,
+          "fail": 7,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/retirement-association/full-1.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "173694935ca5275d628e8ded9efe299b1f007604f96fc9e1d8bc5168eeec8e75",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1297,
+            "pass": 1289,
+            "fail": 7,
+            "skipped": 1
+          },
+          "python": null
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      }
+    },
+    {
+      "path": "generated-artifacts/retirement-association/full-final.receipt.json",
+      "sha256": "674466a893c85199eed0c636b9a202a48d3a13e879a41a465aed95063899b722",
+      "receipt": {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T16:18:10.499610+00:00",
+        "exit_code": 1,
+        "elapsed_seconds": 377.92,
+        "counts": {
+          "tests": 1298,
+          "pass": 1296,
+          "fail": 1,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/retirement-association/full-final.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "cd0f5383aad94be354d7c5ff4d839fb3692a7e13584b02b89143c3167df98228",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1298,
+            "pass": 1296,
+            "fail": 1,
+            "skipped": 1
+          },
+          "python": null
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      }
+    },
+    {
+      "path": "generated-artifacts/retirement-association/coherent.receipt.json",
+      "sha256": "050a5b34fe4171cecd15226a3a9263e633c538f0b9e044b8785885df27a74e88",
+      "receipt": {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T16:34:47.385150+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 491.785,
+        "counts": {
+          "tests": 1299,
+          "pass": 1298,
+          "fail": 0,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/retirement-association/coherent.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "0f84001ec3329ab926bf34e09a9d529c0b0053b94c463d01b40892b662e1cd88",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1299,
+            "pass": 1298,
+            "fail": 0,
+            "skipped": 1
+          },
+          "python": {
+            "tests": 264,
+            "pass": 264,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      }
+    }
+  ]
+}
+```

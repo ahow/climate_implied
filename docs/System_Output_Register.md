@@ -135,6 +135,9 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/registry-methodology.tsx | "/api/methodology/registry" |
 | client/src/components/retained-paired-research-reader.ts | "/api/research/paired-research" |
 | client/src/components/retained-paired-research.test.ts | "/api/research/paired-research" |
+| client/src/components/retirement-association-panel.test.ts | "/api/cv/retirement-association" |
+| client/src/components/retirement-association-panel.test.ts | "/api/cv/retirement-association/export.json" |
+| client/src/components/retirement-association-panel.test.ts | "/api/cv/retirement-association/export.xlsx" |
 | client/src/components/stage10-financial-coverage.tsx | `/api/research/stage10-coverage${suffix}?${new URLSearchParams({ workbookHash: report.workbookHash, cutoff: report.informationCutoff, expectedInputHash: report.inputHash, firstYear: String(report.fiscalYears[0]), lastYear: String(report.fiscalYears.at(-1)), })}` |
 | client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
 | client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
@@ -277,6 +280,9 @@ The registered `${route}${suffix}` loop in server/producerReserveApi.ts expands 
 
 | GET path | Format | Authority and limitation |
 | --- | --- | --- |
+| /api/cv/retirement-association | JSON | Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference |
+| /api/cv/retirement-association/export.json | JSON | Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference |
+| /api/cv/retirement-association/export.xlsx | XLSX | Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference |
 | /api/cv/producer-reserve | JSON | Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice |
 | /api/cv/producer-reserve/export.json | JSON | Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice |
 | /api/cv/producer-reserve/export.xlsx | XLSX | Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice |

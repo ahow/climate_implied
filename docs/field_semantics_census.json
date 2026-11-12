@@ -8,7 +8,7 @@
       "server/calculation/headlineDrilldown.ts": "3dac3a13f5d32c712835518b67c73d4c5bb69518c5665011744e7577243a5b44",
       "server/headlineDrilldownApi.ts": "32fc2bfc21ed7e594c4da01f7b28bf1a8649844a5c377c42fbbfc8f978cf9d54",
       "client/src/components/headline-drilldown.tsx": "0db2e221f4c2afb28bf1096ff7da7b158401dba15f9c74ff5c0110cf0d695d41",
-      "shared/serverDownloadRegistry.ts": "b74ad9da235532fad12f8c97c0ae26c00a322c6bfd2056ed1ecd97cec4d2828d",
+      "shared/serverDownloadRegistry.ts": "fad1fd57eaa5cc9d82c8cfdb57f10074ab06e9f425282dfe37afeea476a3b865",
       "client/src/components/retained-paired-research-contract.ts": "736dc8d5cd9e6a297f87319b3a289e1d518ad21bae5ce540c92f240bb0ec5c9a",
       "client/src/components/retained-paired-research-reader.ts": "575f0f4170fd92bca803e40a78022b623e683edc50f33a2da0266cbf65b34098",
       "client/src/components/retained-paired-research.tsx": "d0e954102be0357c431b0468a0fe212a346c5a30472900089bb2172ee024bb86",
@@ -1491,21 +1491,21 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 258,
+      "line": 260,
       "id": "companySummary.imputation.imputedRecords",
       "expression": "{summary.imputation.imputedRecords.toLocaleString()}",
       "bound": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 259,
+      "line": 261,
       "id": "companySummary.imputation.totalRecords",
       "expression": "{typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"}",
       "bound": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 260,
+      "line": 262,
       "id": "companySummary.imputation.imputedFraction",
       "expression": "{displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")}",
       "bound": true
@@ -2081,7 +2081,7 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 526,
+      "line": 528,
       "rows": "peDownloadRows",
       "bindings": "{finiteExportBindings(\"valuationPE\",{case:testIdPrefix})}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -2268,7 +2268,7 @@
     },
     {
       "source": "server/producerReserveApi.ts",
-      "line": 175,
+      "line": 192,
       "builder": "workbook.addWorksheet",
       "sheetExpression": "\"Public calculation\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -2492,21 +2492,21 @@
     },
     {
       "source": "script/methodology-download.test.ts",
-      "line": 128,
+      "line": 129,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Custom chart data\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "script/methodology-download.test.ts",
-      "line": 129,
+      "line": 130,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Field semantics\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "script/methodology-download.test.ts",
-      "line": 133,
+      "line": 134,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Download manifest\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -6662,6 +6662,144 @@
       "explicitSemanticAncestor": false
     },
     {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 35,
+      "expression": "report.source.issuer",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 35,
+      "expression": "report.source.unit",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 36,
+      "expression": "report.source.site",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 36,
+      "expression": "report.source.fuel",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 36,
+      "expression": "report.source.fiscalEnd",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 37,
+      "expression": "([\"json\", \"xlsx\"] as const).map(format =>\n        <Button key={format} size=\"sm\" variant=\"outline\" disabled={downloading !== null} onClick={() => void download(format)}>\n          <Download className=\"mr-2 h-3.5 w-3.5\" />{downloading === format ? \"Checking exact result…\" : `Public ${format.toUpperCase()}`}\n        </Button>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 39,
+      "expression": "downloading === format ? \"Checking exact result…\" : `Public ${format.toUpperCase()}`",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 42,
+      "expression": "downloadError && <p role=\"alert\" className=\"text-destructive\">{downloadError} No file substituted. Refresh the report or retry the export.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 42,
+      "expression": "downloadError",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 47,
+      "expression": "report.source.ownedPlantInServiceUsdMillion",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 47,
+      "expression": "report.source.ownedAccumulatedDepreciationUsdMillion",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 49,
+      "expression": "report.source.reportedOwnedMW",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 49,
+      "expression": "report.source.facilityNetMW",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 49,
+      "expression": "report.source.ownershipPercent",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 51,
+      "expression": "report.calculated.claim",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 56,
+      "expression": "report.source.locator",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 57,
+      "expression": "report.source.coverDate",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 80,
+      "expression": "report.association.basis",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 80,
+      "expression": "report.association.claim",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 86,
+      "expression": "document.identity.claim",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 105,
+      "expression": "!state.isError && state.data && <Button size=\"sm\" variant=\"outline\" disabled={state.isLoading || state.isFetching}\n          onClick={() => void state.refetch()}>Refresh retirement report</Button>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 111,
+      "expression": "state.isError ? <div role=\"alert\" className=\"rounded-md border border-destructive/30 p-4 space-y-2\" data-testid=\"retirement-association-error\">\n      <h3 className=\"text-sm font-medium\">Retirement/association report unavailable</h3>\n      <p className=\"text-xs text-muted-foreground\">{state.error?.message ?? \"The read-only service could not be loaded. No previous or synthetic result substituted.\"}</p>\n      <Button size=\"sm\" variant=\"outline\" disabled={state.isFetching} onClick={() => void state.refetch()}>Retry retirement report</Button>\n    </div> : state.isLoading || state.isFetching ? <div className=\"space-y-3\" aria-busy=\"true\" aria-label=\"Loading retirement and association report\">\n      <Skeleton className=\"h-9 w-52\" /><Skeleton className=\"h-24 w-full\" /><Skeleton className=\"h-40 w-full\" />\n    </div> : !state.data ? <div className=\"rounded-md border border-dashed p-6 space-y-1\" role=\"status\" data-testid=\"retirement-association-empty\">\n      <h3 className=\"text-sm font-medium\">No retirement/association report returned</h3>\n      <p className=\"text-xs text-muted-foreground\">Absent or null document means unavailable, not zero book value or a completed study. No archive or other economic report fallback. Exports are withheld.</p>\n    </div> : <RetirementAssociationReportView key={state.data.identity.id} document={state.data} />",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/retirement-association-panel.tsx",
+      "line": 113,
+      "expression": "state.error?.message ?? \"The read-only service could not be loaded. No previous or synthetic result substituted.\"",
+      "explicitSemanticAncestor": false
+    },
+    {
       "source": "client/src/components/operator-only-notice.tsx",
       "line": 7,
       "expression": "OPERATOR_ONLY_REASON",
@@ -6669,259 +6807,259 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 200,
+      "line": 201,
       "expression": "summaryLoading && <p role=\"status\" aria-live=\"polite\" className=\"text-sm text-muted-foreground\" data-testid=\"status-company-summary-loading\">Loading company summary for the current selection.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 203,
+      "line": 204,
       "expression": "!summaryLoading && !summaryError && <ProducerDownloadLink payload={summary} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 204,
+      "line": 205,
       "expression": "!carbonPricesLoading && !carbonPricesError && <ProducerDownloadLink payload={carbonPrices} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 206,
+      "line": 207,
       "expression": "uploadsError && <p role=\"alert\">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 207,
+      "line": 208,
       "expression": "summaryError && <p role=\"alert\">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 208,
+      "line": 209,
       "expression": "summary?.dateRange && !(typeof summary.dateRange.recordCount === \"number\" && Number.isFinite(summary.dateRange.recordCount)) &&\n          <p role=\"status\">Historical record count not returned as a finite number. Group-series availability is not inferred.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 251,
+      "line": 253,
       "expression": "summary?.imputation && summary.imputation.imputedRecords > 0 && (\n          <div\n            className=\"flex items-start gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-400\"\n            data-testid=\"text-imputation-disclosure\"\n          >\n            <Info className=\"h-3.5 w-3.5 mt-0.5 shrink-0\" />\n            <span>\n              <span data-field-id=\"companySummary.imputation.imputedRecords\">{summary.imputation.imputedRecords.toLocaleString()}</span> of{\" \"}\n              <span data-field-id=\"companySummary.imputation.totalRecords\">{typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"}</span> records (\n              <span data-field-id=\"companySummary.imputation.imputedFraction\">{displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")}</span>) use carried-forward\n              (imputed) emissions where a reporting gap exists. Carbon-intensity and pricing\n              for these periods rely on the most recent observed scope 1/2/3 values.\n            </span>\n          </div>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 258,
+      "line": 260,
       "expression": "summary.imputation.imputedRecords.toLocaleString()",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 258,
+      "line": 260,
       "expression": "\" \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 259,
+      "line": 261,
       "expression": "typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 260,
+      "line": 262,
       "expression": "displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 266,
+      "line": 268,
       "expression": "summary?.imputation && !(typeof summary.imputation.imputedRecords === \"number\" && Number.isFinite(summary.imputation.imputedRecords)) &&\n          <p role=\"status\">Imputation coverage unavailable: imputed record count not returned. No zero-imputation inference is made.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 269,
+      "line": 271,
       "expression": "uploads && uploads.length > 0 && (\n          <Card className=\"p-4\">\n            <h3 className=\"text-sm font-medium mb-3\" data-testid=\"text-uploads-heading\">Recent Uploads</h3>\n            <div className=\"space-y-2\">\n              {uploads.slice(0, 3).map((u) => (\n                <div key={u.id} className=\"flex items-center justify-between gap-2 text-sm flex-wrap\" data-testid={`row-upload-${u.id}`}>\n                  <div className=\"flex items-center gap-2\">\n                    <FileSpreadsheet className=\"h-4 w-4 text-muted-foreground\" />\n                    <span className=\"truncate max-w-[200px]\">{u.filename}</span>\n                  </div>\n                  <div className=\"flex items-center gap-2\">\n                    <Badge\n                      variant={u.status === \"completed\" ? \"default\" : u.status === \"processing\" ? \"secondary\" : \"destructive\"}\n                      data-testid={`badge-upload-status-${u.id}`}\n                    >\n                      {u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />}\n                      {u.status}\n                    </Badge>\n                    {u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )}\n                    {(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )}\n                  </div>\n                </div>\n              ))}\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 273,
+      "line": 275,
       "expression": "uploads.slice(0, 3).map((u) => (\n                <div key={u.id} className=\"flex items-center justify-between gap-2 text-sm flex-wrap\" data-testid={`row-upload-${u.id}`}>\n                  <div className=\"flex items-center gap-2\">\n                    <FileSpreadsheet className=\"h-4 w-4 text-muted-foreground\" />\n                    <span className=\"truncate max-w-[200px]\">{u.filename}</span>\n                  </div>\n                  <div className=\"flex items-center gap-2\">\n                    <Badge\n                      variant={u.status === \"completed\" ? \"default\" : u.status === \"processing\" ? \"secondary\" : \"destructive\"}\n                      data-testid={`badge-upload-status-${u.id}`}\n                    >\n                      {u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />}\n                      {u.status}\n                    </Badge>\n                    {u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )}\n                    {(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )}\n                  </div>\n                </div>\n              ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 277,
+      "line": 279,
       "expression": "u.filename",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 284,
+      "line": 286,
       "expression": "u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 285,
+      "line": 287,
       "expression": "u.status",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 287,
+      "line": 289,
       "expression": "u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 288,
+      "line": 290,
       "expression": "u.companiesCount",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 290,
+      "line": 292,
       "expression": "(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 292,
+      "line": 294,
       "expression": "u.status === \"processing\" ? \"Recover\" : \"Retry\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 302,
+      "line": 304,
       "expression": "hasData && (\n          <Card className=\"p-4\">\n            <h3 className=\"text-sm font-medium mb-3\" data-testid=\"text-config-heading\">Analysis Configuration</h3>\n            <div className=\"flex flex-wrap items-center gap-4\">\n              <div className=\"flex items-center gap-2\">\n                <Label className=\"text-sm text-muted-foreground whitespace-nowrap\">Cost of Equity</Label>\n                <div className=\"flex items-center gap-1\">\n                  <input\n                    type=\"number\"\n                    min=\"1\"\n                    max=\"30\"\n                    step=\"0.5\"\n                    defaultValue={costOfEquity}\n                    onBlur={(e) => {\n                      const val = parseFloat(e.target.value);\n                      if (!isNaN(val) && val > 0 && val <= 30) setCostOfEquity(val);\n                      else e.target.value = String(costOfEquity);\n                    }}\n                    onKeyDown={(e) => { if (e.key === \"Enter\") (e.target as HTMLInputElement).blur(); }}\n                    className=\"w-16 h-9 rounded-md border bg-background px-2 text-sm text-center\"\n                    data-testid=\"input-cost-of-equity\"\n                  />\n                  <span className=\"text-sm text-muted-foreground\">%</span>\n                </div>\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <Switch id=\"scope3-switch\" checked={includeScope3} onCheckedChange={setIncludeScope3} data-testid=\"switch-scope3\" />\n                <Label htmlFor=\"scope3-switch\" className=\"text-sm text-muted-foreground whitespace-nowrap\">Include Scope 3</Label>\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <Switch id=\"winsorize-switch\" checked={winsorize} onCheckedChange={setWinsorize} data-testid=\"switch-winsorize\" />\n                <Label htmlFor=\"winsorize-switch\" className=\"text-sm text-muted-foreground whitespace-nowrap\">Winsorize (5%)</Label>\n              </div>\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 339,
+      "line": 341,
       "expression": "hasData ? (\n          <div className=\"space-y-10\">\n\n            <AnalysisSection\n              icon={Factory}\n              costOfEquityPct={8}\n              title=\"High vs Low Carbon Companies\"\n              description=\"Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. This endpoint uses fixed r = 8%; changing the SDG/ambition cost-of-equity control does not change it. Gordon steady-state g = r − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.\"\n              chartData={carbonIntensityChartData ?? []}\n              producerPayload={carbonPrices}\n              producerDerivation=\"carbon\"\n              isLoading={carbonPricesLoading}\n              error={carbonPricesError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"carbon\"\n              peChart={{\n                highKey: \"cleanPE\",\n                lowKey: \"dirtyPE\",\n                highLabel: \"Low Carbon (Clean)\",\n                lowLabel: \"High Carbon (Dirty)\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Low Carbon\" lowLabel=\"High Carbon\" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,\n              }}\n            />\n\n            <AnalysisSection\n              icon={Leaf}\n              costOfEquityPct={costOfEquity}\n              gordonSemanticPrefix=\"sdg\"\n              title=\"High vs Low SDG-Aligned Companies\"\n              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}\n              chartData={sdgChartData ?? []}\n              producerPayload={sdgGrowth}\n              producerDerivation=\"sdg\"\n              isLoading={sdgGrowthLoading}\n              error={sdgGrowthError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"sdg\"\n              peChart={{\n                highKey: \"cleanPE\",\n                lowKey: \"dirtyPE\",\n                highLabel: \"Positive SDG (Clean)\",\n                lowLabel: \"Negative SDG (Dirty)\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Positive SDG\" lowLabel=\"Negative SDG\" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,\n              }}\n            />\n\n            <AnalysisSection\n              icon={Target}\n              costOfEquityPct={costOfEquity}\n              gordonSemanticPrefix=\"targetTerciles\"\n              title=\"High vs Low Ambition Companies\"\n              description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}\n              chartData={ambitionChartData ?? []}\n              producerPayload={decarbTerciles}\n              producerDerivation=\"ambition\"\n              isLoading={decarbTercilesLoading}\n              error={decarbTercilesError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"ambition\"\n              headerRight={\n                <Select value={decarbTercileMethod} onValueChange={(v: \"absolute\" | \"sector_relative\" | \"sub_sector_relative\" | \"industry_relative\") => setDecarbTercileMethod(v)}>\n                  <SelectTrigger className=\"w-[180px]\" data-testid=\"select-decarb-tercile-method\">\n                    <SelectValue />\n                  </SelectTrigger>\n                  <SelectContent>\n                    <SelectItem value=\"absolute\">Absolute</SelectItem>\n                    <SelectItem value=\"sector_relative\">Sector Relative</SelectItem>\n                    <SelectItem value=\"sub_sector_relative\">Sub-Sector Relative</SelectItem>\n                    <SelectItem value=\"industry_relative\">Industry Relative</SelectItem>\n                  </SelectContent>\n                </Select>\n              }\n              peChart={{\n                highKey: \"bestPE\",\n                lowKey: \"worstPE\",\n                highLabel: \"Most Ambitious\",\n                lowLabel: \"Least Ambitious\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Most Ambitious\" lowLabel=\"Least Ambitious\" highValue={d.bestPE} lowValue={d.worstPE} highCount={d.bestCount} lowCount={d.worstCount} />,\n              }}\n            />\n\n          </div>\n        ) : (\n          <Card className=\"p-12\">\n            <div className=\"text-center space-y-4\">\n              <div className=\"flex items-center justify-center w-16 h-16 rounded-md bg-primary/10 mx-auto\">\n                <DollarSign className=\"h-8 w-8 text-primary\" />\n              </div>\n              <div>\n                <h3 className=\"text-lg font-medium\" data-testid=\"text-no-data-heading\">No company dataset available</h3>\n                <p className=\"text-sm text-muted-foreground mt-1 max-w-md mx-auto\">\n                  An operator must import and review company data using the CLI.\n                  Valuation-derived temperature, carbon-price and net-zero outputs remain withheld.\n                </p>\n              </div>\n              <Button variant=\"default\" disabled title={OPERATOR_ONLY_REASON} data-testid=\"button-upload-cta\">\n                <Upload className=\"h-4 w-4 mr-2\" />\n                Upload Excel File\n              </Button>\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 503,
-      "expression": "title",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/climate-valuation.tsx",
       "line": 505,
-      "expression": "headerRight",
+      "expression": "title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
       "line": 507,
+      "expression": "headerRight",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/climate-valuation.tsx",
+      "line": 509,
       "expression": "description",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 511,
+      "line": 513,
       "expression": "gordonBaselineLabel(costOfEquityPct)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 524,
+      "line": 526,
       "expression": "peChart.highLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 524,
+      "line": 526,
       "expression": "peChart.lowLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 536,
+      "line": 538,
       "expression": "error ? <p role=\"alert\">P/E comparison read failed for {title}. No prior selection values or downloads are shown.</p> : isLoading ? (\n            <Skeleton className=\"h-[300px] w-full\" />\n          ) : currentRows.length > 0 ? (\n            <>\n            {currentRows.some(row => roundedPE(row[peChart.highKey]) === undefined || roundedPE(row[peChart.lowKey]) === undefined) &&\n              <p role=\"status\">Some selected P/E observations are missing or invalid. Their chart and export cells remain unavailable, not zero.</p>}\n            {currentRows.length !== chartData.length && <p role=\"status\">Rows with missing or invalid observation dates are withheld; no date is inferred.</p>}\n            <ResponsiveContainer width=\"100%\" height={300}>\n              <LineChart data={currentRows.map(row => ({ ...row, [peChart.highKey]: roundedPE(row[peChart.highKey]), [peChart.lowKey]: roundedPE(row[peChart.lowKey]) }))}>\n                <CartesianGrid strokeDasharray=\"3 3\" className=\"opacity-30\" />\n                <XAxis dataKey=\"date\" type=\"number\" domain={[\"dataMin\", \"dataMax\"]} scale=\"time\" tick={{ fontSize: 11 }} tickFormatter={formatChartDate} className=\"text-muted-foreground\" />\n                <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `${v.toFixed(0)}x`} className=\"text-muted-foreground\" />\n                <Tooltip content={({ active, payload }) => {\n                  if (!active || !payload || payload.length === 0) return null;\n                  return <>{peChart.tooltip(payload[0].payload)}</>;\n                }} />\n                <Legend verticalAlign=\"top\" height={30} iconType=\"line\" wrapperStyle={{ fontSize: 11 }} />\n                <Line type=\"monotone\" dataKey={peChart.highKey} stroke=\"hsl(168, 76%, 36%)\" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.highLabel} />\n                <Line type=\"monotone\" dataKey={peChart.lowKey} stroke=\"hsl(0, 72%, 51%)\" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.lowLabel} />\n              </LineChart>\n            </ResponsiveContainer>\n            </>\n          ) : (\n            <div role=\"status\" className=\"flex items-center justify-center h-[300px] text-sm text-muted-foreground\">{chartData.length ? \"No P/E observations have a valid observation date; no date is inferred.\" : `No P/E observations returned for ${title}.`}</div>\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 536,
+      "line": 538,
       "expression": "title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 559,
+      "line": 561,
       "expression": "chartData.length ? \"No P/E observations have a valid observation date; no date is inferred.\" : `No P/E observations returned for ${title}.`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 581,
+      "line": 583,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 583,
+      "line": 585,
       "expression": "typeof value === \"number\" && Number.isFinite(value) ? value.toLocaleString() : \"Unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 584,
+      "line": 586,
       "expression": "!(typeof value === \"number\" && Number.isFinite(value)) && <p role=\"status\" className=\"text-xs text-muted-foreground\">{label}: count not returned for the current selection.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 584,
+      "line": 586,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 608,
+      "line": 610,
       "expression": "dateLabel ?? \"Observation date unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "highLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "pe(highValue)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "count(highCount)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 610,
+      "line": 612,
       "expression": "lowLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 610,
+      "line": 612,
       "expression": "pe(lowValue)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 610,
+      "line": 612,
       "expression": "count(lowCount)",
       "explicitSemanticAncestor": false
     },
@@ -12721,7 +12859,7 @@
       ]
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:526",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:528",
       "source": "client/src/pages/climate-valuation.tsx",
       "family": "valuationPE",
       "rowsExpression": "(!isLoading && !error && producerPayload && producerDerivation)\n    ? deriveProducerValuationPE(producerPayload, producerDerivation).rows : currentRows.map((d) => ({\n    Date: formatTooltipDate(d.date),\n    [`${peChart.highLabel} P/E (x)`]: roundedPE(d[peChart.highKey]),\n    [`${peChart.lowLabel} P/E (x)`]: roundedPE(d[peChart.lowKey]),\n  }))",
@@ -17029,6 +17167,9 @@
       "old124Delta": 0,
       "fairPinDelta": 0,
       "routes": [
+        "/api/cv/retirement-association",
+        "/api/cv/retirement-association/export.json",
+        "/api/cv/retirement-association/export.xlsx",
         "/api/cv/producer-reserve",
         "/api/cv/producer-reserve/export.json",
         "/api/cv/producer-reserve/export.xlsx",
@@ -17037,12 +17178,15 @@
         "/api/cv/location-electricity/export.xlsx"
       ],
       "jsonSuccessSurfaces": [
+        "/api/cv/retirement-association",
+        "/api/cv/retirement-association/export.json",
         "/api/cv/producer-reserve",
         "/api/cv/producer-reserve/export.json",
         "/api/cv/location-electricity",
         "/api/cv/location-electricity/export.json"
       ],
       "binarySuccessSurfaces": [
+        "/api/cv/retirement-association/export.xlsx",
         "/api/cv/producer-reserve/export.xlsx",
         "/api/cv/location-electricity/export.xlsx"
       ],
@@ -62882,7 +63026,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:526",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:528",
       "total": 2,
       "bound": 2,
       "unbound": [],
@@ -63290,11 +63434,11 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:526",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:528",
       "field": "[].*",
       "type": "string | number | null | undefined",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 526,
+      "line": 528,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -74556,19 +74700,19 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:526",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:528",
       "field": "[].*",
       "type": "string | number | null | undefined",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 526,
+      "line": 528,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:526",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:528",
       "field": "[].Date",
       "type": "string",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 526,
+      "line": 528,
       "resolution": "typed-field"
     },
     {

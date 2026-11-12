@@ -1,0 +1,63 @@
+{
+  "version": "pacificorp-retirement-source-1",
+  "issuer": "PacifiCorp",
+  "fiscalEnd": "2023-12-31",
+  "source": {
+    "url": "https://pscdocs.utah.gov/electric/24docs/2403511/332746RMPAnlRprtFrm10KPrdEndDec3120233-7-2024.pdf",
+    "publisher": "Utah Public Service Commission, issuer-submitted Form 10-K",
+    "coverDate": "2024-03-07",
+    "exactPublicationInstant": null,
+    "pdfSha256": "c63273a2d6f8e2da0e4b294c77e8cd5eee50086d8e02e290bee29082da19ea2e",
+    "textSha256": "8c6bc9b27251bc9fe23155814251e483c832e76a203997ba96ca2a552eadba03",
+    "rights": "Public issuer filing facts only; raw retained document excluded from public source export",
+    "independentOwnerReview": false
+  },
+  "unit": {
+    "name": "Wyodak No. 1",
+    "location": "Gillette, Wyoming",
+    "legalOwner": "PacifiCorp undivided tenant-in-common interest",
+    "fuel": "coal",
+    "facilityNetMW": 332,
+    "reportedNetOwnedMW": 266,
+    "reportedOwnershipPercent": 80,
+    "capacityLocator": "Item 2 generating facilities table, Wyodak No. 1",
+    "ownedPlantInServiceUsdMillion": 491,
+    "ownedAccumulatedDepreciationAmortizationUsdMillion": 285,
+    "derivedOwnedNetBookUsdMillion": 206,
+    "bookFormula": "491 - 285; already the issuer share, never multiply by 80% again",
+    "bookLocator": "PacifiCorp Note 4 Jointly Owned Utility Facilities, printed page 234, Wyodak row",
+    "roundingResidualMW": 0.4,
+    "roundingMeaning": "266 - 332*0.8 = 0.4 MW from reported rounded capacity/share; not a corrective multiplier",
+    "allocationBoundary": "Note 4 states operating expenses allocated by ownership OR energy production depending on the cost; uniform ownership allocation is a conditional model assumption, not proof of actual contract cost shares",
+    "announcedRetirementYear": null,
+    "legallyCommittedRetirementYear": null,
+    "unitGenerationMWh": null,
+    "unitCashOperatingCost": null,
+    "unitDecommissioningCash": null,
+    "permittedRecoveryCashSchedule": null,
+    "commonEquityTarget": null
+  },
+  "additionalPlanningSource": {
+    "url": "https://www.pacificorp.com/content/dam/pcorp/documents/en/pacificorp/energy/integrated-resource-plan/2023-irp/2023_IRP_Volume_I.pdf",
+    "publicationDay": "2023-03-31",
+    "publicationInstant": null,
+    "pdfSha256": "b5a4fd22ba0e7940d0dd905b9fb6dc847d46795738563b91fb7af95e99fbe8f8",
+    "textSha256": "7d2345cd256f8158213fbe933f9047836ef80f2e976d4534fa9dad399bbfcf3e",
+    "locator": "Executive summary printed page 19, preferred portfolio coal retirements; Table 6.2 coal plants",
+    "announcedPlanningRetirementYear": 2039,
+    "legalCommitmentEstablished": false,
+    "planningSNCRInstallationYear": 2026,
+    "irpNameplateCapacityMW": 268,
+    "capacityBoundary": "IRP nameplate268MW is separate from Form10-K net owned266MW; no hybrid allocation or forced reconciliation.",
+    "currentLawOrCurrentPlanClaim": false,
+    "scope": "Newly retained historical planning source; not regulator-approved recovery, current retirement commitment or cash forecast. Not yet fed into a qualified issuer valuation. Public API source report remains the separately identified filing/book-arithmetic report."
+  },
+  "scope": "One identifiable coal unit with source-supported ownership, book balance and separately retained 2023 planning year; not a complete issuer model, market target, retirement commitment or recoverable regulatory balance",
+  "nextSourceFields": [
+    "Dated unit retirement commitment versus planning announcement",
+    "Actual unit generation, dispatch/replacement and cost allocation",
+    "Unit decommissioning payment liability/timing",
+    "Regulator-approved remaining book recovery and cash schedule",
+    "Issuer financing, non-common interests and compatible valuation target"
+  ]
+}

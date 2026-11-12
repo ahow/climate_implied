@@ -1,8 +1,11 @@
 {
-  "criteria": ["S07-003", "S16-008"],
+  "criteria": [
+    "S07-003",
+    "S16-008"
+  ],
   "scientificAcceptance": "not-promoted",
   "sourceContract": {
-    "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+    "path": "attached_assets/Climate_Dashboard_\u2014_Developer_Work_Plan_(1)_1794135026111.docx",
     "S07-003": [
       "Keep three evidence strands separate, each with its own status:",
       "Physical-response verification: an independent reference run, historical forcing reconciliation and pulse tests.",
@@ -10,7 +13,7 @@
       "Scenario interpretation: what the pathway assumes and represents."
     ],
     "S16-008": "Remove a Stage 1 interim warning only when its underlying limitation is resolved and evidenced, not merely because a replacement calculation exists. Record each removal and its evidence in the stage report.",
-    "bindingAmendment": "docs/Developer_Workplan_Amendments.md: stages16–17"
+    "bindingAmendment": "docs/Developer_Workplan_Amendments.md: stages16\u201317"
   },
   "boundary": "Working-tree source and focused engineering evidence only; no deployment, owner acceptance, new scientific resolution or change to existing readiness gates.",
   "statuses": {
@@ -51,7 +54,12 @@
       "path": "client/src/components/backtest-summary.tsx",
       "originalSha256": "f7c6b72922d0eef76cc170c9eba4e0991988874873602c1512ac5c742b35971f",
       "currentSha256": "e6f6b42709be1614e4482c965ad3cdb060732345bb401574b8267681f73beec1",
-      "exactScanLines": [{"line":27,"text":"      {s.warnings.map(warning => <p key={warning}>{warning}</p>)}"}],
+      "exactScanLines": [
+        {
+          "line": 27,
+          "text": "      {s.warnings.map(warning => <p key={warning}>{warning}</p>)}"
+        }
+      ],
       "disposition": "retained-dynamic-warning-renderer",
       "resolution": null
     },
@@ -59,7 +67,12 @@
       "path": "client/src/components/category-comparison.tsx",
       "originalSha256": "4fbf5ca85bed755821a8b927c828f6367df795534019f53ced0c29e07e953eab",
       "currentSha256": "7cae13f8a2e289b78a59328748135481d8ba854bb0ec98f26aff889b3ebbd75a",
-      "exactScanLines": [{"line":67,"text":"            Illustrative input-shock scenarios, not forecasts or category contributions."}],
+      "exactScanLines": [
+        {
+          "line": 67,
+          "text": "            Illustrative input-shock scenarios, not forecasts or category contributions."
+        }
+      ],
       "disposition": "retained",
       "resolution": null
     },
@@ -67,7 +80,12 @@
       "path": "client/src/components/emissions-candidate-review.tsx",
       "originalSha256": "dea148b9ea1e1ccec6eaa4bb8726c0f2dd6676a3e72b1b2033bc22484d9cffc2",
       "currentSha256": "33c909cf48d1157d7cc36429b5152e62c39e63fa7a5daf05d7a73e10637e7da3",
-      "exactScanLines": [{"line":68,"text":"            Read-only candidate, not calibrated and not a forecast."}],
+      "exactScanLines": [
+        {
+          "line": 68,
+          "text": "            Read-only candidate, not calibrated and not a forecast."
+        }
+      ],
       "disposition": "retained",
       "resolution": null
     },
@@ -75,7 +93,12 @@
       "path": "client/src/components/historical-trend-chart.tsx",
       "originalSha256": "a6d88ddb0939223536521f21dc089cba76083389db076742279b848f5fe20a8a",
       "currentSha256": "7b9c8e1e21c0407a92e425504e565506f1d49df657c7566fa677acc78d56b92a",
-      "exactScanLines": [{"line":136,"text":"            Retrospective reconstruction using current methodology and revised inputs—not forecasts issued at the time."}],
+      "exactScanLines": [
+        {
+          "line": 136,
+          "text": "            Retrospective reconstruction using current methodology and revised inputs\u2014not forecasts issued at the time."
+        }
+      ],
       "disposition": "retained",
       "resolution": null
     },
@@ -84,9 +107,18 @@
       "originalSha256": "ee005ec5eb488223957198b06836a805eeaaea8309631307f4d58db2544e041d",
       "currentSha256": "ee005ec5eb488223957198b06836a805eeaaea8309631307f4d58db2544e041d",
       "exactScanLines": [
-        {"line":20,"text":"          are retrospective reconstructions using current methodology and revised inputs, not archived forecasts"},
-        {"line":33,"text":"          Unsupported combinations return an error rather than silently ignoring the method.</p>"},
-        {"line":37,"text":"          Fixed-score backtests are retrospective; quarter-lagged Decarb Gap data are not verified publication-date vintages."}
+        {
+          "line": 20,
+          "text": "          are retrospective reconstructions using current methodology and revised inputs, not archived forecasts"
+        },
+        {
+          "line": 33,
+          "text": "          Unsupported combinations return an error rather than silently ignoring the method.</p>"
+        },
+        {
+          "line": 37,
+          "text": "          Fixed-score backtests are retrospective; quarter-lagged Decarb Gap data are not verified publication-date vintages."
+        }
       ],
       "disposition": "retained-in-closed-legacy-methodology",
       "resolution": null
@@ -96,10 +128,22 @@
       "originalSha256": "dbe35681436532a0b8029960937178a231da22ecec1a5e582276b41a6ebde290",
       "currentSha256": "dbe35681436532a0b8029960937178a231da22ecec1a5e582276b41a6ebde290",
       "exactScanLines": [
-        {"line":7,"text":"    carbon-price and net-zero outputs are withheld: no defensible valuation-to-activity mapping is established."},
-        {"line":9,"text":"    valuation diagnostics, not decarbonisation rates or market climate expectations. Gordon growth is not"},
-        {"line":11,"text":"    Workbook currency compatibility is unverified."},
-        {"line":12,"text":"    Retrospective portfolio results are research diagnostics, not validated investment evidence."}
+        {
+          "line": 7,
+          "text": "    carbon-price and net-zero outputs are withheld: no defensible valuation-to-activity mapping is established."
+        },
+        {
+          "line": 9,
+          "text": "    valuation diagnostics, not decarbonisation rates or market climate expectations. Gordon growth is not"
+        },
+        {
+          "line": 11,
+          "text": "    Workbook currency compatibility is unverified."
+        },
+        {
+          "line": 12,
+          "text": "    Retrospective portfolio results are research diagnostics, not validated investment evidence."
+        }
       ],
       "disposition": "retained",
       "resolution": null
@@ -109,10 +153,22 @@
       "originalSha256": "cded3f8472917bfd0759b29481e00cefad52c1c7515132b050ab2d666aace6d1",
       "currentSha256": "0a9e7da257e6e8184458407da67c85bf711447ea19bbea0e070cd734c9f350cb",
       "exactScanLines": [
-        {"line":10,"text":"    policy: \"Published references retain source/version/licence/caveats; indicators and candidate evidence are not physical forecasts.\","},
-        {"line":16,"text":"    policy: \"Unsupported legacy model diagnostics: CO2-only response on aggregate GHG plus fixed 1.1C offset. Fixed-5-Gt milestone may extrapolate beyond 2100. No standalone regional temperature interpretation.\","},
-        {"line":34,"text":"    policy: \"Peer earnings-yield gap and Gordon baseline, legacy-selected company subsets. Physical gap and distribution withheld. Legacy backtest ranking does not establish climate expectations or investment validity.\","},
-        {"line":52,"text":"    policy: \"Existing descriptive news/sentiment view; not climate, valuation-to-activity or milestone output.\","}
+        {
+          "line": 10,
+          "text": "    policy: \"Published references retain source/version/licence/caveats; indicators and candidate evidence are not physical forecasts.\","
+        },
+        {
+          "line": 16,
+          "text": "    policy: \"Unsupported legacy model diagnostics: CO2-only response on aggregate GHG plus fixed 1.1C offset. Fixed-5-Gt milestone may extrapolate beyond 2100. No standalone regional temperature interpretation.\","
+        },
+        {
+          "line": 34,
+          "text": "    policy: \"Peer earnings-yield gap and Gordon baseline, legacy-selected company subsets. Physical gap and distribution withheld. Legacy backtest ranking does not establish climate expectations or investment validity.\","
+        },
+        {
+          "line": 52,
+          "text": "    policy: \"Existing descriptive news/sentiment view; not climate, valuation-to-activity or milestone output.\","
+        }
       ],
       "disposition": "physical-warnings-retained-extrapolation-risk-resolved",
       "resolution": "R16-EXTRAPOLATION-001"
@@ -120,7 +176,7 @@
     {
       "path": "client/src/pages/climate-valuation.tsx",
       "originalSha256": "cda48069cb0225ede09392da3586217849ebc80f1f10c3894e202720af78dfa6",
-      "currentSha256": "3ba6f1fed1dd824a60e7508378365362e3b144b0875f29b4853f4c8000c13a2f",
+      "currentSha256": "a68a2a472f9c3753e59225ab0e35bb519fb7511aab6c7a8e105a1818d5beecca",
       "currentHashHistory": [
         {
           "sha256": "61b3f6c2581997b3be2e11716692ab5e9a1df1b4446d3a20373c714b5992744b",
@@ -132,14 +188,33 @@
         }
       ],
       "exactScanLines": [
-        {"line":331,"text":"              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}"},
-        {"line":357,"text":"              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}"},
-        {"line":430,"text":"                  Valuation-derived temperature, carbon-price and net-zero outputs remain withheld."},
-        {"line":493,"text":"      <Card className=\"p-4 mb-6 text-sm text-muted-foreground\" data-testid={`${testIdPrefix}-withheld`}>"},
-        {"line":495,"text":"        No defensible valuation-to-activity mapping has been established. No numeric substitutes are shown or exported."}
+        {
+          "line": 331,
+          "text": "              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% \u2212 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}"
+        },
+        {
+          "line": 357,
+          "text": "              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}"
+        },
+        {
+          "line": 430,
+          "text": "                  Valuation-derived temperature, carbon-price and net-zero outputs remain withheld."
+        },
+        {
+          "line": 493,
+          "text": "      <Card className=\"p-4 mb-6 text-sm text-muted-foreground\" data-testid={`${testIdPrefix}-withheld`}>"
+        },
+        {
+          "line": 495,
+          "text": "        No defensible valuation-to-activity mapping has been established. No numeric substitutes are shown or exported."
+        }
       ],
       "disposition": "retained",
-      "resolution": null
+      "resolution": null,
+      "priorCurrentSha256": [
+        "3ba6f1fed1dd824a60e7508378365362e3b144b0875f29b4853f4c8000c13a2f"
+      ],
+      "currentChange": "Added retirement/association read-only panel; original warning text and historical source remain preserved"
     },
     {
       "path": "client/src/pages/dashboard.tsx",
@@ -148,12 +223,30 @@
       "priorCurrentSha256": "7655249d19553c0ed9a678912b5ddbc6710e0fde64fd756494d15498f8319af8",
       "currentSourceRefreshReason": "Inspected dashboard diff: heading now consumes shared/regionalCounterfactual.ts; the regional qualification now says Regional-intensity results are legacy global counterfactuals, not regional temperatures or inventories. This preserves and strengthens the scope warning rather than resolving it. Original hash, exact historical scan lines and all other physical/vintage warnings are retained.",
       "exactScanLines": [
-        {"line":58,"text":"        No new scientific model is ready for use; legacy calculations are not validated climate forecasts."},
-        {"line":71,"text":"        <p className=\"text-sm text-muted-foreground\" id=\"legacy-warning\">"},
-        {"line":73,"text":"          Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts."},
-        {"line":75,"text":"          Regional temperatures are not standalone regional warming estimates. Historical recalculations are not forecast validation."},
-        {"line":77,"text":"        <Button variant=\"outline\" aria-expanded={showLegacy} aria-describedby=\"legacy-warning\" onClick={() => setShowLegacy(!showLegacy)} data-testid=\"button-toggle-legacy\">"},
-        {"line":131,"text":"              Unsupported legacy calculations — not a forecast"}
+        {
+          "line": 58,
+          "text": "        No new scientific model is ready for use; legacy calculations are not validated climate forecasts."
+        },
+        {
+          "line": 71,
+          "text": "        <p className=\"text-sm text-muted-foreground\" id=\"legacy-warning\">"
+        },
+        {
+          "line": 73,
+          "text": "          Its temperature, net-zero, regional and sensitivity outputs are unsupported diagnostics, not validated physical forecasts."
+        },
+        {
+          "line": 75,
+          "text": "          Regional temperatures are not standalone regional warming estimates. Historical recalculations are not forecast validation."
+        },
+        {
+          "line": 77,
+          "text": "        <Button variant=\"outline\" aria-expanded={showLegacy} aria-describedby=\"legacy-warning\" onClick={() => setShowLegacy(!showLegacy)} data-testid=\"button-toggle-legacy\">"
+        },
+        {
+          "line": 131,
+          "text": "              Unsupported legacy calculations \u2014 not a forecast"
+        }
       ],
       "disposition": "physical-warnings-retained-extrapolation-risk-resolved",
       "resolution": "R16-EXTRAPOLATION-001"
@@ -164,11 +257,26 @@
       "currentSha256": "496853058738714fa2cb11561bf109a32dbd7c213a22ce87de3ac2511dc131ca",
       "currentSourceRefreshReason": "S16-007 replaces the actual group-gap and paired-backtest chart/export transforms with closed retained-parent chains, mandatory lineage and JSON companions. Explicit native column types preserve the unchanged original cohort and the historical disabled comparison projection. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
-        {"line":410,"text":"            Gordon steady-state baselines and peer-relative earnings-yield gaps — not decarbonization estimates"},
-        {"line":499,"text":"                Withheld"},
-        {"line":520,"text":"                  <h2 className=\"text-base font-semibold mb-1\">Physical-gap distribution withheld</h2>"},
-        {"line":811,"text":"                  peer median earnings yield minus company earnings yield. It does not identify climate expectations."},
-        {"line":828,"text":"                  Valuation-derived temperature, carbon-price and net-zero outputs are withheld."}
+        {
+          "line": 410,
+          "text": "            Gordon steady-state baselines and peer-relative earnings-yield gaps \u2014 not decarbonization estimates"
+        },
+        {
+          "line": 499,
+          "text": "                Withheld"
+        },
+        {
+          "line": 520,
+          "text": "                  <h2 className=\"text-base font-semibold mb-1\">Physical-gap distribution withheld</h2>"
+        },
+        {
+          "line": 811,
+          "text": "                  peer median earnings yield minus company earnings yield. It does not identify climate expectations."
+        },
+        {
+          "line": 828,
+          "text": "                  Valuation-derived temperature, carbon-price and net-zero outputs are withheld."
+        }
       ],
       "disposition": "retained",
       "resolution": null
@@ -179,12 +287,30 @@
       "currentSha256": "9fc8ebb2087d89fa633a615cd1ab3396444bdc95ce2c710dd63ae21dcc97b96e",
       "currentSourceRefreshReason": "S16-007 routes actual comparison and signal-backtest chart/export transforms through closed retained-parent chains and mandatory lineage/JSON companions. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
-        {"line":198,"text":"  const expectedLabel = \"Physical comparison withheld\";"},
-        {"line":419,"text":"          <p className=\"text-xs text-muted-foreground\">No defensible valuation-to-activity mapping</p>"},
-        {"line":460,"text":"              Gordon steady-state baseline differences = earnings yield of second group minus first group (pp), not climate expectations"},
-        {"line":743,"text":"            <p className=\"font-medium text-foreground mb-1\">Physical comparison withheld</p>"},
-        {"line":746,"text":"              Their subtraction is not a supported climate signal. Temperature, carbon-price and net-zero outputs are unavailable."},
-        {"line":768,"text":"              The best-minus-worst group Gordon baseline difference is not a decarbonization rate."}
+        {
+          "line": 198,
+          "text": "  const expectedLabel = \"Physical comparison withheld\";"
+        },
+        {
+          "line": 419,
+          "text": "          <p className=\"text-xs text-muted-foreground\">No defensible valuation-to-activity mapping</p>"
+        },
+        {
+          "line": 460,
+          "text": "              Gordon steady-state baseline differences = earnings yield of second group minus first group (pp), not climate expectations"
+        },
+        {
+          "line": 743,
+          "text": "            <p className=\"font-medium text-foreground mb-1\">Physical comparison withheld</p>"
+        },
+        {
+          "line": 746,
+          "text": "              Their subtraction is not a supported climate signal. Temperature, carbon-price and net-zero outputs are unavailable."
+        },
+        {
+          "line": 768,
+          "text": "              The best-minus-worst group Gordon baseline difference is not a decarbonization rate."
+        }
       ],
       "disposition": "retained",
       "resolution": null
@@ -196,28 +322,71 @@
       "priorCurrentSha256": "e6c02ebe8a1f4a37482fb1c4fd64346770408032bd3b91ce56e3f8253f6317ac",
       "currentSourceRefreshReason": "Inspected methodology diff: regional heading/explanation now consume the shared counterfactual title, question, claim, description and source. The explanation explicitly excludes regional forecasts/inventories and distinguishes OWID PPP from static nominal assumptions. Original historical scan lines and unresolved physical/vintage/investment warnings remain unchanged.",
       "exactScanLines": [
-        {"line":24,"text":"          <p className=\"text-sm text-muted-foreground\">Published references are read from /api/reference-scenarios, with their own sources, release, licence and caveats. They are external references, not our forecasts or proof of model readiness.</p>"},
-        {"line":27,"text":"          <p className=\"text-sm text-muted-foreground\">Temperature, carbon-price and net-zero results inferred from valuations are withheld. No defensible valuation-to-activity mapping or identified market climate expectation is established. No new scientific model is ready. Retrospective portfolio research is not validated investment evidence.</p>"},
-        {"line":31,"text":"        <p className=\"my-4 text-sm text-muted-foreground\">The historical documentation below records old formulas and interpretations. Claims of climate inference, validation, net-zero, pricing and investment opportunity are unsupported and superseded by the current boundaries above. It is retained for diagnostic audit only.</p>"},
-        {"line":49,"text":"                not an equally likely forecast. Temperatures are published median warming in 2100 above"}
+        {
+          "line": 24,
+          "text": "          <p className=\"text-sm text-muted-foreground\">Published references are read from /api/reference-scenarios, with their own sources, release, licence and caveats. They are external references, not our forecasts or proof of model readiness.</p>"
+        },
+        {
+          "line": 27,
+          "text": "          <p className=\"text-sm text-muted-foreground\">Temperature, carbon-price and net-zero results inferred from valuations are withheld. No defensible valuation-to-activity mapping or identified market climate expectation is established. No new scientific model is ready. Retrospective portfolio research is not validated investment evidence.</p>"
+        },
+        {
+          "line": 31,
+          "text": "        <p className=\"my-4 text-sm text-muted-foreground\">The historical documentation below records old formulas and interpretations. Claims of climate inference, validation, net-zero, pricing and investment opportunity are unsupported and superseded by the current boundaries above. It is retained for diagnostic audit only.</p>"
+        },
+        {
+          "line": 49,
+          "text": "                not an equally likely forecast. Temperatures are published median warming in 2100 above"
+        }
       ],
       "disposition": "physical-warnings-retained-extrapolation-risk-resolved",
       "resolution": "R16-EXTRAPOLATION-001"
     }
   ],
   "removalBindings": [
-    {"path":"client/src/pages/dashboard.tsx","originalText":"may extrapolate beyond 2100","originalLine":74,"exactOriginalLine":"          The legacy milestone uses a fixed 5 Gt threshold and may extrapolate beyond 2100; it is not a 5% of 2024 milestone.","resolution":"R16-EXTRAPOLATION-001"},
-    {"path":"client/src/pages/methodology.tsx","originalText":"may extrapolate beyond 2100","originalLine":25,"exactOriginalLine":"          <p className=\"text-sm text-muted-foreground\">The legacy calculation applies a CO2-only response to aggregate GHG plus a fixed 1.1°C offset. Its fixed-5-Gt milestone may extrapolate beyond 2100 and is not a 5%-of-2024 milestone. Legacy temperatures and milestones are not default outputs.</p>","resolution":"R16-EXTRAPOLATION-001"},
-    {"path":"client/src/lib/ui-claim-register.ts","originalText":"may extrapolate beyond 2100","originalLine":16,"exactOriginalLine":"    policy: \"Unsupported legacy model diagnostics: CO2-only response on aggregate GHG plus fixed 1.1C offset. Fixed-5-Gt milestone may extrapolate beyond 2100. No standalone regional temperature interpretation.\",","resolution":"R16-EXTRAPOLATION-001"}
+    {
+      "path": "client/src/pages/dashboard.tsx",
+      "originalText": "may extrapolate beyond 2100",
+      "originalLine": 74,
+      "exactOriginalLine": "          The legacy milestone uses a fixed 5 Gt threshold and may extrapolate beyond 2100; it is not a 5% of 2024 milestone.",
+      "resolution": "R16-EXTRAPOLATION-001"
+    },
+    {
+      "path": "client/src/pages/methodology.tsx",
+      "originalText": "may extrapolate beyond 2100",
+      "originalLine": 25,
+      "exactOriginalLine": "          <p className=\"text-sm text-muted-foreground\">The legacy calculation applies a CO2-only response to aggregate GHG plus a fixed 1.1\u00b0C offset. Its fixed-5-Gt milestone may extrapolate beyond 2100 and is not a 5%-of-2024 milestone. Legacy temperatures and milestones are not default outputs.</p>",
+      "resolution": "R16-EXTRAPOLATION-001"
+    },
+    {
+      "path": "client/src/lib/ui-claim-register.ts",
+      "originalText": "may extrapolate beyond 2100",
+      "originalLine": 16,
+      "exactOriginalLine": "    policy: \"Unsupported legacy model diagnostics: CO2-only response on aggregate GHG plus fixed 1.1C offset. Fixed-5-Gt milestone may extrapolate beyond 2100. No standalone regional temperature interpretation.\",",
+      "resolution": "R16-EXTRAPOLATION-001"
+    }
   ],
-  "resolutionEvidence": [{
-    "id": "R16-EXTRAPOLATION-001",
-    "authority": "Existing S16-013 register only; no new accepted resolution is invented.",
-    "specificLimitation": "The fixed5Gt diagnostic now finds an actual simulated annual crossing or returns null; it does not extrapolate beyond the retained trajectory.",
-    "implementation": "server/calculation/historicalMetrics.ts: historicalTrajectoryMetrics",
-    "tests": ["script/warning-and-pathway-label-contracts.test.ts", "script/projection-metric-consistency.test.ts", "script/historical-metrics.test.ts"],
-    "notResolved": ["CO2-only response to aggregate GHG", "fixed1.1°C offset", "standalone regional warming interpretation", "forecast-vintage validation", "native-pathway scientific readiness", "valuation-to-activity identification"]
-  }],
+  "resolutionEvidence": [
+    {
+      "id": "R16-EXTRAPOLATION-001",
+      "authority": "Existing S16-013 register only; no new accepted resolution is invented.",
+      "specificLimitation": "The fixed5Gt diagnostic now finds an actual simulated annual crossing or returns null; it does not extrapolate beyond the retained trajectory.",
+      "implementation": "server/calculation/historicalMetrics.ts: historicalTrajectoryMetrics",
+      "tests": [
+        "script/warning-and-pathway-label-contracts.test.ts",
+        "script/projection-metric-consistency.test.ts",
+        "script/historical-metrics.test.ts"
+      ],
+      "notResolved": [
+        "CO2-only response to aggregate GHG",
+        "fixed1.1\u00b0C offset",
+        "standalone regional warming interpretation",
+        "forecast-vintage validation",
+        "native-pathway scientific readiness",
+        "valuation-to-activity identification"
+      ]
+    }
+  ],
   "additionalRetainedWarning": {
     "path": "client/src/components/analysis-snapshot-status.tsx",
     "originalText": "Selection changes only this summary; it does not change the current source or any other page.",
@@ -251,7 +420,7 @@
     }
   },
   "sourceSha256": {
-    "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+    "attached_assets/Climate_Dashboard_\u2014_Developer_Work_Plan_(1)_1794135026111.docx": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
     "docs/Developer_Workplan_Amendments.md": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
     "docs/S16-013-warning-resolution-register.json": "278a0ad0c9e62365946c3e048f705141101f95d3f1de440a49e6eb10031f89ee",
     "script/fixtures/retained-warning-source.json": "54c86532decc726490c5fa0abf45f9966b3591f986c910f2f8596708ff69331f",

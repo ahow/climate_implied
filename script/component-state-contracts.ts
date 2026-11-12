@@ -34,6 +34,15 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "retirement-association-panel.tsx": query("Null/absent document is unavailable; valid sourced book arithmetic is partial economic evidence, not an issuer valuation.",{
+    null:"Actual retirement valuation, market-implied pace and association estimates remain explicitly null; never zero.",
+    loading:"Initial/refetch states suppress prior documents and export buttons.",
+    error:"Schema/read/export error displays specific reason; no fallback file or prior result.",
+    selection:"Fixed read-only source report independent of historical selection; downloaded complete body must equal current producer identity.",
+    zero:"Exact finite source/derived zero retained; missing cash economics never zero-filled.",
+    refusal:"Missing unit cash, liability, recovery, target and association sample reasons remain explicit.",
+    scope:"Public primary-filing facts/book arithmetic and unscored protocol only. Offline conditional models do not confer scientific or owner acceptance.",
+  }),
   "producer-reserve-panel.tsx": query("Absent/null report has a composed unavailable state; incomplete report or prospective identity is refused by the reader, never replaced by issuer summaries.", {
     null: "Market equity target, market-implied decline and FCFE remain explicitly Unknown (null); null solve decline/residual is unavailable, not zero.",
     loading: "useProducerReserve/useReadQuery and the state gate withhold cached results and exports on initial or background pending reads; accessible skeletons identify the current read.",
@@ -319,6 +328,13 @@ export const filePolicies: Record<string, Policy> = {
 /** Finite reviewed additions, keyed by exact file AND actual declaration.
  * A newly introduced sibling is refused until separately reviewed. */
 export const economicBridgeComponentPolicies: Record<string, Policy> = {
+  "retirement-association-panel.tsx#RetirementAssociationPanel": filePolicies["retirement-association-panel.tsx"],
+  "retirement-association-panel.tsx#RetirementAssociationPanelContent": {
+    ...filePolicies["retirement-association-panel.tsx"],inputKind:"supplied-result",
+  },
+  "retirement-association-panel.tsx#RetirementAssociationReportView": {
+    ...filePolicies["retirement-association-panel.tsx"],inputKind:"supplied-result",
+  },
   "producer-reserve-panel.tsx#ProducerReservePanel": filePolicies["producer-reserve-panel.tsx"],
   "producer-reserve-panel.tsx#ProducerReservePanelContent": {
     ...filePolicies["producer-reserve-panel.tsx"], inputKind: "supplied-result",
@@ -365,6 +381,7 @@ export const economicBridgeComponentPolicies: Record<string, Policy> = {
 
 export const focusedRenderComponents = new Set([
   "ProducerReservePanel", "ProducerReservePanelContent", "ProducerReserveReportView", "ReserveLiteral", "Disclosure", "Result",
+  "RetirementAssociationPanel", "RetirementAssociationPanelContent", "RetirementAssociationReportView",
   "LocationElectricityPanel", "LocationElectricityPanelContent", "LocationElectricityReportView", "Source",
   "HeadlineDrilldownReview", "RetainedHeadlineDrilldown",
   "RetainedPairedResearch", "RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton",
@@ -408,7 +425,7 @@ const valuationIndicatorCohort = new Set([
 export function contractFor(file: string, name: string) {
   const basename = file.split("/").at(-1)!;
   const economicKey = `${basename}#${name}`;
-  const economicFile = ["producer-reserve-panel.tsx", "location-electricity-panel.tsx"].includes(basename);
+  const economicFile = ["producer-reserve-panel.tsx", "location-electricity-panel.tsx","retirement-association-panel.tsx"].includes(basename);
   const policy = economicFile ? economicBridgeComponentPolicies[economicKey] : filePolicies[basename];
   if (!policy) throw new Error(`No reviewed state policy for actual consumer ${file}#${name}`);
   const inheritedProps = ["RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton", "SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);

@@ -38,6 +38,7 @@ const priorServerDownloadPaths = [
   "/api/financial-data/workbook-money-audit.xlsx", "/api/development/qualified-missingness/export",
 ].sort();
 const supplementalEconomicDownloadPaths = [
+  "/api/cv/retirement-association/export.json", "/api/cv/retirement-association/export.xlsx",
   "/api/cv/producer-reserve/export.json", "/api/cv/producer-reserve/export.xlsx",
   "/api/cv/location-electricity/export.json", "/api/cv/location-electricity/export.xlsx",
 ].sort();
@@ -50,7 +51,7 @@ test("S16-007 public portable AST census includes chart, JSON, direct-link, atta
   assert.deepEqual(routes.filter(path => !supplementalEconomicDownloadPaths.includes(path)).sort(), priorServerDownloadPaths);
   assert.deepEqual(routes.filter(path => supplementalEconomicDownloadPaths.includes(path)).sort(), supplementalEconomicDownloadPaths);
   assert.equal(priorServerDownloadPaths.length, 15);
-  assert.equal(routes.length, 19, "Exact prior15 preserved plus four explicitly separate supplemental economic JSON/XLSX routes");
+  assert.equal(routes.length, 21, "Exact prior15 preserved plus six explicitly separate supplemental economic JSON/XLSX routes");
   assert.equal(census.attachmentSites.filter(site => site.path !== "server/producerReserveApi.ts").length, 12);
   assert.equal(census.attachmentSites.filter(site => site.path === "server/producerReserveApi.ts").length, 2,
     "Two shared suffix-bound writers serve exactly four additional registered routes");
@@ -66,7 +67,7 @@ test("S16-007 public portable AST census includes chart, JSON, direct-link, atta
   assert.ok(census.workbookSheets.length >= 20, "Custom server sheets, not only central Data sheet");
   assert.equal(census.writers.filter(site => site.contract === "central-qualified-download").length, 3);
   assert.deepEqual(census.writers.filter(site => site.contract !== "central-qualified-download").map(site => site.contract).sort(),
-    ["locationElectricity", "producerReserve"]);
+    ["locationElectricity", "producerReserve", "retirementAssociation"]);
   assert.deepEqual(methodologyRegistry().supplementalEconomicDownloads, economicBridgeDownloadWriters);
   for (const contract of economicBridgeDownloadWriters) {
     assert.equal(contract.original1001Delta, 0);

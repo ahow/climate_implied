@@ -1,0 +1,32 @@
+{
+  "version": "s13-006-gordon-association-2",
+  "declaredAt": "2026-11-12T15:52:36Z",
+  "status": "Prospective protocol, not historical precommitment or independent approval",
+  "supersedes": "retirement-association-protocol.json association declaration only; retirement declaration unchanged",
+  "correction": "V1 named a five-year FCFE Gordon basis inconsistent with the application's actual steady-state earnings Gordon comparator. Seven synthetic engineering tests ran under V1; no issuer estimation ran. V1 is retained, not silently rewritten. V2 precedes all V2 estimation.",
+  "association": {
+    "dependent": "g = r - positive same-period earnings / market capitalization; annual decimal fraction; fully distributable earnings steady-state comparator, not five-year reverse DCF",
+    "unit": "one accepted exact issuer/security observation per frozen cutoff",
+    "sample": "explicit frozen issuer IDs, category levels and cutoff; unchanged full denominator; no hindsight choice",
+    "exposure": "scope1+scope2 location-based tCO2e / same-period USD million revenue, excluding Scope3",
+    "numericControls": ["logMarketCapUsd", "operatingProfitOverAssets", "capexOverRevenue", "commodityRevenueShare", "netDebtOverAssets", "pastThreeYearRevenueCagr"],
+    "categoricalControls": ["sector", "operatingRegion"],
+    "estimator": "OLS, equal weights, fixed intercept/reference categories; standardized solve transformed to original units",
+    "uncertainty": "HC3 covariance, approximate two-sided Student-t 95% intervals, df=n-p",
+    "minimumN": 30,
+    "minimumObservationsPerParameter": 3,
+    "maximumConditionNumber": 100000000,
+    "maximumLeverage": 0.9999999999,
+    "claim": "Conditional association only; not climate-attributable growth, causation, identified expectations or efficacy"
+  },
+  "definitions": {
+    "impliedGrowth": "g=r-positiveSamePeriodEarningsUsd/marketCapUsd; annual fraction; steady-state Gordon",
+    "transitionExposure": "scope1PlusLocationBasedScope2_tCO2e/samePeriodRevenueUsdMillion",
+    "logMarketCapUsd": "naturalLog(exactSecurityMarketCapInNominalUSD)",
+    "operatingProfitOverAssets": "sameFiscalOperatingProfitUsd/sameFiscalTotalAssetsUsd",
+    "capexOverRevenue": "positiveCashPPEPurchasesUsd/sameFiscalRevenueUsd",
+    "commodityRevenueShare": "sameFiscalCommodityRevenueUsd/sameFiscalRevenueUsd",
+    "netDebtOverAssets": "(sameFiscalDebtUsd-sameFiscalCashUsd)/sameFiscalTotalAssetsUsd",
+    "pastThreeYearRevenueCagr": "(currentFiscalRevenueUsd/priorThreeYearFiscalRevenueUsd)^(1/3)-1"
+  }
+}

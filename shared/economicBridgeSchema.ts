@@ -1,6 +1,10 @@
 /** Supplemental prospective calculations only. Never part of original1001,
  * the fixed prior matrix, old124 results, or the fourteen FaIR pins. */
 export const economicBridgeContracts = {
+  retirementAssociation: {
+    route: "/api/cv/retirement-association",
+    claim: "Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference",
+  },
   producerReserve: {
     route: "/api/cv/producer-reserve",
     claim: "Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice",
@@ -15,6 +19,23 @@ export type EconomicBridgeKey = keyof typeof economicBridgeContracts;
  * The portable AST audit verifies the named reader -> shared readback -> exact
  * selected-body comparison chain before registering either writer. */
 export const economicBridgeDownloadWriters = [
+  {
+    key:"retirementAssociation",
+    source:"client/src/components/retirement-association-panel.tsx",
+    readerSource:"client/src/lib/retirement-association-reader.ts",
+    reader:"readBoundRetirementAssociationExport",
+    parser:"parseRetirementAssociationDocument",
+    filename:"supplemental-retirementAssociation-${document.identity.id}.${format}",
+    route:economicBridgeContracts.retirementAssociation.route,
+    formats:["json","xlsx"],
+    kind:"valuation",
+    readbackSource:"client/src/lib/economic-export-readback.ts",
+    readback:"readBoundEconomicExport",
+    body:"Complete currently consumed EconomicBridgeDocument, including full prospective identity, units, formulas, literal nulls and container types",
+    boundary:economicBridgeContracts.retirementAssociation.claim,
+    original1001Delta:0,
+    fixedPriorMatrixDelta:0,
+  },
   {
     key: "producerReserve",
     source: "client/src/components/producer-reserve-panel.tsx",

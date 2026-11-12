@@ -1,0 +1,39 @@
+{
+  "version": "s13-retirement-association-prospective-1",
+  "declaredAt": "2026-11-12T15:46:28Z",
+  "status": "prospective engineering specification before estimation; not historical precommitment or independent approval",
+  "retirement": {
+    "basis": "unit-attributable unlevered nominal USD cash flow, not common equity",
+    "timing": "calendar fiscal years; retirement at beginning of declared year, no generation in that year",
+    "ownership": "gross plant MW and cash inputs multiplied once by evidenced ownership fraction",
+    "recovery": "explicit gross unit cash schedule only; unrecovered book value is not a cash outflow",
+    "liability": "decommissioning cash deducted at explicit payment year, never also deduct booked liability",
+    "replacement": "explicit replacement power purchase expense or separately priced replacement capex, never an inferred free replacement",
+    "tax": "explicit annual cash taxes; no inferred tax benefit",
+    "terminal": "zero residual value must be declared; all recovery/decommissioning payments inside horizon",
+    "inversion": "enumerate all declared integer retirement offsets; report every root within a predeclared monetary tolerance; no continuous interpolation of dates or market claim",
+    "uncertainty": "declared deterministic scenarios only; no distribution or confidence claim"
+  },
+  "association": {
+    "dependent": "five-year nominal USD FCFE Gordon-implied annual growth, decimal fraction; same solver/settings identity across included observations",
+    "unit": "one exact accepted issuer/security observation at a single declared cutoff",
+    "sample": "explicit frozen issuer IDs, sector/region level sets and observation cutoff in the input manifest; no endogenous dropping or category selection",
+    "exposure": "scope1+scope2 location-based tonnes CO2e / same-fiscal-period USD million revenue; scope3 excluded to avoid cross-company overlap; not a causal treatment",
+    "numericControls": [
+      "logMarketCapUsd",
+      "operatingProfitOverAssets",
+      "capexOverRevenue",
+      "commodityRevenueShare",
+      "netDebtOverAssets",
+      "pastThreeYearRevenueCagr"
+    ],
+    "categoricalControls": ["sector", "operatingRegion"],
+    "missingness": "complete-case estimation with per-field exclusion reasons and unchanged full population denominator; no zero fill",
+    "availability": "all sources published no later than cutoff, same observation date; reviewed exact identity required; unknown restatement/financial basis rejected",
+    "estimator": "equal-weight OLS with explicit intercept, fixed first reference categories, standardized continuous regressors for numerical solving; coefficients transformed to original units",
+    "uncertainty": "HC3 heteroskedasticity-robust covariance; two-sided Student-t 95% approximate intervals with n-p degrees of freedom; no causal inference",
+    "gates": "n >= max(30, 3*p), full column rank, standardized design condition number <= 1e8, all hat diagonals < 1-1e-10; otherwise no estimates",
+    "diagnostics": "coverage, omitted rows/reasons, n/p/df, rank, condition number, leverage, residuals, R2/adjustedR2, coefficient covariance",
+    "claim": "conditional association only; not climate-attributable growth, market expectations, efficacy or causation"
+  }
+}

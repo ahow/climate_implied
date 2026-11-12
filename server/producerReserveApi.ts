@@ -8,6 +8,7 @@ import { producerReserveDomain } from "./calculation/producerReserveDomain";
 import { producerReserveFacts, producerReserveSource } from "./calculation/producerReserveEvidence";
 import { producerReserveFreezeEvidence } from "./calculation/producerReserveFreeze";
 import { producerPrimaryAuthentication } from "./calculation/producerPrimaryAuthentication";
+import { buildRetirementAssociationPublic } from "../shared/retirementAssociationPublic";
 import { buildPublicLocationElectricityReport } from "./calculation/locationElectricityPublicReport";
 import type { LocationElectricityPublicReport } from "../shared/locationElectricityPublicTypes";
 import { economicBridgeCells, economicBridgeContracts, producerReserveCalculationSemantics, type EconomicBridgeKey } from "../shared/economicBridgeSchema";
@@ -123,7 +124,23 @@ export const locationElectricityAdapter: EconomicBridgeAdapter = {
     };
   },
 };
-export const publicEconomicBridgeAdapters: EconomicBridgeAdapter[] = [producerReserveAdapter, locationElectricityAdapter];
+export const retirementAssociationAdapter: EconomicBridgeAdapter = {
+  key:"retirementAssociation",
+  entryFiles:["shared/retirementAssociationPublic.ts","server/calculation/utilityRetirement.ts"],
+  execute:buildRetirementAssociationPublic,
+  parts(value) {
+    const report=value as ReturnType<typeof buildRetirementAssociationPublic>;
+    if(report.version!=="retirement-association-public-1" || report.retirementResult!==null ||
+      report.association.actualStudyExecuted || report.association.actualEstimate!==null ||
+      report.calculated.ownedBookValueUsdMillion!==report.source.ownedPlantInServiceUsdMillion-report.source.ownedAccumulatedDepreciationUsdMillion)
+      throw new Error("Inconsistent public retirement source/claim");
+    return {source:report.source,material:{source:report.source,missing:report.missingRetirementInputs},
+      assumptions:report.assumptions,
+      model:{version:report.version,formulas:report.formulas,operation:"Book arithmetic only; retirement engine and offline association estimator not executed by HTTP"},
+      derivation:{calculated:report.calculated,associationMethod:report.association,claim:report.claim}};
+  },
+};
+export const publicEconomicBridgeAdapters: EconomicBridgeAdapter[] = [producerReserveAdapter, locationElectricityAdapter, retirementAssociationAdapter];
 // Bytes captured with imported modules, never refreshed by a request, a test
 // archive reader or later on-disk edits. This performs no model calculation.
 const publicEconomicBridgeRelease = captureEconomicBridgeClosure(publicEconomicBridgeAdapters);
