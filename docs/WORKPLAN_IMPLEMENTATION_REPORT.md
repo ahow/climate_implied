@@ -1,3 +1,102 @@
+## Current verified boundary/counterfactual code release — 2026-11-12
+
+Implementation workspace `d520594d27f1ecd3c939cdc49757cd049866d989` → public/runtime `b801777f4d8f018f510a4e74b24608235ec456cc`. Existing CI `43230014407` validate/promote succeeded; Railway `9bebe7fe-a788-4555-9600-e170257bbeae` SUCCESS. Actual build-info exact SHA and health200; safe catalog200 empty, override/missing-pins400, private missingness/export/prospective-export403, all no-store/no attachment/no producer binding. Served JS contains exact global-intensity counterfactual title/question/claim/labels and native-v3 identifier.
+
+**63 verified finite engineering /235 partial /2 provisioning-blocked; all300 original clauses.** S05-009/S08-003 exact finite clauses only; **scientific/source/owner acceptance unpromoted; 0 newly qualified calibration/economic pairs.**
+
+Local coherent full gate: **1199 TypeScript total/1198pass/0fail/1optional PostgreSQL skip; 255Python/255pass**, all mandatory private validators including unconditional historical chronology, typecheck/build passed. CI job/step metadata success is separate, not these local counts. All adverse/failed/incomplete receipts retained; separate isolated PostgreSQL evidence never removes the skip or accepts deployed PostgreSQL. All14 FaIR pins/frozen-negative protocols preserved.
+
+S11-041 remains partial/adverse: earliest retained ANY-result candidate precedes rule commit by356568ms; weak mtime, exact executing revision/first-ever result unknown. Later paired ordering does not repair it; Gordon primary, reverse DCF unpromoted. Public source-only chronology and negative-control checks passed; authentic historical assertions retained verbatim in unconditional mandatory private validator. Exported history is not historical Git proof.
+
+No production native candidate GET, browser execution or numerical calculation/retention run. HTML/JS fetched as bytes only; labels and exact build SHA verified, not live numerical API behavior. Not probed this run; prior custom-domain non-JSON routing observation remains historical/unresolved. No domain/DNS/native GET/config mutation.
+
+This subsequent documentation/receipt revision is separate from implementation source and observed public/runtime code. A later docs-only sync is not the runtime measured by this receipt; no recursive release-receipt promotion claims. Existing DEV /methodology screenshot rendered normally; initial viewport only, not production model execution. No workflow restart by this recorder.
+
+Safe exact runtime receipt: `generated-artifacts/counterfactual-verified-release.json` SHA256 `31e2889b280876800260a3e35e16fdea88b614bfaf73410f838478a5559c405b`. Local full log SHA256 `81eccb9bdeff8d52753db5308e9adda097720484afbdd31e65ea38386828a4ee`. Older statements below are historical; remaining science/source/issuer/production/owner dependencies are not closed.
+
+### Exact observed release
+
+{
+  "workspace_commit": "d520594d27f1ecd3c939cdc49757cd049866d989",
+  "github_main": "b801777f4d8f018f510a4e74b24608235ec456cc",
+  "production_validated": "b801777f4d8f018f510a4e74b24608235ec456cc",
+  "ci": "43230014407 validate/promote success",
+  "ci_url": "https://github.com/ahow/climate_implied/actions/runs/43230014407",
+  "ci_steps": "Existing public TS/Python/typecheck/build step metadata succeeded; no CI logs/counts inspected. Mandatory private checks are local, not public CI counts.",
+  "railway_deployment": "9bebe7fe-a788-4555-9600-e170257bbeae",
+  "railway_status": "SUCCESS",
+  "railway_completed_at": "2026-11-12T13:55:06.303Z",
+  "verified_at": "2026-11-12T13:55:21.403Z",
+  "build_info_source_commit": "b801777f4d8f018f510a4e74b24608235ec456cc",
+  "health": 200,
+  "verified_base": "https://dashboard-production-4d39.up.railway.app",
+  "runtime": "Exact service-domain build-info SHA and health200; empty paired catalog200/override400/missing-pins400; three private403/no-store/no attachment/no producer binding. Served JS exact counterfactual title/question/claim/warming/unavailable labels and native-v3 identifier present. No numerical API/native GET or browser execution.",
+  "static_artifact": {
+    "bytes": 1662249,
+    "execution": "Fetched HTML/JS as bytes only; no browser execution or native candidate GET.",
+    "labels": {
+      "claim": true,
+      "native_v3": true,
+      "question": true,
+      "title": true,
+      "unavailable": true,
+      "warming": true
+    },
+    "path": "/assets/index-DdaxJccx.js",
+    "root_status": 200,
+    "sha256": "5aa0c5f191b12dfcc30386acda4dc6740a3da216fa39b14b27447ebfa0b793eb",
+    "status": 200
+  },
+  "receipt": "generated-artifacts/counterfactual-verified-release.json",
+  "receipt_sha256": "31e2889b280876800260a3e35e16fdea88b614bfaf73410f838478a5559c405b",
+  "local_execution": {
+    "receipt": "generated-artifacts/original-counterfactual-integration/full-portable-final.receipt.json",
+    "receipt_sha256": "48e9ecb5982c5a9d111b383622b9a6e03a69a7ce3c643d0429fff76c4dfe265d",
+    "log_sha256": "81eccb9bdeff8d52753db5308e9adda097720484afbdd31e65ea38386828a4ee",
+    "counts": {
+      "typescript": {
+        "tests": 1199,
+        "pass": 1198,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "private_checks": "All unchanged mandatory original choice/width, historical valuation chronology, monetary integration, issuer cashflow and reconciliation validators passed, plus typecheck/build. No duplicate execution."
+  },
+  "counts": {
+    "verified": 63,
+    "partial": 235,
+    "blocked-production-provisioning": 2
+  },
+  "finite_engineering_criteria": [
+    "S05-009",
+    "S08-003"
+  ],
+  "scientific_acceptance": false,
+  "newly_qualified_pairs": 0,
+  "chronology": "S11-041 remains partial/adverse: earliest retained ANY-result candidate precedes rule commit by356568ms; weak mtime, exact executing revision/first-ever result unknown. Later paired ordering does not repair it; Gordon primary, reverse DCF unpromoted.",
+  "portability": "Public source-only chronology and negative-control checks passed; authentic historical assertions retained verbatim in unconditional mandatory private validator. Exported history is not historical Git proof.",
+  "preservation": "All300 clauses; original1000/1001 bindings; all14 FaIR pins and14 frozen negative files unchanged. Failed/incomplete receipts retained. Separate isolated local PostgreSQL success does not remove full-suite optional skip or accept deployed PostgreSQL.",
+  "native_behavior_limit": "No production native candidate GET, browser execution or numerical calculation/retention run. HTML/JS fetched as bytes only; labels and exact build SHA verified, not live numerical API behavior.",
+  "custom_domain_observation": "Not probed this run; prior custom-domain non-JSON routing observation remains historical/unresolved. No domain/DNS/native GET/config mutation.",
+  "remaining_dependencies": [
+    "Source-qualified regional generation-share saturation K, complete compatible vintage/rights panel, reviewed whole-draw joint law/dependence and genuine prefit receipt; no new qualified calibration or joint bundle.",
+    "Approved native joint distribution/inventory, empirical mechanism calibration and curated-to-regional central bridge; adapter readiness is not an actual accepted Phase VI dataset or production ensemble.",
+    "FSLR actual India/Alabama cash reconciliation and component/cohort eligibility/material/PFE evidence; NEE gross dated LLC cash waterfall and marginal commissioning economics; XOM executed priced transport/storage, serviced quantities, collections and own funding waterfall.",
+    "No newly qualified operating-FCFE economic pairs or dated11-15 preparation/valuation runs; scientific efficacy, authorized retained-report publication and independent owner acceptance remain absent.",
+    "Two original production-provisioning clauses remain blocked; separate isolated local PostgreSQL success does not accept deployed PostgreSQL.",
+    "Custom-domain API paths returned identical non-JSON HTML, not this verified Railway API; owner/platform routing investigation remains, with no domain/DNS/config changes authorized or made."
+  ],
+  "documentation_boundary": "This subsequent documentation/receipt revision is separate from implementation source and observed public/runtime code. A later docs-only sync is not the runtime measured by this receipt; no recursive release-receipt promotion claims.",
+  "scope": "63 verified finite engineering /235 partial /2 provisioning-blocked; science/source/owner acceptance unpromoted. Zero newly qualified calibration/economic pairs. No dispatch/rerun/cancel/new monitoring/production mutation/callback."
+}
+
 ## Original boundary/counterfactual/chronology increment — local integration
 
 {
