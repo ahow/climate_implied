@@ -1,3 +1,346 @@
+## Current verified economic-bridge code release — 2026-11-12
+
+Implementation `cbb877324aac9890c18b784fbf4c8817c7e8c3c5` → public/runtime `b8d98f6837e329a800067e42b366d93325859725`; CI `43245418718` validate/promote success; Railway `ce3cd0c1-9887-4f1a-9782-9fdc41b301dd` SUCCESS. Actual exact build-info/health200. **All six new nonpersisting economic API/JSON/XLSX routes executed and read back**, including complete current-output identities, source authentication assessment, literal spreadsheet content and download manifests.
+
+**63 verified /235 partial /2 provisioning-blocked; all300 unchanged.** S13-001/S13-002/S13-005/S12-005 remain partial;0 newly qualified pairs/scientific acceptance. Selected primary-table authentication resolved, not blanket source/owner approval: official SEC200,39facts/38rows/261numeric cells and retained2025-02-19T21:39:37Z acceptance. Separate current identity/UI assessment; original frozen model, source declarations and domain unchanged.
+
+2.9773550346% closed-reserve conditional depletion against disclosed151494m PV10; seven sensitivities3roots/4no-root and six zero accounts. Not whole equity, market-implied decline, FCFE or certified replacement inverse. Location report5operating/1construction/5contextual EIA prices; actualIssuerResult=null/0qualified issuer cash bridges. Real companyProjection expense/WC integration tested synthetically only; Scope2 is not directly taxed.
+
+Retained local coherent full gate **1272TS/1271pass/0fail/1optionalPGskip +255Python pass**, all original and new mandatory private gates/typecheck/build passed. These are local counts, not CI counts. Exact command and receipt/log hashes recorded below. Initial full1263total/1251pass/11fail/1skip retained, Python not reached. Actual ol-in-p warning/client block-markup repair and24SSR component checks retained; no weakened gate. Prior chronology adverse partial remains; Gordon primary. 63/235/2 all300 unchanged; original1000/1001 and fixed29 unchanged; all14 FaIR pins/14 frozen negatives preserved. Optional PostgreSQL skip explicit; separate isolated PostgreSQL does not accept deployed PostgreSQL. No newly qualified calibration/economic pairs or scientific/owner acceptance.
+
+No production native candidate GET or browser execution. New economic routes explicitly do not persist and were actually executed/read back; do not confuse these with native retention or a qualified issuer cash bridge. No domain request/change; prior non-JSON custom-domain observation remains historical/unresolved, outside service-domain claim.
+
+Subsequent docs/receipt-only source is distinct from independently measured implementation/public code. A later docs-only publication/runtime is recorded separately in a terminal local receipt, never recursively rewritten into this implementation measurement. Prior code b801777/docs567f606/localad8eccd receipts retained. Existing DEV screenshot normal initial viewport only; new panels independently covered by24SSR checks, not visually verified below fold. No workflow restart by this worker.
+
+Safe runtime receipt `generated-artifacts/economic-bridge-integration/verified-release.json` SHA256 `05a77c73f4eee7466fe9683a68b04ac41da114579bbdc25767577bbcaaf816d9`; full log SHA256 `9087c169222ae52bf4bfa12e4e21a2dbf458fa49f9fa60d008ef7d7eca4b6f0c`. Earlier runtime statements below are historical.
+
+### Exact observed economic code release
+
+{
+  "workspace_commit": "cbb877324aac9890c18b784fbf4c8817c7e8c3c5",
+  "github_main": "b8d98f6837e329a800067e42b366d93325859725",
+  "production_validated": "b8d98f6837e329a800067e42b366d93325859725",
+  "ci": "43245418718 validate/promote success",
+  "ci_url": "https://github.com/ahow/climate_implied/actions/runs/43245418718",
+  "ci_steps": "Existing public TS/Python/typecheck/build job-step metadata succeeded. CI counts/logs not inspected; local mandatory private validators are not public CI counts.",
+  "railway_deployment": "ce3cd0c1-9887-4f1a-9782-9fdc41b301dd",
+  "railway_status": "SUCCESS",
+  "railway_completed_at": "2026-11-12T15:24:08.746Z",
+  "verified_at": "2026-11-12T15:24:42.807Z",
+  "verified_base": "https://dashboard-production-4d39.up.railway.app",
+  "build_info_source_commit": "b8d98f6837e329a800067e42b366d93325859725",
+  "health": 200,
+  "receipt": "generated-artifacts/economic-bridge-integration/verified-release.json",
+  "receipt_sha256": "05a77c73f4eee7466fe9683a68b04ac41da114579bbdc25767577bbcaaf816d9",
+  "runtime": "Exact live code SHA/health and six new nonpersisting API/JSON/XLSX readbacks executed. All identity/source/material/model/derivation/result hashes and source closure files verified; complete JSON and literal XLSX match actual current API outputs. Empty safe paired catalog200, override/missing pins400, private routes403/no-store.",
+  "economic_live": {
+    "producerReserve": {
+      "identity_id": "6fe96c97232ae2dd2b194d9692df76a64bd44fb3fa0ef2a557156fd32d642b09",
+      "result_hash": "a86ada9f4b0cc6abebdb7ab24006945d6dff1da5d7da228e6631b6f82d8e73d3",
+      "code_archive_id": "c936e1b80fd1541bc57a53b5be728cc359a7926196c930f8180cd6eea1b37da6",
+      "source_artifact_id": "b21f86b0f1f8dff5c96c3d848bec51e37e7e4cc403b80a5c8626bd3cb15914e4",
+      "closure_files_verified": 165,
+      "findings": {
+        "targetUsdMillion": 151494,
+        "diagnosticDepletionPercent": 2.9773550345562394,
+        "outcomes": {
+          "unique-conditional-root": 3,
+          "no-root": 4
+        },
+        "sixAccountingResiduals": {
+          "reserveRollforwardResidualMillionBoe": 0,
+          "standardizedCashResidualUsdMillion": 0,
+          "standardizedDiscountResidualUsdMillion": 0,
+          "producingIncomeResidualUsdMillion": 0,
+          "revenueResidualUsdMillion": 0,
+          "costsIncurredResidualUsdMillion": 0
+        },
+        "marketEquityTarget": null,
+        "marketImpliedDecline": null,
+        "fcfe": null,
+        "primaryAuthentication": {
+          "status": "supplementary-primary-table-authentication-resolved",
+          "scope": "Exxon Mobil Corporation FY2024 consolidated-subsidiary producer tables only",
+          "officialUrl": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xom-20241231.htm",
+          "officialHttpStatus": 200,
+          "entity": "Exxon Mobil Corporation",
+          "cik": "0000034088",
+          "accessionNumber": "0000034088-25-000010",
+          "form": "10-K",
+          "fiscalEnd": "2024-12-31",
+          "filingDate": "2025-02-19",
+          "publishedAt": "2025-02-19T21:39:37Z",
+          "publicationBasis": "Already-retained SEC submissions acceptanceDateTime; not mirror posting or acquisition time",
+          "comparedRows": 38,
+          "comparedNumericCells": 261,
+          "producerNumericFactsMatched": 39,
+          "allComparisonsPassed": true,
+          "hashes": {
+            "secSubmissionsSha256": "79aacad669ef044bf654934b659b9fda89514e0ba5514838dbfb787d53e48773",
+            "officialHtmlSha256": "b13a42242d1f6e8baa39cd4126f3fd7ce2aa4cb326d882398880f9da44f04786",
+            "priorOfficialHtmlSha256": "01d1d6f0831e7d4e85727d24cc3b8195c97cff2cd645effed40b58663e79ea41",
+            "officialHtmlWithoutScriptNoscriptSha256": "ef8063b86ee33c8bcc1465c3c853752294a3397867621e1762c8fe45abf0ffc5"
+          },
+          "originalFreezeUnchanged": true,
+          "remainingAuthenticationLimits": [
+            "Complete mirrored PDF byte identity to an issuer-hosted original and mirror publication time remain unestablished.",
+            "SEC HTML equality after removal of script/noscript elements and selected numeric-row matches do not establish full-page textual equality or complete mirror PDF authentication.",
+            "FY2024 registrant identity does not approve successor legal/security continuity or an automatic ticker join.",
+            "Public issuer-authored filing access grants no raw-source republication licence or owner authorization.",
+            "Owner review, legal ownership allocation and common-equity claim coverage remain unapproved.",
+            "Fiscal/cash timing, terminal assumptions, freeze uniqueness, economic sufficiency and scientific or whole-equity acceptance are not established by source-table authentication."
+          ]
+        },
+        "boundary": "Actual prospective live diagnostic, not whole equity, market decline, FCFE or certified replacement inverse."
+      },
+      "attachments": [
+        {
+          "path": "/api/cv/producer-reserve/export.json",
+          "status": 200,
+          "cacheControl": "no-store",
+          "contentType": "application/json; charset=utf-8",
+          "attachment": "attachment; filename=\"supplemental-producerReserve-prospective-not-qualified.json\"",
+          "bytes": 102761,
+          "sha256": "369a090776033e1558afb432aea9fd80564e00b6bb03ebbd8f82155d488e1fd0",
+          "exactDocumentReadback": true,
+          "literalWorkbookRows": null,
+          "manifestIdentity": {
+            "version": "prospective-economic-binding-1",
+            "key": "producerReserve",
+            "identityId": "6fe96c97232ae2dd2b194d9692df76a64bd44fb3fa0ef2a557156fd32d642b09",
+            "identityLocation": "/identity in exact public JSON or literal workbook readback",
+            "resultHash": "a86ada9f4b0cc6abebdb7ab24006945d6dff1da5d7da228e6631b6f82d8e73d3",
+            "codeArtifact": {
+              "id": "c936e1b80fd1541bc57a53b5be728cc359a7926196c930f8180cd6eea1b37da6",
+              "contract": "calculation-source-1",
+              "closureHash": "0c051934d32b6ad4a6bc6d41d026e24bca18cfbadabfe182323d15ef464a1ce1",
+              "closureFiles": 165
+            },
+            "sourceArtifactId": "b21f86b0f1f8dff5c96c3d848bec51e37e7e4cc403b80a5c8626bd3cb15914e4",
+            "materialInputsId": "3ec7da64f22aed47a4446edae97c61d50bbfd4d18578a2522bfdbfa23bf381b8",
+            "assumptionsId": "cce431d93e24dcdc04a7a89f17d83dafa157b9ab9acf4c55d7ecd2ad54a8c4ed",
+            "modelId": "b568cc30cd875baf89bbe50cdb48e59517ab008eb701d1e004aa3cf60a93c78a",
+            "parent": {
+              "kind": "public-prospective-inputs",
+              "id": "922359c791754a2fbc4d9ad6ab8cf8613375225423e00ed0d58d8dea37a6e104",
+              "retainedResultId": null
+            },
+            "derivationId": "b6dc8e097189d69bb032247aa3647a1d5c6dec4e875569f50770e83fce533c9e",
+            "retainedExecution": false,
+            "originalHistoricalExport": false,
+            "sourceApproval": false,
+            "scientificAcceptance": false
+          }
+        },
+        {
+          "path": "/api/cv/producer-reserve/export.xlsx",
+          "status": 200,
+          "cacheControl": "no-store",
+          "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "attachment": "attachment; filename=\"supplemental-producerReserve-prospective-not-qualified.xlsx\"",
+          "bytes": 74521,
+          "sha256": "51e02157a2d510131c3a8816a9cbd1440eb47cb5b1b9c6975e0297df48b4b0d9",
+          "exactDocumentReadback": true,
+          "literalWorkbookRows": 2990,
+          "manifestIdentity": {
+            "version": "prospective-economic-binding-1",
+            "key": "producerReserve",
+            "identityId": "6fe96c97232ae2dd2b194d9692df76a64bd44fb3fa0ef2a557156fd32d642b09",
+            "identityLocation": "/identity in exact public JSON or literal workbook readback",
+            "resultHash": "a86ada9f4b0cc6abebdb7ab24006945d6dff1da5d7da228e6631b6f82d8e73d3",
+            "codeArtifact": {
+              "id": "c936e1b80fd1541bc57a53b5be728cc359a7926196c930f8180cd6eea1b37da6",
+              "contract": "calculation-source-1",
+              "closureHash": "0c051934d32b6ad4a6bc6d41d026e24bca18cfbadabfe182323d15ef464a1ce1",
+              "closureFiles": 165
+            },
+            "sourceArtifactId": "b21f86b0f1f8dff5c96c3d848bec51e37e7e4cc403b80a5c8626bd3cb15914e4",
+            "materialInputsId": "3ec7da64f22aed47a4446edae97c61d50bbfd4d18578a2522bfdbfa23bf381b8",
+            "assumptionsId": "cce431d93e24dcdc04a7a89f17d83dafa157b9ab9acf4c55d7ecd2ad54a8c4ed",
+            "modelId": "b568cc30cd875baf89bbe50cdb48e59517ab008eb701d1e004aa3cf60a93c78a",
+            "parent": {
+              "kind": "public-prospective-inputs",
+              "id": "922359c791754a2fbc4d9ad6ab8cf8613375225423e00ed0d58d8dea37a6e104",
+              "retainedResultId": null
+            },
+            "derivationId": "b6dc8e097189d69bb032247aa3647a1d5c6dec4e875569f50770e83fce533c9e",
+            "retainedExecution": false,
+            "originalHistoricalExport": false,
+            "sourceApproval": false,
+            "scientificAcceptance": false
+          }
+        }
+      ]
+    },
+    "locationElectricity": {
+      "identity_id": "5c1c328b104a2747fc1841620d027822a05ea5bd8a46b348fbe148390d10198f",
+      "result_hash": "78a55fbb9ca2db9ae35225eac6649f63c05292cf3df6506cba09b483ee8f6758",
+      "code_archive_id": "c936e1b80fd1541bc57a53b5be728cc359a7926196c930f8180cd6eea1b37da6",
+      "source_artifact_id": "260fb0fcf2524b33f8179a8e02d6597b2e921be90dc6251afee9aeaf70813359",
+      "closure_files_verified": 165,
+      "findings": {
+        "counts": {
+          "evidencedPropertyRows": 6,
+          "operatingPropertyRows": 5,
+          "constructionPropertyRows": 1,
+          "regionalPriceRecords": 5,
+          "applicableIssuerTariffs": 0,
+          "siteConsumptionRecords": 0,
+          "customerRecoveryRecords": 0,
+          "sourceQualifiedIssuerCashBridgeExecutions": 0
+        },
+        "actualIssuerResult": null,
+        "sourceQualifiedIssuerExecution": false,
+        "assumptionValuesAssignedToIssuers": 0,
+        "contextualPriceConversionsVerified": 5,
+        "boundary": "Actual contextual public report only; no live issuer companyProjection or electricity cash bridge execution."
+      },
+      "attachments": [
+        {
+          "path": "/api/cv/location-electricity/export.json",
+          "status": 200,
+          "cacheControl": "no-store",
+          "contentType": "application/json; charset=utf-8",
+          "attachment": "attachment; filename=\"supplemental-locationElectricity-prospective-not-qualified.json\"",
+          "bytes": 56106,
+          "sha256": "c0440cc531f27445de46359b3e258bb40228333eec0ae2cb510eddcef6b17013",
+          "exactDocumentReadback": true,
+          "literalWorkbookRows": null,
+          "manifestIdentity": {
+            "version": "prospective-economic-binding-1",
+            "key": "locationElectricity",
+            "identityId": "5c1c328b104a2747fc1841620d027822a05ea5bd8a46b348fbe148390d10198f",
+            "identityLocation": "/identity in exact public JSON or literal workbook readback",
+            "resultHash": "78a55fbb9ca2db9ae35225eac6649f63c05292cf3df6506cba09b483ee8f6758",
+            "codeArtifact": {
+              "id": "c936e1b80fd1541bc57a53b5be728cc359a7926196c930f8180cd6eea1b37da6",
+              "contract": "calculation-source-1",
+              "closureHash": "0c051934d32b6ad4a6bc6d41d026e24bca18cfbadabfe182323d15ef464a1ce1",
+              "closureFiles": 165
+            },
+            "sourceArtifactId": "260fb0fcf2524b33f8179a8e02d6597b2e921be90dc6251afee9aeaf70813359",
+            "materialInputsId": "687454aa3d74b72f4f805d49d54a3a8b1577db2e53a4bb98a0f0a1df910d460b",
+            "assumptionsId": "64bc01951dbb172977a1ab3c6595cf6548418d26d1d90e124dca413b9d257b0c",
+            "modelId": "a99210f341f641a81b3d0e6b513e942b19decc8236b722819444cdd9351dc0eb",
+            "parent": {
+              "kind": "public-prospective-inputs",
+              "id": "2bdd3cdcc20e89ac49e4fe2feddccc18950944a00eb178e0c3d6836636f6202c",
+              "retainedResultId": null
+            },
+            "derivationId": "caa5a2d6449e999158cab4f5547c4c00dc25a0c95cb09a6457f7483cb2815fc6",
+            "retainedExecution": false,
+            "originalHistoricalExport": false,
+            "sourceApproval": false,
+            "scientificAcceptance": false
+          }
+        },
+        {
+          "path": "/api/cv/location-electricity/export.xlsx",
+          "status": 200,
+          "cacheControl": "no-store",
+          "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "attachment": "attachment; filename=\"supplemental-locationElectricity-prospective-not-qualified.xlsx\"",
+          "bytes": 41874,
+          "sha256": "cbd42ecdc9664309cf75a34dc5768eda1f7e84f11f6133774bb083bcd96878d9",
+          "exactDocumentReadback": true,
+          "literalWorkbookRows": 1408,
+          "manifestIdentity": {
+            "version": "prospective-economic-binding-1",
+            "key": "locationElectricity",
+            "identityId": "5c1c328b104a2747fc1841620d027822a05ea5bd8a46b348fbe148390d10198f",
+            "identityLocation": "/identity in exact public JSON or literal workbook readback",
+            "resultHash": "78a55fbb9ca2db9ae35225eac6649f63c05292cf3df6506cba09b483ee8f6758",
+            "codeArtifact": {
+              "id": "c936e1b80fd1541bc57a53b5be728cc359a7926196c930f8180cd6eea1b37da6",
+              "contract": "calculation-source-1",
+              "closureHash": "0c051934d32b6ad4a6bc6d41d026e24bca18cfbadabfe182323d15ef464a1ce1",
+              "closureFiles": 165
+            },
+            "sourceArtifactId": "260fb0fcf2524b33f8179a8e02d6597b2e921be90dc6251afee9aeaf70813359",
+            "materialInputsId": "687454aa3d74b72f4f805d49d54a3a8b1577db2e53a4bb98a0f0a1df910d460b",
+            "assumptionsId": "64bc01951dbb172977a1ab3c6595cf6548418d26d1d90e124dca413b9d257b0c",
+            "modelId": "a99210f341f641a81b3d0e6b513e942b19decc8236b722819444cdd9351dc0eb",
+            "parent": {
+              "kind": "public-prospective-inputs",
+              "id": "2bdd3cdcc20e89ac49e4fe2feddccc18950944a00eb178e0c3d6836636f6202c",
+              "retainedResultId": null
+            },
+            "derivationId": "caa5a2d6449e999158cab4f5547c4c00dc25a0c95cb09a6457f7483cb2815fc6",
+            "retainedExecution": false,
+            "originalHistoricalExport": false,
+            "sourceApproval": false,
+            "scientificAcceptance": false
+          }
+        }
+      ]
+    }
+  },
+  "local_execution": {
+    "receipt": "generated-artifacts/economic-bridge-integration/full-coherent-final.receipt.json",
+    "receipt_sha256": "dc1f1ebc960fbde9dd923715386721b8560ccad1d0a8196483fe4d8514fa82d4",
+    "log_sha256": "9087c169222ae52bf4bfa12e4e21a2dbf458fa49f9fa60d008ef7d7eca4b6f0c",
+    "counts": {
+      "typescript": {
+        "tests": 1272,
+        "pass": 1271,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "private_checks": "Original document, authentic chronology,85 producer source assertions,2 historical freeze tests, new primary39facts/38rows/261cells/SEC acceptance, location electricity, monetary and issuer validators all mandatory and passed; typecheck/build passed.",
+    "post_recorder_receipt": "generated-artifacts/economic-bridge-integration/post-full-recorder-focused.receipt.json"
+  },
+  "counts": {
+    "verified": 63,
+    "partial": 235,
+    "blocked-production-provisioning": 2
+  },
+  "partial_implementation_criteria": [
+    "S13-001",
+    "S13-002",
+    "S13-005",
+    "S12-005"
+  ],
+  "scientific_acceptance": false,
+  "newly_qualified_pairs": 0,
+  "source_assessment": "Selected primary-table authentication resolved, not blanket source/owner approval: official SEC200,39facts/38rows/261numeric cells and retained2025-02-19T21:39:37Z acceptance. Separate current identity/UI assessment; original frozen model, source declarations and domain unchanged.",
+  "economic_limits": "2.9773550346% closed-reserve conditional depletion against disclosed151494m PV10; seven sensitivities3roots/4no-root and six zero accounts. Not whole equity, market-implied decline, FCFE or certified replacement inverse. Location report5operating/1construction/5contextual EIA prices; actualIssuerResult=null/0qualified issuer cash bridges. Real companyProjection expense/WC integration tested synthetically only; Scope2 is not directly taxed.",
+  "adverse_history": "Initial full1263total/1251pass/11fail/1skip retained, Python not reached. Actual ol-in-p warning/client block-markup repair and24SSR component checks retained; no weakened gate. Prior chronology adverse partial remains; Gordon primary.",
+  "preservation": "63/235/2 all300 unchanged; original1000/1001 and fixed29 unchanged; all14 FaIR pins/14 frozen negatives preserved. Optional PostgreSQL skip explicit; separate isolated PostgreSQL does not accept deployed PostgreSQL. No newly qualified calibration/economic pairs or scientific/owner acceptance.",
+  "previous_release_boundary": {
+    "implementation_public": "b801777f4d8f018f510a4e74b24608235ec456cc",
+    "documentation_public": "567f6062e8e1e4740eb9126aebd9d692f80e2642",
+    "local_terminal": "ad8eccd363be92d354e03596cf046038594b04da"
+  },
+  "native_behavior_limit": "No production native candidate GET or browser execution. New economic routes explicitly do not persist and were actually executed/read back; do not confuse these with native retention or a qualified issuer cash bridge.",
+  "custom_domain_observation": "No domain request/change; prior non-JSON custom-domain observation remains historical/unresolved, outside service-domain claim.",
+  "remaining_dependencies": [
+    "Primary-table authentication and SEC acceptance timestamp resolved; obtain owner review and successor legal/security continuity, then qualify reserve-interest versus whole-equity allocation including non-producing businesses, NCI, debt and cash; never treat reserve PV10 as market equity.",
+    "With primary-table authentication resolved, obtain a genuinely compatible market reserve-interest target and independently review timing/fiscal/uniqueness assumptions before any market-implied decline claim; replacement inversion remains refused until separately certified.",
+    "Independently review and approve complete defensible commodity, margin, discount, capital/replacement and cash-timing assumptions for an identified valuation-to-physical map; do not widen the frozen domain after solving.",
+    "Source same-period site purchased MWh, supplier/tariff eligibility, currency, customer recovery and payment/collection timing; then execute an admissible issuer companyProjection bridge, not a regional-average substitute.",
+    "Source-qualified regional generation-share saturation K, complete compatible vintage/rights panel, reviewed whole-draw joint law/dependence and genuine prefit receipt; no new qualified calibration or joint bundle.",
+    "Approved native joint distribution/inventory, empirical mechanism calibration and curated-to-regional central bridge; adapter readiness is not an actual accepted Phase VI dataset or production ensemble.",
+    "FSLR actual India/Alabama cash reconciliation and component/cohort eligibility/material/PFE evidence; NEE gross dated LLC cash waterfall and marginal commissioning economics; XOM executed priced transport/storage, serviced quantities, collections and own funding waterfall.",
+    "No newly qualified operating-FCFE economic pairs or dated11-15 preparation/valuation runs; scientific efficacy, authorized retained-report publication and independent owner acceptance remain absent.",
+    "Two original production-provisioning clauses remain blocked; separate isolated local PostgreSQL success does not accept deployed PostgreSQL.",
+    "Custom-domain API paths returned identical non-JSON HTML, not this verified Railway API; owner/platform routing investigation remains, with no domain/DNS/config changes authorized or made."
+  ],
+  "documentation_boundary": "Subsequent docs/receipt-only source is distinct from independently measured implementation/public code. A later docs-only publication/runtime is recorded separately in a terminal local receipt, never recursively rewritten into this implementation measurement.",
+  "scope": "Four original clauses remain partial; no scientific/owner/source blanket approval, new qualified pair or completion promotion. Existing CI promotion only; no dispatch/cancel/new monitoring/native GET/domain/public writes/production mutation/auth/config/resources/callback."
+}
+
 ## Producer reserve and location electricity — original partial clauses
 
 **300 original criteria: 63 verified /235 partial /2 blocked. These four remain partial.**
