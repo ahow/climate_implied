@@ -19,6 +19,9 @@ export const indicatorSourceDocuments = [
   { id: "sbti-tracker", url: "https://sciencebasedtargets.org/reports/sbti-trend-tracker-april-2026", sha256: "b43ae17505ea4df59d4db3005e1dbb690a59f7a79169e9d814d9ea84f56ae8ad", bytes: 11809 },
   { id: "sbti-method", url: "https://sciencebasedtargets.org/reports/sbti-trend-tracker-april-2026/methodology-and-disclaimer-apr26", sha256: "ffeda6551001379573fd33822694a3e4f8130389e213b1f3e21f7d9f3ffe72ec", bytes: 16870 },
   { id: "sbti-terms", url: "https://sciencebasedtargets.org/about-us/website-terms-of-use", sha256: "3bd866f6487b325001b405bab8eb36efbfd27c52efb2ec21dcf45b5a69f91283", bytes: 19014 },
+  { id: "cat-netzero", url: "https://climateactiontracker.org/global/cat-net-zero-target-evaluations/", sha256: "534c35706614f76397201f8e24bfb2996c540afbf38de0ae9179c381a93b314d", bytes: 19073 },
+  { id: "cat-method", url: "https://climateactiontracker.org/methodology/net-zero-targets/", sha256: "5cc8dd360b467ff25fa692102b0233f7c7edfb411bbc94e6d50cbd5f0247879b", bytes: 6765 },
+  { id: "cat-rights", url: "https://climateactiontracker.org/about/legal/", sha256: "cf1f3e7f8562afd955640f66ae6cdb2f0f881301ab9e6e4ff617542b19b8876e", bytes: 47801 },
 ] as const;
 
 const fieldSchema = z.object({
@@ -47,6 +50,46 @@ const proposalSchema = z.object({
 export type IndicatorSourceMetadataProposal = z.infer<typeof proposalSchema>;
 
 const proposals: IndicatorSourceMetadataProposal[] = [
+  ...(["policyCoveragePct", "policyImplementationRate"] as const).map(indicatorKey => ({
+    indicatorKey, registeredPublisher: "Climate Action Tracker",
+    sourceRelationship: indicatorKey === "policyCoveragePct"
+      ? "registered-product" as const : "unconfirmed-publisher-candidate" as const,
+    scope: "source-product-metadata-only" as const,
+    ownerReview: "pending-not-requested" as const, centralModelEligible: false as const,
+    originalObservationAvailableAt: null, originalVintage: null,
+    fields: {
+      informationAvailability: {
+        status: "attempted-unavailable" as const, sourceIds: ["cat-netzero", "cat-method"],
+        locator: "Last updated 27.10.2025; Figure 1 compilation as of 29 September 2025; methodology March 2022 context",
+        finding: "The evaluation page labels an October 27 2025 update and a September 29 source compilation. These are not original release dates or immutable vintages of the supplied 2010–2025 observations. The methodology introduction separately refers to March 2022; it is not a current legal-status count.",
+      },
+      licence: {
+        status: indicatorKey === "policyCoveragePct" ? "source-product-qualified" as const : "candidate-only" as const,
+        sourceIds: ["cat-rights"],
+        locator: "Copyright; Liability disclaimer",
+        finding: "Climate Analytics and NewClimate Institute reserve copyright. Reproduction requires both credits and copyright notice and is limited to non-commercial use; commercial material use requires contacting the owners. This qualifies a restriction, NOT an open/commercial licence or approval. Only factual metadata and links retained; no charts, workbook, country database or report republished.",
+      },
+      regionalApplicability: {
+        status: indicatorKey === "policyCoveragePct" ? "source-product-qualified" as const : "candidate-only" as const,
+        sourceIds: ["cat-netzero", "cat-method"],
+        locator: "Figure 1 caption; national-only applicability; Table 1 and Figure 3",
+        finding: "Coverage concerns national net-zero targets, including proposals/consideration, weighted by 2019 PRIMAP-hist GHG emissions excluding LULUCF. The headline quality analysis is a selected-country assessment, not the entire world or a six-region implementation sample. Method is not directly applicable to corporate/subnational targets. Country counts, emissions shares and target quality use different denominators.",
+      },
+      uncertainty: {
+        status: "attempted-unavailable" as const, sourceIds: ["cat-netzero", "cat-method", "cat-rights"],
+        locator: "Headline evaluation; residual emissions section; Liability disclaimer",
+        finding: "No numerical uncertainty/covariance for the original annual coverage or law/policy fraction is supplied by these pages. Residual-emissions scenario ranges and general continuous-work disclaimers are not sampling errors on coverage or implementation. No distribution or global transfer inferred.",
+      },
+      calibration: {
+        status: indicatorKey === "policyCoveragePct" ? "source-product-qualified" as const : "attempted-unavailable" as const,
+        sourceIds: ["cat-netzero", "cat-method"],
+        locator: "Figure 1 scope; Overview of the rating elements; Headline evaluation",
+        finding: indicatorKey === "policyCoveragePct"
+          ? "Target-coverage definition includes agreed-in-law, initiative and discussion categories. It is not emissions reductions delivered. Ten-element design evaluation concerns scope, architecture and transparency; headline ratings explicitly do not assess Paris 1.5-degree alignment. No causal coefficient, annual-history replacement, shortened-window fit or frozen calibration follows."
+          : "Advanced/intermediate/poor element ratings and acceptable/average headline emissions shares are not the registered fraction of announced targets enshrined in law/policy, nor actual delivered reductions. No matching historical numerator/denominator or causal implementation coefficient acquired. Do not divide a quality-category emissions share by total announced coverage to fabricate implementation.",
+      },
+    },
+  })),
   {
     indicatorKey: "gdpTrillionUSD", registeredPublisher: "World Bank",
     sourceRelationship: "registered-product", scope: "source-product-metadata-only",
@@ -225,22 +268,25 @@ export function admitIndicatorSourceMetadataProposal(input: unknown): IndicatorS
   const isNoaa = proposal.indicatorKey === "atmosphericCO2ppm" || proposal.indicatorKey === "co2GrowthRatePpm";
   const isGdp = proposal.indicatorKey === "gdpTrillionUSD";
   const isSbti = proposal.indicatorKey === "corporateTargetsPct" || proposal.indicatorKey === "corporateImplementationRate";
-  const relationship = isNoaa || isGdp ? "registered-product"
-    : isSbti ? "unconfirmed-publisher-candidate" : "unconfirmed-survey-candidate";
-  if ((!isNoaa && !isGdp && !isSbti && proposal.indicatorKey !== "sacrificeWillingnessPct") ||
+  const isCatCoverage = proposal.indicatorKey === "policyCoveragePct";
+  const isCatImplementation = proposal.indicatorKey === "policyImplementationRate";
+  const isRegisteredProduct = isNoaa || isGdp || isCatCoverage;
+  const relationship = isRegisteredProduct ? "registered-product"
+    : isSbti || isCatImplementation ? "unconfirmed-publisher-candidate" : "unconfirmed-survey-candidate";
+  if ((!isRegisteredProduct && !isSbti && !isCatImplementation && proposal.indicatorKey !== "sacrificeWillingnessPct") ||
       proposal.sourceRelationship !== relationship)
     throw new Error("Source relationship is not qualified for this indicator");
-  const prefix = isNoaa ? "noaa-" : isGdp ? "wb-" : isSbti ? "sbti-" : "pew-";
+  const prefix = isNoaa ? "noaa-" : isGdp ? "wb-" : isSbti ? "sbti-" : isCatCoverage || isCatImplementation ? "cat-" : "pew-";
   for (const field of Object.values(proposal.fields)) {
     for (const id of field.sourceIds) {
       const document = indicatorSourceDocuments.find(source => source.id === id);
       if (!document || !id.startsWith(prefix))
         throw new Error("Unqualified source document for indicator");
     }
-    if (!isNoaa && !isGdp && field.status === "source-product-qualified")
+    if (!isRegisteredProduct && field.status === "source-product-qualified")
       throw new Error("Unconfirmed candidate cannot receive registered-product qualification");
   }
-  if ((isNoaa || isGdp) && proposal.fields.informationAvailability.status !== "attempted-unavailable")
+  if (isRegisteredProduct && proposal.fields.informationAvailability.status !== "attempted-unavailable")
     throw new Error("Current source does not establish original annual availability");
   return proposal;
 }
@@ -251,13 +297,15 @@ export function indicatorSourceMetadataProposal(key: IndicatorKey) {
   // Parsing clones the object: consumers cannot mutate the retained proposal.
   const admitted = admitIndicatorSourceMetadataProposal(proposal);
   const ids = new Set(Object.values(admitted.fields).flatMap(field => field.sourceIds));
+  const isCat = key === "policyCoveragePct" || key === "policyImplementationRate";
   return {
     ...admitted,
     admission: "metadata-proposal-only" as const,
     documents: indicatorSourceDocuments.filter(document => ids.has(document.id)).map(document => ({ ...document })),
-    captureHashMeaning: key === "gdpTrillionUSD" || key === "corporateTargetsPct" || key === "corporateImplementationRate"
+    captureHashMeaning: isCat || key === "gdpTrillionUSD" || key === "corporateTargetsPct" || key === "corporateImplementationRate"
       ? "sha256-utf8-html-extraction-or-json-not-source-vintage" : "sha256-utf8-webFetch-markdown-not-source-vintage",
-    evidencePath: key === "gdpTrillionUSD" || key === "corporateTargetsPct" || key === "corporateImplementationRate"
-      ? "docs/remaining-source-inputs-evidence.json" : "docs/indicator-source-fields-increment-evidence.json",
+    evidencePath: isCat ? "docs/indicator-issuer-new-evidence.json"
+      : key === "gdpTrillionUSD" || key === "corporateTargetsPct" || key === "corporateImplementationRate"
+        ? "docs/remaining-source-inputs-evidence.json" : "docs/indicator-source-fields-increment-evidence.json",
   };
 }

@@ -16,7 +16,8 @@ test("real registry exposes bounded source-linked proposals without promotion or
   assert.equal(rows.length, 22);
   assert.deepEqual(rows.filter(row => row.sourceMetadataProposal).map(row => row.id).sort(),
     ["atmosphericCO2ppm", "co2GrowthRatePpm", "sacrificeWillingnessPct",
-      "gdpTrillionUSD", "corporateTargetsPct", "corporateImplementationRate"].sort());
+      "gdpTrillionUSD", "corporateTargetsPct", "corporateImplementationRate",
+      "policyCoveragePct", "policyImplementationRate"].sort());
   for (const row of rows) {
     assert.equal(row.informationAvailableAt, null);
     assert.equal(row.admission, "not-admitted");

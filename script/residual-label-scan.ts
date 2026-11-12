@@ -12,7 +12,11 @@ export type LabelOccurrence = {
 };
 /** Exceptions bind one exact source text and file, not an entire file, route or
  * keyword. A changed exception becomes unused and fails the review gate. */
-export const residualTextExceptions: { file: string; text: string; reason: string }[] = [
+export const residualTextExceptions: { file: string; text: string; reason: string; sourceProperties?: readonly string[] }[] = [
+  { file: "server/calculation/indicatorSourceMetadata.ts", text: "cat-netzero", sourceProperties: ["id", "sourceIds"], reason: "Exact captured CAT source-document identifier, only in the document id or sourceIds references; not a rendered quantity, target date or residual label." },
+  { file: "server/calculation/indicatorSourceMetadata.ts", text: "https://climateactiontracker.org/global/cat-net-zero-target-evaluations/", sourceProperties: ["url"], reason: "Exact primary CAT evaluation URL in a pinned source-document url property; the original source path names national target evaluations, not a computed zero-emissions crossing." },
+  { file: "server/calculation/indicatorSourceMetadata.ts", text: "https://climateactiontracker.org/methodology/net-zero-targets/", sourceProperties: ["url"], reason: "Exact primary CAT methodology URL in a pinned source-document url property; original source-category path is not an analytical quantity or residual threshold." },
+  { file: "server/calculation/indicatorSourceMetadata.ts", text: "Coverage concerns national net-zero targets, including proposals/consideration, weighted by 2019 PRIMAP-hist GHG emissions excluding LULUCF. The headline quality analysis is a selected-country assessment, not the entire world or a six-region implementation sample. Method is not directly applicable to corporate/subnational targets. Country counts, emissions shares and target quality use different denominators.", sourceProperties: ["finding"], reason: "Exact attributed CAT national-target category and denominator description in the source metadata finding. It distinguishes coverage/design quality from implementation, not a physical-zero or positive-residual crossing claim." },
   { file: "server/calculation/indicatorSourceMetadata.ts", text: "Categories distinguish commitments only, near-term targets and near-term plus net-zero targets, not on-track delivery. No measured numerator/denominator of companies delivering targets or counterfactual incremental emissions outcome supplied. Validated-target growth cannot substitute for the curated implementation-rate history or calibrate it.", reason: "Exact source proposal target-category label distinguishes declared targets from actual delivery; not a computed residual threshold or a claimed net-zero date." },
   { file: "client/src/components/category-comparison.tsx", text: "Identity; fixed-5gt-v1; null preserved; not 5% or net zero", reason: "Individual export transform explicitly negates both percentage equivalence and net zero; year remains fixed5Gt." },
   { file: "client/src/components/historical-trend-chart.tsx", text: "Identity; fixed-5gt-v1; null preserved; not 5% or net zero", reason: "Individual historical export transform explicitly negates both percentage equivalence and net zero." },
@@ -46,6 +50,14 @@ export const residualTextExceptions: { file: string; text: string; reason: strin
   { file: "server/calculation/data/catReferences.json", text: "March 2024 policy/pledge cut-off; NDCs excludes long-term net-zero pledges. Not the main user-facing reference or a replacement for the full-commitments comparison.", reason: "Exact NGFS source-vintage/pledge-exclusion caveat, not dashboard physical net-zero acceptance." },
 ];
 
+/** New source-locator/category cases also bind their immediate AST property.
+ * Copying an allowed locator into a quantity-label property is not reviewed. */
+export function residualTextExceptionIndex(file: string, text: string, sourceProperty = "") {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  return residualTextExceptions.findIndex(e => e.file === file && e.text === normalized &&
+    (!e.sourceProperties || e.sourceProperties.includes(sourceProperty)));
+}
+
 function files(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry =>
     entry.isDirectory() ? files(join(dir, entry.name)) : /\.(?:ts|tsx|json)$/.test(entry.name) ? [join(dir, entry.name)] : []);
@@ -74,10 +86,10 @@ export function residualLabelScan() {
     const text = readFileSync(file, "utf8");
     const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true,
       file.endsWith(".json") ? ts.ScriptKind.JSON : file.endsWith(".tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
-    const add = (start: number, value: string, kind: string, technical = false) => {
+    const add = (start: number, value: string, kind: string, technical = false, sourceProperty = "") => {
       if (!/net[\s-]?zero/i.test(value)) return;
       const context = text.slice(Math.max(0, start - 260), start + value.length + 260).replace(/\s+/g, " ").trim();
-      const exceptionIndex = residualTextExceptions.findIndex(e => e.file === file && e.text === value.replace(/\s+/g, " ").trim());
+      const exceptionIndex = residualTextExceptionIndex(file, value, sourceProperty);
       const decision = exceptionIndex >= 0
         ? { classification: "reviewed-exception" as const, reason: residualTextExceptions[exceptionIndex].reason }
         : classifyResidualText(value, technical, context);
@@ -113,7 +125,12 @@ export function residualLabelScan() {
         const attribute = ancestor && ts.isJsxAttribute(ancestor) ? ancestor.name.getText(source) : "";
         const technical = ["data-testid", "id", "aria-labelledby"].includes(attribute) ||
           /^(?:notNetZero|netZero(?:[A-Z]\w*)?|[A-Za-z][\w.[\]-]*\.netZeroYear)$/.test(node.text);
-        add(node.getStart(source), node.text, "string/template", technical);
+        const property = ts.isPropertyAssignment(node.parent) ? node.parent
+          : ts.isArrayLiteralExpression(node.parent) && ts.isPropertyAssignment(node.parent.parent)
+            ? node.parent.parent : undefined;
+        const sourceProperty = property && (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name))
+          ? property.name.text : "";
+        add(node.getStart(source), node.text, "string/template", technical, sourceProperty);
       }
       ts.forEachChild(node, walk);
     };

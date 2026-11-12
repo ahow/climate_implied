@@ -1,0 +1,209 @@
+{
+  "increment": "S16-007-derived-valuation-consumer-lineage",
+  "status": "implemented-and-engineering-verified-bounded-consumers",
+  "scope": {
+    "productionConsumers": [
+      "climate-valuation carbon P/E chart and P-E Ratio workbook",
+      "climate-valuation SDG P/E chart and P-E Ratio workbook",
+      "climate-valuation ambition P/E chart and P-E Ratio workbook"
+    ],
+    "customSheetsCaptured": [
+      "Interpretation",
+      "Field semantics",
+      "Column bindings",
+      "Download manifest"
+    ],
+    "notClaimed": [
+      "Every other signal, chained response, arbitrary custom callback or chart export is certified",
+      "A UI selection, request pin or caller-submitted identity authenticates a producer",
+      "Historical original workbook bytes were recovered",
+      "Scientific acceptance, data approval, operator review, publication authorization or a browser signature"
+    ]
+  },
+  "implementation": {
+    "pureRegistry": "shared/derivedConsumer.ts",
+    "responseAndConsumerRegistry": "client/src/lib/producer-download.ts",
+    "workbookLineageAndExactCellReader": "client/src/lib/derived-consumer-workbook.ts",
+    "preciseSupplementalSemantics": "shared/derivedConsumerSemantics.ts",
+    "actualCentralWriter": "client/src/components/download-data-button.tsx",
+    "productionPage": "client/src/pages/climate-valuation.tsx",
+    "contract": "derived-consumer-lineage-1",
+    "derivationVersion": "valuation-pe-consumer-1",
+    "metadataWriterVersion": "central-download-writer-metadata-1",
+    "trustBoundary": "Only the consumed server-response object receives the full existing verified producer header in a private WeakMap after canonical body-hash verification. Closed enum derivations create registered row-array identities; arbitrary rows, clones, proof-shaped objects and UI selections cannot acquire lineage. Captured identities are independently WeakMap-bound and refuse mutation or caller substitution.",
+    "parentIdentity": [
+      "resultId",
+      "resultHash",
+      "manifestId",
+      "materialInputsId",
+      "codeArchiveId",
+      "modelVersion",
+      "orderedSnapshotHashes",
+      "allowlisted exact producer scenario"
+    ],
+    "derivationIdentity": [
+      "Exact native-to-export and native-to-chart field mapping",
+      "Versioned deterministic rounding and unavailable-value rules",
+      "Exact retained and excluded parent-array indices",
+      "Preserved parent order and duplicate observations; no sort or deduplication",
+      "UTC epoch-millisecond chart dates and en-US UTC calendar export dates",
+      "Dimensionless P/E multiple and native count units",
+      "Canonical derivation SHA-256",
+      "Exact visible chart-row SHA-256 with missing fields explicit null",
+      "Exact normalized exported-row SHA-256",
+      "Ordered decoded worksheet-cell SHA-256 for data and each supplemental metadata sheet"
+    ],
+    "manifestBoundary": "producerIdentity remains null for transformed rows because they are not native retained result bytes. A distinct derivedConsumerIdentity carries the exact parent and closed derivation. The separate Derived lineage worksheet captures ordered actual workbook cells. Supplemental metadata is explicitly not additional native producer output or historically available dictionary prose.",
+    "missingness": "Only invalid/missing observation dates are excluded. Unavailable P/E remains null/blank, not zero. Genuine zero, negative values and duplicate dates are preserved. No emissions, temperature, carbon-price or net-zero quantity is invented.",
+    "prospectiveOnly": "Every workbook is a new prospective view export. There is no original-byte recovery, original historical-export claim, automatic archive installation, persistence or public delivery authorization.",
+    "lifecycleCoordination": "No lifecycle or operator command files changed by this increment. Existing server nine-path producer verification and exact retained JSON implementation remain untouched; this consumer metadata does not replace the separately versioned prospective retained-result export lifecycle. Final integration includes the lifecycle worker's completed source and tests."
+  },
+  "realDataReadOnlyProbe": {
+    "method": "GET only against already-running local preview; no imports, write endpoints, database fixtures or approval actions",
+    "initialCarbonProbe": "Missing upload selection explicitly refused; no fallback data manufactured",
+    "completedUploadId": 3,
+    "requests": [
+      {
+        "path": "/api/cv/carbon-price?uploadId=3&method=sector_relative&includeScope3=false&winsorize=true&inferenceMethod=carbon_intensity",
+        "httpStatus": 200,
+        "rows": 0,
+        "resultId": "fa1ee6298cd3811d7c6c1a03fa917426cbc20a8f1ed1592a1f16248b139272a9",
+        "scenario": "descriptive-valuation:/carbon-price"
+      },
+      {
+        "path": "/api/cv/sdg-growth?costOfEquity=0.08",
+        "httpStatus": 200,
+        "rows": 0,
+        "resultId": "36b9c0bcdb619a9e8f92ed01adb1c5a9e78ad3d2b05f523cffcb347ef81e661c",
+        "scenario": "descriptive-valuation:/sdg-growth"
+      },
+      {
+        "path": "/api/cv/decarb-terciles?method=sector_relative&costOfEquity=0.08",
+        "httpStatus": 200,
+        "rows": 0,
+        "resultId": "2b38a8e47155ecb0f63d75ae2d5d609b0100e15ed6e2e880f1b1b58b24730020",
+        "scenario": "descriptive-valuation:/decarb-terciles"
+      }
+    ],
+    "allThreeNativeResultHashes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "sourceIdentity": {
+      "materialInputsId": "8278a55f89f41bedbfcd2271ccd108106361abed63b51f00ac1ea6cac53b6bb1",
+      "codeArchiveId": "9317b2d490a1346245e8cad2e68cd1c70ed62c54483697502b27c91ffc9e6f81",
+      "orderedSnapshotHashes": [
+        "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+        "f31b9af915967998043a530b54dfd6a87e59b089a9053ad063437065832be6cd"
+      ],
+      "scientificAcceptance": false
+    },
+    "qualification": "Real public P/E data was empty for the three tested current producer settings. Nonempty derived-export readback therefore uses isolated engineering-only test parents, not substituted production data or an assertion about every possible archived population.",
+    "nonemptyRealDerivedExportVerified": false
+  },
+  "engineeringExecution": {
+    "test": "script/derived-consumer.test.ts",
+    "fixtureBoundary": "Explicit synthetic finite private engineering objects only, never production fallback or database inserts",
+    "actualWriterExecuted": true,
+    "actualXlsxBinarySerializedAndReadBack": true,
+    "allThreeProductionDerivationsReadBack": true,
+    "customMetadataSheetCellsReadBack": true,
+    "concurrentABCurrent": "Three simultaneous consumed responses with identical numeric data and distinct retained parent/source identities complete out of order; each actual central-writer workbook retains its own parent and ordered snapshots while exported data hashes remain identical.",
+    "refusals": [
+      "Changed registered output rows",
+      "Changed consumed source body",
+      "Wrong producer scenario",
+      "Body conflicting with retained resultHash",
+      "Malformed or incomplete full producer proof",
+      "Cloned/caller-submitted or mutated captured identity",
+      "Forged proof-shaped rows",
+      "Changed data cells",
+      "Changed Interpretation, Field semantics, Column bindings or Download manifest cells",
+      "Changed worksheet order",
+      "Duplicate lineage metadata row",
+      "Wrong expected parent at readback"
+    ],
+    "unregisteredRows": "Remain unbound, not silently assigned current-source identity",
+    "filesPersistedOrPublishedByTest": false
+  },
+  "verification": {
+    "focusedCommand": "npx tsx --test script/derived-consumer.test.ts script/producer-download.test.ts script/download-selection-race.test.ts script/finite-export-schemas.test.ts script/valuation-indicator-partial-state.test.ts script/methodology-download-portable.test.ts",
+    "focusedTests": 48,
+    "focusedPassed": 48,
+    "focusedFailed": 0,
+    "typescript": "npx tsc --noEmit --pretty false passed",
+    "previewScreenshot": "Already-running /climate-valuation rendered analysis controls, valuation-withheld notice, current-query loading state and workbook qualification area without a manifestly broken page. Nonempty charts were not available; no browser-clicked nonempty export is claimed.",
+    "broaderCheckNote": "Initial finite-expression harness dependency errors were fixed without changing original numerical assertions or old golden data. Source worker subsequently supplied exact file/text/AST-property CAT locator/category exceptions and negative tests, without a broad whitelist. A first coherent run exposed the genuinely missing static Date property in the new row type; restoring its precise type recovered the unchanged original slot rather than reducing its denominator or repinning any guard. All resulting final integration checks passed."
+  },
+  "finalIntegration": {
+    "receipt": "/tmp/lifecycle-final-receipt.json",
+    "log": "/tmp/lifecycle-final-check.log",
+    "logSha256": "b795f07e7b4ee2241f223fec35927f82237eccccb295f4476c5c68e6a80e795b",
+    "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 1200 --receipt /tmp/lifecycle-final-receipt.json --log /tmp/lifecycle-final-check.log",
+    "executedAt": "2026-11-12T04:12:00.988974+00:00",
+    "elapsedSeconds": 222.724,
+    "lifecycleLatestSource": {
+      "path": "server/snapshots/prospectiveResultExportLifecycle.ts",
+      "sha256": "94dead58e88de1aecab3f6126ea5b3eca394508f23c38900ce52fc6000ca542f",
+      "qualification": "Final coherent receipt rerun after lifecycle ancestor hardening; lifecycle APIs and old scope contracts unchanged. No implementation edits after this receipt by the derived-consumer integration worker."
+    },
+    "exitCode": 0,
+    "typescript": { "tests": 1001, "passed": 1001, "failed": 0, "skipped": 0 },
+    "python": { "tests": 218, "passed": 218, "failed": 0, "skipped": 0 },
+    "typecheck": "passed",
+    "sourceOnlyPortability": {
+      "test": "script/methodology-download-portable.test.ts",
+      "nestedTests": 37,
+      "nestedPassed": 37,
+      "nestedFailed": 0,
+      "nestedSkipped": 0,
+      "includes": [
+        "actual methodology/export consumers",
+        "download-selection race tests",
+        "existing nine-path producer and exact JSON tests",
+        "pure prospective-result XLSX tests",
+        "new derived-consumer tests",
+        "new append-only lifecycle/refusal/concurrency tests"
+      ],
+      "boundary": "Complete application/shared/server source copied to isolated temp tree; installed dependencies symlinked only. No Git history, docs, generated artifacts, attached assets, exports or private fixtures available in the portable tree."
+    },
+    "mandatoryPrivateChecks": {
+      "originalChoiceWidthDocument": { "passed": true, "originalByteAssertions": 1, "originalClauseAssertions": 14, "missingFilesSkipped": 0 },
+      "monetaryIntegrationPrivatePrimary": "passed; original private bytes, P/E fingerprint, true zeros, null monetary totals and protected14 pins unchanged; pending review only",
+      "issuerCashflow": "passed; original complete approved issuer cases zero and historical point-in-time/prospective signal claims zero",
+      "issuerCashflowReconciliation": "passed; original issuer cases and market pairs remain zero; original terminal range unchanged"
+    },
+    "build": "passed; existing Browserslist age, PostCSS from-option and bundle-size warnings remain nonfatal",
+    "supplementalSemanticsAndCensus": {
+      "definitions": 2274,
+      "newDerivedDefinitions": 74,
+      "runtimeNestedMetadataAndSheetColumnGuards": true,
+      "authorizedRegeneration": "npx tsx script/field-semantics-census.ts",
+      "freshnessCheck": "npx tsx script/field-semantics-census.ts --check passed; final full suite original census guards passed",
+      "originalFullyBoundFields": 1000,
+      "originalPublicDenominator": 1001,
+      "originalClosedGapSlots": 571,
+      "originalGapDenominator": 572,
+      "originalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+      "frozenOriginalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+      "missingOriginalSlots": 0,
+      "withheldFields": 27,
+      "aliases": 4,
+      "remainingOriginalGap": "API GET /api/data/runs runs[].summary unknown; no fabricated original closure",
+      "currentWarningHostChecksum": "Only the current climate-valuation source checksum in scientific-strands-warning-evidence.json refreshed; original source checksums, excerpts and scientific warning/acceptance guards unchanged",
+      "supplementalTestMaintenance": "Research metadata absence count updated from16 to14 solely for the source worker's two newly present CAT proposals; all original numerical/cohort/private assertions and90 semantic-leaf count preserved."
+    },
+    "catScannerCoordination": "Source worker's four exact quoted-source cases are bound to file/text and approved AST properties only. Negative tests reject another file/property, altered text and copied quantity labels; all runtime scanner tests passed without broad exemptions.",
+    "canonicalLedgersModified": false,
+    "all14PinsPreserved": true,
+    "commitDeployCallback": false
+  },
+  "preservation": {
+    "serverNineProofPathsChanged": false,
+    "exactJsonImplementationChanged": false,
+    "lifecycleFilesChangedByThisIncrement": false,
+    "fourteenPinsChanged": false,
+    "ddlAuthPublicWritesAdded": false,
+    "oldGoldenRepins": false,
+    "canonicalLedgersOrMatrixChanged": false,
+    "authorizedSupplementalCensusRegenerated": true,
+    "commitDeployCallback": false
+  }
+}

@@ -10,6 +10,8 @@ import { createDownloadManifest, downloadManifestRows } from "../shared/download
 import { semanticRows, requireOutputSemantic } from "../shared/fieldSemantics";
 import { bindExportColumns } from "../shared/outputFieldSemantics";
 import { certifySupplementalSheetRows } from "../shared/supplementalSheetBindings";
+import { captureDerivedConsumer, derivedConsumerIdentity } from "../client/src/lib/producer-download";
+import { appendDerivedConsumerWorkbookLineage } from "../client/src/lib/derived-consumer-workbook";
 
 /** Execute the checked-in handler/preparer bodies, not a rewritten test model.
  * Only slow package/hash boundaries and final browser delivery are instrumented. */
@@ -46,6 +48,7 @@ const sharedDependencies = {
   captureDownloadSelection, requireUnchangedDownloadSelection, exportDataIdentity, exportNotes,
   semanticRows, requireOutputSemantic, bindExportColumns, certifySupplementalSheetRows,
   createDownloadManifest, downloadManifestRows,
+  captureDerivedConsumer, derivedConsumerIdentity, appendDerivedConsumerWorkbookLineage,
 };
 const componentPath = "client/src/components/download-data-button.tsx";
 

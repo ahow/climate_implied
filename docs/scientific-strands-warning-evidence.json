@@ -120,7 +120,7 @@
     {
       "path": "client/src/pages/climate-valuation.tsx",
       "originalSha256": "cda48069cb0225ede09392da3586217849ebc80f1f10c3894e202720af78dfa6",
-      "currentSha256": "1cdb6aa74ccc548956ee9eb0125a6716afa3fdb6ad5f947186e08f375a995d24",
+      "currentSha256": "61b3f6c2581997b3be2e11716692ab5e9a1df1b4446d3a20373c714b5992744b",
       "exactScanLines": [
         {"line":331,"text":"              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}"},
         {"line":357,"text":"              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}"},

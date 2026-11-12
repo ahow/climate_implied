@@ -8,7 +8,8 @@ import { exportDataIdentity, loadExportWorkbook } from "@/lib/export-identity";
 import { certifySupplementalSheetRows } from "@shared/supplementalSheetBindings";
 import { createDownloadManifest, downloadManifestRows } from "@shared/downloadManifest";
 import { captureDownloadSelection, requireUnchangedDownloadSelection } from "@/lib/download-selection";
-import { exactProducerDownload } from "@/lib/producer-download";
+import { exactProducerDownload, captureDerivedConsumer, derivedConsumerIdentity } from "@/lib/producer-download";
+import { appendDerivedConsumerWorkbookLineage } from "@/lib/derived-consumer-workbook";
 import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 
 type Cell = string | number | boolean | null | undefined;
@@ -49,7 +50,9 @@ export function DownloadDataButton({
     setError(null);
     try {
       const requestedUiSelection = captureDownloadSelection();
-      const data = structuredClone(typeof rows === "function" ? rows() : rows);
+      const sourceRows = typeof rows === "function" ? rows() : rows;
+      const capturedConsumer = captureDerivedConsumer(sourceRows);
+      const data = structuredClone(sourceRows);
       if (!data || data.length === 0) {
         setError("Export unavailable — no rows returned. No completed download was produced.");
         return;
@@ -60,6 +63,7 @@ export function DownloadDataButton({
         if (note.SemanticField) requireOutputSemantic(note.SemanticField);
       const XLSX = await loadExportWorkbook();
       const identity=await exportDataIdentity(data);
+      const consumerIdentity = await derivedConsumerIdentity(capturedConsumer, data);
       const ws = XLSX.utils.json_to_sheet(identity.normalized);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, sheetName.slice(0, 31));
@@ -81,7 +85,10 @@ export function DownloadDataButton({
         hashMethod: "SHA-256 of JSON array in exported row order; object keys sorted; missing cells normalized to null",
         selection: requestedUiSelection, rows: identity.normalized, columnBindings: capturedBindings,
         sheets: [...wb.SheetNames, "Download manifest"] });
+      if (consumerIdentity) Object.assign(manifest, { derivedConsumerIdentity: consumerIdentity,
+        sheets: [...manifest.sheets, "Derived lineage"] });
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(downloadManifestRows(manifest)), "Download manifest");
+      await appendDerivedConsumerWorkbookLineage(XLSX, wb, consumerIdentity);
       requireUnchangedDownloadSelection(requestedUiSelection);
       XLSX.writeFile(wb, name);
     } catch (err) {

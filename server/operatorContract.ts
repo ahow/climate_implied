@@ -17,6 +17,7 @@ export const operatorContract = Object.freeze({
     indicatorDecision: "npx tsx script/operator-indicators.ts approve <proposal-id> | reject <proposal-id>",
     financialReview: "npx tsx script/financial-review.ts stage <review.json> | approve <id> | reject <id>",
     newsRefresh: "npx tsx script/operator-news.ts refresh <months1-24>",
+    prospectiveResultExport: "NODE_ENV=development PROSPECTIVE_RESULT_EXPORT_DIR=/absolute/existing-private-0700-directory npx tsx script/operator-prospective-result-export.ts capture|read <retained-parent-id> <idempotency-request-id>",
   },
 } as const);
 

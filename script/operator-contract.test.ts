@@ -54,6 +54,12 @@ test("DEV, unset and production never fabricate an HTTP principal", () => {
 test("existing commands and exact owner actions are retained without execution", () => {
   assert.equal(operatorContract.authority, "authorized-workspace-shell");
   assert.match(operatorContract.existingCommands.overlayDecision, /overlay-review.ts/);
+  assert.deepEqual(Object.keys(operatorContract.existingCommands).sort(), [
+    "workbookCapture", "overlayStage", "overlayDecision", "indicatorDecision",
+    "financialReview", "newsRefresh", "prospectiveResultExport",
+  ].sort());
+  assert.equal(operatorContract.existingCommands.prospectiveResultExport,
+    "NODE_ENV=development PROSPECTIVE_RESULT_EXPORT_DIR=/absolute/existing-private-0700-directory npx tsx script/operator-prospective-result-export.ts capture|read <retained-parent-id> <idempotency-request-id>");
   const report = operatorLifecyclePreflight("development");
   assert.equal(report.blockers.length, 2);
   assert.ok(report.blockers.every(blocker => blocker.owner && blocker.action && blocker.evidence));

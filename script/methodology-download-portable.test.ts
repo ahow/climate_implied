@@ -17,6 +17,9 @@ test("S16-007 full public source and tests pass without Git history or private/g
     for (const file of ["package.json", "tsconfig.json", "script/methodology-download.test.ts", "script/methodology-download-census.ts",
       "script/download-selection-race.test.ts", "script/producer-download.test.ts", "script/prospective-result-export.test.ts"])
       cpSync(file, join(root, file));
+    for (const file of ["script/derived-consumer.test.ts", "script/prospective-result-export-lifecycle.test.ts",
+      "script/operator-prospective-result-export.ts"])
+      cpSync(file, join(root, file));
     // Installed package dependencies only; no checkout or evidence dependency.
     symlinkSync(resolve("node_modules"), join(root, "node_modules"), "dir");
     assert.equal(existsSync(join(root, ".git")), false);
@@ -27,12 +30,13 @@ test("S16-007 full public source and tests pass without Git history or private/g
     const result = spawnSync(process.execPath,
       [resolve("node_modules/tsx/dist/cli.mjs"), "--test", "--test-reporter=tap",
         "script/methodology-download.test.ts", "script/download-selection-race.test.ts", "script/producer-download.test.ts",
-        "script/prospective-result-export.test.ts"],
+        "script/prospective-result-export.test.ts", "script/derived-consumer.test.ts",
+        "script/prospective-result-export-lifecycle.test.ts"],
       { cwd: root, encoding: "utf8", timeout: 120_000, maxBuffer: 4_000_000,
         env });
     assert.equal(result.status, 0, result.stdout + result.stderr);
-    assert.match(result.stdout, /# tests 22\b/);
-    assert.match(result.stdout, /# pass 22\b/);
+    assert.match(result.stdout, /# tests 37\b/);
+    assert.match(result.stdout, /# pass 37\b/);
     assert.match(result.stdout, /# fail 0\b/);
     assert.match(result.stdout, /# skipped 0\b/);
   } finally { rmSync(root, { recursive: true, force: true }); }

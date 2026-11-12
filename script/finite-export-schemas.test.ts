@@ -44,6 +44,7 @@ function expressions(family:finite.FiniteExportFamily) {
 /** Only trusted checked-in pure expressions are evaluated. No hooks, app,
  * database reads, network, private fixture or UI interaction is involved. */
 function evaluate(expression:string,context:Record<string,unknown>) {
+  context = { producerPayload: undefined, producerDerivation: undefined, ...context };
   const js=ts.transpileModule(`const value=(${expression});`,{
     compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.None},
   }).outputText;

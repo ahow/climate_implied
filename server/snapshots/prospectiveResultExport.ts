@@ -1,7 +1,7 @@
 /**
- * Uninstalled, pure offline engineering boundary. No database/filesystem access,
- * public route, publishing, operator identity, source-bundle or current fallback.
- * Persistence/activation requires a separately authorized existing operator flow.
+ * Pure encoding/verification boundary. Private DEV persistence is implemented
+ * by prospectiveResultExportLifecycle via the existing workspace operator CLI.
+ * No public writes, publishing, operator approval, source or current fallback.
  */
 import { createHash } from "node:crypto";
 import * as XLSX from "xlsx";

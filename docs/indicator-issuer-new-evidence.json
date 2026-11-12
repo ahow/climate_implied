@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "indicator-issuer-new-evidence-1",
+  "status": "new-CAT-source-metadata-integrated-new-NEE-interim-inspected-no-operating-FCFE-qualification",
+  "scope": "Two original registered indicator keys and one materially new NEE interim. Field-specific positive, negative and unattempted results, not a refreshed approved dataset, historical-source authentication or valuation.",
+  "inventoryReadBeforeRequests": {
+    "latestIndicatorInventory": "docs/remaining-source-inputs-evidence.json",
+    "registry": "server/dataIngestion/indicatorRegistry.ts",
+    "sourceMetadata": "server/calculation/indicatorSourceMetadata.ts",
+    "issuerInventories": [
+      "docs/issuer-cash-source-followup-evidence.json",
+      "docs/nee-parent-fslr-programme-evidence.json",
+      "docs/nee-related-source-followup-evidence.json",
+      "docs/issuer-contract-law-evidence.json",
+      "docs/issuer-financial-followup-evidence.json",
+      "docs/cf-enlink-current-cash-evidence.json",
+      "docs/enlink-operating-successor-evidence.json"
+    ],
+    "importantSupersession": "Read newer CF/EnLink and operating-successor evidence before requests. The earlier cash-followup's proposed CF November 4 earnings request has already been performed in cf-enlink-current-cash-evidence.json, so it was NOT repeated.",
+    "retainedNEEDiscovery": "generated-artifacts/company-operating-corpus/next-company-evidence/NEE-submissions-response.txt; filings.recent exact 10-Q accession 0000753308-26-000081 / nee-20260930.htm / filingDate 2026-10-21. Read-only local discovery, no new index request.",
+    "noveltyCheck": "Targeted docs/server/script searches found no prior CAT net-zero evaluation/method/legal URLs and no NEE 000075330826000081 interim. Existing CAT emissions-pathways workbook concerns a different product and was not reacquired. Bounded retained-inventory novelty, not exhaustive global archive coverage.",
+    "unchangedProductsNotRequested": [
+      "NOAA",
+      "World Bank",
+      "SBTi",
+      "Previously obtained CF releases",
+      "EnLink/ONEOK closing, subsidiaries, reporting notices and old CCS contracts",
+      "FSLR already acquired Q3 2026 release and Note 5",
+      "IRS Notice 2026-15 and previously acquired statutes"
+    ]
+  },
+  "acquisition": {
+    "maximumLogicalNetworkRequests": 10,
+    "actualLogicalNetworkRequests": 4,
+    "httpStatusCounts": { "200": 4 },
+    "networkRetries": 0,
+    "paidCallsPurchasesCredentialsOrAccessBypasses": 0,
+    "rawSourcePublication": false,
+    "extractionAlgorithm": "Decode response bytes as UTF-8; replace script and style blocks case-insensitively with spaces; replace remaining HTML tags with spaces; collapse whitespace; trim. No HTML-entity decoding. rawSha256 hashes actual response body bytes; sha256 hashes UTF-8 extracted text. Neither certifies an immutable original annual vintage. HTTP headers are not part of either digest.",
+    "retention": "Only public facts, paraphrased field assessments, URLs, exact locators and receipt hashes in this document/code. No CAT workbook, chart, country database, full report or complete issuer filing is published or copied into production. Responses were inspected in tool memory/output, not saved as a private-source bundle; no claim of independently replayed raw-byte validation.",
+    "toolPreflightFailures": [
+      {
+        "requestedAt": "2026-11-12T03:45:35.938Z",
+        "id": "cat-netzero",
+        "error": "ReferenceError: AbortSignal is not defined",
+        "networkRequestMade": false
+      },
+      {
+        "requestedAt": "2026-11-12T03:45:35.978Z",
+        "id": "nee-2026q3",
+        "error": "ReferenceError: AbortSignal is not defined",
+        "networkRequestMade": false
+      }
+    ],
+    "executionNote": "After two pre-transport AbortSignal errors, the same declared requests were executed without that unavailable global. Two subsequent CodeExecution tool dispatches failed with executeJs-is-not-defined before calling any source; CAT method/legal requests were then performed through native node fetch with 45-second timeouts. No denied response was retried or bypassed.",
+    "attempts": [
+      {
+        "id": "cat-netzero",
+        "url": "https://climateactiontracker.org/global/cat-net-zero-target-evaluations/",
+        "effectiveUrl": "https://climateactiontracker.org/global/cat-net-zero-target-evaluations/",
+        "requestedAt": "2026-11-12T03:45:44.809Z",
+        "status": 200,
+        "rawBytes": 76986,
+        "rawSha256": "f1a355e9b9e151de12a3ed0f49660944f9e8982bb5746f1e21702c4399f1e3cb",
+        "bytes": 19073,
+        "sha256": "534c35706614f76397201f8e24bfb2996c540afbf38de0ae9179c381a93b314d",
+        "publicationDate": null,
+        "publisherUpdateDate": "2025-10-27",
+        "underlyingCompilationAsOf": "2025-09-29",
+        "period": "October 2025 national-target assessment, using 2019 emissions weights",
+        "rights": "Climate Analytics and NewClimate Institute copyright; separately acquired cat-rights restrictions apply. Facts/links/paraphrases only.",
+        "locator": "Urgent need for nuanced and transparent assessments; Last updated; Figure 1 caption; ten-step methodology applicability; Table 1; Figure 3",
+        "result": "Positive source definition and dated update: national coverage includes announced/considered targets, not just enacted policy. Weighting uses 2019 PRIMAP-hist GHG excluding LULUCF. Target design quality is not delivered implementation.",
+        "actualLinkedButNotFetched": "https://climateactiontracker.org/documents/1340/CAT_2025-10_PublicData_NetZeroEvaluations.xlsx"
+      },
+      {
+        "id": "nee-2026q3",
+        "url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+        "effectiveUrl": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+        "requestedAt": "2026-11-12T03:45:45.372Z",
+        "status": 200,
+        "rawBytes": 3107984,
+        "rawSha256": "373ba48e744ad7f4cd8bf15dd3db7265ad098a32f9d469360d3bca447069d0a5",
+        "bytes": 313695,
+        "sha256": "f748894ab0d3b667aa8d2b7ade41e3f48cbc2f502189e7f7172ec16c4cd4e6a3",
+        "publicationDate": "2026-10-21",
+        "publicationDateBasis": "Exact filingDate in retained authenticated NEE submissions; not inferred from HTTP modification or reporting period.",
+        "period": "Quarter/nine months ended 2026-09-30",
+        "legalIdentity": "NextEra Energy, Inc., CIK 0000753308 consolidated. Dual-registrant FPL statements are not selected.",
+        "rights": "Public issuer-authored SEC filing; no public-domain or open redistribution licence inferred from SEC hosting. Minimal public financial facts and paraphrased findings only.",
+        "locator": "Note 6 Related Party Transactions, service-agreement and amounts-due paragraphs; NEE condensed consolidated cash flows related-party sweep row; MD&A Liquidity table",
+        "result": "New incurred service costs, current book exposure and broad net sweep disclosures located. These selected disclosures do not supply per-LLC gross cash, actual service reimbursements, exact recipient cash identity or marginal project returns."
+      },
+      {
+        "id": "cat-method",
+        "url": "https://climateactiontracker.org/methodology/net-zero-targets/",
+        "effectiveUrl": "https://climateactiontracker.org/methodology/net-zero-targets/",
+        "requestedAt": "2026-11-12T03:46:22.237Z",
+        "status": 200,
+        "rawBytes": 41591,
+        "rawSha256": "93d241c2f537a1a085172ad7134c3978351bdf5ad832ed5fdaf38ddce9f5cdf5",
+        "bytes": 6765,
+        "sha256": "5cc8dd360b467ff25fa692102b0233f7c7edfb411bbc94e6d50cbd5f0247879b",
+        "publicationDate": null,
+        "datedContextNotPublication": "Introduction refers to March 2022",
+        "rights": "Copyright and non-commercial condition qualified in cat-rights; methodology not republished.",
+        "locator": "Introduction; Overview of the rating elements; Headline evaluation",
+        "result": "Ten design elements; national-only applicability; headline evaluation expressly does not test 1.5-degree alignment. No original law/policy annual numerator/denominator, delivered-emissions coefficient or statistical uncertainty acquired."
+      },
+      {
+        "id": "cat-rights",
+        "url": "https://climateactiontracker.org/about/legal/",
+        "effectiveUrl": "https://climateactiontracker.org/about/legal/",
+        "requestedAt": "2026-11-12T03:46:22.805Z",
+        "status": 200,
+        "rawBytes": 86264,
+        "rawSha256": "2d67254fa541b2986845e51415143520af839488ab32fb9fb2acbcaf86a2aa87",
+        "bytes": 47801,
+        "sha256": "cf1f3e7f8562afd955640f66ae6cdb2f0f881301ab9e6e4ff617542b19b8876e",
+        "publicationDate": null,
+        "copyrightYearLabel": "2009-2026",
+        "rights": "Both Climate Analytics and NewClimate Institute must be credited, copyright notice required, non-commercial reproduction only. Commercial material use requires owner contact. No permission request made or commercial/open-data rights inferred.",
+        "locator": "Copyright; Liability disclaimer",
+        "result": "Positive qualification of restriction, not permission to ingest/republish the linked workbook. Stopped before numerical workbook acquisition. Continuous-work liability disclaimer is not quantified uncertainty."
+      }
+    ]
+  },
+  "indicatorAdmission": {
+    "implementation": "server/calculation/indicatorSourceMetadata.ts",
+    "actualConsumer": "driverEvidenceRegistry().sourceMetadataProposal",
+    "keys": ["policyCoveragePct", "policyImplementationRate"],
+    "newDocuments": 3,
+    "newFieldFamilies": 10,
+    "sourceProductQualifiedFields": 3,
+    "candidateOnlyFields": 2,
+    "attemptedUnavailableFields": 5,
+    "countMeaning": "Coverage licence restriction, national/emissions geography and definition qualified at source-product level; not a claim of approved licence, authenticated curated observation or coefficient. Implementation licence/geography remain publisher-candidate only. Both original availability and uncertainty unresolved; implementation calibration also unresolved.",
+    "originalObservationAvailableAt": null,
+    "originalVintage": null,
+    "ownerReview": "pending-not-requested",
+    "centralModelEligible": false,
+    "curatedHistoryReplaced": false,
+    "numericCollectorOrApprovedDataRefreshed": false,
+    "fullWindowFitOrComparisonExecuted": false,
+    "calibrationDecision": "No annual 2010–2025 matching history acquired. A current target-coverage snapshot and design-quality categories cannot produce a full-window implementation fit or causal emission response. No shortened window, interpolation, new distribution or fitted coefficient.",
+    "exactNextInput": "For each original policy key/year 2010–2025: original release and first-availability archive, stable country universe, exact legal-status numerator/eligible target denominator, emission-weight reference-year/gas/LULUCF scope, licence allowing intended use and numerical uncertainty. Delivered implementation requires an actual outcome/counterfactual, not design ratings.",
+    "exactNextAction": "Do not download or commercially republish the linked CAT workbook under an assumed open licence. A suitably permissioned primary annual legal-status/coverage archive is needed before a numeric adapter, source-history reconciliation or frozen calibration. No owner-contact or approval request performed.",
+    "other20Keys": "Not queried in this increment; earlier evidence and their precise unresolved fields remain unchanged. No claim all other keys are globally unavailable."
+  },
+  "issuerFieldAssessment": {
+    "NEE": {
+      "newSourceId": "nee-2026q3",
+      "informationContext": "Revised history, after the original retained 2025-01-31 NEE reference; never backdated to that cutoff.",
+      "newPositiveFields": {
+        "noncontrollingXplrEconomicInterestPercent": 52.4,
+        "quarterServiceCostsIncurredUsd": 20000000,
+        "nineMonthServiceCostsIncurredUsd": 120000000,
+        "dueFromXplrCurrentBookUsd": 178000000,
+        "dueFromXplrNoncurrentBookUsd": 170000000,
+        "broadRelatedPartyNetFinancingSweepUsd": 25000000,
+        "totalBorrowedSweepLiquidityStockUsd": 145000000
+      },
+      "positiveFieldBoundaries": "Note 6 identifies NextEra Energy Resources as operator/service provider and NEE's investment as noncontrolling equity-method. Incurred costs have been or will be reimbursed; they are not cash collections. Current/noncurrent receivables are book balances. The net sweep and liquidity stock are broad NEE/NEECH pool disclosures, not XPLR-only gross bank movements. Ownership is not a cash allocation coefficient.",
+      "grossLlcCash": {
+        "status": "not-disclosed-in-selected-new-note-and-cashflow-rows",
+        "value": null,
+        "exactNextInput": "Dated project/LLC investor distributions AND contributions, contractual AvailableCash, debt/capex/operating reserves, return-on versus return-of-capital classification and NEE consolidation recipient bridge.",
+        "exactNextAction": "A directly published LLC cash annex/payment series is needed; do not repeat old executed contracts, attachment indexes or total-pool stock/net-sweep reconciliations. No public URL for that missing cash series identified in this increment."
+      },
+      "cashRecipientLegalEntity": {
+        "status": "service-provider-and-investment-scope-sourced-not-per-LLC-recipient-cash",
+        "value": null,
+        "exactNextInput": "Cash transaction naming the payer LLC and legal receiving entity, bank/cashflow date, amount and consolidated cashflow line.",
+        "exactNextAction": "Match such a transaction to the already sourced group legal entities before classifying common FCFE. The new operator designation does not allocate gross distributions."
+      },
+      "marginalReturns": {
+        "status": "not-qualified-by-new-service-cost-and-exposure-disclosures",
+        "value": null,
+        "exactNextInput": "Project commissioning cohorts with incremental net operating cash, funded construction/maintenance outlays, debt/tax-equity cash priority, reinvestment and available-to-common distributions.",
+        "exactNextAction": "Do not use backlog MW, total growth guidance, service cost reimbursement or contractual investor call-price IRRs as commissioning marginal returns. No grounded marginal-return calculation ready."
+      },
+      "actualServiceReimbursementCashUsd": null,
+      "costsMinusReceivableChangeTreatedAsCash": false,
+      "commonFcfeInsertedUsd": 0
+    },
+    "FSLR": {
+      "status": "unattempted-new-primary-route-not-invented-negative",
+      "newRequests": 0,
+      "reason": "Latest acquired Q3 2026 Note 5, actual October 29 release, grant-cohort work and enacted law/Notice 2026-15 already inspected in retained inventory. No materially new declared programme payment/BOM primary URL identified locally; those existing notes/contracts/legal kernels were not reacquired or rerun.",
+      "programmeCash": {
+        "value": null,
+        "exactNextInput": "Tamil Nadu/India incentive July 2026 actual installment amount, native currency/FX, date, programme identity and cashflow classification; Alabama actual receipt amount/date separately; credit-transfer cash tied to original credit cohort/receivable/discount.",
+        "exactNextAction": "A public programme remittance or issuer programme-specific payment reconciliation is required. Do not allocate existing unassigned book/CFO or noncash-supplement differences into cash. Exact new public payment-record URL remains unlocated."
+      },
+      "eligibleWatts": {
+        "value": null,
+        "exactNextInput": "Observed or explicitly justified frozen forward eligible US component production/sales watts, separated by fully US and internationally initiated/US completed claim path and sale period.",
+        "exactNextAction": "Obtain component production/eligible-sale reconciliation rather than invert credit dollars, aggregate GW guidance or global module sales."
+      },
+      "materialCostAndCurrentLaw": {
+        "value": null,
+        "exactNextInput": "Component/year/method-specific total and PFE-attributable direct material costs, effective-control/entity compliance, applicable same-facility US primary-eligible-component cost attribution, and a source-supported current-law/reliance cut.",
+        "exactNextAction": "Qualify company inputs against the already sourced enacted framework/Notice 2026-15 without assuming later-law exhaustiveness. No corporate COGS, generic domestic glass share or project-credit cost table substitution; do not rerun the old statutory calendar."
+      },
+      "currentEligibilityCertified": false,
+      "commonFcfeInsertedUsd": 0
+    },
+    "XOM": {
+      "status": "unattempted-new-direct-contract-route-not-invented-negative",
+      "newRequests": 0,
+      "reason": "Latest CF/EnLink and operating-successor inventories already cover the actual CF release, EnLink two-step merger, ONEOK operating subsidiary list, Form 15 and first post-merger interim. These cannot identify an actual CCS novation, current invoice, opex or funded project cash. No direct new public executed operating instrument identified locally; no old contract/index/guarantee request repeated.",
+      "operatingContractAndNovation": {
+        "value": null,
+        "exactNextInput": "Executed CCS transportation/storage/financial-arrangement instrument naming both legal operating subsidiaries, current status/effective date and any actual assignment/novation/termination, with priced service/minimum-payment schedule.",
+        "exactNextAction": "Use only that direct instrument or an explicit public counterparty disclosure, not EnLink CCS LLC's group-list existence, Elk Merger Sub II's debt succession or a corporate credit guarantee. Exact new instrument URL remains unlocated."
+      },
+      "billings": {
+        "value": null,
+        "exactNextInput": "Current contractual fee/escalation/minimum billings by service period, actual serviced CO2 mass and invoiced/collected amount/date/cashflow classification.",
+        "exactNextAction": "Do not convert historical 844 million expected recognition, grouped 2029–2050 fees, CF 45Q income or ammonia tonnes into XOM current billings/cash."
+      },
+      "opexAndFunding": {
+        "value": null,
+        "exactNextInput": "Direct project transport/storage operating expenses, replacement/maintenance requirements, funded capital calls/draws and available-to-XOM-common cash after ownership/debt/reserves.",
+        "exactNextAction": "Obtain project operating/funding annex or explicit public XOM cash disclosure; no transfer of CF/BluePoint JV cash/capex, no unused bank guarantee capacity as funding, no second baseline carbon-cost deduction."
+      },
+      "commonFcfeInsertedUsd": 0
+    }
+  },
+  "studyReadiness": {
+    "newCompatibleFrozenClimateInputs": false,
+    "reason": "No new source-coherent constant-2011-PPP regional GDP, matching energy/CO2, physical full-window observations or permissioned annual implementation history acquired. CAT national target metadata is not an emissions/energy/GDP accounting input.",
+    "newOperatingFcfeReady": false,
+    "newFrozenStudiesExecuted": 0,
+    "oldKernelsStressGridsRootsOrRecalibrationsExecuted": 0,
+    "qualifiedOriginalIssuers": 0,
+    "frozenInputsReplaced": false,
+    "original14PinsChanged": false,
+    "originalCashRowsOrNegativeResultsChanged": false
+  },
+  "preservedHashes": {
+    "server/calculation/historicalIndicators.ts": "e716ce9997bc28d490189a25fc45cf553318328eb12f7e46f830651a2e73705b",
+    "server/dataIngestion/indicatorRegistry.ts": "333ce1f17e89bad3a50ed9018e36848655fc735597be2bc11fe40885b72689c3",
+    "docs/Kaya_Protocol.md": "210d19c643942e739c7a38431b14d682fef0789b5670a847499ea8d31842cdee",
+    "docs/Forecast_Kaya_Protocol.md": "ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f",
+    "shared/companyConditionalData.ts": "32ee6f37af286eef8e194a4f4867c0c81e4f14d38baea0b577ef7982bd7f2510",
+    "docs/remaining-source-inputs-evidence.json": "a7fca3a218713f17bb1468d6ef93ee6b64fdeb9b8a7045299fdb49f21c30ca5e",
+    "docs/cf-enlink-current-cash-evidence.json": "bba8c9b77d991d3c90e18d913bb6d99e5316c24b029b70201df305da08f4463a",
+    "docs/enlink-operating-successor-evidence.json": "2ca1e4aa32650d5937f9d2d19cfa6fbb2f434420d2a745039e248cf775c0bbcc",
+    "docs/issuer-cash-source-followup-evidence.json": "e87b78c01ea5030e0e1dcdd4ebf7624209b693bca02685679110574c2bbcabf9"
+  },
+  "controls": {
+    "approvedDataWritesOrRefresh": false,
+    "purchasesPrivatePublicationOrPermissionRequests": false,
+    "selfApprovalOrCentralPromotion": false,
+    "canonicalLedgerMatrixCensusEdits": false,
+    "commitDeployPublishOrCallback": false,
+    "appStartedWorkflowRestartedOrLogsInspected": false,
+    "verification": "Focused metadata/receipt/admission tests and typecheck executed successfully. No app/browser started, raw source replay or issuer economic validation claimed."
+  },
+  "verification": {
+    "command": "node --import tsx --test script/indicator-issuer-new-evidence.test.ts script/indicator-source-metadata.test.ts script/remaining-source-inputs.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts",
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "newFocusedTests": 3,
+    "typecheckCommand": "npx tsc --noEmit --incremental false --pretty false",
+    "typecheckExitCode": 0,
+    "typecheckDiagnostics": 0,
+    "whitespaceCommand": "git diff --check",
+    "whitespaceExitCode": 0,
+    "coverage": [
+      "Actual 22-key registry exposes two new metadata proposals; eight total proposal-bearing keys, with no admission, licence-approval, uncertainty, original-date or vintage substitution.",
+      "Three document pins bind to exact public receipt URLs/extraction digests/lengths. Receipt consistency is not independent authentication/replay of raw source bytes.",
+      "Reject publisher/source-family substitution, forged original dates/vintages, owner approval, central promotion, extra coefficient and implementation registered-product qualification.",
+      "Four network requests remain distinct from two pre-transport failures; NEE costs/book/sweep facts are not operating cash. FSLR/XOM explicitly unattempted here rather than asserted negative.",
+      "Nine preserved source/history/protocol/company hashes verified; existing original-window, metadata and native/legacy central-rejection tests pass."
+    ],
+    "appOrSignedInUi": "Not run, changed or verified by this task; backend metadata and documentary evidence only."
+  },
+  "implementationHashes": {
+    "server/calculation/indicatorSourceMetadata.ts": "2d0aa72f9b1d831af0e66fe19abdd0cd81d745d1e5db2312a870493944d8e36a",
+    "script/indicator-issuer-new-evidence.test.ts": "df3ed0df1f6ea3fd3c45baa30acdc9b3a483c28148c484f5a813071e0e3cddf9",
+    "script/indicator-source-metadata.test.ts": "6e91be6658adb7b7354d45dabbedcfbbb82a8d378828f89c7165f02a5b6fd6ad",
+    "script/residual-label-scan.ts": "8820682837c1ae9e80de85d819d7c54bf1bcf9120776ce478be4689652ce1738",
+    "script/quantity-label-contracts.test.ts": "23036501a593671957c4a003b40bd41d2699bb99846ee6e5ba457e8a42cd617e"
+  },
+  "quantityLabelFollowup": {
+    "trigger": "Consumer-worker full-check report identified eight new source-metadata quantity-label scanner unknowns. Independently reproduced before fixing.",
+    "before": {
+      "command": "npx tsx script/residual-label-scan.ts",
+      "sourceFiles": 398,
+      "counts": { "technical-name": 123, "local-negation": 39, "reviewed-exception": 31, "violation": 0, "unknown": 8 },
+      "unknownOccurrences": [
+        { "text": "cat-netzero", "count": 5, "properties": ["id", "sourceIds"] },
+        { "text": "https://climateactiontracker.org/global/cat-net-zero-target-evaluations/", "count": 1, "properties": ["url"] },
+        { "text": "https://climateactiontracker.org/methodology/net-zero-targets/", "count": 1, "properties": ["url"] },
+        { "textIdentity": "Complete unchanged regionalApplicability.finding beginning Coverage concerns national net-zero targets", "count": 1, "properties": ["finding"] }
+      ],
+      "qualification": "Scanner CLI reports counts but does not itself exit nonzero on unknowns. The quantity-label contract test enforces zero unknowns; initial consumer failure was reported by that worker, while this task independently reproduced the eight scanner occurrences."
+    },
+    "fix": {
+      "implementation": "script/residual-label-scan.ts",
+      "tests": "script/quantity-label-contracts.test.ts",
+      "exactCasesAdded": 4,
+      "binding": "Every new case binds the exact source file, complete whitespace-normalized literal and immediate AST property. cat-netzero is allowed only as id/sourceIds, the two original primary URLs only as url, and the complete attributed national-target category/denominator description only as finding.",
+      "why": "These are original source document identifiers/URLs and a source-category description, not a computed residual threshold or physical-zero date. The paragraph is an attributed paraphrase, not falsely described as a verbatim CAT quotation.",
+      "notChanged": [
+        "No source literal, category definition, numerical meaning, formula or underlying quantity changed.",
+        "No entire-file, source-publisher, URL-pattern, substring or net-zero-keyword exception added.",
+        "Lexical classification and existing exact exceptions remain unchanged.",
+        "No canonical census, matrix or ledger regenerated.",
+        "No source requests, approvals, model runs or frozen-input changes in this followup."
+      ],
+      "negativeTests": [
+        "Wrong file refuses each exact literal.",
+        "Modified text and appended positive-residual/physical-zero assertions refuse each exact literal.",
+        "Copied source literals in label/quantityLabel/threshold/year or absent property context refuse.",
+        "Document id copied into finding and category description copied into url refuse.",
+        "Without the exact file/property review, every new literal still classifies unknown; 5Gt-is-net-zero still classifies violation.",
+        "Actual AST scan resolves exactly all eight occurrences, including five references to the same source id; no unused exceptions."
+      ]
+    },
+    "after": {
+      "scannerCommand": "npx tsx script/residual-label-scan.ts",
+      "sourceFiles": 399,
+      "sourceFileCountNote": "Parallel consumer work added a runtime source file between scans; the additional source is included, not excluded.",
+      "counts": { "technical-name": 123, "local-negation": 39, "reviewed-exception": 39, "violation": 0, "unknown": 0 },
+      "unusedExceptions": 0,
+      "jointConsumerAndSourceCommand": "npx tsx --test script/quantity-label-contracts.test.ts script/indicator-issuer-new-evidence.test.ts script/indicator-source-metadata.test.ts script/remaining-source-inputs.test.ts script/derived-consumer.test.ts script/download-selection-race.test.ts script/finite-export-schemas.test.ts",
+      "jointTestsPassed": 35,
+      "jointTestsFailed": 0,
+      "jointTestsSkipped": 0,
+      "standaloneScannerTypecheck": "npx tsc --noEmit --strict --target ES2022 --lib ES2022,DOM --module ESNext --moduleResolution bundler --esModuleInterop --skipLibCheck --types node script/residual-label-scan.ts",
+      "standaloneScannerTypecheckExitCode": 0,
+      "finalFullTypecheck": "npx tsc --noEmit --incremental false --pretty false",
+      "finalFullTypecheckExitCode": 0,
+      "finalDiffCheck": "git diff --check",
+      "finalDiffCheckExitCode": 0,
+      "intermediateFailuresPreserved": [
+        "After all 35 tests passed, the first full-project typecheck reported TS2802 at shared/derivedConsumerSemantics.ts:48 and :56 for Set iteration. This parallel consumer file was not edited by the source task. A subsequent full-project typecheck after concurrent work completed passed with no diagnostics.",
+        "An additional standalone target-ES5 scanner probe reported TS2802 on the pre-existing spread of matchAll at the shifted line 68. No compiler config was weakened and no unrelated lexical logic rewritten. Scanner strict ES2022 and the actual project-config full check both subsequently passed."
+      ],
+      "consumerCoordination": "Executed the actual consumer, download-selection, finite-schema and quantity/source suites together, not just an isolated source test. Return this receipt to the owning agent/consumer worker for inclusion in its final concurrent full check; no claim every unrelated project test was rerun.",
+      "sourceMetadataHashUnchanged": "2d0aa72f9b1d831af0e66fe19abdd0cd81d745d1e5db2312a870493944d8e36a"
+    }
+  }
+}

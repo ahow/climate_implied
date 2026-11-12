@@ -1,0 +1,155 @@
+{
+  "version": "new-prospective-export-lifecycle-evidence-1",
+  "requirement": "S16-007",
+  "scope": "Implemented NEW prospective retained-result XLSX persistence/readback through the existing authorized workspace CLI and private-file contract. Not historical-original XLSX recovery, publication, scientific acceptance or operator approval.",
+  "authority": {
+    "source": "server/operatorContract.ts",
+    "existingAuthority": "authorized-workspace-shell",
+    "httpPrincipal": null,
+    "httpRole": null,
+    "newAuthenticationInvented": false,
+    "publicMutation": "forbidden",
+    "command": "NODE_ENV=development PROSPECTIVE_RESULT_EXPORT_DIR=/absolute/existing-private-0700-directory npx tsx script/operator-prospective-result-export.ts capture|read <retained-parent-id> <idempotency-request-id>",
+    "binaryReader": "Same read command with --xlsx-stdout writes exact retained bytes to authorized shell stdout, not an HTTP/public resource.",
+    "approvalOrPublicationAction": false
+  },
+  "supportedPersistenceInspection": {
+    "existingDatabase": "server/snapshots/results.ts stores strict analysis-result-1 JSON in immutable cv_analysis_snapshots/cv_analysis_chunks. Existing result payloads cannot be extended in place.",
+    "genuineParentReader": "loadAnalysisResult verifies result/manifest identities and referenced material, calculation-source, workbook and ordered overlay dependencies. Capture and read both use this reader, never current inputs or caller-supplied proof.",
+    "chosenPersistence": "One versioned private JSON envelope per 64-hex request identity, containing exact capture metadata and base64 original captured bytes. Existing directory must be explicitly configured, absolute, canonical, non-symlink, owned by current operator uid and 0700. Every ancestor is checked top-down with lstat: directories only, operator/root owned, and no nonsticky group/world write.",
+    "ancestorSecurityReview": {
+      "problem": "A 0700 leaf alone cannot prevent an untrusted user replacing it through a writable nonsticky parent between validation and file IO.",
+      "fix": "Both read and capture validate every ancestor before file access; capture repeats the complete path validation before atomic publication. Symlink ancestors and untrusted-owned or nonsticky group/world-writable ancestors refuse.",
+      "stickyRationale": "A sticky ancestor owned by root or the existing operator is permitted because other uids cannot remove/rename its trusted-owned next component. Every next component is independently ownership-checked. This is filesystem access validation, not a new role or HTTP authority.",
+      "observedPlatform": "This DEV container has root-owned / mode 1777 and operator-owned /tmp mode 1777. Both are trusted-owner sticky directories. Their broad permissions were inspected, never changed.",
+      "tests": "Private temporary parent fixtures set to 0777, 0775 and 0770 refuse both read and capture with no leaf files created. A symlink ancestor refuses. A normal nested 0700 private directory under tmp succeeds; trusted-operator-owned sticky 1777 parent succeeds. All fixture permissions and files are cleaned in temporary directories only.",
+      "scopeResidual": "Same-uid operator or root can deliberately replace trusted components or change their modes after validation; that already-authorized owner/root adversary remains outside application-level append-only guarantees. No untrusted writable nonsticky ancestry is accepted."
+    },
+    "noAmbientDefaultDirectory": true,
+    "noDirectoryProvisioningInLifecycle": true,
+    "noDatabaseWritesOrDDL": true,
+    "noNewCloudOrDatabaseResources": true,
+    "productionAndUnsetEnvironmentRefused": true,
+    "privateCommittedFileMode": "0600",
+    "maximumEnvelopeBytes": 67108864,
+    "logicalAppendOnly": "Atomic hardlink no-replace publication from a synced exclusive 0600 staging file in the same private directory, then staging unlink and directory fsync. Existing target is never overwritten, upgraded or repaired.",
+    "idempotency": "Same request ID and parent returns original capture ID, capture time and exact bytes. Different parent conflicts. Existing malformed/inaccessible/version-unknown records refuse instead of recapture.",
+    "consumerInterface": "readStoredProspectiveResultExport({requestId, expectedParentResultId}, {environment, directory}, loadAnalysisResult)",
+    "privateHttpBoundary": {
+      "source": "server/prospectiveResultExportApi.ts",
+      "mountedBy": "server/index.ts after existing releaseSafety",
+      "paths": [
+        "/api/analysis/results/:id/prospective-exports",
+        "/api/analysis/results/:id/prospective-exports/:requestId"
+      ],
+      "readAndCapture": "All HTTP methods deny 403 without opening the private store. No genuine HTTP principal exists, so CLI authentication is not misrepresented as HTTP authority.",
+      "spoofedBearerRoleLoopbackHeadersAuthorizeNothing": true
+    }
+  },
+  "atomicPublicationReview": {
+    "identifiedWindow": "link(staging,target) temporarily exposes nlink=2 before unlink(staging).",
+    "resolution": "Reader does not accept or read a multiply-linked file. It polls fstat up to ten times with 25ms delays only for nlink=2, then still requires nlink=1. A persistent hardlink remains refused; nlink>2 is refused immediately. File size, link count and modification/change timestamps are rechecked after a bounded read.",
+    "forcedCrossProcessInterleave": "Test child hardlinks an actual captured private fixture, announces the two-link state and waits for parent release. Parent starts read inside nlink=2; child unlinks staging after release. Reader succeeds only after nlink=1, with exact original bytes.",
+    "concurrency": "Five concurrent same-request captures select one immutable winner; four different request IDs retain separate exact readbacks. Actual DEV CLI also ran two concurrent distinct-request captures.",
+    "collisionFailureCleanup": "Competing invalid target is inserted after initial absence check. Link collision refuses target without overwrite, and finally removes the staged file.",
+    "waitBound": "At most ten 25ms timer waits plus filesystem/event-loop scheduling; not a real-time guarantee. A writer paused beyond this bound can cause a safe transient refusal; retry after publication cleanup is supported.",
+    "crashResidual": "Process death before staging unlink can leave an orphan staging file or nlink=2 committed target. Reader refuses rather than auto-repairs. Authorized owner cleanup/recovery is separate; no automatic deletion of retained files is implemented."
+  },
+  "actualDevLifecycle": {
+    "command": "NODE_ENV=development PGOPTIONS='-c default_transaction_read_only=on' npx tsx script/check-prospective-result-export-dev.ts",
+    "execution": "Passed against genuine existing DEV retained parent using actual operator CLI child processes, explicit private ephemeral directory and genuine retained reader.",
+    "databaseReadOnly": true,
+    "transactionAndDefaultReadOnlyVerified": true,
+    "retainedResultsBefore": 124,
+    "retainedResultsAfter": 124,
+    "allArchiveHeadersBefore": 179,
+    "allArchiveJoinedChunkRowsBefore": 416,
+    "allArchiveChecksumBefore": "f43100aff02fa80d32f950bf544fa0fa3caee83f3c6f20ce72e3182b16c1bbf4",
+    "allArchiveChecksumAfter": "f43100aff02fa80d32f950bf544fa0fa3caee83f3c6f20ce72e3182b16c1bbf4",
+    "checksumMethod": "SHA256 canonical ordered existing header fields plus PostgreSQL md5(payload::text) per chunk; actual parent independently reloaded and content-hashed before/after.",
+    "old124Unchanged": true,
+    "parentUnchanged": true,
+    "parentResultId": "102d005b0437c31eced43aa4eb33e7470279de0a423dbb62191f4f1ebc62862c",
+    "captureId": "bf97c38f596f1cc8f8bfa2f5050dcb16ba193169eeb0537837ccd8005f91a490",
+    "capturedAt": "2026-11-12T04:09:54.690Z",
+    "binarySha256": "1450f16b2369d06795e1dabd667c05ac9d786eaed10f5d6e11b80d58ae8e1960",
+    "byteLength": 11048,
+    "cellsHash": "06efd3401bf69992f59c107a47e2105a6647831bd80732dbbeec074583b5fdb8",
+    "parent": {
+      "resultHash": "0f4f659373395afb56ae0e9f192b8c9aa85c4b244b1c857792e75f78fdc3e78d",
+      "manifestId": "5607205e6a35c2d4e7d29a3856083f6d596b6c97c42dd89336edfd1c65080405",
+      "materialInputsId": "bcdc05ee4390b9f6ee307b559d1a77aea5bb1b4e6ff4044de9a897ee0ea3c8f4",
+      "codeArchiveId": "44bf3a6563ddf8c47c377bf6eb901643fe12f24319771d8d58ef5df011171ea6",
+      "modelVersion": "historical-diagnostics-7",
+      "orderedSnapshotHashes": [
+        "271caaddc11350f1def50a1a379ac8689bbff745b7efa805e5fcd8146b6d45ac",
+        "f31b9af915967998043a530b54dfd6a87e59b089a9053ad063437065832be6cd"
+      ],
+      "scenario": "descriptive-valuation:/summary"
+    },
+    "actualCommandCaptureReadAndRetryPassed": true,
+    "retryExactIdTimeBytesAndEnvelope": true,
+    "conflictingParentRefused": true,
+    "concurrentDifferentRequestIds": 2,
+    "concurrentExactByteReadback": true,
+    "privateEphemeralCopyVersionCorruptionPermissionsAndSymlinkRefused": true,
+    "directoryMode": "0700",
+    "fileMode": "0600",
+    "noPendingFiles": true,
+    "ephemeralPrivateDirectoryRemoved": true,
+    "rawRowsPrivateBytesOrSourceBundlesPrinted": false,
+    "persistentActivation": false,
+    "operatorApproval": false,
+    "originalHistoricalExport": false,
+    "published": false
+  },
+  "tests": {
+    "focusedCommand": "npx tsx --test script/prospective-result-export-lifecycle.test.ts script/prospective-result-export.test.ts script/operator-contract.test.ts script/analysis-result-archive.test.ts script/producer-download.test.ts script/methodology-download-portable.test.ts",
+    "tests": 33,
+    "passed": 33,
+    "failed": 0,
+    "skipped": 0,
+    "lifecycleTests": 11,
+    "portableSourceOnlyNestedTests": 37,
+    "coverage": [
+      "Exact NEW metadata, stored bytes and identity readback; original parent unchanged",
+      "Sequential retry and five simultaneous same-request captures select original immutable bytes/time/id",
+      "Concurrent distinct request IDs remain independent",
+      "Forced cross-process hardlink publication/read interleave",
+      "Persistent hardlinks, symlinks, file permissions, directory permissions, unsafe nonsticky group/world-writable ancestors, non-DEV/missing/relative/noncanonical config and malformed identities refuse; legitimate private tmp and trusted-owned sticky ancestry succeed",
+      "Unknown envelope/record versions, corrupt/truncated records, wrong request/capture/parent identities and missing/corrupt XLSX bytes refuse without repair",
+      "Missing parent/material dependencies never permit replacement",
+      "Absent reader does not auto-capture; invalid parent and publish collision clean up without overwrite",
+      "Isolated loopback Express mounted GET/HEAD/POST/PUT/DELETE requests return 403 even with spoofed bearer/role/loopback headers; no store is opened",
+      "Exact seven-command existing operatorContract inventory including the real new CLI",
+      "Nine retained producer scenarios, archive integrity, producer consumers and source-only portability without Git/docs/private/generated fixtures"
+    ],
+    "initialPortableCountMismatch": "One preliminary expanded run had all 37 nested source tests passing but stale outer expected-count 35. Updated the helper assertion to 37; final 33/33 focused run passed.",
+    "typescript": {
+      "commands": [
+        "npx tsc --noEmit --pretty false --target es2020",
+        "npx tsc --noEmit --pretty false"
+      ],
+      "bothPassed": true
+    }
+  },
+  "actualSourceSha256": {
+    "server/snapshots/prospectiveResultExportLifecycle.ts": "94dead58e88de1aecab3f6126ea5b3eca394508f23c38900ce52fc6000ca542f",
+    "server/snapshots/prospectiveResultExport.ts": "9848979c9a087fe9a9cd9ac5aacb450aa10cd9b9a33113610abd3fc283dd6f9c",
+    "server/prospectiveResultExportApi.ts": "cf725d9f9c53e9a266a97fec4e7b8c0fde2930289aa853e3160e4a7cfc44796a",
+    "server/operatorContract.ts": "755ca86810b70f84a11d950e2d076ba4d411f326a97fa5376a13ebd8021bd0dc",
+    "script/operator-prospective-result-export.ts": "815aec89c24e1b7e3d3cf41df90b44cd95ea1871bdc056177b80923f1bd48ccb",
+    "script/prospective-result-export-lifecycle.test.ts": "98c0f5521d7ac8b5e60a449f58208b75feb3ad157b23fbae2ee488fdd4939e6b",
+    "script/check-prospective-result-export-dev.ts": "d2255b97cb44aa1acd72cb058d105e5fb1a8a52079eca72dacc1671229d31a4d",
+    "script/operator-contract.test.ts": "7b1e63042290db2f27e009d968bcaeb13f0e54e5ee5941d5f09e28a6535795b5"
+  },
+  "remainingGapsAndBoundaries": [
+    "No permanent private directory activated; DEV engineering files were retained/read across actual CLI processes then fully removed. A genuine operator must explicitly select/provision a private existing directory for lasting retention.",
+    "Filesystem contract is application-level append-only, not OS WORM or protection against the authorized same-uid owner/root. All ancestors are verified operator/root-owned, non-symlink, and not group/world-writable unless sticky. Concurrent malicious replacement or permission changes by that already-trusted owner/root remain outside this boundary. No new elevated authority is claimed.",
+    "No HTTP operator authentication exists. Private HTTP remains forbidden, not a claim of authenticated HTTP success. Actual running-app restart/runtime verification belongs to the main agent; this work verified mounted Express fixtures and source wiring without restarting workflows.",
+    "No public disclosure/download activation, publication rights review, operator approval or scientific/model acceptance.",
+    "No historical-original XLSX attachment was reconstructed or added to the old 124 records. Every captured workbook is explicitly NEW prospective output.",
+    "No source-bundle or raw private bytes checked into Git. No DDL, commits, deploys, callbacks, ledgers, release matrix, old golden or protected model pins changed by this lifecycle work.",
+    "Broader chart/custom-export consumers and producer coverage remain separate coordinated work; this lifecycle only captures the existing verified retained result serializer."
+  ]
+}

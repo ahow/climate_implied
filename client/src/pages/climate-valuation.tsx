@@ -1,6 +1,8 @@
 import { WorkbookMoneyAudit } from "@/components/workbook-money-audit";
 import { CarbonPassThroughReview } from "@/components/carbon-pass-through-review";
 import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
+import { deriveProducerValuationPE } from "@/lib/producer-download";
+import type { ValuationPEDerivation } from "@shared/derivedConsumer";
 import { CompanyConditionalSummary } from "@/components/company-conditional-summary";
 import { useState } from "react";
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
@@ -20,7 +22,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { DownloadDataButton, ProducerDownloadLink } from "@/components/download-data-button";
-import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic, observationTimestamp } from "@/lib/valuation-claims";
+import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic } from "@/lib/valuation-claims";
 import { GORDON_DEFINITION } from "@shared/quantityDescriptors";
 import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
 import { Upload, FileSpreadsheet, RefreshCw, TrendingUp, DollarSign, Building2, Leaf, Target, Factory, Info } from "lucide-react";
@@ -176,36 +178,16 @@ export default function ClimateValuation() {
 
   const formatChartDate = (timestamp: number) => {
     const d = new Date(timestamp);
-    return d.toLocaleDateString("en-US", { month: "short", year: "2-digit" });
+    return d.toLocaleDateString("en-US", { month: "short", year: "2-digit", timeZone: "UTC" });
   };
 
   const formatTooltipDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+    return new Date(timestamp).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
   };
 
-  const carbonIntensityChartData = carbonPrices?.map((p) => ({
-    date: observationTimestamp(p.date),
-    cleanPE: roundedPE(p.bottomTercilePeRatio),
-    dirtyPE: roundedPE(p.topTercilePeRatio),
-    cleanCount: p.bottomTercileCompanyCount,
-    dirtyCount: p.topTercileCompanyCount,
-  }));
-
-  const sdgChartData = sdgGrowth?.map((p) => ({
-    date: observationTimestamp(p.date),
-    cleanPE: roundedPE(p.cleanPE),
-    dirtyPE: roundedPE(p.dirtyPE),
-    cleanCount: p.cleanCount,
-    dirtyCount: p.dirtyCount,
-  }));
-
-  const ambitionChartData = decarbTerciles?.map((p) => ({
-    date: observationTimestamp(p.date),
-    bestPE: roundedPE(p.bestTercilePE),
-    worstPE: roundedPE(p.worstTercilePE),
-    bestCount: p.bestTercileCompanyCount,
-    worstCount: p.worstTercileCompanyCount,
-  }));
+  const carbonIntensityChartData = carbonPrices ? deriveProducerValuationPE(carbonPrices, "carbon").chartRows : undefined;
+  const sdgChartData = sdgGrowth ? deriveProducerValuationPE(sdgGrowth, "sdg").chartRows : undefined;
+  const ambitionChartData = decarbTerciles ? deriveProducerValuationPE(decarbTerciles, "ambition").chartRows : undefined;
 
   const hasData = !!hasTimeSeriesData;
 
@@ -359,6 +341,8 @@ export default function ClimateValuation() {
               title="High vs Low Carbon Companies"
               description="Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. This endpoint uses fixed r = 8%; changing the SDG/ambition cost-of-equity control does not change it. Gordon steady-state g = r − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth."
               chartData={carbonIntensityChartData ?? []}
+              producerPayload={carbonPrices}
+              producerDerivation="carbon"
               isLoading={carbonPricesLoading}
               error={carbonPricesError}
               formatChartDate={formatChartDate}
@@ -380,6 +364,8 @@ export default function ClimateValuation() {
               title="High vs Low SDG-Aligned Companies"
               description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}
               chartData={sdgChartData ?? []}
+              producerPayload={sdgGrowth}
+              producerDerivation="sdg"
               isLoading={sdgGrowthLoading}
               error={sdgGrowthError}
               formatChartDate={formatChartDate}
@@ -401,6 +387,8 @@ export default function ClimateValuation() {
               title="High vs Low Ambition Companies"
               description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}
               chartData={ambitionChartData ?? []}
+              producerPayload={decarbTerciles}
+              producerDerivation="ambition"
               isLoading={decarbTercilesLoading}
               error={decarbTercilesError}
               formatChartDate={formatChartDate}
@@ -461,6 +449,8 @@ interface AnalysisSectionProps {
   title: string;
   description: string;
   chartData: Array<{ date?: number; [k: string]: any }>;
+  producerPayload?: unknown;
+  producerDerivation?: ValuationPEDerivation;
   isLoading: boolean;
   error?: Error | null;
   formatChartDate: (ts: number) => string;
@@ -483,6 +473,8 @@ export function AnalysisSection({
   title,
   description,
   chartData,
+  producerPayload,
+  producerDerivation,
   isLoading,
   error,
   formatChartDate,
@@ -492,7 +484,8 @@ export function AnalysisSection({
   peChart,
 }: AnalysisSectionProps) {
   const currentRows = isLoading || error ? [] : chartData.filter((row): row is { date: number; [k: string]: any } => typeof row.date === "number" && Number.isFinite(row.date));
-  const peDownloadRows = certifyFiniteExport("valuationPE",currentRows.map((d) => ({
+  const peDownloadRows = certifyFiniteExport("valuationPE",(!isLoading && !error && producerPayload && producerDerivation)
+    ? deriveProducerValuationPE(producerPayload, producerDerivation).rows : currentRows.map((d) => ({
     Date: formatTooltipDate(d.date),
     [`${peChart.highLabel} P/E (x)`]: roundedPE(d[peChart.highKey]),
     [`${peChart.lowLabel} P/E (x)`]: roundedPE(d[peChart.lowKey]),

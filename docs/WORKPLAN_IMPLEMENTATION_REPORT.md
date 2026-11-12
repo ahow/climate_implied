@@ -1,3 +1,61 @@
+# Private export lifecycle, derived consumers and new source findings
+
+{
+  "updated_at": "2026-11-12T04:16:53.662337+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T04:12:00.988974+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 222.724,
+    "counts": {
+      "tests": 1001,
+      "pass": 1001,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/lifecycle-final-check.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "b795f07e7b4ee2241f223fec35927f82237eccccb295f4476c5c68e6a80e795b",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1001,
+        "pass": 1001,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 218,
+        "pass": 218,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": [
+      "docs/new-export-lifecycle-evidence.json",
+      "docs/derived-consumer-evidence.json"
+    ],
+    "S03-007": [
+      "docs/indicator-issuer-new-evidence.json"
+    ],
+    "S12-017": [
+      "docs/indicator-issuer-new-evidence.json"
+    ]
+  },
+  "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
+  "scope": "Real DEV CLI NEW-export persistence/read/retry/concurrency verified; old archives unchanged. Three derived P/E consumers bound with nonempty fixture XLSX readback, not nonempty real browser/science. CAT metadata and new NEE source findings; no FCFE/calibration promotion.",
+  "release": "Pending existing validation/promotion; previous verified runtime remains distinct."
+}
+
 # Producer identity, prospective contracts and new source evidence
 
 {
@@ -4540,6 +4598,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-methodology-source-d099e80",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T01:52:26.973358+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-producer-width-f49f653",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T03:40:35.134782+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

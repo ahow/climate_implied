@@ -25,7 +25,7 @@ import { thresholdExportRow, thresholdExportBindings } from "../client/src/lib/t
 import { calculateThresholdDiagnostic } from "../server/calculation/thresholdDiagnostic";
 import { requireOutputSemantic, bindExportColumns } from "../shared/outputFieldSemantics";
 import { describeQuantityResponse, quantityDescriptionMiddleware } from "../server/quantityDescriptionApi";
-import { residualLabelScan, classifyResidualText, residualTextExceptions } from "./residual-label-scan";
+import { residualLabelScan, classifyResidualText, residualTextExceptions, residualTextExceptionIndex } from "./residual-label-scan";
 import { LEGACY_CLIMATE, LEGACY_FINANCE } from "../shared/calculationContract";
 
 (globalThis as any).React = React;
@@ -231,6 +231,33 @@ test("all runtime source routes/exports/legacy descriptions scan with individual
   assert.equal(classifyResidualText("Net zero year").classification, "unknown");
   assert.equal(classifyResidualText("5% residual, not net zero").classification, "local-negation");
   assert.ok(!read("client/src/pages/methodology.tsx").includes(">Net Zero Year<"));
+});
+test("CAT source-document identifiers, original URLs and target-category finding have exact property-scoped review only", () => {
+  const file = "server/calculation/indicatorSourceMetadata.ts";
+  const reviewed = residualTextExceptions.filter(e => e.file === file && e.sourceProperties);
+  assert.equal(reviewed.length, 4);
+  const scan = residualLabelScan();
+  const occurrences = scan.occurrences.filter(e => e.file === file && reviewed.some(r => r.text === e.text));
+  assert.equal(occurrences.length, 8, "Five exact document-id references, two source URLs and one category finding");
+  assert.ok(occurrences.every(e => e.classification === "reviewed-exception"));
+  assert.equal(occurrences.filter(e => e.text === "cat-netzero").length, 5);
+  for (const entry of reviewed) {
+    for (const property of entry.sourceProperties!) {
+      assert.ok(residualTextExceptionIndex(file, entry.text, property) >= 0);
+      assert.equal(residualTextExceptionIndex("server/calculation/other.ts", entry.text, property), -1);
+      assert.equal(residualTextExceptionIndex(file, `${entry.text} 5Gt is net zero`, property), -1);
+      assert.equal(residualTextExceptionIndex(file, `${entry.text} changed`, property), -1);
+    }
+    for (const property of ["label", "quantityLabel", "threshold", "year", ""]) {
+      assert.equal(residualTextExceptionIndex(file, entry.text, property), -1,
+        "A copied source category/locator in an analytical quantity property is not exempt");
+    }
+    assert.equal(classifyResidualText(entry.text).classification, "unknown",
+      "Lexical classification remains strict; only exact file/text/AST-property review resolves these cases");
+  }
+  assert.equal(residualTextExceptionIndex(file, "cat-netzero", "finding"), -1);
+  assert.equal(residualTextExceptionIndex(file, reviewed.find(e => e.sourceProperties!.includes("finding"))!.text, "url"), -1);
+  assert.equal(classifyResidualText("5Gt is net zero", false, file).classification, "violation");
 });
 test("original1000/1001 and all legacy numerical constant assignments remain frozen", () => {
   assert.deepEqual(LEGACY_CLIMATE, { version: "legacy-physical-v1", baselineYear: 2024, endYear: 2100,

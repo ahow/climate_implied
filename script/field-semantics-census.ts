@@ -33,7 +33,6 @@ import { WARMING_VALIDATION_REFERENCE } from "../shared/warmingValidationReferen
 import { trackBAdmissionFieldSpecs, trackBAdmissionSemantics, trackBAdmissionHttpSemantics,
   trackBAdmissionExportLeafBindings } from "../shared/trackBAdmissionContract";
 import { trackBWorkbookReasonBindings, trackBWorkbookIdentityFields } from "../server/calculation/trackBAdmissionWorkbook";
-import { supplementalSheetBindings } from "../shared/supplementalSheetBindings";
 import { trackBPublicCatalogSemantics } from "../shared/trackBDisclosureContract";
 import { trackBPublicCatalog } from "../server/trackBPublicCatalog";
 import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBindings, stage10JsonExportLeafBindings,
@@ -41,6 +40,8 @@ import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBinding
 import { workbookMoneySemantics, workbookMoneyReportPaths, workbookMoneyRootPaths, workbookMoneySheetBindings } from "../shared/workbookMoneyAudit";
 import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 import { producerDownloadSemantics, producerDownloadFieldBindings } from "../shared/producerDownloadSemantics";
+import { derivedConsumerSemantics, derivedConsumerSheetBindings } from "../shared/derivedConsumerSemantics";
+import { valuationPEDerivations } from "../shared/derivedConsumer";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -592,6 +593,15 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
       "GET /api/analysis/results/:id/export.json?downloadMetadata=manifest-v1 manifest.producerIdentity"],
     verification: "script/producer-download.test.ts exact/current/selected/stored/concurrent/default+embedded readback; server-private Response WeakMap",
     boundary: "Supplemental provenance metadata only. Does not alter original public denominator, close opaque result slots, certify transformed chart rows, attest a running executable or establish scientific acceptance. Exact path and resolved server input-context checks apply to current producer responses; stored exports retain their own allowlisted scenario.",
+  },
+  derivedConsumerMetadata: {
+    definitions: derivedConsumerSemantics.length,
+    fields: derivedConsumerSemantics.map(field => ({ id: field.id, formula: field.formula, unit: field.unit })),
+    consumers: valuationPEDerivations,
+    metadataSheet: { name: "Derived lineage", columns: derivedConsumerSheetBindings,
+      capturedSupplementalSheets: ["Interpretation", "Field semantics", "Column bindings", "Download manifest"] },
+    verification: "script/derived-consumer.test.ts actual central writer, exact binary/cell readback, strict nested metadata semantics, concurrent A/B/current and refusals",
+    boundary: "Supplemental three-consumer engineering lineage only, not original closure. Native producerIdentity remains null for transformed rows; distinct derivedConsumerIdentity binds exact consumed server parent, closed derivation/filter/order/units, chart/data hashes and captured metadata cells. No arbitrary callback certification, original-byte recovery, source/data approval or scientific acceptance.",
   },
   supplementalConcreteExportChanges:{
     indicatorCardColumns:"Now all22 registered indicator keys plus Year/Estimated; eight newly concrete columns versus14 previously configured cards (including two growth-rate columns) are supplemental changes, not extra original closure slots. Header native units come from qualified indicator definitions, not card display scaling.",

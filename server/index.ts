@@ -19,6 +19,7 @@ import { producerDownloadMiddleware, registerProducerDownloadRoutes } from "./pr
 import { loadAnalysisResult } from "./snapshots/results";
 import { registerScientificEvidenceApi } from "./scientificEvidenceApi";
 import { registerProspectiveResearchApi } from "./prospectiveResearchApi";
+import { registerProspectiveResultExportBoundary } from "./prospectiveResultExportApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -79,6 +80,7 @@ app.use((req, res, next) => {
 (async () => {
   app.use(downloadManifestMiddleware());
   app.use(producerDownloadMiddleware(loadAnalysisResult));
+  registerProspectiveResultExportBoundary(app);
   registerProducerDownloadRoutes(app, loadAnalysisResult);
   registerScientificEvidenceApi(app);
   registerProspectiveResearchApi(app);
