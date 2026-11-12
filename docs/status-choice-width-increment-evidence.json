@@ -5,8 +5,30 @@
   "oldCorpusScored": false,
   "modelReselection": false,
   "canonicalLedgersChanged": false,
+  "privateSources": [
+    {"path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx", "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2"}
+  ],
+  "privateValidation": {
+    "command": "uv run python script/validate_status_choice_width_private.py",
+    "missingBytes": "fail",
+    "integration": "script/workplan-evidence-run.py --full-checks always runs this original-byte and fourteen-original-clause validator alongside existing mandatory private monetary/issuer checks. No skip, existence conditional, upload or refreeze.",
+    "publicBoundary": "Public tests assert the exact retained original checksum and clause metadata without opening private DOCX bytes; all public source-byte assertions remain mandatory."
+  },
+  "ciFailureHistory": [{
+    "runId": "43142943762",
+    "status": "failed",
+    "log": "/tmp/ci43142943762.log",
+    "logSha256": "ba74956f6cef6b03a3274cfa8a262f71600145b106e8590a05ae9e86f89e18a2",
+    "test": 807,
+    "name": "increment evidence hashes and remaining criteria are source-exact, no completion promotion",
+    "location": "script/status-choice-width-increment.test.ts:235:46",
+    "error": "ENOENT opening attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+    "counts": {"tests": 978, "pass": 977, "fail": 1, "skipped": 0},
+    "rootCause": "Public source-hash test incorrectly read a private original attachment absent from exported CI source. Passing local tests had not established public-source portability.",
+    "correction": "Retain the public checksum/clauses contract, preserve the private original-byte assertion unconditionally in a mandatory local validator, and exercise the exported public source without attachments, Git or generated data. No empirical result, threshold, pin or scientific acceptance changed.",
+    "newCiSuccess": "not claimed; local portability/full-check receipts are separate evidence"
+  }],
   "sources": [
-    {"path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx", "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2"},
     {"path": "docs/Developer_Workplan_Amendments.md", "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"},
     {"path": "docs/Valuation_Comparison_Protocol.md", "sha256": "0a979ceed0b0ecf9fe4e83d11d0a821abb3b0ccd0fbfa95439b04b030797acbd"},
     {"path": "docs/Company_Beta_Sensitivity_Protocol.md", "sha256": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b"},
@@ -18,7 +40,10 @@
     {"path": "shared/scientificEvidenceConsumers.ts", "sha256": "22856e368a584cc67772cf6bab9e474568796ff66a35c623e6a9bfd2871cc9d7"},
     {"path": "server/scientificEvidenceApi.ts", "sha256": "22a41e25f3703b5b6302e42e79f07f46d587ea0be97fa046882fee07c11d23a3"},
     {"path": "server/calculation/fairArtifactCatalog.ts", "sha256": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"},
-    {"path": "script/status-choice-width-increment.test.ts", "sha256": "4bdbb4ba254827279b1d27f59c3cdc00ac9c1b3ce952ad7dd69004d3792576b7"},
+    {"path": "script/status-choice-width-increment.test.ts", "sha256": "dfaf71267153a7de549c8ae7a00935fc657f48bbb1e5fbcc9e98d283945f1c08"},
+    {"path": "script/validate_status_choice_width_private.py", "sha256": "e983a9c8170d9222eaecfff42dd85471802e7fdad56553d1cb9752e78edd83c2"},
+    {"path": "script/workplan-evidence-run.py", "sha256": "0e5b97f03dec2ef3cabea329ce5bd4d0c5f6b915e0c662b4437d5af7e0d5c870"},
+    {"path": "script/test_workplan_evidence_receipt.py", "sha256": "267806b27e764640de629c631801cfbbf0cd4c3a31717d9a676c6adba9ab4a1d"},
     {"path": "server/prospectiveResearchApi.ts", "sha256": "d4ca34c49fded3ca288b49a22119387af466973eca7fff75d9103048011307b6"}
   ],
   "originalClauses": {
@@ -82,6 +107,46 @@
     ]
   },
   "tests": {
+    "publicPrivateSplitPortability": {
+      "exportRoot": "/tmp/status-choice-width-public-source-EiADPI",
+      "exportContents": "Copied client/server/shared/script/docs and package/TypeScript manifests; installed dependencies linked separately. attached_assets, .git and generated-artifacts absent before and after the public test.",
+      "command": "npx --no-install tsx --test --test-reporter=tap script/status-choice-width-increment.test.ts",
+      "exitCode": 0, "tests": 12, "passed": 12, "failed": 0, "skipped": 0,
+      "log": "/tmp/status-choice-width-public-portability.log",
+      "logSha256": "1019de1b48154913794729ed6066b5605a956917ad0f97baf211db6af31c5690",
+      "privateAbsentCheck": {
+        "command": "uv run python script/validate_status_choice_width_private.py",
+        "cwd": "/tmp/status-choice-width-public-source-EiADPI",
+        "exitCode": 1,
+        "expected": "FileNotFoundError for absent original DOCX; mandatory private assertion fails rather than skips",
+        "log": "/tmp/status-choice-width-private-absent-refusal.log"
+      }
+    },
+    "privateOriginalValidator": {
+      "command": "uv run python script/validate_status_choice_width_private.py",
+      "exitCode": 0, "originalByteAssertions": 1, "originalClauseAssertions": 14, "missingFilesSkipped": 0,
+      "runnerTests": {"command": "uv run python -m unittest script/test_workplan_evidence_receipt.py", "exitCode": 0, "passed": 3}
+    },
+    "coherentFullChecksAfterCiPortabilityFix": {
+      "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --receipt /tmp/producer-final-receipt.json --log /tmp/producer-final-checks.log --timeout 1200",
+      "receipt": "/tmp/producer-final-receipt.json",
+      "receiptSha256": "e40ebedf113dafc3d575f4cc1bfe2a1ada533e4ced465a80442901b9a7a20283",
+      "executedAt": "2026-11-12T02:47:06.491942+00:00",
+      "exitCode": 0,
+      "elapsedSeconds": 205.792,
+      "typescript": {"tests": 978, "passed": 978, "failed": 0, "skipped": 0},
+      "python": {"tests": 218, "passed": 218, "failed": 0, "skipped": 0},
+      "typecheck": "passed",
+      "mandatoryPrivateOriginal": "passed: one exact original-DOCX byte assertion and fourteen exact original clauses",
+      "existingMandatoryPrivateChecks": "monetary integration --private-primary, issuer cashflow and issuer reconciliation all passed",
+      "productionBuild": "passed",
+      "log": "/tmp/producer-final-checks.log",
+      "logSha256": "866a7513e2258c631ffe020291ae8c4e8eb4cf12285be6c68876707b36b4f1a4",
+      "canonicalLedgersModified": false,
+      "gitHistoryRead": false,
+      "newCiSuccess": "not claimed",
+      "scientificAcceptance": false
+    },
     "typecheck": {"command": "npm run check", "exitCode": 0},
     "focused": {
       "command": "npx tsx --test script/status-choice-width-increment.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts script/release-safety.test.ts script/company-baseline.test.ts",

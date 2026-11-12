@@ -12,6 +12,21 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Explicit coherent local mode. Private checks are mandatory and unconditional;
+# public CI can still use the existing arbitrary-command receipt wrapper.
+FULL_CHECK_COMMAND = [
+    "bash", "-c",
+    "set -e; "
+    "echo '=== Typecheck ==='; npm run check; "
+    "echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; "
+    "echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; "
+    "echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; "
+    "echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; "
+    "echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; "
+    "echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; "
+    "echo '=== Production build ==='; npm run build",
+]
+
 
 def counts(text):
     tap = {key: re.search(rf"^# {key} (\d+)\s*$", text, re.M)
@@ -39,9 +54,15 @@ def main():
                         help="Retain execution evidence without reading/writing canonical ledgers or Git history")
     parser.add_argument("--log", default="", help="Explicit execution log path")
     parser.add_argument("--receipt", default="", help="Receipt JSON path; requires --receipt-only")
+    parser.add_argument("--full-checks", action="store_true",
+                        help="Run coherent typecheck, both full suites, mandatory private validators and build")
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
     command = args.command[1:] if args.command[:1] == ["--"] else args.command
+    if args.full_checks:
+        if command:
+            parser.error("--full-checks does not accept a replacement command")
+        command = FULL_CHECK_COMMAND
     if not command:
         parser.error("command required")
     if args.receipt and not args.receipt_only:

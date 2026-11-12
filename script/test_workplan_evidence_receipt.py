@@ -15,6 +15,22 @@ spec.loader.exec_module(runner)
 
 
 class WorkplanEvidenceReceiptTests(unittest.TestCase):
+    def test_full_checks_keeps_original_document_validator_mandatory(self):
+        command = runner.FULL_CHECK_COMMAND
+        self.assertEqual(command[:2], ["bash", "-c"])
+        pipeline = command[2]
+        self.assertTrue(pipeline.startswith("set -e;"))
+        for required in (
+            "npm run check", "script/*.test.ts", "unittest discover",
+            "uv run python script/validate_status_choice_width_private.py",
+            "validate-workbook-money-integration-private.ts --private-primary",
+            "validate-issuer-cashflow-private.ts",
+            "validate-issuer-cashflow-reconciliation-private.ts", "npm run build",
+        ):
+            self.assertIn(required, pipeline)
+        self.assertNotIn("if ", pipeline)
+        self.assertNotIn("||", pipeline)
+
     def test_receipt_only_without_history_or_canonical_ledgers(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
