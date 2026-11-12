@@ -4,3 +4,4 @@
 import "../client/src/components/producer-reserve-panel.test";
 import "../client/src/components/location-electricity-panel.test";
 import "../client/src/components/retirement-association-panel.test";
+import "../client/src/components/clean-covered-panel.test";

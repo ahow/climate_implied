@@ -113,6 +113,9 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
 | client/src/components/analysis-snapshot-status.tsx | `/api/cv/summary?snapshotId=${encodeURIComponent(selectedSnapshotId)}` |
 | client/src/components/carbon-pass-through-review.tsx | "/api/cv/carbon-pass-through-evidence/export.json" |
+| client/src/components/clean-covered-panel.test.ts | "/api/cv/clean-covered" |
+| client/src/components/clean-covered-panel.test.ts | "/api/cv/clean-covered/export.json" |
+| client/src/components/clean-covered-panel.test.ts | "/api/cv/clean-covered/export.xlsx" |
 | client/src/components/company-conditional-summary.tsx | `/api/cv/company-conditional-summaries/export` |
 | client/src/components/company-coverage.tsx | "/api/calculation/company-coverage" |
 | client/src/components/company-coverage.tsx | `/api/calculation/company-coverage?${params}` |
@@ -280,6 +283,9 @@ The registered `${route}${suffix}` loop in server/producerReserveApi.ts expands 
 
 | GET path | Format | Authority and limitation |
 | --- | --- | --- |
+| /api/cv/clean-covered | JSON | Public observed-unit reconstruction and conditional equity-share accounting; not a forecast, market-implied activity, accepted covered universe, avoided emissions or scientific/owner approval |
+| /api/cv/clean-covered/export.json | JSON | Public observed-unit reconstruction and conditional equity-share accounting; not a forecast, market-implied activity, accepted covered universe, avoided emissions or scientific/owner approval |
+| /api/cv/clean-covered/export.xlsx | XLSX | Public observed-unit reconstruction and conditional equity-share accounting; not a forecast, market-implied activity, accepted covered universe, avoided emissions or scientific/owner approval |
 | /api/cv/retirement-association | JSON | Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference |
 | /api/cv/retirement-association/export.json | JSON | Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference |
 | /api/cv/retirement-association/export.xlsx | XLSX | Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference |

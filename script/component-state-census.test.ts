@@ -9,6 +9,9 @@ import { WarmingValidationReference } from "../client/src/components/warming-val
 import { warmingReferenceExportDocument } from "../shared/warmingValidationReferenceSemantics";
 
 const economicConsumers = [
+  "clean-covered-panel.tsx#CleanCoveredPanel",
+  "clean-covered-panel.tsx#CleanCoveredPanelContent",
+  "clean-covered-panel.tsx#CleanCoveredReportView",
   "retirement-association-panel.tsx#RetirementAssociationPanel",
   "retirement-association-panel.tsx#RetirementAssociationPanelContent",
   "retirement-association-panel.tsx#RetirementAssociationReportView",
@@ -26,8 +29,8 @@ const economicConsumers = [
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 90, "Prior77 plus exact6 producer,4 electricity and3 retirement-association consumers; old acceptance scope unchanged");
-  assert.equal(report.focusedRenderedComponentCount, 90);
+  assert.equal(report.componentCount, 93, "Prior90 plus3 actual clean-covered consumers; original scope unchanged");
+  assert.equal(report.focusedRenderedComponentCount, 93);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -54,7 +57,7 @@ test("actual domain consumers have source-located expressions and explicit state
     assert.deepEqual(component.routes, ["/climate-valuation"]);
     assert.match(component.contract.focusedEvidence, /economic-bridge-ui\.test\.ts/);
     assert.equal(component.contract.inputKind,
-      ["ProducerReservePanel", "LocationElectricityPanel", "RetirementAssociationPanel"].includes(component.component) ? "queried-evidence" :
+      ["ProducerReservePanel", "LocationElectricityPanel", "RetirementAssociationPanel","CleanCoveredPanel"].includes(component.component) ? "queried-evidence" :
         component.component === "Disclosure" ? "presentation-control" : "supplied-result");
   }
   assert.throws(() => contractFor("client/src/components/producer-reserve-panel.tsx", "UnreviewedSibling"), /No reviewed state policy/);

@@ -159,9 +159,12 @@ def render(ledger):
              "**Not a completion statement.** Report pointers are not verified evidence; unexecuted tests have no pass counts.",
              "", f"Updated: {ledger['updated_at']}", "",
              "Binding amendments override conflicting original wording; see `Developer_Workplan_Amendments.md`.", ""]
+    if ledger.get("current_release"):
+        lines += ["## Latest measured release", "", json.dumps(ledger["current_release"], ensure_ascii=False), "",
+                  "Later local/documentation receipts are separate; historical releases below are not current runtime evidence.", ""]
     if ledger.get("latest_increment"):
         lines += ["## Latest implementation evidence", ""]
-        for key, value in ledger["latest_increment"].items():
+        for key, value in reversed(list(ledger["latest_increment"].items())):
             lines += [f"- **{key}:** {json.dumps(value, ensure_ascii=False)}"]
         lines += [""]
     for s in ledger["stages"]:

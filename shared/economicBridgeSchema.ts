@@ -1,6 +1,10 @@
 /** Supplemental prospective calculations only. Never part of original1001,
  * the fixed prior matrix, old124 results, or the fourteen FaIR pins. */
 export const economicBridgeContracts = {
+  cleanCovered:{
+    route:"/api/cv/clean-covered",
+    claim:"Public observed-unit reconstruction and conditional equity-share accounting; not a forecast, market-implied activity, accepted covered universe, avoided emissions or scientific/owner approval",
+  },
   retirementAssociation: {
     route: "/api/cv/retirement-association",
     claim: "Public coal-unit book arithmetic and unscored retirement/association methods; no market-implied retirement, common-equity valuation, accepted issuer case or causal inference",
@@ -19,6 +23,23 @@ export type EconomicBridgeKey = keyof typeof economicBridgeContracts;
  * The portable AST audit verifies the named reader -> shared readback -> exact
  * selected-body comparison chain before registering either writer. */
 export const economicBridgeDownloadWriters = [
+  {
+    key:"cleanCovered",
+    source:"client/src/components/clean-covered-panel.tsx",
+    readerSource:"client/src/lib/clean-covered-reader.ts",
+    reader:"readBoundCleanCoveredExport",
+    parser:"parseCleanCoveredDocument",
+    filename:"supplemental-cleanCovered-${document.identity.id}.${format}",
+    route:economicBridgeContracts.cleanCovered.route,
+    formats:["json","xlsx"],
+    kind:"valuation",
+    readbackSource:"client/src/lib/economic-export-readback.ts",
+    readback:"readBoundEconomicExport",
+    body:"Complete public source reconstruction, declared assumptions and unavailable Stage7 measures with exact producer identity",
+    boundary:economicBridgeContracts.cleanCovered.claim,
+    original1001Delta:0,
+    fixedPriorMatrixDelta:0,
+  },
   {
     key:"retirementAssociation",
     source:"client/src/components/retirement-association-panel.tsx",

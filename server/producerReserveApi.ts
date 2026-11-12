@@ -9,6 +9,7 @@ import { producerReserveFacts, producerReserveSource } from "./calculation/produ
 import { producerReserveFreezeEvidence } from "./calculation/producerReserveFreeze";
 import { producerPrimaryAuthentication } from "./calculation/producerPrimaryAuthentication";
 import { buildRetirementAssociationPublic } from "../shared/retirementAssociationPublic";
+import {buildCleanCoveredReport} from "./calculation/cleanCoveredReport";
 import { buildPublicLocationElectricityReport } from "./calculation/locationElectricityPublicReport";
 import type { LocationElectricityPublicReport } from "../shared/locationElectricityPublicTypes";
 import { economicBridgeCells, economicBridgeContracts, producerReserveCalculationSemantics, type EconomicBridgeKey } from "../shared/economicBridgeSchema";
@@ -140,7 +141,23 @@ export const retirementAssociationAdapter: EconomicBridgeAdapter = {
       derivation:{calculated:report.calculated,associationMethod:report.association,claim:report.claim}};
   },
 };
-export const publicEconomicBridgeAdapters: EconomicBridgeAdapter[] = [producerReserveAdapter, locationElectricityAdapter, retirementAssociationAdapter];
+export const cleanCoveredAdapter:EconomicBridgeAdapter={
+  key:"cleanCovered",
+  entryFiles:["server/calculation/cleanCoveredReport.ts","server/calculation/cleanManufacturingMap.ts"],
+  execute:buildCleanCoveredReport,
+  parts(value){
+    const r=value as ReturnType<typeof buildCleanCoveredReport>;
+    if(r.version!=="clean-covered-public-1"||r.manufacturing.actualResult!==null||r.covered.scientificAcceptance||
+      r.covered.scenarios.some(s=>s.status!=="conditional"))
+      throw Error("Inconsistent public physical source/claim");
+    return {source:r.source,material:{source:r.source,population:r.covered.population,years:r.covered.years},
+      assumptions:r.covered.scenarios.map(s=>({id:s.id,assumptions:s.assumptions,hash:s.assumptionHash})),
+      model:{version:r.version,coveredVersion:r.covered.version,
+        operation:"Observed2023 netMWh/nativeCO2 reconstruction only; no manufacturing inverse or Stage7 ensemble executed"},
+      derivation:{observed:r.observed,calculated:r.calculated,covered:r.covered,claims:r.claims,limitations:r.limitations}};
+  },
+};
+export const publicEconomicBridgeAdapters: EconomicBridgeAdapter[] = [producerReserveAdapter, locationElectricityAdapter, retirementAssociationAdapter,cleanCoveredAdapter];
 // Bytes captured with imported modules, never refreshed by a request, a test
 // archive reader or later on-disk edits. This performs no model calculation.
 const publicEconomicBridgeRelease = captureEconomicBridgeClosure(publicEconomicBridgeAdapters);

@@ -4634,6 +4634,121 @@
           }
         }
       ]
+    },
+    "clean_manufacturing_covered_paths": {
+      "recorded_at": "2026-11-12T18:11:21.437690+00:00",
+      "scope": "S13-004/012/017/018/020 — unfinished engineering, no issuer/science acceptance",
+      "files": {
+        "server/calculation/cleanManufacturingMap.ts": "72b2b9b9e1e1e7dd0a0eba32e8cc9fdbf8a3d8fcc29821e552e9948c4c90a317",
+        "server/calculation/coveredPhysicalPaths.ts": "7d2343da4672314854089c290d37b1ff52100f0bcaed44429bbdadcf92f878c0",
+        "script/cleanManufacturingMap.test.ts": "a508ca4b55d8d6b291abeab07fe70063edd1bdef505c30524b430a3ff888434d",
+        "script/coveredPhysicalPaths.test.ts": "2090b5d19cb5051d1f89f9a9b4ad01b57ee4e0084f9f1299c1710a4e21bc461b",
+        "script/completion-ledger.py": "1f9765185fd154bc7fa06914f1ff44d99ca50b37b1be2cf5d150a71f8ca29da9",
+        "server/calculation/cleanCoveredReport.ts": "827b7bc19345a4ff71373038728a14411c287d93362484c89181686332f95141",
+        "shared/cleanCoveredSource.ts": "404e94c3b080040ab6f6a6fc3f8f962f1e1cbcd448147488a9d9b8386bd0336f",
+        "server/producerReserveApi.ts": "1aab979f69b822595db893264c8a8c92bd427ade30c7097097dab4bf7c4f7937",
+        "shared/economicBridgeSchema.ts": "551c2be56b1e927760678d175f38ff3cb0002192410b385896c8ef279ddf7f50",
+        "shared/serverDownloadRegistry.ts": "65529aab723a8ce5f5f1964c3fd4a7089499fd04f1a9da96949230767f2f0e03",
+        "script/validate-clean-covered-private.ts": "bf63edc9ae8a62e5e5bfea2d203d1145bbd1f7b6d17e6618c2b686a1bf870bb8",
+        "client/src/lib/clean-covered-reader.ts": "7ed89bb13635594832546230e214ec6625188b6cebe59f4f701df9e993f6d2d2",
+        "client/src/hooks/use-clean-covered.ts": "f10b1ed23db4ddf036724e8b04a50774122cb0439d8fee61fe5eefa1ba57af74",
+        "client/src/components/clean-covered-panel.tsx": "b7e9e8d8b53eaa3cec4f93fdefcda6266e1e21fac4c5c9002789072d377bb454",
+        "client/src/components/clean-covered-panel.test.ts": "04556b1cb7da91d912d6fc2f25a82ca0f5979aa9ad61914d53f7e37b098e906f",
+        "client/src/pages/climate-valuation.tsx": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
+        "script/component-state-contracts.ts": "0641f1464633c5a1b9b4d8d0cd952b58d873e16f6f1fabb2ccb91f49061a9eba",
+        "script/component-state-census.test.ts": "a6f17d206c9ef2f56da3a1fe2cc7bb50e4dc01e1032e1090435e75df2900e4cf",
+        "script/economic-bridge-ui.test.ts": "dffe64e2b442e56f8f24f2e415ce2e10a99cf0800d6803442ee8e94c82b6de0e",
+        "script/methodology-download.test.ts": "d2414240bd39ab96e8c03a37f4b89e27e2ee2a48763c96da86415c2ce8b1d256",
+        "script/methodology-download-portable.test.ts": "d2d43fcbd1a505d2a3959cde13e0937694811b1279c0cf8aedc829c03f236247",
+        "script/workplan-evidence-run.py": "5579356f3951c4965edc9efd05231a26f73bfe50777a66a9241076a69777bef7",
+        "script/economic-bridge-api.test.ts": "178b7e719dfae9a730cfcefed8625341e12610b1867c4d89bc19e85ecef8acbe",
+        "script/residual-label-scan.ts": "33d343b7f4c0667ad33c21c2574e09f7e719940f6290e5cffdd8bc9c4b5fdeb6",
+        "docs/field_semantics_census.json": "25f6ec5085ff65df031b3dfe509db73d55453ad5e1cb5848f5dc86e3db1f416d",
+        "docs/System_Output_Register.md": "d6a0588e8555c76f027a78e56dd2ca7add9f496b366c3de40d7a6c74590844d7"
+      },
+      "reuse": "calculateCompanyFullCashflowCase/valueCompanyFullCashflowCase; existing issuerOperatingDriverReverse and frozen v4 remain unchanged",
+      "new": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+      "numerics": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh.",
+      "assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
+      "limits": [
+        "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+        "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+        "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+        "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+        "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+        "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
+      ],
+      "failures": [
+        "Initial focused4tests passed but typecheck found Map/Set iteration incompatible with current compiler target. Fixed using Array.from; subsequent typecheck passed.",
+        "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
+        "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
+      ],
+      "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+      "focused": {
+        "date": "2026-11-12",
+        "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "skip": 0,
+        "typecheck": "npm run check passed",
+        "timing": "Observed after execution; exact focused start not retained",
+        "logs": {
+          "generated-artifacts/clean-covered/focused.log": "b0f5b914c77ae9b4650e413fb0ac467f7937adcf930ad0ceaf967d70186c72f2",
+          "generated-artifacts/clean-covered/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+          "generated-artifacts/clean-covered/initial-typecheck-failure.log": "f9be32abb33efea3947c5868f727644039918a845acbe841e529add889ee6d95"
+        }
+      },
+      "coherent_gate": {
+        "command": [
+          "bash",
+          "-c",
+          "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+        ],
+        "executed_at": "2026-11-12T18:02:10.602156+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 535.172,
+        "counts": {
+          "tests": 1317,
+          "pass": 1316,
+          "fail": 0,
+          "skipped": 1
+        },
+        "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+        "suite_counts": {
+          "typescript": {
+            "tests": 1317,
+            "pass": 1316,
+            "fail": 0,
+            "skipped": 1
+          },
+          "python": {
+            "tests": 264,
+            "pass": 264,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      },
+      "prior_gate_failure": {
+        "receipt": "generated-artifacts/clean-covered/final-coherent.receipt.json",
+        "result": "1317TS:1312pass/4fail/1optionalPGskip; Python/private/build not reached",
+        "correction": "Regenerated actual field/output consumer censuses; exact two physical-unavailable label exceptions, not a whitelist or threshold relaxation"
+      },
+      "development_readback": {
+        "time": "2026-11-12T17:55:23.482Z",
+        "route": "/api/cv/clean-covered",
+        "rows": 1043,
+        "literalChecks": 4,
+        "identity": "1d0456aff704485878b27cd6bea584fb7e8c92c15b9861164a98b561f832dbb2",
+        "scope": "Actual development HTTP/XLSX values and identity; not production or scientific acceptance"
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -4751,7 +4866,7 @@
     "scope": "S13-003/006 remain partial. Engineering/code deployment only; no actual issuer valuation/association or science/owner activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T15:24:42.807Z",
+  "updated_at": "2026-11-12T18:11:21.437690+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -153340,7 +153455,7 @@
             "Source-qualified unit dispatch/revenue/operating costs, retirement commitments, decommissioning cash and approved recovery still absent; Wyodak owned book206USDm does not identify cash.",
             "Executable full issuer/common-equity bridge and compatible valuation target/inversion not established; conditional discrete asset engine and public bookkeeping are not full original issuer acceptance."
           ],
-          "next_action": "Source-qualified unit dispatch/revenue/operating costs, retirement commitments, decommissioning cash and approved recovery still absent; Wyodak owned book206USDm does not identify cash.",
+          "next_action": "2023 net generation/nativeCO2 now source-bound through EPA ORIS6101 one-unit/one-generator join. Obtain same-period unit cash costs, legal retirement obligation, approved recovery/timing and compatible asset target; historical generation is not a future retirement forecast.",
           "blockers": [],
           "stage": 13,
           "check_type": "judgement",
@@ -153858,7 +153973,8 @@
               }
             ]
           },
-          "prior_evidence_caveat": "S13-003: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Coal-unit ownership, retirement liabilities/recovery and valuation-to-retirement mapping absent."
+          "prior_evidence_caveat": "S13-003: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Coal-unit ownership, retirement liabilities/recovery and valuation-to-retirement mapping absent.",
+          "new_same_period_source": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private."
         },
         {
           "id": "S13-004",
@@ -153876,73 +153992,99 @@
           ],
           "evidence_caveat": "S13-004: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Deployment-to-cash economics and a defensible price inversion are not identified.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
           ],
-          "behaviour_delivered_this_run": "Checked clean-technology deployment-growth inference from valuation.",
-          "inputs_versions_assumptions": [
-            "FPL incremental solar cash channel, XOM physical CCS derivatives, CAT refused causal shortcut; none is a consolidated three-issuer valuation inversion."
-          ],
+          "behaviour_delivered_this_run": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+          "inputs_versions_assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
           "executions": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z",
-              "log": "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
-              "log_sha256": "5b17b9c48aa4ea1db9a155164e3929b5f61f344ccdd900e946147fb9c727f41b",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
               "exit_code": 0,
-              "check_type": "judgement",
-              "check_scope": "Previously executed named criterion-relevant engineering checks ONLY; full-suite receipt retained, NOT rerun by this review.",
-              "relevant_tests": [
-                {
-                  "name": "CCS operating throughput and monetary derivatives reconcile without fabricated pricing",
-                  "passing_log_line": 257
-                }
-              ],
-              "evidence_scope": "Synthetic numerical/contract efficacy where the criterion requests it; not actual issuer calibration.",
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
-              }
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-004)",
-              "executed_at": "2026-11-10T10:45:19.045Z",
-              "check_type": "judgement",
-              "check_scope": "Current source/test/retained-artifact inspection only; no model, study, collector or regression-suite execution.",
-              "artifacts": [
-                {
-                  "path": "docs/Conditional_Company_Climate_Cases.md",
-                  "sha256": "d59cfd61821ea87209c9dd11c1980a89f37e81c218e0d398830969a4872a13df"
-                }
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "log": [],
-              "exit_code": null,
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
               },
-              "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
-          "numerical_results": [
-            {
-              "criterion": "S13-004",
-              "result": "FSLR physical volume is a frozen guidance-anchor assumption, not a price-solved deployment path.",
-              "scope": "Partial evidence for this criterion only"
-            }
-          ],
-          "scientific_acceptance": "not-conferred-by-this-criterion-review",
+          "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
+          "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Deployment-to-cash economics and a defensible price inversion are not identified."
+            "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+            "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+            "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+            "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+            "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+            "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
           ],
-          "next_action": "State the eligible pure-play deployment map and inversion assumptions without treating frozen sales as market expectations.",
+          "next_action": "Complete physical continuation/cohort economics and certified full-domain inversion, accepted producer/source admission and complete future native/member Stage7 inputs. Preserve real2023 EPA source reconstruction and read-only API/UI/export integration; obtain missing issuer economics.",
           "blockers": [],
           "stage": 13,
           "check_type": "judgement",
@@ -154002,7 +154144,10 @@
           "functions": [
             "server/calculation/companyConditionalCases.ts:calculateCcsOperatingChannel",
             "server/calculation/companyCashflowBridge.ts:calculateFplCashBridge",
-            "server/calculation/companyConditionalCases.ts:calculateFplSolarCohort"
+            "server/calculation/companyConditionalCases.ts:calculateFplSolarCohort",
+            "calculateCleanManufacturing",
+            "freezeManufacturingDomain",
+            "invertManufacturingDomain"
           ],
           "behaviorAndInputs": [
             {
@@ -154012,30 +154157,98 @@
             }
           ],
           "formulas": [
-            "Clean-technology pure plays: implied deployment growth (solar, wind, EVs, batteries)."
+            "revenue=shipped units×unit price/1e6; operating profit=revenue−cash variable/fixed costs−depreciation; existing accrual/FCFE bridge reused",
+            "native emissions=activity×compatible intensity×ownership once; no scope/gas mixing or global expansion",
+            "source intensity=reported unit nativeCO2 / same-period net generation; derived, not independent observation"
           ],
           "commandsAndDates": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z"
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
+              "exit_code": 0,
+              "counts": {
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-004)",
-              "executed_at": "2026-11-10T10:45:19.045Z"
-            }
-          ],
-          "countsLogsAndResults": [
-            {
-              "criterion": "S13-004",
-              "result": "FSLR physical volume is a frozen guidance-anchor assumption, not a price-solved deployment path.",
-              "retained_named_checks": [
-                "CCS operating throughput and monetary derivatives reconcile without fabricated pricing"
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "retained_logs": [
-                "generated-artifacts/workplan-completion/20261110T083052610508Z.log"
-              ]
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
+          "countsLogsAndResults": {
+            "command": [
+              "bash",
+              "-c",
+              "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+            ],
+            "executed_at": "2026-11-12T18:02:10.602156+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 535.172,
+            "counts": {
+              "tests": 1317,
+              "pass": 1316,
+              "fail": 0,
+              "skipped": 1
+            },
+            "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+            "suite_counts": {
+              "typescript": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "python": {
+                "tests": 264,
+                "pass": 264,
+                "fail": 0,
+                "skipped": 0
+              }
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          },
           "thresholds": [
             {
               "source": "unchanged canonical criterion",
@@ -154165,7 +154378,150 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "current_clean_covered_evidence": {
+            "recorded_at": "2026-11-12T18:11:21.437690+00:00",
+            "scope": "S13-004/012/017/018/020 — unfinished engineering, no issuer/science acceptance",
+            "files": {
+              "server/calculation/cleanManufacturingMap.ts": "72b2b9b9e1e1e7dd0a0eba32e8cc9fdbf8a3d8fcc29821e552e9948c4c90a317",
+              "server/calculation/coveredPhysicalPaths.ts": "7d2343da4672314854089c290d37b1ff52100f0bcaed44429bbdadcf92f878c0",
+              "script/cleanManufacturingMap.test.ts": "a508ca4b55d8d6b291abeab07fe70063edd1bdef505c30524b430a3ff888434d",
+              "script/coveredPhysicalPaths.test.ts": "2090b5d19cb5051d1f89f9a9b4ad01b57ee4e0084f9f1299c1710a4e21bc461b",
+              "script/completion-ledger.py": "1f9765185fd154bc7fa06914f1ff44d99ca50b37b1be2cf5d150a71f8ca29da9",
+              "server/calculation/cleanCoveredReport.ts": "827b7bc19345a4ff71373038728a14411c287d93362484c89181686332f95141",
+              "shared/cleanCoveredSource.ts": "404e94c3b080040ab6f6a6fc3f8f962f1e1cbcd448147488a9d9b8386bd0336f",
+              "server/producerReserveApi.ts": "1aab979f69b822595db893264c8a8c92bd427ade30c7097097dab4bf7c4f7937",
+              "shared/economicBridgeSchema.ts": "551c2be56b1e927760678d175f38ff3cb0002192410b385896c8ef279ddf7f50",
+              "shared/serverDownloadRegistry.ts": "65529aab723a8ce5f5f1964c3fd4a7089499fd04f1a9da96949230767f2f0e03",
+              "script/validate-clean-covered-private.ts": "bf63edc9ae8a62e5e5bfea2d203d1145bbd1f7b6d17e6618c2b686a1bf870bb8",
+              "client/src/lib/clean-covered-reader.ts": "7ed89bb13635594832546230e214ec6625188b6cebe59f4f701df9e993f6d2d2",
+              "client/src/hooks/use-clean-covered.ts": "f10b1ed23db4ddf036724e8b04a50774122cb0439d8fee61fe5eefa1ba57af74",
+              "client/src/components/clean-covered-panel.tsx": "b7e9e8d8b53eaa3cec4f93fdefcda6266e1e21fac4c5c9002789072d377bb454",
+              "client/src/components/clean-covered-panel.test.ts": "04556b1cb7da91d912d6fc2f25a82ca0f5979aa9ad61914d53f7e37b098e906f",
+              "client/src/pages/climate-valuation.tsx": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
+              "script/component-state-contracts.ts": "0641f1464633c5a1b9b4d8d0cd952b58d873e16f6f1fabb2ccb91f49061a9eba",
+              "script/component-state-census.test.ts": "a6f17d206c9ef2f56da3a1fe2cc7bb50e4dc01e1032e1090435e75df2900e4cf",
+              "script/economic-bridge-ui.test.ts": "dffe64e2b442e56f8f24f2e415ce2e10a99cf0800d6803442ee8e94c82b6de0e",
+              "script/methodology-download.test.ts": "d2414240bd39ab96e8c03a37f4b89e27e2ee2a48763c96da86415c2ce8b1d256",
+              "script/methodology-download-portable.test.ts": "d2d43fcbd1a505d2a3959cde13e0937694811b1279c0cf8aedc829c03f236247",
+              "script/workplan-evidence-run.py": "5579356f3951c4965edc9efd05231a26f73bfe50777a66a9241076a69777bef7",
+              "script/economic-bridge-api.test.ts": "178b7e719dfae9a730cfcefed8625341e12610b1867c4d89bc19e85ecef8acbe",
+              "script/residual-label-scan.ts": "33d343b7f4c0667ad33c21c2574e09f7e719940f6290e5cffdd8bc9c4b5fdeb6",
+              "docs/field_semantics_census.json": "25f6ec5085ff65df031b3dfe509db73d55453ad5e1cb5848f5dc86e3db1f416d",
+              "docs/System_Output_Register.md": "d6a0588e8555c76f027a78e56dd2ca7add9f496b366c3de40d7a6c74590844d7"
+            },
+            "reuse": "calculateCompanyFullCashflowCase/valueCompanyFullCashflowCase; existing issuerOperatingDriverReverse and frozen v4 remain unchanged",
+            "new": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+            "numerics": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh.",
+            "assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
+            "limits": [
+              "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+              "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+              "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+              "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+              "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+              "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
+            ],
+            "failures": [
+              "Initial focused4tests passed but typecheck found Map/Set iteration incompatible with current compiler target. Fixed using Array.from; subsequent typecheck passed.",
+              "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
+              "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
+            ],
+            "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+            "focused": {
+              "date": "2026-11-12",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "tests": 7,
+              "pass": 7,
+              "fail": 0,
+              "skip": 0,
+              "typecheck": "npm run check passed",
+              "timing": "Observed after execution; exact focused start not retained",
+              "logs": {
+                "generated-artifacts/clean-covered/focused.log": "b0f5b914c77ae9b4650e413fb0ac467f7937adcf930ad0ceaf967d70186c72f2",
+                "generated-artifacts/clean-covered/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "generated-artifacts/clean-covered/initial-typecheck-failure.log": "f9be32abb33efea3947c5868f727644039918a845acbe841e529add889ee6d95"
+              }
+            },
+            "coherent_gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "prior_gate_failure": {
+              "receipt": "generated-artifacts/clean-covered/final-coherent.receipt.json",
+              "result": "1317TS:1312pass/4fail/1optionalPGskip; Python/private/build not reached",
+              "correction": "Regenerated actual field/output consumer censuses; exact two physical-unavailable label exceptions, not a whitelist or threshold relaxation"
+            },
+            "development_readback": {
+              "time": "2026-11-12T17:55:23.482Z",
+              "route": "/api/cv/clean-covered",
+              "rows": 1043,
+              "literalChecks": 4,
+              "identity": "1d0456aff704485878b27cd6bea584fb7e8c92c15b9861164a98b561f832dbb2",
+              "scope": "Actual development HTTP/XLSX values and identity; not production or scientific acceptance"
+            }
+          },
+          "files_changed": [
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
+          ]
         },
         {
           "id": "S13-005",
@@ -157510,73 +157866,99 @@
           ],
           "evidence_caveat": "S13-012: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Mapped Tier1 segment scenarios/four Stage7 metrics and a justified optional global expansion model are not implemented.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
           ],
-          "behaviour_delivered_this_run": "Applied the binding Tier1 amendment: unavailable is valid where no defensible mapping exists.",
-          "inputs_versions_assumptions": [
-            "Declared mapping/expansion/identification references; no mapping => unavailable, no numerical D13 thresholds invented."
-          ],
+          "behaviour_delivered_this_run": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+          "inputs_versions_assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
           "executions": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z",
-              "log": "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
-              "log_sha256": "5b17b9c48aa4ea1db9a155164e3929b5f61f344ccdd900e946147fb9c727f41b",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
               "exit_code": 0,
-              "check_type": "numerical",
-              "check_scope": "Previously executed named criterion-relevant engineering checks ONLY; full-suite receipt retained, NOT rerun by this review.",
-              "relevant_tests": [
-                {
-                  "name": "robustness does not manufacture identification or a global scenario",
-                  "passing_log_line": 1556
-                }
-              ],
-              "evidence_scope": "Synthetic numerical/contract efficacy where the criterion requests it; not actual issuer calibration.",
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
-              }
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-012)",
-              "executed_at": "2026-11-10T10:45:19.045Z",
-              "check_type": "numerical",
-              "check_scope": "Current source/test/retained-artifact inspection only; no model, study, collector or regression-suite execution.",
-              "artifacts": [
-                {
-                  "path": "docs/Developer_Workplan_Amendments.md",
-                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
-                }
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "log": [],
-              "exit_code": null,
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
               },
-              "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
-          "numerical_results": [
-            {
-              "criterion": "S13-012",
-              "result": "Helper returns Tier1 unavailable without mapping; no global physical range is manufactured.",
-              "scope": "Partial evidence for this criterion only"
-            }
-          ],
-          "scientific_acceptance": "not-conferred-by-this-criterion-review",
+          "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
+          "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Mapped Tier1 segment scenarios/four Stage7 metrics and a justified optional global expansion model are not implemented."
+            "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+            "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+            "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+            "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+            "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+            "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
           ],
-          "next_action": "Build only defensible covered scenarios; expand globally only with a separate reviewed coverage model.",
+          "next_action": "Complete physical continuation/cohort economics and certified full-domain inversion, accepted producer/source admission and complete future native/member Stage7 inputs. Preserve real2023 EPA source reconstruction and read-only API/UI/export integration; obtain missing issuer economics.",
           "blockers": [],
           "stage": 13,
           "check_type": "numerical",
@@ -157634,7 +158016,8 @@
             "atomic:S13-012"
           ],
           "functions": [
-            "server/calculation/researchCorrections.ts:valuationScenarioEligibility"
+            "server/calculation/researchCorrections.ts:valuationScenarioEligibility",
+            "calculateCoveredPhysicalPaths"
           ],
           "behaviorAndInputs": [
             {
@@ -157644,30 +158027,98 @@
             }
           ],
           "formulas": [
-            "Tier 1, always produced. For each declared assumption set, convert implied activity paths into emissions (activity × intensity, never growth × 100). Aggregate the covered universe, expand to global with an explicit sector and region model and alternative coverage assumptions, and run each pathway through the Stage 7 ensemble. Report the range of the four measures across assumption sets."
+            "revenue=shipped units×unit price/1e6; operating profit=revenue−cash variable/fixed costs−depreciation; existing accrual/FCFE bridge reused",
+            "native emissions=activity×compatible intensity×ownership once; no scope/gas mixing or global expansion",
+            "source intensity=reported unit nativeCO2 / same-period net generation; derived, not independent observation"
           ],
           "commandsAndDates": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z"
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
+              "exit_code": 0,
+              "counts": {
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-012)",
-              "executed_at": "2026-11-10T10:45:19.045Z"
-            }
-          ],
-          "countsLogsAndResults": [
-            {
-              "criterion": "S13-012",
-              "result": "Helper returns Tier1 unavailable without mapping; no global physical range is manufactured.",
-              "retained_named_checks": [
-                "robustness does not manufacture identification or a global scenario"
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "retained_logs": [
-                "generated-artifacts/workplan-completion/20261110T083052610508Z.log"
-              ]
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
+          "countsLogsAndResults": {
+            "command": [
+              "bash",
+              "-c",
+              "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+            ],
+            "executed_at": "2026-11-12T18:02:10.602156+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 535.172,
+            "counts": {
+              "tests": 1317,
+              "pass": 1316,
+              "fail": 0,
+              "skipped": 1
+            },
+            "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+            "suite_counts": {
+              "typescript": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "python": {
+                "tests": 264,
+                "pass": 264,
+                "fail": 0,
+                "skipped": 0
+              }
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          },
           "thresholds": [
             {
               "source": "unchanged canonical criterion",
@@ -157778,7 +158229,150 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "current_clean_covered_evidence": {
+            "recorded_at": "2026-11-12T18:11:21.437690+00:00",
+            "scope": "S13-004/012/017/018/020 — unfinished engineering, no issuer/science acceptance",
+            "files": {
+              "server/calculation/cleanManufacturingMap.ts": "72b2b9b9e1e1e7dd0a0eba32e8cc9fdbf8a3d8fcc29821e552e9948c4c90a317",
+              "server/calculation/coveredPhysicalPaths.ts": "7d2343da4672314854089c290d37b1ff52100f0bcaed44429bbdadcf92f878c0",
+              "script/cleanManufacturingMap.test.ts": "a508ca4b55d8d6b291abeab07fe70063edd1bdef505c30524b430a3ff888434d",
+              "script/coveredPhysicalPaths.test.ts": "2090b5d19cb5051d1f89f9a9b4ad01b57ee4e0084f9f1299c1710a4e21bc461b",
+              "script/completion-ledger.py": "1f9765185fd154bc7fa06914f1ff44d99ca50b37b1be2cf5d150a71f8ca29da9",
+              "server/calculation/cleanCoveredReport.ts": "827b7bc19345a4ff71373038728a14411c287d93362484c89181686332f95141",
+              "shared/cleanCoveredSource.ts": "404e94c3b080040ab6f6a6fc3f8f962f1e1cbcd448147488a9d9b8386bd0336f",
+              "server/producerReserveApi.ts": "1aab979f69b822595db893264c8a8c92bd427ade30c7097097dab4bf7c4f7937",
+              "shared/economicBridgeSchema.ts": "551c2be56b1e927760678d175f38ff3cb0002192410b385896c8ef279ddf7f50",
+              "shared/serverDownloadRegistry.ts": "65529aab723a8ce5f5f1964c3fd4a7089499fd04f1a9da96949230767f2f0e03",
+              "script/validate-clean-covered-private.ts": "bf63edc9ae8a62e5e5bfea2d203d1145bbd1f7b6d17e6618c2b686a1bf870bb8",
+              "client/src/lib/clean-covered-reader.ts": "7ed89bb13635594832546230e214ec6625188b6cebe59f4f701df9e993f6d2d2",
+              "client/src/hooks/use-clean-covered.ts": "f10b1ed23db4ddf036724e8b04a50774122cb0439d8fee61fe5eefa1ba57af74",
+              "client/src/components/clean-covered-panel.tsx": "b7e9e8d8b53eaa3cec4f93fdefcda6266e1e21fac4c5c9002789072d377bb454",
+              "client/src/components/clean-covered-panel.test.ts": "04556b1cb7da91d912d6fc2f25a82ca0f5979aa9ad61914d53f7e37b098e906f",
+              "client/src/pages/climate-valuation.tsx": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
+              "script/component-state-contracts.ts": "0641f1464633c5a1b9b4d8d0cd952b58d873e16f6f1fabb2ccb91f49061a9eba",
+              "script/component-state-census.test.ts": "a6f17d206c9ef2f56da3a1fe2cc7bb50e4dc01e1032e1090435e75df2900e4cf",
+              "script/economic-bridge-ui.test.ts": "dffe64e2b442e56f8f24f2e415ce2e10a99cf0800d6803442ee8e94c82b6de0e",
+              "script/methodology-download.test.ts": "d2414240bd39ab96e8c03a37f4b89e27e2ee2a48763c96da86415c2ce8b1d256",
+              "script/methodology-download-portable.test.ts": "d2d43fcbd1a505d2a3959cde13e0937694811b1279c0cf8aedc829c03f236247",
+              "script/workplan-evidence-run.py": "5579356f3951c4965edc9efd05231a26f73bfe50777a66a9241076a69777bef7",
+              "script/economic-bridge-api.test.ts": "178b7e719dfae9a730cfcefed8625341e12610b1867c4d89bc19e85ecef8acbe",
+              "script/residual-label-scan.ts": "33d343b7f4c0667ad33c21c2574e09f7e719940f6290e5cffdd8bc9c4b5fdeb6",
+              "docs/field_semantics_census.json": "25f6ec5085ff65df031b3dfe509db73d55453ad5e1cb5848f5dc86e3db1f416d",
+              "docs/System_Output_Register.md": "d6a0588e8555c76f027a78e56dd2ca7add9f496b366c3de40d7a6c74590844d7"
+            },
+            "reuse": "calculateCompanyFullCashflowCase/valueCompanyFullCashflowCase; existing issuerOperatingDriverReverse and frozen v4 remain unchanged",
+            "new": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+            "numerics": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh.",
+            "assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
+            "limits": [
+              "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+              "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+              "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+              "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+              "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+              "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
+            ],
+            "failures": [
+              "Initial focused4tests passed but typecheck found Map/Set iteration incompatible with current compiler target. Fixed using Array.from; subsequent typecheck passed.",
+              "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
+              "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
+            ],
+            "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+            "focused": {
+              "date": "2026-11-12",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "tests": 7,
+              "pass": 7,
+              "fail": 0,
+              "skip": 0,
+              "typecheck": "npm run check passed",
+              "timing": "Observed after execution; exact focused start not retained",
+              "logs": {
+                "generated-artifacts/clean-covered/focused.log": "b0f5b914c77ae9b4650e413fb0ac467f7937adcf930ad0ceaf967d70186c72f2",
+                "generated-artifacts/clean-covered/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "generated-artifacts/clean-covered/initial-typecheck-failure.log": "f9be32abb33efea3947c5868f727644039918a845acbe841e529add889ee6d95"
+              }
+            },
+            "coherent_gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "prior_gate_failure": {
+              "receipt": "generated-artifacts/clean-covered/final-coherent.receipt.json",
+              "result": "1317TS:1312pass/4fail/1optionalPGskip; Python/private/build not reached",
+              "correction": "Regenerated actual field/output consumer censuses; exact two physical-unavailable label exceptions, not a whitelist or threshold relaxation"
+            },
+            "development_readback": {
+              "time": "2026-11-12T17:55:23.482Z",
+              "route": "/api/cv/clean-covered",
+              "rows": 1043,
+              "literalChecks": 4,
+              "identity": "1d0456aff704485878b27cd6bea584fb7e8c92c15b9861164a98b561f832dbb2",
+              "scope": "Actual development HTTP/XLSX values and identity; not production or scientific acceptance"
+            }
+          },
+          "files_changed": [
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
+          ]
         },
         {
           "id": "S13-013",
@@ -158926,73 +159520,99 @@
           ],
           "evidence_caveat": "S13-017: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: No complete declared Tier1 scenario/assumption manifest and all-set range report.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
           ],
-          "behaviour_delivered_this_run": "Checked full declared assumption coverage for every actual Tier1 scenario.",
-          "inputs_versions_assumptions": [
-            "Declared mapping/expansion/identification references; no mapping => unavailable, no numerical D13 thresholds invented."
-          ],
+          "behaviour_delivered_this_run": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+          "inputs_versions_assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
           "executions": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z",
-              "log": "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
-              "log_sha256": "5b17b9c48aa4ea1db9a155164e3929b5f61f344ccdd900e946147fb9c727f41b",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
               "exit_code": 0,
-              "check_type": "exact",
-              "check_scope": "Previously executed named criterion-relevant engineering checks ONLY; full-suite receipt retained, NOT rerun by this review.",
-              "relevant_tests": [
-                {
-                  "name": "robustness does not manufacture identification or a global scenario",
-                  "passing_log_line": 1556
-                }
-              ],
-              "evidence_scope": "Synthetic numerical/contract efficacy where the criterion requests it; not actual issuer calibration.",
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
-              }
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-017)",
-              "executed_at": "2026-11-10T10:45:19.045Z",
-              "check_type": "exact",
-              "check_scope": "Current source/test/retained-artifact inspection only; no model, study, collector or regression-suite execution.",
-              "artifacts": [
-                {
-                  "path": "docs/Developer_Workplan_Amendments.md",
-                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
-                }
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "log": [],
-              "exit_code": null,
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
               },
-              "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
-          "numerical_results": [
-            {
-              "criterion": "S13-017",
-              "result": "FSLR frozen economic assumptions are not themselves a Tier1 valuation-to-emissions scenario set.",
-              "scope": "Partial evidence for this criterion only"
-            }
-          ],
-          "scientific_acceptance": "not-conferred-by-this-criterion-review",
+          "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
+          "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No complete declared Tier1 scenario/assumption manifest and all-set range report."
+            "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+            "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+            "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+            "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+            "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+            "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
           ],
-          "next_action": "Build that manifest/range report for actual mapped Tier1 scenarios.",
+          "next_action": "Complete physical continuation/cohort economics and certified full-domain inversion, accepted producer/source admission and complete future native/member Stage7 inputs. Preserve real2023 EPA source reconstruction and read-only API/UI/export integration; obtain missing issuer economics.",
           "blockers": [],
           "stage": 13,
           "check_type": "exact",
@@ -159050,7 +159670,8 @@
             "atomic:S13-017"
           ],
           "functions": [
-            "server/calculation/researchCorrections.ts:valuationScenarioEligibility"
+            "server/calculation/researchCorrections.ts:valuationScenarioEligibility",
+            "calculateCoveredPhysicalPaths"
           ],
           "behaviorAndInputs": [
             {
@@ -159060,30 +159681,98 @@
             }
           ],
           "formulas": [
-            "Every Tier 1 scenario lists its full assumption set, and the reported range covers all declared sets."
+            "revenue=shipped units×unit price/1e6; operating profit=revenue−cash variable/fixed costs−depreciation; existing accrual/FCFE bridge reused",
+            "native emissions=activity×compatible intensity×ownership once; no scope/gas mixing or global expansion",
+            "source intensity=reported unit nativeCO2 / same-period net generation; derived, not independent observation"
           ],
           "commandsAndDates": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z"
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
+              "exit_code": 0,
+              "counts": {
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-017)",
-              "executed_at": "2026-11-10T10:45:19.045Z"
-            }
-          ],
-          "countsLogsAndResults": [
-            {
-              "criterion": "S13-017",
-              "result": "FSLR frozen economic assumptions are not themselves a Tier1 valuation-to-emissions scenario set.",
-              "retained_named_checks": [
-                "robustness does not manufacture identification or a global scenario"
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "retained_logs": [
-                "generated-artifacts/workplan-completion/20261110T083052610508Z.log"
-              ]
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
+          "countsLogsAndResults": {
+            "command": [
+              "bash",
+              "-c",
+              "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+            ],
+            "executed_at": "2026-11-12T18:02:10.602156+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 535.172,
+            "counts": {
+              "tests": 1317,
+              "pass": 1316,
+              "fail": 0,
+              "skipped": 1
+            },
+            "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+            "suite_counts": {
+              "typescript": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "python": {
+                "tests": 264,
+                "pass": 264,
+                "fail": 0,
+                "skipped": 0
+              }
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          },
           "thresholds": [
             {
               "source": "unchanged canonical criterion",
@@ -159194,7 +159883,150 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "current_clean_covered_evidence": {
+            "recorded_at": "2026-11-12T18:11:21.437690+00:00",
+            "scope": "S13-004/012/017/018/020 — unfinished engineering, no issuer/science acceptance",
+            "files": {
+              "server/calculation/cleanManufacturingMap.ts": "72b2b9b9e1e1e7dd0a0eba32e8cc9fdbf8a3d8fcc29821e552e9948c4c90a317",
+              "server/calculation/coveredPhysicalPaths.ts": "7d2343da4672314854089c290d37b1ff52100f0bcaed44429bbdadcf92f878c0",
+              "script/cleanManufacturingMap.test.ts": "a508ca4b55d8d6b291abeab07fe70063edd1bdef505c30524b430a3ff888434d",
+              "script/coveredPhysicalPaths.test.ts": "2090b5d19cb5051d1f89f9a9b4ad01b57ee4e0084f9f1299c1710a4e21bc461b",
+              "script/completion-ledger.py": "1f9765185fd154bc7fa06914f1ff44d99ca50b37b1be2cf5d150a71f8ca29da9",
+              "server/calculation/cleanCoveredReport.ts": "827b7bc19345a4ff71373038728a14411c287d93362484c89181686332f95141",
+              "shared/cleanCoveredSource.ts": "404e94c3b080040ab6f6a6fc3f8f962f1e1cbcd448147488a9d9b8386bd0336f",
+              "server/producerReserveApi.ts": "1aab979f69b822595db893264c8a8c92bd427ade30c7097097dab4bf7c4f7937",
+              "shared/economicBridgeSchema.ts": "551c2be56b1e927760678d175f38ff3cb0002192410b385896c8ef279ddf7f50",
+              "shared/serverDownloadRegistry.ts": "65529aab723a8ce5f5f1964c3fd4a7089499fd04f1a9da96949230767f2f0e03",
+              "script/validate-clean-covered-private.ts": "bf63edc9ae8a62e5e5bfea2d203d1145bbd1f7b6d17e6618c2b686a1bf870bb8",
+              "client/src/lib/clean-covered-reader.ts": "7ed89bb13635594832546230e214ec6625188b6cebe59f4f701df9e993f6d2d2",
+              "client/src/hooks/use-clean-covered.ts": "f10b1ed23db4ddf036724e8b04a50774122cb0439d8fee61fe5eefa1ba57af74",
+              "client/src/components/clean-covered-panel.tsx": "b7e9e8d8b53eaa3cec4f93fdefcda6266e1e21fac4c5c9002789072d377bb454",
+              "client/src/components/clean-covered-panel.test.ts": "04556b1cb7da91d912d6fc2f25a82ca0f5979aa9ad61914d53f7e37b098e906f",
+              "client/src/pages/climate-valuation.tsx": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
+              "script/component-state-contracts.ts": "0641f1464633c5a1b9b4d8d0cd952b58d873e16f6f1fabb2ccb91f49061a9eba",
+              "script/component-state-census.test.ts": "a6f17d206c9ef2f56da3a1fe2cc7bb50e4dc01e1032e1090435e75df2900e4cf",
+              "script/economic-bridge-ui.test.ts": "dffe64e2b442e56f8f24f2e415ce2e10a99cf0800d6803442ee8e94c82b6de0e",
+              "script/methodology-download.test.ts": "d2414240bd39ab96e8c03a37f4b89e27e2ee2a48763c96da86415c2ce8b1d256",
+              "script/methodology-download-portable.test.ts": "d2d43fcbd1a505d2a3959cde13e0937694811b1279c0cf8aedc829c03f236247",
+              "script/workplan-evidence-run.py": "5579356f3951c4965edc9efd05231a26f73bfe50777a66a9241076a69777bef7",
+              "script/economic-bridge-api.test.ts": "178b7e719dfae9a730cfcefed8625341e12610b1867c4d89bc19e85ecef8acbe",
+              "script/residual-label-scan.ts": "33d343b7f4c0667ad33c21c2574e09f7e719940f6290e5cffdd8bc9c4b5fdeb6",
+              "docs/field_semantics_census.json": "25f6ec5085ff65df031b3dfe509db73d55453ad5e1cb5848f5dc86e3db1f416d",
+              "docs/System_Output_Register.md": "d6a0588e8555c76f027a78e56dd2ca7add9f496b366c3de40d7a6c74590844d7"
+            },
+            "reuse": "calculateCompanyFullCashflowCase/valueCompanyFullCashflowCase; existing issuerOperatingDriverReverse and frozen v4 remain unchanged",
+            "new": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+            "numerics": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh.",
+            "assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
+            "limits": [
+              "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+              "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+              "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+              "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+              "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+              "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
+            ],
+            "failures": [
+              "Initial focused4tests passed but typecheck found Map/Set iteration incompatible with current compiler target. Fixed using Array.from; subsequent typecheck passed.",
+              "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
+              "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
+            ],
+            "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+            "focused": {
+              "date": "2026-11-12",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "tests": 7,
+              "pass": 7,
+              "fail": 0,
+              "skip": 0,
+              "typecheck": "npm run check passed",
+              "timing": "Observed after execution; exact focused start not retained",
+              "logs": {
+                "generated-artifacts/clean-covered/focused.log": "b0f5b914c77ae9b4650e413fb0ac467f7937adcf930ad0ceaf967d70186c72f2",
+                "generated-artifacts/clean-covered/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "generated-artifacts/clean-covered/initial-typecheck-failure.log": "f9be32abb33efea3947c5868f727644039918a845acbe841e529add889ee6d95"
+              }
+            },
+            "coherent_gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "prior_gate_failure": {
+              "receipt": "generated-artifacts/clean-covered/final-coherent.receipt.json",
+              "result": "1317TS:1312pass/4fail/1optionalPGskip; Python/private/build not reached",
+              "correction": "Regenerated actual field/output consumer censuses; exact two physical-unavailable label exceptions, not a whitelist or threshold relaxation"
+            },
+            "development_readback": {
+              "time": "2026-11-12T17:55:23.482Z",
+              "route": "/api/cv/clean-covered",
+              "rows": 1043,
+              "literalChecks": 4,
+              "identity": "1d0456aff704485878b27cd6bea584fb7e8c92c15b9861164a98b561f832dbb2",
+              "scope": "Actual development HTTP/XLSX values and identity; not production or scientific acceptance"
+            }
+          },
+          "files_changed": [
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
+          ]
         },
         {
           "id": "S13-018",
@@ -159210,73 +160042,99 @@
           ],
           "evidence_caveat": "S13-018: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: Retained Tier1-specific lineage test from valuation through physical activity/intensity is absent.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
           ],
-          "behaviour_delivered_this_run": "Checked the required Tier1 emissions lineage rather than substituting company operating algebra.",
-          "inputs_versions_assumptions": [
-            "Declared mapping/expansion/identification references; no mapping => unavailable, no numerical D13 thresholds invented."
-          ],
+          "behaviour_delivered_this_run": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+          "inputs_versions_assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
           "executions": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z",
-              "log": "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
-              "log_sha256": "5b17b9c48aa4ea1db9a155164e3929b5f61f344ccdd900e946147fb9c727f41b",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
               "exit_code": 0,
-              "check_type": "exact",
-              "check_scope": "Previously executed named criterion-relevant engineering checks ONLY; full-suite receipt retained, NOT rerun by this review.",
-              "relevant_tests": [
-                {
-                  "name": "robustness does not manufacture identification or a global scenario",
-                  "passing_log_line": 1556
-                }
-              ],
-              "evidence_scope": "Synthetic numerical/contract efficacy where the criterion requests it; not actual issuer calibration.",
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
-              }
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-018)",
-              "executed_at": "2026-11-10T10:45:19.045Z",
-              "check_type": "exact",
-              "check_scope": "Current source/test/retained-artifact inspection only; no model, study, collector or regression-suite execution.",
-              "artifacts": [
-                {
-                  "path": "docs/Developer_Workplan_Amendments.md",
-                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
-                }
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "log": [],
-              "exit_code": null,
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
               },
-              "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
-          "numerical_results": [
-            {
-              "criterion": "S13-018",
-              "result": "Company projection has activity×intensity code, but no actual Tier1 price→activity→emissions path is claimed.",
-              "scope": "Partial evidence for this criterion only"
-            }
-          ],
-          "scientific_acceptance": "not-conferred-by-this-criterion-review",
+          "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
+          "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Retained Tier1-specific lineage test from valuation through physical activity/intensity is absent."
+            "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+            "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+            "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+            "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+            "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+            "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
           ],
-          "next_action": "Add/retain that exact Tier1 lineage fixture when its mapping exists; never use growth×100.",
+          "next_action": "Complete physical continuation/cohort economics and certified full-domain inversion, accepted producer/source admission and complete future native/member Stage7 inputs. Preserve real2023 EPA source reconstruction and read-only API/UI/export integration; obtain missing issuer economics.",
           "blockers": [],
           "stage": 13,
           "check_type": "exact",
@@ -159334,7 +160192,8 @@
             "atomic:S13-018"
           ],
           "functions": [
-            "server/calculation/researchCorrections.ts:valuationScenarioEligibility"
+            "server/calculation/researchCorrections.ts:valuationScenarioEligibility",
+            "calculateCoveredPhysicalPaths"
           ],
           "behaviorAndInputs": [
             {
@@ -159344,30 +160203,98 @@
             }
           ],
           "formulas": [
-            "A lineage test confirms emissions come through activity × intensity."
+            "revenue=shipped units×unit price/1e6; operating profit=revenue−cash variable/fixed costs−depreciation; existing accrual/FCFE bridge reused",
+            "native emissions=activity×compatible intensity×ownership once; no scope/gas mixing or global expansion",
+            "source intensity=reported unit nativeCO2 / same-period net generation; derived, not independent observation"
           ],
           "commandsAndDates": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z"
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
+              "exit_code": 0,
+              "counts": {
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-018)",
-              "executed_at": "2026-11-10T10:45:19.045Z"
-            }
-          ],
-          "countsLogsAndResults": [
-            {
-              "criterion": "S13-018",
-              "result": "Company projection has activity×intensity code, but no actual Tier1 price→activity→emissions path is claimed.",
-              "retained_named_checks": [
-                "robustness does not manufacture identification or a global scenario"
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "retained_logs": [
-                "generated-artifacts/workplan-completion/20261110T083052610508Z.log"
-              ]
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
+          "countsLogsAndResults": {
+            "command": [
+              "bash",
+              "-c",
+              "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+            ],
+            "executed_at": "2026-11-12T18:02:10.602156+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 535.172,
+            "counts": {
+              "tests": 1317,
+              "pass": 1316,
+              "fail": 0,
+              "skipped": 1
+            },
+            "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+            "suite_counts": {
+              "typescript": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "python": {
+                "tests": 264,
+                "pass": 264,
+                "fail": 0,
+                "skipped": 0
+              }
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          },
           "thresholds": [
             {
               "source": "unchanged canonical criterion",
@@ -159478,7 +160405,150 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "current_clean_covered_evidence": {
+            "recorded_at": "2026-11-12T18:11:21.437690+00:00",
+            "scope": "S13-004/012/017/018/020 — unfinished engineering, no issuer/science acceptance",
+            "files": {
+              "server/calculation/cleanManufacturingMap.ts": "72b2b9b9e1e1e7dd0a0eba32e8cc9fdbf8a3d8fcc29821e552e9948c4c90a317",
+              "server/calculation/coveredPhysicalPaths.ts": "7d2343da4672314854089c290d37b1ff52100f0bcaed44429bbdadcf92f878c0",
+              "script/cleanManufacturingMap.test.ts": "a508ca4b55d8d6b291abeab07fe70063edd1bdef505c30524b430a3ff888434d",
+              "script/coveredPhysicalPaths.test.ts": "2090b5d19cb5051d1f89f9a9b4ad01b57ee4e0084f9f1299c1710a4e21bc461b",
+              "script/completion-ledger.py": "1f9765185fd154bc7fa06914f1ff44d99ca50b37b1be2cf5d150a71f8ca29da9",
+              "server/calculation/cleanCoveredReport.ts": "827b7bc19345a4ff71373038728a14411c287d93362484c89181686332f95141",
+              "shared/cleanCoveredSource.ts": "404e94c3b080040ab6f6a6fc3f8f962f1e1cbcd448147488a9d9b8386bd0336f",
+              "server/producerReserveApi.ts": "1aab979f69b822595db893264c8a8c92bd427ade30c7097097dab4bf7c4f7937",
+              "shared/economicBridgeSchema.ts": "551c2be56b1e927760678d175f38ff3cb0002192410b385896c8ef279ddf7f50",
+              "shared/serverDownloadRegistry.ts": "65529aab723a8ce5f5f1964c3fd4a7089499fd04f1a9da96949230767f2f0e03",
+              "script/validate-clean-covered-private.ts": "bf63edc9ae8a62e5e5bfea2d203d1145bbd1f7b6d17e6618c2b686a1bf870bb8",
+              "client/src/lib/clean-covered-reader.ts": "7ed89bb13635594832546230e214ec6625188b6cebe59f4f701df9e993f6d2d2",
+              "client/src/hooks/use-clean-covered.ts": "f10b1ed23db4ddf036724e8b04a50774122cb0439d8fee61fe5eefa1ba57af74",
+              "client/src/components/clean-covered-panel.tsx": "b7e9e8d8b53eaa3cec4f93fdefcda6266e1e21fac4c5c9002789072d377bb454",
+              "client/src/components/clean-covered-panel.test.ts": "04556b1cb7da91d912d6fc2f25a82ca0f5979aa9ad61914d53f7e37b098e906f",
+              "client/src/pages/climate-valuation.tsx": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
+              "script/component-state-contracts.ts": "0641f1464633c5a1b9b4d8d0cd952b58d873e16f6f1fabb2ccb91f49061a9eba",
+              "script/component-state-census.test.ts": "a6f17d206c9ef2f56da3a1fe2cc7bb50e4dc01e1032e1090435e75df2900e4cf",
+              "script/economic-bridge-ui.test.ts": "dffe64e2b442e56f8f24f2e415ce2e10a99cf0800d6803442ee8e94c82b6de0e",
+              "script/methodology-download.test.ts": "d2414240bd39ab96e8c03a37f4b89e27e2ee2a48763c96da86415c2ce8b1d256",
+              "script/methodology-download-portable.test.ts": "d2d43fcbd1a505d2a3959cde13e0937694811b1279c0cf8aedc829c03f236247",
+              "script/workplan-evidence-run.py": "5579356f3951c4965edc9efd05231a26f73bfe50777a66a9241076a69777bef7",
+              "script/economic-bridge-api.test.ts": "178b7e719dfae9a730cfcefed8625341e12610b1867c4d89bc19e85ecef8acbe",
+              "script/residual-label-scan.ts": "33d343b7f4c0667ad33c21c2574e09f7e719940f6290e5cffdd8bc9c4b5fdeb6",
+              "docs/field_semantics_census.json": "25f6ec5085ff65df031b3dfe509db73d55453ad5e1cb5848f5dc86e3db1f416d",
+              "docs/System_Output_Register.md": "d6a0588e8555c76f027a78e56dd2ca7add9f496b366c3de40d7a6c74590844d7"
+            },
+            "reuse": "calculateCompanyFullCashflowCase/valueCompanyFullCashflowCase; existing issuerOperatingDriverReverse and frozen v4 remain unchanged",
+            "new": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+            "numerics": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh.",
+            "assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
+            "limits": [
+              "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+              "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+              "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+              "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+              "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+              "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
+            ],
+            "failures": [
+              "Initial focused4tests passed but typecheck found Map/Set iteration incompatible with current compiler target. Fixed using Array.from; subsequent typecheck passed.",
+              "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
+              "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
+            ],
+            "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+            "focused": {
+              "date": "2026-11-12",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "tests": 7,
+              "pass": 7,
+              "fail": 0,
+              "skip": 0,
+              "typecheck": "npm run check passed",
+              "timing": "Observed after execution; exact focused start not retained",
+              "logs": {
+                "generated-artifacts/clean-covered/focused.log": "b0f5b914c77ae9b4650e413fb0ac467f7937adcf930ad0ceaf967d70186c72f2",
+                "generated-artifacts/clean-covered/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "generated-artifacts/clean-covered/initial-typecheck-failure.log": "f9be32abb33efea3947c5868f727644039918a845acbe841e529add889ee6d95"
+              }
+            },
+            "coherent_gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "prior_gate_failure": {
+              "receipt": "generated-artifacts/clean-covered/final-coherent.receipt.json",
+              "result": "1317TS:1312pass/4fail/1optionalPGskip; Python/private/build not reached",
+              "correction": "Regenerated actual field/output consumer censuses; exact two physical-unavailable label exceptions, not a whitelist or threshold relaxation"
+            },
+            "development_readback": {
+              "time": "2026-11-12T17:55:23.482Z",
+              "route": "/api/cv/clean-covered",
+              "rows": 1043,
+              "literalChecks": 4,
+              "identity": "1d0456aff704485878b27cd6bea584fb7e8c92c15b9861164a98b561f832dbb2",
+              "scope": "Actual development HTTP/XLSX values and identity; not production or scientific acceptance"
+            }
+          },
+          "files_changed": [
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
+          ]
         },
         {
           "id": "S13-019",
@@ -159778,73 +160848,99 @@
           ],
           "evidence_caveat": "S13-020: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: No actual covered/expanded population reconciliation with emissions totals.",
           "files_functions_changed": [
-            "script/reconcile-company-stages-10-13.ts (new atomic review metadata)",
-            "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
-            "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
           ],
-          "behaviour_delivered_this_run": "Checked covered and expanded population accounting separately.",
-          "inputs_versions_assumptions": [
-            "Declared mapping/expansion/identification references; no mapping => unavailable, no numerical D13 thresholds invented."
-          ],
+          "behaviour_delivered_this_run": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+          "inputs_versions_assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
           "executions": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z",
-              "log": "generated-artifacts/workplan-completion/20261110T083052610508Z.log",
-              "log_sha256": "5b17b9c48aa4ea1db9a155164e3929b5f61f344ccdd900e946147fb9c727f41b",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
               "exit_code": 0,
-              "check_type": "numerical",
-              "check_scope": "Previously executed named criterion-relevant engineering checks ONLY; full-suite receipt retained, NOT rerun by this review.",
-              "relevant_tests": [
-                {
-                  "name": "robustness does not manufacture identification or a global scenario",
-                  "passing_log_line": 1556
-                }
-              ],
-              "evidence_scope": "Synthetic numerical/contract efficacy where the criterion requests it; not actual issuer calibration.",
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
-              }
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-020)",
-              "executed_at": "2026-11-10T10:45:19.045Z",
-              "check_type": "numerical",
-              "check_scope": "Current source/test/retained-artifact inspection only; no model, study, collector or regression-suite execution.",
-              "artifacts": [
-                {
-                  "path": "docs/Developer_Workplan_Amendments.md",
-                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
-                }
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "log": [],
-              "exit_code": null,
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
               "counts": {
-                "tests": null,
-                "pass": null,
-                "fail": null,
-                "skipped": null
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
               },
-              "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
-          "numerical_results": [
-            {
-              "criterion": "S13-020",
-              "result": "The helper refuses unreviewed expansion; it does not provide aggregate reconciliation.",
-              "scope": "Partial evidence for this criterion only"
-            }
-          ],
-          "scientific_acceptance": "not-conferred-by-this-criterion-review",
+          "numerical_results": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh. Actual source:1776490MWh,2215360.4693472tCO2; derived1.2470435912091822t/MWh;80%conditional1772288.37547776t.",
+          "scientific_acceptance": "Not established;0/3qualified issuer cases. Actual EPA observation reconstruction is not forecast efficacy. Synthetic cash/inverse tests are engineering only.",
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No actual covered/expanded population reconciliation with emissions totals."
+            "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+            "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+            "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+            "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+            "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+            "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
           ],
-          "next_action": "Retain both population ledgers and reconcile their aggregate accounts.",
+          "next_action": "Complete physical continuation/cohort economics and certified full-domain inversion, accepted producer/source admission and complete future native/member Stage7 inputs. Preserve real2023 EPA source reconstruction and read-only API/UI/export integration; obtain missing issuer economics.",
           "blockers": [],
           "stage": 13,
           "check_type": "numerical",
@@ -159902,7 +160998,8 @@
             "atomic:S13-020"
           ],
           "functions": [
-            "server/calculation/researchCorrections.ts:valuationScenarioEligibility"
+            "server/calculation/researchCorrections.ts:valuationScenarioEligibility",
+            "calculateCoveredPhysicalPaths"
           ],
           "behaviorAndInputs": [
             {
@@ -159912,30 +161009,98 @@
             }
           ],
           "formulas": [
-            "Covered and expanded aggregates reconcile to their populations."
+            "revenue=shipped units×unit price/1e6; operating profit=revenue−cash variable/fixed costs−depreciation; existing accrual/FCFE bridge reused",
+            "native emissions=activity×compatible intensity×ownership once; no scope/gas mixing or global expansion",
+            "source intensity=reported unit nativeCO2 / same-period net generation; derived, not independent observation"
           ],
           "commandsAndDates": [
             {
-              "command": "npm run check && npx tsx --test script/*.test.ts && npm run build",
-              "executed_at": "2026-11-10T08:30:52Z"
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "executed_at": "2026-11-12 (exact start not retained)",
+              "exit_code": 0,
+              "counts": {
+                "tests": 7,
+                "pass": 7,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/clean-covered/focused.log"
             },
             {
-              "command": "npx tsx script/reconcile-company-stages-10-13.ts (read-only atomic evidence inspection: S13-020)",
-              "executed_at": "2026-11-10T10:45:19.045Z"
-            }
-          ],
-          "countsLogsAndResults": [
-            {
-              "criterion": "S13-020",
-              "result": "The helper refuses unreviewed expansion; it does not provide aggregate reconciliation.",
-              "retained_named_checks": [
-                "robustness does not manufacture identification or a global scenario"
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "retained_logs": [
-                "generated-artifacts/workplan-completion/20261110T083052610508Z.log"
-              ]
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
+          "countsLogsAndResults": {
+            "command": [
+              "bash",
+              "-c",
+              "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+            ],
+            "executed_at": "2026-11-12T18:02:10.602156+00:00",
+            "exit_code": 0,
+            "elapsed_seconds": 535.172,
+            "counts": {
+              "tests": 1317,
+              "pass": 1316,
+              "fail": 0,
+              "skipped": 1
+            },
+            "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+            "workspace_revision": null,
+            "worktree_dirty": null,
+            "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+            "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+            "suite_counts": {
+              "typescript": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "python": {
+                "tests": 264,
+                "pass": 264,
+                "fail": 0,
+                "skipped": 0
+              }
+            },
+            "canonical_ledgers_modified": false,
+            "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+          },
           "thresholds": [
             {
               "source": "unchanged canonical criterion",
@@ -160045,7 +161210,150 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
-          }
+          },
+          "current_clean_covered_evidence": {
+            "recorded_at": "2026-11-12T18:11:21.437690+00:00",
+            "scope": "S13-004/012/017/018/020 — unfinished engineering, no issuer/science acceptance",
+            "files": {
+              "server/calculation/cleanManufacturingMap.ts": "72b2b9b9e1e1e7dd0a0eba32e8cc9fdbf8a3d8fcc29821e552e9948c4c90a317",
+              "server/calculation/coveredPhysicalPaths.ts": "7d2343da4672314854089c290d37b1ff52100f0bcaed44429bbdadcf92f878c0",
+              "script/cleanManufacturingMap.test.ts": "a508ca4b55d8d6b291abeab07fe70063edd1bdef505c30524b430a3ff888434d",
+              "script/coveredPhysicalPaths.test.ts": "2090b5d19cb5051d1f89f9a9b4ad01b57ee4e0084f9f1299c1710a4e21bc461b",
+              "script/completion-ledger.py": "1f9765185fd154bc7fa06914f1ff44d99ca50b37b1be2cf5d150a71f8ca29da9",
+              "server/calculation/cleanCoveredReport.ts": "827b7bc19345a4ff71373038728a14411c287d93362484c89181686332f95141",
+              "shared/cleanCoveredSource.ts": "404e94c3b080040ab6f6a6fc3f8f962f1e1cbcd448147488a9d9b8386bd0336f",
+              "server/producerReserveApi.ts": "1aab979f69b822595db893264c8a8c92bd427ade30c7097097dab4bf7c4f7937",
+              "shared/economicBridgeSchema.ts": "551c2be56b1e927760678d175f38ff3cb0002192410b385896c8ef279ddf7f50",
+              "shared/serverDownloadRegistry.ts": "65529aab723a8ce5f5f1964c3fd4a7089499fd04f1a9da96949230767f2f0e03",
+              "script/validate-clean-covered-private.ts": "bf63edc9ae8a62e5e5bfea2d203d1145bbd1f7b6d17e6618c2b686a1bf870bb8",
+              "client/src/lib/clean-covered-reader.ts": "7ed89bb13635594832546230e214ec6625188b6cebe59f4f701df9e993f6d2d2",
+              "client/src/hooks/use-clean-covered.ts": "f10b1ed23db4ddf036724e8b04a50774122cb0439d8fee61fe5eefa1ba57af74",
+              "client/src/components/clean-covered-panel.tsx": "b7e9e8d8b53eaa3cec4f93fdefcda6266e1e21fac4c5c9002789072d377bb454",
+              "client/src/components/clean-covered-panel.test.ts": "04556b1cb7da91d912d6fc2f25a82ca0f5979aa9ad61914d53f7e37b098e906f",
+              "client/src/pages/climate-valuation.tsx": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
+              "script/component-state-contracts.ts": "0641f1464633c5a1b9b4d8d0cd952b58d873e16f6f1fabb2ccb91f49061a9eba",
+              "script/component-state-census.test.ts": "a6f17d206c9ef2f56da3a1fe2cc7bb50e4dc01e1032e1090435e75df2900e4cf",
+              "script/economic-bridge-ui.test.ts": "dffe64e2b442e56f8f24f2e415ce2e10a99cf0800d6803442ee8e94c82b6de0e",
+              "script/methodology-download.test.ts": "d2414240bd39ab96e8c03a37f4b89e27e2ee2a48763c96da86415c2ce8b1d256",
+              "script/methodology-download-portable.test.ts": "d2d43fcbd1a505d2a3959cde13e0937694811b1279c0cf8aedc829c03f236247",
+              "script/workplan-evidence-run.py": "5579356f3951c4965edc9efd05231a26f73bfe50777a66a9241076a69777bef7",
+              "script/economic-bridge-api.test.ts": "178b7e719dfae9a730cfcefed8625341e12610b1867c4d89bc19e85ecef8acbe",
+              "script/residual-label-scan.ts": "33d343b7f4c0667ad33c21c2574e09f7e719940f6290e5cffdd8bc9c4b5fdeb6",
+              "docs/field_semantics_census.json": "25f6ec5085ff65df031b3dfe509db73d55453ad5e1cb5848f5dc86e3db1f416d",
+              "docs/System_Output_Register.md": "d6a0588e8555c76f027a78e56dd2ca7add9f496b366c3de40d7a6c74590844d7"
+            },
+            "reuse": "calculateCompanyFullCashflowCase/valueCompanyFullCashflowCase; existing issuerOperatingDriverReverse and frozen v4 remain unchanged",
+            "new": "Explicit manufacturer shipment/cost/capital map, declared discrete candidate inversion; source/parent-period/unit-bound activity×native-gas intensity×ownership; full declared scenario/cell denominator and covered totals.",
+            "numerics": "Engineering-only100USDm revenue minus40variable/10fixed/10depreciation gives40operating profit and35FCFE after5cash tax/10capex; manufacturing1e9W×1e-7tonnes/W=100tonnes, not avoided emissions. Shared80%/20% ownership reconciles50tonnes from100MWh×0.5t/MWh.",
+            "assumptions": "EPA eGRID2023 Metric Rev2 released2025-06-12, captured by2026-11-12T17:40:36Z; no exact original publication instant/vintage asserted. SHA3dfbbcf2f949d58d5b2dbee3aab8150bd04a0c8ebb730ba1cd37a013bd4450ab. ORIS6101 oneunitBW91/onegenerator1:1776490netMWh and2215360.4693472nativeCO2tonnes. Derived1.2470435912091822t/MWh; conditional80% equity1772288.37547776tonnes, not operational-control inventory. Public primary facts only; rawworkbook private.",
+            "limits": [
+              "Read-only API/UI/JSON/XLSX implemented for the actual2023 source reconstruction; runtime verification recorded separately. No actual manufacturing issuer inversion.",
+              "Generation-owning/cohort businesses and complete physical terminal mapping still need implementation; five-year manufacturer map is not the whole S13-004 requirement.",
+              "Exact declared population/cell ranges implemented; covered/global Stage7 member integration remains unavailable, with four separate measure groups null.",
+              "Parent hash/pointer integrity is not original-source authentication or owner approval; trusted producer admission remains integration work.",
+              "GHGRP facility nativeCO2 exceeds eGRID electricity-unit mass by191.53065280010924tonnes; scope differs, not forced closed. AR4CO2e not nativegas mass. Source rounded rate differs from raw mass/netMWh ratio.",
+              "No materially new NEE/FSLR/XOM economic retrieval this increment; specific economics remain unattempted here, not globally unavailable."
+            ],
+            "failures": [
+              "Initial focused4tests passed but typecheck found Map/Set iteration incompatible with current compiler target. Fixed using Array.from; subsequent typecheck passed.",
+              "Primary-workbook Python attempt found openpyxl unavailable; used existing Node xlsx dependency without installation.",
+              "Integration76tests:73pass/3fail/0skip. Failures were missing3 rendered-census registrations, additive route count9vs12, and exact writer audit blocked by intervening stale-selection guard. Registered actual components, updated explicit additive routes, and moved guard after BlobURL creation with immediate revocation before any stale link. No audit weakening."
+            ],
+            "release": "Local unfinished code only. Last measured runtime remains dc2d702c; documentation17e67cc6 is separate.",
+            "focused": {
+              "date": "2026-11-12",
+              "command": "npx tsx --test script/coveredPhysicalPaths.test.ts script/cleanManufacturingMap.test.ts",
+              "tests": 7,
+              "pass": 7,
+              "fail": 0,
+              "skip": 0,
+              "typecheck": "npm run check passed",
+              "timing": "Observed after execution; exact focused start not retained",
+              "logs": {
+                "generated-artifacts/clean-covered/focused.log": "b0f5b914c77ae9b4650e413fb0ac467f7937adcf930ad0ceaf967d70186c72f2",
+                "generated-artifacts/clean-covered/typecheck.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+                "generated-artifacts/clean-covered/initial-typecheck-failure.log": "f9be32abb33efea3947c5868f727644039918a845acbe841e529add889ee6d95"
+              }
+            },
+            "coherent_gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T18:02:10.602156+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 535.172,
+              "counts": {
+                "tests": 1317,
+                "pass": 1316,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/clean-covered/corrected-coherent.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "042e1d1b81dd3331ef150b6830370f0121e383cb7edb410aa6e9f7c8efc04087",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1317,
+                  "pass": 1316,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "prior_gate_failure": {
+              "receipt": "generated-artifacts/clean-covered/final-coherent.receipt.json",
+              "result": "1317TS:1312pass/4fail/1optionalPGskip; Python/private/build not reached",
+              "correction": "Regenerated actual field/output consumer censuses; exact two physical-unavailable label exceptions, not a whitelist or threshold relaxation"
+            },
+            "development_readback": {
+              "time": "2026-11-12T17:55:23.482Z",
+              "route": "/api/cv/clean-covered",
+              "rows": 1043,
+              "literalChecks": 4,
+              "identity": "1d0456aff704485878b27cd6bea584fb7e8c92c15b9861164a98b561f832dbb2",
+              "scope": "Actual development HTTP/XLSX values and identity; not production or scientific acceptance"
+            }
+          },
+          "files_changed": [
+            "server/calculation/cleanManufacturingMap.ts",
+            "server/calculation/coveredPhysicalPaths.ts",
+            "script/cleanManufacturingMap.test.ts",
+            "script/coveredPhysicalPaths.test.ts",
+            "script/completion-ledger.py",
+            "server/calculation/cleanCoveredReport.ts",
+            "shared/cleanCoveredSource.ts",
+            "server/producerReserveApi.ts",
+            "shared/economicBridgeSchema.ts",
+            "shared/serverDownloadRegistry.ts",
+            "script/validate-clean-covered-private.ts",
+            "client/src/lib/clean-covered-reader.ts",
+            "client/src/hooks/use-clean-covered.ts",
+            "client/src/components/clean-covered-panel.tsx",
+            "client/src/components/clean-covered-panel.test.ts",
+            "client/src/pages/climate-valuation.tsx",
+            "script/component-state-contracts.ts",
+            "script/component-state-census.test.ts",
+            "script/economic-bridge-ui.test.ts",
+            "script/methodology-download.test.ts",
+            "script/methodology-download-portable.test.ts",
+            "script/workplan-evidence-run.py",
+            "script/economic-bridge-api.test.ts",
+            "script/residual-label-scan.ts",
+            "docs/field_semantics_census.json",
+            "docs/System_Output_Register.md"
+          ]
         },
         {
           "id": "S13-021",
@@ -189350,7 +190658,7 @@
     }
   ],
   "restart": {
-    "next_requirement": "Preserve verified live dc2d702c/CI43261776788 and167-file JSON/XLSX identity readback; later docs/local receipts are separate. S13-003 source actual unit cash/recovery/commitments and compatible target; S13-006 assemble exact frozen qualified issuer controls/exposure and execute only admissible actual association. Preserve new engine/HC3/source206USDm evidence, distinguish engineering from science; continue independent original source/corpus requirements.",
+    "next_requirement": "Preserve new clean-manufacturing/covered-path engines and real EPA2023 Wyodak reconstruction/API/UI/JSON/XLSX; verify final gate/release receipts. Complete physical continuation/cohorts/full-domain inverse and source-qualified issuer economics, future native/member coupling, original dated corpus/calibration. No repeat source-case fixtures or old b8d98 restart; scientific acceptance remains unearned.",
     "unfinished_requirement_ids": [
       "S00-004",
       "S00-006",
@@ -189596,13 +190904,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "## Current verified economic-bridge code release — 2026-11-12\n\nImplementation `cbb877324aac9890c18b784fbf4c8817c7e8c3c5` → public/runtime `b8d98f6837e329a800067e42b366d93325859725`; CI `43245418718` validate/promote success; Railway `ce3cd0c1-9887-4f1a-9782-9fdc41b301dd` SUCCESS. Actual exact build-info/health200. **All six new nonpersisting economic API/JSON/XLSX routes executed and read back**, including complete current-output identities, source authentication assessment, literal spreadsheet content and download manifests.\n\n**63 verified /235 partial /2 provisioning-blocked; all300 unchanged.** S13-001/S13-002/S13-005/S12-005 remain partial;0 newly qualified pairs/scientific acceptance. Selected primary-table authentication resolved, not blanket source/owner approval: official SEC200,39facts/38rows/261numeric cells and retained2025-02-19T21:39:37Z acceptance. Separate current identity/UI assessment; original frozen model, source declarations and domain unchanged.\n\n2.9773550346% closed-reserve conditional depletion against disclosed151494m PV10; seven sensitivities3roots/4no-root and six zero accounts. Not whole equity, market-implied decline, FCFE or certified replacement inverse. Location report5operating/1construction/5contextual EIA prices; actualIssuerResult=null/0qualified issuer cash bridges. Real companyProjection expense/WC integration tested synthetically only; Scope2 is not directly taxed.\n\nRetained local coherent full gate **1272TS/1271pass/0fail/1optionalPGskip +255Python pass**, all original and new mandatory private gates/typecheck/build passed. These are local counts, not CI counts. Exact command and receipt/log hashes recorded below. Initial full1263total/1251pass/11fail/1skip retained, Python not reached. Actual ol-in-p warning/client block-markup repair and24SSR component checks retained; no weakened gate. Prior chronology adverse partial remains; Gordon primary. 63/235/2 all300 unchanged; original1000/1001 and fixed29 unchanged; all14 FaIR pins/14 frozen negatives preserved. Optional PostgreSQL skip explicit; separate isolated PostgreSQL does not accept deployed PostgreSQL. No newly qualified calibration/economic pairs or scientific/owner acceptance.\n\nNo production native candidate GET or browser execution. New economic routes explicitly do not persist and were actually executed/read back; do not confuse these with native retention or a qualified issuer cash bridge. No domain request/change; prior non-JSON custom-domain observation remains historical/unresolved, outside service-domain claim.\n\nSubsequent docs/receipt-only source is distinct from independently measured implementation/public code. A later docs-only publication/runtime is recorded separately in a terminal local receipt, never recursively rewritten into this implementation measurement. Prior code b801777/docs567f606/localad8eccd receipts retained. Existing DEV screenshot normal initial viewport only; new panels independently covered by24SSR checks, not visually verified below fold. No workflow restart by this worker.\n\nSafe runtime receipt `generated-artifacts/economic-bridge-integration/verified-release.json` SHA256 `05a77c73f4eee7466fe9683a68b04ac41da114579bbdc25767577bbcaaf816d9`; full log SHA256 `9087c169222ae52bf4bfa12e4e21a2dbf458fa49f9fa60d008ef7d7eca4b6f0c`. Earlier runtime statements below are historical.\n\n## Current verified boundary/counterfactual code release — 2026-11-12\n\nImplementation workspace `d520594d27f1ecd3c939cdc49757cd049866d989` → public/runtime `b801777f4d8f018f510a4e74b24608235ec456cc`. Existing CI `43230014407` validate/promote succeeded; Railway `9bebe7fe-a788-4555-9600-e170257bbeae` SUCCESS. Actual build-info exact SHA and health200; safe catalog200 empty, override/missing-pins400, private missingness/export/prospective-export403, all no-store/no attachment/no producer binding. Served JS contains exact global-intensity counterfactual title/question/claim/labels and native-v3 identifier.\n\n**63 verified finite engineering /235 partial /2 provisioning-blocked; all300 original clauses.** S05-009/S08-003 exact finite clauses only; **scientific/source/owner acceptance unpromoted; 0 newly qualified calibration/economic pairs.**\n\nLocal coherent full gate: **1199 TypeScript total/1198pass/0fail/1optional PostgreSQL skip; 255Python/255pass**, all mandatory private validators including unconditional historical chronology, typecheck/build passed. CI job/step metadata success is separate, not these local counts. All adverse/failed/incomplete receipts retained; separate isolated PostgreSQL evidence never removes the skip or accepts deployed PostgreSQL. All14 FaIR pins/frozen-negative protocols preserved.\n\nS11-041 remains partial/adverse: earliest retained ANY-result candidate precedes rule commit by356568ms; weak mtime, exact executing revision/first-ever result unknown. Later paired ordering does not repair it; Gordon primary, reverse DCF unpromoted. Public source-only chronology and negative-control checks passed; authentic historical assertions retained verbatim in unconditional mandatory private validator. Exported history is not historical Git proof.\n\nNo production native candidate GET, browser execution or numerical calculation/retention run. HTML/JS fetched as bytes only; labels and exact build SHA verified, not live numerical API behavior. Not probed this run; prior custom-domain non-JSON routing observation remains historical/unresolved. No domain/DNS/native GET/config mutation.\n\nThis subsequent documentation/receipt revision is separate from implementation source and observed public/runtime code. A later docs-only sync is not the runtime measured by this receipt; no recursive release-receipt promotion claims. Existing DEV /methodology screenshot rendered normally; initial viewport only, not production model execution. No workflow restart by this recorder.\n\nSafe exact runtime receipt: `generated-artifacts/counterfactual-verified-release.json` SHA256 `31e2889b280876800260a3e35e16fdea88b614bfaf73410f838478a5559c405b`. Local full log SHA256 `81eccb9bdeff8d52753db5308e9adda097720484afbdd31e65ea38386828a4ee`. Older statements below are historical; remaining science/source/issuer/production/owner dependencies are not closed.\n\nVerified native-v3 CODE release d75e183a5be95b4fca5cfb97f083362b41c1516e, CI 43218750710, Railway 50315982-10b4-4edf-b2b8-a969b68f27a7 SUCCESS and actual build-info/health. Native production GET intentionally NOT executed because it retains records; no numerical runtime claim. Parent full gate1188TS/1187pass/0fail/1optionalPGskip +255Python and mandatoryprivate checks passed; separate isolated PostgreSQL success is independent, never subtract the skip. 61verified/237partial/2blocked; four finite engineering criteria only, science unaccepted. Prior incomplete/failed receipts retained. No callback. Continue ALL original0–17/amendments then actualefficacy, PlanOFF. S16-007 original finite engineering VERIFIED: all22 requested contracts implemented; fixed29matrix28closed+1private403, prior9PE/signal preserved. Live registry200, conditional JSON/XLSX200 with564rows/1128literalcells equal, embedded manifest200. Do not reopen closed contracts or add owner/science criteria to this engineering clause. Live Stage10 source/storage503, snapshot not-provisioned, news operator-refresh503, TrackB without exactprotocol400 and privatePOST403 remain honest narrow boundaries; no live retained-persistence/private publication/issuer/science activation claimed. Actual release is recorded in current_release and finite-export-runtime-receipts.json; keep docs/local/code/runtime distinct. FailedCI43186463787 and43189261486 preserved and repaired without private publication/skips/gate weakening. Final1090TS/248Python plus mandatoryprivate/typecheck/build passed; currentCI43191233892 succeeded. NEXT independent originalwork: S04-001 uncertainty CODE now includes frozen1000/block3/seed20261108 joint bootstrap, source/structural/dependence and guarded full9train/6heldout. No actual-data fit/bootstrap/score/promotion: qualify authentic reviewed regional saturation/joint numerical sources before execution; do not invent priors/default offsets/splice releases/retune nine failures or EUsolar pointwin. S12-017 seven new discovery attempts yielded no qualified input; newXOMinterim403 was uninspected, not globally unavailable. Need FSLRcollections/eligiblewatts/BOM/currentlaw, NEEgrossrecipient/LLCpriorities/commissioning/marginalreturns and XOMexecutedCCSfee/novation/billings/opex/funding. Continue source-qualified operating FCFE/valuation and genuinely dated11–15corpus, not componentgrids as wholecases. Other original dependency-ready partials remain in ledger; do not treat these narrow source/auth blocks as halt-all or manufacture warning/old200cohort evidence. Preserve original1000/1001,0eligiblehistories/0of3cases,14FaIRpins,old124/179/416, Gordonprimary and all frozen negativebeta/fleet/EV/storage/issuer decisions. S16-014 was already VERIFIED with existing8-route desktop/mobile/42controlled-state evidence; stale unperformed blocker was archived, not a new acceptance. Do not rerun it or use it as the next incomplete clause without a real changed-code invalidation.",
+    "instruction": "Preserve new clean-manufacturing/covered-path engines and real EPA2023 Wyodak reconstruction/API/UI/JSON/XLSX; verify final gate/release receipts. Complete physical continuation/cohorts/full-domain inverse and source-qualified issuer economics, future native/member coupling, original dated corpus/calibration. No repeat source-case fixtures or old b8d98 restart; scientific acceptance remains unearned.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261112-producer-electricity-b8d98f6",
+    "checkpoint_id": "ckpt-20261112-retirement-association-dc2d702",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-12T15:39:14.822593+00:00",
+    "attempted_at": "2026-11-12T17:06:07.796233+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202

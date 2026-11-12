@@ -7,6 +7,7 @@ import { CompanyConditionalSummary } from "@/components/company-conditional-summ
 import { ProducerReservePanel } from "@/components/producer-reserve-panel";
 import { LocationElectricityPanel } from "@/components/location-electricity-panel";
 import { RetirementAssociationPanel } from "@/components/retirement-association-panel";
+import { CleanCoveredPanel } from "@/components/clean-covered-panel";
 import { useState } from "react";
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
@@ -242,6 +243,7 @@ export default function ClimateValuation() {
         <ProducerReservePanel />
         <LocationElectricityPanel />
         <RetirementAssociationPanel />
+        <CleanCoveredPanel />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <SummaryCard icon={Building2} label="Companies" value={summary?.companiesCount ?? null} isLoading={summaryLoading} />

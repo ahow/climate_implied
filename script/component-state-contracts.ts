@@ -34,6 +34,15 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "clean-covered-panel.tsx": query("One provisional observed source reconstruction; no accepted universe, forecast or market inference.",{
+    absent:"Missing source response is explicitly unavailable, never zero.",
+    partial:"Native CO2 accounting remains separate from null manufacturing/Stage7 results.",
+    pending:"Refetch suppresses stale report and export.",
+    error:"Exact schema/source/export error; no prior result substituted.",
+    selection:"Current read-only producer identity must equal complete JSON/XLSX download; no archive claim.",
+    zero:"Literal reconciliation zeros retained; missing measures remain null.",
+    refusal:"Source, issuer and member prerequisites remain explicit.",
+  }),
   "retirement-association-panel.tsx": query("Null/absent document is unavailable; valid sourced book arithmetic is partial economic evidence, not an issuer valuation.",{
     null:"Actual retirement valuation, market-implied pace and association estimates remain explicitly null; never zero.",
     loading:"Initial/refetch states suppress prior documents and export buttons.",
@@ -328,6 +337,9 @@ export const filePolicies: Record<string, Policy> = {
 /** Finite reviewed additions, keyed by exact file AND actual declaration.
  * A newly introduced sibling is refused until separately reviewed. */
 export const economicBridgeComponentPolicies: Record<string, Policy> = {
+  "clean-covered-panel.tsx#CleanCoveredPanel":filePolicies["clean-covered-panel.tsx"],
+  "clean-covered-panel.tsx#CleanCoveredPanelContent":{...filePolicies["clean-covered-panel.tsx"],inputKind:"supplied-result"},
+  "clean-covered-panel.tsx#CleanCoveredReportView":{...filePolicies["clean-covered-panel.tsx"],inputKind:"supplied-result"},
   "retirement-association-panel.tsx#RetirementAssociationPanel": filePolicies["retirement-association-panel.tsx"],
   "retirement-association-panel.tsx#RetirementAssociationPanelContent": {
     ...filePolicies["retirement-association-panel.tsx"],inputKind:"supplied-result",
@@ -380,6 +392,7 @@ export const economicBridgeComponentPolicies: Record<string, Policy> = {
 };
 
 export const focusedRenderComponents = new Set([
+  "CleanCoveredPanel","CleanCoveredPanelContent","CleanCoveredReportView",
   "ProducerReservePanel", "ProducerReservePanelContent", "ProducerReserveReportView", "ReserveLiteral", "Disclosure", "Result",
   "RetirementAssociationPanel", "RetirementAssociationPanelContent", "RetirementAssociationReportView",
   "LocationElectricityPanel", "LocationElectricityPanelContent", "LocationElectricityReportView", "Source",
@@ -425,7 +438,7 @@ const valuationIndicatorCohort = new Set([
 export function contractFor(file: string, name: string) {
   const basename = file.split("/").at(-1)!;
   const economicKey = `${basename}#${name}`;
-  const economicFile = ["producer-reserve-panel.tsx", "location-electricity-panel.tsx","retirement-association-panel.tsx"].includes(basename);
+  const economicFile = ["producer-reserve-panel.tsx", "location-electricity-panel.tsx","retirement-association-panel.tsx","clean-covered-panel.tsx"].includes(basename);
   const policy = economicFile ? economicBridgeComponentPolicies[economicKey] : filePolicies[basename];
   if (!policy) throw new Error(`No reviewed state policy for actual consumer ${file}#${name}`);
   const inheritedProps = ["RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton", "SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);

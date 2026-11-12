@@ -176,7 +176,7 @@
     {
       "path": "client/src/pages/climate-valuation.tsx",
       "originalSha256": "cda48069cb0225ede09392da3586217849ebc80f1f10c3894e202720af78dfa6",
-      "currentSha256": "a68a2a472f9c3753e59225ab0e35bb519fb7511aab6c7a8e105a1818d5beecca",
+      "currentSha256": "823238d78a6c026994e2a41ecf07a16049e811f3ae94a59a90e9ee0fb2e3adc7",
       "currentHashHistory": [
         {
           "sha256": "61b3f6c2581997b3be2e11716692ab5e9a1df1b4446d3a20373c714b5992744b",
@@ -212,9 +212,10 @@
       "disposition": "retained",
       "resolution": null,
       "priorCurrentSha256": [
-        "3ba6f1fed1dd824a60e7508378365362e3b144b0875f29b4853f4c8000c13a2f"
+        "3ba6f1fed1dd824a60e7508378365362e3b144b0875f29b4853f4c8000c13a2f",
+        "a68a2a472f9c3753e59225ab0e35bb519fb7511aab6c7a8e105a1818d5beecca"
       ],
-      "currentChange": "Added retirement/association read-only panel; original warning text and historical source remain preserved"
+      "currentChange": "Added clean-covered read-only source panel; prior limitations retained"
     },
     {
       "path": "client/src/pages/dashboard.tsx",
