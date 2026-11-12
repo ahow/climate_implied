@@ -1,3 +1,204 @@
+# Latest finite dated-accounting integration
+
+{
+  "current_release": {
+    "runtime": "1f809c58607480021ea902797e04cc534bcafa0e",
+    "ci": 43327129911,
+    "conclusion": "success",
+    "readback": {
+      "at": "2026-11-12T23:26:45.500Z",
+      "health": 200,
+      "identity": "6e8c9023920b0bd59b513c850b35f50688bd09b1dd081bf50d8382e031fa45bc",
+      "rows": 1054,
+      "cells": 2108,
+      "scope": "Observed accounting only; not future dated accounting execution",
+      "externalLinks": 0
+    },
+    "scope": "Agent observed safe accounting readback; no future accounting/issuer execution claim"
+  },
+  "increment": {
+    "at": "2026-11-12T23:38:18.366115+00:00",
+    "status": "Application finite dated accounting validated/deployed at1f809c58; subsequent PostgreSQL harness extension locally executed; full S13-004 remains partial",
+    "files": {
+      "server/calculation/cohortCashLedger.ts": "b52c08ac06a4482b75a3a76fbfc5256ea8fff35c905a26f88b03cb8cce4366d4",
+      "script/cohortRenewal.test.ts": "295463c277c8bf09b9883445132b657be43269d3bcea25080cca8de0cbcedc8a",
+      "server/calculation/cohortRenewal.ts": "64339d6cad282aac0676859c6277e15b259e09791c5315be2b43fc8a54c4ad3c",
+      "script/futureCohortPostgres.ts": "9b1d073f3258502bc8e2032f3c927feabda4284b7e2fbe08a84567ad3a683aa5"
+    },
+    "function": "reconcileDatedAccruals -> deriveDatedProjectCash -> valueDatedProjectCash; evaluatePeriodicRenewal finite accounting integration",
+    "scope": "Explicit accrual and settlement dates maintain AR/AP/tax/debt/noncommon/otherWC/cash and common contribution/distribution balances; each annual closing reconciles once. Settling before accrual/funding refuses. Integrated renewal-3-finite-dated-accounting returns finite dated accounting and null periodic value: dated transition/sustainable cycles not certified. Same-day netting, no intraday/prepayment/full asset-equity accounting.",
+    "tests": {
+      "command": "npx tsx --test script/cohortRenewal.test.ts",
+      "pass": 10,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/dated-cash/accrual-integrated.log",
+      "log_sha256": "0b61e5d37973fd4424d697c683c32410c256a487d5022ce6d591cd07af3645b2"
+    },
+    "typecheck": {
+      "initial": "FAILED TS2802 iterator target incompatibility at three loops, including prior draft",
+      "failure_log": "generated-artifacts/dated-cash/component-types.log",
+      "fix": "Array.from, no compiler setting relaxation",
+      "corrected": "passed",
+      "log": "generated-artifacts/dated-cash/component-types-corrected.log"
+    },
+    "oracle": "90/(1.1^(182/365.25))+90/(1.1^(547/365.25)); tolerance1e-9. Early unfunded payout and invalid February30 refuse.",
+    "not_executed": [
+      "Admitted API/UI/export integration",
+      "Qualified new issuer input",
+      "Partial-calendar/degrading sustainable cycles",
+      "Genuine authenticated operator reader/access isolation"
+    ],
+    "science": "No issuer qualification or empirical efficacy; no original clause promoted",
+    "full_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T23:06:03.781608+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 404.524,
+      "counts": {
+        "tests": 1354,
+        "pass": 1353,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/accrual-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "7cc8de9bcd550d1be7aca98eb7a6b1c6a60878bda6b6dc58d8b43d3af5ce91be",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1354,
+          "pass": 1353,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "additional_local_postgresql": {
+      "at": "2026-11-12T23:32:51.822Z",
+      "scope": "Synthetic rollback fixture; actual PostgreSQL, not genuine operator authentication",
+      "passed": true,
+      "headers": 6,
+      "faults": [
+        {
+          "name": "swapped code/result",
+          "message": "Missing or corrupt operating archive",
+          "atomicRollback": true
+        },
+        {
+          "name": "wrong model",
+          "message": "Missing/conflicting retained producer manifest",
+          "atomicRollback": true
+        },
+        {
+          "name": "wrong assumption hash",
+          "message": "Missing/conflicting retained producer manifest",
+          "atomicRollback": true
+        },
+        {
+          "name": "missing source",
+          "message": "Missing or corrupt operating archive",
+          "atomicRollback": true
+        },
+        {
+          "name": "altered material",
+          "message": "Conflicting material-input evidence",
+          "atomicRollback": true
+        },
+        {
+          "name": "wrong reviewed identity",
+          "message": "Existing owner-approved financial identity required",
+          "atomicRollback": true
+        },
+        {
+          "name": "future review",
+          "message": "Future financial approval",
+          "atomicRollback": true
+        },
+        {
+          "name": "valid hash wrong computed result",
+          "message": "Retained cohort result mismatch",
+          "atomicRollback": true
+        }
+      ],
+      "resultHash": "b3f9f30cf4d28492140b8d997d9ba28715b719316f2e7493871b089bae5b4649",
+      "checks": [
+        "stage idempotency",
+        "decision idempotency",
+        "conflicting decision refusal",
+        "preapproval cutoff refusal",
+        "actual retained producer/source/code/result readback",
+        "renewal v3 and cash module captured",
+        "finite dated accrual balances and null periodic value",
+        "repeat identity",
+        "missing decision refusal"
+      ],
+      "rollbackHeaders": 0,
+      "committedTransport": {
+        "concurrentStages": 2,
+        "concurrentIdempotentDecisions": 2,
+        "conflictFulfilled": 1,
+        "conflictRejected": 1,
+        "reconnectedResultHash": "31ed9c56754bfaff22827729c47692445afaf91b2e3daa52d9252d6382ab051f",
+        "failureMarkerRolledBack": true,
+        "headers": 6,
+        "boundary": "Committed synthetic fixtures remain only in the newly created private local cluster, which is stopped. No production/HTTP principal proof."
+      },
+      "schemaScope": "Company and financial-review columns/constraints aligned to shared/schema.ts; snapshot guards from documented local setup. Not the full application schema."
+    },
+    "additional_local_postgresql_scope": "After the application gate and published source: v3 accounting, eight dependency/review/result faults with savepoint rollback, concurrent committed staging/decisions, conflicting decision, reconnect and transaction-failure atomicity. First rollback phase zero headers; committed phase six synthetic headers in stopped private local cluster. No HTTP/operator authorization proof.",
+    "release": {
+      "source": "1f809c58607480021ea902797e04cc534bcafa0e",
+      "ci": 43327129911,
+      "status": "completed",
+      "conclusion": "success",
+      "runtime_observation": {
+        "sourceCommit": "1f809c58607480021ea902797e04cc534bcafa0e",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      },
+      "boundary": "Runtime observation recorded separately; extra PostgreSQL harness is local and not in this published source"
+    },
+    "postledger": {
+      "pass": 7,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/dated-cash/accrual-postledger.log"
+    },
+    "new_source_attempt": {
+      "at": "2026-11-12T23:38:18.366115+00:00",
+      "XPLR": "Targeted legal-party/payment query returned previously examined releases; not reread or counted as new economic evidence.",
+      "FSLR": "Targeted Indian government PLI-disbursement query; retrieved first two extracted chunks of https://mnre.gov.in/static/uploads/2026/10/dddd221c6d2f2bb411584c5624c71c4e.pdf. No issuer-specific grant amount/day/classification qualified in examined chunks; remainder not examined, no global unavailability claim.",
+      "files": [
+        "generated-artifacts/dated-cash/india-source-search.json",
+        "generated-artifacts/dated-cash/mnre-2026-extract.md",
+        "generated-artifacts/dated-cash/mnre-2026-extract-2.md"
+      ],
+      "accepted_inputs": 0
+    },
+    "log_hashes": {
+      "generated-artifacts/dated-cash/pg-schema-aligned.log": "b8a3f97939a12bd991908796a04493e69580c9fd5082f0563d0cca52e54e1add",
+      "generated-artifacts/dated-cash/pg-committed.receipt.json": "a3eb29caef5a6dbe2e8d079fa3a6c664c5f7014878da86ea3a70edd6fb2e595e",
+      "generated-artifacts/dated-cash/accrual-postledger.log": "3c4ca9765f99d9e089470b49ae6791176b81ee42f17f9fc8c80970d4f2dbb53e"
+    },
+    "transport_correction": "Earlier real-PG runs used text company IDs/minimal review columns. Final run aligned company integer identity/name/unique ISIN and review constraints with shared/schema.ts. Earlier receipts retained; no full-schema or genuine-principal claim."
+  }
+}
+
+<!-- dated-accrual-history -->
 # Latest local dated-cash draft — not released
 
 {
