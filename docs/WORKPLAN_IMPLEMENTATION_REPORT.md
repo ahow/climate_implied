@@ -1,7 +1,133 @@
+## Cohort continuation — latest increment
+
+{
+  "recorded_at": "2026-11-12T19:22:51.492714+00:00",
+  "files": {
+    "server/calculation/operatingCohorts.ts": "318680efca0ce57d312c4b82f25a24d1aadcbc645cdf773baf9002d86967a5a6",
+    "server/calculation/polynomialDomain.ts": "0bde7c1b0f8eb9603eec16f019095d21293356604704b22cf41bedd47871f030",
+    "server/calculation/cohortGrowthInverse.ts": "098973950b0cfa6672288c4555039014df17270fe3aa07e6f6a3a8f555864cd4",
+    "server/coveredProducerAdmission.ts": "ef7600c78bb66b05072cce5e84f27d4904d2afa57cf7efb3a58651ae78918507",
+    "server/producerReserveApi.ts": "9a25eb07c74b897a23f8bba6013f768889421f5ab023b257bcc229e3433289ee",
+    "server/calculation/cleanCoveredReport.ts": "81d9dae2d30a5868eaba6811a48e144a335870e1f76a99b78cf658b2b74ab68d",
+    "script/operatingCohorts.test.ts": "ed388164dcf56653dd09f8ff4a05037f83cb27d0838a23d6e4907d4bb3eb8316",
+    "script/polynomialDomain.test.ts": "3290d0b749cc3f7c089a7f8430c1d7c3721963e203a17c0687f4778d2945f799",
+    "script/cohortGrowthInverse.test.ts": "c4175a08b699eec26d43553d80d2d6651f75453c9df5692d7c6b09b16682aa6f",
+    "script/coveredProducerAdmission.test.ts": "cd801968c83149396bb8d24c765494f18932038d23fde8e040248c7ee39f14b7",
+    "script/cohort-continuation-run.ts": "12311582d5a447dbd638d39ebc88b245267771342d5281f5b925da1cc4f3c919"
+  },
+  "functions": [
+    "calculateOperatingCohorts",
+    "reconcileCohortIssuerCash",
+    "freezeCohortGrowthDeck",
+    "invertCohortGrowthDeck",
+    "evaluateCohortGrowthDeck",
+    "certifyPolynomialDomain",
+    "admitCurrentCoveredProducer"
+  ],
+  "engineering": "Annual commissioning/retirement/degradation/service stock and project cash; existing accrual-to-FCFE reconciliation; exact rational interval polynomial certification with unresolved intervals retained; actual registered current producer verification; private CLI JSON/XLSX literal readback.",
+  "numerics": "Synthetic2MW\u00d7100MWh/MW/year\u00d70.5 gives100 then90MWh with10% degradation; retired stock produces0. Independent cash660USD matches existing FCFE engine within1e-9USD. Separate finite project110USD year1 discounted10%=100USD; declared replication u=1 yields target100;u=1.5 yields150 and165MWh. These are engineering fixtures, not actual issuer economics.",
+  "limits": [
+    "Current trusted admission supports registered EPA observation only; authentic future cohort/archive/review admission remains ENGINEERING work.",
+    "Finite proportional-replication project polynomial only; cash allocation and scaling are explicit conditional assumptions. Not whole-equity identification, general piecewise certification, or sustainable perpetual cash/stock.",
+    "Annual-start commissioning convention, no mid-year interpolation; actual source economics, storage input-energy/losses and terminal replacement policies need qualification.",
+    "No actual issuer fit or scientific efficacy;0/3qualified cases. Future native-gas/member inputs and accepted population remain unavailable."
+  ],
+  "source_attempt": {
+    "url": "https://investor.firstsolar.com/news/news-details/2026/First-Solar-Inc--Announces-Second-Quarter-2026-Financial-Results-and-Reaffirms-Guidance",
+    "published_day": "2026-07-30",
+    "capture": "generated-artifacts/cohort-continuation/fslr-q2-primary.md",
+    "sha256": "1869368caf7ec7ff3300cc307d907595514127aaa0465bc78f6189c15534b312",
+    "finding": "Inspected primary contents:17.0\u201318.2GW annual sales and3.2\u20133.7GW Q3US guidance,2.10\u20132.19bn45X assumption. Not observed eligible watts/BOM/PFE or India payment amount/day/FX. No qualifying economic field resolved. NEE/XOM source retrieval not attempted in this increment, not globally unavailable."
+  },
+  "failures": [
+    "Initial exact-arithmetic typecheck TS2791(BigInt exponent target) and TS7006(implicit any); replaced exponent with integer multiplication and typed declaration. Original failed stdout exists in chat only; not falsely claimed as retained log.",
+    "coherent.log:1329TS/1327pass/1fail/1skip; companion S13-018 verdict stale. ledger-correction.log: scope lacked required S13-018 ONLY prefix. Both corrected, tests unchanged.",
+    "dev-readback.log: incorrect helper import failed. Corrected import in dev-readback-corrected.log proves1051 actual HTTP JSON/XLSX literal rows.",
+    "corrected-coherent run began before final numerical-display guard; its receipt is explicitly pre-final, NOT a coherent final-code acceptance."
+  ],
+  "executions": [
+    {
+      "command": "npx tsx --test script/operatingCohorts.test.ts script/polynomialDomain.test.ts script/cohortGrowthInverse.test.ts script/coveredProducerAdmission.test.ts",
+      "executed_at": "2026-11-12T19:10:57.499075+00:00",
+      "time_meaning": "Log completion, not exact start",
+      "exit_code": 0,
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/cohort-continuation/final-focused.log",
+      "log_sha256": "a0161109d9dddbd6126a882b990a8001d4d8f444d2a125b133f000058c7de01c"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T19:14:02.359331+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 505.988,
+      "counts": {
+        "tests": 1331,
+        "pass": 1330,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/cohort-continuation/final-coherent.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "b43862a4d408db72040f38c7e6079641f779b7c83b24c2c49fdf09eda5286178",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1331,
+          "pass": 1330,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    }
+  ],
+  "release": "Local cohort implementation4cb9d34; measured prior code8835a42d and observed later docs/runtimeca8c59c remain separate. New promotion not claimed without CI/live receipt.",
+  "nee_primary_attempt": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000032/xplr-20260630.htm",
+    "accession": "0001603145-26-000032",
+    "period": "2026-06-30",
+    "capture": "generated-artifacts/cohort-continuation/xplr-q2-primary-partial.md",
+    "sha256": "9771070a23ac02ed35aedee6aa7b2e1b633e1f7880c7874d7608ab3a6a2eda67",
+    "scope": "First150000 extracted characters; NOT complete filing inventory. Note9 printed18\u201319.",
+    "facts": "USDmillions: cash sweep held in NEER/affiliate accounts2 versus11 at2025-12-31;246 current repowering payable to NEER under average150-day terms;35 current/39noncurrent repowering obligations with NEER-related-payable terms;90 noninterest no-maturity restricted-reserve note. Six-month CSCS O&M expense5 is not collections.",
+    "decision": "Genuine named-recipient payable/timing evidence, not actual receipts or NEE common FCFE. Average150days is not exact payment date. Requires actual settlement, margin/cost and common-cash attribution; no2026backdating or arbitrary schedule."
+  },
+  "nucor_primary_attempt": {
+    "url": "https://www.sec.gov/Archives/edgar/data/73309/000119312526071575/nue-20251231.htm",
+    "accession": "0001193125-26-071575",
+    "fiscal_year": 2025,
+    "capture": "generated-artifacts/cohort-continuation/nucor-2025-primary-partial.md",
+    "sha256": "00c2850652572f3cd4e5a9021df21d72d7ff8774e26ccab320cab114fd9074dc",
+    "scope": "First100000 extracted characters, CCS Activity heading; not complete exhibit inventory or exact acceptance timestamp authentication.",
+    "finding": "Nucor states agreement signed2023; ExxonMobil receives related credits and pays Nucor per supplied metric tonne. Fee amount/billings/opex/funding not disclosed in examined passage.600000\u2013800000 tonnes is projected, not measured throughput.",
+    "chronology": "Older expected late2026 startup is NOT current status. Preserve retained September162026 ExxonMobil operating update in qualified-primary-inputs-evidence.json; it does not supply executed priced terms.",
+    "decision": "Payment-direction evidence, not a usable fee coefficient or XOM fee revenue. No Nucor-specific computational binding found in server/calculation/shared; old frozen XOM controls unchanged."
+  }
+}
+
+<!-- earlier-cohort-report -->
 ## Latest clean/covered release observation
 
 {
-  "observed_at": "2026-11-12T18:26:16.640534+00:00",
+  "observed_at": "2026-11-12T18:28:13.725823+00:00",
+  "stopping_reason": "Execution context boundary after substantive implementation, coherent gates and live readback; not completion or exhausted actionable scope.",
   "workspace_implementation": "95fa94de674e85dbc5055fd8278e31d278f071b4",
   "github_code": "8835a42d906a7c578c306eaf2225d43b852727e4",
   "ci": {
@@ -7367,6 +7493,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-retirement-association-dc2d702",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T17:06:07.796233+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-clean-covered-8835a42",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T18:28:17.024820+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

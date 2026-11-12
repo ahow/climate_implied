@@ -2268,7 +2268,7 @@
     },
     {
       "source": "server/producerReserveApi.ts",
-      "line": 209,
+      "line": 210,
       "builder": "workbook.addWorksheet",
       "sheetExpression": "\"Public calculation\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -2432,6 +2432,13 @@
       "line": 102,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "name",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/cohort-continuation-run.ts",
+      "line": 30,
+      "builder": "book.addWorksheet",
+      "sheetExpression": "\"Diagnostic only\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {

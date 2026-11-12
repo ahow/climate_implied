@@ -31,7 +31,7 @@ export function buildCleanCoveredReport(){
      facilityMinusElectricityUnitCO2Tonnes:source.comparison.facilityCo2Tonnes-source.co2Tonnes},
    covered,manufacturing:{status:"source-inputs-incomplete",actualResult:null,
      products:["solar-module-W-shipped","wind-turbine-kW-shipped","EV-shipped","battery-kWh-shipped"],
-     reason:"Complete issuer/source economics and physical continuation are not qualified; no real manufacturing valuation inversion executed."},
+     reason:"Finite commissioning/retirement cash cohorts and exact conditional project-polynomial inversion are implemented. Authentic per-cohort economics, perpetual stock/reinvestment and compatible whole-issuer claims are not qualified; no actual issuer inversion executed."},
    claims:["Observed2023 reconstruction, not a forecast or original-vintage backtest",
      "Emissions=netMWh × nativeCO2tonnes/netMWh × ownership once; ratio is accounting, not independent validation",
      "No avoided emissions, global expansion, common-equity claim, Tier2 or scientific/owner acceptance"],

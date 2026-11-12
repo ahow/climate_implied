@@ -10,6 +10,7 @@ health=json.loads((folder/"observed-health.json").read_text())
 sha="8835a42d906a7c578c306eaf2225d43b852727e4"
 assert ci["head_sha"]==sha
 receipt={"observed_at":datetime.now(timezone.utc).isoformat(),
+ "stopping_reason":"Execution context boundary after substantive implementation, coherent gates and live readback; not completion or exhausted actionable scope.",
  "workspace_implementation":"95fa94de674e85dbc5055fd8278e31d278f071b4",
  "github_code":sha,"ci":{"id":ci["id"],"status":ci["status"],"conclusion":ci["conclusion"],"url":ci["html_url"]},
  "runtime":live["sourceCommit"],"health":health,

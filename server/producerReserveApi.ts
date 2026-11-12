@@ -143,7 +143,8 @@ export const retirementAssociationAdapter: EconomicBridgeAdapter = {
 };
 export const cleanCoveredAdapter:EconomicBridgeAdapter={
   key:"cleanCovered",
-  entryFiles:["server/calculation/cleanCoveredReport.ts","server/calculation/cleanManufacturingMap.ts"],
+  entryFiles:["server/calculation/cleanCoveredReport.ts","server/calculation/cleanManufacturingMap.ts",
+    "server/calculation/operatingCohorts.ts","server/calculation/cohortGrowthInverse.ts"],
   execute:buildCleanCoveredReport,
   parts(value){
     const r=value as ReturnType<typeof buildCleanCoveredReport>;
