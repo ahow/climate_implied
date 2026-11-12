@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 1966,
+  "definitions": 2111,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -52,11 +52,11 @@
     }
   ],
   "comparableSlotAccounting": {
-    "actualUniqueSlots": 1359,
+    "actualUniqueSlots": 1388,
     "previouslyUnresolvedAliasSlots": 4,
-    "slotsIncludingReconciledAliases": 1363
+    "slotsIncludingReconciledAliases": 1392
   },
-  "fullyBoundFields": 1331,
+  "fullyBoundFields": 1360,
   "displayBindings": [
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
@@ -669,21 +669,21 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 268,
+      "line": 270,
       "id": "companySummary.imputation.imputedRecords",
       "expression": "{summary.imputation.imputedRecords.toLocaleString()}",
       "bound": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 269,
+      "line": 271,
       "id": "companySummary.imputation.totalRecords",
       "expression": "{typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"}",
       "bound": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 270,
+      "line": 272,
       "id": "companySummary.imputation.imputedFraction",
       "expression": "{displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")}",
       "bound": true
@@ -1082,98 +1082,98 @@
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 239,
+      "line": 241,
       "id": "fetchRuns.runs[].startedAt",
       "expression": "{formatDateTime(lastRun.startedAt)}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 240,
+      "line": 242,
       "id": "fetchRuns.runs[].trigger",
       "expression": "{lastRun.trigger}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 241,
+      "line": 243,
       "id": "fetchRuns.runs[].status",
       "expression": "{lastRun.status}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 243,
+      "line": 245,
       "id": "fetchSummaryDisplay.claim",
       "expression": "{runSummaryClaimLabel(lastRun.summary,lastSummaryEvidence)}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 247,
+      "line": 249,
       "id": "fetchSummaryEvidence.reason",
       "expression": "{lastSummaryEvidence.reason}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 254,
+      "line": 256,
       "id": "fetchSummaryEvidence.manifest.version",
       "expression": "{lastSummaryEvidence.manifest.version}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 255,
+      "line": 257,
       "id": "fetchSummaryEvidence.manifestId",
       "expression": "{lastSummaryEvidence.manifestId}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 259,
+      "line": 261,
       "id": "fetchSummaryProducer.perAdapter[].id",
       "expression": "{adapter.id}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 260,
+      "line": 262,
       "id": "fetchSummaryProducer.perAdapter[].values",
       "expression": "{adapter.values}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 262,
+      "line": 264,
       "id": "fetchSummaryProducer.perAdapter[].error",
       "expression": "{\" · error: \"}{adapter.error}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 267,
+      "line": 269,
       "id": "fetchSummaryProducer.error",
       "expression": "Run error: {lastSummaryInterpretation.claims.error}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 273,
+      "line": 275,
       "id": "fetchRuns.runs[].summary",
       "expression": "{JSON.stringify(lastRun.summary,null,2)}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 366,
+      "line": 370,
       "id": "indicatorInventory.indicators[].appliedValue",
       "expression": "{formatValue(ind.appliedValue, ind.decimals)}",
       "bound": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 369,
+      "line": 373,
       "id": "indicatorInventory.indicators[].unit",
       "expression": "{ind.unit}· {ind.appliedYear}",
       "bound": true
@@ -1224,9 +1224,9 @@
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "rows": "downloadRows",
-      "bindings": "{{\n            Year:{id:\"historical.year\",transform:\"Identity\"},\n            \"Temperature Median (\\u00B0C)\":{id:\"historical.median\",transform:\"Identity\"},\n            \"P10 (\\u00B0C)\":{id:\"historical.p10\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"P90 (\\u00B0C)\":{id:\"historical.p90\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"Reduction Rate (%/yr)\":{id:\"historical.reductionRate\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"historical.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:\"historical.thresholdDiagnostic.year\",transform:\"Identity; null preserved; not fixed 5 Gt\"},\n            \"5% diagnostic status\":{id:\"historical.thresholdDiagnostic.status\",transform:\"Identity; missing archived diagnostic -> withheld\"},\n            Estimated:{id:\"historical.isNowcast\",transform:\"true -> yes; false -> no, not vintage certification\"},\n          }}",
+      "bindings": "{{\n            \"Historical type code\":{id:\"historical.historicalTypeCode\",transform:\"Exact S09-001 evidence class; missing/inconsistent class refuses export\"},\n            \"Historical type label\":{id:\"historical.historicalTypeLabel\",transform:\"Exact original S09-001 child-clause label\"},\n            Year:{id:\"historical.year\",transform:\"Identity\"},\n            \"Temperature Median (\\u00B0C)\":{id:\"historical.median\",transform:\"Identity\"},\n            \"P10 (\\u00B0C)\":{id:\"historical.p10\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"P90 (\\u00B0C)\":{id:\"historical.p90\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"Reduction Rate (%/yr)\":{id:\"historical.reductionRate\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"historical.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:\"historical.thresholdDiagnostic.year\",transform:\"Identity; null preserved; not fixed 5 Gt\"},\n            \"5% diagnostic status\":{id:\"historical.thresholdDiagnostic.status\",transform:\"Identity; missing archived diagnostic -> withheld\"},\n            Estimated:{id:\"historical.isNowcast\",transform:\"true -> yes; false -> no, not vintage certification\"},\n          }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
@@ -1252,14 +1252,14 @@
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 145,
+      "line": 150,
       "rows": "downloadRows",
       "bindings": "{finiteExportBindings(\"categoryTrend\",{metric:config.metricKey})}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 525,
+      "line": 527,
       "rows": "peDownloadRows",
       "bindings": "{finiteExportBindings(\"valuationPE\",{case:testIdPrefix})}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -1335,8 +1335,22 @@
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "rows": "() => versionDiffExportRows(data)",
+      "bindings": "{{\n        From: { id: \"readonlyDiff.from\", transform: \"Identity: selected before source SHA-256\" },\n        To: { id: \"readonlyDiff.to\", transform: \"Identity: selected after source SHA-256\" },\n        Kind: { id: \"readonlyDiff.kind\", transform: \"Identity: validated archive kind\" },\n        Domain: { id: \"readonlyDiff.domain\", transform: \"Identity: exact compared cell domain\" },\n        Field: { id: \"readonlyDiff.field\", transform: \"Identity: exact grouped source field\" },\n        Added: { id: \"readonlyDiff.added\", transform: \"Identity integer count; zero retained\" },\n        Removed: { id: \"readonlyDiff.removed\", transform: \"Identity integer count; zero retained\" },\n        Changed: { id: \"readonlyDiff.changed\", transform: \"Identity integer count; zero retained\" },\n        \"Before content SHA-256\": { id: \"readonlyDiff.beforeHash\", transform: \"Identity: sorted before-group cell content hash\" },\n        \"After content SHA-256\": { id: \"readonlyDiff.afterHash\", transform: \"Identity: sorted after-group cell content hash\" },\n        \"Approval state\": { id: \"readonlyDiff.approvalState\", transform: \"Identity: retained archive review state, no new approval\" },\n        \"History basis\": { id: \"readonlyDiff.historicalBasis\", transform: \"Identity: revised-history caveat, not original vintage\" },\n      }}",
+      "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "rows": "() => affectedAnalysisExportRows(data)",
+      "bindings": "{{\n        From: { id: \"readonlyDiff.from\", transform: \"Identity: selected before source SHA-256\" },\n        To: { id: \"readonlyDiff.to\", transform: \"Identity: selected after source SHA-256\" },\n        \"Result ID\": { id: \"readonlyDiff.resultId\", transform: \"Identity: exact referencing archived result\" },\n        \"Manifest ID\": { id: \"readonlyDiff.manifestId\", transform: \"Identity: retained result manifest\" },\n        Scenario: { id: \"readonlyDiff.scenario\", transform: \"Identity: recorded scenario label\" },\n        \"Recorded at\": { id: \"readonlyDiff.recordedAt\", transform: \"Identity ISO datetime; not source publication\" },\n        Relation: { id: \"readonlyDiff.relation\", transform: \"Identity: exact before/after/both reference enum\" },\n        \"Historical type code\": { id: \"readonlyDiff.historicalTypeCode\", transform: \"requireHistoricalType exact validated code; no fallback\" },\n        \"Historical type label\": { id: \"readonlyDiff.historicalTypeLabel\", transform: \"requireHistoricalType exact matching S09-001 label\" },\n        \"Result scan scope\": { id: \"readonlyDiff.affectedMeaning\", transform: \"Identity: paginated exact-reference scan caveat\" },\n      }}",
+      "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
+    },
+    {
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "rows": "downloadRows",
       "bindings": "{finiteExportBindings(\"indicatorDetail\",{key:def?.key})}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -1345,7 +1359,7 @@
   "supplementalWorkbookInventory": [
     {
       "source": "server/calculation/companyProjectionReplay.ts",
-      "line": 169,
+      "line": 183,
       "sheet": "Semantics",
       "rowExpression": "[[\"fieldId\",\"meaning\",\"unit\",\"formula\",\"source\",\"period\",\"geography\",\"status\",\"missingness\",\"uncertainty\",\"scope\",\"asOfRule\"],\n      ...semantics.map(f=>[f.id,f.meaning,f.unit,f.formula,f.source,f.period,f.geography,f.status,f.missingness,f.uncertainty,f.scope,f.asOfRule])]",
       "literalLabels": [
@@ -1355,7 +1369,7 @@
     },
     {
       "source": "server/calculation/companyProjectionReplay.ts",
-      "line": 171,
+      "line": 185,
       "sheet": "Identity",
       "rowExpression": "[[\"contract\", exportContract], [\"manifestId\", replay.manifestId], [\"resultHash\", replay.resultHash],\n      [\"status\", replay.result.status], [\"scientificAcceptance\", \"false\"], [\"productionEligible\", \"false\"]]",
       "literalLabels": [
@@ -1370,7 +1384,7 @@
     },
     {
       "source": "server/calculation/companyProjectionReplay.ts",
-      "line": 173,
+      "line": 187,
       "sheet": "Ledger",
       "rowExpression": "ledger",
       "literalLabels": [],
@@ -1378,7 +1392,7 @@
     },
     {
       "source": "server/calculation/companyProjectionReplay.ts",
-      "line": 173,
+      "line": 187,
       "sheet": "FullResult",
       "rowExpression": "[[\"chunk\", \"canonicalResultJson\"], ...chunks]",
       "literalLabels": [
@@ -1515,8 +1529,29 @@
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
+      "source": "server/dataIngestion/adapters/qualifiedArchive.ts",
+      "line": 131,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "name",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "server/dataIngestion/qualifiedMissingnessStore.ts",
+      "line": 192,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"ReviewHistory\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "server/dataIngestion/qualifiedMissingnessStore.ts",
+      "line": 193,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"ReviewSelection\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
       "source": "server/calculation/companyProjectionReplay.ts",
-      "line": 178,
+      "line": 192,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "name",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1524,13 +1559,6 @@
     {
       "source": "server/climateValuation/workbookMissingnessExport.ts",
       "line": 81,
-      "builder": "XLSX.utils.book_append_sheet",
-      "sheetExpression": "name",
-      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
-    },
-    {
-      "source": "server/dataIngestion/adapters/qualifiedArchive.ts",
-      "line": 131,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "name",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1551,28 +1579,28 @@
     },
     {
       "source": "script/export-contract.test.ts",
-      "line": 42,
+      "line": 45,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Data\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "script/export-contract.test.ts",
-      "line": 43,
+      "line": 46,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Interpretation\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "script/finite-export-schemas.test.ts",
-      "line": 162,
+      "line": 163,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Actual production rows\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "script/finite-export-schemas.test.ts",
-      "line": 163,
+      "line": 164,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Bindings\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1628,9 +1656,30 @@
     },
     {
       "source": "script/quantity-label-contracts.test.ts",
-      "line": 40,
+      "line": 41,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Data\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/readonly-diff-history.test.ts",
+      "line": 122,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"Diff\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/readonly-diff-history.test.ts",
+      "line": 123,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"Affected\"",
+      "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
+    },
+    {
+      "source": "script/readonly-diff-history.test.ts",
+      "line": 148,
+      "builder": "XLSX.utils.book_append_sheet",
+      "sheetExpression": "\"History\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
@@ -2768,109 +2817,121 @@
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 131,
+      "line": 135,
       "expression": "missingFields.length > 0 && <p role=\"status\">Historical observation fields unavailable: {missingFields.join(\", \")}. No date, numeric value or zero is substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 131,
+      "line": 135,
       "expression": "missingFields.join(\", \")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 135,
+      "line": 139,
       "expression": "config.title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 136,
+      "line": 140,
       "expression": "hasNowcast && (\n              <Badge variant=\"secondary\" className=\"text-[10px] px-1.5 py-0\" data-testid=\"badge-nowcast\">\n                Nowcast\n              </Badge>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 142,
+      "line": 146,
       "expression": "config.subtitle",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 167,
+      "line": 147,
+      "expression": "data[0].historicalTypeLabel",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/historical-trend-chart.tsx",
+      "line": 147,
+      "expression": "data[0].historicalTypeCode",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/historical-trend-chart.tsx",
+      "line": 174,
       "expression": "metricView === \"netZero\" && <ul className=\"text-xs text-muted-foreground mb-3\" data-testid=\"historical-threshold-statuses\">\n        {data.map(d => <li key={d.year}>{d.year}: {thresholdDiagnosticDisplay(d.thresholdDiagnostic)}</li>)}\n      </ul>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 168,
+      "line": 175,
       "expression": "data.map(d => <li key={d.year}>{d.year}: {thresholdDiagnosticDisplay(d.thresholdDiagnostic)}</li>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 168,
+      "line": 175,
       "expression": "d.year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 168,
+      "line": 175,
       "expression": "thresholdDiagnosticDisplay(d.thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 170,
+      "line": 177,
       "expression": "metricView === \"netZero\" && <ThresholdDiagnosticDownload diagnostics={\n        data.flatMap(d => d.thresholdDiagnostic ? [d.thresholdDiagnostic] : [])\n      } contextLabels={data.flatMap(d => d.thresholdDiagnostic ? [`Historical reference input year ${d.year}`] : [])} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 217,
+      "line": 224,
       "expression": "isNc ? `${label} (estimated)` : `${label}`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 220,
+      "line": 227,
       "expression": "config.formatter(value)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 222,
+      "line": 229,
       "expression": "config.showRange && point.p10 != null && point.p90 != null && (\n                    <p className=\"text-xs text-muted-foreground mt-0.5\">\n                      Range: {config.formatter(point.p10)} – {config.formatter(point.p90)}\n                    </p>\n                  )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 224,
+      "line": 231,
       "expression": "config.formatter(point.p10)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 224,
+      "line": 231,
       "expression": "config.formatter(point.p90)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 231,
+      "line": 238,
       "expression": "config.referenceLines.map((ref, i) => (\n            <ReferenceLine\n              key={i}\n              y={ref.y}\n              stroke={ref.color}\n              strokeDasharray=\"4 4\"\n              label={{\n                value: ref.label,\n                position: \"insideTopRight\",\n                style: { fontSize: 10, fill: ref.color },\n              }}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 244,
+      "line": 251,
       "expression": "config.showRange && (\n            <>\n              <Area\n                type=\"monotone\"\n                dataKey=\"p90\"\n                fill={config.color}\n                fillOpacity={0.1}\n                stroke=\"none\"\n              />\n              <Area\n                type=\"monotone\"\n                dataKey=\"p10\"\n                fill=\"hsl(var(--background))\"\n                fillOpacity={1}\n                stroke=\"none\"\n              />\n            </>\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 271,
+      "line": 278,
       "expression": "hasNowcast && (\n            <Line\n              type=\"monotone\"\n              dataKey=\"nowcastValue\"\n              stroke={config.color}\n              strokeWidth={2}\n              strokeDasharray=\"6 3\"\n              dot={(props: any) => {\n                if (!props.payload?.isNowcast) return <circle key={props.key} r={0} />;\n                return (\n                  <circle\n                    key={props.key}\n                    cx={props.cx}\n                    cy={props.cy}\n                    r={3}\n                    fill=\"hsl(var(--background))\"\n                    stroke={config.color}\n                    strokeWidth={2}\n                  />\n                );\n              }}\n              activeDot={{ r: 5 }}\n              connectNulls={false}\n            />\n          )",
       "explicitSemanticAncestor": false
     },
@@ -3068,115 +3129,127 @@
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 136,
+      "line": 140,
       "expression": "config.title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 137,
+      "line": 141,
       "expression": "hasNowcast && (\n              <Badge variant=\"secondary\" className=\"text-[10px] px-1.5 py-0\">\n                Nowcast\n              </Badge>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 143,
+      "line": 147,
       "expression": "config.subtitle",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 156,
+      "line": 148,
+      "expression": "data[0].historicalTypeLabel",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/category-trend-chart.tsx",
+      "line": 148,
+      "expression": "data[0].historicalTypeCode",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/category-trend-chart.tsx",
+      "line": 161,
       "expression": "data.some(row => CATEGORY_KEYS.some(key => !row[key])) &&\n        <p role=\"status\" className=\"text-xs text-muted-foreground\">Some category cells are missing for the selected reference years. Their values and threshold diagnostics remain unavailable; other categories are not substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 158,
+      "line": 163,
       "expression": "metricView === \"netZero\" && <details className=\"text-xs text-muted-foreground mb-3\" data-testid=\"category-threshold-statuses\">\n        <summary>Selected 5%-of-2024 diagnostic status by year and scenario</summary>\n        <ul>{data.flatMap(d => CATEGORY_KEYS.map(key =>\n          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)}</li>\n        ))}</ul>\n      </details>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 160,
+      "line": 165,
       "expression": "data.flatMap(d => CATEGORY_KEYS.map(key =>\n          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)}</li>\n        ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 161,
+      "line": 166,
       "expression": "d.year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 161,
+      "line": 166,
       "expression": "CATEGORY_NAMES[key]",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 161,
+      "line": 166,
       "expression": "thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 164,
+      "line": 169,
       "expression": "metricView === \"netZero\" && <ThresholdDiagnosticDownload diagnostics={\n        data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key]?.thresholdDiagnostic ? [d[key].thresholdDiagnostic!] : []))\n      } contextLabels={data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key]?.thresholdDiagnostic\n        ? [`Reference input year ${d.year}: ${CATEGORY_NAMES[key]}`] : []))} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 208,
+      "line": 213,
       "expression": "isNc ? `${label} (estimated)` : `${label}`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 210,
+      "line": 215,
       "expression": "CATEGORY_KEYS.map((key) => {\n                    const val = isNc ? point[`${key}_nowcast`] : point[key];\n                    if (val == null) return null;\n                    return (\n                      <div key={key} className=\"flex items-center justify-between gap-4\">\n                        <div className=\"flex items-center gap-1.5\">\n                          <div\n                            className=\"w-2.5 h-2.5 rounded-sm\"\n                            style={{ backgroundColor: CATEGORY_COLORS[key] }}\n                          />\n                          <span className=\"text-xs\">{CATEGORY_NAMES[key]}</span>\n                        </div>\n                        <span className=\"text-xs font-medium tabular-nums\">\n                          {config.formatter(val as number)}\n                        </span>\n                      </div>\n                    );\n                  })",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 220,
+      "line": 225,
       "expression": "CATEGORY_NAMES[key]",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 223,
+      "line": 228,
       "expression": "config.formatter(val as number)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 232,
+      "line": 237,
       "expression": "config.referenceLines.map((ref, i) => (\n            <ReferenceLine\n              key={i}\n              y={ref.y}\n              stroke={ref.color}\n              strokeDasharray=\"4 4\"\n              label={{\n                value: ref.label,\n                position: \"insideTopRight\",\n                style: { fontSize: 10, fill: ref.color },\n              }}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 245,
+      "line": 250,
       "expression": "CATEGORY_KEYS.map((key) => (\n            <Line\n              key={key}\n              type=\"monotone\"\n              dataKey={key}\n              stroke={CATEGORY_COLORS[key]}\n              strokeWidth={key === \"all\" ? 2.5 : 1.5}\n              strokeDasharray={key === \"all\" ? \"6 3\" : undefined}\n              dot={false}\n              activeDot={{ r: 3 }}\n              connectNulls={false}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 258,
+      "line": 263,
       "expression": "hasNowcast && CATEGORY_KEYS.map((key) => (\n            <Line\n              key={`${key}_nowcast`}\n              type=\"monotone\"\n              dataKey={`${key}_nowcast`}\n              stroke={CATEGORY_COLORS[key]}\n              strokeWidth={key === \"all\" ? 2 : 1.5}\n              strokeDasharray=\"4 3\"\n              dot={false}\n              activeDot={{ r: 3 }}\n              connectNulls={false}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 275,
+      "line": 280,
       "expression": "CATEGORY_KEYS.map((key) => (\n          <div key={key} className=\"flex items-center gap-1\">\n            <div\n              className=\"w-3 h-0.5\"\n              style={{\n                backgroundColor: CATEGORY_COLORS[key],\n                borderTop: key === \"all\" ? `2px dashed ${CATEGORY_COLORS[key]}` : undefined,\n              }}\n            />\n            <span className=\"text-[10px] text-muted-foreground\">{CATEGORY_NAMES[key]}</span>\n          </div>\n        ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 284,
+      "line": 289,
       "expression": "CATEGORY_NAMES[key]",
       "explicitSemanticAncestor": false
     },
@@ -4357,6 +4430,168 @@
       "explicitSemanticAncestor": false
     },
     {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 13,
+      "expression": "[\"Product / market\", \"Location / period\", \"Reported result\", \"Qualification\"].map(h =>\n        <th className=\"p-2 text-left\" key={h}>{h}</th>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 14,
+      "expression": "h",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 15,
+      "expression": "carbonPassThroughEvidence.map(row => <tr key={row.id} className=\"border-t\">\n        <td className=\"p-2\">{row.product}<br /><span className=\"text-xs\">{row.market}</span></td>\n        <td className=\"p-2\">{row.jurisdiction}<br />{row.observedPeriod.start}–{row.observedPeriod.end}<br />{row.frequency}</td>\n        <td className=\"p-2\">{row.reported.kind === \"lower-bound-only\" ? `>${row.reported.lower * 100}%` :\n          row.metric === \"log-price-elasticity\" ? `${row.reported.value} log elasticity; NO recovery ratio` :\n            `${Math.round(row.reported.value * 100)}% indicative price ratio`}\n          {row.reported.kind === \"point-with-bootstrap-span\" &&\n            <p>Omitted-sample span {Math.round(row.reported.interval.lower * 100)}–{Math.round(row.reported.interval.upper * 100)}%; not95% CI</p>}\n        </td>\n        <td className=\"p-2\"><p>{row.uncertainty}</p><p className=\"text-xs\">{row.locator}</p></td>\n      </tr>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 16,
+      "expression": "row.product",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 16,
+      "expression": "row.market",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 17,
+      "expression": "row.jurisdiction",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 17,
+      "expression": "row.observedPeriod.start",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 17,
+      "expression": "row.observedPeriod.end",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 17,
+      "expression": "row.frequency",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 18,
+      "expression": "row.reported.kind === \"lower-bound-only\" ? `>${row.reported.lower * 100}%` :\n          row.metric === \"log-price-elasticity\" ? `${row.reported.value} log elasticity; NO recovery ratio` :\n            `${Math.round(row.reported.value * 100)}% indicative price ratio`",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 21,
+      "expression": "row.reported.kind === \"point-with-bootstrap-span\" &&\n            <p>Omitted-sample span {Math.round(row.reported.interval.lower * 100)}–{Math.round(row.reported.interval.upper * 100)}%; not95% CI</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 22,
+      "expression": "Math.round(row.reported.interval.lower * 100)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 22,
+      "expression": "Math.round(row.reported.interval.upper * 100)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 24,
+      "expression": "row.uncertainty",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 24,
+      "expression": "row.locator",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 27,
+      "expression": "carbonPassThroughSources.map(source => <details key={source.id}>\n      <summary>{source.authors} — {source.publication}</summary>\n      <p className=\"text-sm\"><a className=\"underline\" href={source.url} target=\"_blank\" rel=\"noreferrer\">{source.title}</a></p>\n      <p className=\"text-xs\">{source.version}. {source.rights}</p>\n      <p className=\"break-all text-xs\">Original PDF SHA-256: {source.sha256}; retrieved {source.retrievedAt}</p>\n    </details>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 28,
+      "expression": "source.authors",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 28,
+      "expression": "source.publication",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 29,
+      "expression": "source.title",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 30,
+      "expression": "source.version",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 30,
+      "expression": "source.rights",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 31,
+      "expression": "source.sha256",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 31,
+      "expression": "source.retrievedAt",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 34,
+      "expression": "Object.entries(carbonPassThroughRemainingInputs).map(([issuer, inputs]) =>\n        <div key={issuer}><h3 className=\"font-semibold\">{issuer}</h3><ul className=\"list-disc pl-5 text-sm\">\n          {inputs.map(item => <li key={item}>{item}</li>)}</ul></div>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 35,
+      "expression": "issuer",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 36,
+      "expression": "inputs.map(item => <li key={item}>{item}</li>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/carbon-pass-through-review.tsx",
+      "line": 36,
+      "expression": "item",
+      "explicitSemanticAncestor": false
+    },
+    {
       "source": "client/src/components/ui/select.tsx",
       "line": 27,
       "expression": "children",
@@ -4538,247 +4773,247 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 215,
+      "line": 216,
       "expression": "summaryLoading && <p role=\"status\" aria-live=\"polite\" className=\"text-sm text-muted-foreground\" data-testid=\"status-company-summary-loading\">Loading company summary for the current selection.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 218,
+      "line": 220,
       "expression": "uploadsError && <p role=\"alert\">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 219,
+      "line": 221,
       "expression": "summaryError && <p role=\"alert\">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 220,
+      "line": 222,
       "expression": "summary?.dateRange && !(typeof summary.dateRange.recordCount === \"number\" && Number.isFinite(summary.dateRange.recordCount)) &&\n          <p role=\"status\">Historical record count not returned as a finite number. Group-series availability is not inferred.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 261,
+      "line": 263,
       "expression": "summary?.imputation && summary.imputation.imputedRecords > 0 && (\n          <div\n            className=\"flex items-start gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-400\"\n            data-testid=\"text-imputation-disclosure\"\n          >\n            <Info className=\"h-3.5 w-3.5 mt-0.5 shrink-0\" />\n            <span>\n              <span data-field-id=\"companySummary.imputation.imputedRecords\">{summary.imputation.imputedRecords.toLocaleString()}</span> of{\" \"}\n              <span data-field-id=\"companySummary.imputation.totalRecords\">{typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"}</span> records (\n              <span data-field-id=\"companySummary.imputation.imputedFraction\">{displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")}</span>) use carried-forward\n              (imputed) emissions where a reporting gap exists. Carbon-intensity and pricing\n              for these periods rely on the most recent observed scope 1/2/3 values.\n            </span>\n          </div>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 268,
+      "line": 270,
       "expression": "summary.imputation.imputedRecords.toLocaleString()",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 268,
+      "line": 270,
       "expression": "\" \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 269,
+      "line": 271,
       "expression": "typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 270,
+      "line": 272,
       "expression": "displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 276,
+      "line": 278,
       "expression": "summary?.imputation && !(typeof summary.imputation.imputedRecords === \"number\" && Number.isFinite(summary.imputation.imputedRecords)) &&\n          <p role=\"status\">Imputation coverage unavailable: imputed record count not returned. No zero-imputation inference is made.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 279,
+      "line": 281,
       "expression": "uploads && uploads.length > 0 && (\n          <Card className=\"p-4\">\n            <h3 className=\"text-sm font-medium mb-3\" data-testid=\"text-uploads-heading\">Recent Uploads</h3>\n            <div className=\"space-y-2\">\n              {uploads.slice(0, 3).map((u) => (\n                <div key={u.id} className=\"flex items-center justify-between gap-2 text-sm flex-wrap\" data-testid={`row-upload-${u.id}`}>\n                  <div className=\"flex items-center gap-2\">\n                    <FileSpreadsheet className=\"h-4 w-4 text-muted-foreground\" />\n                    <span className=\"truncate max-w-[200px]\">{u.filename}</span>\n                  </div>\n                  <div className=\"flex items-center gap-2\">\n                    <Badge\n                      variant={u.status === \"completed\" ? \"default\" : u.status === \"processing\" ? \"secondary\" : \"destructive\"}\n                      data-testid={`badge-upload-status-${u.id}`}\n                    >\n                      {u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />}\n                      {u.status}\n                    </Badge>\n                    {u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )}\n                    {(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )}\n                  </div>\n                </div>\n              ))}\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 283,
+      "line": 285,
       "expression": "uploads.slice(0, 3).map((u) => (\n                <div key={u.id} className=\"flex items-center justify-between gap-2 text-sm flex-wrap\" data-testid={`row-upload-${u.id}`}>\n                  <div className=\"flex items-center gap-2\">\n                    <FileSpreadsheet className=\"h-4 w-4 text-muted-foreground\" />\n                    <span className=\"truncate max-w-[200px]\">{u.filename}</span>\n                  </div>\n                  <div className=\"flex items-center gap-2\">\n                    <Badge\n                      variant={u.status === \"completed\" ? \"default\" : u.status === \"processing\" ? \"secondary\" : \"destructive\"}\n                      data-testid={`badge-upload-status-${u.id}`}\n                    >\n                      {u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />}\n                      {u.status}\n                    </Badge>\n                    {u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )}\n                    {(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )}\n                  </div>\n                </div>\n              ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 287,
+      "line": 289,
       "expression": "u.filename",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 294,
+      "line": 296,
       "expression": "u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 295,
+      "line": 297,
       "expression": "u.status",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 297,
+      "line": 299,
       "expression": "u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 298,
+      "line": 300,
       "expression": "u.companiesCount",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 300,
+      "line": 302,
       "expression": "(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 302,
+      "line": 304,
       "expression": "u.status === \"processing\" ? \"Recover\" : \"Retry\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 312,
+      "line": 314,
       "expression": "hasData && (\n          <Card className=\"p-4\">\n            <h3 className=\"text-sm font-medium mb-3\" data-testid=\"text-config-heading\">Analysis Configuration</h3>\n            <div className=\"flex flex-wrap items-center gap-4\">\n              <div className=\"flex items-center gap-2\">\n                <Label className=\"text-sm text-muted-foreground whitespace-nowrap\">Cost of Equity</Label>\n                <div className=\"flex items-center gap-1\">\n                  <input\n                    type=\"number\"\n                    min=\"1\"\n                    max=\"30\"\n                    step=\"0.5\"\n                    defaultValue={costOfEquity}\n                    onBlur={(e) => {\n                      const val = parseFloat(e.target.value);\n                      if (!isNaN(val) && val > 0 && val <= 30) setCostOfEquity(val);\n                      else e.target.value = String(costOfEquity);\n                    }}\n                    onKeyDown={(e) => { if (e.key === \"Enter\") (e.target as HTMLInputElement).blur(); }}\n                    className=\"w-16 h-9 rounded-md border bg-background px-2 text-sm text-center\"\n                    data-testid=\"input-cost-of-equity\"\n                  />\n                  <span className=\"text-sm text-muted-foreground\">%</span>\n                </div>\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <Switch id=\"scope3-switch\" checked={includeScope3} onCheckedChange={setIncludeScope3} data-testid=\"switch-scope3\" />\n                <Label htmlFor=\"scope3-switch\" className=\"text-sm text-muted-foreground whitespace-nowrap\">Include Scope 3</Label>\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <Switch id=\"winsorize-switch\" checked={winsorize} onCheckedChange={setWinsorize} data-testid=\"switch-winsorize\" />\n                <Label htmlFor=\"winsorize-switch\" className=\"text-sm text-muted-foreground whitespace-nowrap\">Winsorize (5%)</Label>\n              </div>\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 349,
+      "line": 351,
       "expression": "hasData ? (\n          <div className=\"space-y-10\">\n\n            <AnalysisSection\n              icon={Factory}\n              costOfEquityPct={8}\n              title=\"High vs Low Carbon Companies\"\n              description=\"Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. This endpoint uses fixed r = 8%; changing the SDG/ambition cost-of-equity control does not change it. Gordon steady-state g = r − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.\"\n              chartData={carbonIntensityChartData ?? []}\n              isLoading={carbonPricesLoading}\n              error={carbonPricesError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"carbon\"\n              peChart={{\n                highKey: \"cleanPE\",\n                lowKey: \"dirtyPE\",\n                highLabel: \"Low Carbon (Clean)\",\n                lowLabel: \"High Carbon (Dirty)\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Low Carbon\" lowLabel=\"High Carbon\" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,\n              }}\n            />\n\n            <AnalysisSection\n              icon={Leaf}\n              costOfEquityPct={costOfEquity}\n              gordonSemanticPrefix=\"sdg\"\n              title=\"High vs Low SDG-Aligned Companies\"\n              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}\n              chartData={sdgChartData ?? []}\n              isLoading={sdgGrowthLoading}\n              error={sdgGrowthError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"sdg\"\n              peChart={{\n                highKey: \"cleanPE\",\n                lowKey: \"dirtyPE\",\n                highLabel: \"Positive SDG (Clean)\",\n                lowLabel: \"Negative SDG (Dirty)\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Positive SDG\" lowLabel=\"Negative SDG\" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,\n              }}\n            />\n\n            <AnalysisSection\n              icon={Target}\n              costOfEquityPct={costOfEquity}\n              gordonSemanticPrefix=\"targetTerciles\"\n              title=\"High vs Low Ambition Companies\"\n              description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}\n              chartData={ambitionChartData ?? []}\n              isLoading={decarbTercilesLoading}\n              error={decarbTercilesError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"ambition\"\n              headerRight={\n                <Select value={decarbTercileMethod} onValueChange={(v: \"absolute\" | \"sector_relative\" | \"sub_sector_relative\" | \"industry_relative\") => setDecarbTercileMethod(v)}>\n                  <SelectTrigger className=\"w-[180px]\" data-testid=\"select-decarb-tercile-method\">\n                    <SelectValue />\n                  </SelectTrigger>\n                  <SelectContent>\n                    <SelectItem value=\"absolute\">Absolute</SelectItem>\n                    <SelectItem value=\"sector_relative\">Sector Relative</SelectItem>\n                    <SelectItem value=\"sub_sector_relative\">Sub-Sector Relative</SelectItem>\n                    <SelectItem value=\"industry_relative\">Industry Relative</SelectItem>\n                  </SelectContent>\n                </Select>\n              }\n              peChart={{\n                highKey: \"bestPE\",\n                lowKey: \"worstPE\",\n                highLabel: \"Most Ambitious\",\n                lowLabel: \"Least Ambitious\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Most Ambitious\" lowLabel=\"Least Ambitious\" highValue={d.bestPE} lowValue={d.worstPE} highCount={d.bestCount} lowCount={d.worstCount} />,\n              }}\n            />\n\n          </div>\n        ) : (\n          <Card className=\"p-12\">\n            <div className=\"text-center space-y-4\">\n              <div className=\"flex items-center justify-center w-16 h-16 rounded-md bg-primary/10 mx-auto\">\n                <DollarSign className=\"h-8 w-8 text-primary\" />\n              </div>\n              <div>\n                <h3 className=\"text-lg font-medium\" data-testid=\"text-no-data-heading\">No company dataset available</h3>\n                <p className=\"text-sm text-muted-foreground mt-1 max-w-md mx-auto\">\n                  An operator must import and review company data using the CLI.\n                  Valuation-derived temperature, carbon-price and net-zero outputs remain withheld.\n                </p>\n              </div>\n              <Button variant=\"default\" disabled title={OPERATOR_ONLY_REASON} data-testid=\"button-upload-cta\">\n                <Upload className=\"h-4 w-4 mr-2\" />\n                Upload Excel File\n              </Button>\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 502,
-      "expression": "title",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/climate-valuation.tsx",
       "line": 504,
-      "expression": "headerRight",
+      "expression": "title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
       "line": 506,
+      "expression": "headerRight",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/climate-valuation.tsx",
+      "line": 508,
       "expression": "description",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 510,
+      "line": 512,
       "expression": "gordonBaselineLabel(costOfEquityPct)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 523,
+      "line": 525,
       "expression": "peChart.highLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 523,
+      "line": 525,
       "expression": "peChart.lowLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 535,
+      "line": 537,
       "expression": "error ? <p role=\"alert\">P/E comparison read failed for {title}. No prior selection values or downloads are shown.</p> : isLoading ? (\n            <Skeleton className=\"h-[300px] w-full\" />\n          ) : currentRows.length > 0 ? (\n            <>\n            {currentRows.some(row => roundedPE(row[peChart.highKey]) === undefined || roundedPE(row[peChart.lowKey]) === undefined) &&\n              <p role=\"status\">Some selected P/E observations are missing or invalid. Their chart and export cells remain unavailable, not zero.</p>}\n            {currentRows.length !== chartData.length && <p role=\"status\">Rows with missing or invalid observation dates are withheld; no date is inferred.</p>}\n            <ResponsiveContainer width=\"100%\" height={300}>\n              <LineChart data={currentRows.map(row => ({ ...row, [peChart.highKey]: roundedPE(row[peChart.highKey]), [peChart.lowKey]: roundedPE(row[peChart.lowKey]) }))}>\n                <CartesianGrid strokeDasharray=\"3 3\" className=\"opacity-30\" />\n                <XAxis dataKey=\"date\" type=\"number\" domain={[\"dataMin\", \"dataMax\"]} scale=\"time\" tick={{ fontSize: 11 }} tickFormatter={formatChartDate} className=\"text-muted-foreground\" />\n                <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `${v.toFixed(0)}x`} className=\"text-muted-foreground\" />\n                <Tooltip content={({ active, payload }) => {\n                  if (!active || !payload || payload.length === 0) return null;\n                  return <>{peChart.tooltip(payload[0].payload)}</>;\n                }} />\n                <Legend verticalAlign=\"top\" height={30} iconType=\"line\" wrapperStyle={{ fontSize: 11 }} />\n                <Line type=\"monotone\" dataKey={peChart.highKey} stroke=\"hsl(168, 76%, 36%)\" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.highLabel} />\n                <Line type=\"monotone\" dataKey={peChart.lowKey} stroke=\"hsl(0, 72%, 51%)\" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.lowLabel} />\n              </LineChart>\n            </ResponsiveContainer>\n            </>\n          ) : (\n            <div role=\"status\" className=\"flex items-center justify-center h-[300px] text-sm text-muted-foreground\">{chartData.length ? \"No P/E observations have a valid observation date; no date is inferred.\" : `No P/E observations returned for ${title}.`}</div>\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 535,
+      "line": 537,
       "expression": "title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 558,
+      "line": 560,
       "expression": "chartData.length ? \"No P/E observations have a valid observation date; no date is inferred.\" : `No P/E observations returned for ${title}.`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 580,
+      "line": 582,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 582,
+      "line": 584,
       "expression": "typeof value === \"number\" && Number.isFinite(value) ? value.toLocaleString() : \"Unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 583,
+      "line": 585,
       "expression": "!(typeof value === \"number\" && Number.isFinite(value)) && <p role=\"status\" className=\"text-xs text-muted-foreground\">{label}: count not returned for the current selection.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 583,
+      "line": 585,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 607,
+      "line": 609,
       "expression": "dateLabel ?? \"Observation date unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 608,
+      "line": 610,
       "expression": "highLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 608,
+      "line": 610,
       "expression": "pe(highValue)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 608,
+      "line": 610,
       "expression": "count(highCount)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "lowLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "pe(lowValue)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "count(lowCount)",
       "explicitSemanticAncestor": false
     },
@@ -6637,416 +6872,854 @@
       "explicitSemanticAncestor": false
     },
     {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 73,
+      "expression": "Object.entries(HISTORICAL_TYPES).map(([code, label]) => <li key={code}>{label} — {code}</li>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 73,
+      "expression": "label",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 73,
+      "expression": "code",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 94,
+      "expression": "unchanged && isLoading && <p role=\"status\">Reading retained versions…</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 95,
+      "expression": "unchanged && error && <p role=\"alert\">Version diff unavailable: {error.message}. No values are substituted.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 95,
+      "expression": "error.message",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 96,
+      "expression": "unchanged && !isLoading && !error && !data &&\n      <p role=\"status\">No retained version diff response was returned. Counts, analysis references and downloads are unavailable.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 98,
+      "expression": "identityMismatch && <p role=\"alert\">Returned version identities do not match the current selection. Diff and exports withheld; no source substituted.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 99,
+      "expression": "data && !identityMismatch && <VersionDiffResult data={data} onNext={() => setSelection({ from, to, kind, after: data.nextCursor! })} />",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 106,
+      "expression": "data.from",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 106,
+      "expression": "data.to",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 107,
+      "expression": "data.approvalState",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 107,
+      "expression": "data.historicalBasis",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 107,
+      "expression": "data.disclosure",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 110,
+      "expression": "data.fields.map(f => <tr key={`${f.domain}:${f.field}`}>\n        <td>{f.domain} / {f.field}</td><td className=\"text-center\">{f.added}</td><td className=\"text-center\">{f.removed}</td><td className=\"text-center\">{f.changed}</td>\n      </tr>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 111,
+      "expression": "f.domain",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 111,
+      "expression": "f.field",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 111,
+      "expression": "f.added",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 111,
+      "expression": "f.removed",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 111,
+      "expression": "f.changed",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 113,
+      "expression": "!data.fields.length && <p>No comparable cells in these retained versions.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 130,
+      "expression": "data.affectedMeaning",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 130,
+      "expression": "data.scannedResults",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 131,
+      "expression": "!data.affectedAnalyses.length && <p className=\"text-sm\">No exact references found on this page; this does not establish absence elsewhere.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 132,
+      "expression": "data.affectedAnalyses.map(a => <div key={a.resultId} className=\"text-xs border rounded-md p-2 break-all\">\n      <p>{a.scenario} · {a.relation}</p><p>Result: {a.resultId}</p><p>Manifest: {a.manifestId}</p>\n      <p>Recorded: {a.recordedAt} · {a.historicalTypeLabel} ({a.historicalTypeCode})</p>\n    </div>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 133,
+      "expression": "a.scenario",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 133,
+      "expression": "a.relation",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 133,
+      "expression": "a.resultId",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 133,
+      "expression": "a.manifestId",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 134,
+      "expression": "a.recordedAt",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 134,
+      "expression": "a.historicalTypeLabel",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 134,
+      "expression": "a.historicalTypeCode",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 149,
+      "expression": "data.nextCursor && <Button variant=\"outline\" onClick={onNext}>Next affected-analysis page</Button>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 85,
+      "expression": "query.isLoading && <p>Loading development archive…</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 86,
+      "expression": "query.error && <p role=\"alert\">{query.error.message}</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 86,
+      "expression": "query.error.message",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 87,
+      "expression": "query.data !== undefined && !query.error && !data &&\n      <p role=\"alert\">Development review unavailable: missing, invalid or mismatched source/review evidence. Values and downloads withheld; no approval inferred.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 89,
+      "expression": "data && !query.error && <>\n      <label>Review revision <select value={revision} onChange={event => setRevision(event.target.value)} className=\"border p-1\">\n        <option value=\"\">Latest</option>\n        {data.events.map(event => <option key={event.id} value={event.id}>{event.sequence}: {event.action} — {event.id.slice(0, 12)}</option>)}\n      </select></label>\n      <p className=\"break-all\">Selected revision: {data.revision ?? \"No reviews\"}<br />\n        Source SHA256: {data.sourceId ?? \"No approved development source\"}</p>\n      {!data.events.length && <p>No retained development reviews. No approved source or calculated values are inferred.</p>}\n      {!data.cells.length && <p>No reviewed source cells at this revision. Calculations remain unavailable.</p>}\n      <ul>{data.proposals.map(proposal => <li key={proposal.id} className=\"break-all\">\n        {proposal.id.slice(0, 12)} — {proposal.status} — {proposal.note}\n        <details><summary>Inspect original proposed source (not central-model input)</summary>\n          <p>{proposal.source.publisher} — {proposal.source.sourceUrl}</p>\n          <p>Sampling declaration: {proposal.source.sampling ?\n            `${proposal.source.sampling.method}: ${proposal.source.sampling.evidence}` : \"No source-supported sampled uncertainty supplied\"}</p>\n          <ul>{proposal.source.series.flatMap(series => series.points.map(point => <li key={`${series.indicatorKey}:${point.year}`}>\n            {series.indicatorKey} / {point.year}: {point.state} — {point.value === null ? \"No measured value\" : String(point.value)} {series.unit}\n            {point.reason ? `; ${point.reason}` : \"\"}{point.limit !== undefined ? `; bound ${point.operator} ${point.limit}` : \"\"}\n            {point.draws ? `; source draws ${point.draws.map(draw => `${draw.id}=${draw.value}`).join(\", \")}` : \"\"}\n          </li>))}</ul>\n        </details>\n      </li>)}</ul>\n      <div className=\"overflow-x-auto\"><table className=\"w-full text-left text-sm\">\n        <thead><tr>{[\"Indicator / year\", \"Source state\", \"Original\", \"Calculation\", \"Uncertainty / refusal\"].map(text => <th key={text} className=\"p-2\">{text}</th>)}</tr></thead>\n        <tbody>{data.cells.map(cell => <tr key={`${cell.indicatorKey}:${cell.year}`} className=\"border-t\">\n          <td className=\"p-2\">{cell.indicatorKey} / {cell.year} ({cell.unit})</td>\n          <td className=\"p-2\">{cell.state}{cell.reason ? `: ${cell.reason}` : \"\"}</td>\n          <td className=\"p-2\">{cell.value === null ? cell.state === \"below-threshold\" ? `${cell.operator} ${cell.limit} (bound only)` : \"No measured value\" : String(cell.value)}</td>\n          <td className=\"p-2\">{cell.result.value === null ? \"Withheld\" : `${cell.result.value}${cell.result.infilled ? \" (interior infill)\" : \" (observed)\"}`}</td>\n          <td className=\"p-2\">{cell.result.reason}{cell.result.samples.length > 0 && `; ${cell.result.samples.length} source-paired draws`}</td>\n        </tr>)}</tbody>\n      </table></div>\n      {data.sourceId && <a className=\"underline\" href={`/api/development/qualified-missingness/export?revision=${data.revision}`}>Download selected review XLSX</a>}\n    </>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 92,
+      "expression": "data.events.map(event => <option key={event.id} value={event.id}>{event.sequence}: {event.action} — {event.id.slice(0, 12)}</option>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 92,
+      "expression": "event.sequence",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 92,
+      "expression": "event.action",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 92,
+      "expression": "event.id.slice(0, 12)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 94,
+      "expression": "data.revision ?? \"No reviews\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 95,
+      "expression": "data.sourceId ?? \"No approved development source\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 98,
+      "expression": "data.proposals.map(proposal => <li key={proposal.id} className=\"break-all\">\n        {proposal.id.slice(0, 12)} — {proposal.status} — {proposal.note}\n        <details><summary>Inspect original proposed source (not central-model input)</summary>\n          <p>{proposal.source.publisher} — {proposal.source.sourceUrl}</p>\n          <p>Sampling declaration: {proposal.source.sampling ?\n            `${proposal.source.sampling.method}: ${proposal.source.sampling.evidence}` : \"No source-supported sampled uncertainty supplied\"}</p>\n          <ul>{proposal.source.series.flatMap(series => series.points.map(point => <li key={`${series.indicatorKey}:${point.year}`}>\n            {series.indicatorKey} / {point.year}: {point.state} — {point.value === null ? \"No measured value\" : String(point.value)} {series.unit}\n            {point.reason ? `; ${point.reason}` : \"\"}{point.limit !== undefined ? `; bound ${point.operator} ${point.limit}` : \"\"}\n            {point.draws ? `; source draws ${point.draws.map(draw => `${draw.id}=${draw.value}`).join(\", \")}` : \"\"}\n          </li>))}</ul>\n        </details>\n      </li>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 99,
+      "expression": "proposal.id.slice(0, 12)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 99,
+      "expression": "proposal.status",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 99,
+      "expression": "proposal.note",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 101,
+      "expression": "proposal.source.publisher",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 101,
+      "expression": "proposal.source.sourceUrl",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 102,
+      "expression": "proposal.source.sampling ?\n            `${proposal.source.sampling.method}: ${proposal.source.sampling.evidence}` : \"No source-supported sampled uncertainty supplied\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 104,
+      "expression": "proposal.source.series.flatMap(series => series.points.map(point => <li key={`${series.indicatorKey}:${point.year}`}>\n            {series.indicatorKey} / {point.year}: {point.state} — {point.value === null ? \"No measured value\" : String(point.value)} {series.unit}\n            {point.reason ? `; ${point.reason}` : \"\"}{point.limit !== undefined ? `; bound ${point.operator} ${point.limit}` : \"\"}\n            {point.draws ? `; source draws ${point.draws.map(draw => `${draw.id}=${draw.value}`).join(\", \")}` : \"\"}\n          </li>))",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 105,
+      "expression": "series.indicatorKey",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 105,
+      "expression": "point.year",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 105,
+      "expression": "point.state",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 105,
+      "expression": "point.value === null ? \"No measured value\" : String(point.value)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 105,
+      "expression": "series.unit",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 106,
+      "expression": "point.reason ? `; ${point.reason}` : \"\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 106,
+      "expression": "point.limit !== undefined ? `; bound ${point.operator} ${point.limit}` : \"\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 107,
+      "expression": "point.draws ? `; source draws ${point.draws.map(draw => `${draw.id}=${draw.value}`).join(\", \")}` : \"\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 112,
+      "expression": "[\"Indicator / year\", \"Source state\", \"Original\", \"Calculation\", \"Uncertainty / refusal\"].map(text => <th key={text} className=\"p-2\">{text}</th>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 112,
+      "expression": "text",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 113,
+      "expression": "data.cells.map(cell => <tr key={`${cell.indicatorKey}:${cell.year}`} className=\"border-t\">\n          <td className=\"p-2\">{cell.indicatorKey} / {cell.year} ({cell.unit})</td>\n          <td className=\"p-2\">{cell.state}{cell.reason ? `: ${cell.reason}` : \"\"}</td>\n          <td className=\"p-2\">{cell.value === null ? cell.state === \"below-threshold\" ? `${cell.operator} ${cell.limit} (bound only)` : \"No measured value\" : String(cell.value)}</td>\n          <td className=\"p-2\">{cell.result.value === null ? \"Withheld\" : `${cell.result.value}${cell.result.infilled ? \" (interior infill)\" : \" (observed)\"}`}</td>\n          <td className=\"p-2\">{cell.result.reason}{cell.result.samples.length > 0 && `; ${cell.result.samples.length} source-paired draws`}</td>\n        </tr>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 114,
+      "expression": "cell.indicatorKey",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 114,
+      "expression": "cell.year",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 114,
+      "expression": "cell.unit",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 115,
+      "expression": "cell.state",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 115,
+      "expression": "cell.reason ? `: ${cell.reason}` : \"\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 116,
+      "expression": "cell.value === null ? cell.state === \"below-threshold\" ? `${cell.operator} ${cell.limit} (bound only)` : \"No measured value\" : String(cell.value)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 117,
+      "expression": "cell.result.value === null ? \"Withheld\" : `${cell.result.value}${cell.result.infilled ? \" (interior infill)\" : \" (observed)\"}`",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 118,
+      "expression": "cell.result.reason",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/qualified-missingness-review.tsx",
+      "line": 118,
+      "expression": "cell.result.samples.length > 0 && `; ${cell.result.samples.length} source-paired draws`",
+      "explicitSemanticAncestor": false
+    },
+    {
       "source": "client/src/pages/data-management.tsx",
-      "line": 172,
+      "line": 174,
       "expression": "provenance",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 235,
+      "line": 237,
       "expression": "lastRun && (\n            <>\n            <p className=\"text-xs text-muted-foreground flex items-center gap-1\" data-testid=\"text-last-run\">\n              <Clock className=\"h-3 w-3\" />\n              Last run: <span data-field-id=\"fetchRuns.runs[].startedAt\">{formatDateTime(lastRun.startedAt)}</span>\n              {\" (\"}<span data-field-id=\"fetchRuns.runs[].trigger\">{lastRun.trigger}</span>\n              {\", \"}<span data-field-id=\"fetchRuns.runs[].status\">{lastRun.status}</span>{\")\"}\n            </p>\n            <p className=\"text-xs text-muted-foreground\" data-field-id=\"fetchSummaryDisplay.claim\">\n              {runSummaryClaimLabel(lastRun.summary,lastSummaryEvidence)}\n            </p>\n            {lastSummaryEvidence?.availability===\"unverified\" && (\n              <p className=\"text-xs text-muted-foreground\" data-field-id=\"fetchSummaryEvidence.reason\">\n                {lastSummaryEvidence.reason}\n              </p>\n            )}\n            {lastSummaryEvidence?.availability===\"verified\" && lastSummaryInterpretation?.availability===\"available\" && (\n              <div className=\"text-xs space-y-1\" data-testid=\"verified-run-summary\">\n                <p>\n                  Producer contract: <span data-field-id=\"fetchSummaryEvidence.manifest.version\">{lastSummaryEvidence.manifest.version}</span>\n                  {\" · manifest \"}<span className=\"break-all\" data-field-id=\"fetchSummaryEvidence.manifestId\">{lastSummaryEvidence.manifestId}</span>\n                </p>\n                {lastSummaryInterpretation.claims.perAdapter.map((adapter,index)=>(\n                  <p key={`${adapter.id}-${index}`}>\n                    <span data-field-id=\"fetchSummaryProducer.perAdapter[].id\">{adapter.id}</span>\n                    {\": \"}<span data-field-id=\"fetchSummaryProducer.perAdapter[].values\">{adapter.values}</span>{\" fetched rows\"}\n                    {adapter.error!==undefined && (\n                      <span data-field-id=\"fetchSummaryProducer.perAdapter[].error\">{\" · error: \"}{adapter.error}</span>\n                    )}\n                  </p>\n                ))}\n                {lastSummaryInterpretation.claims.error!==undefined && (\n                  <p data-field-id=\"fetchSummaryProducer.error\">Run error: {lastSummaryInterpretation.claims.error}</p>\n                )}\n              </div>\n            )}\n            <details className=\"text-xs text-muted-foreground\">\n              <summary>Retained raw run summary</summary>\n              <pre className=\"whitespace-pre-wrap break-all\" data-field-id=\"fetchRuns.runs[].summary\">{JSON.stringify(lastRun.summary,null,2)}</pre>\n            </details>\n            </>\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 239,
+      "line": 241,
       "expression": "formatDateTime(lastRun.startedAt)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 240,
+      "line": 242,
       "expression": "\" (\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 240,
+      "line": 242,
       "expression": "lastRun.trigger",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 241,
+      "line": 243,
       "expression": "\", \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 241,
+      "line": 243,
       "expression": "lastRun.status",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 241,
+      "line": 243,
       "expression": "\")\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 244,
+      "line": 246,
       "expression": "runSummaryClaimLabel(lastRun.summary,lastSummaryEvidence)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 248,
+      "line": 250,
       "expression": "lastSummaryEvidence.reason",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 254,
+      "line": 256,
       "expression": "lastSummaryEvidence.manifest.version",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 255,
+      "line": 257,
       "expression": "\" · manifest \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 255,
+      "line": 257,
       "expression": "lastSummaryEvidence.manifestId",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 257,
+      "line": 259,
       "expression": "lastSummaryInterpretation.claims.perAdapter.map((adapter,index)=>(\n                  <p key={`${adapter.id}-${index}`}>\n                    <span data-field-id=\"fetchSummaryProducer.perAdapter[].id\">{adapter.id}</span>\n                    {\": \"}<span data-field-id=\"fetchSummaryProducer.perAdapter[].values\">{adapter.values}</span>{\" fetched rows\"}\n                    {adapter.error!==undefined && (\n                      <span data-field-id=\"fetchSummaryProducer.perAdapter[].error\">{\" · error: \"}{adapter.error}</span>\n                    )}\n                  </p>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 259,
+      "line": 261,
       "expression": "adapter.id",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 260,
+      "line": 262,
       "expression": "\": \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 260,
+      "line": 262,
       "expression": "adapter.values",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 260,
+      "line": 262,
       "expression": "\" fetched rows\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 261,
+      "line": 263,
       "expression": "adapter.error!==undefined && (\n                      <span data-field-id=\"fetchSummaryProducer.perAdapter[].error\">{\" · error: \"}{adapter.error}</span>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 262,
+      "line": 264,
       "expression": "\" · error: \"",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 262,
+      "line": 264,
       "expression": "adapter.error",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 266,
+      "line": 268,
       "expression": "lastSummaryInterpretation.claims.error!==undefined && (\n                  <p data-field-id=\"fetchSummaryProducer.error\">Run error: {lastSummaryInterpretation.claims.error}</p>\n                )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 267,
+      "line": 269,
       "expression": "lastSummaryInterpretation.claims.error",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 273,
+      "line": 275,
       "expression": "JSON.stringify(lastRun.summary,null,2)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 286,
+      "line": 288,
       "expression": "data?.indicators ? data.indicators.length : \"Unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 294,
+      "line": 296,
       "expression": "totalPending ?? \"Unavailable — pending counts not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 302,
+      "line": 304,
       "expression": "data?.baselineYear ?? \"—\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 319,
+      "line": 316,
+      "expression": "import.meta.env?.DEV === true && <QualifiedMissingnessReview />",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 323,
       "expression": "isLoading ? (\n        <div className=\"space-y-3\">\n          {Array.from({ length: 6 }).map((_, i) => (\n            <Skeleton key={i} className=\"h-16 w-full\" />\n          ))}\n        </div>\n      ) : (\n        CATEGORY_ORDER.filter((c) => grouped[c]?.length).map((category) => (\n          <div key={category} className=\"space-y-2\">\n            <h2 className=\"text-sm font-semibold text-muted-foreground uppercase tracking-wide\">\n              {category}\n            </h2>\n            <div className=\"grid gap-2\">\n              {grouped[category].map((ind) => (\n                <Card\n                  key={ind.key}\n                  className=\"hover-elevate cursor-pointer\"\n                  role=\"button\"\n                  tabIndex={0}\n                  aria-haspopup=\"dialog\"\n                  onClick={(event) => { detailTrigger.current = event.currentTarget; setSelectedKey(ind.key); }}\n                  onKeyDown={(event) => {\n                    if (event.key === \"Enter\" || event.key === \" \") {\n                      event.preventDefault();\n                      detailTrigger.current = event.currentTarget;\n                      setSelectedKey(ind.key);\n                    }\n                  }}\n                  data-testid={`card-indicator-${ind.key}`}\n                >\n                  <CardContent className=\"p-3 flex items-center justify-between gap-4\">\n                    <div className=\"min-w-0\">\n                      <p className=\"font-medium truncate\" data-testid={`text-label-${ind.key}`}>\n                        {ind.label}\n                      </p>\n                      <p className=\"text-xs text-muted-foreground truncate\">\n                        {ind.provenanceSource}\n                      </p>\n                    </div>\n                    <div className=\"flex items-center gap-3 shrink-0\">\n                      {ind.pendingCount > 0 && (\n                        <Badge variant=\"destructive\" data-testid={`badge-pending-${ind.key}`}>\n                          {ind.pendingCount} pending\n                        </Badge>\n                      )}\n                      {provenanceBadge(ind.provenance)}\n                      <div className=\"text-right w-28\">\n                        <p className=\"font-mono font-semibold\" data-field-id=\"indicatorInventory.indicators[].appliedValue\" data-testid={`text-value-${ind.key}`}>\n                          {formatValue(ind.appliedValue, ind.decimals)}\n                        </p>\n                        <p className=\"text-[10px] text-muted-foreground\" data-field-id=\"indicatorInventory.indicators[].unit\">\n                          {ind.unit} · {ind.appliedYear}\n                        </p>\n                      </div>\n                    </div>\n                  </CardContent>\n                </Card>\n              ))}\n            </div>\n          </div>\n        ))\n      )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 321,
+      "line": 325,
       "expression": "Array.from({ length: 6 }).map((_, i) => (\n            <Skeleton key={i} className=\"h-16 w-full\" />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 329,
+      "line": 333,
       "expression": "category",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 332,
+      "line": 336,
       "expression": "grouped[category].map((ind) => (\n                <Card\n                  key={ind.key}\n                  className=\"hover-elevate cursor-pointer\"\n                  role=\"button\"\n                  tabIndex={0}\n                  aria-haspopup=\"dialog\"\n                  onClick={(event) => { detailTrigger.current = event.currentTarget; setSelectedKey(ind.key); }}\n                  onKeyDown={(event) => {\n                    if (event.key === \"Enter\" || event.key === \" \") {\n                      event.preventDefault();\n                      detailTrigger.current = event.currentTarget;\n                      setSelectedKey(ind.key);\n                    }\n                  }}\n                  data-testid={`card-indicator-${ind.key}`}\n                >\n                  <CardContent className=\"p-3 flex items-center justify-between gap-4\">\n                    <div className=\"min-w-0\">\n                      <p className=\"font-medium truncate\" data-testid={`text-label-${ind.key}`}>\n                        {ind.label}\n                      </p>\n                      <p className=\"text-xs text-muted-foreground truncate\">\n                        {ind.provenanceSource}\n                      </p>\n                    </div>\n                    <div className=\"flex items-center gap-3 shrink-0\">\n                      {ind.pendingCount > 0 && (\n                        <Badge variant=\"destructive\" data-testid={`badge-pending-${ind.key}`}>\n                          {ind.pendingCount} pending\n                        </Badge>\n                      )}\n                      {provenanceBadge(ind.provenance)}\n                      <div className=\"text-right w-28\">\n                        <p className=\"font-mono font-semibold\" data-field-id=\"indicatorInventory.indicators[].appliedValue\" data-testid={`text-value-${ind.key}`}>\n                          {formatValue(ind.appliedValue, ind.decimals)}\n                        </p>\n                        <p className=\"text-[10px] text-muted-foreground\" data-field-id=\"indicatorInventory.indicators[].unit\">\n                          {ind.unit} · {ind.appliedYear}\n                        </p>\n                      </div>\n                    </div>\n                  </CardContent>\n                </Card>\n              ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 352,
+      "line": 356,
       "expression": "ind.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 355,
+      "line": 359,
       "expression": "ind.provenanceSource",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 359,
+      "line": 363,
       "expression": "ind.pendingCount > 0 && (\n                        <Badge variant=\"destructive\" data-testid={`badge-pending-${ind.key}`}>\n                          {ind.pendingCount} pending\n                        </Badge>\n                      )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 361,
+      "line": 365,
       "expression": "ind.pendingCount",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 364,
+      "line": 368,
       "expression": "provenanceBadge(ind.provenance)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 367,
+      "line": 371,
       "expression": "formatValue(ind.appliedValue, ind.decimals)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 370,
+      "line": 374,
       "expression": "ind.unit",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 370,
+      "line": 374,
       "expression": "ind.appliedYear",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 450,
+      "line": 454,
       "expression": "hasDefinition ? <>{def?.label} <span className=\"text-muted-foreground font-normal\">({def?.unit})</span></> : \"Indicator details\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 450,
+      "line": 454,
       "expression": "def?.unit",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 453,
+      "line": 457,
       "expression": "hasDefinition ? <>{def?.source || \"Source not returned\"} · {def?.category || \"Category not returned\"} · fetch method: {def?.fetchMethod || \"Fetch method not returned\"}</> :\n              \"Read-only details for the current indicator selection. Missing evidence is unavailable; no values are substituted.\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 459,
+      "line": 463,
       "expression": "isFetching ? \"Refreshing detail…\" : \"Refresh detail\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "expression": "hasDefinition && <DownloadDataButton\n                kind=\"indicators\"\n                filename={`indicator-time-series-${def?.key ?? \"series\"}`}\n                sheetName=\"Time Series\"\n                rows={downloadRows}\n                fieldBindings={finiteExportBindings(\"indicatorDetail\",{key:def?.key})}\n                testId=\"button-download-timeseries\"\n              />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 502,
+      "line": 506,
       "expression": "hasEstimated && (\n                    <Line\n                      type=\"monotone\"\n                      dataKey=\"estimated\"\n                      name=\"Estimated (nowcast)\"\n                      stroke=\"hsl(var(--primary))\"\n                      strokeWidth={2}\n                      strokeDasharray=\"5 4\"\n                      dot={(props: any) => {\n                        const { cx, cy, payload, key } = props;\n                        if (!payload?.isNowcast || cx == null || cy == null) {\n                          return <g key={key} />;\n                        }\n                        return (\n                          <circle\n                            key={key}\n                            cx={cx}\n                            cy={cy}\n                            r={3}\n                            fill=\"hsl(var(--background))\"\n                            stroke=\"hsl(var(--primary))\"\n                            strokeWidth={2}\n                          />\n                        );\n                      }}\n                      connectNulls\n                    />\n                  )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 539,
+      "line": 543,
       "expression": "pending.map((p) => (\n                    <div\n                      key={p.id}\n                      className=\"flex items-center justify-between gap-3 rounded-md border p-3\"\n                      data-testid={`proposal-${p.id}`}\n                    >\n                      <div className=\"min-w-0 text-sm\">\n                        <p className=\"font-mono font-semibold\">\n                          {p.year}: {formatValue(p.value, def?.decimals ?? 2)} {def?.unit}\n                        </p>\n                        <p className=\"text-xs text-muted-foreground flex items-center gap-1\">\n                          {p.source}\n                          {p.sourceUrl && (\n                            <a\n                              href={p.sourceUrl}\n                              target=\"_blank\"\n                              rel=\"noopener noreferrer\"\n                              className=\"inline-flex items-center text-primary hover:underline\"\n                              data-testid={`link-source-${p.id}`}\n                              onClick={(e) => e.stopPropagation()}\n                            >\n                              <ExternalLink className=\"h-3 w-3\" />\n                            </a>\n                          )}\n                          {p.asOfDate ? ` · as of ${p.asOfDate}` : \"\"}\n                        </p>\n                      </div>\n                      <div className=\"flex items-center gap-2 shrink-0\">\n                        <Button\n                          size=\"sm\"\n                          disabled\n                          title={OPERATOR_ONLY_REASON}\n                          data-testid={`button-approve-${p.id}`}\n                        >\n                          <Check className=\"h-4 w-4\" /> Approve\n                        </Button>\n                        <Button\n                          size=\"sm\"\n                          variant=\"outline\"\n                          disabled\n                          title={OPERATOR_ONLY_REASON}\n                          data-testid={`button-reject-${p.id}`}\n                        >\n                          <X className=\"h-4 w-4\" /> Reject\n                        </Button>\n                      </div>\n                    </div>\n                  ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 547,
+      "line": 551,
       "expression": "p.year",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 547,
-      "expression": "formatValue(p.value, def?.decimals ?? 2)",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 547,
-      "expression": "def?.unit",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 550,
-      "expression": "p.source",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
       "line": 551,
-      "expression": "p.sourceUrl && (\n                            <a\n                              href={p.sourceUrl}\n                              target=\"_blank\"\n                              rel=\"noopener noreferrer\"\n                              className=\"inline-flex items-center text-primary hover:underline\"\n                              data-testid={`link-source-${p.id}`}\n                              onClick={(e) => e.stopPropagation()}\n                            >\n                              <ExternalLink className=\"h-3 w-3\" />\n                            </a>\n                          )",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 563,
-      "expression": "p.asOfDate ? ` · as of ${p.asOfDate}` : \"\"",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 610,
-      "expression": "def?.unit",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 653,
-      "expression": "[...series].reverse().map((pt) => (\n                      <TableRow key={pt.year} data-testid={`row-series-${pt.year}`}>\n                        <TableCell>{pt.year}</TableCell>\n                        <TableCell className=\"font-mono\">\n                          {formatValue(pt.value, def?.decimals ?? 2)}\n                        </TableCell>\n                        <TableCell className=\"text-xs text-muted-foreground\">\n                          {pt.overridden ? (\n                            <span className=\"text-primary\">{pt.source}</span>\n                          ) : (\n                            pt.source\n                          )}\n                          {pt.asOfDate ? ` · as of ${pt.asOfDate}` : \"\"}\n                        </TableCell>\n                      </TableRow>\n                    ))",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 655,
-      "expression": "pt.year",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 657,
-      "expression": "formatValue(pt.value, def?.decimals ?? 2)",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 660,
-      "expression": "pt.overridden ? (\n                            <span className=\"text-primary\">{pt.source}</span>\n                          ) : (\n                            pt.source\n                          )",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 661,
-      "expression": "pt.source",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 665,
-      "expression": "pt.asOfDate ? ` · as of ${pt.asOfDate}` : \"\"",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 680,
-      "expression": "decided.slice(0, 10).map((p) => (\n                      <div\n                        key={p.id}\n                        className=\"flex items-center justify-between text-xs text-muted-foreground\"\n                        data-testid={`history-${p.id}`}\n                      >\n                        <span>\n                          {p.year}: {formatValue(p.value, def?.decimals ?? 2)} ({p.source})\n                        </span>\n                        <Badge variant={p.status === \"approved\" ? \"default\" : \"secondary\"}>\n                          {p.status}\n                        </Badge>\n                      </div>\n                    ))",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 687,
-      "expression": "p.year",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/data-management.tsx",
-      "line": 687,
       "expression": "formatValue(p.value, def?.decimals ?? 2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 687,
+      "line": 551,
+      "expression": "def?.unit",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 554,
       "expression": "p.source",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 690,
+      "line": 555,
+      "expression": "p.sourceUrl && (\n                            <a\n                              href={p.sourceUrl}\n                              target=\"_blank\"\n                              rel=\"noopener noreferrer\"\n                              className=\"inline-flex items-center text-primary hover:underline\"\n                              data-testid={`link-source-${p.id}`}\n                              onClick={(e) => e.stopPropagation()}\n                            >\n                              <ExternalLink className=\"h-3 w-3\" />\n                            </a>\n                          )",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 567,
+      "expression": "p.asOfDate ? ` · as of ${p.asOfDate}` : \"\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 614,
+      "expression": "def?.unit",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 657,
+      "expression": "[...series].reverse().map((pt) => (\n                      <TableRow key={pt.year} data-testid={`row-series-${pt.year}`}>\n                        <TableCell>{pt.year}</TableCell>\n                        <TableCell className=\"font-mono\">\n                          {formatValue(pt.value, def?.decimals ?? 2)}\n                        </TableCell>\n                        <TableCell className=\"text-xs text-muted-foreground\">\n                          {pt.overridden ? (\n                            <span className=\"text-primary\">{pt.source}</span>\n                          ) : (\n                            pt.source\n                          )}\n                          {pt.asOfDate ? ` · as of ${pt.asOfDate}` : \"\"}\n                        </TableCell>\n                      </TableRow>\n                    ))",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 659,
+      "expression": "pt.year",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 661,
+      "expression": "formatValue(pt.value, def?.decimals ?? 2)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 664,
+      "expression": "pt.overridden ? (\n                            <span className=\"text-primary\">{pt.source}</span>\n                          ) : (\n                            pt.source\n                          )",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 665,
+      "expression": "pt.source",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 669,
+      "expression": "pt.asOfDate ? ` · as of ${pt.asOfDate}` : \"\"",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 684,
+      "expression": "decided.slice(0, 10).map((p) => (\n                      <div\n                        key={p.id}\n                        className=\"flex items-center justify-between text-xs text-muted-foreground\"\n                        data-testid={`history-${p.id}`}\n                      >\n                        <span>\n                          {p.year}: {formatValue(p.value, def?.decimals ?? 2)} ({p.source})\n                        </span>\n                        <Badge variant={p.status === \"approved\" ? \"default\" : \"secondary\"}>\n                          {p.status}\n                        </Badge>\n                      </div>\n                    ))",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 691,
+      "expression": "p.year",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 691,
+      "expression": "formatValue(p.value, def?.decimals ?? 2)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 691,
+      "expression": "p.source",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/data-management.tsx",
+      "line": 694,
       "expression": "p.status",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 745,
+      "line": 749,
       "expression": "label ?? \"Year unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 745,
+      "line": 749,
       "expression": "formatValue(point.actual ?? point.estimated, decimals)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 745,
+      "line": 749,
       "expression": "unit ?? \"Unit unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 746,
+      "line": 750,
       "expression": "point.isNowcast === true ? \"Estimated — \" : point.isNowcast === false ? \"Sourced — \" : \"Observation/estimate status unavailable — \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/data-management.tsx",
-      "line": 746,
+      "line": 750,
       "expression": "typeof point.source === \"string\" && point.source.trim() ? point.source : \"Source not returned\"",
       "explicitSemanticAncestor": false
     },
@@ -7464,6 +8137,8 @@
       "line": 321,
       "expression": "await loadAnalysisResult(req.params.id)",
       "topLevelKeys": [
+        "historicalTypeCode",
+        "historicalTypeLabel",
         "id",
         "manifest",
         "materialReplayState",
@@ -8511,55 +9186,67 @@
       "transform": "Identity; density, not point probability"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "field": "[].Historical type code",
+      "id": "historical.historicalTypeCode",
+      "transform": "Exact S09-001 evidence class; missing/inconsistent class refuses export"
+    },
+    {
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "field": "[].Historical type label",
+      "id": "historical.historicalTypeLabel",
+      "transform": "Exact original S09-001 child-clause label"
+    },
+    {
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Year",
       "id": "historical.year",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Temperature Median (°C)",
       "id": "historical.median",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].P10 (°C)",
       "id": "historical.p10",
       "transform": "Identity; uncalibrated conditional quantile"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].P90 (°C)",
       "id": "historical.p90",
       "transform": "Identity; uncalibrated conditional quantile"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Reduction Rate (%/yr)",
       "id": "historical.reductionRate",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "id": "historical.netZeroYear",
       "transform": "Identity; fixed-5gt-v1; null preserved; not 5% or net zero"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Year emissions reach 5% of 2024",
       "id": "historical.thresholdDiagnostic.year",
       "transform": "Identity; null preserved; not fixed 5 Gt"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].5% diagnostic status",
       "id": "historical.thresholdDiagnostic.status",
       "transform": "Identity; missing archived diagnostic -> withheld"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Estimated",
       "id": "historical.isNowcast",
       "transform": "true -> yes; false -> no, not vintage certification"
@@ -8851,6 +9538,138 @@
       "field": "[].Avg Sentiment",
       "id": "news.topicBreakdown[].avgSentiment",
       "transform": "Identity; matched sample mean or pooled fallback"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].From",
+      "id": "readonlyDiff.from",
+      "transform": "Identity: selected before source SHA-256"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].To",
+      "id": "readonlyDiff.to",
+      "transform": "Identity: selected after source SHA-256"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Kind",
+      "id": "readonlyDiff.kind",
+      "transform": "Identity: validated archive kind"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Domain",
+      "id": "readonlyDiff.domain",
+      "transform": "Identity: exact compared cell domain"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Field",
+      "id": "readonlyDiff.field",
+      "transform": "Identity: exact grouped source field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Added",
+      "id": "readonlyDiff.added",
+      "transform": "Identity integer count; zero retained"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Removed",
+      "id": "readonlyDiff.removed",
+      "transform": "Identity integer count; zero retained"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Changed",
+      "id": "readonlyDiff.changed",
+      "transform": "Identity integer count; zero retained"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Before content SHA-256",
+      "id": "readonlyDiff.beforeHash",
+      "transform": "Identity: sorted before-group cell content hash"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].After content SHA-256",
+      "id": "readonlyDiff.afterHash",
+      "transform": "Identity: sorted after-group cell content hash"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Approval state",
+      "id": "readonlyDiff.approvalState",
+      "transform": "Identity: retained archive review state, no new approval"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].History basis",
+      "id": "readonlyDiff.historicalBasis",
+      "transform": "Identity: revised-history caveat, not original vintage"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].From",
+      "id": "readonlyDiff.from",
+      "transform": "Identity: selected before source SHA-256"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].To",
+      "id": "readonlyDiff.to",
+      "transform": "Identity: selected after source SHA-256"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Result ID",
+      "id": "readonlyDiff.resultId",
+      "transform": "Identity: exact referencing archived result"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Manifest ID",
+      "id": "readonlyDiff.manifestId",
+      "transform": "Identity: retained result manifest"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Scenario",
+      "id": "readonlyDiff.scenario",
+      "transform": "Identity: recorded scenario label"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Recorded at",
+      "id": "readonlyDiff.recordedAt",
+      "transform": "Identity ISO datetime; not source publication"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Relation",
+      "id": "readonlyDiff.relation",
+      "transform": "Identity: exact before/after/both reference enum"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Historical type code",
+      "id": "readonlyDiff.historicalTypeCode",
+      "transform": "requireHistoricalType exact validated code; no fallback"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Historical type label",
+      "id": "readonlyDiff.historicalTypeLabel",
+      "transform": "requireHistoricalType exact matching S09-001 label"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Result scan scope",
+      "id": "readonlyDiff.affectedMeaning",
+      "transform": "Identity: paginated exact-reference scan caveat"
     }
   ],
   "certifiedFiniteExports": [
@@ -9139,10 +9958,10 @@
       ]
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:145",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
       "source": "client/src/components/category-trend-chart.tsx",
       "family": "categoryTrend",
-      "rowsExpression": "data.map((d) => {\n    const row: Record<string, string | number | boolean | undefined> = {\n      Year: d.year,\n      Estimated: d.isNowcast ? \"yes\" : \"no\",\n    };\n    for (const key of CATEGORY_KEYS) {\n      let value: number | null | undefined = d[key]?.[config.metricKey];\n      row[CATEGORY_NAMES[key]] = value ?? undefined;\n    }\n    return row;\n  })",
+      "rowsExpression": "data.map((d) => {\n    const row: Record<string, string | number | boolean | undefined> = {\n      ...requireHistoricalType(d),\n      Year: d.year,\n      Estimated: d.isNowcast ? \"yes\" : \"no\",\n    };\n    for (const key of CATEGORY_KEYS) {\n      let value: number | null | undefined = d[key]?.[config.metricKey];\n      row[CATEGORY_NAMES[key]] = value ?? undefined;\n    }\n    return row;\n  })",
       "settingsExpression": "{metric:config.metricKey}",
       "domainCases": [
         {
@@ -9157,6 +9976,14 @@
             "Estimated": {
               "id": "categoryHistory.isNowcast",
               "transform": "true -> yes; false -> no; not vintage certification"
+            },
+            "Historical type code": {
+              "id": "categoryHistory.historicalTypeCode",
+              "transform": "Identity; missing or inconsistent historical class refuses export"
+            },
+            "Historical type label": {
+              "id": "categoryHistory.historicalTypeLabel",
+              "transform": "Exact S09-001 original child-clause label"
             },
             "All (Baseline)": {
               "id": "categoryHistory.all.median",
@@ -9201,6 +10028,18 @@
                 "yes",
                 "no"
               ],
+              "pattern": null
+            },
+            "Historical type code": {
+              "type": "text",
+              "nullable": false,
+              "allowed": null,
+              "pattern": null
+            },
+            "Historical type label": {
+              "type": "text",
+              "nullable": false,
+              "allowed": null,
               "pattern": null
             },
             "All (Baseline)": {
@@ -9260,6 +10099,14 @@
               "id": "categoryHistory.isNowcast",
               "transform": "true -> yes; false -> no; not vintage certification"
             },
+            "Historical type code": {
+              "id": "categoryHistory.historicalTypeCode",
+              "transform": "Identity; missing or inconsistent historical class refuses export"
+            },
+            "Historical type label": {
+              "id": "categoryHistory.historicalTypeLabel",
+              "transform": "Exact S09-001 original child-clause label"
+            },
             "All (Baseline)": {
               "id": "categoryHistory.all.reductionRate",
               "transform": "Identity; null/undefined -> blank; fixed5Gt threshold is not5% or net zero"
@@ -9303,6 +10150,18 @@
                 "yes",
                 "no"
               ],
+              "pattern": null
+            },
+            "Historical type code": {
+              "type": "text",
+              "nullable": false,
+              "allowed": null,
+              "pattern": null
+            },
+            "Historical type label": {
+              "type": "text",
+              "nullable": false,
+              "allowed": null,
               "pattern": null
             },
             "All (Baseline)": {
@@ -9362,6 +10221,14 @@
               "id": "categoryHistory.isNowcast",
               "transform": "true -> yes; false -> no; not vintage certification"
             },
+            "Historical type code": {
+              "id": "categoryHistory.historicalTypeCode",
+              "transform": "Identity; missing or inconsistent historical class refuses export"
+            },
+            "Historical type label": {
+              "id": "categoryHistory.historicalTypeLabel",
+              "transform": "Exact S09-001 original child-clause label"
+            },
             "All (Baseline)": {
               "id": "categoryHistory.all.netZeroYear",
               "transform": "Identity; null/undefined -> blank; fixed5Gt threshold is not5% or net zero"
@@ -9405,6 +10272,18 @@
                 "yes",
                 "no"
               ],
+              "pattern": null
+            },
+            "Historical type code": {
+              "type": "text",
+              "nullable": false,
+              "allowed": null,
+              "pattern": null
+            },
+            "Historical type label": {
+              "type": "text",
+              "nullable": false,
+              "allowed": null,
               "pattern": null
             },
             "All (Baseline)": {
@@ -9454,7 +10333,7 @@
       ]
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:525",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
       "source": "client/src/pages/climate-valuation.tsx",
       "family": "valuationPE",
       "rowsExpression": "currentRows.map((d) => ({\n    Date: formatTooltipDate(d.date),\n    [`${peChart.highLabel} P/E (x)`]: roundedPE(d[peChart.highKey]),\n    [`${peChart.lowLabel} P/E (x)`]: roundedPE(d[peChart.lowKey]),\n  }))",
@@ -9802,7 +10681,7 @@
       ]
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "source": "client/src/pages/data-management.tsx",
       "family": "indicatorDetail",
       "rowsExpression": "(hasDefinition ? series : []).map((p) => ({\n    Year: p.year,\n    [indicatorValueColumn(def?.key)]: p.value,\n    Type: p.isNowcast ? \"Estimated (nowcast)\" : \"Retained (not nowcast)\",\n    Source: p.source,\n    Method: p.method,\n    \"As Of Date\": p.asOfDate ?? \"\",\n  }))",
@@ -52226,8 +53105,8 @@
     },
     {
       "surface": "API GET \"/api/projection/categories/historical-trend\"",
-      "total": 149,
-      "bound": 149,
+      "total": 151,
+      "bound": 151,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -52235,8 +53114,8 @@
     },
     {
       "surface": "API GET \"/api/projection/historical-trend\"",
-      "total": 25,
-      "bound": 25,
+      "total": 27,
+      "bound": 27,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -52271,8 +53150,8 @@
     },
     {
       "surface": "API GET \"/api/research/driver-registry\"",
-      "total": 53,
-      "bound": 53,
+      "total": 54,
+      "bound": 54,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -52414,7 +53293,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:145",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
       "total": 1,
       "bound": 1,
       "unbound": [],
@@ -52450,9 +53329,9 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
-      "total": 9,
-      "bound": 9,
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "total": 11,
+      "bound": 11,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -52462,6 +53341,24 @@
       "surface": "XLSX client/src/components/indicator-cards.tsx:270",
       "total": 1,
       "bound": 1,
+      "unbound": [],
+      "unresolvedTypes": [],
+      "unresolvedDynamicKeys": [],
+      "withheld": []
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "total": 12,
+      "bound": 12,
+      "unbound": [],
+      "unresolvedTypes": [],
+      "unresolvedDynamicKeys": [],
+      "withheld": []
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "total": 10,
+      "bound": 10,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -52504,7 +53401,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:525",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
       "total": 2,
       "bound": 2,
       "unbound": [],
@@ -52513,7 +53410,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "total": 6,
       "bound": 6,
       "unbound": [],
@@ -52896,11 +53793,11 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:145",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
       "field": "[].*",
       "type": "string | number | boolean | undefined",
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 145,
+      "line": 150,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -52912,19 +53809,19 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:525",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
       "field": "[].*",
       "type": "string | number | undefined",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 525,
+      "line": 527,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].*",
       "type": "string | number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -59403,6 +60300,22 @@
     },
     {
       "surface": "API GET \"/api/projection/categories/historical-trend\"",
+      "field": "[].historicalTypeCode",
+      "type": "\"REVISED_HISTORY_RECONSTRUCTION\"",
+      "source": "server/routes.ts",
+      "line": 837,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/projection/categories/historical-trend\"",
+      "field": "[].historicalTypeLabel",
+      "type": "string",
+      "source": "server/routes.ts",
+      "line": 837,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/projection/categories/historical-trend\"",
       "field": "[].isNowcast",
       "type": "true",
       "source": "server/routes.ts",
@@ -59919,6 +60832,22 @@
       "type": "number",
       "source": "server/routes.ts",
       "line": 837,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/projection/historical-trend\"",
+      "field": "[].historicalTypeCode",
+      "type": "\"REVISED_HISTORY_RECONSTRUCTION\"",
+      "source": "server/routes.ts",
+      "line": 820,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/projection/historical-trend\"",
+      "field": "[].historicalTypeLabel",
+      "type": "string",
+      "source": "server/routes.ts",
+      "line": 820,
       "resolution": "typed-field"
     },
     {
@@ -60647,6 +61576,14 @@
       "type": "string",
       "source": "server/routes.ts",
       "line": 599,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/research/driver-registry\"",
+      "field": "indicators[].actualConsumers.legacy.acceptedForecastUse",
+      "type": "string",
+      "source": "server/routes.ts",
+      "line": 453,
       "resolution": "typed-field"
     },
     {
@@ -62466,11 +63403,11 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:145",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
       "field": "[].*",
       "type": "string | number | boolean | undefined",
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 145,
+      "line": 150,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -62954,75 +63891,91 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].5% diagnostic status",
       "type": "\"withheld\"",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Estimated",
       "type": "string",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "field": "[].Historical type code",
+      "type": "string",
+      "source": "client/src/components/historical-trend-chart.tsx",
+      "line": 152,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "field": "[].Historical type label",
+      "type": "string",
+      "source": "client/src/components/historical-trend-chart.tsx",
+      "line": 152,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].P10 (°C)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].P90 (°C)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Reduction Rate (%/yr)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Temperature Median (°C)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Year",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
       "field": "[].Year emissions reach 5% of 2024",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 152,
       "resolution": "typed-field"
     },
     {
@@ -63032,6 +63985,182 @@
       "source": "client/src/components/indicator-cards.tsx",
       "line": 270,
       "resolution": "dynamic-key-needs-explicit-binding"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Added",
+      "type": "number",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].After content SHA-256",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Approval state",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Before content SHA-256",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Changed",
+      "type": "number",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Domain",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Field",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].From",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].History basis",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Kind",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].Removed",
+      "type": "number",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+      "field": "[].To",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 114,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].From",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Historical type code",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Historical type label",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Manifest ID",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Recorded at",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Relation",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Result ID",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Result scan scope",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].Scenario",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+      "field": "[].To",
+      "type": "string",
+      "source": "client/src/components/readonly-version-diff.tsx",
+      "line": 136,
+      "resolution": "typed-field"
     },
     {
       "surface": "XLSX client/src/components/regional-comparison.tsx:79",
@@ -63314,67 +64443,67 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:525",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
       "field": "[].*",
       "type": "string | number | undefined",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 525,
+      "line": 527,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:525",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
       "field": "[].Date",
       "type": "string",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 525,
+      "line": 527,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].*",
       "type": "string | number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].As Of Date",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].Method",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].Source",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].Type",
       "type": "string",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/data-management.tsx:468",
+      "surface": "XLSX client/src/pages/data-management.tsx:472",
       "field": "[].Year",
       "type": "number",
       "source": "client/src/pages/data-management.tsx",
-      "line": 468,
+      "line": 472,
       "resolution": "typed-field"
     },
     {
@@ -66112,8 +67241,8 @@
         "field": "[].Topic"
       }
     ],
-    "currentPublicSlots": 1332,
-    "publicSlotDenominatorDelta": 331,
+    "currentPublicSlots": 1361,
+    "publicSlotDenominatorDelta": 360,
     "originalCohortComplete": false,
     "originalFullyBoundFields": 1000,
     "originalSlots": [
@@ -76368,16 +77497,16 @@
       }
     ],
     "slotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
-    "currentInventorySlotIdentityFingerprint": "05632a9b93e501f910007cdb525e24cf4ec89f147835528f8d4bacba27f11886",
+    "currentInventorySlotIdentityFingerprint": "fd5ff3e008e27995486194861680fb3e3a25a27082ceaa45f67532144deaa17a",
     "frozenOriginalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
     "originalSlotIdentitiesUnchanged": true,
     "reconciledCacheAliases": 4,
     "note": "Only reviewed original API families and existing DownloadDataButton slots count as closure. Literal columns require exact qualified bindings; finite dynamic slots require actual production row-builder certification, matching settings/bindings and an explicit finite concrete column domain with runtime rejection. New concrete columns, definitions, supplemental response/JSON claims and displays are separately inventoried, never original closure additions."
   },
   "supplementalSlotAccounting": {
-    "addedSlots": 331,
-    "addedPublicSlots": 331,
-    "addedBoundSlots": 331,
+    "addedSlots": 360,
+    "addedPublicSlots": 360,
+    "addedBoundSlots": 360,
     "addedFields": [
       {
         "surface": "API GET \"/api/cv/decarb-terciles\"",
@@ -77749,6 +78878,24 @@
       },
       {
         "surface": "API GET \"/api/projection/categories/historical-trend\"",
+        "field": "[].historicalTypeCode",
+        "type": "\"REVISED_HISTORY_RECONSTRUCTION\"",
+        "source": "server/routes.ts",
+        "line": 837,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/projection/categories/historical-trend\"",
+        "field": "[].historicalTypeLabel",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 837,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/projection/categories/historical-trend\"",
         "field": "[].policy.thresholdDiagnostic.baselineEvidenceId",
         "type": "string",
         "source": "server/routes.ts",
@@ -78235,6 +79382,24 @@
       },
       {
         "surface": "API GET \"/api/projection/historical-trend\"",
+        "field": "[].historicalTypeCode",
+        "type": "\"REVISED_HISTORY_RECONSTRUCTION\"",
+        "source": "server/routes.ts",
+        "line": 820,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/projection/historical-trend\"",
+        "field": "[].historicalTypeLabel",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 820,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/projection/historical-trend\"",
         "field": "[].thresholdDiagnostic.baselineEvidenceId",
         "type": "string",
         "source": "server/routes.ts",
@@ -78554,6 +79719,15 @@
         "type": "number",
         "source": "server/routes.ts",
         "line": 761,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/research/driver-registry\"",
+        "field": "indicators[].actualConsumers.legacy.acceptedForecastUse",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 453,
         "resolution": "typed-field",
         "bound": true
       },
@@ -79170,20 +80344,236 @@
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
         "field": "[].5% diagnostic status",
         "type": "\"withheld\"",
         "source": "client/src/components/historical-trend-chart.tsx",
-        "line": 147,
+        "line": 152,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/historical-trend-chart.tsx:147",
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+        "field": "[].Historical type code",
+        "type": "string",
+        "source": "client/src/components/historical-trend-chart.tsx",
+        "line": 152,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+        "field": "[].Historical type label",
+        "type": "string",
+        "source": "client/src/components/historical-trend-chart.tsx",
+        "line": 152,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
         "field": "[].Year emissions reach 5% of 2024",
         "type": "number",
         "source": "client/src/components/historical-trend-chart.tsx",
-        "line": 147,
+        "line": 152,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Added",
+        "type": "number",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].After content SHA-256",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Approval state",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Before content SHA-256",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Changed",
+        "type": "number",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Domain",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Field",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].From",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].History basis",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Kind",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].Removed",
+        "type": "number",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:114",
+        "field": "[].To",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 114,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].From",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Historical type code",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Historical type label",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Manifest ID",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Recorded at",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Relation",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Result ID",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Result scan scope",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].Scenario",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "XLSX client/src/components/readonly-version-diff.tsx:136",
+        "field": "[].To",
+        "type": "string",
+        "source": "client/src/components/readonly-version-diff.tsx",
+        "line": 136,
         "resolution": "typed-field",
         "bound": true
       },
@@ -79363,9 +80753,9 @@
     "originalPublicDenominator": 1001,
     "externalTypedApiSlots": 2766,
     "externalTypedApiBoundSlots": 2766,
-    "expandedApiAndDownloadPublicSlots": 4098,
-    "expandedApiAndDownloadBoundSlots": 4097,
-    "expandedPublicDeltaFromOriginal": 3097,
+    "expandedApiAndDownloadPublicSlots": 4127,
+    "expandedApiAndDownloadBoundSlots": 4126,
+    "expandedPublicDeltaFromOriginal": 3126,
     "supplementalMetadataSheetColumns": 31,
     "companyCoverageApiLeafSlots": 133,
     "companyCoverageJsonExportLeafSlots": 133,

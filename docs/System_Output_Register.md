@@ -23,7 +23,14 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | GET | `/api/calculation/fair-artifacts/:artifactId/${operation}` | server/calculation/fairArtifactRoutes.ts |
 | POST | "/api/calculation/ensemble-summary" | server/calculation/fairArtifactRoutes.ts |
 | POST | "/api/calculation/validate-history" | server/calculation/fairArtifactRoutes.ts |
+| GET | `${CARBON_PASS_THROUGH_ROUTE}${suffix}` | server/carbonPassThroughApi.ts |
 | GET | `${CONDITIONAL_COMPANY_ROUTE}${suffix}` | server/companyConditionalApi.ts |
+| GET | "/api/development/qualified-missingness" | server/qualifiedMissingnessApi.ts |
+| GET | "/api/development/qualified-missingness/export" | server/qualifiedMissingnessApi.ts |
+| GET | "/api/development/qualified-missingness" | server/qualifiedMissingnessApi.ts |
+| GET | "/api/development/qualified-missingness/export" | server/qualifiedMissingnessApi.ts |
+| GET | "/api/data/version-diff" | server/readonlyDiffApi.ts |
+| GET | "/api/data/history-types" | server/readonlyDiffApi.ts |
 | GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |
 | GET | "/api/calculation/company-coverage" | server/routes.ts |
@@ -97,6 +104,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/analysis-snapshot-status.tsx | "/api/analysis/snapshots" |
 | client/src/components/analysis-snapshot-status.tsx | `/api/analysis/snapshots?${query}` |
 | client/src/components/analysis-snapshot-status.tsx | `/api/cv/summary?snapshotId=${encodeURIComponent(selectedSnapshotId)}` |
+| client/src/components/carbon-pass-through-review.tsx | "/api/cv/carbon-pass-through-evidence/export.json" |
 | client/src/components/company-conditional-summary.tsx | `/api/cv/company-conditional-summaries/export` |
 | client/src/components/company-coverage.tsx | "/api/calculation/company-coverage" |
 | client/src/components/company-coverage.tsx | `/api/calculation/company-coverage?${params}` |
@@ -107,6 +115,9 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-review.tsx | "/api/financial-data/reviews" |
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
+| client/src/components/qualified-missingness-review.tsx | `/api/development/qualified-missingness${revision ? `?revision=${revision}` : ""}` |
+| client/src/components/qualified-missingness-review.tsx | `/api/development/qualified-missingness/export?revision=${data.revision}` |
+| client/src/components/readonly-version-diff.tsx | `/api/data/version-diff?${new URLSearchParams(selection ?? {}).toString()}` |
 | client/src/components/stage10-financial-coverage.tsx | `/api/research/stage10-coverage${suffix}?${new URLSearchParams({ workbookHash: report.workbookHash, cutoff: report.informationCutoff, expectedInputHash: report.inputHash, firstYear: String(report.fiscalYears[0]), lastYear: String(report.fiscalYears.at(-1)), })}` |
 | client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
 | client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
@@ -208,6 +219,8 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | client/src/components/emissions-chart.tsx | "global-emissions-trajectory" | {downloadRows} | "legacy" |
 | client/src/components/historical-trend-chart.tsx | {`historical-trend-${metricView}`} | {downloadRows} | "legacy" |
 | client/src/components/indicator-cards.tsx | "climate-indicators" | {downloadRows} | "indicators" |
+| client/src/components/readonly-version-diff.tsx | "readonly-version-diff" | {() => versionDiffExportRows(data)} | "indicators" |
+| client/src/components/readonly-version-diff.tsx | "affected-archived-analyses" | {() => affectedAnalysisExportRows(data)} | "indicators" |
 | client/src/components/regional-comparison.tsx | "legacy-global-intensity-counterfactual" | {downloadRows} | "legacy" |
 | client/src/components/sensitivity-chart.tsx | "indicator-sensitivity" | {downloadRows} | "legacy" |
 | client/src/components/temperature-histogram.tsx | "temperature-distribution" | {downloadRows} | "legacy" |

@@ -14,6 +14,7 @@ import { RegionalComparison } from "../client/src/components/regional-comparison
 import { SensitivityChart } from "../client/src/components/sensitivity-chart";
 import { ThresholdDiagnosticDetails } from "../client/src/components/threshold-diagnostic-details";
 import { CategoryTrendChart } from "../client/src/components/category-trend-chart";
+import { revisedHistoryType } from "../shared/historicalTypes";
 
 (globalThis as any).React = React;
 function render(component: React.ComponentType, path: string, value: unknown) {
@@ -169,7 +170,7 @@ test("threshold null diagnostic stays withheld without a borrowed legacy compara
   assert.doesNotMatch(html, /Download threshold diagnostic|fixed-5gt/);
 });
 test("category threshold view tolerates omitted/null category cells and explains the exact missing-cell reason", () => {
-  const html = renderToStaticMarkup(React.createElement(CategoryTrendChart, { metricView: "netZero", data: [{ year: 2024, technology: {}, policy: null }] as any }));
+  const html = renderToStaticMarkup(React.createElement(CategoryTrendChart, { metricView: "netZero", data: [{ ...revisedHistoryType, year: 2024, technology: {}, policy: null }] as any }));
   assert.match(html, /Some category cells are missing/);
   assert.match(html, /other categories are not substituted/);
   assert.match(html, /Withheld — 2024 baseline unavailable/);

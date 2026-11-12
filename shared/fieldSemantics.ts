@@ -12,7 +12,7 @@ const calculated = { source:"Calculation implementation in the archived source b
   asOf:"Same selected inputs and information cutoff; not a new source observation" };
 export const fieldSemantics: FieldSemantic[] = [
   ...["scope1Emissions","scope2Emissions","scope3Emissions"].map(field=>({field,role:"Input" as const,unit:"tCO2e",formula:"Reported scope emissions; null is unavailable, not zero",dependencies:[],...workbook})),
-  ...["marketCap","netProfit"].map(field=>({field,role:"Input" as const,unit:"USD million",formula:"Workbook monetary amount; no implicit FX conversion",dependencies:[],...workbook})),
+  ...["marketCap","netProfit"].map(field=>({field,role:"Input" as const,unit:"Native reported monetary unit; USD million only after qualified conversion",formula:"Retain source numeric amount and original date; currency, magnitude/minor-unit scale and any exact-source-day FX must be evidenced before monetary aggregation or raw-amount ratios. Missing evidence withholds derived values, not the original number; no implicit USD or FX.",dependencies:[],...workbook})),
   {field:"priceEarnings",role:"Input",unit:"ratio",formula:"Workbook P/E input; invalid/nonpositive values excluded by calculator",dependencies:[],...workbook},
   {field:"totalReturnIndex",role:"Input",unit:"index",formula:"Reported cumulative total-return index; period return = ending index / starting index - 1 for finite strictly positive levels",dependencies:[],...workbook,
     asOf:"Selected workbook observation label, not independently verified exchange-close time. Exact market-calendar and cash-dividend/split conventions require source evidence; no nearest-trading-date substitution or original-vintage claim."},

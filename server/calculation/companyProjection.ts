@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { contentHash } from "./analysisManifest";
+import { calculateQualifiedCarbonDrag, qualifiedProjectionPassThroughSchema } from "./carbonPassThroughAdmission";
+import { bindNestedOutput } from "../../shared/outputFieldSemantics";
 
 const finite = z.number().finite(), fraction = finite.min(0).max(1);
 const evidence = z.array(z.string().min(1)).min(1);
@@ -74,6 +76,7 @@ const schema = z.object({
       scope1IntensityMultiplier: finite.nonnegative(), scope2IntensityMultiplier: finite.nonnegative(),
       scope3IntensityMultiplier: finite.nonnegative(), scope1LiableFraction: fraction,
       scope2LiableFraction: fraction, effectiveCarbonPrice: finite.nonnegative(), passThrough: fraction,
+      qualifiedPassThrough: qualifiedProjectionPassThroughSchema.optional(),
       abatementAccounting: abatementAccounting.optional(),
     }).strict()).length(5),
   }).strict()).min(2).max(1000),
@@ -132,8 +135,30 @@ export function projectCompanyMembers(input: unknown) {
         scope2: x.baseEmissionsTonnes.scope2 * activityRatio * p.scope2IntensityMultiplier,
         scope3: x.baseEmissionsTonnes.scope3 * activityRatio * p.scope3IntensityMultiplier,
       };
-      const carbonDrag = (emissionsTonnes.scope1 * p.scope1LiableFraction +
-        emissionsTonnes.scope2 * p.scope2LiableFraction) * p.effectiveCarbonPrice * (1 - p.passThrough);
+      // Absence keeps legacy conditional arithmetic/output/hash byte-compatible.
+      // Raw passThrough is not a source-admitted coefficient. The opt-in replaces,
+      // never stacks with, that legacy drag and cannot cover mixed company markets.
+      let qualifiedCarbonDrag: ReturnType<typeof calculateQualifiedCarbonDrag> | undefined;
+      if (p.qualifiedPassThrough) {
+        const q = p.qualifiedPassThrough;
+        if (q.companyId !== x.companyId) throw new Error("Qualified pass-through issuer mismatch");
+        if (x.mapping.basis !== "operating-geography" || shares.length !== 1 ||
+            shares[0].region !== q.assumption.jurisdiction || shares[0].sector !== q.assumption.sector)
+          throw new Error("Qualified pass-through requires exact single operating geography/sector exposure");
+        if (p.scope2LiableFraction !== 0)
+          throw new Error("Qualified direct Scope1 recovery cannot cover Scope2 electricity-price costs");
+        if (p.passThrough !== 0)
+          throw new Error("Qualified pass-through cannot coexist with legacy raw passThrough");
+        qualifiedCarbonDrag = calculateQualifiedCarbonDrag(q.assumption, {
+          scope: "scope1", year: p.year, currency: x.currency,
+          incrementalLiableTonnesNetAllocation: emissionsTonnes.scope1 * p.scope1LiableFraction,
+          incrementalEffectivePricePerTonne: p.effectiveCarbonPrice,
+          priceBasis: q.priceBasis, accountingBasis: q.accountingBasis,
+        });
+      }
+      const carbonDrag = qualifiedCarbonDrag ? qualifiedCarbonDrag.carbonDrag :
+        (emissionsTonnes.scope1 * p.scope1LiableFraction +
+          emissionsTonnes.scope2 * p.scope2LiableFraction) * p.effectiveCarbonPrice * (1 - p.passThrough);
       const operatingProfitBeforeCarbon = revenue * p.operatingMargin;
       const preTaxIncome = operatingProfitBeforeCarbon - carbonDrag - p.interest + p.nonOperatingIncome;
       // No automatic tax refund for losses or unsupported deferred-tax asset.
@@ -143,7 +168,15 @@ export function projectCompanyMembers(input: unknown) {
         p.capex - p.increaseWorkingCapital + p.netBorrowing;
       if (![revenue, activityRatio, ...Object.values(emissionsTonnes), carbonDrag, fcfe].every(Number.isFinite))
         throw new Error("Nonfinite projected operating ledger");
+      const carbonDragQualification = qualifiedCarbonDrag ? {
+        inputMode: "source-referenced-analyst-assumption-incremental-scope1" as const,
+        component: qualifiedCarbonDrag, cashBridge: p.qualifiedPassThrough!.cashBridge,
+        legacyPassThroughTreatment: "zero-sentinel-not-a-second-recovery-coefficient" as const,
+        claim: "Conditional accrual component consumed by FCFE ledger; no empirical issuer cash validation",
+      } : undefined;
+      if (carbonDragQualification) bindNestedOutput("companyProjection.carbonDragQualification", carbonDragQualification);
       return { year: p.year, revenue, activityRatio, emissionsTonnes, operatingProfitBeforeCarbon,
+        ...(carbonDragQualification ? { carbonDragQualification } : {}),
         ...(abatementReconciliation ? { abatementReconciliation } : {}),
         carbonDrag, interest: p.interest, nonOperatingIncome: p.nonOperatingIncome,
         incomeAttributionAdjustment: p.incomeAttributionAdjustment,

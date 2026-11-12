@@ -16,6 +16,7 @@ import { gordonBaselineMetadata } from "../server/calculation/publicValuationCon
 import { gordonBaselineLabel, gordonExportNotes } from "../client/src/lib/valuation-claims";
 import { AnalysisSection } from "../client/src/pages/climate-valuation";
 import { CategoryComparison } from "../client/src/components/category-comparison";
+import { requireHistoricalType, revisedHistoryType } from "../shared/historicalTypes";
 import { RegionalComparison } from "../client/src/components/regional-comparison";
 import { TemperatureGauge } from "../client/src/components/temperature-gauge";
 import { MetricToggle } from "../client/src/components/metric-toggle";
@@ -62,7 +63,7 @@ function productionRows(file: string, context: Record<string, unknown>) {
   };
   visit(source);
   assert.ok(rows && bindings && notes, file);
-  const env = { ...context, FIXED_5GT_DESCRIPTOR: fixed, THRESHOLD_DIAGNOSTIC_LABEL: selected.label, residualQuantityExportNotes };
+  const env = { ...context, FIXED_5GT_DESCRIPTOR: fixed, THRESHOLD_DIAGNOSTIC_LABEL: selected.label, residualQuantityExportNotes, requireHistoricalType };
   return { rows: evaluate(rows, env), bindings: evaluate(bindings, env), notes: evaluate(notes, env) };
 }
 test("exact original S01-014/S01-016 criteria remain the assessment, not descriptor presence alone", () => {
@@ -120,9 +121,9 @@ test("actual fixed-year UI and three production XLSX row/binding/note builders p
   const cases = [
     ["category-comparison", { categories: [category, { ...category, netZeroYear: null }] }],
     ["regional-comparison", { regions: [region, { ...region, netZeroYear: null }] }],
-    ["historical-trend-chart", { data: [{ year: 2024, median: 2, p10: 1.5, p90: 2.5, reductionRate: 0,
+    ["historical-trend-chart", { data: [{ ...revisedHistoryType, year: 2024, median: 2, p10: 1.5, p90: 2.5, reductionRate: 0,
       netZeroYear: 2097, thresholdDiagnostic: diagnostic, isNowcast: false },
-      { year: 2023, median: 2, p10: 1.5, p90: 2.5, reductionRate: 0, netZeroYear: null, isNowcast: false }] }],
+      { ...revisedHistoryType, year: 2023, median: 2, p10: 1.5, p90: 2.5, reductionRate: 0, netZeroYear: null, isNowcast: false }] }],
   ] as const;
   for (const [name, context] of cases) {
     const built = productionRows(`client/src/components/${name}.tsx`, context);

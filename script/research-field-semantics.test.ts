@@ -18,7 +18,7 @@ test("all actual research and pinned reference leaves bind without numerical mod
   const original=JSON.stringify(response);
   const driver=bindNestedOutput("driverRegistry",response);
   assert.equal(response.indicators.length,22);
-  assert.equal(driver.length,53,"Previous51 plus explicit legacyRole and admission metadata");
+  assert.equal(driver.length,54,"Previous53 plus exact acceptedForecastUse refusal disclosure; supplemental denominator only, not original closure");
   assert.equal(new Set(driver.map(f=>f.id)).size,driverFieldSpecs.length);
   assert.equal(JSON.stringify(response),original);
   const reference=bindNestedOutput("publishedReference",references);
@@ -45,7 +45,7 @@ test("all actual research and pinned reference leaves bind without numerical mod
   assert.match(requireOutputSemantic("driverRegistry.indicators[].sourceProvenance.retainedInputHash").formula,/contentHash/);
   assert.throws(()=>bindNestedOutput("driverRegistry",{indicators:[{unreviewed:1}]}),/Unmapped/);
   assert.throws(()=>bindNestedOutput("publishedReference",{newValue:1}),/Unmapped/);
-  assert.equal(driverConsumerFieldSpecs.length,17);
+  assert.equal(driverConsumerFieldSpecs.length,18);
   for(const [field,meaning,formula,unit,status] of driverConsumerFieldSpecs) {
     const semantic=requireOutputSemantic(`driverRegistry.${field}`);
     assert.equal(semantic.meaning,meaning);
@@ -95,7 +95,9 @@ test("census counts exact response bindings and keeps explicit displays separate
   assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots,1);
   assert.equal(census.supplementalQualifiedChanges.companyCoverage.definitions,133);
   assert.equal(new Set(census.supplementalQualifiedChanges.companyCoverage.ids).size,133);
-  for(const [path,count] of [["/api/research/driver-registry",53],["/api/reference-scenarios",28],
+  // One newly emitted acceptedForecastUse leaf adds a supplemental response slot:
+  // 53→54 is disclosure-denominator growth, not closure of the frozen original1001 cohort.
+  for(const [path,count] of [["/api/research/driver-registry",54],["/api/reference-scenarios",28],
     ["/api/cv/summary",21],["/api/cv/dimensions",2]] as const) {
     const family=census.families.find((f:{surface:string})=>f.surface===`API GET "${path}"`);
     assert.equal(family.total,count);

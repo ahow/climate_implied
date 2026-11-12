@@ -8,9 +8,12 @@ import { historicalTrajectoryMetrics } from "./historicalMetrics";
 import type { ThresholdDiagnostic } from "../../shared/thresholdDiagnostic";
 import { selectedTrajectoryThresholdContext, type ThresholdContext } from "./thresholdDiagnostic";
 import { calculationKey } from "./identity";
+import { revisedHistoryType, type HistoricalTypeCode } from "../../shared/historicalTypes";
 import { getAllHistoricalIndicators, getAllHistoricalIndicatorsWithNowcast, computeEmpiricalCarbonIntensityDeclineRate } from "./historicalIndicators";
 
 export interface HistoricalTrendPoint {
+  historicalTypeCode: HistoricalTypeCode;
+  historicalTypeLabel: string;
   year: number;
   median: number;
   p10: number;
@@ -64,6 +67,7 @@ export function getRecalculatedHistoricalTrend(
     const { reductionRate, netZeroYear, thresholdDiagnostic } = historicalTrajectoryMetrics(trajectory, selectedContext);
 
     return {
+      ...revisedHistoryType,
       year: data.year,
       median: tempStats.median,
       p10: tempStats.p10,

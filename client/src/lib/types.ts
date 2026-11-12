@@ -90,6 +90,8 @@ export interface ProjectionResult {
 }
 
 export interface HistoricalTrendPoint {
+  historicalTypeCode?: import("@shared/historicalTypes").HistoricalTypeCode;
+  historicalTypeLabel?: string;
   year: number;
   median: number;
   p10: number;
@@ -145,6 +147,8 @@ export interface CategoryMetrics {
 }
 
 export interface CategoryHistoricalTrendPoint {
+  historicalTypeCode?: import("@shared/historicalTypes").HistoricalTypeCode;
+  historicalTypeLabel?: string;
   year: number;
   all: CategoryMetrics;
   technology: CategoryMetrics;

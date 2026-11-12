@@ -1,0 +1,16 @@
+{
+  "version": "s12-007-literature-admission-1",
+  "frozenBeforeNumericalStudies": true,
+  "scope": "New standalone source register and opt-in carbon-drag channel only; no issuer valuation or empirical fit in this experiment.",
+  "sourcePlan": [
+    "Sijm, Neuhoff and Chen original public Cambridge working paper EPRG0617: wholesale electricity Germany/Netherlands, early EU ETS.",
+    "CE Delft/Oeko-Institut November2015 original European Commission commissioned six-sector ex-post report: inspect original product/country tables, not secondary literature ranges."
+  ],
+  "fetchBound": "Two discovered original public PDFs, <=20MB each, <=45 seconds per request; no credentials, billing, issuer index repeats or restricted raw bytes retained in repository.",
+  "admission": "Require original provenance, exact publication precision, observed period and market, denominator/units, estimator, reported interval kind and caveats. Abstract ranges and indicative cross-specification spans are not confidence intervals.",
+  "binding": "Only explicit analyst assumptions with source identity, exact sector/product/jurisdiction/regime/channel matching and explicit temporal transfer rationale. Price effects cannot be relabelled common-profit or cash effects. No automatic midpoint, clipping, probabilities or universal ranges.",
+  "accounting": "Only separately identified incremental direct Scope1 cost and same-cost recovery may enter net carbon drag. Scope2 electricity price formation is upstream context, not downstream recovery. Exclude Scope3; require no recovery already in baseline margin/revenue. Free allocation/opportunity cost is not paid cash.",
+  "preservation": "No old cases, frozen beta, EV/storage/fleet, protected14FaIRfiles, canonicalledgers, census, approvals, commit/deploy or callback changes.",
+  "issuerSourceAttempts": "None planned: no materially new issuer contract identified; existing inventory gaps preserved.",
+  "studyPolicy": "No numerical issuer study eligible from literature alone. Synthetic focused unit tests only; freeze this protocol separately before any future numerical study."
+}

@@ -1,0 +1,37 @@
+{
+  "version": "qualified-metadata-opt-in-legacy-xlsx-preservation-1",
+  "observedFailure": {
+    "suite": "generated-artifacts/workplan-completion/20261112T001449558126Z.log",
+    "expectedLegacyBinarySha256": "e3435be2c86e8494595dfa4087014e678c5efd7d80a196dd74c463c2d1b0bcd2",
+    "changedBinarySha256": "8549fc75cd8e0833474a10a7dccd6f71dbb75e7a079082ef0a08144998054b00",
+    "cause": "Prior source-qualified integration changed two exported Semantics worksheet cells for companyReplay.ledger.carbonDrag: meaning and formula. Legacy engine numeric result hash remained the original387dcba5...; default workbook metadata was unintentionally changed."
+  },
+  "correction": {
+    "legacyDefinition": "Restored exact historical companyReplay carbonDrag meaning and formula, and exact abatement-only formula/dependencies. No golden hashes rewritten or re-pinned.",
+    "optInOnly": "Replay exporter detects actual result member-year carbonDragQualification. Only then adds source-qualified consumer semantic IDs and uses explicit per-row qualified-versus-legacy carbonDrag metadata. Legacy/abatement-only results retain exact prior semantic cells.",
+    "actualCellsVerified": [
+      "Default Semantics companyReplay.ledger.carbonDrag meaning exactly Unpassed liable-emissions charge",
+      "Default formula exactly (scope1*liable1 + scope2*liable2) * effectiveCarbonPrice * (1-passThrough)",
+      "Default workbook contains no companyProjection.carbonDragQualification.* semantic rows",
+      "Explicit qualified workbook contains qualified component semantic IDs and conditional accrual-not-common-cash formula"
+    ],
+    "restoredLegacyBinarySha256": "e3435be2c86e8494595dfa4087014e678c5efd7d80a196dd74c463c2d1b0bcd2",
+    "restoredLegacyCellsSha256": "1f9fa2a8c084e47ffd332ec13b9948b7d768f5f122cc42780fac7ac17d413a74",
+    "unchangedLegacyResultSha256": "387dcba5ea84eb17aae6a39c55e6b21054c9cb8e023541fd430c871786026ebb"
+  },
+  "operationalBindingCount": {
+    "previousReviewedBindings": 103,
+    "newReadonlyDiffColumns": 22,
+    "newHistoricalEvidenceCodeLabelColumns": 2,
+    "currentExactLiteralBindings": 127,
+    "exactSetVerification": "Operational test now asserts all22 readonlyDiff column/semantic-ID pairs and2 historical code/label pairs, subtracts these from127 to recover103, and retains original1001/1000 invariants.",
+    "originalClosureCredit": 0
+  },
+  "boundaries": "Synthetic replay/export tests only, no actual issuer case or scientific acceptance retuned. No protected14 files, scientific gates, cohort fingerprint or golden replacements.",
+  "verification": {
+    "focused": "company-projection-abatement-replay + operational-field-semantics + carbon-pass-through-consumer:13/13 passed, including unchanged original binary/cells/result golden hashes and new actual qualified-only metadata readback test.",
+    "accounting": "next-census-accounting10/10 passed including strict completeness refusal on original opaque slot.",
+    "census": "Regenerated and --check passed:2111definitions,1388typed,1361public/1360bound,360supplemental all bound; unchanged original1001/1000.",
+    "types": "Targeted TypeScript compiler strict diagnostics0 using existing workspace @shared/@ path aliases; initial standalone CLI without aliases could not resolve existing @shared/schema imports, corrected compiler options rather than altering code."
+  }
+}

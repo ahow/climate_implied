@@ -1681,6 +1681,100 @@
       },
       "failure_history": "Interrupted/constrained validation attempts retained. Cachetransport fixture unqualifiedaftermoneyguard; Nodeassertion diagnostic inferencehung; explicitmessages/qualifiedsyntheticreceipts/sharedESMcontexts/boundedtimeouts fixed without productiongateweakening. Mobileoverflow andsummaryfeedback failures fixed, receipts preserved.",
       "public_ci_history": "43099169985 and43116713745 failedTS: faithful shallow public reproduction found unavailable workspace Git history. Exact source-only fixtures preserve original blobs/tree and all old/current assertions; no private data/history dump, skip, workflow or timeout weakening. See docs/S02-009-public-source-failure-evidence.json. Final public-source validation receipt is separate from local892."
+    },
+    "review_history": {
+      "executed_at": "2026-11-12T00:26:17.242318+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-c",
+          "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+        ],
+        "executed_at": "2026-11-12T00:21:16.709305+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 253.557,
+        "counts": {
+          "tests": 931,
+          "pass": 931,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+        "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+        "worktree_dirty": true,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+      },
+      "counts": "56 verified /242 partial /2 blocked; original1000/1001;0eligible histories;0/3qualified issuers",
+      "failures": "First integrated923TS:908pass15fail. Second930TS:928pass2fail. Actual missing-type fixture, SSR env, component policies and precise semantics/export census corrected. Legacy workbook metadata was wrongly broadened; restored EXACT old meaning/formula/golden, scoped new semantics to opt-in only. No golden repin or weakened gates. Detailed logs retained.",
+      "semantics": "Original1000/1001 unchanged. New22 diff export slots exactly bound; supplemental360/360, public1360/1361;2111definitions;68components. No new original closure credit.",
+      "scientific": "No old negative study rerun; no calibrated ensemble or actual issuer/history efficacy claimed.",
+      "release": "Pending new coherent source promotion; previous verified3413ebc remains distinct.",
+      "changed_paths": [
+        "client/src/components/category-trend-chart.tsx",
+        "client/src/components/historical-trend-chart.tsx",
+        "client/src/lib/types.ts",
+        "client/src/pages/climate-valuation.tsx",
+        "client/src/pages/data-management.tsx",
+        "docs/System_Output_Register.md",
+        "docs/WORKPLAN_COMPLETION_LEDGER.md",
+        "docs/field_semantics_census.json",
+        "docs/workplan_completion_ledger.json",
+        "script/company-projection-abatement-replay.test.ts",
+        "script/component-partial-state.test.ts",
+        "script/component-state-census.test.ts",
+        "script/component-state-contracts.ts",
+        "script/export-contract.test.ts",
+        "script/finite-export-schemas.test.ts",
+        "script/next-census-accounting.test.ts",
+        "script/operational-field-semantics.test.ts",
+        "script/output-field-semantics.test.ts",
+        "script/quantity-label-contracts.test.ts",
+        "script/remaining-component-contracts.test.ts",
+        "script/research-field-semantics.test.ts",
+        "server/calculation/categoryHistoricalTrend.ts",
+        "server/calculation/companyProjection.ts",
+        "server/calculation/companyProjectionReplay.ts",
+        "server/calculation/driverConsumptionTrace.ts",
+        "server/calculation/forwardProjection.ts",
+        "server/calculation/historicalRecalculation.ts",
+        "server/index.ts",
+        "server/snapshots/results.ts",
+        "shared/fieldSemantics.ts",
+        "shared/finiteExportSchemas.ts",
+        "shared/historicalFieldSemantics.ts",
+        "shared/outputFieldSemantics.ts",
+        "shared/researchFieldSemantics.ts",
+        "client/src/components/carbon-pass-through-review.tsx",
+        "client/src/components/qualified-missingness-review.tsx",
+        "client/src/components/readonly-version-diff.tsx",
+        "docs/S03-004-persistence-evidence.json",
+        "docs/carbon-pass-through-consumer-protocol.json",
+        "docs/carbon-pass-through-legacy-workbook-preservation-evidence.json",
+        "docs/carbon-pass-through-protocol.json",
+        "docs/carbon-pass-through-source-evidence.json",
+        "docs/readonly-diff-history-evidence.json",
+        "docs/readonly-diff-semantics-accounting-evidence.json",
+        "script/carbon-pass-through-admission.test.ts",
+        "script/carbon-pass-through-consumer.test.ts",
+        "script/legacy-driver-admission.test.ts",
+        "script/qualified-missingness-persistence.test.ts",
+        "script/qualified-missingness-review.ts",
+        "script/readonly-diff-history.test.ts",
+        "script/readonly-new-card-states.test.ts",
+        "script/record-review-history.py",
+        "server/calculation/carbonPassThroughAdmission.ts",
+        "server/calculation/legacyDriverAdmission.ts",
+        "server/carbonPassThroughApi.ts",
+        "server/dataIngestion/qualifiedMissingnessStore.ts",
+        "server/qualifiedMissingnessApi.ts",
+        "server/readonlyDiffApi.ts",
+        "server/snapshots/readonlyDiffContract.ts",
+        "server/snapshots/readonlyDiffStore.ts",
+        "shared/carbonPassThroughEvidence.ts",
+        "shared/carbonPassThroughSemantics.ts",
+        "shared/historicalTypes.ts",
+        "shared/readonlyDiffSemantics.ts"
+      ]
     }
   },
   "prior_native_fleet_increment": {
@@ -1776,7 +1870,7 @@
     "scope": "56engineeringcriteria verified;0eligiblehistoricalrecords/0of3cases. Bundle2025sourcecompatiblecandidate remainsunprovisioned;source/rights/approval constraints remain."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-11T23:38:27.230744+00:00",
+  "updated_at": "2026-11-12T00:26:17.242318+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -21097,7 +21191,7 @@
             "server/dataIngestion/adapters/qualifiedArchive.ts",
             "script/source-qualified-missingness.test.ts"
           ],
-          "behaviour_delivered_this_run": "RemovedNOAA/OWIDprematurerounding;sourceprecision retained,underflowrefused. Readonlyqualifiedarchive fourstates andinteriorinfillonlyactualblank/donors/source-suppliedpaireddraws.8observations/1zero/1infill/2derivedsamples/4withheld. Oldscopeaggregate2rows10emissions→1observedzero row0 documented.",
+          "behaviour_delivered_this_run": "Added append-only DEVELOPMENT source/review persistence, pinned historical selection and calculator/API-test/UI/XLSX roundtrip. Four states preserved, interior blanks and supplied paired draws only. Public reads corrected to403 before private-store access; default application never mounts engineering injection.",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -21192,6 +21286,26 @@
               "workspace_revision": "1418cdb3a7c4d3f858a41b06b7444024a5657d95",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -21210,10 +21324,15 @@
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
           "remaining_gaps": [
-            "Fullfourstatepersistence/review/UI andrealproviderpaired-draw evidence remain; deterministic/carryforward diagnostics not sampledstandard."
+            "Actual private HTTP/UI access requires genuine operator principal or independently trusted disclosure. Production persistence and real source uncertainty remain unqualified."
           ],
-          "next_action": "Fullfourstatepersistence/review/UI andrealproviderpaired-draw evidence remain; deterministic/carryforward diagnostics not sampledstandard.",
-          "blockers": [],
+          "next_action": "Actual private HTTP/UI access requires genuine operator principal or independently trusted disclosure. Production persistence and real source uncertainty remain unqualified.",
+          "blockers": [
+            {
+              "kind": "specific remaining original scope",
+              "detail": "Actual private HTTP/UI access requires genuine operator principal or independently trusted disclosure. Production persistence and real source uncertainty remain unqualified."
+            }
+          ],
           "check_type": "numerical",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
           "direct_code_evidence": [
@@ -21570,7 +21689,298 @@
           },
           "remainingGaps": [
             "Fullfourstatepersistence/review/UI andrealproviderpaired-draw evidence remain; deterministic/carryforward diagnostics not sampledstandard."
-          ]
+          ],
+          "review_history_increment": {
+            "evidence_file": "docs/S03-004-persistence-evidence.json",
+            "sha256": "822f6f150512f3679ede61b28e9e80fefaea33831139a7fe42488ebe8e21e3eb",
+            "detail": {
+              "criterion": "S03-004",
+              "version": "qualified-development-persistence-evidence-2-private-http-denied",
+              "assessment": "Supported private DEVELOPMENT file-archive lifecycle implemented and exercised through actual persistence, process reopen, versioned decisions/history, existing qualified-source calculator and XLSX bytes. Actual application HTTP reads/exports refuse403 because no genuine operator principal or trusted source-rights-qualified disclosure exists. Positive HTTP/component data-flow tests use explicit isolated engineering-test injection only. Bounded engineering evidence, not whole-model, source/scientific acceptance or permission to publish private source cells.",
+              "privacyCorrection": {
+                "finding": "The initial opt-in development/environment-path HTTP implementation could expose private raw unreviewed source cells on a network-reachable preview. NODE_ENV and archive configuration are not authorization.",
+                "resolution": "Removed all environment-driven private HTTP access. Default registration unconditionally returns403 operator-cli-required with gap no-existing-http-principal-or-role, reusing the actual operatorContract. It never constructs the store or opens source bytes. There is no rights-qualified public aggregate path because no trusted disclosure catalog for these sources exists.",
+                "notAuthorization": [
+                  "NODE_ENV=development",
+                  "archive environment variable",
+                  "loopback or forwarded IP",
+                  "invented bearer token or role header",
+                  "source-supplied licence text",
+                  "source's own review note",
+                  "private development approve decision"
+                ],
+                "testOnly": "A separately named registerQualifiedMissingnessEngineeringTestApi accepts exact source-hash allowlists from trusted test code only, requires isolated node:test context plus development on registration/request, checks every archived source against the allowlist, and has no caller/env disclosure controls. This is synthetic engineering transport testing, not an HTTP principal or real-publication grant. It must never be mounted in the application."
+              },
+              "scope": {
+                "ownedFilesOnly": [
+                  "server/dataIngestion/qualifiedMissingnessStore.ts",
+                  "server/qualifiedMissingnessApi.ts",
+                  "script/qualified-missingness-review.ts",
+                  "client/src/components/qualified-missingness-review.tsx",
+                  "script/qualified-missingness-persistence.test.ts",
+                  "docs/S03-004-persistence-evidence.json"
+                ],
+                "sharedFilesNotEdited": [
+                  "server/index.ts",
+                  "server/routes.ts",
+                  "client/src/pages/data-management.tsx",
+                  "server/dataIngestion/adapters/qualifiedArchive.ts",
+                  "server/dataIngestion/dataStore.ts",
+                  "server/dataIngestion/overrideStore.ts"
+                ],
+                "prohibitedActions": "No ambient database connection, DB writes, DDL, production mutations, real issuer approval, authentication changes, new HTTP writes, workflow start/restart, commits, deployment, callbacks or canonical ledger/matrix/census edits.",
+                "protectedPins": "No protected FaIR file or pin edited. Existing qualifiedArchive.ts SHA256 remains 80c72432556452b98a42e19e867d14e60ef3a082118bab814098e0b95b6d943a. Protected native engines were not invoked.",
+                "privateAssertions": "Existing mandatory-private scripts/assertions were neither modified nor weakened. They were not executed by this bounded engineering task."
+              },
+              "inspectedActualContracts": [
+                {
+                  "path": "docs/workplan_completion_ledger.json",
+                  "selection": "S03-004 exact requirement/status/evidence/residuals; status partial",
+                  "finding": "Existing delivery is a read-only qualified archive; full production storage/review propagation is explicitly a residual. No canonical status changed."
+                },
+                {
+                  "path": "server/dataIngestion/adapters/qualifiedArchive.ts",
+                  "functions": [
+                    "readQualifiedIndicatorArchive",
+                    "interpolateQualifiedIndicator",
+                    "exportQualifiedIndicators"
+                  ],
+                  "finding": "Reused actual strict four-state parser, exact-byte source hash, source-ID pairing, original blank/donor/method locators, immutable adapter identity and actual XLSX exporter. No alternate interpolation kernel or made-up distribution."
+                },
+                {
+                  "path": "server/dataIngestion/dataStore.ts",
+                  "functions": [
+                    "insertProposals",
+                    "approveProposalInTransaction",
+                    "rejectProposal",
+                    "getValuesForKey"
+                  ],
+                  "finding": "Existing indicator_values review is numeric-only and database-backed. It cannot truthfully preserve qualifiers in numeric value columns. It remains unchanged; no ambient write/DDL or synthetic production row."
+                },
+                {
+                  "path": "server/dataIngestion/overrideStore.ts",
+                  "functions": [
+                    "loadApprovedOverrides",
+                    "getOverride",
+                    "getOverrideMeta"
+                  ],
+                  "finding": "Numeric-only global approved cache remains untouched. The development archive never promotes a qualifier, bound or engineering review into this cache."
+                },
+                {
+                  "path": "server/snapshots/overlayReview.ts",
+                  "functions": [
+                    "stageOverlayReviewInTransaction",
+                    "decideOverlayReviewInTransaction"
+                  ],
+                  "finding": "Actual immutable proposal/decision and conflicting-decision contracts inspected. New private development lifecycle preserves pending, reject, approve, superseded and pinned earlier revisions without reusing real-company approval storage."
+                },
+                {
+                  "path": "server/financialData/reviewStore.ts",
+                  "functions": [
+                    "stageSnapshot",
+                    "reviewInTransaction",
+                    "listFinancialReviews"
+                  ],
+                  "finding": "Existing financial review does identity checks and database writes. Not a disposable qualified-source store and not invoked."
+                },
+                {
+                  "path": "server/operatorContract.ts",
+                  "functions": [
+                    "operatorLifecyclePreflight"
+                  ],
+                  "finding": "No established privileged HTTP principal and no supported disposable authenticated HTTP loader. Existing operator boundary retained. Chosen fallback is the private generated-artifacts development archive, not an invented role/token or production DB mutation."
+                }
+              ],
+              "implementation": {
+                "persistence": {
+                  "class": "QualifiedMissingnessStore",
+                  "functions": [
+                    "stage",
+                    "decide",
+                    "history",
+                    "source",
+                    "view",
+                    "export"
+                  ],
+                  "storage": "Explicit operator-selected directory strictly beneath the existing Git-ignored generated-artifacts archive location. NODE_ENV must equal development on construction and every read/write. No database dependency.",
+                  "sourceIdentity": "Retains original source bytes as source-<sha256>.json, verifies exact bytes before each read, reruns the actual qualified parser and rejects nonzero-token underflow, unsafe years and nonzero same-sign interpolation underflow/cancellation.",
+                  "reviewIdentity": "Strict versioned events, contiguous sequence numbers, predecessor SHA256, immutable no-overwrite publication using complete temporary bytes and hard-link publication. Event SHA256 pins a complete historical review prefix. Only staged proposals can be decided. Same decisions are idempotent; conflicting decisions require a new proposal.",
+                  "concurrency": "Exclusive private .writer directory serializes decisions/staging. A stale lock refuses and requires operator inspection; it is not silently broken.",
+                  "history": "New pending/rejected proposal never replaces the selected approved development source. Later approval supersedes previous development approval; historical revision pins still return original proposal statuses, original source identity, original results and original draws.",
+                  "filesystemBoundary": "Private directories/files created with 0700/0600, symlink path components and symlink source archives refused, bounded regular source/event reads, no caller-supplied API path.",
+                  "limitations": "Filesystem append-only is enforced by this implementation, not OS WORM protection. An operator able to rewrite/delete the whole directory can destroy current history; independently retained revision/source hashes are the verification anchors. No fsync/crash-durability certification or hostile concurrent-filesystem security audit is claimed. A failed pre-event source validation can leave an unreferenced source artifact but cannot change review revision."
+                },
+                "fourStates": {
+                  "observed": "Finite supplied observation; true zero retained as zero and never inferred from a blank.",
+                  "unavailable": "Explicit null with original blank/provider-null/not-returned reason; only original blank can be an infill target.",
+                  "not-applicable": "Explicit null plus original source reason; not an interpolation target.",
+                  "below-threshold": "Explicit null plus source operator/bound/reason; bound is not a measured value, sample or zero."
+                },
+                "calculator": {
+                  "actualPath": "Private operator persisted source bytes -> readQualifiedIndicatorArchive -> interpolateQualifiedIndicator -> view.cells[].result -> CLI/XLSX; isolated explicit engineering injection additionally tests HTTP/component propagation. Application HTTP returns403 without source access.",
+                  "uncertainty": "Only supplied paired sample IDs, draws and declared source method are propagated. No pseudo-random samples, fitted distributions, fabricated variance or independent-donor assumption.",
+                  "refusals": [
+                    "unbracketed blank",
+                    "absent source cell",
+                    "provider-null or not-returned",
+                    "not-applicable",
+                    "below-threshold",
+                    "missing method",
+                    "missing draws",
+                    "unpaired draw IDs",
+                    "numeric underflow/cancellation"
+                  ],
+                  "centralModelApplied": false,
+                  "centralModelCaveat": "The actual qualified-indicator calculation path is integrated; legacy historical/global numeric models and approved override caches are not changed or supplied with a qualifier-coerced number. Their whole-model four-state propagation remains separate work."
+                },
+                "api": {
+                  "function": "registerQualifiedMissingnessApi",
+                  "routes": [
+                    "GET /api/development/qualified-missingness",
+                    "GET /api/development/qualified-missingness/export"
+                  ],
+                  "enablement": "Default application registration always denies reads/exports403 operator-cli-required with precise no-existing-http-principal-or-role gap. It ignores QUALIFIED_MISSINGNESS_ARCHIVE and does not open/provision private storage in any environment. No public aggregate is released without trusted source-rights qualification.",
+                  "selection": "Default denial occurs before caller revision/role/licence claims and discloses no private path/hash/payload. Isolated engineering-test handler alone accepts optional exact revision SHA256, returning400 for malformed identities and422 for corrupt/missing selections; all handlers use Cache-Control no-store. No POST or auth handler introduced.",
+                  "testInjection": "registerQualifiedMissingnessEngineeringTestApi is a separate trusted-code-only node:test helper, exact source-hash allowlisted and disabled outside isolated development test context. It cannot grant real-publication rights or be enabled by request/env configuration.",
+                  "mountStatus": "Default denial and isolated engineering data handlers tested on separate ephemeral Express listeners. Parent owns shared mounting. Only registerQualifiedMissingnessApi(app) may be mounted; never mount the engineering injection helper."
+                },
+                "ui": {
+                  "component": "QualifiedMissingnessReview",
+                  "features": [
+                    "development-only and no central/scientific approval labels",
+                    "pending source inspection including original source states, bounds, reasons and declared paired draws/method",
+                    "versioned decisions/statuses",
+                    "review-revision selection",
+                    "four distinct source states",
+                    "measured zero vs withheld vs bounded qualifier",
+                    "source-paired infill/result count",
+                    "exact selected revision XLSX link",
+                    "explicit unavailable/error display"
+                  ],
+                  "mountStatus": "Component implemented and actual React engineering-fixture server render tested; parent owns mounting on the shared data-management page. Actual default HTTP produces explicit operator CLI / authorization-gap message, not private data. No edit to that page by this task.",
+                  "visualStatus": "Existing running data-management preview screenshot is only a baseline smoke check. It does not show the unmounted new component. Interactive revision switching/download was not browser-driven."
+                },
+                "xlsx": {
+                  "actualExporter": "exportQualifiedIndicators",
+                  "addedSheets": [
+                    "ReviewHistory",
+                    "ReviewSelection"
+                  ],
+                  "retainedSheets": [
+                    "Identity",
+                    "SourceCells",
+                    "SourceSamples",
+                    "Results",
+                    "SampleLineage"
+                  ],
+                  "selection": "Exact review revision, source hash and development-only classification accompany original qualifiers/bounds/blanks/zeros, supplied draws and derived source locators."
+                }
+              },
+              "executedTests": {
+                "command": "npx tsx --test script/qualified-missingness-persistence.test.ts script/source-qualified-missingness.test.ts",
+                "counts": {
+                  "tests": 19,
+                  "pass": 19,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "log": "generated-artifacts/s03-004-persistence/focused.tap",
+                "logSha256": "aec53581a45d0131dc55001c677212510c9f3dd1ec0d57e4bc8d4d27565f1390",
+                "newPersistenceCases": [
+                  "Actual private file stage/pending/approve/reopen; source-byte verification and four states",
+                  "Actual changed-source version: original blank result2 with draws1,4 -> changed source result4 with draws3,6; old revision still returns result2; rejected version changes no selected source/results",
+                  "Actual XLSX bytes read back with exact review pin, original null/zero/bound and sample lineage",
+                  "Separate-process private CLI stage, approve, view, export; DATABASE_URL deliberately points to an invalid forbidden host and is never used",
+                  "Source method/draw/paired-ID omissions refuse instead of synthesizing uncertainty",
+                  "Token underflow, arithmetic underflow, tampering, broken chains, symlinks, writer lock and production access all refuse explicitly",
+                  "Explicit isolated engineering-test GET injection returns exact-hash-allowlisted persisted calculated fixtures and pinned XLSX; invalid revision refused; POST has no handler; GET leaves directory unchanged",
+                  "Actual default app registration returns403/no-existing-http-principal-or-role for private pending AND private development-approved source/export, including DEV/env configuration, forged role/bearer/forwarded-IP headers, self-asserted licence query and exact revision; no private source/hash/path/field payload disclosed",
+                  "Unallowlisted engineering source is denied before and after private approval regardless of its own claimed licence/review. Test injection registration/request refuses outside isolated node:test context. Missing read-only archive refuses without creating directory",
+                  "Actual React engineering-fixture rendering retains explicit zero, qualifiers, bound-only label, withheld state, draws and pinned export link",
+                  "Actual denied/error React rendering shows the operator authorization gap and hides even stale cached source cells/export links"
+                ],
+                "publicShallowCheckout": "New tests generate explicitly labelled isolated engineering input bytes at runtime from committed test code. No real issuer/workbook/private corpus, credentials, historical Git objects or live provider request required. Existing source-qualified suite also passes using committed immutable retained-source fixtures.",
+                "typecheck": {
+                  "command": "npx tsc --noEmit --pretty false",
+                  "exitCode": 0,
+                  "log": "generated-artifacts/s03-004-persistence/typecheck.log",
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "initialFailures": {
+                  "tests": {
+                    "pass": 7,
+                    "fail": 1,
+                    "reason": "React default import required for tsx server-render test",
+                    "log": "generated-artifacts/s03-004-persistence/initial-focused.tap",
+                    "sha256": "a96a788d4ae56b2297dfc346ab5dce06fda0e3cc79a75340737002dfc38decd1"
+                  },
+                  "typecheck": {
+                    "reason": "Two new iterator downlevel errors corrected using Array.from. Two concurrent readonlyDiffContract iterator errors disappeared by final shared-worktree typecheck; this task did not edit that module.",
+                    "log": "generated-artifacts/s03-004-persistence/initial-typecheck.log",
+                    "sha256": "4ef25c605158955f4f3ffabbea4f6960075e5444a1db1f62e4d755cf67b04827"
+                  },
+                  "resolution": "Imports/iterator syntax corrected without relaxing assertions or changing the actual source-supported interpolation gate."
+                }
+              },
+              "retainedEngineeringArtifacts": {
+                "directory": "generated-artifacts/qualified-persistence-test-pchEMr",
+                "classification": "ISOLATED ENGINEERING FIXTURES ONLY — NOT REAL PROVIDER DATA OR SCIENTIFIC ACCEPTANCE",
+                "originalSourceSha256": "e9d8e0818c185b6fc9a8cb1651a486dd8c78a1daaf5b45b6854105501629105a",
+                "changedSourceSha256": "76dc5a20db50c9bd9afb0e7a4ac318ad7befab6c5a2752b73ee09fd3be03129e",
+                "originalApprovedRevision": "802ed9f07c46217927065f07463036c95f17f3d96fc1019bf851a7fdcbeeb8e3",
+                "changedApprovedRevision": "e4a8edbe219eeea5a7201f8191f799e1b7366a46d90075e691b21a2dd4b29014",
+                "separateProcessExport": "generated-artifacts/qualified-persistence-test-pchEMr/engineering-roundtrip.xlsx",
+                "separateProcessExportSha256": "63c09220892d42faaa9112a5eec4471b707293decac27da98092e1fec6dbb390",
+                "previewSmoke": {
+                  "path": "generated-artifacts/s03-004-persistence/preview-smoke.jpg",
+                  "sha256": "5c94c66a38dd9acccc040a8031a6b9162dd5a25ef44e7718f1f8dd5653ce5018",
+                  "scope": "Unchanged shared-page baseline only; new component not mounted by this task."
+                }
+              },
+              "sourceSha256": {
+                "server/dataIngestion/qualifiedMissingnessStore.ts": "f127b845a2019017c0f3bf88687130fa7b40a16e4f4108c08f4ebe8faf1f5b46",
+                "server/qualifiedMissingnessApi.ts": "c1806c76b23ba6576eda0ce6042c121deec491aa6cd9952633ea0460ffb93216",
+                "script/qualified-missingness-review.ts": "3fb6c3844b1c216d844f477a746c305ca4f5ad601e63afc4e98528c539a16fbe",
+                "client/src/components/qualified-missingness-review.tsx": "5e0108ae54c06e638928adcf363961c3d851815af290dffb9eec88a53eb8039b",
+                "script/qualified-missingness-persistence.test.ts": "98505e9a71ca29f88ab5e85e9bc492af42eb38dcd97f296e8b10b2b8c1c7aec7"
+              },
+              "preciseResidualGaps": [
+                "Coordinating parent may mount ONLY default registerQualifiedMissingnessApi(app) and the development component; actual app requests must remain403 with authorization gap. Private source HTTP/UI lifecycle is intentionally blocked until genuine existing operator authorization or independently trusted source-rights-qualified disclosure exists; neither is invented here.",
+                "No authorized disposable Postgres target was supplied. Private operator CLI/file archive is the supported DEVELOPMENT fallback; it is not network-public source disclosure, a PostgreSQL schema migration or indicator_values four-state rollout.",
+                "The five live collectors have not established a real source-supported paired-draw corpus. No live provider draws, source scientific acceptance or real issuer decision is claimed.",
+                "Legacy historical/global numeric calculators, database approved overrides, deterministic diagnostics and carry-forward paths remain outside this qualified-development calculation path. Whole-model S03-004 completion cannot be claimed.",
+                "Filesystem history is independently verifiable against retained revision/source SHA256 pins, not an external immutable ledger or OS-WORM guarantee.",
+                "No full private-suite/model/native-engine regression, protected 14-pin verification, browser interaction, deployment or callback was run."
+              ],
+              "parentIntegrationInstructions": [
+                "In the parent's owned server mounting location, import/call ONLY registerQualifiedMissingnessApi(app) from server/qualifiedMissingnessApi after the existing safety boundary. It exposes only403 authorization-gap responses. Do not import/mount registerQualifiedMissingnessEngineeringTestApi in the app.",
+                "Have the shared-page owner import QualifiedMissingnessReview from client/src/components/qualified-missingness-review and mount it in development only. Do not add web approval controls or change the operator-only wording.",
+                "Do NOT configure QUALIFIED_MISSINGNESS_ARCHIVE or seed real data for HTTP. That environment variable is ignored by default registration. The private NODE_ENV=development CLI remains available only under the existing authorized-workspace-shell policy; do not auto-populate actual archives from fixtures.",
+                "After mounting, the parent owns app-level403/non-disclosure and UI gap-message smoke checks/screenshots. Positive data-filled HTTP/component tests remain explicitly isolated engineering fixtures, not private-source disclosure authorization."
+              ],
+              "privacy": "This document contains public-safe code paths, hashes, counters and clearly identified engineering examples only. No private issuer, source workbook payload, provider credential or ambient database secret is disclosed."
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
+          }
         },
         {
           "id": "S03-005",
@@ -23060,9 +23470,9 @@
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
           "remaining_gaps": [
-            "No accepted own headline/model; optional legacy coefficients are not comprehensively role-gated."
+            "No accepted calibrated joint headline exists; diagnostic coefficients remain uncalibrated, never promoted by this role guard."
           ],
-          "next_action": "Enforce role eligibility at accepted-model dependency resolution and test rejection of context/validation inputs as causal multipliers.",
+          "next_action": "Supply accepted source-linked native mechanisms/distributions; preserve legacy-only comparator gate.",
           "blockers": [],
           "check_type": "exact",
           "check_scope": "direct-code-and-focused-execution-partial-original-criterion",
@@ -23193,6 +23603,36 @@
               "ci": "42806902864 validate/promote success",
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
+            }
+          },
+          "review_history_increment": {
+            "files": [
+              "server/calculation/legacyDriverAdmission.ts",
+              "server/calculation/forwardProjection.ts",
+              "server/calculation/driverConsumptionTrace.ts",
+              "script/legacy-driver-admission.test.ts"
+            ],
+            "behavior": "All19 actual legacy indicator parameters have explicit roles. Calculator rejects central/accepted-sensitivity mode before reading coefficients; default seeded comparator remains numerically identical. Native registry acceptance remains separate.",
+            "test": "2/2 focused; included in coherent execution",
+            "execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           }
         },
@@ -88336,7 +88776,7 @@
             "script/regional-replay.test.ts:",
             "docs/Automatic_Archive_and_Result_Replay.md:"
           ],
-          "behaviour_delivered_this_run": "Historical engineering labels are reviewed as distinct contracts, not interchangeable evidence classes.",
+          "behaviour_delivered_this_run": "Three exact original type codes/labels bound to recalculations, reviewed response headers, charts and historical/affected-analysis exports. Current-model reconstructions explicitly revised history; missing or inconsistent labels withhold downloads.",
           "inputs_versions_assumptions": [
             "Canonical manifest/content hashes and explicit historical classification; declared dates are not authenticated vintages",
             {
@@ -88410,6 +88850,26 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -88422,10 +88882,15 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Container clause: historical labels exist in engineering paths; audit three distinct codes on every historical run/consumer."
+            "Authentic archived-forecast/verified-past-input corpus and cutoff-only parameter estimation remain absent. Do not infer universal run coverage from selected paths."
           ],
-          "next_action": "Container clause: historical labels exist in engineering paths; audit three distinct codes on every historical run/consumer.",
-          "blockers": [],
+          "next_action": "Authentic archived-forecast/verified-past-input corpus and cutoff-only parameter estimation remain absent. Do not infer universal run coverage from selected paths.",
+          "blockers": [
+            {
+              "kind": "specific remaining original scope",
+              "detail": "Authentic archived-forecast/verified-past-input corpus and cutoff-only parameter estimation remain absent. Do not infer universal run coverage from selected paths."
+            }
+          ],
           "stage": 9,
           "stageName": "Forecast history and skill",
           "originalClause": "Implement three historical labels with distinct type codes:",
@@ -88643,6 +89108,382 @@
               "ci": "42806902864 validate/promote success",
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
+            }
+          },
+          "review_history_increment": {
+            "evidence_file": "docs/readonly-diff-history-evidence.json",
+            "sha256": "0df46c897ec174a417330e1569bfe7e96619d4e08bb62af3def96fd93a2ee779",
+            "detail": {
+              "version": "readonly-diff-history-engineering-evidence-1",
+              "scope": "S16-006 read-only version diffs and affected-analysis views; S09-001 original historical label/type propagation. Engineering fixtures only, not scientific acceptance.",
+              "originalSources": [
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+                  "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+                  "inspection": "Original word/document.xml paragraph text read with unzip and tag removal, including all three S09 child clauses and S16 Data Management clause.",
+                  "historicalLabels": [
+                    "Actual archived forecast",
+                    "Retrospective simulation on verified past inputs",
+                    "Revised-history reconstruction"
+                  ],
+                  "cutoffRule": "Verified retrospective simulation requires every relevant input to meet the date cutoff, including filings, emissions, classifications, universe, macro and policy; parameters must be re-estimated without later data.",
+                  "codeRule": "Original specifies distinct type codes, not literal code spellings. Three explicit codes map one-to-one to the verbatim labels."
+                },
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_1794133884617.docx",
+                  "sha256": "bc3a82d6bcfc7daa56529874b52ab219642641fb0c9e61d0db656ac49d6e7f11",
+                  "inspection": "Earlier original S16 versioned-refresh paragraph checked alongside amended original. Latest original three-child S09 definition controls; no new vintage semantics invented."
+                }
+              ],
+              "changedPathsCount": 27,
+              "changedPathsFunctions": [
+                {
+                  "path": "shared/historicalTypes.ts",
+                  "functions": [
+                    "historicalType",
+                    "requireHistoricalType"
+                  ],
+                  "constants": [
+                    "HISTORICAL_TYPES",
+                    "revisedHistoryType"
+                  ]
+                },
+                {
+                  "path": "server/snapshots/readonlyDiffContract.ts",
+                  "functions": [
+                    "cells",
+                    "compareReadonlyArchives"
+                  ],
+                  "sha256": "2068b08c5c8c1f4ac3728a71fc460b95645fe7f8166f4372e23967961baa35e4"
+                },
+                {
+                  "path": "server/snapshots/readonlyDiffStore.ts",
+                  "functions": [
+                    "readonlyDiffRepository.load",
+                    "readonlyDiffRepository.results"
+                  ],
+                  "sha256": "4db66ac163f1ae4e072ed2a1a154b6342db7444cc6f49f9d9f0c4f8cbaabb2d0"
+                },
+                {
+                  "path": "server/readonlyDiffApi.ts",
+                  "functions": [
+                    "registerReadonlyDiffApi"
+                  ],
+                  "sha256": "90e39fdbbeecf16e40b3a4dee9e9b8fba20aaf9c0cc22a99693c31452b22edfe"
+                },
+                {
+                  "path": "server/index.ts",
+                  "functions": [
+                    "startup API registration"
+                  ],
+                  "change": "Two imports and one read-only API registration; no protected routes edit required."
+                },
+                {
+                  "path": "server/calculation/historicalRecalculation.ts",
+                  "functions": [
+                    "getRecalculatedHistoricalTrend"
+                  ],
+                  "change": "Explicit revised-history code and exact label per returned historical run."
+                },
+                {
+                  "path": "server/calculation/categoryHistoricalTrend.ts",
+                  "functions": [
+                    "getCategoryHistoricalTrend"
+                  ],
+                  "change": "Explicit revised-history code and exact label per category historical run."
+                },
+                {
+                  "path": "server/snapshots/results.ts",
+                  "functions": [
+                    "loadAnalysisResult"
+                  ],
+                  "change": "Stored descriptive valuations remain revised-history; archived bytes and hashes unchanged."
+                },
+                {
+                  "path": "client/src/components/readonly-version-diff.tsx",
+                  "functions": [
+                    "ReadonlyVersionDiff",
+                    "VersionDiffResult",
+                    "versionDiffExportRows",
+                    "affectedAnalysisExportRows"
+                  ],
+                  "sha256": "03e29643f3fcfc45b2fd4d6d07924767c68a598d28d5baa967aa131a35b2598e",
+                  "followup": "Validate retained diff envelopes and exact selected identities; malformed/null/missing/inconsistent populations refuse display and export."
+                },
+                {
+                  "path": "client/src/pages/data-management.tsx",
+                  "functions": [
+                    "DataManagement"
+                  ],
+                  "change": "Mount read-only diff card after existing snapshot status; existing layout retained. Follow-up mounts QualifiedMissingnessReview only under import.meta.env.DEV; worker owns component privacy hardening and parent owns its API registration."
+                },
+                {
+                  "path": "client/src/components/historical-trend-chart.tsx",
+                  "functions": [
+                    "HistoricalTrendChart"
+                  ],
+                  "change": "Validate exact historical code/label before display or download; carry both into export rows. Follow-up adds explicit field bindings for both new export columns; missing-type guard remains unchanged."
+                },
+                {
+                  "path": "client/src/components/category-trend-chart.tsx",
+                  "functions": [
+                    "CategoryTrendChart"
+                  ],
+                  "change": "Validate exact code/label and propagate to category UI/export rows."
+                },
+                {
+                  "path": "client/src/lib/types.ts",
+                  "functions": [],
+                  "types": [
+                    "HistoricalTrendPoint",
+                    "CategoryHistoricalTrendPoint"
+                  ]
+                },
+                {
+                  "path": "shared/historicalFieldSemantics.ts",
+                  "functions": [],
+                  "constants": [
+                    "historicalFieldSemantics"
+                  ],
+                  "change": "Explicit code/label semantics for historical/category-history fields."
+                },
+                {
+                  "path": "shared/finiteExportSchemas.ts",
+                  "functions": [
+                    "finiteExportBindings",
+                    "finiteExportCellDomains"
+                  ],
+                  "change": "Bind category type code/label columns as required text."
+                },
+                {
+                  "path": "script/readonly-diff-history.test.ts",
+                  "functions": [
+                    "seven isolated engineering fixture tests"
+                  ]
+                },
+                {
+                  "path": "script/finite-export-schemas.test.ts",
+                  "functions": [
+                    "all35 finite-domain production-row-builder test"
+                  ],
+                  "change": "Supply explicit revised-history fixture metadata to actual category row builder."
+                },
+                {
+                  "path": "client/src/components/qualified-missingness-review.tsx",
+                  "functions": [
+                    "QualifiedMissingnessReview",
+                    "validPoint"
+                  ],
+                  "sha256": "81d5d1d6f23893cc0a4ecc160703815dea67e7ae65dd3193389fa729c6157802",
+                  "change": "Worker-owned development card follow-up: pending/error hides stale source values; strict development/non-approval envelope/source qualifier/interior-only result validation; valid empty differs from unavailable. No backend/privacy/auth changes."
+                },
+                {
+                  "path": "script/component-partial-state.test.ts",
+                  "functions": [
+                    "category threshold partial/null fixture test"
+                  ],
+                  "change": "Supply explicit revised-history fixture type without removing null/missing category assertions."
+                },
+                {
+                  "path": "script/remaining-component-contracts.test.ts",
+                  "functions": [
+                    "historical chart missing/null fixture tests"
+                  ],
+                  "change": "Supply explicit revised-history type while preserving missing-year, null-metric and withheld-threshold assertions."
+                },
+                {
+                  "path": "script/quantity-label-contracts.test.ts",
+                  "functions": [
+                    "productionRows",
+                    "actual fixed-year UI/XLSX test"
+                  ],
+                  "change": "Inject actual historical type validator and explicit revised-history fixtures; preserve numerical/null/fixed-versus-selected-threshold assertions."
+                },
+                {
+                  "path": "script/output-field-semantics.test.ts",
+                  "functions": [
+                    "all historical/category response leaves bind"
+                  ],
+                  "change": "Explicitly reconcile two added type leaves per historical response (25 to27 and149 to151); original gap denominators7/23 unchanged. Stale canonical-census guard remains intact."
+                },
+                {
+                  "path": "script/component-state-contracts.ts",
+                  "functions": [
+                    "contractFor"
+                  ],
+                  "constants": [
+                    "filePolicies",
+                    "focusedRenderComponents"
+                  ],
+                  "change": "Three reviewed new file policies cover four actual JSX declarations; precise actual states and focused evidence only, no generic permissive fallback."
+                },
+                {
+                  "path": "script/component-state-census.test.ts",
+                  "functions": [
+                    "reachability/state policy tests"
+                  ],
+                  "change": "64 prior consumers plus4 actual reachable declarations equals68. Each addition has exact route, input kind and focused fixture evidence. Original60 preserved separately."
+                },
+                {
+                  "path": "script/readonly-new-card-states.test.ts",
+                  "functions": [
+                    "six actual imported SSR state tests"
+                  ],
+                  "sha256": "76d0d5cb0272eafad97046dafe04a450e74c3143b4724da999f6d77de9fdad1b",
+                  "change": "Pinned carbon factual context; missingness pending/error/null/invalid/empty/zero/strict bound and false-approval refusals; diff idle/malformed/unknown history/empty/zero/ready/pagination states."
+                },
+                {
+                  "path": "script/export-contract.test.ts",
+                  "functions": [
+                    "every client download declares a valid evidence contract"
+                  ],
+                  "change": "Precisely assert2 new read-only diff/affected-analysis sites; prior24 plus2 equals26, preserving writer/evidence checks."
+                },
+                {
+                  "path": "docs/readonly-diff-history-evidence.json",
+                  "functions": []
+                }
+              ],
+              "delivered": {
+                "readOnlyRoutes": [
+                  "/api/data/version-diff",
+                  "/api/data/history-types"
+                ],
+                "sourceKinds": [
+                  "workbook-baseline",
+                  "company-overlay",
+                  "indicator-overrides",
+                  "material-inputs"
+                ],
+                "diffDomains": [
+                  "carbon",
+                  "sdg",
+                  "financial",
+                  "driver",
+                  "target overlays where retained"
+                ],
+                "publicProjection": "Field-level added/removed/changed counts and before/after content hashes; no raw source values, licensed rows, excerpts or private filing text.",
+                "identityPolicy": "Explicit from/to SHA-256 and kind; immutable payload validation, strict supported version and population checks; no latest/current fallback.",
+                "affectedPolicy": "Verified archived result and manifest identities with exact snapshot/material references; at most 20 results scanned sequentially per repository page. Cursor and scanned count explicit. No recomputation or exhaustive-impact claim.",
+                "approvalPolicy": "Archived reviewed overlays and archived approved indicators are distinguished; workbook/material archive does not establish approval.",
+                "historyPolicy": "Current historical recalculations and descriptive valuation outputs are revised-history, never actual archived forecasts or verified past-input simulations. Successful reviewed CV/history response headers carry the same code/label without changing numerical response bytes.",
+                "exportPolicy": "Historical/category rows and affected-analysis XLSX rows carry exact code and label; affected exports retain result and manifest IDs."
+              },
+              "executions": [
+                {
+                  "command": "npx tsx --test script/readonly-diff-history.test.ts",
+                  "log": "generated-artifacts/readonly-diff-history/initial-tests.log",
+                  "logSha256": "e8af0964990817bc3bbfcf222ea82e7cdba0bd551a897e9a92133831b6bfd109",
+                  "counts": {
+                    "tests": 6,
+                    "pass": 3,
+                    "fail": 3,
+                    "skipped": 0
+                  },
+                  "meaning": "Initial engineering run exposed fixture ordering and React SSR test-global setup errors; corrected before final run."
+                },
+                {
+                  "command": "npx tsx --test script/readonly-diff-history.test.ts script/finite-export-schemas.test.ts script/analysis-result-archive.test.ts",
+                  "log": "generated-artifacts/readonly-diff-history/focused-tests.log",
+                  "logSha256": "1f021c18f94c6c9edc2e8a72cdf061b34aec2b608b84af1fe5770f953b0e187a",
+                  "counts": {
+                    "tests": 15,
+                    "pass": 15,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "meaning": "Real disposable Express GET tests with injected isolated fixtures, actual React SSR, actual XLSX write/readback, finite production export builders and immutable result archive regressions. Not the running app, live-source acquisition or scientific validation."
+                },
+                {
+                  "command": "npx tsc --noEmit --incremental false",
+                  "log": "generated-artifacts/readonly-diff-history/typecheck.log",
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "exitCode": 0,
+                  "meaning": "Whole current working-tree TypeScript check; no emitted files and no application restart."
+                },
+                {
+                  "command": "npx tsx --test script/readonly-new-card-states.test.ts script/component-state-census.test.ts script/component-partial-state.test.ts script/remaining-component-contracts.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/readonly-diff-history.test.ts script/finite-export-schemas.test.ts script/qualified-missingness-persistence.test.ts script/export-contract.test.ts",
+                  "log": "generated-artifacts/readonly-diff-history/followup-state-tests.log",
+                  "logSha256": "a947e49249eae261bdb363cc68adfaedb88126077d79d15113e0182056835951",
+                  "counts": {
+                    "tests": 134,
+                    "pass": 133,
+                    "fail": 1,
+                    "skipped": 0
+                  },
+                  "meaning": "All affected runtime/SSR/fixture/registration/export tests pass. The sole failure is the preserved API/download canonical-census stale-source guard in output-field-semantics.test.ts; parent explicitly owns final canonical regeneration. No canonical census or ledger regenerated by this worker."
+                },
+                {
+                  "command": "npx tsc --noEmit --incremental false",
+                  "log": "generated-artifacts/readonly-diff-history/followup-typecheck.log",
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "exitCode": 0,
+                  "meaning": "Follow-up current working-tree TypeScript check passed."
+                }
+              ],
+              "visualCheck": {
+                "path": "/data-management",
+                "screenshot": "generated-artifacts/readonly-diff-history/data-management-diff-preview-tall.jpg",
+                "viewport": {
+                  "width": 1280,
+                  "height": 3000
+                },
+                "result": "Already-running preview renders existing layout and new idle diff controls. Interactive compare state verified separately by isolated API and SSR tests, not by screenshot."
+              },
+              "protectedBoundary": {
+                "serverRoutesNetDiff": false,
+                "explanation": "Initial two imports and one registration in protected server/routes.ts were removed. Equivalent registration lives in unpinned server/index.ts alongside existing auxiliary read-only APIs.",
+                "fair14PinnedFilesEditedByThisTask": [],
+                "followupCheck": "git diff --name-only restricted to exact13 sourcePaths plus projectionCacheResponse.ts returned no dirty paths; all14 protected files unchanged.",
+                "bundleBuiltOrRepinned": false,
+                "old2025CompatibilityClaim": false,
+                "commitsDeploymentsCallbacks": 0
+              },
+              "criterionSpecificResiduals": {
+                "S16-006": [
+                  "Full operational criterion includes refresh lifecycle and deployed single-scheduler verification; this task adds no collector cadence, scheduler, privileged importer, approval or public mutation.",
+                  "Diffs cover only retained immutable versions; absent archives or incompatible versions refuse explicitly.",
+                  "Affected-analysis pages enumerate exact retained dependencies, not unarchived consumers, quantitative propagated impacts or an exhaustive all-pages census.",
+                  "Production repository reads and freshly mounted running-app routes are not end-to-end reverified here; parent owns app restart/testing."
+                ],
+                "S09-001": [
+                  "Three exact original labels/codes are defined, but no authentic actual-forecast or verified-past-input run is manufactured from current revised history.",
+                  "Verified-past-input classification requires genuine source authentication and cutoff-only refits; declarations, supplied dates, archive timestamps or complete-looking rows do not suffice.",
+                  "No quarterly-from-2015 census, new historical forecasts, skill acceptance or trajectory corpus is created.",
+                  "Existing numeric historical-conversion defaults are not altered or newly scientifically accepted by this metadata-only task.",
+                  "Follow-up intentionally leaves canonical field-census freshness guard failing until parent performs its final authorized source-freeze/regeneration; no count test was weakened to mask this."
+                ]
+              },
+              "safety": {
+                "publicWritesAdded": false,
+                "authChanges": false,
+                "productionDDL": false,
+                "realApprovals": false,
+                "canonicalLedgersModified": false,
+                "censusPerformed": false,
+                "deployment": null,
+                "scientificAcceptance": "not-promoted"
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           }
         },
@@ -123682,7 +124523,7 @@
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Checked the carbon-drag equation and its pass-through evidence requirement.",
+          "behaviour_delivered_this_run": "Retrieved original pass-through literature and added frozen source admission plus actual optional companyProjection carbonDrag/tax/FCFE consumption. German peak117% preserved; refinery ratios distinguished from log elasticities and insignificance. Exact regime/product/geography and incremental Scope1 accounting gates; no issuer cash evidence invented.",
           "inputs_versions_assumptions": [
             "Synthetic 1,000 supplied five-year members, weighted EU/US power exposures, explicit margins, scoped tonnes/intensities and liable fractions."
           ],
@@ -123724,6 +124565,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -123737,10 +124598,15 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Sector literature and actual price/pass-through ranges are not fully supplied."
+            "No actual issuer assumption admitted. Need issuer-owned activity, paid/net allowance costs, recovery collection/lag, taxes, working capital and common-owner cash; source price formation is not cash."
           ],
-          "next_action": "Attach sector/jurisdiction price/pass-through evidence before interpreting actual company drag.",
-          "blockers": [],
+          "next_action": "No actual issuer assumption admitted. Need issuer-owned activity, paid/net allowance costs, recovery collection/lag, taxes, working capital and common-owner cash; source price formation is not cash.",
+          "blockers": [
+            {
+              "kind": "specific remaining original scope",
+              "detail": "No actual issuer assumption admitted. Need issuer-owned activity, paid/net allowance costs, recovery collection/lag, taxes, working capital and common-owner cash; source price formation is not cash."
+            }
+          ],
           "stage": 12,
           "check_type": "numerical",
           "check_scope": "S12-007 ONLY: Checked the carbon-drag equation and its pass-through evidence requirement. Only the listed criterion-specific unfinished conjunct prevents verification.",
@@ -123943,6 +124809,129 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
+          },
+          "review_history_increment": {
+            "evidence_file": "docs/carbon-pass-through-source-evidence.json",
+            "sha256": "9ed1c196a2b2c0b63c6be83ed23081c1dd97e0f4d73ecfff2de6368e9cea89e8",
+            "detail": {
+              "version": "s12-007-literature-admission-1",
+              "evidenceState": "Original public research obtained; historical product-price context admitted; no actual issuer coefficient/assumption admitted",
+              "preStudyFreeze": {
+                "path": "docs/carbon-pass-through-protocol.json",
+                "sha256": "5084a8314270a1d8b365f4c17e99832b1947414a3689ddd2f4f5744170a3779e",
+                "timing": "Written before original PDF extraction and all synthetic component tests; no numerical issuer studies executed",
+                "oldCasesRetuned": false
+              },
+              "firstRead": [
+                "server/calculation/companyProjection.ts",
+                "shared/companyConditionalData.ts",
+                "docs/company_operating_source_receipts.json",
+                "docs/Conditional_Company_Climate_Cases.md#Exact full-company blockers and rejected mappings",
+                "docs/reconciliation-stages-10-13.json S12-007 (read only)"
+              ],
+              "sourceRegister": {
+                "path": "shared/carbonPassThroughEvidence.ts",
+                "contents": "Typed original bibliography, exact URLs/publication precision/version, original-byte SHA256, retrieval completion timestamps, rights, observed windows, market/product/country, estimator, denominator, reported uncertainty and small factual transcriptions.",
+                "retrievalTimestampBasis": "Local PDF file write-completion timestamps recorded by stat; not claimed publisher release timestamps.",
+                "rawRetention": "Original public PDFs retrieved only under /tmp/s12-literature; no raw PDF or full extracted text added to Git.",
+                "sources": [
+                  {
+                    "id": "sijm-neuhoff-chen-2006",
+                    "url": "https://www.jbs.cam.ac.uk/wp-content/uploads/2023/12/eprg-wp0617.pdf",
+                    "publication": "Cover May2006; body19June2006; working paper EPRG0617/CWPE0639, not final journal version",
+                    "sha256": "ddcca6fed60097daae8818d2fd104b0dbbae69269c07db0e3aff344466dbd04e",
+                    "retrievedAt": "2026-11-11T23:50:46.478Z",
+                    "bytes": 309187,
+                    "rights": "Public university original; redistribution licence not established. Metadata and factual paraphrases only."
+                  },
+                  {
+                    "id": "ce-delft-oeko-2015",
+                    "url": "https://ce.nl/wp-content/uploads/2021/03/7D94_CE_Delft_Ex-post_investigation_cost_pass-through_EU_ETS_Final.pdf",
+                    "publication": "November2015, EU Publications Office; European Commission commissioned, authors' views",
+                    "sha256": "5beb61786c3991427351ca91c169fa4ffa4f09dc437ba5a86f771fadc43f7c64",
+                    "retrievedAt": "2026-11-11T23:50:47.122Z",
+                    "bytes": 2531856,
+                    "rights": "Legal notice copyright European Union2015; reproduction authorised with source acknowledged."
+                  }
+                ]
+              },
+              "sourceQualifiedFindings": [
+                {
+                  "source": "sijm-neuhoff-chen-2006",
+                  "locator": "Printed pp13–14 Table1 and equations1–3/footnotes8–9",
+                  "finding": "Jan–Dec2005 daily year-ahead2006 forward market estimates: Germany peak117%, offpeak60%; Netherlands peak78%, offpeak80%. Respectively omitted-two-month sample spans97–117%,60–71%,64–81%,69–80%. These are six restricted-sample min/max values, not standard95% confidence intervals.",
+                  "definition": "Price formation relative to marginal coal40%efficiency0.85tCO2/MWh or gas42%efficiency0.48tCO2/MWh opportunity cost. Fuel coefficient fixed1, omitted market/fuel effects and noncointegration caveats remain.",
+                  "distinction": "Abstract60–100% does not subsume German peak117%. Windfall-profit theory/model is separate from these observed price regressions. No wholesale coefficient mapped to FPL regulated recovery or downstream Scope2 same-cost recovery."
+                },
+                {
+                  "source": "ce-delft-oeko-2015",
+                  "locator": "Printed p73 Table10 sample note; p76 Table12; pp74–75 denominator discussion; p66 price definitions",
+                  "finding": "Petrol monthly Jan2008–Feb2013 ratios are Belgium95%, Germany80%, France100%, Italy80%. Table10 log CO2 coefficients.015/.013/.016/.013 are NOT those cost-recovery fractions. Germany p=.096 under report's one-sided10% criterion. No country-ratio numerical confidence interval supplied in Table12.",
+                  "definition": "Indicative product price ratio derived from log cost-price ARDL and allocated refinery CO2 cost share; joint-product cost and emissions intensity material. Not issuer collections, net profit, global upstream or CCS.",
+                  "distinction": "Summary80–95% is not a universal refinery range: Table12 reports France petrol100%, and diesel/gasoil results can exceed100%. German diesel coefficient.012 with p=.325 is context-only, not1.2% recovery and not proof of zero. French diesel>100% cannot enter bounded0–1 engine via clipping."
+                }
+              ],
+              "admissionAndBinding": {
+                "module": "server/calculation/carbonPassThroughAdmission.ts",
+                "sourceVersusAssumption": "Historical records remain source facts; a separate strictly typed analyst assumption must select an eligible indicative point and declare exact operating sector/product/jurisdiction/regime, temporal-transfer rationale and denominator/incremental-baseline/collection-tax evidence.",
+                "scope": "New opt-in direct Scope1 same-cost incremental pre-tax accrual component only; no automatic population, no price-vs-profit relabelling, no Scope2/3 double charge. Follow-up explicitly integrates qualifiedPassThrough into existing projectCompanyMembers carbonDrag/tax/FCFE consumer while absent opt-in preserves legacy calculations/output/hash. Evidence-reference declarations are not substantive independent validation.",
+                "cashBoundary": "Liable tonnes must already be net of relevant allocation and price must be incremental above baseline expense. Accrual recovery is not collected cash. Parent ledger still requires working capital, tax, demand and ownership reconciliation.",
+                "parentMountRequested": [
+                  "registerCarbonPassThroughRoutes from server/carbonPassThroughApi.ts",
+                  "CarbonPassThroughReview from client/src/components/carbon-pass-through-review.tsx"
+                ],
+                "export": "Read-only GET review and export.json use the same admitted register; no POST or issuer-study route.",
+                "remainingExactThreeCaseInputs": "shared/carbonPassThroughEvidence.ts#carbonPassThroughRemainingInputs: current NEE/FSLR/XOM cases, legal/economic/cash and carbon-recovery inputs. Original operating inventory's CAT requirements retained separately in carbonPassThroughOriginalIndustrialInputs; neither is silently substituted for FSLR. Legacy experiments remain untouched."
+              },
+              "boundedIssuerAttempts": {
+                "newAttempts": 0,
+                "reason": "No material newly identifiable issuer contract emerged from this literature task. Did not repeat old issuer indices or substitute literature for missing executed contract economics."
+              },
+              "focusedVerification": {
+                "command": "npx tsx --test script/carbon-pass-through-admission.test.ts script/carbon-pass-through-consumer.test.ts",
+                "result": "10 tests passed: source precision/identity, admission rejection, synthetic accrual reconciliation, channel/geography/regime/scope and clipping refusals, public API/export parity, both frozen protocols, actual companyProjection consumption, legacy synthetic calculation/output/hash compatibility, actual-consumer refusal gates.",
+                "strictTypes": "Targeted strict tsc of new shared/server/test modules passed; new standalone TSX syntax transpilation diagnostics0.",
+                "renderedUI": "Parent handles mounting/preview verification. No app/workflow run or restart by this task."
+              },
+              "consumerFollowup": {
+                "protocol": "docs/carbon-pass-through-consumer-protocol.json",
+                "protocolSha256": "3bf5d6f374c1b4454d64756e92aea8d43f4386f3df5430fe7732b85bf00c1ce3",
+                "integration": "Optional per-year qualifiedPassThrough in existing companyProjection contract replaces legacy drag only on explicit request; derives net-liable tonnes from projected post-abatement Scope1 and supplied liable fraction. Existing effectiveCarbonPrice must explicitly denote incremental price above expense already in baseline. Legacy passThrough zero sentinel prevents stacking coefficients.",
+                "binding": "Exact single company operating-geography/sector exposure, same issuer/year/product/regime plus original admission gates. No HQ proxy/mixed business/source extrapolation. Requires explicit collection-working-capital/tax/no-duplicate-margin evidence declarations.",
+                "legacy": "No opt-in means original formula, input hash and output shape unchanged; raw passThrough is not relabelled source-validated. No old frozen issuer case recalculated.",
+                "preciseCashReason": "Literature supplies market/product price responses, not issuer-owned eligible tonnes and product sales, allowance purchase/bank/free-allocation cash, actual recovery/collection lag, demand effects, realized cash tax or owner cash. Declared bridge references can condition an incremental FCFE calculation but cannot validate actual company cash;0 actual issuer assumptions admitted.",
+                "fieldSemantics": "shared/carbonPassThroughSemantics.ts defines exact public review and qualified consumer leaves, registered in existing outputFieldSemantics. Actual API/export and opt-in consumer call bindNestedOutput; unknown leaves fail closed. Historical default replay/abatement semantics remain exact for legacy workbook preservation; exporter appends qualified IDs and overrides carbonDrag interpretation only if actual result contains explicit carbonDragQualification. Census separately regenerated for supplemental binding accounting, with original1001/1000 unchanged."
+              },
+              "outcome": {
+                "originalSources": 2,
+                "qualifiedContextRecords": 10,
+                "issuerStudiesRun": 0,
+                "qualifiedIssuerCases": 0,
+                "ownerApprovals": 0,
+                "s12_007FullyVerified": false,
+                "remaining": "Actual issuer-specific and same-horizon carbon price/liable tonne/recovery bridges not supplied by historical literature; full-company three-case causal/accounting inputs remain missing."
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            }
           }
         },
         {
@@ -149095,7 +150084,7 @@
             "script/operator-lifecycle-preflight.ts",
             "script/operator-contract.test.ts"
           ],
-          "behaviour_delivered_this_run": "Reconciled original clause against exact existing functions and retained actual logs. Added read-only existing-operator boundary preflight and eight passing public403/no-fabricated-principal tests. No privileged HTTP path or bypass.",
+          "behaviour_delivered_this_run": "Mounted read-only explicit-version carbon/SDG/financial/driver comparisons and paginated exact affected-analysis references. Counts/hashes only, no private source values. Missing/corrupt/version mismatch refuses without current fallback.",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -149140,6 +150129,26 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           ],
           "numerical_results": [
@@ -149149,14 +150158,13 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Complete versioned carbon/SDG/financial/driver diffs and affected-analysis UI plus supported disposable HTTP importer absent; single deployed scheduler ownership not reverified here."
+            "Privileged refresh/import/restore remains unavailable; readonly comparison is not a completed operational refresh."
           ],
-          "next_action": "Authorized workspace/auth maintainer provides genuine operator identity/role and isolated importer/restore contract; extend existing review/diff UI without changing collector cadence.",
+          "next_action": "Privileged refresh/import/restore remains unavailable; readonly comparison is not a completed operational refresh.",
           "blockers": [
             {
-              "kind": "specific missing original-scope evidence/implementation",
-              "detail": "Complete versioned carbon/SDG/financial/driver diffs and affected-analysis UI plus supported disposable HTTP importer absent; single deployed scheduler ownership not reverified here.",
-              "owner_action": "Authorized workspace/auth maintainer provides genuine operator identity/role and isolated importer/restore contract; extend existing review/diff UI without changing collector cadence."
+              "kind": "specific remaining original scope",
+              "detail": "Privileged refresh/import/restore remains unavailable; readonly comparison is not a completed operational refresh."
             }
           ],
           "check_type": "operational",
@@ -149220,6 +150228,382 @@
               "ci": "42806902864 validate/promote success",
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
+            }
+          },
+          "review_history_increment": {
+            "evidence_file": "docs/readonly-diff-history-evidence.json",
+            "sha256": "0df46c897ec174a417330e1569bfe7e96619d4e08bb62af3def96fd93a2ee779",
+            "detail": {
+              "version": "readonly-diff-history-engineering-evidence-1",
+              "scope": "S16-006 read-only version diffs and affected-analysis views; S09-001 original historical label/type propagation. Engineering fixtures only, not scientific acceptance.",
+              "originalSources": [
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+                  "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+                  "inspection": "Original word/document.xml paragraph text read with unzip and tag removal, including all three S09 child clauses and S16 Data Management clause.",
+                  "historicalLabels": [
+                    "Actual archived forecast",
+                    "Retrospective simulation on verified past inputs",
+                    "Revised-history reconstruction"
+                  ],
+                  "cutoffRule": "Verified retrospective simulation requires every relevant input to meet the date cutoff, including filings, emissions, classifications, universe, macro and policy; parameters must be re-estimated without later data.",
+                  "codeRule": "Original specifies distinct type codes, not literal code spellings. Three explicit codes map one-to-one to the verbatim labels."
+                },
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_1794133884617.docx",
+                  "sha256": "bc3a82d6bcfc7daa56529874b52ab219642641fb0c9e61d0db656ac49d6e7f11",
+                  "inspection": "Earlier original S16 versioned-refresh paragraph checked alongside amended original. Latest original three-child S09 definition controls; no new vintage semantics invented."
+                }
+              ],
+              "changedPathsCount": 27,
+              "changedPathsFunctions": [
+                {
+                  "path": "shared/historicalTypes.ts",
+                  "functions": [
+                    "historicalType",
+                    "requireHistoricalType"
+                  ],
+                  "constants": [
+                    "HISTORICAL_TYPES",
+                    "revisedHistoryType"
+                  ]
+                },
+                {
+                  "path": "server/snapshots/readonlyDiffContract.ts",
+                  "functions": [
+                    "cells",
+                    "compareReadonlyArchives"
+                  ],
+                  "sha256": "2068b08c5c8c1f4ac3728a71fc460b95645fe7f8166f4372e23967961baa35e4"
+                },
+                {
+                  "path": "server/snapshots/readonlyDiffStore.ts",
+                  "functions": [
+                    "readonlyDiffRepository.load",
+                    "readonlyDiffRepository.results"
+                  ],
+                  "sha256": "4db66ac163f1ae4e072ed2a1a154b6342db7444cc6f49f9d9f0c4f8cbaabb2d0"
+                },
+                {
+                  "path": "server/readonlyDiffApi.ts",
+                  "functions": [
+                    "registerReadonlyDiffApi"
+                  ],
+                  "sha256": "90e39fdbbeecf16e40b3a4dee9e9b8fba20aaf9c0cc22a99693c31452b22edfe"
+                },
+                {
+                  "path": "server/index.ts",
+                  "functions": [
+                    "startup API registration"
+                  ],
+                  "change": "Two imports and one read-only API registration; no protected routes edit required."
+                },
+                {
+                  "path": "server/calculation/historicalRecalculation.ts",
+                  "functions": [
+                    "getRecalculatedHistoricalTrend"
+                  ],
+                  "change": "Explicit revised-history code and exact label per returned historical run."
+                },
+                {
+                  "path": "server/calculation/categoryHistoricalTrend.ts",
+                  "functions": [
+                    "getCategoryHistoricalTrend"
+                  ],
+                  "change": "Explicit revised-history code and exact label per category historical run."
+                },
+                {
+                  "path": "server/snapshots/results.ts",
+                  "functions": [
+                    "loadAnalysisResult"
+                  ],
+                  "change": "Stored descriptive valuations remain revised-history; archived bytes and hashes unchanged."
+                },
+                {
+                  "path": "client/src/components/readonly-version-diff.tsx",
+                  "functions": [
+                    "ReadonlyVersionDiff",
+                    "VersionDiffResult",
+                    "versionDiffExportRows",
+                    "affectedAnalysisExportRows"
+                  ],
+                  "sha256": "03e29643f3fcfc45b2fd4d6d07924767c68a598d28d5baa967aa131a35b2598e",
+                  "followup": "Validate retained diff envelopes and exact selected identities; malformed/null/missing/inconsistent populations refuse display and export."
+                },
+                {
+                  "path": "client/src/pages/data-management.tsx",
+                  "functions": [
+                    "DataManagement"
+                  ],
+                  "change": "Mount read-only diff card after existing snapshot status; existing layout retained. Follow-up mounts QualifiedMissingnessReview only under import.meta.env.DEV; worker owns component privacy hardening and parent owns its API registration."
+                },
+                {
+                  "path": "client/src/components/historical-trend-chart.tsx",
+                  "functions": [
+                    "HistoricalTrendChart"
+                  ],
+                  "change": "Validate exact historical code/label before display or download; carry both into export rows. Follow-up adds explicit field bindings for both new export columns; missing-type guard remains unchanged."
+                },
+                {
+                  "path": "client/src/components/category-trend-chart.tsx",
+                  "functions": [
+                    "CategoryTrendChart"
+                  ],
+                  "change": "Validate exact code/label and propagate to category UI/export rows."
+                },
+                {
+                  "path": "client/src/lib/types.ts",
+                  "functions": [],
+                  "types": [
+                    "HistoricalTrendPoint",
+                    "CategoryHistoricalTrendPoint"
+                  ]
+                },
+                {
+                  "path": "shared/historicalFieldSemantics.ts",
+                  "functions": [],
+                  "constants": [
+                    "historicalFieldSemantics"
+                  ],
+                  "change": "Explicit code/label semantics for historical/category-history fields."
+                },
+                {
+                  "path": "shared/finiteExportSchemas.ts",
+                  "functions": [
+                    "finiteExportBindings",
+                    "finiteExportCellDomains"
+                  ],
+                  "change": "Bind category type code/label columns as required text."
+                },
+                {
+                  "path": "script/readonly-diff-history.test.ts",
+                  "functions": [
+                    "seven isolated engineering fixture tests"
+                  ]
+                },
+                {
+                  "path": "script/finite-export-schemas.test.ts",
+                  "functions": [
+                    "all35 finite-domain production-row-builder test"
+                  ],
+                  "change": "Supply explicit revised-history fixture metadata to actual category row builder."
+                },
+                {
+                  "path": "client/src/components/qualified-missingness-review.tsx",
+                  "functions": [
+                    "QualifiedMissingnessReview",
+                    "validPoint"
+                  ],
+                  "sha256": "81d5d1d6f23893cc0a4ecc160703815dea67e7ae65dd3193389fa729c6157802",
+                  "change": "Worker-owned development card follow-up: pending/error hides stale source values; strict development/non-approval envelope/source qualifier/interior-only result validation; valid empty differs from unavailable. No backend/privacy/auth changes."
+                },
+                {
+                  "path": "script/component-partial-state.test.ts",
+                  "functions": [
+                    "category threshold partial/null fixture test"
+                  ],
+                  "change": "Supply explicit revised-history fixture type without removing null/missing category assertions."
+                },
+                {
+                  "path": "script/remaining-component-contracts.test.ts",
+                  "functions": [
+                    "historical chart missing/null fixture tests"
+                  ],
+                  "change": "Supply explicit revised-history type while preserving missing-year, null-metric and withheld-threshold assertions."
+                },
+                {
+                  "path": "script/quantity-label-contracts.test.ts",
+                  "functions": [
+                    "productionRows",
+                    "actual fixed-year UI/XLSX test"
+                  ],
+                  "change": "Inject actual historical type validator and explicit revised-history fixtures; preserve numerical/null/fixed-versus-selected-threshold assertions."
+                },
+                {
+                  "path": "script/output-field-semantics.test.ts",
+                  "functions": [
+                    "all historical/category response leaves bind"
+                  ],
+                  "change": "Explicitly reconcile two added type leaves per historical response (25 to27 and149 to151); original gap denominators7/23 unchanged. Stale canonical-census guard remains intact."
+                },
+                {
+                  "path": "script/component-state-contracts.ts",
+                  "functions": [
+                    "contractFor"
+                  ],
+                  "constants": [
+                    "filePolicies",
+                    "focusedRenderComponents"
+                  ],
+                  "change": "Three reviewed new file policies cover four actual JSX declarations; precise actual states and focused evidence only, no generic permissive fallback."
+                },
+                {
+                  "path": "script/component-state-census.test.ts",
+                  "functions": [
+                    "reachability/state policy tests"
+                  ],
+                  "change": "64 prior consumers plus4 actual reachable declarations equals68. Each addition has exact route, input kind and focused fixture evidence. Original60 preserved separately."
+                },
+                {
+                  "path": "script/readonly-new-card-states.test.ts",
+                  "functions": [
+                    "six actual imported SSR state tests"
+                  ],
+                  "sha256": "76d0d5cb0272eafad97046dafe04a450e74c3143b4724da999f6d77de9fdad1b",
+                  "change": "Pinned carbon factual context; missingness pending/error/null/invalid/empty/zero/strict bound and false-approval refusals; diff idle/malformed/unknown history/empty/zero/ready/pagination states."
+                },
+                {
+                  "path": "script/export-contract.test.ts",
+                  "functions": [
+                    "every client download declares a valid evidence contract"
+                  ],
+                  "change": "Precisely assert2 new read-only diff/affected-analysis sites; prior24 plus2 equals26, preserving writer/evidence checks."
+                },
+                {
+                  "path": "docs/readonly-diff-history-evidence.json",
+                  "functions": []
+                }
+              ],
+              "delivered": {
+                "readOnlyRoutes": [
+                  "/api/data/version-diff",
+                  "/api/data/history-types"
+                ],
+                "sourceKinds": [
+                  "workbook-baseline",
+                  "company-overlay",
+                  "indicator-overrides",
+                  "material-inputs"
+                ],
+                "diffDomains": [
+                  "carbon",
+                  "sdg",
+                  "financial",
+                  "driver",
+                  "target overlays where retained"
+                ],
+                "publicProjection": "Field-level added/removed/changed counts and before/after content hashes; no raw source values, licensed rows, excerpts or private filing text.",
+                "identityPolicy": "Explicit from/to SHA-256 and kind; immutable payload validation, strict supported version and population checks; no latest/current fallback.",
+                "affectedPolicy": "Verified archived result and manifest identities with exact snapshot/material references; at most 20 results scanned sequentially per repository page. Cursor and scanned count explicit. No recomputation or exhaustive-impact claim.",
+                "approvalPolicy": "Archived reviewed overlays and archived approved indicators are distinguished; workbook/material archive does not establish approval.",
+                "historyPolicy": "Current historical recalculations and descriptive valuation outputs are revised-history, never actual archived forecasts or verified past-input simulations. Successful reviewed CV/history response headers carry the same code/label without changing numerical response bytes.",
+                "exportPolicy": "Historical/category rows and affected-analysis XLSX rows carry exact code and label; affected exports retain result and manifest IDs."
+              },
+              "executions": [
+                {
+                  "command": "npx tsx --test script/readonly-diff-history.test.ts",
+                  "log": "generated-artifacts/readonly-diff-history/initial-tests.log",
+                  "logSha256": "e8af0964990817bc3bbfcf222ea82e7cdba0bd551a897e9a92133831b6bfd109",
+                  "counts": {
+                    "tests": 6,
+                    "pass": 3,
+                    "fail": 3,
+                    "skipped": 0
+                  },
+                  "meaning": "Initial engineering run exposed fixture ordering and React SSR test-global setup errors; corrected before final run."
+                },
+                {
+                  "command": "npx tsx --test script/readonly-diff-history.test.ts script/finite-export-schemas.test.ts script/analysis-result-archive.test.ts",
+                  "log": "generated-artifacts/readonly-diff-history/focused-tests.log",
+                  "logSha256": "1f021c18f94c6c9edc2e8a72cdf061b34aec2b608b84af1fe5770f953b0e187a",
+                  "counts": {
+                    "tests": 15,
+                    "pass": 15,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "meaning": "Real disposable Express GET tests with injected isolated fixtures, actual React SSR, actual XLSX write/readback, finite production export builders and immutable result archive regressions. Not the running app, live-source acquisition or scientific validation."
+                },
+                {
+                  "command": "npx tsc --noEmit --incremental false",
+                  "log": "generated-artifacts/readonly-diff-history/typecheck.log",
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "exitCode": 0,
+                  "meaning": "Whole current working-tree TypeScript check; no emitted files and no application restart."
+                },
+                {
+                  "command": "npx tsx --test script/readonly-new-card-states.test.ts script/component-state-census.test.ts script/component-partial-state.test.ts script/remaining-component-contracts.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/readonly-diff-history.test.ts script/finite-export-schemas.test.ts script/qualified-missingness-persistence.test.ts script/export-contract.test.ts",
+                  "log": "generated-artifacts/readonly-diff-history/followup-state-tests.log",
+                  "logSha256": "a947e49249eae261bdb363cc68adfaedb88126077d79d15113e0182056835951",
+                  "counts": {
+                    "tests": 134,
+                    "pass": 133,
+                    "fail": 1,
+                    "skipped": 0
+                  },
+                  "meaning": "All affected runtime/SSR/fixture/registration/export tests pass. The sole failure is the preserved API/download canonical-census stale-source guard in output-field-semantics.test.ts; parent explicitly owns final canonical regeneration. No canonical census or ledger regenerated by this worker."
+                },
+                {
+                  "command": "npx tsc --noEmit --incremental false",
+                  "log": "generated-artifacts/readonly-diff-history/followup-typecheck.log",
+                  "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "exitCode": 0,
+                  "meaning": "Follow-up current working-tree TypeScript check passed."
+                }
+              ],
+              "visualCheck": {
+                "path": "/data-management",
+                "screenshot": "generated-artifacts/readonly-diff-history/data-management-diff-preview-tall.jpg",
+                "viewport": {
+                  "width": 1280,
+                  "height": 3000
+                },
+                "result": "Already-running preview renders existing layout and new idle diff controls. Interactive compare state verified separately by isolated API and SSR tests, not by screenshot."
+              },
+              "protectedBoundary": {
+                "serverRoutesNetDiff": false,
+                "explanation": "Initial two imports and one registration in protected server/routes.ts were removed. Equivalent registration lives in unpinned server/index.ts alongside existing auxiliary read-only APIs.",
+                "fair14PinnedFilesEditedByThisTask": [],
+                "followupCheck": "git diff --name-only restricted to exact13 sourcePaths plus projectionCacheResponse.ts returned no dirty paths; all14 protected files unchanged.",
+                "bundleBuiltOrRepinned": false,
+                "old2025CompatibilityClaim": false,
+                "commitsDeploymentsCallbacks": 0
+              },
+              "criterionSpecificResiduals": {
+                "S16-006": [
+                  "Full operational criterion includes refresh lifecycle and deployed single-scheduler verification; this task adds no collector cadence, scheduler, privileged importer, approval or public mutation.",
+                  "Diffs cover only retained immutable versions; absent archives or incompatible versions refuse explicitly.",
+                  "Affected-analysis pages enumerate exact retained dependencies, not unarchived consumers, quantitative propagated impacts or an exhaustive all-pages census.",
+                  "Production repository reads and freshly mounted running-app routes are not end-to-end reverified here; parent owns app restart/testing."
+                ],
+                "S09-001": [
+                  "Three exact original labels/codes are defined, but no authentic actual-forecast or verified-past-input run is manufactured from current revised history.",
+                  "Verified-past-input classification requires genuine source authentication and cutoff-only refits; declarations, supplied dates, archive timestamps or complete-looking rows do not suffice.",
+                  "No quarterly-from-2015 census, new historical forecasts, skill acceptance or trajectory corpus is created.",
+                  "Existing numeric historical-conversion defaults are not altered or newly scientifically accepted by this metadata-only task.",
+                  "Follow-up intentionally leaves canonical field-census freshness guard failing until parent performs its final authorized source-freeze/regeneration; no count test was weakened to mask this."
+                ]
+              },
+              "safety": {
+                "publicWritesAdded": false,
+                "authChanges": false,
+                "productionDDL": false,
+                "realApprovals": false,
+                "canonicalLedgersModified": false,
+                "censusPerformed": false,
+                "deployment": null,
+                "scientificAcceptance": "not-promoted"
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-c",
+                "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+              ],
+              "executed_at": "2026-11-12T00:21:16.709305+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 253.557,
+              "counts": {
+                "tests": 931,
+                "pass": 931,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+              "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+              "worktree_dirty": true,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
             }
           }
         },
@@ -157007,6 +158391,66 @@
       "workspace_revision": "1418cdb3a7c4d3f858a41b06b7444024a5657d95",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-12T00:00:38.289849+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 198.512,
+      "counts": {
+        "tests": 923,
+        "pass": 908,
+        "fail": 15,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261112T000038289849Z.log",
+      "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-12T00:14:49.558126+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 203.21,
+      "counts": {
+        "tests": 930,
+        "pass": 928,
+        "fail": 2,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261112T001449558126Z.log",
+      "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "npm run check && NODE_ENV=production npx tsx --test --test-concurrency=2 script/*.test.ts && uv run python -m unittest discover -s script -p \"test_*.py\" && npx tsx script/validate-workbook-money-integration-private.ts --private-primary && npx tsx script/validate-issuer-cashflow-private.ts && npm run build"
+      ],
+      "executed_at": "2026-11-12T00:21:16.709305+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 253.557,
+      "counts": {
+        "tests": 931,
+        "pass": 931,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/workplan-completion/20261112T002116709305Z.log",
+      "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
+      "worktree_dirty": true,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
     }
   ],
   "restart": {
@@ -157274,13 +158718,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Verifiedlive 3413ebc4553d8802803140531e265c88665190f6: codeonly,Stage10source/storage503 andmoney-audit503null are exactremainingprovisioning boundaries; no dataactivation. Lifecycle/readers/currencyguards and42cellUIreview complete; original200cohort, actualcurrency/scale/exactdayFX and3issueroperatingcases stillmissing. Continue originalqualifiedscientific/historicalcorpus work without retuning negatives. Bundle2025sourcecompatiblecandidate stillneedsauthorizedoperatortransfer; old155immutable. Public shallow-source historytests repaired without privateexport or gateweakening.",
+    "instruction": "Continue original work: DEVELOPMENT missingness persistence/review/calculator/XLSX implemented, privateHTTP403 pending genuine principal; read-only diffs/affected results and historical labels implemented but refresh/import and authentic histories missing. New source-backed pass-through component consumes declared incremental Scope1 assumptions in FCFE; no issuer economics admitted. All19legacy parameters diagnostic-only gate; 22driver source/calibration gaps stillunqualified. Preserve all frozen negatives, original1000/1001,0/3cases. Check latest CI/runtime vs docs receipt before further work. All14 FaIR source pins unchanged; no bundle replacement needed.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261111-coverage-cache-457ba3c",
+    "checkpoint_id": "ckpt-20261111-lifecycle-money-3413ebc",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-11T21:00:17.431792+00:00",
+    "attempted_at": "2026-11-11T23:40:44.463262+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202

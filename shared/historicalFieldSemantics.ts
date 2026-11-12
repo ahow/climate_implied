@@ -22,6 +22,14 @@ const contextCategory={
 };
 const inputConversion="Growth fractions multiplied by100; target coverage=0.9*policyCoverage; acceleration=1; intensity CAGR through row.year. Missing finance/CO2 inputs default respectively to0.27,0.9,3.4,33.4,390,2.0 in historical converters; category interventions apply literal configured changes";
 const historical:OutputFieldSemantic[]=[
+  copy("calculation.scenario","historical.historicalTypeCode",{...history,
+    meaning:"S09-001 historical evidence class code", unit:"label",
+    formula:"REVISED_HISTORY_RECONSTRUCTION; current-model reconstruction is not a retained forecast or verified cutoff simulation",
+    dependencies:[],missingness:"Withhold unknown or inconsistent type; never infer original vintages from row dates"}),
+  copy("calculation.scenario","historical.historicalTypeLabel",{...history,
+    meaning:"Exact original S09-001 historical evidence label", unit:"label",
+    formula:'HISTORICAL_TYPES[historicalTypeCode] = "Revised-history reconstruction" for these recalculations',
+    dependencies:["historical.historicalTypeCode"],missingness:"Withhold missing/inconsistent label"}),
   copy("emissionsTrajectory[].year","historical.year",{...history,meaning:"Reference input year of each reconstructed scenario",formula:"resolved input row.year"}),
   ...(["median","p10","p90"] as const).map(q=>copy(`temperatureDistribution.${q}`,`historical.${q}`,{
     ...history,formula:`${inputConversion}; `+projectionFieldSemantics.find(f=>f.id===`projection.temperatureDistribution.${q}`)!.formula.replace("PDF N=10000","PDF N=1000"),
@@ -47,7 +55,7 @@ const category:OutputFieldSemantic[]=[
   })),
 ];
 const categoryHistory:OutputFieldSemantic[]=[
-  ...historical.filter(f=>["historical.year","historical.isNowcast"].includes(f.id)).map(f=>({...f,id:f.id.replace("historical.","categoryHistory.")})),
+  ...historical.filter(f=>["historical.year","historical.isNowcast","historical.historicalTypeCode","historical.historicalTypeLabel"].includes(f.id)).map(f=>({...f,id:f.id.replace("historical.","categoryHistory.")})),
   ...["all","technology","policy","corporate","socioeconomic","financial","emissions"].flatMap(group=>
     ["median","reductionRate","netZeroYear"].map(key=>{
       const field=historical.find(f=>f.id===`historical.${key}`)!;

@@ -13,6 +13,7 @@ function files(dir: string): string[] {
 
 test("every client download declares a valid evidence contract; no alternate writer bypasses it", () => {
   let count = 0;
+  let readonlyDiffSites = 0;
   for (const path of files("client/src")) {
     const text = readFileSync(path, "utf8");
     const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -20,6 +21,7 @@ test("every client download declares a valid evidence contract; no alternate wri
       if ((ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) &&
         ["DownloadDataButton", "DownloadJsonButton"].includes(node.tagName.getText(source))) {
         count++;
+        if (path === "client/src/components/readonly-version-diff.tsx") readonlyDiffSites++;
         const kind = node.attributes.properties.find(a => ts.isJsxAttribute(a) && a.name.getText(source) === "kind");
         assert.ok(kind && ts.isJsxAttribute(kind) && kind.initializer && ts.isStringLiteral(kind.initializer), path);
         assert.ok(Object.hasOwn(exportContracts, kind.initializer.text), path);
@@ -31,7 +33,8 @@ test("every client download declares a valid evidence contract; no alternate wri
     }
     visit(source);
   }
-  assert.equal(count, 24, "Reviewed source census:23 retained spreadsheet sites plus central qualified company-coverage JSON export");
+  assert.equal(readonlyDiffSites, 2, "Exactly two new reviewed count/hash and affected-manifest export sites");
+  assert.equal(count, 26, "Prior24 reviewed export sites plus2 explicit read-only diff/affected-analysis spreadsheet sites; no alternate writer");
 });
 
 test("interpretation survives XLSX serialization with missingness and exact data unchanged", () => {

@@ -37,14 +37,16 @@ test("frozen original1001 cohort stays immutable; supplemental leaves never manu
 
 test("every new typed API/export denominator change is separate and reconciles arithmetically", () => {
   const added = census.supplementalSlotAccounting;
-  assert.equal(added.addedSlots, 331);
-  assert.equal(added.addedPublicSlots, 331);
-  assert.equal(added.addedBoundSlots, 331);
+  // 29 new actual typed slots relative to prior331; all are supplemental.
+  // 22 read-only diff/affected-analysis columns were unbound before this correction.
+  assert.equal(added.addedSlots, 360);
+  assert.equal(added.addedPublicSlots, 360);
+  assert.equal(added.addedBoundSlots, 360);
   assert.deepEqual(added.removedOriginalSlots, []);
-  assert.equal(census.fields.length, 1359);
-  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1332);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 331);
-  assert.equal(census.fullyBoundFields, 1331);
+  assert.equal(census.fields.length, 1388);
+  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1361);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 360);
+  assert.equal(census.fullyBoundFields, 1360);
   assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
   assert.equal(census.fields.length, 1028 + added.addedSlots);
   // Compare against actual concurrent registered domains, not an obsolete issuer
@@ -76,10 +78,26 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(added.stage10CoverageXlsxApiLeafSlots, 101);
   assert.equal(added.workbookMoneyAuditApiLeafSlots, 35);
   assert.equal(added.workbookMoneyAuditXlsxApiLeafSlots, 89);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 4098);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 4097);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 3097);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 4127);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 4126);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 3126);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
+});
+test("22 exact new read-only diff export slots bind separately without removing the original opaque summary gap", () => {
+  const added = census.supplementalSlotAccounting.addedFields.filter((e: { source: string }) =>
+    e.source === "client/src/components/readonly-version-diff.tsx");
+  assert.equal(added.length, 22);
+  assert.ok(added.every((e: { bound: boolean }) => e.bound));
+  assert.deepEqual(added.map((e: { field: string }) => e.field).sort(), [
+    "[].Added", "[].After content SHA-256", "[].Approval state", "[].Before content SHA-256",
+    "[].Changed", "[].Domain", "[].Field", "[].From", "[].History basis", "[].Kind", "[].Removed", "[].To",
+    "[].From", "[].Historical type code", "[].Historical type label", "[].Manifest ID",
+    "[].Recorded at", "[].Relation", "[].Result ID", "[].Result scan scope", "[].Scenario", "[].To",
+  ].sort());
+  assert.equal(census.originalGapReconciliation.originalPublicSlots, 1001);
+  assert.equal(census.originalGapReconciliation.originalFullyBoundFields, 1000);
+  assert.equal(census.originalGapReconciliation.remainingOriginalUnboundSlots, 1);
+  assert.equal(census.originalGapReconciliation.originalCohortComplete, false);
 });
 test("Monetary audit36 exact definitions/124 supplemental slots never qualify unknown money or close original1001", () => {
   const money = census.supplementalQualifiedChanges.workbookMoneyAudit;
@@ -218,6 +236,6 @@ test("strict completeness fails on OLD unknown summary JSON, not cured by authen
     assert.equal(result.status, 1, gate);
     assert.doesNotMatch(result.stderr, /Field census stale/);
     assert.match(result.stderr, gate === "--require-original-complete"
-      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1331\/1332/);
+      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1360\/1361/);
   }
 });

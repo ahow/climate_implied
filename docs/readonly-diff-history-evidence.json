@@ -1,0 +1,141 @@
+{
+  "version": "readonly-diff-history-engineering-evidence-1",
+  "scope": "S16-006 read-only version diffs and affected-analysis views; S09-001 original historical label/type propagation. Engineering fixtures only, not scientific acceptance.",
+  "originalSources": [
+    {
+      "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+      "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+      "inspection": "Original word/document.xml paragraph text read with unzip and tag removal, including all three S09 child clauses and S16 Data Management clause.",
+      "historicalLabels": [
+        "Actual archived forecast",
+        "Retrospective simulation on verified past inputs",
+        "Revised-history reconstruction"
+      ],
+      "cutoffRule": "Verified retrospective simulation requires every relevant input to meet the date cutoff, including filings, emissions, classifications, universe, macro and policy; parameters must be re-estimated without later data.",
+      "codeRule": "Original specifies distinct type codes, not literal code spellings. Three explicit codes map one-to-one to the verbatim labels."
+    },
+    {
+      "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_1794133884617.docx",
+      "sha256": "bc3a82d6bcfc7daa56529874b52ab219642641fb0c9e61d0db656ac49d6e7f11",
+      "inspection": "Earlier original S16 versioned-refresh paragraph checked alongside amended original. Latest original three-child S09 definition controls; no new vintage semantics invented."
+    }
+  ],
+  "changedPathsCount": 27,
+  "changedPathsFunctions": [
+    {"path": "shared/historicalTypes.ts", "functions": ["historicalType", "requireHistoricalType"], "constants": ["HISTORICAL_TYPES", "revisedHistoryType"]},
+    {"path": "server/snapshots/readonlyDiffContract.ts", "functions": ["cells", "compareReadonlyArchives"], "sha256": "2068b08c5c8c1f4ac3728a71fc460b95645fe7f8166f4372e23967961baa35e4"},
+    {"path": "server/snapshots/readonlyDiffStore.ts", "functions": ["readonlyDiffRepository.load", "readonlyDiffRepository.results"], "sha256": "4db66ac163f1ae4e072ed2a1a154b6342db7444cc6f49f9d9f0c4f8cbaabb2d0"},
+    {"path": "server/readonlyDiffApi.ts", "functions": ["registerReadonlyDiffApi"], "sha256": "90e39fdbbeecf16e40b3a4dee9e9b8fba20aaf9c0cc22a99693c31452b22edfe"},
+    {"path": "server/index.ts", "functions": ["startup API registration"], "change": "Two imports and one read-only API registration; no protected routes edit required."},
+    {"path": "server/calculation/historicalRecalculation.ts", "functions": ["getRecalculatedHistoricalTrend"], "change": "Explicit revised-history code and exact label per returned historical run."},
+    {"path": "server/calculation/categoryHistoricalTrend.ts", "functions": ["getCategoryHistoricalTrend"], "change": "Explicit revised-history code and exact label per category historical run."},
+    {"path": "server/snapshots/results.ts", "functions": ["loadAnalysisResult"], "change": "Stored descriptive valuations remain revised-history; archived bytes and hashes unchanged."},
+    {"path": "client/src/components/readonly-version-diff.tsx", "functions": ["ReadonlyVersionDiff", "VersionDiffResult", "versionDiffExportRows", "affectedAnalysisExportRows"], "sha256": "03e29643f3fcfc45b2fd4d6d07924767c68a598d28d5baa967aa131a35b2598e", "followup": "Validate retained diff envelopes and exact selected identities; malformed/null/missing/inconsistent populations refuse display and export."},
+    {"path": "client/src/pages/data-management.tsx", "functions": ["DataManagement"], "change": "Mount read-only diff card after existing snapshot status; existing layout retained. Follow-up mounts QualifiedMissingnessReview only under import.meta.env.DEV; worker owns component privacy hardening and parent owns its API registration."},
+    {"path": "client/src/components/historical-trend-chart.tsx", "functions": ["HistoricalTrendChart"], "change": "Validate exact historical code/label before display or download; carry both into export rows. Follow-up adds explicit field bindings for both new export columns; missing-type guard remains unchanged."},
+    {"path": "client/src/components/category-trend-chart.tsx", "functions": ["CategoryTrendChart"], "change": "Validate exact code/label and propagate to category UI/export rows."},
+    {"path": "client/src/lib/types.ts", "functions": [], "types": ["HistoricalTrendPoint", "CategoryHistoricalTrendPoint"]},
+    {"path": "shared/historicalFieldSemantics.ts", "functions": [], "constants": ["historicalFieldSemantics"], "change": "Explicit code/label semantics for historical/category-history fields."},
+    {"path": "shared/finiteExportSchemas.ts", "functions": ["finiteExportBindings", "finiteExportCellDomains"], "change": "Bind category type code/label columns as required text."},
+    {"path": "script/readonly-diff-history.test.ts", "functions": ["seven isolated engineering fixture tests"]},
+    {"path": "script/finite-export-schemas.test.ts", "functions": ["all35 finite-domain production-row-builder test"], "change": "Supply explicit revised-history fixture metadata to actual category row builder."},
+    {"path": "client/src/components/qualified-missingness-review.tsx", "functions": ["QualifiedMissingnessReview", "validPoint"], "sha256": "81d5d1d6f23893cc0a4ecc160703815dea67e7ae65dd3193389fa729c6157802", "change": "Worker-owned development card follow-up: pending/error hides stale source values; strict development/non-approval envelope/source qualifier/interior-only result validation; valid empty differs from unavailable. No backend/privacy/auth changes."},
+    {"path": "script/component-partial-state.test.ts", "functions": ["category threshold partial/null fixture test"], "change": "Supply explicit revised-history fixture type without removing null/missing category assertions."},
+    {"path": "script/remaining-component-contracts.test.ts", "functions": ["historical chart missing/null fixture tests"], "change": "Supply explicit revised-history type while preserving missing-year, null-metric and withheld-threshold assertions."},
+    {"path": "script/quantity-label-contracts.test.ts", "functions": ["productionRows", "actual fixed-year UI/XLSX test"], "change": "Inject actual historical type validator and explicit revised-history fixtures; preserve numerical/null/fixed-versus-selected-threshold assertions."},
+    {"path": "script/output-field-semantics.test.ts", "functions": ["all historical/category response leaves bind"], "change": "Explicitly reconcile two added type leaves per historical response (25 to27 and149 to151); original gap denominators7/23 unchanged. Stale canonical-census guard remains intact."},
+    {"path": "script/component-state-contracts.ts", "functions": ["contractFor"], "constants": ["filePolicies", "focusedRenderComponents"], "change": "Three reviewed new file policies cover four actual JSX declarations; precise actual states and focused evidence only, no generic permissive fallback."},
+    {"path": "script/component-state-census.test.ts", "functions": ["reachability/state policy tests"], "change": "64 prior consumers plus4 actual reachable declarations equals68. Each addition has exact route, input kind and focused fixture evidence. Original60 preserved separately."},
+    {"path": "script/readonly-new-card-states.test.ts", "functions": ["six actual imported SSR state tests"], "sha256": "76d0d5cb0272eafad97046dafe04a450e74c3143b4724da999f6d77de9fdad1b", "change": "Pinned carbon factual context; missingness pending/error/null/invalid/empty/zero/strict bound and false-approval refusals; diff idle/malformed/unknown history/empty/zero/ready/pagination states."},
+    {"path": "script/export-contract.test.ts", "functions": ["every client download declares a valid evidence contract"], "change": "Precisely assert2 new read-only diff/affected-analysis sites; prior24 plus2 equals26, preserving writer/evidence checks."},
+    {"path": "docs/readonly-diff-history-evidence.json", "functions": []}
+  ],
+  "delivered": {
+    "readOnlyRoutes": ["/api/data/version-diff", "/api/data/history-types"],
+    "sourceKinds": ["workbook-baseline", "company-overlay", "indicator-overrides", "material-inputs"],
+    "diffDomains": ["carbon", "sdg", "financial", "driver", "target overlays where retained"],
+    "publicProjection": "Field-level added/removed/changed counts and before/after content hashes; no raw source values, licensed rows, excerpts or private filing text.",
+    "identityPolicy": "Explicit from/to SHA-256 and kind; immutable payload validation, strict supported version and population checks; no latest/current fallback.",
+    "affectedPolicy": "Verified archived result and manifest identities with exact snapshot/material references; at most 20 results scanned sequentially per repository page. Cursor and scanned count explicit. No recomputation or exhaustive-impact claim.",
+    "approvalPolicy": "Archived reviewed overlays and archived approved indicators are distinguished; workbook/material archive does not establish approval.",
+    "historyPolicy": "Current historical recalculations and descriptive valuation outputs are revised-history, never actual archived forecasts or verified past-input simulations. Successful reviewed CV/history response headers carry the same code/label without changing numerical response bytes.",
+    "exportPolicy": "Historical/category rows and affected-analysis XLSX rows carry exact code and label; affected exports retain result and manifest IDs."
+  },
+  "executions": [
+    {
+      "command": "npx tsx --test script/readonly-diff-history.test.ts",
+      "log": "generated-artifacts/readonly-diff-history/initial-tests.log",
+      "logSha256": "e8af0964990817bc3bbfcf222ea82e7cdba0bd551a897e9a92133831b6bfd109",
+      "counts": {"tests": 6, "pass": 3, "fail": 3, "skipped": 0},
+      "meaning": "Initial engineering run exposed fixture ordering and React SSR test-global setup errors; corrected before final run."
+    },
+    {
+      "command": "npx tsx --test script/readonly-diff-history.test.ts script/finite-export-schemas.test.ts script/analysis-result-archive.test.ts",
+      "log": "generated-artifacts/readonly-diff-history/focused-tests.log",
+      "logSha256": "1f021c18f94c6c9edc2e8a72cdf061b34aec2b608b84af1fe5770f953b0e187a",
+      "counts": {"tests": 15, "pass": 15, "fail": 0, "skipped": 0},
+      "meaning": "Real disposable Express GET tests with injected isolated fixtures, actual React SSR, actual XLSX write/readback, finite production export builders and immutable result archive regressions. Not the running app, live-source acquisition or scientific validation."
+    },
+    {
+      "command": "npx tsc --noEmit --incremental false",
+      "log": "generated-artifacts/readonly-diff-history/typecheck.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exitCode": 0,
+      "meaning": "Whole current working-tree TypeScript check; no emitted files and no application restart."
+    },
+    {
+      "command": "npx tsx --test script/readonly-new-card-states.test.ts script/component-state-census.test.ts script/component-partial-state.test.ts script/remaining-component-contracts.test.ts script/quantity-label-contracts.test.ts script/output-field-semantics.test.ts script/readonly-diff-history.test.ts script/finite-export-schemas.test.ts script/qualified-missingness-persistence.test.ts script/export-contract.test.ts",
+      "log": "generated-artifacts/readonly-diff-history/followup-state-tests.log",
+      "logSha256": "a947e49249eae261bdb363cc68adfaedb88126077d79d15113e0182056835951",
+      "counts": {"tests": 134, "pass": 133, "fail": 1, "skipped": 0},
+      "meaning": "All affected runtime/SSR/fixture/registration/export tests pass. The sole failure is the preserved API/download canonical-census stale-source guard in output-field-semantics.test.ts; parent explicitly owns final canonical regeneration. No canonical census or ledger regenerated by this worker."
+    },
+    {
+      "command": "npx tsc --noEmit --incremental false",
+      "log": "generated-artifacts/readonly-diff-history/followup-typecheck.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exitCode": 0,
+      "meaning": "Follow-up current working-tree TypeScript check passed."
+    }
+  ],
+  "visualCheck": {
+    "path": "/data-management",
+    "screenshot": "generated-artifacts/readonly-diff-history/data-management-diff-preview-tall.jpg",
+    "viewport": {"width": 1280, "height": 3000},
+    "result": "Already-running preview renders existing layout and new idle diff controls. Interactive compare state verified separately by isolated API and SSR tests, not by screenshot."
+  },
+  "protectedBoundary": {
+    "serverRoutesNetDiff": false,
+    "explanation": "Initial two imports and one registration in protected server/routes.ts were removed. Equivalent registration lives in unpinned server/index.ts alongside existing auxiliary read-only APIs.",
+    "fair14PinnedFilesEditedByThisTask": [],
+    "followupCheck": "git diff --name-only restricted to exact13 sourcePaths plus projectionCacheResponse.ts returned no dirty paths; all14 protected files unchanged.",
+    "bundleBuiltOrRepinned": false,
+    "old2025CompatibilityClaim": false,
+    "commitsDeploymentsCallbacks": 0
+  },
+  "criterionSpecificResiduals": {
+    "S16-006": [
+      "Full operational criterion includes refresh lifecycle and deployed single-scheduler verification; this task adds no collector cadence, scheduler, privileged importer, approval or public mutation.",
+      "Diffs cover only retained immutable versions; absent archives or incompatible versions refuse explicitly.",
+      "Affected-analysis pages enumerate exact retained dependencies, not unarchived consumers, quantitative propagated impacts or an exhaustive all-pages census.",
+      "Production repository reads and freshly mounted running-app routes are not end-to-end reverified here; parent owns app restart/testing."
+    ],
+    "S09-001": [
+      "Three exact original labels/codes are defined, but no authentic actual-forecast or verified-past-input run is manufactured from current revised history.",
+      "Verified-past-input classification requires genuine source authentication and cutoff-only refits; declarations, supplied dates, archive timestamps or complete-looking rows do not suffice.",
+      "No quarterly-from-2015 census, new historical forecasts, skill acceptance or trajectory corpus is created.",
+      "Existing numeric historical-conversion defaults are not altered or newly scientifically accepted by this metadata-only task.",
+      "Follow-up intentionally leaves canonical field-census freshness guard failing until parent performs its final authorized source-freeze/regeneration; no count test was weakened to mask this."
+    ]
+  },
+  "safety": {
+    "publicWritesAdded": false,
+    "authChanges": false,
+    "productionDDL": false,
+    "realApprovals": false,
+    "canonicalLedgersModified": false,
+    "censusPerformed": false,
+    "deployment": null,
+    "scientificAcceptance": "not-promoted"
+  }
+}

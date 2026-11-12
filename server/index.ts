@@ -9,6 +9,10 @@ import { registerTrackBAdmissionRoutes } from "./trackBAdmissionApi";
 import { loadPublishedTrackBAdmission } from "./trackBDisclosureStore";
 import { registerStage10CoverageRoutes } from "./stage10CoverageApi";
 import { registerWorkbookMoneyAuditApi } from "./workbookMoneyAuditApi";
+import { registerQualifiedMissingnessApi } from "./qualifiedMissingnessApi";
+import { registerCarbonPassThroughRoutes } from "./carbonPassThroughApi";
+import { registerReadonlyDiffApi } from "./readonlyDiffApi";
+import { readonlyDiffRepository } from "./snapshots/readonlyDiffStore";
 
 const app = express();
 const httpServer = createServer(app);
@@ -74,6 +78,9 @@ app.use((req, res, next) => {
   registerTrackBAdmissionRoutes(app, loadPublishedTrackBAdmission);
   registerStage10CoverageRoutes(app);
   registerWorkbookMoneyAuditApi(app);
+  registerQualifiedMissingnessApi(app);
+  registerCarbonPassThroughRoutes(app);
+  registerReadonlyDiffApi(app, readonlyDiffRepository);
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {

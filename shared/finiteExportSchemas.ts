@@ -55,6 +55,8 @@ export function finiteExportBindings(family:FiniteExportFamily,settings:FiniteEx
       return {
         Year:binding("categoryHistory.year","Identity"),
         Estimated:binding("categoryHistory.isNowcast","true -> yes; false -> no; not vintage certification"),
+        "Historical type code":binding("categoryHistory.historicalTypeCode","Identity; missing or inconsistent historical class refuses export"),
+        "Historical type label":binding("categoryHistory.historicalTypeLabel","Exact S09-001 original child-clause label"),
         ...Object.fromEntries(categoryExportKeys.map(key=>[categoryExportNames[key],
           binding(`categoryHistory.${key}.${settings.metric}`,"Identity; null/undefined -> blank; fixed5Gt threshold is not5% or net zero")])),
       };
@@ -108,11 +110,11 @@ export function finiteExportBindings(family:FiniteExportFamily,settings:FiniteEx
 export function finiteExportCellDomains(family:FiniteExportFamily,settings:FiniteExportSettings) {
   return Object.fromEntries(Object.keys(finiteExportBindings(family,settings)).map(column=>{
     const type=column==="Year"?"integer":
-      ["Date","Estimated","Type","Source","Method","As Of Date"].includes(column)?"text":
+      ["Date","Estimated","Type","Source","Method","As Of Date","Historical type code","Historical type label"].includes(column)?"text":
       "finite-number";
     const allowed=column==="Estimated"?["yes","no"]:
       column==="Type"?["Estimated (nowcast)","Retained (not nowcast)"]:null;
-    return [column,{type,nullable:!["Year","Date","Estimated","Type","Source","Method","As Of Date"].includes(column),
+    return [column,{type,nullable:!["Year","Date","Estimated","Type","Source","Method","As Of Date","Historical type code","Historical type label"].includes(column),
       allowed,
       pattern:family==="signalCumulative"&&column==="Date"?"^\\d{4}-(0[1-9]|1[0-2])$":null}];
   }));

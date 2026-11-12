@@ -1,0 +1,15 @@
+{
+  "version": "s12-007-company-consumer-opt-in-1",
+  "frozenBeforeConsumerNumericalTests": true,
+  "scope": "Add explicit per-year qualifiedPassThrough path to existing projectCompanyMembers carbon-drag consumer; synthetic tests only, no issuer study or old frozen-case run.",
+  "legacyPreservation": "Absent qualifiedPassThrough, preserve existing schema values, calculation, hashes and returned shape exactly. Legacy raw passThrough is an unqualified conditional input, not reclassified as validated.",
+  "newPath": "Use projected post-abatement Scope1 tonnes times existing explicit net-allocation liable fraction and incremental effective price; same qualified direct-product ratio component supplies carbonDrag into existing preTaxIncome/tax/FCFE arithmetic.",
+  "gates": [
+    "One exact operating-geography sector exposure covering company; no headquarters fallback or unallocated mixed business extrapolation.",
+    "Explicit same issuer, projection year, sector/product/jurisdiction/regime, temporal transfer, denominator, incremental liability, baseline exclusion and tax/collection accounting references.",
+    "No Scope2 liable share; no Scope3 liability or wholesale electricity price formation use; legacy passThrough must be zero to prevent simultaneous coefficients.",
+    "Accrual-not-common-cash label remains; explicit cash timing/working-capital/tax bridge is a caller declaration requiring independent review, not empirical validation."
+  ],
+  "studyStatus": "Zero actual issuer assumptions admitted or studies run; no literature price result alone establishes company common cash.",
+  "preservation": "No existing frozen conditional cases, beta, EV/storage/fleet, canonical ledgers/census, routes or protected14 files modified."
+}

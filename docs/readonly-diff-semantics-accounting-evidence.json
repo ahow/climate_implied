@@ -1,0 +1,79 @@
+{
+  "version": "readonly-diff-22-supplemental-bindings-1",
+  "taskBoundary": "Precise actual-type export semantics and supplemental denominator reconciliation only. No scientific acceptance gates, frozen original cohort, canonical completion ledger or original opaque summary behavior changed.",
+  "parentRegeneratedBeforeCorrection": {
+    "typedFields": 1388,
+    "publicFields": 1361,
+    "boundPublicFields": 1338,
+    "withheldFields": 27,
+    "supplementalAddedSlots": 360,
+    "supplementalBoundSlots": 338,
+    "supplementalUnboundSlots": 22
+  },
+  "correction": {
+    "actualProducer": "client/src/components/readonly-version-diff.tsx:versionDiffExportRows and affectedAnalysisExportRows; diffViewSchema guards exact validated data",
+    "sourceDerivation": "server/snapshots/readonlyDiffContract.ts:compareReadonlyArchives compares canonical keyed cells by exact domain/field; archived result scan returns exact source-reference relations and validated historical classes",
+    "semanticDefinitions": "shared/readonlyDiffSemantics.ts:20 exact definitions; From and To each deliberately reused in both exports",
+    "runtimeBindings": "Literal fieldBindings on both actual DownloadDataButton consumers. Central existing export binder rejects absent/conflicting/unregistered columns; no wildcard or generic fallback.",
+    "versionDiffColumns": ["From", "To", "Kind", "Domain", "Field", "Added", "Removed", "Changed", "Before content SHA-256", "After content SHA-256", "Approval state", "History basis"],
+    "affectedAnalysisColumns": ["From", "To", "Result ID", "Manifest ID", "Scenario", "Recorded at", "Relation", "Historical type code", "Historical type label", "Result scan scope"],
+    "columnsBound": 22,
+    "fieldsAddedOrDroppedByCorrection": 0,
+    "newOriginalClosureCredit": 0
+  },
+  "afterRegeneration": {
+    "command": "npx tsx script/field-semantics-census.ts",
+    "definitions": 2111,
+    "typedFields": 1388,
+    "publicFields": 1361,
+    "boundPublicFields": 1360,
+    "withheldFields": 27,
+    "supplementalAddedSlots": 360,
+    "supplementalBoundSlots": 360,
+    "supplementalUnboundSlots": 0,
+    "remainingUnboundPublicSlots": 1,
+    "expandedExternalTypedApiSlots": 2766,
+    "expandedApiAndDownloadPublicSlots": 4127,
+    "expandedApiAndDownloadBoundSlots": 4126,
+    "expandedPublicDeltaFromOriginal": 3126
+  },
+  "deltaFromParentBefore": {
+    "definitions": 20,
+    "typedFields": 0,
+    "publicDenominator": 0,
+    "boundPublicFields": 22,
+    "supplementalBoundSlots": 22,
+    "originalClosure": 0
+  },
+  "priorStaleTestExpectationReconciled": {
+    "oldSupplementalSlots": 331,
+    "currentSupplementalSlots": 360,
+    "actualInventoryGrowth": 29,
+    "oldTypedFields": 1359,
+    "currentTypedFields": 1388,
+    "oldPublicSlots": 1332,
+    "currentPublicSlots": 1361,
+    "note": "29 actual new supplemental slots, including22 exact new diff columns; not a reduction or redefinition of original1001 cohort."
+  },
+  "preservedOriginal": {
+    "publicSlots": 1001,
+    "fullyBoundSlots": 1000,
+    "remainingOriginalUnboundSlots": 1,
+    "originalCohortComplete": false,
+    "slotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
+    "strictFailure": "SEMANTICS INCOMPLETE: 1360/1361 public field slots bound; original opaque summary JSON remains unbound. Authenticated sidecars do not close it."
+  },
+  "exportSiteCount": {
+    "priorReviewedSites": 24,
+    "newReadonlyDiffSites": 2,
+    "currentActualSites": 26,
+    "testOwnership": "script/export-contract.test.ts had already been corrected by concurrent worker; not modified by this task."
+  },
+  "focusedVerification": {
+    "command": "npx tsx --test script/next-census-accounting.test.ts script/export-contract.test.ts script/research-field-semantics.test.ts",
+    "result": "15/15 passed, including exact22 new-slot accounting, frozen original fingerprint, and both strict completeness gates still failing on the original opaque slot as required.",
+    "censusFreshness": "npx tsx script/field-semantics-census.ts --check passed.",
+    "types": "Targeted strict tsc for new readonlyDiffSemantics and updated next-census-accounting test/imports passed.",
+    "noOriginalClosure": "Original1001public/1000bound and fingerprint unchanged; all22 new bindings remain supplemental."
+  }
+}

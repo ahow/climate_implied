@@ -10,8 +10,8 @@ import { warmingReferenceExportDocument } from "../shared/warmingValidationRefer
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 64, "Original60 plus warming reference,TrackB,Stage10 and actual retained monetary audit consumer");
-  assert.equal(report.focusedRenderedComponentCount, 64);
+  assert.equal(report.componentCount, 68, "Original60 plus four prior reviewed additions and four actual declarations in three new review cards");
+  assert.equal(report.focusedRenderedComponentCount, 68);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -68,7 +68,17 @@ test("imported sibling exports are reachable only through actual component tags"
   assert.deepEqual(money.routes, ["/climate-valuation", "/methodology"]);
   assert.equal(money.contract.inputKind, "queried-evidence");
   assert.match(money.contract.focusedEvidence, /workbook-money-integration\.test\.ts/);
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id].includes(component.id)).length, 60);
+  const additions = ["CarbonPassThroughReview", "QualifiedMissingnessReview", "ReadonlyVersionDiff", "VersionDiffResult"]
+    .map(name => {
+      const component = report.components.find(component => component.component === name)!;
+      assert.ok(component, name);
+      assert.deepEqual(component.routes, [name === "CarbonPassThroughReview" ? "/climate-valuation" : "/data-management"]);
+      assert.match(component.contract.focusedEvidence, /readonly-new-card-states\.test\.ts/);
+      assert.equal(component.contract.inputKind, name === "CarbonPassThroughReview" ? "pinned-reference" :
+        name === "VersionDiffResult" ? "supplied-result" : "queried-evidence");
+      return component.id;
+    });
+  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, ...additions].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

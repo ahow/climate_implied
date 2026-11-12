@@ -19,6 +19,7 @@ import { DriverEvidenceDisclosure } from "../client/src/components/driver-eviden
 import { EmissionsCandidateReview } from "../client/src/components/emissions-candidate-review";
 import { EmissionsChart } from "../client/src/components/emissions-chart";
 import { HistoricalTrendChart } from "../client/src/components/historical-trend-chart";
+import { revisedHistoryType } from "../shared/historicalTypes";
 import { TemperatureHistogram } from "../client/src/components/temperature-histogram";
 import { OperatorOnlyNotice } from "../client/src/components/operator-only-notice";
 import { PublicationMethodologyNotes } from "../client/src/components/publication-methodology-notes";
@@ -207,9 +208,9 @@ test("EmissionsChart and HistoricalTrendChart empty/loading do not export; selec
   const zero = markup(element(EmissionsChart, { trajectory: [{ year: 2024, p10: 0, p50: 0, p90: 0 }] }));
   assert.ok(zero.includes("fixed-5gt-v1")); assert.ok(zero.includes("not net zero"));
   assert.ok(markup(element(HistoricalTrendChart, { data: [], metricView: "temperature" })).includes("No legacy historical recalculation"));
-  const partial = markup(element(HistoricalTrendChart, { data: [{ isNowcast: true, median: null, reductionRate: 0 }], metricView: "temperature" }));
+  const partial = markup(element(HistoricalTrendChart, { data: [{ ...revisedHistoryType, isNowcast: true, median: null, reductionRate: 0 }], metricView: "temperature" }));
   assert.ok(partial.includes("unavailable-unavailable")); assert.ok(!partial.includes("undefined-"));
-  const threshold = markup(element(HistoricalTrendChart, { data: [{ year: 2024 }], metricView: "netZero" }));
+  const threshold = markup(element(HistoricalTrendChart, { data: [{ ...revisedHistoryType, year: 2024 }], metricView: "netZero" }));
   assert.ok(threshold.includes("baseline")); assert.ok(threshold.includes("withheld") || threshold.includes("Unavailable"));
 });
 test("TemperatureHistogram missing quantiles are individually unavailable and actual zero quantiles survive", () => {
@@ -226,7 +227,7 @@ test("legacy chart collection absence/null/malformed rows are explicit refusals,
     assert.ok(markup(element(TemperatureHistogram, { pdf: value })).includes("Temperature density record collection unavailable"));
   }
   assert.ok(markup(element(EmissionsChart, { trajectory: [{ year: 2024, p50: 0 }] })).includes("Legacy trajectory fields unavailable: p10, p90"));
-  assert.ok(markup(element(HistoricalTrendChart, { data: [{ year: 2024, reductionRate: null }], metricView: "reductionRate" })).includes("Historical observation fields unavailable: reductionRate"));
+  assert.ok(markup(element(HistoricalTrendChart, { data: [{ ...revisedHistoryType, year: 2024, reductionRate: null }], metricView: "reductionRate" })).includes("Historical observation fields unavailable: reductionRate"));
 });
 test("OperatorOnlyNotice, PublicationMethodologyNotes and ThresholdDiagnosticDownload expose actual read-only/export contracts", () => {
   assert.ok(markup(element(OperatorOnlyNotice)).includes("Public HTTP mutations are denied"));

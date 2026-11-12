@@ -34,6 +34,34 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "carbon-pass-through-review.tsx": props("No caller-supplied analytical values: source-qualified evidence comes from the checked-in factual register; missing issuer inputs remain listed, never default coefficients.", {
+    inputKind: "pinned-reference",
+    null: "No nullable result props or substitute issuer outputs. Lower-bound-only evidence stays a strict bound; log-price elasticity is explicitly not a recovery ratio.",
+    loading: "Synchronous imported factual register, not an asynchronous request; no loading branch or fabricated pending output.",
+    error: "No independent API query in this card. Public export is a separate endpoint; failed endpoint reads cannot establish a coefficient or source approval.",
+    selection: "No local selection or provider refresh; imported source identities/versions and remaining issuer requirements are displayed unchanged.",
+    zero: "Fixed 0 qualified cases is an explicit non-admission disclosure, not measured zero pass-through or evidence of no exposure.",
+    refusal: "Historical price ratios, omitted-sample spans and elasticities never establish issuer profit/cash or universal causal pass-through; no issuer assumption is admitted.",
+    scope: "Static public source-qualified factual register, with PDF identities/rights and actual remaining issuer inputs. Not a coefficient control or an approval.",
+  }),
+  "qualified-missingness-review.tsx": query("Unidentified/malformed review envelopes, unknown source states and missing arrays/refusal details are explicit unavailable; valid empty review history differs from unavailable cells.", {
+    null: "Null source measurement is never zero: unavailable/not-applicable remain unmeasured, below-threshold remains a bound. Null calculated value is Withheld; exact observed zero remains data.",
+    loading: "Actual initial/background reads withhold retained source cells and download links via useReadQuery; loading is named.",
+    error: "Read errors take precedence over retained source evidence. Malformed, mismatched or centralModelApplied-not-false envelopes withhold all cells and exports.",
+    selection: "Exact revision query key owns historical review selection; returned revision must match an explicit selection. Latest is labeled a development review, never an original publication vintage.",
+    zero: "Observed/calculated numeric zero remains explicit; null source values and sampled uncertainty are never synthesized as zero.",
+    refusal: "Requires development-only classification and centralModelApplied=false. Review decisions cannot imply central-model, scientific or source-vintage acceptance.",
+    scope: "Mounted only when optional build env DEV is exactly true. Private development filesystem view is API-gated separately; no public write control or source-path input.",
+  }),
+  "readonly-version-diff.tsx": query("Initial selection has no result; explicit exact SHA identities and kind are required. Missing/null/invalid result envelopes name unavailability and withhold counts/references/downloads.", {
+    null: "Null nextCursor means this result page ended, not no affected analyses elsewhere. Missing counts or arrays refuse; valid zero counts remain zero.",
+    loading: "Root query withholds retained values on pending reads; the supplied-result child renders only parent-authoritative ready data.",
+    error: "Named query failures withhold previous diff. Unsupported versions, inconsistent history labels, duplicate populations and malformed hashes refuse display/export.",
+    selection: "Editing from/to/kind hides prior result immediately; returned source identities must match current exact selection. Page cursors do not imply a full dependency census.",
+    zero: "Explicit added/removed/changed zero and zero scanned results remain data, never inferred from missing evidence or failed reads.",
+    refusal: "No raw values/source excerpts/filings or approval controls. Workbook/material archive does not establish approval. Revised history is never promoted by archive date.",
+    scope: "Count/hash-only diffs plus exact archived manifest references. Root idle controls and supplied-result states are SSR-tested; interactive selection/pagination browser coverage is not claimed.",
+  }),
   "workbook-money-audit.tsx": query("Missing/invalid/unidentified retained audit is explicit unavailable,never0money.", {
     loading: "Initial/background pending read suppresses previous counts and all download links.",
     error: "Named source/read/integrity error wins over cached success; no private exception bytes or stale counts.",
@@ -81,7 +109,7 @@ export const filePolicies: Record<string, Policy> = {
   }),
   "category-comparison.tsx": props("Empty scenarios have a named absence; partial temperature/reduction fields show unavailable and incomplete-input reason.", { null: "Null fixed-5gt year is right-censored; omitted year is unavailable. Selected-2024 threshold is displayed separately." }),
   "category-filter.tsx": controls("Category selection forwarded to parent query; no result values."),
-  "category-trend-chart.tsx": props("Empty trends have a named absence. Missing category cells have a named reason and remain blank gaps; no borrowed category values.", { null: "Null/absent category cells and threshold years remain gaps, not a year zero or fixed-5gt replacement." }),
+  "category-trend-chart.tsx": props("Empty trends have a named absence. Missing/inconsistent historical evidence type refuses all history/downloads. With explicit valid revised type, missing category cells remain named gaps; no borrowed values.", { null: "Null/absent category cells and threshold years remain gaps, not a year zero or fixed-5gt replacement." }),
   "company-conditional-summary.tsx": query("No published public aggregates and no selected issuer summary are distinct branches.", {
     missing: "Missing company metadata, facts/disclosure arrays, fact value/classification/unit/formula/boundary/locator each has a named reason. Incomplete selected company disables export links; no other issuer is substituted.",
     null: "Explicit null fact value is Unknown (null); omitted/non-finite value is unavailable. Missing disclosure array differs from empty disclosure list.",
@@ -130,6 +158,7 @@ export const filePolicies: Record<string, Policy> = {
     selection: "Current saved financial reviews/readiness only; separate from historical workbook and operator approvals.",
   }),
   "historical-trend-chart.tsx": props("Empty recalculation observations are explicit; missing dates never display undefined.", {
+    refusal: "Missing/inconsistent historical type code or exact label withholds history and downloads; no retrospective date is relabeled as an authentic vintage.",
     null: "Selected-2024 threshold null remains withheld/censored per status; no fixed-5gt substitution.",
     scope: "Revised-history recalculation, not original-vintage forecast validation; nowcasts are separately marked.",
   }),
@@ -248,6 +277,7 @@ export const focusedRenderComponents = new Set([
   "TrackBResearch",
   "Stage10FinancialCoverage",
   "WorkbookMoneyAudit",
+  "CarbonPassThroughReview", "QualifiedMissingnessReview", "ReadonlyVersionDiff", "VersionDiffResult",
 ]);
 const remainingCohort = new Set([
   "AnalysisSelectionControl", "SummaryCount", "SnapshotDate", "AnalysisSnapshotStatus", "AppSidebar",
@@ -266,7 +296,7 @@ const valuationIndicatorCohort = new Set([
 export function contractFor(file: string, name: string) {
   const policy = filePolicies[file.split("/").at(-1)!];
   if (!policy) throw new Error(`No reviewed state policy for actual consumer ${file}#${name}`);
-  const inheritedProps = ["SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload"].includes(name);
+  const inheritedProps = ["SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);
   return {
     ...policy,
     ...(inheritedProps && !["AnalysisSection", "IndicatorDetailReadState"].includes(name) ? {
@@ -312,7 +342,9 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: name === "WorkbookMoneyAudit"
+    focusedEvidence: ["CarbonPassThroughReview", "QualifiedMissingnessReview", "ReadonlyVersionDiff", "VersionDiffResult"].includes(name)
+      ? "script/readonly-new-card-states.test.ts: actual imported SSR covers static factual source card, development review loading/error/null/invalid/empty/ready/zero and background pending suppression; idle diff controls and supplied-result malformed/empty/zero/ready states. No interactive selection/pagination browser coverage claimed. script/readonly-diff-history.test.ts separately checks isolated HTTP and XLSX readback."
+      : name === "WorkbookMoneyAudit"
       ? "script/workbook-money-integration.test.ts: actual imported component SSR loading/error/absent/invalid/ready with strict full-report hash and pinned downloads; real HTTP/XLSX safe-count/date/reason equality and source/query/hash refusals. Synthetic engineering is not real approval; old63component browser suite not rerun."
       : name === "Stage10FinancialCoverage"
       ? "script/stage10-retained-coverage.test.ts: actual component SSR loading,error,absent,invalid,ready identity/lifecycle/source-audit/hash/download states; real HTTP/JSON/XLSX with positive dated listing evidence. script/stage10-lifecycle.test.ts checks35-cell independent join,marginals,dates/source refusals and unchanged eligibility. Synthetic engineering is not real approval; original62component/browser suite not rerun."

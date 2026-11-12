@@ -37,7 +37,8 @@ export function driverConsumerTrace(id: IndicatorKey) {
       categoryConsumer: "server/calculation/categoryProjections.ts:applyCategoryModifications (stylized shocks)",
       ...legacy[id],
       registryGateEnforced: false,
-      caveat: "Preserved comparator equations; registry eligibility flags do not gate this legacy consumer",
+      acceptedForecastUse: "refused-at-calculator-boundary",
+      caveat: "Preserved comparator equations; explicit legacy-only use gate rejects central/accepted sensitivity. No native registry eligibility is transferred.",
     },
     stage5: {
       consumer: "consumeRegionalParameterRegistry -> projectRegionalMember -> projectInventoryEmissions",

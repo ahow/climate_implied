@@ -10,6 +10,7 @@ import { applyCategoryModifications, type Category } from "./categoryProjections
 import type { ThresholdDiagnostic } from "../../shared/thresholdDiagnostic";
 import { selectedTrajectoryThresholdContext, type ThresholdContext } from "./thresholdDiagnostic";
 import { calculationKey } from "./identity";
+import { revisedHistoryType, type HistoricalTypeCode } from "../../shared/historicalTypes";
 
 interface CategoryMetrics {
   median: number;
@@ -19,6 +20,8 @@ interface CategoryMetrics {
 }
 
 export interface CategoryHistoricalTrendPoint {
+  historicalTypeCode: HistoricalTypeCode;
+  historicalTypeLabel: string;
   year: number;
   all: CategoryMetrics;
   technology: CategoryMetrics;
@@ -90,6 +93,7 @@ export function getCategoryHistoricalTrend(
     }
 
     return {
+      ...revisedHistoryType,
       year,
       all: allMetrics,
       technology: categoryMetrics.technology,

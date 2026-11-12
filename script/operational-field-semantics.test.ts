@@ -53,7 +53,32 @@ test("news definitions disclose estimator defaults rather than relabel estimates
 });
 
 test("export closure requires exact literal binding or certified production finite schema, never mere wildcard inventory",()=>{
-  assert.equal(census.verifiedExportBindings.length,103,"59 retained reviewed bindings +19 standalone threshold +4 companions +21 separate native-mass diagnostic columns");
+  assert.equal(census.verifiedExportBindings.length,127,"Prior103 plus22 exact read-only diff columns and2 historical evidence-type columns; supplemental disclosures, no new original closure");
+  const diff = census.verifiedExportBindings.filter((b:{surface:string}) =>
+    b.surface.startsWith("XLSX client/src/components/readonly-version-diff.tsx:"));
+  assert.equal(diff.length,22);
+  assert.deepEqual(diff.map((b:{field:string;id:string})=>[b.field,b.id]).sort(), [
+    ["[].From","readonlyDiff.from"],["[].To","readonlyDiff.to"],["[].Kind","readonlyDiff.kind"],
+    ["[].Domain","readonlyDiff.domain"],["[].Field","readonlyDiff.field"],["[].Added","readonlyDiff.added"],
+    ["[].Removed","readonlyDiff.removed"],["[].Changed","readonlyDiff.changed"],
+    ["[].Before content SHA-256","readonlyDiff.beforeHash"],["[].After content SHA-256","readonlyDiff.afterHash"],
+    ["[].Approval state","readonlyDiff.approvalState"],["[].History basis","readonlyDiff.historicalBasis"],
+    ["[].From","readonlyDiff.from"],["[].To","readonlyDiff.to"],["[].Result ID","readonlyDiff.resultId"],
+    ["[].Manifest ID","readonlyDiff.manifestId"],["[].Scenario","readonlyDiff.scenario"],
+    ["[].Recorded at","readonlyDiff.recordedAt"],["[].Relation","readonlyDiff.relation"],
+    ["[].Historical type code","readonlyDiff.historicalTypeCode"],["[].Historical type label","readonlyDiff.historicalTypeLabel"],
+    ["[].Result scan scope","readonlyDiff.affectedMeaning"],
+  ].sort());
+  const history = census.verifiedExportBindings.filter((b:{surface:string;field:string}) =>
+    b.surface.startsWith("XLSX client/src/components/historical-trend-chart.tsx:") &&
+      ["[].Historical type code","[].Historical type label"].includes(b.field));
+  assert.deepEqual(history.map((b:{field:string;id:string})=>[b.field,b.id]).sort(), [
+    ["[].Historical type code","historical.historicalTypeCode"],
+    ["[].Historical type label","historical.historicalTypeLabel"],
+  ]);
+  assert.equal(census.verifiedExportBindings.length - diff.length - history.length,103);
+  assert.equal(census.originalGapReconciliation.originalPublicSlots,1001);
+  assert.equal(census.originalGapReconciliation.originalFullyBoundFields,1000);
   for(const binding of census.verifiedExportBindings) {
     assert.ok(binding.transform.length>0);
     assert.ok(requireOutputSemantic(binding.id));

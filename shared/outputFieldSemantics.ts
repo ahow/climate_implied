@@ -9,6 +9,8 @@ import {companyReplaySemantics} from "./companyReplaySemantics";
 import { companyAbatementSemantics } from "./companyAbatementSemantics";
 import { companyCoverageSemantics } from "./companyCoverageSemantics";
 import { researchFieldSemantics } from "./researchFieldSemantics";
+import { carbonPassThroughSemantics } from "./carbonPassThroughSemantics";
+import { readonlyDiffSemantics } from "./readonlyDiffSemantics";
 import { companySummarySemantics } from "./companySummarySemantics";
 import { backtestFieldSemantics } from "./backtestFieldSemantics";
 import { peerValuationSemantics } from "./peerValuationSemantics";
@@ -62,6 +64,8 @@ export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...companyAbatementSemantics,
   ...companyCoverageSemantics,
   ...researchFieldSemantics,
+  ...carbonPassThroughSemantics,
+  ...readonlyDiffSemantics,
   ...companySummarySemantics,
   ...backtestFieldSemantics,
   ...peerValuationSemantics,

@@ -49,6 +49,8 @@ import {CompanyOperatingReview} from "@/components/company-operating-review";
 import {CompanyCoverage} from "@/components/company-coverage";
 import {CompanyReplayUpload} from "@/components/company-replay-upload";
 import {TargetInputDisclosure} from "@/components/target-input-disclosure";
+import { ReadonlyVersionDiff } from "@/components/readonly-version-diff";
+import { QualifiedMissingnessReview } from "@/components/qualified-missingness-review";
 
 interface IndicatorSummary {
   key: string;
@@ -310,6 +312,8 @@ export default function DataManagement() {
       <TargetInputDisclosure />
       <FinancialProviderStatus />
       <AnalysisSnapshotStatus />
+      <ReadonlyVersionDiff />
+      {import.meta.env?.DEV === true && <QualifiedMissingnessReview />}
       <FinancialReview />
       <CompanyOperatingReview />
       <CompanyCoverage />

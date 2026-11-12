@@ -8,7 +8,7 @@ import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
 import { FIXED_5GT_DESCRIPTOR } from "../shared/quantityDescriptors";
 test("all historical/category response leaves bind, without treating reconstructions as issued forecasts",()=>{
   const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
-  for(const [path,prefix,count,originalCount] of [["/api/projection/categories","category",33,15],["/api/projection/historical-trend","historical",25,7],["/api/projection/categories/historical-trend","categoryHistory",149,23]] as const) {
+  for(const [path,prefix,count,originalCount] of [["/api/projection/categories","category",33,15],["/api/projection/historical-trend","historical",27,7],["/api/projection/categories/historical-trend","categoryHistory",151,23]] as const) {
     const fields=census.fields.filter((e:any)=>e.surface.includes(`"${path}"`)&&e.field.startsWith("[]."));
     assert.equal(fields.length,count);
     assert.equal(census.originalGapReconciliation.families.find((f:any)=>f.surface===`API GET "${path}"`).total,originalCount);

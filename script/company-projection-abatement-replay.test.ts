@@ -91,6 +91,11 @@ test("S12-014 legacy XLSX golden is unchanged by opt-in adapter integration", as
   const result = { ...replay.result, replayManifestId: manifestId };
   const stable = { ...replay, manifestId, result, resultHash: contentHash(result) };
   const exported = exportCompanyProjectionReplay(stable);
+  const legacySemantics = cells(exported.bytes).Semantics;
+  const carbonRow = legacySemantics.find(row => row[0] === "companyReplay.ledger.carbonDrag")!;
+  assert.equal(carbonRow[1], "Unpassed liable-emissions charge");
+  assert.equal(carbonRow[3], "(scope1*liable1 + scope2*liable2) * effectiveCarbonPrice * (1-passThrough)");
+  assert.equal(legacySemantics.some(row => String(row[0]).startsWith("companyProjection.carbonDragQualification.")), false);
   // Captured before changing the adapter or adding declarations to opt-in results.
   assert.equal(stable.resultHash, "387dcba5ea84eb17aae6a39c55e6b21054c9cb8e023541fd430c871786026ebb");
   assert.equal(exported.binaryHash, "e3435be2c86e8494595dfa4087014e678c5efd7d80a196dd74c463c2d1b0bcd2");

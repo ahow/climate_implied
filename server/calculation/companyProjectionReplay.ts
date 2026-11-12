@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import * as XLSX from "xlsx";
 import {companyReplaySemantics,companyReplayLedgerColumns} from "../../shared/companyReplaySemantics";
+import { carbonPassThroughSemantics } from "../../shared/carbonPassThroughSemantics";
 import { companyAbatementSemantics, companyAbatementColumns, companyAbatementInputColumns,
   companyAbatementLedgerSemantics } from "../../shared/companyAbatementSemantics";
 import { canonicalJson, contentHash } from "./analysisManifest";
@@ -161,10 +162,23 @@ export function exportCompanyProjectionReplay(replay: Replay) {
   const chunks = Array.from({ length: Math.ceil(json.length / 16000) }, (_, i) =>
     [i, json.slice(i * 16000, (i + 1) * 16000)]);
   const optIn = abatement.length > 1;
-  const semantics = optIn ? [
+  const legacyOrAbatementSemantics = optIn ? [
     ...companyReplaySemantics.map(f => ({ ...f, ...companyAbatementLedgerSemantics[f.id] })),
     ...companyAbatementSemantics,
   ] : companyReplaySemantics;
+  const qualifiedPassThrough = replay.result.status === "conditional-projection" &&
+    replay.result.members.some(m => m.years.some(y => y.carbonDragQualification));
+  // Preserve historical default workbook metadata exactly. New source-qualified
+  // semantics apply only to a result that actually contains the explicit opt-in.
+  const semantics = qualifiedPassThrough ? [
+    ...legacyOrAbatementSemantics.map(f => f.id === "companyReplay.ledger.carbonDrag" ||
+        f.id === "companyProjection.abatement.carbonDrag" ? {
+        ...f,
+        meaning: "Conditional incremental direct Scope1 accrual drag on explicitly qualified rows; legacy conditional drag otherwise, never validated common cash",
+        formula: "row.carbonDragQualification present => component.grossIncrementalCost - component.assumedSameCostRecovery; absent => (scope1*liable1 + scope2*liable2) * effectiveCarbonPrice * (1-passThrough)",
+      } : f),
+    ...carbonPassThroughSemantics.filter(f => f.id.startsWith("companyProjection.carbonDragQualification.")),
+  ] : legacyOrAbatementSemantics;
   const tables = {
     Semantics:[["fieldId","meaning","unit","formula","source","period","geography","status","missingness","uncertainty","scope","asOfRule"],
       ...semantics.map(f=>[f.id,f.meaning,f.unit,f.formula,f.source,f.period,f.geography,f.status,f.missingness,f.uncertainty,f.scope,f.asOfRule])],

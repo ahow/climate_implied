@@ -7,6 +7,7 @@ import { createManifest } from "../calculation/analysisManifest";
 import { loadMaterialArchive } from "./materialInputs";
 import { resolveSnapshot, loadSnapshot } from "./store";
 import { loadOverlay } from "./overlays";
+import { revisedHistoryType } from "../../shared/historicalTypes";
 
 export async function saveAnalysisResult(manifest: ReturnType<typeof createManifest>, result: unknown) {
   const packed = packAnalysisResult(manifest, result);
@@ -52,7 +53,7 @@ export async function loadAnalysisResult(id: string) {
     if(JSON.stringify(material.overlays)!==JSON.stringify(payload.manifest.snapshotHashes.slice(1,1+material.overlays.length)))
       throw new Error("Conflicting overlay order");
   }
-  return { ...payload, id, recordedAt: header.createdAt,
+  return { ...payload, id, recordedAt: header.createdAt, ...revisedHistoryType,
     materialReplayState: materialId === undefined ? "legacy-result-without-material-bundle" : "referenced-material-archives-verified",
     replayMeaning: "Stored output, not a recalculation; immutable workbook inputs do not establish original publication vintages" };
 }

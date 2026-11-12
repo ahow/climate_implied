@@ -6,6 +6,7 @@ import { semanticsCompletionGateError,type SemanticsGateEvidence } from "./field
 import ts from "typescript";
 import * as XLSX from "xlsx";
 import * as finite from "../shared/finiteExportSchemas";
+import { requireHistoricalType, revisedHistoryType } from "../shared/historicalTypes";
 import { indicatorFieldSpecs } from "../shared/indicatorFieldSemantics";
 import { bindExportColumns,bindNestedOutput,requireOutputSemantic } from "../shared/outputFieldSemantics";
 import { describePersistedSummary,bindKnownPersistedSummary,FETCH_SUMMARY_CONTRACT } from "../server/dataIngestion/summaryContract";
@@ -91,13 +92,13 @@ test("all35 finite-domain cases execute ACTUAL production row builders and bindi
   const covered=new Set<string>();
   for(const c of cases) {
     const {row,bindings,file}=expressions(c.family);
-    const context:Record<string,unknown>={...finite};
+    const context:Record<string,unknown>={...finite,requireHistoricalType};
     switch(c.family) {
       case "categoryTrend": {
         context.CATEGORY_KEYS=finite.categoryExportKeys;
         context.CATEGORY_NAMES=finite.categoryExportNames;
         context.config={metricKey:c.settings.metric};
-        context.data=[{year:2024,isNowcast:false,...Object.fromEntries(finite.categoryExportKeys.map((key,i)=>
+        context.data=[{year:2024,isNowcast:false,...revisedHistoryType,...Object.fromEntries(finite.categoryExportKeys.map((key,i)=>
           [key,{median:i===0?null:1.5,reductionRate:0,netZeroYear:i===0?null:2050}]))}];
         break;
       }

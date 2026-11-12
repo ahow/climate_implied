@@ -18,6 +18,7 @@ import type { HistoricalTrendPoint, MetricView } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
+import { requireHistoricalType } from "@shared/historicalTypes";
 
 interface HistoricalTrendChartProps {
   data: HistoricalTrendPoint[];
@@ -38,6 +39,8 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
   if (!Array.isArray(data) || data.some(point => !point || typeof point !== "object"))
     return <Card className="p-6"><p role="status">Historical observation record collection unavailable. No values or downloads are substituted.</p></Card>;
   if (!data.length) return <Card className="p-6"><p role="status">No legacy historical recalculation observations were returned.</p></Card>;
+  try { data.forEach(requireHistoricalType); }
+  catch { return <Card className="p-6"><p role="status">Historical type missing or inconsistent. History and downloads withheld; no vintage label substituted.</p></Card>; }
 
   const hasNowcast = data.some((d) => d.isNowcast);
   const firstYear = data[0]?.year;
@@ -98,6 +101,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     .filter(field => data.some(point => typeof point[field] !== "number" || !Number.isFinite(point[field])));
 
   const downloadRows = data.map((d) => ({
+    ...requireHistoricalType(d),
     Year: d.year,
     "Temperature Median (\u00B0C)": d.median,
     "P10 (\u00B0C)": d.p10,
@@ -140,6 +144,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
             )}
           </div>
           <p className="text-xs text-muted-foreground mt-0.5">{config.subtitle}</p>
+          <p className="text-xs text-muted-foreground">{data[0].historicalTypeLabel} ({data[0].historicalTypeCode}); not a forecast made at the historical date.</p>
           <p className="text-xs text-muted-foreground mt-1">
             Retrospective reconstruction using current methodology and revised inputs—not forecasts issued at the time.
           </p>
@@ -151,6 +156,8 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
           rows={downloadRows}
           interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
+            "Historical type code":{id:"historical.historicalTypeCode",transform:"Exact S09-001 evidence class; missing/inconsistent class refuses export"},
+            "Historical type label":{id:"historical.historicalTypeLabel",transform:"Exact original S09-001 child-clause label"},
             Year:{id:"historical.year",transform:"Identity"},
             "Temperature Median (\u00B0C)":{id:"historical.median",transform:"Identity"},
             "P10 (\u00B0C)":{id:"historical.p10",transform:"Identity; uncalibrated conditional quantile"},

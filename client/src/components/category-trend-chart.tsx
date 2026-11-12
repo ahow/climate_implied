@@ -17,6 +17,7 @@ import { certifyFiniteExport,finiteExportBindings,categoryExportNames,categoryEx
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
 import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
+import { requireHistoricalType } from "@shared/historicalTypes";
 
 interface CategoryTrendChartProps {
   data: CategoryHistoricalTrendPoint[];
@@ -89,12 +90,15 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
   }
 
   if (!data.length) return <Card className="p-6"><p role="status">No legacy category trend observations were returned.</p></Card>;
+  try { data.forEach(requireHistoricalType); }
+  catch { return <Card className="p-6"><p role="status">Historical type missing or inconsistent. Category history and downloads withheld; no vintage label substituted.</p></Card>; }
 
   const config = getConfig(metricView);
   const hasNowcast = data.some((d) => d.isNowcast);
 
   const downloadRows = certifyFiniteExport("categoryTrend",data.map((d) => {
     const row: Record<string, string | number | boolean | undefined> = {
+      ...requireHistoricalType(d),
       Year: d.year,
       Estimated: d.isNowcast ? "yes" : "no",
     };
@@ -141,6 +145,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
             )}
           </div>
           <p className="text-xs text-muted-foreground mt-0.5">{config.subtitle}</p>
+          <p className="text-xs text-muted-foreground">{data[0].historicalTypeLabel} ({data[0].historicalTypeCode}); not forecasts issued at the historical dates.</p>
         </div>
         <DownloadDataButton
           kind="legacy"

@@ -1,4 +1,5 @@
 import { WorkbookMoneyAudit } from "@/components/workbook-money-audit";
+import { CarbonPassThroughReview } from "@/components/carbon-pass-through-review";
 import { analysisFetch as fetch, hasArchivedSelection } from "@/lib/analysis-selection";
 import { CompanyConditionalSummary } from "@/components/company-conditional-summary";
 import { useState } from "react";
@@ -215,6 +216,7 @@ export default function ClimateValuation() {
         {summaryLoading && <p role="status" aria-live="polite" className="text-sm text-muted-foreground" data-testid="status-company-summary-loading">Loading company summary for the current selection.</p>}
         <p role="status" className="text-sm text-muted-foreground">Monetary-input-dependent totals and derived ratios are withheld when source currency,magnitude or required actual-source-day FX is unqualified. Empty financial panels can reflect this intentional guard,not absence of numeric source cells. This restriction does not by itself reject an independently reported dimensionless P/E.</p>
         <WorkbookMoneyAudit />
+        <CarbonPassThroughReview />
         {uploadsError && <p role="alert">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>}
         {summaryError && <p role="alert">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>}
         {summary?.dateRange && !(typeof summary.dateRange.recordCount === "number" && Number.isFinite(summary.dateRange.recordCount)) &&

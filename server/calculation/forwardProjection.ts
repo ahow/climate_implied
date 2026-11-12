@@ -1,6 +1,7 @@
 import { computeEmpiricalCarbonIntensityDeclineRate, getAllHistoricalIndicators } from "./historicalIndicators";
 import { SeededRandom, randomNormalFrom } from "./random";
 import { LEGACY_CLIMATE } from "../../shared/calculationContract";
+import { assertLegacyComparatorUse, type LegacyComparatorUse } from "./legacyDriverAdmission";
 
 // Projection baseline year. The model's "current" indicators are the values for
 // this year (NOT the last historical row). Approved overrides for this year flow
@@ -174,8 +175,10 @@ export function calculateEmissionsTrajectory(
   startYear: number = 2024,
   endYear: number = 2100,
   runs: number = 10000,
-  seed: number = startYear * 12345
+  seed: number = startYear * 12345,
+  use: LegacyComparatorUse = { mode: "legacy-diagnostic" }
 ): ForwardProjection[] {
+  assertLegacyComparatorUse(use);
   const required: (keyof IndicatorData)[] = [
     "renewableCapacityGW", "renewableGrowthRate", "renewableAcceleration", "evSalesShare",
     "evGrowthRate", "policyCoveragePercent", "policyImplementationRate", "netZeroTargetsCoverage",

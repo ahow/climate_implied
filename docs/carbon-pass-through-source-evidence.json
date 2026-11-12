@@ -1,0 +1,99 @@
+{
+  "version": "s12-007-literature-admission-1",
+  "evidenceState": "Original public research obtained; historical product-price context admitted; no actual issuer coefficient/assumption admitted",
+  "preStudyFreeze": {
+    "path": "docs/carbon-pass-through-protocol.json",
+    "sha256": "5084a8314270a1d8b365f4c17e99832b1947414a3689ddd2f4f5744170a3779e",
+    "timing": "Written before original PDF extraction and all synthetic component tests; no numerical issuer studies executed",
+    "oldCasesRetuned": false
+  },
+  "firstRead": [
+    "server/calculation/companyProjection.ts",
+    "shared/companyConditionalData.ts",
+    "docs/company_operating_source_receipts.json",
+    "docs/Conditional_Company_Climate_Cases.md#Exact full-company blockers and rejected mappings",
+    "docs/reconciliation-stages-10-13.json S12-007 (read only)"
+  ],
+  "sourceRegister": {
+    "path": "shared/carbonPassThroughEvidence.ts",
+    "contents": "Typed original bibliography, exact URLs/publication precision/version, original-byte SHA256, retrieval completion timestamps, rights, observed windows, market/product/country, estimator, denominator, reported uncertainty and small factual transcriptions.",
+    "retrievalTimestampBasis": "Local PDF file write-completion timestamps recorded by stat; not claimed publisher release timestamps.",
+    "rawRetention": "Original public PDFs retrieved only under /tmp/s12-literature; no raw PDF or full extracted text added to Git.",
+    "sources": [
+      {
+        "id": "sijm-neuhoff-chen-2006",
+        "url": "https://www.jbs.cam.ac.uk/wp-content/uploads/2023/12/eprg-wp0617.pdf",
+        "publication": "Cover May2006; body19June2006; working paper EPRG0617/CWPE0639, not final journal version",
+        "sha256": "ddcca6fed60097daae8818d2fd104b0dbbae69269c07db0e3aff344466dbd04e",
+        "retrievedAt": "2026-11-11T23:50:46.478Z",
+        "bytes": 309187,
+        "rights": "Public university original; redistribution licence not established. Metadata and factual paraphrases only."
+      },
+      {
+        "id": "ce-delft-oeko-2015",
+        "url": "https://ce.nl/wp-content/uploads/2021/03/7D94_CE_Delft_Ex-post_investigation_cost_pass-through_EU_ETS_Final.pdf",
+        "publication": "November2015, EU Publications Office; European Commission commissioned, authors' views",
+        "sha256": "5beb61786c3991427351ca91c169fa4ffa4f09dc437ba5a86f771fadc43f7c64",
+        "retrievedAt": "2026-11-11T23:50:47.122Z",
+        "bytes": 2531856,
+        "rights": "Legal notice copyright European Union2015; reproduction authorised with source acknowledged."
+      }
+    ]
+  },
+  "sourceQualifiedFindings": [
+    {
+      "source": "sijm-neuhoff-chen-2006",
+      "locator": "Printed pp13–14 Table1 and equations1–3/footnotes8–9",
+      "finding": "Jan–Dec2005 daily year-ahead2006 forward market estimates: Germany peak117%, offpeak60%; Netherlands peak78%, offpeak80%. Respectively omitted-two-month sample spans97–117%,60–71%,64–81%,69–80%. These are six restricted-sample min/max values, not standard95% confidence intervals.",
+      "definition": "Price formation relative to marginal coal40%efficiency0.85tCO2/MWh or gas42%efficiency0.48tCO2/MWh opportunity cost. Fuel coefficient fixed1, omitted market/fuel effects and noncointegration caveats remain.",
+      "distinction": "Abstract60–100% does not subsume German peak117%. Windfall-profit theory/model is separate from these observed price regressions. No wholesale coefficient mapped to FPL regulated recovery or downstream Scope2 same-cost recovery."
+    },
+    {
+      "source": "ce-delft-oeko-2015",
+      "locator": "Printed p73 Table10 sample note; p76 Table12; pp74–75 denominator discussion; p66 price definitions",
+      "finding": "Petrol monthly Jan2008–Feb2013 ratios are Belgium95%, Germany80%, France100%, Italy80%. Table10 log CO2 coefficients.015/.013/.016/.013 are NOT those cost-recovery fractions. Germany p=.096 under report's one-sided10% criterion. No country-ratio numerical confidence interval supplied in Table12.",
+      "definition": "Indicative product price ratio derived from log cost-price ARDL and allocated refinery CO2 cost share; joint-product cost and emissions intensity material. Not issuer collections, net profit, global upstream or CCS.",
+      "distinction": "Summary80–95% is not a universal refinery range: Table12 reports France petrol100%, and diesel/gasoil results can exceed100%. German diesel coefficient.012 with p=.325 is context-only, not1.2% recovery and not proof of zero. French diesel>100% cannot enter bounded0–1 engine via clipping."
+    }
+  ],
+  "admissionAndBinding": {
+    "module": "server/calculation/carbonPassThroughAdmission.ts",
+    "sourceVersusAssumption": "Historical records remain source facts; a separate strictly typed analyst assumption must select an eligible indicative point and declare exact operating sector/product/jurisdiction/regime, temporal-transfer rationale and denominator/incremental-baseline/collection-tax evidence.",
+    "scope": "New opt-in direct Scope1 same-cost incremental pre-tax accrual component only; no automatic population, no price-vs-profit relabelling, no Scope2/3 double charge. Follow-up explicitly integrates qualifiedPassThrough into existing projectCompanyMembers carbonDrag/tax/FCFE consumer while absent opt-in preserves legacy calculations/output/hash. Evidence-reference declarations are not substantive independent validation.",
+    "cashBoundary": "Liable tonnes must already be net of relevant allocation and price must be incremental above baseline expense. Accrual recovery is not collected cash. Parent ledger still requires working capital, tax, demand and ownership reconciliation.",
+    "parentMountRequested": [
+      "registerCarbonPassThroughRoutes from server/carbonPassThroughApi.ts",
+      "CarbonPassThroughReview from client/src/components/carbon-pass-through-review.tsx"
+    ],
+    "export": "Read-only GET review and export.json use the same admitted register; no POST or issuer-study route.",
+    "remainingExactThreeCaseInputs": "shared/carbonPassThroughEvidence.ts#carbonPassThroughRemainingInputs: current NEE/FSLR/XOM cases, legal/economic/cash and carbon-recovery inputs. Original operating inventory's CAT requirements retained separately in carbonPassThroughOriginalIndustrialInputs; neither is silently substituted for FSLR. Legacy experiments remain untouched."
+  },
+  "boundedIssuerAttempts": {
+    "newAttempts": 0,
+    "reason": "No material newly identifiable issuer contract emerged from this literature task. Did not repeat old issuer indices or substitute literature for missing executed contract economics."
+  },
+  "focusedVerification": {
+    "command": "npx tsx --test script/carbon-pass-through-admission.test.ts script/carbon-pass-through-consumer.test.ts",
+    "result": "10 tests passed: source precision/identity, admission rejection, synthetic accrual reconciliation, channel/geography/regime/scope and clipping refusals, public API/export parity, both frozen protocols, actual companyProjection consumption, legacy synthetic calculation/output/hash compatibility, actual-consumer refusal gates.",
+    "strictTypes": "Targeted strict tsc of new shared/server/test modules passed; new standalone TSX syntax transpilation diagnostics0.",
+    "renderedUI": "Parent handles mounting/preview verification. No app/workflow run or restart by this task."
+  },
+  "consumerFollowup": {
+    "protocol": "docs/carbon-pass-through-consumer-protocol.json",
+    "protocolSha256": "3bf5d6f374c1b4454d64756e92aea8d43f4386f3df5430fe7732b85bf00c1ce3",
+    "integration": "Optional per-year qualifiedPassThrough in existing companyProjection contract replaces legacy drag only on explicit request; derives net-liable tonnes from projected post-abatement Scope1 and supplied liable fraction. Existing effectiveCarbonPrice must explicitly denote incremental price above expense already in baseline. Legacy passThrough zero sentinel prevents stacking coefficients.",
+    "binding": "Exact single company operating-geography/sector exposure, same issuer/year/product/regime plus original admission gates. No HQ proxy/mixed business/source extrapolation. Requires explicit collection-working-capital/tax/no-duplicate-margin evidence declarations.",
+    "legacy": "No opt-in means original formula, input hash and output shape unchanged; raw passThrough is not relabelled source-validated. No old frozen issuer case recalculated.",
+    "preciseCashReason": "Literature supplies market/product price responses, not issuer-owned eligible tonnes and product sales, allowance purchase/bank/free-allocation cash, actual recovery/collection lag, demand effects, realized cash tax or owner cash. Declared bridge references can condition an incremental FCFE calculation but cannot validate actual company cash;0 actual issuer assumptions admitted.",
+    "fieldSemantics": "shared/carbonPassThroughSemantics.ts defines exact public review and qualified consumer leaves, registered in existing outputFieldSemantics. Actual API/export and opt-in consumer call bindNestedOutput; unknown leaves fail closed. Historical default replay/abatement semantics remain exact for legacy workbook preservation; exporter appends qualified IDs and overrides carbonDrag interpretation only if actual result contains explicit carbonDragQualification. Census separately regenerated for supplemental binding accounting, with original1001/1000 unchanged."
+  },
+  "outcome": {
+    "originalSources": 2,
+    "qualifiedContextRecords": 10,
+    "issuerStudiesRun": 0,
+    "qualifiedIssuerCases": 0,
+    "ownerApprovals": 0,
+    "s12_007FullyVerified": false,
+    "remaining": "Actual issuer-specific and same-horizon carbon price/liable tonne/recovery bridges not supplied by historical literature; full-company three-case causal/accounting inputs remain missing."
+  }
+}
