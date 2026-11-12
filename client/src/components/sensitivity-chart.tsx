@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from "recharts";
@@ -113,6 +114,7 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
 
   return (
     <Card className="p-6" data-testid="card-sensitivity-analysis">
+      <ScientificEvidenceStrands compact />
       <div className="flex items-center justify-between mb-1 flex-wrap gap-3">
         <div>
           <h3 className="text-base font-semibold" data-testid="text-sensitivity-title">Indicator Sensitivity Analysis</h3>

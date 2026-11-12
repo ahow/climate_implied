@@ -2,6 +2,23 @@ import { exportContracts, type ExportKind } from "./downloadClaims";
 import { requireHistoricalType } from "./historicalTypes";
 import { scientificEvidenceStatuses } from "./scientificEvidence";
 
+/** Server-authored only after retained-result and material-archive verification.
+ * Deliberately NOT an input to createDownloadManifest: UI/caller assertions
+ * cannot upgrade an ordinary view export to an authenticated producer export. */
+export interface RetainedProducerIdentity {
+  version: "retained-producer-binding-v1";
+  resultId: string;
+  resultHash: string;
+  manifestId: string;
+  materialInputsId: string;
+  codeArchiveId: string;
+  modelVersion: string;
+  orderedSnapshotHashes: string[];
+  scenario: string;
+  meaning: string;
+  scientificAcceptance: boolean;
+}
+
 export interface DownloadManifestInput {
   filename: string;
   kind: ExportKind;
@@ -44,7 +61,7 @@ export function createDownloadManifest(input: DownloadManifestInput) {
     claim: { kind: input.kind, ...exportContracts[input.kind] },
     dataIdentity: { algorithm: "SHA-256", hash: input.dataHash, method: input.hashMethod },
     requestedUiSelection: structuredClone(input.selection ?? null),
-    producerIdentity: null,
+    producerIdentity: null as RetainedProducerIdentity | null,
     requestContext: structuredClone(input.requestContext ?? null),
     selectionBoundary: "Requested UI selection only, NOT certified input/model/run identity or proof that these data were produced from those selections. Null requestedUiSelection means no archived UI selection was supplied, not certified current inputs. Producer identity is unavailable (null); response/query pins are transport context only, not an authenticated complete input/model/run binding. Export time is not publication time or original-vintage evidence.",
     historicalTypes,

@@ -29,6 +29,7 @@ import { trackBAdmissionSemantics, trackBAdmissionHttpSemantics } from "./trackB
 import { trackBPublicCatalogSemantics } from "./trackBDisclosureContract";
 import { stage10CoverageSemantics } from "./stage10Coverage";
 import { workbookMoneySemantics } from "./workbookMoneyAudit";
+import { producerDownloadSemantics } from "./producerDownloadSemantics";
 import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
   id:string; meaning:string; role:"Input"|"Calculated"|"Output"; formula:string;
@@ -46,6 +47,7 @@ const financial = {
 const peFinancial={...financial,geography:"Selected workbook universe; this endpoint does not apply a geography filter",
   missingness:"Require positive marketCap and positive netProfit for each member; omit dates unless both terciles contain eligible records. No missing-value replacement with zero."};
 export const outputFieldSemantics:OutputFieldSemantic[]=[
+  ...producerDownloadSemantics,
   ...trackBAdmissionSemantics,
   ...trackBAdmissionHttpSemantics,
   ...trackBPublicCatalogSemantics,

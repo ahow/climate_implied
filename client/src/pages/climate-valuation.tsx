@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { DownloadDataButton } from "@/components/download-data-button";
+import { DownloadDataButton, ProducerDownloadLink } from "@/components/download-data-button";
 import { gordonBaselineLabel, gordonExportNotes, verifyGordonBaselineRows, displayDiagnostic, observationTimestamp } from "@/lib/valuation-claims";
 import { GORDON_DEFINITION } from "@shared/quantityDescriptors";
 import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSchemas";
@@ -216,6 +216,8 @@ export default function ClimateValuation() {
         {summaryLoading && <p role="status" aria-live="polite" className="text-sm text-muted-foreground" data-testid="status-company-summary-loading">Loading company summary for the current selection.</p>}
         <p role="status" className="text-sm text-muted-foreground">Monetary-input-dependent totals and derived ratios are withheld when source currency,magnitude or required actual-source-day FX is unqualified. Empty financial panels can reflect this intentional guard,not absence of numeric source cells. This restriction does not by itself reject an independently reported dimensionless P/E.</p>
         <WorkbookMoneyAudit />
+        {!summaryLoading && !summaryError && <ProducerDownloadLink payload={summary} />}
+        {!carbonPricesLoading && !carbonPricesError && <ProducerDownloadLink payload={carbonPrices} />}
         <CarbonPassThroughReview />
         {uploadsError && <p role="alert">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>}
         {summaryError && <p role="alert">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>}

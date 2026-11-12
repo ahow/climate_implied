@@ -20,7 +20,8 @@ test("all actual research and pinned reference leaves bind without numerical mod
   assert.equal(response.indicators.length,22);
   assert.equal(driver.length,90,"Prior54 plus35 exact proposal leaves and one explicit absent-proposal null binding; not original closure");
   assert.equal(driverSourceProposalSpecs.length,36);
-  assert.equal(response.indicators.filter(row=>row.sourceMetadataProposal===null).length,19);
+  assert.equal(response.indicators.filter(row=>row.sourceMetadataProposal===null).length,16,
+    "Prior three plus three new source-product proposals; proposal presence is not approved input, source vintage or scientific acceptance");
   for (const [field, meaning, formula, unit] of driverSourceProposalSpecs) {
     const semantic=requireOutputSemantic(`driverRegistry.${field}`);
     assert.equal(semantic.meaning,meaning);

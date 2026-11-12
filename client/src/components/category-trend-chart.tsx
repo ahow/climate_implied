@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -134,6 +135,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
 
   return (
     <Card className="p-6" data-testid="card-category-trend">
+      <ScientificEvidenceStrands compact />
       <div className="mb-4 flex items-start justify-between gap-2 flex-wrap">
         <div>
           <div className="flex items-center gap-2 flex-wrap">

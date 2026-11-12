@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { exportNotes, prepareQualifiedJsonExport, type ExportKind } from "@/lib/export-contract";
@@ -8,6 +8,8 @@ import { exportDataIdentity, loadExportWorkbook } from "@/lib/export-identity";
 import { certifySupplementalSheetRows } from "@shared/supplementalSheetBindings";
 import { createDownloadManifest, downloadManifestRows } from "@shared/downloadManifest";
 import { captureDownloadSelection, requireUnchangedDownloadSelection } from "@/lib/download-selection";
+import { exactProducerDownload } from "@/lib/producer-download";
+import { withDownloadManifest } from "@shared/serverDownloadRegistry";
 
 type Cell = string | number | boolean | null | undefined;
 export type DownloadRow = Record<string, Cell>;
@@ -151,6 +153,15 @@ export function DownloadJsonButton({ kind, filename, payload, validatePayload, l
       setBusy(false);
     }
   };
-  return <><Button variant="outline" onClick={() => void download()} disabled={busy}>{busy ? "Preparing…" : label}</Button>
+  return <><ProducerDownloadLink payload={payload} /><Button variant="outline" onClick={() => void download()} disabled={busy}>{busy ? "Preparing…" : label}</Button>
     {error && <span role="alert" className="text-sm text-destructive">{error}</span>}</>;
+}
+
+/** A derived chart/view export retains null producer identity. This separate
+ * link exports the exact server-retained source response, never relabelled rows. */
+export function ProducerDownloadLink({ payload }: { payload: unknown }) {
+  const href = exactProducerDownload(payload);
+  return href ? <a href={withDownloadManifest(href)} className="text-sm underline" data-testid="download-exact-producer-result">
+    Download exact retained result JSON (not chart-transformed rows)
+  </a> : null;
 }

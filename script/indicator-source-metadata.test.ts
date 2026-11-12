@@ -11,11 +11,12 @@ import { HISTORICAL_INDICATORS } from "../server/calculation/historicalIndicator
 
 const evidence = JSON.parse(readFileSync("docs/indicator-source-fields-increment-evidence.json", "utf8"));
 
-test("real registry exposes three bounded source-linked proposals without promotion or date substitution", () => {
+test("real registry exposes bounded source-linked proposals without promotion or date substitution", () => {
   const rows = driverEvidenceRegistry();
   assert.equal(rows.length, 22);
   assert.deepEqual(rows.filter(row => row.sourceMetadataProposal).map(row => row.id).sort(),
-    ["atmosphericCO2ppm", "co2GrowthRatePpm", "sacrificeWillingnessPct"].sort());
+    ["atmosphericCO2ppm", "co2GrowthRatePpm", "sacrificeWillingnessPct",
+      "gdpTrillionUSD", "corporateTargetsPct", "corporateImplementationRate"].sort());
   for (const row of rows) {
     assert.equal(row.informationAvailableAt, null);
     assert.equal(row.admission, "not-admitted");
@@ -78,10 +79,10 @@ test("full original retained window shows why source uncertainties are not appli
 
 test("public receipt matches all eight real extraction hashes and field counts; untouched source inventory remains unchanged", () => {
   assert.deepEqual(evidence.acquisition.attempts.map(({ id, url, sha256, bytes }: typeof indicatorSourceDocuments[number]) =>
-    ({ id, url, sha256, bytes })), indicatorSourceDocuments);
+    ({ id, url, sha256, bytes })), indicatorSourceDocuments.filter(row => row.id.startsWith("noaa-") || row.id.startsWith("pew-")));
   const fields = INDICATORS.flatMap(d => {
     const proposal = indicatorSourceMetadataProposal(d.key);
-    return proposal ? Object.values(proposal.fields) : [];
+    return proposal && proposal.evidencePath === "docs/indicator-source-fields-increment-evidence.json" ? Object.values(proposal.fields) : [];
   });
   assert.equal(fields.length, 15);
   for (const [status, count] of [

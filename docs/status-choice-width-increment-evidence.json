@@ -1,0 +1,131 @@
+{
+  "criteria": ["S07-003", "S11-001", "S13-010"],
+  "scope": "Additive source implementation and synthetic engineering checks only. No scientific, owner, deployment or historical timing acceptance.",
+  "scientificAcceptance": false,
+  "oldCorpusScored": false,
+  "modelReselection": false,
+  "canonicalLedgersChanged": false,
+  "sources": [
+    {"path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx", "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2"},
+    {"path": "docs/Developer_Workplan_Amendments.md", "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"},
+    {"path": "docs/Valuation_Comparison_Protocol.md", "sha256": "0a979ceed0b0ecf9fe4e83d11d0a821abb3b0ccd0fbfa95439b04b030797acbd"},
+    {"path": "docs/Company_Beta_Sensitivity_Protocol.md", "sha256": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b"},
+    {"path": "docs/Company_Valuation_Sensitivity_Protocol.md", "sha256": "9962b38f101d75073388ff99cda26758e3e27dd416bdec85cb330d8eee076db7"},
+    {"path": "docs/AsOf_Valuation_Prediction_Protocol.md", "sha256": "06b26dd85ace1a20ec93c7c788eb818f8338189652c2dd35640b0b5b788e8d4f"},
+    {"path": "server/calculation/prospectiveValuationChoices.ts", "sha256": "de0fdeed230503bd237c00d304cd504bfbca4ee17402fc546df9da5618efd115"},
+    {"path": "server/calculation/prospectiveAssumptionWidth.ts", "sha256": "929185cbf25532571b12bf28e8abda5db16e1dfe8eb1d86052c2ba8b29e67e9b"},
+    {"path": "shared/scientificEvidence.ts", "sha256": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4"},
+    {"path": "shared/scientificEvidenceConsumers.ts", "sha256": "22856e368a584cc67772cf6bab9e474568796ff66a35c623e6a9bfd2871cc9d7"},
+    {"path": "server/scientificEvidenceApi.ts", "sha256": "22a41e25f3703b5b6302e42e79f07f46d587ea0be97fa046882fee07c11d23a3"},
+    {"path": "server/calculation/fairArtifactCatalog.ts", "sha256": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"},
+    {"path": "script/status-choice-width-increment.test.ts", "sha256": "4bdbb4ba254827279b1d27f59c3cdc00ac9c1b3ce952ad7dd69004d3792576b7"},
+    {"path": "server/prospectiveResearchApi.ts", "sha256": "d4ca34c49fded3ca288b49a22119387af466973eca7fff75d9103048011307b6"}
+  ],
+  "originalClauses": {
+    "S07-003": [
+      "Keep three evidence strands separate, each with its own status:",
+      "Physical-response verification: an independent reference run, historical forcing reconciliation and pulse tests.",
+      "Emissions-model evaluation: taken from Stage 9 skill results; not established here.",
+      "Scenario interpretation: what the pathway assumes and represents."
+    ],
+    "S11-001": {
+      "parent": "Specify before building (record each choice in the parameter register):",
+      "children": [
+        "Cash-flow basis: free cash flow to equity (FCFE), discounted at the cost of equity, as primary. Free cash flow to the firm (FCFF) at WACC, with net debt subtracted, is a cross-check where debt data are reliable.",
+        "Cash flows: operating cash flow less capital expenditure and working-capital investment, plus net borrowing for FCFE. Reinvestment is tied to return on capital, so growth is not free.",
+        "Discount rate: company-specific cost of equity, using beta from the workbook return index over 60 months shrunk towards 1, with stated risk-free and equity-risk-premium ranges. WACC uses observed debt costs where available. Keep a common-8% variant.",
+        "Banks and insurers: standard industrial cash-flow models do not apply. Use an excess-return (residual income) formulation on book equity, or return “not modelled”.",
+        "Loss-makers: use revenue × a normalised margin only where a margin can be identified from company history or close peers. Otherwise return “no defensible solution”."
+      ],
+      "bindingCorrection": "Amendment 7: OCF already includes working capital. FCFE = OCF - capital expenditure + net borrowing; earnings route deducts increase in operating working capital once.",
+      "retainedRegisterAssessment": "Inspected frozen D8, as-of/A1, company-rate and valuation-grid protocols. They specify separate studies, not an authenticated complete original pre-build five-child parameter register. Original unified timing remains unknown. Existing rate assumptions, 1–3% grid, D8 selection and corpus remain unchanged."
+    },
+    "S13-010": {
+      "exact": "Is the range across defensible assumptions narrower than a stated width?",
+      "adjacentBindingClauses": [
+        "Is the result stable across alternative control sets and price decks?",
+        "Does it move as expected when known climate policy news arrives (event checks)?",
+        "Identification tests and both threshold sets (looser, which qualifies; tighter, which is reported only) are confirmed by the owner and committed before results; tighter-set results are reported for every segment."
+      ],
+      "amendment11": "Robustness, event checks and narrow assumption ranges do not establish identification by themselves. No coefficients or thresholds are invented to earn a label.",
+      "originalNumericWidths": null,
+      "originalOwnerConfirmation": "not established by inspected sources"
+    }
+  },
+  "implementation": {
+    "statusContract": "Unchanged scientificEvidenceStatuses(): physicalResponse=verification-incomplete; stage9Skill=not-established; scenarioInterpretation=conditional-only.",
+    "api": {
+      "implementation": "server/scientificEvidenceApi.ts mounted from server/index.ts after releaseSafety/body limits and before frozen original routes. Four prospective operations are handled by server/prospectiveResearchApi.ts on the existing research-contracts path; unrelated operations fall through. Only this increment's imports, registration and operation cases were removed from protected server/routes.ts; no pins or protected bundles were regenerated.",
+      "finiteDomain": "24 method/path entries in shared/scientificEvidenceConsumers.ts; matches fairRouteInventory including exact artifact manifest/ensemble/summary/member paths",
+      "wireContract": "X-Scientific-Evidence-physicalResponse, X-Scientific-Evidence-stage9Skill, X-Scientific-Evidence-scenarioInterpretation plus scope header. Existing JSON/analytical hashes unchanged, including refusals and empty responses. No bypass of resource/auth/private guards."
+    },
+    "charts": [
+      "client/src/components/emissions-chart.tsx",
+      "client/src/components/temperature-histogram.tsx",
+      "client/src/components/sensitivity-chart.tsx",
+      "client/src/components/regional-comparison.tsx",
+      "client/src/components/category-trend-chart.tsx",
+      "client/src/components/temperature-gauge.tsx",
+      "client/src/components/category-comparison.tsx",
+      "client/src/components/historical-trend-chart.tsx"
+    ],
+    "chartBoundary": "Each populated chart mounts the existing shared component in compact mode; gauge covers all three metric branches. Loading/empty/error numeric behavior remains unchanged. Program policy does not certify a chart input.",
+    "pinCountReconciliation": "Task shorthand says 14 FaIR pins. Exact inspected unchanged catalog contains 16 entries: four reference/history plus twelve infill. All sixteen, including the requested retained pins, are preserved; catalog source SHA-256 is asserted in the focused test. No pin is added, removed or modified by this increment.",
+    "exportCoordination": "Central download manifest/schema remain export-worker-owned and unedited here. Parent follow-up explicitly authorized the small server/index.ts mounting addition, preserving existing producer-download imports and registration. Existing scientificEvidenceExportNotes and scientificEvidenceStatuses remain the shared XLSX/manifest producer. Integrated consumer/XLSX verification belongs to export owner; no all-export migration certification is claimed here.",
+    "prospectiveChoices": "Strict five-child register; amended OCF formula, explicit unsupported financials and loss-makers, separately labelled supported normalised-margin earnings/ROE sensitivity. All supplied references remain unauthenticated. New register cannot prove old pre-build timing.",
+    "prospectiveWidth": "Strict hashed segment/measure/unit/horizon/complete assumption-domain contract, explicit all-assumption max-minus-min metric, caller-supplied new unscored width assumptions only, no numeric defaults. Both looser/tighter strict comparisons; equality fails. Missing/null sets return unavailable rather than subset width. Exact domain/hash mismatch refuses. Numeric pass never grants identification or market-expectation label.",
+    "apiOperations": [
+      "POST /api/calculation/research-contracts operation=prospective-valuation-choices input=choices",
+      "POST /api/calculation/research-contracts operation=prospective-valuation-branch choices=choices input=assessment",
+      "POST /api/calculation/research-contracts operation=prospective-width-specification input=specification",
+      "POST /api/calculation/research-contracts operation=prospective-assumption-width specification=specification input=results"
+    ]
+  },
+  "tests": {
+    "typecheck": {"command": "npm run check", "exitCode": 0},
+    "focused": {
+      "command": "npx tsx --test script/status-choice-width-increment.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts script/release-safety.test.ts script/company-baseline.test.ts",
+      "exitCode": 0, "tests": 25, "passed": 25, "failed": 0, "skipped": 0,
+      "incrementTests": 11
+    },
+    "legacyAndValuation": {
+      "command": "npx tsx --test script/projection-response.test.ts script/projection-route-cache.test.ts script/projection-metric-consistency.test.ts script/workplan-corrections.test.ts script/valuation-integrity.test.ts",
+      "exitCode": 0, "tests": 17, "passed": 17, "failed": 0, "skipped": 0,
+      "scope": "Includes seeded six-route cold/warm/retained/current/concurrent cache identity and mutation checks. No old-corpus scoring or model reselection."
+    },
+    "warningAndIncrementRecheck": {
+      "command": "npx tsx --test script/status-choice-width-increment.test.ts script/scientific-strands-warning.test.ts",
+      "exitCode": 0, "tests": 16, "passed": 16, "failed": 0, "skipped": 0,
+      "scope": "Final source-hash/retained-warning scan, actual shared UI/export policy serialization and prospective contract checks."
+    },
+    "postProtectedRouteRestoration": {
+      "command": "npx tsx --test script/status-choice-width-increment.test.ts script/release-safety.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts",
+      "exitCode": 0, "tests": 24, "passed": 24, "failed": 0, "skipped": 0,
+      "incrementTests": 12,
+      "typecheck": {"command": "npm run check", "exitCode": 0},
+      "scope": "After moving middleware mounting to index and all four operations to the unpinned additive API module. Includes execution/refusal/fallthrough of the actual new handler and source assertion that protected routes contain none of this increment's additions. No pin or bundle regeneration."
+    },
+    "initialCheckReconciliation": "Initial 28-test combined check had 26 pass and 2 failures: an erroneous expected catalog count of 14 (corrected to actual source-preserving 16 plus exact hash), and a warning evidence current-source hash changed by concurrent climate-valuation work. Warning current hashes refreshed from exact current bytes; no warning removed or accepted.",
+    "scope": "Synthetic engineering checks only; no old corpus, collector, fitting, selection or financial outcome scoring.",
+    "visualVerification": "Already-running unauthenticated desktop / preview captured at 1280x1000: application renders and displays all three separate scientific statuses. Collapsed legacy/chart interactions and signed-in UI are not visually verified."
+  },
+  "remainingCriteria": {
+    "S07-003": [
+      "Independent physical numeric reference, historical forcing reconciliation and pulse acceptance remain unresolved.",
+      "Authentic publication-vintage-qualified Stage9 skill acceptance and complete native commitments inputs remain unresolved.",
+      "Export worker must finish and verify central API/UI/chart/XLSX integration; headers are additive policy metadata, not proof of source-qualified scientific acceptance or signed-in rendering."
+    ],
+    "S11-001": [
+      "Original unified register and before-build chronology cannot be retroactively established by this new prospective contract.",
+      "Real company rate, accounting, debt-reliability and margin identification evidence plus independent review are still required.",
+      "Financial institutions legitimately remain not modelled; no residual-income model is invented.",
+      "This earnings/ROE recovery diagnostic is not FCFE primary coverage, seven-criterion D8 comparison or owner confirmation; no old corpus is scored or model reselected."
+    ],
+    "S13-010": [
+      "No original numeric width thresholds or authenticated original pre-result owner confirmation were found; they remain unknown.",
+      "New segment-specific width choices require genuine prospective freeze and independently authenticated owner confirmation before any new study scoring.",
+      "Source-qualified complete defensible assumption sets, all results, controls/price-deck and policy-event evidence remain necessary.",
+      "Width alone cannot establish identification; neither this register nor a synthetic pass earns Tier2 or market-expectation language."
+    ]
+  }
+}

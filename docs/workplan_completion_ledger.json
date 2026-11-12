@@ -1841,6 +1841,56 @@
         "health": 200,
         "scope": "Code-only; no data/owner/scientific activation."
       }
+    },
+    "producer_source": {
+      "updated_at": "2026-11-12T02:39:23.183540+00:00",
+      "execution": {
+        "command": [
+          "bash",
+          "-lc",
+          "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+        ],
+        "executed_at": "2026-11-12T02:26:37.572723+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 194.987,
+        "counts": {
+          "tests": 978,
+          "pass": 978,
+          "fail": 0,
+          "skipped": 0
+        },
+        "log": "/tmp/producer-final-check.log",
+        "workspace_revision": null,
+        "worktree_dirty": null,
+        "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+        "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+        "suite_counts": {
+          "typescript": {
+            "tests": 978,
+            "pass": 978,
+            "fail": 0,
+            "skipped": 0
+          },
+          "python": {
+            "tests": 217,
+            "pass": 217,
+            "fail": 0,
+            "skipped": 0
+          }
+        },
+        "canonical_ledgers_modified": false,
+        "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+      },
+      "evidence": {
+        "S16-007": "docs/producer-download-increment-evidence.json",
+        "S07-003": "docs/status-choice-width-increment-evidence.json",
+        "S11-001": "docs/status-choice-width-increment-evidence.json",
+        "S13-010": "docs/status-choice-width-increment-evidence.json",
+        "S03-007": "docs/remaining-source-inputs-evidence.json"
+      },
+      "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
+      "scope": "Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Actual browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived XLSX/JSON readback not exercised. No scientific promotion or issuer-case completion.",
+      "release": "Pending existing code validation/promotion; prior verified runtime remains distinct."
     }
   },
   "prior_native_fleet_increment": {
@@ -1933,7 +1983,7 @@
     "scope": "Code-only; no data/owner/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T01:49:44.346228+00:00",
+  "updated_at": "2026-11-12T02:39:23.183540+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -22657,7 +22707,7 @@
             "server/calculation/emissionsInputs.ts",
             "script/driver-evidence.test.ts"
           ],
-          "behaviour_delivered_this_run": "Actual implementation and source findings are itemized in docs/indicator-source-fields-increment-evidence.json",
+          "behaviour_delivered_this_run": "Implementation, sources and actual tests: docs/remaining-source-inputs-evidence.json",
           "inputs_versions_assumptions": [
             "Original source SHA256 f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2; original300 requirements and their exact wording/order/origin untouched",
             "Worktree base 40c524b29bec455f51e0bb9ac7d3efabe0218e3e; parallel edits are uncommitted and not live",
@@ -22861,6 +22911,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -22879,13 +22966,13 @@
           "git_commit": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
           "deployment_revision": null,
           "remaining_gaps": [
-            "Eight NOAA product metadata fields and four Pew candidate fields supplied, not original-curated-source authentication. All16 growth years differ from current NOAA; annual levels differ2021/2022/2025. Need source-compatible historical release/licence/regional/uncertainty/calibration evidence for remaining entries; no replacement or central promotion."
+            "GDP and corporate-target/implementation product proposals added. 15/16 current nominal GDP observations differ from retained values; not constant2011PPP Kaya input. SBTi counts are not market-cap coverage or measured implementation. IEA/CBI403 scoped to attempted sources. Qualify actual curated-source/vintage/region/uncertainty/calibration fields, without replacement or central promotion."
           ],
-          "next_action": "Eight NOAA product metadata fields and four Pew candidate fields supplied, not original-curated-source authentication. All16 growth years differ from current NOAA; annual levels differ2021/2022/2025. Need source-compatible historical release/licence/regional/uncertainty/calibration evidence for remaining entries; no replacement or central promotion.",
+          "next_action": "GDP and corporate-target/implementation product proposals added. 15/16 current nominal GDP observations differ from retained values; not constant2011PPP Kaya input. SBTi counts are not market-cap coverage or measured implementation. IEA/CBI403 scoped to attempted sources. Qualify actual curated-source/vintage/region/uncertainty/calibration fields, without replacement or central promotion.",
           "blockers": [
             {
-              "kind": "specific remaining original scope",
-              "detail": "Eight NOAA product metadata fields and four Pew candidate fields supplied, not original-curated-source authentication. All16 growth years differ from current NOAA; annual levels differ2021/2022/2025. Need source-compatible historical release/licence/regional/uncertainty/calibration evidence for remaining entries; no replacement or central promotion."
+              "kind": "remaining original scope",
+              "detail": "GDP and corporate-target/implementation product proposals added. 15/16 current nominal GDP observations differ from retained values; not constant2011PPP Kaya input. SBTi counts are not market-cap coverage or measured implementation. IEA/CBI403 scoped to attempted sources. Qualify actual curated-source/vintage/region/uncertainty/calibration fields, without replacement or central promotion."
             }
           ],
           "prior_reconciliation": [
@@ -23441,6 +23528,457 @@
                 "typescript": {
                   "tests": 955,
                   "pass": 955,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            }
+          },
+          "producer_source_increment": {
+            "file": "docs/remaining-source-inputs-evidence.json",
+            "sha256": "a7fca3a218713f17bb1468d6ef93ee6b64fdeb9b8a7045299fdb49f21c30ca5e",
+            "evidence": {
+              "schemaVersion": "remaining-source-inputs-1",
+              "criterion": "S03-007",
+              "status": "new-original-cohort-source-proposals-and-full-window-nominal-GDP-sidecar-not-history-or-central-admission",
+              "receiptRecordedAt": "2026-11-12T01:58:21.604Z",
+              "selection": {
+                "readFirst": [
+                  "server/dataIngestion/indicatorRegistry.ts",
+                  "server/dataIngestion/adapters/worldBank.ts",
+                  "server/calculation/indicatorSourceMetadata.ts",
+                  "server/calculation/driverEvidence.ts",
+                  "docs/Driver_Evidence_Audit.md",
+                  "docs/indicator-source-fields-increment-evidence.json",
+                  "docs/driver-source-continuation-evidence.json",
+                  "docs/kaya-fullbasis-monthly-source-evidence.json",
+                  "docs/kaya-samerelease-upstream-source-evidence.json",
+                  "docs/Kaya_Protocol.md",
+                  "docs/Forecast_Kaya_Protocol.md",
+                  "docs/issuer-cash-source-followup-evidence.json"
+                ],
+                "novelty": "Targeted retained docs/server/script search found no WEI2025 or SBTi report URLs used below. Original GDP collector requests only latest nonempty World current-dollar value; retained fullbasis Kaya work used NY.GDP.MKTP.PP.KD constant2021PPP, not the current-dollar NY.GDP.MKTP.CD16-year projection acquired here. New nominal-GDP source-specific licence, gap-filled aggregate, SNA methodology and limitations, plus current World rows are independently retrieved. SBTi2026 report/methodology is a new source candidate for two original keys, not authentication of their annual histories. This is bounded local novelty, not an exhaustive global archive claim.",
+                "selectedKeys": [
+                  "gdpTrillionUSD",
+                  "corporateTargetsPct",
+                  "corporateImplementationRate"
+                ],
+                "boundedAdditionalAttempts": [
+                  "cleanEnergyInvestmentTrn",
+                  "fossilFuelInvestmentTrn",
+                  "greenBondIssuanceBln"
+                ],
+                "excluded": "No NOAA/Pew reacquisition or comparison, old IRENA cost retry, EV refit, issuer accession-index/contract stress audit, census rebuild or unchanged old metadata re-count. Other unselected keys remain unattempted in this increment."
+              },
+              "acquisition": {
+                "logicalRequests": 14,
+                "maximumLogicalRequests": 14,
+                "httpStatusCounts": {
+                  "200": 9,
+                  "403": 4,
+                  "404": 1
+                },
+                "validPrimaryContentResponses": 8,
+                "http200ApplicationErrorPages": 1,
+                "retries": 0,
+                "purchasesPaidCallsCredentialsOrBypasses": 0,
+                "numericRetrievalAfterExactIndicatorLicence": true,
+                "rawReportsPDFsDashboardsConstituentListsOrPrivateExportsRetained": false,
+                "extractionAlgorithm": "Fetch public URL with45s timeout; decode response text; remove script and style blocks case-insensitively; replace remaining HTML tags with spaces; collapse whitespace to single space; trim. No HTML-entity decoding. JSON contains no tags and is unchanged. SHA256 over UTF-8 strings. Headers/transport bytes and immutable historical artifacts are not certified by these hashes. Redirects followed normally, not alternate-host or authorization bypass.",
+                "retention": "Only source-qualified facts, minimal paraphrase, public API GDP rows, URLs and receipt hashes retained; no copyrighted report/page republication.",
+                "attempts": [
+                  {
+                    "id": "iea-investment",
+                    "url": "https://www.iea.org/reports/world-energy-investment-2025",
+                    "requestedAt": "2026-11-12T01:57:18.214Z",
+                    "status": 403,
+                    "rawBytes": 5563,
+                    "rawSha256": "fa9034ecb6f443a925cd9d4b2957bad81ff76afc9acc07db68ce729f5d005bbd",
+                    "bytes": 58,
+                    "sha256": "ae0b26c68939e8214056c2517af3b5091f1c674c8aef5f1e1fbab7804a78829b",
+                    "publicationDate": null,
+                    "rights": "Not established from access-denied response; no report content admitted.",
+                    "result": "Report metadata unavailable through this one public request; no global-unavailability claim."
+                  },
+                  {
+                    "id": "iea-overview",
+                    "url": "https://www.iea.org/reports/world-energy-investment-2025/overview-and-key-findings",
+                    "requestedAt": "2026-11-12T01:57:18.252Z",
+                    "status": 403,
+                    "rawBytes": 5684,
+                    "rawSha256": "1ce85f96b3d059e86151c585ce7f5d2d5bcc6be16daa6dc8ee6d079e07039e5b",
+                    "bytes": 58,
+                    "sha256": "ae0b26c68939e8214056c2517af3b5091f1c674c8aef5f1e1fbab7804a78829b",
+                    "publicationDate": null,
+                    "rights": "Not established; no primary investment figures copied.",
+                    "result": "Exact clean-energy/fossil-supply scope, real-dollar base, original release date and uncertainty remain unqualified through this request."
+                  },
+                  {
+                    "id": "iea-method",
+                    "url": "https://www.iea.org/reports/world-energy-investment-2025/methodology",
+                    "requestedAt": "2026-11-12T01:57:18.253Z",
+                    "status": 403,
+                    "rawBytes": 5620,
+                    "rawSha256": "cbfa1358bc5401fd95621e48103d1269140d11797325ee3f521b2e00d0b1c987",
+                    "bytes": 58,
+                    "sha256": "ae0b26c68939e8214056c2517af3b5091f1c674c8aef5f1e1fbab7804a78829b",
+                    "publicationDate": null,
+                    "rights": "Not established.",
+                    "result": "Candidate route not authenticated as a report chapter because only access-denied response received. No inference that URL exists or does not exist."
+                  },
+                  {
+                    "id": "wb-gdp-meta",
+                    "url": "https://api.worldbank.org/v2/indicator/NY.GDP.MKTP.CD?format=json",
+                    "requestedAt": "2026-11-12T01:57:18.254Z",
+                    "status": 200,
+                    "rawBytes": 938,
+                    "rawSha256": "51cec1e144a5bad8d92238630c0a305e20116e86d34ad95c7c315ed166255b28",
+                    "bytes": 938,
+                    "sha256": "51cec1e144a5bad8d92238630c0a305e20116e86d34ad95c7c315ed166255b28",
+                    "publicationDate": null,
+                    "rights": "Exact indicator licence separately obtained in wb-gdp-series before numerical acquisition.",
+                    "locator": "source.id=2; name; sourceNote; sourceOrganization",
+                    "result": "Current US dollars explicitly not adjusted for price changes; official national statistics, OECD files and World Bank staff estimates."
+                  },
+                  {
+                    "id": "wb-rights",
+                    "url": "https://datacatalog.worldbank.org/public-licenses#cc-by",
+                    "effectiveUrl": "https://datacatalog.worldbank.org/public-licenses",
+                    "requestedAt": "2026-11-12T01:57:18.255Z",
+                    "status": 200,
+                    "rawBytes": 17119,
+                    "rawSha256": "c7c9b31441ea4a1fa27990f4b11f385587469c5c2bda4ec4fc7a6561db6d2422",
+                    "bytes": 6676,
+                    "sha256": "a32a7513591c2f48791c8608a618a81c6a54ac2ff78c72106caf10994000892b",
+                    "publicationDate": null,
+                    "rights": "CC BY4.0 allows copying/modifying/distributing including commercial use with attribution, licence link and change indication; World Bank additional dispute-resolution terms apply. Other dataset licences exist, so exact series declaration is required.",
+                    "locator": "Creative Commons Attribution4.0 and mandatory additional terms",
+                    "result": "Rights instructions qualified, not blanket licence for all World Bank-linked third-party data."
+                  },
+                  {
+                    "id": "wb-gdp-glossary",
+                    "url": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.MKTP.CD",
+                    "effectiveUrl": "https://databank.worldbank.org/ddperror.aspx?msg=404",
+                    "requestedAt": "2026-11-12T01:57:32.736Z",
+                    "status": 200,
+                    "rawBytes": 3815,
+                    "rawSha256": "95143c244ab1357b84da6ddd626adbdf351401518dbb314cbb0106dc83c819f9",
+                    "bytes": 73,
+                    "sha256": "8fe68665fbb10d5d4d2782f20107d68f1f75674155a89f09b852b1331d18652c",
+                    "publicationDate": null,
+                    "rights": "No source metadata qualified from application-error page.",
+                    "result": "HTTP200 is not content success. Used native source2 metadata API instead, a different endpoint rather than retry/bypass."
+                  },
+                  {
+                    "id": "sbti-reports",
+                    "url": "https://sciencebasedtargets.org/reports/sbti-monitoring-report-2024",
+                    "requestedAt": "2026-11-12T01:57:32.774Z",
+                    "status": 404,
+                    "rawBytes": 212764,
+                    "rawSha256": "59d709b719d8d4498bba7ce35203d55eb2620ff5a00a37e645c98f864a6f5b7c",
+                    "bytes": 8622,
+                    "sha256": "c135892799304457462fc9ddd4d5a36e177febd9022de8b55bee3ced28760f5d",
+                    "publicationDate": null,
+                    "rights": "Copyright SBTi; only navigation inspected.",
+                    "result": "Candidate URL404, not a publication. Continued to official reports route to discover actual current report."
+                  },
+                  {
+                    "id": "cbi-report",
+                    "url": "https://www.climatebonds.net/resources/reports/global-state-market-report-2024",
+                    "requestedAt": "2026-11-12T01:57:32.775Z",
+                    "status": 403,
+                    "rawBytes": 447,
+                    "rawSha256": "63b6d8ecef0e2ecea6efbfca2d65490e24281427318b032efe9829410e7a605d",
+                    "bytes": 367,
+                    "sha256": "c88c5729a63e882d19c4d880ab9dbc3c7c0523081305d84438ad049c8aa1e0c2",
+                    "publicationDate": null,
+                    "rights": "Not established.",
+                    "result": "Candidate publication route403; annual aligned/un-aligned green versus broader sustainable issuance, FX basis, rights and original vintage unqualified through this bounded request."
+                  },
+                  {
+                    "id": "wb-gdp-series",
+                    "url": "https://api.worldbank.org/v2/sources/2/series/NY.GDP.MKTP.CD/metadata?format=json",
+                    "requestedAt": "2026-11-12T01:57:42.092Z",
+                    "status": 200,
+                    "rawBytes": 6574,
+                    "rawSha256": "7d475ce49e1351245adb0ca57e8cdfe8344d28492ca7d4695560440e4d0de3ec",
+                    "bytes": 6574,
+                    "sha256": "7d475ce49e1351245adb0ca57e8cdfe8344d28492ca7d4695560440e4d0de3ec",
+                    "publicationDate": null,
+                    "referencePeriod": "1960-2025",
+                    "rights": "Exact NY.GDP.MKTP.CD License_Type CC BY-4.0 and License_URL https://datacatalog.worldbank.org/public-licenses#cc-by.",
+                    "locator": "15 metatypes under source2/Series/NY.GDP.MKTP.CD",
+                    "result": "Gap-filled total; annual; current US$; SNA2008/1993; varying country methods and informal activity limitations. No numerical uncertainty or original annual publication archive."
+                  },
+                  {
+                    "id": "sbti-insights",
+                    "url": "https://sciencebasedtargets.org/reports",
+                    "effectiveUrl": "https://sciencebasedtargets.org/",
+                    "requestedAt": "2026-11-12T01:57:42.252Z",
+                    "status": 200,
+                    "rawBytes": 249531,
+                    "rawSha256": "17c9826e249e25438c484c9edb875da847757251aaebe917de5857bbcf5c213e",
+                    "bytes": 12158,
+                    "sha256": "475d706625157d25912ed826aa9c3eb1dcec3459da2ca6e81caa48d8815a3523",
+                    "publicationDate": null,
+                    "rights": "Copyright SBTi; links only.",
+                    "result": "Official navigation explicitly linked /reports/sbti-trend-tracker-april-2026 and website terms; followed those exact links."
+                  },
+                  {
+                    "id": "wb-gdp-window",
+                    "url": "https://api.worldbank.org/v2/country/WLD/indicator/NY.GDP.MKTP.CD?format=json&source=2&date=2010:2025&per_page=100",
+                    "requestedAt": "2026-11-12T01:57:51.828Z",
+                    "status": 200,
+                    "rawBytes": 3364,
+                    "rawSha256": "fc5253cdb06ddc4161d93944fbdf62c4efb53b56dcb65dc17efd35602313fee5",
+                    "bytes": 3364,
+                    "sha256": "fc5253cdb06ddc4161d93944fbdf62c4efb53b56dcb65dc17efd35602313fee5",
+                    "publicationDate": null,
+                    "sourceLastUpdated": "2026-11-11",
+                    "rights": "World Bank NY.GDP.MKTP.CD CC BY4.0 with additional terms; attribution World Bank World Development Indicators; conversion to USDtrillion explicitly labelled.",
+                    "locator": "One-page response; total16; sourceid2; countryiso3code WLD; indicator NY.GDP.MKTP.CD; years2010–2025",
+                    "result": "16positive finite current-dollar native values acquired. Current revised values, not original observation vintages."
+                  },
+                  {
+                    "id": "sbti-tracker",
+                    "url": "https://sciencebasedtargets.org/reports/sbti-trend-tracker-april-2026",
+                    "requestedAt": "2026-11-12T01:57:51.866Z",
+                    "status": 200,
+                    "rawBytes": 251931,
+                    "rawSha256": "fd8b6944b3fd219be227bfb8a1c6e44af908a2b430efc347e4069331620708da",
+                    "bytes": 11809,
+                    "sha256": "b43ae17505ea4df59d4db3005e1dbb690a59f7a79169e9d814d9ea84f56ae8ad",
+                    "publicationDate": null,
+                    "urlEditionLabel": "April2026",
+                    "title": "SBTi Trend Tracker2025",
+                    "rights": "Copyright SBTi2026; report disclaimer citation-only/no repackaging boundary respected.",
+                    "locator": "Company coverage; companies disclaimer; methodology link",
+                    "result": "End2025 validated-target count9764; end2024 count6954. Companies include SMEs and financial institutions. This is not the percentage of listed market capitalization or on-track implementation."
+                  },
+                  {
+                    "id": "sbti-terms",
+                    "url": "https://sciencebasedtargets.org/about-us/website-terms-of-use",
+                    "requestedAt": "2026-11-12T01:57:51.867Z",
+                    "status": 200,
+                    "rawBytes": 249526,
+                    "rawSha256": "0716af4c4b7d57a95e59c709d914a2665d015797e3dc4b9ab23ced1a50a809d1",
+                    "bytes": 19014,
+                    "sha256": "3bd866f6487b325001b405bab8eb36efbfd27c52efb2ec21dcf45b5a69f91283",
+                    "publicationDate": null,
+                    "rights": "Owner/licensee copyright; individual-page research/personal/non-commercial use with SBTi attribution/link. No open-data or general commercial dataset grant inferred.",
+                    "locator": "Intellectual property rights",
+                    "result": "Rights boundary recorded; no dashboard, report PDF, microdata or index lists downloaded."
+                  },
+                  {
+                    "id": "sbti-method",
+                    "url": "https://sciencebasedtargets.org/reports/sbti-trend-tracker-april-2026/methodology-and-disclaimer-apr26",
+                    "requestedAt": "2026-11-12T01:58:21.604Z",
+                    "status": 200,
+                    "rawBytes": 254849,
+                    "rawSha256": "dff6874b61b43415b36de22bada3914f294f1fcbea93c3694a719c21186d471b",
+                    "bytes": 16870,
+                    "sha256": "ffeda6551001379573fd33822694a3e4f8130389e213b1f3e21f7d9f3ffe72ec",
+                    "publicationDate": null,
+                    "dataExtractedAtDateLabel": "2025-12-31",
+                    "reportingPeriod": "2025-01-01/2025-12-31",
+                    "rights": "Disclaimer permits citation with SBTi attribution but explicitly not repackaging or reselling without prior written permission. Minimal attributed facts only.",
+                    "locator": "Overview; territorial nomenclature; status categories; Market penetration across financial indices; Disclaimer",
+                    "result": "UN M49 territories but modified regions; end2025 index constituents; fuzzy company-name matching where identifiers absent; largest-remainder integer percentages. Neither sampling errors nor observed implementation rates supplied."
+                  }
+                ]
+              },
+              "admission": {
+                "implementation": "server/calculation/indicatorSourceMetadata.ts",
+                "consumer": "driverEvidenceRegistry().sourceMetadataProposal",
+                "newProposalKeys": [
+                  "gdpTrillionUSD",
+                  "corporateTargetsPct",
+                  "corporateImplementationRate"
+                ],
+                "newQualifiedProductFields": 3,
+                "newCandidateOnlyFields": 6,
+                "newAttemptedUnavailableFields": 6,
+                "countMeaning": "Five field families for each selected key. Product qualification is descriptive, not qualification of the supplied historical observations.",
+                "newSourceDocuments": 7,
+                "originalObservationAvailableAt": null,
+                "originalVintage": null,
+                "ownerReview": "pending-not-requested",
+                "centralPromotion": false,
+                "topLevelCuratedDatesLicencesUncertaintyGeographyOrRolesChanged": false,
+                "accessDeniedOnlyProductsAdmitted": false
+              },
+              "newPhysicalInputAssessment": {
+                "newInput": "Full16year World nominal GDP, NY.GDP.MKTP.CD, source2, current revised release",
+                "compatibleOriginalRegistryUnit": "gdpTrillionUSD: current USD divided by1e12",
+                "compatibleFrozenKayaInput": false,
+                "frozenKayaRequired": "MPD2023 constant2011 international PPP dollars, source-coherent regional partition, windows2010–2018 and2019–2024",
+                "incompatibility": "Nominal current US dollars cannot replace constant2011PPP GDP; no deflator/PPP bridge, six-region source-coherent accounts, or international-transport GDP acquired. Prior WDI2021PPP and EIA-only source work not rerun.",
+                "co2OrEnergyNewNumbersAcquired": false,
+                "issuerNewRequests": 0,
+                "issuerReason": "Existing cash followup already contains named issuer cash/perimeter gaps. Chose genuine new nominal-GDP route instead of repeating issuer index or contract stress audits. No claim no newer disclosure exists.",
+                "analysisDecision": "New source-qualified full original registry-window comparison only; no Kaya rerun, causal fit, shortened window, retune or original model-input replacement."
+              },
+              "fullWindowAnalysis": {
+                "sourceId": "wb-gdp-window",
+                "meaning": "Current revised source qualification and presentation-precision reconciliation, not an unchanged NOAA/Pew comparison or source-vintage authentication. No estimation/calibration.",
+                "unit": "Native current USD; only diagnostic conversion to trillion USD",
+                "columns": [
+                  "year",
+                  "nativeCurrentUSD"
+                ],
+                "sourceRows": [
+                  [
+                    2010,
+                    66893676131662.7
+                  ],
+                  [
+                    2011,
+                    74388644404622.5
+                  ],
+                  [
+                    2012,
+                    76055253368044.6
+                  ],
+                  [
+                    2013,
+                    78171001460419
+                  ],
+                  [
+                    2014,
+                    80243543597078.9
+                  ],
+                  [
+                    2015,
+                    75839351828606.1
+                  ],
+                  [
+                    2016,
+                    77084966373474.1
+                  ],
+                  [
+                    2017,
+                    82110104984460
+                  ],
+                  [
+                    2018,
+                    87310840056717.8
+                  ],
+                  [
+                    2019,
+                    88796498078977.6
+                  ],
+                  [
+                    2020,
+                    86388502867289.2
+                  ],
+                  [
+                    2021,
+                    98780038374127.1
+                  ],
+                  [
+                    2022,
+                    102862471365575
+                  ],
+                  [
+                    2023,
+                    107348614073350
+                  ],
+                  [
+                    2024,
+                    111669432109121
+                  ],
+                  [
+                    2025,
+                    118350166039396
+                  ]
+                ],
+                "roundingFormula": "Math.round(nativeCurrentUSD / 1e12 * 10) / 10",
+                "expectedMismatchCount": 15,
+                "expectedMatchingYears": [
+                  2015
+                ],
+                "recordCount": 16,
+                "noMissingNoInterpolationNoWindowTruncation": true,
+                "decision": "Do not overwrite retained supplied GDP or recompute its carbon-intensity series using mixed current-source GDP and curated CO2. Even matching2015 rounded GDP is not provenance authentication.",
+                "sbtiAnalysis": "Report adoption-count figures do not supply original market-cap denominator or measured delivery numerator/denominator. No fabricated annual observation, full-window fit or distribution follows."
+              },
+              "preservedHashes": {
+                "server/calculation/historicalIndicators.ts": "e716ce9997bc28d490189a25fc45cf553318328eb12f7e46f830651a2e73705b",
+                "server/dataIngestion/indicatorRegistry.ts": "333ce1f17e89bad3a50ed9018e36848655fc735597be2bc11fe40885b72689c3",
+                "server/dataIngestion/adapters/worldBank.ts": "0006bed0739dfbc5509eebc3853f01d573d8fdceaae141a3adcdab521b2d56df",
+                "docs/Kaya_Protocol.md": "210d19c643942e739c7a38431b14d682fef0789b5670a847499ea8d31842cdee",
+                "docs/Forecast_Kaya_Protocol.md": "ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f",
+                "docs/Driver_Evidence_Audit.md": "a3f359c2b18c96d003014a26b83e31cc55d17cb43603ba8b4820cf7b63adb5d4"
+              },
+              "remainingGaps": [
+                "GDP original per-observation publication dates, immutable historical vintage and quantitative uncertainty remain missing; revised sourceLastUpdated is not substituted.",
+                "SBTi exact historical universe, market-cap weighting, denominator, report-to-curated annual mapping and release archive remain unconfirmed.",
+                "SBTi implementation actual-delivery numerator, eligible denominator, uncertainty and causal emissions counterfactual remain absent in acquired report/methodology, not globally unavailable.",
+                "IEA WEI2025 three attempted routes403: exact annual clean-energy/fossil-supply investment scope, price-year/exchange-rate basis, rights, regional applicability and uncertainty not qualified here.",
+                "CBI candidate2024 report route403: green-only versus sustainable issuance, aligned universe, annual FX basis, licence, dates and uncertainty not qualified here.",
+                "No newly compatible constant2011PPP Kaya GDP, energy or CO2 input acquired; nominal GDP is compatible with original indicator unit only. Frozen physical/accounting protocols remain unchanged.",
+                "No real approval, owner request,14pin change, central promotion, purchase, DDL, canonical ledger/census, commit, deployment or callback performed."
+              ],
+              "tests": {
+                "status": "executed",
+                "command": "node --import tsx --test script/remaining-source-inputs.test.ts script/indicator-source-metadata.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts",
+                "passed": 15,
+                "failed": 0,
+                "skipped": 0,
+                "newFocusedTests": 4,
+                "coverage": [
+                  "Actual registry integration, seven new source pins and fifteen new field-family results; top-level dates/roles/licences/uncertainty/admission unchanged.",
+                  "Full16year new nominal-GDP comparison;15mismatches at registered presentation precision; only2015matches; no PPP substitution or mixed-vintage CO2/GDP recomputation.",
+                  "Reject publisher/source-family substitution, fabricated original dates/vintages, owner approval, central promotion, extra coefficient properties and candidate-product qualification; clone mutation isolation.",
+                  "All14actual request receipts reconcile including four403, one404 and one HTTP200 application error; denied-only products are not admitted.",
+                  "Six preserved inventory/history/frozen-protocol hashes verified; existing native and legacy central-rejection tests pass."
+                ],
+                "typecheck": {
+                  "command": "npx tsc --noEmit --incremental false --pretty false",
+                  "exitCode": 0,
+                  "diagnostics": 0
+                },
+                "diffWhitespace": "git diff --check passed",
+                "appOrSignedInUi": "Not run or changed; metadata registry and source receipts only."
+              },
+              "implementationHashes": {
+                "server/calculation/indicatorSourceMetadata.ts": "8e295f1dc86d7767b646dd220c8a96daa78088422411d185bddfccefcdde4b82",
+                "script/remaining-source-inputs.test.ts": "dafac1cc79d5886e13c1d1a86f6f0f399c82cb5299ccdbb190ef9cc394d97bc3",
+                "script/indicator-source-metadata.test.ts": "14693f2c246b032967103e44bce538da9810a63b43e2d995cac7d5c09adbe0c6"
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
                   "fail": 0,
                   "skipped": 0
                 },
@@ -76234,7 +76772,7 @@
             "server/calculation/nativePathwayContract.ts:nativeInventory,validateNativePair",
             "shared/nativeOutputSemantics.ts:"
           ],
-          "behaviour_delivered_this_run": "Actual implementation and source findings are itemized in docs/scientific-strands-warning-evidence.json",
+          "behaviour_delivered_this_run": "Implementation, sources and actual tests: docs/status-choice-width-increment-evidence.json",
           "inputs_versions_assumptions": [
             "Promotion requires all named physical/accounting/skill/consumer/runtime gates; conditional fraction is not calibrated probability",
             {
@@ -76411,6 +76949,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -76423,13 +76998,13 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Three independent statuses implemented at actual producers, UI and manifests. Complete all-consumer migration and authentic physical/Stage9/scenario acceptance still require source-qualified evidence."
+            "24 finite climate API consumers have three distinct status headers; eight chart consumers and all gauge branches render statuses. Complete dataset-dependent browser journeys and exact remaining consumer evidence; scientific acceptance remains independently unestablished."
           ],
-          "next_action": "Three independent statuses implemented at actual producers, UI and manifests. Complete all-consumer migration and authentic physical/Stage9/scenario acceptance still require source-qualified evidence.",
+          "next_action": "24 finite climate API consumers have three distinct status headers; eight chart consumers and all gauge branches render statuses. Complete dataset-dependent browser journeys and exact remaining consumer evidence; scientific acceptance remains independently unestablished.",
           "blockers": [
             {
-              "kind": "specific remaining original scope",
-              "detail": "Three independent statuses implemented at actual producers, UI and manifests. Complete all-consumer migration and authentic physical/Stage9/scenario acceptance still require source-qualified evidence."
+              "kind": "remaining original scope",
+              "detail": "24 finite climate API consumers have three distinct status headers; eight chart consumers and all gauge branches render statuses. Complete dataset-dependent browser journeys and exact remaining consumer evidence; scientific acceptance remains independently unestablished."
             }
           ],
           "stage": 7,
@@ -77098,6 +77673,353 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            }
+          },
+          "producer_source_increment": {
+            "file": "docs/status-choice-width-increment-evidence.json",
+            "sha256": "d388d83bf5d0e31d1603b34e9ea83a9c15bd5e672177090b82e961ca3d5fae26",
+            "evidence": {
+              "criteria": [
+                "S07-003",
+                "S11-001",
+                "S13-010"
+              ],
+              "scope": "Additive source implementation and synthetic engineering checks only. No scientific, owner, deployment or historical timing acceptance.",
+              "scientificAcceptance": false,
+              "oldCorpusScored": false,
+              "modelReselection": false,
+              "canonicalLedgersChanged": false,
+              "sources": [
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+                  "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2"
+                },
+                {
+                  "path": "docs/Developer_Workplan_Amendments.md",
+                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
+                },
+                {
+                  "path": "docs/Valuation_Comparison_Protocol.md",
+                  "sha256": "0a979ceed0b0ecf9fe4e83d11d0a821abb3b0ccd0fbfa95439b04b030797acbd"
+                },
+                {
+                  "path": "docs/Company_Beta_Sensitivity_Protocol.md",
+                  "sha256": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b"
+                },
+                {
+                  "path": "docs/Company_Valuation_Sensitivity_Protocol.md",
+                  "sha256": "9962b38f101d75073388ff99cda26758e3e27dd416bdec85cb330d8eee076db7"
+                },
+                {
+                  "path": "docs/AsOf_Valuation_Prediction_Protocol.md",
+                  "sha256": "06b26dd85ace1a20ec93c7c788eb818f8338189652c2dd35640b0b5b788e8d4f"
+                },
+                {
+                  "path": "server/calculation/prospectiveValuationChoices.ts",
+                  "sha256": "de0fdeed230503bd237c00d304cd504bfbca4ee17402fc546df9da5618efd115"
+                },
+                {
+                  "path": "server/calculation/prospectiveAssumptionWidth.ts",
+                  "sha256": "929185cbf25532571b12bf28e8abda5db16e1dfe8eb1d86052c2ba8b29e67e9b"
+                },
+                {
+                  "path": "shared/scientificEvidence.ts",
+                  "sha256": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4"
+                },
+                {
+                  "path": "shared/scientificEvidenceConsumers.ts",
+                  "sha256": "22856e368a584cc67772cf6bab9e474568796ff66a35c623e6a9bfd2871cc9d7"
+                },
+                {
+                  "path": "server/scientificEvidenceApi.ts",
+                  "sha256": "22a41e25f3703b5b6302e42e79f07f46d587ea0be97fa046882fee07c11d23a3"
+                },
+                {
+                  "path": "server/calculation/fairArtifactCatalog.ts",
+                  "sha256": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"
+                },
+                {
+                  "path": "script/status-choice-width-increment.test.ts",
+                  "sha256": "4bdbb4ba254827279b1d27f59c3cdc00ac9c1b3ce952ad7dd69004d3792576b7"
+                },
+                {
+                  "path": "server/prospectiveResearchApi.ts",
+                  "sha256": "d4ca34c49fded3ca288b49a22119387af466973eca7fff75d9103048011307b6"
+                }
+              ],
+              "originalClauses": {
+                "S07-003": [
+                  "Keep three evidence strands separate, each with its own status:",
+                  "Physical-response verification: an independent reference run, historical forcing reconciliation and pulse tests.",
+                  "Emissions-model evaluation: taken from Stage 9 skill results; not established here.",
+                  "Scenario interpretation: what the pathway assumes and represents."
+                ],
+                "S11-001": {
+                  "parent": "Specify before building (record each choice in the parameter register):",
+                  "children": [
+                    "Cash-flow basis: free cash flow to equity (FCFE), discounted at the cost of equity, as primary. Free cash flow to the firm (FCFF) at WACC, with net debt subtracted, is a cross-check where debt data are reliable.",
+                    "Cash flows: operating cash flow less capital expenditure and working-capital investment, plus net borrowing for FCFE. Reinvestment is tied to return on capital, so growth is not free.",
+                    "Discount rate: company-specific cost of equity, using beta from the workbook return index over 60 months shrunk towards 1, with stated risk-free and equity-risk-premium ranges. WACC uses observed debt costs where available. Keep a common-8% variant.",
+                    "Banks and insurers: standard industrial cash-flow models do not apply. Use an excess-return (residual income) formulation on book equity, or return “not modelled”.",
+                    "Loss-makers: use revenue × a normalised margin only where a margin can be identified from company history or close peers. Otherwise return “no defensible solution”."
+                  ],
+                  "bindingCorrection": "Amendment 7: OCF already includes working capital. FCFE = OCF - capital expenditure + net borrowing; earnings route deducts increase in operating working capital once.",
+                  "retainedRegisterAssessment": "Inspected frozen D8, as-of/A1, company-rate and valuation-grid protocols. They specify separate studies, not an authenticated complete original pre-build five-child parameter register. Original unified timing remains unknown. Existing rate assumptions, 1–3% grid, D8 selection and corpus remain unchanged."
+                },
+                "S13-010": {
+                  "exact": "Is the range across defensible assumptions narrower than a stated width?",
+                  "adjacentBindingClauses": [
+                    "Is the result stable across alternative control sets and price decks?",
+                    "Does it move as expected when known climate policy news arrives (event checks)?",
+                    "Identification tests and both threshold sets (looser, which qualifies; tighter, which is reported only) are confirmed by the owner and committed before results; tighter-set results are reported for every segment."
+                  ],
+                  "amendment11": "Robustness, event checks and narrow assumption ranges do not establish identification by themselves. No coefficients or thresholds are invented to earn a label.",
+                  "originalNumericWidths": null,
+                  "originalOwnerConfirmation": "not established by inspected sources"
+                }
+              },
+              "implementation": {
+                "statusContract": "Unchanged scientificEvidenceStatuses(): physicalResponse=verification-incomplete; stage9Skill=not-established; scenarioInterpretation=conditional-only.",
+                "api": {
+                  "implementation": "server/scientificEvidenceApi.ts mounted from server/index.ts after releaseSafety/body limits and before frozen original routes. Four prospective operations are handled by server/prospectiveResearchApi.ts on the existing research-contracts path; unrelated operations fall through. Only this increment's imports, registration and operation cases were removed from protected server/routes.ts; no pins or protected bundles were regenerated.",
+                  "finiteDomain": "24 method/path entries in shared/scientificEvidenceConsumers.ts; matches fairRouteInventory including exact artifact manifest/ensemble/summary/member paths",
+                  "wireContract": "X-Scientific-Evidence-physicalResponse, X-Scientific-Evidence-stage9Skill, X-Scientific-Evidence-scenarioInterpretation plus scope header. Existing JSON/analytical hashes unchanged, including refusals and empty responses. No bypass of resource/auth/private guards."
+                },
+                "charts": [
+                  "client/src/components/emissions-chart.tsx",
+                  "client/src/components/temperature-histogram.tsx",
+                  "client/src/components/sensitivity-chart.tsx",
+                  "client/src/components/regional-comparison.tsx",
+                  "client/src/components/category-trend-chart.tsx",
+                  "client/src/components/temperature-gauge.tsx",
+                  "client/src/components/category-comparison.tsx",
+                  "client/src/components/historical-trend-chart.tsx"
+                ],
+                "chartBoundary": "Each populated chart mounts the existing shared component in compact mode; gauge covers all three metric branches. Loading/empty/error numeric behavior remains unchanged. Program policy does not certify a chart input.",
+                "pinCountReconciliation": "Task shorthand says 14 FaIR pins. Exact inspected unchanged catalog contains 16 entries: four reference/history plus twelve infill. All sixteen, including the requested retained pins, are preserved; catalog source SHA-256 is asserted in the focused test. No pin is added, removed or modified by this increment.",
+                "exportCoordination": "Central download manifest/schema remain export-worker-owned and unedited here. Parent follow-up explicitly authorized the small server/index.ts mounting addition, preserving existing producer-download imports and registration. Existing scientificEvidenceExportNotes and scientificEvidenceStatuses remain the shared XLSX/manifest producer. Integrated consumer/XLSX verification belongs to export owner; no all-export migration certification is claimed here.",
+                "prospectiveChoices": "Strict five-child register; amended OCF formula, explicit unsupported financials and loss-makers, separately labelled supported normalised-margin earnings/ROE sensitivity. All supplied references remain unauthenticated. New register cannot prove old pre-build timing.",
+                "prospectiveWidth": "Strict hashed segment/measure/unit/horizon/complete assumption-domain contract, explicit all-assumption max-minus-min metric, caller-supplied new unscored width assumptions only, no numeric defaults. Both looser/tighter strict comparisons; equality fails. Missing/null sets return unavailable rather than subset width. Exact domain/hash mismatch refuses. Numeric pass never grants identification or market-expectation label.",
+                "apiOperations": [
+                  "POST /api/calculation/research-contracts operation=prospective-valuation-choices input=choices",
+                  "POST /api/calculation/research-contracts operation=prospective-valuation-branch choices=choices input=assessment",
+                  "POST /api/calculation/research-contracts operation=prospective-width-specification input=specification",
+                  "POST /api/calculation/research-contracts operation=prospective-assumption-width specification=specification input=results"
+                ]
+              },
+              "tests": {
+                "typecheck": {
+                  "command": "npm run check",
+                  "exitCode": 0
+                },
+                "focused": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts script/release-safety.test.ts script/company-baseline.test.ts",
+                  "exitCode": 0,
+                  "tests": 25,
+                  "passed": 25,
+                  "failed": 0,
+                  "skipped": 0,
+                  "incrementTests": 11
+                },
+                "legacyAndValuation": {
+                  "command": "npx tsx --test script/projection-response.test.ts script/projection-route-cache.test.ts script/projection-metric-consistency.test.ts script/workplan-corrections.test.ts script/valuation-integrity.test.ts",
+                  "exitCode": 0,
+                  "tests": 17,
+                  "passed": 17,
+                  "failed": 0,
+                  "skipped": 0,
+                  "scope": "Includes seeded six-route cold/warm/retained/current/concurrent cache identity and mutation checks. No old-corpus scoring or model reselection."
+                },
+                "warningAndIncrementRecheck": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/scientific-strands-warning.test.ts",
+                  "exitCode": 0,
+                  "tests": 16,
+                  "passed": 16,
+                  "failed": 0,
+                  "skipped": 0,
+                  "scope": "Final source-hash/retained-warning scan, actual shared UI/export policy serialization and prospective contract checks."
+                },
+                "postProtectedRouteRestoration": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/release-safety.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts",
+                  "exitCode": 0,
+                  "tests": 24,
+                  "passed": 24,
+                  "failed": 0,
+                  "skipped": 0,
+                  "incrementTests": 12,
+                  "typecheck": {
+                    "command": "npm run check",
+                    "exitCode": 0
+                  },
+                  "scope": "After moving middleware mounting to index and all four operations to the unpinned additive API module. Includes execution/refusal/fallthrough of the actual new handler and source assertion that protected routes contain none of this increment's additions. No pin or bundle regeneration."
+                },
+                "initialCheckReconciliation": "Initial 28-test combined check had 26 pass and 2 failures: an erroneous expected catalog count of 14 (corrected to actual source-preserving 16 plus exact hash), and a warning evidence current-source hash changed by concurrent climate-valuation work. Warning current hashes refreshed from exact current bytes; no warning removed or accepted.",
+                "scope": "Synthetic engineering checks only; no old corpus, collector, fitting, selection or financial outcome scoring.",
+                "visualVerification": "Already-running unauthenticated desktop / preview captured at 1280x1000: application renders and displays all three separate scientific statuses. Collapsed legacy/chart interactions and signed-in UI are not visually verified."
+              },
+              "remainingCriteria": {
+                "S07-003": [
+                  "Independent physical numeric reference, historical forcing reconciliation and pulse acceptance remain unresolved.",
+                  "Authentic publication-vintage-qualified Stage9 skill acceptance and complete native commitments inputs remain unresolved.",
+                  "Export worker must finish and verify central API/UI/chart/XLSX integration; headers are additive policy metadata, not proof of source-qualified scientific acceptance or signed-in rendering."
+                ],
+                "S11-001": [
+                  "Original unified register and before-build chronology cannot be retroactively established by this new prospective contract.",
+                  "Real company rate, accounting, debt-reliability and margin identification evidence plus independent review are still required.",
+                  "Financial institutions legitimately remain not modelled; no residual-income model is invented.",
+                  "This earnings/ROE recovery diagnostic is not FCFE primary coverage, seven-criterion D8 comparison or owner confirmation; no old corpus is scored or model reselected."
+                ],
+                "S13-010": [
+                  "No original numeric width thresholds or authenticated original pre-result owner confirmation were found; they remain unknown.",
+                  "New segment-specific width choices require genuine prospective freeze and independently authenticated owner confirmation before any new study scoring.",
+                  "Source-qualified complete defensible assumption sets, all results, controls/price-deck and policy-event evidence remain necessary.",
+                  "Width alone cannot establish identification; neither this register nor a synthetic pass earns Tier2 or market-expectation language."
+                ]
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "actual_browser": {
+              "title": "Climate valuation producer/chart browser evidence",
+              "route": "/climate-valuation",
+              "runType": "single focused public browser journey",
+              "privacy": {
+                "rawRowsReadOrIncluded": false,
+                "privateRowIdentifiersIncluded": false,
+                "reportedValuesAreSafeAggregatesOrOpaqueProvenanceHashes": true
+              },
+              "steps": {
+                "summaryAndCalculations": {
+                  "waitedForCompanySummary": true,
+                  "waitLimitSeconds": 60,
+                  "loadingStatusDetached": true,
+                  "currentSummary": {
+                    "companies": 2442,
+                    "records": 470341,
+                    "sectors": 12,
+                    "geographies": 49
+                  },
+                  "valuationDerivedClimateOutputs": "withheld"
+                },
+                "retainedInputReplay": {
+                  "usedOnlyExistingWorkbookAndIndicatorSnapshots": true,
+                  "regionalSnapshotSelected": false,
+                  "companyOverlayEntered": false,
+                  "applyAction": "read-only input replay with current code",
+                  "summaryLoadingResolved": true,
+                  "returnedToCurrentInputs": true,
+                  "finalSelectorState": {
+                    "workbook": "Select workbook",
+                    "indicators": "Select indicators",
+                    "regional": "Regional history unavailable"
+                  },
+                  "dataWritesImportsRoleChangesAuthChangesOrDatabaseFixtures": false
+                },
+                "exactRetainedResultJson": {
+                  "resultId": "400334beaaf36b98f5cead5fea80d5903d7be36fc3d15d1990e9953fdf4517c9",
+                  "href": "/api/analysis/results/400334beaaf36b98f5cead5fea80d5903d7be36fc3d15d1990e9953fdf4517c9/export.json?downloadMetadata=manifest-v1",
+                  "linkClickAttempted": true,
+                  "browserDownloadEventCaptured": false,
+                  "clickOutcome": "Playwright timed out waiting for scheduled navigation after the click; a browser-session GET to the same exact href was then used for safe metadata readback.",
+                  "responseStatus": 200,
+                  "contentType": "application/json; charset=utf-8",
+                  "xProducerIdentityHeaderPresent": true,
+                  "manifestProducerIdentityPresent": true,
+                  "manifestClaim": "Descriptive valuation diagnostic",
+                  "scientificAcceptance": false,
+                  "meaning": "Verified retained completed response; not a recalculation or scientific acceptance.",
+                  "safeProvenance": {
+                    "bindingVersion": "retained-producer-binding-v1",
+                    "resultHash": "f6f3990ac938e9d50612b53f13271dcb705b10fb01ae803a2faf20395b827683",
+                    "manifestId": "e7853dc5a8af1bb10d70d66b43bcf7e39275c6a74efc54d81beb115f7747aeab",
+                    "materialInputsId": "8278a55f89f41bedbfcd2271ccd108106361abed63b51f00ac1ea6cac53b6bb1",
+                    "codeArchiveId": "9317b2d490a1346245e8cad2e68cd1c70ed62c54483697502b27c91ffc9e6f81",
+                    "modelVersion": "historical-diagnostics-7",
+                    "scenario": "descriptive-valuation:/summary"
+                  }
+                },
+                "chartsAndDerivedExports": {
+                  "comparisons": [
+                    {
+                      "comparison": "Low Carbon (Clean) vs High Carbon (Dirty) over time",
+                      "status": "No P/E observations returned for High vs Low Carbon Companies."
+                    },
+                    {
+                      "comparison": "Positive SDG (Clean) vs Negative SDG (Dirty) over time",
+                      "status": "No P/E observations returned for High vs Low SDG-Aligned Companies."
+                    },
+                    {
+                      "comparison": "Most Ambitious vs Least Ambitious over time",
+                      "status": "No P/E observations returned for High vs Low Ambition Companies."
+                    }
+                  ],
+                  "threeStrandLabelsObserved": false,
+                  "chartDataDownloadButtons": {
+                    "count": 3,
+                    "disabled": true
+                  },
+                  "derivedJsonXlsxManifestReadback": "Blocked: no chart observations were returned and all three chart Download data buttons were disabled. No derived-row producer:null conclusion was made.",
+                  "separateWorkbookAuditJsonXlsxLinks": "Visible but not clicked; these are not chart-derived row exports."
+                },
+                "transientRendering": {
+                  "blankFrameObservedAfterApplyOrReturn": true,
+                  "recoveredWithoutWorkflowRestart": true,
+                  "recovery": "React root mounted after a bounded wait; current inputs and summary were subsequently verified."
+                }
+              },
+              "screenshots": [
+                {
+                  "id": "r616u3",
+                  "description": "Exact retained-result link and audit area visible."
+                },
+                {
+                  "id": "anqd6n",
+                  "description": "Archived workbook/indicator replay state visible."
+                },
+                {
+                  "id": "wfbax2",
+                  "description": "Restored current selector defaults and current analysis state."
+                },
+                {
+                  "id": "xijq53",
+                  "description": "Carbon comparison shows no P/E observations and disabled Download data control."
+                }
+              ]
             }
           }
         },
@@ -101638,7 +102560,7 @@
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Inspected the parameter-register and pre-result specification obligation itself.",
+          "behaviour_delivered_this_run": "Implementation, sources and actual tests: docs/status-choice-width-increment-evidence.json",
           "inputs_versions_assumptions": [
             "Existing 88 completed common pairs, six annual origins, three-origin blocks/2,000 draws/seed20261110; failed selection result remains frozen."
           ],
@@ -101693,6 +102615,43 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -101706,10 +102665,15 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "Complete specification and timing evidence for every original choice remains missing."
+            "Five original child choices now have strict prospective register/branches. Original unified pre-build timing remains unauthenticated; no original retrospective specification reconstructed. Complete source-qualified prospective cases and original historical study."
           ],
-          "next_action": "Reconcile each original specification choice and its pre-result register provenance.",
-          "blockers": [],
+          "next_action": "Five original child choices now have strict prospective register/branches. Original unified pre-build timing remains unauthenticated; no original retrospective specification reconstructed. Complete source-qualified prospective cases and original historical study.",
+          "blockers": [
+            {
+              "kind": "remaining original scope",
+              "detail": "Five original child choices now have strict prospective register/branches. Original unified pre-build timing remains unauthenticated; no original retrospective specification reconstructed. Complete source-qualified prospective cases and original historical study."
+            }
+          ],
           "stage": 11,
           "check_type": "exact",
           "check_scope": "S11-001 ONLY: Inspected the parameter-register and pre-result specification obligation itself. Only the listed criterion-specific unfinished conjunct prevents verification.",
@@ -101926,6 +102890,246 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
+          },
+          "producer_source_increment": {
+            "file": "docs/status-choice-width-increment-evidence.json",
+            "sha256": "d388d83bf5d0e31d1603b34e9ea83a9c15bd5e672177090b82e961ca3d5fae26",
+            "evidence": {
+              "criteria": [
+                "S07-003",
+                "S11-001",
+                "S13-010"
+              ],
+              "scope": "Additive source implementation and synthetic engineering checks only. No scientific, owner, deployment or historical timing acceptance.",
+              "scientificAcceptance": false,
+              "oldCorpusScored": false,
+              "modelReselection": false,
+              "canonicalLedgersChanged": false,
+              "sources": [
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+                  "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2"
+                },
+                {
+                  "path": "docs/Developer_Workplan_Amendments.md",
+                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
+                },
+                {
+                  "path": "docs/Valuation_Comparison_Protocol.md",
+                  "sha256": "0a979ceed0b0ecf9fe4e83d11d0a821abb3b0ccd0fbfa95439b04b030797acbd"
+                },
+                {
+                  "path": "docs/Company_Beta_Sensitivity_Protocol.md",
+                  "sha256": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b"
+                },
+                {
+                  "path": "docs/Company_Valuation_Sensitivity_Protocol.md",
+                  "sha256": "9962b38f101d75073388ff99cda26758e3e27dd416bdec85cb330d8eee076db7"
+                },
+                {
+                  "path": "docs/AsOf_Valuation_Prediction_Protocol.md",
+                  "sha256": "06b26dd85ace1a20ec93c7c788eb818f8338189652c2dd35640b0b5b788e8d4f"
+                },
+                {
+                  "path": "server/calculation/prospectiveValuationChoices.ts",
+                  "sha256": "de0fdeed230503bd237c00d304cd504bfbca4ee17402fc546df9da5618efd115"
+                },
+                {
+                  "path": "server/calculation/prospectiveAssumptionWidth.ts",
+                  "sha256": "929185cbf25532571b12bf28e8abda5db16e1dfe8eb1d86052c2ba8b29e67e9b"
+                },
+                {
+                  "path": "shared/scientificEvidence.ts",
+                  "sha256": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4"
+                },
+                {
+                  "path": "shared/scientificEvidenceConsumers.ts",
+                  "sha256": "22856e368a584cc67772cf6bab9e474568796ff66a35c623e6a9bfd2871cc9d7"
+                },
+                {
+                  "path": "server/scientificEvidenceApi.ts",
+                  "sha256": "22a41e25f3703b5b6302e42e79f07f46d587ea0be97fa046882fee07c11d23a3"
+                },
+                {
+                  "path": "server/calculation/fairArtifactCatalog.ts",
+                  "sha256": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"
+                },
+                {
+                  "path": "script/status-choice-width-increment.test.ts",
+                  "sha256": "4bdbb4ba254827279b1d27f59c3cdc00ac9c1b3ce952ad7dd69004d3792576b7"
+                },
+                {
+                  "path": "server/prospectiveResearchApi.ts",
+                  "sha256": "d4ca34c49fded3ca288b49a22119387af466973eca7fff75d9103048011307b6"
+                }
+              ],
+              "originalClauses": {
+                "S07-003": [
+                  "Keep three evidence strands separate, each with its own status:",
+                  "Physical-response verification: an independent reference run, historical forcing reconciliation and pulse tests.",
+                  "Emissions-model evaluation: taken from Stage 9 skill results; not established here.",
+                  "Scenario interpretation: what the pathway assumes and represents."
+                ],
+                "S11-001": {
+                  "parent": "Specify before building (record each choice in the parameter register):",
+                  "children": [
+                    "Cash-flow basis: free cash flow to equity (FCFE), discounted at the cost of equity, as primary. Free cash flow to the firm (FCFF) at WACC, with net debt subtracted, is a cross-check where debt data are reliable.",
+                    "Cash flows: operating cash flow less capital expenditure and working-capital investment, plus net borrowing for FCFE. Reinvestment is tied to return on capital, so growth is not free.",
+                    "Discount rate: company-specific cost of equity, using beta from the workbook return index over 60 months shrunk towards 1, with stated risk-free and equity-risk-premium ranges. WACC uses observed debt costs where available. Keep a common-8% variant.",
+                    "Banks and insurers: standard industrial cash-flow models do not apply. Use an excess-return (residual income) formulation on book equity, or return “not modelled”.",
+                    "Loss-makers: use revenue × a normalised margin only where a margin can be identified from company history or close peers. Otherwise return “no defensible solution”."
+                  ],
+                  "bindingCorrection": "Amendment 7: OCF already includes working capital. FCFE = OCF - capital expenditure + net borrowing; earnings route deducts increase in operating working capital once.",
+                  "retainedRegisterAssessment": "Inspected frozen D8, as-of/A1, company-rate and valuation-grid protocols. They specify separate studies, not an authenticated complete original pre-build five-child parameter register. Original unified timing remains unknown. Existing rate assumptions, 1–3% grid, D8 selection and corpus remain unchanged."
+                },
+                "S13-010": {
+                  "exact": "Is the range across defensible assumptions narrower than a stated width?",
+                  "adjacentBindingClauses": [
+                    "Is the result stable across alternative control sets and price decks?",
+                    "Does it move as expected when known climate policy news arrives (event checks)?",
+                    "Identification tests and both threshold sets (looser, which qualifies; tighter, which is reported only) are confirmed by the owner and committed before results; tighter-set results are reported for every segment."
+                  ],
+                  "amendment11": "Robustness, event checks and narrow assumption ranges do not establish identification by themselves. No coefficients or thresholds are invented to earn a label.",
+                  "originalNumericWidths": null,
+                  "originalOwnerConfirmation": "not established by inspected sources"
+                }
+              },
+              "implementation": {
+                "statusContract": "Unchanged scientificEvidenceStatuses(): physicalResponse=verification-incomplete; stage9Skill=not-established; scenarioInterpretation=conditional-only.",
+                "api": {
+                  "implementation": "server/scientificEvidenceApi.ts mounted from server/index.ts after releaseSafety/body limits and before frozen original routes. Four prospective operations are handled by server/prospectiveResearchApi.ts on the existing research-contracts path; unrelated operations fall through. Only this increment's imports, registration and operation cases were removed from protected server/routes.ts; no pins or protected bundles were regenerated.",
+                  "finiteDomain": "24 method/path entries in shared/scientificEvidenceConsumers.ts; matches fairRouteInventory including exact artifact manifest/ensemble/summary/member paths",
+                  "wireContract": "X-Scientific-Evidence-physicalResponse, X-Scientific-Evidence-stage9Skill, X-Scientific-Evidence-scenarioInterpretation plus scope header. Existing JSON/analytical hashes unchanged, including refusals and empty responses. No bypass of resource/auth/private guards."
+                },
+                "charts": [
+                  "client/src/components/emissions-chart.tsx",
+                  "client/src/components/temperature-histogram.tsx",
+                  "client/src/components/sensitivity-chart.tsx",
+                  "client/src/components/regional-comparison.tsx",
+                  "client/src/components/category-trend-chart.tsx",
+                  "client/src/components/temperature-gauge.tsx",
+                  "client/src/components/category-comparison.tsx",
+                  "client/src/components/historical-trend-chart.tsx"
+                ],
+                "chartBoundary": "Each populated chart mounts the existing shared component in compact mode; gauge covers all three metric branches. Loading/empty/error numeric behavior remains unchanged. Program policy does not certify a chart input.",
+                "pinCountReconciliation": "Task shorthand says 14 FaIR pins. Exact inspected unchanged catalog contains 16 entries: four reference/history plus twelve infill. All sixteen, including the requested retained pins, are preserved; catalog source SHA-256 is asserted in the focused test. No pin is added, removed or modified by this increment.",
+                "exportCoordination": "Central download manifest/schema remain export-worker-owned and unedited here. Parent follow-up explicitly authorized the small server/index.ts mounting addition, preserving existing producer-download imports and registration. Existing scientificEvidenceExportNotes and scientificEvidenceStatuses remain the shared XLSX/manifest producer. Integrated consumer/XLSX verification belongs to export owner; no all-export migration certification is claimed here.",
+                "prospectiveChoices": "Strict five-child register; amended OCF formula, explicit unsupported financials and loss-makers, separately labelled supported normalised-margin earnings/ROE sensitivity. All supplied references remain unauthenticated. New register cannot prove old pre-build timing.",
+                "prospectiveWidth": "Strict hashed segment/measure/unit/horizon/complete assumption-domain contract, explicit all-assumption max-minus-min metric, caller-supplied new unscored width assumptions only, no numeric defaults. Both looser/tighter strict comparisons; equality fails. Missing/null sets return unavailable rather than subset width. Exact domain/hash mismatch refuses. Numeric pass never grants identification or market-expectation label.",
+                "apiOperations": [
+                  "POST /api/calculation/research-contracts operation=prospective-valuation-choices input=choices",
+                  "POST /api/calculation/research-contracts operation=prospective-valuation-branch choices=choices input=assessment",
+                  "POST /api/calculation/research-contracts operation=prospective-width-specification input=specification",
+                  "POST /api/calculation/research-contracts operation=prospective-assumption-width specification=specification input=results"
+                ]
+              },
+              "tests": {
+                "typecheck": {
+                  "command": "npm run check",
+                  "exitCode": 0
+                },
+                "focused": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts script/release-safety.test.ts script/company-baseline.test.ts",
+                  "exitCode": 0,
+                  "tests": 25,
+                  "passed": 25,
+                  "failed": 0,
+                  "skipped": 0,
+                  "incrementTests": 11
+                },
+                "legacyAndValuation": {
+                  "command": "npx tsx --test script/projection-response.test.ts script/projection-route-cache.test.ts script/projection-metric-consistency.test.ts script/workplan-corrections.test.ts script/valuation-integrity.test.ts",
+                  "exitCode": 0,
+                  "tests": 17,
+                  "passed": 17,
+                  "failed": 0,
+                  "skipped": 0,
+                  "scope": "Includes seeded six-route cold/warm/retained/current/concurrent cache identity and mutation checks. No old-corpus scoring or model reselection."
+                },
+                "warningAndIncrementRecheck": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/scientific-strands-warning.test.ts",
+                  "exitCode": 0,
+                  "tests": 16,
+                  "passed": 16,
+                  "failed": 0,
+                  "skipped": 0,
+                  "scope": "Final source-hash/retained-warning scan, actual shared UI/export policy serialization and prospective contract checks."
+                },
+                "postProtectedRouteRestoration": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/release-safety.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts",
+                  "exitCode": 0,
+                  "tests": 24,
+                  "passed": 24,
+                  "failed": 0,
+                  "skipped": 0,
+                  "incrementTests": 12,
+                  "typecheck": {
+                    "command": "npm run check",
+                    "exitCode": 0
+                  },
+                  "scope": "After moving middleware mounting to index and all four operations to the unpinned additive API module. Includes execution/refusal/fallthrough of the actual new handler and source assertion that protected routes contain none of this increment's additions. No pin or bundle regeneration."
+                },
+                "initialCheckReconciliation": "Initial 28-test combined check had 26 pass and 2 failures: an erroneous expected catalog count of 14 (corrected to actual source-preserving 16 plus exact hash), and a warning evidence current-source hash changed by concurrent climate-valuation work. Warning current hashes refreshed from exact current bytes; no warning removed or accepted.",
+                "scope": "Synthetic engineering checks only; no old corpus, collector, fitting, selection or financial outcome scoring.",
+                "visualVerification": "Already-running unauthenticated desktop / preview captured at 1280x1000: application renders and displays all three separate scientific statuses. Collapsed legacy/chart interactions and signed-in UI are not visually verified."
+              },
+              "remainingCriteria": {
+                "S07-003": [
+                  "Independent physical numeric reference, historical forcing reconciliation and pulse acceptance remain unresolved.",
+                  "Authentic publication-vintage-qualified Stage9 skill acceptance and complete native commitments inputs remain unresolved.",
+                  "Export worker must finish and verify central API/UI/chart/XLSX integration; headers are additive policy metadata, not proof of source-qualified scientific acceptance or signed-in rendering."
+                ],
+                "S11-001": [
+                  "Original unified register and before-build chronology cannot be retroactively established by this new prospective contract.",
+                  "Real company rate, accounting, debt-reliability and margin identification evidence plus independent review are still required.",
+                  "Financial institutions legitimately remain not modelled; no residual-income model is invented.",
+                  "This earnings/ROE recovery diagnostic is not FCFE primary coverage, seven-criterion D8 comparison or owner confirmation; no old corpus is scored or model reselected."
+                ],
+                "S13-010": [
+                  "No original numeric width thresholds or authenticated original pre-result owner confirmation were found; they remain unknown.",
+                  "New segment-specific width choices require genuine prospective freeze and independently authenticated owner confirmation before any new study scoring.",
+                  "Source-qualified complete defensible assumption sets, all results, controls/price-deck and policy-event evidence remain necessary.",
+                  "Width alone cannot establish identification; neither this register nor a synthetic pass earns Tier2 or market-expectation language."
+                ]
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            }
           }
         },
         {
@@ -138247,7 +139451,7 @@
             "script/company-stage-reconciliation.test.ts (new atomic metadata assertions)",
             "docs/reconciliation-stages-10-13.json (regenerated proposals only)"
           ],
-          "behaviour_delivered_this_run": "Checked the stated assumption-range-width test.",
+          "behaviour_delivered_this_run": "Implementation, sources and actual tests: docs/status-choice-width-increment-evidence.json",
           "inputs_versions_assumptions": [
             "Declared mapping/expansion/identification references; no mapping => unavailable, no numerical D13 thresholds invented."
           ],
@@ -138294,6 +139498,43 @@
                 "skipped": null
               },
               "receipt_limit": "Missing original timestamp/exit status remains unknown; no fabricated receipt."
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -138307,10 +139548,15 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No predeclared segment width metric/threshold and complete defensible-assumption result set."
+            "Prospective full-domain hashed width contract computes strict comparisons without numeric defaults. Original thresholds/pre-result owner confirmation and defensibility of actual full assumption domains remain unestablished; no old corpus scored."
           ],
-          "next_action": "Specify the width criterion before scoring and report all declared assumption sets.",
-          "blockers": [],
+          "next_action": "Prospective full-domain hashed width contract computes strict comparisons without numeric defaults. Original thresholds/pre-result owner confirmation and defensibility of actual full assumption domains remain unestablished; no old corpus scored.",
+          "blockers": [
+            {
+              "kind": "remaining original scope",
+              "detail": "Prospective full-domain hashed width contract computes strict comparisons without numeric defaults. Original thresholds/pre-result owner confirmation and defensibility of actual full assumption domains remain unestablished; no old corpus scored."
+            }
+          ],
           "stage": 13,
           "check_type": "numerical",
           "check_scope": "S13-010 ONLY: Checked the stated assumption-range-width test. Only the listed criterion-specific unfinished conjunct prevents verification.",
@@ -138511,6 +139757,246 @@
             "current_proposed_status": "partial",
             "criterion_regression_evidenced": false,
             "explanation": "No claim of model regression; this is the criterion's remaining conjunct/evidence gap, not an issuer-wide acceptance condition."
+          },
+          "producer_source_increment": {
+            "file": "docs/status-choice-width-increment-evidence.json",
+            "sha256": "d388d83bf5d0e31d1603b34e9ea83a9c15bd5e672177090b82e961ca3d5fae26",
+            "evidence": {
+              "criteria": [
+                "S07-003",
+                "S11-001",
+                "S13-010"
+              ],
+              "scope": "Additive source implementation and synthetic engineering checks only. No scientific, owner, deployment or historical timing acceptance.",
+              "scientificAcceptance": false,
+              "oldCorpusScored": false,
+              "modelReselection": false,
+              "canonicalLedgersChanged": false,
+              "sources": [
+                {
+                  "path": "attached_assets/Climate_Dashboard_—_Developer_Work_Plan_(1)_1794135026111.docx",
+                  "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2"
+                },
+                {
+                  "path": "docs/Developer_Workplan_Amendments.md",
+                  "sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141"
+                },
+                {
+                  "path": "docs/Valuation_Comparison_Protocol.md",
+                  "sha256": "0a979ceed0b0ecf9fe4e83d11d0a821abb3b0ccd0fbfa95439b04b030797acbd"
+                },
+                {
+                  "path": "docs/Company_Beta_Sensitivity_Protocol.md",
+                  "sha256": "950ce5df1be561f0e3a744d8c94c1ba5e24e25dbcd84130cb05a340d408d6e2b"
+                },
+                {
+                  "path": "docs/Company_Valuation_Sensitivity_Protocol.md",
+                  "sha256": "9962b38f101d75073388ff99cda26758e3e27dd416bdec85cb330d8eee076db7"
+                },
+                {
+                  "path": "docs/AsOf_Valuation_Prediction_Protocol.md",
+                  "sha256": "06b26dd85ace1a20ec93c7c788eb818f8338189652c2dd35640b0b5b788e8d4f"
+                },
+                {
+                  "path": "server/calculation/prospectiveValuationChoices.ts",
+                  "sha256": "de0fdeed230503bd237c00d304cd504bfbca4ee17402fc546df9da5618efd115"
+                },
+                {
+                  "path": "server/calculation/prospectiveAssumptionWidth.ts",
+                  "sha256": "929185cbf25532571b12bf28e8abda5db16e1dfe8eb1d86052c2ba8b29e67e9b"
+                },
+                {
+                  "path": "shared/scientificEvidence.ts",
+                  "sha256": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4"
+                },
+                {
+                  "path": "shared/scientificEvidenceConsumers.ts",
+                  "sha256": "22856e368a584cc67772cf6bab9e474568796ff66a35c623e6a9bfd2871cc9d7"
+                },
+                {
+                  "path": "server/scientificEvidenceApi.ts",
+                  "sha256": "22a41e25f3703b5b6302e42e79f07f46d587ea0be97fa046882fee07c11d23a3"
+                },
+                {
+                  "path": "server/calculation/fairArtifactCatalog.ts",
+                  "sha256": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"
+                },
+                {
+                  "path": "script/status-choice-width-increment.test.ts",
+                  "sha256": "4bdbb4ba254827279b1d27f59c3cdc00ac9c1b3ce952ad7dd69004d3792576b7"
+                },
+                {
+                  "path": "server/prospectiveResearchApi.ts",
+                  "sha256": "d4ca34c49fded3ca288b49a22119387af466973eca7fff75d9103048011307b6"
+                }
+              ],
+              "originalClauses": {
+                "S07-003": [
+                  "Keep three evidence strands separate, each with its own status:",
+                  "Physical-response verification: an independent reference run, historical forcing reconciliation and pulse tests.",
+                  "Emissions-model evaluation: taken from Stage 9 skill results; not established here.",
+                  "Scenario interpretation: what the pathway assumes and represents."
+                ],
+                "S11-001": {
+                  "parent": "Specify before building (record each choice in the parameter register):",
+                  "children": [
+                    "Cash-flow basis: free cash flow to equity (FCFE), discounted at the cost of equity, as primary. Free cash flow to the firm (FCFF) at WACC, with net debt subtracted, is a cross-check where debt data are reliable.",
+                    "Cash flows: operating cash flow less capital expenditure and working-capital investment, plus net borrowing for FCFE. Reinvestment is tied to return on capital, so growth is not free.",
+                    "Discount rate: company-specific cost of equity, using beta from the workbook return index over 60 months shrunk towards 1, with stated risk-free and equity-risk-premium ranges. WACC uses observed debt costs where available. Keep a common-8% variant.",
+                    "Banks and insurers: standard industrial cash-flow models do not apply. Use an excess-return (residual income) formulation on book equity, or return “not modelled”.",
+                    "Loss-makers: use revenue × a normalised margin only where a margin can be identified from company history or close peers. Otherwise return “no defensible solution”."
+                  ],
+                  "bindingCorrection": "Amendment 7: OCF already includes working capital. FCFE = OCF - capital expenditure + net borrowing; earnings route deducts increase in operating working capital once.",
+                  "retainedRegisterAssessment": "Inspected frozen D8, as-of/A1, company-rate and valuation-grid protocols. They specify separate studies, not an authenticated complete original pre-build five-child parameter register. Original unified timing remains unknown. Existing rate assumptions, 1–3% grid, D8 selection and corpus remain unchanged."
+                },
+                "S13-010": {
+                  "exact": "Is the range across defensible assumptions narrower than a stated width?",
+                  "adjacentBindingClauses": [
+                    "Is the result stable across alternative control sets and price decks?",
+                    "Does it move as expected when known climate policy news arrives (event checks)?",
+                    "Identification tests and both threshold sets (looser, which qualifies; tighter, which is reported only) are confirmed by the owner and committed before results; tighter-set results are reported for every segment."
+                  ],
+                  "amendment11": "Robustness, event checks and narrow assumption ranges do not establish identification by themselves. No coefficients or thresholds are invented to earn a label.",
+                  "originalNumericWidths": null,
+                  "originalOwnerConfirmation": "not established by inspected sources"
+                }
+              },
+              "implementation": {
+                "statusContract": "Unchanged scientificEvidenceStatuses(): physicalResponse=verification-incomplete; stage9Skill=not-established; scenarioInterpretation=conditional-only.",
+                "api": {
+                  "implementation": "server/scientificEvidenceApi.ts mounted from server/index.ts after releaseSafety/body limits and before frozen original routes. Four prospective operations are handled by server/prospectiveResearchApi.ts on the existing research-contracts path; unrelated operations fall through. Only this increment's imports, registration and operation cases were removed from protected server/routes.ts; no pins or protected bundles were regenerated.",
+                  "finiteDomain": "24 method/path entries in shared/scientificEvidenceConsumers.ts; matches fairRouteInventory including exact artifact manifest/ensemble/summary/member paths",
+                  "wireContract": "X-Scientific-Evidence-physicalResponse, X-Scientific-Evidence-stage9Skill, X-Scientific-Evidence-scenarioInterpretation plus scope header. Existing JSON/analytical hashes unchanged, including refusals and empty responses. No bypass of resource/auth/private guards."
+                },
+                "charts": [
+                  "client/src/components/emissions-chart.tsx",
+                  "client/src/components/temperature-histogram.tsx",
+                  "client/src/components/sensitivity-chart.tsx",
+                  "client/src/components/regional-comparison.tsx",
+                  "client/src/components/category-trend-chart.tsx",
+                  "client/src/components/temperature-gauge.tsx",
+                  "client/src/components/category-comparison.tsx",
+                  "client/src/components/historical-trend-chart.tsx"
+                ],
+                "chartBoundary": "Each populated chart mounts the existing shared component in compact mode; gauge covers all three metric branches. Loading/empty/error numeric behavior remains unchanged. Program policy does not certify a chart input.",
+                "pinCountReconciliation": "Task shorthand says 14 FaIR pins. Exact inspected unchanged catalog contains 16 entries: four reference/history plus twelve infill. All sixteen, including the requested retained pins, are preserved; catalog source SHA-256 is asserted in the focused test. No pin is added, removed or modified by this increment.",
+                "exportCoordination": "Central download manifest/schema remain export-worker-owned and unedited here. Parent follow-up explicitly authorized the small server/index.ts mounting addition, preserving existing producer-download imports and registration. Existing scientificEvidenceExportNotes and scientificEvidenceStatuses remain the shared XLSX/manifest producer. Integrated consumer/XLSX verification belongs to export owner; no all-export migration certification is claimed here.",
+                "prospectiveChoices": "Strict five-child register; amended OCF formula, explicit unsupported financials and loss-makers, separately labelled supported normalised-margin earnings/ROE sensitivity. All supplied references remain unauthenticated. New register cannot prove old pre-build timing.",
+                "prospectiveWidth": "Strict hashed segment/measure/unit/horizon/complete assumption-domain contract, explicit all-assumption max-minus-min metric, caller-supplied new unscored width assumptions only, no numeric defaults. Both looser/tighter strict comparisons; equality fails. Missing/null sets return unavailable rather than subset width. Exact domain/hash mismatch refuses. Numeric pass never grants identification or market-expectation label.",
+                "apiOperations": [
+                  "POST /api/calculation/research-contracts operation=prospective-valuation-choices input=choices",
+                  "POST /api/calculation/research-contracts operation=prospective-valuation-branch choices=choices input=assessment",
+                  "POST /api/calculation/research-contracts operation=prospective-width-specification input=specification",
+                  "POST /api/calculation/research-contracts operation=prospective-assumption-width specification=specification input=results"
+                ]
+              },
+              "tests": {
+                "typecheck": {
+                  "command": "npm run check",
+                  "exitCode": 0
+                },
+                "focused": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts script/release-safety.test.ts script/company-baseline.test.ts",
+                  "exitCode": 0,
+                  "tests": 25,
+                  "passed": 25,
+                  "failed": 0,
+                  "skipped": 0,
+                  "incrementTests": 11
+                },
+                "legacyAndValuation": {
+                  "command": "npx tsx --test script/projection-response.test.ts script/projection-route-cache.test.ts script/projection-metric-consistency.test.ts script/workplan-corrections.test.ts script/valuation-integrity.test.ts",
+                  "exitCode": 0,
+                  "tests": 17,
+                  "passed": 17,
+                  "failed": 0,
+                  "skipped": 0,
+                  "scope": "Includes seeded six-route cold/warm/retained/current/concurrent cache identity and mutation checks. No old-corpus scoring or model reselection."
+                },
+                "warningAndIncrementRecheck": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/scientific-strands-warning.test.ts",
+                  "exitCode": 0,
+                  "tests": 16,
+                  "passed": 16,
+                  "failed": 0,
+                  "skipped": 0,
+                  "scope": "Final source-hash/retained-warning scan, actual shared UI/export policy serialization and prospective contract checks."
+                },
+                "postProtectedRouteRestoration": {
+                  "command": "npx tsx --test script/status-choice-width-increment.test.ts script/release-safety.test.ts script/fair-artifact-routes.test.ts script/fair-artifact-bundle.test.ts",
+                  "exitCode": 0,
+                  "tests": 24,
+                  "passed": 24,
+                  "failed": 0,
+                  "skipped": 0,
+                  "incrementTests": 12,
+                  "typecheck": {
+                    "command": "npm run check",
+                    "exitCode": 0
+                  },
+                  "scope": "After moving middleware mounting to index and all four operations to the unpinned additive API module. Includes execution/refusal/fallthrough of the actual new handler and source assertion that protected routes contain none of this increment's additions. No pin or bundle regeneration."
+                },
+                "initialCheckReconciliation": "Initial 28-test combined check had 26 pass and 2 failures: an erroneous expected catalog count of 14 (corrected to actual source-preserving 16 plus exact hash), and a warning evidence current-source hash changed by concurrent climate-valuation work. Warning current hashes refreshed from exact current bytes; no warning removed or accepted.",
+                "scope": "Synthetic engineering checks only; no old corpus, collector, fitting, selection or financial outcome scoring.",
+                "visualVerification": "Already-running unauthenticated desktop / preview captured at 1280x1000: application renders and displays all three separate scientific statuses. Collapsed legacy/chart interactions and signed-in UI are not visually verified."
+              },
+              "remainingCriteria": {
+                "S07-003": [
+                  "Independent physical numeric reference, historical forcing reconciliation and pulse acceptance remain unresolved.",
+                  "Authentic publication-vintage-qualified Stage9 skill acceptance and complete native commitments inputs remain unresolved.",
+                  "Export worker must finish and verify central API/UI/chart/XLSX integration; headers are additive policy metadata, not proof of source-qualified scientific acceptance or signed-in rendering."
+                ],
+                "S11-001": [
+                  "Original unified register and before-build chronology cannot be retroactively established by this new prospective contract.",
+                  "Real company rate, accounting, debt-reliability and margin identification evidence plus independent review are still required.",
+                  "Financial institutions legitimately remain not modelled; no residual-income model is invented.",
+                  "This earnings/ROE recovery diagnostic is not FCFE primary coverage, seven-criterion D8 comparison or owner confirmation; no old corpus is scored or model reselected."
+                ],
+                "S13-010": [
+                  "No original numeric width thresholds or authenticated original pre-result owner confirmation were found; they remain unknown.",
+                  "New segment-specific width choices require genuine prospective freeze and independently authenticated owner confirmation before any new study scoring.",
+                  "Source-qualified complete defensible assumption sets, all results, controls/price-deck and policy-event evidence remain necessary.",
+                  "Width alone cannot establish identification; neither this register nor a synthetic pass earns Tier2 or market-expectation language."
+                ]
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            }
           }
         },
         {
@@ -151889,7 +153375,7 @@
           "files_functions_changed": [
             "script/reconcile-stages-14-17.mjs: clause-specific proposed record and acceptance-matrix generation"
           ],
-          "behaviour_delivered_this_run": "Actual implementation and source findings are itemized in docs/methodology-download-increment-evidence.json",
+          "behaviour_delivered_this_run": "Implementation, sources and actual tests: docs/producer-download-increment-evidence.json",
           "inputs_versions_assumptions": [
             "Original protected id/requirement/source_section/origin copied verbatim from existing ledger; no original contract or scientific threshold relaxed.",
             "Working-tree source SHA256 receipts identify inspected files; current Git baseline is not a deployed revision, protocol precommitment or exact historical test commit.",
@@ -152046,6 +153532,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -152055,13 +153578,13 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "All26 central sites and10 direct attachments inventoried; UI-selection races refuse, but requested UI state is not authenticated producer input/model/run provenance. producerIdentity remains null; bind genuine producer manifests without public writes. Not every dataset-dependent chart has browser click-through evidence."
+            "Nine retained valuation producers and exact stored-result JSON have verified result/material/route/input-context binding. Current unretained responses and derived chart rows remain unbound. Complete genuine chart/custom-XLSX journeys and remaining producer surfaces; no independent recalculation/container attestation claimed."
           ],
-          "next_action": "All26 central sites and10 direct attachments inventoried; UI-selection races refuse, but requested UI state is not authenticated producer input/model/run provenance. producerIdentity remains null; bind genuine producer manifests without public writes. Not every dataset-dependent chart has browser click-through evidence.",
+          "next_action": "Nine retained valuation producers and exact stored-result JSON have verified result/material/route/input-context binding. Current unretained responses and derived chart rows remain unbound. Complete genuine chart/custom-XLSX journeys and remaining producer surfaces; no independent recalculation/container attestation claimed.",
           "blockers": [
             {
-              "kind": "specific remaining original scope",
-              "detail": "All26 central sites and10 direct attachments inventoried; UI-selection races refuse, but requested UI state is not authenticated producer input/model/run provenance. producerIdentity remains null; bind genuine producer manifests without public writes. Not every dataset-dependent chart has browser click-through evidence."
+              "kind": "remaining original scope",
+              "detail": "Nine retained valuation producers and exact stored-result JSON have verified result/material/route/input-context binding. Current unretained responses and derived chart rows remain unbound. Complete genuine chart/custom-XLSX journeys and remaining producer surfaces; no independent recalculation/container attestation claimed."
             }
           ],
           "check_type": "exact",
@@ -154724,6 +156247,285 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            }
+          },
+          "producer_source_increment": {
+            "file": "docs/producer-download-increment-evidence.json",
+            "sha256": "afbe0b4091bd2ca92016ec1fddc5d3e58b8544d57eb00b3b20cd30dd8693b4d8",
+            "evidence": {
+              "increment": "nextS16-007-server-producer-download-binding",
+              "status": "implemented-with-bounded-coverage",
+              "productionProof": {
+                "source": "Existing completed analysis-result-1 archives read through loadAnalysisResult; referenced material inputs, source archive, workbook and ordered overlays verified by that reader",
+                "transport": "Server-private WeakMap keyed by Response; X-Producer-Identity is output only. Neither request headers, query pins, submitted manifests nor UI selections populate that map.",
+                "identity": "Result archive id, canonical retained result hash, manifest id, material-inputs id, code archive id, model version and ordered snapshot hashes",
+                "runMeaning": "Content-addressed completed response identity; identical analyses may share an id. Not a unique wall-clock execution identifier.",
+                "bodyBytes": "Existing successful producer/replay bodies are unchanged. Proof compares the same JSON encoding used by the existing completed-result writer, preserving Date/optional-field serialization compatibility. The new export serializes only the retained result; its original transport bytes are SHA-256 hashed before optional metadata embedding. The resultHash separately identifies canonical retained JSON, not original historical HTTP bytes.",
+                "noNewPersistence": true,
+                "callerAttestationAccepted": false,
+                "currentInputFallback": false,
+                "scientificAcceptance": false
+              },
+              "producerBindingCoverage": {
+                "allowlistedCompletedProducerPaths": [
+                  "/api/cv/summary",
+                  "/api/cv/carbon-price",
+                  "/api/cv/pe-comparison",
+                  "/api/cv/sdg-growth",
+                  "/api/cv/decarb-bands",
+                  "/api/cv/decarb-terciles",
+                  "/api/cv/decarb-gap/summary",
+                  "/api/cv/decarb-gap/timeseries",
+                  "/api/cv/backtest"
+                ],
+                "storedReplay": "/api/analysis/results/:id",
+                "exactExport": "/api/analysis/results/:id/export.json",
+                "conditions": "Only a persisted completed response whose manifest scenario matches the producer allowlist, exact canonical result matches and referenced material archive verification succeeds receives proof. For current producer responses its scenario must also match the exact captured actual route, and manifest/material/workbook/ordered-overlay/indicator identities must match the server-written resolved input-context response headers. Request headers, query strings and browser state never grant proof.",
+                "legacyStoredResults": "Bodies remain readable unchanged but producer identity stays unavailable; exact producer export refuses without a verified material bundle.",
+                "unretainedCurrentResponses": "No producer proof is attached. No current-source lookup, recomputation or caller certification is substituted.",
+                "unsupportedCoverage": "Derived chart/XLSX view rows, other server disclosures, legacy physical projections, FaIR artifacts and submitted diagnostics are not upgraded to complete producer bindings by this increment.",
+                "remainingAssociationGap": "The retained producer manifest and resolved server snapshot context bind this completed response, not a caller's desired UI state. This increment does not independently trace every calculator read, attest a running executable/container against the archived source bundle, recalculate stored outputs, establish source publication vintage or certify every raw query/settings parameter as independently consumed."
+              },
+              "clientIntegration": {
+                "reader": "analysisFetch associates proof only with the consumed same-origin response object through a WeakMap",
+                "cache": "Query structural sharing disabled to prevent equal-valued refreshed responses inheriting older producer proof",
+                "downloads": "Qualified JSON writer offers a separate exact retained source-response link when its payload was consumed from a producer-bound response. Scenario Analyzer summary/carbon-price readers use the same link. Ordinary chart-transformed rows and cloned objects remain unbound.",
+                "selectionIsolation": "Exact link contains the retained result id, not current UI selection. Existing central writers still capture and recheck UI selection before delivery."
+              },
+              "verification": {
+                "coherentFinalIntegration": {
+                  "runner": "script/workplan-evidence-run.py --receipt-only",
+                  "receipt": "/tmp/producer-final-receipt.json",
+                  "log": "/tmp/producer-final-check.log",
+                  "exitCode": 0,
+                  "typescript": {
+                    "tests": 978,
+                    "passed": 978,
+                    "failed": 0,
+                    "skipped": 0
+                  },
+                  "python": {
+                    "tests": 217,
+                    "passed": 217,
+                    "failed": 0,
+                    "skipped": 0
+                  },
+                  "fieldCensusFreshness": "passed",
+                  "typecheck": "passed",
+                  "privateMonetaryIntegration": "passed with private-primary; existing private bytes/numerical fingerprints, monetary qualification guards and 14 pins remain unchanged",
+                  "privateIssuerCashflow": "passed; zero complete approved issuer cases and zero historical point-in-time claims remain unchanged",
+                  "privateIssuerCashflowReconciliation": "passed; zero original qualified issuer/market pairs remain unchanged",
+                  "productionBuild": "passed; only pre-existing size/Browserslist/PostCSS warnings",
+                  "canonicalLedgersModifiedByRunner": false,
+                  "revisionLookup": null
+                },
+                "newSuite": {
+                  "command": "npx tsx --test script/producer-download.test.ts",
+                  "tests": 7,
+                  "covered": [
+                    "exact result and allowlisted scenario verification",
+                    "wrong actual producer path refuses even for identical empty result bodies and coherent input headers",
+                    "conflicting resolved server snapshot context refuses without trusting request proof headers",
+                    "Date/optional-field JSON serialization matches the existing archive writer without changing response bytes",
+                    "current and selected completed response identities with unchanged body bytes",
+                    "unretained current responses and forged request proof refusal",
+                    "missing archive and input-override export refusal",
+                    "public POST remains 403",
+                    "concurrent response identity isolation",
+                    "stored replay and legacy replay compatibility",
+                    "default versus embedded exact JSON export readback and byte hash",
+                    "client response object versus clone/derived-row proof boundaries",
+                    "deep-equal query refresh cannot inherit stale producer identity"
+                  ]
+                },
+                "combinedSuite": {
+                  "command": "npx tsx --test script/producer-download.test.ts script/methodology-download.test.ts script/download-selection-race.test.ts script/methodology-download-portable.test.ts",
+                  "tests": 19,
+                  "passed": 19,
+                  "failed": 0,
+                  "skipped": 0
+                },
+                "sourceOnlyPortability": {
+                  "command": "npx tsx --test script/methodology-download-portable.test.ts",
+                  "passed": true,
+                  "nestedTests": 18,
+                  "excluded": [
+                    ".git",
+                    "docs",
+                    "generated-artifacts",
+                    "attached_assets",
+                    ".local",
+                    "exports"
+                  ],
+                  "note": "Only installed package dependencies are symlinked. Producer tests use public synthetic engineering fixtures and the actual mounted production middleware/export handlers, not production fallback data."
+                },
+                "typecheck": "npx tsc --noEmit --pretty false: passed",
+                "whitespaceCheck": "git diff --check: passed",
+                "preview": {
+                  "path": "/climate-valuation",
+                  "screenshot": "docs/producer-download-preview.jpg",
+                  "observed": "Scenario Analyzer and monetary qualification guard render. Initial company summary remains loading in the captured viewport.",
+                  "actualRetainedDatabaseChartDownloadJourney": null,
+                  "limitation": "No genuine retained database-backed chart/download journey was completed. No authenticated UI bypass or fabricated production archive was used; successful provenance delivery is established by isolated mounted-handler/readback tests."
+                }
+              },
+              "preservation": {
+                "all14FaIRPins": "Unchanged; no FaIR catalog/artifact/file module or retained artifact bytes edited by this increment",
+                "canonicalLedgersMatrix": "Not edited",
+                "authorizedCensusIntegration": "Field census and output/consumer register regenerated after protected routes diff was removed. Eleven precise retained-producer metadata definitions/bindings are supplemental only, not original closure. New ProducerDownloadLink is individually SSR-tested and counted separately; original remaining component denominator remains60.",
+                "originalSemanticGates": "Unchanged: original1001 public slots,1000 bound,571/572 original gaps closed, one opaque runs[].summary unresolved,27 withheld fields,four cache aliases,original slot identities unchanged. Strict original/complete gates still refuse; no denominator gaming.",
+                "serverRoutesTs": "Not edited by producer/download worker; concurrent worker owns its separate changes",
+                "authChanges": false,
+                "publicWritesAdded": false,
+                "privateSourceRowsExported": false,
+                "privateHttpGuard": "Existing methodology guard tests remain passing",
+                "legacyDownloadBodiesAndGoldens": "Existing default transport bodies remain unchanged and existing mounted methodology tests pass",
+                "commitDeployCallback": false
+              }
+            },
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-lc",
+                "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+              ],
+              "executed_at": "2026-11-12T02:26:37.572723+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 194.987,
+              "counts": {
+                "tests": 978,
+                "pass": 978,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/producer-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 978,
+                  "pass": 978,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 217,
+                  "pass": 217,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "actual_browser": {
+              "title": "Climate valuation producer/chart browser evidence",
+              "route": "/climate-valuation",
+              "runType": "single focused public browser journey",
+              "privacy": {
+                "rawRowsReadOrIncluded": false,
+                "privateRowIdentifiersIncluded": false,
+                "reportedValuesAreSafeAggregatesOrOpaqueProvenanceHashes": true
+              },
+              "steps": {
+                "summaryAndCalculations": {
+                  "waitedForCompanySummary": true,
+                  "waitLimitSeconds": 60,
+                  "loadingStatusDetached": true,
+                  "currentSummary": {
+                    "companies": 2442,
+                    "records": 470341,
+                    "sectors": 12,
+                    "geographies": 49
+                  },
+                  "valuationDerivedClimateOutputs": "withheld"
+                },
+                "retainedInputReplay": {
+                  "usedOnlyExistingWorkbookAndIndicatorSnapshots": true,
+                  "regionalSnapshotSelected": false,
+                  "companyOverlayEntered": false,
+                  "applyAction": "read-only input replay with current code",
+                  "summaryLoadingResolved": true,
+                  "returnedToCurrentInputs": true,
+                  "finalSelectorState": {
+                    "workbook": "Select workbook",
+                    "indicators": "Select indicators",
+                    "regional": "Regional history unavailable"
+                  },
+                  "dataWritesImportsRoleChangesAuthChangesOrDatabaseFixtures": false
+                },
+                "exactRetainedResultJson": {
+                  "resultId": "400334beaaf36b98f5cead5fea80d5903d7be36fc3d15d1990e9953fdf4517c9",
+                  "href": "/api/analysis/results/400334beaaf36b98f5cead5fea80d5903d7be36fc3d15d1990e9953fdf4517c9/export.json?downloadMetadata=manifest-v1",
+                  "linkClickAttempted": true,
+                  "browserDownloadEventCaptured": false,
+                  "clickOutcome": "Playwright timed out waiting for scheduled navigation after the click; a browser-session GET to the same exact href was then used for safe metadata readback.",
+                  "responseStatus": 200,
+                  "contentType": "application/json; charset=utf-8",
+                  "xProducerIdentityHeaderPresent": true,
+                  "manifestProducerIdentityPresent": true,
+                  "manifestClaim": "Descriptive valuation diagnostic",
+                  "scientificAcceptance": false,
+                  "meaning": "Verified retained completed response; not a recalculation or scientific acceptance.",
+                  "safeProvenance": {
+                    "bindingVersion": "retained-producer-binding-v1",
+                    "resultHash": "f6f3990ac938e9d50612b53f13271dcb705b10fb01ae803a2faf20395b827683",
+                    "manifestId": "e7853dc5a8af1bb10d70d66b43bcf7e39275c6a74efc54d81beb115f7747aeab",
+                    "materialInputsId": "8278a55f89f41bedbfcd2271ccd108106361abed63b51f00ac1ea6cac53b6bb1",
+                    "codeArchiveId": "9317b2d490a1346245e8cad2e68cd1c70ed62c54483697502b27c91ffc9e6f81",
+                    "modelVersion": "historical-diagnostics-7",
+                    "scenario": "descriptive-valuation:/summary"
+                  }
+                },
+                "chartsAndDerivedExports": {
+                  "comparisons": [
+                    {
+                      "comparison": "Low Carbon (Clean) vs High Carbon (Dirty) over time",
+                      "status": "No P/E observations returned for High vs Low Carbon Companies."
+                    },
+                    {
+                      "comparison": "Positive SDG (Clean) vs Negative SDG (Dirty) over time",
+                      "status": "No P/E observations returned for High vs Low SDG-Aligned Companies."
+                    },
+                    {
+                      "comparison": "Most Ambitious vs Least Ambitious over time",
+                      "status": "No P/E observations returned for High vs Low Ambition Companies."
+                    }
+                  ],
+                  "threeStrandLabelsObserved": false,
+                  "chartDataDownloadButtons": {
+                    "count": 3,
+                    "disabled": true
+                  },
+                  "derivedJsonXlsxManifestReadback": "Blocked: no chart observations were returned and all three chart Download data buttons were disabled. No derived-row producer:null conclusion was made.",
+                  "separateWorkbookAuditJsonXlsxLinks": "Visible but not clicked; these are not chart-derived row exports."
+                },
+                "transientRendering": {
+                  "blankFrameObservedAfterApplyOrReturn": true,
+                  "recoveredWithoutWorkflowRestart": true,
+                  "recovery": "React root mounted after a bounded wait; current inputs and summary were subsequently verified."
+                }
+              },
+              "screenshots": [
+                {
+                  "id": "r616u3",
+                  "description": "Exact retained-result link and audit area visible."
+                },
+                {
+                  "id": "anqd6n",
+                  "description": "Archived workbook/indicator replay state visible."
+                },
+                {
+                  "id": "wfbax2",
+                  "description": "Restored current selector defaults and current analysis state."
+                },
+                {
+                  "id": "xijq53",
+                  "description": "Carbon comparison shows no P/E observations and disabled Download data control."
+                }
+              ]
             }
           }
         },
@@ -163284,13 +165086,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue original0–17: registry-methodology/download manifests and separate physical/skill/scenario statuses implemented; inspect actuallatestrelease. Warning inventory retains unresolved limitations; no new removals. Sourceproposals qualify product metadata only: NOAAcurated growth differsall16years, levels differ2021/2022/2025; no historicalsource replacement/vintage claim. Finish actual22indicator sources/calibration, issueroperatingcashflow andqualifieddatedcorpus. Protected14FaIRpins unchanged/operatortransferstill unavailable;privateHTTP403 retained. Current scientificacceptance/3cases remain incomplete.",
+    "instruction": "Continue all original0–17. Nine retained valuation producers/exact stored JSON now bind real retained result/material/ordered input-context identity; unretained current and derived chart rows remain null. Finish actual chart/custom-sheet journeys and other producer consumers. Separate24API/eightchart statuses and prospective five-choice/full-domain-width contracts delivered; original timing/thresholds not reconstructed. New WB nominalGDP differs15/16years and is NOT Kaya2011PPP; SBTi counts NOT market-cap/implementation. Continue remaining source-qualified22indicator and NEE/FSLR/XOM operating economics/qualified11–15corpus. No old studies rerun, no source replacement/owner approval. FaIRpins/bundle unchanged, operator access unavailable. Check current_release; do not equate docs/local receipt with runtime.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261112-review-history-a8b9501",
+    "checkpoint_id": "ckpt-20261112-methodology-source-d099e80",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-12T00:38:10.523332+00:00",
+    "attempted_at": "2026-11-12T01:52:26.973358+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202

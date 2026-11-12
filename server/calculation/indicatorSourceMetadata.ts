@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { getIndicatorDef, type IndicatorKey } from "../dataIngestion/indicatorRegistry";
 
-// Hashes identify the UTF-8 markdown returned by webFetch, NOT original release
-// bytes, vintage identifiers, publication dates, or a licence to redistribute.
+// Earlier captures hash webFetch markdown. Remaining-source captures hash the
+// documented HTML extraction (or unchanged JSON); neither establishes vintage.
 export const indicatorSourceDocuments = [
   { id: "noaa-trends", url: "https://gml.noaa.gov/ccgg/trends/", sha256: "1f540eb7f1a74a7054b80648e5f81dc87f91d7ba89adb601d24e7f305581b182", bytes: 5766 },
   { id: "noaa-growth-method", url: "https://gml.noaa.gov/ccgg/trends/gr.html", sha256: "90f8207ae34039b81507fec78469be1e2443047f7e222a8bfbaf655ba98f4e74", bytes: 6052 },
@@ -12,6 +12,13 @@ export const indicatorSourceDocuments = [
   { id: "pew-release", url: "https://www.pewresearch.org/global/2021/09/14/in-response-to-climate-change-citizens-in-advanced-economies-are-willing-to-alter-how-they-live-and-work/", sha256: "4c009a85709a8f5f71ba862df7c0f06f72ba9640ad69a79e4220967f8fa9d38c", bytes: 48063 },
   { id: "pew-method", url: "https://www.pewresearch.org/global/2021/09/14/climate-change-spring-2021-methodology/", sha256: "536c1a5c571b5356e719d2cceb5c11a44ab03ffc2e0cfaed72671860bd07a0ad", bytes: 15965 },
   { id: "pew-rights", url: "https://www.pewresearch.org/about/terms-and-conditions", sha256: "dc1f224879374c0799cf1a2376416054a0a9f23a231755ace3f5933c207509a1", bytes: 18255 },
+  { id: "wb-gdp-meta", url: "https://api.worldbank.org/v2/indicator/NY.GDP.MKTP.CD?format=json", sha256: "51cec1e144a5bad8d92238630c0a305e20116e86d34ad95c7c315ed166255b28", bytes: 938 },
+  { id: "wb-gdp-series", url: "https://api.worldbank.org/v2/sources/2/series/NY.GDP.MKTP.CD/metadata?format=json", sha256: "7d475ce49e1351245adb0ca57e8cdfe8344d28492ca7d4695560440e4d0de3ec", bytes: 6574 },
+  { id: "wb-rights", url: "https://datacatalog.worldbank.org/public-licenses#cc-by", sha256: "a32a7513591c2f48791c8608a618a81c6a54ac2ff78c72106caf10994000892b", bytes: 6676 },
+  { id: "wb-gdp-window", url: "https://api.worldbank.org/v2/country/WLD/indicator/NY.GDP.MKTP.CD?format=json&source=2&date=2010:2025&per_page=100", sha256: "fc5253cdb06ddc4161d93944fbdf62c4efb53b56dcb65dc17efd35602313fee5", bytes: 3364 },
+  { id: "sbti-tracker", url: "https://sciencebasedtargets.org/reports/sbti-trend-tracker-april-2026", sha256: "b43ae17505ea4df59d4db3005e1dbb690a59f7a79169e9d814d9ea84f56ae8ad", bytes: 11809 },
+  { id: "sbti-method", url: "https://sciencebasedtargets.org/reports/sbti-trend-tracker-april-2026/methodology-and-disclaimer-apr26", sha256: "ffeda6551001379573fd33822694a3e4f8130389e213b1f3e21f7d9f3ffe72ec", bytes: 16870 },
+  { id: "sbti-terms", url: "https://sciencebasedtargets.org/about-us/website-terms-of-use", sha256: "3bd866f6487b325001b405bab8eb36efbfd27c52efb2ec21dcf45b5a69f91283", bytes: 19014 },
 ] as const;
 
 const fieldSchema = z.object({
@@ -23,7 +30,7 @@ const fieldSchema = z.object({
 const proposalSchema = z.object({
   indicatorKey: z.string().min(1),
   registeredPublisher: z.string().min(1),
-  sourceRelationship: z.enum(["registered-product", "unconfirmed-survey-candidate"]),
+  sourceRelationship: z.enum(["registered-product", "unconfirmed-survey-candidate", "unconfirmed-publisher-candidate"]),
   scope: z.literal("source-product-metadata-only"),
   ownerReview: z.literal("pending-not-requested"),
   centralModelEligible: z.literal(false),
@@ -40,6 +47,74 @@ const proposalSchema = z.object({
 export type IndicatorSourceMetadataProposal = z.infer<typeof proposalSchema>;
 
 const proposals: IndicatorSourceMetadataProposal[] = [
+  {
+    indicatorKey: "gdpTrillionUSD", registeredPublisher: "World Bank",
+    sourceRelationship: "registered-product", scope: "source-product-metadata-only",
+    ownerReview: "pending-not-requested", centralModelEligible: false,
+    originalObservationAvailableAt: null, originalVintage: null,
+    fields: {
+      informationAvailability: {
+        status: "attempted-unavailable", sourceIds: ["wb-gdp-window", "wb-gdp-series"],
+        locator: "API envelope lastupdated/sourceid; Periodicity and Referenceperiod",
+        finding: "Source 2 response supplies all 16 annual World observations for 2010–2025 and lastupdated 2026-11-11. Annual cadence and current source update are not original per-observation release dates or immutable historical vintages. Neither date is assigned to curated rows.",
+      },
+      licence: {
+        status: "source-product-qualified", sourceIds: ["wb-gdp-series", "wb-rights"],
+        locator: "NY.GDP.MKTP.CD License_Type and License_URL; CC-BY additional mandatory terms",
+        finding: "Exact indicator metadata identifies CC BY-4.0 and links World Bank public licences. Attribution, licence link and change indication required; additional dispute-resolution terms apply. Not inferred from generic website availability and not a licence for other indicator inputs.",
+      },
+      regionalApplicability: {
+        status: "source-product-qualified", sourceIds: ["wb-gdp-meta", "wb-gdp-series", "wb-gdp-window"],
+        locator: "countryiso3code WLD; Aggregationmethod; Longdefinition; Unitofmeasure",
+        finding: "World aggregate is a gap-filled total in current US dollars, not constant-price PPP GDP or an observed sum with no estimation. No six-region or international-transport account inferred. Compatible with this registered nominal GDP unit only, not frozen Kaya constant-2011-PPP input.",
+      },
+      uncertainty: {
+        status: "attempted-unavailable", sourceIds: ["wb-gdp-series", "wb-gdp-window"],
+        locator: "Limitationsandexceptions; API obs_status/decimal",
+        finding: "Publisher describes varying national-account methods, statistical capacity, informal activity and staff adjustments. No numerical sampling distribution, standard error, covariance or per-row original-vintage uncertainty supplied. Empty obs_status and decimal=0 are not uncertainty or exactness claims.",
+      },
+      calibration: {
+        status: "source-product-qualified", sourceIds: ["wb-gdp-series", "wb-gdp-meta"],
+        locator: "Statisticalconceptandmethodology; current prices definition",
+        finding: "National accounts follow SNA 2008 or 1993. Current-dollar GDP is not adjusted for price changes. Dividing by 1e12 is a unit conversion, not a real-growth deflator or causal emissions calibration. Full retained window analysed separately without replacing history, fitting coefficients or changing frozen windows.",
+      },
+    },
+  },
+  ...(["corporateTargetsPct", "corporateImplementationRate"] as const).map(indicatorKey => ({
+    indicatorKey, registeredPublisher: indicatorKey === "corporateTargetsPct" ? "SBTi" : "SBTi (est.)",
+    sourceRelationship: "unconfirmed-publisher-candidate" as const, scope: "source-product-metadata-only" as const,
+    ownerReview: "pending-not-requested" as const, centralModelEligible: false as const,
+    originalObservationAvailableAt: null, originalVintage: null,
+    fields: {
+      informationAvailability: {
+        status: "candidate-only" as const, sourceIds: ["sbti-tracker", "sbti-method"],
+        locator: "Overview reporting-period and extraction paragraphs; report title and URL",
+        finding: "Trend Tracker 2025 is hosted at the April-2026-labelled URL. Methodology explicitly says 2025 data extracted December 31 2025, reporting January 1–December 31. Extraction date is not publication date. No exact publication-day label or link to the original curated annual history established.",
+      },
+      licence: {
+        status: "candidate-only" as const, sourceIds: ["sbti-method", "sbti-terms"],
+        locator: "Methodology Disclaimer; website Intellectual property rights",
+        finding: "SBTi copyrighted. Report disclaimer permits citation with attribution but explicitly denies repackaging/reselling without prior written permission. Website allows individual-page research/personal/non-commercial storage with attribution/link. Only minimal attributed facts and links retained; no report, dashboard, constituent lists or dataset redistribution and no blanket commercial/open-data permission.",
+      },
+      regionalApplicability: {
+        status: "candidate-only" as const, sourceIds: ["sbti-tracker", "sbti-method"],
+        locator: "Companies disclaimer; territorial nomenclature; Market penetration across financial indices",
+        finding: "Company counts include corporates, SMEs and financial institutions. Territory names use UN M49 but regions are modified, including separate Middle East. Index penetration uses end-2025 constituents, sometimes fuzzy name matching and largest-remainder rounding. Neither counts nor an index-specific share establishes a globally market-cap-weighted percentage or six-region historical series.",
+      },
+      uncertainty: {
+        status: "attempted-unavailable" as const, sourceIds: ["sbti-method"],
+        locator: "Market penetration matching/rounding; Disclaimer",
+        finding: "Matching and integer rounding are disclosed; no numerical confidence interval, matching-error rate, time covariance or representative global sampling distribution provided. General accuracy disclaimer is not a quantified uncertainty model.",
+      },
+      calibration: {
+        status: "attempted-unavailable" as const, sourceIds: ["sbti-tracker", "sbti-method"],
+        locator: "Target/commitment status categories; Overview; company coverage",
+        finding: indicatorKey === "corporateTargetsPct"
+          ? "9,764 validated-target companies at end-2025 versus 6,954 at end-2024 describes adoption counts, not market-cap-weighted coverage, actual delivery or an incremental emissions coefficient. Original denominator, universe, weights and annual release mapping remain unconfirmed; no frozen-window fit possible."
+          : "Categories distinguish commitments only, near-term targets and near-term plus net-zero targets, not on-track delivery. No measured numerator/denominator of companies delivering targets or counterfactual incremental emissions outcome supplied. Validated-target growth cannot substitute for the curated implementation-rate history or calibrate it.",
+      },
+    },
+  })),
   {
     indicatorKey: "atmosphericCO2ppm", registeredPublisher: "NOAA Mauna Loa",
     sourceRelationship: "registered-product", scope: "source-product-metadata-only",
@@ -148,20 +223,25 @@ export function admitIndicatorSourceMetadataProposal(input: unknown): IndicatorS
   if (!definition || definition.source !== proposal.registeredPublisher)
     throw new Error("Source metadata must match the actual registered indicator and publisher");
   const isNoaa = proposal.indicatorKey === "atmosphericCO2ppm" || proposal.indicatorKey === "co2GrowthRatePpm";
-  if ((!isNoaa && proposal.indicatorKey !== "sacrificeWillingnessPct") ||
-      proposal.sourceRelationship !== (isNoaa ? "registered-product" : "unconfirmed-survey-candidate"))
+  const isGdp = proposal.indicatorKey === "gdpTrillionUSD";
+  const isSbti = proposal.indicatorKey === "corporateTargetsPct" || proposal.indicatorKey === "corporateImplementationRate";
+  const relationship = isNoaa || isGdp ? "registered-product"
+    : isSbti ? "unconfirmed-publisher-candidate" : "unconfirmed-survey-candidate";
+  if ((!isNoaa && !isGdp && !isSbti && proposal.indicatorKey !== "sacrificeWillingnessPct") ||
+      proposal.sourceRelationship !== relationship)
     throw new Error("Source relationship is not qualified for this indicator");
+  const prefix = isNoaa ? "noaa-" : isGdp ? "wb-" : isSbti ? "sbti-" : "pew-";
   for (const field of Object.values(proposal.fields)) {
     for (const id of field.sourceIds) {
       const document = indicatorSourceDocuments.find(source => source.id === id);
-      if (!document || !id.startsWith(isNoaa ? "noaa-" : "pew-"))
+      if (!document || !id.startsWith(prefix))
         throw new Error("Unqualified source document for indicator");
     }
-    if (!isNoaa && field.status === "source-product-qualified")
-      throw new Error("Unconfirmed survey cannot receive registered-product qualification");
+    if (!isNoaa && !isGdp && field.status === "source-product-qualified")
+      throw new Error("Unconfirmed candidate cannot receive registered-product qualification");
   }
-  if (isNoaa && proposal.fields.informationAvailability.status !== "attempted-unavailable")
-    throw new Error("Current NOAA file does not establish original annual availability");
+  if ((isNoaa || isGdp) && proposal.fields.informationAvailability.status !== "attempted-unavailable")
+    throw new Error("Current source does not establish original annual availability");
   return proposal;
 }
 
@@ -175,7 +255,9 @@ export function indicatorSourceMetadataProposal(key: IndicatorKey) {
     ...admitted,
     admission: "metadata-proposal-only" as const,
     documents: indicatorSourceDocuments.filter(document => ids.has(document.id)).map(document => ({ ...document })),
-    captureHashMeaning: "sha256-utf8-webFetch-markdown-not-source-vintage",
-    evidencePath: "docs/indicator-source-fields-increment-evidence.json",
+    captureHashMeaning: key === "gdpTrillionUSD" || key === "corporateTargetsPct" || key === "corporateImplementationRate"
+      ? "sha256-utf8-html-extraction-or-json-not-source-vintage" : "sha256-utf8-webFetch-markdown-not-source-vintage",
+    evidencePath: key === "gdpTrillionUSD" || key === "corporateTargetsPct" || key === "corporateImplementationRate"
+      ? "docs/remaining-source-inputs-evidence.json" : "docs/indicator-source-fields-increment-evidence.json",
   };
 }

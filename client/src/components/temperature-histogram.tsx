@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   BarChart,
@@ -52,6 +53,7 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
 
   return (
     <Card className="p-6" data-testid="card-temperature-histogram">
+      <ScientificEvidenceStrands compact />
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
           <h3 className="text-sm font-medium text-muted-foreground">Temperature Probability Distribution</h3>

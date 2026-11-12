@@ -1,0 +1,114 @@
+{
+  "increment": "nextS16-007-server-producer-download-binding",
+  "status": "implemented-with-bounded-coverage",
+  "productionProof": {
+    "source": "Existing completed analysis-result-1 archives read through loadAnalysisResult; referenced material inputs, source archive, workbook and ordered overlays verified by that reader",
+    "transport": "Server-private WeakMap keyed by Response; X-Producer-Identity is output only. Neither request headers, query pins, submitted manifests nor UI selections populate that map.",
+    "identity": "Result archive id, canonical retained result hash, manifest id, material-inputs id, code archive id, model version and ordered snapshot hashes",
+    "runMeaning": "Content-addressed completed response identity; identical analyses may share an id. Not a unique wall-clock execution identifier.",
+    "bodyBytes": "Existing successful producer/replay bodies are unchanged. Proof compares the same JSON encoding used by the existing completed-result writer, preserving Date/optional-field serialization compatibility. The new export serializes only the retained result; its original transport bytes are SHA-256 hashed before optional metadata embedding. The resultHash separately identifies canonical retained JSON, not original historical HTTP bytes.",
+    "noNewPersistence": true,
+    "callerAttestationAccepted": false,
+    "currentInputFallback": false,
+    "scientificAcceptance": false
+  },
+  "producerBindingCoverage": {
+    "allowlistedCompletedProducerPaths": [
+      "/api/cv/summary",
+      "/api/cv/carbon-price",
+      "/api/cv/pe-comparison",
+      "/api/cv/sdg-growth",
+      "/api/cv/decarb-bands",
+      "/api/cv/decarb-terciles",
+      "/api/cv/decarb-gap/summary",
+      "/api/cv/decarb-gap/timeseries",
+      "/api/cv/backtest"
+    ],
+    "storedReplay": "/api/analysis/results/:id",
+    "exactExport": "/api/analysis/results/:id/export.json",
+    "conditions": "Only a persisted completed response whose manifest scenario matches the producer allowlist, exact canonical result matches and referenced material archive verification succeeds receives proof. For current producer responses its scenario must also match the exact captured actual route, and manifest/material/workbook/ordered-overlay/indicator identities must match the server-written resolved input-context response headers. Request headers, query strings and browser state never grant proof.",
+    "legacyStoredResults": "Bodies remain readable unchanged but producer identity stays unavailable; exact producer export refuses without a verified material bundle.",
+    "unretainedCurrentResponses": "No producer proof is attached. No current-source lookup, recomputation or caller certification is substituted.",
+    "unsupportedCoverage": "Derived chart/XLSX view rows, other server disclosures, legacy physical projections, FaIR artifacts and submitted diagnostics are not upgraded to complete producer bindings by this increment.",
+    "remainingAssociationGap": "The retained producer manifest and resolved server snapshot context bind this completed response, not a caller's desired UI state. This increment does not independently trace every calculator read, attest a running executable/container against the archived source bundle, recalculate stored outputs, establish source publication vintage or certify every raw query/settings parameter as independently consumed."
+  },
+  "clientIntegration": {
+    "reader": "analysisFetch associates proof only with the consumed same-origin response object through a WeakMap",
+    "cache": "Query structural sharing disabled to prevent equal-valued refreshed responses inheriting older producer proof",
+    "downloads": "Qualified JSON writer offers a separate exact retained source-response link when its payload was consumed from a producer-bound response. Scenario Analyzer summary/carbon-price readers use the same link. Ordinary chart-transformed rows and cloned objects remain unbound.",
+    "selectionIsolation": "Exact link contains the retained result id, not current UI selection. Existing central writers still capture and recheck UI selection before delivery."
+  },
+  "verification": {
+    "coherentFinalIntegration": {
+      "runner": "script/workplan-evidence-run.py --receipt-only",
+      "receipt": "/tmp/producer-final-receipt.json",
+      "log": "/tmp/producer-final-check.log",
+      "exitCode": 0,
+      "typescript": { "tests": 978, "passed": 978, "failed": 0, "skipped": 0 },
+      "python": { "tests": 217, "passed": 217, "failed": 0, "skipped": 0 },
+      "fieldCensusFreshness": "passed",
+      "typecheck": "passed",
+      "privateMonetaryIntegration": "passed with private-primary; existing private bytes/numerical fingerprints, monetary qualification guards and 14 pins remain unchanged",
+      "privateIssuerCashflow": "passed; zero complete approved issuer cases and zero historical point-in-time claims remain unchanged",
+      "privateIssuerCashflowReconciliation": "passed; zero original qualified issuer/market pairs remain unchanged",
+      "productionBuild": "passed; only pre-existing size/Browserslist/PostCSS warnings",
+      "canonicalLedgersModifiedByRunner": false,
+      "revisionLookup": null
+    },
+    "newSuite": {
+      "command": "npx tsx --test script/producer-download.test.ts",
+      "tests": 7,
+      "covered": [
+        "exact result and allowlisted scenario verification",
+        "wrong actual producer path refuses even for identical empty result bodies and coherent input headers",
+        "conflicting resolved server snapshot context refuses without trusting request proof headers",
+        "Date/optional-field JSON serialization matches the existing archive writer without changing response bytes",
+        "current and selected completed response identities with unchanged body bytes",
+        "unretained current responses and forged request proof refusal",
+        "missing archive and input-override export refusal",
+        "public POST remains 403",
+        "concurrent response identity isolation",
+        "stored replay and legacy replay compatibility",
+        "default versus embedded exact JSON export readback and byte hash",
+        "client response object versus clone/derived-row proof boundaries",
+        "deep-equal query refresh cannot inherit stale producer identity"
+      ]
+    },
+    "combinedSuite": {
+      "command": "npx tsx --test script/producer-download.test.ts script/methodology-download.test.ts script/download-selection-race.test.ts script/methodology-download-portable.test.ts",
+      "tests": 19,
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0
+    },
+    "sourceOnlyPortability": {
+      "command": "npx tsx --test script/methodology-download-portable.test.ts",
+      "passed": true,
+      "nestedTests": 18,
+      "excluded": [".git", "docs", "generated-artifacts", "attached_assets", ".local", "exports"],
+      "note": "Only installed package dependencies are symlinked. Producer tests use public synthetic engineering fixtures and the actual mounted production middleware/export handlers, not production fallback data."
+    },
+    "typecheck": "npx tsc --noEmit --pretty false: passed",
+    "whitespaceCheck": "git diff --check: passed",
+    "preview": {
+      "path": "/climate-valuation",
+      "screenshot": "docs/producer-download-preview.jpg",
+      "observed": "Scenario Analyzer and monetary qualification guard render. Initial company summary remains loading in the captured viewport.",
+      "actualRetainedDatabaseChartDownloadJourney": null,
+      "limitation": "No genuine retained database-backed chart/download journey was completed. No authenticated UI bypass or fabricated production archive was used; successful provenance delivery is established by isolated mounted-handler/readback tests."
+    }
+  },
+  "preservation": {
+    "all14FaIRPins": "Unchanged; no FaIR catalog/artifact/file module or retained artifact bytes edited by this increment",
+    "canonicalLedgersMatrix": "Not edited",
+    "authorizedCensusIntegration": "Field census and output/consumer register regenerated after protected routes diff was removed. Eleven precise retained-producer metadata definitions/bindings are supplemental only, not original closure. New ProducerDownloadLink is individually SSR-tested and counted separately; original remaining component denominator remains60.",
+    "originalSemanticGates": "Unchanged: original1001 public slots,1000 bound,571/572 original gaps closed, one opaque runs[].summary unresolved,27 withheld fields,four cache aliases,original slot identities unchanged. Strict original/complete gates still refuse; no denominator gaming.",
+    "serverRoutesTs": "Not edited by producer/download worker; concurrent worker owns its separate changes",
+    "authChanges": false,
+    "publicWritesAdded": false,
+    "privateSourceRowsExported": false,
+    "privateHttpGuard": "Existing methodology guard tests remain passing",
+    "legacyDownloadBodiesAndGoldens": "Existing default transport bodies remain unchanged and existing mounted methodology tests pass",
+    "commitDeployCallback": false
+  }
+}

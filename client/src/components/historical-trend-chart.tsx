@@ -1,5 +1,6 @@
 import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -132,6 +133,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
 
   return (
     <Card className="p-6" data-testid="card-historical-trend">
+      <ScientificEvidenceStrands compact />
       {missingFields.length > 0 && <p role="status">Historical observation fields unavailable: {missingFields.join(", ")}. No date, numeric value or zero is substituted.</p>}
       <div className="mb-4 flex items-start justify-between gap-2 flex-wrap">
         <div>

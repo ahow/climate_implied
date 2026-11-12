@@ -10,8 +10,8 @@ import { warmingReferenceExportDocument } from "../shared/warmingValidationRefer
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 70, "Prior68 plus registry-driven methodology and separate scientific-evidence strand components");
-  assert.equal(report.focusedRenderedComponentCount, 70);
+  assert.equal(report.componentCount, 71, "Prior70 plus exact retained producer source-response download link");
+  assert.equal(report.focusedRenderedComponentCount, 71);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -83,7 +83,10 @@ test("imported sibling exports are reachable only through actual component tags"
   assert.match(registry.contract.focusedEvidence, /methodology-download\.test\.ts/);
   const strands = report.components.find(component => component.component === "ScientificEvidenceStrands")!;
   assert.match(strands.contract.focusedEvidence, /scientific-strands-warning\.test\.ts/);
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, ...additions].includes(component.id)).length, 60);
+  const producer = report.components.find(component => component.component === "ProducerDownloadLink")!;
+  assert.deepEqual(producer.routes, ["/climate-valuation", "/data-management"]);
+  assert.match(producer.contract.focusedEvidence, /producer-download\.test\.ts/);
+  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

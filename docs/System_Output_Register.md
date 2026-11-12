@@ -26,6 +26,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | GET | `${CARBON_PASS_THROUGH_ROUTE}${suffix}` | server/carbonPassThroughApi.ts |
 | GET | `${CONDITIONAL_COMPANY_ROUTE}${suffix}` | server/companyConditionalApi.ts |
 | GET | "/api/methodology/registry" | server/methodologyApi.ts |
+| GET | "/api/analysis/results/:id/export.json" | server/producerDownload.ts |
+| POST | "/api/calculation/research-contracts" | server/prospectiveResearchApi.ts |
 | GET | "/api/development/qualified-missingness" | server/qualifiedMissingnessApi.ts |
 | GET | "/api/development/qualified-missingness/export" | server/qualifiedMissingnessApi.ts |
 | GET | "/api/development/qualified-missingness" | server/qualifiedMissingnessApi.ts |
@@ -154,6 +156,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
+| client/src/lib/producer-download.ts | `/api/analysis/results/${id}/export.json?downloadMetadata=manifest-v1` |
 | client/src/lib/trackBPublicReports.ts | `/api/research/track-b-admission${suffix}?${new URLSearchParams({ protocolHash: pin.protocolHash, reportHash: pin.reportHash, disclosureHash: pin.disclosureHash, })}` |
 | client/src/lib/trackBPublicReports.ts | "/api/research/track-b-admission/catalog" |
 | client/src/pages/climate-valuation.tsx | "/api/cv/uploads" |

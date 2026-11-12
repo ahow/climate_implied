@@ -1,3 +1,109 @@
+# Producer identity, prospective contracts and new source evidence
+
+{
+  "updated_at": "2026-11-12T02:39:23.183540+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-lc",
+      "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+    ],
+    "executed_at": "2026-11-12T02:26:37.572723+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 194.987,
+    "counts": {
+      "tests": 978,
+      "pass": 978,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/producer-final-check.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+    "suite_counts": {
+      "typescript": {
+        "tests": 978,
+        "pass": 978,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 217,
+        "pass": 217,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": "docs/producer-download-increment-evidence.json",
+    "S07-003": "docs/status-choice-width-increment-evidence.json",
+    "S11-001": "docs/status-choice-width-increment-evidence.json",
+    "S13-010": "docs/status-choice-width-increment-evidence.json",
+    "S03-007": "docs/remaining-source-inputs-evidence.json"
+  },
+  "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
+  "scope": "Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. Actual browser current/archive/return completed; exact producer endpoint200 readback, click navigation timed out. Empty observed P/E charts had disabled downloads; derived XLSX/JSON readback not exercised. No scientific promotion or issuer-case completion.",
+  "release": "Pending existing code validation/promotion; prior verified runtime remains distinct."
+}
+
+# Producer identity, prospective contracts and new source evidence
+
+{
+  "updated_at": "2026-11-12T02:31:28.862594+00:00",
+  "execution": {
+    "command": [
+      "bash",
+      "-lc",
+      "set -e; echo \"=== Field census freshness ===\"; npx tsx script/field-semantics-census.ts --check; echo \"=== Typecheck ===\"; npm run check; echo \"=== Complete TypeScript suite ===\"; npx tsx --test --test-reporter=tap script/*.test.ts; echo \"=== Complete Python suite ===\"; uv run python -m unittest discover -s script -p \"test_*.py\"; echo \"=== Mandatory private monetary integration ===\"; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo \"=== Mandatory private issuer cashflow ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo \"=== Mandatory private issuer cashflow reconciliation ===\"; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo \"=== Production build ===\"; npm run build"
+    ],
+    "executed_at": "2026-11-12T02:26:37.572723+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 194.987,
+    "counts": {
+      "tests": 978,
+      "pass": 978,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "/tmp/producer-final-check.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "23e212d97c40347f30e3c99c534d6fef73feb105d4dc342a731deff89f281ade",
+    "suite_counts": {
+      "typescript": {
+        "tests": 978,
+        "pass": 978,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 217,
+        "pass": 217,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "evidence": {
+    "S16-007": "docs/producer-download-increment-evidence.json",
+    "S07-003": "docs/status-choice-width-increment-evidence.json",
+    "S11-001": "docs/status-choice-width-increment-evidence.json",
+    "S13-010": "docs/status-choice-width-increment-evidence.json",
+    "S03-007": "docs/remaining-source-inputs-evidence.json"
+  },
+  "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
+  "scope": "Producer-bound stored JSON, separate scientific statuses, unscored prospective choices/width and new WB/SBTi source proposals. No scientific promotion or issuer-case completion.",
+  "release": "Pending existing code validation/promotion; prior verified runtime remains distinct."
+}
+
 # Registry methodology, download identity and separate scientific evidence
 
 {
@@ -4250,6 +4356,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-review-history-a8b9501",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T00:38:10.523332+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-methodology-source-d099e80",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T01:52:26.973358+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

@@ -58,7 +58,7 @@
     {
       "path": "client/src/components/category-comparison.tsx",
       "originalSha256": "4fbf5ca85bed755821a8b927c828f6367df795534019f53ced0c29e07e953eab",
-      "currentSha256": "a5515514e566148722e01f7f740797566a35864922a2c34bfe86fc4ad5b4cd17",
+      "currentSha256": "09dffa24ea71d42c5bb01252808efe79ff5945806768459d6ec4c480a2a9cffe",
       "exactScanLines": [{"line":67,"text":"            Illustrative input-shock scenarios, not forecasts or category contributions."}],
       "disposition": "retained",
       "resolution": null
@@ -74,7 +74,7 @@
     {
       "path": "client/src/components/historical-trend-chart.tsx",
       "originalSha256": "a6d88ddb0939223536521f21dc089cba76083389db076742279b848f5fe20a8a",
-      "currentSha256": "2265e12e3a1403b1a37fd8888623f5d59e9043f61e556d2b2c66d924b5fdebf5",
+      "currentSha256": "a1a207c7f5bea89b7a3f01dc8d7c329888ed5afdfa89902042c85db93a7181f4",
       "exactScanLines": [{"line":136,"text":"            Retrospective reconstruction using current methodology and revised inputs—not forecasts issued at the time."}],
       "disposition": "retained",
       "resolution": null
@@ -120,7 +120,7 @@
     {
       "path": "client/src/pages/climate-valuation.tsx",
       "originalSha256": "cda48069cb0225ede09392da3586217849ebc80f1f10c3894e202720af78dfa6",
-      "currentSha256": "530e34e343ee6610cd50eabdcdc4e19a2485f1f0f213c7d8ebdd97407554584b",
+      "currentSha256": "1cdb6aa74ccc548956ee9eb0125a6716afa3fdb6ad5f947186e08f375a995d24",
       "exactScanLines": [
         {"line":331,"text":"              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}"},
         {"line":357,"text":"              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}"},

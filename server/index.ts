@@ -15,6 +15,10 @@ import { registerReadonlyDiffApi } from "./readonlyDiffApi";
 import { readonlyDiffRepository } from "./snapshots/readonlyDiffStore";
 import { registerMethodologyApi } from "./methodologyApi";
 import { downloadManifestMiddleware } from "./downloadManifestMiddleware";
+import { producerDownloadMiddleware, registerProducerDownloadRoutes } from "./producerDownload";
+import { loadAnalysisResult } from "./snapshots/results";
+import { registerScientificEvidenceApi } from "./scientificEvidenceApi";
+import { registerProspectiveResearchApi } from "./prospectiveResearchApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -74,6 +78,10 @@ app.use((req, res, next) => {
 
 (async () => {
   app.use(downloadManifestMiddleware());
+  app.use(producerDownloadMiddleware(loadAnalysisResult));
+  registerProducerDownloadRoutes(app, loadAnalysisResult);
+  registerScientificEvidenceApi(app);
+  registerProspectiveResearchApi(app);
   registerMethodologyApi(app);
   app.use(quantityDescriptionMiddleware());
   registerWarmingValidationReferenceRoutes(app);

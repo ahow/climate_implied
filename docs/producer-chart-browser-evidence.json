@@ -1,0 +1,107 @@
+{
+  "title": "Climate valuation producer/chart browser evidence",
+  "route": "/climate-valuation",
+  "runType": "single focused public browser journey",
+  "privacy": {
+    "rawRowsReadOrIncluded": false,
+    "privateRowIdentifiersIncluded": false,
+    "reportedValuesAreSafeAggregatesOrOpaqueProvenanceHashes": true
+  },
+  "steps": {
+    "summaryAndCalculations": {
+      "waitedForCompanySummary": true,
+      "waitLimitSeconds": 60,
+      "loadingStatusDetached": true,
+      "currentSummary": {
+        "companies": 2442,
+        "records": 470341,
+        "sectors": 12,
+        "geographies": 49
+      },
+      "valuationDerivedClimateOutputs": "withheld"
+    },
+    "retainedInputReplay": {
+      "usedOnlyExistingWorkbookAndIndicatorSnapshots": true,
+      "regionalSnapshotSelected": false,
+      "companyOverlayEntered": false,
+      "applyAction": "read-only input replay with current code",
+      "summaryLoadingResolved": true,
+      "returnedToCurrentInputs": true,
+      "finalSelectorState": {
+        "workbook": "Select workbook",
+        "indicators": "Select indicators",
+        "regional": "Regional history unavailable"
+      },
+      "dataWritesImportsRoleChangesAuthChangesOrDatabaseFixtures": false
+    },
+    "exactRetainedResultJson": {
+      "resultId": "400334beaaf36b98f5cead5fea80d5903d7be36fc3d15d1990e9953fdf4517c9",
+      "href": "/api/analysis/results/400334beaaf36b98f5cead5fea80d5903d7be36fc3d15d1990e9953fdf4517c9/export.json?downloadMetadata=manifest-v1",
+      "linkClickAttempted": true,
+      "browserDownloadEventCaptured": false,
+      "clickOutcome": "Playwright timed out waiting for scheduled navigation after the click; a browser-session GET to the same exact href was then used for safe metadata readback.",
+      "responseStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "xProducerIdentityHeaderPresent": true,
+      "manifestProducerIdentityPresent": true,
+      "manifestClaim": "Descriptive valuation diagnostic",
+      "scientificAcceptance": false,
+      "meaning": "Verified retained completed response; not a recalculation or scientific acceptance.",
+      "safeProvenance": {
+        "bindingVersion": "retained-producer-binding-v1",
+        "resultHash": "f6f3990ac938e9d50612b53f13271dcb705b10fb01ae803a2faf20395b827683",
+        "manifestId": "e7853dc5a8af1bb10d70d66b43bcf7e39275c6a74efc54d81beb115f7747aeab",
+        "materialInputsId": "8278a55f89f41bedbfcd2271ccd108106361abed63b51f00ac1ea6cac53b6bb1",
+        "codeArchiveId": "9317b2d490a1346245e8cad2e68cd1c70ed62c54483697502b27c91ffc9e6f81",
+        "modelVersion": "historical-diagnostics-7",
+        "scenario": "descriptive-valuation:/summary"
+      }
+    },
+    "chartsAndDerivedExports": {
+      "comparisons": [
+        {
+          "comparison": "Low Carbon (Clean) vs High Carbon (Dirty) over time",
+          "status": "No P/E observations returned for High vs Low Carbon Companies."
+        },
+        {
+          "comparison": "Positive SDG (Clean) vs Negative SDG (Dirty) over time",
+          "status": "No P/E observations returned for High vs Low SDG-Aligned Companies."
+        },
+        {
+          "comparison": "Most Ambitious vs Least Ambitious over time",
+          "status": "No P/E observations returned for High vs Low Ambition Companies."
+        }
+      ],
+      "threeStrandLabelsObserved": false,
+      "chartDataDownloadButtons": {
+        "count": 3,
+        "disabled": true
+      },
+      "derivedJsonXlsxManifestReadback": "Blocked: no chart observations were returned and all three chart Download data buttons were disabled. No derived-row producer:null conclusion was made.",
+      "separateWorkbookAuditJsonXlsxLinks": "Visible but not clicked; these are not chart-derived row exports."
+    },
+    "transientRendering": {
+      "blankFrameObservedAfterApplyOrReturn": true,
+      "recoveredWithoutWorkflowRestart": true,
+      "recovery": "React root mounted after a bounded wait; current inputs and summary were subsequently verified."
+    }
+  },
+  "screenshots": [
+    {
+      "id": "r616u3",
+      "description": "Exact retained-result link and audit area visible."
+    },
+    {
+      "id": "anqd6n",
+      "description": "Archived workbook/indicator replay state visible."
+    },
+    {
+      "id": "wfbax2",
+      "description": "Restored current selector defaults and current analysis state."
+    },
+    {
+      "id": "xijq53",
+      "description": "Carbon comparison shows no P/E observations and disabled Download data control."
+    }
+  ]
+}

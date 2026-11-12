@@ -27,9 +27,9 @@ import { RegistryMethodology } from "../client/src/components/registry-methodolo
 test("S16-007 public portable AST census includes chart, JSON, direct-link, attachment and custom-sheet paths", () => {
   const census = methodologyDownloadCensus();
   assert.equal(census.centralSites.length, 26);
-  assert.equal(census.downloadLinks.length, 10);
-  assert.equal(census.serverDownloads.flatMap(entry => entry.paths).length, 10);
-  assert.equal(census.attachmentSites.length, 10);
+  assert.equal(census.downloadLinks.length, 11);
+  assert.equal(census.serverDownloads.flatMap(entry => entry.paths).length, 11);
+  assert.equal(census.attachmentSites.length, 11);
   assert.ok(census.attachmentSites.every(site => site.registered));
   assert.ok(census.downloadLinks.every(site => site.embeddedManifest), JSON.stringify(census.downloadLinks));
   assert.equal(census.centralSites.filter(site => /chart|histogram|comparison/.test(site.path)).length, 7);

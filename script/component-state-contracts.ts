@@ -281,6 +281,7 @@ export const filePolicies: Record<string, Policy> = {
 };
 
 export const focusedRenderComponents = new Set([
+  "ProducerDownloadLink",
   "ScientificEvidenceStrands",
   "RegistryMethodology",
   "FinancialProviderStatus", "FinancialReview", "ScientificValidation", "Snapshot",
@@ -323,6 +324,12 @@ export function contractFor(file: string, name: string) {
   const inheritedProps = ["SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);
   return {
     ...policy,
+    ...(name === "ProducerDownloadLink" ? {
+      missing: "No consumed server-bound response object means no exact retained download link; no current object or query fallback.",
+      null: "Null and cloned/derived payloads have no WeakMap proof and render no retained producer link.",
+      selection: "Exact result id belongs to the consumed server response object, not browser selection or cloned chart rows; query structural sharing cannot carry stale proof.",
+      scope: "Separate retained source-response download; no producer identity is assigned to transformed chart/XLSX rows. Producer header originates only from server archive verification.",
+    } : {}),
     ...(inheritedProps && !["AnalysisSection", "IndicatorDetailReadState"].includes(name) ? {
       inputKind: "supplied-result",
       loading: "Parent read/section owns loading and stale-result suppression; this child renders only supplied fields.",
@@ -372,6 +379,8 @@ export function contractFor(file: string, name: string) {
       ? "script/methodology-download.test.ts: direct SSR of exact registry definitions, historical labels and three independent evidence strands; no asynchronous result branches."
       : ["CarbonPassThroughReview", "QualifiedMissingnessReview", "ReadonlyVersionDiff", "VersionDiffResult"].includes(name)
       ? "script/readonly-new-card-states.test.ts: actual imported SSR covers static factual source card, development review loading/error/null/invalid/empty/ready/zero and background pending suppression; idle diff controls and supplied-result malformed/empty/zero/ready states. No interactive selection/pagination browser coverage claimed. script/readonly-diff-history.test.ts separately checks isolated HTTP and XLSX readback."
+      : name === "ProducerDownloadLink"
+      ? "script/producer-download.test.ts: actual imported component SSR bound/null/cloned response objects, exact retained link identity, mounted response/export/readback and concurrent/cache provenance isolation; no genuine database-backed browser journey claimed."
       : name === "WorkbookMoneyAudit"
       ? "script/workbook-money-integration.test.ts: actual imported component SSR loading/error/absent/invalid/ready with strict full-report hash and pinned downloads; real HTTP/XLSX safe-count/date/reason equality and source/query/hash refusals. Synthetic engineering is not real approval; old63component browser suite not rerun."
       : name === "Stage10FinancialCoverage"

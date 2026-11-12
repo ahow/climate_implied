@@ -49,6 +49,9 @@ export const queryClient = new QueryClient({
       refetchInterval: false,
       refetchOnWindowFocus: false,
       staleTime: Infinity,
+      // A retained producer belongs to the consumed response object. Deep-equal
+      // values from a later run must not inherit an older run's WeakMap proof.
+      structuralSharing: false,
       retry: false,
     },
     mutations: {

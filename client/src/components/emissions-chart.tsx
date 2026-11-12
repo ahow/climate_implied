@@ -1,4 +1,5 @@
 import { FIXED_5GT_DESCRIPTOR } from "@shared/quantityDescriptors";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -46,6 +47,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
 
   return (
     <Card className="p-6" data-testid="card-emissions-chart">
+      <ScientificEvidenceStrands compact />
       {missingFields.length > 0 && <p role="status">Legacy trajectory fields unavailable: {missingFields.join(", ")}. Missing observation cells stay blank, not zero.</p>}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>

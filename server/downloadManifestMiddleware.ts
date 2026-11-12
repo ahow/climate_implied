@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import * as XLSX from "xlsx";
 import { createDownloadManifest, downloadManifestRows } from "../shared/downloadManifest";
 import { serverDownloadRegistry } from "../shared/serverDownloadRegistry";
+import { responseProducerIdentity } from "./producerDownload";
 
 /** Always attach the exact manifest as a base64url response header. Existing
  * default response bodies (and their goldens) are byte-for-byte unchanged.
@@ -20,7 +21,9 @@ export function downloadManifestMiddleware(): RequestHandler {
       selected.searchParams.delete("downloadMetadata");
       req.url = selected.pathname + selected.search;
     }
-    const entry = serverDownloadRegistry.find(item => (item.paths as readonly string[]).includes(req.path));
+    const entry = serverDownloadRegistry.find(item => (item.paths as readonly string[]).some(path =>
+      path === req.path || (path === "/api/analysis/results/:id/export.json" &&
+        /^\/api\/analysis\/results\/[a-f0-9]{64}\/export\.json$/.test(req.path))));
     const original = res.send;
     let handled = false;
     res.send = function (body: unknown) {
@@ -49,6 +52,10 @@ export function downloadManifestMiddleware(): RequestHandler {
           rows, sheets: workbook ? [...workbook.SheetNames, ...(optIn ? ["Download manifest"] : [])] : [],
           columnBindings: json?.columnBindings ?? null }),
         transportClaim: entry.claim,
+        producerIdentity: responseProducerIdentity(res),
+        ...(responseProducerIdentity(res) ? {
+          selectionBoundary: "Producer identity was bound server-side to the exact verified retained result and material archives. Requested UI selection is not provenance. Stored output is not recalculation, original-vintage evidence or scientific acceptance.",
+        } : {}),
         transport: optIn ? "embedded-and-header" : "header-only-legacy-body-preserved",
       };
       res.setHeader("X-Download-Manifest", Buffer.from(JSON.stringify(manifest)).toString("base64url"));

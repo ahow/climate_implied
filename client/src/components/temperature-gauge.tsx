@@ -1,5 +1,6 @@
 import { FIXED_5GT_DESCRIPTOR } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Thermometer, TrendingDown, Calendar } from "lucide-react";
 import type { MetricView } from "@/lib/types";
@@ -87,6 +88,7 @@ export function TemperatureGauge({
   if (metricView === "reductionRate") {
     return (
       <Card className="p-6" data-testid="card-temperature-gauge">
+        <ScientificEvidenceStrands compact />
         <div className="flex items-center gap-2 mb-4">
           <TrendingDown className="h-5 w-5 text-muted-foreground" />
           <h3 className="text-sm font-medium text-muted-foreground">Emissions Reduction Rate</h3>
@@ -150,6 +152,7 @@ export function TemperatureGauge({
   if (metricView === "netZero") {
     return (
       <Card className="p-6" data-testid="card-temperature-gauge">
+        <ScientificEvidenceStrands compact />
         <div className="flex items-center gap-2 mb-4">
           <Calendar className="h-5 w-5 text-muted-foreground" />
           <h3 className="text-sm font-medium text-muted-foreground">{THRESHOLD_DIAGNOSTIC_LABEL}</h3>
@@ -199,6 +202,7 @@ export function TemperatureGauge({
 
   return (
     <Card className="p-6" data-testid="card-temperature-gauge">
+      <ScientificEvidenceStrands compact />
       <div className="flex items-center gap-2 mb-4">
         <Thermometer className="h-5 w-5 text-muted-foreground" />
         <h3 className="text-sm font-medium text-muted-foreground">Implied Temperature Rise by 2100</h3>

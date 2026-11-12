@@ -1,5 +1,6 @@
 import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Zap, Shield, Building2, Users } from "lucide-react";
 import type { CategoryProjectionResult } from "@/lib/types";
@@ -68,6 +69,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
 
   return (
     <Card className="p-6" data-testid="card-category-comparison">
+      <ScientificEvidenceStrands compact />
       <div className="mb-4 flex items-start justify-between gap-2 flex-wrap">
         <div>
           <h3 className="text-sm font-medium text-muted-foreground">Category Scenario Analysis</h3>

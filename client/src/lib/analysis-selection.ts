@@ -1,3 +1,5 @@
+import { retainProducerDownload } from "./producer-download";
+
 export interface AnalysisSelection { workbook: string; indicators: string; regional?: string; overlays?: string[]; asOf?: string }
 export const selectionKey = "climate-analysis-selection-v1";
 export function parseSelection(value: unknown): AnalysisSelection {
@@ -78,5 +80,5 @@ export async function analysisFetch(url: string, init?: RequestInit) {
   if (response.ok && request.indicators &&
     response.headers.get("X-Indicator-Data-State") !== "archived-approved-indicators")
     throw new Error("Response does not confirm archived indicator inputs");
-  return response;
+  return retainProducerDownload(response);
 }

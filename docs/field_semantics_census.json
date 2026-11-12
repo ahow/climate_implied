@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 2189,
+  "definitions": 2200,
   "resolvedResponseAliases": [
     {
       "surface": "API GET \"/api/projection\"",
@@ -669,21 +669,21 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 270,
+      "line": 272,
       "id": "companySummary.imputation.imputedRecords",
       "expression": "{summary.imputation.imputedRecords.toLocaleString()}",
       "bound": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 271,
+      "line": 273,
       "id": "companySummary.imputation.totalRecords",
       "expression": "{typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"}",
       "bound": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 272,
+      "line": 274,
       "id": "companySummary.imputation.imputedFraction",
       "expression": "{displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")}",
       "bound": true
@@ -1189,7 +1189,7 @@
     },
     {
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 67,
+      "line": 69,
       "rows": "downloadRows",
       "bindings": "{{\n            Year:{id:\"projection.emissionsTrajectory[].year\",transform:\"Identity\"},\n            \"P10 (GtCO2e)\":{id:\"projection.emissionsTrajectory[].p10\",transform:\"Identity; annual conditional emissions, not calibrated uncertainty\"},\n            \"Median P50 (GtCO2e)\":{id:\"projection.emissionsTrajectory[].p50\",transform:\"Identity\"},\n            \"P90 (GtCO2e)\":{id:\"projection.emissionsTrajectory[].p90\",transform:\"Identity; annual conditional emissions, not calibrated uncertainty\"},\n          }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -1210,7 +1210,7 @@
     },
     {
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 66,
+      "line": 68,
       "rows": "downloadRows",
       "bindings": "{{\n            \"Temperature (\\u00B0C)\":{id:\"projection.temperatureDistribution.pdf[].temperature\",transform:\"Identity\"},\n            \"Probability density (1/\\u00B0C)\":{id:\"projection.temperatureDistribution.pdf[].probability\",transform:\"Identity; density, not point probability\"},\n          }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -1224,42 +1224,42 @@
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "rows": "downloadRows",
       "bindings": "{{\n            \"Historical type code\":{id:\"historical.historicalTypeCode\",transform:\"Exact S09-001 evidence class; missing/inconsistent class refuses export\"},\n            \"Historical type label\":{id:\"historical.historicalTypeLabel\",transform:\"Exact original S09-001 child-clause label\"},\n            Year:{id:\"historical.year\",transform:\"Identity\"},\n            \"Temperature Median (\\u00B0C)\":{id:\"historical.median\",transform:\"Identity\"},\n            \"P10 (\\u00B0C)\":{id:\"historical.p10\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"P90 (\\u00B0C)\":{id:\"historical.p90\",transform:\"Identity; uncalibrated conditional quantile\"},\n            \"Reduction Rate (%/yr)\":{id:\"historical.reductionRate\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"historical.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:\"historical.thresholdDiagnostic.year\",transform:\"Identity; null preserved; not fixed 5 Gt\"},\n            \"5% diagnostic status\":{id:\"historical.thresholdDiagnostic.status\",transform:\"Identity; missing archived diagnostic -> withheld\"},\n            Estimated:{id:\"historical.isNowcast\",transform:\"true -> yes; false -> no, not vintage certification\"},\n          }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "rows": "downloadRows",
       "bindings": "{{\n            Region:{id:\"regional.regionName\",transform:\"Identity\"},\n            \"Legacy global counterfactual warming (\\u00B0C)\":{id:\"regional.temperatureRise\",transform:\"Identity\"},\n            \"Reduction Rate (%/yr)\":{id:\"regional.reductionRate\",transform:\"Identity\"},\n            \"Carbon Intensity (kg/$GDP)\":{id:\"regional.carbonIntensity\",transform:\"Identity; read companion basis column\"},\n            \"Intensity basis\":{id:\"regional.carbonIntensityBasis\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"regional.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            \"Milestone definition\":{id:\"regional.milestoneDefinition\",transform:\"Identity\"},\n            Claim:{id:\"regional.claim\",transform:\"Identity\"},\n          }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "rows": "downloadRows",
       "bindings": "{{\n            Category:{id:\"category.categoryName\",transform:\"Identity\"},\n            \"Temperature (\\u00B0C)\":{id:\"category.temperatureRise\",transform:\"Identity\"},\n            \"Reduction Rate (%/yr)\":{id:\"category.reductionRate\",transform:\"Identity\"},\n            [FIXED_5GT_DESCRIPTOR.label]:{id:\"category.netZeroYear\",transform:\"Identity; fixed-5gt-v1; null preserved; not 5% or net zero\"},\n            [THRESHOLD_DIAGNOSTIC_LABEL]:{id:\"category.thresholdDiagnostic.year\",transform:\"Identity; null preserved; not fixed 5 Gt\"},\n            \"5% diagnostic status\":{id:\"category.thresholdDiagnostic.status\",transform:\"Identity; missing archived diagnostic -> withheld\"},\n          }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "rows": "downloadRows",
       "bindings": "{{\n              Indicator:{id:\"sensitivity.label\",transform:\"Identity\"},\n              Category:{id:\"sensitivity.category\",transform:\"Identity\"},\n              \"Baseline (\\u00B0C)\":{id:\"sensitivity.baselineTemperature\",transform:\"Row baseline, or shared chart baseline if row field missing\"},\n              \"Lower scenario median (\\u00B0C)\":{id:\"sensitivity.p10Temperature\",transform:\"Identity; not a probability quantile\"},\n              \"Upper scenario median (\\u00B0C)\":{id:\"sensitivity.p90Temperature\",transform:\"Identity; not a probability quantile\"},\n              \"Impact Range (\\u00B0C)\":{id:\"sensitivity.temperatureRange\",transform:\"Identity\"},\n            }}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 150,
+      "line": 152,
       "rows": "downloadRows",
       "bindings": "{finiteExportBindings(\"categoryTrend\",{metric:config.metricKey})}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 527,
+      "line": 529,
       "rows": "peDownloadRows",
       "bindings": "{finiteExportBindings(\"valuationPE\",{case:testIdPrefix})}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -1404,35 +1404,35 @@
   "workbookBuilderInventory": [
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 63,
+      "line": 65,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheetName.slice(0, 31)",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 64,
+      "line": 66,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheetName.slice(0, 31) === \"Interpretation\" ? \"Export Notes\" : \"Interpretation\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 70,
+      "line": 72,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "sheetName.slice(0,31)===\"Field semantics\" ? \"Semantic definitions\" : \"Field semantics\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 72,
+      "line": 74,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Column bindings\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 82,
+      "line": 84,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Download manifest\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1446,7 +1446,7 @@
     },
     {
       "source": "server/downloadManifestMiddleware.ts",
-      "line": 61,
+      "line": 68,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Download manifest\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1733,7 +1733,7 @@
     },
     {
       "source": "script/research-field-semantics.test.ts",
-      "line": 80,
+      "line": 81,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"ObservedScopes\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -1933,110 +1933,152 @@
       "explicitSemanticAncestor": false
     },
     {
-      "source": "client/src/components/download-data-button.tsx",
-      "line": 105,
-      "expression": "busy ? \"Preparing\\u2026\" : label",
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 15,
+      "expression": "scientificEvidenceStrandKeys.map(key => (\n        <p key={key} data-evidence-strand={key} data-evidence-status={evidence[key].status}\n          title={evidence[key].reason}>{evidence[key].label}: {evidence[key].status}</p>\n      ))",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 17,
+      "expression": "evidence[key].label",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 17,
+      "expression": "evidence[key].status",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 27,
+      "expression": "scientificEvidenceStrandKeys.map(key => (\n          <div key={key} data-evidence-strand={key} data-evidence-status={evidence[key].status}>\n            <dt className=\"text-sm font-medium\">{evidence[key].label}: {evidence[key].status}</dt>\n            <dd className=\"text-xs text-muted-foreground\">{evidence[key].reason}</dd>\n          </div>\n        ))",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 29,
+      "expression": "evidence[key].label",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 29,
+      "expression": "evidence[key].status",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/scientific-evidence-strands.tsx",
+      "line": 30,
+      "expression": "evidence[key].reason",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
       "line": 107,
-      "expression": "error",
+      "expression": "busy ? \"Preparing\\u2026\" : label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
       "line": 109,
+      "expression": "error",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/download-data-button.tsx",
+      "line": 111,
       "expression": "Object.keys(fieldBindings).length",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 110,
+      "line": 112,
       "expression": "Object.entries(fieldBindings).map(([column,binding])=>\n        <li key={column}><strong>{column}</strong>: <code>{binding.id}</code> — {binding.transform}</li>\n      )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 111,
+      "line": 113,
       "expression": "column",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 111,
+      "line": 113,
       "expression": "binding.id",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 111,
+      "line": 113,
       "expression": "binding.transform",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 117,
+      "line": 119,
       "expression": "semanticRows().map(row=><div key={row.Field} className=\"my-2\">\n        <dt className=\"font-medium\">{row.Field} — {row.Classification} ({row.Unit})</dt>\n        <dd>{row.Formula}. Depends on: {row.Dependencies || \"source input\"}.</dd>\n        <dd>{row.Source}. {row.Vintage}. {row.AsOf}.</dd>\n      </div>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 118,
+      "line": 120,
       "expression": "row.Field",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 118,
+      "line": 120,
       "expression": "row.Classification",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 118,
+      "line": 120,
       "expression": "row.Unit",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 119,
+      "line": 121,
       "expression": "row.Formula",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 119,
+      "line": 121,
       "expression": "row.Dependencies || \"source input\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 120,
+      "line": 122,
       "expression": "row.Source",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 120,
+      "line": 122,
       "expression": "row.Vintage",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 120,
+      "line": 122,
       "expression": "row.AsOf",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 154,
+      "line": 156,
       "expression": "busy ? \"Preparing…\" : label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/download-data-button.tsx",
-      "line": 155,
+      "line": 157,
       "expression": "error",
       "explicitSemanticAncestor": false
     },
@@ -2108,170 +2150,146 @@
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 97,
+      "line": 99,
       "expression": "hasReduction ? reductionRate.toFixed(2) : \"Unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 103,
+      "line": 105,
       "expression": "reductionLabel.label",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/components/temperature-gauge.tsx",
-      "line": 128,
-      "expression": "temperature.toFixed(2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
       "line": 130,
-      "expression": "tempLabel.label",
+      "expression": "temperature.toFixed(2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 136,
-      "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
+      "line": 132,
+      "expression": "tempLabel.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
       "line": 138,
-      "expression": "thresholdDiagnosticDisplay(thresholdDiagnostic)",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/components/temperature-gauge.tsx",
-      "line": 155,
       "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 160,
+      "line": 140,
       "expression": "thresholdDiagnosticDisplay(thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 170,
+      "line": 158,
+      "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/temperature-gauge.tsx",
+      "line": 163,
+      "expression": "thresholdDiagnosticDisplay(thresholdDiagnostic)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/temperature-gauge.tsx",
+      "line": 173,
       "expression": "FIXED_5GT_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 170,
+      "line": 173,
       "expression": "netZeroYear === undefined ? \"Unavailable — not returned\" : netZeroYear === null ? \"Not reached within trajectory horizon\" : netZeroYear",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 180,
+      "line": 183,
       "expression": "temperature.toFixed(2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 182,
+      "line": 185,
       "expression": "tempLabel.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 190,
+      "line": 193,
       "expression": "hasReduction ? `${reductionRate.toFixed(2)}% / yr` : \"Unavailable — not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 192,
+      "line": 195,
       "expression": "reductionLabel.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 209,
+      "line": 213,
       "expression": "temperature.toFixed(2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 215,
+      "line": 219,
       "expression": "tempLabel.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 248,
+      "line": 252,
       "expression": "p10.toFixed(1)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 249,
+      "line": 253,
       "expression": "p90.toFixed(1)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 259,
+      "line": 263,
       "expression": "hasReduction ? `${reductionRate.toFixed(2)}% / yr` : \"Unavailable — not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 261,
+      "line": 265,
       "expression": "reductionLabel.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 267,
+      "line": 271,
       "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-gauge.tsx",
-      "line": 269,
+      "line": 273,
       "expression": "thresholdDiagnosticDisplay(thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 49,
+      "line": 51,
       "expression": "missingFields.length > 0 && <p role=\"status\">Legacy trajectory fields unavailable: {missingFields.join(\", \")}. Missing observation cells stay blank, not zero.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 49,
+      "line": 51,
       "expression": "missingFields.join(\", \")",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/components/scientific-evidence-strands.tsx",
-      "line": 16,
-      "expression": "scientificEvidenceStrandKeys.map(key => (\n          <div key={key} data-evidence-strand={key} data-evidence-status={evidence[key].status}>\n            <dt className=\"text-sm font-medium\">{evidence[key].label}: {evidence[key].status}</dt>\n            <dd className=\"text-xs text-muted-foreground\">{evidence[key].reason}</dd>\n          </div>\n        ))",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/components/scientific-evidence-strands.tsx",
-      "line": 18,
-      "expression": "evidence[key].label",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/components/scientific-evidence-strands.tsx",
-      "line": 18,
-      "expression": "evidence[key].status",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/components/scientific-evidence-strands.tsx",
-      "line": 19,
-      "expression": "evidence[key].reason",
       "explicitSemanticAncestor": false
     },
     {
@@ -2750,25 +2768,25 @@
     },
     {
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 62,
+      "line": 64,
       "expression": "typeof p10 === \"number\" && Number.isFinite(p10) ? `${p10.toFixed(1)}°C` : \"Unavailable — P10 not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 63,
+      "line": 65,
       "expression": "typeof median === \"number\" && Number.isFinite(median) ? `${median.toFixed(2)}°C` : \"Unavailable — median not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 64,
+      "line": 66,
       "expression": "typeof p90 === \"number\" && Number.isFinite(p90) ? `${p90.toFixed(1)}°C` : \"Unavailable — P90 not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 130,
+      "line": 132,
       "expression": "filteredPdf.map((entry, index) => (\n              <Cell key={`cell-${index}`} fill={getBarColor(entry.temperature)} fillOpacity={0.8} />\n            ))",
       "explicitSemanticAncestor": false
     },
@@ -2876,181 +2894,181 @@
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 135,
+      "line": 137,
       "expression": "missingFields.length > 0 && <p role=\"status\">Historical observation fields unavailable: {missingFields.join(\", \")}. No date, numeric value or zero is substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 135,
+      "line": 137,
       "expression": "missingFields.join(\", \")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 139,
+      "line": 141,
       "expression": "config.title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 140,
+      "line": 142,
       "expression": "hasNowcast && (\n              <Badge variant=\"secondary\" className=\"text-[10px] px-1.5 py-0\" data-testid=\"badge-nowcast\">\n                Nowcast\n              </Badge>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 146,
+      "line": 148,
       "expression": "config.subtitle",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 149,
       "expression": "data[0].historicalTypeLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 147,
+      "line": 149,
       "expression": "data[0].historicalTypeCode",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 174,
+      "line": 176,
       "expression": "metricView === \"netZero\" && <ul className=\"text-xs text-muted-foreground mb-3\" data-testid=\"historical-threshold-statuses\">\n        {data.map(d => <li key={d.year}>{d.year}: {thresholdDiagnosticDisplay(d.thresholdDiagnostic)}</li>)}\n      </ul>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 175,
+      "line": 177,
       "expression": "data.map(d => <li key={d.year}>{d.year}: {thresholdDiagnosticDisplay(d.thresholdDiagnostic)}</li>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 175,
+      "line": 177,
       "expression": "d.year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 175,
+      "line": 177,
       "expression": "thresholdDiagnosticDisplay(d.thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 177,
+      "line": 179,
       "expression": "metricView === \"netZero\" && <ThresholdDiagnosticDownload diagnostics={\n        data.flatMap(d => d.thresholdDiagnostic ? [d.thresholdDiagnostic] : [])\n      } contextLabels={data.flatMap(d => d.thresholdDiagnostic ? [`Historical reference input year ${d.year}`] : [])} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 224,
+      "line": 226,
       "expression": "isNc ? `${label} (estimated)` : `${label}`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 227,
+      "line": 229,
       "expression": "config.formatter(value)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 229,
+      "line": 231,
       "expression": "config.showRange && point.p10 != null && point.p90 != null && (\n                    <p className=\"text-xs text-muted-foreground mt-0.5\">\n                      Range: {config.formatter(point.p10)} – {config.formatter(point.p90)}\n                    </p>\n                  )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 231,
+      "line": 233,
       "expression": "config.formatter(point.p10)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 231,
+      "line": 233,
       "expression": "config.formatter(point.p90)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 238,
+      "line": 240,
       "expression": "config.referenceLines.map((ref, i) => (\n            <ReferenceLine\n              key={i}\n              y={ref.y}\n              stroke={ref.color}\n              strokeDasharray=\"4 4\"\n              label={{\n                value: ref.label,\n                position: \"insideTopRight\",\n                style: { fontSize: 10, fill: ref.color },\n              }}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 251,
+      "line": 253,
       "expression": "config.showRange && (\n            <>\n              <Area\n                type=\"monotone\"\n                dataKey=\"p90\"\n                fill={config.color}\n                fillOpacity={0.1}\n                stroke=\"none\"\n              />\n              <Area\n                type=\"monotone\"\n                dataKey=\"p10\"\n                fill=\"hsl(var(--background))\"\n                fillOpacity={1}\n                stroke=\"none\"\n              />\n            </>\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 278,
+      "line": 280,
       "expression": "hasNowcast && (\n            <Line\n              type=\"monotone\"\n              dataKey=\"nowcastValue\"\n              stroke={config.color}\n              strokeWidth={2}\n              strokeDasharray=\"6 3\"\n              dot={(props: any) => {\n                if (!props.payload?.isNowcast) return <circle key={props.key} r={0} />;\n                return (\n                  <circle\n                    key={props.key}\n                    cx={props.cx}\n                    cy={props.cy}\n                    r={3}\n                    fill=\"hsl(var(--background))\"\n                    stroke={config.color}\n                    strokeWidth={2}\n                  />\n                );\n              }}\n              activeDot={{ r: 5 }}\n              connectNulls={false}\n            />\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 47,
+      "line": 48,
       "expression": "Array.from({ length: 4 }).map((_, i) => (\n            <Skeleton key={i} className=\"h-16 w-full\" />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 100,
+      "line": 102,
       "expression": "regions.map((region) => {\n          const hasTemperature = typeof region.temperatureRise === \"number\" && Number.isFinite(region.temperatureRise);\n          const barWidth = hasTemperature ? Math.min(100, Math.max(5, ((region.temperatureRise - 1.0) / 4.0) * 100)) : 0;\n          const color = getRegionColor(region.region);\n\n          return (\n            <div key={region.region} className=\"group\" data-testid={`card-region-${region.region}`}>\n              <div className=\"flex items-center justify-between mb-1.5\">\n                <div className=\"flex items-center gap-2\">\n                  <MapPin className=\"h-3.5 w-3.5\" style={{ color }} />\n                  <span className=\"text-sm font-medium\">{region.regionName}</span>\n                </div>\n                <span className={`text-lg font-bold tabular-nums ${getTempColor(region.temperatureRise)}`} data-testid={`text-region-temp-${region.region}`}>\n                   {displayDiagnostic(region.temperatureRise, \"°C\")}\n                </span>\n              </div>\n\n              <div className=\"relative h-2 bg-muted rounded-full overflow-hidden\">\n                <div\n                  className={`absolute inset-y-0 left-0 rounded-full transition-all ${getTempBgColor(region.temperatureRise)}`}\n                  style={{ width: `${barWidth}%`, opacity: 0.7 }}\n                />\n              </div>\n\n              <div className=\"flex items-center gap-3 mt-1.5 text-xs text-muted-foreground\">\n                <span data-testid={`text-region-reduction-${region.region}`}>Reduction: {displayDiagnostic(region.reductionRate, \"%/yr\")}</span>\n                <span data-testid={`text-region-intensity-${region.region}`}>Carbon Intensity: {displayDiagnostic(region.carbonIntensity)} — {region.carbonIntensityBasis ?? \"Basis not returned\"}</span>\n                <span title={FIXED_5GT_DESCRIPTOR.description} data-testid={`text-region-netzero-${region.region}`}>{FIXED_5GT_DESCRIPTOR.label}: {region.netZeroYear === undefined ? \"Unavailable — not returned\" : region.netZeroYear === null ? \"Not reached by 2100\" : region.netZeroYear}</span>\n              </div>\n              {![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                <p role=\"status\" className=\"text-xs text-muted-foreground\">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}\n              <ThresholdDiagnosticDetails diagnostic={region.thresholdDiagnostic} contextLabel={region.regionName} />\n            </div>\n          );\n        })",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 110,
+      "line": 112,
       "expression": "region.regionName",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 113,
+      "line": 115,
       "expression": "displayDiagnostic(region.temperatureRise, \"°C\")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 125,
+      "line": 127,
       "expression": "displayDiagnostic(region.reductionRate, \"%/yr\")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 126,
+      "line": 128,
       "expression": "displayDiagnostic(region.carbonIntensity)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 126,
+      "line": 128,
       "expression": "region.carbonIntensityBasis ?? \"Basis not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 127,
+      "line": 129,
       "expression": "FIXED_5GT_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 127,
+      "line": 129,
       "expression": "region.netZeroYear === undefined ? \"Unavailable — not returned\" : region.netZeroYear === null ? \"Not reached by 2100\" : region.netZeroYear",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 129,
+      "line": 131,
       "expression": "![region.temperatureRise, region.reductionRate, region.carbonIntensity].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                <p role=\"status\" className=\"text-xs text-muted-foreground\">This region has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>",
       "explicitSemanticAncestor": false
     },
@@ -3068,247 +3086,247 @@
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 50,
+      "line": 51,
       "expression": "Array.from({ length: 4 }).map((_, i) => (\n            <Skeleton key={i} className=\"h-24\" />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 99,
+      "line": 101,
       "expression": "categories.map((cat) => {\n          const Icon = getCategoryIcon(cat.category);\n          const color = getCategoryColor(cat.category);\n\n          return (\n            <Card key={cat.category} className=\"p-4 hover-elevate\" data-testid={`card-category-impact-${cat.category}`}>\n              <div className=\"flex items-center gap-2 mb-3\">\n                <div\n                  className=\"flex items-center justify-center w-8 h-8 rounded-md\"\n                  style={{ backgroundColor: `${color}20` }}\n                >\n                  <Icon className=\"h-4 w-4\" style={{ color }} />\n                </div>\n                <div>\n                  <p className=\"text-sm font-medium\">{cat.categoryName}</p>\n                  <p className=\"text-[10px] text-muted-foreground\">Stylized scenario</p>\n                </div>\n              </div>\n\n              <div className=\"space-y-2\">\n                <div className=\"flex items-center justify-between\">\n                  <span className=\"text-xs text-muted-foreground\">Temperature</span>\n                  <span className={`text-sm font-bold tabular-nums ${getTempColor(cat.temperatureRise)}`} data-testid={`text-category-temp-${cat.category}`}>\n                     {displayDiagnostic(cat.temperatureRise, \"°C\")}\n                  </span>\n                </div>\n                <div className=\"flex items-center justify-between\">\n                  <span className=\"text-xs text-muted-foreground\">Reduction Rate</span>\n                  <span className=\"text-sm font-semibold tabular-nums\" data-testid={`text-category-rate-${cat.category}`}>\n                     {displayDiagnostic(cat.reductionRate, \"%/yr\")}\n                  </span>\n                </div>\n                <div className=\"flex items-center justify-between\">\n                  <span className=\"text-xs text-muted-foreground\">{THRESHOLD_DIAGNOSTIC_LABEL}</span>\n                  <span className=\"text-sm font-semibold tabular-nums\" data-testid={`text-category-netzero-${cat.category}`}>\n                    {thresholdDiagnosticDisplay(cat.thresholdDiagnostic)}\n                  </span>\n                </div>\n                <ThresholdDiagnosticDetails diagnostic={cat.thresholdDiagnostic} contextLabel={cat.categoryName} />\n                <p className=\"text-xs text-muted-foreground\" title={FIXED_5GT_DESCRIPTOR.description}>{FIXED_5GT_DESCRIPTOR.label}: {cat.netZeroYear === undefined ? \"Unavailable — not returned\" : cat.netZeroYear === null ? \"Not reached within trajectory horizon\" : cat.netZeroYear}; not net zero.</p>\n                {![cat.temperatureRise, cat.reductionRate].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                  <p role=\"status\" className=\"text-xs text-muted-foreground\">This category has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>}\n              </div>\n            </Card>\n          );\n        })",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 113,
+      "line": 115,
       "expression": "cat.categoryName",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 122,
+      "line": 124,
       "expression": "displayDiagnostic(cat.temperatureRise, \"°C\")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 128,
+      "line": 130,
       "expression": "displayDiagnostic(cat.reductionRate, \"%/yr\")",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 132,
+      "line": 134,
       "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 134,
+      "line": 136,
       "expression": "thresholdDiagnosticDisplay(cat.thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 138,
+      "line": 140,
       "expression": "FIXED_5GT_DESCRIPTOR.label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 138,
+      "line": 140,
       "expression": "cat.netZeroYear === undefined ? \"Unavailable — not returned\" : cat.netZeroYear === null ? \"Not reached within trajectory horizon\" : cat.netZeroYear",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-comparison.tsx",
-      "line": 139,
+      "line": 141,
       "expression": "![cat.temperatureRise, cat.reductionRate].every(value => typeof value === \"number\" && Number.isFinite(value)) &&\n                  <p role=\"status\" className=\"text-xs text-muted-foreground\">This category has missing or invalid diagnostic inputs. Unavailable fields are not substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 59,
+      "line": 60,
       "expression": "d.label || \"Sensitivity label not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 60,
+      "line": 61,
       "expression": "d.category || \"Category not returned\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 62,
+      "line": 63,
       "expression": "format(d.baseline, \"Baseline\", 2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 63,
+      "line": 64,
       "expression": "format(d.low, \"Low scenario\", 2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 64,
+      "line": 65,
       "expression": "format(d.high, \"High scenario\", 2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 65,
+      "line": 66,
       "expression": "format(d.range, \"Impact range\", 3)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 123,
+      "line": 125,
       "expression": "uniqueCategories.map(cat => (\n              <Badge key={cat} variant=\"secondary\" className={`text-[10px] px-1.5 py-0 ${getCategoryBadgeClass(cat)}`}>\n                {cat}\n              </Badge>\n            ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 125,
+      "line": 127,
       "expression": "cat",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 171,
+      "line": 173,
       "expression": "chartData.map((entry, idx) => (\n                <Cell key={idx} fill={getCategoryColor(entry.category)} fillOpacity={0.7} />\n              ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 182,
+      "line": 184,
       "expression": "baseline.toFixed(2)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 140,
+      "line": 142,
       "expression": "config.title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 141,
+      "line": 143,
       "expression": "hasNowcast && (\n              <Badge variant=\"secondary\" className=\"text-[10px] px-1.5 py-0\">\n                Nowcast\n              </Badge>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 147,
+      "line": 149,
       "expression": "config.subtitle",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 148,
+      "line": 150,
       "expression": "data[0].historicalTypeLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 148,
+      "line": 150,
       "expression": "data[0].historicalTypeCode",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 161,
+      "line": 163,
       "expression": "data.some(row => CATEGORY_KEYS.some(key => !row[key])) &&\n        <p role=\"status\" className=\"text-xs text-muted-foreground\">Some category cells are missing for the selected reference years. Their values and threshold diagnostics remain unavailable; other categories are not substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 163,
+      "line": 165,
       "expression": "metricView === \"netZero\" && <details className=\"text-xs text-muted-foreground mb-3\" data-testid=\"category-threshold-statuses\">\n        <summary>Selected 5%-of-2024 diagnostic status by year and scenario</summary>\n        <ul>{data.flatMap(d => CATEGORY_KEYS.map(key =>\n          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)}</li>\n        ))}</ul>\n      </details>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 165,
+      "line": 167,
       "expression": "data.flatMap(d => CATEGORY_KEYS.map(key =>\n          <li key={`${d.year}-${key}`}>{d.year} / {CATEGORY_NAMES[key]}: {thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)}</li>\n        ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 166,
+      "line": 168,
       "expression": "d.year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 166,
+      "line": 168,
       "expression": "CATEGORY_NAMES[key]",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 166,
+      "line": 168,
       "expression": "thresholdDiagnosticDisplay(d[key]?.thresholdDiagnostic)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 169,
+      "line": 171,
       "expression": "metricView === \"netZero\" && <ThresholdDiagnosticDownload diagnostics={\n        data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key]?.thresholdDiagnostic ? [d[key].thresholdDiagnostic!] : []))\n      } contextLabels={data.flatMap(d => CATEGORY_KEYS.flatMap(key => d[key]?.thresholdDiagnostic\n        ? [`Reference input year ${d.year}: ${CATEGORY_NAMES[key]}`] : []))} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 213,
+      "line": 215,
       "expression": "isNc ? `${label} (estimated)` : `${label}`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 215,
+      "line": 217,
       "expression": "CATEGORY_KEYS.map((key) => {\n                    const val = isNc ? point[`${key}_nowcast`] : point[key];\n                    if (val == null) return null;\n                    return (\n                      <div key={key} className=\"flex items-center justify-between gap-4\">\n                        <div className=\"flex items-center gap-1.5\">\n                          <div\n                            className=\"w-2.5 h-2.5 rounded-sm\"\n                            style={{ backgroundColor: CATEGORY_COLORS[key] }}\n                          />\n                          <span className=\"text-xs\">{CATEGORY_NAMES[key]}</span>\n                        </div>\n                        <span className=\"text-xs font-medium tabular-nums\">\n                          {config.formatter(val as number)}\n                        </span>\n                      </div>\n                    );\n                  })",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 225,
+      "line": 227,
       "expression": "CATEGORY_NAMES[key]",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 228,
+      "line": 230,
       "expression": "config.formatter(val as number)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 237,
+      "line": 239,
       "expression": "config.referenceLines.map((ref, i) => (\n            <ReferenceLine\n              key={i}\n              y={ref.y}\n              stroke={ref.color}\n              strokeDasharray=\"4 4\"\n              label={{\n                value: ref.label,\n                position: \"insideTopRight\",\n                style: { fontSize: 10, fill: ref.color },\n              }}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 250,
+      "line": 252,
       "expression": "CATEGORY_KEYS.map((key) => (\n            <Line\n              key={key}\n              type=\"monotone\"\n              dataKey={key}\n              stroke={CATEGORY_COLORS[key]}\n              strokeWidth={key === \"all\" ? 2.5 : 1.5}\n              strokeDasharray={key === \"all\" ? \"6 3\" : undefined}\n              dot={false}\n              activeDot={{ r: 3 }}\n              connectNulls={false}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 263,
+      "line": 265,
       "expression": "hasNowcast && CATEGORY_KEYS.map((key) => (\n            <Line\n              key={`${key}_nowcast`}\n              type=\"monotone\"\n              dataKey={`${key}_nowcast`}\n              stroke={CATEGORY_COLORS[key]}\n              strokeWidth={key === \"all\" ? 2 : 1.5}\n              strokeDasharray=\"4 3\"\n              dot={false}\n              activeDot={{ r: 3 }}\n              connectNulls={false}\n            />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 280,
+      "line": 282,
       "expression": "CATEGORY_KEYS.map((key) => (\n          <div key={key} className=\"flex items-center gap-1\">\n            <div\n              className=\"w-3 h-0.5\"\n              style={{\n                backgroundColor: CATEGORY_COLORS[key],\n                borderTop: key === \"all\" ? `2px dashed ${CATEGORY_COLORS[key]}` : undefined,\n              }}\n            />\n            <span className=\"text-[10px] text-muted-foreground\">{CATEGORY_NAMES[key]}</span>\n          </div>\n        ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 289,
+      "line": 291,
       "expression": "CATEGORY_NAMES[key]",
       "explicitSemanticAncestor": false
     },
@@ -5012,241 +5030,253 @@
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 220,
-      "expression": "uploadsError && <p role=\"alert\">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>",
+      "line": 219,
+      "expression": "!summaryLoading && !summaryError && <ProducerDownloadLink payload={summary} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 221,
-      "expression": "summaryError && <p role=\"alert\">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>",
+      "line": 220,
+      "expression": "!carbonPricesLoading && !carbonPricesError && <ProducerDownloadLink payload={carbonPrices} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
       "line": 222,
+      "expression": "uploadsError && <p role=\"alert\">Company dataset inventory could not be read. No completed-dataset identity is inferred.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/climate-valuation.tsx",
+      "line": 223,
+      "expression": "summaryError && <p role=\"alert\">Company summary read failed for the current selection. No prior summary counts or series are shown.</p>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/climate-valuation.tsx",
+      "line": 224,
       "expression": "summary?.dateRange && !(typeof summary.dateRange.recordCount === \"number\" && Number.isFinite(summary.dateRange.recordCount)) &&\n          <p role=\"status\">Historical record count not returned as a finite number. Group-series availability is not inferred.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 263,
+      "line": 265,
       "expression": "summary?.imputation && summary.imputation.imputedRecords > 0 && (\n          <div\n            className=\"flex items-start gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-400\"\n            data-testid=\"text-imputation-disclosure\"\n          >\n            <Info className=\"h-3.5 w-3.5 mt-0.5 shrink-0\" />\n            <span>\n              <span data-field-id=\"companySummary.imputation.imputedRecords\">{summary.imputation.imputedRecords.toLocaleString()}</span> of{\" \"}\n              <span data-field-id=\"companySummary.imputation.totalRecords\">{typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"}</span> records (\n              <span data-field-id=\"companySummary.imputation.imputedFraction\">{displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")}</span>) use carried-forward\n              (imputed) emissions where a reporting gap exists. Carbon-intensity and pricing\n              for these periods rely on the most recent observed scope 1/2/3 values.\n            </span>\n          </div>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 270,
+      "line": 272,
       "expression": "summary.imputation.imputedRecords.toLocaleString()",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 270,
+      "line": 272,
       "expression": "\" \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 271,
+      "line": 273,
       "expression": "typeof summary.imputation.totalRecords === \"number\" && Number.isFinite(summary.imputation.totalRecords) ? summary.imputation.totalRecords.toLocaleString() : \"Total record count unavailable — not returned\"",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 272,
+      "line": 274,
       "expression": "displayDiagnostic(typeof summary.imputation.imputedFraction === \"number\" ? summary.imputation.imputedFraction * 100 : null, \"%\")",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 278,
+      "line": 280,
       "expression": "summary?.imputation && !(typeof summary.imputation.imputedRecords === \"number\" && Number.isFinite(summary.imputation.imputedRecords)) &&\n          <p role=\"status\">Imputation coverage unavailable: imputed record count not returned. No zero-imputation inference is made.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 281,
+      "line": 283,
       "expression": "uploads && uploads.length > 0 && (\n          <Card className=\"p-4\">\n            <h3 className=\"text-sm font-medium mb-3\" data-testid=\"text-uploads-heading\">Recent Uploads</h3>\n            <div className=\"space-y-2\">\n              {uploads.slice(0, 3).map((u) => (\n                <div key={u.id} className=\"flex items-center justify-between gap-2 text-sm flex-wrap\" data-testid={`row-upload-${u.id}`}>\n                  <div className=\"flex items-center gap-2\">\n                    <FileSpreadsheet className=\"h-4 w-4 text-muted-foreground\" />\n                    <span className=\"truncate max-w-[200px]\">{u.filename}</span>\n                  </div>\n                  <div className=\"flex items-center gap-2\">\n                    <Badge\n                      variant={u.status === \"completed\" ? \"default\" : u.status === \"processing\" ? \"secondary\" : \"destructive\"}\n                      data-testid={`badge-upload-status-${u.id}`}\n                    >\n                      {u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />}\n                      {u.status}\n                    </Badge>\n                    {u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )}\n                    {(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )}\n                  </div>\n                </div>\n              ))}\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 285,
+      "line": 287,
       "expression": "uploads.slice(0, 3).map((u) => (\n                <div key={u.id} className=\"flex items-center justify-between gap-2 text-sm flex-wrap\" data-testid={`row-upload-${u.id}`}>\n                  <div className=\"flex items-center gap-2\">\n                    <FileSpreadsheet className=\"h-4 w-4 text-muted-foreground\" />\n                    <span className=\"truncate max-w-[200px]\">{u.filename}</span>\n                  </div>\n                  <div className=\"flex items-center gap-2\">\n                    <Badge\n                      variant={u.status === \"completed\" ? \"default\" : u.status === \"processing\" ? \"secondary\" : \"destructive\"}\n                      data-testid={`badge-upload-status-${u.id}`}\n                    >\n                      {u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />}\n                      {u.status}\n                    </Badge>\n                    {u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )}\n                    {(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )}\n                  </div>\n                </div>\n              ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 289,
+      "line": 291,
       "expression": "u.filename",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 296,
+      "line": 298,
       "expression": "u.status === \"processing\" && <RefreshCw className=\"h-3 w-3 animate-spin mr-1\" />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 297,
+      "line": 299,
       "expression": "u.status",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 299,
+      "line": 301,
       "expression": "u.status === \"completed\" && u.companiesCount && (\n                      <span className=\"text-muted-foreground text-xs\">{u.companiesCount} companies</span>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 300,
+      "line": 302,
       "expression": "u.companiesCount",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 302,
+      "line": 304,
       "expression": "(u.status === \"processing\" || u.status === \"failed\") && (\n                      <Button size=\"sm\" variant=\"outline\" data-testid={`button-reset-upload-${u.id}`} disabled title={OPERATOR_ONLY_REASON}>\n                        {u.status === \"processing\" ? \"Recover\" : \"Retry\"}\n                      </Button>\n                    )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 304,
+      "line": 306,
       "expression": "u.status === \"processing\" ? \"Recover\" : \"Retry\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 314,
+      "line": 316,
       "expression": "hasData && (\n          <Card className=\"p-4\">\n            <h3 className=\"text-sm font-medium mb-3\" data-testid=\"text-config-heading\">Analysis Configuration</h3>\n            <div className=\"flex flex-wrap items-center gap-4\">\n              <div className=\"flex items-center gap-2\">\n                <Label className=\"text-sm text-muted-foreground whitespace-nowrap\">Cost of Equity</Label>\n                <div className=\"flex items-center gap-1\">\n                  <input\n                    type=\"number\"\n                    min=\"1\"\n                    max=\"30\"\n                    step=\"0.5\"\n                    defaultValue={costOfEquity}\n                    onBlur={(e) => {\n                      const val = parseFloat(e.target.value);\n                      if (!isNaN(val) && val > 0 && val <= 30) setCostOfEquity(val);\n                      else e.target.value = String(costOfEquity);\n                    }}\n                    onKeyDown={(e) => { if (e.key === \"Enter\") (e.target as HTMLInputElement).blur(); }}\n                    className=\"w-16 h-9 rounded-md border bg-background px-2 text-sm text-center\"\n                    data-testid=\"input-cost-of-equity\"\n                  />\n                  <span className=\"text-sm text-muted-foreground\">%</span>\n                </div>\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <Switch id=\"scope3-switch\" checked={includeScope3} onCheckedChange={setIncludeScope3} data-testid=\"switch-scope3\" />\n                <Label htmlFor=\"scope3-switch\" className=\"text-sm text-muted-foreground whitespace-nowrap\">Include Scope 3</Label>\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <Switch id=\"winsorize-switch\" checked={winsorize} onCheckedChange={setWinsorize} data-testid=\"switch-winsorize\" />\n                <Label htmlFor=\"winsorize-switch\" className=\"text-sm text-muted-foreground whitespace-nowrap\">Winsorize (5%)</Label>\n              </div>\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 351,
+      "line": 353,
       "expression": "hasData ? (\n          <div className=\"space-y-10\">\n\n            <AnalysisSection\n              icon={Factory}\n              costOfEquityPct={8}\n              title=\"High vs Low Carbon Companies\"\n              description=\"Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. This endpoint uses fixed r = 8%; changing the SDG/ambition cost-of-equity control does not change it. Gordon steady-state g = r − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.\"\n              chartData={carbonIntensityChartData ?? []}\n              isLoading={carbonPricesLoading}\n              error={carbonPricesError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"carbon\"\n              peChart={{\n                highKey: \"cleanPE\",\n                lowKey: \"dirtyPE\",\n                highLabel: \"Low Carbon (Clean)\",\n                lowLabel: \"High Carbon (Dirty)\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Low Carbon\" lowLabel=\"High Carbon\" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,\n              }}\n            />\n\n            <AnalysisSection\n              icon={Leaf}\n              costOfEquityPct={costOfEquity}\n              gordonSemanticPrefix=\"sdg\"\n              title=\"High vs Low SDG-Aligned Companies\"\n              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}\n              chartData={sdgChartData ?? []}\n              isLoading={sdgGrowthLoading}\n              error={sdgGrowthError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"sdg\"\n              peChart={{\n                highKey: \"cleanPE\",\n                lowKey: \"dirtyPE\",\n                highLabel: \"Positive SDG (Clean)\",\n                lowLabel: \"Negative SDG (Dirty)\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Positive SDG\" lowLabel=\"Negative SDG\" highValue={d.cleanPE} lowValue={d.dirtyPE} highCount={d.cleanCount} lowCount={d.dirtyCount} />,\n              }}\n            />\n\n            <AnalysisSection\n              icon={Target}\n              costOfEquityPct={costOfEquity}\n              gordonSemanticPrefix=\"targetTerciles\"\n              title=\"High vs Low Ambition Companies\"\n              description={`Companies grouped by announced targets. P/E differences do not establish emissions outcomes. Gordon steady-state baselines use ${costOfEquity}% cost of equity, not a validated valuation-to-activity mapping.`}\n              chartData={ambitionChartData ?? []}\n              isLoading={decarbTercilesLoading}\n              error={decarbTercilesError}\n              formatChartDate={formatChartDate}\n              formatTooltipDate={formatTooltipDate}\n              testIdPrefix=\"ambition\"\n              headerRight={\n                <Select value={decarbTercileMethod} onValueChange={(v: \"absolute\" | \"sector_relative\" | \"sub_sector_relative\" | \"industry_relative\") => setDecarbTercileMethod(v)}>\n                  <SelectTrigger className=\"w-[180px]\" data-testid=\"select-decarb-tercile-method\">\n                    <SelectValue />\n                  </SelectTrigger>\n                  <SelectContent>\n                    <SelectItem value=\"absolute\">Absolute</SelectItem>\n                    <SelectItem value=\"sector_relative\">Sector Relative</SelectItem>\n                    <SelectItem value=\"sub_sector_relative\">Sub-Sector Relative</SelectItem>\n                    <SelectItem value=\"industry_relative\">Industry Relative</SelectItem>\n                  </SelectContent>\n                </Select>\n              }\n              peChart={{\n                highKey: \"bestPE\",\n                lowKey: \"worstPE\",\n                highLabel: \"Most Ambitious\",\n                lowLabel: \"Least Ambitious\",\n                tooltip: (d) => <ValuationPETooltip dateLabel={formatTooltipDate(d.date)} highLabel=\"Most Ambitious\" lowLabel=\"Least Ambitious\" highValue={d.bestPE} lowValue={d.worstPE} highCount={d.bestCount} lowCount={d.worstCount} />,\n              }}\n            />\n\n          </div>\n        ) : (\n          <Card className=\"p-12\">\n            <div className=\"text-center space-y-4\">\n              <div className=\"flex items-center justify-center w-16 h-16 rounded-md bg-primary/10 mx-auto\">\n                <DollarSign className=\"h-8 w-8 text-primary\" />\n              </div>\n              <div>\n                <h3 className=\"text-lg font-medium\" data-testid=\"text-no-data-heading\">No company dataset available</h3>\n                <p className=\"text-sm text-muted-foreground mt-1 max-w-md mx-auto\">\n                  An operator must import and review company data using the CLI.\n                  Valuation-derived temperature, carbon-price and net-zero outputs remain withheld.\n                </p>\n              </div>\n              <Button variant=\"default\" disabled title={OPERATOR_ONLY_REASON} data-testid=\"button-upload-cta\">\n                <Upload className=\"h-4 w-4 mr-2\" />\n                Upload Excel File\n              </Button>\n            </div>\n          </Card>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 504,
-      "expression": "title",
-      "explicitSemanticAncestor": false
-    },
-    {
-      "source": "client/src/pages/climate-valuation.tsx",
       "line": 506,
-      "expression": "headerRight",
+      "expression": "title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
       "line": 508,
+      "expression": "headerRight",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/climate-valuation.tsx",
+      "line": 510,
       "expression": "description",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 512,
+      "line": 514,
       "expression": "gordonBaselineLabel(costOfEquityPct)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 525,
+      "line": 527,
       "expression": "peChart.highLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 525,
+      "line": 527,
       "expression": "peChart.lowLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 537,
+      "line": 539,
       "expression": "error ? <p role=\"alert\">P/E comparison read failed for {title}. No prior selection values or downloads are shown.</p> : isLoading ? (\n            <Skeleton className=\"h-[300px] w-full\" />\n          ) : currentRows.length > 0 ? (\n            <>\n            {currentRows.some(row => roundedPE(row[peChart.highKey]) === undefined || roundedPE(row[peChart.lowKey]) === undefined) &&\n              <p role=\"status\">Some selected P/E observations are missing or invalid. Their chart and export cells remain unavailable, not zero.</p>}\n            {currentRows.length !== chartData.length && <p role=\"status\">Rows with missing or invalid observation dates are withheld; no date is inferred.</p>}\n            <ResponsiveContainer width=\"100%\" height={300}>\n              <LineChart data={currentRows.map(row => ({ ...row, [peChart.highKey]: roundedPE(row[peChart.highKey]), [peChart.lowKey]: roundedPE(row[peChart.lowKey]) }))}>\n                <CartesianGrid strokeDasharray=\"3 3\" className=\"opacity-30\" />\n                <XAxis dataKey=\"date\" type=\"number\" domain={[\"dataMin\", \"dataMax\"]} scale=\"time\" tick={{ fontSize: 11 }} tickFormatter={formatChartDate} className=\"text-muted-foreground\" />\n                <YAxis tick={{ fontSize: 11 }} tickFormatter={(v: number) => `${v.toFixed(0)}x`} className=\"text-muted-foreground\" />\n                <Tooltip content={({ active, payload }) => {\n                  if (!active || !payload || payload.length === 0) return null;\n                  return <>{peChart.tooltip(payload[0].payload)}</>;\n                }} />\n                <Legend verticalAlign=\"top\" height={30} iconType=\"line\" wrapperStyle={{ fontSize: 11 }} />\n                <Line type=\"monotone\" dataKey={peChart.highKey} stroke=\"hsl(168, 76%, 36%)\" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.highLabel} />\n                <Line type=\"monotone\" dataKey={peChart.lowKey} stroke=\"hsl(0, 72%, 51%)\" strokeWidth={2} dot={false} activeDot={{ r: 4 }} name={peChart.lowLabel} />\n              </LineChart>\n            </ResponsiveContainer>\n            </>\n          ) : (\n            <div role=\"status\" className=\"flex items-center justify-center h-[300px] text-sm text-muted-foreground\">{chartData.length ? \"No P/E observations have a valid observation date; no date is inferred.\" : `No P/E observations returned for ${title}.`}</div>\n          )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 537,
+      "line": 539,
       "expression": "title",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 560,
+      "line": 562,
       "expression": "chartData.length ? \"No P/E observations have a valid observation date; no date is inferred.\" : `No P/E observations returned for ${title}.`",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 582,
+      "line": 584,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 584,
+      "line": 586,
       "expression": "typeof value === \"number\" && Number.isFinite(value) ? value.toLocaleString() : \"Unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 585,
+      "line": 587,
       "expression": "!(typeof value === \"number\" && Number.isFinite(value)) && <p role=\"status\" className=\"text-xs text-muted-foreground\">{label}: count not returned for the current selection.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 585,
+      "line": 587,
       "expression": "label",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 609,
+      "line": 611,
       "expression": "dateLabel ?? \"Observation date unavailable\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 610,
+      "line": 612,
       "expression": "highLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 610,
+      "line": 612,
       "expression": "pe(highValue)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 610,
+      "line": 612,
       "expression": "count(highCount)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 611,
+      "line": 613,
       "expression": "lowLabel",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 611,
+      "line": 613,
       "expression": "pe(lowValue)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 611,
+      "line": 613,
       "expression": "count(lowCount)",
       "explicitSemanticAncestor": false
     },
@@ -9283,25 +9313,25 @@
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].Year",
       "id": "projection.emissionsTrajectory[].year",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].P10 (GtCO2e)",
       "id": "projection.emissionsTrajectory[].p10",
       "transform": "Identity; annual conditional emissions, not calibrated uncertainty"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].Median P50 (GtCO2e)",
       "id": "projection.emissionsTrajectory[].p50",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].P90 (GtCO2e)",
       "id": "projection.emissionsTrajectory[].p90",
       "transform": "Identity; annual conditional emissions, not calibrated uncertainty"
@@ -9433,199 +9463,199 @@
       "transform": "Identity; no regional baseline borrowing"
     },
     {
-      "surface": "XLSX client/src/components/temperature-histogram.tsx:66",
+      "surface": "XLSX client/src/components/temperature-histogram.tsx:68",
       "field": "[].Temperature (°C)",
       "id": "projection.temperatureDistribution.pdf[].temperature",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/temperature-histogram.tsx:66",
+      "surface": "XLSX client/src/components/temperature-histogram.tsx:68",
       "field": "[].Probability density (1/°C)",
       "id": "projection.temperatureDistribution.pdf[].probability",
       "transform": "Identity; density, not point probability"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Historical type code",
       "id": "historical.historicalTypeCode",
       "transform": "Exact S09-001 evidence class; missing/inconsistent class refuses export"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Historical type label",
       "id": "historical.historicalTypeLabel",
       "transform": "Exact original S09-001 child-clause label"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Year",
       "id": "historical.year",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Temperature Median (°C)",
       "id": "historical.median",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].P10 (°C)",
       "id": "historical.p10",
       "transform": "Identity; uncalibrated conditional quantile"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].P90 (°C)",
       "id": "historical.p90",
       "transform": "Identity; uncalibrated conditional quantile"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Reduction Rate (%/yr)",
       "id": "historical.reductionRate",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "id": "historical.netZeroYear",
       "transform": "Identity; fixed-5gt-v1; null preserved; not 5% or net zero"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Year emissions reach 5% of 2024",
       "id": "historical.thresholdDiagnostic.year",
       "transform": "Identity; null preserved; not fixed 5 Gt"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].5% diagnostic status",
       "id": "historical.thresholdDiagnostic.status",
       "transform": "Identity; missing archived diagnostic -> withheld"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Estimated",
       "id": "historical.isNowcast",
       "transform": "true -> yes; false -> no, not vintage certification"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Region",
       "id": "regional.regionName",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Legacy global counterfactual warming (°C)",
       "id": "regional.temperatureRise",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Reduction Rate (%/yr)",
       "id": "regional.reductionRate",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Carbon Intensity (kg/$GDP)",
       "id": "regional.carbonIntensity",
       "transform": "Identity; read companion basis column"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Intensity basis",
       "id": "regional.carbonIntensityBasis",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "id": "regional.netZeroYear",
       "transform": "Identity; fixed-5gt-v1; null preserved; not 5% or net zero"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Milestone definition",
       "id": "regional.milestoneDefinition",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Claim",
       "id": "regional.claim",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Category",
       "id": "category.categoryName",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Temperature (°C)",
       "id": "category.temperatureRise",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Reduction Rate (%/yr)",
       "id": "category.reductionRate",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "id": "category.netZeroYear",
       "transform": "Identity; fixed-5gt-v1; null preserved; not 5% or net zero"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Year emissions reach 5% of 2024",
       "id": "category.thresholdDiagnostic.year",
       "transform": "Identity; null preserved; not fixed 5 Gt"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].5% diagnostic status",
       "id": "category.thresholdDiagnostic.status",
       "transform": "Identity; missing archived diagnostic -> withheld"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Indicator",
       "id": "sensitivity.label",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Category",
       "id": "sensitivity.category",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Baseline (°C)",
       "id": "sensitivity.baselineTemperature",
       "transform": "Row baseline, or shared chart baseline if row field missing"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Lower scenario median (°C)",
       "id": "sensitivity.p10Temperature",
       "transform": "Identity; not a probability quantile"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Upper scenario median (°C)",
       "id": "sensitivity.p90Temperature",
       "transform": "Identity; not a probability quantile"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Impact Range (°C)",
       "id": "sensitivity.temperatureRange",
       "transform": "Identity"
@@ -10217,7 +10247,7 @@
       ]
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:152",
       "source": "client/src/components/category-trend-chart.tsx",
       "family": "categoryTrend",
       "rowsExpression": "data.map((d) => {\n    const row: Record<string, string | number | boolean | undefined> = {\n      ...requireHistoricalType(d),\n      Year: d.year,\n      Estimated: d.isNowcast ? \"yes\" : \"no\",\n    };\n    for (const key of CATEGORY_KEYS) {\n      let value: number | null | undefined = d[key]?.[config.metricKey];\n      row[CATEGORY_NAMES[key]] = value ?? undefined;\n    }\n    return row;\n  })",
@@ -10592,7 +10622,7 @@
       ]
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:529",
       "source": "client/src/pages/climate-valuation.tsx",
       "family": "valuationPE",
       "rowsExpression": "currentRows.map((d) => ({\n    Date: formatTooltipDate(d.date),\n    [`${peChart.highLabel} P/E (x)`]: roundedPE(d[peChart.highKey]),\n    [`${peChart.lowLabel} P/E (x)`]: roundedPE(d[peChart.lowKey]),\n  }))",
@@ -12533,6 +12563,62 @@
       ]
     }
   ],
+  "retainedProducerMetadata": {
+    "definitions": 11,
+    "fields": {
+      "version": {
+        "id": "retainedProducer.version",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "resultId": {
+        "id": "retainedProducer.resultId",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "resultHash": {
+        "id": "retainedProducer.resultHash",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "manifestId": {
+        "id": "retainedProducer.manifestId",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "materialInputsId": {
+        "id": "retainedProducer.materialInputsId",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "codeArchiveId": {
+        "id": "retainedProducer.codeArchiveId",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "modelVersion": {
+        "id": "retainedProducer.modelVersion",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "orderedSnapshotHashes[]": {
+        "id": "retainedProducer.orderedSnapshotHashes[]",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "scenario": {
+        "id": "retainedProducer.scenario",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "meaning": {
+        "id": "retainedProducer.meaning",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      },
+      "scientificAcceptance": {
+        "id": "retainedProducer.scientificAcceptance",
+        "transform": "Exact server-verified proof field; no UI selection substitution"
+      }
+    },
+    "surfaces": [
+      "X-Producer-Identity response header",
+      "X-Download-Manifest.producerIdentity",
+      "GET /api/analysis/results/:id/export.json?downloadMetadata=manifest-v1 manifest.producerIdentity"
+    ],
+    "verification": "script/producer-download.test.ts exact/current/selected/stored/concurrent/default+embedded readback; server-private Response WeakMap",
+    "boundary": "Supplemental provenance metadata only. Does not alter original public denominator, close opaque result slots, certify transformed chart rows, attest a running executable or establish scientific acceptance. Exact path and resolved server input-context checks apply to current producer responses; stored exports retain their own allowlisted scenario."
+  },
   "supplementalConcreteExportChanges": {
     "indicatorCardColumns": "Now all22 registered indicator keys plus Year/Estimated; eight newly concrete columns versus14 previously configured cards (including two growth-rate columns) are supplemental changes, not extra original closure slots. Header native units come from qualified indicator definitions, not card display scaling.",
     "originalSlotAccounting": "One original dynamic schema-boundary slot remains one slot. Every admitted column has a qualified ID and precise transformation; non-domain keys or row/schema disagreement fail runtime export. Concrete domain cases above are separate inventory, not added to original denominator.",
@@ -53543,7 +53629,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "total": 6,
       "bound": 6,
       "unbound": [],
@@ -53552,7 +53638,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:152",
       "total": 1,
       "bound": 1,
       "unbound": [],
@@ -53579,7 +53665,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "total": 4,
       "bound": 4,
       "unbound": [],
@@ -53588,7 +53674,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "total": 11,
       "bound": 11,
       "unbound": [],
@@ -53624,7 +53710,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "total": 8,
       "bound": 8,
       "unbound": [],
@@ -53633,7 +53719,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "total": 6,
       "bound": 6,
       "unbound": [],
@@ -53642,7 +53728,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/temperature-histogram.tsx:66",
+      "surface": "XLSX client/src/components/temperature-histogram.tsx:68",
       "total": 2,
       "bound": 2,
       "unbound": [],
@@ -53660,7 +53746,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:529",
       "total": 2,
       "bound": 2,
       "unbound": [],
@@ -54052,11 +54138,11 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:152",
       "field": "[].*",
       "type": "string | number | boolean | undefined",
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 150,
+      "line": 152,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -54068,11 +54154,11 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:529",
       "field": "[].*",
       "type": "string | number | undefined",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 527,
+      "line": 529,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -62288,7 +62374,7 @@
     {
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].sourceMetadataProposal.documents[].bytes",
-      "type": "18255",
+      "type": "19014",
       "source": "server/routes.ts",
       "line": 453,
       "resolution": "typed-field"
@@ -62296,7 +62382,7 @@
     {
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].sourceMetadataProposal.documents[].id",
-      "type": "\"pew-rights\"",
+      "type": "\"sbti-terms\"",
       "source": "server/routes.ts",
       "line": 453,
       "resolution": "typed-field"
@@ -62304,7 +62390,7 @@
     {
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].sourceMetadataProposal.documents[].sha256",
-      "type": "\"dc1f224879374c0799cf1a2376416054a0a9f23a231755ace3f5933c207509a1\"",
+      "type": "\"3bd866f6487b325001b405bab8eb36efbfd27c52efb2ec21dcf45b5a69f91283\"",
       "source": "server/routes.ts",
       "line": 453,
       "resolution": "typed-field"
@@ -62312,7 +62398,7 @@
     {
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].sourceMetadataProposal.documents[].url",
-      "type": "\"https://www.pewresearch.org/about/terms-and-conditions\"",
+      "type": "\"https://sciencebasedtargets.org/about-us/website-terms-of-use\"",
       "source": "server/routes.ts",
       "line": 453,
       "resolution": "typed-field"
@@ -62536,7 +62622,7 @@
     {
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].sourceMetadataProposal.sourceRelationship",
-      "type": "\"unconfirmed-survey-candidate\"",
+      "type": "\"unconfirmed-publisher-candidate\"",
       "source": "server/routes.ts",
       "line": 453,
       "resolution": "typed-field"
@@ -64230,59 +64316,59 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].5% diagnostic status",
       "type": "\"withheld\"",
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Category",
       "type": "string",
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "type": "number",
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Reduction Rate (%/yr)",
       "type": "number",
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Temperature (°C)",
       "type": "number",
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-comparison.tsx:80",
+      "surface": "XLSX client/src/components/category-comparison.tsx:82",
       "field": "[].Year emissions reach 5% of 2024",
       "type": "number",
       "source": "client/src/components/category-comparison.tsx",
-      "line": 80,
+      "line": 82,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/category-trend-chart.tsx:150",
+      "surface": "XLSX client/src/components/category-trend-chart.tsx:152",
       "field": "[].*",
       "type": "string | number | boolean | undefined",
       "source": "client/src/components/category-trend-chart.tsx",
-      "line": 150,
+      "line": 152,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
@@ -64734,123 +64820,123 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].Median P50 (GtCO2e)",
       "type": "number",
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 67,
+      "line": 69,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].P10 (GtCO2e)",
       "type": "number",
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 67,
+      "line": 69,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].P90 (GtCO2e)",
       "type": "number",
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 67,
+      "line": 69,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-chart.tsx:67",
+      "surface": "XLSX client/src/components/emissions-chart.tsx:69",
       "field": "[].Year",
       "type": "number",
       "source": "client/src/components/emissions-chart.tsx",
-      "line": 67,
+      "line": 69,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].5% diagnostic status",
       "type": "\"withheld\"",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Estimated",
       "type": "string",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Historical type code",
       "type": "string",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Historical type label",
       "type": "string",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].P10 (°C)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].P90 (°C)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Reduction Rate (%/yr)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Temperature Median (°C)",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Year",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+      "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
       "field": "[].Year emissions reach 5% of 2024",
       "type": "number",
       "source": "client/src/components/historical-trend-chart.tsx",
-      "line": 152,
+      "line": 154,
       "resolution": "typed-field"
     },
     {
@@ -65038,131 +65124,131 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Carbon Intensity (kg/$GDP)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Claim",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Intensity basis",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Legacy fixed-5gt-v1 year (5 GtCO2e)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Legacy global counterfactual warming (°C)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Milestone definition",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Reduction Rate (%/yr)",
       "type": "number",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/regional-comparison.tsx:79",
+      "surface": "XLSX client/src/components/regional-comparison.tsx:81",
       "field": "[].Region",
       "type": "string",
       "source": "client/src/components/regional-comparison.tsx",
-      "line": 79,
+      "line": 81,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Baseline (°C)",
       "type": "number",
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Category",
       "type": "string",
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Impact Range (°C)",
       "type": "number",
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Indicator",
       "type": "string",
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Lower scenario median (°C)",
       "type": "number",
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/sensitivity-chart.tsx:129",
+      "surface": "XLSX client/src/components/sensitivity-chart.tsx:131",
       "field": "[].Upper scenario median (°C)",
       "type": "number",
       "source": "client/src/components/sensitivity-chart.tsx",
-      "line": 129,
+      "line": 131,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/temperature-histogram.tsx:66",
+      "surface": "XLSX client/src/components/temperature-histogram.tsx:68",
       "field": "[].Probability density (1/°C)",
       "type": "number",
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 66,
+      "line": 68,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/temperature-histogram.tsx:66",
+      "surface": "XLSX client/src/components/temperature-histogram.tsx:68",
       "field": "[].Temperature (°C)",
       "type": "number",
       "source": "client/src/components/temperature-histogram.tsx",
-      "line": 66,
+      "line": 68,
       "resolution": "typed-field"
     },
     {
@@ -65318,19 +65404,19 @@
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:529",
       "field": "[].*",
       "type": "string | number | undefined",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 527,
+      "line": 529,
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/pages/climate-valuation.tsx:527",
+      "surface": "XLSX client/src/pages/climate-valuation.tsx:529",
       "field": "[].Date",
       "type": "string",
       "source": "client/src/pages/climate-valuation.tsx",
-      "line": 527,
+      "line": 529,
       "resolution": "typed-field"
     },
     {
@@ -80933,7 +81019,7 @@
       {
         "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].sourceMetadataProposal.documents[].bytes",
-        "type": "18255",
+        "type": "19014",
         "source": "server/routes.ts",
         "line": 453,
         "resolution": "typed-field",
@@ -80942,7 +81028,7 @@
       {
         "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].sourceMetadataProposal.documents[].id",
-        "type": "\"pew-rights\"",
+        "type": "\"sbti-terms\"",
         "source": "server/routes.ts",
         "line": 453,
         "resolution": "typed-field",
@@ -80951,7 +81037,7 @@
       {
         "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].sourceMetadataProposal.documents[].sha256",
-        "type": "\"dc1f224879374c0799cf1a2376416054a0a9f23a231755ace3f5933c207509a1\"",
+        "type": "\"3bd866f6487b325001b405bab8eb36efbfd27c52efb2ec21dcf45b5a69f91283\"",
         "source": "server/routes.ts",
         "line": 453,
         "resolution": "typed-field",
@@ -80960,7 +81046,7 @@
       {
         "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].sourceMetadataProposal.documents[].url",
-        "type": "\"https://www.pewresearch.org/about/terms-and-conditions\"",
+        "type": "\"https://sciencebasedtargets.org/about-us/website-terms-of-use\"",
         "source": "server/routes.ts",
         "line": 453,
         "resolution": "typed-field",
@@ -81212,7 +81298,7 @@
       {
         "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].sourceMetadataProposal.sourceRelationship",
-        "type": "\"unconfirmed-survey-candidate\"",
+        "type": "\"unconfirmed-publisher-candidate\"",
         "source": "server/routes.ts",
         "line": 453,
         "resolution": "typed-field",
@@ -81705,20 +81791,20 @@
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/category-comparison.tsx:80",
+        "surface": "XLSX client/src/components/category-comparison.tsx:82",
         "field": "[].5% diagnostic status",
         "type": "\"withheld\"",
         "source": "client/src/components/category-comparison.tsx",
-        "line": 80,
+        "line": 82,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/category-comparison.tsx:80",
+        "surface": "XLSX client/src/components/category-comparison.tsx:82",
         "field": "[].Year emissions reach 5% of 2024",
         "type": "number",
         "source": "client/src/components/category-comparison.tsx",
-        "line": 80,
+        "line": 82,
         "resolution": "typed-field",
         "bound": true
       },
@@ -81912,38 +81998,38 @@
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
         "field": "[].5% diagnostic status",
         "type": "\"withheld\"",
         "source": "client/src/components/historical-trend-chart.tsx",
-        "line": 152,
+        "line": 154,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
         "field": "[].Historical type code",
         "type": "string",
         "source": "client/src/components/historical-trend-chart.tsx",
-        "line": 152,
+        "line": 154,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
         "field": "[].Historical type label",
         "type": "string",
         "source": "client/src/components/historical-trend-chart.tsx",
-        "line": 152,
+        "line": 154,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/historical-trend-chart.tsx:152",
+        "surface": "XLSX client/src/components/historical-trend-chart.tsx:154",
         "field": "[].Year emissions reach 5% of 2024",
         "type": "number",
         "source": "client/src/components/historical-trend-chart.tsx",
-        "line": 152,
+        "line": 154,
         "resolution": "typed-field",
         "bound": true
       },

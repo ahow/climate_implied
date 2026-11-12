@@ -1,5 +1,6 @@
 import { FIXED_5GT_DESCRIPTOR, residualQuantityExportNotes } from "@shared/quantityDescriptors";
 import { Card } from "@/components/ui/card";
+import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Globe, MapPin } from "lucide-react";
 import type { RegionalProjection } from "@/lib/types";
@@ -67,6 +68,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
 
   return (
     <Card className="p-6" data-testid="card-regional-comparison">
+      <ScientificEvidenceStrands compact />
       <div className="flex items-start justify-between gap-2 mb-4 flex-wrap">
         <div className="flex items-center gap-2">
           <Globe className="h-5 w-5 text-muted-foreground" />

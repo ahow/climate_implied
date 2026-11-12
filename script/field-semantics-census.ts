@@ -40,6 +40,7 @@ import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBinding
   stage10IdentityHeaderPaths, stage10LifecycleAuditBindings } from "../shared/stage10Coverage";
 import { workbookMoneySemantics, workbookMoneyReportPaths, workbookMoneyRootPaths, workbookMoneySheetBindings } from "../shared/workbookMoneyAudit";
 import { resolveOriginalResponseAlias } from "./response-alias-resolution";
+import { producerDownloadSemantics, producerDownloadFieldBindings } from "../shared/producerDownloadSemantics";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -584,6 +585,14 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   chainedResponseInventory,
   verifiedExportBindings:verifiedExportBindings.filter(b=>unique.some(e=>e.surface===b.surface&&e.field===b.field&&e.resolution==="typed-field")),
   certifiedFiniteExports,
+  retainedProducerMetadata: {
+    definitions: producerDownloadSemantics.length,
+    fields: producerDownloadFieldBindings,
+    surfaces: ["X-Producer-Identity response header", "X-Download-Manifest.producerIdentity",
+      "GET /api/analysis/results/:id/export.json?downloadMetadata=manifest-v1 manifest.producerIdentity"],
+    verification: "script/producer-download.test.ts exact/current/selected/stored/concurrent/default+embedded readback; server-private Response WeakMap",
+    boundary: "Supplemental provenance metadata only. Does not alter original public denominator, close opaque result slots, certify transformed chart rows, attest a running executable or establish scientific acceptance. Exact path and resolved server input-context checks apply to current producer responses; stored exports retain their own allowlisted scenario.",
+  },
   supplementalConcreteExportChanges:{
     indicatorCardColumns:"Now all22 registered indicator keys plus Year/Estimated; eight newly concrete columns versus14 previously configured cards (including two growth-rate columns) are supplemental changes, not extra original closure slots. Header native units come from qualified indicator definitions, not card display scaling.",
     originalSlotAccounting:"One original dynamic schema-boundary slot remains one slot. Every admitted column has a qualified ID and precise transformation; non-domain keys or row/schema disagreement fail runtime export. Concrete domain cases above are separate inventory, not added to original denominator.",

@@ -2,6 +2,7 @@
  * private review route. This is transport coverage, not source acceptance.
  */
 export const serverDownloadRegistry = [
+  { source: "server/producerDownload.ts", paths: ["/api/analysis/results/:id/export.json"], kind: "valuation", claim: "Exact verified retained completed response; not recalculation or scientific acceptance", availability: "verified-retained-producer-required" },
   { source: "server/warmingValidationReferenceApi.ts", paths: ["/api/reference/warming-validation/export.json"], kind: "indicators", claim: "Dated human-warming validation reference; not a model result", availability: "public-reference" },
   { source: "server/carbonPassThroughApi.ts", paths: ["/api/cv/carbon-pass-through-evidence/export.json"], kind: "valuation", claim: "Public carbon-price evidence review; not issuer validation", availability: "public-source-review" },
   { source: "server/companyConditionalApi.ts", paths: ["/api/cv/company-conditional-summaries/export.json", "/api/cv/company-conditional-summaries/export.xlsx"], kind: "valuation", claim: "Conditional company summaries; not identified market climate expectations", availability: "public-conditional-summary" },
