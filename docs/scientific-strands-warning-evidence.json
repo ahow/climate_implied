@@ -120,7 +120,17 @@
     {
       "path": "client/src/pages/climate-valuation.tsx",
       "originalSha256": "cda48069cb0225ede09392da3586217849ebc80f1f10c3894e202720af78dfa6",
-      "currentSha256": "61b3f6c2581997b3be2e11716692ab5e9a1df1b4446d3a20373c714b5992744b",
+      "currentSha256": "3ba6f1fed1dd824a60e7508378365362e3b144b0875f29b4853f4c8000c13a2f",
+      "currentHashHistory": [
+        {
+          "sha256": "61b3f6c2581997b3be2e11716692ab5e9a1df1b4446d3a20373c714b5992744b",
+          "reason": "Previously reviewed warning host, before additive producer/reserve and location/electricity panels."
+        },
+        {
+          "sha256": "3ba6f1fed1dd824a60e7508378365362e3b144b0875f29b4853f4c8000c13a2f",
+          "reason": "Additive prospective producer/reserve and source-findings electricity panels mounted on climate valuation. Existing withheld physical-valuation warnings and original warning inventory remain required and unchanged; no scientific promotion or original closure."
+        }
+      ],
       "exactScanLines": [
         {"line":331,"text":"              description={`Companies ranked by emissions per market cap, not revenue, into terciles. P/E differences are descriptive valuation diagnostics. Gordon steady-state baseline g = ${costOfEquity}% − 1/PE assumes earnings are fully distributable; it is not a decarbonization rate or five-year reverse-DCF growth.`}"},
         {"line":357,"text":"              description={`Companies grouped by SDG alignment. Gordon steady-state earnings-growth baselines at ${costOfEquity}% cost of equity are not identified market climate expectations or measured emissions reductions.`}"},

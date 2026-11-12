@@ -23,13 +23,37 @@ import { semanticRows } from "../shared/fieldSemantics";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { RegistryMethodology } from "../client/src/components/registry-methodology";
+import { economicBridgeDownloadWriters } from "../shared/economicBridgeSchema";
+
+// Preserve the exact prior transport cohort rather than replacing 15 with an
+// unexplained 19. These are not the separate fixed29 scientific/prior matrix.
+const priorServerDownloadPaths = [
+  "/api/headline-drilldown/contributions/export.json", "/api/headline-drilldown/contributions/export.xlsx",
+  "/api/headline-drilldown/sensitivities/export.json", "/api/headline-drilldown/sensitivities/export.xlsx",
+  "/api/analysis/results/:id/export.json", "/api/reference/warming-validation/export.json",
+  "/api/cv/carbon-pass-through-evidence/export.json",
+  "/api/cv/company-conditional-summaries/export.json", "/api/cv/company-conditional-summaries/export.xlsx",
+  "/api/research/stage10-coverage/export.json", "/api/research/stage10-coverage/export.xlsx",
+  "/api/research/track-b-admission/export.json", "/api/research/track-b-admission/export.xlsx",
+  "/api/financial-data/workbook-money-audit.xlsx", "/api/development/qualified-missingness/export",
+].sort();
+const supplementalEconomicDownloadPaths = [
+  "/api/cv/producer-reserve/export.json", "/api/cv/producer-reserve/export.xlsx",
+  "/api/cv/location-electricity/export.json", "/api/cv/location-electricity/export.xlsx",
+].sort();
 
 test("S16-007 public portable AST census includes chart, JSON, direct-link, attachment and custom-sheet paths", () => {
   const census = methodologyDownloadCensus();
   assert.equal(census.centralSites.length, 26);
   assert.equal(census.downloadLinks.length, 13, "Eleven retained links plus selected-headline JSON/XLSX links");
-  assert.equal(census.serverDownloads.flatMap(entry => entry.paths).length, 15, "Eleven retained routes plus2 drilldown modes×2 formats");
-  assert.equal(census.attachmentSites.length, 12, "Eleven retained attachment writers plus the mode/format-bound drilldown writer");
+  const routes = census.serverDownloads.flatMap(entry => [...entry.paths]);
+  assert.deepEqual(routes.filter(path => !supplementalEconomicDownloadPaths.includes(path)).sort(), priorServerDownloadPaths);
+  assert.deepEqual(routes.filter(path => supplementalEconomicDownloadPaths.includes(path)).sort(), supplementalEconomicDownloadPaths);
+  assert.equal(priorServerDownloadPaths.length, 15);
+  assert.equal(routes.length, 19, "Exact prior15 preserved plus four explicitly separate supplemental economic JSON/XLSX routes");
+  assert.equal(census.attachmentSites.filter(site => site.path !== "server/producerReserveApi.ts").length, 12);
+  assert.equal(census.attachmentSites.filter(site => site.path === "server/producerReserveApi.ts").length, 2,
+    "Two shared suffix-bound writers serve exactly four additional registered routes");
   assert.deepEqual(census.downloadLinks.filter(site => site.path.endsWith("headline-drilldown.tsx")).map(site => site.href),
     ['{withDownloadManifest(headlineDrilldownUrl(mode, selection, "json"))}',
       '{withDownloadManifest(headlineDrilldownUrl(mode, selection, "xlsx"))}']);
@@ -40,7 +64,15 @@ test("S16-007 public portable AST census includes chart, JSON, direct-link, atta
   assert.ok(census.downloadLinks.every(site => site.embeddedManifest), JSON.stringify(census.downloadLinks));
   assert.equal(census.centralSites.filter(site => /chart|histogram|comparison/.test(site.path)).length, 7);
   assert.ok(census.workbookSheets.length >= 20, "Custom server sheets, not only central Data sheet");
-  assert.ok(census.writers.every(site => site.path === "client/src/components/download-data-button.tsx"));
+  assert.equal(census.writers.filter(site => site.contract === "central-qualified-download").length, 3);
+  assert.deepEqual(census.writers.filter(site => site.contract !== "central-qualified-download").map(site => site.contract).sort(),
+    ["locationElectricity", "producerReserve"]);
+  assert.deepEqual(methodologyRegistry().supplementalEconomicDownloads, economicBridgeDownloadWriters);
+  for (const contract of economicBridgeDownloadWriters) {
+    assert.equal(contract.original1001Delta, 0);
+    assert.equal(contract.fixedPriorMatrixDelta, 0);
+    assert.deepEqual(contract.formats, ["json", "xlsx"]);
+  }
   assert.deepEqual(census.inlineDataDownloads, [], "Data-URI downloads must not bypass manifest-bound writers/API attachments");
   for (const site of census.centralSites) {
     assert.ok(Object.hasOwn(methodologyRegistry().downloadClaims, JSON.parse(site.attributes.kind)), site.path);

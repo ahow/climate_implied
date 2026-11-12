@@ -31,6 +31,7 @@ import { trackBPublicCatalogSemantics } from "./trackBDisclosureContract";
 import { stage10CoverageSemantics } from "./stage10Coverage";
 import { workbookMoneySemantics } from "./workbookMoneyAudit";
 import { producerDownloadSemantics } from "./producerDownloadSemantics";
+import { locationElectricitySemantics } from "./locationElectricitySemantics";
 import { derivedConsumerSemantics } from "./derivedConsumerSemantics";
 import { FIXED_5GT_DESCRIPTOR } from "./quantityDescriptors";
 export interface OutputFieldSemantic {
@@ -51,6 +52,7 @@ const peFinancial={...financial,geography:"Selected workbook universe; this endp
 export const outputFieldSemantics:OutputFieldSemantic[]=[
   ...safeReportExportSemantics,
   ...producerDownloadSemantics,
+  ...locationElectricitySemantics,
   ...derivedConsumerSemantics,
   ...trackBAdmissionSemantics,
   ...trackBAdmissionHttpSemantics,

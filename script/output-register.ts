@@ -2,6 +2,7 @@ import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import ts from "typescript";
+import { economicBridgeContracts, economicBridgeSupplementalCensus } from "../shared/economicBridgeSchema";
 
 function files(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap(e =>
@@ -74,6 +75,21 @@ export function outputRegister() {
     "## Qualified JSON exports", "",
     "These are separate supplemental contracts, not additional original1001 spreadsheet slots. Their own source/cutoff/units/limitations remain in the exported payload.", "",
     table(["Consumer", "Filename expression", "Payload", "Semantic contract"], jsonExports),
+    "## Supplemental economic calculation routes", "",
+    "The registered `${route}${suffix}` loop in server/producerReserveApi.ts expands to these six exact allowlisted GET paths. " +
+      "This is a finite contract supplement to the source-expression inventory above, not extra original1001 slots or qualified issuer cases.", "",
+    table(["GET path", "Format", "Authority and limitation"], Object.values(economicBridgeContracts).flatMap(contract =>
+      ["", "/export.json", "/export.xlsx"].map(suffix => [
+        `${contract.route}${suffix}`, suffix === "/export.xlsx" ? "XLSX" : "JSON", contract.claim,
+      ]))),
+    `Workbook sheet: ${economicBridgeSupplementalCensus.workbook.sheet}; columns: ${economicBridgeSupplementalCensus.workbook.columns.join(", ")}. ` +
+      economicBridgeSupplementalCensus.workbook.semantics, "",
+    "Producer/reserve: disclosed consolidated reserve/PV10 source facts are distinct from frozen closed-pool, working-capital and deck assumptions. " +
+      "Annual operating cash flows are USD million, reserves/production are million boe and million boe/year; reserve PV10 is not market equity or FCFE.", "",
+    "Location/electricity: source property findings and nominal USD/MWh regional context conversion are not applicable issuer tariffs or an executed issuer cash bridge. " +
+      "Missing purchased MWh, supplier/tariff, recovery and cash timing remain explicit null/unknown. The optional companyProjection component requires complete same-year, same-major-currency operating-location inputs and separate baseline-expense/WC accounting.", "",
+    "Exact executed-body pointers are inventoried by script/economic-bridge-census.ts; qualified component input/output leaf units, formulas, dates and refusal policies are registered in shared/locationElectricitySemantics.ts. " +
+      "Content hashes bind prospective inputs/code/result, not original historical execution, approval or scientific acceptance.", "",
     "## Coverage boundaries", "",
     "This register covers static Express app/router method registrations, frontend API string/template references, DownloadDataButton controls and qualified DownloadJsonButton controls. Both download formats use the central writer and mandatory evidence contract.",
     "It does not certify dynamically constructed routes, external operator reports, Python research files or every field in arbitrary API JSON.",

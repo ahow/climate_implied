@@ -29,6 +29,7 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | GET | `/api/headline-drilldown/${mode}/export.${format}` | server/headlineDrilldownApi.ts |
 | GET | "/api/methodology/registry" | server/methodologyApi.ts |
 | GET | "/api/analysis/results/:id/export.json" | server/producerDownload.ts |
+| GET | `${route}${suffix}` | server/producerReserveApi.ts |
 | POST | "/api/calculation/research-contracts" | server/prospectiveResearchApi.ts |
 | GET | "/api/development/qualified-missingness" | server/qualifiedMissingnessApi.ts |
 | GET | "/api/development/qualified-missingness/export" | server/qualifiedMissingnessApi.ts |
@@ -121,6 +122,12 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/financial-provider-status.tsx | "/api/financial-data/status" |
 | client/src/components/financial-review.tsx | "/api/financial-data/reviews" |
 | client/src/components/financial-review.tsx | "/api/calculation/readiness" |
+| client/src/components/location-electricity-panel.test.ts | "/api/cv/location-electricity" |
+| client/src/components/location-electricity-panel.test.ts | "/api/cv/location-electricity/export.xlsx" |
+| client/src/components/producer-reserve-panel.test.ts | "/api/cv/producer-reserve" |
+| client/src/components/producer-reserve-panel.test.ts | "/api/cv/producer-reserve/export.json" |
+| client/src/components/producer-reserve-panel.test.ts | "/api/cv/producer-reserve/export.json" |
+| client/src/components/producer-reserve-panel.test.ts | "/api/cv/producer-reserve/export.json" |
 | client/src/components/published-scenario-references.tsx | "/api/reference-scenarios" |
 | client/src/components/qualified-missingness-review.tsx | `/api/development/qualified-missingness${revision ? `?revision=${revision}` : ""}` |
 | client/src/components/qualified-missingness-review.tsx | `/api/development/qualified-missingness/export?revision=${data.revision}` |
@@ -263,6 +270,27 @@ These are separate supplemental contracts, not additional original1001 spreadshe
 | Consumer | Filename expression | Payload | Semantic contract |
 | --- | --- | --- | --- |
 | client/src/components/company-coverage.tsx | {`company-coverage-${query.data.observationDate}.json`} | {query.data} | Central download-data-button writer; evidence "coverage"; validator {validateCompanyCoverageJson}; lossless data envelope + interpretation + SHA-256 payload identity |
+
+## Supplemental economic calculation routes
+
+The registered `${route}${suffix}` loop in server/producerReserveApi.ts expands to these six exact allowlisted GET paths. This is a finite contract supplement to the source-expression inventory above, not extra original1001 slots or qualified issuer cases.
+
+| GET path | Format | Authority and limitation |
+| --- | --- | --- |
+| /api/cv/producer-reserve | JSON | Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice |
+| /api/cv/producer-reserve/export.json | JSON | Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice |
+| /api/cv/producer-reserve/export.xlsx | XLSX | Prospective deterministic public producer/reserve conditional calculation; not issuer approval, observed cash, retained execution or investment advice |
+| /api/cv/location-electricity | JSON | Public location/electricity source findings and deterministic contextual unit conversion only; issuer cash bridge not executed because required inputs are missing. Not issuer approval, qualified economics, retained execution or investment advice |
+| /api/cv/location-electricity/export.json | JSON | Public location/electricity source findings and deterministic contextual unit conversion only; issuer cash bridge not executed because required inputs are missing. Not issuer approval, qualified economics, retained execution or investment advice |
+| /api/cv/location-electricity/export.xlsx | XLSX | Public location/electricity source findings and deterministic contextual unit conversion only; issuer cash bridge not executed because required inputs are missing. Not issuer approval, qualified economics, retained execution or investment advice |
+
+Workbook sheet: Public calculation; columns: JSON pointer, Literal JSON value. Exact ordered lossless scalar/container-type serialization of the same API body, including units, formulas, missingness and prospective identity. No spreadsheet formulas.
+
+Producer/reserve: disclosed consolidated reserve/PV10 source facts are distinct from frozen closed-pool, working-capital and deck assumptions. Annual operating cash flows are USD million, reserves/production are million boe and million boe/year; reserve PV10 is not market equity or FCFE.
+
+Location/electricity: source property findings and nominal USD/MWh regional context conversion are not applicable issuer tariffs or an executed issuer cash bridge. Missing purchased MWh, supplier/tariff, recovery and cash timing remain explicit null/unknown. The optional companyProjection component requires complete same-year, same-major-currency operating-location inputs and separate baseline-expense/WC accounting.
+
+Exact executed-body pointers are inventoried by script/economic-bridge-census.ts; qualified component input/output leaf units, formulas, dates and refusal policies are registered in shared/locationElectricitySemantics.ts. Content hashes bind prospective inputs/code/result, not original historical execution, approval or scientific acceptance.
 
 ## Coverage boundaries
 

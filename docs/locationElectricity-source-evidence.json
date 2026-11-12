@@ -1,0 +1,285 @@
+{
+  "criterion": "S12-005",
+  "protocol": "location-electricity-cash-bridge-1",
+  "generatedAt": "2026-11-12T14:24:08.112Z",
+  "cutoff": "2026-11-12T14:23:56.564Z",
+  "freeze": {
+    "path": "docs/locationElectricity-domain-freeze.json",
+    "sha256": "dfd45d53fb1ec53400d7e86b5b77201b9f997b02ef48c9f2d85c9c73e496c1a1",
+    "verifiedBeforeExtractionAndCalculation": true
+  },
+  "sourceFacts": {
+    "locations": [
+      {
+        "companyId": "FSLR",
+        "location": "Perrysburg and Lake Township, Ohio, United States",
+        "periodEnd": "2024-12-31",
+        "operatingStatus": "operating",
+        "locator": "FY2024 Form10-K Item2 Properties p45; Ohio combines manufacturing/R&D/offices",
+        "source": {
+          "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+          "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+          "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+          "observedAt": "2026-11-10T13:35:10.345Z",
+          "availableAt": "2025-02-25T21:11:24.000Z"
+        },
+        "purchasedElectricityMWh": null,
+        "supplier": null,
+        "tariffEligibility": null,
+        "customerRecoveryFraction": null,
+        "supplierPaymentFraction": null,
+        "customerCollectionFraction": null,
+        "issuerCashBridgeExecutable": false
+      },
+      {
+        "companyId": "FSLR",
+        "location": "Kulim, Kedah, Malaysia",
+        "periodEnd": "2024-12-31",
+        "operatingStatus": "operating",
+        "locator": "FY2024 Form10-K Item2 Properties p45; Ohio combines manufacturing/R&D/offices",
+        "source": {
+          "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+          "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+          "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+          "observedAt": "2026-11-10T13:35:10.345Z",
+          "availableAt": "2025-02-25T21:11:24.000Z"
+        },
+        "purchasedElectricityMWh": null,
+        "supplier": null,
+        "tariffEligibility": null,
+        "customerRecoveryFraction": null,
+        "supplierPaymentFraction": null,
+        "customerCollectionFraction": null,
+        "issuerCashBridgeExecutable": false
+      },
+      {
+        "companyId": "FSLR",
+        "location": "Ho Chi Minh City, Vietnam",
+        "periodEnd": "2024-12-31",
+        "operatingStatus": "operating",
+        "locator": "FY2024 Form10-K Item2 Properties p45; Ohio combines manufacturing/R&D/offices",
+        "source": {
+          "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+          "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+          "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+          "observedAt": "2026-11-10T13:35:10.345Z",
+          "availableAt": "2025-02-25T21:11:24.000Z"
+        },
+        "purchasedElectricityMWh": null,
+        "supplier": null,
+        "tariffEligibility": null,
+        "customerRecoveryFraction": null,
+        "supplierPaymentFraction": null,
+        "customerCollectionFraction": null,
+        "issuerCashBridgeExecutable": false
+      },
+      {
+        "companyId": "FSLR",
+        "location": "Tamil Nadu, India",
+        "periodEnd": "2024-12-31",
+        "operatingStatus": "operating",
+        "locator": "FY2024 Form10-K Item2 Properties p45; Ohio combines manufacturing/R&D/offices",
+        "source": {
+          "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+          "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+          "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+          "observedAt": "2026-11-10T13:35:10.345Z",
+          "availableAt": "2025-02-25T21:11:24.000Z"
+        },
+        "purchasedElectricityMWh": null,
+        "supplier": null,
+        "tariffEligibility": null,
+        "customerRecoveryFraction": null,
+        "supplierPaymentFraction": null,
+        "customerCollectionFraction": null,
+        "issuerCashBridgeExecutable": false
+      },
+      {
+        "companyId": "FSLR",
+        "location": "Trinity, Alabama, United States",
+        "periodEnd": "2024-12-31",
+        "operatingStatus": "operating",
+        "locator": "FY2024 Form10-K Item2 Properties p45; Ohio combines manufacturing/R&D/offices",
+        "source": {
+          "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+          "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+          "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+          "observedAt": "2026-11-10T13:35:10.345Z",
+          "availableAt": "2025-02-25T21:11:24.000Z"
+        },
+        "purchasedElectricityMWh": null,
+        "supplier": null,
+        "tariffEligibility": null,
+        "customerRecoveryFraction": null,
+        "supplierPaymentFraction": null,
+        "customerCollectionFraction": null,
+        "issuerCashBridgeExecutable": false
+      },
+      {
+        "companyId": "FSLR",
+        "location": "Iberia Parish, Louisiana, United States",
+        "periodEnd": "2024-12-31",
+        "operatingStatus": "under-construction-not-operating-at-source-date",
+        "locator": "FY2024 Form10-K Item2 Properties p45; Ohio combines manufacturing/R&D/offices",
+        "source": {
+          "path": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/FSLR-primary.html",
+          "sha256": "6e67962d0fdc024d97956b21a2f1c2bf2de32de79eb0eedff4d223ec5bd45162",
+          "url": "https://www.sec.gov/Archives/edgar/data/1274494/000127449425000010/fslr-20241231.htm",
+          "observedAt": "2026-11-10T13:35:10.345Z",
+          "availableAt": "2025-02-25T21:11:24.000Z"
+        },
+        "purchasedElectricityMWh": null,
+        "supplier": null,
+        "tariffEligibility": null,
+        "customerRecoveryFraction": null,
+        "supplierPaymentFraction": null,
+        "customerCollectionFraction": null,
+        "issuerCashBridgeExecutable": false
+      }
+    ],
+    "electricityPriceRecords": [
+      {
+        "jurisdiction": "US-OH",
+        "sector": "industrial",
+        "year": 2024,
+        "currency": "USD",
+        "reportedValue": 7.1,
+        "reportedUnit": "US cents/kWh",
+        "nominalMajorCurrencyPerMWh": 71,
+        "conversion": "1 cent/kWh = 0.01 USD/kWh *1000 kWh/MWh =10 USD/MWh",
+        "kind": "regional-context-only",
+        "source": {
+          "url": "https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20OH.xlsx",
+          "path": "generated-artifacts/locationElectricity/ohio-eia-2024.xlsx",
+          "sha256": "e84b38fbe758eef26d2b7d85f154c8f2bcda4ae2fd35347811223eb2caf3f7a6",
+          "startedAt": "2026-11-12T14:23:56.443Z",
+          "observedAt": "2026-11-12T14:23:56.564Z",
+          "httpStatus": 200,
+          "locator": "8. Sales!B28; units A25; year B3"
+        },
+        "issuerTariff": false,
+        "applicableToNamedIssuerSite": false,
+        "use": "Context only. State industrial average cannot substitute for issuer electricity tariff or cash bill."
+      },
+      {
+        "jurisdiction": "US-OH",
+        "sector": "industrial",
+        "year": 2023,
+        "currency": "USD",
+        "reportedValue": 7.03,
+        "reportedUnit": "US cents/kWh",
+        "nominalMajorCurrencyPerMWh": 70.3,
+        "conversion": "1 cent/kWh = 0.01 USD/kWh *1000 kWh/MWh =10 USD/MWh",
+        "kind": "regional-context-only",
+        "source": {
+          "url": "https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20OH.xlsx",
+          "path": "generated-artifacts/locationElectricity/ohio-eia-2024.xlsx",
+          "sha256": "e84b38fbe758eef26d2b7d85f154c8f2bcda4ae2fd35347811223eb2caf3f7a6",
+          "startedAt": "2026-11-12T14:23:56.443Z",
+          "observedAt": "2026-11-12T14:23:56.564Z",
+          "httpStatus": 200,
+          "locator": "8. Sales!C28; units A25; year C3"
+        },
+        "issuerTariff": false,
+        "applicableToNamedIssuerSite": false,
+        "use": "Context only. State industrial average cannot substitute for issuer electricity tariff or cash bill."
+      },
+      {
+        "jurisdiction": "US-OH",
+        "sector": "industrial",
+        "year": 2022,
+        "currency": "USD",
+        "reportedValue": 7.45,
+        "reportedUnit": "US cents/kWh",
+        "nominalMajorCurrencyPerMWh": 74.5,
+        "conversion": "1 cent/kWh = 0.01 USD/kWh *1000 kWh/MWh =10 USD/MWh",
+        "kind": "regional-context-only",
+        "source": {
+          "url": "https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20OH.xlsx",
+          "path": "generated-artifacts/locationElectricity/ohio-eia-2024.xlsx",
+          "sha256": "e84b38fbe758eef26d2b7d85f154c8f2bcda4ae2fd35347811223eb2caf3f7a6",
+          "startedAt": "2026-11-12T14:23:56.443Z",
+          "observedAt": "2026-11-12T14:23:56.564Z",
+          "httpStatus": 200,
+          "locator": "8. Sales!D28; units A25; year D3"
+        },
+        "issuerTariff": false,
+        "applicableToNamedIssuerSite": false,
+        "use": "Context only. State industrial average cannot substitute for issuer electricity tariff or cash bill."
+      },
+      {
+        "jurisdiction": "US-OH",
+        "sector": "industrial",
+        "year": 2021,
+        "currency": "USD",
+        "reportedValue": 6.55,
+        "reportedUnit": "US cents/kWh",
+        "nominalMajorCurrencyPerMWh": 65.5,
+        "conversion": "1 cent/kWh = 0.01 USD/kWh *1000 kWh/MWh =10 USD/MWh",
+        "kind": "regional-context-only",
+        "source": {
+          "url": "https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20OH.xlsx",
+          "path": "generated-artifacts/locationElectricity/ohio-eia-2024.xlsx",
+          "sha256": "e84b38fbe758eef26d2b7d85f154c8f2bcda4ae2fd35347811223eb2caf3f7a6",
+          "startedAt": "2026-11-12T14:23:56.443Z",
+          "observedAt": "2026-11-12T14:23:56.564Z",
+          "httpStatus": 200,
+          "locator": "8. Sales!E28; units A25; year E3"
+        },
+        "issuerTariff": false,
+        "applicableToNamedIssuerSite": false,
+        "use": "Context only. State industrial average cannot substitute for issuer electricity tariff or cash bill."
+      },
+      {
+        "jurisdiction": "US-OH",
+        "sector": "industrial",
+        "year": 2020,
+        "currency": "USD",
+        "reportedValue": 6.16,
+        "reportedUnit": "US cents/kWh",
+        "nominalMajorCurrencyPerMWh": 61.6,
+        "conversion": "1 cent/kWh = 0.01 USD/kWh *1000 kWh/MWh =10 USD/MWh",
+        "kind": "regional-context-only",
+        "source": {
+          "url": "https://www.eia.gov/electricity/state/xls/SEP%20Tables%20for%20OH.xlsx",
+          "path": "generated-artifacts/locationElectricity/ohio-eia-2024.xlsx",
+          "sha256": "e84b38fbe758eef26d2b7d85f154c8f2bcda4ae2fd35347811223eb2caf3f7a6",
+          "startedAt": "2026-11-12T14:23:56.443Z",
+          "observedAt": "2026-11-12T14:23:56.564Z",
+          "httpStatus": 200,
+          "locator": "8. Sales!F28; units A25; year F3"
+        },
+        "issuerTariff": false,
+        "applicableToNamedIssuerSite": false,
+        "use": "Context only. State industrial average cannot substitute for issuer electricity tariff or cash bill."
+      }
+    ]
+  },
+  "assumptionValuesAssignedToIssuers": 0,
+  "counts": {
+    "evidencedPropertyRows": 6,
+    "operatingPropertyRows": 5,
+    "constructionPropertyRows": 1,
+    "regionalPriceRecords": 5,
+    "applicableIssuerTariffs": 0,
+    "siteConsumptionRecords": 0,
+    "customerRecoveryRecords": 0,
+    "sourceQualifiedIssuerCashBridgeExecutions": 0
+  },
+  "admissibility": "not-executable-issuer-bridge",
+  "exactGaps": [
+    "No source-linked annual purchased MWh at each named operating site; GW module output/capacity and Scope2 tonnes are not purchased electricity.",
+    "No issuer supplier/retailer, supply voltage, demand/time-of-use profile, tariff eligibility, hedging/PPA, fixed/demand charges or baseline/scenario electricity price bridge.",
+    "EIA Ohio industrial averages are authentic contextual price records, not First Solar tariffs; foreign and Alabama prices are not supplied by this Ohio workbook.",
+    "No issuer customer contract cost-recovery fraction, lag, collection or supplier-payment schedule. No pass-through defaults assigned.",
+    "No same-period/currency FX support for foreign operations; no MYR/INR/VND to USD inference.",
+    "Louisiana is under construction as of2024-12-31; expected2025 operation is not demonstrated current operation.",
+    "Captured EIA workbook contains latest available historical revisions; no claim of availability at original2024 forecast origin.",
+    "No source-qualified projection or current criterion self-approval. Parent must integrate optional component and verify the consuming cash ledger."
+  ],
+  "integrationExports": [
+    "server/calculation/locationElectricityCashBridge.ts:locationElectricityCashBridgeSchema",
+    "server/calculation/locationElectricityCashBridge.ts:calculateLocationElectricityCashBridge"
+  ],
+  "boundary": "Source facts only. No issuer assumptions, owner approval, valuation recommendation, public release, DDL, auth or billing changes."
+}

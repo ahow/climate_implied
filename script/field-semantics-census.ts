@@ -41,6 +41,8 @@ import { stage10CoverageSemantics, stage10ReportFieldPaths, stage10ExportBinding
 import { workbookMoneySemantics, workbookMoneyReportPaths, workbookMoneyRootPaths, workbookMoneySheetBindings } from "../shared/workbookMoneyAudit";
 import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 import { producerDownloadSemantics, producerDownloadFieldBindings } from "../shared/producerDownloadSemantics";
+import { locationElectricitySemantics } from "../shared/locationElectricitySemantics";
+import { economicBridgeSupplementalCensus, producerReserveCalculationSemantics } from "../shared/economicBridgeSchema";
 import { derivedConsumerSemantics, derivedConsumerSheetBindings } from "../shared/derivedConsumerSemantics";
 import { valuationPEDerivations } from "../shared/derivedConsumer";
 import { integratedReadOnlySurfaceContracts } from "./integrated-readonly-contracts";
@@ -663,6 +665,20 @@ const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemant
   },
   supplementalSummaryProducerDefinitions:outputFieldSemantics.filter(f=>f.id.startsWith("fetchSummaryProducer.")),
   supplementalQualifiedChanges:{
+    economicBridges: {
+      ...economicBridgeSupplementalCensus,
+      producerCalculationFields: producerReserveCalculationSemantics,
+      locationElectricityComponent: {
+        definitions: locationElectricitySemantics.length,
+        fields: locationElectricitySemantics,
+        inputPath: "members[].years[].locationElectricity",
+        outputPath: "members[].years[].electricityPriceBridge",
+        integrationPaths: ["members[].years[].baselineIncreaseWorkingCapital",
+          "members[].years[].increaseWorkingCapital", "members[].years[].fcfe"],
+        publicFindingsBoundary: "GET /api/cv/location-electricity reports sourced property rows and regional-context-only prices. actualIssuerResult=null; purchased MWh, applicable supplier/tariff, recovery and timing remain unknown. This optional component is not executed for those issuer findings.",
+      },
+      inventoryBoundary: "Exact additive calculation/serialization contracts only. Not exhaustive qualified leaf coverage of identity.*.value or report: these document bodies have explicit discriminated units, source facts, assumptions and nulls; no generic bound=true assigned. Separate census script/economic-bridge-census.ts inventories exact executed public body paths without original-slot credit.",
+    },
     workbookMoneyAudit:{
       definitions:workbookMoneySemantics.length,ids:workbookMoneySemantics.map(s=>s.id),
       reportLeaves:workbookMoneyReportPaths.length,

@@ -1,0 +1,141 @@
+{
+  "status": "supplementary-primary-table-authentication-resolved",
+  "checkedAt": "2026-11-12T14:49:55.429Z",
+  "scope": "Exxon Mobil Corporation FY2024 producer reserve evidence only. Direct SEC filing authenticates the retained mirror's specifically compared tables, not the complete mirrored PDF byte stream, model assumptions, owner review or whole-equity valuation.",
+  "retainedSourceInspectedFirst": {
+    "sourceDeclaration": "server/calculation/producerReserveEvidence.ts",
+    "privateValidator": "script/producerReserve-validate-private.ts",
+    "issuerPrivateValidator": "script/validate-issuer-original-private.ts",
+    "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/e/NYSE_XOM_2024.pdf",
+    "pdfPath": "generated-artifacts/company-operating-corpus/primary-filings/XOM-2024.pdf",
+    "pdfBytes": 15700553,
+    "pdfSha256": "8a79decedd1d5c317d18ef7d16e14c8311e5bac370cf120d726120140b7e30e2",
+    "textPath": "generated-artifacts/company-operating-corpus/primary-filings/XOM-2024.txt",
+    "textSha256": "89441ab5d1133b95f990ea60273d1719efc3659a0c0c017620f95ae397b4203f",
+    "finding": "Both retained hashes match the producer evidence declaration. Existing producer validator establishes transcription/integrity, not independent authenticity. No existing validator or frozen input was edited or rerun."
+  },
+  "existingSecPublicationEvidenceReviewed": {
+    "url": "https://data.sec.gov/submissions/CIK0000034088.json",
+    "httpStatus": 200,
+    "retainedAt": "2026-11-10T12:07:44.660Z",
+    "receiptPath": "generated-artifacts/company-operating-corpus/next-company-evidence/publication-attempts.json",
+    "sourcePath": "generated-artifacts/company-operating-corpus/next-company-evidence/XOM-submissions-response.txt",
+    "sha256": "79aacad669ef044bf654934b659b9fda89514e0ba5514838dbfb787d53e48773",
+    "hashReverified": true,
+    "actualLocator": "filings.recent index 136; accessionNumber, form, primaryDocument, reportDate, filingDate, acceptanceDateTime",
+    "accessionNumber": "0000034088-25-000010",
+    "form": "10-K",
+    "primaryDocument": "xom-20241231.htm",
+    "reportDate": "2024-12-31",
+    "filingDate": "2025-02-19",
+    "acceptanceDateTime": "2025-02-19T21:39:37.000Z",
+    "finding": "SEC acceptance was already available in retained authenticated submissions metadata; it is not an unavailable field or a newly discovered timestamp. It is distinguished from the PDF signed/audited date, mirror posting time and this review's acquisition time.",
+    "newMetadataRequests": 0
+  },
+  "newDirectPrimaryAcquisition": {
+    "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408825000010/xom-20241231.htm",
+    "discovery": "Exact accession and primaryDocument from retained SEC submissions; no search or guessed alternate host/filename.",
+    "startedAt": "2026-11-12T14:49:07.834Z",
+    "completedAt": "2026-11-12T14:49:09.065Z",
+    "httpStatus": 200,
+    "contentType": "text/html",
+    "bytes": 5981380,
+    "sha256": "b13a42242d1f6e8baa39cd4126f3fd7ce2aa4cb326d882398880f9da44f04786",
+    "privateSourcePath": "generated-artifacts/producer-primary-authentication/direct-sec-response.html",
+    "privateAcquisitionReceiptPath": "generated-artifacts/producer-primary-authentication/acquisition.json",
+    "totalNewDirectRequests": 1,
+    "retries": 0,
+    "redirectsFollowed": 0,
+    "proxyOrAccessBypass": false,
+    "credentialsOrPaidRequests": false
+  },
+  "officialContentIdentity": {
+    "priorSecSourcePath": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/XOM-primary.html",
+    "priorReceiptPath": "generated-artifacts/company-operating-corpus/issuer-cashflow-v1/primary-receipts.json",
+    "priorHttpStatus": 200,
+    "priorCapturedAt": "2026-11-10T13:35:11.056Z",
+    "priorSha256Reverified": "01d1d6f0831e7d4e85727d24cc3b8195c97cff2cd645effed40b58663e79ea41",
+    "newResponseByteIdenticalToPriorSecResponse": false,
+    "differenceQualification": "Entire retained and newly fetched SEC HTML are exactly identical after removing complete script and noscript elements only. No other markup, text, entity, whitespace or number normalization is used for this whole-HTML comparison. Raw response hashes are not claimed equal.",
+    "exactAfterScriptNoscriptRemoval": true,
+    "utf8BytesAfterRemoval": 5980900,
+    "sha256AfterRemoval": "ef8063b86ee33c8bcc1465c3c853752294a3397867621e1762c8fe45abf0ffc5",
+    "inlineXbrlIdentity": {
+      "EntityRegistrantName": "Exxon Mobil Corporation",
+      "EntityCentralIndexKey": "0000034088",
+      "DocumentFiscalYearFocus": "2024",
+      "DocumentPeriodEndDate": "December 31, 2024",
+      "DocumentType": "10-K"
+    },
+    "officialPdfByteHashMatchEstablished": false
+  },
+  "actualTableComparisons": {
+    "method": "Decode HTML numeric entities, strip markup with cell/row boundaries, compact whitespace; independently compact retained PDF extracted text. Restrict each comparison to its named fiscal/consolidated section. Compare all numeric cells in each selected row, then the producer's selected total or 2024 production value. Parentheses and em dashes remain distinct in row comparisons. Nested inline-XBRL identity tags are depth-parsed.",
+    "tables": [
+      {
+        "locator": "Printed p130, Natural Gas and Oil-Equivalent Proved Reserves (continued); net proved developed and undeveloped reserves of consolidated subsidiaries; oil-equivalent total",
+        "comparedRows": 8,
+        "producerFactsMatched": 8,
+        "selectedClosingMillionBoe": 16955,
+        "scopeBoundary": "Stop before attributable noncontrolling-interest row; do not substitute combined consolidated/equity-company total of 19949."
+      },
+      {
+        "locator": "Printed p133, Standardized Measure of Discounted Future Cash Flows (continued); As of December 31, 2024; Consolidated Subsidiaries; Total column",
+        "comparedRows": 7,
+        "producerFactsMatched": 7,
+        "selectedDiscountedFutureNetCashFlowsUsdMillion": 151494,
+        "scopeBoundary": "Stop before Equity Companies; not combined 185664."
+      },
+      {
+        "locator": "Printed p121, Results of Operations; 2024 Consolidated Subsidiaries; Total column",
+        "comparedRows": 9,
+        "producerFactsMatched": 9,
+        "selectedProducingActivitiesEarningsUsdMillion": 19401,
+        "scopeBoundary": "Includes third-party sales and intra-company transfers; not issuer consolidated revenue and not equity-company operations."
+      },
+      {
+        "locator": "Printed p124, Costs Incurred in Property Acquisitions, Exploration and Development Activities; During 2024 Consolidated Subsidiaries; Total column",
+        "comparedRows": 5,
+        "producerFactsMatched": 5,
+        "selectedTotalCostsIncurredUsdMillion": 105094,
+        "scopeBoundary": "Costs incurred, not cash capital expenditure."
+      },
+      {
+        "locator": "Printed p11, A. Oil and Gas Production; consolidated crude/NGL total, bitumen, synthetic oil and natural gas available for sale",
+        "comparedRows": 4,
+        "producerFactsMatched": 5,
+        "scopeBoundary": "2024 first columns only for producer values; all three years of each selected production row compared between sources; excludes equity-company production."
+      },
+      {
+        "locator": "Printed p12, B. Production Prices and Production Costs; 2024 Consolidated Subsidiaries; five product average-price rows; Total column",
+        "comparedRows": 5,
+        "producerFactsMatched": 5,
+        "scopeBoundary": "USD/bbl except natural gas USD/thousand cubic feet; excludes equity-company and combined prices."
+      }
+    ],
+    "totalComparedRows": 38,
+    "totalComparedNumericCells": 261,
+    "totalProducerNumericFactsMatched": 39,
+    "allComparisonsPassed": true,
+    "additionalMatchedCaveats": [
+      "p130 reserve gas conversion: six billion cubic feet per million barrels.",
+      "p132 standardized measure includes future dismantlement, abandonment and rehabilitation obligations.",
+      "p132 issuer cautions standardized measure does not reliably estimate expected future cash flows.",
+      "p13 natural gas available-for-sale production differs from reserve production because of volumes consumed or flared."
+    ],
+    "notClaimed": "No full-page textual equality, complete mirror PDF authentication, whole-equity equivalence, economic sufficiency or runtime recalculation."
+  },
+  "reviewReceipt": {
+    "path": "generated-artifacts/producer-primary-authentication/receipt.json",
+    "sha256": "d371e8b77246d6d2c18eef5008514f75060f49845a3782dc0895d473c88c76c8",
+    "privateReproductionSource": "generated-artifacts/producer-primary-authentication/verify.ts",
+    "rawSourcesAndReceiptsGitIgnored": true
+  },
+  "remainingSeparateBoundaries": [
+    "CIK0000034088 and the FY2024 registrant/report identity are authenticated; no automatic legal/security continuity or ticker join to a later successor entity is approved.",
+    "Public issuer-authored filing content is not an open republication licence. No raw filing/PDF publication or owner authorization is granted.",
+    "Mirror publication time and complete mirrored PDF byte identity to an issuer-hosted original remain unestablished; SEC filing and acceptance dates above are known for the matching annual filing.",
+    "Source-table authentication does not establish owner review, legal ownership allocation, common-equity claim coverage, fiscal/cash timing, terminal assumptions, freeze uniqueness or scientific acceptance.",
+    "No runtime, model, schema, original S13 records, source freeze, gate configuration, release, commit or callback was changed. Parent reconciliation remains separate."
+  ]
+}

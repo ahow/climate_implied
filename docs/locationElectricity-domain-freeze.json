@@ -1,0 +1,27 @@
+{
+  "protocol": "location-electricity-cash-bridge-1",
+  "criterion": "S12-005",
+  "frozenBeforeCalculation": true,
+  "claim": "Implementation and source investigation only; not owner acceptance or qualified issuer execution.",
+  "sourceFactsSeparateFromAssumptions": true,
+  "domains": {
+    "purchasedElectricityMWh": "Finite nonnegative site purchased electricity, explicitly sourced or explicitly conditional; never inferred from Scope2 tonnes or manufacturing GW.",
+    "prices": "Finite nonnegative nominal major currency/MWh, same currency and delivery period. A contextual regional average is not an issuer tariff.",
+    "customerRecoveryFraction": "[0,1], source contract or declared conditional assumption; no default and no empirical coefficient invented.",
+    "supplierPaymentFraction": "[0,1], incremental expense settled in this period; explicit assumption or source.",
+    "customerCollectionFraction": "[0,1], incremental recovery collected in this period; explicit assumption or source.",
+    "period": "Single annual delivery period with explicit year; no forward filling of expired prices.",
+    "scope": "Purchased electricity price channel only. Direct Scope2 carbon liability is prohibited.",
+    "cashBridge": "Replace neither baseline electricity expense nor an already included working-capital change. Explicit incremental-above-baseline / excluded-from-baseline sentinels required.",
+    "executionAdmission": "All applicable source records observed by cutoff, source-matched site/supplier/tariff, same annual period/currency; conditional inputs remain visibly conditional."
+  },
+  "notSolvedOrAssumed": [
+    "Issuer site consumption",
+    "Issuer supply voltage, load profile, retailer or tariff eligibility",
+    "Customer cost recovery entitlement or cash settlement fractions",
+    "FX rates",
+    "Probability weights",
+    "Source-qualified issuer cash impact without complete admissible inputs"
+  ],
+  "preservation": "No edits to 14 FaIR pins, archives, frozen negatives, ledgers, auth, billing or database schema."
+}

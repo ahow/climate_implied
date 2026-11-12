@@ -5,6 +5,8 @@ import { join } from "node:path";
 import ts from "typescript";
 import * as XLSX from "xlsx";
 import { exportContracts, exportNotes, type ExportKind } from "../client/src/lib/export-contract";
+import { economicBridgeDownloadWriters } from "../shared/economicBridgeSchema";
+import { auditEconomicDownloadWriter } from "./economic-download-contract-audit";
 
 function files(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap(e =>
@@ -14,10 +16,11 @@ function files(dir: string): string[] {
 test("every client download declares a valid evidence contract; no alternate writer bypasses it", () => {
   let count = 0;
   let readonlyDiffSites = 0;
+  const economicWriters: string[] = [];
   for (const path of files("client/src")) {
     const text = readFileSync(path, "utf8");
     const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
-    function visit(node: ts.Node) {
+    const visit = (node: ts.Node) => {
       if ((ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) &&
         ["DownloadDataButton", "DownloadJsonButton"].includes(node.tagName.getText(source))) {
         count++;
@@ -27,14 +30,40 @@ test("every client download declares a valid evidence contract; no alternate wri
         assert.ok(Object.hasOwn(exportContracts, kind.initializer.text), path);
       }
       if (ts.isCallExpression(node) && /(?:writeFile|writeFileXLSX|saveAs|createObjectURL)$/.test(node.expression.getText(source))) {
-        assert.equal(path, "client/src/components/download-data-button.tsx", `Unregistered writer: ${path}`);
+        if (path !== "client/src/components/download-data-button.tsx") {
+          const contract = auditEconomicDownloadWriter(path, source, node);
+          assert.ok(Object.hasOwn(exportContracts, contract.kind));
+          economicWriters.push(contract.key);
+        }
       }
       node.forEachChild(visit);
-    }
+    };
     visit(source);
   }
   assert.equal(readonlyDiffSites, 2, "Exactly two new reviewed count/hash and affected-manifest export sites");
   assert.equal(count, 26, "Prior24 reviewed export sites plus2 explicit read-only diff/affected-analysis spreadsheet sites; no alternate writer");
+  assert.deepEqual(economicWriters.sort(), economicBridgeDownloadWriters.map(contract => contract.key).sort(),
+    "Exactly two additional reviewed bound-Blob writers, each covering only its JSON/XLSX public readback; no unknown writers");
+});
+
+test("economic download registration refuses unknown sources, alternate expressions and readback bypasses", () => {
+  const path = "client/src/components/producer-reserve-panel.tsx";
+  function audit(text: string, filename = path) {
+    const source = ts.createSourceFile(filename, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    const calls: ts.CallExpression[] = [];
+    function visit(node: ts.Node) {
+      if (ts.isCallExpression(node) && node.expression.getText(source) === "URL.createObjectURL") calls.push(node);
+      ts.forEachChild(node, visit);
+    }
+    visit(source);
+    assert.equal(calls.length, 1);
+    return auditEconomicDownloadWriter(filename, source, calls[0]);
+  }
+  const original = readFileSync(path, "utf8");
+  assert.equal(audit(original).key, "producerReserve");
+  assert.throws(() => audit(original, "client/src/components/unknown-writer.tsx"), /Unregistered writer/);
+  assert.throws(() => audit(original.replace("URL.createObjectURL(blob)", "URL.createObjectURL(otherBlob)")), /Unregistered writer expression/);
+  assert.throws(() => audit(original.replace("await readBoundProducerReserveExport(document, format)", "await unverifiedDownload(document, format)")), /immediately preceding verified Blob/);
 });
 
 test("interpretation survives XLSX serialization with missingness and exact data unchanged", () => {

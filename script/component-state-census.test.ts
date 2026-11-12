@@ -2,16 +2,29 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { componentStateCensus } from "./component-state-census";
-import { filePolicies, focusedRenderComponents } from "./component-state-contracts";
+import { contractFor, economicBridgeComponentPolicies, filePolicies, focusedRenderComponents } from "./component-state-contracts";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { WarmingValidationReference } from "../client/src/components/warming-validation-reference";
 import { warmingReferenceExportDocument } from "../shared/warmingValidationReferenceSemantics";
 
+const economicConsumers = [
+  "producer-reserve-panel.tsx#ProducerReservePanel",
+  "producer-reserve-panel.tsx#ProducerReservePanelContent",
+  "producer-reserve-panel.tsx#ProducerReserveReportView",
+  "producer-reserve-panel.tsx#ReserveLiteral",
+  "producer-reserve-panel.tsx#Disclosure",
+  "producer-reserve-panel.tsx#Result",
+  "location-electricity-panel.tsx#LocationElectricityPanel",
+  "location-electricity-panel.tsx#LocationElectricityPanelContent",
+  "location-electricity-panel.tsx#LocationElectricityReportView",
+  "location-electricity-panel.tsx#Source",
+].map(id => `client/src/components/${id}`);
+
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 77, "Reviewed prior71 plus2 headline consumers and4 retained paired-research consumers");
-  assert.equal(report.focusedRenderedComponentCount, 77);
+  assert.equal(report.componentCount, 87, "Prior77 plus exact6 producer and4 location-electricity consumers; no old acceptance permutations expanded");
+  assert.equal(report.focusedRenderedComponentCount, 87);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -31,6 +44,18 @@ test("actual domain consumers have source-located expressions and explicit state
   assert.equal(report.focusedRenderedComponentCount, report.components.filter(component => focusedRenderComponents.has(component.component)).length);
   assert.equal(report.individuallyUnrenderedComponentIds.length + report.focusedRenderedComponentCount, report.componentCount);
   assert.match(report.fieldBranchCoverage, /Not claimed/);
+  const economic = report.components.filter(component => economicConsumers.includes(component.id));
+  assert.deepEqual(economic.map(component => component.id).sort(), [...economicConsumers].sort());
+  assert.deepEqual(Object.keys(economicBridgeComponentPolicies).map(id => `client/src/components/${id}`).sort(), [...economicConsumers].sort());
+  for (const component of economic) {
+    assert.deepEqual(component.routes, ["/climate-valuation"]);
+    assert.match(component.contract.focusedEvidence, /economic-bridge-ui\.test\.ts/);
+    assert.equal(component.contract.inputKind,
+      ["ProducerReservePanel", "LocationElectricityPanel"].includes(component.component) ? "queried-evidence" :
+        component.component === "Disclosure" ? "presentation-control" : "supplied-result");
+  }
+  assert.throws(() => contractFor("client/src/components/producer-reserve-panel.tsx", "UnreviewedSibling"), /No reviewed state policy/);
+  assert.throws(() => contractFor("client/src/components/location-electricity-panel.tsx", "UnreviewedSibling"), /No reviewed state policy/);
 });
 test("state policy denominator exactly matches reachable source files, without unused registry entries", () => {
   const report = componentStateCensus();
@@ -97,7 +122,7 @@ test("imported sibling exports are reachable only through actual component tags"
           ? "supplied-result" : "queried-evidence");
       return component.id;
     });
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions, ...integrated].includes(component.id)).length, 60);
+  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions, ...integrated, ...economicConsumers].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

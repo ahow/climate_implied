@@ -1,3 +1,30 @@
+## Producer reserve and location electricity — original partial clauses
+
+**300 original criteria: 63 verified /235 partial /2 blocked. These four remain partial.**
+
+PV10 diagnostic **2.9773550346%**, not market-implied decline; authentic disclosed **USD151494m** reserve interest. Seven sensitivities:3 conditional roots/4 no-root; six accounting residuals zero. Finite100-year pool, zero terminal is not original whole-equity5+10fade. Whole equity and replacement inversion refused; replacement forward code is explicitly conditional. **Selected primary-table authentication RESOLVED:** official SEC200,39facts/38rows/261numeric cells; already-retained acceptance2025-02-19T21:39:37Z verified. Complete mirror PDF identity/publication, owner authorization, successor legal/security continuity and actual market allocation remain unqualified.
+
+Prior assumptions/domain freeze retained byte-for-byte; only mechanical Set-spread to Array.from(Set) compatibility repair, inverse hash reconstruction checked privately. Private85 source assertions +2 historical tests remain verbatim outside public wildcard, mandatory without skip. Source-only sandbox11pass is not private proof.
+
+Current primary assessment is separately identity-bound in API/UI via producerPrimaryAuthentication.ts; unconditional validate-producer-primary-authentication-private.ts --private-primary verifies actual retained bytes. Original model/source/domain freeze unchanged, no fabricated approval or historical rewrite.
+
+Scope2 real companyProjection integration:7 synthetic controls; SEC5 operating/1 construction site and EIA5 contextual Ohio price records, no actual applicable tariffs/MWh/recovery; **0 source-qualified issuer executions**. Electricity expense/recovery/settlement enters WC and FCFE once; no direct tax on Scope2 tonnes.
+
+New prospective API/UI/JSON/XLSX identities are supplemental only: exact per-worker source/code/input/assumption/model/derivation/result closure, no borrowed source or retained parent; original1001/fixed29 receive zero credit. All14 FaIR pins verified; old124/179/416 untouched. Existing runtime567f6062 is not this uncommitted code.
+
+Current executable runner provenance reconciled in status-choice-width evidence with old hashes retained: mandatory private producer/freeze, electricity and current primary-authentication gates added, no assertion weakened or original DOCX/numerical rule changed.
+
+Initial full-final receipt retained:1263total/1251pass/11fail/1skip; Python not run. Screenshot caught actual ol-in-p DOM nesting, fixed with24 UI tests. Component-state10new consumers, export registry15old+4new and stale source censuses repaired without weakened gates. Current census adds234 precise supplemental semantics; census/output register regenerated only through existing tools.
+
+**Full gate: passed (local receipt only).** Actual source/artifact/receipt/log hashes and failure history are in latest_increment.economic_bridge_original_partial and the four criterion records; earlier failed/incomplete receipts are preserved, not reclassified.
+
+- **S13-001 partial:** Explicit XOM consolidated proved-producing reserve-interest sector map, including NCI and excluding equity affiliates. Official SEC200 authenticates39facts/38rows/261numeric cells and retained2025-02-19T21:39:37Z acceptance; selected primary-table gap resolved, not owner/successor-security/whole-equity qualification. Next: Primary-table authentication and SEC acceptance timestamp resolved; obtain owner review and successor legal/security continuity, then qualify reserve-interest versus whole-equity allocation including non-producing businesses, NCI, debt and cash; never treat reserve PV10 as market equity.
+- **S13-002 partial:** Finite reserve stock, production and unlevered conditional cash model yields 2.9773550346% diagnostic depletion against disclosed USD151494m PV10; seven sensitivities (3 roots/4 no-root), six zero accounting residuals; market-equity and uncertified replacement inversions refused. Next: With primary-table authentication resolved, obtain a genuinely compatible market reserve-interest target and independently review timing/fiscal/uniqueness assumptions before any market-implied decline claim; replacement inversion remains refused until separately certified.
+- **S13-005 partial:** Prior-frozen [0,8%] decline domain, fixed price/cost basket, margin, discount, capital, WC and 100-year zero-terminal assumptions published separately from source facts; explicit replacement forward code is not a certified inverse. Next: Independently review and approve complete defensible commodity, margin, discount, capital/replacement and cash-timing assumptions for an identified valuation-to-physical map; do not widen the frozen domain after solving.
+- **S12-005 partial:** Location electricity cash bridge integrated in real companyProjection, seven synthetic integration controls; source investigation establishes five operating/one construction property and five EIA contextual prices, zero applicable issuer tariffs or actual issuer executions. Next: Source same-period site purchased MWh, supplier/tariff eligibility, currency, customer recovery and payment/collection timing; then execute an admissible issuer companyProjection bridge, not a regional-average substitute.
+
+<!-- economic-bridge-original-partial:end -->
+
 ## Current verified boundary/counterfactual code release — 2026-11-12
 
 Implementation workspace `d520594d27f1ecd3c939cdc49757cd049866d989` → public/runtime `b801777f4d8f018f510a4e74b24608235ec456cc`. Existing CI `43230014407` validate/promote succeeded; Railway `9bebe7fe-a788-4555-9600-e170257bbeae` SUCCESS. Actual build-info exact SHA and health200; safe catalog200 empty, override/missing-pins400, private missingness/export/prospective-export403, all no-store/no attachment/no producer binding. Served JS contains exact global-intensity counterfactual title/question/claim/labels and native-v3 identifier.
@@ -6523,6 +6550,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-mechanisms-pathways-d75e183",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T12:58:31.102181+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-boundary-counterfactual-b801777",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T14:14:01.170307+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

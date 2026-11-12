@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { createHash } from "node:crypto";
 import ts from "typescript";
 import { serverDownloadRegistry } from "../shared/serverDownloadRegistry";
+import { auditEconomicDownloadWriter } from "./economic-download-contract-audit";
 
 function files(root: string): string[] {
   return readdirSync(root, { withFileTypes: true }).flatMap(entry => entry.isDirectory()
@@ -18,7 +19,7 @@ export function methodologyDownloadCensus() {
   const downloadLinks: { path: string; line: number; href: string; embeddedManifest: boolean }[] = [];
   const attachmentSites: { path: string; line: number; expression: string; registered: boolean }[] = [];
   const workbookSheets: { path: string; line: number; expression: string }[] = [];
-  const writers: { path: string; line: number; expression: string }[] = [];
+  const writers: { path: string; line: number; expression: string; contract: string }[] = [];
   const inlineDataDownloads: { path: string; line: number; expression: string }[] = [];
   const sourceHashes: Record<string, string> = {};
   for (const path of [...files("client/src"), ...files("server")]) {
@@ -27,7 +28,7 @@ export function methodologyDownloadCensus() {
     const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true,
       path.endsWith(".tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
     const line = (node: ts.Node) => source.getLineAndCharacterOfPosition(node.getStart(source)).line + 1;
-    function visit(node: ts.Node) {
+    const visit = (node: ts.Node) => {
       if (path.startsWith("client/") && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node) ||
         ts.isTemplateExpression(node)) && /^data:(?:application|image|text)\//.test(
           ts.isTemplateExpression(node) ? node.head.text : node.text))
@@ -56,11 +57,14 @@ export function methodologyDownloadCensus() {
         }
         if (/\.book_append_sheet$/.test(expression)) workbookSheets.push({ path, line: line(node), expression: node.arguments[2]?.getText(source) ?? "" });
         if (/\.addWorksheet$/.test(expression)) workbookSheets.push({ path, line: line(node), expression: node.arguments[0]?.getText(source) ?? "" });
-        if (path.startsWith("client/") && /(?:writeFile|writeFileXLSX|saveAs|createObjectURL|toDataURL|toBlob)$/.test(expression))
-          writers.push({ path, line: line(node), expression });
+        if (path.startsWith("client/") && /(?:writeFile|writeFileXLSX|saveAs|createObjectURL|toDataURL|toBlob)$/.test(expression)) {
+          const contract = path === "client/src/components/download-data-button.tsx" ? "central-qualified-download" :
+            auditEconomicDownloadWriter(path, source, node).key;
+          writers.push({ path, line: line(node), expression, contract });
+        }
       }
       node.forEachChild(visit);
-    }
+    };
     visit(source);
   }
   return { version: "public-source-download-census-v1", centralSites, downloadLinks, attachmentSites,

@@ -4,6 +4,7 @@ import { exportContracts } from "./downloadClaims";
 import { HISTORICAL_TYPES } from "./historicalTypes";
 import { scientificEvidenceStatuses } from "./scientificEvidence";
 import { supplementalSheetBindings } from "./supplementalSheetBindings";
+import { economicBridgeDownloadWriters } from "./economicBridgeSchema";
 
 /** No copied formulas, inferred vintages, runtime evidence files or Git reads.
  * The same definitions consumed by calculators' output bindings drive this view.
@@ -17,6 +18,7 @@ export function methodologyRegistry() {
     downloadClaims: exportContracts,
     historicalTypes: HISTORICAL_TYPES,
     scientificEvidence: scientificEvidenceStatuses(),
+    supplementalEconomicDownloads: economicBridgeDownloadWriters,
     supplementalSheets: {
       "Field semantics": supplementalSheetBindings("Field semantics"),
       "Column bindings": supplementalSheetBindings("Column bindings"),

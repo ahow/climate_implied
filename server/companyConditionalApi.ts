@@ -4,11 +4,13 @@ import { conditionalExportCells, getConditionalCompanySummary, type ConditionalI
 import { bindNestedOutput } from "../shared/outputFieldSemantics";
 import { bindConditionalExportCells } from "../shared/companyConditionalSemantics";
 import { bindStaticReference } from "./staticReferenceLineage";
+import { registerProducerReserveRoutes } from "./producerReserveApi";
 
 export const CONDITIONAL_COMPANY_ROUTE = "/api/cv/company-conditional-summaries";
 
 /** Parent server registers this once. GET only; never reads runtime evidence files. */
 export function registerCompanyConditionalRoutes(app: Express) {
+  registerProducerReserveRoutes(app);
   function readIssuer(req: Request, res: Response): ConditionalIssuer | undefined | false {
     if (Object.keys(req.query).some(key => key !== "issuer")) {
       res.status(400).json({ error: "Only the optional issuer presentation selection is supported." });

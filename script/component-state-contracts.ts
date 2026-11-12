@@ -34,6 +34,24 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "producer-reserve-panel.tsx": query("Absent/null report has a composed unavailable state; incomplete report or prospective identity is refused by the reader, never replaced by issuer summaries.", {
+    null: "Market equity target, market-implied decline and FCFE remain explicitly Unknown (null); null solve decline/residual is unavailable, not zero.",
+    loading: "useProducerReserve/useReadQuery and the state gate withhold cached results and exports on initial or background pending reads; accessible skeletons identify the current read.",
+    error: "Read/schema/domain/path errors withhold success and exports; the state gate shows the actual error and read-only Retry. Export failures show a local error, never a fallback file.",
+    selection: "Independent of historical archive and issuer presentation; the fixed same-origin endpoint accepts no query pins or numeric overrides. Identity changes remount export state; full response JSON/XLSX equality binds downloads.",
+    zero: "Literal finite zero is preserved at exact returned precision; conditional replacement/WC/terminal zeros are explicitly assumptions, not missing observations.",
+    refusal: "Base and sensitivity statuses, refusal reasons and source gaps are shown. Finite disclosed-reserve PV10 is not whole equity, FCFE, market-implied decline, owner/scientific approval or three-case acceptance.",
+    scope: "Read-only actual worker report and complete prospective identity; current identity sourceArtifact primaryAuthentication is explicitly separate from unchanged frozen-report declaration-time source gaps. Missing current assessment is not a completed authentication. JSON export and literal-cell XLSX readback must equal the consumed response, with no formulas, changed sources or substituted identities.",
+  }),
+  "location-electricity-panel.tsx": query("Absent/null document is explicitly unavailable; a valid source-findings report remains partial issuer evidence, not an absent whole report or fabricated issuer execution.", {
+    null: "Actual issuer result and site MWh/supplier/tariff/recovery/payment/collection remain Unknown (null). EIA availability date null stays unknown, never a fabricated release date.",
+    loading: "useLocationElectricity/useReadQuery and the state gate suppress prior source rows and downloads while initially loading or refreshing; named skeletons replace findings.",
+    error: "HTTP/schema/source/count/conversion/identity errors show explicit read-only Retry and no stale report. Export errors withhold the file, not fabricate issuer output.",
+    selection: "Fixed same-origin endpoint is independent of archive and issuer controls; no query pins or assumption overrides. New identity remounts local export state; exact whole-document readback binds downloads.",
+    zero: "Zero assigned issuer assumptions and coverage/execution counts are literal reported counts, not assumed tariff/consumption/cash zeros; null values are never zero-filled.",
+    refusal: "Operating and construction properties stay distinct; EIA industrial prices remain regional context, never applicable issuer tariffs. No qualified execution, source/science approval or historical-origin claim.",
+    scope: "Actual public source projection and server unit conversion only; optional companyProjection integration is acknowledged but not claimed executed. Exact missing inputs, source provenance and complete response identity remain visible.",
+  }),
   "headline-drilldown.tsx": query("Without unchanged consumed headline producer identity, the review names unavailability and never requests a substitute parent.", {
     null: "No matched response is explicitly unavailable; signed native values including zero stay data, never fabricated regional allocations.",
     loading: "useReadQuery suppresses retained drilldown rows and JSON/XLSX links during actual initial or background pending reads.",
@@ -298,7 +316,56 @@ export const filePolicies: Record<string, Policy> = {
   }),
 };
 
+/** Finite reviewed additions, keyed by exact file AND actual declaration.
+ * A newly introduced sibling is refused until separately reviewed. */
+export const economicBridgeComponentPolicies: Record<string, Policy> = {
+  "producer-reserve-panel.tsx#ProducerReservePanel": filePolicies["producer-reserve-panel.tsx"],
+  "producer-reserve-panel.tsx#ProducerReservePanelContent": {
+    ...filePolicies["producer-reserve-panel.tsx"], inputKind: "supplied-result",
+  },
+  "producer-reserve-panel.tsx#ProducerReserveReportView": {
+    ...filePolicies["producer-reserve-panel.tsx"], inputKind: "supplied-result",
+    loading: "Parent current-read gate mounts this report only when ready; local downloading state disables both export buttons and labels the selected exact-readback operation.",
+    error: "Parent owns report-read errors and unmounts stale content. This view catches download errors, reports refusal and offers retry without a fallback file.",
+  },
+  "producer-reserve-panel.tsx#ReserveLiteral": props("Undefined is explicitly not returned; unsupported/nonfinite values are unavailable. Objects and arrays recurse through supplied values, with explicit empty-array text.", {
+    null: "Explicit null renders Unknown (null), distinct from undefined, finite zero and false.",
+    loading: "Synchronous literal renderer; parent current-read gate owns pending suppression, not an independent request or skeleton.",
+    error: "Synchronous field presentation; unsupported/nonfinite values have named unavailable text. Parent owns read/schema errors.",
+    selection: "Current supplied literal is authoritative; no query, local selection, remembered values or numeric conversion.",
+    zero: "Finite numeric zero renders literally, false remains false, and all finite values retain exact server numeric precision.",
+    scope: "Supplied JSON presentation through block-capable containers; arrays emit ol and objects emit dl, with regression across every consumer. No calculations or export writer.",
+  }),
+  "producer-reserve-panel.tsx#Disclosure": controls("Native details/summary disclosure renders the parent's supplied title/children. Opening changes presentation only; no result selection, numeric input, export or data request."),
+  "producer-reserve-panel.tsx#Result": props("Validated supplied solve status, reason, domain hash, roots and iteration count are displayed; no root or result is computed in this child.", {
+    null: "Decline/residual null are explicitly Unknown (null); empty roots remain an empty-array disclosure, never a root at zero.",
+    loading: "Parent report/state gate owns pending suppression; this synchronous solve child has no fetch, skeleton or retained result.",
+    error: "Parent reader validates solve/domain consistency; this child displays the supplied refusal reason without independently fetching or repairing a solve.",
+    selection: "Each parent base/sensitivity/refusal solve is authoritative; no child cache or cross-case substitution.",
+    scope: "Base, sensitivity and refusal solve presentation only; unique conditional roots do not imply market identification or accepted issuer cases. Roots use a valid block-capable wrapper.",
+  }),
+  "location-electricity-panel.tsx#LocationElectricityPanel": filePolicies["location-electricity-panel.tsx"],
+  "location-electricity-panel.tsx#LocationElectricityPanelContent": {
+    ...filePolicies["location-electricity-panel.tsx"], inputKind: "supplied-result",
+  },
+  "location-electricity-panel.tsx#LocationElectricityReportView": {
+    ...filePolicies["location-electricity-panel.tsx"], inputKind: "supplied-result",
+    loading: "Parent current-read gate mounts the report only when ready. Local download checking disables both format buttons; it does not compute an issuer bridge.",
+    error: "Parent handles failed report reads and withholds cached content; local export errors refuse the file and display the exact failure for retry.",
+  },
+  "location-electricity-panel.tsx#Source": props("Validated supplied public source identity/URL/locator/hash and dates are displayed; a missing source is a reader-contract failure, not substituted evidence.", {
+    null: "Available-at null remains Unknown (null); observed capture time is not substituted as a historical availability claim.",
+    loading: "Parent report gate owns source-read pending suppression; this synchronous details disclosure performs no request.",
+    error: "Parent schema validates the source; no child authentication/fetch/fallback is performed. Non-HTTP URL text is not promoted to an external link.",
+    selection: "Exact source attached to the current property or price row is authoritative; expanding details changes presentation only.",
+    zero: "No numeric measurements are consumed; historicalOriginClaim false stays literal false, not a readiness score.",
+    scope: "Public source metadata and external source link only, not new source authentication, historical-origin approval, private bytes or an export writer.",
+  }),
+};
+
 export const focusedRenderComponents = new Set([
+  "ProducerReservePanel", "ProducerReservePanelContent", "ProducerReserveReportView", "ReserveLiteral", "Disclosure", "Result",
+  "LocationElectricityPanel", "LocationElectricityPanelContent", "LocationElectricityReportView", "Source",
   "HeadlineDrilldownReview", "RetainedHeadlineDrilldown",
   "RetainedPairedResearch", "RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton",
   "ProducerDownloadLink",
@@ -339,7 +406,10 @@ const valuationIndicatorCohort = new Set([
   "IndicatorSeriesTooltip", "IndicatorCards", "IndicatorDetailDialog",
 ]);
 export function contractFor(file: string, name: string) {
-  const policy = filePolicies[file.split("/").at(-1)!];
+  const basename = file.split("/").at(-1)!;
+  const economicKey = `${basename}#${name}`;
+  const economicFile = ["producer-reserve-panel.tsx", "location-electricity-panel.tsx"].includes(basename);
+  const policy = economicFile ? economicBridgeComponentPolicies[economicKey] : filePolicies[basename];
   if (!policy) throw new Error(`No reviewed state policy for actual consumer ${file}#${name}`);
   const inheritedProps = ["RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton", "SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);
   return {
@@ -407,7 +477,9 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: ["HeadlineDrilldownReview", "RetainedHeadlineDrilldown"].includes(name)
+    focusedEvidence: economicFile
+      ? "script/economic-bridge-ui.test.ts imports both actual client SSR suites: current-read loading/refresh/error/absent/null/ready/partial source findings, real worker values, literal zero/null/false, empty arrays, source/domain/count/conversion/approval refusals, exact JSON/XLSX source/identity readback and all-consumer DOM nesting. Hook wrappers are separately mounted with an idle QueryClient cache; child declarations are rendered through actual report trees. No browser clicks, source approval, private bytes or all-field permutations claimed."
+      : ["HeadlineDrilldownReview", "RetainedHeadlineDrilldown"].includes(name)
       ? "script/headline-drilldown-ui.test.ts: actual module SSR with scoped query harness covers unbound parent, loading/error/absent/ready/zero and exact download selection; script/headline-drilldown.test.ts verifies retained producer replay, hash/filter refusals and actual HTTP/JSON/XLSX. No interactive browser coverage claimed."
       : ["RetainedPairedResearch", "RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton"].includes(name)
       ? "client/src/components/retained-paired-research.test.ts (included by script/retained-paired-research-ui.test.ts): actual imported SSR covers catalog/report missing/invalid/loading/error/ready, no default selection, null dates, finite zero and unavailable sections; verified fetch/header/content tests. No browser interaction or genuine publication approval claimed."

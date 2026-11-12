@@ -2,6 +2,8 @@ import { z } from "zod";
 import { contentHash } from "./analysisManifest";
 import { calculateQualifiedCarbonDrag, qualifiedProjectionPassThroughSchema } from "./carbonPassThroughAdmission";
 import { bindNestedOutput } from "../../shared/outputFieldSemantics";
+import { calculateLocationElectricityCashBridge, locationElectricityCashBridgeSchema }
+  from "./locationElectricityCashBridge";
 
 const finite = z.number().finite(), fraction = finite.min(0).max(1);
 const evidence = z.array(z.string().min(1)).min(1);
@@ -78,6 +80,7 @@ const schema = z.object({
       scope2LiableFraction: fraction, effectiveCarbonPrice: finite.nonnegative(), passThrough: fraction,
       qualifiedPassThrough: qualifiedProjectionPassThroughSchema.optional(),
       abatementAccounting: abatementAccounting.optional(),
+      locationElectricity: locationElectricityCashBridgeSchema.optional(),
     }).strict()).length(5),
   }).strict()).min(2).max(1000),
 }).strict();
@@ -106,6 +109,9 @@ export function projectCompanyMembers(input: unknown) {
         scope1: { ...y.abatementAccounting.scope1, measures: [...y.abatementAccounting.scope1.measures].sort((a, b) => a.measureId.localeCompare(b.measureId)) },
         scope2: { ...y.abatementAccounting.scope2, measures: [...y.abatementAccounting.scope2.measures].sort((a, b) => a.measureId.localeCompare(b.measureId)) },
         scope3: { ...y.abatementAccounting.scope3, measures: [...y.abatementAccounting.scope3.measures].sort((a, b) => a.measureId.localeCompare(b.measureId)) },
+      } } : {}),
+      ...(y.locationElectricity ? { locationElectricity: { ...y.locationElectricity,
+        locations: [...y.locationElectricity.locations].sort((a, b) => a.id.localeCompare(b.id)),
       } } : {}),
     })),
   }));
@@ -159,13 +165,33 @@ export function projectCompanyMembers(input: unknown) {
       const carbonDrag = qualifiedCarbonDrag ? qualifiedCarbonDrag.carbonDrag :
         (emissionsTonnes.scope1 * p.scope1LiableFraction +
           emissionsTonnes.scope2 * p.scope2LiableFraction) * p.effectiveCarbonPrice * (1 - p.passThrough);
+      let electricityPriceBridge: ReturnType<typeof calculateLocationElectricityCashBridge> | undefined;
+      if (p.locationElectricity) {
+        const electricity = p.locationElectricity;
+        if (electricity.companyId !== x.companyId || electricity.year !== p.year ||
+            electricity.currency !== x.currency)
+          throw new Error("Location electricity company/year/currency mismatch");
+        if (p.scope2LiableFraction !== 0)
+          throw new Error("Location electricity requires zero legacy Scope2 charge; no duplicate direct tax");
+        if (x.mapping.basis !== "operating-geography" ||
+            electricity.locations.some(l => !shares.some(s => s.region === l.jurisdiction)))
+          throw new Error("Location electricity requires matching operating geography, not headquarters fallback");
+        electricityPriceBridge = calculateLocationElectricityCashBridge(electricity);
+      }
       const operatingProfitBeforeCarbon = revenue * p.operatingMargin;
-      const preTaxIncome = operatingProfitBeforeCarbon - carbonDrag - p.interest + p.nonOperatingIncome;
+      // Subtract the incremental accrual expense, not the cash-paid component.
+      // WC separately converts that accrual to cash exactly once. Absence keeps
+      // legacy arithmetic/output/hash unchanged.
+      const incomeBeforeElectricity = operatingProfitBeforeCarbon - carbonDrag - p.interest + p.nonOperatingIncome;
+      const preTaxIncome = electricityPriceBridge ?
+        incomeBeforeElectricity - electricityPriceBridge.integration.subtractFromPreTaxIncome : incomeBeforeElectricity;
+      const increaseWorkingCapital = electricityPriceBridge ?
+        p.increaseWorkingCapital + electricityPriceBridge.integration.addToIncreaseWorkingCapital : p.increaseWorkingCapital;
       // No automatic tax refund for losses or unsupported deferred-tax asset.
       const cashTax = Math.max(0, preTaxIncome) * p.taxRate;
       const netIncome = preTaxIncome - cashTax + p.incomeAttributionAdjustment;
       const fcfe = netIncome + p.depreciation + p.otherCashAdjustments -
-        p.capex - p.increaseWorkingCapital + p.netBorrowing;
+        p.capex - increaseWorkingCapital + p.netBorrowing;
       if (![revenue, activityRatio, ...Object.values(emissionsTonnes), carbonDrag, fcfe].every(Number.isFinite))
         throw new Error("Nonfinite projected operating ledger");
       const carbonDragQualification = qualifiedCarbonDrag ? {
@@ -176,12 +202,14 @@ export function projectCompanyMembers(input: unknown) {
       } : undefined;
       if (carbonDragQualification) bindNestedOutput("companyProjection.carbonDragQualification", carbonDragQualification);
       return { year: p.year, revenue, activityRatio, emissionsTonnes, operatingProfitBeforeCarbon,
+        ...(electricityPriceBridge ? { electricityPriceBridge,
+          baselineIncreaseWorkingCapital: p.increaseWorkingCapital } : {}),
         ...(carbonDragQualification ? { carbonDragQualification } : {}),
         ...(abatementReconciliation ? { abatementReconciliation } : {}),
         carbonDrag, interest: p.interest, nonOperatingIncome: p.nonOperatingIncome,
         incomeAttributionAdjustment: p.incomeAttributionAdjustment,
         otherCashAdjustments: p.otherCashAdjustments, cashTax, netIncome, depreciation: p.depreciation,
-        capex: p.capex, increaseWorkingCapital: p.increaseWorkingCapital, netBorrowing: p.netBorrowing, fcfe };
+        capex: p.capex, increaseWorkingCapital, netBorrowing: p.netBorrowing, fcfe };
     });
     const final = years[4].fcfe;
     return { id: member.id, years, growth: final > 0 ? Math.pow(final / x.baseFcfe, 1 / 5) - 1 : null,
