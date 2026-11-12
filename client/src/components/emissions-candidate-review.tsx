@@ -8,6 +8,8 @@ import { thresholdDiagnosticDisplay, THRESHOLD_DIAGNOSTIC_LABEL } from "@shared/
 import { nativeThresholdExportRows, nativeThresholdExportBindings } from "@/lib/native-threshold-export";
 import { nativeResidualDiagnosticsSchema } from "@shared/nativeThresholdSchema";
 import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
+import { bindProducerNativeConsumer, exactProducerDownload } from "@/lib/producer-download";
+import { nativeReviewYears } from "@shared/nativeConsumer";
 
 type CandidateResponse = {
   residualDiagnostics?: NativeResidualDiagnostics;
@@ -50,7 +52,7 @@ const scenarioLabels: Record<ReviewScenario, string> = {
   dashboard: "Dated dashboard-input diagnostic",
 };
 
-const reviewYears = [2024, 2030, 2050, 2100];
+const reviewYears = nativeReviewYears;
 const formatEmissions = new Intl.NumberFormat("en", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
@@ -133,7 +135,8 @@ export function EmissionsCandidateReview() {
         </div>
         <DownloadDataButton kind="native" filename="native-mass-five-percent-2024-diagnostics"
           sheetName="Native residual diagnostic" label="Download separate native threshold diagnostics"
-          rows={nativeThresholdExportRows(data.residualDiagnostics.records)}
+          rows={bindProducerNativeConsumer(data, "native-thresholds", nativeThresholdExportRows(data.residualDiagnostics.records), scenario)}
+          requireDerivedParent={!!exactProducerDownload(data)}
           fieldBindings={nativeThresholdExportBindings} testId="button-download-native-thresholds" />
       </section>}
 
@@ -188,7 +191,8 @@ export function EmissionsCandidateReview() {
           <DownloadDataButton
             kind="native"
             filename={`native-emissions-${scenario}`}
-            rows={data.result.trajectory.map(nativeExportRow)}
+            rows={bindProducerNativeConsumer(data, "native-trajectory", data.result.trajectory.map(nativeExportRow), scenario)}
+            requireDerivedParent={!!exactProducerDownload(data)}
             fieldBindings={nativeExportBindings}
           />
         </div>

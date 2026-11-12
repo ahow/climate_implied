@@ -220,8 +220,8 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | --- | --- | --- | --- |
 | client/src/components/category-comparison.tsx | "category-scenario-analysis" | {downloadRows} | "legacy" |
 | client/src/components/category-trend-chart.tsx | {`category-trends-${metricView==="netZero"?"legacy-fixed-5gt-v1":metricView}`} | {downloadRows} | "legacy" |
-| client/src/components/emissions-candidate-review.tsx | "native-mass-five-percent-2024-diagnostics" | {nativeThresholdExportRows(data.residualDiagnostics.records)} | "native" |
-| client/src/components/emissions-candidate-review.tsx | {`native-emissions-${scenario}`} | {data.result.trajectory.map(nativeExportRow)} | "native" |
+| client/src/components/emissions-candidate-review.tsx | "native-mass-five-percent-2024-diagnostics" | {bindProducerNativeConsumer(data, "native-thresholds", nativeThresholdExportRows(data.residualDiagnostics.records), scenario)} | "native" |
+| client/src/components/emissions-candidate-review.tsx | {`native-emissions-${scenario}`} | {bindProducerNativeConsumer(data, "native-trajectory", data.result.trajectory.map(nativeExportRow), scenario)} | "native" |
 | client/src/components/emissions-chart.tsx | "global-emissions-trajectory" | {downloadRows} | "legacy" |
 | client/src/components/historical-trend-chart.tsx | {`historical-trend-${metricView}`} | {downloadRows} | "legacy" |
 | client/src/components/indicator-cards.tsx | "climate-indicators" | {downloadRows} | "indicators" |

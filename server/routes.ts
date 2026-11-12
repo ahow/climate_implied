@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import { nativeCandidateHandler } from "./nativeCandidateApi";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { candidateInventory, constantScenario, illustrativeScenario, projectNativeEmissions } from "./calculation/emissionsCandidate";
@@ -549,31 +550,7 @@ export async function registerRoutes(
     next();
   });
 
-  app.get("/api/emissions/candidate", (req, res) => {
-    if (req.query.scenario !== undefined && !["constant", "transition", "dashboard"].includes(String(req.query.scenario))) {
-      return res.status(400).json({ error: "scenario must be constant, transition or dashboard" });
-    }
-    try {
-      const inputs = resolveEmissionsInputs();
-      const nativeResult = projectNativeEmissions(req.query.scenario === "dashboard" ? inputs.diagnostic :
-        req.query.scenario === "transition" ? illustrativeScenario : constantScenario);
-      const response = {
-        promotion: "blocked-pending-calibration-and-Packages-3-4",
-        inventory: candidateInventory(),
-        inputs,
-        result: nativeResult,
-        residualDiagnostics: nativeResidualDiagnosticsSchema.parse(nativeCandidateResidualDiagnostics(nativeResult)),
-      };
-      const fields=bindNestedOutput("native",response);
-      // Avoid oversized headers: exact bindings are available in the registry;
-      // discriminator-specific gas/sector IDs remain distinct there.
-      res.set("X-Field-Semantics-Family","native");
-      res.set("X-Field-Semantics-Count",String(fields.length));
-      res.json(response);
-    } catch (error) {
-      res.status(422).json({ error: error instanceof Error ? error.message : "Invalid candidate inputs" });
-    }
-  });
+  app.get("/api/emissions/candidate", nativeCandidateHandler());
 
   // Submitted-input arithmetic only; no stored inventory/approval mutation or source collection.
   app.post("/api/emissions/regional-residual-diagnostics", (req, res) => {

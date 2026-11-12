@@ -6,6 +6,7 @@ import { consumerCanonicalJson, deriveValuationPE, deriveSignalConsumer,
 import { exportDataIdentity } from "./export-identity";
 import { currentSelection, type AnalysisSelection } from "./analysis-selection";
 import { deriveReadonlyConsumer, READONLY_PRODUCER_SCENARIO, type ReadonlyConsumerKey } from "../../../shared/readonlyConsumer";
+import { deriveNativeConsumer, NATIVE_PRODUCER_SCENARIO, type NativeConsumerKey, type NativeScenario } from "../../../shared/nativeConsumer";
 
 const retainedResults = new WeakMap<object, {
   proof: RetainedProducerIdentity; source: string; selection: string;
@@ -19,6 +20,7 @@ const signalResults = new WeakMap<object, {
 }>();
 const capturedConsumers = new WeakMap<object, string>();
 const readonlyResults = new WeakMap<object, { parent: object; key: ReadonlyConsumerKey; output: string }>();
+const nativeResults = new WeakMap<object, { parent: object; key: NativeConsumerKey; scenario: NativeScenario; output: string }>();
 async function canonicalHash(value: unknown) {
   const bytes = new TextEncoder().encode(consumerCanonicalJson(value));
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)))
@@ -40,7 +42,7 @@ export function retainProducerDownload(response: Response, requestedSelection: A
       !Array.isArray(proof.orderedSnapshotHashes) || !proof.orderedSnapshotHashes.length ||
       !proof.orderedSnapshotHashes.every((id: unknown) => typeof id === "string" && /^[a-f0-9]{64}$/.test(id)) ||
       typeof proof.modelVersion !== "string" || !proof.modelVersion ||
-      !(proof.scenario === READONLY_PRODUCER_SCENARIO || ["summary", "carbon-price", "pe-comparison", "sdg-growth", "decarb-bands",
+      !(proof.scenario === READONLY_PRODUCER_SCENARIO || proof.scenario === NATIVE_PRODUCER_SCENARIO || ["summary", "carbon-price", "pe-comparison", "sdg-growth", "decarb-bands",
         "decarb-terciles", "decarb-gap/summary", "decarb-gap/timeseries", "backtest"]
          .some(path => proof.scenario === `descriptive-valuation:/${path}`)) ||
       proof.scientificAcceptance !== false)
@@ -123,6 +125,39 @@ function captureReadonlyConsumer(rows: unknown, binding: NonNullable<ReturnType<
   return captured;
 }
 
+export function bindProducerNativeConsumer<T extends Record<string, unknown>>(
+  parent: object, key: NativeConsumerKey, rows: T[], scenario: NativeScenario,
+): T[] {
+  // Legacy/partial but honest displays are not producer attestation. Preserve
+  // their established download availability; only a consumed server proof can
+  // enter the new strict parent/replay branch.
+  if (!retainedResults.has(parent)) return rows;
+  const replay = deriveNativeConsumer(parent, key, scenario);
+  if (consumerCanonicalJson(replay.rows) !== consumerCanonicalJson(rows))
+    throw new Error("Native consumer projection conflicts with exact replay");
+  // Ordinary correct native data remains downloadable if automatic retention
+  // failed. It cannot acquire a producer identity or pretend to be retained.
+  nativeResults.set(rows, { parent, key, scenario, output: consumerCanonicalJson(rows) });
+  return rows;
+}
+function captureNativeConsumer(rows: unknown, binding: NonNullable<ReturnType<typeof nativeResults.get>>) {
+  const retained = retainedResults.get(binding.parent);
+  if (!retained || retained.proof.scenario !== NATIVE_PRODUCER_SCENARIO ||
+    retained.source !== consumerCanonicalJson(binding.parent))
+    throw new Error("Native consumer retained parent missing, changed or conflicting");
+  if (retained.selection !== consumerCanonicalJson(currentSelection()))
+    throw new Error("Native consumer belongs to stale requested input selection");
+  const replay = deriveNativeConsumer(binding.parent, binding.key, binding.scenario);
+  if (binding.output !== consumerCanonicalJson(rows) || binding.output !== consumerCanonicalJson(replay.rows))
+    throw new Error("Native consumer rows or exact replay changed");
+  const captured = structuredClone({ version: "derived-consumer-lineage-1", parent: retained.proof,
+    derivation: replay.derivation, rows: replay.rows, chartRows: replay.chartRows,
+    originalHistoricalExport: false, scientificAcceptance: false,
+    meaning: "New conditional native candidate export from actual retained dated inputs, native inventory, engine source and completed response; not calibrated, a temperature run, forecast, original vintage or scientific acceptance" });
+  capturedConsumers.set(captured, consumerCanonicalJson(captured));
+  return captured;
+}
+
 function captureSignalConsumer(rows: unknown, binding: NonNullable<ReturnType<typeof signalResults.get>>) {
   const replay = deriveSignalConsumer(binding.parents, binding.key, binding.selection);
   const retained = binding.parents.map((parent, index) => {
@@ -176,6 +211,8 @@ function captureSignalConsumer(rows: unknown, binding: NonNullable<ReturnType<ty
 /** Capture before any async export preparation. Returns null for arbitrary
  * rows/clones, and refuses a mutated registered derivation instead of degrading. */
 export function captureDerivedConsumer(rows: unknown) {
+  const native = rows && typeof rows === "object" ? nativeResults.get(rows) : undefined;
+  if (native) return captureNativeConsumer(rows, native);
   const readonly = rows && typeof rows === "object" ? readonlyResults.get(rows) : undefined;
   if (readonly) return captureReadonlyConsumer(rows, readonly);
   const signal = rows && typeof rows === "object" ? signalResults.get(rows) : undefined;

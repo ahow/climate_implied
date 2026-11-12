@@ -42,6 +42,9 @@ export async function captureCalculationSource() {
 export async function saveReadonlyDiffMaterial(payload: unknown) {
   return save("readonly-diff-material", payload);
 }
+export async function saveNativeCandidateArchive(kind: "native-candidate-inputs" | "native-candidate-material", payload: unknown) {
+  return save(kind, payload);
+}
 async function save(kind:string,payload:unknown) {
   const id=contentHash(payload);
   await db.transaction(async tx=>{
@@ -74,7 +77,7 @@ export async function captureMaterialInputs(input: {
     nonConsumed:["provider quotes","unapproved financial proposals","news","unselected regional scenario"] };
   return { id:await save("material-inputs",payload),sourceId:source.id };
 }
-export async function loadMaterialArchive(id:string,kind:"material-inputs"|"calculation-source"|"readonly-diff-material") {
+export async function loadMaterialArchive(id:string,kind:"material-inputs"|"calculation-source"|"readonly-diff-material"|"native-candidate-inputs"|"native-candidate-material") {
   if(!/^[a-f0-9]{64}$/.test(id) || !await snapshotsAvailable()) throw new Error("Material archive unavailable");
   const rows=await db.execute(sql`SELECT s.chunk_count,c.ordinal,c.payload FROM cv_analysis_snapshots s
     JOIN cv_analysis_chunks c ON c.snapshot_id=s.id WHERE s.id=${id} AND s.kind=${kind}`);

@@ -2,6 +2,7 @@ import type { OutputFieldSemantic } from "./outputFieldSemantics";
 import { producerDownloadSemantics } from "./producerDownloadSemantics";
 import { valuationPEDerivations } from "./derivedConsumer";
 import { readonlyConsumerFieldMaps, readonlyConsumerColumnUnit } from "./readonlyConsumer";
+import { nativeConsumerFieldMaps, nativeConsumerUnit, type NativeConsumerKey } from "./nativeConsumer";
 
 type Field = [path: string, meaning: string, formula: string, unit: string];
 const fields: Field[] = [
@@ -14,10 +15,12 @@ const fields: Field[] = [
   ["originalHistoricalExport", "New prospective export is not recovered original historical bytes", "Literal false", "boolean"],
   ["scientificAcceptance", "Consumer lineage does not grant scientific acceptance or data approval", "Literal false", "boolean"],
   ["meaning", "Explicit prospective-output and acceptance boundary", "Fixed response-derived consumer explanation", "text"],
-  ["derivation.version", "Closed producer-to-consumer transformation version", "valuation-pe-consumer-1, signal-chained-consumer-1 or readonly-diff-consumer-1", "contract label"],
-  ["derivation.key", "One exact supported consumer, not an arbitrary formula", "carbon, sdg, ambition, signal-comparison, group-gap, signal-cumulative, signal-active, gap-cumulative, gap-active, version-diff or affected-analyses", "enum"],
+  ["derivation.version", "Closed producer-to-consumer transformation version", "valuation-pe-consumer-1, signal-chained-consumer-1, readonly-diff-consumer-1 or native-candidate-consumer-1", "contract label"],
+  ["derivation.key", "One exact supported consumer, not an arbitrary formula", "carbon, sdg, ambition, signal-comparison, group-gap, signal-cumulative, signal-active, gap-cumulative, gap-active, version-diff, affected-analyses, native-thresholds or native-trajectory", "enum"],
   ["derivation.scenario", "Required exact first server producer scenario for this consumer", "Closed registry scenario; additional parents checked individually by slot; mismatches refuse", "producer scenario label"],
   ["derivation.filter", "Date-only exclusion rule; unavailable P/E is not filtered into a complete-case population", "Exclude missing or invalid parsed observation dates only", "text"],
+  ["derivation.chartFilter", "Exact native table preview projection distinct from exported observation rows",
+    "Native trajectory: fixed four review years, first matching point, year/reporting value only; absent/nonfinite preview null. Native threshold: unchanged raw diagnostic records. All native export records remain unfiltered.", "text"],
   ["derivation.order", "Versioned exact ordering and duplicate policy", "P/E preserves native order/duplicates; signal comparison uses timestamp union ascending last per-parent duplicate; paired backtests use exact native-date-key union sorted with last per-parent duplicate. No current-source replacement", "text"],
   ["derivation.retainedIndices[]", "Exact positions represented by visible/exported rows", "P/E: native retained parent indices. Signal: joined chart indices; exact pre-join native parent indices separately in intermediates", "zero-based index"],
   ["derivation.excludedIndices[]", "Exact excluded positions under the versioned contract", "P/E: invalid-date native indices. Signal: no post-join exclusion; per-parent date exclusions in intermediates", "zero-based index"],
@@ -96,6 +99,15 @@ for (const column of Array.from(readonlyColumns)) {
         "Native source-cell count or exact retained report identifier/text; no model or investment inference", readonlyConsumerColumnUnit(column)]);
 }
 const nativeChartFields = new Set<string>(["date"]);
+for (const key of Object.keys(nativeConsumerFieldMaps) as NativeConsumerKey[]) {
+  for (const column of Object.keys(nativeConsumerFieldMaps[key])) {
+    fields.push([`derivation.fields.${column}`, "Exact finite native candidate response field",
+      "native-candidate-consumer-1; all source records preserved; context is region / gas / member, not authority", "source field path"]);
+    for (const prefix of ["derivation.units", "sheets[].units"])
+      fields.push([`${prefix}.${column}`, "Exact native export column unit",
+        "Species mass and AR6 GWP100 reporting columns stay separate; no conversions or baseline borrowing", nativeConsumerUnit(key, column)]);
+  }
+}
 for (const spec of Object.values(valuationPEDerivations)) {
   columnUnits.add(`${spec.highLabel} P/E (x)`);
   columnUnits.add(`${spec.lowLabel} P/E (x)`);
@@ -117,14 +129,14 @@ for (const key of Array.from(nativeChartFields))
 
 const context = {
   role: "Output" as const,
-   dependencies: ["verified retained producer responses", "closed valuation-pe-consumer-1, signal-chained-consumer-1 or readonly-diff-consumer-1 derivation", "actual central workbook writer"],
-  source: "shared/derivedConsumer.ts; shared/readonlyConsumer.ts; client/src/lib/producer-download.ts; client/src/lib/derived-consumer-workbook.ts",
+   dependencies: ["verified retained producer responses", "closed valuation-pe-consumer-1, signal-chained-consumer-1, readonly-diff-consumer-1 or native-candidate-consumer-1 derivation", "actual central workbook writer"],
+  source: "shared/derivedConsumer.ts; shared/readonlyConsumer.ts; shared/nativeConsumer.ts; client/src/lib/producer-download.ts; client/src/lib/derived-consumer-workbook.ts",
   period: "Retained parent observation periods; prospective export capture is not original publication time",
   geography: "Exact retained parent population; no additional geography inference",
   status: "Supplemental consumer engineering lineage, not scientific acceptance or source approval",
    missingness: "Unregistered rows/clones remain unbound; changed registered source/output, wrong scenario or caller-supplied capture refuses. Signal chains additionally require every ordered parent, request-bound active selection, equal materialInputsId/codeArchiveId/modelVersion/orderedSnapshotHashes. Material archives exclude scenario and calculator settings, so different material IDs here cannot be excused by different scenarios. No fallback to current inputs.",
   uncertainty: "Identity and deterministic transformation only; no calibrated uncertainty, signature, execution-container attestation or causal validation",
-   scope: "Three P/E, six signal/gap and two readonly source-comparison consumers, exact intermediate chains and captured supplemental metadata sheets only. No original cohort closure, arbitrary callback certification or historical export recovery. Original 1000/1001 census unchanged.",
+   scope: "Three P/E, six signal/gap, two readonly source-comparison and two native candidate consumers, exact intermediate chains and captured supplemental metadata sheets only. No original cohort closure, arbitrary callback certification or historical export recovery. Original 1000/1001 census unchanged.",
   asOfRule: "Parent source availability remains its retained declaration; export time does not authenticate original vintage",
 };
 export const derivedConsumerSemantics: OutputFieldSemantic[] = [

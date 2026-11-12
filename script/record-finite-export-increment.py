@@ -5,7 +5,7 @@ x=json.loads(Path("docs/workplan_completion_ledger.json").read_text())
 now=datetime.datetime.now(datetime.timezone.utc).isoformat()
 export=json.loads(Path("docs/remaining-export-evidence.json").read_text())
 study=json.loads(Path("docs/regional-diffusion-next-evidence.json").read_text())
-receipt=json.loads(Path("generated-artifacts/remaining-export-fullchecks-v2.final.receipt.json").read_text())
+receipt=json.loads(Path("generated-artifacts/remaining-export-fullchecks-v3.native.complete.receipt.json").read_text())
 release={"status":"new source not yet verified deployed","last_verified":x["current_release"]}
 if len(sys.argv)==4:
  if x["current_release"].get("github_main")==sys.argv[1]:release=x["current_release"]
@@ -17,7 +17,7 @@ evidence={"S16-007":("docs/remaining-export-evidence.json",export),
 "S12-017":("docs/regional-diffusion-next-evidence.json",study)}
 gaps={
 "S16-007":"Exact finite handler matrix is in remaining-export-evidence.json: closed/unimplemented/sourceblocked individually named. Unimplemented producer/code/material derivations are engineering work, not external source blockers. Prior nine chains preserved, no blanket disabling ordinary downloads. Genuine private HTTP principal/provisioning remains required; old124/179/416 never rewritten or original XLSX recovered. Fixture readback is engineering, not live historical/scientific acceptance.",
-"S04-001":"Ten region/technology combinations have nine training/six heldout observations in each separately retained release; no independently supported regional saturation qualified. Zero new efficacy fits/bootstrap runs. Preserve nine prior baseline failures and EU-solar point win without central promotion. Need source-qualified ceilings/priors and uncertainty before sourced-K evaluation; no MW/shipments ceilings, shortened windows, revised-vintage substitution or arbitrary priors.",
+"S04-001":"Ten region/technology combinations have nine training/six heldout observations in each separately retained release; no independently supported regional saturation qualified. Zero new efficacy fits/bootstrap runs. New guarded evaluator is point-only: source/structural/dependence uncertainty still required, not a completed calibration pipeline. Preserve nine prior baseline failures and EU-solar point win without central promotion. Need source-qualified ceilings/priors and original uncertainty gates before qualification; no MW/shipments ceilings, shortened windows, revised-vintage substitution or arbitrary priors.",
 "S12-017":"Bounded new DOE/IRS programme sources do not establish FSLR collections/eligible watts/BOM/current-law case qualification, NEE gross recipient/priorities/commissioning/marginal returns or XOM executed fees/novation/billings/opex/funding. FSLR IR403 and selected NEE/XOM404 routes are scoped request outcomes, not global unavailability. No issuer FCFE insertion, duplicate cash/expense, future backdating or approval. Prior XPLR/Williams/TamilNadu findings preserved."}
 summary={"updated_at":now,"release":release,"execution":receipt,"finite_export_counts":export.get("matrixCounts"),
 "sources":["docs/remaining-export-evidence.json","docs/regional-diffusion-next-evidence.json"],

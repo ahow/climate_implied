@@ -11,6 +11,8 @@ import { revisedHistoryType } from "../../shared/historicalTypes";
 import { READONLY_PRODUCER_SCENARIO } from "../../shared/readonlyConsumer";
 import { verifyReadonlyDiffMaterial } from "./readonlyDiffProducer";
 import { boundedResultGraphReader } from "./resultVerificationGraph";
+import { NATIVE_PRODUCER_SCENARIO } from "../../shared/nativeConsumer";
+import { verifyNativeCandidateMaterial } from "./nativeCandidateProducer";
 
 export async function saveAnalysisResult(manifest: ReturnType<typeof createManifest>, result: unknown) {
   const packed = packAnalysisResult(manifest, result);
@@ -44,6 +46,9 @@ async function loadAnalysisResultNode(id: string, loadParent: (id: string) => Pr
   if (payload.manifest.scenario === READONLY_PRODUCER_SCENARIO) {
     if (typeof materialId !== "string") throw new Error("Readonly diff material unavailable");
     await verifyReadonlyDiffMaterial(materialId, payload.manifest, payload.result, loadParent);
+  } else if (payload.manifest.scenario === NATIVE_PRODUCER_SCENARIO) {
+    if (typeof materialId !== "string") throw new Error("Native candidate material unavailable");
+    await verifyNativeCandidateMaterial(materialId, payload.manifest, payload.result);
   } else if(materialId !== undefined) {
     if(typeof materialId!=="string") throw new Error("Invalid material identity");
     const material=await loadMaterialArchive(materialId,"material-inputs");

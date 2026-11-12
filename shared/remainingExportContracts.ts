@@ -18,10 +18,10 @@ export const remainingExportContracts = [
     missing: "Coverage sourceId identifies a workbook, not a retained coverage calculation, material archive, model version or code archive.",
     projection: "Lossless validated company-coverage-1 report JSON, with baseline/no-overlay restriction; no spreadsheet projection." },
   { key: "native-thresholds", filenames: ["native-mass-five-percent-2024-diagnostics"], source: "/api/emissions/candidate",
-    missing: "Whole native candidate response and baseline evidence have no retained completed-result/material/code/model binding; detached residual records cannot attest their producer.",
+    missing: "Resolved: native-candidate-inputs/material-1 captures actual inventory and dated effective inputs; native candidate engine/model and deterministic seed/member contract, source archive and completed response verified before binding. native-candidate-consumer-1 replays exact threshold rows.",
     projection: "Preserved residual record order; thresholdExportRow plus native Gas and Region; no gas conversion or baseline borrowing." },
   { key: "native-trajectory", filenames: ["native-emissions-constant", "native-emissions-transition", "native-emissions-dashboard"], source: "/api/emissions/candidate",
-    missing: "Whole selected-scenario native candidate response has no retained completed-result/material/code/model binding.",
+    missing: "Resolved: exact native candidate selected scenario, native inventory/effective dated inputs, engine/model/code, deterministic no-random seed/member and completed response are retained and verified; native-candidate-consumer-1 projects every native trajectory row.",
     projection: "Preserved trajectory order; nativeExportColumns finite native species and sector paths; nonfinite/missing cells null, not zero." },
   { key: "emissions", filenames: ["global-emissions-trajectory"], source: "/api/projection",
     missing: "Whole projection response has no retained completed-result/material/code/model binding; detached emissionsTrajectory is not a producer parent.",
@@ -69,7 +69,7 @@ export const remainingExportContracts = [
 
 export type RemainingExportKey = typeof remainingExportContracts[number]["key"];
 export function remainingExportState(key: RemainingExportKey) {
-  return key === "version-diff" || key === "affected-analyses" ? "closed" : "unimplemented";
+  return ["version-diff", "affected-analyses", "native-thresholds", "native-trajectory"].includes(key) ? "closed" : "unimplemented";
 }
 
 /** Matching is exact or belongs to a finite UI parameter domain. A filename

@@ -8,8 +8,8 @@ const fields = [
   ["materialInputsId", "Verified referenced consumed-material archive identity", "manifest.settings.materialInputsId; loadAnalysisResult verifies referenced material bundle", "SHA-256"],
   ["codeArchiveId", "Verified retained source/config/dependency-lock bundle identity", "manifest.codeVersion equals verified material.sourceArchive; not a running executable attestation", "SHA-256"],
   ["modelVersion", "Declared model contract version in completed producer manifest", "manifest.modelVersion, authenticated as retained content, not model acceptance", "version label"],
-  ["orderedSnapshotHashes[]", "Valuation workbook/ordered overlays/indicators, or readonly comparison from/to archives", "manifest.snapshotHashes retained in order; valuation additionally matches resolved server context; readonly matches both exact verified source archive IDs", "ordered SHA-256 identities"],
-  ["scenario", "Exact allowlisted retained producer identity", "manifest.scenario; descriptive-valuation actual captured producer route or source-backed:readonly-diff-1 with private retained material and safe report replay", "producer route label"],
+  ["orderedSnapshotHashes[]", "Valuation workbook/ordered overlays/indicators, readonly from/to, or actual native candidate input archive", "manifest.snapshotHashes retained in order; valuation matches resolved server context; readonly matches verified source parents; native binds exact captured inventory and effective dated input rows", "ordered SHA-256 identities"],
+  ["scenario", "Exact allowlisted retained producer identity", "manifest.scenario; descriptive-valuation, source-backed:readonly-diff-1 or source-backed:native-candidate-1 with verified retained inputs/source/material/result", "producer route label"],
   ["meaning", "Explicit stored-output and acceptance limitation", "fixed server explanation: retained completed response is not recalculation, original vintage or scientific acceptance", "text"],
   ["scientificAcceptance", "Producer identity does not establish scientific acceptance", "literal false", "boolean"],
 ] as const;

@@ -142,6 +142,7 @@ if(!baseline) {
 }
 const resolvedResponseAliases: {surface:string;source:string;line:number;expression:string;responseExpression:string;
   transparentWrapper?:{source:string;name:string};replacement:string}[]=[];
+const relocatedProducerAliases: typeof resolvedResponseAliases = [];
 function fields(type:ts.Type,path:string,surface:string,node:ts.Node,depth=0) {
   const source=node.getSourceFile(),where={source:relativeSource(source.fileName),line:source.getLineAndCharacterOfPosition(node.getStart()).line+1};
   if(type.isUnion()) {for(const t of type.types) if(!(t.flags&(ts.TypeFlags.Null|ts.TypeFlags.Undefined))) fields(t,path,surface,node,depth);return;}
@@ -176,6 +177,31 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
     if(ts.isCallExpression(node)&&ts.isPropertyAccessExpression(node.expression)&&
       node.expression.expression.getText(source)==="app"&&["get","post","put","patch","delete"].includes(node.expression.name.text))
       surface=`API ${node.expression.name.text.toUpperCase()} ${node.arguments[0]?.getText(source)}`;
+    if (!baseline && surface === 'API GET "/api/emissions/candidate"' && ts.isCallExpression(node) &&
+      node.expression.getText(source) === "app.get" && node.arguments[1]?.getText(source) === "nativeCandidateHandler()") {
+      // Trace this one relocated ORIGINAL producer, not an additional surface
+      // or permission to omit its original typed leaves. Exact factory/send
+      // shape and real return-expression type are required; unknown factories
+      // do not inherit this alias.
+      const handler = program.getSourceFiles().find(s => relativeSource(s.fileName) === "server/nativeCandidateApi.ts");
+      if (!handler) throw new Error("Missing native candidate producer handler");
+      const sends: ts.CallExpression[] = [];
+      function findSend(n: ts.Node) {
+        if (ts.isCallExpression(n) && n.expression.getText(handler) === "res.json") sends.push(n);
+        n.forEachChild(findSend);
+      }
+      findSend(handler);
+      if (sends.length !== 1 || sends[0].arguments[0]?.getText(handler) !== "response" ||
+        !handler.text.includes("const response = replayNativeCandidate(input, scenario as NativeScenario);") ||
+        !handler.text.includes("bindProducerIdentity(res, await retainNativeCandidate(input, scenario as NativeScenario, response, store))"))
+        throw new Error("Native candidate original send/retention contract changed");
+      fields(checker.getTypeAtLocation(sends[0].arguments[0]), "", surface, sends[0]);
+      relocatedProducerAliases.push({ surface, source: relativeSource(source.fileName),
+        line: source.getLineAndCharacterOfPosition(node.getStart()).line + 1,
+        expression: "nativeCandidateHandler()", responseExpression: "response",
+        transparentWrapper: { source: "server/nativeCandidateApi.ts", name: "nativeCandidateHandler" },
+        replacement: "Actual typed original native response via exact registered producer factory; no cohort expansion" });
+    }
     if(surface&&ts.isCallExpression(node)&&node.expression.getText(source)==="res.json"&&node.arguments[0]) {
       if (!baseline && surface === 'API GET "/api/calculation/company-coverage"' &&
         node.arguments[0].getText(source) === "result") {
@@ -312,7 +338,9 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
             for(const [column,binding] of Object.entries(thresholdExportBindings))
               verifiedExportBindings.push({surface:exportSurface,field:`[].${column}`,...binding});
           if(relativeSource(source.fileName)==="client/src/components/emissions-candidate-review.tsx" &&
-            prop.initializer.expression.getText(source)==="nativeThresholdExportRows(data.residualDiagnostics.records)" &&
+            ["nativeThresholdExportRows(data.residualDiagnostics.records)",
+              'bindProducerNativeConsumer(data, "native-thresholds", nativeThresholdExportRows(data.residualDiagnostics.records), scenario)']
+              .includes(prop.initializer.expression.getText(source)) &&
             node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&
               p.initializer?.getText(source)==="{nativeThresholdExportBindings}")) {
             // Verify actual builder keys/bindings against captured real inventory;
@@ -327,7 +355,9 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
         // Explicit schema consumed by both the actual row builder and bindings.
         // Do not infer arbitrary Object.fromEntries keys as covered.
         if(!baseline && relativeSource(source.fileName)==="client/src/components/emissions-candidate-review.tsx"
-          && prop.initializer.expression.getText(source)==="data.result.trajectory.map(nativeExportRow)"
+          && ["data.result.trajectory.map(nativeExportRow)",
+            'bindProducerNativeConsumer(data, "native-trajectory", data.result.trajectory.map(nativeExportRow), scenario)']
+            .includes(prop.initializer.expression.getText(source))
           && node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&p.initializer?.getText(source)==="{nativeExportBindings}"))
           for(const column of nativeExportColumns) entries.push({surface:exportSurface,field:`[].${column.column}`,type:"number | null",source:relativeSource(source.fileName),line,resolution:"typed-field"});
         else fields(type,"",exportSurface,node);
@@ -796,9 +826,16 @@ const frozenOriginalSlotFingerprint="34c22e5313d2db68748af9576beb7d72c6b1817f2aa
 type FrozenSlot={key:string;surface:string;field:string;role:"originally-bound"|"original-gap"|"withheld"};
 type FrozenCohort={version:string;sourceSha256:string;slotIdentityFingerprint:string;slots:FrozenSlot[]};
 const cohortPath="docs/field_semantics_original_cohort.json";
+const quantityPreservingRowsAliases = [{
+  source: "client/src/components/emissions-candidate-review.tsx",
+  currentRows: 'bindProducerNativeConsumer(data, "native-trajectory", data.result.trajectory.map(nativeExportRow), scenario)',
+  originalRows: "data.result.trajectory.map(nativeExportRow)",
+  verification: "Exact unchanged35-column nativeExportRow projection; binder requires equality with closed replay and cannot alter rows. Actual JSON/XLSX handler readbacks cover all three scenarios.",
+}];
 const normalizedKey=(entry:{surface:string;field:string},metadata:typeof exportBindingMetadata)=>{
   const m=metadata.find(m=>entry.surface===`XLSX ${m.source}:${m.line}`);
-  return `${m?`XLSX ${m.source}:${m.rows}`:entry.surface}|${entry.field}`;
+  const alias = m && quantityPreservingRowsAliases.find(a => a.source === m.source && a.currentRows === m.rows);
+  return `${m?`XLSX ${m.source}:${alias?.originalRows ?? m.rows}`:entry.surface}|${entry.field}`;
 };
 let frozenCohort:FrozenCohort|undefined;
 if(!baseline) {
@@ -880,6 +917,8 @@ const reconciliation = baseline ? {} : {
       }),
       missingOriginalSlots:originalSlots.filter(s=>!s.present),
       quantityPreservingExportAliases,
+      quantityPreservingRowsAliases,
+      relocatedProducerAliases,
       slotIdentityFingerprint:originalCohortFingerprint,
       currentInventorySlotIdentityFingerprint:slotFingerprint,
      frozenOriginalSlotFingerprint,

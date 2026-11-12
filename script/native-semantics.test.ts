@@ -29,7 +29,11 @@ test("native gas and sector columns survive XLSX without aggregate/unit substitu
  assert.equal(actualExport["CO2 (Mt gas/year)"],point.nativeMt.CO2);
  assert.equal(nativeExportRow({year:2024})["CO2 (Mt gas/year)"],null);
  const census=JSON.parse(readFileSync("docs/field_semantics_census.json","utf8"));
- const oldSite=census.exportBindingMetadata.find((m:any)=>m.source==="client/src/components/emissions-candidate-review.tsx"&&m.rows==="data.result.trajectory.map(nativeExportRow)");
+  const alias=census.originalGapReconciliation.quantityPreservingRowsAliases.find((m:any)=>
+    m.source==="client/src/components/emissions-candidate-review.tsx"&&m.originalRows==="data.result.trajectory.map(nativeExportRow)");
+  assert.ok(alias,"Exact unchanged native projector is traced through its provenance-only wrapper");
+  assert.equal(alias.currentRows,'bindProducerNativeConsumer(data, "native-trajectory", data.result.trajectory.map(nativeExportRow), scenario)');
+  const oldSite=census.exportBindingMetadata.find((m:any)=>m.source===alias.source&&m.rows===alias.currentRows);
  assert.ok(oldSite,"Original35-column native workbook site retained separately");
  const exportFields=census.fields.filter((e:any)=>e.surface===`XLSX ${oldSite.source}:${oldSite.line}`);
  assert.equal(exportFields.length,35);

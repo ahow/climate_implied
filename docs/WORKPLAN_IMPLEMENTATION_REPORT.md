@@ -2,6 +2,77 @@
 
 ```json
 {
+  "updated_at": "2026-11-12T07:16:37.511293+00:00",
+  "release": {
+    "status": "new source not yet verified deployed",
+    "last_verified": {
+      "github_main": "5cb13fac3a4038b06be28e52aef14285c6163aa6",
+      "ci": "43160860130 validate/promote success",
+      "railway_deployment": "c6ba0f8d-5e6c-4dbe-b1a7-37c5911ef3b8",
+      "verified_at": "2026-11-12T05:32:48.445836+00:00",
+      "health": 200,
+      "scope": "Code-only; private HTTP403, no data/issuer/science activation."
+    }
+  },
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T07:09:16.832492+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 217.729,
+    "counts": {
+      "tests": 1068,
+      "pass": 1068,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/remaining-export-fullchecks-v3.native.complete.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "3c98320622c13813898da76c19e97caf455c8e7dd6e640bf6c01a32db7b1bffe",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1068,
+        "pass": 1068,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 226,
+        "pass": 226,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "finite_export_counts": {
+    "newClosed": 6,
+    "newCentralClosed": 4,
+    "newStaticPublicJsonClosed": 2,
+    "remainingUnimplemented": 22,
+    "remainingSourceblocked": 1,
+    "centralSourceBackedProducerContracts": 4,
+    "centralAvailableWithLegacyNullProducer": 15,
+    "customServerContractsNotChanged": 8
+  },
+  "sources": [
+    "docs/remaining-export-evidence.json",
+    "docs/regional-diffusion-next-evidence.json"
+  ],
+  "scientific_decision": "No new accepted calibration, historical efficacy or issuer case; safeguards/fixtures are engineering only."
+}
+```
+
+# Finite non-signal exports and regional diffusion evidence
+
+```json
+{
   "updated_at": "2026-11-12T06:29:50.627117+00:00",
   "release": {
     "status": "new source not yet verified deployed",

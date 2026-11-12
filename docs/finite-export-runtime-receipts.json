@@ -1,0 +1,27 @@
+{
+  "scope": "Observed code release, not data activation or science acceptance",
+  "observedAt": "2026-11-12T06:39:15Z",
+  "sourceCommit": "01f57d6a4324524858aa1ee83026c0573fa1ae70",
+  "workspaceImplementation": "f6b030a5bd4fd5aa5925fbdf5f419fd22aad930c",
+  "ci": "43168572745",
+  "ciConclusion": "success",
+  "railwayDeployment": "e1260484-8e02-48b2-8fb2-c7147bd3c721",
+  "railwayStatus": "SUCCESS",
+  "health": 200,
+  "privateExportPOST": 403,
+  "staticPaths": [
+    "/api/reference/warming-validation/export.json",
+    "/api/cv/carbon-pass-through-evidence/export.json"
+  ],
+  "staticReadback": {
+    "defaultAndEmbeddedStatus": 200,
+    "actualDefaultBodyCanonicalHashMatches": true,
+    "actualEmbeddedBodyCanonicalHashMatches": true,
+    "artifactIdentityCanonicalHashMatches": true,
+    "producerIdentityAndRunIdRemainNull": true,
+    "scientificAcceptanceRemainsFalse": true,
+    "command": "node --import tsx --input-type=module; live fetch default/embedded documents; compare using server/calculation/analysisManifest.ts contentHash"
+  },
+  "readonlyBoundary": "Actual handler/storage fixtures passed; no claim of live private-archive/provisioning activation.",
+  "preview": "Data Management rendered after workflow restart. Existing operator-only HTTP403 remains visible; this screenshot does not certify signed-in interactions."
+}

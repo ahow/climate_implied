@@ -17,6 +17,7 @@ import { nativeThresholdExportRows, nativeThresholdExportBindings } from "../cli
 import { nativeExportColumns, nativeExportRow } from "../shared/nativeExport";
 import { EmissionsCandidateReview } from "../client/src/components/emissions-candidate-review";
 import { releaseSafety } from "../server/releaseSafety";
+import { nativeCandidateHandler } from "../server/nativeCandidateApi";
 
 function regionalFixture() {
   // Engineering capture fixture, NOT an observational regional allocation.
@@ -37,14 +38,20 @@ function handler(method: "get" | "post", path: string) {
   const sandbox = { resolveEmissionsInputs, projectNativeEmissions, constantScenario, illustrativeScenario,
     candidateInventory, nativeCandidateResidualDiagnostics, regionalNativeResidualDiagnostics,
     projectRegionalMember, nativeResidualDiagnosticsSchema, regionalNativeResidualRequestSchema, bindNestedOutput,
+    nativeCandidateHandler: () => nativeCandidateHandler({
+      captureSource: async () => { throw new Error("Isolated test archive unavailable; no producer attestation"); },
+      saveArchive: async () => { throw new Error("Must not reach archive save after capture failure"); },
+      saveResult: async () => { throw new Error("Must not reach result save after capture failure"); },
+      loadResult: async () => { throw new Error("Must not reach result read after capture failure"); },
+    }),
     app: { [method]: (_: string, value: typeof fn) => { fn = value; } } };
   vm.runInNewContext(ts.transpile(registration, { target: ts.ScriptTarget.ES2022 }), sandbox);
-  return (req: unknown) => {
+  return async (req: unknown) => {
     let body: any, status = 200;
     const headers: Record<string, string> = {};
     const res = { set: (k: string, v: string) => { headers[k] = v; return res; },
       status: (n: number) => { status = n; return res; }, json: (v: unknown) => { body = v; return res; } };
-    fn(req, res);
+    await fn(req, res);
     return { body, status, headers };
   };
 }
@@ -110,10 +117,10 @@ test("explicit captured regional member cells stay same-region/member/gas; negat
   }
   assert.equal(JSON.stringify(member), before, "No engine result/archive augmentation");
 });
-test("actual candidate GET and regional submitted-input POST handlers emit strict mapped supplemental diagnostics", () => {
+test("actual candidate GET and regional submitted-input POST handlers emit strict mapped supplemental diagnostics", async () => {
   const get = handler("get", "/api/emissions/candidate");
   for (const scenario of ["constant", "transition", "dashboard"]) {
-    const { body, status, headers } = get({ query: { scenario } });
+    const { body, status, headers } = await get({ query: { scenario } });
     assert.equal(status, 200);
     const d = nativeResidualDiagnosticsSchema.parse(body.residualDiagnostics);
     assert.equal(d.records.length, 27);
@@ -124,19 +131,19 @@ test("actual candidate GET and regional submitted-input POST handlers emit stric
       scenario === "transition" ? illustrativeScenario : constantScenario);
     assert.equal(JSON.stringify(body.result), JSON.stringify(original));
   }
-  assert.equal(get({ query: { scenario: "unknown" } }).status, 400);
+  assert.equal((await get({ query: { scenario: "unknown" } })).status, 400);
   const post = handler("post", "/api/emissions/regional-residual-diagnostics");
   let allowed = false;
   releaseSafety()({ path: "/api/emissions/regional-residual-diagnostics", method: "POST" } as any,
     {} as any, () => { allowed = true; });
   assert.equal(allowed, true, "Real release-safety boundary admits this bounded pure diagnostic, not an operator write");
-  const success = post({ body: { baselineYear: 2024, input: regionalFixture() } });
+  const success = await post({ body: { baselineYear: 2024, input: regionalFixture() } });
   assert.equal(success.status, 200);
   assert.equal(nativeResidualDiagnosticsSchema.parse(success.body.residualDiagnostics).records.length, 162);
   assert.ok(bindNestedOutput("native", success.body).length > 0);
-  assert.equal(post({ body: { inventoryId: "missing-inputs" } }).status, 422);
-  assert.equal(post({ body: { input: regionalFixture() } }).status, 422);
-  assert.equal(post({ body: { baselineYear: 2023, input: regionalFixture() } }).status, 422);
+  assert.equal((await post({ body: { inventoryId: "missing-inputs" } })).status, 422);
+  assert.equal((await post({ body: { input: regionalFixture() } })).status, 422);
+  assert.equal((await post({ body: { baselineYear: 2023, input: regionalFixture() } })).status, 422);
   const d = success.body.residualDiagnostics;
   assert.equal(nativeResidualDiagnosticsSchema.safeParse({ ...d, unknown: true }).success, false);
   const clone = JSON.parse(JSON.stringify(d));
