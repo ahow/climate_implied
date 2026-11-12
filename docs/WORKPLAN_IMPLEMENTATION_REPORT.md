@@ -1,3 +1,194 @@
+# Latest local dated-cash draft — not released
+
+{
+  "current_release": {
+    "runtime": "bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+    "ci": 43321351329,
+    "conclusion": "success",
+    "observation": "User independently observed2026-11-12 22:52; not rechecked this turn",
+    "health": 200,
+    "identity": "b0b168096232e5c708f1ad808061830ff5972f75c8f9c10c3d64cb6d04449a8e",
+    "rows": 1054,
+    "cells": 2108,
+    "scope": "Observed2023 accounting, not future cash/renewal execution"
+  },
+  "increment": {
+    "at": "2026-11-12T23:13:08.871912+00:00",
+    "status": "Finite dated accounting integrated into renewal; full S13-004 remains partial; not yet released",
+    "files": {
+      "server/calculation/cohortCashLedger.ts": "b52c08ac06a4482b75a3a76fbfc5256ea8fff35c905a26f88b03cb8cce4366d4",
+      "script/cohortRenewal.test.ts": "295463c277c8bf09b9883445132b657be43269d3bcea25080cca8de0cbcedc8a",
+      "server/calculation/cohortRenewal.ts": "64339d6cad282aac0676859c6277e15b259e09791c5315be2b43fc8a54c4ad3c"
+    },
+    "function": "reconcileDatedAccruals -> deriveDatedProjectCash -> valueDatedProjectCash; evaluatePeriodicRenewal finite accounting integration",
+    "scope": "Explicit accrual and settlement dates maintain AR/AP/tax/debt/noncommon/otherWC/cash and common contribution/distribution balances; each annual closing reconciles once. Settling before accrual/funding refuses. Integrated renewal-3-finite-dated-accounting returns finite dated accounting and null periodic value: dated transition/sustainable cycles not certified. Same-day netting, no intraday/prepayment/full asset-equity accounting.",
+    "tests": {
+      "command": "npx tsx --test script/cohortRenewal.test.ts",
+      "pass": 10,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/dated-cash/accrual-integrated.log",
+      "log_sha256": "0b61e5d37973fd4424d697c683c32410c256a487d5022ce6d591cd07af3645b2"
+    },
+    "typecheck": {
+      "initial": "FAILED TS2802 iterator target incompatibility at three loops, including prior draft",
+      "failure_log": "generated-artifacts/dated-cash/component-types.log",
+      "fix": "Array.from, no compiler setting relaxation",
+      "corrected": "passed",
+      "log": "generated-artifacts/dated-cash/component-types-corrected.log"
+    },
+    "oracle": "90/(1.1^(182/365.25))+90/(1.1^(547/365.25)); tolerance1e-9. Early unfunded payout and invalid February30 refuse.",
+    "not_executed": [
+      "Admitted API/UI/export integration",
+      "Qualified new issuer input",
+      "Additional PostgreSQL transport cases",
+      "Partial-calendar/degrading sustainable cycles"
+    ],
+    "science": "No issuer qualification or empirical efficacy; no original clause promoted",
+    "full_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T23:06:03.781608+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 404.524,
+      "counts": {
+        "tests": 1354,
+        "pass": 1353,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/accrual-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "7cc8de9bcd550d1be7aca98eb7a6b1c6a60878bda6b6dc58d8b43d3af5ce91be",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1354,
+          "pass": 1353,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "new_source_attempt": {
+      "at": "2026-11-12T23:13:08.871912+00:00",
+      "XPLR": "Targeted legal-party/payment query returned previously examined releases; not reread or counted as new economic evidence.",
+      "FSLR": "Targeted Indian government PLI-disbursement query; retrieved first two extracted chunks of https://mnre.gov.in/static/uploads/2026/10/dddd221c6d2f2bb411584c5624c71c4e.pdf. No issuer-specific grant amount/day/classification qualified in examined chunks; remainder not examined, no global unavailability claim.",
+      "files": [
+        "generated-artifacts/dated-cash/india-source-search.json",
+        "generated-artifacts/dated-cash/mnre-2026-extract.md",
+        "generated-artifacts/dated-cash/mnre-2026-extract-2.md"
+      ],
+      "accepted_inputs": 0
+    }
+  }
+}
+
+# Latest local dated-cash draft — not released
+
+{
+  "current_release": {
+    "runtime": "bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+    "ci": 43321351329,
+    "conclusion": "success",
+    "observation": "User independently observed2026-11-12 22:52; not rechecked this turn",
+    "health": 200,
+    "identity": "b0b168096232e5c708f1ad808061830ff5972f75c8f9c10c3d64cb6d04449a8e",
+    "rows": 1054,
+    "cells": 2108,
+    "scope": "Observed2023 accounting, not future cash/renewal execution"
+  },
+  "increment": {
+    "at": "2026-11-12T23:00:56.323906+00:00",
+    "status": "LOCAL DRAFT; not integrated or released",
+    "files": {
+      "server/calculation/cohortCashLedger.ts": "9219008174066a5755034b6f3a4ad47974224c91126aaaca0949373e320f18bf",
+      "script/cohortRenewal.test.ts": "bcc08daa37d77c83bd21ffea8195ead3cb4ac0edb60165fae9b42c7f74f4dc8e"
+    },
+    "function": "deriveDatedProjectCash -> valueDatedProjectCash",
+    "scope": "Derives collections, separate operating/energy/holding/transaction costs, capital categories, tax, otherWC, interest, debt, noncommon and owner cash from the existing physical/cash ledger. Explicit dated allocations must reconcile; no inferred payment dates or second AR deduction. Annual accrual balances do not establish daily AR/tax balances. No sustainable-cycle/inversion certification or production integration.",
+    "tests": {
+      "command": "npx tsx --test script/cohortRenewal.test.ts",
+      "pass": 9,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/dated-cash/component-corrected.log",
+      "log_sha256": "2bf9cba6409a283511ac6ec6e5f62b8a314579dfe889dac321ac05ffe59b0b72"
+    },
+    "typecheck": {
+      "initial": "FAILED TS2802 iterator target incompatibility at three loops, including prior draft",
+      "failure_log": "generated-artifacts/dated-cash/component-types.log",
+      "fix": "Array.from, no compiler setting relaxation",
+      "corrected": "passed",
+      "log": "generated-artifacts/dated-cash/component-types-corrected.log"
+    },
+    "oracle": "90/(1.1^(182/365.25))+90/(1.1^(547/365.25)); tolerance1e-9. Early unfunded payout and invalid February30 refuse.",
+    "not_executed": [
+      "Full coherent/private gate for this draft",
+      "API/UI/export integration",
+      "New primary-source qualification",
+      "Additional PostgreSQL transport cases",
+      "Partial-calendar/degrading sustainable cycles"
+    ],
+    "science": "No issuer qualification or empirical efficacy; no original clause promoted"
+  }
+}
+
+# Latest local dated-cash draft — not released
+
+{
+  "current_release": {
+    "runtime": "bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+    "ci": 43321351329,
+    "conclusion": "success",
+    "observation": "User independently observed2026-11-12 22:52; not rechecked this turn",
+    "health": 200,
+    "identity": "b0b168096232e5c708f1ad808061830ff5972f75c8f9c10c3d64cb6d04449a8e",
+    "rows": 1054,
+    "cells": 2108,
+    "scope": "Observed2023 accounting, not future cash/renewal execution"
+  },
+  "increment": {
+    "at": "2026-11-12T22:55:36.243767+00:00",
+    "status": "LOCAL DRAFT; not integrated or released",
+    "files": {
+      "server/calculation/cohortCashLedger.ts": "c9545ada09b8188b03a31c826d44c11fee1b4fe114aba0507005251fa3287867",
+      "script/cohortRenewal.test.ts": "9ae42238e47eb649dc4b8c041ea6a2ecfc8189552cd65026a1046e4a9af8e593"
+    },
+    "function": "valueDatedProjectCash",
+    "scope": "Finite ACT/365.25 common-cash discounting with valid dates, annual total reconciliation, same-day net cash funding, claimant/evidence/cutoff checks. Net project events are declared aggregates, not decomposed operating events. No renewal/terminal/inversion certification.",
+    "tests": {
+      "command": "npx tsx --test script/cohortRenewal.test.ts",
+      "pass": 8,
+      "fail": 0,
+      "skip": 0,
+      "log": "generated-artifacts/dated-cash/focused.log",
+      "log_sha256": "7119a236858f5b39db405aa57ff1dcb6fd0c52b3032b2ab832dfdd5eead5f0df"
+    },
+    "oracle": "90/(1.1^(182/365.25))+90/(1.1^(547/365.25)); tolerance1e-9. Early unfunded payout and invalid February30 refuse.",
+    "not_executed": [
+      "Full coherent/private gate for this draft",
+      "API/UI/export integration",
+      "New primary-source qualification",
+      "Additional PostgreSQL transport cases",
+      "Partial-calendar/degrading sustainable cycles"
+    ],
+    "science": "No issuer qualification or empirical efficacy; no original clause promoted"
+  }
+}
+
 # Latest renewal cash/source increment
 
 {
@@ -15,12 +206,13 @@
       "apiJsonEqual": true,
       "literalReadback": true,
       "scope": "observed accounting, not future cash/renewal execution",
-      "at": "2026-11-12T22:23:27.235Z"
+      "at": "2026-11-12T22:23:27.235Z",
+      "externalLinks": 0
     },
     "boundary": "Observed accounting only; new local cash changes not deployed"
   },
   "increment": {
-    "at": "2026-11-12T22:35:20.751157+00:00",
+    "at": "2026-11-12T22:50:14.169869+00:00",
     "files": {
       "server/calculation/cohortCashLedger.ts": "2c14ed3acf34a547c3c15ed72a158579184151eaa6c0c97b130634288ffb116c",
       "server/calculation/cohortRenewal.ts": "1882aa08c33aa235b88797bf408cc9610cf623576706171e17dc54c885979da6",
@@ -76,7 +268,17 @@
       "failure": "Initial comparison used unsupported ::/0 and threw before assertions; corrected fixture uses supported ::/1. No application/security guard weakened.",
       "finding": "Under isolated IPv6-only CIDR trust, old package accepted spoofed forwarded IPv4; candidate retains socket address. Not an exploit test of production configuration.",
       "log": "generated-artifacts/renewal-cash/proxy-review/comparison.log",
-      "next": "Separately versioned lock upgrade with full compatibility/security/private gates and protected bundle policy; not installed or accepted yet."
+      "next": "Separately versioned lock upgrade with full compatibility/security/private gates and protected bundle policy; not installed or accepted yet.",
+      "fresh_candidate_attempt": {
+        "base": "bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+        "node": "22.23.4",
+        "command": "npm update proxy-addr --package-lock-only --ignore-scripts",
+        "result": "FAILED E404 from configured registry proxy for @tailwindcss/oxide-wasm32-wasi4.1.18. Lock generation did not complete; subsequent npm ci did not execute.",
+        "log": "generated-artifacts/renewal-cash/candidate-install.log",
+        "boundary": "Fresh public checkout, no copied node_modules, no altered registry or tarball substitution, application lock/pins unchanged"
+      },
+      "comparison_sha256": "472123a8e8571618f18fee05d8bf3293d954421385d1142c6ac37daed2911831",
+      "package_sha256": "ffcc8055b78b0852b2889a426ad3a3003b60bc79df704faca194157efa2b2587"
     },
     "remaining": [
       "Partial-calendar/degrading dated renewal and full cash event timing",
@@ -162,7 +364,19 @@
       "generated-artifacts/renewal-cash/postledger.log": "21f9071bf00fb21e8c1e23fe4b9a1b957333190f911dccd3ba697d41a423204d",
       "generated-artifacts/renewal-cash/future-postgres.log": "ed59ee5802a5034d928f8dd24f2bf3b8d9113e84dcbb323fc0597328b624adc0",
       "generated-artifacts/renewal-cash/future-postgres-setup.log": "529e6a8cab3ab3bcb985de75e28a4cfe366ee05c07376e5c799599bc87bb584d",
-      "generated-artifacts/renewal-cash/future-postgres-final.log": "aa4e8a2a1a9ac0cfb1d69a12b7f435d6d22c5074d32cbf7298f74c47f6ee3010"
+      "generated-artifacts/renewal-cash/future-postgres-final.log": "aa4e8a2a1a9ac0cfb1d69a12b7f435d6d22c5074d32cbf7298f74c47f6ee3010",
+      "generated-artifacts/renewal-cash/candidate-install.log": "51f13a257859d8312c6499a90302d0dedd72240c29801480b7321ddd9a066b70"
+    },
+    "release": {
+      "local_implementation": "a608e94ed5f64353f6fb33bd5d6b74d8712713dc",
+      "published_source": "bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+      "pending": {
+        "source": "bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+        "ci": 43321351329,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "boundary": "New source submitted, not observed deployed. Do not supersede running promotion with these local receipt-only updates."
     }
   }
 }
@@ -9207,6 +9421,39 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-renewal-integrated-e704177",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T22:11:20.274607+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-cash-pg-source-bff1607",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T22:50:37.996537+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-dated-cash-draft-b71d52a",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T22:56:07.453106+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-component-cash-2497214",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T23:01:11.407368+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

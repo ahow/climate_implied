@@ -1,8 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {evaluatePeriodicRenewal,type RenewalDeclaration} from "../server/calculation/cohortRenewal";
-import {reconcileCohortCash,type CohortCashLedger} from "../server/calculation/cohortCashLedger";
+import {reconcileCohortCash,valueDatedProjectCash,deriveDatedProjectCash,type CashTiming,type CohortCashLedger,type DatedProjectCash} from "../server/calculation/cohortCashLedger";
 import {calculateOperatingCohorts} from "../server/calculation/operatingCohorts";
+import {reconcileDatedAccruals,type AccrualSchedule} from "../server/calculation/cohortCashLedger";
 export function renewalFixture():RenewalDeclaration{
  return {version:"periodic-renewal-1",claim:"conditional-project-common-residual",cycleYears:1,discountRate:0.1,
  openingAgeStock:[1],closingAgeStock:[1],openingDebtUsd:0,closingDebtUsd:0,
@@ -55,6 +56,60 @@ function cashLedger():CohortCashLedger{
  operatingFixedCash:0,holdingCash:0,transactionCash:0,openingCash:0,closingCash:0,
  commonContribution:0,commonDistribution:90,evidenceIds:["engineering-only"]}))};
 }
+test("dated common cash uses actual leap-day offsets and refuses interim deficits",()=>{
+ const model=calculateOperatingCohorts(fixture().specification),ledger=cashLedger();
+ const d:DatedProjectCash={version:"dated-project-cash-1",valuationOn:"2024-01-01",discountRate:.1,convention:"ACT/365.25",
+ claimantId:ledger.claimantId,events:[2024,2025].flatMap(year=>[
+ {id:`cash${year}`,on:`${year}-06-30`,kind:"project-net-cash" as const,usd:90,evidenceIds:["engineering-only"]},
+ {id:`distribution${year}`,on:`${year}-07-01`,kind:"common-distribution" as const,usd:90,evidenceIds:["engineering-only"]}])};
+ const r=valueDatedProjectCash(model,ledger,d,["engineering-only"]);
+ assert.ok(Math.abs(r.finiteCommonCashPvUsd-(90/1.1**(182/365.25)+90/1.1**(547/365.25)))<1e-9);
+ d.events[1].on="2024-01-02";
+ assert.throws(()=>valueDatedProjectCash(model,ledger,d,["engineering-only"]),/funding shortfall/);
+ d.events[1].on="2024-02-30";
+ assert.throws(()=>valueDatedProjectCash(model,ledger,d,["engineering-only"]),/valid UTC/);
+});
+test("component cash derives collections and replacement without a second AR deduction",()=>{
+ const s=fixture().specification,l=cashLedger();
+ s.years[0].increaseOperatingWorkingCapitalUsd=5;s.years[1].increaseOperatingWorkingCapitalUsd=-5;
+ Object.assign(l.years[0],{closingReceivables:5,collections:95,commonDistribution:85});
+ Object.assign(l.years[1],{openingReceivables:5,collections:105,commonDistribution:95});
+ const model=calculateOperatingCohorts(s);
+ const timing:CashTiming[]=[2024,2025].flatMap(year=>(["collections","replacement","commonDistribution"] as const).map(component=>({
+  year,component,allocations:[{on:`${year}-07-01`,fraction:1,evidenceIds:["engineering-only"]}]})));
+ const declaration={version:"dated-project-cash-1" as const,valuationOn:"2024-01-01",discountRate:.1,
+  convention:"ACT/365.25" as const,claimantId:l.claimantId};
+ const result=deriveDatedProjectCash(model,l,declaration,timing,["engineering-only"]);
+ assert.deepEqual(result.days.map(d=>d.commonNet),[85,95]);
+ assert.deepEqual(result.days.map(d=>d.closingCash),[0,0]);
+ assert.throws(()=>deriveDatedProjectCash(model,l,declaration,timing.slice(1),["engineering-only"]),/Missing dated/);
+ timing[1].allocations[0].on="2024-01-02";
+ assert.throws(()=>deriveDatedProjectCash(model,l,declaration,timing,["engineering-only"]),/funding shortfall/);
+});
+test("dated revenue and capital accrual precede distinct settlements and reconcile balances",()=>{
+ const model=calculateOperatingCohorts(fixture().specification),l=cashLedger();
+ const timing:CashTiming[]=[2024,2025].flatMap(year=>(["collections","replacement","commonDistribution"] as const).map(component=>({
+ year,component,allocations:[{on:`${year}-07-01`,fraction:1,evidenceIds:["engineering-only"]}]})));
+ const a:AccrualSchedule={version:"dated-accrual-1",claimantId:l.claimantId,
+ payables:[2024,2025].map(year=>({year,opening:0,closing:0})),
+ entries:[2024,2025].flatMap(year=>[
+ {id:`r${year}`,on:`${year}-06-01`,kind:"revenue" as const,usd:100,evidenceIds:["engineering-only"]},
+ {id:`p${year}`,on:`${year}-06-02`,kind:"payable" as const,usd:10,evidenceIds:["engineering-only"]}])};
+ const d={version:"dated-project-cash-1" as const,valuationOn:"2024-01-01",discountRate:.1,convention:"ACT/365.25" as const,claimantId:l.claimantId};
+ const result=reconcileDatedAccruals(model,l,d,timing,a,["engineering-only"]);
+ assert.equal(result.accrualDays[0].receivables,100);
+ assert.equal(result.accrualDays[1].payables,10);
+ assert.equal(result.accrualDays[2].receivables,0);
+ assert.equal(result.accrualDays[2].cash,0);
+ const integrated=fixture();integrated.cashLedger=l;
+ integrated.datedAccounting={declaration:d,timing,accrual:a};
+ const retained=evaluatePeriodicRenewal(integrated);
+ assert.equal(retained.version,"renewal-3-finite-dated-accounting");
+ assert.equal(retained.conditionalPeriodicProjectValueUsd,null);
+ assert.equal(retained.datedAccounting!.accrualDays[2].cash,0);
+ a.entries[1].on="2024-08-01";
+ assert.throws(()=>reconcileDatedAccruals(model,l,d,timing,a,["engineering-only"]),/precedes/);
+});
 test("declared common cash reconciles receivables once and preserves the periodic oracle",()=>{
  const x=fixture();x.cashLedger=cashLedger();
  assert.ok(Math.abs(evaluatePeriodicRenewal(x).conditionalPeriodicProjectValueUsd-900)<1e-9);

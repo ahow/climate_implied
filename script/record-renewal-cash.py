@@ -28,17 +28,32 @@ pg=root/"future-postgres.json"
 if pg.exists():e["additional_postgresql_transport"]=json.loads(pg.read_text())
 e["postledger"]={"command":"npx tsx --test script/reconciliation-stages-14-17.test.ts script/workplan-corrections.test.ts","pass":7,"fail":0,"skip":0,"log":str(root/"postledger.log")}
 e["development_runtime"]={"health":"ok","port":5000,"scheduler":"Disabled for this instance; unchanged","scope":"Health only, not UI/issuer acceptance"}
+e["dependency_review"]["fresh_candidate_attempt"]={
+ "base":"bff160798d2e795eaaea508cc9bf608ccae2d0ec","node":"22.23.4",
+ "command":"npm update proxy-addr --package-lock-only --ignore-scripts",
+ "result":"FAILED E404 from configured registry proxy for @tailwindcss/oxide-wasm32-wasi4.1.18. Lock generation did not complete; subsequent npm ci did not execute.",
+ "log":str(root/"candidate-install.log"),"boundary":"Fresh public checkout, no copied node_modules, no altered registry or tarball substitution, application lock/pins unchanged"}
+e["dependency_review"]["comparison_sha256"]=sha(root/"proxy-review/comparison.log")
+e["dependency_review"]["package_sha256"]=sha(root/"proxy-review/proxy-addr-2.0.8.tgz")
 e["remaining"][2]="Extend actual PostgreSQL transaction witness to corrupt/swapped dependencies and concurrent/committed isolation; genuine operator reader authentication and admitted UI/API/XLSX remain separate"
 e["logs"]={str(p):sha(p) for p in root.glob("*.log")}
 p=Path("docs/workplan_completion_ledger.json");x=json.loads(p.read_text())
 x["prior_renewal_integration"]=x.get("latest_increment");x["latest_increment"]=e
 if (root/"runtime.json").exists():
- x.setdefault("release_history",[]).append(x.get("current_release"))
+ if x.get("current_release",{}).get("runtime")!=json.loads((root/"runtime.json").read_text())["sourceCommit"]:
+  x.setdefault("release_history",[]).append(x.get("current_release"))
  x["current_release"]={"runtime":json.loads((root/"runtime.json").read_text())["sourceCommit"],
  "ci":43317365497,"ci_conclusion":"success","health":json.loads((root/"health.json").read_text()),
  "readback":json.loads((root/"live-readback.json").read_text()),"boundary":"Observed accounting only; new local cash changes not deployed"}
  x.pop("pending_release",None)
-x["next_action"]="Reconcile existing promotion for this renewal cash source. Continue partial-calendar/degrading storage and exact cash timing/claim/inversion; extend the passed actual PostgreSQL renewal-review transaction to corruption/concurrent/committed isolation and genuine operator reader. Complete admitted result consumers and qualified issuer/calibration inputs. Candidate proxy2.0.8 passed bounded compatibility checks but remains uninstalled; original-lock clean install remains failed."
+ci=root/"new-ci.json"
+if ci.exists():
+ runs=json.loads(ci.read_text()).get("workflow_runs",[])
+ if runs:
+  run=runs[0];x["pending_release"]={"source":run["head_sha"],"ci":run["id"],"status":run["status"],"conclusion":run["conclusion"]}
+e["release"]={"local_implementation":"a608e94ed5f64353f6fb33bd5d6b74d8712713dc","published_source":"bff160798d2e795eaaea508cc9bf608ccae2d0ec",
+ "pending":x.get("pending_release"),"boundary":"New source submitted, not observed deployed. Do not supersede running promotion with these local receipt-only updates."}
+x["next_action"]="Reconcile CI43321351329/source bff16079 without superseding it; last verified runtime e704177e. Continue partial-calendar/degrading storage and exact cash timing/claim/inversion; extend the passed PostgreSQL renewal-review transaction (six headers, nine checks, rollback zero) to corruption/concurrent/committed isolation and genuine operator reader. Complete admitted result consumers and qualified issuer/calibration inputs. Proxy2.0.8 comparison passed, but fresh candidate lock generation failed on configured-registry E404 for oxide-wasm32-wasi4.1.18; no upgrade/clean-install acceptance. XPLR presentation does not resolve named October recipient/project cash."
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:
  for r in s["requirements"]:

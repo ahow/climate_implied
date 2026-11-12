@@ -1,6 +1,6 @@
 import {contentHash} from "./analysisManifest";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
-import {reconcileCohortCash,type CohortCashLedger} from "./cohortCashLedger";
+import {reconcileCohortCash,reconcileDatedAccruals,type CohortCashLedger,type DatedProjectCash,type CashTiming,type AccrualSchedule} from "./cohortCashLedger";
 
 /** Exact periodic renewal only. Not a growth perpetuity or issuer valuation.
  * Two explicit adjacent cycles demonstrate the declared stock/energy/cash law;
@@ -19,6 +19,7 @@ export interface RenewalDeclaration {
  replacementCostPerUnitUsd:number;
  evidenceIds:string[];
  cashLedger?:CohortCashLedger;
+ datedAccounting?:{declaration:Omit<DatedProjectCash,"events">;timing:CashTiming[];accrual:AccrualSchedule};
  transition?:{
   specification:CohortSpecification;
   openingDebtUsd:number;openingWorkingCapitalUsd:number;
@@ -84,6 +85,10 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
  // All cash is explicit annual end-period cash. No additional WC release,
  // liquidation, terminal sale or debt deduction is added a second time.
  const cash=x.cashLedger?reconcileCohortCash(model,x.cashLedger,x.evidenceIds):null;
+ if(x.datedAccounting&&(!x.cashLedger||x.transition))
+  throw Error("Dated accounting requires a cash ledger; dated transition/periodic boundary not yet certified");
+ const datedAccounting=x.datedAccounting?reconcileDatedAccruals(model,x.cashLedger!,x.datedAccounting.declaration,
+  x.datedAccounting.timing,x.datedAccounting.accrual,x.evidenceIds):null;
  if(x.cashLedger){
   equal(x.cashLedger.years[0].openingDebt,x.openingDebtUsd);
   equal(x.cashLedger.years[0].openingReceivables+x.cashLedger.years[0].openingOtherWorkingCapital,x.openingWorkingCapitalUsd);
@@ -139,12 +144,13 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
    annualNetFundingRequirement:Math.max(0,-minimum),
    fundingQualification:"Annual net balance only; intra-year liquidity/committed funding not established"};
  }
- return {version:cash||x.specification.timing==="utc-civil-day-service"?"periodic-renewal-2-cash-dated":x.version,inputHash:contentHash(x),model,cyclePv,
+ return {version:datedAccounting?"renewal-3-finite-dated-accounting":cash||x.specification.timing==="utc-civil-day-service"?"periodic-renewal-2-cash-dated":x.version,inputHash:contentHash(x),model,cyclePv,
+  datedAccounting,
   cashLedger:cash,cashBasis:cash?"declared-common-distributions-net-contributions":"project-FCFE-not-distribution-qualified",
   valuationBoundary:`${firstYear}-01-01 before first-cycle cash`,
   cashCountingRule:"Repeated cycles verify the law; do not add their cash again to the periodic value",
   transition,
-  conditionalPeriodicProjectValueUsd:value,
+  conditionalPeriodicProjectValueUsd:datedAccounting?null:value,
   formulas:{cyclePv:"sum(FCFE_t/(1+r)^t), t=1..L",value:"cyclePv/(1-(1+r)^(-L))"},
   limitations:["Assumed stationary renewal, not observed future economics","No growth inversion or whole-equity claim","Legal authentication not established","Partial-calendar/degrading dated periodicity not supported"],
   marketImplied:false,scientificAcceptance:false};
