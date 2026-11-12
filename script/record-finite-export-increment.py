@@ -18,7 +18,7 @@ EXPORT = "docs/remaining-export-evidence.json"
 STUDY = "docs/regional-diffusion-uncertainty-evidence.json"
 ISSUER = "docs/issuer-economics-next-evidence.json"
 RUNTIME = "docs/finite-export-runtime-receipts.json"
-RECEIPT = "generated-artifacts/remaining-export-all22.portable-final.receipt.json"
+RECEIPT = "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json"
 
 
 def read(path):
@@ -140,7 +140,8 @@ x["restart"]["instruction"] = (
     "Preserve original1000/1001, old124/179/416,14FaIRpins,0eligiblehistories/0of3issuer cases and all scientific/owner gates. "
     "Regional uncertainty is now implemented but actual execution UNEXECUTED: zero qualified saturation/joint bundles and zero actual fits/bootstrap/scores; authentic full source/structural/dependence numerical draws required. No retuning known nine failures or EUsolar pointwin, priors, splicing or default offsets. "
     "No new issuer source or model work claimed; preserve existing FSLR/NEE/XOM exact economic-input gaps and every other partial original clause. "
-    "Latest local1090TS/248Python plus original/private/type/build receipt is engineering only; publicCI43186463787failed/promote-skipped due test-private-file dependency, now isolated-source regression repaired, NOT a successful new public release. "
+    "Latest local1090TS/248Python plus original/private/type/build receipt is engineering only; publicCI43186463787failed/promote-skipped due test-private-file dependency, then43189261486failed/promote-skipped ONLY on version-specific filter-bookkeeping assertion despite actual selected HTTP test PASS. "
+    "Both are repaired and preserved; TAP checks still require exact selected test executed once/pass1/fail0/cancel0 with no skipped actual test. No new successful public release inferred. "
     "Issuer seven-request discovery adds no qualified economic input or code: preserve positive LLC/receipt-month evidence and distinguish unusable200/one scoped403 from global unavailability. "
     "Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.")
 assert contract(x) == original_contract

@@ -2068,7 +2068,7 @@
       "release_observation_note": "Initial bounded CI polling shell exited -1 without output; separate observed run43160860130 validate/promote both completed success. No restart/cancel/bypass."
     },
     "finite_exports_and_diffusion": {
-      "updated_at": "2026-11-12T09:09:52.433190+00:00",
+      "updated_at": "2026-11-12T09:23:30.400618+00:00",
       "release": {
         "status": "New local source validated; new release not yet observed",
         "last_verified": {
@@ -2086,20 +2086,20 @@
           "-c",
           "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
         ],
-        "executed_at": "2026-11-12T09:03:04.676951+00:00",
+        "executed_at": "2026-11-12T09:17:42.077487+00:00",
         "exit_code": 0,
-        "elapsed_seconds": 280.029,
+        "elapsed_seconds": 274.356,
         "counts": {
           "tests": 1090,
           "pass": 1090,
           "fail": 0,
           "skipped": 0
         },
-        "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+        "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
         "workspace_revision": null,
         "worktree_dirty": null,
         "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-        "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+        "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
         "suite_counts": {
           "typescript": {
             "tests": 1090,
@@ -2118,8 +2118,8 @@
         "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
       },
       "execution_receipt": {
-        "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
-        "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
+        "path": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+        "sha256": "24257fdbafd48785592bd2d7762c2b96e8f10ae091697590dab445ee6960c859"
       },
       "finite_export_counts": {
         "newClosed": 28,
@@ -2279,7 +2279,7 @@
           "fail": 0,
           "deliberatelyUnselectedOtherTests": 20
         },
-        "sourceOnlyRegression": {
+        "preNode24BookkeepingRegression": {
           "file": "script/methodology-download-portable.test.ts",
           "log": "generated-artifacts/all22-ci-fixture-portable.log",
           "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
@@ -2287,7 +2287,28 @@
           "pass": 2,
           "fail": 0,
           "skipped": 0,
-          "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+          "proof": "HISTORICAL local Node20 success: isolated custom test genuinely ran, but bookkeeping assertion was later shown incompatible with Node24."
+        },
+        "reporterFailure": {
+          "ciRunId": 43189261486,
+          "validate": "failure",
+          "promote": "skipped",
+          "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+          "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+          "actualSelectedCustomHttpTest": "PASSED once; Node24 reported tests1/pass1/skipped0 for the finite name filter. Node20 reports tests21/pass1/skipped20 because it emits excluded tests.",
+          "onlyFailure": "Over-specific /# skipped20/ assertion in the outer portability regression, not an actual HTTP/projection or source-reader failure.",
+          "newReleaseClaim": false
+        },
+        "sourceOnlyRegression": {
+          "file": "script/methodology-download-portable.test.ts",
+          "log": "generated-artifacts/all22-node-tap-portable.log",
+          "sha256": "ed46753041ec5ac22bf5b5b12cd20a72b5884ffcec2cfb9d3b93d8903e27ba16",
+          "tests": 2,
+          "pass": 2,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "proof": "Fresh public source/no generated data/DB guard and actual custom HTTP test preserved. TAP acceptance requires EXACT named selected test executed ONCE, pass1/fail0/cancelled0 and no not-ok records. Node20/24 name-filter bookkeeping may differ, but a skipped/missing/duplicate selected test or any executed extra test/cancellation/failure rejects. In-test parser fixtures cover both known reporter formats and refusal cases; native local runtime is Node20, not a claimed native Node24 execution. Every actual case still runs in complete parent suite with zero skips."
         }
       },
       "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
@@ -2384,7 +2405,7 @@
     "scope": "Code only; no issuer/science/private HTTP activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T09:09:52.433190+00:00",
+  "updated_at": "2026-11-12T09:23:30.400618+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -26068,7 +26089,8 @@
             "server/calculation/driverEvidence.ts",
             "docs/regional-diffusion-uncertainty-evidence.json",
             "generated-artifacts/remaining-export-all22.ready.receipt.json",
-            "generated-artifacts/remaining-export-all22.portable-final.receipt.json"
+            "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+            "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json"
           ],
           "evidence_caveat": "Original numerical criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Complete compatible regional solar/wind/EV/heat-pump/storage fits and sourced saturation priors; shipment/MW series do not identify adoption-share ceilings.",
           "files_functions_changed": [
@@ -26374,6 +26396,43 @@
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
               "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1090,
+                  "pass": 1090,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 248,
+                  "pass": 248,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T09:17:42.077487+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 274.356,
+              "counts": {
+                "tests": 1090,
+                "pass": 1090,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
               "suite_counts": {
                 "typescript": {
                   "tests": 1090,
@@ -26851,7 +26910,7 @@
             }
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T09:09:52.433190+00:00",
+            "updated_at": "2026-11-12T09:23:30.400618+00:00",
             "release": {
               "status": "New local source validated; new release not yet observed",
               "last_verified": {
@@ -26869,20 +26928,20 @@
                 "-c",
                 "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "executed_at": "2026-11-12T09:03:04.676951+00:00",
+              "executed_at": "2026-11-12T09:17:42.077487+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 280.029,
+              "elapsed_seconds": 274.356,
               "counts": {
                 "tests": 1090,
                 "pass": 1090,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+              "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+              "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
               "suite_counts": {
                 "typescript": {
                   "tests": 1090,
@@ -26901,8 +26960,8 @@
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             },
             "execution_receipt": {
-              "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
-              "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
+              "path": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+              "sha256": "24257fdbafd48785592bd2d7762c2b96e8f10ae091697590dab445ee6960c859"
             },
             "finite_export_counts": {
               "newClosed": 28,
@@ -27062,7 +27121,7 @@
                 "fail": 0,
                 "deliberatelyUnselectedOtherTests": 20
               },
-              "sourceOnlyRegression": {
+              "preNode24BookkeepingRegression": {
                 "file": "script/methodology-download-portable.test.ts",
                 "log": "generated-artifacts/all22-ci-fixture-portable.log",
                 "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
@@ -27070,7 +27129,28 @@
                 "pass": 2,
                 "fail": 0,
                 "skipped": 0,
-                "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+                "proof": "HISTORICAL local Node20 success: isolated custom test genuinely ran, but bookkeeping assertion was later shown incompatible with Node24."
+              },
+              "reporterFailure": {
+                "ciRunId": 43189261486,
+                "validate": "failure",
+                "promote": "skipped",
+                "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+                "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+                "actualSelectedCustomHttpTest": "PASSED once; Node24 reported tests1/pass1/skipped0 for the finite name filter. Node20 reports tests21/pass1/skipped20 because it emits excluded tests.",
+                "onlyFailure": "Over-specific /# skipped20/ assertion in the outer portability regression, not an actual HTTP/projection or source-reader failure.",
+                "newReleaseClaim": false
+              },
+              "sourceOnlyRegression": {
+                "file": "script/methodology-download-portable.test.ts",
+                "log": "generated-artifacts/all22-node-tap-portable.log",
+                "sha256": "ed46753041ec5ac22bf5b5b12cd20a72b5884ffcec2cfb9d3b93d8903e27ba16",
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "cancelled": 0,
+                "skipped": 0,
+                "proof": "Fresh public source/no generated data/DB guard and actual custom HTTP test preserved. TAP acceptance requires EXACT named selected test executed ONCE, pass1/fail0/cancelled0 and no not-ok records. Node20/24 name-filter bookkeeping may differ, but a skipped/missing/duplicate selected test or any executed extra test/cancellation/failure rejects. In-test parser fixtures cover both known reporter formats and refusal cases; native local runtime is Node20, not a claimed native Node24 execution. Every actual case still runs in complete parent suite with zero skips."
               }
             },
             "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
@@ -135891,7 +135971,8 @@
             "generated-artifacts/company-operating-corpus/fslr-full-cashflow/focused-tests-v4.log",
             "generated-artifacts/company-operating-corpus/fslr-full-cashflow/private-validation-v4.log",
             "docs/issuer-economics-next-evidence.json",
-            "generated-artifacts/remaining-export-all22.portable-final.receipt.json"
+            "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+            "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json"
           ],
           "evidence_caveat": "S12-017: direct code/test/retained-receipt review, not the canonical stale stage-level pointer. Not fully verified because: No utility+oil/gas+industrial trio meets the original end-to-end criteria. The NEW FY2025 anchor is an UNAUDITED ISSUER EARNINGS RELEASE, NOT Form10-K, used only for a distinct conditional experiment; selectedFY2024 case is unchanged. Last-available-close age alone is not a blocker; actual shares/identity/terminal/horizon requirements and cutoffs remain.",
           "files_functions_changed": [
@@ -136325,6 +136406,43 @@
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
               "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1090,
+                  "pass": 1090,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 248,
+                  "pass": 248,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T09:17:42.077487+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 274.356,
+              "counts": {
+                "tests": 1090,
+                "pass": 1090,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
               "suite_counts": {
                 "typescript": {
                   "tests": 1090,
@@ -139548,7 +139666,7 @@
             ]
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T09:09:52.433190+00:00",
+            "updated_at": "2026-11-12T09:23:30.400618+00:00",
             "release": {
               "status": "New local source validated; new release not yet observed",
               "last_verified": {
@@ -139566,20 +139684,20 @@
                 "-c",
                 "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "executed_at": "2026-11-12T09:03:04.676951+00:00",
+              "executed_at": "2026-11-12T09:17:42.077487+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 280.029,
+              "elapsed_seconds": 274.356,
               "counts": {
                 "tests": 1090,
                 "pass": 1090,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+              "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+              "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
               "suite_counts": {
                 "typescript": {
                   "tests": 1090,
@@ -139598,8 +139716,8 @@
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             },
             "execution_receipt": {
-              "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
-              "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
+              "path": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+              "sha256": "24257fdbafd48785592bd2d7762c2b96e8f10ae091697590dab445ee6960c859"
             },
             "finite_export_counts": {
               "newClosed": 28,
@@ -139759,7 +139877,7 @@
                 "fail": 0,
                 "deliberatelyUnselectedOtherTests": 20
               },
-              "sourceOnlyRegression": {
+              "preNode24BookkeepingRegression": {
                 "file": "script/methodology-download-portable.test.ts",
                 "log": "generated-artifacts/all22-ci-fixture-portable.log",
                 "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
@@ -139767,7 +139885,28 @@
                 "pass": 2,
                 "fail": 0,
                 "skipped": 0,
-                "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+                "proof": "HISTORICAL local Node20 success: isolated custom test genuinely ran, but bookkeeping assertion was later shown incompatible with Node24."
+              },
+              "reporterFailure": {
+                "ciRunId": 43189261486,
+                "validate": "failure",
+                "promote": "skipped",
+                "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+                "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+                "actualSelectedCustomHttpTest": "PASSED once; Node24 reported tests1/pass1/skipped0 for the finite name filter. Node20 reports tests21/pass1/skipped20 because it emits excluded tests.",
+                "onlyFailure": "Over-specific /# skipped20/ assertion in the outer portability regression, not an actual HTTP/projection or source-reader failure.",
+                "newReleaseClaim": false
+              },
+              "sourceOnlyRegression": {
+                "file": "script/methodology-download-portable.test.ts",
+                "log": "generated-artifacts/all22-node-tap-portable.log",
+                "sha256": "ed46753041ec5ac22bf5b5b12cd20a72b5884ffcec2cfb9d3b93d8903e27ba16",
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "cancelled": 0,
+                "skipped": 0,
+                "proof": "Fresh public source/no generated data/DB guard and actual custom HTTP test preserved. TAP acceptance requires EXACT named selected test executed ONCE, pass1/fail0/cancelled0 and no not-ok records. Node20/24 name-filter bookkeeping may differ, but a skipped/missing/duplicate selected test or any executed extra test/cancellation/failure rejects. In-test parser fixtures cover both known reporter formats and refusal cases; native local runtime is Node20, not a claimed native Node24 execution. Every actual case still runs in complete parent suite with zero skips."
               }
             },
             "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
@@ -158532,7 +158671,8 @@
             "docs/System_Output_Register.md",
             "docs/remaining-export-evidence.json",
             "generated-artifacts/remaining-export-all22.ready.receipt.json",
-            "generated-artifacts/remaining-export-all22.portable-final.receipt.json"
+            "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+            "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json"
           ],
           "evidence_caveat": "Clause-level source inspection plus only the actual bounded execution receipts listed. Partial implementation is not complete acceptance. Missing historical research is not replaced by proxy efficacy.",
           "files_functions_changed": [
@@ -159012,6 +159152,43 @@
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
               "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1090,
+                  "pass": 1090,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 248,
+                  "pass": 248,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T09:17:42.077487+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 274.356,
+              "counts": {
+                "tests": 1090,
+                "pass": 1090,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
               "suite_counts": {
                 "typescript": {
                   "tests": 1090,
@@ -163181,7 +163358,7 @@
             ]
           },
           "finite_export_diffusion_increment": {
-            "updated_at": "2026-11-12T09:09:52.433190+00:00",
+            "updated_at": "2026-11-12T09:23:30.400618+00:00",
             "release": {
               "status": "New local source validated; new release not yet observed",
               "last_verified": {
@@ -163199,20 +163376,20 @@
                 "-c",
                 "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
               ],
-              "executed_at": "2026-11-12T09:03:04.676951+00:00",
+              "executed_at": "2026-11-12T09:17:42.077487+00:00",
               "exit_code": 0,
-              "elapsed_seconds": 280.029,
+              "elapsed_seconds": 274.356,
               "counts": {
                 "tests": 1090,
                 "pass": 1090,
                 "fail": 0,
                 "skipped": 0
               },
-              "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+              "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
               "workspace_revision": null,
               "worktree_dirty": null,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-              "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+              "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
               "suite_counts": {
                 "typescript": {
                   "tests": 1090,
@@ -163231,8 +163408,8 @@
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             },
             "execution_receipt": {
-              "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
-              "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
+              "path": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+              "sha256": "24257fdbafd48785592bd2d7762c2b96e8f10ae091697590dab445ee6960c859"
             },
             "finite_export_counts": {
               "newClosed": 28,
@@ -163392,7 +163569,7 @@
                 "fail": 0,
                 "deliberatelyUnselectedOtherTests": 20
               },
-              "sourceOnlyRegression": {
+              "preNode24BookkeepingRegression": {
                 "file": "script/methodology-download-portable.test.ts",
                 "log": "generated-artifacts/all22-ci-fixture-portable.log",
                 "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
@@ -163400,14 +163577,35 @@
                 "pass": 2,
                 "fail": 0,
                 "skipped": 0,
-                "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+                "proof": "HISTORICAL local Node20 success: isolated custom test genuinely ran, but bookkeeping assertion was later shown incompatible with Node24."
+              },
+              "reporterFailure": {
+                "ciRunId": 43189261486,
+                "validate": "failure",
+                "promote": "skipped",
+                "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+                "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+                "actualSelectedCustomHttpTest": "PASSED once; Node24 reported tests1/pass1/skipped0 for the finite name filter. Node20 reports tests21/pass1/skipped20 because it emits excluded tests.",
+                "onlyFailure": "Over-specific /# skipped20/ assertion in the outer portability regression, not an actual HTTP/projection or source-reader failure.",
+                "newReleaseClaim": false
+              },
+              "sourceOnlyRegression": {
+                "file": "script/methodology-download-portable.test.ts",
+                "log": "generated-artifacts/all22-node-tap-portable.log",
+                "sha256": "ed46753041ec5ac22bf5b5b12cd20a72b5884ffcec2cfb9d3b93d8903e27ba16",
+                "tests": 2,
+                "pass": 2,
+                "fail": 0,
+                "cancelled": 0,
+                "skipped": 0,
+                "proof": "Fresh public source/no generated data/DB guard and actual custom HTTP test preserved. TAP acceptance requires EXACT named selected test executed ONCE, pass1/fail0/cancelled0 and no not-ok records. Node20/24 name-filter bookkeeping may differ, but a skipped/missing/duplicate selected test or any executed extra test/cancellation/failure rejects. In-test parser fixtures cover both known reporter formats and refusal cases; native local runtime is Node20, not a claimed native Node24 execution. Every actual case still runs in complete parent suite with zero skips."
               }
             },
             "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
             "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance.",
             "evidence": {
               "path": "docs/remaining-export-evidence.json",
-              "sha256": "94be469055b01b71794884675bafe5a47dbb50624de310fdc9e58f0cf5a56692",
+              "sha256": "09aece5df1ef04c272b458322097f5ac0532caf7013e7e30e23162f9f67a5f62",
               "detail": {
                 "version": "remaining-export-evidence-2-all-ready-contracts",
                 "requirement": "ORIGINAL S16-007",
@@ -163997,7 +164195,7 @@
                       "fail": 0,
                       "deliberatelyUnselectedOtherTests": 20
                     },
-                    "sourceOnlyRegression": {
+                    "preNode24BookkeepingRegression": {
                       "file": "script/methodology-download-portable.test.ts",
                       "log": "generated-artifacts/all22-ci-fixture-portable.log",
                       "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
@@ -164005,7 +164203,28 @@
                       "pass": 2,
                       "fail": 0,
                       "skipped": 0,
-                      "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+                      "proof": "HISTORICAL local Node20 success: isolated custom test genuinely ran, but bookkeeping assertion was later shown incompatible with Node24."
+                    },
+                    "reporterFailure": {
+                      "ciRunId": 43189261486,
+                      "validate": "failure",
+                      "promote": "skipped",
+                      "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+                      "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+                      "actualSelectedCustomHttpTest": "PASSED once; Node24 reported tests1/pass1/skipped0 for the finite name filter. Node20 reports tests21/pass1/skipped20 because it emits excluded tests.",
+                      "onlyFailure": "Over-specific /# skipped20/ assertion in the outer portability regression, not an actual HTTP/projection or source-reader failure.",
+                      "newReleaseClaim": false
+                    },
+                    "sourceOnlyRegression": {
+                      "file": "script/methodology-download-portable.test.ts",
+                      "log": "generated-artifacts/all22-node-tap-portable.log",
+                      "sha256": "ed46753041ec5ac22bf5b5b12cd20a72b5884ffcec2cfb9d3b93d8903e27ba16",
+                      "tests": 2,
+                      "pass": 2,
+                      "fail": 0,
+                      "cancelled": 0,
+                      "skipped": 0,
+                      "proof": "Fresh public source/no generated data/DB guard and actual custom HTTP test preserved. TAP acceptance requires EXACT named selected test executed ONCE, pass1/fail0/cancelled0 and no not-ok records. Node20/24 name-filter bookkeeping may differ, but a skipped/missing/duplicate selected test or any executed extra test/cancellation/failure rejects. In-test parser fixtures cover both known reporter formats and refusal cases; native local runtime is Node20, not a claimed native Node24 execution. Every actual case still runs in complete parent suite with zero skips."
                     }
                   },
                   "preservationRegression": {
@@ -164088,7 +164307,7 @@
                     "acceptance": "Engineering source/file-handler evidence only; not scientific acceptance, source approval, publication permission or original-history recovery",
                     "visualCheck": "Attempted already-running preview only;127.0.0.1:5000 refused connection. No server/workflow was started. Live or signed-in UI not verified."
                   },
-                  "finalFullChecks": {
+                  "preNodeTapLocalFullChecks": {
                     "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.portable-final.log --receipt generated-artifacts/remaining-export-all22.portable-final.receipt.json",
                     "receipt": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
                     "log": "generated-artifacts/remaining-export-all22.portable-final.log",
@@ -164115,6 +164334,34 @@
                     "productionBuild": "passed; existing Browserslist/PostCSS/large-chunk warnings unchanged",
                     "canonicalLedgersModified": false,
                     "boundary": "Final full local engineering checks after fixture/portability repair; NOT a successful public CI/promote/deployed receipt. Parent owns CI. No app/workflow/publish/callback."
+                  },
+                  "finalFullChecks": {
+                    "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.node-tap-final.log --receipt generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+                    "receipt": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+                    "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
+                    "logSha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
+                    "exitCode": 0,
+                    "elapsedSeconds": 274.356,
+                    "typescript": {
+                      "tests": 1090,
+                      "pass": 1090,
+                      "fail": 0,
+                      "skipped": 0
+                    },
+                    "python": {
+                      "tests": 248,
+                      "pass": 248,
+                      "fail": 0,
+                      "skipped": 0
+                    },
+                    "typecheck": "passed",
+                    "originalChoiceWidthDocument": "passed",
+                    "mandatoryPrivateMonetaryIntegration": "passed; unchanged",
+                    "mandatoryPrivateIssuerCashflow": "passed; unchanged",
+                    "mandatoryPrivateIssuerReconciliation": "passed; unchanged",
+                    "productionBuild": "passed; existing warnings only",
+                    "canonicalLedgersModified": false,
+                    "boundary": "Coherent local complete checks after Node-version-portable TAP assertion repair. Both actual CI failures/promote-skipped preserved; no new CI/promote/deployed success inferred."
                   }
                 },
                 "priorImplementation": {
@@ -164345,7 +164592,7 @@
                   "client/src/lib/producer-download.ts": "9edb2f144fdac50d80a9dd0a5a24bd0e5a518e7ceb220ee78bb80ad8ce749ae0",
                   "script/legacy-export-producer.test.ts": "d98fa1a9f8654550e10e095d82d560e87221c13a0bf93b13d9d0e2227fc5b2ef",
                   "script/fixtures/isolatedRetainedReports.ts": "09d4a27c3e100212625c4a5184fec26768080f5aa9e16e68ff8782f8bc76392a",
-                  "script/methodology-download-portable.test.ts": "9820e280d1a5c74b335249f07c47527670dd6cabe47ee15c86d225a83e34c869"
+                  "script/methodology-download-portable.test.ts": "e1aa2d929fb4eb1a055be63642fa9870581a5ec4df24f4f88e31c6de5af6994f"
                 },
                 "priorFrozenSourceHashes": {
                   "shared/remainingExportContracts.ts": "b2e4593518179d68996eefed1cd4f3ac9937c8cb11896b6aa3c8b7bce86ddbfa",
@@ -164391,7 +164638,7 @@
                   "No canonical ledger edits, commit, deployment, callback, workflow start/restart or app run."
                 ],
                 "remainingWorkBoundary": "No finite22producer/derivation contract is left as an unexplained implementation gap or relabelled external data blocker. Engineering closure is prospective and supported by actual retained-parent/file-handler readbacks, not live persistence activation. Old full TrackB assessment companions and original upstream news HTTP bytes are not retroactively reconstructed or claimed. The one unauthorized private HTTP path stays403. No full ORIGINAL S16-007, scientific, owner, publication or original-history acceptance claim.",
-                "freeze": "Runtime application code unchanged by CI fixture repair. Final test/fixture code frozen before successful complete local receipt-only checks (1090TS+248Python, original/private/type/build). Evidence/recorder/ledgers finalized afterward. Public CI43186463787failure/promote-skipped preserved, no new successful CI/release invented. No workflow, publication, callback, production mutation or auth bypass in repair; parent owns CI/deployment. Prior committed engineering evidence/history remains historical."
+                "freeze": "Runtime application code unchanged by both CI test-only repairs. Current test code frozen before successful complete local node-tap-final checks (1090TS+248Python, original/private/type/build). Evidence/recorder/ledgers finalized afterward. BOTH actual CI43186463787 and43189261486 failures/promote-skipped preserved; second actual selected HTTP test passed and only exclusion-bookkeeping assertion failed. No skipped actual tests or new successful CI/release invented. No app/workflow, manual cancel, publication, callback, production mutation or auth bypass; parent owns CI."
               }
             }
           },
@@ -166245,6 +166492,1221 @@
                   ],
                   "remainingWorkBoundary": "No finite22producer/derivation contract is left as an unexplained implementation gap or relabelled external data blocker. Engineering closure is prospective and supported by actual retained-parent/file-handler readbacks, not live persistence activation. Old full TrackB assessment companions and original upstream news HTTP bytes are not retroactively reconstructed or claimed. The one unauthorized private HTTP path stays403. No full ORIGINAL S16-007, scientific, owner, publication or original-history acceptance claim.",
                   "freeze": "Executable source frozen before successful complete receipt-only checks (1089TS+248Python, every mandatory private validator, production build). Only this evidence JSON was finalized afterward. No canonical ledger, commit, deployment, callback, workflow start/restart, app run, data approval or private publication performed. Live/signed-in UI and live persistence activation not verified."
+                }
+              }
+            },
+            {
+              "updated_at": "2026-11-12T09:09:52.433190+00:00",
+              "release": {
+                "status": "New local source validated; new release not yet observed",
+                "last_verified": {
+                  "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+                  "ci": "43174101497 validate/promote success",
+                  "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+                  "verified_at": "2026-11-12T07:29:50.044223+00:00",
+                  "health": 200,
+                  "scope": "Code only; no issuer/science/private HTTP activation."
+                }
+              },
+              "execution": {
+                "command": [
+                  "bash",
+                  "-c",
+                  "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+                ],
+                "executed_at": "2026-11-12T09:03:04.676951+00:00",
+                "exit_code": 0,
+                "elapsed_seconds": 280.029,
+                "counts": {
+                  "tests": 1090,
+                  "pass": 1090,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+                "workspace_revision": null,
+                "worktree_dirty": null,
+                "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+                "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+                "suite_counts": {
+                  "typescript": {
+                    "tests": 1090,
+                    "pass": 1090,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "python": {
+                    "tests": 248,
+                    "pass": 248,
+                    "fail": 0,
+                    "skipped": 0
+                  }
+                },
+                "canonical_ledgers_modified": false,
+                "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+              },
+              "execution_receipt": {
+                "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+                "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
+              },
+              "finite_export_counts": {
+                "newClosed": 28,
+                "newCentralClosed": 19,
+                "newStaticPublicJsonClosed": 2,
+                "remainingUnimplemented": 0,
+                "remainingSourceblocked": 1,
+                "centralSourceBackedProducerContracts": 19,
+                "centralAvailableWithLegacyNullProducer": 19,
+                "customServerContractsNotChanged": 1,
+                "implementedThisIncrement": 22,
+                "implementedThisIncrementCentral": 15,
+                "implementedThisIncrementCustom": 7,
+                "countMeaning": "Fixed engineering implementation inventory, not live retained-data availability. All19central ordinary paths may still run honestly unbound when storage is unavailable."
+              },
+              "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+              "changed_paths_since_handoff": [
+                "client/src/components/category-comparison.tsx",
+                "client/src/components/category-trend-chart.tsx",
+                "client/src/components/company-coverage.tsx",
+                "client/src/components/download-data-button.tsx",
+                "client/src/components/emissions-candidate-review.tsx",
+                "client/src/components/emissions-chart.tsx",
+                "client/src/components/historical-trend-chart.tsx",
+                "client/src/components/indicator-cards.tsx",
+                "client/src/components/readonly-version-diff.tsx",
+                "client/src/components/regional-comparison.tsx",
+                "client/src/components/sensitivity-chart.tsx",
+                "client/src/components/temperature-histogram.tsx",
+                "client/src/components/threshold-diagnostic-details.tsx",
+                "client/src/lib/export-contract.ts",
+                "client/src/lib/producer-download.ts",
+                "client/src/pages/data-management.tsx",
+                "client/src/pages/news-sentiment.tsx",
+                "docs/System_Output_Register.md",
+                "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+                "docs/WORKPLAN_COMPLETION_LEDGER.md",
+                "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+                "docs/field_semantics_census.json",
+                "docs/finite-export-runtime-receipts.json",
+                "docs/issuer-economics-next-evidence.json",
+                "docs/regional-diffusion-next-evidence.json",
+                "docs/regional-diffusion-uncertainty-evidence.json",
+                "docs/remaining-export-evidence.json",
+                "docs/scientific-strands-warning-evidence.json",
+                "docs/workplan_completion_ledger.json",
+                "script/carbon-pass-through-admission.test.ts",
+                "script/company-coverage-route.test.ts",
+                "script/download-selection-race.test.ts",
+                "script/field-semantics-census.ts",
+                "script/fixtures/isolatedRetainedReports.ts",
+                "script/legacy-export-producer.test.ts",
+                "script/methodology-download-portable.test.ts",
+                "script/native-producer-exports.test.ts",
+                "script/native-semantics.test.ts",
+                "script/native-threshold-integration.test.ts",
+                "script/record-finite-export-increment.py",
+                "script/regional-diffusion-primary-attempts.mjs",
+                "script/regional_diffusion_next.py",
+                "script/regional_diffusion_uncertainty.py",
+                "script/remaining-export-contracts.test.ts",
+                "script/residual-label-scan.ts",
+                "script/run-paired-research-pipeline.ts",
+                "script/static-reference-lineage.test.ts",
+                "script/test_regional_diffusion_next.py",
+                "script/test_regional_diffusion_uncertainty.py",
+                "server/calculation/trackBExportMaterial.ts",
+                "server/carbonPassThroughApi.ts",
+                "server/companyConditionalApi.ts",
+                "server/downloadManifestMiddleware.ts",
+                "server/financialData/stage10Source.ts",
+                "server/financialData/workbookMoneyExportRelease.ts",
+                "server/index.ts",
+                "server/nativeCandidateApi.ts",
+                "server/newsApi/newsService.ts",
+                "server/producerDownload.ts",
+                "server/readonlyDiffApi.ts",
+                "server/routes.ts",
+                "server/snapshots/calculationSourceArtifact.ts",
+                "server/snapshots/companyCoverage.ts",
+                "server/snapshots/legacyExportProducer.ts",
+                "server/snapshots/materialInputs.ts",
+                "server/snapshots/nativeCandidateProducer.ts",
+                "server/snapshots/newsExportProducer.ts",
+                "server/snapshots/readonlyDiffProducer.ts",
+                "server/snapshots/reportExportProducer.ts",
+                "server/snapshots/reportMaterialContext.ts",
+                "server/snapshots/resultVerificationGraph.ts",
+                "server/snapshots/results.ts",
+                "server/stage10CoverageApi.ts",
+                "server/staticReferenceLineage.ts",
+                "server/trackBAdmissionApi.ts",
+                "server/trackBDisclosureStore.ts",
+                "server/warmingValidationReferenceApi.ts",
+                "server/workbookMoneyAuditExportApi.ts",
+                "shared/derivedConsumerSemantics.ts",
+                "shared/legacyExportConsumer.ts",
+                "shared/nativeConsumer.ts",
+                "shared/outputFieldSemantics.ts",
+                "shared/producerDownloadSemantics.ts",
+                "shared/readonlyConsumer.ts",
+                "shared/remainingExportContracts.ts",
+                "shared/safeReportExportSemantics.ts"
+              ],
+              "sources": [
+                "docs/remaining-export-evidence.json",
+                "docs/regional-diffusion-uncertainty-evidence.json",
+                "docs/issuer-economics-next-evidence.json"
+              ],
+              "failure_history": [
+                {
+                  "receipt": "generated-artifacts/remaining-export-all22.final-v2.receipt.json",
+                  "log": "generated-artifacts/remaining-export-all22.final-v2.log",
+                  "typescript": {
+                    "tests": 1089,
+                    "pass": 1089,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "python": {
+                    "tests": 248,
+                    "pass": 248,
+                    "fail": 0,
+                    "skipped": 0
+                  },
+                  "failure": "Mandatory private monetary freeze rejected edited original safe reader/API. Restored original reader/API and protected Track test byte-for-byte; implemented additive release wrappers instead. No private hash/gate/threshold relaxed."
+                },
+                {
+                  "receipt": "generated-artifacts/remaining-export-all22.complete.receipt.json",
+                  "log": "generated-artifacts/remaining-export-all22.complete.log",
+                  "typescript": {
+                    "tests": 1089,
+                    "pass": 1088,
+                    "fail": 1,
+                    "skipped": 0
+                  },
+                  "failure": "Existing company-cache HTTP30s transport timeout under full-suite load. Unchanged focused transport suite5/5passed; final full rerun passed with unchanged timeout/assertions. No gate relaxed."
+                }
+              ],
+              "public_ci_failure_and_test_repair": {
+                "failure": {
+                  "ciRunId": 43186463787,
+                  "validate": "failure",
+                  "promote": "skipped",
+                  "failingTest": "414 all five custom retained report paths",
+                  "error": "ENOENT generated-artifacts/financial-data/mapping-audit.json at original script/legacy-export-producer.test.ts:287 readStage10RetainedFiles",
+                  "privateLog": "generated-artifacts/all22-failed-ci.log",
+                  "privateLogSha256": "21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b",
+                  "newReleaseClaim": false
+                },
+                "fix": "Test-only isolatedRetainedReports creates explicitly SYNTHETIC files in a temporary CWD: exact100-row50+50 audit/root-cause selection, two hash-authenticated retained statement envelopes and safe monetary summary/private audit/reconciliation bytes with valid hashes. The SAME unchanged actual fixed-root readers, full producer replay, HTTP handlers and every existing attachment/manifest/literal-cell/corruption assertion execute. No production source bytes, generated artifacts or DB are used, copied, published or conditionally skipped; no production reader or mandatory private validator changed.",
+                "focused": {
+                  "log": "generated-artifacts/all22-ci-fixture-focused.log",
+                  "sha256": "5fc091b32855061e32582d988c2d9622881f8a7b997fe3fe937974249bd6046b",
+                  "selectedTests": 1,
+                  "pass": 1,
+                  "fail": 0,
+                  "deliberatelyUnselectedOtherTests": 20
+                },
+                "sourceOnlyRegression": {
+                  "file": "script/methodology-download-portable.test.ts",
+                  "log": "generated-artifacts/all22-ci-fixture-portable.log",
+                  "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
+                  "tests": 2,
+                  "pass": 2,
+                  "fail": 0,
+                  "skipped": 0,
+                  "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+                }
+              },
+              "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
+              "scientific_decision": "Regional joint uncertainty tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. Issuer discovery record adds no qualified primary economic input or adapter/code change: six discovery responses200 but unusable, one exact new primary filing403. No issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance.",
+              "evidence": {
+                "path": "docs/remaining-export-evidence.json",
+                "sha256": "94be469055b01b71794884675bafe5a47dbb50624de310fdc9e58f0cf5a56692",
+                "detail": {
+                  "version": "remaining-export-evidence-2-all-ready-contracts",
+                  "requirement": "ORIGINAL S16-007",
+                  "priorCompletionPreserved": "Version1 closed6 and left15central+7custom unimplemented. Its complete per-path matrices, implementation descriptions, test receipts, source hashes and limitations remain below under prior-prefixed keys; none is reused as proof of the new22.",
+                  "completion": "All22 requested prospective contracts implemented and engineering-readback tested:15central+7custom. Fixed29 inventory is28engineering-closed+1unauthorized-private-HTTP403. Prior6closed and9PE/signal preserved. This is not a claim of live persistence activation, original historical bytes, scientific acceptance or full ORIGINAL S16-007 acceptance outside this fixed inventory.",
+                  "scope": "Frontend/shared and nonprotected server producer/material/result modules, tests and regenerated supplemental field census. No canonical ledger, commit, deployment, callback, auth, DDL, data approval or private publication changes.",
+                  "blanketRefusalsRemoved": "No filename/registry-status blanket gate. Every ordinary correctly formed result/export remains available under archive outage, explicitly without producer attestation. Missing/corrupt/mutated claimed retained chains refuse their claims/readback; unrelated native/valuation proofs and UI selections never grant provenance.",
+                  "ledgerReads": [
+                    "docs/workplan_completion_ledger.json: S16-007 targeted references",
+                    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md: S16-007 targeted references",
+                    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md: S16-007 row"
+                  ],
+                  "priorClosedBoundary": {
+                    "consumerCount": 9,
+                    "consumers": [
+                      "carbon P/E",
+                      "SDG P/E",
+                      "ambition P/E",
+                      "signal-comparison",
+                      "signal-cumulative",
+                      "signal-active",
+                      "group-gap",
+                      "gap-cumulative",
+                      "gap-active"
+                    ],
+                    "evidence": "docs/signal-chained-lineage-evidence.json",
+                    "policy": "Not reopened or promoted. Existing actual handler/readback regressions rerun."
+                  },
+                  "finiteCensus": {
+                    "inventoryBoundary": "Fixed starting inventory of 29 named families/paths; newly closed entries remain in this inventory and are distinguished by matrix state, not removed to shrink a denominator.",
+                    "source": "script/methodology-download-census.ts: methodologyDownloadCensus",
+                    "centralJsxSites": 26,
+                    "priorClosedJsxSites": 7,
+                    "priorClosedExpandedConsumers": 9,
+                    "remainingCentralHandlerFamilies": 19,
+                    "remainingCentralXlsxHandlers": 18,
+                    "remainingCentralJsonOnlyHandlers": 1,
+                    "remainingPublicCustomAttachmentPaths": 9,
+                    "remainingDeniedPrivateAttachmentPaths": 1,
+                    "remainingTotalHandlerFamiliesOrAttachmentPaths": 29,
+                    "unitOfCount": "Central JSX handler families plus individual attachment paths; not every finite setting, format companion, custom sheet or DOM anchor. P/E JSX template expands to three consumers. Direct-link exact-retained-result path is prior closed, not counted again.",
+                    "finiteUiDomains": {
+                      "categoryTrendMetric": [
+                        "temperature",
+                        "reductionRate",
+                        "legacy-fixed-5gt-v1"
+                      ],
+                      "historicalTrendMetric": [
+                        "temperature",
+                        "reductionRate",
+                        "netZero"
+                      ],
+                      "nativeScenario": [
+                        "constant",
+                        "transition",
+                        "dashboard"
+                      ],
+                      "indicatorDetailKeys": [
+                        "renewableCapacityGW",
+                        "renewableGrowthRate",
+                        "evSalesSharePct",
+                        "evGrowthRate",
+                        "policyCoveragePct",
+                        "policyImplementationRate",
+                        "gdpTrillionUSD",
+                        "carbonIntensityKgPerGDP",
+                        "climateConcernPct",
+                        "policySupportPct",
+                        "sacrificeWillingnessPct",
+                        "humanCausationPct",
+                        "corporateTargetsPct",
+                        "corporateImplementationRate",
+                        "cleanEnergyInvestmentTrn",
+                        "fossilFuelInvestmentTrn",
+                        "greenBondIssuanceBln",
+                        "fossilDivestmentTrn",
+                        "fossilCO2GtPerYear",
+                        "atmosphericCO2ppm",
+                        "co2GrowthRatePpm",
+                        "remainingBudget15C_Gt"
+                      ],
+                      "companyCoverageDate": "Validated report observationDate, not an enumerated source release or producer proof."
+                    }
+                  },
+                  "statusDefinitions": {
+                    "closed": "Actual source-backed producer/derivation binding with successful actual handler readback for applicable JSON/XLSX formats, or exact static public reference/evidence plus code-artifact binding for JSON-only static handlers; missing/stale/corrupt refusal. Static closure never invents model/run/material applicability. Not merely an unverified manifest or schema.",
+                    "unimplemented": "Required producer or exact derivation contract is missing code/integration; NOT an asserted source-permission gap. Existing correct exports stay available, without fabricated producer identity or a completion claim.",
+                    "sourceblocked": "A specific source/publication/operator permission boundary prevents access. Not a synonym for missing implementation."
+                  },
+                  "matrixCounts": {
+                    "newClosed": 28,
+                    "newCentralClosed": 19,
+                    "newStaticPublicJsonClosed": 2,
+                    "remainingUnimplemented": 0,
+                    "remainingSourceblocked": 1,
+                    "centralSourceBackedProducerContracts": 19,
+                    "centralAvailableWithLegacyNullProducer": 19,
+                    "customServerContractsNotChanged": 1,
+                    "implementedThisIncrement": 22,
+                    "implementedThisIncrementCentral": 15,
+                    "implementedThisIncrementCustom": 7,
+                    "countMeaning": "Fixed engineering implementation inventory, not live retained-data availability. All19central ordinary paths may still run honestly unbound when storage is unavailable."
+                  },
+                  "centralHandlerMatrix": [
+                    {
+                      "key": "category-scenarios",
+                      "state": "closed",
+                      "contract": "legacy-export-inputs/material-1 + legacy-export-consumer-1",
+                      "proof": "Actual whole category engine/effective history/approved source/code/model retained; actual row builder and JSON/XLSX readback."
+                    },
+                    {
+                      "key": "category-trends",
+                      "state": "closed",
+                      "contract": "same whole category-history producer; all3finite metrics",
+                      "proof": "Actual history/type/nowcast source order; all7category columns, fixed5Gt export versus5% chart, exact nowcast bridges;3JSON+3XLSX."
+                    },
+                    {
+                      "key": "company-coverage",
+                      "state": "closed",
+                      "contract": "safe-report-release:company-coverage",
+                      "proof": "Full repeatable-read workbook/day and financial/operating source/review journals retained privately; exact review evaluator and coverage replay; lossless actual JSON preparer/readback."
+                    },
+                    {
+                      "key": "native-thresholds",
+                      "state": "closed",
+                      "proof": "Prior unchanged native-candidate producer/readbacks; preserved below."
+                    },
+                    {
+                      "key": "native-trajectory",
+                      "state": "closed",
+                      "proof": "Prior unchanged native-candidate producer/readbacks; preserved below."
+                    },
+                    {
+                      "key": "emissions",
+                      "state": "closed",
+                      "contract": "whole legacy projection + exact original detached trajectory link",
+                      "proof": "Actual whole effective input/approved metadata/seeds/model/code/query response replay; all export years versus even/final chart indices; JSON/XLSX literal-cell readback."
+                    },
+                    {
+                      "key": "historical-trend",
+                      "state": "closed",
+                      "contract": "whole legacy history + exact3metric previews",
+                      "proof": "Actual full historical recalculation, labels, nowcast and bridge values; unchanged all-fields export,3JSON+3XLSX."
+                    },
+                    {
+                      "key": "indicator-cards",
+                      "state": "closed",
+                      "contract": "whole effective history result +22key projection",
+                      "proof": "Actual historical base/approved source/nowcast rows/code; native-unit export and exact sparkline bridges; JSON/XLSX."
+                    },
+                    {
+                      "key": "version-diff",
+                      "state": "closed",
+                      "proof": "Prior unchanged readonly source producer/readbacks; preserved below."
+                    },
+                    {
+                      "key": "affected-analyses",
+                      "state": "closed",
+                      "proof": "Prior unchanged readonly source producer/readbacks; preserved below."
+                    },
+                    {
+                      "key": "regional",
+                      "state": "closed",
+                      "contract": "whole legacy regional counterfactual/effective history/intensity material",
+                      "proof": "Exact selected/current resolved intensity inputs, source tags and PPP/nominal basis, seeds/model/code/query; all four native records, JSON/XLSX."
+                    },
+                    {
+                      "key": "sensitivity",
+                      "state": "closed",
+                      "contract": "whole legacy sensitivity/effective history/shock/baseline producer",
+                      "proof": "Actual entire sensitivity execution replay; all native exports distinct from first10chart/offsets, JSON/XLSX."
+                    },
+                    {
+                      "key": "temperature",
+                      "state": "closed",
+                      "contract": "whole projection + exact original detached PDF link",
+                      "proof": "Actual legacy simulation inputs and three seeds; all exported PDF points versus density>0.001 chart, JSON/XLSX."
+                    },
+                    {
+                      "key": "threshold-diagnostic",
+                      "state": "closed",
+                      "contract": "threshold-path-consumer-1",
+                      "proof": "Each original diagnostic object resolves exact retained whole-parent property/index path, ordered proof and rows. UI context labels explicitly presentation only; JSON/XLSX and original-parent mutation refusal."
+                    },
+                    {
+                      "key": "indicator-detail",
+                      "state": "closed",
+                      "contract": "safe-report-release:indicator-detail + finite consumer",
+                      "proof": "Full effective history/approved source metadata/selected registered definition/proposal release/query/code; all22actual finite row builders and22JSON+22XLSX readbacks."
+                    },
+                    {
+                      "key": "news-volume",
+                      "state": "closed",
+                      "contract": "news-export-inputs/material-1 + finite news-volume projection",
+                      "proof": "Whole consumed provider-derived volume/sample cache release and collection/query times/code; exact local Sunday getDay/setDate then UTC ISO date and ascending buckets; browser timezone captured/refused if changed; JSON/XLSX."
+                    },
+                    {
+                      "key": "news-sentiment-trend",
+                      "state": "closed",
+                      "contract": "same retained news source release + exact allocation projection",
+                      "proof": "Pooled non-null sample ratios,0.4/0.15fallback, independent rounded class allocations and >=5monthly sample mean threshold/pooled fallback; not observed population classifications; JSON/XLSX."
+                    },
+                    {
+                      "key": "news-sentiment-breakdown",
+                      "state": "closed",
+                      "contract": "same retained news release + exact denominator projection",
+                      "proof": "Shares divide reported volume total, not sum independently rounded allocated classes; nonpositive total gives null; rounds need not sum100; JSON/XLSX."
+                    },
+                    {
+                      "key": "news-topic",
+                      "state": "closed",
+                      "contract": "same retained news release + exact topic extrapolation",
+                      "proof": "Nonexclusive case-insensitive title-substring keywords, round(totalVolume*max(sampleMatchRatio,0.05)), matched-sample mean or pooled fallback; not observed topic counts; JSON/XLSX."
+                    }
+                  ],
+                  "customHandlerMatrix": [
+                    {
+                      "path": "/api/reference/warming-validation/export.json",
+                      "state": "closed",
+                      "proof": "Prior exact static source/code artifact preserved."
+                    },
+                    {
+                      "path": "/api/cv/carbon-pass-through-evidence/export.json",
+                      "state": "closed",
+                      "proof": "Prior exact static source/code artifact preserved."
+                    },
+                    {
+                      "path": "/api/cv/company-conditional-summaries/export.json",
+                      "state": "closed",
+                      "contract": "selected conditional static-reference-artifact-1",
+                      "proof": "All/NEE/FSLR/XOM actual HTTP readback of exact checked-in selected allowlisted material/formulas and release-local code/config/lock. No model run invented; native producerIdentity null."
+                    },
+                    {
+                      "path": "/api/cv/company-conditional-summaries/export.xlsx",
+                      "state": "closed",
+                      "contract": "same selected conditional artifact + exact literal Public allowlist cells",
+                      "proof": "All4actual HTTP workbooks, exact headers/order/field+JSON-value cells, no formulas/links. Existing default bytes preserved."
+                    },
+                    {
+                      "path": "/api/research/stage10-coverage/export.json",
+                      "state": "closed",
+                      "contract": "safe-report-release:stage10-coverage + safe-report-custom-projection-1",
+                      "proof": "Full actual authenticated file versions/root-cause audit/workbook chunks/review+immutable financial journals privately captured; same complete source selection/qualification/aggregation function replayed; actual HTTP JSON."
+                    },
+                    {
+                      "path": "/api/research/stage10-coverage/export.xlsx",
+                      "state": "closed",
+                      "contract": "same full producer + exact custom-sheet projection",
+                      "proof": "Actual HTTP workbook; every original custom sheet/header/raw literal cell/order/hash readback; expectedInputHash/query/cutoff/year checks preserved."
+                    },
+                    {
+                      "path": "/api/research/track-b-admission/export.json",
+                      "state": "closed",
+                      "contract": "full track-b-assessment-material-1 + authorized public disclosure/report + safe-report-custom-projection-1",
+                      "proof": "Full frozen protocol/corpus/period-admission producer source/code retained prospectively in existing private pipeline artifact root, then retained source/material/completed result on export; exact assessment replay and publication pins; actual DEV-only negative engineering HTTP JSON."
+                    },
+                    {
+                      "path": "/api/research/track-b-admission/export.xlsx",
+                      "state": "closed",
+                      "contract": "same full assessment/disclosure producer + exact custom sheets",
+                      "proof": "Actual DEV-only negative engineering HTTP workbook and all literal cell hashes/order; no real catalog approval or raw private material published. Ordinary rights-qualified old reports missing full assessment material remain unbound, not disabled."
+                    },
+                    {
+                      "path": "/api/financial-data/workbook-money-audit.xlsx",
+                      "state": "closed",
+                      "contract": "safe-report-release:workbook-money-audit + exact safe-report projection",
+                      "proof": "Exact actual safe summary and complete private audit/reconciliation bytes with their verified hashes, source/code/query/result retained privately; actual HTTP workbook literal cells/order/hash. No monetary totals, inferred FX, new denomination approval or private publication."
+                    },
+                    {
+                      "path": "/api/development/qualified-missingness/export",
+                      "state": "sourceblocked",
+                      "proof": "Unchanged unauthorized private HTTP403/operator CLI boundary; engineering fixtures grant no publication authority."
+                    }
+                  ],
+                  "priorCentralHandlerMatrix": [
+                    {
+                      "key": "category-scenarios",
+                      "path": "client/src/components/category-comparison.tsx",
+                      "filename": "category-scenario-analysis",
+                      "state": "unimplemented",
+                      "source": "/api/projection/categories",
+                      "gap": "Whole category result/material/code/model producer binding missing.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "category-trends",
+                      "path": "client/src/components/category-trend-chart.tsx",
+                      "filename": "category-trends-${metric}",
+                      "state": "unimplemented",
+                      "source": "/api/projection/categories/historical-trend",
+                      "gap": "Whole effective category history/material/code/model producer binding missing; historical labels are not attestation.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "company-coverage",
+                      "path": "client/src/components/company-coverage.tsx",
+                      "filename": "company-coverage-${observationDate}.json",
+                      "state": "unimplemented",
+                      "source": "/api/calculation/company-coverage",
+                      "gap": "Workbook sourceId is not coverage result/material/code/model producer identity.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "native-thresholds",
+                      "path": "client/src/components/emissions-candidate-review.tsx",
+                      "filename": "native-mass-five-percent-2024-diagnostics",
+                      "state": "closed",
+                      "source": "/api/emissions/candidate",
+                      "contract": "native-candidate-inputs-1/native-candidate-material-1/native-candidate-consumer-1",
+                      "projection": "All27 conditional native gas/account records, exact selected inventory baseline and region/member context;21 unchanged columns, native species/year units and source order; no gas conversion or baseline borrowing.",
+                      "successfulReadbacks": {
+                        "scenarios": 3,
+                        "json": 3,
+                        "xlsx": 3
+                      },
+                      "availability": "Actual retained native producer; unretained ordinary XLSX remains available with no producer attestation."
+                    },
+                    {
+                      "key": "native-trajectory",
+                      "path": "client/src/components/emissions-candidate-review.tsx",
+                      "filename": "native-emissions-${scenario}",
+                      "state": "closed",
+                      "source": "/api/emissions/candidate",
+                      "contract": "native-candidate-inputs-1/native-candidate-material-1/native-candidate-consumer-1",
+                      "projection": "All77 annual source points2024–2100;35 unchanged finite native species/sector/reporting columns; preserve native order/duplicates, missing/nonfinite cells null not zero. No quantiles, temperature or calibrated forecast claim.",
+                      "successfulReadbacks": {
+                        "scenarios": 3,
+                        "json": 3,
+                        "xlsx": 3
+                      },
+                      "availability": "Actual retained native producer; archive outages and legacy partial data preserve honest unbound ordinary XLSX."
+                    },
+                    {
+                      "key": "emissions",
+                      "path": "client/src/components/emissions-chart.tsx",
+                      "filename": "global-emissions-trajectory",
+                      "state": "unimplemented",
+                      "source": "/api/projection",
+                      "gap": "Whole projection/material/code/model producer and detached trajectory path binding missing.",
+                      "availability": "unchanged; actual successful legacy XLSX handler regression included"
+                    },
+                    {
+                      "key": "historical-trend",
+                      "path": "client/src/components/historical-trend-chart.tsx",
+                      "filename": "historical-trend-${metricView}",
+                      "state": "unimplemented",
+                      "source": "/api/projection/historical-trend",
+                      "gap": "Whole historical recalculation/material/code/model producer binding missing.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "indicator-cards",
+                      "path": "client/src/components/indicator-cards.tsx",
+                      "filename": "climate-indicators",
+                      "state": "unimplemented",
+                      "source": "/api/indicators/historical",
+                      "gap": "Retained historical-base/effective override result producer missing; approved indicator hash alone insufficient.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "version-diff",
+                      "path": "client/src/components/readonly-version-diff.tsx",
+                      "filename": "readonly-version-diff",
+                      "state": "closed",
+                      "source": "/api/data/version-diff",
+                      "contract": "readonly-diff-material-1 + source-backed:readonly-diff-1 + readonly-diff-consumer-1",
+                      "readback": "actual successful XLSX and JSON; exact result JSON; missing/corrupt/stale refusals"
+                    },
+                    {
+                      "key": "affected-analyses",
+                      "path": "client/src/components/readonly-version-diff.tsx",
+                      "filename": "affected-archived-analyses",
+                      "state": "closed",
+                      "source": "/api/data/version-diff",
+                      "contract": "same retained source producer; exact scan cursor/page, result references, code and identity-only projection",
+                      "readback": "actual successful XLSX and JSON; exact result JSON; missing/corrupt/stale refusals"
+                    },
+                    {
+                      "key": "regional",
+                      "path": "client/src/components/regional-comparison.tsx",
+                      "filename": "legacy-global-intensity-counterfactual",
+                      "state": "unimplemented",
+                      "source": "/api/projection/regions",
+                      "gap": "Regional snapshot pin does not bind a completed counterfactual/material/code/model result.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "sensitivity",
+                      "path": "client/src/components/sensitivity-chart.tsx",
+                      "filename": "indicator-sensitivity",
+                      "state": "unimplemented",
+                      "source": "/api/projection/sensitivity",
+                      "gap": "Whole sensitivity/material/code/model producer including each shock/shared baseline missing.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "temperature",
+                      "path": "client/src/components/temperature-histogram.tsx",
+                      "filename": "temperature-distribution",
+                      "state": "unimplemented",
+                      "source": "/api/projection",
+                      "gap": "Whole projection/material/code/model/simulation binding and exact PDF path missing.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "threshold-diagnostic",
+                      "path": "client/src/components/threshold-diagnostic-details.tsx",
+                      "filename": "selected-2024-five-percent-diagnostic-v2",
+                      "state": "unimplemented",
+                      "source": "multiple selected diagnostic parents",
+                      "gap": "Detached diagnostic arrays lack whole response and exact record path bindings; UI context labels are not attestation.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "indicator-detail",
+                      "path": "client/src/pages/data-management.tsx",
+                      "filename": "indicator-time-series-${registeredKey}",
+                      "state": "unimplemented",
+                      "source": "/api/data/indicator/:key",
+                      "gap": "Whole effective series/source-release/proposal/code producer missing.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "news-volume",
+                      "path": "client/src/pages/news-sentiment.tsx",
+                      "filename": "weekly-news-volume",
+                      "state": "unimplemented",
+                      "source": "/api/news/climate",
+                      "gap": "Whole provider-release/query-window/code producer missing; local Sunday bucket derivation must replay exact timezone.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "news-sentiment-trend",
+                      "path": "client/src/pages/news-sentiment.tsx",
+                      "filename": "monthly-sentiment-trend",
+                      "state": "unimplemented",
+                      "source": "/api/news/climate",
+                      "gap": "Whole provider-release/query-window/sampling/code producer missing; allocated counts are not observed classifications.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "news-sentiment-breakdown",
+                      "path": "client/src/pages/news-sentiment.tsx",
+                      "filename": "monthly-sentiment-breakdown",
+                      "state": "unimplemented",
+                      "source": "/api/news/climate",
+                      "gap": "Whole sampled response producer and exact class allocation/denominator derivation missing.",
+                      "availability": "unchanged"
+                    },
+                    {
+                      "key": "news-topic",
+                      "path": "client/src/pages/news-sentiment.tsx",
+                      "filename": "coverage-by-topic",
+                      "state": "unimplemented",
+                      "source": "/api/news/climate",
+                      "gap": "Whole provider-release/topic-matching/code producer missing; extrapolation/floor/pooled fallback need exact replay.",
+                      "availability": "unchanged"
+                    }
+                  ],
+                  "priorCustomHandlerMatrix": [
+                    {
+                      "path": "/api/reference/warming-validation/export.json",
+                      "source": "server/warmingValidationReferenceApi.ts",
+                      "state": "closed",
+                      "contract": "static-reference-artifact-1 via server/staticReferenceLineage.ts",
+                      "identity": "Exact immutable public reference, original complete export document and release-local calculation-source-1 code/config/lock representation. Model/run/material explicitly not applicable; producerIdentity remains null.",
+                      "readback": "Actual HTTP legacy bytes plus opt-in embedded JSON/header identity; missing/stale/corrupt source refusal and forged-identity readback refusal. Existing 1.37 headline, 1.24 decade, source pins, no-offset/no-input/no-acceptance roles unchanged."
+                    },
+                    {
+                      "path": "/api/cv/carbon-pass-through-evidence/export.json",
+                      "source": "server/carbonPassThroughApi.ts",
+                      "state": "closed",
+                      "contract": "static-reference-artifact-1 via server/staticReferenceLineage.ts",
+                      "identity": "Exact admitted public source/evidence register, original complete safe review document and release-local calculation-source-1 code/config/lock representation. Not an issuer assumption, study, cash observation or model run.",
+                      "readback": "Actual HTTP legacy bytes plus opt-in embedded JSON/header identity; missing/stale/corrupt source refusal and forged-identity readback refusal. No private paper redistribution, source approval, persistence or numerical study."
+                    },
+                    {
+                      "path": "/api/cv/company-conditional-summaries/export.json",
+                      "source": "server/companyConditionalApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Bounded public issuer allowlist and exact semantic cells.",
+                      "gap": "Exact selected static issuer material/code/conditional-derivation producer contract absent; native valuation producer cannot be borrowed."
+                    },
+                    {
+                      "path": "/api/cv/company-conditional-summaries/export.xlsx",
+                      "source": "server/companyConditionalApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Public allowlist custom sheet and bound conditional cells.",
+                      "gap": "Same selected issuer producer contract as JSON plus exact sheet/cell/order binding absent."
+                    },
+                    {
+                      "path": "/api/research/stage10-coverage/export.json",
+                      "source": "server/stage10CoverageApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Strict retained report schema, exact workbook/cutoff/year domain and expectedInputHash stale refusal.",
+                      "gap": "Trusted retained report producer/material/code/aggregation binding absent from download manifest; source inputHash alone insufficient."
+                    },
+                    {
+                      "path": "/api/research/stage10-coverage/export.xlsx",
+                      "source": "server/stage10CoverageApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Aggregate coverage, exact input identity and lifecycle audit custom sheets; expectedInputHash refusal.",
+                      "gap": "Same producer contract as JSON and exact sheet projections need binding/readback."
+                    },
+                    {
+                      "path": "/api/research/track-b-admission/export.json",
+                      "source": "server/trackBAdmissionApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Exact protocol/report/disclosure/pipeline/period-domain pins and rights-qualified public resolver boundary.",
+                      "gap": "Public retained assessment producer/code/derivation binding absent from download manifest. Resolver/catalog permission is conditional per selected report, not a blanket new permission claim."
+                    },
+                    {
+                      "path": "/api/research/track-b-admission/export.xlsx",
+                      "source": "server/trackBAdmissionApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Period reasons/assessment identity/semantics/bindings custom sheets and same exact pins.",
+                      "gap": "Same producer contract as JSON plus exact custom-sheet projection binding absent."
+                    },
+                    {
+                      "path": "/api/financial-data/workbook-money-audit.xlsx",
+                      "source": "server/workbookMoneyAuditApi.ts",
+                      "state": "unimplemented",
+                      "existing": "Verified private source metadata/reconciliation hashes, safe aggregate only, expectedAuditHash stale refusal; no monetary totals or inferred FX.",
+                      "gap": "Trusted safe-report/source/code audit producer binding absent from manifest; private parent publication remains forbidden."
+                    },
+                    {
+                      "path": "/api/development/qualified-missingness/export",
+                      "source": "server/qualifiedMissingnessApi.ts",
+                      "state": "sourceblocked",
+                      "existing": "Production HTTP403/operator CLI boundary.",
+                      "gap": "HTTP publication is unauthorized. Must remain denied; engineering custom-sheet fixtures are not authorization.",
+                      "failClosed": "existing HTTP403 preserved"
+                    }
+                  ],
+                  "implementation": {
+                    "modules": [
+                      "server/snapshots/legacyExportProducer.ts",
+                      "server/snapshots/newsExportProducer.ts",
+                      "server/snapshots/reportExportProducer.ts",
+                      "server/snapshots/reportMaterialContext.ts",
+                      "server/snapshots/calculationSourceArtifact.ts",
+                      "server/calculation/trackBExportMaterial.ts",
+                      "server/financialData/workbookMoneyExportRelease.ts",
+                      "server/workbookMoneyAuditExportApi.ts",
+                      "shared/legacyExportConsumer.ts",
+                      "shared/safeReportExportSemantics.ts"
+                    ],
+                    "storage": "Existing private cv_analysis_snapshots/cv_analysis_chunks material-inputs/calculation-source/analysis-result infrastructure only. No new tables, DDL, deployment resources, endpoints accepting arbitrary proof, authentication changes or source approvals.",
+                    "wholeLegacyMaterial": "Actual full effective curated/approved/nowcast history, exact approved source records/hash, selected regional intensity release when applicable, actual query/query-time/revision, model version and unchanged deterministic emissions/temperature seeds. Loaded-code release identity captured with loaded producer modules. Every retained result reload verifies code/input/material/query/manifest/snapshot order and complete calculation replay; no current-source fallback.",
+                    "sourceRelease": "News retains the complete actually consumed provider-derived volume/sample cache release, cache collection time/window, query time, server timezone and unchanged allocation/extrapolation algorithm. This is not original upstream HTTP bytes, provider request ID or publisher release time; those remain explicitly unavailable. Full safe report private sources/journals retained separately from safe public outputs.",
+                    "exactDerivations": "Closed finite row/preview derivations preserve literal columns/units/missingness/order/filters/bridges. Detached trajectory/PDF and each diagnostic record resolve original consumed object links to exact whole-parent paths. Clones or UI labels cannot grant producer identity. Browser date timezone is captured and changes refuse. New metadata definitions are supplemental only, never original observation closure.",
+                    "customProjections": "Selected static conditional allowlists identify actual checked-in conditional material/formulas and release-local source/config/lock without inventing a model run. Stage10 uses the same full source selection/qualification/aggregation function for live and archive replay. Money safe report retains exact private audit/reconciliation bytes and approved-safe summary hashes without exposing private inputs. Custom workbook identity uses actual decoded literal cells and exact sheet/header/order; formulas/links refuse.",
+                    "protectedMonetarySources": "Original server/financialData/workbookMoneyExport.ts (891b1a931e57943e797e529237e4fd062d46214c6fbc3e0b9c87b516e90aef2e), server/workbookMoneyAuditApi.ts (8a6c7d08abbc57402683012c200b8c27c440c78cdb423fca8ef3d16484bb48bc), and script/track-b-admission.test.ts (723162017a21d96f6c7d6bc2cd3ac03cf772d41300efc5b8c12d796218703f60) remain byte-exact to their existing private freezes. New additive request-local wrapper and authenticated-source capture preserve the original API validator/writer and unchanged expectedAuditHash contract. No frozen receipt/pin is refreshed to permit code drift.",
+                    "trackBWholeAssessment": "Prospective offline pipeline writer retains full frozen protocol/corpus, supported calculation-source-1 release and deterministic admission assessment material as an immutable0600 companion in the existing private pipeline artifact root. Public resolver consumes it only privately; export retention verifies complete period-admission replay plus existing protocol/report/disclosure/pipeline/period-domain pins. No original research study is rerun by a download, no public catalog is activated and no private corpus is published. Pre-existing reports lacking full companions remain ordinary/unbound rather than fabricated bound exports.",
+                    "availability": "Retention/source failures set explicit X-Producer-Binding-Status/Error and preserve nonempty ordinary results/correct legacy exports. Expensive model replay is skipped if source persistence is unavailable. No filename/registry-status blanket gate. Claimed retained archives and bound attachment projection corruption refuse without Content-Disposition or producer headers.",
+                    "fieldCensus": "Original1000/1001 and1465typed entries/1437fully bound unchanged; no missing original slots. Only new metadata definitions added:2652total definitions. Threshold provenance wrapper is an explicitly reviewed quantity-preserving alias for the unchanged19columns. Register regenerated; original scientific warning hashes/lines/flags preserved, only current component hashes refreshed.",
+                    "priorBoundary": "Prior6closed paths and9PE/signal chains retain existing tests/claims. No old124results/179headers/416chunks modified; no original XLSX bytes recovered."
+                  },
+                  "tests": {
+                    "newFocusedSuite": {
+                      "command": "npx tsx --test script/legacy-export-producer.test.ts",
+                      "tests": 21,
+                      "pass": 21,
+                      "fail": 0,
+                      "cancelled": 0,
+                      "skipped": 0,
+                      "log": "/tmp/all-ready-focused-final.txt",
+                      "boundary": "HISTORICAL local-only receipt before public CI found the custom test's private generated-file dependency. Not source-only portability proof. Current synthetic fixture and final1090-test receipt below supersede that dependency without publishing private source files."
+                    },
+                    "publicCiPortabilityRepair": {
+                      "failure": {
+                        "ciRunId": 43186463787,
+                        "validate": "failure",
+                        "promote": "skipped",
+                        "failingTest": "414 all five custom retained report paths",
+                        "error": "ENOENT generated-artifacts/financial-data/mapping-audit.json at original script/legacy-export-producer.test.ts:287 readStage10RetainedFiles",
+                        "privateLog": "generated-artifacts/all22-failed-ci.log",
+                        "privateLogSha256": "21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b",
+                        "newReleaseClaim": false
+                      },
+                      "fix": "Test-only isolatedRetainedReports creates explicitly SYNTHETIC files in a temporary CWD: exact100-row50+50 audit/root-cause selection, two hash-authenticated retained statement envelopes and safe monetary summary/private audit/reconciliation bytes with valid hashes. The SAME unchanged actual fixed-root readers, full producer replay, HTTP handlers and every existing attachment/manifest/literal-cell/corruption assertion execute. No production source bytes, generated artifacts or DB are used, copied, published or conditionally skipped; no production reader or mandatory private validator changed.",
+                      "focused": {
+                        "log": "generated-artifacts/all22-ci-fixture-focused.log",
+                        "sha256": "5fc091b32855061e32582d988c2d9622881f8a7b997fe3fe937974249bd6046b",
+                        "selectedTests": 1,
+                        "pass": 1,
+                        "fail": 0,
+                        "deliberatelyUnselectedOtherTests": 20
+                      },
+                      "sourceOnlyRegression": {
+                        "file": "script/methodology-download-portable.test.ts",
+                        "log": "generated-artifacts/all22-ci-fixture-portable.log",
+                        "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
+                        "tests": 2,
+                        "pass": 2,
+                        "fail": 0,
+                        "skipped": 0,
+                        "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+                      }
+                    },
+                    "preservationRegression": {
+                      "command": "npx tsx --test script/next-census-accounting.test.ts script/methodology-download-portable.test.ts script/static-reference-lineage.test.ts script/track-b-admission.test.ts script/download-selection-race.test.ts script/quantity-label-contracts.test.ts",
+                      "tests": 52,
+                      "pass": 52,
+                      "fail": 0,
+                      "skipped": 0,
+                      "log": "/tmp/final-changed-a.txt"
+                    },
+                    "newCoverage": "All15central families, all3category/history metrics, all22indicator detail keys, all4conditional issuer selections, every5custom retained report format path, exactJSON retained concurrent A/B material identities, missing/corrupt input/material/code/result refusal, original-parent/row mutation refusal and actual literal formula/cell refusal. All21new tests rerun without skips inside the successful final complete suite; standalone and focused receipts above are earlier incremental evidence, not substituted for final tests.",
+                    "initialFullcheckFailurePreserved": {
+                      "receipt": "generated-artifacts/remaining-export-all22.first.receipt.json",
+                      "log": "generated-artifacts/remaining-export-all22.first.log",
+                      "typescript": {
+                        "tests": 1081,
+                        "pass": 1066,
+                        "fail": 12,
+                        "cancelled": 3,
+                        "skipped": 0
+                      },
+                      "fixes": "Preserved ordinary row expressions and exact quantity wrapper accounting, supplied real added dependencies to AST/VM harnesses, corrected ExcelJS literal header-cell verification, split pure material context/source artifacts from DB modules to preserve offline CLI portability, regenerated census/register and refreshed current-only warning hashes. No gates/assertions/scientific thresholds relaxed."
+                    },
+                    "failedFullChecksPreserved": [
+                      {
+                        "receipt": "generated-artifacts/remaining-export-all22.final-v2.receipt.json",
+                        "log": "generated-artifacts/remaining-export-all22.final-v2.log",
+                        "typescript": {
+                          "tests": 1089,
+                          "pass": 1089,
+                          "fail": 0,
+                          "skipped": 0
+                        },
+                        "python": {
+                          "tests": 248,
+                          "pass": 248,
+                          "fail": 0,
+                          "skipped": 0
+                        },
+                        "failure": "Mandatory private monetary freeze rejected edited original safe reader/API. Restored original reader/API and protected Track test byte-for-byte; implemented additive release wrappers instead. No private hash/gate/threshold relaxed."
+                      },
+                      {
+                        "receipt": "generated-artifacts/remaining-export-all22.complete.receipt.json",
+                        "log": "generated-artifacts/remaining-export-all22.complete.log",
+                        "typescript": {
+                          "tests": 1089,
+                          "pass": 1088,
+                          "fail": 1,
+                          "skipped": 0
+                        },
+                        "failure": "Existing company-cache HTTP30s transport timeout under full-suite load. Unchanged focused transport suite5/5passed; final full rerun passed with unchanged timeout/assertions. No gate relaxed."
+                      }
+                    ],
+                    "preCiLocalFullChecks": {
+                      "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.ready.log --receipt generated-artifacts/remaining-export-all22.ready.receipt.json",
+                      "receipt": "generated-artifacts/remaining-export-all22.ready.receipt.json",
+                      "log": "generated-artifacts/remaining-export-all22.ready.log",
+                      "logSha256": "2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
+                      "exitCode": 0,
+                      "elapsedSeconds": 288.936,
+                      "typecheck": "passed",
+                      "typescript": {
+                        "tests": 1089,
+                        "pass": 1089,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "python": {
+                        "tests": 248,
+                        "pass": 248,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "originalChoiceWidthDocument": "passed",
+                      "mandatoryPrivateMonetaryIntegration": "passed; original consumer/source freezes unchanged",
+                      "mandatoryPrivateIssuerCashflow": "passed",
+                      "mandatoryPrivateIssuerReconciliation": "passed",
+                      "productionBuild": "passed; existing stale Browserslist/PostCSS/large-chunk notices remain warnings",
+                      "canonicalLedgersModified": false,
+                      "acceptance": "Engineering source/file-handler evidence only; not scientific acceptance, source approval, publication permission or original-history recovery",
+                      "visualCheck": "Attempted already-running preview only;127.0.0.1:5000 refused connection. No server/workflow was started. Live or signed-in UI not verified."
+                    },
+                    "finalFullChecks": {
+                      "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.portable-final.log --receipt generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+                      "receipt": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
+                      "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+                      "logSha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+                      "exitCode": 0,
+                      "elapsedSeconds": 280.029,
+                      "typescript": {
+                        "tests": 1090,
+                        "pass": 1090,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "python": {
+                        "tests": 248,
+                        "pass": 248,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "typecheck": "passed",
+                      "originalChoiceWidthDocument": "passed",
+                      "mandatoryPrivateMonetaryIntegration": "passed; original sources and validators unchanged",
+                      "mandatoryPrivateIssuerCashflow": "passed",
+                      "mandatoryPrivateIssuerReconciliation": "passed",
+                      "productionBuild": "passed; existing Browserslist/PostCSS/large-chunk warnings unchanged",
+                      "canonicalLedgersModified": false,
+                      "boundary": "Final full local engineering checks after fixture/portability repair; NOT a successful public CI/promote/deployed receipt. Parent owns CI. No app/workflow/publish/callback."
+                    }
+                  },
+                  "priorImplementation": {
+                    "registry": "shared/remainingExportContracts.ts: exact nineteen central contracts and honest per-family status; inventory never gates filenames.",
+                    "serverProducer": "registerReadonlyDiffApi receives retainReadonlyDiffProducer in server/index.ts. Before returning the existing safe report, the closed replay verifies both exact source archives, strict scan query/cursor/order, each packed completed-result identity and safe report equality; stores source/material/completed result using existing snapshot/chunk infrastructure; reloads and verifies before binding X-Producer-Identity.",
+                    "material": "readonly-diff-material-1 captures exact from/to private source archives, full scanned packed result page, cursor/query, sourceArchive and readonly-source-comparison-1 algorithm label. This is a deterministic source comparison, not climate/valuation model execution. Existing calculation-source archive now includes actual TSX sources as well as TS/JSON/CSV and locks. No new resource/DDL or public material endpoint.",
+                    "archiveRead": "loadAnalysisResult verifies exact material/code hashes, manifest/query/source order/model labels, recomputed safe report, existence and equality of both source archives, and each scanned completed-result archive plus recordedAt. Missing/corrupt parents refuse instead of accepting embedded copies or reading current sources.",
+                    "readonlyGraphRiskAndFix": "Real overlapping historical readonly-result DAGs could recursively verify a shared parent exponentially many times. loadAnalysisResult now owns a depth-first request-local graph: every unique parent is fully verified once, active cycles refuse, depth32/node512 budgets refuse the whole result explicitly without truncation or skipped dependencies. No cross-request cache. Five focused graph tests cover shared DAG, cycle, exact depth/node boundaries and missing parent on a subsequent request.",
+                    "staticPublicArtifacts": "Both named static GET exports bind an actual response-private static-reference-artifact-1 identity. Exact reference/evidence payload, original complete document hash, declared external source hashes and finite public code-file hashes travel in the manifest. Readback recomputes against the trusted closed document and actual code archive, not a self-reported checksum.",
+                    "staticCodeAndNoWritesBoundary": "Reuses the existing calculation-source-1 source/config/lock builder through readCalculationSourceArtifact. Static handlers read the immutable release-local in-process archive representation and compare every required public file against release-captured and fresh source bytes. No database capture/save/load, approved/private inputs, provider retrieval, new resource, DDL, public mutation or private publication. This is NOT represented as a durably persisted execution archive or executable attestation. Existing default body bytes remain identical.",
+                    "staticNoInventedRun": "Manifest.referenceArtifactIdentity is separate from producerIdentity. Model applicability=not-applicable-static-reference, version=null, runId=null; materialInputs applicability=not-applicable-no-calculation,id=null; orderedInputSnapshotHashes=[]; sourceApproval=false and scientificAcceptance=false. Previously reviewed external byte hashes are declarations, not a new download/authentication claim.",
+                    "nativeActualProducer": "Production GET mounts nativeCandidateHandler. Captures the actual public native inventory, effective2023/2024 historical inputs and actual request approved-source records/hash (or effective cached/curated source metadata). Runs the existing unchanged native inventory engine with the actual constant/transition/dashboard scenario. Global calculation key, full result, residual diagnostics, promotion and science flags equal the prior producer in all three cases, not artificial empty responses or detached hashes.",
+                    "nativeRetention": "Automatic retention reuses existing cv_analysis_snapshots/cv_analysis_chunks: calculation-source-1, native-candidate-inputs-1 source/input parent, native-candidate-material-1 and analysis-result-1. Exact model native-emissions-candidate-2, scenario,2100 horizon and deterministic-native-scenario-not-an-ensemble-member are retained. Seed explicitly not-applicable-deterministic-no-random-sampling/null, not an invented sampled run. Actual approved metadata remains in private material storage, not native row exports.",
+                    "nativeVerification": "Archive load verifies material/manifest/model/seed/member/scenario/horizon, actual captured input/source hashes, inventory equality with archived JSON, required archived engine/config/lock bytes against the supported loaded implementation, and complete replay equality. Missing/corrupt parents and validly rehashed stale/different code refuse rather than re-tagging an older engine as today's code. No baseline/coupling/engine/science/source-pin changes.",
+                    "nativeClientAndAvailability": "Both actual JSX consumers bind original typed rows to the consumed retained response via native-candidate-consumer-1. Exact field/unit/filter/order/index domains and parent proof travel in JSON/XLSX. UI scenario only checks agreement; it cannot grant provenance. Archive outages explicitly set X-Producer-Binding-Status/Error and preserve the genuine nonempty response and ordinary unbound XLSX. Legacy partial native data also preserve established behavior without attestation. Changed registered parent/rows, wrong scenario, stale requested source selection and cloned/forged bound claims refuse.",
+                    "nativeCensusBoundary": "Added169 finite supplemental lineage field/unit/preview definitions, not original observations. Exact relocated handler and provenance-only35-column wrapper traced explicitly; original1000/1001,437 supplemental bound slots and original four cache aliases unchanged; no missing original slots. Definitions2619,typedEntries1465,fullyBound1437. Output register regenerated; scientific-warning evidence only refreshes the changed component current hash, preserving original hashes/warnings/not-promoted status.",
+                    "nativePreviewBoundary": "The native trajectory chartIdentity is the ACTUAL four-year table preview:2024,2030,2050,2100 in fixed UI order, first matching native point, year plus finite reporting value, missing/nonfinite preview null. Locale/two-decimal formatting is presentation only. Derivation.chartFilter declares this separately; dataIdentity/export rows retain all77 years and35 columns without truncation. Threshold chartIdentity retains all raw records supplied to that table. Shared review-year constant and explicit tests prevent preview/export conflation.",
+                    "client": "bindProducerReadonlyConsumer validates the existing concrete typed row builder against closed readonly-diff-consumer-1 replay; rows retain object-bound actual consumed server parent. Capture requires unchanged parent/hash/source order/exact scenario/request-bound selection and unchanged export rows.",
+                    "xlsx": "Both actual readonly JSX consumers requireDerivedParent. Existing central XLSX writer attaches actual response-derived lineage and exact normalized data hash; workbook readback verifies data, literal cells, metadata, order, units and supplemental sheets.",
+                    "jsonCompanion": "Both actual readonly JSX consumers now expose central JSON companions. JSON has exact lossless UTF-8 data identity plus distinct normalized derived-row identity and verified retained parent proof; transformed producerIdentity stays null.",
+                    "closedProjection": "Version diff exports every native fields record with integer counts and source hashes. Affected analyses exports every native affectedAnalyses record with exact historical type/recorded date/relation and page-only scope. Preserve source order and genuine zero; no sorting, deduplication, source values, inferred effects or missing-data replacement.",
+                    "legacyAvailability": "Removed all newly added blanket refusals, preserving established guards. The existing central writer and generic JSON preparer are unchanged. Ordinary correctly formed exports remain available with honest null producer identity.",
+                    "identityBoundary": "No arbitrary UI/caller proof setter introduced; unrelated retained signal/P/E parent cannot certify any remaining named handler.",
+                    "sourcePermissionBoundary": "Missing producer code is explicitly unimplemented, not relabelled as sourceblocked. Only denied private attachment is sourceblocked in this finite matrix."
+                  },
+                  "priorTests": {
+                    "newFiles": [
+                      "script/remaining-export-contracts.test.ts",
+                      "script/static-reference-lineage.test.ts",
+                      "script/native-producer-exports.test.ts"
+                    ],
+                    "newPassingTests": 38,
+                    "readonlyTests": 9,
+                    "staticReferenceAndGraphTests": 15,
+                    "nativeProducerTests": 14,
+                    "newSuccessfulNonSignalProducerReadbacks": 16,
+                    "additionalSuccessfulExactRetainedResultJsonReadbacks": 5,
+                    "nativeSuccessfulReadbacksPerHandler": {
+                      "native-thresholds": {
+                        "json": 3,
+                        "xlsx": 3
+                      },
+                      "native-trajectory": {
+                        "json": 3,
+                        "xlsx": 3
+                      }
+                    },
+                    "nativeAdditionalExactCompletedResponseHttpJsonReadbacks": 3,
+                    "nativeMissingOrCorruptParentHttpRefusals": 8,
+                    "additionalSuccessfulStaticPublicHttpJsonReadbacks": 4,
+                    "staticHttpFaultRefusals": 12,
+                    "staticTestBoundary": "Actual registered HTTP/JSON routes and real checked-in reference/code artifacts; only fault tests inject missing/corrupt/stale archive reads. Static default paths pass with DATABASE_URL absent and source-only portable fixtures; no DB writes, private data, provider calls or model execution.",
+                    "storageBoundary": "Tests inject isolated storage containing packed engineering source archives and real checked-in code bytes; actual route, producer retention, material verification, archive proof, JSX attributes, row builders, JSON/XLSX handler bodies and readback functions execute unchanged. No production dataset is mutated, no live app workflow is run and no original-history or scientific qualification is inferred.",
+                    "focused": {
+                      "command": "npx tsx --test script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/quantity-label-contracts.test.ts script/remaining-export-contracts.test.ts",
+                      "pass": 38,
+                      "fail": 0,
+                      "cancelled": 0,
+                      "skipped": 0,
+                      "log": "/tmp/remaining-export-changed-failures.txt",
+                      "sha256": "1a74e314df61a3b46425eb4003b2b1f0a25be8830f0c26410a3773947a83bb54"
+                    },
+                    "previousV2PassingFullcheckPreserved": {
+                      "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 285 --log generated-artifacts/remaining-export-fullchecks-v2.final.log --receipt generated-artifacts/remaining-export-fullchecks-v2.final.receipt.json",
+                      "exitCode": 0,
+                      "typescript": {
+                        "tests": 1054,
+                        "pass": 1054,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "python": {
+                        "tests": 226,
+                        "pass": 226,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "includesSourceWorkerEightNewPythonTests": true,
+                      "mandatoryPrivateValidators": "Original choice/width; monetary integration --private-primary; issuer cashflow; issuer reconciliation: all passed without network, source approval or protected-code edits.",
+                      "typecheckAndProductionBuild": "passed",
+                      "log": "generated-artifacts/remaining-export-fullchecks-v2.final.log",
+                      "logSha256": "d052c06ad254c50739e6a9cd7d8aaa8c699b77fc66e6aad1e843a1172962dfb3",
+                      "receipt": "generated-artifacts/remaining-export-fullchecks-v2.final.receipt.json",
+                      "receiptSha256": "2f4592c2c98c1516182e2119cba6ebcb3aa8ddc16e9db6153577da435916145e",
+                      "canonicalLedgersModified": false
+                    },
+                    "regression": {
+                      "command": "uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 285 --log generated-artifacts/remaining-export-fullchecks-v3.native.complete.log --receipt generated-artifacts/remaining-export-fullchecks-v3.native.complete.receipt.json",
+                      "exitCode": 0,
+                      "typescript": {
+                        "tests": 1068,
+                        "pass": 1068,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "python": {
+                        "tests": 226,
+                        "pass": 226,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "includesSourceWorkerEightNewPythonTests": true,
+                      "mandatoryPrivateValidators": "Original choice/width; monetary integration --private-primary; issuer cashflow; issuer reconciliation: all passed.",
+                      "typecheckAndProductionBuild": "passed",
+                      "log": "generated-artifacts/remaining-export-fullchecks-v3.native.complete.log",
+                      "logSha256": "3c98320622c13813898da76c19e97caf455c8e7dd6e640bf6c01a32db7b1bffe",
+                      "receipt": "generated-artifacts/remaining-export-fullchecks-v3.native.complete.receipt.json",
+                      "receiptSha256": "c3f09918b59bea9373ce4b960734133eed2ff8f6fb94a8b1a0e4791723bd563d",
+                      "canonicalLedgersModified": false
+                    },
+                    "nativePreviewFocused": {
+                      "command": "npx tsx --test script/native-producer-exports.test.ts script/native-threshold-integration.test.ts script/native-semantics.test.ts script/next-census-accounting.test.ts script/scientific-strands-warning.test.ts script/output-register.test.ts",
+                      "tests": 40,
+                      "pass": 40,
+                      "fail": 0,
+                      "skipped": 0,
+                      "log": "/tmp/native-preview-focused.txt",
+                      "logSha256": "129f345868e619da745ff76e9d8fdd8795ad6ea5fcd60d913238fcc4e19e83b8",
+                      "intermediatePassingFullcheckPreserved": "generated-artifacts/remaining-export-fullchecks-v3.native.final.receipt.json also passed1068/226 before the explicit preview/export separation; complete receipt above reruns all fullchecks after that last source change."
+                    },
+                    "nativeFocused": {
+                      "command": "npx tsx --test script/native-producer-exports.test.ts script/remaining-export-contracts.test.ts script/static-reference-lineage.test.ts script/producer-download.test.ts",
+                      "tests": 45,
+                      "pass": 45,
+                      "fail": 0,
+                      "skipped": 0,
+                      "log": "/tmp/native-focused-final.txt",
+                      "logSha256": "9b144519957175f9ab196da7b5cd4d4e605188a1e30f52f8c0f31e39a5768958"
+                    },
+                    "nativeChangedFailuresRerun": {
+                      "command": "npx tsx --test script/diagnostic-metadata-semantics.test.ts script/evidence-field-semantics.test.ts script/finite-export-schemas.test.ts script/native-semantics.test.ts script/native-threshold-integration.test.ts script/output-register.test.ts script/remaining-component-contracts.test.ts script/remaining-field-semantics.test.ts script/scientific-strands-warning.test.ts script/target-input-semantics.test.ts script/native-producer-exports.test.ts script/next-census-accounting.test.ts",
+                      "tests": 115,
+                      "pass": 115,
+                      "fail": 0,
+                      "skipped": 0,
+                      "log": "/tmp/native-changed-rerun.txt",
+                      "logSha256": "795a7524ace6dc1e8786a394f929e4e58373848ead4d0e551491419ad09e2d7f",
+                      "firstCoherentFailure": {
+                        "typescript": {
+                          "tests": 1068,
+                          "pass": 1056,
+                          "fail": 12,
+                          "skipped": 0
+                        },
+                        "receipt": "generated-artifacts/remaining-export-fullchecks-v3.native.receipt.json",
+                        "log": "generated-artifacts/remaining-export-fullchecks-v3.native.log",
+                        "logSha256": "2c7cd905bd634e3679d452b938768ef021b408d8c13c184f98cc5d569c2f6190"
+                      },
+                      "fixes": "Separated actual handler relocation from the original four cache aliases; exact quantity-preserving wrapper alias retains original35 native columns/cohort keys. Native handler VM harness supplies the real factory with isolated unavailable storage and awaits unchanged assertions. Unretained partial native display/downloads do not enter producer replay or acquire proof. Regenerated existing output register; refreshed only scientific-warning component current hashes, not original warning/source/acceptance evidence. No gates/assertions/thresholds weakened."
+                    },
+                    "earlierPassingFullcheckPreserved": {
+                      "typescript": {
+                        "tests": 1039,
+                        "pass": 1039,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "python": {
+                        "tests": 226,
+                        "pass": 226,
+                        "fail": 0,
+                        "skipped": 0
+                      },
+                      "receipt": "generated-artifacts/remaining-export-fullchecks-final.receipt.json",
+                      "receiptSha256": "851a0336f78738ccd3d5df9673e2cc93cabeac34cddb48cc79db6e24bee90dec",
+                      "logSha256": "5ce38941ba16c1cbd383349dae50ddb481ebb4d822305bb0b80557a45be48c09"
+                    },
+                    "v2Focused": {
+                      "command": "npx tsx --test script/static-reference-lineage.test.ts script/methodology-download.test.ts script/methodology-download-portable.test.ts script/next-census-accounting.test.ts script/output-field-semantics.test.ts script/quantity-label-contracts.test.ts",
+                      "tests": 51,
+                      "pass": 51,
+                      "fail": 0,
+                      "skipped": 0,
+                      "log": "/tmp/remaining-v2-contracts.txt",
+                      "logSha256": "7ea44f60a62f3d9feb1d5688446d685a37d74d2d60b348dfa1c1db2b46fd231c"
+                    },
+                    "v2FirstFullcheckFailureAndFix": {
+                      "receipt": "generated-artifacts/remaining-export-fullchecks-v2.receipt.json",
+                      "log": "generated-artifacts/remaining-export-fullchecks-v2.log",
+                      "logSha256": "70f8159d16c67b78a4d4754e0fe28e80696068c324775269d79134b216b8d80d",
+                      "typescript": {
+                        "tests": 1054,
+                        "pass": 1053,
+                        "fail": 1,
+                        "skipped": 0
+                      },
+                      "fix": "Existing carbon-pass-through admission test invoked a now-async export handler without awaiting completion. Made only its test/invoke functions async and awaited the same handler and unchanged equality/query/registerHash assertions. No gate/assertion relaxed.",
+                      "focusedRerun": {
+                        "tests": 21,
+                        "pass": 21,
+                        "fail": 0,
+                        "skipped": 0,
+                        "log": "/tmp/remaining-v2-failure-rerun.txt",
+                        "logSha256": "e89484d3ccffc524ab2058a6ccbcd2dc9aaa6b3caeff327007b8f0a09c1c6f0f"
+                      },
+                      "portableFixture": "Added the actual public package-lock.json dependency to the source-only fixture; .git/docs/generated/private evidence remain absent and the same37 test assertions pass.",
+                      "scannerAndCensus": "Kept exact warmingReferenceExportDocument send expression required by the unchanged scanner; regenerated supplemental census for new source locations only, with definitions2450/typedEntries1465/fullyBound1437 and original1000/1001 unchanged."
+                    },
+                    "typecheck": {
+                      "command": "npx tsc --noEmit --pretty false",
+                      "exitCode": 0,
+                      "diagnostics": 0
+                    },
+                    "failedFullcheckRetained": {
+                      "receipt": "generated-artifacts/remaining-export-fullchecks.receipt.json",
+                      "typescript": {
+                        "tests": 1039,
+                        "pass": 1035,
+                        "fail": 4,
+                        "skipped": 0
+                      },
+                      "fixes": "Regenerated supplemental field census after eighty finite readonly lineage definitions and exact new source locations; original cohort unchanged. Corrected ambiguous residual description prose, added one exact technical filename/source-property exception to unchanged residual scanner (not broad whitelist). Reran the four failing contracts and the entire full-check sequence; all pass.",
+                      "noGateWeakening": "No tests/assertions skipped or relaxed, no original opaque summary promoted, no private validators bypassed, no protected inputs/code edited."
+                    }
+                  },
+                  "frozenSourceHashes": {
+                    "server/snapshots/legacyExportProducer.ts": "973751ec72b443ef0de6c72cdc698bc4a0bc766dff1267b5879b55f89faae8d0",
+                    "server/snapshots/newsExportProducer.ts": "ca6bd895316b492883866972e1c3f56daf910a78e2b5f2977faa79198d6cd568",
+                    "server/snapshots/reportExportProducer.ts": "727fc1b3b7761bcadd34eaff7159592eeb7c1eb39a8593013b0aeac45cf1d678",
+                    "server/snapshots/reportMaterialContext.ts": "26bc2159fe5bb47633efc84a3a8e60712eb3fd443cb14e977bd1ed5741cdb80d",
+                    "server/snapshots/calculationSourceArtifact.ts": "03d45c67806a9b72f1a514e770783937e18c50cd10404c04b843cc2f75f6ab38",
+                    "server/calculation/trackBExportMaterial.ts": "15aff8733d16b456bb862ce2586f451644e4970b2e11ed8d627a2d48b26213d4",
+                    "server/financialData/workbookMoneyExportRelease.ts": "d5409469e0efe3b0f26825ea78e66b8e0172fc8450e1b1a743efde3615a5e551",
+                    "server/workbookMoneyAuditExportApi.ts": "7180cd7d5bcc16881535e99babb16cb7af2ca7738f75b188f769fb2bfabad110",
+                    "shared/legacyExportConsumer.ts": "75f380ca7e570eaa5b8a53fc221659b0bf05b51e95b672b37d6bdb01579ee88e",
+                    "shared/safeReportExportSemantics.ts": "a9387203495ffdadd418198a660c58322bb126318790f648a3a5f46cc6d72df5",
+                    "shared/remainingExportContracts.ts": "4ca5b0d6e4164bfe72a8217e62b4928f7894f7b7b008e46eaa7d536795ca73a2",
+                    "client/src/lib/producer-download.ts": "9edb2f144fdac50d80a9dd0a5a24bd0e5a518e7ceb220ee78bb80ad8ce749ae0",
+                    "script/legacy-export-producer.test.ts": "d98fa1a9f8654550e10e095d82d560e87221c13a0bf93b13d9d0e2227fc5b2ef",
+                    "script/fixtures/isolatedRetainedReports.ts": "09d4a27c3e100212625c4a5184fec26768080f5aa9e16e68ff8782f8bc76392a",
+                    "script/methodology-download-portable.test.ts": "9820e280d1a5c74b335249f07c47527670dd6cabe47ee15c86d225a83e34c869"
+                  },
+                  "priorFrozenSourceHashes": {
+                    "shared/remainingExportContracts.ts": "b2e4593518179d68996eefed1cd4f3ac9937c8cb11896b6aa3c8b7bce86ddbfa",
+                    "shared/readonlyConsumer.ts": "489be8931fdc38efe19f253f517580165f1454ba45197c10c616b8e34890e1e6",
+                    "shared/derivedConsumerSemantics.ts": "150d93d3cb50c8bf788261be1d8e085e472954ca63b039a75f9e13cbd5bf67cf",
+                    "shared/producerDownloadSemantics.ts": "806f1ab100a3fbcb057b8e72390da5e44f84c43829debb3f79193701922433a4",
+                    "client/src/lib/producer-download.ts": "605e3a65e2f24a651671690604d0183ae8da276d96f119efb17765f511532e42",
+                    "client/src/components/readonly-version-diff.tsx": "7c2b25ee9fb5024546fa6ca13d0c849da0e9c9a73342a9e4b01a05ece60d71cb",
+                    "server/index.ts": "2713129cce6638b976bb9a5fe7a843eb281737756fc3896f44c7b24379a10cd1",
+                    "server/producerDownload.ts": "f28fe4bac4f2d14629ae929b9f0310b6bf4ca606a6d73d7d97593164c892d438",
+                    "server/readonlyDiffApi.ts": "4f6cb774ab238150517fcc4dcd5c97036aebd8286b92b35886577f0ec5c14eb7",
+                    "server/snapshots/readonlyDiffProducer.ts": "41e2b4381542cad2a5752e1e6205b4a688abd59aa91d88c624c1c8a9e4664dd5",
+                    "server/snapshots/materialInputs.ts": "b114e7ce6f57f4fdff056f44432b06693d02af6c76d5703ee70a964fe057c932",
+                    "server/snapshots/results.ts": "04423e943f40de85576de39f13eeb67c09cea5c4f660c07a4a44f53812305f6d",
+                    "server/routes.ts": "18f8ba84c2158b1b4b6ef9a44fb7b9cf36073e1f398b26c8516ac1c85089195a",
+                    "server/nativeCandidateApi.ts": "7e544f7b1297c19ee50cda4e0ced348fd0d05959aa23e67367508388b5be4b70",
+                    "server/snapshots/nativeCandidateProducer.ts": "75c78e33b766459f283c12ebf43b52a1718aab54791282831f3e4be195b25eed",
+                    "shared/nativeConsumer.ts": "b154143f7ebd5344ab979227631dcfcd2621ea6918eb2e57b3b6fb77f106ad4e",
+                    "client/src/components/emissions-candidate-review.tsx": "05d443e65f16e220e76253da8d5b592e0b360602d2d9a8ef447832c2d2bab555",
+                    "script/native-producer-exports.test.ts": "41e2ee804bf466d59fc28f83ae7e80084a74bddac9d057c038b85bdb6e64eb34",
+                    "script/field-semantics-census.ts": "ec7854ab236b41010a0643bca6579d8719ae7ab205d495101803eef8b72bfa07",
+                    "script/native-semantics.test.ts": "8d61b88645d439d1e7dff01fcf0b8c252853d9edf3f58031df4cea241a3e7951",
+                    "script/native-threshold-integration.test.ts": "81d93c0264027bcc368629d9321fed9b77513673058985cae59ba81221fd9033",
+                    "docs/System_Output_Register.md": "8661fcca02778cecc7f2d7d772517ed603fac99ba3b2427ec54cf48f2c2ca090",
+                    "docs/scientific-strands-warning-evidence.json": "f16366703085959fb54b1332bcb85e00f39155df212cedfdfdf70f9a0e9fa99b",
+                    "server/snapshots/resultVerificationGraph.ts": "295821525b998150c051b371ba14741ba306595092bd4b530ea4c68a88d27374",
+                    "server/staticReferenceLineage.ts": "68aac7d9dc5aae9a23e3166a7fc1bb0238930c29a91620c200f7b49c2e86d924",
+                    "server/warmingValidationReferenceApi.ts": "5baecac81a8ba076615479693a538ee14ad3c38f16d59aa8466e9a6f5aaf4468",
+                    "server/carbonPassThroughApi.ts": "223b9db56165026d8805de31ed59e2f89ab25a3cc97a2e79eefb4245ae42b5d9",
+                    "server/downloadManifestMiddleware.ts": "3d4b95d315d34bc60602a1a14ae63405d4c8b0f8656f7b4608a59e4b52a568be",
+                    "script/static-reference-lineage.test.ts": "0e4fb79097db655bc7d91e2d480c4c26ec356428806d9398655883b4227548b0",
+                    "script/carbon-pass-through-admission.test.ts": "19cd02abbe69379a567b4a32430002ae63e070ff473642b6774897c27ce56d6d",
+                    "script/methodology-download-portable.test.ts": "f1916cbf6e94fd8f77e7a57cc2dc24f0afb7fbaf04783f97b6c78934a950cebc",
+                    "script/remaining-export-contracts.test.ts": "6da7228ade605fa5963f5918e80e9b9abd0b6627c93ee42ace147d43283310c9",
+                    "script/residual-label-scan.ts": "468b3a6d42fc1574e472d9dd2f657af37e6052d9889b0a63699eb39a531227f4",
+                    "docs/field_semantics_census.json": "7539db0d491092d2a4212ae6415e06cffb9752146a17c3b7769ebdfcaf8b8980"
+                  },
+                  "preserved": [
+                    "Old124 results/179 headers/416 chunks untouched; no original XLSX recovery claim.",
+                    "Private CLI and production HTTP403 unchanged.",
+                    "No edits to fourteen FaIR pins, native engine/inventory/source approvals, baseline/coupling/science or original1000/1001 cohort; zero original slots promoted. Census2652definitions (prior2619),1465typedEntries,1437fullyBound; new definitions only supplemental metadata. No missing original slots, original cohort completeness remains false.",
+                    "No new resources/auth/DDL/data approval/private publication.",
+                    "No canonical ledger edits, commit, deployment, callback, workflow start/restart or app run."
+                  ],
+                  "remainingWorkBoundary": "No finite22producer/derivation contract is left as an unexplained implementation gap or relabelled external data blocker. Engineering closure is prospective and supported by actual retained-parent/file-handler readbacks, not live persistence activation. Old full TrackB assessment companions and original upstream news HTTP bytes are not retroactively reconstructed or claimed. The one unauthorized private HTTP path stays403. No full ORIGINAL S16-007, scientific, owner, publication or original-history acceptance claim.",
+                  "freeze": "Runtime application code unchanged by CI fixture repair. Final test/fixture code frozen before successful complete local receipt-only checks (1090TS+248Python, original/private/type/build). Evidence/recorder/ledgers finalized afterward. Public CI43186463787failure/promote-skipped preserved, no new successful CI/release invented. No workflow, publication, callback, production mutation or auth bypass in repair; parent owns CI/deployment. Prior committed engineering evidence/history remains historical."
                 }
               }
             }
@@ -174790,7 +176252,7 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue ALL original0–17, no plan/package pause. Finite29now28engineering-closed+1privateHTTP403; all22remaining contracts implemented, prior6and9PE/signal preserved. Exact manifests/claim labels/registry pages are the S16-007 criterion; local engineering is not deployed evidence. Use existing validated promotion only, inspect actual contexts without auth bypass/production mutations; do not fabricate retained identity under source/archive outage. Preserve original1000/1001, old124/179/416,14FaIRpins,0eligiblehistories/0of3issuer cases and all scientific/owner gates. Regional uncertainty is now implemented but actual execution UNEXECUTED: zero qualified saturation/joint bundles and zero actual fits/bootstrap/scores; authentic full source/structural/dependence numerical draws required. No retuning known nine failures or EUsolar pointwin, priors, splicing or default offsets. No new issuer source or model work claimed; preserve existing FSLR/NEE/XOM exact economic-input gaps and every other partial original clause. Latest local1090TS/248Python plus original/private/type/build receipt is engineering only; publicCI43186463787failed/promote-skipped due test-private-file dependency, now isolated-source regression repaired, NOT a successful new public release. Issuer seven-request discovery adds no qualified economic input or code: preserve positive LLC/receipt-month evidence and distinguish unusable200/one scoped403 from global unavailability. Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.",
+    "instruction": "Continue ALL original0–17, no plan/package pause. Finite29now28engineering-closed+1privateHTTP403; all22remaining contracts implemented, prior6and9PE/signal preserved. Exact manifests/claim labels/registry pages are the S16-007 criterion; local engineering is not deployed evidence. Use existing validated promotion only, inspect actual contexts without auth bypass/production mutations; do not fabricate retained identity under source/archive outage. Preserve original1000/1001, old124/179/416,14FaIRpins,0eligiblehistories/0of3issuer cases and all scientific/owner gates. Regional uncertainty is now implemented but actual execution UNEXECUTED: zero qualified saturation/joint bundles and zero actual fits/bootstrap/scores; authentic full source/structural/dependence numerical draws required. No retuning known nine failures or EUsolar pointwin, priors, splicing or default offsets. No new issuer source or model work claimed; preserve existing FSLR/NEE/XOM exact economic-input gaps and every other partial original clause. Latest local1090TS/248Python plus original/private/type/build receipt is engineering only; publicCI43186463787failed/promote-skipped due test-private-file dependency, then43189261486failed/promote-skipped ONLY on version-specific filter-bookkeeping assertion despite actual selected HTTP test PASS. Both are repaired and preserved; TAP checks still require exact selected test executed once/pass1/fail0/cancel0 with no skipped actual test. No new successful public release inferred. Issuer seven-request discovery adds no qualified economic input or code: preserve positive LLC/receipt-month evidence and distinguish unusable200/one scoped403 from global unavailability. Distinguish source, CI, Railway release and docs observation revisions; runtime receipts must be observed before recording release success.",
     "background_tasks": []
   },
   "last_handoff": {

@@ -8,7 +8,25 @@
       "privateLogSha256": "21f67fea7e5f243a0032a7b543822720188c651bf504c7a0a3793c8c980dab4b",
       "repair": "Synthetic isolated fixed-root files through same actual readers; source-only regression prohibits DB access; no private files or validators changed."
     },
+    "secondCiFailure": {
+      "runId": 43189261486, "validate": "failure", "promote": "skipped",
+      "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+      "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+      "actualSelectedHttpTest": "Passed once; Node24 emitted tests1/pass1/skipped0",
+      "onlyFailure": "Outer portability assertion incorrectly required Node20 filter-exclusion count20",
+      "repair": "Require exact named executed test once/pass1/fail0/cancel0/no failures; ignore only version-dependent filter-exclusion bookkeeping, never an actually skipped selected test."
+    },
     "localFullChecks": {
+      "receipt": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+      "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
+      "logSha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
+      "exitCode": 0,
+      "typescript": {"tests": 1090, "pass": 1090, "fail": 0, "skipped": 0},
+      "python": {"tests": 248, "pass": 248, "fail": 0, "skipped": 0},
+      "typecheckOriginalPrivateValidatorsAndBuild": "passed; validators unchanged",
+      "releaseBoundary": "Local complete checks only; both actual CI failures/promote-skipped preserved. No new CI/Railway/deployed success."
+    },
+    "preNodeTapLocalFullChecks": {
       "receipt": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
       "log": "generated-artifacts/remaining-export-all22.portable-final.log",
       "logSha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
@@ -28,6 +46,13 @@
       "typecheckOriginalPrivateValidatorsAndBuild": "passed"
     },
     "postLedgerFiveModules": {
+      "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
+      "receipt": "generated-artifacts/finite-export-post-ledger.node-tap.receipt.json",
+      "log": "generated-artifacts/finite-export-post-ledger.node-tap.log",
+      "logSha256": "181bbbccabf1b7e90ec12102ae3581bfd086e5ef3c419a688242e47ebda87514",
+      "tests": 16, "pass": 16, "fail": 0, "skipped": 0
+    },
+    "preNodeTapPostLedgerFiveModules": {
       "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
       "receipt": "generated-artifacts/finite-export-post-ledger.portable.receipt.json",
       "log": "generated-artifacts/finite-export-post-ledger.portable.log",

@@ -4,7 +4,7 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
 
 ```json
 {
-  "updated_at": "2026-11-12T09:09:52.433190+00:00",
+  "updated_at": "2026-11-12T09:23:30.400618+00:00",
   "release": {
     "status": "New local source validated; new release not yet observed",
     "last_verified": {
@@ -22,20 +22,20 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
       "-c",
       "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
     ],
-    "executed_at": "2026-11-12T09:03:04.676951+00:00",
+    "executed_at": "2026-11-12T09:17:42.077487+00:00",
     "exit_code": 0,
-    "elapsed_seconds": 280.029,
+    "elapsed_seconds": 274.356,
     "counts": {
       "tests": 1090,
       "pass": 1090,
       "fail": 0,
       "skipped": 0
     },
-    "log": "generated-artifacts/remaining-export-all22.portable-final.log",
+    "log": "generated-artifacts/remaining-export-all22.node-tap-final.log",
     "workspace_revision": null,
     "worktree_dirty": null,
     "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-    "log_sha256": "a1401d7ff24c8c5bdf944ceaf2f9c9a22a6bd93263935efd3206c603d695e1dc",
+    "log_sha256": "10bfca0fd81b8efa287a76cb3e9f13e4501ea21a68a342a1ac57d53e97a95d5d",
     "suite_counts": {
       "typescript": {
         "tests": 1090,
@@ -54,8 +54,8 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
     "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
   },
   "execution_receipt": {
-    "path": "generated-artifacts/remaining-export-all22.portable-final.receipt.json",
-    "sha256": "44c145666eee250bee04156cb81d2811e2fb9d613b7c54f2c9f728b01e306778"
+    "path": "generated-artifacts/remaining-export-all22.node-tap-final.receipt.json",
+    "sha256": "24257fdbafd48785592bd2d7762c2b96e8f10ae091697590dab445ee6960c859"
   },
   "finite_export_counts": {
     "newClosed": 28,
@@ -215,7 +215,7 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
       "fail": 0,
       "deliberatelyUnselectedOtherTests": 20
     },
-    "sourceOnlyRegression": {
+    "preNode24BookkeepingRegression": {
       "file": "script/methodology-download-portable.test.ts",
       "log": "generated-artifacts/all22-ci-fixture-portable.log",
       "sha256": "649753e9fd64dba6a51ec78b9441fb4e103471edbda87c70c6bbd4ec114f6cc7",
@@ -223,7 +223,28 @@ Original criteria/statuses preserved; no new issuer source or actual diffusion e
       "pass": 2,
       "fail": 0,
       "skipped": 0,
-      "proof": "Fresh copied public source with no .git/docs/generated-artifacts/attached_assets/.local/exports; pg.Pool.connect and query forcibly throw. Child executes the actual custom HTTP test, asserts one pass/zero failures and cleanup leaves no generated-artifacts in source root. Child20unselected cases also all execute in final complete parent suite."
+      "proof": "HISTORICAL local Node20 success: isolated custom test genuinely ran, but bookkeeping assertion was later shown incompatible with Node24."
+    },
+    "reporterFailure": {
+      "ciRunId": 43189261486,
+      "validate": "failure",
+      "promote": "skipped",
+      "privateLog": "generated-artifacts/all22-second-failed-ci.log",
+      "privateLogSha256": "0039089cc69d38811c0b98114ee90f8103f6e756189560d806ddfaa043ba8a76",
+      "actualSelectedCustomHttpTest": "PASSED once; Node24 reported tests1/pass1/skipped0 for the finite name filter. Node20 reports tests21/pass1/skipped20 because it emits excluded tests.",
+      "onlyFailure": "Over-specific /# skipped20/ assertion in the outer portability regression, not an actual HTTP/projection or source-reader failure.",
+      "newReleaseClaim": false
+    },
+    "sourceOnlyRegression": {
+      "file": "script/methodology-download-portable.test.ts",
+      "log": "generated-artifacts/all22-node-tap-portable.log",
+      "sha256": "ed46753041ec5ac22bf5b5b12cd20a72b5884ffcec2cfb9d3b93d8903e27ba16",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "proof": "Fresh public source/no generated data/DB guard and actual custom HTTP test preserved. TAP acceptance requires EXACT named selected test executed ONCE, pass1/fail0/cancelled0 and no not-ok records. Node20/24 name-filter bookkeeping may differ, but a skipped/missing/duplicate selected test or any executed extra test/cancellation/failure rejects. In-test parser fixtures cover both known reporter formats and refusal cases; native local runtime is Node20, not a claimed native Node24 execution. Every actual case still runs in complete parent suite with zero skips."
     }
   },
   "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
