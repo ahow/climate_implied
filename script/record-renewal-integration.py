@@ -21,6 +21,17 @@ b=root/"deployed-ui.json"
 if b.exists():e["deployed_ui"]=json.loads(b.read_text())
 p=Path("docs/workplan_completion_ledger.json");x=json.loads(p.read_text())
 x["prior_renewal_draft_increment"]=x.get("latest_increment");x["latest_increment"]=e
+ci=root/"integrated-ci.json"
+if ci.exists():
+ runs=json.loads(ci.read_text()).get("workflow_runs",[])
+ if runs:
+  run=runs[0]
+  x["pending_release"]={"source":run["head_sha"],"ci":run["id"],"status":run["status"],"conclusion":run["conclusion"],
+   "boundary":"Submitted through existing gated workflow; not observed deployed. Do not supersede with local receipt-only changes."}
+e["release"]={"source":"e704177e32a11ff6ce95a224f3f46050f40e942b","local_implementation":"b91548db6ac1c67c86c012302ac25d4b91c08406","pending":x.get("pending_release"),
+ "last_verified_runtime":"4a10e455c1a4618c2e9c5bc51b26419aa5d71c71"}
+e["postledger"]={"command":"npx tsx --test script/reconciliation-stages-14-17.test.ts script/workplan-corrections.test.ts","pass":7,"fail":0,"skip":0,"log":"generated-artifacts/renewal/integrated-postledger.log"}
+e["not_attempted_this_increment"]=["New issuer economic-source retrieval","New driver empirical fitting","Future-review PostgreSQL transport","Pinned Python clean installation"]
 x["next_action"]="Reconcile the existing promotion for this coherent renewal source, then continue dated storage/accrual/claim/inversion and real future-review PostgreSQL. Clean locked local install failed on proxy-addr2.0.7 firewall; investigate2.0.8 only as a separately versioned compatible dependency change, not an original-lock reproduction pass. Actual issuer/calibration inputs remain unqualified."
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:

@@ -1,5 +1,6 @@
 import {contentHash} from "./analysisManifest";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
+import {reconcileCohortCash,type CohortCashLedger} from "./cohortCashLedger";
 
 /** Exact periodic renewal only. Not a growth perpetuity or issuer valuation.
  * Two explicit adjacent cycles demonstrate the declared stock/energy/cash law;
@@ -17,9 +18,11 @@ export interface RenewalDeclaration {
  openingUnpaidTaxUsd:number;closingUnpaidTaxUsd:number;
  replacementCostPerUnitUsd:number;
  evidenceIds:string[];
+ cashLedger?:CohortCashLedger;
  transition?:{
   specification:CohortSpecification;
   openingDebtUsd:number;openingWorkingCapitalUsd:number;
+  cashLedger?:CohortCashLedger;
  };
 }
 export function evaluatePeriodicRenewal(input:RenewalDeclaration){
@@ -29,10 +32,12 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
   !Number.isInteger(n)||n<1||n>100||!Number.isFinite(x.discountRate)||x.discountRate<=0||x.discountRate>=1||
   !x.evidenceIds.length||x.evidenceIds.some(id=>!x.specification.evidenceIds.includes(id)))
   throw Error("Explicit bounded periodic project declaration required");
- if(x.specification.liquidation||x.specification.timing!=="commission-at-year-start-retire-before-year-service")
-  throw Error("Dated/liquidation continuation requires a separate timing law");
- if(x.specification.cohorts.some(c=>c.capacityUnit==="kWh-storage"))
-  throw Error("Storage renewal needs a separately reconciled dated charge/loss continuation");
+ if(x.specification.liquidation)throw Error("Liquidation is not periodic renewal");
+ if(x.specification.timing==="utc-civil-day-service"&&x.specification.cohorts.some(c=>
+  !c.dated||!c.dated.commissionedOn.endsWith("-01-01")||!c.dated.retiredOn.endsWith("-01-01")||c.annualDegradation!==0))
+  throw Error("Dated periodic law supports full calendar-year zero-degradation cohorts only; partial-day/degrading periodicity unresolved");
+ if(x.specification.cohorts.some(c=>c.capacityUnit==="kWh-storage"&&!c.dated))
+  throw Error("Storage renewal requires explicit dated charge/loss inputs");
  const model=calculateOperatingCohorts(x.specification);
  if(model.rows.length!==2*n)throw Error("Two complete explicit cycles required");
  const equal=(a:number,b:number)=>{
@@ -62,6 +67,10 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
   const s=repeat[i];
   for(const field of ["closing","service","revenue","variableCost","capital","fcfe","energyCost"] as const)
    equal(r[field],s[field]);
+  if(r.chargeEnergyKwh!==null||s.chargeEnergyKwh!==null){
+   if(r.chargeEnergyKwh===null||s.chargeEnergyKwh===null)throw Error("Energy channel mismatch");
+   equal(r.chargeEnergyKwh,s.chargeEnergyKwh);
+  }
   for(const [key,value] of Object.entries(r.inputs))
    if(key!=="year")equal(value,(s.inputs as unknown as Record<string,number>)[key]);
   equal(r.added,r.retired);
@@ -74,12 +83,32 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
  equal(debt,x.closingDebtUsd);equal(wc,x.closingWorkingCapitalUsd);
  // All cash is explicit annual end-period cash. No additional WC release,
  // liquidation, terminal sale or debt deduction is added a second time.
- const cyclePv=cycle.reduce((s,r,i)=>s+r.fcfe/(1+x.discountRate)**(i+1),0);
+ const cash=x.cashLedger?reconcileCohortCash(model,x.cashLedger,x.evidenceIds):null;
+ if(x.cashLedger){
+  equal(x.cashLedger.years[0].openingDebt,x.openingDebtUsd);
+  equal(x.cashLedger.years[0].openingReceivables+x.cashLedger.years[0].openingOtherWorkingCapital,x.openingWorkingCapitalUsd);
+  equal(x.cashLedger.years[0].openingUnpaidTax,x.openingUnpaidTaxUsd);
+  for(let i=0;i<n;i++){
+   equal(cash![i].commonNetCash,cash![i+n].commonNetCash);
+   for(const b of ["Receivables","OtherWorkingCapital","UnpaidTax","Debt","NonCommonLiability","Cash"] as const){
+    equal(x.cashLedger.years[i][`opening${b}`],x.cashLedger.years[i+n][`opening${b}`]);
+    equal(x.cashLedger.years[i][`closing${b}`],x.cashLedger.years[i+n][`closing${b}`]);
+   }
+  }
+ }
+ const cyclePv=cycle.reduce((s,r,i)=>s+(cash?cash[i].commonNetCash:r.fcfe)/(1+x.discountRate)**(i+1),0);
  const value=cyclePv/(1-(1+x.discountRate)**-n);
  if(!Number.isFinite(value))throw Error("Nonfinite periodic value");
  let transition=null;
  if(x.transition){
   const t=x.transition, tm=calculateOperatingCohorts(t.specification);
+  if(!!t.cashLedger!==!!x.cashLedger)throw Error("Transition and renewal must use the same cash claim basis");
+  const tc=t.cashLedger?reconcileCohortCash(tm,t.cashLedger,t.specification.evidenceIds):null;
+  if(t.cashLedger&&x.cashLedger){
+   if(t.cashLedger.claimantId!==x.cashLedger.claimantId)throw Error("Transition/renewal claimant mismatch");
+   for(const b of ["Receivables","OtherWorkingCapital","UnpaidTax","Debt","NonCommonLiability","Cash"] as const)
+    equal(t.cashLedger.years.at(-1)![`closing${b}`],x.cashLedger.years[0][`opening${b}`]);
+  }
   if(t.specification.liquidation||t.specification.currency!==x.specification.currency||
    t.specification.timing!==x.specification.timing||
    tm.capacityUnit!==model.capacityUnit||tm.serviceUnit!==model.serviceUnit||
@@ -102,19 +131,21 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
    cumulative+=row.fcfe;minimum=Math.min(minimum,cumulative);
   }
   equal(td,x.openingDebtUsd);equal(tw,x.openingWorkingCapitalUsd);
-  const pv=tm.rows.reduce((s,r,i)=>s+r.fcfe/(1+x.discountRate)**(i+1),0);
+  const pv=tm.rows.reduce((s,r,i)=>s+(tc?tc[i].commonNetCash:r.fcfe)/(1+x.discountRate)**(i+1),0);
   transition={model:tm,transitionPv:pv,terminalAtBoundary:value,
+   cashLedger:tc,
    discountedTerminal:value/(1+x.discountRate)**tm.rows.length,
    combinedConditionalProjectPv:pv+value/(1+x.discountRate)**tm.rows.length,
    annualNetFundingRequirement:Math.max(0,-minimum),
    fundingQualification:"Annual net balance only; intra-year liquidity/committed funding not established"};
  }
- return {version:x.version,inputHash:contentHash(x),model,cyclePv,
+ return {version:cash||x.specification.timing==="utc-civil-day-service"?"periodic-renewal-2-cash-dated":x.version,inputHash:contentHash(x),model,cyclePv,
+  cashLedger:cash,cashBasis:cash?"declared-common-distributions-net-contributions":"project-FCFE-not-distribution-qualified",
   valuationBoundary:`${firstYear}-01-01 before first-cycle cash`,
   cashCountingRule:"Repeated cycles verify the law; do not add their cash again to the periodic value",
   transition,
   conditionalPeriodicProjectValueUsd:value,
   formulas:{cyclePv:"sum(FCFE_t/(1+r)^t), t=1..L",value:"cyclePv/(1-(1+r)^(-L))"},
-  limitations:["Assumed stationary renewal, not observed future economics","No growth inversion or whole-equity claim","Cash tax is an explicit input; accrual-tax identification not established"],
+  limitations:["Assumed stationary renewal, not observed future economics","No growth inversion or whole-equity claim","Legal authentication not established","Partial-calendar/degrading dated periodicity not supported"],
   marketImplied:false,scientificAcceptance:false};
 }
