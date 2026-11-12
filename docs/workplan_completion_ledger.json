@@ -2762,6 +2762,258 @@
         "scientificAcceptance": false
       },
       "preservation": "Original1000/1001; previous S16-007/S16-014 verified receipts; all other clauses, original source/amendment hashes and scientific negatives unchanged. Zero eligible histories/zero of three qualified cases; real report catalog empty; all broad current items stay current original scope, no new follow-up tasks."
+    },
+    "native_mechanism_finite_reconciliation": {
+      "scope": "Original S05-004/S05-010/S06-006/S07-020 finite criteria reconciled; all300 IDs retained",
+      "status_before": {
+        "verified": 57,
+        "partial": 241,
+        "blocked-production-provisioning": 2
+      },
+      "status_after": {
+        "verified": 61,
+        "partial": 237,
+        "blocked-production-provisioning": 2
+      },
+      "new_code": "Native engine3; exact consumer version guard; nativeMechanisms included in archived replay closure; validly rehashed changed dependency and old native1/2 records explicitly refused",
+      "old_evidence": "Historical per-clause hashes/executions and current_release remain historical; not relabelled as new runtime. All14 FaIR pins, frozen negative protocols and old immutable outputs untouched.",
+      "focused_receipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+      "focused_log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+      "focused_counts": {
+        "typescript": {
+          "tests": 178,
+          "pass": 178,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": {
+          "tests": 12,
+          "pass": 12,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "mandatory_private_receipt": "generated-artifacts/s05-s07-integration/final-private-type-build.receipt.json",
+      "mandatory_private_log_sha256": "52acb614004a8d30836509d4b335edbc7fe135ecb84f21345281230a90f39309",
+      "all_python_counts": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      },
+      "typescript_partition_receipt": "generated-artifacts/s05-s07-integration/typescript-repaired-without-slow-route.receipt.json",
+      "typescript_partition_counts": {
+        "tests": 1185,
+        "pass": 1185,
+        "fail": 0,
+        "skipped": 0
+      },
+      "separate_slow_route_receipt": "generated-artifacts/s05-s07-integration/projection-route-investigation.receipt.json",
+      "separate_slow_route_counts": {
+        "tests": 3,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 1
+      },
+      "source_contract_accounting": "Exactly2 new trace leaves are supplemental:439added slots,1440public/1439bound,1467typed; expanded4206public/4205bound. Frozen original1001 denominator and one opaque old summary gap unchanged. No original closure credit from these new fields.",
+      "extra_focused_checks": "5 ledger/receipt Python and4 actual retained-driver private TAP tests; npm typecheck/build pass. Not included in178 main TS or12 adapter counts.",
+      "full_receipt": "generated-artifacts/s05-s07-integration/parent-full.json",
+      "full_exit_code": 0,
+      "full_counts": {
+        "typescript": {
+          "tests": 1188,
+          "pass": 1187,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "full_gate_passed": true,
+      "full_gate_boundary": "Actual unchanged full command passed; optional skips remain explicit in full_counts, with separate isolated local PostgreSQL evidence below. Not scientific acceptance.",
+      "failure_history": [
+        {
+          "receipt": "generated-artifacts/s05-s07-integration/contract-final.receipt.json",
+          "exit_code": 1,
+          "counts": {
+            "typescript": {
+              "tests": 41,
+              "pass": 40,
+              "fail": 1,
+              "skipped": 0
+            },
+            "python": null
+          },
+          "log": "generated-artifacts/s05-s07-integration/contract-final.log",
+          "log_sha256": "cb6c951e467db3c5d3949f64976b4677aefab8bcef4fb8e4aabefcf0690927ee"
+        },
+        {
+          "receipt": "generated-artifacts/s05-s07-integration/contract-repair.receipt.json",
+          "exit_code": 1,
+          "counts": {
+            "typescript": {
+              "tests": 41,
+              "pass": 36,
+              "fail": 5,
+              "skipped": 0
+            },
+            "python": null
+          },
+          "log": "generated-artifacts/s05-s07-integration/contract-repair.log",
+          "log_sha256": "9e39d9ecde3654637a68f9d63b78f5c77edfc68a3c48998894a9df4b01cbd784"
+        },
+        {
+          "receipt": "generated-artifacts/s05-s07-integration/contract-repaired.receipt.json",
+          "exit_code": 1,
+          "counts": {
+            "typescript": {
+              "tests": 41,
+              "pass": 37,
+              "fail": 4,
+              "skipped": 0
+            },
+            "python": null
+          },
+          "log": "generated-artifacts/s05-s07-integration/contract-repaired.log",
+          "log_sha256": "4e9faa1504e707fb3d23c242ce208bfce40a65d9aacc25d6cdb58627feacc09b"
+        },
+        {
+          "receipt": "generated-artifacts/s05-s07-integration/focused-final.receipt.json",
+          "exit_code": 1,
+          "counts": {
+            "typescript": {
+              "tests": 178,
+              "pass": 177,
+              "fail": 1,
+              "skipped": 0
+            },
+            "python": null
+          },
+          "log": "generated-artifacts/s05-s07-integration/focused-final.log",
+          "log_sha256": "62706d88445140051153789058c6844df228e0c3d75c88da740674d714fc8cf0"
+        },
+        {
+          "receipt": "generated-artifacts/s05-s07-integration/full-checks-bounded.receipt.json",
+          "exit_code": 124,
+          "counts": {
+            "typescript": null,
+            "python": null
+          },
+          "log": "generated-artifacts/s05-s07-integration/full-checks-bounded.log",
+          "log_sha256": "d97fdb7ae405e3145c6afe971d09ccc640d59e99e40e049e21f0f54359dd92be"
+        },
+        {
+          "receipt": "generated-artifacts/s05-s07-integration/typescript-without-slow-route.receipt.json",
+          "exit_code": 1,
+          "counts": {
+            "typescript": {
+              "tests": 1185,
+              "pass": 1180,
+              "fail": 5,
+              "skipped": 0
+            },
+            "python": null
+          },
+          "log": "generated-artifacts/s05-s07-integration/typescript-without-slow-route.log",
+          "log_sha256": "e282ae15a9c143e8c949a24c7de5a74d6afb20f49715a0b360c5e23a1c1d2f5b"
+        },
+        {
+          "receipt": null,
+          "exit_code": null,
+          "counts": null,
+          "log": "generated-artifacts/s05-s07-integration/full-checks-detached.log",
+          "log_sha256": "e958812a028cd3961af46d64a593909afdc850785984b675d93512419090ae98",
+          "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+          "observed_boundary": "Typecheck started; no subsequent stage or terminal summary retained"
+        },
+        {
+          "receipt": null,
+          "exit_code": null,
+          "counts": null,
+          "log": "generated-artifacts/s05-s07-integration/full-checks-final.log",
+          "log_sha256": "e958812a028cd3961af46d64a593909afdc850785984b675d93512419090ae98",
+          "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+          "observed_boundary": "Typecheck started; no subsequent stage or terminal summary retained"
+        },
+        {
+          "receipt": null,
+          "exit_code": null,
+          "counts": null,
+          "log": "generated-artifacts/s05-s07-integration/full-checks-initial.log",
+          "log_sha256": "b2648d873f0a5b4c8164b5bffd80eb2ba26a8eefe1909d171e97512e91441c33",
+          "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+          "observed_boundary": "Partial TypeScript TAP output; no terminal suite summary"
+        },
+        {
+          "receipt": null,
+          "exit_code": null,
+          "counts": null,
+          "log": "generated-artifacts/s05-s07-integration/full-checks-retry.log",
+          "log_sha256": "6c06747d596bd6bb536146683fed5d60c45cc39927b780bf051c76ae3e026435",
+          "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+          "observed_boundary": "Shell reported Hangup during npm run check; exact exit code not retained"
+        }
+      ],
+      "separate_local_postgresql": {
+        "evidence": "docs/disposable-cache-transport-evidence.json",
+        "sha256": "30a788fec0995ed65223f081313d74841e311adc03afe2010e9dced9a02641bd",
+        "passed": true,
+        "started_at": "2026-11-12T12:24:36.459Z",
+        "finished_at": "2026-11-12T12:28:00.446Z",
+        "actual_postgresql_witnesses": [
+          {
+            "path": "/home/runner/workspace/generated-artifacts/company-cache-extension/http-WJFoOd/evidence.json",
+            "sha256": "3f3c5d08bba66c8e72e7abc8bf050130d6521a865b40ea98cd9e8a24744cfadf",
+            "passed": true,
+            "postgresqlTransportExecuted": true,
+            "analyticalReceipts": 8,
+            "actualPostgresQueries": 311,
+            "companyPhases": {
+              "lookup-miss": 4,
+              "compute": 4,
+              "write": 4,
+              "lookup-hit": 4
+            }
+          },
+          {
+            "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/postgres-namespace-NkW7Rv/evidence.json",
+            "sha256": "6a461657a13c3153b4ae93206953b2c56d756c8ca6b5d08858dbd45a617fc1cd",
+            "passed": true,
+            "postgresqlTransportExecuted": true,
+            "analyticalReceipts": 5,
+            "actualPostgresQueries": 12,
+            "namespaceKeys": [
+              "finance-projected-rate:135ec499a36f86c5a3eec625805ea409239d79d36b7689afec5dfba614262d6a",
+              "projection:47bfe4f88336db1960d43bd0fb10ac80711f0316e1eca0a732f70cc32fbbe41c",
+              "projection:5d3039308389bdc762bdb513a33d026cab76164b729ab0909477d82865b72f57"
+            ]
+          }
+        ],
+        "full_gate_optional_case": "authorized disposable PostgreSQL preserves actual full/reduced namespaces and revision isolation",
+        "full_gate_optional_case_status": "skipped in full suite; executed successfully in the separate isolated PostgreSQL run, never subtracted from full-suite skipped count",
+        "isolation": {
+          "database": "s02_009_disposable_cache",
+          "localClusterDirectory": "/tmp/s02-cache-VR5rY7",
+          "privateUnixSocket": "/tmp/s02-cache-VR5rY7/socket",
+          "tcpListening": false,
+          "ambientDatabaseUrlUsed": false,
+          "ambientPgVariablesUsed": false,
+          "productionAccess": false,
+          "paidResources": 0,
+          "productionDDL": 0,
+          "productionDeletes": 0,
+          "cacheClears": 0,
+          "clusterStopped": true,
+          "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+        },
+        "boundary": "Separate isolated local PostgreSQL execution, not the full gate's database transport. Memory route matrices are not PostgreSQL witnesses. No deployed PostgreSQL acceptance."
+      },
+      "source_findings": "docs/mechanism-run-source-evidence.json: 0 newly qualified calibration/economic pairs; no actual new mechanism fits/issuer cash/dated 11-15 runs. Original remaining science/source scope remains current, not new tasks.",
+      "runtime": "No new deployment or workflow operations in subagent; current_release unchanged. Parent owns existing sync-github.py/CI promotion/Railway, one DEV restart and live exact-SHA checks."
     }
   },
   "prior_native_fleet_increment": {
@@ -2882,7 +3134,7 @@
     }
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T11:28:53.127081+00:00",
+  "updated_at": "2026-11-12T12:31:13.406883+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -75093,22 +75345,26 @@
           "id": "S05-004",
           "source_section": "implementation",
           "requirement": "Port mechanisms with explicit eligibility, lag, saturation, bounds and overlap groups: renewable displacement, EV stock turnover, activity and intensity, and policy. Charge EV electricity to the power sector. Port corporate and finance mechanisms only where a defensible coefficient exists; otherwise keep them as labelled sensitivities outside the central case.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/calculation/emissionsCandidate.ts",
             "shared/nativeScenarioSemantics.ts",
             "shared/nativeOutputSemantics.ts",
-            "script/fleet_transition.py"
+            "script/fleet_transition.py",
+            "docs/mechanism-matrix-evidence.json",
+            "server/calculation/nativeMechanisms.ts",
+            "server/calculation/driverParameterRegistry.ts",
+            "script/native-mechanism-matrix.test.ts"
           ],
-          "evidence_caveat": "Original numerical criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Bounded eligibility/lag/overlap and EV charging exist; qualify actual coefficients and fleet dynamics; no unsupported corporate/finance central mechanism.",
+          "evidence_caveat": "Engineering clause satisfied, not empirical calibration or central science acceptance. No production building disaggregation: retained unsplit 1.A.4 remains other; explicit building subcodes are tested only as synthetic fixtures. No approved native joint distribution/inventory or corporate/finance central coefficient.",
           "files_functions_changed": [
             "server/calculation/emissionsCandidate.ts:sectorOf,validate,projectNativeEmissions,projectInventoryEmissions,candidateInventory",
             "shared/nativeScenarioSemantics.ts:definition",
             "shared/nativeOutputSemantics.ts:",
             "script/fleet_transition.py:quantile,fit,forecast,evaluate,load,main"
           ],
-          "behaviour_delivered_this_run": "Eligibility, lag, bounded adoption, overlap and EV charging mechanics exist as conditional mechanisms.",
+          "behaviour_delivered_this_run": "Executable native-v3 eligibility, lag, saturation/bounds, complete-overlap, renewable dispatch, sales-to-stock EV turnover, activity/intensity and policy. EV electricity is charged once to power. Corporate coefficients remain labelled diagnostic sensitivities, never central; no finance-to-abatement coefficient invented.",
           "inputs_versions_assumptions": [
             "Eligibility-limited effects, bounded adoption and complete-overlap groups; EV electricity enters power once",
             {
@@ -75216,6 +75472,43 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npx tsc --noEmit --incremental false; node --import tsx --test script/native-mechanism-matrix.test.ts script/emissions-candidate.test.ts script/driver-consumption.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts script/regional-engine.test.ts script/native-producer-exports.test.ts script/derived-consumer.test.ts script/native-semantics.test.ts script/member-metrics.test.ts script/workplan-corrections.test.ts script/native-threshold-integration.test.ts script/remaining-component-contracts.test.ts; .venv/bin/python -m unittest discover -s script -p \"test*ngfs*adapter.py\"; .venv/bin/python -m unittest discover -s script -p \"test_completion_ledger*.py\"; node --import tsx --test script/validate-driver-retained-private.ts; npm run build"
+              ],
+              "executed_at": "2026-11-12T12:06:23.818980+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 66.217,
+              "counts": {
+                "tests": 178,
+                "pass": 178,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/s05-s07-integration/focused-repaired.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 178,
+                  "pass": 178,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 12,
+                  "pass": 12,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -75227,10 +75520,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Bounded eligibility/lag/overlap and EV charging exist; qualify actual coefficients and fleet dynamics; no unsupported corporate/finance central mechanism."
-          ],
-          "next_action": "Bounded eligibility/lag/overlap and EV charging exist; qualify actual coefficients and fleet dynamics; no unsupported corporate/finance central mechanism.",
+          "remaining_gaps": [],
+          "next_action": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "blockers": [],
           "stage": 5,
           "stageName": "Coherent emissions ensemble",
@@ -75242,14 +75533,18 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "partial",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "numerical",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
             "server/calculation/emissionsCandidate.ts",
             "shared/nativeScenarioSemantics.ts",
             "shared/nativeOutputSemantics.ts",
-            "script/fleet_transition.py"
+            "script/fleet_transition.py",
+            "docs/mechanism-matrix-evidence.json",
+            "server/calculation/nativeMechanisms.ts",
+            "server/calculation/driverParameterRegistry.ts",
+            "script/native-mechanism-matrix.test.ts"
           ],
           "filesFunctions": [
             {
@@ -75406,10 +75701,8 @@
             "World/China/US/EU27 strictly beat both MAE baselines; India fails linear baseline; Rest of World unavailable. Parameter interval coverage0/6 exceptUS1/6; effective stock-share coefficients are not measured lifetimes."
           ],
           "directResultCatalog": "native",
-          "exactRemainingGaps": [
-            "Bounded eligibility/lag/overlap and EV charging exist; qualify actual coefficients and fleet dynamics; no unsupported corporate/finance central mechanism."
-          ],
-          "nextAction": "Bounded eligibility/lag/overlap and EV charging exist; qualify actual coefficients and fleet dynamics; no unsupported corporate/finance central mechanism.",
+          "exactRemainingGaps": [],
+          "nextAction": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "scientificAcceptance": "not-promoted",
           "git": {
             "baseRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -75481,9 +75774,13 @@
             "script/regional-replay.test.ts": "eda552f325e5506ab17d0a5a9f07a6c37062aaa52dd14a75328ffafd465d26dc",
             "script/regional-sampling.test.ts": "31633ef67730e436f57591c0a9b2a97a2bbb8ed28e92fe15fa89153c3c18f84c",
             "script/short-horizon-emissions.test.ts": "c4c4e4e8e516bfe89f147b89b1fb2f9ed712b08b631840d865e1801c9aae5ee8",
-            "server/calculation/emissionsCandidate.ts": "d53b1c79e13588dcd9570942fd70c22892ccc6df75707fa35908cc27f2f08218",
+            "server/calculation/emissionsCandidate.ts": "48c667d8144d0a5e3605de5f222a9a07cbe42e0fdf4e642cb2a8a2c105c479f4",
             "shared/nativeOutputSemantics.ts": "e3c8c6e7f5cf7e25689d63ef7d8c5752436aeb623b9d330d0ebc9531a646e429",
-            "shared/nativeScenarioSemantics.ts": "61c323c8b6482b2bb238a5854b9eaf80a2e822ef638d47ceaba325a931fccb47"
+            "shared/nativeScenarioSemantics.ts": "190b234823f2539997d1cd2eedcc24a0e806dd4be33e742fc3b1110d088058cb",
+            "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+            "server/calculation/driverParameterRegistry.ts": "10db1c7c06810f7c703f932f7d9e20d73bf8e416055a681ed609b7aad2c6142c",
+            "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6",
+            "docs/mechanism-matrix-evidence.json": "6939b6e867eabae88647ce04745d20e2fced4623b24f985d425fc14fcec4a1bc"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -75496,6 +75793,23 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "native_increment_reconciliation": {
+            "verified_at": "2026-11-12T12:31:13.406883+00:00",
+            "criterion": "Port mechanisms with explicit eligibility, lag, saturation, bounds and overlap groups: renewable displacement, EV stock turnover, activity and intensity, and policy. Charge EV electricity to the power sector. Port corporate and finance mechanisms only where a defensible coefficient exists; otherwise keep them as labelled sensitivities outside the central case.",
+            "scope": "Exact written finite engineering criterion; not production scientific acceptance",
+            "delivered": "Executable native-v3 eligibility, lag, saturation/bounds, complete-overlap, renewable dispatch, sales-to-stock EV turnover, activity/intensity and policy. EV electricity is charged once to power. Corporate coefficients remain labelled diagnostic sensitivities, never central; no finance-to-abatement coefficient invented.",
+            "independent_scientific_limits": "Engineering clause satisfied, not empirical calibration or central science acceptance. No production building disaggregation: retained unsplit 1.A.4 remains other; explicit building subcodes are tested only as synthetic fixtures. No approved native joint distribution/inventory or corporate/finance central coefficient.",
+            "source_sha256": {
+              "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+              "server/calculation/emissionsCandidate.ts": "48c667d8144d0a5e3605de5f222a9a07cbe42e0fdf4e642cb2a8a2c105c479f4",
+              "server/calculation/driverParameterRegistry.ts": "10db1c7c06810f7c703f932f7d9e20d73bf8e416055a681ed609b7aad2c6142c",
+              "shared/nativeScenarioSemantics.ts": "190b234823f2539997d1cd2eedcc24a0e806dd4be33e742fc3b1110d088058cb",
+              "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6",
+              "docs/mechanism-matrix-evidence.json": "6939b6e867eabae88647ce04745d20e2fced4623b24f985d425fc14fcec4a1bc"
+            },
+            "focused_receipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+            "runtime": "No new runtime verification; existing current_release preserved"
           }
         },
         {
@@ -76944,22 +77258,26 @@
           "id": "S05-010",
           "source_section": "acceptance",
           "requirement": "Perturbing one driver changes only its declared mechanisms.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/calculation/emissionsCandidate.ts",
             "shared/nativeScenarioSemantics.ts",
             "shared/nativeOutputSemantics.ts",
-            "script/fleet_transition.py"
+            "script/fleet_transition.py",
+            "docs/mechanism-matrix-evidence.json",
+            "server/calculation/nativeMechanisms.ts",
+            "server/calculation/driverParameterRegistry.ts",
+            "script/native-mechanism-matrix.test.ts"
           ],
-          "evidence_caveat": "Original exact criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Perturbation fixtures establish selected driver isolation; complete the mechanism declaration and every-driver production perturbation matrix.",
+          "evidence_caveat": "Completeness covers supported path templates, not arbitrary array lengths, unsupported parameters, every nonlinear combination or calibrated physical skill. Source-bound regional splits and coefficients are engineering fixtures; curated-to-regional central bridge remains unapproved.",
           "files_functions_changed": [
             "server/calculation/emissionsCandidate.ts:sectorOf,validate,projectNativeEmissions,projectInventoryEmissions,candidateInventory",
             "shared/nativeScenarioSemantics.ts:definition",
             "shared/nativeOutputSemantics.ts:",
             "script/fleet_transition.py:quantile,fit,forecast,evaluate,load,main"
           ],
-          "behaviour_delivered_this_run": "Selected perturbation fixtures demonstrate declared regional/mechanism isolation, not a complete driver audit.",
+          "behaviour_delivered_this_run": "All 52 supported scenario parameter-leaf templates have exhaustive declared numerical-output isolation checks: 325156 comparisons, zero undeclared movements; 52 source-bound US regional cases leave the five other full regional trajectories exactly unchanged. Metadata/permission and empty retained-building scopes explicitly inert.",
           "inputs_versions_assumptions": [
             "Eligibility-limited effects, bounded adoption and complete-overlap groups; EV electricity enters power once",
             {
@@ -77025,6 +77343,43 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npx tsc --noEmit --incremental false; node --import tsx --test script/native-mechanism-matrix.test.ts script/emissions-candidate.test.ts script/driver-consumption.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts script/regional-engine.test.ts script/native-producer-exports.test.ts script/derived-consumer.test.ts script/native-semantics.test.ts script/member-metrics.test.ts script/workplan-corrections.test.ts script/native-threshold-integration.test.ts script/remaining-component-contracts.test.ts; .venv/bin/python -m unittest discover -s script -p \"test*ngfs*adapter.py\"; .venv/bin/python -m unittest discover -s script -p \"test_completion_ledger*.py\"; node --import tsx --test script/validate-driver-retained-private.ts; npm run build"
+              ],
+              "executed_at": "2026-11-12T12:06:23.818980+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 66.217,
+              "counts": {
+                "tests": 178,
+                "pass": 178,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/s05-s07-integration/focused-repaired.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 178,
+                  "pass": 178,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 12,
+                  "pass": 12,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -77036,10 +77391,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Perturbation fixtures establish selected driver isolation; complete the mechanism declaration and every-driver production perturbation matrix."
-          ],
-          "next_action": "Perturbation fixtures establish selected driver isolation; complete the mechanism declaration and every-driver production perturbation matrix.",
+          "remaining_gaps": [],
+          "next_action": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "blockers": [],
           "stage": 5,
           "stageName": "Coherent emissions ensemble",
@@ -77051,14 +77404,18 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "not-yet-reconciled",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "exact",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
             "server/calculation/emissionsCandidate.ts",
             "shared/nativeScenarioSemantics.ts",
             "shared/nativeOutputSemantics.ts",
-            "script/fleet_transition.py"
+            "script/fleet_transition.py",
+            "docs/mechanism-matrix-evidence.json",
+            "server/calculation/nativeMechanisms.ts",
+            "server/calculation/driverParameterRegistry.ts",
+            "script/native-mechanism-matrix.test.ts"
           ],
           "filesFunctions": [
             {
@@ -77170,10 +77527,8 @@
           "retainedExecutions": [],
           "priorNumericalResults": [],
           "directResultCatalog": "native",
-          "exactRemainingGaps": [
-            "Perturbation fixtures establish selected driver isolation; complete the mechanism declaration and every-driver production perturbation matrix."
-          ],
-          "nextAction": "Perturbation fixtures establish selected driver isolation; complete the mechanism declaration and every-driver production perturbation matrix.",
+          "exactRemainingGaps": [],
+          "nextAction": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "scientificAcceptance": "not-promoted",
           "git": {
             "baseRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -77247,7 +77602,11 @@
             "script/short-horizon-emissions.test.ts": "c4c4e4e8e516bfe89f147b89b1fb2f9ed712b08b631840d865e1801c9aae5ee8",
             "server/calculation/emissionsCandidate.ts": "d53b1c79e13588dcd9570942fd70c22892ccc6df75707fa35908cc27f2f08218",
             "shared/nativeOutputSemantics.ts": "e3c8c6e7f5cf7e25689d63ef7d8c5752436aeb623b9d330d0ebc9531a646e429",
-            "shared/nativeScenarioSemantics.ts": "61c323c8b6482b2bb238a5854b9eaf80a2e822ef638d47ceaba325a931fccb47"
+            "shared/nativeScenarioSemantics.ts": "61c323c8b6482b2bb238a5854b9eaf80a2e822ef638d47ceaba325a931fccb47",
+            "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+            "server/calculation/driverParameterRegistry.ts": "10db1c7c06810f7c703f932f7d9e20d73bf8e416055a681ed609b7aad2c6142c",
+            "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6",
+            "docs/mechanism-matrix-evidence.json": "6939b6e867eabae88647ce04745d20e2fced4623b24f985d425fc14fcec4a1bc"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -77260,6 +77619,21 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "native_increment_reconciliation": {
+            "verified_at": "2026-11-12T12:31:13.406883+00:00",
+            "criterion": "Perturbing one driver changes only its declared mechanisms.",
+            "scope": "Exact written finite engineering criterion; not production scientific acceptance",
+            "delivered": "All 52 supported scenario parameter-leaf templates have exhaustive declared numerical-output isolation checks: 325156 comparisons, zero undeclared movements; 52 source-bound US regional cases leave the five other full regional trajectories exactly unchanged. Metadata/permission and empty retained-building scopes explicitly inert.",
+            "independent_scientific_limits": "Completeness covers supported path templates, not arbitrary array lengths, unsupported parameters, every nonlinear combination or calibrated physical skill. Source-bound regional splits and coefficients are engineering fixtures; curated-to-regional central bridge remains unapproved.",
+            "source_sha256": {
+              "server/calculation/nativeMechanisms.ts": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+              "server/calculation/driverParameterRegistry.ts": "10db1c7c06810f7c703f932f7d9e20d73bf8e416055a681ed609b7aad2c6142c",
+              "script/native-mechanism-matrix.test.ts": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6",
+              "docs/mechanism-matrix-evidence.json": "6939b6e867eabae88647ce04745d20e2fced4623b24f985d425fc14fcec4a1bc"
+            },
+            "focused_receipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+            "runtime": "No new runtime verification; existing current_release preserved"
           }
         },
         {
@@ -79718,22 +80092,26 @@
           "id": "S06-006",
           "source_section": "implementation",
           "requirement": "Build the pathway adapter so NGFS Phase VI can be swapped in when released.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "script/reference_gas_infill.py",
             "docs/Reference_Gas_Infill_Results.md",
             "docs/NGFS_Pathway_Compatibility_Assessment.md",
-            "server/calculation/nativePathwayContract.ts"
+            "server/calculation/nativePathwayContract.ts",
+            "docs/pathway-adapter-evidence.json",
+            "script/versioned_ngfs_adapter.py",
+            "script/test_versioned_ngfs_adapter.py",
+            "script/fixtures/ngfs-phase-v-5.1-ch4.csv"
           ],
-          "evidence_caveat": "Original operational criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Versioned input contract exists but an actual Phase VI release swap with verified source/schema/content/licence is not demonstrated.",
+          "evidence_caveat": "No actual Phase VI release/schema/licence or production native pair accepted. Actual attributed Phase V fixture is only 1124 bytes; synthetic future profile is explicitly not a released dataset. Existing raw/harmonized/infilled and missing-species refusals retained.",
           "files_functions_changed": [
             "script/reference_gas_infill.py:digest,harmonise,summarise_stratum,write_new,main",
             "docs/Reference_Gas_Infill_Results.md:",
             "docs/NGFS_Pathway_Compatibility_Assessment.md:",
             "server/calculation/nativePathwayContract.ts:nativeInventory,validateNativePair"
           ],
-          "behaviour_delivered_this_run": "Versioned native pathway contract exists; a verified actual Phase VI swap has not been demonstrated.",
+          "behaviour_delivered_this_run": "Reviewed version-profile CSV adapter validates pinned release/artifact identity, schema, rights, native species and processing stage; separately profiled explicitly synthetic future-shaped input swaps without parser edits. Original criterion is adapter readiness, not an unreleased actual Phase VI swap.",
           "inputs_versions_assumptions": [
             "Positive-gas anchor ratio tapers to 1 by 2050 (2030 sensitivity); signed-land additive offset tapers to 0; three four-gas alternatives",
             {
@@ -79799,6 +80177,43 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npx tsc --noEmit --incremental false; node --import tsx --test script/native-mechanism-matrix.test.ts script/emissions-candidate.test.ts script/driver-consumption.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts script/regional-engine.test.ts script/native-producer-exports.test.ts script/derived-consumer.test.ts script/native-semantics.test.ts script/member-metrics.test.ts script/workplan-corrections.test.ts script/native-threshold-integration.test.ts script/remaining-component-contracts.test.ts; .venv/bin/python -m unittest discover -s script -p \"test*ngfs*adapter.py\"; .venv/bin/python -m unittest discover -s script -p \"test_completion_ledger*.py\"; node --import tsx --test script/validate-driver-retained-private.ts; npm run build"
+              ],
+              "executed_at": "2026-11-12T12:06:23.818980+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 66.217,
+              "counts": {
+                "tests": 178,
+                "pass": 178,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/s05-s07-integration/focused-repaired.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 178,
+                  "pass": 178,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 12,
+                  "pass": 12,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -79823,10 +80238,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Versioned input contract exists but an actual Phase VI release swap with verified source/schema/content/licence is not demonstrated."
-          ],
-          "next_action": "Versioned input contract exists but an actual Phase VI release swap with verified source/schema/content/licence is not demonstrated.",
+          "remaining_gaps": [],
+          "next_action": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "blockers": [],
           "stage": 6,
           "stageName": "Scenarios and reference pathways",
@@ -79838,14 +80251,18 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "not-yet-reconciled",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "operational",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
             "script/reference_gas_infill.py",
             "docs/Reference_Gas_Infill_Results.md",
             "docs/NGFS_Pathway_Compatibility_Assessment.md",
-            "server/calculation/nativePathwayContract.ts"
+            "server/calculation/nativePathwayContract.ts",
+            "docs/pathway-adapter-evidence.json",
+            "script/versioned_ngfs_adapter.py",
+            "script/test_versioned_ngfs_adapter.py",
+            "script/fixtures/ngfs-phase-v-5.1-ch4.csv"
           ],
           "filesFunctions": [
             {
@@ -79936,10 +80353,8 @@
           "retainedExecutions": [],
           "priorNumericalResults": [],
           "directResultCatalog": "reference",
-          "exactRemainingGaps": [
-            "Versioned input contract exists but an actual Phase VI release swap with verified source/schema/content/licence is not demonstrated."
-          ],
-          "nextAction": "Versioned input contract exists but an actual Phase VI release swap with verified source/schema/content/licence is not demonstrated.",
+          "exactRemainingGaps": [],
+          "nextAction": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "scientificAcceptance": "not-promoted",
           "git": {
             "baseRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -80024,7 +80439,11 @@
             "script/regional-replay.test.ts": "eda552f325e5506ab17d0a5a9f07a6c37062aaa52dd14a75328ffafd465d26dc",
             "script/regional-sampling.test.ts": "31633ef67730e436f57591c0a9b2a97a2bbb8ed28e92fe15fa89153c3c18f84c",
             "script/short-horizon-emissions.test.ts": "c4c4e4e8e516bfe89f147b89b1fb2f9ed712b08b631840d865e1801c9aae5ee8",
-            "server/calculation/nativePathwayContract.ts": "dbb3d34924b122925a0ed0c8ebf9cd2dab300e67c4e15fa9fde41a929799023d"
+            "server/calculation/nativePathwayContract.ts": "dbb3d34924b122925a0ed0c8ebf9cd2dab300e67c4e15fa9fde41a929799023d",
+            "script/versioned_ngfs_adapter.py": "7f1e6bceaa18cb32387190b48af513b5692bacba262205e6b0b7fb86f34a88f7",
+            "script/test_versioned_ngfs_adapter.py": "504a4fc311956f75370b1ac7e1dbbe7c0a28c471077b22e98e091e08a604c1a5",
+            "script/fixtures/ngfs-phase-v-5.1-ch4.csv": "6e605952b05152a9c99c0eb0b19a272d86592d7ff4ba259068e1325a1b803232",
+            "docs/pathway-adapter-evidence.json": "6b85bf00f327877f910312e7fdfa76ef051586851c1e381584152f85d605b0de"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -80037,6 +80456,21 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "native_increment_reconciliation": {
+            "verified_at": "2026-11-12T12:31:13.406883+00:00",
+            "criterion": "Build the pathway adapter so NGFS Phase VI can be swapped in when released.",
+            "scope": "Exact written finite engineering criterion; not production scientific acceptance",
+            "delivered": "Reviewed version-profile CSV adapter validates pinned release/artifact identity, schema, rights, native species and processing stage; separately profiled explicitly synthetic future-shaped input swaps without parser edits. Original criterion is adapter readiness, not an unreleased actual Phase VI swap.",
+            "independent_scientific_limits": "No actual Phase VI release/schema/licence or production native pair accepted. Actual attributed Phase V fixture is only 1124 bytes; synthetic future profile is explicitly not a released dataset. Existing raw/harmonized/infilled and missing-species refusals retained.",
+            "source_sha256": {
+              "script/versioned_ngfs_adapter.py": "7f1e6bceaa18cb32387190b48af513b5692bacba262205e6b0b7fb86f34a88f7",
+              "script/test_versioned_ngfs_adapter.py": "504a4fc311956f75370b1ac7e1dbbe7c0a28c471077b22e98e091e08a604c1a5",
+              "script/fixtures/ngfs-phase-v-5.1-ch4.csv": "6e605952b05152a9c99c0eb0b19a272d86592d7ff4ba259068e1325a1b803232",
+              "docs/pathway-adapter-evidence.json": "6b85bf00f327877f910312e7fdfa76ef051586851c1e381584152f85d605b0de"
+            },
+            "focused_receipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+            "runtime": "No new runtime verification; existing current_release preserved"
           }
         },
         {
@@ -93518,22 +93952,23 @@
           "id": "S07-020",
           "source_section": "acceptance",
           "requirement": "Net-zero fixtures (rise, fall, rebound, never crossing) return correct answers.",
-          "status": "partial",
+          "status": "verified",
           "origin": "pre-existing-scope",
           "existing_evidence": [
             "server/calculation/memberMetrics.ts",
             "server/calculation/ensemble.ts",
             "server/calculation/researchCorrections.ts",
-            "script/member-metrics.test.ts"
+            "script/member-metrics.test.ts",
+            "docs/netzero-fixture-reconciliation.json"
           ],
-          "evidence_caveat": "Original exact criterion reviewed clause-by-clause against the listed direct files and retained logs; evidence does not establish scientific or production acceptance. Specific remaining limit: Rise/fall/rebound/never-crossing fixtures pass; full accepted production member accounting remains separate from this fixture clause.",
+          "evidence_caveat": "Accounting on supplied synthetic members only; no production climate ensemble or physical forecast validation. Durable <=5% of 2024 diagnostic remains distinct from net zero.",
           "files_functions_changed": [
             "server/calculation/memberMetrics.ts:crossings,summarizeMemberMetrics",
             "server/calculation/ensemble.ts:quantile,summarizeEnsemble,compareEnsembles",
             "server/calculation/researchCorrections.ts:fcfeFromOperatingCashFlow,fcfeFromEarnings,eventQuantile,summarizeNetZeroYears,pairedGrowthGap,valuationScenarioEligibility",
             "script/member-metrics.test.ts:input"
           ],
-          "behaviour_delivered_this_run": "Rise/fall/rebound/never-crossing supplied-member fixtures pass with durable events and null never-reaching results.",
+          "behaviour_delivered_this_run": "Explicit rise, fall, rebound and never-crossing supplied-member fixtures return correct first/durable CO2 and GHG events and null never-reaching quantiles. Original finite fixture criterion does not require an accepted production ensemble.",
           "inputs_versions_assumptions": [
             "Durable event=first year after last positive annual emission through 2100; never=null. CAGR=1-(end/start)**(1/dt) only positive endpoints; signed absolute annual change otherwise",
             {
@@ -93599,6 +94034,43 @@
               ],
               "executed_at": "2026-11-10T09:17:48.417072+00:00",
               "exit_code": 0
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; npx tsc --noEmit --incremental false; node --import tsx --test script/native-mechanism-matrix.test.ts script/emissions-candidate.test.ts script/driver-consumption.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts script/regional-engine.test.ts script/native-producer-exports.test.ts script/derived-consumer.test.ts script/native-semantics.test.ts script/member-metrics.test.ts script/workplan-corrections.test.ts script/native-threshold-integration.test.ts script/remaining-component-contracts.test.ts; .venv/bin/python -m unittest discover -s script -p \"test*ngfs*adapter.py\"; .venv/bin/python -m unittest discover -s script -p \"test_completion_ledger*.py\"; node --import tsx --test script/validate-driver-retained-private.ts; npm run build"
+              ],
+              "executed_at": "2026-11-12T12:06:23.818980+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 66.217,
+              "counts": {
+                "tests": 178,
+                "pass": 178,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "generated-artifacts/s05-s07-integration/focused-repaired.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 178,
+                  "pass": 178,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 12,
+                  "pass": 12,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -93610,10 +94082,8 @@
           "scientific_acceptance": "not-promoted",
           "git_commit": null,
           "deployment_revision": null,
-          "remaining_gaps": [
-            "Rise/fall/rebound/never-crossing fixtures pass; full accepted production member accounting remains separate from this fixture clause."
-          ],
-          "next_action": "Rise/fall/rebound/never-crossing fixtures pass; full accepted production member accounting remains separate from this fixture clause.",
+          "remaining_gaps": [],
+          "next_action": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "blockers": [],
           "stage": 7,
           "stageName": "Climate response and the four headline measures",
@@ -93625,14 +94095,15 @@
             "checkType": "exact normalized clause in original DOCX XML"
           },
           "priorStatus": "not-yet-reconciled",
-          "proposedStatus": "partial",
+          "proposedStatus": "verified",
           "checkType": "exact",
           "checkScope": "clause-reconciliation-proposal; engineering evidence only unless separately stated",
           "directEvidenceFiles": [
             "server/calculation/memberMetrics.ts",
             "server/calculation/ensemble.ts",
             "server/calculation/researchCorrections.ts",
-            "script/member-metrics.test.ts"
+            "script/member-metrics.test.ts",
+            "docs/netzero-fixture-reconciliation.json"
           ],
           "filesFunctions": [
             {
@@ -93745,10 +94216,8 @@
           "retainedExecutions": [],
           "priorNumericalResults": [],
           "directResultCatalog": "metrics",
-          "exactRemainingGaps": [
-            "Rise/fall/rebound/never-crossing fixtures pass; full accepted production member accounting remains separate from this fixture clause."
-          ],
-          "nextAction": "Rise/fall/rebound/never-crossing fixtures pass; full accepted production member accounting remains separate from this fixture clause.",
+          "exactRemainingGaps": [],
+          "nextAction": "No remaining finite clause work; independent scientific/source gates remain unchanged.",
           "scientificAcceptance": "not-promoted",
           "git": {
             "baseRevision": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -93810,7 +94279,7 @@
             "script/ensemble-convergence.test.ts": "bf8f68358379d2a222375416e4c89dde43c86c499907d94460740c7ae7070c01",
             "script/evaluation.test.ts": "be663c19a4ac62b64a5736acd8d6604c3edd537f6029904108eb24cc6934ef2e",
             "script/member-attribution.test.ts": "f41633743741c854b07da1303e3d413d6e818e3be1f2523866da6e04c672ccb7",
-            "script/member-metrics.test.ts": "2093955c45e564a7b3252d79840f259deee2dc180fa63110a5788428b86be8f7",
+            "script/member-metrics.test.ts": "050b0eb710ee7f9cf357127ec5595781ede4f5d9c1f5796c337a27e84a535629",
             "script/native-pathway-contract.test.ts": "eaa1f18a0571c1d72c22528d6346105667d0446bdcb5573fecd615def9b5a746",
             "script/reference-scenarios.test.ts": "07954bf8b4b0ae0c185895a5bb488c2cd1bd474f4931296d3132ad4a2a8bc5e0",
             "script/regional-counterfactual-labels.test.ts": "a3b7cccd49d0e1f3c5ca867776fdec7d8439da1d6242342116d4955836d88f91",
@@ -93821,7 +94290,8 @@
             "script/short-horizon-emissions.test.ts": "c4c4e4e8e516bfe89f147b89b1fb2f9ed712b08b631840d865e1801c9aae5ee8",
             "server/calculation/ensemble.ts": "55dc5e9c9fb54f40b9d8f1855c7544b8378fd73a21e90346b3cf2656a9098de7",
             "server/calculation/memberMetrics.ts": "de597bf66bb9ccf0985ecbb51884466b7e20dc88c98d4c431f2060740d32e280",
-            "server/calculation/researchCorrections.ts": "d44ed7824ba6f23859a5da603b40d6cdabb3159957ced8df99365d3917460340"
+            "server/calculation/researchCorrections.ts": "d44ed7824ba6f23859a5da603b40d6cdabb3159957ced8df99365d3917460340",
+            "docs/netzero-fixture-reconciliation.json": "d0692e51d9b84dda143679bbf778f5db54c036be23afce1192aa67cbce529761"
           },
           "revision_boundary": {
             "review_baseline": "40c524b29bec455f51e0bb9ac7d3efabe0218e3e",
@@ -93834,6 +94304,21 @@
               "railway": "e0278526-15fb-476f-a1a5-045e861b6d2e",
               "scope": "Current integrated code release; does not promote this criterion's scientific or owner acceptance."
             }
+          },
+          "native_increment_reconciliation": {
+            "verified_at": "2026-11-12T12:31:13.406883+00:00",
+            "criterion": "Net-zero fixtures (rise, fall, rebound, never crossing) return correct answers.",
+            "scope": "Exact written finite engineering criterion; not production scientific acceptance",
+            "delivered": "Explicit rise, fall, rebound and never-crossing supplied-member fixtures return correct first/durable CO2 and GHG events and null never-reaching quantiles. Original finite fixture criterion does not require an accepted production ensemble.",
+            "independent_scientific_limits": "Accounting on supplied synthetic members only; no production climate ensemble or physical forecast validation. Durable <=5% of 2024 diagnostic remains distinct from net zero.",
+            "source_sha256": {
+              "server/calculation/memberMetrics.ts": "de597bf66bb9ccf0985ecbb51884466b7e20dc88c98d4c431f2060740d32e280",
+              "script/member-metrics.test.ts": "050b0eb710ee7f9cf357127ec5595781ede4f5d9c1f5796c337a27e84a535629",
+              "server/calculation/researchCorrections.ts": "d44ed7824ba6f23859a5da603b40d6cdabb3159957ced8df99365d3917460340",
+              "docs/netzero-fixture-reconciliation.json": "d0692e51d9b84dda143679bbf778f5db54c036be23afce1192aa67cbce529761"
+            },
+            "focused_receipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+            "runtime": "No new runtime verification; existing current_release preserved"
           }
         },
         {
@@ -183473,6 +183958,231 @@
       "workspace_revision": "721faf86c37e4a193e33a0e9def6c08ba730852e",
       "worktree_dirty": true,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T11:55:29.845861+00:00",
+      "exit_code": 124,
+      "elapsed_seconds": 285.003,
+      "counts": null,
+      "log": "generated-artifacts/s05-s07-integration/full-checks-bounded.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "d97fdb7ae405e3145c6afe971d09ccc640d59e99e40e049e21f0f54359dd92be",
+      "suite_counts": {
+        "typescript": null,
+        "python": null
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; npx tsc --noEmit --incremental false; node --import tsx --test script/native-mechanism-matrix.test.ts script/emissions-candidate.test.ts script/driver-consumption.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts script/regional-engine.test.ts script/native-producer-exports.test.ts script/derived-consumer.test.ts script/native-semantics.test.ts script/member-metrics.test.ts script/workplan-corrections.test.ts script/native-threshold-integration.test.ts script/remaining-component-contracts.test.ts; .venv/bin/python -m unittest discover -s script -p \"test*ngfs*adapter.py\"; .venv/bin/python -m unittest discover -s script -p \"test_completion_ledger*.py\"; node --import tsx --test script/validate-driver-retained-private.ts; npm run build"
+      ],
+      "executed_at": "2026-11-12T12:06:23.818980+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 66.217,
+      "counts": {
+        "tests": 178,
+        "pass": 178,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/s05-s07-integration/focused-repaired.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+      "suite_counts": {
+        "typescript": {
+          "tests": 178,
+          "pass": 178,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": {
+          "tests": 12,
+          "pass": 12,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; uv run python script/validate_status_choice_width_private.py; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; uv run python -m unittest discover -s script -p \"test_*.py\""
+      ],
+      "executed_at": "2026-11-12T12:03:26.716539+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 52.884,
+      "counts": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/s05-s07-integration/mandatory-private.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "ba725d8269c836cdf6ab976cce4f714fc57c80e61979907fcd370e5c8eb04f5c",
+      "suite_counts": {
+        "typescript": null,
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "mapfile -t tests < <(printf \"%s\\n\" script/*.test.ts | grep -v \"script/projection-route-cache.test.ts\"); exec npx tsx --test --test-concurrency=2 --test-reporter=tap \"${tests[@]}\""
+      ],
+      "executed_at": "2026-11-12T12:16:10.290666+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 248.812,
+      "counts": {
+        "tests": 1185,
+        "pass": 1185,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/s05-s07-integration/typescript-repaired-without-slow-route.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "87ca167899d6d703cc3a48da555496928242fe243e7b44cf15f6fb5a7df3bb98",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1185,
+          "pass": 1185,
+          "fail": 0,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "npx",
+        "tsx",
+        "--test",
+        "script/projection-route-cache.test.ts"
+      ],
+      "executed_at": "2026-11-12T12:00:42.301929+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 156.008,
+      "counts": {
+        "tests": 3,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/s05-s07-integration/projection-route-investigation.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "82b9e7697f5e759aa875e69e9c5422125709920802ab9932c0cd12504c46fdba",
+      "suite_counts": {
+        "typescript": {
+          "tests": 3,
+          "pass": 2,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": null
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; npm run check; uv run python -m unittest discover -s script -p \"test_*.py\"; uv run python script/validate_status_choice_width_private.py; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; npm run build"
+      ],
+      "executed_at": "2026-11-12T12:20:59.877126+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 80.666,
+      "counts": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "generated-artifacts/s05-s07-integration/final-private-type-build.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "52acb614004a8d30836509d4b335edbc7fe135ecb84f21345281230a90f39309",
+      "suite_counts": {
+        "typescript": null,
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-12T12:23:25.046042+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 419.817,
+      "counts": {
+        "tests": 1188,
+        "pass": 1187,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/workplan-completion/20261112T122325046042Z.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "1e0b30cc7fa3835c2ad7a56e02a2342e8739541efaef53bab3b641e7b879a943",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1188,
+          "pass": 1187,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 255,
+          "pass": 255,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
     }
   ],
   "restart": {
@@ -183726,9 +184436,9 @@
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261112-all22-uncertainty-6584856",
+    "checkpoint_id": "ckpt-20261112-transport-drilldown-1c1cb2d",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-12T09:54:52.405267+00:00",
+    "attempted_at": "2026-11-12T11:31:59.200691+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -183838,15 +184548,16 @@
       "partial": 12
     },
     "5": {
-      "partial": 13
+      "partial": 11,
+      "verified": 2
     },
     "6": {
-      "partial": 9,
-      "verified": 1
+      "partial": 8,
+      "verified": 2
     },
     "7": {
-      "partial": 21,
-      "verified": 1
+      "partial": 20,
+      "verified": 2
     },
     "8": {
       "partial": 10

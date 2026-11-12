@@ -66,7 +66,7 @@
     {
       "path": "client/src/components/emissions-candidate-review.tsx",
       "originalSha256": "dea148b9ea1e1ccec6eaa4bb8726c0f2dd6676a3e72b1b2033bc22484d9cffc2",
-      "currentSha256": "6d904e012243619a9b99998f2cff8a4ff30357a520694e6e3b8ec5322c6b1a7f",
+      "currentSha256": "33c909cf48d1157d7cc36429b5152e62c39e63fa7a5daf05d7a73e10637e7da3",
       "exactScanLines": [{"line":68,"text":"            Read-only candidate, not calibrated and not a forecast."}],
       "disposition": "retained",
       "resolution": null
@@ -245,7 +245,7 @@
     "shared/scientificEvidence.ts": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4",
     "shared/interimWarningEvidence.ts": "40e47bde7cf9ba4bc76dd4d506c1f55e161dae0bd763c6e92b21418fd974ddc5",
     "client/src/components/scientific-evidence-strands.tsx": "245f4a3ad63ca9ff50ef164573b29ea9a28372490700f53083098467080c2507",
-    "client/src/components/emissions-candidate-review.tsx": "6d904e012243619a9b99998f2cff8a4ff30357a520694e6e3b8ec5322c6b1a7f",
+    "client/src/components/emissions-candidate-review.tsx": "33c909cf48d1157d7cc36429b5152e62c39e63fa7a5daf05d7a73e10637e7da3",
     "client/src/components/published-scenario-references.tsx": "447e616aab116db355eb3b72d1be3967bcc43fe17ff3ffe32ae7a84730e97dfe",
     "client/src/components/financial-review.tsx": "ca8821a43d893a8b93003f0089762315fdfb502783fe025ce44e0bc87349fa0c",
     "server/calculation/readiness.ts": "0006f7c3641ea2d33627d7405370b3d3be610058f9ccb7a26b50d0e90557c0a3",

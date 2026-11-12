@@ -1,3 +1,258 @@
+## Native-v3 finite engineering reconciliation — local evidence
+
+{
+  "scope": "Original S05-004/S05-010/S06-006/S07-020 finite criteria reconciled; all300 IDs retained",
+  "status_before": {
+    "verified": 57,
+    "partial": 241,
+    "blocked-production-provisioning": 2
+  },
+  "status_after": {
+    "verified": 61,
+    "partial": 237,
+    "blocked-production-provisioning": 2
+  },
+  "new_code": "Native engine3; exact consumer version guard; nativeMechanisms included in archived replay closure; validly rehashed changed dependency and old native1/2 records explicitly refused",
+  "old_evidence": "Historical per-clause hashes/executions and current_release remain historical; not relabelled as new runtime. All14 FaIR pins, frozen negative protocols and old immutable outputs untouched.",
+  "focused_receipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+  "focused_log_sha256": "aacd57863c93f119450effa850725ac97a11b40082049fad28e301dd3ca8bd89",
+  "focused_counts": {
+    "typescript": {
+      "tests": 178,
+      "pass": 178,
+      "fail": 0,
+      "skipped": 0
+    },
+    "python": {
+      "tests": 12,
+      "pass": 12,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "mandatory_private_receipt": "generated-artifacts/s05-s07-integration/final-private-type-build.receipt.json",
+  "mandatory_private_log_sha256": "52acb614004a8d30836509d4b335edbc7fe135ecb84f21345281230a90f39309",
+  "all_python_counts": {
+    "tests": 255,
+    "pass": 255,
+    "fail": 0,
+    "skipped": 0
+  },
+  "typescript_partition_receipt": "generated-artifacts/s05-s07-integration/typescript-repaired-without-slow-route.receipt.json",
+  "typescript_partition_counts": {
+    "tests": 1185,
+    "pass": 1185,
+    "fail": 0,
+    "skipped": 0
+  },
+  "separate_slow_route_receipt": "generated-artifacts/s05-s07-integration/projection-route-investigation.receipt.json",
+  "separate_slow_route_counts": {
+    "tests": 3,
+    "pass": 2,
+    "fail": 0,
+    "skipped": 1
+  },
+  "source_contract_accounting": "Exactly2 new trace leaves are supplemental:439added slots,1440public/1439bound,1467typed; expanded4206public/4205bound. Frozen original1001 denominator and one opaque old summary gap unchanged. No original closure credit from these new fields.",
+  "extra_focused_checks": "5 ledger/receipt Python and4 actual retained-driver private TAP tests; npm typecheck/build pass. Not included in178 main TS or12 adapter counts.",
+  "full_receipt": "generated-artifacts/s05-s07-integration/parent-full.json",
+  "full_exit_code": 0,
+  "full_counts": {
+    "typescript": {
+      "tests": 1188,
+      "pass": 1187,
+      "fail": 0,
+      "skipped": 1
+    },
+    "python": {
+      "tests": 255,
+      "pass": 255,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "full_gate_passed": true,
+  "full_gate_boundary": "Actual unchanged full command passed; optional skips remain explicit in full_counts, with separate isolated local PostgreSQL evidence below. Not scientific acceptance.",
+  "failure_history": [
+    {
+      "receipt": "generated-artifacts/s05-s07-integration/contract-final.receipt.json",
+      "exit_code": 1,
+      "counts": {
+        "typescript": {
+          "tests": 41,
+          "pass": 40,
+          "fail": 1,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "log": "generated-artifacts/s05-s07-integration/contract-final.log",
+      "log_sha256": "cb6c951e467db3c5d3949f64976b4677aefab8bcef4fb8e4aabefcf0690927ee"
+    },
+    {
+      "receipt": "generated-artifacts/s05-s07-integration/contract-repair.receipt.json",
+      "exit_code": 1,
+      "counts": {
+        "typescript": {
+          "tests": 41,
+          "pass": 36,
+          "fail": 5,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "log": "generated-artifacts/s05-s07-integration/contract-repair.log",
+      "log_sha256": "9e39d9ecde3654637a68f9d63b78f5c77edfc68a3c48998894a9df4b01cbd784"
+    },
+    {
+      "receipt": "generated-artifacts/s05-s07-integration/contract-repaired.receipt.json",
+      "exit_code": 1,
+      "counts": {
+        "typescript": {
+          "tests": 41,
+          "pass": 37,
+          "fail": 4,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "log": "generated-artifacts/s05-s07-integration/contract-repaired.log",
+      "log_sha256": "4e9faa1504e707fb3d23c242ce208bfce40a65d9aacc25d6cdb58627feacc09b"
+    },
+    {
+      "receipt": "generated-artifacts/s05-s07-integration/focused-final.receipt.json",
+      "exit_code": 1,
+      "counts": {
+        "typescript": {
+          "tests": 178,
+          "pass": 177,
+          "fail": 1,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "log": "generated-artifacts/s05-s07-integration/focused-final.log",
+      "log_sha256": "62706d88445140051153789058c6844df228e0c3d75c88da740674d714fc8cf0"
+    },
+    {
+      "receipt": "generated-artifacts/s05-s07-integration/full-checks-bounded.receipt.json",
+      "exit_code": 124,
+      "counts": {
+        "typescript": null,
+        "python": null
+      },
+      "log": "generated-artifacts/s05-s07-integration/full-checks-bounded.log",
+      "log_sha256": "d97fdb7ae405e3145c6afe971d09ccc640d59e99e40e049e21f0f54359dd92be"
+    },
+    {
+      "receipt": "generated-artifacts/s05-s07-integration/typescript-without-slow-route.receipt.json",
+      "exit_code": 1,
+      "counts": {
+        "typescript": {
+          "tests": 1185,
+          "pass": 1180,
+          "fail": 5,
+          "skipped": 0
+        },
+        "python": null
+      },
+      "log": "generated-artifacts/s05-s07-integration/typescript-without-slow-route.log",
+      "log_sha256": "e282ae15a9c143e8c949a24c7de5a74d6afb20f49715a0b360c5e23a1c1d2f5b"
+    },
+    {
+      "receipt": null,
+      "exit_code": null,
+      "counts": null,
+      "log": "generated-artifacts/s05-s07-integration/full-checks-detached.log",
+      "log_sha256": "e958812a028cd3961af46d64a593909afdc850785984b675d93512419090ae98",
+      "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+      "observed_boundary": "Typecheck started; no subsequent stage or terminal summary retained"
+    },
+    {
+      "receipt": null,
+      "exit_code": null,
+      "counts": null,
+      "log": "generated-artifacts/s05-s07-integration/full-checks-final.log",
+      "log_sha256": "e958812a028cd3961af46d64a593909afdc850785984b675d93512419090ae98",
+      "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+      "observed_boundary": "Typecheck started; no subsequent stage or terminal summary retained"
+    },
+    {
+      "receipt": null,
+      "exit_code": null,
+      "counts": null,
+      "log": "generated-artifacts/s05-s07-integration/full-checks-initial.log",
+      "log_sha256": "b2648d873f0a5b4c8164b5bffd80eb2ba26a8eefe1909d171e97512e91441c33",
+      "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+      "observed_boundary": "Partial TypeScript TAP output; no terminal suite summary"
+    },
+    {
+      "receipt": null,
+      "exit_code": null,
+      "counts": null,
+      "log": "generated-artifacts/s05-s07-integration/full-checks-retry.log",
+      "log_sha256": "6c06747d596bd6bb536146683fed5d60c45cc39927b780bf051c76ae3e026435",
+      "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+      "observed_boundary": "Shell reported Hangup during npm run check; exact exit code not retained"
+    }
+  ],
+  "separate_local_postgresql": {
+    "evidence": "docs/disposable-cache-transport-evidence.json",
+    "sha256": "30a788fec0995ed65223f081313d74841e311adc03afe2010e9dced9a02641bd",
+    "passed": true,
+    "started_at": "2026-11-12T12:24:36.459Z",
+    "finished_at": "2026-11-12T12:28:00.446Z",
+    "actual_postgresql_witnesses": [
+      {
+        "path": "/home/runner/workspace/generated-artifacts/company-cache-extension/http-WJFoOd/evidence.json",
+        "sha256": "3f3c5d08bba66c8e72e7abc8bf050130d6521a865b40ea98cd9e8a24744cfadf",
+        "passed": true,
+        "postgresqlTransportExecuted": true,
+        "analyticalReceipts": 8,
+        "actualPostgresQueries": 311,
+        "companyPhases": {
+          "lookup-miss": 4,
+          "compute": 4,
+          "write": 4,
+          "lookup-hit": 4
+        }
+      },
+      {
+        "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/postgres-namespace-NkW7Rv/evidence.json",
+        "sha256": "6a461657a13c3153b4ae93206953b2c56d756c8ca6b5d08858dbd45a617fc1cd",
+        "passed": true,
+        "postgresqlTransportExecuted": true,
+        "analyticalReceipts": 5,
+        "actualPostgresQueries": 12,
+        "namespaceKeys": [
+          "finance-projected-rate:135ec499a36f86c5a3eec625805ea409239d79d36b7689afec5dfba614262d6a",
+          "projection:47bfe4f88336db1960d43bd0fb10ac80711f0316e1eca0a732f70cc32fbbe41c",
+          "projection:5d3039308389bdc762bdb513a33d026cab76164b729ab0909477d82865b72f57"
+        ]
+      }
+    ],
+    "full_gate_optional_case": "authorized disposable PostgreSQL preserves actual full/reduced namespaces and revision isolation",
+    "full_gate_optional_case_status": "skipped in full suite; executed successfully in the separate isolated PostgreSQL run, never subtracted from full-suite skipped count",
+    "isolation": {
+      "database": "s02_009_disposable_cache",
+      "localClusterDirectory": "/tmp/s02-cache-VR5rY7",
+      "privateUnixSocket": "/tmp/s02-cache-VR5rY7/socket",
+      "tcpListening": false,
+      "ambientDatabaseUrlUsed": false,
+      "ambientPgVariablesUsed": false,
+      "productionAccess": false,
+      "paidResources": 0,
+      "productionDDL": 0,
+      "productionDeletes": 0,
+      "cacheClears": 0,
+      "clusterStopped": true,
+      "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+    },
+    "boundary": "Separate isolated local PostgreSQL execution, not the full gate's database transport. Memory route matrices are not PostgreSQL witnesses. No deployed PostgreSQL acceptance."
+  },
+  "source_findings": "docs/mechanism-run-source-evidence.json: 0 newly qualified calibration/economic pairs; no actual new mechanism fits/issuer cash/dated 11-15 runs. Original remaining science/source scope remains current, not new tasks.",
+  "runtime": "No new deployment or workflow operations in subagent; current_release unchanged. Parent owns existing sync-github.py/CI promotion/Railway, one DEV restart and live exact-SHA checks."
+}
+
 ## Verified transport/drilldown/paired-reader code release — 12 November 2026
 
 **Implementation workspace:** `854f98991e349fd851c912e3642c987914282f7e`. **GitHub main, production-validated and exact live build:** `1c1cb2d9e53ad853c89717131873d68f9cbd8198`. Existing [CI43207843890](https://github.com/ahow/climate_implied/actions/runs/43207843890) validate/promote succeeded; public TypeScript/Python suites, typecheck and production-build steps succeeded. Railway `dc7a9476-fe4f-47e7-8988-71d60219c2e4` reached **SUCCESS** at `2026-11-12T11:28:09.369Z`. No bypass, workflow change, manual deploy or new monitoring.
@@ -5654,6 +5909,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-all22-uncertainty-6584856",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T09:54:52.405267+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-transport-drilldown-1c1cb2d",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T11:31:59.200691+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

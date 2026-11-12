@@ -7,6 +7,7 @@ import { projectRegionalMember } from "./regionalEngine";
 import { sampleRegionalDrivers } from "./regionalSampling";
 import { constantScenario } from "./emissionsCandidate";
 import { assertMechanismRole, driverRoleSchema } from "../../shared/driverAdmission";
+import { nativeMechanismDeclaration } from "./nativeMechanisms";
 
 export const driverUseSchema = z.enum(["central", "sensitivity"]);
 export type DriverUse = z.infer<typeof driverUseSchema>;
@@ -306,6 +307,7 @@ export async function consumeRegionalParameterRegistry(input: {
     consumption: r.bindings.map(b => ({ ...b, role: evidence.get(b.evidenceId)!.role,
       status: evidence.get(b.evidenceId)!.status,
       consumer: "projectRegionalMember/projectInventoryEmissions",
+      mechanism: nativeMechanismDeclaration(b.path),
       independentlyJustifiedCentralException: use === "central" && evidence.get(b.evidenceId)!.status !== "calibrated" })),
     use, distributionAdmission: use === "central" ? "reviewed-pinned-central" : "sensitivity-only",
     inventoryHash: contentHash(input.cells), productionEligible: false,

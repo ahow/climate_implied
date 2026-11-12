@@ -31,22 +31,27 @@ FULL_CHECK_COMMAND = [
 ]
 
 
+def python_counts(text):
+    py = re.search(r"^Ran (\d+) tests? in[^\n]*\n\s*(OK(?: \([^\n]*\))?|FAILED \([^\n]*\))\s*$",
+                   text, re.M)
+    if py:
+        total = int(py[1])
+        summary = py[2]
+        failures = re.search(r"failures=(\d+)", summary)
+        errors = re.search(r"errors=(\d+)", summary)
+        skips = re.search(r"skipped=(\d+)", summary)
+        failed = sum(int(m[1]) for m in (failures, errors) if m)
+        skipped = int(skips[1]) if skips else 0
+        return {"tests": total, "pass": total - failed - skipped, "fail": failed, "skipped": skipped}
+    return None
+
+
 def counts(text):
     tap = {key: re.search(rf"^# {key} (\d+)\s*$", text, re.M)
            for key in ("tests", "pass", "fail", "skipped")}
     if all(tap.values()):
         return {key: int(m[1]) for key, m in tap.items()}
-    py = re.search(r"Ran (\d+) tests? in", text)
-    if py:
-        total = int(py[1])
-        failures = re.search(r"failures=(\d+)", text)
-        errors = re.search(r"errors=(\d+)", text)
-        skips = re.search(r"skipped=(\d+)", text)
-        failed = sum(int(m[1]) for m in (failures, errors) if m)
-        skipped = int(skips[1]) if skips else 0
-        if re.search(r"^OK(?: \(.*\))?$|^FAILED \(.*\)$", text, re.M):
-            return {"tests": total, "pass": total - failed - skipped, "fail": failed, "skipped": skipped}
-    return None
+    return python_counts(text)
 
 
 def main():
@@ -102,7 +107,7 @@ def main():
         py = re.search(r"Ran \d+ tests? in", text)
         entry["suite_counts"] = {
             "typescript": counts(text) if re.search(r"^# tests \d+", text, re.M) else None,
-            "python": counts(text[py.start():]) if py else None,
+            "python": python_counts(text) if py else None,
         }
         entry["canonical_ledgers_modified"] = False
         entry["revision_boundary"] = "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"

@@ -1,6 +1,6 @@
 {
   "version": "typed-field-census-1",
-  "definitions": 2652,
+  "definitions": 2654,
   "integratedReadOnlySurfaceContracts": {
     "boundary": "Additional actual source-declared fields and strict Zod public projection paths, not original frozen cohort closure or approval. Dynamic filter values and private pipeline inputs are not inferred.",
     "sourceSha256": {
@@ -874,85 +874,85 @@
     }
   ],
   "comparableSlotAccounting": {
-    "actualUniqueSlots": 1465,
+    "actualUniqueSlots": 1467,
     "previouslyUnresolvedAliasSlots": 4,
-    "slotsIncludingReconciledAliases": 1469
+    "slotsIncludingReconciledAliases": 1471
   },
-  "fullyBoundFields": 1437,
+  "fullyBoundFields": 1439,
   "displayBindings": [
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 132,
+      "line": 141,
       "id": "native.residualDiagnostics.records[].diagnostic.baselineValue",
       "expression": "{r.diagnostic.baselineValue?.toPrecision(6) ?? \"Withheld\"}{r.diagnostic.basis?.unit}",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 133,
+      "line": 142,
       "id": "native.residualDiagnostics.records[].diagnostic.thresholdValue",
       "expression": "{r.diagnostic.thresholdValue?.toPrecision(6) ?? \"Withheld\"}",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 134,
+      "line": 143,
       "id": "native.residualDiagnostics.records[].diagnostic.year",
       "expression": "{thresholdDiagnosticDisplay(r.diagnostic)}",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 173,
+      "line": 183,
       "id": "native.result.trajectory[].year",
       "expression": "Year",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 174,
+      "line": 184,
       "id": "native.result.trajectory[].reportingGtCO2e",
       "expression": "Reporting emissions (GtCO2e, AR6 GWP100)",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 229,
+      "line": 239,
       "id": "native.inputs.readiness.missing[]",
       "expression": "{item}",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 252,
+      "line": 262,
       "id": "native.inputs.indicators[].label",
       "expression": "Indicator",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 253,
+      "line": 263,
       "id": "native.inputs.indicators[].value",
       "expression": "2024 value / unit",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 254,
+      "line": 264,
       "id": "native.inputs.indicators[].role",
       "expression": "Role",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 255,
+      "line": 265,
       "id": "native.inputs.indicators[].reason",
       "expression": "Reason",
       "bound": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 296,
+      "line": 306,
       "id": "native.inputs.assumptions[]",
       "expression": "{assumption}",
       "bound": true
@@ -2018,14 +2018,14 @@
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "rows": "bindProducerNativeConsumer(data, \"native-thresholds\", nativeThresholdExportRows(data.residualDiagnostics.records), scenario)",
       "bindings": "{nativeThresholdExportBindings}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "rows": "bindProducerNativeConsumer(data, \"native-trajectory\", data.result.trajectory.map(nativeExportRow), scenario)",
       "bindings": "{nativeExportBindings}",
       "coverage": "Binding expression inventory only; conditional/dynamic columns are NOT counted as bound without exact schema reconciliation"
@@ -2590,7 +2590,7 @@
     },
     {
       "source": "script/research-field-semantics.test.ts",
-      "line": 81,
+      "line": 85,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"ObservedScopes\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
@@ -3301,307 +3301,319 @@
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 111,
+      "line": 120,
       "expression": "!isError && data?.result && <HeadlineDrilldownReview headline={data} />",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 121,
+      "line": 130,
       "expression": "!isError && data?.result && !data.residualDiagnostics &&\n        <p role=\"status\" className=\"text-xs text-muted-foreground\">Native residual diagnostics are unavailable in this response. No default or legacy baseline is substituted.</p>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 123,
+      "line": 132,
       "expression": "!isError && data?.residualDiagnostics && <section className=\"rounded-md border p-3 space-y-2\" data-testid=\"native-residual-diagnostics\">\n        <h3 className=\"text-sm font-semibold\">{THRESHOLD_DIAGNOSTIC_LABEL} · native-mass diagnostics</h3>\n        <p className=\"text-xs text-muted-foreground\">{data.residualDiagnostics.qualification}</p>\n        <p className=\"text-xs text-muted-foreground break-words\">Baseline input: {data.residualDiagnostics.baselineInputId}. {data.residualDiagnostics.sourceEvidence}</p>\n        <div className=\"overflow-x-auto\">\n          <table className=\"w-full text-xs\">\n            <thead><tr><th className=\"text-left\">Region / gas</th><th className=\"text-right\">2024 baseline (native mass/year)</th><th className=\"text-right\">5% threshold (same unit)</th><th className=\"text-right\">{THRESHOLD_DIAGNOSTIC_LABEL}</th></tr></thead>\n            <tbody>{data.residualDiagnostics.records.map(r => <tr key={`${r.region}:${r.memberId}:${r.gas}`}>\n              <th className=\"text-left font-normal py-1\">{r.region} / {r.gas}</th>\n              <td data-field-id=\"native.residualDiagnostics.records[].diagnostic.baselineValue\" className=\"text-right\">{r.diagnostic.baselineValue?.toPrecision(6) ?? \"Withheld\"} {r.diagnostic.basis?.unit}</td>\n              <td data-field-id=\"native.residualDiagnostics.records[].diagnostic.thresholdValue\" className=\"text-right\">{r.diagnostic.thresholdValue?.toPrecision(6) ?? \"Withheld\"}</td>\n              <td data-field-id=\"native.residualDiagnostics.records[].diagnostic.year\" className=\"text-right\">{thresholdDiagnosticDisplay(r.diagnostic)}</td>\n            </tr>)}</tbody>\n          </table>\n        </div>\n        <DownloadDataButton kind=\"native\" filename=\"native-mass-five-percent-2024-diagnostics\"\n          sheetName=\"Native residual diagnostic\" label=\"Download separate native threshold diagnostics\"\n          rows={bindProducerNativeConsumer(data, \"native-thresholds\", nativeThresholdExportRows(data.residualDiagnostics.records), scenario)}\n          requireDerivedParent={!!exactProducerDownload(data)}\n          fieldBindings={nativeThresholdExportBindings} testId=\"button-download-native-thresholds\" />\n      </section>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 124,
+      "line": 133,
       "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 125,
+      "line": 134,
       "expression": "data.residualDiagnostics.qualification",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 126,
+      "line": 135,
       "expression": "data.residualDiagnostics.baselineInputId",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 126,
+      "line": 135,
       "expression": "data.residualDiagnostics.sourceEvidence",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 129,
+      "line": 138,
       "expression": "THRESHOLD_DIAGNOSTIC_LABEL",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 130,
+      "line": 139,
       "expression": "data.residualDiagnostics.records.map(r => <tr key={`${r.region}:${r.memberId}:${r.gas}`}>\n              <th className=\"text-left font-normal py-1\">{r.region} / {r.gas}</th>\n              <td data-field-id=\"native.residualDiagnostics.records[].diagnostic.baselineValue\" className=\"text-right\">{r.diagnostic.baselineValue?.toPrecision(6) ?? \"Withheld\"} {r.diagnostic.basis?.unit}</td>\n              <td data-field-id=\"native.residualDiagnostics.records[].diagnostic.thresholdValue\" className=\"text-right\">{r.diagnostic.thresholdValue?.toPrecision(6) ?? \"Withheld\"}</td>\n              <td data-field-id=\"native.residualDiagnostics.records[].diagnostic.year\" className=\"text-right\">{thresholdDiagnosticDisplay(r.diagnostic)}</td>\n            </tr>)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 131,
+      "line": 140,
       "expression": "r.region",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 131,
+      "line": 140,
       "expression": "r.gas",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 132,
+      "line": 141,
       "expression": "r.diagnostic.baselineValue?.toPrecision(6) ?? \"Withheld\"",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 132,
+      "line": 141,
       "expression": "r.diagnostic.basis?.unit",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 133,
+      "line": 142,
       "expression": "r.diagnostic.thresholdValue?.toPrecision(6) ?? \"Withheld\"",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 134,
+      "line": 143,
       "expression": "thresholdDiagnosticDisplay(r.diagnostic)",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 145,
-      "expression": "isLoading ? (\n        <div role=\"status\" aria-label=\"Loading candidate emissions\" className=\"space-y-3\">\n          <span className=\"sr-only\">Loading candidate emissions…</span>\n          {reviewYears.map((year) => (\n            <div key={year} className=\"h-8 rounded bg-muted animate-pulse\" />\n          ))}\n        </div>\n      ) : isError ? (\n        <div role=\"alert\" className=\"flex flex-wrap items-center justify-between gap-3 rounded-md border p-3\">\n          <p className=\"text-sm text-muted-foreground\">\n            Candidate emissions could not be loaded. No candidate values are shown.\n          </p>\n          <Button variant=\"outline\" size=\"sm\" onClick={() => void refetch()} disabled={isFetching}>\n            {isFetching ? \"Retrying…\" : \"Retry\"}\n          </Button>\n        </div>\n      ) : !data?.result?.trajectory?.length ? (\n        <p className=\"rounded-md border p-3 text-sm text-muted-foreground\">\n          No candidate trajectory is available for this scenario.\n        </p>\n      ) : (\n        <div className=\"overflow-x-auto\">\n          <table className=\"w-full text-sm\">\n            <caption className=\"text-left text-xs text-muted-foreground pb-2\">\n              {scenarioLabels[scenario]} · Reporting emissions only\n            </caption>\n            <thead>\n              <tr className=\"border-b text-muted-foreground\">\n                <th scope=\"col\" data-field-id=\"native.result.trajectory[].year\" className=\"py-2 text-left font-medium\">Year</th>\n                <th scope=\"col\" data-field-id=\"native.result.trajectory[].reportingGtCO2e\" className=\"py-2 text-right font-medium\">Reporting emissions (GtCO2e, AR6 GWP100)</th>\n              </tr>\n            </thead>\n            <tbody>\n              {reviewYears.map((year) => {\n                const point = data?.result?.trajectory?.find((entry) => entry.year === year);\n                return (\n                  <tr key={year} className=\"border-b last:border-0\">\n                    <th scope=\"row\" className=\"py-2 text-left font-normal tabular-nums\">{year}</th>\n                    <td className=\"py-2 text-right tabular-nums\">\n                      {point && Number.isFinite(point.reportingGtCO2e)\n                        ? formatEmissions.format(point.reportingGtCO2e)\n                        : \"Not available\"}\n                    </td>\n                  </tr>\n                );\n              })}\n            </tbody>\n          </table>\n          <DownloadDataButton\n            kind=\"native\"\n            filename={`native-emissions-${scenario}`}\n            rows={bindProducerNativeConsumer(data, \"native-trajectory\", data.result.trajectory.map(nativeExportRow), scenario)}\n            requireDerivedParent={!!exactProducerDownload(data)}\n            fieldBindings={nativeExportBindings}\n          />\n        </div>\n      )",
+      "line": 154,
+      "expression": "isLoading ? (\n        <div role=\"status\" aria-label=\"Loading candidate emissions\" className=\"space-y-3\">\n          <span className=\"sr-only\">Loading candidate emissions…</span>\n          {reviewYears.map((year) => (\n            <div key={year} className=\"h-8 rounded bg-muted animate-pulse\" />\n          ))}\n        </div>\n      ) : isError ? (\n        <div role=\"alert\" className=\"flex flex-wrap items-center justify-between gap-3 rounded-md border p-3\">\n          <p className=\"text-sm text-muted-foreground\">\n            Candidate emissions could not be loaded. No candidate values are shown.\n            {error instanceof NativeCandidateVersionError && <span className=\"block\">{error.message}</span>}\n          </p>\n          <Button variant=\"outline\" size=\"sm\" onClick={() => void refetch()} disabled={isFetching}>\n            {isFetching ? \"Retrying…\" : \"Retry\"}\n          </Button>\n        </div>\n      ) : !data?.result?.trajectory?.length ? (\n        <p className=\"rounded-md border p-3 text-sm text-muted-foreground\">\n          No candidate trajectory is available for this scenario.\n        </p>\n      ) : (\n        <div className=\"overflow-x-auto\">\n          <table className=\"w-full text-sm\">\n            <caption className=\"text-left text-xs text-muted-foreground pb-2\">\n              {scenarioLabels[scenario]} · Reporting emissions only\n            </caption>\n            <thead>\n              <tr className=\"border-b text-muted-foreground\">\n                <th scope=\"col\" data-field-id=\"native.result.trajectory[].year\" className=\"py-2 text-left font-medium\">Year</th>\n                <th scope=\"col\" data-field-id=\"native.result.trajectory[].reportingGtCO2e\" className=\"py-2 text-right font-medium\">Reporting emissions (GtCO2e, AR6 GWP100)</th>\n              </tr>\n            </thead>\n            <tbody>\n              {reviewYears.map((year) => {\n                const point = data?.result?.trajectory?.find((entry) => entry.year === year);\n                return (\n                  <tr key={year} className=\"border-b last:border-0\">\n                    <th scope=\"row\" className=\"py-2 text-left font-normal tabular-nums\">{year}</th>\n                    <td className=\"py-2 text-right tabular-nums\">\n                      {point && Number.isFinite(point.reportingGtCO2e)\n                        ? formatEmissions.format(point.reportingGtCO2e)\n                        : \"Not available\"}\n                    </td>\n                  </tr>\n                );\n              })}\n            </tbody>\n          </table>\n          <DownloadDataButton\n            kind=\"native\"\n            filename={`native-emissions-${scenario}`}\n            rows={bindProducerNativeConsumer(data, \"native-trajectory\", data.result.trajectory.map(nativeExportRow), scenario)}\n            requireDerivedParent={!!exactProducerDownload(data)}\n            fieldBindings={nativeExportBindings}\n          />\n        </div>\n      )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 148,
+      "line": 157,
       "expression": "reviewYears.map((year) => (\n            <div key={year} className=\"h-8 rounded bg-muted animate-pulse\" />\n          ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 158,
+      "line": 165,
+      "expression": "error instanceof NativeCandidateVersionError && <span className=\"block\">{error.message}</span>",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/emissions-candidate-review.tsx",
+      "line": 165,
+      "expression": "error.message",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/components/emissions-candidate-review.tsx",
+      "line": 168,
       "expression": "isFetching ? \"Retrying…\" : \"Retry\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 169,
+      "line": 179,
       "expression": "scenarioLabels[scenario]",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 178,
+      "line": 188,
       "expression": "reviewYears.map((year) => {\n                const point = data?.result?.trajectory?.find((entry) => entry.year === year);\n                return (\n                  <tr key={year} className=\"border-b last:border-0\">\n                    <th scope=\"row\" className=\"py-2 text-left font-normal tabular-nums\">{year}</th>\n                    <td className=\"py-2 text-right tabular-nums\">\n                      {point && Number.isFinite(point.reportingGtCO2e)\n                        ? formatEmissions.format(point.reportingGtCO2e)\n                        : \"Not available\"}\n                    </td>\n                  </tr>\n                );\n              })",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 182,
+      "line": 192,
       "expression": "year",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 184,
+      "line": 194,
       "expression": "point && Number.isFinite(point.reportingGtCO2e)\n                        ? formatEmissions.format(point.reportingGtCO2e)\n                        : \"Not available\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 203,
+      "line": 213,
       "expression": "!isLoading && !isError && data?.inputs && (\n        <div className=\"space-y-4\">\n          <div className=\"space-y-2\">\n            <h3 className=\"text-sm font-semibold\">Readiness and missing calibration</h3>\n            <p className=\"text-xs text-muted-foreground\">\n              Inventory year: {data.inputs.inventoryYear ?? \"Not available\"} · Indicator year:{\" \"}\n              {data.inputs.indicatorYear ?? \"Not available\"}\n            </p>\n            {data.inputs.readiness?.status && (\n              <p className=\"text-sm text-muted-foreground\">\n                Reported readiness status: {data.inputs.readiness.status}\n              </p>\n            )}\n            {data.inputs.readiness?.mainCase && (\n              <p className=\"text-sm text-muted-foreground\">\n                Native-gas main-case basis (not yet calibrated): {data.inputs.readiness.mainCase}\n              </p>\n            )}\n            {data.inputs.readiness?.comparisonCase && (\n              <p className=\"text-sm text-muted-foreground\">\n                Native-gas comparison basis (not yet calibrated): {data.inputs.readiness.comparisonCase}\n              </p>\n            )}\n            {data.inputs.readiness?.missing?.length ? (\n              <ul aria-label=\"Missing readiness requirements\" className=\"list-disc pl-5 space-y-1 text-sm text-muted-foreground\">\n                {data.inputs.readiness.missing.map((item, index) => (\n                  <li data-field-id=\"native.inputs.readiness.missing[]\" key={index}>{item}</li>\n                ))}\n              </ul>\n            ) : (\n              <p className=\"text-sm text-muted-foreground\">\n                No missing-requirement details were supplied. This does not establish readiness.\n              </p>\n            )}\n          </div>\n\n          <details className=\"rounded-md border p-3\">\n            <summary className=\"cursor-pointer text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\">\n              Indicator roles · 2024 values\n            </summary>\n            {data.inputs.indicators?.length ? (\n              <div className=\"overflow-x-auto mt-3\">\n                <table className=\"w-full text-sm\">\n                  <caption className=\"text-left text-xs text-muted-foreground pb-2\">\n                    Dated input diagnostics, not calibrated policy cases. Values from other years\n                    are identified rather than presented as 2024 observations.\n                  </caption>\n                  <thead>\n                    <tr className=\"border-b text-muted-foreground\">\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].label\" className=\"py-2 pr-4 text-left font-medium\">Indicator</th>\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].value\" className=\"py-2 pr-4 text-left font-medium\">2024 value / unit</th>\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].role\" className=\"py-2 pr-4 text-left font-medium\">Role</th>\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].reason\" className=\"py-2 text-left font-medium\">Reason</th>\n                    </tr>\n                  </thead>\n                  <tbody>\n                    {data.inputs.indicators.map((indicator, index) => {\n                      const year = indicator.year ?? data.inputs?.indicatorYear;\n                      const value = typeof indicator.value === \"number\" && Number.isFinite(indicator.value)\n                        ? formatEmissions.format(indicator.value)\n                        : \"Not available\";\n                      return (\n                        <tr key={indicator.key ?? index} className=\"border-b last:border-0\">\n                          <th scope=\"row\" className=\"py-2 pr-4 text-left font-normal\">\n                            {indicator.label ?? indicator.key ?? \"Unnamed indicator\"}\n                          </th>\n                          <td className=\"py-2 pr-4 tabular-nums\">\n                            {year === 2024 ? value : \"2024 value not available\"}\n                            {year === 2024 ? indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\" : \"\"}\n                            {year !== 2024 && (\n                              <span className=\"block text-xs text-muted-foreground\">\n                                {year ?? \"Undated\"} input: {value}{indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\"}\n                              </span>\n                            )}\n                          </td>\n                          <td className=\"py-2 pr-4\">{indicator.role ?? \"Not supplied\"}</td>\n                          <td className=\"py-2\">{indicator.reason ?? \"Not supplied\"}</td>\n                        </tr>\n                      );\n                    })}\n                  </tbody>\n                </table>\n              </div>\n            ) : (\n              <p className=\"mt-3 text-sm text-muted-foreground\">No indicator-role details are available.</p>\n            )}\n          </details>\n\n          <div className=\"space-y-2\">\n            <h3 className=\"text-sm font-semibold\">Diagnostic assumptions</h3>\n            {data.inputs.assumptions?.length ? (\n              <ul className=\"list-disc pl-5 space-y-1 text-sm text-muted-foreground\">\n                {data.inputs.assumptions.map((assumption, index) => (\n                  <li data-field-id=\"native.inputs.assumptions[]\" key={index}>{assumption}</li>\n                ))}\n              </ul>\n            ) : (\n              <p className=\"text-sm text-muted-foreground\">No assumptions were supplied.</p>\n            )}\n          </div>\n        </div>\n      )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 208,
+      "line": 218,
       "expression": "data.inputs.inventoryYear ?? \"Not available\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 208,
+      "line": 218,
       "expression": "\" \"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 209,
+      "line": 219,
       "expression": "data.inputs.indicatorYear ?? \"Not available\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 211,
+      "line": 221,
       "expression": "data.inputs.readiness?.status && (\n              <p className=\"text-sm text-muted-foreground\">\n                Reported readiness status: {data.inputs.readiness.status}\n              </p>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 213,
+      "line": 223,
       "expression": "data.inputs.readiness.status",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 216,
+      "line": 226,
       "expression": "data.inputs.readiness?.mainCase && (\n              <p className=\"text-sm text-muted-foreground\">\n                Native-gas main-case basis (not yet calibrated): {data.inputs.readiness.mainCase}\n              </p>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 218,
+      "line": 228,
       "expression": "data.inputs.readiness.mainCase",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 221,
+      "line": 231,
       "expression": "data.inputs.readiness?.comparisonCase && (\n              <p className=\"text-sm text-muted-foreground\">\n                Native-gas comparison basis (not yet calibrated): {data.inputs.readiness.comparisonCase}\n              </p>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 223,
+      "line": 233,
       "expression": "data.inputs.readiness.comparisonCase",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 226,
+      "line": 236,
       "expression": "data.inputs.readiness?.missing?.length ? (\n              <ul aria-label=\"Missing readiness requirements\" className=\"list-disc pl-5 space-y-1 text-sm text-muted-foreground\">\n                {data.inputs.readiness.missing.map((item, index) => (\n                  <li data-field-id=\"native.inputs.readiness.missing[]\" key={index}>{item}</li>\n                ))}\n              </ul>\n            ) : (\n              <p className=\"text-sm text-muted-foreground\">\n                No missing-requirement details were supplied. This does not establish readiness.\n              </p>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 228,
+      "line": 238,
       "expression": "data.inputs.readiness.missing.map((item, index) => (\n                  <li data-field-id=\"native.inputs.readiness.missing[]\" key={index}>{item}</li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 229,
+      "line": 239,
       "expression": "item",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 243,
+      "line": 253,
       "expression": "data.inputs.indicators?.length ? (\n              <div className=\"overflow-x-auto mt-3\">\n                <table className=\"w-full text-sm\">\n                  <caption className=\"text-left text-xs text-muted-foreground pb-2\">\n                    Dated input diagnostics, not calibrated policy cases. Values from other years\n                    are identified rather than presented as 2024 observations.\n                  </caption>\n                  <thead>\n                    <tr className=\"border-b text-muted-foreground\">\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].label\" className=\"py-2 pr-4 text-left font-medium\">Indicator</th>\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].value\" className=\"py-2 pr-4 text-left font-medium\">2024 value / unit</th>\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].role\" className=\"py-2 pr-4 text-left font-medium\">Role</th>\n                      <th scope=\"col\" data-field-id=\"native.inputs.indicators[].reason\" className=\"py-2 text-left font-medium\">Reason</th>\n                    </tr>\n                  </thead>\n                  <tbody>\n                    {data.inputs.indicators.map((indicator, index) => {\n                      const year = indicator.year ?? data.inputs?.indicatorYear;\n                      const value = typeof indicator.value === \"number\" && Number.isFinite(indicator.value)\n                        ? formatEmissions.format(indicator.value)\n                        : \"Not available\";\n                      return (\n                        <tr key={indicator.key ?? index} className=\"border-b last:border-0\">\n                          <th scope=\"row\" className=\"py-2 pr-4 text-left font-normal\">\n                            {indicator.label ?? indicator.key ?? \"Unnamed indicator\"}\n                          </th>\n                          <td className=\"py-2 pr-4 tabular-nums\">\n                            {year === 2024 ? value : \"2024 value not available\"}\n                            {year === 2024 ? indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\" : \"\"}\n                            {year !== 2024 && (\n                              <span className=\"block text-xs text-muted-foreground\">\n                                {year ?? \"Undated\"} input: {value}{indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\"}\n                              </span>\n                            )}\n                          </td>\n                          <td className=\"py-2 pr-4\">{indicator.role ?? \"Not supplied\"}</td>\n                          <td className=\"py-2\">{indicator.reason ?? \"Not supplied\"}</td>\n                        </tr>\n                      );\n                    })}\n                  </tbody>\n                </table>\n              </div>\n            ) : (\n              <p className=\"mt-3 text-sm text-muted-foreground\">No indicator-role details are available.</p>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 259,
+      "line": 269,
       "expression": "data.inputs.indicators.map((indicator, index) => {\n                      const year = indicator.year ?? data.inputs?.indicatorYear;\n                      const value = typeof indicator.value === \"number\" && Number.isFinite(indicator.value)\n                        ? formatEmissions.format(indicator.value)\n                        : \"Not available\";\n                      return (\n                        <tr key={indicator.key ?? index} className=\"border-b last:border-0\">\n                          <th scope=\"row\" className=\"py-2 pr-4 text-left font-normal\">\n                            {indicator.label ?? indicator.key ?? \"Unnamed indicator\"}\n                          </th>\n                          <td className=\"py-2 pr-4 tabular-nums\">\n                            {year === 2024 ? value : \"2024 value not available\"}\n                            {year === 2024 ? indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\" : \"\"}\n                            {year !== 2024 && (\n                              <span className=\"block text-xs text-muted-foreground\">\n                                {year ?? \"Undated\"} input: {value}{indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\"}\n                              </span>\n                            )}\n                          </td>\n                          <td className=\"py-2 pr-4\">{indicator.role ?? \"Not supplied\"}</td>\n                          <td className=\"py-2\">{indicator.reason ?? \"Not supplied\"}</td>\n                        </tr>\n                      );\n                    })",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 267,
+      "line": 277,
       "expression": "indicator.label ?? indicator.key ?? \"Unnamed indicator\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 270,
+      "line": 280,
       "expression": "year === 2024 ? value : \"2024 value not available\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 271,
+      "line": 281,
       "expression": "year === 2024 ? indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\" : \"\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 272,
+      "line": 282,
       "expression": "year !== 2024 && (\n                              <span className=\"block text-xs text-muted-foreground\">\n                                {year ?? \"Undated\"} input: {value}{indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\"}\n                              </span>\n                            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 274,
+      "line": 284,
       "expression": "year ?? \"Undated\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 274,
+      "line": 284,
       "expression": "value",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 274,
+      "line": 284,
       "expression": "indicator.unit ? ` ${indicator.unit}` : \" — unit not supplied\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 278,
+      "line": 288,
       "expression": "indicator.role ?? \"Not supplied\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 279,
+      "line": 289,
       "expression": "indicator.reason ?? \"Not supplied\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 293,
+      "line": 303,
       "expression": "data.inputs.assumptions?.length ? (\n              <ul className=\"list-disc pl-5 space-y-1 text-sm text-muted-foreground\">\n                {data.inputs.assumptions.map((assumption, index) => (\n                  <li data-field-id=\"native.inputs.assumptions[]\" key={index}>{assumption}</li>\n                ))}\n              </ul>\n            ) : (\n              <p className=\"text-sm text-muted-foreground\">No assumptions were supplied.</p>\n            )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 295,
+      "line": 305,
       "expression": "data.inputs.assumptions.map((assumption, index) => (\n                  <li data-field-id=\"native.inputs.assumptions[]\" key={index}>{assumption}</li>\n                ))",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 296,
+      "line": 306,
       "expression": "assumption",
       "explicitSemanticAncestor": true
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 309,
+      "line": 319,
       "expression": "data?.result?.validation && !isError && (\n          <span> Validation status: {data.result?.validation}. This is not calibration.</span>\n        )",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 310,
+      "line": 320,
       "expression": "data.result?.validation",
       "explicitSemanticAncestor": false
     },
@@ -10804,127 +10816,127 @@
       "transform": "Identity; annual conditional emissions, not calibrated uncertainty"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Context",
       "id": "native.residualDiagnostics.records[].contextLabel",
       "transform": "Display scenario/reference-year label from the source UI row; null if not supplied; not original-vintage evidence"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Diagnostic",
       "id": "native.residualDiagnostics.records[].diagnostic.label",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Version",
       "id": "native.residualDiagnostics.records[].diagnostic.version",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Year emissions reach 5% of 2024",
       "id": "native.residualDiagnostics.records[].diagnostic.year",
       "transform": "Identity; null preserved; see status"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Status",
       "id": "native.residualDiagnostics.records[].diagnostic.status",
       "transform": "Identity; withheld is not right-censored"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Reason",
       "id": "native.residualDiagnostics.records[].diagnostic.reason",
       "transform": "Identity; null preserved"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Baseline year",
       "id": "native.residualDiagnostics.records[].diagnostic.baselineYear",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Selected 2024 baseline",
       "id": "native.residualDiagnostics.records[].diagnostic.baselineValue",
       "transform": "Identity; never borrow from another selection"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Baseline evidence",
       "id": "native.residualDiagnostics.records[].diagnostic.baselineEvidenceId",
       "transform": "Identity; null preserved"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Threshold fraction",
       "id": "native.residualDiagnostics.records[].diagnostic.thresholdFraction",
       "transform": "Identity fraction, not percent"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Threshold value",
       "id": "native.residualDiagnostics.records[].diagnostic.thresholdValue",
       "transform": "0.05 * selected evidenced 2024 baseline; null if withheld"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Horizon year",
       "id": "native.residualDiagnostics.records[].diagnostic.horizonYear",
       "transform": "Identity; no extrapolation"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Selection",
       "id": "native.residualDiagnostics.records[].diagnostic.basis.selectionId",
       "transform": "Identity; null preserved"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Trajectory",
       "id": "native.residualDiagnostics.records[].diagnostic.basis.trajectoryId",
       "transform": "Identity; null preserved"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Member",
       "id": "native.residualDiagnostics.records[].diagnostic.basis.memberId",
       "transform": "Identity; null preserved"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Gas basis",
       "id": "native.residualDiagnostics.records[].diagnostic.basis.gasBasis",
       "transform": "Identity; no gas conversion"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Unit",
       "id": "native.residualDiagnostics.records[].diagnostic.basis.unit",
       "transform": "Identity; no unit conversion"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Crossing rule",
       "id": "native.residualDiagnostics.records[].diagnostic.crossingRule",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Not net zero",
       "id": "native.residualDiagnostics.records[].diagnostic.notNetZero",
       "transform": "Identity"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Gas",
       "id": "native.residualDiagnostics.records[].gas",
       "transform": "Identity; native species/account, not CO2e"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Region",
       "id": "native.residualDiagnostics.records[].region",
       "transform": "Identity; no regional baseline borrowing"
@@ -57163,8 +57175,8 @@
     },
     {
       "surface": "API GET \"/api/research/driver-registry\"",
-      "total": 89,
-      "bound": 89,
+      "total": 91,
+      "bound": 91,
       "unbound": [],
       "unresolvedTypes": [],
       "unresolvedDynamicKeys": [],
@@ -57315,7 +57327,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "total": 21,
       "bound": 21,
       "unbound": [],
@@ -57324,7 +57336,7 @@
       "withheld": []
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "total": 35,
       "bound": 35,
       "unbound": [],
@@ -65785,6 +65797,14 @@
     },
     {
       "surface": "API GET \"/api/research/driver-registry\"",
+      "field": "indicators[].actualConsumers.stage5.dependencyReceipt",
+      "type": "string",
+      "source": "server/routes.ts",
+      "line": 461,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].actualConsumers.stage5.directCuratedDistribution",
       "type": "null",
       "source": "server/routes.ts",
@@ -65803,6 +65823,14 @@
       "surface": "API GET \"/api/research/driver-registry\"",
       "field": "indicators[].actualConsumers.stage5.implicitCuratedIndicatorConsumption",
       "type": "true",
+      "source": "server/routes.ts",
+      "line": 461,
+      "resolution": "typed-field"
+    },
+    {
+      "surface": "API GET \"/api/research/driver-registry\"",
+      "field": "indicators[].actualConsumers.stage5.mechanismDeclarations",
+      "type": "string",
       "source": "server/routes.ts",
       "line": 461,
       "resolution": "typed-field"
@@ -68040,451 +68068,451 @@
       "resolution": "dynamic-key-needs-explicit-binding"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Baseline evidence",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Baseline year",
       "type": "2024",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Context",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Crossing rule",
       "type": "\"first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation\"",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Diagnostic",
       "type": "\"Year emissions reach 5% of 2024\"",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Gas",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Gas basis",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Horizon year",
       "type": "number",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Member",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Not net zero",
       "type": "true",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Reason",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Region",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Selected 2024 baseline",
       "type": "number",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Selection",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Status",
       "type": "\"withheld\"",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Threshold fraction",
       "type": "0.05",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Threshold value",
       "type": "number",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Trajectory",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Unit",
       "type": "string",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Version",
       "type": "\"selected-2024-five-percent-v2\"",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
       "field": "[].Year emissions reach 5% of 2024",
       "type": "number",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 138,
+      "line": 147,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].agriculture (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].buildings (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].c-C4F8 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].C2F6 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].C3F8 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].C4F10 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].C5F12 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].C6F14 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].CF4 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].CH4 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].CO2 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-125 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-134 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-134a (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-143 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-143a (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-152a (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-227ea (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-23 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-236fa (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-245fa (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-32 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-365mfc (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-41 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].HFC-43-10-mee (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].industry (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].land (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].N2O (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].NF3 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].other (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].power (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].Reporting emissions (GtCO2e, AR6 GWP100)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].SF6 (Mt gas/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].transport (GtCO2e/year)",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
-      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:193",
+      "surface": "XLSX client/src/components/emissions-candidate-review.tsx:203",
       "field": "[].Year",
       "type": "number | null",
       "source": "client/src/components/emissions-candidate-review.tsx",
-      "line": 193,
+      "line": 203,
       "resolution": "typed-field"
     },
     {
@@ -71870,8 +71898,8 @@
         "field": "[].Topic"
       }
     ],
-    "currentPublicSlots": 1438,
-    "publicSlotDenominatorDelta": 437,
+    "currentPublicSlots": 1440,
+    "publicSlotDenominatorDelta": 439,
     "originalCohortComplete": false,
     "originalFullyBoundFields": 1000,
     "originalSlots": [
@@ -82154,16 +82182,16 @@
       }
     ],
     "slotIdentityFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
-    "currentInventorySlotIdentityFingerprint": "f77ac87237cf6c3dd5769c9e7e2d2e184bf9176237b654444bd59a9d971583b8",
+    "currentInventorySlotIdentityFingerprint": "3a4de0066ee97c17cec60baa3f9eb8d2cb587838e3eaf975f92952aed203e596",
     "frozenOriginalSlotFingerprint": "34c22e5313d2db68748af9576beb7d72c6b1817f2aa9c1ad77aa9866e1d92f79",
     "originalSlotIdentitiesUnchanged": true,
     "reconciledCacheAliases": 4,
     "note": "Only reviewed original API families and existing DownloadDataButton slots count as closure. Literal columns require exact qualified bindings; finite dynamic slots require actual production row-builder certification, matching settings/bindings and an explicit finite concrete column domain with runtime rejection. New concrete columns, definitions, supplemental response/JSON claims and displays are separately inventoried, never original closure additions."
   },
   "supplementalSlotAccounting": {
-    "addedSlots": 437,
-    "addedPublicSlots": 437,
-    "addedBoundSlots": 437,
+    "addedSlots": 439,
+    "addedPublicSlots": 439,
+    "addedBoundSlots": 439,
     "addedFields": [
       {
         "surface": "API GET \"/api/cv/decarb-terciles\"",
@@ -84597,6 +84625,15 @@
       },
       {
         "surface": "API GET \"/api/research/driver-registry\"",
+        "field": "indicators[].actualConsumers.stage5.dependencyReceipt",
+        "type": "string",
+        "source": "server/routes.ts",
+        "line": 461,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].actualConsumers.stage5.directCuratedDistribution",
         "type": "null",
         "source": "server/routes.ts",
@@ -84617,6 +84654,15 @@
         "surface": "API GET \"/api/research/driver-registry\"",
         "field": "indicators[].actualConsumers.stage5.implicitCuratedIndicatorConsumption",
         "type": "true",
+        "source": "server/routes.ts",
+        "line": 461,
+        "resolution": "typed-field",
+        "bound": true
+      },
+      {
+        "surface": "API GET \"/api/research/driver-registry\"",
+        "field": "indicators[].actualConsumers.stage5.mechanismDeclarations",
+        "type": "string",
         "source": "server/routes.ts",
         "line": 461,
         "resolution": "typed-field",
@@ -85505,191 +85551,191 @@
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Baseline evidence",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Baseline year",
         "type": "2024",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Context",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Crossing rule",
         "type": "\"first annual value <= 0.05 * selected 2024 baseline; no interpolation or extrapolation\"",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Diagnostic",
         "type": "\"Year emissions reach 5% of 2024\"",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Gas",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Gas basis",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Horizon year",
         "type": "number",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Member",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Not net zero",
         "type": "true",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Reason",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Region",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Selected 2024 baseline",
         "type": "number",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Selection",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Status",
         "type": "\"withheld\"",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Threshold fraction",
         "type": "0.05",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Threshold value",
         "type": "number",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Trajectory",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Unit",
         "type": "string",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Version",
         "type": "\"selected-2024-five-percent-v2\"",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
       {
-        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:138",
+        "surface": "XLSX client/src/components/emissions-candidate-review.tsx:147",
         "field": "[].Year emissions reach 5% of 2024",
         "type": "number",
         "source": "client/src/components/emissions-candidate-review.tsx",
-        "line": 138,
+        "line": 147,
         "resolution": "typed-field",
         "bound": true
       },
@@ -86103,9 +86149,9 @@
     "originalPublicDenominator": 1001,
     "externalTypedApiSlots": 2766,
     "externalTypedApiBoundSlots": 2766,
-    "expandedApiAndDownloadPublicSlots": 4204,
-    "expandedApiAndDownloadBoundSlots": 4203,
-    "expandedPublicDeltaFromOriginal": 3203,
+    "expandedApiAndDownloadPublicSlots": 4206,
+    "expandedApiAndDownloadBoundSlots": 4205,
+    "expandedPublicDeltaFromOriginal": 3205,
     "supplementalMetadataSheetColumns": 31,
     "companyCoverageApiLeafSlots": 133,
     "companyCoverageJsonExportLeafSlots": 133,

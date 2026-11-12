@@ -45,6 +45,8 @@ export function driverConsumerTrace(id: IndicatorKey) {
       implicitCuratedIndicatorConsumption: false,
       gate: "Every actual scenario parameter leaf requires canonical mechanism-input role, permitted use, source-verified evidence and an exact region/path binding; central joint distribution and native inventory require pinned review",
       directCuratedDistribution: null,
+      mechanismDeclarations: "server/calculation/nativeMechanisms.ts:nativeMechanismDeclaration",
+      dependencyReceipt: "consumeRegionalParameterRegistry.consumption[].mechanism (exact bound path; not curated eligibility)",
       missingBridge: "No approved source-compatible mapping from this curated driver to native regional parameter distributions",
     },
   };

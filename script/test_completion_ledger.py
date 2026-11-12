@@ -36,3 +36,9 @@ class CompletionLedgerTests(unittest.TestCase):
                          {"tests": 4, "pass": 2, "fail": 1, "skipped": 1})
         self.assertEqual(parser("Ran 4 tests in 1s\nFAILED (failures=1, skipped=1)\n"),
                          {"tests": 4, "pass": 2, "fail": 1, "skipped": 1})
+
+    def test_python_summary_does_not_borrow_later_private_tap_counts(self):
+        parser = load("workplan-evidence-run").python_counts
+        mixed = ("Ran 12 tests in 0.010s\n\nOK\n"
+                 "# tests 4\n# pass 4\n# fail 0\n# skipped 0\n")
+        self.assertEqual(parser(mixed), {"tests": 12, "pass": 12, "fail": 0, "skipped": 0})

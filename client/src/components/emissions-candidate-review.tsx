@@ -9,7 +9,7 @@ import { nativeThresholdExportRows, nativeThresholdExportBindings } from "@/lib/
 import { nativeResidualDiagnosticsSchema } from "@shared/nativeThresholdSchema";
 import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { bindProducerNativeConsumer, exactProducerDownload } from "@/lib/producer-download";
-import { nativeReviewYears } from "@shared/nativeConsumer";
+import { deriveNativeConsumer, nativeReviewYears, NATIVE_CONSUMER_ENGINE_VERSION } from "@shared/nativeConsumer";
 import { HeadlineDrilldownReview } from "./headline-drilldown";
 
 type CandidateResponse = {
@@ -35,6 +35,7 @@ type CandidateResponse = {
     }[];
   };
   result?: {
+    version?: string;
     validation?: string;
     temperature?: null;
     trajectory?: {
@@ -54,6 +55,7 @@ const scenarioLabels: Record<ReviewScenario, string> = {
 };
 
 const reviewYears = nativeReviewYears;
+class NativeCandidateVersionError extends Error {}
 const formatEmissions = new Intl.NumberFormat("en", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
@@ -61,11 +63,18 @@ const formatEmissions = new Intl.NumberFormat("en", {
 
 export function EmissionsCandidateReview() {
   const [scenario, setScenario] = useState<ReviewScenario>("constant");
-  const { data, isLoading, isError, refetch, isFetching } = useQuery<CandidateResponse>({
+  const { data, isLoading, isError, error, refetch, isFetching } = useQuery<CandidateResponse>({
     queryKey: [`/api/emissions/candidate?scenario=${scenario}`],
     select: response => {
       if (!response) return response;
+      if (response.result?.version && response.result.version !== NATIVE_CONSUMER_ENGINE_VERSION)
+        throw new NativeCandidateVersionError(`Unsupported native engine response ${response.result.version}; expected ${NATIVE_CONSUMER_ENGINE_VERSION}. Refresh after the server release is complete.`);
       if (response.residualDiagnostics) nativeResidualDiagnosticsSchema.parse(response.residualDiagnostics);
+      // Query selection catches incompatible retained responses before render
+      // reaches strict export replay. Never crash the entire dashboard or
+      // reinterpret an old engine as today's native model during a release.
+      if (response.result?.version && response.residualDiagnostics)
+        deriveNativeConsumer(response, "native-trajectory", scenario);
       for (const rows of [response.result?.trajectory, response.inputs?.indicators]) {
         if (rows != null && (!Array.isArray(rows) || rows.some(row => !row || typeof row !== "object")))
           throw new Error("Candidate observation records unavailable.");
@@ -153,6 +162,7 @@ export function EmissionsCandidateReview() {
         <div role="alert" className="flex flex-wrap items-center justify-between gap-3 rounded-md border p-3">
           <p className="text-sm text-muted-foreground">
             Candidate emissions could not be loaded. No candidate values are shown.
+            {error instanceof NativeCandidateVersionError && <span className="block">{error.message}</span>}
           </p>
           <Button variant="outline" size="sm" onClick={() => void refetch()} disabled={isFetching}>
             {isFetching ? "Retrying…" : "Retry"}

@@ -1,0 +1,542 @@
+{
+  "schemaVersion": "mechanism-matrix-evidence-1",
+  "scope": "Original S05-004/S05-010: executable native mechanism declarations, actual engine dependency isolation and source-bound regional consumption; engineering evidence, not scientific acceptance.",
+  "originalSource": {
+    "path": "attached_assets/Climate_Dashboard_\u2014_Developer_Work_Plan_(1)_1794135026111.docx",
+    "sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
+    "verification": "Both exact whitespace-normalized original DOCX XML clauses matched using Python zipfile and ElementTree; no original source edited.",
+    "clauses": {
+      "S05-004": "Port mechanisms with explicit eligibility, lag, saturation, bounds and overlap groups: renewable displacement, EV stock turnover, activity and intensity, and policy. Charge EV electricity to the power sector. Port corporate and finance mechanisms only where a defensible coefficient exists; otherwise keep them as labelled sensitivities outside the central case.",
+      "S05-010": "Perturbing one driver changes only its declared mechanisms."
+    }
+  },
+  "implementation": [
+    {
+      "path": "server/calculation/nativeMechanisms.ts",
+      "sha256": "865d2d6724ae40af53eb0944c0650040ebd76b6ee96df3b825258f6d21cfa637",
+      "functions": [
+        "sectorOf",
+        "roadEligible",
+        "fossilEligible",
+        "powerEligible",
+        "genericAbatementEligible",
+        "laggedDelivery",
+        "completeOverlap",
+        "nativeMechanismDeclaration",
+        "declaredCellDependency",
+        "assertNativeMechanismDeclarations"
+      ],
+      "change": "Machine-readable path declarations include native cell scope, power/adoption outputs, timing, bounds, saturation, overlap group and non-calibrated coefficient status. Shared executable eligibility/lag/overlap helpers are actually called by the engine, not a refusal-only wrapper."
+    },
+    {
+      "path": "server/calculation/emissionsCandidate.ts",
+      "sha256": "48c667d8144d0a5e3605de5f222a9a07cbe42e0fdf4e642cb2a8a2c105c479f4",
+      "functions": [
+        "validate",
+        "projectNativeEmissions",
+        "projectInventoryEmissions"
+      ],
+      "change": "Native engine version 3. Explicit generic abatement eligibility excludes power, land and aggregate aviation/marine codes; exact scoped measures can address aviation/marine. Fractional abatement of a signed land sink refuses rather than weakening removals. Zero-addressable road avoids 0/0 at an initially fully electric fleet."
+    },
+    {
+      "path": "server/calculation/driverParameterRegistry.ts",
+      "sha256": "10db1c7c06810f7c703f932f7d9e20d73bf8e416055a681ed609b7aad2c6142c",
+      "functions": [
+        "consumeRegionalParameterRegistry"
+      ],
+      "change": "Every actual bound parameter consumption receipt carries its exact native mechanism declaration. Canonical role, source-byte verification, sensitivity admission, joint-distribution and inventory acceptance gates unchanged."
+    },
+    {
+      "path": "server/calculation/driverConsumptionTrace.ts",
+      "sha256": "40ea40e863a783852816699d2ace42b633b5029bbe1313df12880ded9e9cbd2e",
+      "functions": [
+        "driverConsumerTrace"
+      ],
+      "change": "Curated trace points to native declaration and bound-path receipt without inventing curated-to-regional distribution bridges."
+    },
+    {
+      "path": "shared/nativeScenarioSemantics.ts",
+      "sha256": "190b234823f2539997d1cd2eedcc24a0e806dd4be33e742fc3b1110d088058cb",
+      "functions": [
+        "definition"
+      ],
+      "change": "Configuration descriptions disclose exact generic exclusions, corporate sensitivity status and signed-land measure refusal."
+    },
+    {
+      "path": "shared/nativeConsumer.ts",
+      "sha256": "bb675c7fcec27baf2d0c2bb3c165c3f72314e9d169ae907495c7c0c9480d8e2c",
+      "functions": [
+        "deriveNativeConsumer"
+      ],
+      "change": "Narrow exact-version compatibility update to consume actual engine version 3; no route changes."
+    },
+    {
+      "path": "script/native-mechanism-matrix.test.ts",
+      "sha256": "645681a8bc51396d575ae0d9f947132f167e819314914a64f2bdc756083385d6",
+      "functions": [
+        "set",
+        "close",
+        "numericLeaves",
+        "allowed",
+        "reconcile",
+        "actual native perturbation tests",
+        "source-bound regional consumption matrix"
+      ],
+      "change": "52 exhaustive supported parameter templates, including scope strings and permission/provenance leaves. Every numerical trajectory leaf is checked against its declared downstream scope. Native and reporting aggregates are independently recomputed exactly from cells. All active supported drivers must actually move output; no generic notDeepEqual-only substitute for isolation."
+    }
+  ],
+  "formulas": {
+    "renewableStock": "capacity[t]=capacity[t-1]*(1-retirement)+annualAdditions; renewableTWh=capacityGW*8.76*capacityFactor",
+    "sales": "s(t)=1/(1+(1/s0-1)*exp(-logitGrowth*t)); s0=0 or 1 remains fixed",
+    "fleet": "fleet[t]=fleet[t-1]+(sales[t-1]-fleet[t-1])*fleetTurnover; never an instantaneous replacement by sales share",
+    "roadTailpipe": "technical=(fleet-initialFleet)/(1-initialFleet*tailpipeReduction)*passengerFraction*tailpipeReduction, only native CO2 road codes starting 1.A.3.b; negative change requires explicit reversal permission",
+    "electricity": "baseDemand=fossilBaseline+initialRenewable+nuclear; baseEV=initialFleet*fullElectricFleetDemand; totalEV=fleet*transportActivity*fullElectricFleetDemand; demand=(baseDemand-baseEV)*(1+nonEVPowerGrowth)^t+totalEV",
+    "electricityDispatch": "utilizedNuclear=min(nuclear,demand); utilizedRenewable=min(renewable,max(0,demand-utilizedNuclear)); fossil=max(0,demand-utilizedNuclear-utilizedRenewable); power CO2 factor=fossil/fossilBaseline",
+    "globalActivityIntensity": "((1+annualActivityGrowth)*(1-residualIntensityImprovement))^t; only non-land, non-power native CO2 lacking an explicit sector pathway; activity also feeds passenger-EV electricity unless an explicit transport activity path replaces it",
+    "sectorActivityIntensity": "((1+sectorGrowth)*(1-sectorIntensityImprovement))^min(t,trendEndYear-2024), all gases in that exact classified sector; transport activity, but not residual intensity, also feeds EV electricity",
+    "genericDelivery": "delivery=1-exp(-max(0,t-deliveryLagYears)/deliveryTimeYears); policy=coverage*implementation*maximumAbatement*delivery; corporate=coverage*deliveryFraction*maximumAbatement*delivery",
+    "scopedDelivery": "coverage*implementation*maximumReduction*(1-exp(-max(0,year-startYear)/deliveryYears)); exact sector-code AND native-gas eligibility",
+    "overlap": "For the same native baseline stock use maximum delivered reduction, never additive or multiplicative stacking; an explicit scoped measure replaces a weaker generic/technical reduction. Power always follows the electricity balance, not generic/scoped reduction.",
+    "signedLand": "Persistence or explicit multiplicative native land pathway preserves sign. A fractional emissions-abatement measure on a negative land sink refuses; no zero clamp and no invented removal efficacy."
+  },
+  "sources": [
+    {
+      "path": "server/calculation/data/inventory2024.json",
+      "sha256": "fa5dbe5e8b7c6ab31e8b75805534ad249d5d5056df86f011db34d4038e0a27ea",
+      "meaning": "Authentic frozen IGCC/GCB/EDGAR candidate inventory, native cells and GWP100 reporting factors; embedded upstream source hashes retained unchanged."
+    },
+    {
+      "path": "docs/driver-consumption-evidence.json",
+      "meaning": "Previously frozen negative-results preservation.before map, used as the independent expected hashes for all14 negative/protocol files."
+    },
+    {
+      "path": "script/fair-artifact-bundle.ts",
+      "meaning": "Exact13 protected sourcePaths plus projectionCacheResponse.ts define the14 protected FaIR code/protocol pins; current bytes compared to existing HEAD bytes, no repin."
+    },
+    {
+      "path": "script/validate-driver-retained-private.ts",
+      "meaning": "Existing mandatory real retained tests executed without modifying private source bytes, distributing private files, fitting, approval or publication."
+    }
+  ],
+  "commands": [
+    {
+      "command": "node --import tsx --test script/native-mechanism-matrix.test.ts script/emissions-candidate.test.ts script/driver-consumption.test.ts script/driver-evidence.test.ts script/legacy-driver-admission.test.ts script/regional-engine.test.ts script/native-producer-exports.test.ts script/derived-consumer.test.ts script/native-semantics.test.ts",
+      "testExitCode": 0,
+      "passed": 113,
+      "failed": 0,
+      "skipped": 0,
+      "log": "generated-artifacts/mechanism-matrix/focused-tests.tap",
+      "logSha256": "ae7c3809a3c542110b83cf1c614dc2cfdc14dd7a6ec06c9c1a5d2c2add03beee",
+      "shellNote": "The trailing diagnostic rg for '^not ok' returned1 because there were no failing tests; the actual node test runner passed113/113."
+    },
+    {
+      "command": "node --import tsx --test script/validate-driver-retained-private.ts",
+      "exitCode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "log": "generated-artifacts/mechanism-matrix/retained-validation.tap",
+      "logSha256": "a3a4e110a8d69900a13127b39ae24d02dbfb56b98668a8f7afd2247d2e4a95e8"
+    },
+    {
+      "command": "npx tsc --noEmit --incremental false",
+      "exitCode": 0,
+      "diagnostics": 0,
+      "log": "generated-artifacts/mechanism-matrix/typecheck.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": ".venv/bin/python -m unittest discover -s script -p 'test_driver_calibration.py'; .venv/bin/python -m unittest discover -s script -p 'test_driver_uncertainty.py'; .venv/bin/python -m unittest discover -s script -p 'test_fair_pinned_inputs.py'",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": 0,
+      "log": "generated-artifacts/mechanism-matrix/python-tests.log",
+      "logSha256": "b1322073b051a2ca2254320a4bf6c109811c8fd35d5b9c3354c942e94c4b54ab"
+    },
+    {
+      "command": "node --input-type=module; SHA256 current frozenNegativeFiles versus docs/driver-consumption-evidence.json preservation.before; exact14 FaIR source closure current SHA256 versus git show HEAD:path",
+      "exitCode": 0,
+      "frozenNegativeFilesUnchanged": 14,
+      "fairPinsUnchanged": 14,
+      "log": "generated-artifacts/mechanism-matrix/preservation.json",
+      "logSha256": "d90ceeda67a9bc4ac490acdc2a85aaa6f1b53488735bfd1416c4c653c566234d"
+    }
+  ],
+  "matrix": {
+    "coverage": "Exact equality between all52 scenarioParameterLeaves for the fully populated supported configuration and the set of perturbation probes. One instance per indexed measure/scope template; not a claim to enumerate arbitrary user array lengths.",
+    "topLevelTemplates": 24,
+    "sectorPathwayTemplates": 18,
+    "scopedMeasureTemplates": 10,
+    "totalTemplates": 52,
+    "globalYearsPerProbe": 37,
+    "globalPeriod": [
+      2024,
+      2060
+    ],
+    "numericLeavesPerYear": 169,
+    "numericComparisonsPerProbe": 6253,
+    "totalNumericComparisons": 325156,
+    "observedDeclaredNumericMovements": 31011,
+    "undeclaredNumericMovements": 0,
+    "activeRetainedInventoryEquationTemplates": 45,
+    "permissionOnlyTemplates": 1,
+    "provenanceOnlyTemplates": 3,
+    "emptyRetainedBuildingsScopeTemplates": 3,
+    "additionalBuildingsSubcodeEquationProbes": 3,
+    "regionalCases": 52,
+    "regionalComparisonRuns": 104,
+    "regionalMembersPerRun": 2,
+    "regionsPerMember": 6,
+    "regionalPeriod": [
+      2024,
+      2050
+    ],
+    "regionalIsolation": "Only US scenario leaf changed; other five full regional trajectories exactly equal for every case, including International transport. Active in-scope equation leaves must move US output; permission/provenance and empty building scope must not.",
+    "additionalAssertions": [
+      "Every row's native gas totals, sector reporting totals, CO2 fossil/land split and reporting total equal independent recomputation from native cells.",
+      "Electricity balances close with separate nuclear, renewable and fossil dispatch; EV load charged once, road displacement unaffected by fullElectricFleetDemand perturbation.",
+      "All52 probes have horizon-independent2030 prefixes and changed calculation identities.",
+      "Signed land sink persistence and trend direction checked; fractional sink abatement explicitly rejected.",
+      "Aggregate aviation/marine codes including international transport unaffected by EV and generic policy/corporate promises; exact explicit scoped CO2 measures can affect them.",
+      "Scoped delivery zero through start year and positive afterward; duplicate same-stock process/corporate reductions do not stack.",
+      "Renewable saturation never creates negative fossil generation; zero-addressable initially fully electric road remains finite."
+    ],
+    "movedNumericOutputsByTemplate": {
+      "annualActivityGrowth": 1260,
+      "residualIntensityImprovement": 1044,
+      "evSalesShare": 461,
+      "evFleetShare": 368,
+      "evLogitGrowth": 412,
+      "reversal": 0,
+      "fleetTurnover": 384,
+      "passengerTransportFraction": 115,
+      "evTailpipeReduction": 15,
+      "fullElectricFleetDemandTWh": 325,
+      "renewableCapacityGW": 364,
+      "renewableAdditionsGW": 324,
+      "renewableRetirement": 324,
+      "capacityFactor": 327,
+      "fossilGenerationTWh": 254,
+      "annualPowerDemandGrowth": 252,
+      "nuclearGenerationTWh": 327,
+      "incrementalPolicyCoverage": 917,
+      "policyImplementation": 917,
+      "corporateCoverage": 917,
+      "corporateDelivery": 917,
+      "maximumAbatement": 917,
+      "deliveryLagYears": 917,
+      "deliveryTimeYears": 918,
+      "sectorPathways/transport/annualActivityGrowth": 972,
+      "sectorPathways/transport/residualIntensityImprovement": 756,
+      "sectorPathways/transport/trendEndYear": 702,
+      "sectorPathways/industry/annualActivityGrowth": 3379,
+      "sectorPathways/industry/residualIntensityImprovement": 3375,
+      "sectorPathways/industry/trendEndYear": 2438,
+      "sectorPathways/buildings/annualActivityGrowth": 0,
+      "sectorPathways/buildings/residualIntensityImprovement": 0,
+      "sectorPathways/buildings/trendEndYear": 0,
+      "sectorPathways/agriculture/annualActivityGrowth": 612,
+      "sectorPathways/agriculture/residualIntensityImprovement": 612,
+      "sectorPathways/agriculture/trendEndYear": 442,
+      "sectorPathways/other/annualActivityGrowth": 1188,
+      "sectorPathways/other/residualIntensityImprovement": 1188,
+      "sectorPathways/other/trendEndYear": 858,
+      "sectorPathways/land/annualActivityGrowth": 180,
+      "sectorPathways/land/residualIntensityImprovement": 180,
+      "sectorPathways/land/trendEndYear": 130,
+      "measures/0/id": 0,
+      "measures/0/mechanism": 0,
+      "measures/0/evidence": 0,
+      "measures/0/sectorCodes/0": 165,
+      "measures/0/gases/0": 198,
+      "measures/0/coverage": 132,
+      "measures/0/implementation": 132,
+      "measures/0/maximumReduction": 132,
+      "measures/0/startYear": 132,
+      "measures/0/deliveryYears": 132
+    }
+  },
+  "tolerances": {
+    "changedNumericOutput": "abs(a-b)>1e-10+1e-12*max(abs(a),abs(b)); applied to every numerical leaf including native cells, gas/sector totals, electricity and adoption fields",
+    "aggregateRecomputation": "Exact JS equality using independently rebuilt sums in source cell order; no CO2e-to-native conversion",
+    "regionalUnchangedTrajectories": "deepStrictEqual, no numerical tolerance",
+    "overlapAndHorizonPrefix": "deepStrictEqual",
+    "electricityClosure": "abs(error)<=1e-10+1e-12*max(abs(demand),abs(dispatch sum))",
+    "sourcePreservation": "Exact SHA256 equality, no repin or tolerance"
+  },
+  "preservation": {
+    "curatedDriverCentralRefusals": 22,
+    "retainedDistributionsSensitivityOnly": 10,
+    "realRetainedCentralCliRefusals": 10,
+    "totalRealAndCuratedCentralCliRefusals": 32,
+    "retainedPairedDrawsPerDistribution": 1000,
+    "retainedBaselineOutcomes": "Nine failures, EU solar point-only winner; all ten remain sensitivity-only. No fitting or heldout rescoring.",
+    "frozenNegativeFilesUnchanged": 14,
+    "fairPinsUnchanged": 14,
+    "driverAdmissionChanged": false,
+    "scientificOrOwnerAcceptanceGranted": false,
+    "sharedLedgersOrBroadRoutesEdited": false,
+    "commitsReleasesCallbacksPrivatePublicationApprovalDDL": false
+  },
+  "gaps": [
+    "No reviewed central six-region native joint distribution or inventory is admitted. These tests establish conditional engine wiring, not production central forecast acceptance or emissions/temperature skill.",
+    "Buildings are supported only for explicitly supplied1.A.4.a/1.A.4.b cells. Frozen inventory has only unsplit1.A.4, so all three building pathway perturbations correctly leave that retained inventory unchanged. Three additional actual-engine synthetic subcode probes prove nonzero building effects without inventing a production allocation.",
+    "All synthetic coefficients and regional splits are explicitly engineering fixtures. Corporate delivery has no newly defensible empirical coefficient and remains a diagnostic sensitivity; no finance-to-abatement coefficient is invented or ported.",
+    "No source-compatible curated driver to native regional distribution bridge was approved. Existing22 central refusals and ten real sensitivity-only distributions remain unchanged.",
+    "Fractional abatement on signed net land sinks remains unsupported without a separately specified gross-flux/removal mechanism. Explicit land persistence/trends remain signed, not clipped.",
+    "Aggregate aviation/marine codes do not identify domestic/international coverage. Generic promises cannot establish it; exact-code source-bound measures require their own compatible evidence.",
+    "Matrix completeness is over supported engine parameter templates and reachable numerical outputs, including explicitly inert metadata/permission inputs; not over arbitrary unsupported parameters, every possible nonlinear scenario combination, or independently calibrated coefficients.",
+    "No app/workflow start, restart, deployment or signed-in browser verification was performed by this mechanism task. Parent owns integrated runtime review.",
+    "Canonical clause statuses and shared ledgers were intentionally not edited; scientific S05-004 coefficient and acceptance gaps remain distinct from the completed supported-engine isolation matrix."
+  ],
+  "parentIntegration": {
+    "focusedReceipt": "generated-artifacts/s05-s07-integration/focused-repaired.receipt.json",
+    "privateReceipt": "generated-artifacts/s05-s07-integration/final-private-type-build.receipt.json",
+    "typescriptPartitionReceipt": "generated-artifacts/s05-s07-integration/typescript-repaired-without-slow-route.receipt.json",
+    "slowRouteReceipt": "generated-artifacts/s05-s07-integration/projection-route-investigation.receipt.json",
+    "partitionBoundary": "Partition and separate route receipts remain historical evidence, not a coherent full gate. See fullReceipt/fullCounts for the actual unchanged full command; optional PostgreSQL skips, if present, remain explicit. Separate isolated local PostgreSQL execution is recorded independently, never attributed to memory routes.",
+    "fullReceipt": "generated-artifacts/s05-s07-integration/parent-full.json",
+    "fullCounts": {
+      "typescript": {
+        "tests": 1188,
+        "pass": 1187,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 255,
+        "pass": 255,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "fullGatePassed": true,
+    "failureHistory": [
+      {
+        "receipt": "generated-artifacts/s05-s07-integration/contract-final.receipt.json",
+        "exit_code": 1,
+        "counts": {
+          "typescript": {
+            "tests": 41,
+            "pass": 40,
+            "fail": 1,
+            "skipped": 0
+          },
+          "python": null
+        },
+        "log": "generated-artifacts/s05-s07-integration/contract-final.log",
+        "log_sha256": "cb6c951e467db3c5d3949f64976b4677aefab8bcef4fb8e4aabefcf0690927ee"
+      },
+      {
+        "receipt": "generated-artifacts/s05-s07-integration/contract-repair.receipt.json",
+        "exit_code": 1,
+        "counts": {
+          "typescript": {
+            "tests": 41,
+            "pass": 36,
+            "fail": 5,
+            "skipped": 0
+          },
+          "python": null
+        },
+        "log": "generated-artifacts/s05-s07-integration/contract-repair.log",
+        "log_sha256": "9e39d9ecde3654637a68f9d63b78f5c77edfc68a3c48998894a9df4b01cbd784"
+      },
+      {
+        "receipt": "generated-artifacts/s05-s07-integration/contract-repaired.receipt.json",
+        "exit_code": 1,
+        "counts": {
+          "typescript": {
+            "tests": 41,
+            "pass": 37,
+            "fail": 4,
+            "skipped": 0
+          },
+          "python": null
+        },
+        "log": "generated-artifacts/s05-s07-integration/contract-repaired.log",
+        "log_sha256": "4e9faa1504e707fb3d23c242ce208bfce40a65d9aacc25d6cdb58627feacc09b"
+      },
+      {
+        "receipt": "generated-artifacts/s05-s07-integration/focused-final.receipt.json",
+        "exit_code": 1,
+        "counts": {
+          "typescript": {
+            "tests": 178,
+            "pass": 177,
+            "fail": 1,
+            "skipped": 0
+          },
+          "python": null
+        },
+        "log": "generated-artifacts/s05-s07-integration/focused-final.log",
+        "log_sha256": "62706d88445140051153789058c6844df228e0c3d75c88da740674d714fc8cf0"
+      },
+      {
+        "receipt": "generated-artifacts/s05-s07-integration/full-checks-bounded.receipt.json",
+        "exit_code": 124,
+        "counts": {
+          "typescript": null,
+          "python": null
+        },
+        "log": "generated-artifacts/s05-s07-integration/full-checks-bounded.log",
+        "log_sha256": "d97fdb7ae405e3145c6afe971d09ccc640d59e99e40e049e21f0f54359dd92be"
+      },
+      {
+        "receipt": "generated-artifacts/s05-s07-integration/typescript-without-slow-route.receipt.json",
+        "exit_code": 1,
+        "counts": {
+          "typescript": {
+            "tests": 1185,
+            "pass": 1180,
+            "fail": 5,
+            "skipped": 0
+          },
+          "python": null
+        },
+        "log": "generated-artifacts/s05-s07-integration/typescript-without-slow-route.log",
+        "log_sha256": "e282ae15a9c143e8c949a24c7de5a74d6afb20f49715a0b360c5e23a1c1d2f5b"
+      },
+      {
+        "receipt": null,
+        "exit_code": null,
+        "counts": null,
+        "log": "generated-artifacts/s05-s07-integration/full-checks-detached.log",
+        "log_sha256": "e958812a028cd3961af46d64a593909afdc850785984b675d93512419090ae98",
+        "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+        "observed_boundary": "Typecheck started; no subsequent stage or terminal summary retained"
+      },
+      {
+        "receipt": null,
+        "exit_code": null,
+        "counts": null,
+        "log": "generated-artifacts/s05-s07-integration/full-checks-final.log",
+        "log_sha256": "e958812a028cd3961af46d64a593909afdc850785984b675d93512419090ae98",
+        "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+        "observed_boundary": "Typecheck started; no subsequent stage or terminal summary retained"
+      },
+      {
+        "receipt": null,
+        "exit_code": null,
+        "counts": null,
+        "log": "generated-artifacts/s05-s07-integration/full-checks-initial.log",
+        "log_sha256": "b2648d873f0a5b4c8164b5bffd80eb2ba26a8eefe1909d171e97512e91441c33",
+        "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+        "observed_boundary": "Partial TypeScript TAP output; no terminal suite summary"
+      },
+      {
+        "receipt": null,
+        "exit_code": null,
+        "counts": null,
+        "log": "generated-artifacts/s05-s07-integration/full-checks-retry.log",
+        "log_sha256": "6c06747d596bd6bb536146683fed5d60c45cc39927b780bf051c76ae3e026435",
+        "status": "incomplete; no terminal execution receipt, no full-gate completion claimed",
+        "observed_boundary": "Shell reported Hangup during npm run check; exact exit code not retained"
+      }
+    ],
+    "separateLocalPostgresql": {
+      "evidence": "docs/disposable-cache-transport-evidence.json",
+      "sha256": "30a788fec0995ed65223f081313d74841e311adc03afe2010e9dced9a02641bd",
+      "passed": true,
+      "started_at": "2026-11-12T12:24:36.459Z",
+      "finished_at": "2026-11-12T12:28:00.446Z",
+      "actual_postgresql_witnesses": [
+        {
+          "path": "/home/runner/workspace/generated-artifacts/company-cache-extension/http-WJFoOd/evidence.json",
+          "sha256": "3f3c5d08bba66c8e72e7abc8bf050130d6521a865b40ea98cd9e8a24744cfadf",
+          "passed": true,
+          "postgresqlTransportExecuted": true,
+          "analyticalReceipts": 8,
+          "actualPostgresQueries": 311,
+          "companyPhases": {
+            "lookup-miss": 4,
+            "compute": 4,
+            "write": 4,
+            "lookup-hit": 4
+          }
+        },
+        {
+          "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/postgres-namespace-NkW7Rv/evidence.json",
+          "sha256": "6a461657a13c3153b4ae93206953b2c56d756c8ca6b5d08858dbd45a617fc1cd",
+          "passed": true,
+          "postgresqlTransportExecuted": true,
+          "analyticalReceipts": 5,
+          "actualPostgresQueries": 12,
+          "namespaceKeys": [
+            "finance-projected-rate:135ec499a36f86c5a3eec625805ea409239d79d36b7689afec5dfba614262d6a",
+            "projection:47bfe4f88336db1960d43bd0fb10ac80711f0316e1eca0a732f70cc32fbbe41c",
+            "projection:5d3039308389bdc762bdb513a33d026cab76164b729ab0909477d82865b72f57"
+          ]
+        }
+      ],
+      "full_gate_optional_case": "authorized disposable PostgreSQL preserves actual full/reduced namespaces and revision isolation",
+      "full_gate_optional_case_status": "skipped in full suite; executed successfully in the separate isolated PostgreSQL run, never subtracted from full-suite skipped count",
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-VR5rY7",
+        "privateUnixSocket": "/tmp/s02-cache-VR5rY7/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      },
+      "boundary": "Separate isolated local PostgreSQL execution, not the full gate's database transport. Memory route matrices are not PostgreSQL witnesses. No deployed PostgreSQL acceptance."
+    },
+    "focusedTests": {
+      "typescript": {
+        "tests": 178,
+        "pass": 178,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "allPythonTests": {
+      "tests": 255,
+      "pass": 255,
+      "fail": 0,
+      "skipped": 0
+    },
+    "additionalFocusedPythonTests": "Five ledger/receipt regression tests; see focused log after12 adapter tests",
+    "focusedFailurePreserved": "generated-artifacts/s05-s07-integration/focused-final.receipt.json (177pass/1fail; exposing generic private error text repaired)",
+    "repairs": [
+      "nativeMechanisms.ts added to exact archived-engine replay closure; validly rehashed changed dependency rejected",
+      "actual old native1/2 retained material and consumer responses explicitly rejected, never re-tagged",
+      "mixed Python/TAP receipt parser no longer borrows later private TAP counts",
+      "old-v2 DEV response/current-v3 client caught in query selection, not a dashboard render crash; only locally typed compatibility reason exposed, never generic private fetch error text",
+      "Two new actual driver-registry trace fields fully defined; census regenerated with exact two-field supplemental denominator increase. Original1001 slots and one opaque summary gap remain unchanged",
+      "Five whole-suite source/contract failures preserved in typescript-without-slow-route.receipt.json; missing field definitions, stale source-hash evidence and exact additive counts repaired without relaxing strict census gates"
+    ],
+    "protectedNegativeFilesUnchanged": 14,
+    "protectedFairPinsUnchanged": 14,
+    "newSourceSha256": {
+      "server/snapshots/nativeCandidateProducer.ts": "0c813b51bb5461ff631ec5822c633e6826f0519d6f3a2eb2d2743b1a7c52a679",
+      "script/native-producer-exports.test.ts": "e5cc234f5e3fb2a40f09d0da34d42781f61b7bbd81aa48b5e5c2ea89d3342773",
+      "shared/nativeConsumer.ts": "bb675c7fcec27baf2d0c2bb3c165c3f72314e9d169ae907495c7c0c9480d8e2c",
+      "client/src/components/emissions-candidate-review.tsx": "33c909cf48d1157d7cc36429b5152e62c39e63fa7a5daf05d7a73e10637e7da3",
+      "script/native-threshold-integration.test.ts": "a909239b5864d740f8fc5ebd0d9f19729036ddd446d223531820a647755b5b4d",
+      "script/workplan-evidence-run.py": "d19f078bc23058f80b288ddbb67805571d481392efb16c960f4b748a2927c375",
+      "script/test_completion_ledger.py": "54f0d893b7d08148286b56d5abebc0b336c4dbc7484c0aaae084a67dcffb9e0f",
+      "shared/researchFieldSemantics.ts": "17173101aafaaddd14b443ef20c4f9bd8f3e4da211e1aaa0fa3bd0b13bf80c21",
+      "script/next-census-accounting.test.ts": "83caddd38901bcedefcbbe0314bf6adee8ab3de66175a58241ef343df88fb3b4",
+      "script/research-field-semantics.test.ts": "ffc553a0890429af673a2efba41f40b0788b969725b020b3b663ca0e615cf04d",
+      "docs/field_semantics_census.json": "562d84fc9f50dd1b9a205f52ee72d55c8ae580fb992c952d0342b3ec0896cefe"
+    },
+    "screenshots": [
+      "screenshots/native-v3-integration-before-parent-restart.jpg (old2/current3 crash, preserved)",
+      "screenshots/native-v3-integration-compatible-refusal.jpg (dashboard renders after fail-closed repair)"
+    ],
+    "runtimeBoundary": "Existing DEV server not restarted; still old version2. Screenshots are not proof of server3. No new live release or central acceptance."
+  }
+}

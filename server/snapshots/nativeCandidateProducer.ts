@@ -17,6 +17,7 @@ import { packIndicators } from "./indicatorContract";
 
 const engineFiles = [
   "server/calculation/emissionsCandidate.ts", "server/calculation/emissionsInputs.ts",
+  "server/calculation/nativeMechanisms.ts",
   "server/calculation/nativeThresholdDiagnostics.ts", "server/calculation/thresholdDiagnostic.ts",
   "server/calculation/identity.ts", "shared/scientificEvidence.ts", "shared/driverAdmission.ts",
   "server/dataIngestion/indicatorRegistry.ts",

@@ -3,6 +3,7 @@ import { nativeResidualDiagnosticsSchema } from "./nativeThresholdSchema";
 import { THRESHOLD_DIAGNOSTIC_LABEL } from "./thresholdDiagnostic";
 
 export const NATIVE_PRODUCER_SCENARIO = "source-backed:native-candidate-1";
+export const NATIVE_CONSUMER_ENGINE_VERSION = "native-emissions-candidate-3";
 export const nativeScenarios = {
   constant: "constant-activity-control",
   transition: "illustrative-transition-not-calibrated",
@@ -35,7 +36,7 @@ export function nativeConsumerUnit(key: NativeConsumerKey, column: string) {
 }
 export function deriveNativeConsumer(parent: any, key: NativeConsumerKey, scenario: NativeScenario) {
   if (!Object.hasOwn(nativeScenarios, scenario) || !Object.hasOwn(nativeConsumerFieldMaps, key) ||
-    parent?.result?.version !== "native-emissions-candidate-2" ||
+    parent?.result?.version !== NATIVE_CONSUMER_ENGINE_VERSION ||
     parent.result.scenario?.name !== nativeScenarios[scenario] ||
     parent.result.productionEligible !== false || parent.result.centralConsumptionAllowed !== false ||
     parent.result.temperature !== null || !Array.isArray(parent.result.trajectory) || !parent.result.trajectory.length)

@@ -1,18 +1,12 @@
 import inventory from "./data/inventory2024.json";
 import { scientificEvidenceStatuses } from "../../shared/scientificEvidence";
 import { calculationKey } from "./identity";
+import { assertNativeMechanismDeclarations, completeOverlap, fossilEligible,
+  genericAbatementEligible, laggedDelivery, roadEligible, sectorOf } from "./nativeMechanisms";
+export { sectorOf } from "./nativeMechanisms";
 
-export const EMISSIONS_ENGINE_VERSION = "native-emissions-candidate-2";
+export const EMISSIONS_ENGINE_VERSION = "native-emissions-candidate-3";
 export type Sector = "power" | "transport" | "industry" | "buildings" | "agriculture" | "other" | "land";
-export function sectorOf(code: string): Sector {
-  if (code === "LULUCF") return "land";
-  if (code === "1.A.1.a") return "power";
-  if (code.startsWith("1.A.3")) return "transport";
-  if (["1.A.4.a", "1.A.4.b"].includes(code)) return "buildings";
-  if (code.startsWith("3") || code === "1.A.4.c") return "agriculture";
-  if (code.startsWith("2") || code.startsWith("1.A.2")) return "industry";
-  return "other";
-}
 export interface SectorPathway {
   annualActivityGrowth: number;
   residualIntensityImprovement: number;
@@ -78,6 +72,7 @@ export const illustrativeScenario: EmissionsScenario = {
   corporateDelivery: .6, maximumAbatement: .3,
 };
 function validate(s: EmissionsScenario, endYear: number) {
+  assertNativeMechanismDeclarations(s);
   if (!s.name || !Number.isInteger(endYear) || endYear < 2024 || endYear > 2100) throw new Error("Invalid scenario/horizon");
   for (const [key, template] of Object.entries(constantScenario)) {
     const value = s[key as keyof EmissionsScenario];
@@ -134,6 +129,10 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
   if (!cells.length || cells.some(c => !c.gas || !c.sector || !Number.isFinite(c.nativeMt) ||
       !Number.isFinite(c.gwp100) || c.gwp100 <= 0 || c.nativeMt < 0 && c.sector !== "LULUCF"))
     throw new Error("Invalid native regional inventory");
+  for (const m of s.measures ?? []) {
+    if (cells.some(c => c.nativeMt < 0 && m.sectorCodes.includes(c.sector) && m.gases.includes(c.gas)))
+      throw new Error(`Signed land sink requires a flux-specific mechanism, not an emissions-reduction fraction: ${m.id}`);
+  }
   let capacity = s.renewableCapacityGW, fleet = s.evFleetShare;
   const baseRenewableTWh = capacity * 8.76 * s.capacityFactor;
   const nuclearTWh = s.nuclearGenerationTWh ?? 0;
@@ -173,7 +172,7 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
     if (![capacity,renewableTWh,nuclearTWh,totalEvTWh,evDemandTWh,demandTWh,
       utilizedNuclearTWh,utilizedRenewableTWh,fossilTWh].every(Number.isFinite))
       throw new Error("Nonfinite electricity balance");
-    const delivery = 1 - Math.exp(-Math.max(0, t - s.deliveryLagYears) / s.deliveryTimeYears);
+    const delivery = laggedDelivery(t, s.deliveryLagYears, s.deliveryTimeYears);
     const policy = s.incrementalPolicyCoverage * s.policyImplementation * s.maximumAbatement * delivery;
     const corporate = s.corporateCoverage * s.corporateDelivery * s.maximumAbatement * delivery;
     const activity = Math.pow((1 + s.annualActivityGrowth) * (1 - s.residualIntensityImprovement), t);
@@ -190,21 +189,22 @@ export function projectInventoryEmissions(s: EmissionsScenario, endYear: number,
         ? Math.pow((1 + pathway.annualActivityGrowth) * (1 - pathway.residualIntensityImprovement), years) : 1;
       let factor = sectorActivity;
       let technical = 0;
-      if (c.gas === "CO2" && sector !== "land") {
+      if (fossilEligible(c)) {
         technical = sector === "power" ? 1 - fossilTWh / s.fossilGenerationTWh :
-          c.sector.startsWith("1.A.3.b") ? (fleet - s.evFleetShare) / roadDenominator * s.passengerTransportFraction * s.evTailpipeReduction : 0;
+          roadEligible(c) && s.passengerTransportFraction > 0 ? (fleet - s.evFleetShare) / roadDenominator * s.passengerTransportFraction * s.evTailpipeReduction : 0;
         // Conservative complete-overlap rule: reductions target the same stock.
         // Do not add policy/corporate promises on top of delivered technology.
         // Generic diagnostic policy assumptions cannot decouple power CO2
         // from the calculated generation balance.
         factor = sector === "power" ? fossilTWh / s.fossilGenerationTWh :
-          (1 - Math.max(Math.max(0, technical), policy, corporate) + Math.max(0, -technical)) *
+          (1 - completeOverlap(technical, genericAbatementEligible(c) ? policy : 0,
+            genericAbatementEligible(c) ? corporate : 0) + Math.max(0, -technical)) *
           (pathway ? sectorActivity : activity);
       }
-      const reduction = Math.max(0, ...(s.measures ?? [])
+      const reduction = completeOverlap(...(s.measures ?? [])
         .filter(m => m.sectorCodes.includes(c.sector) && m.gases.includes(c.gas))
         .map(m => m.coverage * m.implementation * m.maximumReduction *
-          (1 - Math.exp(-Math.max(0, year - m.startYear) / m.deliveryYears))));
+            laggedDelivery(year - m.startYear, 0, m.deliveryYears)));
       if (reduction > 0) {
         const referenceActivity = c.gas === "CO2" && sector !== "land" && !pathway ? activity : sectorActivity;
         // Complete overlap: a scoped measure replaces a weaker reduction,

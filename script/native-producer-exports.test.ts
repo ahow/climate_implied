@@ -295,18 +295,32 @@ test("native validly rehashed stale engine/model/scenario/member/seed/source rec
     const data = await consumed(base, "dashboard"), capture = captureDerivedConsumer(props("native-trajectory", data, "dashboard").rows)!;
     const original = f.materials.get(capture.parent.materialInputsId)!.payload;
     const packed = f.results.get(capture.parent.resultId);
+    for (const version of ["native-emissions-candidate-1", "native-emissions-candidate-2"]) {
+      const oldResponse = structuredClone(data);
+      oldResponse.result.version = version;
+      assert.throws(() => deriveNativeConsumer(oldResponse, "native-trajectory", "dashboard"),
+        /actual matching conditional candidate response/);
+      const material = { ...original, modelVersion: version };
+      const id = contentHash(material);
+      f.materials.set(id, { kind: "native-candidate-material", payload: material });
+      await assert.rejects(verifyNativeCandidateMaterial(id,
+        { ...packed.manifest, modelVersion: version }, packed.result, f.loadArchive), /conflict/);
+    }
     for (const field of ["modelVersion", "scenario", "memberId", "seed", "endYear"]) {
       const material = structuredClone(original);
       material[field] = field === "seed" ? { applicability: "random", value: 123 } : field === "endYear" ? 2050 : "invented";
       const id = contentHash(material); f.materials.set(id, { kind: "native-candidate-material", payload: material });
       await assert.rejects(verifyNativeCandidateMaterial(id, packed.manifest, packed.result, f.loadArchive), /conflict/);
     }
-    const code: any = structuredClone(f.source.payload);
-    code.files["server/calculation/emissionsCandidate.ts"] += "\n// stale but rehashed\n";
-    const codeId = contentHash(code); f.materials.set(codeId, { kind: "calculation-source", payload: code });
-    const material = { ...original, sourceArchive: codeId }, materialId = contentHash(material);
-    f.materials.set(materialId, { kind: "native-candidate-material", payload: material });
-    await assert.rejects(verifyNativeCandidateMaterial(materialId,
-      { ...packed.manifest, codeVersion: codeId }, packed.result, f.loadArchive), /archived engine differs/);
+    for (const path of ["server/calculation/emissionsCandidate.ts", "server/calculation/nativeMechanisms.ts"]) {
+      const code: any = structuredClone(f.source.payload);
+      assert.equal(typeof code.files[path], "string", `Missing captured engine dependency: ${path}`);
+      code.files[path] += "\n// stale but rehashed\n";
+      const codeId = contentHash(code); f.materials.set(codeId, { kind: "calculation-source", payload: code });
+      const material = { ...original, sourceArchive: codeId }, materialId = contentHash(material);
+      f.materials.set(materialId, { kind: "native-candidate-material", payload: material });
+      await assert.rejects(verifyNativeCandidateMaterial(materialId,
+        { ...packed.manifest, codeVersion: codeId }, packed.result, f.loadArchive), /archived engine differs/);
+    }
   });
 });

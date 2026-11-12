@@ -34,3 +34,29 @@ test("member ordering does not change hashes, metrics or saved member pairing", 
     co2Gt: a.co2Gt.map(r => [...r].reverse()) };
   assert.deepEqual(summarizeMemberMetrics(a), summarizeMemberMetrics(b));
 });
+test("S07-020 exact supplied-member fixtures: rise, fall, rebound, never crossing", () => {
+  const memberIds = ["rise", "fall", "rebound", "never"];
+  const paths = years.map(y => [
+    y < 2030 ? 100 + 5 * (y - 2024) : y < 2050 ? 100 : -1,
+    y < 2040 ? 100 * (2040 - y) / 16 : 0,
+    y < 2050 ? 100 : y === 2060 ? 1 : -1,
+    100,
+  ]);
+  const result = summarizeMemberMetrics({
+    memberIds, years, baseline: "1850-1900",
+    temperature: years.map(() => [2, 2, 2, 2]),
+    ghgGtCO2e: paths, co2Gt: paths,
+  });
+  const expected = {
+    rise: [2050, 2050], fall: [2040, 2040], rebound: [2050, 2061], never: [null, null],
+  };
+  for (const member of result.members) {
+    const pair = expected[member.id as keyof typeof expected];
+    assert.deepEqual([member.firstGhgZero, member.durableGhgZero], pair);
+    assert.deepEqual([member.firstCo2Zero, member.durableCo2Zero], pair);
+  }
+  assert.equal(result.ghgNetZero.probabilityBy2050, .5);
+  assert.equal(result.ghgNetZero.neverReachedShare, .25);
+  assert.equal(result.ghgNetZero.p90, null);
+  assert.equal(result.physicalValidation, false);
+});

@@ -39,14 +39,17 @@ test("every new typed API/export denominator change is separate and reconciles a
   const added = census.supplementalSlotAccounting;
   // Prior360 plus42 scientific-status leaves on three actual producers and35
   // source-product proposal leaves. No field is counted as old cohort closure.
-  assert.equal(added.addedSlots, 437);
-  assert.equal(added.addedPublicSlots, 437);
-  assert.equal(added.addedBoundSlots, 437);
+  assert.equal(added.addedSlots, 439);
+  assert.equal(added.addedPublicSlots, 439);
+  assert.equal(added.addedBoundSlots, 439);
   assert.deepEqual(added.removedOriginalSlots, []);
-  assert.equal(census.fields.length, 1465);
-  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1438);
-  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 437);
-  assert.equal(census.fullyBoundFields, 1437);
+  assert.equal(census.fields.length, 1467);
+  assert.equal(census.originalGapReconciliation.currentPublicSlots, 1440);
+  assert.equal(census.originalGapReconciliation.publicSlotDenominatorDelta, 439);
+  assert.equal(census.fullyBoundFields, 1439);
+  for (const field of ["indicators[].actualConsumers.stage5.mechanismDeclarations", "indicators[].actualConsumers.stage5.dependencyReceipt"])
+    assert.equal(added.addedFields.filter((entry: { field: string }) => entry.field === field).length, 1,
+      "Each new native trace field is separately counted, never original-cohort closure");
   assert.equal(census.fullyBoundFields, census.originalGapReconciliation.originalFullyBoundFields + added.addedBoundSlots);
   assert.equal(census.fields.length, 1028 + added.addedSlots);
   // Compare against actual concurrent registered domains, not an obsolete issuer
@@ -78,9 +81,9 @@ test("every new typed API/export denominator change is separate and reconciles a
   assert.equal(added.stage10CoverageXlsxApiLeafSlots, 101);
   assert.equal(added.workbookMoneyAuditApiLeafSlots, 35);
   assert.equal(added.workbookMoneyAuditXlsxApiLeafSlots, 89);
-  assert.equal(added.expandedApiAndDownloadPublicSlots, 4204);
-  assert.equal(added.expandedApiAndDownloadBoundSlots, 4203);
-  assert.equal(added.expandedPublicDeltaFromOriginal, 3203);
+  assert.equal(added.expandedApiAndDownloadPublicSlots, 4206);
+  assert.equal(added.expandedApiAndDownloadBoundSlots, 4205);
+  assert.equal(added.expandedPublicDeltaFromOriginal, 3205);
   assert.equal(added.supplementalMetadataSheetColumns, 31);
 });
 test("22 exact new read-only diff export slots bind separately without removing the original opaque summary gap", () => {
@@ -236,6 +239,6 @@ test("strict completeness fails on OLD unknown summary JSON, not cured by authen
     assert.equal(result.status, 1, gate);
     assert.doesNotMatch(result.stderr, /Field census stale/);
     assert.match(result.stderr, gate === "--require-original-complete"
-      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1437\/1438/);
+      ? /Original cohort incomplete/ : /SEMANTICS INCOMPLETE: 1439\/1440/);
   }
 });

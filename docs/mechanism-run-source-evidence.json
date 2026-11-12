@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "mechanism-run-source-evidence-1",
+  "status": "bounded-source-increment-complete-no-qualified-mechanism-inputs",
+  "scope": "Original S04-001 regional saturation/joint uncertainty and NEE/FSLR/XOM operating-FCFE/dates11-15 source qualification only. Documentary evidence, not original completion, scientific acceptance, legal certification or owner approval.",
+  "inventory": {
+    "readFirst": [
+      "docs/qualified-primary-inputs-evidence.json",
+      "docs/regional-diffusion-uncertainty-evidence.json",
+      "docs/issuer-economics-next-evidence.json"
+    ],
+    "additionalContext": "Targeted URL/field inspection of regional-diffusion-next, issuer-source-next, issuer-contract-law, issuer-cash-source-followup, nee-project-cash-waterfall and fslr-cohort-integrated inventories. This was not an exhaustive reading of every historical artifact.",
+    "sha256AtInspection": {
+      "docs/qualified-primary-inputs-evidence.json": "7ebe881164a34095d7066a05e1e769b70cf45b36517a85cb95712b73fe16f9ab",
+      "docs/regional-diffusion-next-evidence.json": "11aac253f273da75ec70f0d681ecc579eaa2bd5d4175691c0189343d32f8942b",
+      "docs/regional-diffusion-uncertainty-evidence.json": "32cc29c693c1c077fb68a55a75826810dad740fcbd57bb47bb63592b35b13863",
+      "docs/issuer-economics-next-evidence.json": "abeb77d3646cc24fbdfb41527bb518d1cb62afa3b59a4d041041d493a22feeb4",
+      "docs/issuer-source-next-evidence.json": "40a2d1a2e4f610dbf872f9871e3d9530e3cc2e8eed7ce527408772989d712994",
+      "docs/issuer-contract-law-evidence.json": "58380bdaf61ed449de4b5c25935ce9163ae41c2460cf118d33cebf02e77f4068",
+      "docs/issuer-cash-source-followup-evidence.json": "e87b78c01ea5030e0e1dcdd4ebf7624209b693bca02685679110574c2bbcabf9",
+      "docs/nee-project-cash-waterfall-evidence.json": "275bc8b22f1ce5d98f05e254e85e15037522583477ead2b29f3a6cd87de4cff0",
+      "docs/fslr-cohort-integrated-evidence.json": "267ceeb4c823026fd5daa375528404427c3a03281b9cc3dc384846a36dad2867"
+    },
+    "novelty": "No URL from the preceding qualified-primary-inputs six-source acquisition was requested again. A bounded docs/script/server/shared/corpus URL scan found some CF/First Solar discovery links already referenced in older artifacts; newly fetched does not imply a new underlying fact. The dated CF startup release adds an explicit historical interim-EOR versus future dedicated-storage distinction to this increment, not a newly discovered priced contract. No archive-wide novelty assertion.",
+    "notReacquired": [
+      "PMC12054581 New Zealand study",
+      "NewClimate 2018 policy draft",
+      "uscode.house.gov current section45X",
+      "NEE Q32026 release",
+      "XPLR Q32026 presentation",
+      "XOM September162026 Nucor operating update"
+    ]
+  },
+  "acquisition": {
+    "method": "Unauthenticated native fetch; publisher HTML and Crossref metadata inspected in memory. No connector, secret, account, purchase, challenge solving, alternate-host denial retry or raw-source publication.",
+    "logicalNetworkRequests": 11,
+    "discoveryRequests": 6,
+    "directPublisherRequests": 5,
+    "publisherContentObtained": 3,
+    "publisherAccessBoundaries": 2,
+    "unchangedSixSourceReruns": 0,
+    "stopDecision": "Stop after these eleven logical requests. Regional publisher content and First Solar discovery were blocked; acquired NEE conference notice and CF content do not supply the missing economic inputs. Do not broaden into generic programme summaries or repeat denied/retained sources.",
+    "countCaveat": "Logical fetch calls only; automatic redirect hop counts were not captured. This records the actual stopping point, not an externally preregistered search budget.",
+    "hashMethod": "Publisher and Crossref responseSha256 hashes exact bytes returned by fetch arrayBuffer, after HTTP content decoding, not original wire compression or issuer signatures. DuckDuckGo responseSha256 hashes UTF-8 of response.text(), not separately retained raw transport bytes. Hashes of challenge/denial responses do not authenticate requested source contents. Bodies remained in memory; only metadata, locators and bounded factual paraphrases are saved.",
+    "timePolicy": "requestedAt is captured immediately before each fetch in actual UTC. Publication dates, prospective effective dates and source periods are distinct; no 2026 publication is backdated into an original valuation cutoff or pre2019 training vintage.",
+    "rightsPolicy": "Public accessibility is not an unrestricted reuse licence. CF and NEE pages retain issuer copyright; only concise factual attribution/locators retained. Crossref records are routing metadata, not a licence to underlying papers/data. No authenticated private inputs or reviewer permission supplied."
+  },
+  "discoveryAttempts": [
+    {
+      "id": "D1-regional",
+      "url": "https://html.duckduckgo.com/html/?q=regional%20wind%20solar%20generation%20saturation%20joint%20uncertainty%20empirical%20scenario%20dependence%20electricity%20share",
+      "requestedAt": "2026-11-12T11:36:22.040Z",
+      "status": 202,
+      "responseSha256": "fb9e74684384d65039f008cd80cbd30a3ce3b3348ba474d616ee16bc0521d326",
+      "decision": "Bot challenge; no usable results, no challenge attempt. Not absence evidence."
+    },
+    {
+      "id": "D2-FSLR",
+      "url": "https://html.duckduckgo.com/html/?q=site.investor.firstsolar.com%202026%20third%20quarter%20tax%20credits%20cash%20India",
+      "requestedAt": "2026-11-12T11:36:22.050Z",
+      "status": 202,
+      "responseSha256": "9a782e4a8bdad11865f6b605d68d9c79e87868bc9818d7fb30ba1e1eb77103a7",
+      "decision": "Bot challenge; no usable results. No retry or cash inference."
+    },
+    {
+      "id": "D3-NEE",
+      "url": "https://html.duckduckgo.com/html/?q=site.investor.nexteraenergy.com%202026%20commissioning%20cash%20distributions%20LLC",
+      "requestedAt": "2026-11-12T11:36:22.051Z",
+      "status": 200,
+      "responseSha256": "c6bcd4a1c0f2f41207a2540f70a9b133066a69372fbd879a12965b3c88892c7f",
+      "decision": "Located exact November6 conference notice. Retained Q3 release was not fetched again. Search snippets are not financial authority."
+    },
+    {
+      "id": "D4-XOM-counterparty",
+      "url": "https://html.duckduckgo.com/html/?q=site.cfindustries.com%202026%20carbon%20capture%20storage%20ExxonMobil%20fees",
+      "requestedAt": "2026-11-12T11:36:22.053Z",
+      "status": 200,
+      "responseSha256": "d62e838cebac302f47c1bcc160d70c10cad119e1e23a12bf8ae80b86b78ffeef",
+      "decision": "Located CF environment primary page; third-party asserted deal values and snippets rejected as fee/cash evidence."
+    },
+    {
+      "id": "D5-Crossref-broad",
+      "url": "https://api.crossref.org/works?query.title=wind%20solar%20saturation%20diffusion%20uncertainty&rows=4",
+      "requestedAt": "2026-11-12T11:36:41.089Z",
+      "status": 200,
+      "responseBytes": 26022,
+      "responseSha256": "0221964bde13c3ef07dff2c8b29899d4aff4a95f864142755ae40a4d8e134d04",
+      "decision": "Four off-topic space-weather results; rejected. No electricity-share source qualification."
+    },
+    {
+      "id": "D6-Crossref-focused-title",
+      "url": "https://api.crossref.org/works?query.title=National%20growth%20dynamics%20of%20wind%20and%20solar%20power%20compared%20to%20the%20growth%20required%20for%20global%20climate%20targets&rows=1",
+      "requestedAt": "2026-11-12T11:36:52.158Z",
+      "status": 200,
+      "responseBytes": 29704,
+      "responseSha256": "d38e060588c64fe97a9213f19ae7ce649d7f352d28d338ee3569c04347b07bd8",
+      "locatedDoi": "10.1038/s41560-021-00863-0",
+      "metadataPublicationDate": "2021-07-19",
+      "decision": "Exact title query located publisher-declared article URL. Metadata and text-mining terms do not certify numerical K, joint dependence, source vintage or unrestricted draw reuse."
+    }
+  ],
+  "primaryContentAttempts": [
+    {
+      "id": "P1-CF-environment",
+      "url": "https://www.cfindustries.com/corporatestewardship/environment",
+      "effectiveUrl": "https://www.cfindustries.com/corporatestewardship/environment",
+      "requestedAt": "2026-11-12T11:36:41.084Z",
+      "status": 200,
+      "responseBytes": 39533,
+      "responseSha256": "82650e890d191d77a24f3eae078d760f14285fc3c538245b416e779fe884efdf",
+      "publicationDate": null,
+      "period": "Retrospective 2025 environmental activities; footer copyright2026 does not establish publication day.",
+      "legalEntity": "CF Industries Holdings, Inc.; ExxonMobil named at group level.",
+      "locator": "Our Decarbonization Approach, Reducing Our Operational Emissions, and ExxonMobil Carbon Capture and Sequestration Partnership case-study link.",
+      "positiveFacts": "Issuer states Donaldsonville CCS began in July2025, ExxonMobil provides transportation/permanent storage up to2million metric tons CO2/year, and CF's project earns45Q. Reports first low-carbon-ammonia sales in September/October2025 at premiums without amounts.",
+      "rights": "Copyright2026 CF Industries Holdings, Inc.; no numerical-contract/data reuse grant established. Factual paraphrases only.",
+      "missingFields": ["Executed operating subsidiary agreement/novation", "Actual serviced CO2 by billing period", "Priced transportation/storage fee and escalator", "Invoices and collected amounts/dates", "XOM transport/storage opex, replacement and funded draws", "XOM common-owner waterfall"],
+      "decision": "Primary operating-status corroboration and route to P5 only. Capacity, CF product premium and CF45Q are not XOM revenue or cash."
+    },
+    {
+      "id": "P2-NEE-November-conference",
+      "url": "https://newsroom.nexteraenergy.com/2026-11-06-NextEra-Energy-to-participate-in-EEI-Financial-Conference",
+      "effectiveUrl": "https://newsroom.nexteraenergy.com/2026-11-06-NextEra-Energy-to-participate-in-EEI-Financial-Conference",
+      "requestedAt": "2026-11-12T11:36:41.086Z",
+      "status": 200,
+      "responseBytes": 38870,
+      "responseSha256": "1f201cf723bd39599cb3c727c60f55500a46494f51116208de0583aab139862c",
+      "publicationDate": "2026-11-06",
+      "period": "Planned November8-10,2026 EEI conference and forward-looking growth expectations, not a project cash reporting period.",
+      "legalEntity": "NextEra Energy, Inc.; Florida Power & Light Company and NextEra Energy Resources, LLC identified as businesses.",
+      "locator": "Opening announcement, presentation-materials pointer and Cautionary Statements.",
+      "positiveFacts": "Notice says management plans to discuss long-term growth including the combined company after successful completion of the pending Dominion combination. The combination is expressly pending in this source, not completed.",
+      "rights": "NextEra Energy, Inc. all rights reserved. Concise factual attribution only; presentation content was not obtained from the generic investors pointer.",
+      "missingFields": ["Named payer LLC and legal NEE cash recipient", "Gross dated contribution/distribution/reimbursement payments", "Return-on/return-of-capital classification", "Current elections/holdings and actual AvailableCash/reserves", "Commissioning-cohort incremental net cash and funded capital"],
+      "decision": "Inspected notice has no recipient-cash or marginal-return annex. Not evidence of absence from an unacquired conference deck or all filings; no merger/cash/security-identity assumption inserted."
+    },
+    {
+      "id": "P3-FSLR-news-discovery-boundary",
+      "url": "https://investor.firstsolar.com/news/default.aspx",
+      "effectiveUrl": "https://investor.firstsolar.com/news/default.aspx",
+      "requestedAt": "2026-11-12T11:36:41.087Z",
+      "status": 403,
+      "responseBytes": 5987,
+      "responseSha256": "33022244ef1be9ea98f96e2710dbf4e7614d24432a1a002f67ac7a4ff511e196",
+      "publicationDate": null,
+      "period": null,
+      "locator": "JavaScript/cookie challenge only; no issuer release or collection/BOM document acquired.",
+      "rights": "No issuer contents/licence obtained; denial digest only.",
+      "missingFields": ["India installment amount/native currency/day/FX/cashflow line", "Actual credit-transfer collection reconciliation", "Eligible production/sale watts by US component/cohort", "Issuer direct/PFE material costs and current-law company compliance"],
+      "decision": "Stop at access boundary without alternate host or challenge solving. Not proof issuer-specific information is undisclosed."
+    },
+    {
+      "id": "P4-regional-growth-study-boundary",
+      "url": "https://www.nature.com/articles/s41560-021-00863-0",
+      "effectiveUrlPolicy": "Fetch automatically reached idp.nature.com/transit; transient redirect code omitted, not reused. Exact requested article URL retained.",
+      "requestedAt": "2026-11-12T11:37:17.017Z",
+      "status": 200,
+      "responseBytes": 3038,
+      "responseSha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+      "publicationDate": null,
+      "metadataPublicationDate": "2021-07-19 from D6 only, not newly authenticated article body",
+      "period": null,
+      "locator": "Client Challenge JavaScript shell, not abstract/methods/data/supplement.",
+      "rights": "Crossref points to Springer Nature text-and-data-mining terms, not an unrestricted data reuse licence. No full article or numerical supplementary content obtained.",
+      "missingFields": ["Independently identified region/technology generation-share K", "Authentic complete9/6 numerical panel and release vintage", "Whole cross-region/source empirical draws", "Sourced structural logit offsets, sampling law and dependence", "Reviewed rights and immutable input binding"],
+      "decision": "Article contents unassessed; HTTP200 is not content success. No PDF/mirror/alternate identity retry and no absence conclusion from challenge."
+    },
+    {
+      "id": "P5-CF-dated-startup-release",
+      "url": "https://www.cfindustries.com/newsroom/2025/donaldsonvilleccs",
+      "effectiveUrl": "https://www.cfindustries.com/newsroom/2025/donaldsonvilleccs",
+      "requestedAt": "2026-11-12T11:37:17.020Z",
+      "status": 200,
+      "responseBytes": 29825,
+      "responseSha256": "de7ff210333d2d720ef0a35c506559a63737b2838a95138e198aededeb7372da",
+      "publicationDate": "2025-07-14",
+      "period": "Startup and interim storage arrangement as described July14,2025; future dedicated storage contingent on permits. Not certification of current November2026 arrangement.",
+      "legalEntity": "CF Industries Holdings, Inc. announcement; ExxonMobil group is named but the executed transport/storage subsidiaries are not.",
+      "locator": "Opening startup paragraph, interim-storage paragraph, management quotation and45Q paragraph. URL followed from P1 case-study link.",
+      "positiveFacts": [
+        "CF announces startup of its Donaldsonville CO2 dehydration/compression facility and initiation of sequestration by ExxonMobil.",
+        "The explicitly described interim storage route is permanent geologic storage through enhanced oil recovery.",
+        "Transition to dedicated storage, starting with Rose, is described as planned upon applicable permits, not already completed.",
+        "Up to2million metric tons CO2 annually is enabled capacity; approximately1.9million tons low-carbon ammonia annually is expected production with no metric-versus-short-ton assumption added for ammonia.",
+        "CF expects45Q qualification; the credit claimant/economic beneficiary is not silently reassigned to XOM."
+      ],
+      "rights": "CF corporate communications copyrighted issuer content. Minimal factual paraphrases retained; no complete release, images, executed private agreement or data republished.",
+      "missingFields": ["Current executed CCS subsidiaries and assignment/novation", "Fee/tariff/escalator/minimum payment by service period", "Actual serviced mass and invoice/collection ledger", "Transport/storage opex and maintenance/replacement", "Project funded capital/debt/reserves and available-to-XOM-common bridge"],
+      "decision": "Retain historical operating-route and conditional-permit distinction as source context only. No calculation from enabled tonnes, no inferred EOR fee, no current Rose commissioning conclusion, and no conversion of CF45Q or product premiums to XOM FCFE."
+    }
+  ],
+  "qualificationAndMissingInputs": {
+    "S04-001": {
+      "newQualifiedRegionalSaturation": 0,
+      "newQualifiedReviewedJointBundles": 0,
+      "executionStatus": "UNEXECUTED",
+      "frozenSpecification": "1000 replications; circular residual block3; seed20261108; nine2010-2018 training and six2019-2024 holdout observations; World/UnitedStates/China/India/EU27, solar then wind, fixed10-cell family.",
+      "missingFields": [
+        "Independent generation-share saturation K for each region/technology, not combined-VRE scenario capacity or heldout-fitted ceiling.",
+        "Authentic source/version/publication/rights and complete numerical input panel; no revised-history release splice or backdated vintage.",
+        "Reviewed hash-bound whole-draw joint source revisions, nine training shares, K and six externally identified structural logit offsets for all supplied cells.",
+        "Source-authored empirical sampling law and cross-region/source/structural dependence with compatible reuse rights and a genuine reviewed prefit receipt."
+      ],
+      "decision": "No fit/bootstrap/heldout scoring, invented marginal, defaultzero offset, median replication, arbitrary prior, holdout tuning or refit of negative cases. Preserve all nine original failures and EU solar point-only win."
+    },
+    "FSLR": {
+      "newQualifiedEconomicPairs": 0,
+      "preservedPositive": "July2026 India receipt month remains sourced, as do prior transfer-cohort cash disclosures. Alabama recognition is not a collection. Existing conditional cohort-ledger results are not erased.",
+      "missingFields": [
+        "Manufacturer operating entity/programme, actual India amount/native currency/payment day/FX and cashflow classification; separate Alabama actual receipt.",
+        "Credit-origin/transfer/receivable reduction/discount/settlement-date reconciliation without double-counting CFO or working capital.",
+        "Actual eligible US component production/sale watts by component, cohort and fully-US versus internationally-initiated/US-completed route.",
+        "Component/year/method-specific total direct material and PFE costs, effective control/entity attestations and applicable current-law/reliance date."
+      ],
+      "lawTimingPreserved": "Prior official section45X compilation places same-facility integrated-primary65% rule in the amendment applying to taxable years beginning after December31,2026; do not apply that future clause silently to2026 sales. Separate2026 PFE/material-assistance requirements and IRS guidance remain relevant. No new law text acquired and no company eligibility certified.",
+      "decision": "No guidance-GW substitution, inverse-credit implied watts, grant residual-to-cash allocation or new cashflow adapter."
+    },
+    "NEE": {
+      "newQualifiedEconomicPairs": 0,
+      "preservedPositive": "Retained executed RenewablesII/Genesis LLC AvailableCash/reserve/class-priority and conditional flip/buyout terms remain known. Retained NEE/NEER segment classifications, XPLR category outflows and project owner interests are positive facts within their own scopes.",
+      "missingFields": [
+        "Named payer LLC and NEE receiving subsidiary with gross dated distributions, contributions, service reimbursements and consolidated classification.",
+        "Return-on versus return-of-capital bridge, current holdings/elections/flip/buyout and actual AvailableCash/reserve history to select known legal branches.",
+        "Commissioning cohorts, incremental net operating cash, funded construction/replacement outlays, financing priorities and marginal common-owner returns."
+      ],
+      "decision": "Conference growth plans, contractual call IRRs, consolidated ratios and net-parent rows are not marginal commissioning returns or additional gross common cash."
+    },
+    "XOM": {
+      "newQualifiedEconomicPairs": 0,
+      "preservedPositive": "Retain prior EnLink USD844million historical expected-recognition schedule, Williams announcement, Nucor operating status and this dated CF interim-storage distinction in separate attributed scopes.",
+      "missingFields": [
+        "Executed transportation/storage instrument naming operating subsidiaries, effective/current status and actual novation/assignment/termination.",
+        "Priced fee/escalator/minimum schedule, actual serviced CO2 by native unit/period, invoiced/collected amount/date/classification.",
+        "Transport/storage opex, maintenance/replacement, funded draws/capital calls, debt/reserve/ownership waterfall to XOM common."
+      ],
+      "decision": "Enabled capacity, commercial status, expected-recognition schedules, CF45Q, CF product premiums or BluePoint financing cannot stand in for XOM billings, cash or own project funding."
+    },
+    "operatingFcfeAndDates11To15": {
+      "newQualifiedDatedCashInputPairs": 0,
+      "newDatedPreparationOrValuationRuns": 0,
+      "originalFiscalBasisAndCutoffPreserved": true,
+      "originalStubFiveYearTenYearFadeAndTerminalRangePreserved": true,
+      "securityIdentitySharesAndTickerJoinUnchanged": true,
+      "cashflowInsertedUsd": 0,
+      "decision": "No compatible reviewed new economic pair; dated11-15 work remains source-blocked, not merely approval-blocked. No 2026 backdating, ticker joins, recast negative bases, generic stress grid or retained mechanism rerun."
+    }
+  },
+  "verificationAndPreservation": {
+    "ownedFiles": ["docs/mechanism-run-source-evidence.json"],
+    "codeOrModelInputEdits": 0,
+    "actualMechanismRuns": 0,
+    "regionalFitsBootstrapOrHeldoutScores": 0,
+    "issuerFcfeOrDateRuns": 0,
+    "rawSourceBodiesPersistedOrPublished": 0,
+    "canonicalLedgerEdits": 0,
+    "approvalsCommitsReleasesOrCallbacks": 0,
+    "appWorkflowOrLogOperations": 0,
+    "validation": "JSON.parse passed; all11 saved attempt URLs/statuses/timestamps/digests and every recorded byte count matched in-memory acquisition receipts;3 publisher-content successes confirmed. All9 inventory hashes and all10 retained issuer-source-next preservation hashes matched current bytes. No app, efficacy or full-suite verification claim. No UI or application changes.",
+    "concurrentChanges": "Other working-tree changes are outside this source task; only the owned evidence JSON was created here.",
+    "receiptLimit": "Local response digests and request timestamps are not externally notarized research receipts or independently reviewed qualification. No self-approval or source completeness claim."
+  }
+}

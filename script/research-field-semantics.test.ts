@@ -18,7 +18,11 @@ test("all actual research and pinned reference leaves bind without numerical mod
   const original=JSON.stringify(response);
   const driver=bindNestedOutput("driverRegistry",response);
   assert.equal(response.indicators.length,22);
-  assert.equal(driver.length,90,"Prior54 plus35 exact proposal leaves and one explicit absent-proposal null binding; not original closure");
+  assert.equal(driver.length,92,"Prior90 plus two exact native declaration/receipt trace leaves; not original closure");
+  for (const field of ["mechanismDeclarations", "dependencyReceipt"]) {
+    const semantic = requireOutputSemantic(`driverRegistry.indicators[].actualConsumers.stage5.${field}`);
+    assert.ok(driver.some(row => row.id === semantic.id), field);
+  }
   assert.equal(driverSourceProposalSpecs.length,36);
   assert.equal(response.indicators.filter(row=>row.sourceMetadataProposal===null).length,14,
     "Prior six plus two CAT supplemental source-product proposals; proposal presence is not approved input, source vintage or scientific acceptance");
@@ -55,7 +59,7 @@ test("all actual research and pinned reference leaves bind without numerical mod
   assert.match(requireOutputSemantic("driverRegistry.indicators[].sourceProvenance.retainedInputHash").formula,/contentHash/);
   assert.throws(()=>bindNestedOutput("driverRegistry",{indicators:[{unreviewed:1}]}),/Unmapped/);
   assert.throws(()=>bindNestedOutput("publishedReference",{newValue:1}),/Unmapped/);
-  assert.equal(driverConsumerFieldSpecs.length,18);
+  assert.equal(driverConsumerFieldSpecs.length,20);
   for(const [field,meaning,formula,unit,status] of driverConsumerFieldSpecs) {
     const semantic=requireOutputSemantic(`driverRegistry.${field}`);
     assert.equal(semantic.meaning,meaning);
@@ -107,7 +111,7 @@ test("census counts exact response bindings and keeps explicit displays separate
   assert.equal(new Set(census.supplementalQualifiedChanges.companyCoverage.ids).size,133);
   // Prior54 plus35 object leaves. Nullable parent is an additional runtime
   // binding, not another typed API leaf or frozen-original closure.
-  for(const [path,count] of [["/api/research/driver-registry",89],["/api/reference-scenarios",28],
+  for(const [path,count] of [["/api/research/driver-registry",91],["/api/reference-scenarios",28],
     ["/api/cv/summary",21],["/api/cv/dimensions",2]] as const) {
     const family=census.families.find((f:{surface:string})=>f.surface===`API GET "${path}"`);
     assert.equal(family.total,count);

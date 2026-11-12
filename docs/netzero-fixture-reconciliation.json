@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "netzero-fixture-reconciliation-v1",
+  "task": "S07-020",
+  "originalCriterion": "Net-zero fixtures (rise, fall, rebound, never crossing) return correct answers.",
+  "criterionResult": "satisfied-for-exact-supplied-member-fixture-clause",
+  "scientificAcceptance": "not-promoted",
+  "acceptedProductionEnsembleCriterionAdded": false,
+  "acceptedProductionEnsembleClaim": false,
+  "existingEvidence": [
+    "script/member-metrics.test.ts",
+    "server/calculation/memberMetrics.ts",
+    "server/calculation/researchCorrections.ts",
+    "script/workplan-corrections.test.ts"
+  ],
+  "reconciliation": "The existing member-metrics fixture already checks a decline to a first GHG crossing in 2050, a positive rebound in 2060, durable crossing in 2061, earlier CO2 crossing and a never-reaching member. It did not independently spell out a sustained pre-crossing rise. A new explicitly named four-case fixture now verifies rise, fall, rebound and never-crossing for BOTH GHG and CO2 using the existing implementation. No production code or scientific acceptance gate was changed. A separate accepted production ensemble is not part of this exact fixture criterion.",
+  "definition": {
+    "years": "Contiguous annual 2024-2100",
+    "startingEmissions": "Positive, as required by existing memberMetrics schema/function",
+    "firstCrossing": "First annual value <= 0",
+    "durableCrossing": "First year after the last positive annual value, with every subsequent annual value <= 0 through 2100",
+    "neverCrossing": "null, never coerced to 2100 or another invented event year",
+    "notNetZero": "The separate durable <=5% of own 2024 emissions diagnostic is not net zero."
+  },
+  "explicitFourCaseFixture": {
+    "test": "S07-020 exact supplied-member fixtures: rise, fall, rebound, never crossing",
+    "path": "script/member-metrics.test.ts",
+    "cases": [
+      {
+        "member": "rise",
+        "pathDefinition": "100 + 5*(year-2024) before 2030; 100 for 2030-2049; -1 from 2050",
+        "firstGhgZero": 2050,
+        "durableGhgZero": 2050,
+        "firstCo2Zero": 2050,
+        "durableCo2Zero": 2050
+      },
+      {
+        "member": "fall",
+        "pathDefinition": "100*(2040-year)/16 before 2040; exactly zero from 2040",
+        "firstGhgZero": 2040,
+        "durableGhgZero": 2040,
+        "firstCo2Zero": 2040,
+        "durableCo2Zero": 2040
+      },
+      {
+        "member": "rebound",
+        "pathDefinition": "100 before 2050; -1 from 2050 except +1 in 2060",
+        "firstGhgZero": 2050,
+        "durableGhgZero": 2061,
+        "firstCo2Zero": 2050,
+        "durableCo2Zero": 2061
+      },
+      {
+        "member": "never",
+        "pathDefinition": "100 in every year",
+        "firstGhgZero": null,
+        "durableGhgZero": null,
+        "firstCo2Zero": null,
+        "durableCo2Zero": null
+      }
+    ],
+    "ensembleChecks": {
+      "ghgDurableProbabilityBy2050": 0.5,
+      "ghgNeverReachedShare": 0.25,
+      "ghgUnconditionalP90": null,
+      "physicalValidation": false
+    }
+  },
+  "existingFixtureChecksRetained": {
+    "firstGhgZero": 2050,
+    "durableGhgZero": 2061,
+    "durableCo2Zero": 2040,
+    "ghgDurableProbabilityBy2050": 0,
+    "ghgNeverReachedShare": 0.5,
+    "ghgUnconditionalP90": null,
+    "durableNearZero5Percent2024": 2050,
+    "memberOrderInvariance": true,
+    "incompleteYearsAndMisalignedMembersRefused": true
+  },
+  "execution": {
+    "command": "npx tsx --test script/member-metrics.test.ts script/workplan-corrections.test.ts",
+    "exitCode": 0,
+    "tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Four member-metrics tests and four existing research-correction tests; only relevant fixture assertions support this reconciliation, not all eight tests as independent net-zero evidence."
+  },
+  "sourceSha256": {
+    "script/member-metrics.test.ts": "050b0eb710ee7f9cf357127ec5595781ede4f5d9c1f5796c337a27e84a535629",
+    "server/calculation/memberMetrics.ts": "de597bf66bb9ccf0985ecbb51884466b7e20dc88c98d4c431f2060740d32e280",
+    "server/calculation/researchCorrections.ts": "d44ed7824ba6f23859a5da603b40d6cdabb3159957ced8df99365d3917460340"
+  },
+  "scopeLimits": [
+    "Supplied synthetic member accounting fixtures, not a forecast or validation of physical trajectories",
+    "No accepted production ensemble, independent scientific validation or new production acceptance criterion",
+    "Main workplan ledgers left unchanged; this is scoped reconciliation evidence only"
+  ]
+}

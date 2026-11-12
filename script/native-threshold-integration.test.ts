@@ -178,6 +178,12 @@ test("new separate21-column native diagnostic export roundtrips; old35 native qu
   assert.match(html, /not calibrated or scientifically promoted/);
   assert.match(html, /Download separate native threshold diagnostics/);
   assert.doesNotMatch(html, /On Track|Delayed/);
+  client.setQueryData(["/api/emissions/candidate?scenario=constant"],
+    { result: { ...result, version: "native-emissions-candidate-2" }, residualDiagnostics: d });
+  const oldEngine = renderToStaticMarkup(React.createElement(QueryClientProvider, { client }, React.createElement(EmissionsCandidateReview)));
+  assert.match(oldEngine, /Candidate emissions could not be loaded/);
+  assert.match(oldEngine, /Unsupported native engine response native-emissions-candidate-2/);
+  assert.doesNotMatch(oldEngine, /data-testid="native-residual-diagnostics"/);
   client.setQueryData(["/api/emissions/candidate?scenario=constant"], { result });
   const missing = renderToStaticMarkup(React.createElement(QueryClientProvider, { client }, React.createElement(EmissionsCandidateReview)));
   assert.match(missing, /No default or legacy baseline is substituted/);
