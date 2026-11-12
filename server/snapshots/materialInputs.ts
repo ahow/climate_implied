@@ -1,30 +1,13 @@
-import { readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
 import { sql } from "drizzle-orm";
 import { db } from "../db";
 import { contentHash } from "../calculation/analysisManifest";
 import { snapshotsAvailable } from "./store";
 import { requestOverrides } from "../dataIngestion/requestOverrides";
 import { getAllHistoricalIndicatorsWithNowcast } from "../calculation/historicalIndicators";
+import { calculationSourceArtifact } from "./calculationSourceArtifact";
 
-let sourceArchive: { id: string; payload: unknown } | undefined;
 function sourceBundle() {
-  if (sourceArchive) return sourceArchive;
-  const files: Record<string,string> = {};
-  function walk(directory: string) {
-    for(const entry of readdirSync(directory,{ withFileTypes:true }).sort((a,b)=>a.name.localeCompare(b.name))) {
-      const path = join(directory,entry.name);
-      if(entry.isDirectory()) walk(path);
-      else if(/\.(tsx?|json|csv)$/.test(path)) files[path]=readFileSync(path,"utf8");
-    }
-  }
-  // Explicit allowlist: never env files, uploads, credentials or private fixtures.
-  for(const directory of ["server","shared","client/src"]) walk(directory);
-  for(const file of ["package.json","package-lock.json","tsconfig.json"]) files[file]=readFileSync(file,"utf8");
-  const payload = { version:"calculation-source-1", files, nodeVersion:process.version,
-    meaning:"Source/config/embedded data/dependency lock; not a historical publication vintage or executable container" };
-  sourceArchive = { id:contentHash(payload),payload };
-  return sourceArchive;
+  return calculationSourceArtifact();
 }
 export function currentSourceArchiveId() { return sourceBundle().id; }
 /** Read-only access to the existing source/config archive representation.
@@ -41,6 +24,11 @@ export async function captureCalculationSource() {
 }
 export async function saveReadonlyDiffMaterial(payload: unknown) {
   return save("readonly-diff-material", payload);
+}
+/** Versioned legacy input/material envelopes reuse the established private
+ * material-inputs kind; no new table, resource, publication or DDL. */
+export async function saveLegacyExportMaterial(payload: unknown) {
+  return save("material-inputs", payload);
 }
 export async function saveNativeCandidateArchive(kind: "native-candidate-inputs" | "native-candidate-material", payload: unknown) {
   return save(kind, payload);

@@ -6,6 +6,8 @@ import ts from "typescript";
 import {z} from "zod";
 import {companyCoverage} from "../server/calculation/companyCoverage";
 import {bindNestedOutput} from "../shared/outputFieldSemantics";
+import { bindReportRelease } from "../server/snapshots/reportExportProducer";
+import { bindProducerIdentity } from "../server/producerDownload";
 
 function actualRoute(getCompanyCoverage:Function) {
   const text=readFileSync("server/routes.ts","utf8");
@@ -20,7 +22,7 @@ function actualRoute(getCompanyCoverage:Function) {
   visit(source);assert.ok(registration);
   assert.ok(text.indexOf(registration)<text.indexOf('app.use("/api", async'));
   vm.runInNewContext(ts.transpile(registration,{target:ts.ScriptTarget.ES2022}),
-    {z,Date,getCompanyCoverage,bindNestedOutput,app:{get:(_:string,h:any)=>{handler=h;}}});
+    {z,Date,getCompanyCoverage,bindNestedOutput,bindReportRelease,bindProducerIdentity,app:{get:(_:string,h:any)=>{handler=h;}}});
   return async(query:object)=>{
     const res:any={code:200,headers:{},body:null,
       set(k:string,v:string){this.headers[k]=v;return this;},

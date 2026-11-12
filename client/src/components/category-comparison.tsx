@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Zap, Shield, Building2, Users } from "lucide-react";
 import type { CategoryProjectionResult } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
 import { displayDiagnostic } from "@/lib/valuation-claims";
@@ -66,6 +67,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
     [THRESHOLD_DIAGNOSTIC_LABEL]: c.thresholdDiagnostic?.year ?? null,
     "5% diagnostic status": c.thresholdDiagnostic?.status ?? "withheld",
   }));
+  bindProducerLegacyConsumer(categories, "category-scenarios", downloadRows);
 
   return (
     <Card className="p-6" data-testid="card-category-comparison">
@@ -84,6 +86,7 @@ export function CategoryComparison({ categories, isLoading }: CategoryComparison
           filename="category-scenario-analysis"
           sheetName="Category Scenarios"
           rows={downloadRows}
+          jsonCompanion
           interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
             Category:{id:"category.categoryName",transform:"Identity"},

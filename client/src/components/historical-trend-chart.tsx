@@ -17,6 +17,7 @@ import {
 } from "recharts";
 import type { HistoricalTrendPoint, MetricView } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
 import { requireHistoricalType } from "@shared/historicalTypes";
@@ -113,6 +114,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
     "5% diagnostic status": d.thresholdDiagnostic?.status ?? "withheld",
     Estimated: d.isNowcast ? "yes" : "no",
   }));
+  bindProducerLegacyConsumer(data, "historical-trend", downloadRows, metricView);
 
   const chartData = data.map((d) => {
     const rawValue = metricView === "netZero" ? d.thresholdDiagnostic?.year ?? null : d[config.dataKey as keyof HistoricalTrendPoint];
@@ -156,6 +158,7 @@ export function HistoricalTrendChart({ data, metricView, isLoading }: Historical
           filename={`historical-trend-${metricView}`}
           sheetName="Historical Trend"
           rows={downloadRows}
+          jsonCompanion
           interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
             "Historical type code":{id:"historical.historicalTypeCode",transform:"Exact S09-001 evidence class; missing/inconsistent class refuses export"},

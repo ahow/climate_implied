@@ -1,10 +1,11 @@
-import { open, realpath, lstat } from "node:fs/promises";
+import { open, realpath, lstat, readFile } from "node:fs/promises";
 import { constants } from "node:fs";
 import { resolve, sep } from "node:path";
 import { contentHash } from "./calculation/analysisManifest";
 import { bindTrackBAdmission, type TrackBAdmissionReport } from "../shared/trackBAdmissionContract";
 import { trackBDisclosureSchema, trackBPublicPinSchema, type TrackBPublicPin } from "../shared/trackBDisclosureContract";
 import { trackBPublicCatalog } from "./trackBPublicCatalog";
+import { rememberReportRelease } from "./snapshots/reportMaterialContext";
 
 export const TRACK_B_PUBLIC_ROOT = "generated-artifacts/track-b-public";
 export class TrackBDisclosureError extends Error {
@@ -75,7 +76,24 @@ export function createTrackBPublicationReader(options: {
         throw new TrackBDisclosureError(403, "Injected catalog cannot grant a real operator disclosure authorization");
       const validated = validateTrackBPublication(pin, disclosure,
         await safeRead(pin.reportHash, "report"), options.allowEngineeringFixtures);
-      return { report: validated.report, identity: { ...validated.identity } };
+      const result = { report: validated.report, identity: { ...validated.identity } };
+      let assessment = null;
+      try {
+        const path = resolve("generated-artifacts/paired-research-pipeline", `${pin.reportHash}.assessment-inputs.json`);
+        if ((await lstat(path)).isSymbolicLink()) throw new Error("Assessment input symlink forbidden");
+        assessment = JSON.parse(await readFile(path, "utf8"));
+      } catch {
+        // Missing historical/prospective material never disables ordinary
+        // rights-qualified report retrieval, and cannot grant a bound claim.
+        assessment = null;
+      }
+      rememberReportRelease(result.report, "track-b-publication", {
+        version: "track-b-consumed-publication-1", pin, disclosure, report: validated.report,
+        assessment,
+        allowEngineeringFixtures: options.allowEngineeringFixtures === true,
+        meaning: "Actual rights-qualified public disclosure/report release, not raw private research inputs or a rerun of the study pipeline",
+      });
+      return result;
     } catch (error) {
       if (error instanceof TrackBDisclosureError) throw error;
       if ((error as NodeJS.ErrnoException).code === "ENOENT")

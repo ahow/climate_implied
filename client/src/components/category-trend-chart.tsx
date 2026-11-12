@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import type { CategoryHistoricalTrendPoint, MetricView } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 import { certifyFiniteExport,finiteExportBindings,categoryExportNames,categoryExportKeys } from "@shared/finiteExportSchemas";
 import { THRESHOLD_DIAGNOSTIC_LABEL, thresholdDiagnosticDisplay } from "@shared/thresholdDiagnostic";
 import { ThresholdDiagnosticDownload } from "./threshold-diagnostic-details";
@@ -109,6 +110,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
     }
     return row;
   }),{metric:config.metricKey});
+  bindProducerLegacyConsumer(data, "category-trends", downloadRows, metricView);
 
   const chartData = data.map((d) => {
     const row: Record<string, number | string | boolean | undefined> = { year: d.year, isNowcast: d.isNowcast };
@@ -154,6 +156,7 @@ export function CategoryTrendChart({ data, metricView, isLoading }: CategoryTren
           filename={`category-trends-${metricView==="netZero"?"legacy-fixed-5gt-v1":metricView}`}
           sheetName="Category Trends"
           rows={downloadRows}
+          jsonCompanion
           fieldBindings={finiteExportBindings("categoryTrend",{metric:config.metricKey})}
           testId="button-download-category-trends"
           label={metricView === "netZero" ? `Download ${FIXED_5GT_DESCRIPTOR.label}` : "Download data"}

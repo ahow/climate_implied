@@ -5,6 +5,7 @@ import { createDownloadManifest, downloadManifestRows } from "../shared/download
 import { serverDownloadRegistry } from "../shared/serverDownloadRegistry";
 import { responseProducerIdentity } from "./producerDownload";
 import { responseStaticReference } from "./staticReferenceLineage";
+import { responseReportRelease } from "./snapshots/reportExportProducer";
 
 /** Always attach the exact manifest as a base64url response header. Existing
  * default response bodies (and their goldens) are byte-for-byte unchanged.
@@ -40,7 +41,17 @@ export function downloadManifestMiddleware(): RequestHandler {
         : Array.isArray(json) ? json : json?.rows ?? [];
       const disposition = String(res.getHeader("Content-Disposition"));
       const filename = /filename="([^"]+)"/.exec(disposition)?.[1] ?? "attachment";
-      const referenceArtifactIdentity = responseStaticReference(res, json);
+       let referenceArtifactIdentity, safeReportExportIdentity;
+       try {
+         referenceArtifactIdentity = responseStaticReference(res, json, workbook);
+         safeReportExportIdentity = responseReportRelease(res, json, workbook);
+       } catch {
+         res.removeHeader("Content-Disposition");
+         res.removeHeader("X-Download-Manifest");
+         res.removeHeader("X-Producer-Identity");
+         res.status(422).type("application/json");
+         return original.call(this, JSON.stringify({ error: "Bound attachment source/projection verification failed; no completed export" }));
+       }
       const manifest = {
         ...createDownloadManifest({ filename, kind: entry.kind, exportedAt: new Date().toISOString(),
           dataHash: createHash("sha256").update(bytes).digest("hex"),
@@ -55,6 +66,8 @@ export function downloadManifestMiddleware(): RequestHandler {
           columnBindings: json?.columnBindings ?? null }),
         transportClaim: entry.claim,
         producerIdentity: responseProducerIdentity(res),
+         ...(safeReportExportIdentity ? { safeReportExportIdentity,
+           selectionBoundary: "Exact retained safe-report source release and custom projection; transformed attachment has null native producerIdentity. No original source publication, private publication, research pipeline execution or scientific acceptance is implied." } : {}),
         ...(referenceArtifactIdentity ? { referenceArtifactIdentity,
           selectionBoundary: "Exact static public reference/evidence and release-local code artifact identity. UI selection is not provenance. Model, model run and calculation material inputs are explicitly not applicable; no execution, source approval or scientific acceptance is claimed.",
         } : {}),

@@ -10,7 +10,7 @@ import { createDownloadManifest, downloadManifestRows } from "../shared/download
 import { semanticRows, requireOutputSemantic } from "../shared/fieldSemantics";
 import { bindExportColumns } from "../shared/outputFieldSemantics";
 import { certifySupplementalSheetRows } from "../shared/supplementalSheetBindings";
-import { captureDerivedConsumer, derivedConsumerIdentity } from "../client/src/lib/producer-download";
+import { captureDerivedConsumer, derivedConsumerIdentity, captureExactProducerIdentity } from "../client/src/lib/producer-download";
 import { appendDerivedConsumerWorkbookLineage } from "../client/src/lib/derived-consumer-workbook";
 
 /** Execute the checked-in handler/preparer bodies, not a rewritten test model.
@@ -116,7 +116,7 @@ for (const changed of [false, true]) test(`actual JSON handler and preparer ${ch
   const payload = { sourceIdentity: "not-certified-by-ui-state", nested: { value: 0 } };
   const errors: unknown[] = [], blobs: Blob[] = []; let clicks = 0, revoked = 0;
   const prepare = actual("client/src/lib/export-contract.ts", "prepareQualifiedJsonExport", {
-    captureDownloadSelection, createDownloadManifest, exportNotes,
+    captureDownloadSelection, createDownloadManifest, exportNotes, captureExactProducerIdentity,
     exportJsonIdentity: async (data: unknown) => {
       started.release(); await slowHash.promise; return exportJsonIdentity(data);
     },
@@ -153,7 +153,7 @@ test("actual JSON handler rechecks immediately before anchor delivery and revoke
   const browser = browserSelection(selection), errors: unknown[] = [];
   let allocations = 0, clicks = 0, revoked = 0;
   const prepare = actual("client/src/lib/export-contract.ts", "prepareQualifiedJsonExport", {
-    captureDownloadSelection, createDownloadManifest, exportNotes, exportJsonIdentity,
+    captureDownloadSelection, createDownloadManifest, exportNotes, exportJsonIdentity, captureExactProducerIdentity,
   });
   const click = actual(componentPath, "download", { ...sharedDependencies,
     setBusy() {}, setError(value: unknown) { errors.push(value); }, payload: { value: 0 },

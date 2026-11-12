@@ -332,7 +332,8 @@ for(const source of program.getSourceFiles().filter(s=>!s.isDeclarationFile && /
             }
           }
           if(relativeSource(source.fileName)==="client/src/components/threshold-diagnostic-details.tsx" &&
-            prop.initializer.expression.getText(source)==="diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))" &&
+            ["diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))",
+              "producerThresholdExportRows(diagnostics, contextLabels)"].includes(prop.initializer.expression.getText(source)) &&
             node.attributes.properties.some(p=>ts.isJsxAttribute(p)&&p.name.getText(source)==="fieldBindings"&&
               p.initializer?.getText(source)==="{thresholdExportBindings}"))
             for(const [column,binding] of Object.entries(thresholdExportBindings))
@@ -827,6 +828,11 @@ type FrozenSlot={key:string;surface:string;field:string;role:"originally-bound"|
 type FrozenCohort={version:string;sourceSha256:string;slotIdentityFingerprint:string;slots:FrozenSlot[]};
 const cohortPath="docs/field_semantics_original_cohort.json";
 const quantityPreservingRowsAliases = [{
+  source: "client/src/components/threshold-diagnostic-details.tsx",
+  currentRows: "producerThresholdExportRows(diagnostics, contextLabels)",
+  originalRows: "diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))",
+  reason: "Exact unchanged nineteen-column thresholdExportRow projection, with original-object retained-parent path binding only; no values, units, order or original cohort additions",
+}, {
   source: "client/src/components/emissions-candidate-review.tsx",
   currentRows: 'bindProducerNativeConsumer(data, "native-trajectory", data.result.trajectory.map(nativeExportRow), scenario)',
   originalRows: "data.result.trajectory.map(nativeExportRow)",

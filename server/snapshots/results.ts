@@ -13,6 +13,9 @@ import { verifyReadonlyDiffMaterial } from "./readonlyDiffProducer";
 import { boundedResultGraphReader } from "./resultVerificationGraph";
 import { NATIVE_PRODUCER_SCENARIO } from "../../shared/nativeConsumer";
 import { verifyNativeCandidateMaterial } from "./nativeCandidateProducer";
+import { verifyLegacyExportMaterial } from "./legacyExportProducer";
+import { NEWS_EXPORT_SCENARIO, verifyNewsExportMaterial } from "./newsExportProducer";
+import { verifyReportReleaseMaterial } from "./reportExportProducer";
 
 export async function saveAnalysisResult(manifest: ReturnType<typeof createManifest>, result: unknown) {
   const packed = packAnalysisResult(manifest, result);
@@ -49,6 +52,15 @@ async function loadAnalysisResultNode(id: string, loadParent: (id: string) => Pr
   } else if (payload.manifest.scenario === NATIVE_PRODUCER_SCENARIO) {
     if (typeof materialId !== "string") throw new Error("Native candidate material unavailable");
     await verifyNativeCandidateMaterial(materialId, payload.manifest, payload.result);
+  } else if (payload.manifest.scenario.startsWith("safe-report-release:")) {
+    if (typeof materialId !== "string") throw new Error("Safe report release material unavailable");
+    await verifyReportReleaseMaterial(materialId, payload.manifest, payload.result);
+  } else if (payload.manifest.scenario === NEWS_EXPORT_SCENARIO) {
+    if (typeof materialId !== "string") throw new Error("News release material unavailable");
+    await verifyNewsExportMaterial(materialId, payload.manifest, payload.result);
+  } else if (payload.manifest.scenario.startsWith("legacy-export:")) {
+    if (typeof materialId !== "string") throw new Error("Legacy export material unavailable");
+    await verifyLegacyExportMaterial(materialId, payload.manifest, payload.result);
   } else if(materialId !== undefined) {
     if(typeof materialId!=="string") throw new Error("Invalid material identity");
     const material=await loadMaterialArchive(materialId,"material-inputs");

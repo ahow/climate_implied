@@ -1,3 +1,202 @@
+# Finite export contracts and guarded regional joint uncertainty — engineering increment
+
+Original criteria/statuses preserved; no new issuer source or actual diffusion efficacy execution.
+
+```json
+{
+  "updated_at": "2026-11-12T08:48:51.612125+00:00",
+  "release": {
+    "status": "New local source validated; new release not yet observed",
+    "last_verified": {
+      "github_main": "6485e11a115fb2639c100b6e8c51b020857f9b8c",
+      "ci": "43174101497 validate/promote success",
+      "railway_deployment": "b4b2df73-3665-42d6-a758-154a8dec9bb8",
+      "verified_at": "2026-11-12T07:29:50.044223+00:00",
+      "health": 200,
+      "scope": "Code only; no issuer/science/private HTTP activation."
+    }
+  },
+  "execution": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-12T08:37:37.737681+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 288.936,
+    "counts": {
+      "tests": 1089,
+      "pass": 1089,
+      "fail": 0,
+      "skipped": 0
+    },
+    "log": "generated-artifacts/remaining-export-all22.ready.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1089,
+        "pass": 1089,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 248,
+        "pass": 248,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "execution_receipt": {
+    "path": "generated-artifacts/remaining-export-all22.ready.receipt.json",
+    "sha256": "df9df71022f7fad835536b24f5044c8df36a2e249852343033dbf1457d8623e4"
+  },
+  "finite_export_counts": {
+    "newClosed": 28,
+    "newCentralClosed": 19,
+    "newStaticPublicJsonClosed": 2,
+    "remainingUnimplemented": 0,
+    "remainingSourceblocked": 1,
+    "centralSourceBackedProducerContracts": 19,
+    "centralAvailableWithLegacyNullProducer": 19,
+    "customServerContractsNotChanged": 1,
+    "implementedThisIncrement": 22,
+    "implementedThisIncrementCentral": 15,
+    "implementedThisIncrementCustom": 7,
+    "countMeaning": "Fixed engineering implementation inventory, not live retained-data availability. All19central ordinary paths may still run honestly unbound when storage is unavailable."
+  },
+  "runtime_receipts": "docs/finite-export-runtime-receipts.json",
+  "changed_paths_since_handoff": [
+    "client/src/components/category-comparison.tsx",
+    "client/src/components/category-trend-chart.tsx",
+    "client/src/components/company-coverage.tsx",
+    "client/src/components/download-data-button.tsx",
+    "client/src/components/emissions-candidate-review.tsx",
+    "client/src/components/emissions-chart.tsx",
+    "client/src/components/historical-trend-chart.tsx",
+    "client/src/components/indicator-cards.tsx",
+    "client/src/components/readonly-version-diff.tsx",
+    "client/src/components/regional-comparison.tsx",
+    "client/src/components/sensitivity-chart.tsx",
+    "client/src/components/temperature-histogram.tsx",
+    "client/src/components/threshold-diagnostic-details.tsx",
+    "client/src/lib/export-contract.ts",
+    "client/src/lib/producer-download.ts",
+    "client/src/pages/data-management.tsx",
+    "client/src/pages/news-sentiment.tsx",
+    "docs/System_Output_Register.md",
+    "docs/WORKPLAN_ACCEPTANCE_MATRIX.md",
+    "docs/WORKPLAN_COMPLETION_LEDGER.md",
+    "docs/WORKPLAN_IMPLEMENTATION_REPORT.md",
+    "docs/field_semantics_census.json",
+    "docs/finite-export-runtime-receipts.json",
+    "docs/regional-diffusion-next-evidence.json",
+    "docs/regional-diffusion-uncertainty-evidence.json",
+    "docs/remaining-export-evidence.json",
+    "docs/scientific-strands-warning-evidence.json",
+    "docs/workplan_completion_ledger.json",
+    "script/carbon-pass-through-admission.test.ts",
+    "script/company-coverage-route.test.ts",
+    "script/download-selection-race.test.ts",
+    "script/field-semantics-census.ts",
+    "script/legacy-export-producer.test.ts",
+    "script/methodology-download-portable.test.ts",
+    "script/native-producer-exports.test.ts",
+    "script/native-semantics.test.ts",
+    "script/native-threshold-integration.test.ts",
+    "script/record-finite-export-increment.py",
+    "script/regional-diffusion-primary-attempts.mjs",
+    "script/regional_diffusion_next.py",
+    "script/regional_diffusion_uncertainty.py",
+    "script/remaining-export-contracts.test.ts",
+    "script/residual-label-scan.ts",
+    "script/run-paired-research-pipeline.ts",
+    "script/static-reference-lineage.test.ts",
+    "script/test_regional_diffusion_next.py",
+    "script/test_regional_diffusion_uncertainty.py",
+    "server/calculation/trackBExportMaterial.ts",
+    "server/carbonPassThroughApi.ts",
+    "server/companyConditionalApi.ts",
+    "server/downloadManifestMiddleware.ts",
+    "server/financialData/stage10Source.ts",
+    "server/financialData/workbookMoneyExportRelease.ts",
+    "server/index.ts",
+    "server/nativeCandidateApi.ts",
+    "server/newsApi/newsService.ts",
+    "server/producerDownload.ts",
+    "server/readonlyDiffApi.ts",
+    "server/routes.ts",
+    "server/snapshots/calculationSourceArtifact.ts",
+    "server/snapshots/companyCoverage.ts",
+    "server/snapshots/legacyExportProducer.ts",
+    "server/snapshots/materialInputs.ts",
+    "server/snapshots/nativeCandidateProducer.ts",
+    "server/snapshots/newsExportProducer.ts",
+    "server/snapshots/readonlyDiffProducer.ts",
+    "server/snapshots/reportExportProducer.ts",
+    "server/snapshots/reportMaterialContext.ts",
+    "server/snapshots/resultVerificationGraph.ts",
+    "server/snapshots/results.ts",
+    "server/stage10CoverageApi.ts",
+    "server/staticReferenceLineage.ts",
+    "server/trackBAdmissionApi.ts",
+    "server/trackBDisclosureStore.ts",
+    "server/warmingValidationReferenceApi.ts",
+    "server/workbookMoneyAuditExportApi.ts",
+    "shared/derivedConsumerSemantics.ts",
+    "shared/legacyExportConsumer.ts",
+    "shared/nativeConsumer.ts",
+    "shared/outputFieldSemantics.ts",
+    "shared/producerDownloadSemantics.ts",
+    "shared/readonlyConsumer.ts",
+    "shared/remainingExportContracts.ts",
+    "shared/safeReportExportSemantics.ts"
+  ],
+  "sources": [
+    "docs/remaining-export-evidence.json",
+    "docs/regional-diffusion-uncertainty-evidence.json"
+  ],
+  "failure_history": [
+    {
+      "receipt": "generated-artifacts/remaining-export-all22.final-v2.receipt.json",
+      "log": "generated-artifacts/remaining-export-all22.final-v2.log",
+      "typescript": {
+        "tests": 1089,
+        "pass": 1089,
+        "fail": 0,
+        "skipped": 0
+      },
+      "python": {
+        "tests": 248,
+        "pass": 248,
+        "fail": 0,
+        "skipped": 0
+      },
+      "failure": "Mandatory private monetary freeze rejected edited original safe reader/API. Restored original reader/API and protected Track test byte-for-byte; implemented additive release wrappers instead. No private hash/gate/threshold relaxed."
+    },
+    {
+      "receipt": "generated-artifacts/remaining-export-all22.complete.receipt.json",
+      "log": "generated-artifacts/remaining-export-all22.complete.log",
+      "typescript": {
+        "tests": 1089,
+        "pass": 1088,
+        "fail": 1,
+        "skipped": 0
+      },
+      "failure": "Existing company-cache HTTP30s transport timeout under full-suite load. Unchanged focused transport suite5/5passed; final full rerun passed with unchanged timeout/assertions. No gate relaxed."
+    }
+  ],
+  "source_and_acceptance_boundary": "Finite28engineering-closed+1private HTTP403. Existing manifests/claim labels and generated registry sections are implemented; no fabricated producer identity under unavailable persistence. No live new-code verification inferred from local tests.",
+  "scientific_decision": "Regional joint uncertainty implementation tested on synthetic engineering fixtures only; zero actual new candidate fits/bootstrap/heldout scores. No new issuer source, issuer model insertion, accepted calibration, historical efficacy, publication permission or owner acceptance."
+}
+```
+
 # Finite non-signal exports and regional diffusion evidence
 
 ```json
@@ -5270,6 +5469,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-chained-source-5cb13fa",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T05:37:54.376819+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-finite-native-6485e11",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T07:30:23.996684+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

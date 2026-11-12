@@ -290,6 +290,17 @@ export async function getClimateNewsAnalysis(
     .map(([date, count]) => ({ date, count }))
     .sort((a, b) => a.date.localeCompare(b.date));
 
+  const result = buildClimateNewsResult(volume, recentArticles, dateStart, dateEnd);
+  memoryCache = { cacheKey, data: result, fetchedAt: Date.now() };
+  await saveToDbCache(cacheKey, result);
+  console.log(`[NewsAPI] Analysis complete: ${result.totalArticles} articles, ${result.sentiment.length} monthly sentiment points`);
+  return result;
+}
+
+/** Exact established allocation/extrapolation algorithm, shared with retained
+ * source-release replay. Counts remain allocated estimates, not classifications. */
+export function buildClimateNewsResult(volume: NewsVolumePoint[], recentArticles: NewsArticleSummary[],
+  dateStart: string, dateEnd: string): ClimateNewsResult {
   const allWithSentiment = recentArticles.filter(a => a.sentiment !== null);
   const overallPositiveRatio = allWithSentiment.length > 0
     ? allWithSentiment.filter(a => (a.sentiment ?? 0) > 0.1).length / allWithSentiment.length : 0.4;
@@ -355,10 +366,13 @@ export async function getClimateNewsAnalysis(
     dateRange: { start: dateStart, end: dateEnd },
   };
 
-  memoryCache = { cacheKey, data: result, fetchedAt: Date.now() };
-  await saveToDbCache(cacheKey, result);
-
-  console.log(`[NewsAPI] Analysis complete: ${totalArticles} articles, ${sentiment.length} monthly sentiment points`);
-
   return result;
+}
+/** Only the actual service-returned cache object may identify this release.
+ * This is cache retrieval time, not a publisher release or article query time. */
+export function newsSourceRelease(result: ClimateNewsResult) {
+  if (!memoryCache || memoryCache.data !== result) throw new Error("Actual news cache release unavailable");
+  return { cacheKey: memoryCache.cacheKey, fetchedAt: new Date(memoryCache.fetchedAt).toISOString(),
+    meaning: "Retained provider-derived cache release; fetchedAt is cache collection time, not provider publication time; provider request ID and original response bytes unavailable",
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone };
 }

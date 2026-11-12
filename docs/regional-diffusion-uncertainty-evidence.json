@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "regional-diffusion-uncertainty-evidence-1",
+  "status": "implemented-focused-tests-pass-actual-efficacy-UNEXECUTED",
+  "criterion": "original S04-001; no completion or owner approval asserted",
+  "operationalFreeze": {
+    "version": "regional-diffusion-joint-uncertainty-1",
+    "trainingYears": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],
+    "holdoutYears": [2019, 2020, 2021, 2022, 2023, 2024],
+    "replications": 1000,
+    "blockLength": 3,
+    "seed": 20261108,
+    "familySize": 10,
+    "familyOrder": "World, United States, China, India, European Union (27); solar then wind",
+    "metric": "Six-year MAE in percentage points; strict improvement over persistence AND bounded [0,1] OLS share trend",
+    "parameterBootstrap": "Centered training-logit circular residual blocks; refit intercept and slope together; shared annual block indices across every available cell",
+    "sourceStructuralDependence": "Only reviewer-qualified, hash-bound empirical joint source draws; each whole draw supplies all available cells' nine source training shares, K, and six externally identified structural logit offsets. One joint draw index per replication; no independent marginal sampling, priors, default zero offsets or replicated marginal medians.",
+    "structuralDiagnostic": "Early 2010-2014 versus late 2015-2018 training-logit OLS slopes; descriptive, not a break test",
+    "supplementalFamilyInference": "For each baseline, centered circular block bootstrap of six annual paired absolute-error differences, plus-one one-sided tail probability; candidate p=max(two baseline p). Holm across fixed ten candidates at alpha .05; missing p=1/nonrejection. Approximate small-sample supplemental diagnostic, not original protocol acceptance.",
+    "classification": "Revised-history retrospective only unless authentic pre-2019 publication vintage separately qualifies; interval coverage is descriptive, not process-noise calibration",
+    "gates": "Full nine interior training and six finite heldout shares; independent regional generation-share saturation; source/version/date/rights/holdout independence; immutable input binding before fit; original strict baseline gate unchanged; all central/scientific/owner promotion disabled",
+    "knownOutcomes": "Retain nine original baseline failures and EU solar point win only. No rerun or retuning of original K=1 study."
+  },
+  "freezeMeaning": "Operational implementation extension only. Old outcomes are already known; no externally preregistered, blinded or historical freeze claim. Original protocols and retained result/uncertainty files remain unchanged.",
+  "executionPolicy": "Synthetic fixtures exercise engineering only. Actual new fitting, bootstrap, scoring and efficacy remain UNEXECUTED unless authentic regional saturation AND qualified joint source/structural/dependence evidence are supplied. No unchanged retained-study rerun.",
+  "sourceAttemptDecision": "No new requests in this increment. Prior DOE scenario/report and IRS programme attempts are retained in docs/regional-diffusion-next-evidence.json and must not be repeated as new evidence. No ready materially new exact issuer contract/collection/BOM/commissioning sources identified; issuer calculations remain blocked, not replaced by programme summaries or stress grids.",
+  "preservation": "This task changed only the three files listed in implementationHashes. No frontend/shared/server/exports/canonical ledger edits by this task; no source row publication, private-byte rewrite, pin changes, resource provisioning, DDL, commit, deployment or callback. Other agents' concurrent working-tree changes are not this task's work.",
+  "freezeReceipts": {
+    "initialEvidenceSha256": "5481100ab6161a898e0aef678948ff8d29f0bbd3573aee14366bc4fac08ee24a",
+    "operationalFreezeCanonicalJsonSha256": "1f127abc51043831081e74361a5ab460c8ba2229b98520cd3a334722eaa39bf6",
+    "meaning": "Initial evidence content was written before implementation and tests, and its exact hash recorded before this final evidence update. Canonical freeze hashes use sorted JSON keys, compact separators and allow_nan=False. Neither receipt is a trusted timestamp or external preregistration. The operationalFreeze object was not amended after test outcomes.",
+    "futureInputReceipt": "evaluate_joint requires a separate supplied freezeReceipt, frozenBeforeFitting=True, matching operationalFreezeSha256 and matching inputsSha256 over all data, priors, joint bundle and original failure history. This is a local reviewed receipt contract, not independently timestamped proof."
+  },
+  "readAndConfirmed": {
+    "originalCalibrationProtocol": {
+      "path": "docs/Driver_Calibration_Protocol.md",
+      "sha256": "d136eea3cdaa11cdda978f734bef5680da9f912102ad0b91024251a8f9eb5c67",
+      "eligibilityBoundary": "Original eligibility remains at least six interior training observations. New requested complete-nine training gate is a stricter prospective execution guard only; it does not rewrite original eligibility or rescore old outcomes."
+    },
+    "originalUncertaintyProtocol": {
+      "path": "docs/Driver_Uncertainty_Protocol.md",
+      "sha256": "3842cc749f8c62da75181e21c8c4c5bb87702af77c75543de0aa31359dfae0e1",
+      "confirmed": "1000 circular residual training-logit blocks of length3, seed20261108; paired intercept/slope refit, 2.5/50/97.5 percentiles and early/late training slope diagnostic."
+    },
+    "retainedResults": {
+      "path": "generated-artifacts/driver-calibration/result.json",
+      "sha256": "9b3ec4c77c1116dfcdd1fa7638d9ea4f11f51de5d377f7643b0709d227048176",
+      "candidates": 10,
+      "originalBaselineFailures": 9,
+      "pointWinners": 1,
+      "winner": "European Union (27), solar_share_elec; point-metric win only, never scientific acceptance"
+    },
+    "retainedUncertainty": {
+      "path": "generated-artifacts/driver-calibration/uncertainty.json",
+      "sha256": "6c00e7c77d5cea0cd5122e0f09916a14aeefdec5b18e2deee51cbd694adac2ed",
+      "candidates": 10,
+      "pairedDrawsPerCandidate": 1000,
+      "seedEveryCandidate": 20261108,
+      "use": "Read-only confirmation of metadata and counts, no retained study rerun or parameter consumption."
+    },
+    "retainedSourceCompatibility": {
+      "path": "generated-artifacts/driver-calibration/source-compatibility.json",
+      "sha256": "9d8bd7da126b4b767803e07536c9e7f847ab8979df6cc8c3def84e00114d5be4"
+    },
+    "legacyRelease": {
+      "url": "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv",
+      "retainedSha256FromPriorEvidence": "266f2e2baad7975351bc9bb4aa061d22b1da9fe4c47d51d2ac6071e01e171f76",
+      "period": "Annual2010-2024; training2010-2018, heldout2019-2024",
+      "units": "Total-electricity generation share, source percent divided by100",
+      "vintage": "Retained revised-history bytes; publisher commit/publication date unresolved. No date borrowed from replacement2026 catalog.",
+      "releaseSeparation": "No legacy/replacement splice, new acquisition, MW-share substitution or raw-row publication."
+    }
+  },
+  "implementation": {
+    "script/regional_diffusion_uncertainty.py": {
+      "entryPoint": "Default CLI calls readiness only; future reviewed caller invokes evaluate_joint explicitly.",
+      "functions": [
+        "fingerprint", "cell_id", "finite", "full_window", "qualified_record",
+        "input_binding", "frozen_specification", "joint_source_gate", "circular_indices",
+        "residual_fit", "refit_block", "paired_errors", "paired_null_p", "fixed_family",
+        "intervals", "evaluate_joint", "readiness"
+      ],
+      "pointEvaluator": "Calls existing regional_diffusion_next.evaluate_qualified only after every source/input/joint gate passes. Existing script and point formulas are unchanged.",
+      "formula": {
+        "trainingTransform": "z_t=log(y_t/(K-y_t)); OLS z_t=a+b*(year-2010), training only.",
+        "point": "yhat_t=K*expit(a+b*(year-2010)); numerically clamped exponent as in retained code.",
+        "parameterDraw": "r_t=z_t-a-b*t, centered by training mean. Circular block3 sample indices shared across available cells; OLS refit z*_t=a+b*t+r_index(t), retain (a*,b*) together.",
+        "jointDraw": "One source-authored complete joint draw selected per replication under an explicitly sourced uniform empirical law. Refit that draw's nine training shares with its K using the same annual block indices; predict K_draw*expit(a*+b*t+source_identified_structural_logit_offset_t).",
+        "intervals": "Interpolated empirical 0.025/0.5/0.975 quantiles; report six-year descriptive coverage separately for parameter-only and joint intervals. Not full process-noise predictive intervals.",
+        "stability": "OLS logit slope in training2010-2014 versus2015-2018, plus late-minus-early; no significance claim.",
+        "pairedMetric": "d_baseline,t=100*(abs(logistic_prediction-observation)-abs(baseline_prediction-observation)); complete six-year mean.",
+        "supplementalTail": "1000 circular block3 resamples of centered six-year d, common annual indices across cells/baselines. p=(1+count(null_mean<=observed_mean))/1001. Candidate p=max(p_persistence,p_linearTrend); Holm adjusted p is cumulative max((10-rank)*p), capped1. Missing candidate or missing baseline remains p1/nonrejection.",
+        "acceptanceBoundary": "Supplemental tail probabilities are approximate low-power small-sample diagnostics, not original acceptance, calibrated posterior probabilities, or a significant structural-break claim. Original strict MAE gate and all scientific/owner/central blocks remain intact."
+      },
+      "sourceContract": "Each prior requires independently reviewed qualified regional/technology long-run generation-share saturation, explicit source URL/version/date/locator/rights/hash and private authenticated source bytes. The joint bundle additionally requires reviewed source-revision, structural, sampling-law and dependence identification. Its authenticated machine-readable JSON must contain the exact draw arrays, years and law, not merely an unrelated paper hash. Each draw includes every available cell, a unique joint draw id, nine training shares, K, six structural logit offsets and matching prior hash. No synthesized fallback, independent marginal sampling, median replication, future-observation input or automatic zero-offset insertion.",
+      "privacy": "evaluate_joint returns paired draws to its explicit private caller; default CLI does not print source rows, paired arrays or observations. No source acquisition or file writes by the engine.",
+      "countsMeaning": "fitCount counts newly fitted candidate point diagnostics, not every OLS operation. bootstrapReplications is1000 per qualified candidate in a future execution; zero actual candidates and zero actual bootstrap replications here."
+    },
+    "script/test_regional_diffusion_uncertainty.py": {
+      "suite": "RegionalJointUncertaintyTests",
+      "classification": "Synthetic engineering fixtures only; invented values/evidence are explicitly marked engineeringFixture and production execution rejects them.",
+      "coverage": "Source and prefit blocks before regression; full9/6 uniqueness/finite checks; missing and invalid joint paths; authenticated numerical-draw binding; hash/date/review gates; fixed ten-family missing nonrejections; paired1000 reproducibility/correlation; holdout nonleakage; frozen original failure history; exact six-year MAE/baseline comparison; central/scientific/owner prohibition."
+    }
+  },
+  "implementationHashes": {
+    "script/regional_diffusion_uncertainty.py": "6940534bfa167bec9fef6d1b65aa24e1ccefcde1bb7d7fa2d25fe29fddbebb03",
+    "script/test_regional_diffusion_uncertainty.py": "1fa72cab3f0d121c88e420144006f59c9f01d1323d8278510def2913d29c7071",
+    "docs/regional-diffusion-uncertainty-evidence.json": "Evolving evidence file; no self-hash asserted. Initial preimplementation version hash is recorded separately.",
+    "unchangedPointEvaluatorSha256": "ddcd684854a29b7ff90aee5cfed44518aade683d65b4dd8ce0968c23508a9fcf"
+  },
+  "executions": [
+    {
+      "command": "uv run python -m unittest discover -s script -p 'test_regional_diffusion_uncertainty.py' -v",
+      "exitCode": 1,
+      "counts": {"tests": 20, "pass": 19, "fail": 1, "skip": 0},
+      "failure": "Production-synthetic-rejection test incorrectly expected all ten family cells to contain engineering-source-forbidden; eight absent cells correctly had missing-source reasons. Fixed assertion to inspect the two supplied engineering cells, without changing scientific gates or numerical outcomes.",
+      "logHash": null,
+      "logLimitation": "Initial failure captured in tool receipt only; no independent log file retained."
+    },
+    {
+      "command": "uv run python -m unittest discover -s script -p 'test_regional_diffusion_uncertainty.py' -v > /tmp/regional-diffusion-uncertainty-tests.log 2>&1",
+      "exitCode": 0,
+      "counts": {"tests": 21, "pass": 21, "fail": 0, "skip": 0},
+      "logSha256": "bf77571c9bb063e150ce03223ba45e06cb94298726a4043601b72c96b431f8f1",
+      "meaning": "Intermediate engineering suite before adding exact point-metric assertion and refining partial-baseline missing nonrejection."
+    },
+    {
+      "command": "uv run python -m unittest discover -s script -p 'test_regional_diffusion_uncertainty.py' -v > /tmp/regional-diffusion-uncertainty-tests-final.log 2>&1",
+      "exitCode": 0,
+      "counts": {"tests": 22, "pass": 22, "fail": 0, "skip": 0},
+      "logSha256": "c67359cf5ec21defe6022e61db3a64cc7b1f346deace62b6a562e01c798d852e",
+      "meaning": "Final synthetic engineering tests; no actual efficacy execution."
+    },
+    {
+      "command": "PYTHONPATH=script uv run python -m unittest test_driver_calibration test_driver_uncertainty test_regional_diffusion_next -v > /tmp/regional-diffusion-uncertainty-regression.log 2>&1",
+      "exitCode": 0,
+      "counts": {"tests": 12, "pass": 12, "fail": 0, "skip": 0},
+      "logSha256": "41a73986c434225b7294b70c86feab88f8b33b07e9c91890e7fd112b100d30de",
+      "meaning": "Existing synthetic regression/gate tests only; no retained actual-study rerun."
+    },
+    {
+      "command": "uv run python -m py_compile script/regional_diffusion_uncertainty.py script/test_regional_diffusion_uncertainty.py",
+      "exitCode": 0,
+      "meaning": "Syntax only, no app/workflow execution."
+    },
+    {
+      "command": "uv run python script/regional_diffusion_uncertainty.py > /tmp/regional-diffusion-uncertainty-readiness.json",
+      "exitCode": 0,
+      "logSha256": "3748cc52291d351c615c5b359f6326064d18155c61f34744da16e0f8eac19b80",
+      "actualCandidateFits": 0,
+      "actualBootstrapReplications": 0,
+      "actualHeldoutScores": 0,
+      "familyCells": 10,
+      "missingNonrejections": 10,
+      "meaning": "Default no-source readiness receipt explicitly UNEXECUTED."
+    }
+  ],
+  "logRetention": "Execution logs are local /tmp receipts with exact byte hashes; temporary paths may expire. No durable-log or full-suite/app verification claim. Scientific source/private artifact files were read only.",
+  "scientificOutcome": {
+    "status": "UNEXECUTED",
+    "originalCriterionComplete": false,
+    "newQualifiedRegionalSaturation": 0,
+    "newQualifiedJointSourceBundles": 0,
+    "newActualCandidateFits": 0,
+    "newActualBootstrapReplications": 0,
+    "newActualHeldoutScores": 0,
+    "newSourceRequests": 0,
+    "centralPromotions": 0,
+    "ownerApprovals": 0,
+    "retainedFailureHistory": "All nine original failures remain failures; EU solar remains a point winner only. No retuning, source-release splice, reduced window, arbitrary K, MW/shipments share ceiling or invented joint distribution."
+  },
+  "issuerReadiness": {
+    "FSLR": "Still requires materially new exact collections/eligible-US-watts/component-BOM/current-law-applicability evidence. No new issuer source ready; no old IRS/programme summary repeated.",
+    "NEE": "Still requires gross legal cash recipient, contractual priority, project commissioning and marginal project return. No old XPLR/programme/stress repeat or consolidated-return substitution.",
+    "XOM": "Still requires executed fee, novation, billing, opex and funding terms. No announced tonnes converted to revenue or old Williams/programme/stress repeat.",
+    "decision": "Issuer work conditional on exact new sources being ready; none supplied or authenticated in this increment. No issuer financial model or cashflow calculations executed."
+  }
+}

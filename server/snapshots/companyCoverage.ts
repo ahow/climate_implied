@@ -8,6 +8,7 @@ import { snapshotSchema } from "../financialData/review";
 import { contentHash } from "../calculation/analysisManifest";
 import { resolveCompanySourceEvidence } from "../calculation/companySourceArchive";
 import { projectCompanyMembers } from "../calculation/companyProjection";
+import { rememberReportRelease } from "./reportMaterialContext";
 
 /** Read-only complete journal scan; deliberately not the paginated review UI getter.
  * No locks, DDL, approval helpers, source staging, or mutation are invoked.
@@ -39,8 +40,11 @@ async function readCompanyCoverage(connection: Pick<typeof db, "select" | "execu
     .filter(d => d <= options.informationCutoff.slice(0, 10)).sort() : [];
   const observationDate = current?.observationDate ?? options.observationDate ?? dates.at(-1);
   if (!observationDate) throw new Error("No workbook observation date available at cutoff");
-  return companyCoverage({ companies: workbook.companies, observations: workbook.timeSeries, reviews,
+  const report = companyCoverage({ companies: workbook.companies, observations: workbook.timeSeries, reviews,
     observationDate, informationCutoff: options.informationCutoff, sourceId: header?.id ?? "current-workbook-unversioned" });
+  return rememberReportRelease(report, "company-coverage", { version: "company-coverage-consumed-source-1",
+    options, sourceId: report.sourceId, observationDate, workbook, financialRows: financial.rows, archiveRows: archives.rows,
+    meaning: "Full actual repeatable-read workbook/day and financial/operating source/review journal snapshot; no source approval or private publication" });
 }
 
 /** Current DB path reads the complete company population, but only one day of

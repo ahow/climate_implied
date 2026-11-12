@@ -156,6 +156,12 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
 | client/src/lib/analysis-selection.ts | "/api/projection/regions" |
+| client/src/lib/producer-download.ts | "/api/projection" |
+| client/src/lib/producer-download.ts | "/api/projection/categories" |
+| client/src/lib/producer-download.ts | "/api/projection/historical-trend" |
+| client/src/lib/producer-download.ts | "/api/projection/regions" |
+| client/src/lib/producer-download.ts | "/api/projection/categories/historical-trend" |
+| client/src/lib/producer-download.ts | "/api/projection" |
 | client/src/lib/producer-download.ts | `/api/analysis/results/${id}/export.json?downloadMetadata=manifest-v1` |
 | client/src/lib/trackBPublicReports.ts | `/api/research/track-b-admission${suffix}?${new URLSearchParams({ protocolHash: pin.protocolHash, reportHash: pin.reportHash, disclosureHash: pin.disclosureHash, })}` |
 | client/src/lib/trackBPublicReports.ts | "/api/research/track-b-admission/catalog" |
@@ -230,7 +236,7 @@ The required evidence class is enforced by TypeScript and an AST coverage test; 
 | client/src/components/regional-comparison.tsx | "legacy-global-intensity-counterfactual" | {downloadRows} | "legacy" |
 | client/src/components/sensitivity-chart.tsx | "indicator-sensitivity" | {downloadRows} | "legacy" |
 | client/src/components/temperature-histogram.tsx | "temperature-distribution" | {downloadRows} | "legacy" |
-| client/src/components/threshold-diagnostic-details.tsx | "selected-2024-five-percent-diagnostic-v2" | {diagnostics.map((d, i) => thresholdExportRow(d, contextLabels?.[i] ?? null))} | "legacy" |
+| client/src/components/threshold-diagnostic-details.tsx | "selected-2024-five-percent-diagnostic-v2" | {producerThresholdExportRows(diagnostics, contextLabels)} | "legacy" |
 | client/src/pages/climate-valuation.tsx | {`${testIdPrefix}-pe-ratio-comparison`} | {peDownloadRows} | "valuation" |
 | client/src/pages/data-management.tsx | {`indicator-time-series-${def?.key ?? "series"}`} | {downloadRows} | "indicators" |
 | client/src/pages/decarb-gap-signal.tsx | "group-earnings-yield-gap-over-time" | {timeseriesDownloadRows} | "valuation" |

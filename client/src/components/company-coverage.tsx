@@ -6,6 +6,7 @@ import type { CompanyCoverageReport } from "../../../server/calculation/companyC
 import { currentSelection } from "@/lib/analysis-selection";
 import { DownloadJsonButton } from "@/components/download-data-button";
 import { validateCompanyCoverageJson } from "@/lib/export-contract";
+import { retainProducerDownload } from "@/lib/producer-download";
 
 /** Standalone S12-018 surface. Server JSON download preserves null/status details. */
 export function CompanyCoverage() {
@@ -21,7 +22,7 @@ export function CompanyCoverage() {
       if (observationDate) params.set("observationDate", observationDate);
       const response = await fetch(`/api/calculation/company-coverage?${params}`, { credentials: "include" });
       if (!response.ok) throw new Error(`Coverage request unavailable (${response.status}); no zero-coverage inference is permitted.`);
-      const report: CompanyCoverageReport = await response.json();
+      const report: CompanyCoverageReport = await retainProducerDownload(response, selection).json();
       validateCompanyCoverageJson(report);
       if (selection && report.sourceId !== selection.workbook) throw new Error("Coverage response workbook conflicts with the selected workbook.");
       return report;

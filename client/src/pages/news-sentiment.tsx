@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Newspaper, TrendingUp, TrendingDown, BarChart3, ExternalLink } from "lucide-react";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { retainProducerDownload, bindProducerLegacyConsumer } from "@/lib/producer-download";
 import {
   AreaChart,
   Area,
@@ -120,7 +121,7 @@ export default function NewsSentiment() {
         (err as any).status = resp.status;
         throw err;
       }
-      return resp.json();
+      return retainProducerDownload(resp).json();
     },
     staleTime: 6 * 60 * 60 * 1000,
     retry: 1,
@@ -199,6 +200,12 @@ export default function NewsSentiment() {
     "Article Count": t.count,
     "Avg Sentiment": t.avgSentiment,
   }));
+  if (responseData) {
+    bindProducerLegacyConsumer(responseData, "news-volume", volumeRows);
+    bindProducerLegacyConsumer(responseData, "news-sentiment-trend", sentimentTrendRows);
+    bindProducerLegacyConsumer(responseData, "news-sentiment-breakdown", sentimentBreakdownRows);
+    bindProducerLegacyConsumer(responseData, "news-topic", topicRows);
+  }
 
   if (error) {
     const requiresRefresh = (error as Error).message.includes("operator-news-refresh-required");
@@ -322,6 +329,7 @@ export default function NewsSentiment() {
               <DownloadDataButton
                 kind="news"
                 filename="weekly-news-volume"
+            jsonCompanion
                 sheetName="News Volume"
                 rows={volumeRows}
                 fieldBindings={{
@@ -374,6 +382,7 @@ export default function NewsSentiment() {
                 <h3 className="text-sm font-semibold">Monthly Sentiment Trend</h3>
                 <DownloadDataButton
                   filename="monthly-sentiment-trend"
+            jsonCompanion
                   kind="news"
                   sheetName="Sentiment Trend"
                   rows={sentimentTrendRows}
@@ -431,6 +440,7 @@ export default function NewsSentiment() {
                 <h3 className="text-sm font-semibold">Monthly Sentiment Breakdown</h3>
                 <DownloadDataButton
                   filename="monthly-sentiment-breakdown"
+            jsonCompanion
                   kind="news"
                   sheetName="Sentiment Breakdown"
                   rows={sentimentBreakdownRows}
@@ -473,6 +483,7 @@ export default function NewsSentiment() {
                 <h3 className="text-sm font-semibold">Coverage by Topic</h3>
                 <DownloadDataButton
                   filename="coverage-by-topic"
+            jsonCompanion
                   kind="news"
                   sheetName="Topic Coverage"
                   rows={topicRows}

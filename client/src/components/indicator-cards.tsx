@@ -5,6 +5,7 @@ import { LineChart, Line, ResponsiveContainer } from "recharts";
 import { Zap, Car, Shield, Building2, Users, Factory, Leaf, Globe, Banknote, Landmark, Wind, Activity, Thermometer, Gauge } from "lucide-react";
 import type { HistoricalIndicatorData } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 import { certifyFiniteExport,finiteExportBindings,indicatorExportColumn } from "@shared/finiteExportSchemas";
 import { indicatorFieldSpecs } from "@shared/indicatorFieldSemantics";
 
@@ -260,6 +261,7 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
     }
     return row;
   }),{keys:INDICATORS.map(ind=>ind.key)});
+  bindProducerLegacyConsumer(historicalData, "indicator-cards", downloadRows);
 
   return (
     <div data-testid="section-indicator-cards">
@@ -272,6 +274,7 @@ export function IndicatorCards({ historicalData, isLoading }: IndicatorCardsProp
           filename="climate-indicators"
           sheetName="Indicators"
           rows={downloadRows}
+          jsonCompanion
           fieldBindings={finiteExportBindings("indicatorCards",{keys:INDICATORS.map(ind=>ind.key)})}
           testId="button-download-indicators"
         />

@@ -7,6 +7,9 @@ import { exportDataIdentity } from "./export-identity";
 import { currentSelection, type AnalysisSelection } from "./analysis-selection";
 import { deriveReadonlyConsumer, READONLY_PRODUCER_SCENARIO, type ReadonlyConsumerKey } from "../../../shared/readonlyConsumer";
 import { deriveNativeConsumer, NATIVE_PRODUCER_SCENARIO, type NativeConsumerKey, type NativeScenario } from "../../../shared/nativeConsumer";
+import { deriveLegacyExport, legacyProducerPaths, legacyProducerScenario, type LegacyConsumerKey, type LegacyMetric } from "../../../shared/legacyExportConsumer";
+import { thresholdExportRow } from "./threshold-export";
+import type { ThresholdDiagnostic } from "../../../shared/thresholdDiagnostic";
 
 const retainedResults = new WeakMap<object, {
   proof: RetainedProducerIdentity; source: string; selection: string;
@@ -21,6 +24,24 @@ const signalResults = new WeakMap<object, {
 const capturedConsumers = new WeakMap<object, string>();
 const readonlyResults = new WeakMap<object, { parent: object; key: ReadonlyConsumerKey; output: string }>();
 const nativeResults = new WeakMap<object, { parent: object; key: NativeConsumerKey; scenario: NativeScenario; output: string }>();
+const legacyParts = new WeakMap<object, object>();
+const legacyResults = new WeakMap<object, { parent: object; key: LegacyConsumerKey; metric: LegacyMetric; output: string; timezone: string }>();
+const diagnosticParts = new WeakMap<object, { parent: object; path: (string | number)[] }>();
+const diagnosticResults = new WeakMap<object, { diagnostics: ThresholdDiagnostic[]; labels: (string | null)[]; output: string }>();
+function linkDiagnostics(parent: any, proof: RetainedProducerIdentity) {
+  const link = (diagnostic: unknown, path: (string | number)[]) => {
+    if (diagnostic && typeof diagnostic === "object") diagnosticParts.set(diagnostic, { parent, path });
+  };
+  if (proof.scenario === legacyProducerScenario("/api/projection")) link(parent.metrics?.thresholdDiagnostic, ["metrics", "thresholdDiagnostic"]);
+  if (["/api/projection/categories", "/api/projection/historical-trend", "/api/projection/regions"]
+    .some(path => proof.scenario === `legacy-export:${path}`))
+    parent.forEach((row: any, i: number) => link(row.thresholdDiagnostic, [i, "thresholdDiagnostic"]));
+  if (proof.scenario === legacyProducerScenario("/api/projection/categories/historical-trend"))
+    parent.forEach((row: any, i: number) => {
+      for (const key of ["all", "technology", "policy", "corporate", "socioeconomic", "financial", "emissions"])
+        link(row[key]?.thresholdDiagnostic, [i, key, "thresholdDiagnostic"]);
+    });
+}
 async function canonicalHash(value: unknown) {
   const bytes = new TextEncoder().encode(consumerCanonicalJson(value));
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)))
@@ -42,7 +63,10 @@ export function retainProducerDownload(response: Response, requestedSelection: A
       !Array.isArray(proof.orderedSnapshotHashes) || !proof.orderedSnapshotHashes.length ||
       !proof.orderedSnapshotHashes.every((id: unknown) => typeof id === "string" && /^[a-f0-9]{64}$/.test(id)) ||
       typeof proof.modelVersion !== "string" || !proof.modelVersion ||
-      !(proof.scenario === READONLY_PRODUCER_SCENARIO || proof.scenario === NATIVE_PRODUCER_SCENARIO || ["summary", "carbon-price", "pe-comparison", "sdg-growth", "decarb-bands",
+      !(proof.scenario === READONLY_PRODUCER_SCENARIO || proof.scenario === NATIVE_PRODUCER_SCENARIO ||
+        proof.scenario === "source-release:news-allocation-1" ||
+        ["company-coverage", "indicator-detail"].some(kind => proof.scenario === `safe-report-release:${kind}`) ||
+        legacyProducerPaths.some(path => proof.scenario === legacyProducerScenario(path)) || ["summary", "carbon-price", "pe-comparison", "sdg-growth", "decarb-bands",
         "decarb-terciles", "decarb-gap/summary", "decarb-gap/timeseries", "backtest"]
          .some(path => proof.scenario === `descriptive-valuation:/${path}`)) ||
       proof.scientificAcceptance !== false)
@@ -56,8 +80,16 @@ export function retainProducerDownload(response: Response, requestedSelection: A
       ? payload.result : payload;
     if (await canonicalHash(native) !== proof.resultHash)
       throw new Error("Server producer result hash conflicts with consumed response");
-    if (payload && typeof payload === "object")
+    if (payload && typeof payload === "object") {
       retainedResults.set(payload, { proof: structuredClone(proof), source: consumerCanonicalJson(native), selection });
+      linkDiagnostics(payload, proof);
+      if (proof.scenario === legacyProducerScenario("/api/projection")) {
+        // Only actual closed detached paths acquire the whole response link.
+        // A cloned or numerically identical array never inherits it.
+        if (Array.isArray(payload.emissionsTrajectory)) legacyParts.set(payload.emissionsTrajectory, payload);
+        if (Array.isArray(payload.temperatureDistribution?.pdf)) legacyParts.set(payload.temperatureDistribution.pdf, payload);
+      }
+    }
     return payload;
   };
   return response;
@@ -65,6 +97,86 @@ export function retainProducerDownload(response: Response, requestedSelection: A
 export function exactProducerDownload(payload: unknown) {
   const id = payload && typeof payload === "object" ? retainedResults.get(payload)?.proof.resultId : undefined;
   return id ? `/api/analysis/results/${id}/export.json?downloadMetadata=manifest-v1` : null;
+}
+/** Lossless whole-response JSON only. A mapped object, clone or stale selection
+ * cannot acquire the original producer identity. */
+export function captureExactProducerIdentity(payload: unknown) {
+  const retained = payload && typeof payload === "object" ? retainedResults.get(payload) : undefined;
+  if (!retained) return null;
+  if (retained.source !== consumerCanonicalJson(payload) || retained.selection !== consumerCanonicalJson(currentSelection()))
+    throw new Error("Exact producer JSON parent changed or requested selection is stale");
+  return structuredClone(retained.proof);
+}
+/** Context labels are explicit UI presentation metadata, never input evidence.
+ * Provenance follows each original diagnostic object's exact retained path. */
+export function producerThresholdExportRows(diagnostics: ThresholdDiagnostic[], contextLabels?: string[]) {
+  const labels = diagnostics.map((_, i) => contextLabels?.[i] ?? null);
+  const rows = diagnostics.map((diagnostic, i) => thresholdExportRow(diagnostic, labels[i]));
+  if (diagnostics.some(d => diagnosticParts.has(d))) {
+    if (diagnostics.some(d => !diagnosticParts.has(d))) throw new Error("Threshold export contains an unbound diagnostic mixed with retained records");
+    diagnosticResults.set(rows, { diagnostics: [...diagnostics], labels, output: consumerCanonicalJson(rows) });
+  }
+  return rows;
+}
+function captureThresholdConsumer(rows: unknown, binding: NonNullable<ReturnType<typeof diagnosticResults.get>>) {
+  const links = binding.diagnostics.map(d => {
+    const link = diagnosticParts.get(d);
+    if (!link) throw new Error("Threshold original diagnostic path unavailable");
+    const proof = captureExactProducerIdentity(link.parent);
+    if (!proof || link.path.reduce((v: any, k) => v?.[k], link.parent) !== d)
+      throw new Error("Threshold retained whole parent/path missing or changed");
+    return { ...link, proof };
+  });
+  const replay = binding.diagnostics.map((d, i) => thresholdExportRow(d, binding.labels[i]));
+  if (binding.output !== consumerCanonicalJson(rows) || binding.output !== consumerCanonicalJson(replay))
+    throw new Error("Threshold diagnostic export rows changed");
+  const parents = links.map(l => l.proof).filter((p, i, all) => all.findIndex(x => x.resultId === p.resultId) === i);
+  const captured = structuredClone({ version: "derived-consumer-lineage-1", parent: parents[0], parents,
+    derivation: { version: "threshold-path-consumer-1", key: "threshold-diagnostic",
+      scenario: parents[0].scenario, recordPaths: links.map(l => JSON.stringify({ resultId: l.proof.resultId, path: l.path })),
+      contextLabels: binding.labels, filter: "Exactly supplied original diagnostic records; no sorting/deduplication/baseline borrowing",
+      order: "Supplied context-record order, each linked to exact retained whole response path",
+      units: "Native diagnostic basis unit retained per row; thresholdFraction is fraction, years are annual crossing years, not emissions",
+      claim: "Context labels are UI presentation, not provenance; positive 5%-of-selected-2024 residual threshold, not net zero, forecast, original vintage or scientific acceptance" },
+    rows: replay, chartRows: binding.diagnostics, originalHistoricalExport: false, scientificAcceptance: false,
+    meaning: "New exact retained diagnostic path projection; no UI label, standalone baseline hash or unrelated native parent can certify provenance" });
+  capturedConsumers.set(captured, consumerCanonicalJson(captured));
+  return captured;
+}
+export function bindProducerLegacyConsumer<T extends Record<string, unknown>>(
+  consumed: object, key: LegacyConsumerKey, rows: T[], metric: LegacyMetric = "temperature",
+): T[] {
+  const parent = legacyParts.get(consumed) ?? consumed;
+  if (!retainedResults.has(parent)) return rows;
+  // Explicit missing cells have the same central-writer blank-cell meaning;
+  // finite lineage hashes may not contain undefined.
+  for (const row of rows) for (const key of Object.keys(row))
+    if (row[key] === undefined) Reflect.set(row, key, null);
+  const replay = deriveLegacyExport(parent, key, metric);
+  const proof = retainedResults.get(parent)!;
+  if (proof.proof.scenario !== replay.derivation.scenario ||
+    consumerCanonicalJson(rows) !== consumerCanonicalJson(replay.rows))
+    throw new Error("Legacy consumer producer/path/row projection conflicts");
+  legacyResults.set(rows, { parent, key, metric, output: consumerCanonicalJson(rows), timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+  return rows;
+}
+function captureLegacyConsumer(rows: unknown, binding: NonNullable<ReturnType<typeof legacyResults.get>>) {
+  const retained = retainedResults.get(binding.parent);
+  if (!retained || retained.source !== consumerCanonicalJson(binding.parent))
+    throw new Error("Legacy consumer retained whole parent missing or changed");
+  if (retained.selection !== consumerCanonicalJson(currentSelection()))
+    throw new Error("Legacy consumer belongs to stale requested input selection");
+  if (binding.timezone !== Intl.DateTimeFormat().resolvedOptions().timeZone)
+    throw new Error("Legacy consumer date-label timezone changed; no relabelled replay");
+  const replay = deriveLegacyExport(binding.parent, binding.key, binding.metric);
+  if (retained.proof.scenario !== replay.derivation.scenario || binding.output !== consumerCanonicalJson(rows) ||
+    binding.output !== consumerCanonicalJson(replay.rows)) throw new Error("Legacy consumer rows or exact path replay changed");
+  const captured = structuredClone({ version: "derived-consumer-lineage-1", parent: retained.proof,
+    derivation: replay.derivation, rows: replay.rows, chartRows: replay.chartRows,
+    originalHistoricalExport: false, scientificAcceptance: false,
+    meaning: "New prospective legacy export from exact effective input, source/config/lock, whole completed response and finite path replay; not original bytes or scientific acceptance" });
+  capturedConsumers.set(captured, consumerCanonicalJson(captured));
+  return captured;
 }
 
 /** Only a closed derivation on the actual consumed response can acquire
@@ -211,6 +323,10 @@ function captureSignalConsumer(rows: unknown, binding: NonNullable<ReturnType<ty
 /** Capture before any async export preparation. Returns null for arbitrary
  * rows/clones, and refuses a mutated registered derivation instead of degrading. */
 export function captureDerivedConsumer(rows: unknown) {
+  const diagnostic = rows && typeof rows === "object" ? diagnosticResults.get(rows) : undefined;
+  if (diagnostic) return captureThresholdConsumer(rows, diagnostic);
+  const legacy = rows && typeof rows === "object" ? legacyResults.get(rows) : undefined;
+  if (legacy) return captureLegacyConsumer(rows, legacy);
   const native = rows && typeof rows === "object" ? nativeResults.get(rows) : undefined;
   if (native) return captureNativeConsumer(rows, native);
   const readonly = rows && typeof rows === "object" ? readonlyResults.get(rows) : undefined;

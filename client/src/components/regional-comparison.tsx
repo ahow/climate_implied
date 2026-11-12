@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Globe, MapPin } from "lucide-react";
 import type { RegionalProjection } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 import { ThresholdDiagnosticDetails } from "./threshold-diagnostic-details";
 import { displayDiagnostic } from "@/lib/valuation-claims";
 
@@ -65,6 +66,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
     "Milestone definition": r.milestoneDefinition,
     Claim: r.claim,
   }));
+  bindProducerLegacyConsumer(regions, "regional", downloadRows);
 
   return (
     <Card className="p-6" data-testid="card-regional-comparison">
@@ -83,6 +85,7 @@ export function RegionalComparison({ regions, isLoading }: RegionalComparisonPro
           filename="legacy-global-intensity-counterfactual"
           sheetName="Global Counterfactual"
           rows={downloadRows}
+          jsonCompanion
           interpretationNotes={residualQuantityExportNotes()}
           fieldBindings={{
             Region:{id:"regional.regionName",transform:"Identity"},

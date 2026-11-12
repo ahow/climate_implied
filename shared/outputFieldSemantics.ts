@@ -1,4 +1,5 @@
 import { indicatorFieldSemantics } from "./indicatorFieldSemantics";
+import { safeReportExportSemantics } from "./safeReportExportSemantics";
 import { regionalFieldSemantics } from "./regionalFieldSemantics";
 import { sensitivityFieldSemantics } from "./sensitivityFieldSemantics";
 import { projectionFieldSemantics } from "./projectionFieldSemantics";
@@ -48,6 +49,7 @@ const financial = {
 const peFinancial={...financial,geography:"Selected workbook universe; this endpoint does not apply a geography filter",
   missingness:"Require positive marketCap and positive netProfit for each member; omit dates unless both terciles contain eligible records. No missing-value replacement with zero."};
 export const outputFieldSemantics:OutputFieldSemantic[]=[
+  ...safeReportExportSemantics,
   ...producerDownloadSemantics,
   ...derivedConsumerSemantics,
   ...trackBAdmissionSemantics,

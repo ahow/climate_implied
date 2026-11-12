@@ -1,9 +1,10 @@
 {
-  "version": "remaining-export-evidence-1",
+  "version": "remaining-export-evidence-2-all-ready-contracts",
   "requirement": "ORIGINAL S16-007",
-  "completion": "partial; six additional contracts closed: two source-backed readonly consumers, two named static public JSON handlers and two native candidate JSON/XLSX consumers; fifteen central and seven public custom contracts remain unimplemented, not external blockers",
+  "priorCompletionPreserved": "Version1 closed6 and left15central+7custom unimplemented. Its complete per-path matrices, implementation descriptions, test receipts, source hashes and limitations remain below under prior-prefixed keys; none is reused as proof of the new22.",
+  "completion": "All22 requested prospective contracts implemented and engineering-readback tested:15central+7custom. Fixed29 inventory is28engineering-closed+1unauthorized-private-HTTP403. Prior6closed and9PE/signal preserved. This is not a claim of live persistence activation, original historical bytes, scientific acceptance or full ORIGINAL S16-007 acceptance outside this fixed inventory.",
   "scope": "Frontend/shared and nonprotected server producer/material/result modules, tests and regenerated supplemental field census. No canonical ledger, commit, deployment, callback, auth, DDL, data approval or private publication changes.",
-  "blanketRefusalsRemoved": "The rejected filename-based nineteen-export refusal was removed, not shipped. Central writer, generic JSON preparer and established selection-race tests have no blanket gate. Fifteen other central exports remain available with existing schemas/guards and honest null producer identity. Native archive outages and legacy partial native data also preserve correct ordinary XLSX without producer attestation, explicitly distinct from retained exports.",
+  "blanketRefusalsRemoved": "No filename/registry-status blanket gate. Every ordinary correctly formed result/export remains available under archive outage, explicitly without producer attestation. Missing/corrupt/mutated claimed retained chains refuse their claims/readback; unrelated native/valuation proofs and UI selections never grant provenance.",
   "ledgerReads": [
     "docs/workplan_completion_ledger.json: S16-007 targeted references",
     "docs/WORKPLAN_IMPLEMENTATION_REPORT.md: S16-007 targeted references",
@@ -59,16 +60,53 @@
     "sourceblocked": "A specific source/publication/operator permission boundary prevents access. Not a synonym for missing implementation."
   },
   "matrixCounts": {
-    "newClosed": 6,
-    "newCentralClosed": 4,
+    "newClosed": 28,
+    "newCentralClosed": 19,
     "newStaticPublicJsonClosed": 2,
-    "remainingUnimplemented": 22,
+    "remainingUnimplemented": 0,
     "remainingSourceblocked": 1,
-    "centralSourceBackedProducerContracts": 4,
-    "centralAvailableWithLegacyNullProducer": 15,
-    "customServerContractsNotChanged": 8
+    "centralSourceBackedProducerContracts": 19,
+    "centralAvailableWithLegacyNullProducer": 19,
+    "customServerContractsNotChanged": 1,
+    "implementedThisIncrement": 22,
+    "implementedThisIncrementCentral": 15,
+    "implementedThisIncrementCustom": 7,
+    "countMeaning": "Fixed engineering implementation inventory, not live retained-data availability. All19central ordinary paths may still run honestly unbound when storage is unavailable."
   },
   "centralHandlerMatrix": [
+    {"key":"category-scenarios","state":"closed","contract":"legacy-export-inputs/material-1 + legacy-export-consumer-1","proof":"Actual whole category engine/effective history/approved source/code/model retained; actual row builder and JSON/XLSX readback."},
+    {"key":"category-trends","state":"closed","contract":"same whole category-history producer; all3finite metrics","proof":"Actual history/type/nowcast source order; all7category columns, fixed5Gt export versus5% chart, exact nowcast bridges;3JSON+3XLSX."},
+    {"key":"company-coverage","state":"closed","contract":"safe-report-release:company-coverage","proof":"Full repeatable-read workbook/day and financial/operating source/review journals retained privately; exact review evaluator and coverage replay; lossless actual JSON preparer/readback."},
+    {"key":"native-thresholds","state":"closed","proof":"Prior unchanged native-candidate producer/readbacks; preserved below."},
+    {"key":"native-trajectory","state":"closed","proof":"Prior unchanged native-candidate producer/readbacks; preserved below."},
+    {"key":"emissions","state":"closed","contract":"whole legacy projection + exact original detached trajectory link","proof":"Actual whole effective input/approved metadata/seeds/model/code/query response replay; all export years versus even/final chart indices; JSON/XLSX literal-cell readback."},
+    {"key":"historical-trend","state":"closed","contract":"whole legacy history + exact3metric previews","proof":"Actual full historical recalculation, labels, nowcast and bridge values; unchanged all-fields export,3JSON+3XLSX."},
+    {"key":"indicator-cards","state":"closed","contract":"whole effective history result +22key projection","proof":"Actual historical base/approved source/nowcast rows/code; native-unit export and exact sparkline bridges; JSON/XLSX."},
+    {"key":"version-diff","state":"closed","proof":"Prior unchanged readonly source producer/readbacks; preserved below."},
+    {"key":"affected-analyses","state":"closed","proof":"Prior unchanged readonly source producer/readbacks; preserved below."},
+    {"key":"regional","state":"closed","contract":"whole legacy regional counterfactual/effective history/intensity material","proof":"Exact selected/current resolved intensity inputs, source tags and PPP/nominal basis, seeds/model/code/query; all four native records, JSON/XLSX."},
+    {"key":"sensitivity","state":"closed","contract":"whole legacy sensitivity/effective history/shock/baseline producer","proof":"Actual entire sensitivity execution replay; all native exports distinct from first10chart/offsets, JSON/XLSX."},
+    {"key":"temperature","state":"closed","contract":"whole projection + exact original detached PDF link","proof":"Actual legacy simulation inputs and three seeds; all exported PDF points versus density>0.001 chart, JSON/XLSX."},
+    {"key":"threshold-diagnostic","state":"closed","contract":"threshold-path-consumer-1","proof":"Each original diagnostic object resolves exact retained whole-parent property/index path, ordered proof and rows. UI context labels explicitly presentation only; JSON/XLSX and original-parent mutation refusal."},
+    {"key":"indicator-detail","state":"closed","contract":"safe-report-release:indicator-detail + finite consumer","proof":"Full effective history/approved source metadata/selected registered definition/proposal release/query/code; all22actual finite row builders and22JSON+22XLSX readbacks."},
+    {"key":"news-volume","state":"closed","contract":"news-export-inputs/material-1 + finite news-volume projection","proof":"Whole consumed provider-derived volume/sample cache release and collection/query times/code; exact local Sunday getDay/setDate then UTC ISO date and ascending buckets; browser timezone captured/refused if changed; JSON/XLSX."},
+    {"key":"news-sentiment-trend","state":"closed","contract":"same retained news source release + exact allocation projection","proof":"Pooled non-null sample ratios,0.4/0.15fallback, independent rounded class allocations and >=5monthly sample mean threshold/pooled fallback; not observed population classifications; JSON/XLSX."},
+    {"key":"news-sentiment-breakdown","state":"closed","contract":"same retained news release + exact denominator projection","proof":"Shares divide reported volume total, not sum independently rounded allocated classes; nonpositive total gives null; rounds need not sum100; JSON/XLSX."},
+    {"key":"news-topic","state":"closed","contract":"same retained news release + exact topic extrapolation","proof":"Nonexclusive case-insensitive title-substring keywords, round(totalVolume*max(sampleMatchRatio,0.05)), matched-sample mean or pooled fallback; not observed topic counts; JSON/XLSX."}
+  ],
+  "customHandlerMatrix": [
+    {"path":"/api/reference/warming-validation/export.json","state":"closed","proof":"Prior exact static source/code artifact preserved."},
+    {"path":"/api/cv/carbon-pass-through-evidence/export.json","state":"closed","proof":"Prior exact static source/code artifact preserved."},
+    {"path":"/api/cv/company-conditional-summaries/export.json","state":"closed","contract":"selected conditional static-reference-artifact-1","proof":"All/NEE/FSLR/XOM actual HTTP readback of exact checked-in selected allowlisted material/formulas and release-local code/config/lock. No model run invented; native producerIdentity null."},
+    {"path":"/api/cv/company-conditional-summaries/export.xlsx","state":"closed","contract":"same selected conditional artifact + exact literal Public allowlist cells","proof":"All4actual HTTP workbooks, exact headers/order/field+JSON-value cells, no formulas/links. Existing default bytes preserved."},
+    {"path":"/api/research/stage10-coverage/export.json","state":"closed","contract":"safe-report-release:stage10-coverage + safe-report-custom-projection-1","proof":"Full actual authenticated file versions/root-cause audit/workbook chunks/review+immutable financial journals privately captured; same complete source selection/qualification/aggregation function replayed; actual HTTP JSON."},
+    {"path":"/api/research/stage10-coverage/export.xlsx","state":"closed","contract":"same full producer + exact custom-sheet projection","proof":"Actual HTTP workbook; every original custom sheet/header/raw literal cell/order/hash readback; expectedInputHash/query/cutoff/year checks preserved."},
+    {"path":"/api/research/track-b-admission/export.json","state":"closed","contract":"full track-b-assessment-material-1 + authorized public disclosure/report + safe-report-custom-projection-1","proof":"Full frozen protocol/corpus/period-admission producer source/code retained prospectively in existing private pipeline artifact root, then retained source/material/completed result on export; exact assessment replay and publication pins; actual DEV-only negative engineering HTTP JSON."},
+    {"path":"/api/research/track-b-admission/export.xlsx","state":"closed","contract":"same full assessment/disclosure producer + exact custom sheets","proof":"Actual DEV-only negative engineering HTTP workbook and all literal cell hashes/order; no real catalog approval or raw private material published. Ordinary rights-qualified old reports missing full assessment material remain unbound, not disabled."},
+    {"path":"/api/financial-data/workbook-money-audit.xlsx","state":"closed","contract":"safe-report-release:workbook-money-audit + exact safe-report projection","proof":"Exact actual safe summary and complete private audit/reconciliation bytes with their verified hashes, source/code/query/result retained privately; actual HTTP workbook literal cells/order/hash. No monetary totals, inferred FX, new denomination approval or private publication."},
+    {"path":"/api/development/qualified-missingness/export","state":"sourceblocked","proof":"Unchanged unauthorized private HTTP403/operator CLI boundary; engineering fixtures grant no publication authority."}
+  ],
+  "priorCentralHandlerMatrix": [
     {"key":"category-scenarios","path":"client/src/components/category-comparison.tsx","filename":"category-scenario-analysis","state":"unimplemented","source":"/api/projection/categories","gap":"Whole category result/material/code/model producer binding missing.","availability":"unchanged"},
     {"key":"category-trends","path":"client/src/components/category-trend-chart.tsx","filename":"category-trends-${metric}","state":"unimplemented","source":"/api/projection/categories/historical-trend","gap":"Whole effective category history/material/code/model producer binding missing; historical labels are not attestation.","availability":"unchanged"},
     {"key":"company-coverage","path":"client/src/components/company-coverage.tsx","filename":"company-coverage-${observationDate}.json","state":"unimplemented","source":"/api/calculation/company-coverage","gap":"Workbook sourceId is not coverage result/material/code/model producer identity.","availability":"unchanged"},
@@ -89,7 +127,7 @@
     {"key":"news-sentiment-breakdown","path":"client/src/pages/news-sentiment.tsx","filename":"monthly-sentiment-breakdown","state":"unimplemented","source":"/api/news/climate","gap":"Whole sampled response producer and exact class allocation/denominator derivation missing.","availability":"unchanged"},
     {"key":"news-topic","path":"client/src/pages/news-sentiment.tsx","filename":"coverage-by-topic","state":"unimplemented","source":"/api/news/climate","gap":"Whole provider-release/topic-matching/code producer missing; extrapolation/floor/pooled fallback need exact replay.","availability":"unchanged"}
   ],
-  "customHandlerMatrix": [
+  "priorCustomHandlerMatrix": [
     {"path":"/api/reference/warming-validation/export.json","source":"server/warmingValidationReferenceApi.ts","state":"closed","contract":"static-reference-artifact-1 via server/staticReferenceLineage.ts","identity":"Exact immutable public reference, original complete export document and release-local calculation-source-1 code/config/lock representation. Model/run/material explicitly not applicable; producerIdentity remains null.","readback":"Actual HTTP legacy bytes plus opt-in embedded JSON/header identity; missing/stale/corrupt source refusal and forged-identity readback refusal. Existing 1.37 headline, 1.24 decade, source pins, no-offset/no-input/no-acceptance roles unchanged."},
     {"path":"/api/cv/carbon-pass-through-evidence/export.json","source":"server/carbonPassThroughApi.ts","state":"closed","contract":"static-reference-artifact-1 via server/staticReferenceLineage.ts","identity":"Exact admitted public source/evidence register, original complete safe review document and release-local calculation-source-1 code/config/lock representation. Not an issuer assumption, study, cash observation or model run.","readback":"Actual HTTP legacy bytes plus opt-in embedded JSON/header identity; missing/stale/corrupt source refusal and forged-identity readback refusal. No private paper redistribution, source approval, persistence or numerical study."},
     {"path":"/api/cv/company-conditional-summaries/export.json","source":"server/companyConditionalApi.ts","state":"unimplemented","existing":"Bounded public issuer allowlist and exact semantic cells.","gap":"Exact selected static issuer material/code/conditional-derivation producer contract absent; native valuation producer cannot be borrowed."},
@@ -102,6 +140,48 @@
     {"path":"/api/development/qualified-missingness/export","source":"server/qualifiedMissingnessApi.ts","state":"sourceblocked","existing":"Production HTTP403/operator CLI boundary.","gap":"HTTP publication is unauthorized. Must remain denied; engineering custom-sheet fixtures are not authorization.","failClosed":"existing HTTP403 preserved"}
   ],
   "implementation": {
+    "modules": ["server/snapshots/legacyExportProducer.ts","server/snapshots/newsExportProducer.ts","server/snapshots/reportExportProducer.ts","server/snapshots/reportMaterialContext.ts","server/snapshots/calculationSourceArtifact.ts","server/calculation/trackBExportMaterial.ts","server/financialData/workbookMoneyExportRelease.ts","server/workbookMoneyAuditExportApi.ts","shared/legacyExportConsumer.ts","shared/safeReportExportSemantics.ts"],
+    "storage": "Existing private cv_analysis_snapshots/cv_analysis_chunks material-inputs/calculation-source/analysis-result infrastructure only. No new tables, DDL, deployment resources, endpoints accepting arbitrary proof, authentication changes or source approvals.",
+    "wholeLegacyMaterial": "Actual full effective curated/approved/nowcast history, exact approved source records/hash, selected regional intensity release when applicable, actual query/query-time/revision, model version and unchanged deterministic emissions/temperature seeds. Loaded-code release identity captured with loaded producer modules. Every retained result reload verifies code/input/material/query/manifest/snapshot order and complete calculation replay; no current-source fallback.",
+    "sourceRelease": "News retains the complete actually consumed provider-derived volume/sample cache release, cache collection time/window, query time, server timezone and unchanged allocation/extrapolation algorithm. This is not original upstream HTTP bytes, provider request ID or publisher release time; those remain explicitly unavailable. Full safe report private sources/journals retained separately from safe public outputs.",
+    "exactDerivations": "Closed finite row/preview derivations preserve literal columns/units/missingness/order/filters/bridges. Detached trajectory/PDF and each diagnostic record resolve original consumed object links to exact whole-parent paths. Clones or UI labels cannot grant producer identity. Browser date timezone is captured and changes refuse. New metadata definitions are supplemental only, never original observation closure.",
+    "customProjections": "Selected static conditional allowlists identify actual checked-in conditional material/formulas and release-local source/config/lock without inventing a model run. Stage10 uses the same full source selection/qualification/aggregation function for live and archive replay. Money safe report retains exact private audit/reconciliation bytes and approved-safe summary hashes without exposing private inputs. Custom workbook identity uses actual decoded literal cells and exact sheet/header/order; formulas/links refuse.",
+    "protectedMonetarySources": "Original server/financialData/workbookMoneyExport.ts (891b1a931e57943e797e529237e4fd062d46214c6fbc3e0b9c87b516e90aef2e), server/workbookMoneyAuditApi.ts (8a6c7d08abbc57402683012c200b8c27c440c78cdb423fca8ef3d16484bb48bc), and script/track-b-admission.test.ts (723162017a21d96f6c7d6bc2cd3ac03cf772d41300efc5b8c12d796218703f60) remain byte-exact to their existing private freezes. New additive request-local wrapper and authenticated-source capture preserve the original API validator/writer and unchanged expectedAuditHash contract. No frozen receipt/pin is refreshed to permit code drift.",
+    "trackBWholeAssessment": "Prospective offline pipeline writer retains full frozen protocol/corpus, supported calculation-source-1 release and deterministic admission assessment material as an immutable0600 companion in the existing private pipeline artifact root. Public resolver consumes it only privately; export retention verifies complete period-admission replay plus existing protocol/report/disclosure/pipeline/period-domain pins. No original research study is rerun by a download, no public catalog is activated and no private corpus is published. Pre-existing reports lacking full companions remain ordinary/unbound rather than fabricated bound exports.",
+    "availability": "Retention/source failures set explicit X-Producer-Binding-Status/Error and preserve nonempty ordinary results/correct legacy exports. Expensive model replay is skipped if source persistence is unavailable. No filename/registry-status blanket gate. Claimed retained archives and bound attachment projection corruption refuse without Content-Disposition or producer headers.",
+    "fieldCensus": "Original1000/1001 and1465typed entries/1437fully bound unchanged; no missing original slots. Only new metadata definitions added:2652total definitions. Threshold provenance wrapper is an explicitly reviewed quantity-preserving alias for the unchanged19columns. Register regenerated; original scientific warning hashes/lines/flags preserved, only current component hashes refreshed.",
+    "priorBoundary": "Prior6closed paths and9PE/signal chains retain existing tests/claims. No old124results/179headers/416chunks modified; no original XLSX bytes recovered."
+  },
+  "tests": {
+    "newFocusedSuite": {"command":"npx tsx --test script/legacy-export-producer.test.ts","tests":21,"pass":21,"fail":0,"cancelled":0,"skipped":0,"log":"/tmp/all-ready-focused-final.txt","boundary":"Whole actual checked-in legacy engines, authentic retained Stage10 and money source files, full-source private material fixtures, original production row expressions, actual central JSON/XLSX handler bodies and actual registered custom HTTP routes. Only storage/transport/cohort fixtures are isolated; Track publication is explicitly synthetic DEV-only negative engineering, never real approval."},
+    "preservationRegression": {"command":"npx tsx --test script/next-census-accounting.test.ts script/methodology-download-portable.test.ts script/static-reference-lineage.test.ts script/track-b-admission.test.ts script/download-selection-race.test.ts script/quantity-label-contracts.test.ts","tests":52,"pass":52,"fail":0,"skipped":0,"log":"/tmp/final-changed-a.txt"},
+    "newCoverage": "All15central families, all3category/history metrics, all22indicator detail keys, all4conditional issuer selections, every5custom retained report format path, exactJSON retained concurrent A/B material identities, missing/corrupt input/material/code/result refusal, original-parent/row mutation refusal and actual literal formula/cell refusal. All21new tests rerun without skips inside the successful final complete suite; standalone and focused receipts above are earlier incremental evidence, not substituted for final tests.",
+    "initialFullcheckFailurePreserved": {"receipt":"generated-artifacts/remaining-export-all22.first.receipt.json","log":"generated-artifacts/remaining-export-all22.first.log","typescript":{"tests":1081,"pass":1066,"fail":12,"cancelled":3,"skipped":0},"fixes":"Preserved ordinary row expressions and exact quantity wrapper accounting, supplied real added dependencies to AST/VM harnesses, corrected ExcelJS literal header-cell verification, split pure material context/source artifacts from DB modules to preserve offline CLI portability, regenerated census/register and refreshed current-only warning hashes. No gates/assertions/scientific thresholds relaxed."},
+    "failedFullChecksPreserved": [
+      {"receipt":"generated-artifacts/remaining-export-all22.final-v2.receipt.json","log":"generated-artifacts/remaining-export-all22.final-v2.log","typescript":{"tests":1089,"pass":1089,"fail":0,"skipped":0},"python":{"tests":248,"pass":248,"fail":0,"skipped":0},"failure":"Mandatory private monetary freeze rejected edited original safe reader/API. Restored original reader/API and protected Track test byte-for-byte; implemented additive release wrappers instead. No private hash/gate/threshold relaxed."},
+      {"receipt":"generated-artifacts/remaining-export-all22.complete.receipt.json","log":"generated-artifacts/remaining-export-all22.complete.log","typescript":{"tests":1089,"pass":1088,"fail":1,"skipped":0},"failure":"Existing company-cache HTTP30s transport timeout under full-suite load. Unchanged focused transport suite5/5passed; final full rerun passed with unchanged timeout/assertions. No gate relaxed."}
+    ],
+    "finalFullChecks": {
+      "command":"uv run python script/workplan-evidence-run.py --receipt-only --full-checks --timeout 295 --log generated-artifacts/remaining-export-all22.ready.log --receipt generated-artifacts/remaining-export-all22.ready.receipt.json",
+      "receipt":"generated-artifacts/remaining-export-all22.ready.receipt.json",
+      "log":"generated-artifacts/remaining-export-all22.ready.log",
+      "logSha256":"2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
+      "exitCode":0,
+      "elapsedSeconds":288.936,
+      "typecheck":"passed",
+      "typescript":{"tests":1089,"pass":1089,"fail":0,"skipped":0},
+      "python":{"tests":248,"pass":248,"fail":0,"skipped":0},
+      "originalChoiceWidthDocument":"passed",
+      "mandatoryPrivateMonetaryIntegration":"passed; original consumer/source freezes unchanged",
+      "mandatoryPrivateIssuerCashflow":"passed",
+      "mandatoryPrivateIssuerReconciliation":"passed",
+      "productionBuild":"passed; existing stale Browserslist/PostCSS/large-chunk notices remain warnings",
+      "canonicalLedgersModified":false,
+      "acceptance":"Engineering source/file-handler evidence only; not scientific acceptance, source approval, publication permission or original-history recovery",
+      "visualCheck":"Attempted already-running preview only;127.0.0.1:5000 refused connection. No server/workflow was started. Live or signed-in UI not verified."
+    }
+  },
+  "priorImplementation": {
     "registry": "shared/remainingExportContracts.ts: exact nineteen central contracts and honest per-family status; inventory never gates filenames.",
     "serverProducer": "registerReadonlyDiffApi receives retainReadonlyDiffProducer in server/index.ts. Before returning the existing safe report, the closed replay verifies both exact source archives, strict scan query/cursor/order, each packed completed-result identity and safe report equality; stores source/material/completed result using existing snapshot/chunk infrastructure; reloads and verifies before binding X-Producer-Identity.",
     "material": "readonly-diff-material-1 captures exact from/to private source archives, full scanned packed result page, cursor/query, sourceArchive and readonly-source-comparison-1 algorithm label. This is a deterministic source comparison, not climate/valuation model execution. Existing calculation-source archive now includes actual TSX sources as well as TS/JSON/CSV and locks. No new resource/DDL or public material endpoint.",
@@ -124,7 +204,7 @@
     "identityBoundary": "No arbitrary UI/caller proof setter introduced; unrelated retained signal/P/E parent cannot certify any remaining named handler.",
     "sourcePermissionBoundary": "Missing producer code is explicitly unimplemented, not relabelled as sourceblocked. Only denied private attachment is sourceblocked in this finite matrix."
   },
-  "tests": {
+  "priorTests": {
     "newFiles": ["script/remaining-export-contracts.test.ts","script/static-reference-lineage.test.ts","script/native-producer-exports.test.ts"],
     "newPassingTests": 38,
     "readonlyTests": 9,
@@ -223,6 +303,21 @@
     }
   },
   "frozenSourceHashes": {
+    "server/snapshots/legacyExportProducer.ts": "973751ec72b443ef0de6c72cdc698bc4a0bc766dff1267b5879b55f89faae8d0",
+    "server/snapshots/newsExportProducer.ts": "ca6bd895316b492883866972e1c3f56daf910a78e2b5f2977faa79198d6cd568",
+    "server/snapshots/reportExportProducer.ts": "727fc1b3b7761bcadd34eaff7159592eeb7c1eb39a8593013b0aeac45cf1d678",
+    "server/snapshots/reportMaterialContext.ts": "26bc2159fe5bb47633efc84a3a8e60712eb3fd443cb14e977bd1ed5741cdb80d",
+    "server/snapshots/calculationSourceArtifact.ts": "03d45c67806a9b72f1a514e770783937e18c50cd10404c04b843cc2f75f6ab38",
+    "server/calculation/trackBExportMaterial.ts": "15aff8733d16b456bb862ce2586f451644e4970b2e11ed8d627a2d48b26213d4",
+    "server/financialData/workbookMoneyExportRelease.ts": "d5409469e0efe3b0f26825ea78e66b8e0172fc8450e1b1a743efde3615a5e551",
+    "server/workbookMoneyAuditExportApi.ts": "7180cd7d5bcc16881535e99babb16cb7af2ca7738f75b188f769fb2bfabad110",
+    "shared/legacyExportConsumer.ts": "75f380ca7e570eaa5b8a53fc221659b0bf05b51e95b672b37d6bdb01579ee88e",
+    "shared/safeReportExportSemantics.ts": "a9387203495ffdadd418198a660c58322bb126318790f648a3a5f46cc6d72df5",
+    "shared/remainingExportContracts.ts": "4ca5b0d6e4164bfe72a8217e62b4928f7894f7b7b008e46eaa7d536795ca73a2",
+    "client/src/lib/producer-download.ts": "9edb2f144fdac50d80a9dd0a5a24bd0e5a518e7ceb220ee78bb80ad8ce749ae0",
+    "script/legacy-export-producer.test.ts": "c8f99d743cf281fbf449b2724845ac61e377fd69222416cb66cb13343146538d"
+  },
+  "priorFrozenSourceHashes": {
     "shared/remainingExportContracts.ts": "b2e4593518179d68996eefed1cd4f3ac9937c8cb11896b6aa3c8b7bce86ddbfa",
     "shared/readonlyConsumer.ts": "489be8931fdc38efe19f253f517580165f1454ba45197c10c616b8e34890e1e6",
     "shared/derivedConsumerSemantics.ts": "150d93d3cb50c8bf788261be1d8e085e472954ca63b039a75f9e13cbd5bf67cf",
@@ -261,10 +356,10 @@
   "preserved": [
     "Old124 results/179 headers/416 chunks untouched; no original XLSX recovery claim.",
     "Private CLI and production HTTP403 unchanged.",
-    "No edits to fourteen FaIR pins, native engine/inventory/source approvals, baseline/coupling/science or original1000/1001 cohort; zero original slots promoted. Census definitions2619,typedEntries1465,fullyBound1437; no missing original slots, completeness remains false.",
+    "No edits to fourteen FaIR pins, native engine/inventory/source approvals, baseline/coupling/science or original1000/1001 cohort; zero original slots promoted. Census2652definitions (prior2619),1465typedEntries,1437fullyBound; new definitions only supplemental metadata. No missing original slots, original cohort completeness remains false.",
     "No new resources/auth/DDL/data approval/private publication.",
     "No canonical ledger edits, commit, deployment, callback, workflow start/restart or app run."
   ],
-  "remainingWorkBoundary": "Fifteen named central and seven public custom producer/derivation contracts remain implementation work, not an external blocker or broad other-consumers claim. Exact parent gaps remain listed individually. They are not disabled to inflate closure. Only private HTTP publication remains genuinely sourceblocked/403. No claim that all ORIGINAL S16-007 requirements are complete.",
-  "freeze": "Implementation source frozen after successful receipt-only fullchecks. This evidence update changes no executable source. No live application or signed-in UI verification performed; actual handler/source transport/readback and complete suites supply engineering evidence."
+  "remainingWorkBoundary": "No finite22producer/derivation contract is left as an unexplained implementation gap or relabelled external data blocker. Engineering closure is prospective and supported by actual retained-parent/file-handler readbacks, not live persistence activation. Old full TrackB assessment companions and original upstream news HTTP bytes are not retroactively reconstructed or claimed. The one unauthorized private HTTP path stays403. No full ORIGINAL S16-007, scientific, owner, publication or original-history acceptance claim.",
+  "freeze": "Executable source frozen before successful complete receipt-only checks (1089TS+248Python, every mandatory private validator, production build). Only this evidence JSON was finalized afterward. No canonical ledger, commit, deployment, callback, workflow start/restart, app run, data approval or private publication performed. Live/signed-in UI and live persistence activation not verified."
 }

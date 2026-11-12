@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 import { useReadQuery as useQuery } from "@/lib/use-read-query";
 import { ReadResultReason } from "@/components/read-result-reason";
 import { OperatorOnlyNotice, OPERATOR_ONLY_REASON } from "@/components/operator-only-notice";
@@ -437,6 +438,7 @@ export function IndicatorDetailDialog({
     Method: p.method,
     "As Of Date": p.asOfDate ?? "",
   })),{key:def?.key});
+  if (detail && hasDefinition) bindProducerLegacyConsumer(detail, "indicator-detail", downloadRows);
 
   if (!indicatorKey) return null;
 
@@ -474,6 +476,7 @@ export function IndicatorDetailDialog({
                 filename={`indicator-time-series-${def?.key ?? "series"}`}
                 sheetName="Time Series"
                 rows={downloadRows}
+                jsonCompanion
                 fieldBindings={finiteExportBindings("indicatorDetail",{key:def?.key})}
                 testId="button-download-timeseries"
               />}

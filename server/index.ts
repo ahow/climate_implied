@@ -8,7 +8,7 @@ import { quantityDescriptionMiddleware } from "./quantityDescriptionApi";
 import { registerTrackBAdmissionRoutes } from "./trackBAdmissionApi";
 import { loadPublishedTrackBAdmission } from "./trackBDisclosureStore";
 import { registerStage10CoverageRoutes } from "./stage10CoverageApi";
-import { registerWorkbookMoneyAuditApi } from "./workbookMoneyAuditApi";
+import { registerWorkbookMoneyAuditExportApi as registerWorkbookMoneyAuditApi } from "./workbookMoneyAuditExportApi";
 import { registerQualifiedMissingnessApi } from "./qualifiedMissingnessApi";
 import { registerCarbonPassThroughRoutes } from "./carbonPassThroughApi";
 import { registerReadonlyDiffApi } from "./readonlyDiffApi";

@@ -27,6 +27,9 @@ interface DownloadDataButtonProps {
   className?: string;
   testId?: string;
   requireDerivedParent?: boolean;
+  /** Ordinary exports remain available without retained storage; expose the
+   * same JSON companion without implying a required producer identity. */
+  jsonCompanion?: boolean;
 }
 
 export function DownloadDataButton({
@@ -41,6 +44,7 @@ export function DownloadDataButton({
   className,
   testId = "button-download-data",
   requireDerivedParent = false,
+  jsonCompanion = false,
 }: DownloadDataButtonProps) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -151,7 +155,7 @@ export function DownloadDataButton({
       <Download className="h-3.5 w-3.5 mr-1.5" />
       {busy ? "Preparing\u2026" : label}
     </Button>
-    {requireDerivedParent && <Button type="button" variant="outline" size="sm"
+    {(requireDerivedParent || jsonCompanion) && <Button type="button" variant="outline" size="sm"
       disabled={disabled || busy || resolvedEmpty} onClick={() => void handleJsonClick()}
       data-testid={`${testId}-json`}>Download JSON</Button>}
     {error && <span role="alert" className="text-sm text-destructive">{error}</span>}

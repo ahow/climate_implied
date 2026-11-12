@@ -5,12 +5,13 @@ import { TrackBDisclosureError, trackBPeriodDomainHash, type PublishedTrackBRepo
 import { trackBPublicCatalog } from "./trackBPublicCatalog";
 import { contentHash } from "./calculation/analysisManifest";
 import { buildTrackBAdmissionWorkbook } from "./calculation/trackBAdmissionWorkbook";
+import { bindReportRelease } from "./snapshots/reportExportProducer";
 
 /** Parent must supply its reviewed public report resolver; no private file reads,
  * solver/study execution, approvals, cache modules or fallback report in this API. */
 export function registerTrackBAdmissionRoutes(app: Express,
   readReport?: (protocolHash: string) => Promise<PublishedTrackBReport | undefined> | PublishedTrackBReport | undefined,
-  catalog: readonly TrackBPublicPin[] = trackBPublicCatalog) {
+  catalog: readonly TrackBPublicPin[] = trackBPublicCatalog, bindRelease: typeof bindReportRelease = bindReportRelease) {
   app.get("/api/research/track-b-admission/catalog", (req, res) => {
     res.set("Cache-Control", "no-store");
     if (Object.keys(req.query).length) {
@@ -51,6 +52,7 @@ export function registerTrackBAdmissionRoutes(app: Express,
       res.set("Cache-Control", "no-store").set("X-Field-Semantics", ids.join(","));
       res.set("X-Track-B-Report-SHA256", identity.reportHash).set("X-Track-B-Disclosure-SHA256", identity.disclosureHash)
         .set("X-Track-B-Pipeline-SHA256", identity.pipelineResultHash).set("X-Track-B-Period-Domain-SHA256", identity.periodDomainHash);
+      if (suffix) await bindRelease(res, input.report, report, req.query);
       if (suffix === "/export.xlsx") res.type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         .attachment(`track-b-${identity.reportHash}.xlsx`).send(buildTrackBAdmissionWorkbook(report));
       else if (suffix) res.attachment(`track-b-${identity.reportHash}.json`).json(trackBAdmissionExportDocument(report));

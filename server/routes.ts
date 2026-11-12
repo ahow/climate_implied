@@ -105,6 +105,11 @@ import { evaluateHoldout } from "./calculation/evaluation";
 import { evaluateSignal } from "./calculation/signalResearch";
 import { registerCompanyConditionalRoutes } from "./companyConditionalApi";
 import { registerFairArtifactRoutes } from "./calculation/fairArtifactRoutes";
+import { legacyExportProducerMiddleware } from "./snapshots/legacyExportProducer";
+import { captureNewsExportInputs, retainNewsExport } from "./snapshots/newsExportProducer";
+import { bindProducerIdentity } from "./producerDownload";
+import { bindReportRelease } from "./snapshots/reportExportProducer";
+import { rememberReportRelease } from "./snapshots/reportMaterialContext";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -214,6 +219,8 @@ export async function registerRoutes(
       return res.status(422).json({error:"Observation after information cutoff refused"});
     try {
       const result=await getCompanyCoverage({...parsed.data,informationCutoff});
+      const proof = await bindReportRelease(res, result, result, parsed.data);
+      if (proof) bindProducerIdentity(res, proof);
       res.set("X-Field-Semantics",bindNestedOutput("companyCoverage",result).map(f=>f.id).join(","));
       return res.json(result);
     }catch(error){
@@ -550,6 +557,7 @@ export async function registerRoutes(
     next();
   });
 
+  app.use(legacyExportProducerMiddleware());
   app.get("/api/emissions/candidate", nativeCandidateHandler());
 
   // Submitted-input arithmetic only; no stored inventory/approval mutation or source collection.
@@ -1244,6 +1252,13 @@ export async function registerRoutes(
     try {
       const validMonths = newsMonthWindow(_req.query.months);
       const result = await getClimateNewsAnalysis(validMonths);
+      try {
+        bindProducerIdentity(res, await retainNewsExport(captureNewsExportInputs(result, validMonths), result));
+        res.set("X-Producer-Binding-Status", "retained-whole-producer-verified");
+      } catch (error) {
+        res.set("X-Producer-Binding-Status", "unavailable-no-producer-attestation");
+        res.set("X-Producer-Binding-Error", error instanceof Error ? error.message : "News release retention unavailable");
+      }
       res.set("X-Field-Semantics", bindNestedOutput("news", result).map(f => f.id).join(","));
       res.json(result);
     } catch (error: any) {
@@ -1346,8 +1361,16 @@ export async function registerRoutes(
         };
       });
       const proposals = await getValuesForKey(key);
+      const report = rememberReportRelease({ def, series, proposals }, "indicator-detail", {
+        version: "indicator-detail-consumed-source-1", key, def, history: resolved, proposals,
+        approved: Array.from(requestOverrides.getStore()?.values.values() ?? []),
+        indicatorHash: requestOverrides.getStore()?.hash ?? null,
+        meaning: "Whole actual effective series and source/proposal DB release at query time; proposal status is not approval evidence or original publication vintage",
+      });
+      const proof = await bindReportRelease(res, report, report, { key, ...req.query });
+      if (proof) bindProducerIdentity(res, proof);
       res.set("X-Field-Semantics", bindNestedOutput("indicatorDetail", { def, series, proposals }).map(f => f.id).join(","));
-      res.json({ def, series, proposals });
+      res.json(report);
     } catch (error) {
       console.error("[data] indicator detail error:", error);
       res.status(500).json({ error: "Failed to load indicator" });

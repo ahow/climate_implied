@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import type { TemperatureProjection } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 
 interface TemperatureHistogramProps {
   pdf: TemperatureProjection[];
@@ -50,6 +51,7 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
     "Temperature (\u00B0C)": d.temperature,
     "Probability density (1/\u00B0C)": d.probability,
   }));
+  bindProducerLegacyConsumer(pdf, "temperature", downloadRows);
 
   return (
     <Card className="p-6" data-testid="card-temperature-histogram">
@@ -70,6 +72,7 @@ export function TemperatureHistogram({ pdf, median, p10, p90, isLoading }: Tempe
             filename="temperature-distribution"
             sheetName="Temp Distribution"
             rows={downloadRows}
+            jsonCompanion
           fieldBindings={{
             "Temperature (\u00B0C)":{id:"projection.temperatureDistribution.pdf[].temperature",transform:"Identity"},
             "Probability density (1/\u00B0C)":{id:"projection.temperatureDistribution.pdf[].probability",transform:"Identity; density, not point probability"},

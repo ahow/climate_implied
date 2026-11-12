@@ -4,6 +4,7 @@ import { unpackAnalysisResult } from "./snapshots/resultContract";
 import type { RetainedProducerIdentity } from "../shared/downloadManifest";
 import { READONLY_PRODUCER_SCENARIO } from "../shared/readonlyConsumer";
 import { NATIVE_PRODUCER_SCENARIO } from "../shared/nativeConsumer";
+import { legacyProducerPaths, legacyProducerScenario } from "../shared/legacyExportConsumer";
 
 /** Only these completed-response producers retain material inputs today.
  * Headers, query pins, caller payloads and source hashes alone are not proof. */
@@ -30,6 +31,9 @@ export function verifiedProducer(id: string, loaded: any, result: unknown, produ
       typeof material !== "string" || !/^[a-f0-9]{64}$/.test(material) ||
       !/^[a-f0-9]{64}$/.test(manifest.codeVersion) ||
       !(manifest.scenario === READONLY_PRODUCER_SCENARIO || manifest.scenario === NATIVE_PRODUCER_SCENARIO ||
+        manifest.scenario === "source-release:news-allocation-1" ||
+        ["stage10-coverage", "track-b-publication", "workbook-money-audit", "company-coverage", "indicator-detail"].some(kind => manifest.scenario === `safe-report-release:${kind}`) ||
+        legacyProducerPaths.some(path => manifest.scenario === legacyProducerScenario(path)) ||
         retainedProducerPaths.some(path => manifest.scenario === `descriptive-valuation:${path.slice("/api/cv".length)}`)) ||
       (producerPath !== undefined && manifest.scenario !== `descriptive-valuation:${producerPath.slice("/api/cv".length)}`) ||
       // The existing completed-result writer archives Express JSON encoding,

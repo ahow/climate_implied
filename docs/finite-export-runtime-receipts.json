@@ -1,4 +1,28 @@
 {
+  "pendingIntegration": {
+    "scope": "New local finite22contracts and guarded regional joint uncertainty code; not yet a new deployed receipt. Prior latest runtime observation below remains historical.",
+    "localFullChecks": {
+      "receipt": "generated-artifacts/remaining-export-all22.ready.receipt.json",
+      "log": "generated-artifacts/remaining-export-all22.ready.log",
+      "logSha256": "2f9b1e7f37bf349713afdbf929eb9597ce6d023c82c4ae102e84083be25ba5cc",
+      "exitCode": 0,
+      "typescript": {"tests": 1089, "pass": 1089, "fail": 0, "skipped": 0},
+      "python": {"tests": 248, "pass": 248, "fail": 0, "skipped": 0},
+      "typecheckOriginalPrivateValidatorsAndBuild": "passed"
+    },
+    "postLedgerFiveModules": {
+      "command": "PYTHONPATH=script uv run python -m unittest test_completion_ledger test_completion_ledger_summary test_clause_reconciliation test_workplan_evidence_receipt test_workplan_runner -v",
+      "receipt": "generated-artifacts/finite-export-post-ledger.ready.receipt.json",
+      "log": "generated-artifacts/finite-export-post-ledger.ready.log",
+      "logSha256": "bcde11da693e1703011dc98790d8649e3fbffb192f72c71a59fa30fb90d45b8f",
+      "tests": 16, "pass": 16, "fail": 0, "skipped": 0
+    },
+    "finiteInventory": {"total": 29, "engineeringClosed": 28, "unauthorizedPrivateHttp403": 1},
+    "regionalScientificExecution": "UNEXECUTED: zero new actual candidate fits/bootstrap/heldout scores and zero qualified saturation/joint bundles. No issuer source or model inserted.",
+    "preview": "Earlier snapshot attempt failed with port5000 connection refused. No workflow was started; new-code configured-route preview and runtime-log verification remain unobserved.",
+    "release": "Pending actual code source/CI validate+promote/Railway/HTTP observation; no new success inferred.",
+    "boundary": "No production mutations, auth bypass, schema/resource changes, private publication or callback."
+  },
   "latest": {
     "observedAt": "2026-11-12T07:28:43Z",
     "sourceCommit": "6485e11a115fb2639c100b6e8c51b020857f9b8c",

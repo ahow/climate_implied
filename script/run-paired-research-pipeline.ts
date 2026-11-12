@@ -4,6 +4,9 @@ import { runPairedResearchPipeline } from "../server/calculation/pairedResearchP
 import { buildTrackBAdmissionWorkbook } from "../server/calculation/trackBAdmissionWorkbook";
 import { bindTrackBAdmission } from "../shared/trackBAdmissionContract";
 import { trackBPeriodDomainHash } from "../server/trackBDisclosureStore";
+import { captureTrackBExportMaterial } from "../server/calculation/trackBExportMaterial";
+import { calculationSourceArtifact } from "../server/snapshots/calculationSourceArtifact";
+import { fileURLToPath } from "node:url";
 
 async function main() {
   const [protocolPath, expectedHash, corpusPath] = process.argv.slice(2);
@@ -26,6 +29,11 @@ async function main() {
     if ((e as NodeJS.ErrnoException).code !== "EEXIST" || !(await readFile(trackBWorkbookPath)).equals(workbook)) throw e;
   }
   const report = bindTrackBAdmission(result.trackBAdmission).report, reportHash = contentHash(report);
+  const assessment = captureTrackBExportMaterial(protocol, corpus, report, calculationSourceArtifact(fileURLToPath(new URL("../", import.meta.url))));
+  const assessmentMaterialPath = `${directory}/${reportHash}.assessment-inputs.json`;
+  const assessmentText = JSON.stringify(assessment, null, 2) + "\n";
+  try { await writeFile(assessmentMaterialPath, assessmentText, { flag: "wx", mode: 0o600 }); }
+  catch (e) { if ((e as NodeJS.ErrnoException).code !== "EEXIST" || await readFile(assessmentMaterialPath, "utf8") !== assessmentText) throw e; }
   const reportPath = `${directory}/${reportHash}.report.json`;
   const draft = { contract: "track-b-public-disclosure-1", status: "unpublished",
     classification: corpus.mode === "engineering-fixture" ? "engineering-fixture" : "retained-research",
@@ -38,7 +46,7 @@ async function main() {
     try { await writeFile(file, text, { flag: "wx" }); }
     catch (e) { if ((e as NodeJS.ErrnoException).code !== "EEXIST" || await readFile(file, "utf8") !== text) throw e; }
   }
-  console.log(JSON.stringify({ path, trackBWorkbookPath, reportPath, disclosureDraftPath, efficacy: result.efficacy, scientificAcceptance: false,
+  console.log(JSON.stringify({ path, trackBWorkbookPath, reportPath, disclosureDraftPath, assessmentMaterialPath, efficacy: result.efficacy, scientificAcceptance: false,
     familySize: result.family.familySize, unavailable: result.family.unavailableHypotheses }));
 }
 main().catch(e => { console.error(e instanceof Error ? e.message : "Pipeline failed"); process.exitCode = 1; });

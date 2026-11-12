@@ -6,6 +6,15 @@ import { nativeConsumerFieldMaps, nativeConsumerUnit, type NativeConsumerKey } f
 
 type Field = [path: string, meaning: string, formula: string, unit: string];
 const fields: Field[] = [
+  ["derivation.recordPaths[]", "New exact threshold diagnostic retained-parent record path", "JSON of verified parent resultId and finite property/index path; object identity must still resolve at capture", "JSON path metadata"],
+  ["derivation.contextLabels[]", "New diagnostic UI context label, never producer evidence", "Captured original supplied context label or explicit null; not used for attestation", "presentation text"],
+  ["derivation.metric", "New finite legacy export metric selection", "Temperature/reduction metric or legacy fixed-5gt-v1 selector; positive residual comparator, not net zero", "enum"],
+  ["derivation.producerPath", "Exact new legacy whole-response producer path", "Closed legacyProducerPaths; not a UI attestation", "same-origin API path"],
+  ["derivation.recordPath", "Exact record array path in the new retained whole response", "Closed JSON path; detached arrays link only by consumed object identity", "JSON path"],
+  ["derivation.units", "New legacy finite export literal-unit declaration", "Column headings preserve native units and distinguish years, emissions, percentages and PDF densities; not original field closure", "metadata text"],
+  ["derivation.claim", "New finite legacy model/view claim boundary", "Conditional revised-history model output, not calibrated forecast, source approval, original vintage or scientific acceptance", "metadata text"],
+  ["derivation.originalHistoricalExport", "New lineage does not recover original bytes", "Literal false", "boolean"],
+  ["derivation.scientificAcceptance", "New lineage does not promote the scientific model", "Literal false", "boolean"],
   ["version", "Supplemental transformed-consumer lineage contract", "Literal derived-consumer-lineage-1", "contract label"],
   ["derivationHash", "Identity of the closed derivation including exact field map, units and selected indices", "SHA-256 canonical finite JSON of derivation", "SHA-256"],
   ["dataIdentity.hash", "Identity of actual normalized exported observation rows, not native parent bytes", "SHA-256 of JSON rows with sorted keys, missing cells null, preserved row order", "SHA-256"],

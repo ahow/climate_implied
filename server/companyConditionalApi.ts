@@ -3,6 +3,7 @@ import ExcelJS from "exceljs";
 import { conditionalExportCells, getConditionalCompanySummary, type ConditionalIssuer } from "../shared/companyConditionalData";
 import { bindNestedOutput } from "../shared/outputFieldSemantics";
 import { bindConditionalExportCells } from "../shared/companyConditionalSemantics";
+import { bindStaticReference } from "./staticReferenceLineage";
 
 export const CONDITIONAL_COMPANY_ROUTE = "/api/cv/company-conditional-summaries";
 
@@ -31,6 +32,7 @@ export function registerCompanyConditionalRoutes(app: Express) {
       res.setHeader("Cache-Control", "public, max-age=300");
       res.setHeader("X-Content-Type-Options", "nosniff");
       if (!suffix) { res.json(summary); return; }
+       await bindStaticReference(res, `conditional-${issuer ?? "all"}`, summary);
       const filename = `supplemental-conditional-${issuer ?? "all"}-not-qualified`;
       if (suffix === "/export.json") {
         res.attachment(`${filename}.json`).json(summary);

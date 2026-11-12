@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import type { ForwardProjection } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 
 interface EmissionsChartProps {
   trajectory: ForwardProjection[];
@@ -44,6 +45,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
     "Median P50 (GtCO2e)": t.p50,
     "P90 (GtCO2e)": t.p90,
   }));
+  bindProducerLegacyConsumer(trajectory, "emissions", downloadRows);
 
   return (
     <Card className="p-6" data-testid="card-emissions-chart">
@@ -71,6 +73,7 @@ export function EmissionsChart({ trajectory, isLoading }: EmissionsChartProps) {
             filename="global-emissions-trajectory"
             sheetName="Emissions Trajectory"
             rows={downloadRows}
+            jsonCompanion
           fieldBindings={{
             Year:{id:"projection.emissionsTrajectory[].year",transform:"Identity"},
             "P10 (GtCO2e)":{id:"projection.emissionsTrajectory[].p10",transform:"Identity; annual conditional emissions, not calibrated uncertainty"},

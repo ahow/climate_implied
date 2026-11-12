@@ -6,15 +6,18 @@ import { exportJsonIdentity } from "./export-identity";
 import { exportContracts, type ExportKind } from "@shared/downloadClaims";
 import { createDownloadManifest } from "@shared/downloadManifest";
 import { scientificEvidenceExportNotes } from "@shared/scientificEvidence";
+import { captureExactProducerIdentity } from "./producer-download";
 export { exportContracts, type ExportKind } from "@shared/downloadClaims";
 /** Interpretation travels with downloaded data, rather than only with its page. */
 
 export function exportNotes(kind: ExportKind, filename: string, exportedAt: string,
-  selection: AnalysisSelection | null = captureDownloadSelection()) {
+  selection: AnalysisSelection | null = captureDownloadSelection(), exactRetainedProducer = false) {
   const contract = exportContracts[kind];
   if (!contract) throw new Error("Unknown export interpretation");
   return [
-    { Field: "Requested UI selection (not producer provenance)", Value: selection
+    { Field: "Requested UI selection (not producer provenance)", Value: exactRetainedProducer
+      ? "The exact consumed whole-response producer and verified material/code/source identity are identified separately in manifest.producerIdentity. Requested UI selection is presentation context, never the source of that proof. No original-vintage evidence or scientific acceptance is granted."
+      : selection
       ? `Requested UI workbook ${selection.workbook}; indicators ${selection.indicators}; regional inputs ${selection.regional ?? "not selected"}; ordered company overlays ${selection.overlays?.join(",") ?? "none"}; cutoff ${selection.asOf ?? "not specified"}. NOT certified input/model/run identity and not proof these data were produced from that selection. Producer identity unavailable (null); no original-vintage evidence.`
       : "No archived UI selection requested. Producer input/model/run identity unavailable (null); no certified-current-input fallback or original-vintage claim." },
     { Field: "File", Value: filename },
@@ -22,7 +25,9 @@ export function exportNotes(kind: ExportKind, filename: string, exportedAt: stri
     { Field: "Evidence status", Value: contract.status },
     { Field: "Interpretation", Value: contract.interpretation },
     { Field: "Limitations", Value: contract.limitation },
-    { Field: "Reproducibility", Value: "This is a view export, not an immutable analysis archive. An export timestamp does not identify the input vintage or model run." },
+    { Field: "Reproducibility", Value: exactRetainedProducer
+      ? "Exact retained completed response and referenced material/code/source identity; stored-output retrieval, not independent model validation, original publication vintage or recovered historical bytes. Export time is not observation/publication time."
+      : "This is a view export, not an immutable analysis archive. An export timestamp does not identify the input vintage or model run." },
     { Field: "Units and missingness", Value: "Use the column headings for units. Empty cells mean missing or unavailable, not zero. Do not combine different growth definitions or horizons." },
     ...scientificEvidenceExportNotes(),
   ];
@@ -68,13 +73,14 @@ export async function prepareQualifiedJsonExport(payload: unknown, kind: ExportK
   exportedAt: string, validatePayload: (value: unknown) => unknown,
   requestedUiSelection: AnalysisSelection | null = captureDownloadSelection()) {
   const selection = structuredClone(requestedUiSelection), data = structuredClone(payload);
+  const producerIdentity = captureExactProducerIdentity(payload);
   validatePayload(data);
   const identity = await exportJsonIdentity(data);
   const manifest = createDownloadManifest({ filename, kind, exportedAt, dataHash: identity.hash,
     hashMethod: "UTF-8 JSON.stringify(data, null, 2); no normalization",
     selection, rows: Array.isArray(data) ? data : undefined });
-  const envelope = { data, interpretation: exportNotes(kind, filename, exportedAt, selection),
+  const envelope = { data, interpretation: exportNotes(kind, filename, exportedAt, selection, producerIdentity !== null),
     dataIdentity: { algorithm: "SHA-256", hash: identity.hash, serialization: "UTF-8 JSON.stringify(data, null, 2); no normalization" },
-    manifest };
+    manifest: { ...manifest, producerIdentity } };
   return { text: JSON.stringify(envelope, null, 2), hash: identity.hash };
 }

@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from "recharts";
 import type { SensitivityResult } from "@/lib/types";
 import { DownloadDataButton } from "@/components/download-data-button";
+import { bindProducerLegacyConsumer } from "@/lib/producer-download";
 
 interface SensitivityChartProps {
   data: SensitivityResult[];
@@ -111,6 +112,7 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
     "Upper scenario median (\u00B0C)": d.p90Temperature,
     "Impact Range (\u00B0C)": d.temperatureRange,
   }));
+  bindProducerLegacyConsumer(data, "sensitivity", downloadRows);
 
   return (
     <Card className="p-6" data-testid="card-sensitivity-analysis">
@@ -133,6 +135,7 @@ export function SensitivityChart({ data, isLoading }: SensitivityChartProps) {
             filename="indicator-sensitivity"
             sheetName="Sensitivity"
             rows={downloadRows}
+          jsonCompanion
             fieldBindings={{
               Indicator:{id:"sensitivity.label",transform:"Identity"},
               Category:{id:"sensitivity.category",transform:"Identity"},

@@ -1,6 +1,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { sql } from "drizzle-orm";
 import { db } from "../db";
+import { rememberReportRelease } from "../snapshots/reportMaterialContext";
 import { contentHash } from "../calculation/analysisManifest";
 import { unpackDataset, type DatasetChunk } from "../snapshots/contract";
 import { snapshotGuardQuery, guardRowsValid } from "../snapshots/guards";
@@ -127,6 +128,20 @@ export async function getStage10Coverage(options: { workbookHash?: string; cutof
     const reviews = (await tx.execute(sql`SELECT id,status,payload,reviewed_at,created_at FROM financial_reviews ORDER BY id`)).rows as Record<string, any>[];
     const archives = (await tx.execute(sql`SELECT s.id,s.chunk_count,s.created_at,c.ordinal,c.payload FROM cv_analysis_snapshots s
       LEFT JOIN cv_analysis_chunks c ON c.snapshot_id=s.id WHERE s.kind='approved-current-financial' ORDER BY s.id,c.ordinal`)).rows as Record<string, any>[];
+    return replayStage10FromSources(files, header, chunks, reviews, archives, options);
+  }, { isolationLevel: "repeatable read", accessMode: "read only" });
+}
+/** Exact whole source-release replay: no DB/filesystem reads or current-source
+ * fallback. Same selection/qualification/aggregation code as the live reader. */
+export function replayStage10FromSources(files: Awaited<ReturnType<typeof readStage10RetainedFiles>>,
+  header: Record<string, any>, chunks: Record<string, any>[], reviews: Record<string, any>[], archives: Record<string, any>[],
+  options: { workbookHash?: string; cutoff?: string; firstYear?: number; lastYear?: number }) {
+    const firstYear = options.firstYear ?? 2015, lastYear = options.lastYear ?? 2025;
+    if (options.workbookHash && header.id !== options.workbookHash) throw new Error("Captured Stage10 workbook query conflicts");
+    if (chunks.length !== header.chunk_count || chunks.some((c, i) => c.ordinal !== i)) throw new Error("Captured Stage10 workbook incomplete");
+    const workbook = unpackDataset(String(header.id), chunks.map(c => c.payload as DatasetChunk));
+    if (workbook.companies.length !== header.company_count || workbook.timeSeries.length !== header.observation_count)
+      throw new Error("Captured Stage10 workbook population conflicts");
     const reviewTimes = reviews.flatMap(r => [r.reviewed_at, r.created_at]).filter(Boolean).map(t => new Date(t).toISOString()).sort();
     const actualTimes = [files.audit.createdAt, ...files.rootCause.rows.map((r: any) => r.collectedAt),
       ...files.versions.map(s => s.fetchedAt), ...archives.map(a => a.created_at),
@@ -191,13 +206,18 @@ export async function getStage10Coverage(options: { workbookHash?: string; cutof
     sourceGaps.push("Lifecycle is independent of all seven identity states. Listed means dated exact-ISIN provider active-listing evidence,not exchange-certified continuous listing. Inactive/last workbook observation/accepted identity never implies delisted,acquired or merged.");
     sourceGaps.push("Retained root-cause100 is authenticated50unmatched+50ambiguous from the FULL2442 source,NOT the earlier200-company pilot. No frozen earlier200cohort/status payload was located in the bounded provenance investigation; S10-003 is not fulfilled by relabelling/resampling.");
     if (!archives.length) sourceGaps.push("No immutable approved-current-financial overlays retained; verified-eligible corpus cannot advance from current approvals alone.");
-    return buildStage10Coverage({ workbookHash: String(header.id), cutoff: new Date(cutoff).toISOString(),
+    const aggregationInput = { workbookHash: String(header.id), cutoff: new Date(cutoff).toISOString(),
       years: Array.from({ length: lastYear - firstYear + 1 }, (_, i) => firstYear + i), companies,
       attempts: files.audit.results, reviews: reviews.map(r => ({ ...r, reviewed_at: r.reviewed_at ? new Date(r.reviewed_at).toISOString() : null,
         created_at: new Date(r.created_at).toISOString() })),
       eligibleIds, cells, lifecycleEvidence, sourceIdentity: { audit: contentHash(files.audit), rootCause: files.rootCauseHash, versions: files.versions.map(s => ({
         hash: s.inputHash, envelopeHash: s.sourceEnvelopeHash, fetchedAt: s.fetchedAt })),
         financialArchives: archives.map(a => ({ hash: a.id, retainedAt: new Date(a.created_at).toISOString() })) },
-      retainedVersions: files.versions.length, selectedVersions, sourceGaps });
-  }, { isolationLevel: "repeatable read", accessMode: "read only" });
+      retainedVersions: files.versions.length, selectedVersions, sourceGaps };
+    const report = buildStage10Coverage(aggregationInput);
+    return rememberReportRelease(report, "stage10-coverage", {
+      version: "stage10-consumed-source-1", input: aggregationInput, files,
+      workbook: { header, chunks }, journals: { reviews, archives }, options,
+      meaning: "Actual repeatable-read authenticated full source/material snapshot; private retention only; not original vintages or new approvals",
+    });
 }
