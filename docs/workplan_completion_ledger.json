@@ -1900,7 +1900,7 @@
       }
     },
     "export_lifecycle": {
-      "updated_at": "2026-11-12T04:16:53.662337+00:00",
+      "updated_at": "2026-11-12T04:41:14.454237+00:00",
       "execution": {
         "command": [
           "bash",
@@ -1946,13 +1946,23 @@
         "S03-007": [
           "docs/indicator-issuer-new-evidence.json"
         ],
+        "S04-005": [
+          "docs/highfrequency-new-source-evidence.json"
+        ],
         "S12-017": [
           "docs/indicator-issuer-new-evidence.json"
         ]
       },
       "counts": "56verified242partial2blocked; original1000/1001;0eligiblehistories;0/3qualifiedcases",
       "scope": "Real DEV CLI NEW-export persistence/read/retry/concurrency verified; old archives unchanged. Three derived P/E consumers bound with nonempty fixture XLSX readback, not nonempty real browser/science. CAT metadata and new NEE source findings; no FCFE/calibration promotion.",
-      "release": "Pending existing validation/promotion; previous verified runtime remains distinct."
+      "release": {
+        "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+        "ci": "43153785349 success",
+        "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+        "verified_at": "2026-11-12T04:41:14.454237+00:00",
+        "health": 200,
+        "scope": "Code-only; no permanent export/data/owner/scientific activation."
+      }
     }
   },
   "prior_native_fleet_increment": {
@@ -2037,15 +2047,15 @@
     }
   },
   "current_release": {
-    "github_main": "f49f653411365cf27f16200f25a856be7c88813d",
-    "ci": "43147190897 success",
-    "railway_deployment": "078c93c8-78a7-4404-a058-06aeaabe19fb",
-    "verified_at": "2026-11-12T03:31:54.810115+00:00",
+    "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+    "ci": "43153785349 success",
+    "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+    "verified_at": "2026-11-12T04:41:14.454237+00:00",
     "health": 200,
-    "scope": "Code-only; no data/owner/scientific activation."
+    "scope": "Code-only; no permanent export/data/owner/scientific activation."
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
-  "updated_at": "2026-11-12T04:16:53.662337+00:00",
+  "updated_at": "2026-11-12T04:41:14.454237+00:00",
   "source_sha256": "f11261326be34b7f44129709a447017459de13e813046cd732721b4660df11f2",
   "amendments_sha256": "0f99af728ad32e44ce62426746c04f67e690d5c4d60d4cd28a2896eb1bcb1141",
   "scope": "Original stages 0–17 plus all binding amendments; no criteria waived.",
@@ -24598,8 +24608,21 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "release": {
+              "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+              "ci": "43153785349 success",
+              "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+              "verified_at": "2026-11-12T04:41:14.454237+00:00",
+              "health": 200,
+              "scope": "Code-only; no permanent export/data/owner/scientific activation."
             }
-          }
+          },
+          "files_functions_changed_this_increment": [
+            "server/calculation/indicatorSourceMetadata.ts:indicatorSourceDocuments,admitIndicatorSourceMetadataProposal,indicatorSourceMetadataProposal"
+          ],
+          "check_scope_this_increment": "Development engineering and source qualification only; no scientific or owner acceptance.",
+          "scientific_decision_this_increment": "No calibration, numeric-history replacement, issuer-case qualification or efficacy promotion."
         },
         {
           "id": "S03-008",
@@ -32584,7 +32607,7 @@
               ]
             }
           ],
-          "behaviour_delivered_this_run": "Publisher methodology proves annual disaggregation/extrapolation and carried2023activity; new native activity/factor audit118279rows reproduces23268yearpairs/1939Januarypairs exactly. Reject as independent fresh2025/26monthly outcomes; retain source-modelled revised history only.",
+          "behaviour_delivered_this_run": "See exact implementation/source/test receipts: docs/highfrequency-new-source-evidence.json",
           "inputs_versions_assumptions": [
             "origin-specific training only; bias=mean(pred-actual), MAE=mean(abs(pred-actual)); paired baseline improvements",
             {
@@ -32726,6 +32749,43 @@
               "workspace_revision": "e6b55049548c011de9d521c1d35af0e6f523d084",
               "worktree_dirty": true,
               "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T04:12:00.988974+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 222.724,
+              "counts": {
+                "tests": 1001,
+                "pass": 1001,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/lifecycle-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b795f07e7b4ee2241f223fec35927f82237eccccb295f4476c5c68e6a80e795b",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1001,
+                  "pass": 1001,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -32761,10 +32821,15 @@
           "git_commit": "8c5b622c92dc6a60f4f4c158ec4041cbfef4df59",
           "deployment_revision": "085d6715d9e88f5748b2a95c60381dba2c12a476",
           "remaining_gaps": [
-            "Full-scope origin-vintage monthly outcomes remain unavailable; no nowcast fitting/scoring performed."
+            "Existing Carbon Monitor routes reviewed without repeat requests. No qualified original-release numerical rows for2024/2025/2026; 2025 report projections, 2026 supplement annual growth and bunker inclusion are not qualified monthly targets. Need author-published original-release/version archive mapping, immutable files, dates/cutoffs, rights and complete country/sector data. No public locator identified or author contact initiated; frozen EIA estimator not transplanted."
           ],
-          "next_action": "Find original dated full-scope monthly/dailyCO2 outcomes with actual freshness and compatible territorial/sector definitions; mining modeled estimates cannot supply independent holdout targets.",
-          "blockers": [],
+          "next_action": "Existing Carbon Monitor routes reviewed without repeat requests. No qualified original-release numerical rows for2024/2025/2026; 2025 report projections, 2026 supplement annual growth and bunker inclusion are not qualified monthly targets. Need author-published original-release/version archive mapping, immutable files, dates/cutoffs, rights and complete country/sector data. No public locator identified or author contact initiated; frozen EIA estimator not transplanted.",
+          "blockers": [
+            {
+              "kind": "remaining original scope",
+              "detail": "Existing Carbon Monitor routes reviewed without repeat requests. No qualified original-release numerical rows for2024/2025/2026; 2025 report projections, 2026 supplement annual growth and bunker inclusion are not qualified monthly targets. Need author-published original-release/version archive mapping, immutable files, dates/cutoffs, rights and complete country/sector data. No public locator identified or author contact initiated; frozen EIA estimator not transplanted."
+            }
+          ],
           "stage": 4,
           "stageName": "Calibrating drivers to evidence (new)",
           "originalClause": "Recent emissions. Estimate 2024–2026 from high-frequency sources (monthly power-sector data, daily CO₂ estimates) rather than decaying momentum. A comparison with today's revised inventory is a retrospective reconstruction check, not a real-time nowcast test, and is labelled so.",
@@ -34172,7 +34237,354 @@
             "server/calculation/shortHorizonEmissions.ts:line,interval,shortHorizonEmissions",
             "script/short-horizon-emissions.ts:",
             "docs/Historical_Diagnostics_and_Skill_Results.md:"
-          ]
+          ],
+          "export_lifecycle_increment": {
+            "evidence": [
+              {
+                "file": "docs/highfrequency-new-source-evidence.json",
+                "sha256": "1ecbcb580d8aa54c8aee5e802ead97608f8e8a6c5e10b5c6a4272d0ee61e50d0",
+                "detail": {
+                  "schemaVersion": "highfrequency-new-source-evidence-1",
+                  "status": "retained-Carbon-Monitor-route-inventory-exhausted-for-qualified-dated-fullscope-data-no-new-acquisition",
+                  "scope": "One bounded readiness investigation of the original high-frequency CO2 source requirement. Carbon Monitor only; no Climate TRACE mining work, proxy acceptance, revised-history replacement or generic claim of new source progress.",
+                  "decision": "No genuinely unattempted, directly identified, permission-qualified 2024–2026 full-scope original release file was found in the inspected retained primary links and attempt inventory. Stop before another request. This is exhaustion of the identified routes, not proof that no Carbon Monitor archive exists anywhere.",
+                  "inventoryReadFirst": [
+                    "docs/kaya-highfrequency-source-protocol.json",
+                    "docs/kaya-highfrequency-independent-fallback.json",
+                    "docs/highfrequency-author-identity-correction.json",
+                    "docs/highfrequency-original-release-freeze.json",
+                    "docs/kaya-highfrequency-source-evidence.json",
+                    "docs/kaya-fullbasis-monthly-source-evidence.json",
+                    "docs/kaya-fullbasis-monthly-followup-plan.json",
+                    "docs/monthly-co2-last-source-route.json",
+                    "docs/Short_Horizon_Emissions_Protocol.md",
+                    "docs/Forecast_Kaya_Protocol.md",
+                    "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+                    "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+                    "generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.txt",
+                    "generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.txt"
+                  ],
+                  "attemptReconciliation": {
+                    "newNetworkRequests": 0,
+                    "newRightsRequests": 0,
+                    "newSourceFilesAcquired": 0,
+                    "newDailyOrMonthlyNumericRowsAcquired": 0,
+                    "newFullScopeOriginalReleaseContractsQualified": 0,
+                    "priorFullbasisRequestBook": {
+                      "path": "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+                      "sha256": "c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+                      "completedRequests": 14,
+                      "maximumRequests": 14,
+                      "unchanged": true,
+                      "notReopened": true
+                    },
+                    "priorRoutesNotRepeated": [
+                      {
+                        "route": "https://www.eia.gov/totalenergy/data/monthly/archive/",
+                        "priorResult": "403",
+                        "action": "Not requested; no PDF guesses, mirrors or header/access workaround."
+                      },
+                      {
+                        "route": "https://api.figshare.com/v2/articles/12142824",
+                        "priorResult": "Unrelated syllogistic-reasoning supplement; Carbon Monitor identity rejected.",
+                        "action": "Not requested; no neighboring article IDs or files."
+                      },
+                      {
+                        "route": "https://api.figshare.com/v2/articles/search",
+                        "priorResult": "One Carbon Monitor latest-ten title search returned broad carbon-related titles, no authenticated original dataset.",
+                        "action": "No repeat search, query sweep or claim that the repository has no suitable dataset."
+                      },
+                      {
+                        "route": "https://carbonmonitor.org/",
+                        "priorResult": "Publisher identified; fair-use disclaimer, live full-dataset link and current news retained.",
+                        "action": "No repeat homepage/rights request or script-bundle/hidden-endpoint investigation."
+                      },
+                      {
+                        "route": "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+                        "priorResult": "Report version 1.5 already acquired; annual averages, charts and projections do not supply source data rows.",
+                        "action": "Read retained report only; no repeat PDF request, graph digitization or annual-mean-to-daily relabelling."
+                      },
+                      {
+                        "route": "2024/2025/2026 Nature DOI pages and explicit 2026 public supplement",
+                        "priorResult": "Already acquired in the exhausted fourteen-request source book.",
+                        "action": "Read retained content only; no repeated article, supplement or subscription PDF acquisition."
+                      }
+                    ],
+                    "unattemptedLinksReviewedWithoutFetching": [
+                      {
+                        "url": "https://datas.carbonmonitor.org/API/downloadFullDataset.php?source=carbon_global",
+                        "locator": "Retained author HTML visible href in Download full dataset button",
+                        "status": "unattempted-live-updating-history-not-an-original-release-locator",
+                        "whyNotReady": "The public link is real, not guessed, but no version parameter, immutable release identifier, original 2024/2025/2026 bytes or date-to-file mapping has been qualified. The existing author disclaimer expressly warns of corrected data and methods. A response could qualify revised history only, not the required original-origin contract. It was not downloaded or declared inaccessible."
+                      },
+                      {
+                        "url": "https://carbonmonitor.org/news",
+                        "hrefAsPublished": "/news",
+                        "locator": "Retained author HTML public NEWS href; same retained HTML already contains the news state with dated report/article entries",
+                        "status": "unattempted-navigation-not-a-new-identified-data-release",
+                        "whyNotReady": "No newly identified dated full-scope data attachment follows from the already retained news entries. Re-requesting a different navigation view to re-count those same dates would not acquire original numerical rows or qualify a release snapshot."
+                      },
+                      {
+                        "url": "https://docs.google.com/document/d/1_q4QSUeSbwToR5ePTJnCxUzjsZFN-DbO/edit",
+                        "locator": "Retained author public methodology link",
+                        "status": "unattempted-methodology-document-not-qualified-versioned-data-file",
+                        "whyNotReady": "Methodological clarification alone does not supply the missing dated full-scope 2024–2026 numerical release objects. No rights or dated-data inference made from this unrequested document."
+                      }
+                    ]
+                  },
+                  "retainedPrimarySourceEvidence": [
+                    {
+                      "id": "retained-cm-author",
+                      "url": "https://carbonmonitor.org/",
+                      "priorRetrievalStartedUTC": "2026-11-11T10:38:40Z",
+                      "privatePath": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+                      "rawSha256": "aa71a525bf231f0439459844e077a7e0af02dd3fce44ed65701b412cccc86b33",
+                      "publicationDate": null,
+                      "locator": "Visible disclaimer, full-dataset button, public news links and already retained news state",
+                      "qualifiedFacts": [
+                        "Author describes freely available public data under a fair-use open-data policy and requests citation of the linked paper.",
+                        "Living dataset can change as new information, corrections and calculation-method revisions enter.",
+                        "Publisher directs questions about previous-release history to its contact address; no directly qualified versioned history file was established in this page."
+                      ],
+                      "rightsBoundary": "This is the publisher's stated policy, not a fabricated CC-BY/SPDX licence, general redistribution grant or permission for unrelated partner data. No new rights request/contact performed; complete page remains private/ignored."
+                    },
+                    {
+                      "id": "retained-cm-report-2025",
+                      "url": "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+                      "privatePath": "generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.body",
+                      "rawSha256": "d9fdcd1a6f3acb8c5162d078cdfdc207be344eb9b97c22447ad25107fe9addfd",
+                      "privateTextPath": "generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.txt",
+                      "textSha256": "314eea70e633459594268e0c635102b06b60b4d86066aefb4df3dc002453621a",
+                      "reportPublicationDate": "2025-11-18",
+                      "reportVersion": "1.5",
+                      "separateAuthorNewsDate": "2025-11-10",
+                      "claimedUnderlyingDataRelease": "2025-11-01",
+                      "claimedUnderlyingDailyCoverage": [
+                        "2019-01-01",
+                        "2025-09-30"
+                      ],
+                      "claimedUnderlyingRecords": 175015,
+                      "claimedRecordCountActuallyValidated": false,
+                      "locators": {
+                        "reportVersionAndPublication": "Printed page 1 header",
+                        "activityDependencies": "Printed page 1 introduction",
+                        "scopeReleaseCoverage": "Printed page 2 Data Notes and Usage Guidance",
+                        "projectionBoundary": "Printed page 4 figure footnote",
+                        "bunkerBoundary": "Printed page 7 footnote 2"
+                      },
+                      "rightsBoundary": "Already retained publicly offered author report for private inspection. No report-redistribution licence inferred and no report bytes or charts included in public evidence."
+                    },
+                    {
+                      "id": "retained-cm-supplement-2026",
+                      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs43017-026-00780-4/MediaObjects/43017_2026_780_MOESM1_ESM.pdf",
+                      "articleDoi": "10.1038/s43017-026-00780-4",
+                      "privatePath": "generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.body",
+                      "rawSha256": "4d8bdebcf46727abe07ba6f0dfac239da9b76978436d75a19116fe771a438002",
+                      "originalDataFilePublicationDate": null,
+                      "originalDataFileVersion": null,
+                      "claimedUnderlyingDailyCoverage": [
+                        "2019-01-01",
+                        "2025-12-31"
+                      ],
+                      "locator": "Supplementary Table 1, Carbon Monitor column Note; title states annual emission changes in 2025",
+                      "qualifiedFrequency": "Annual growth comparison table, not daily/monthly numerical emissions cells",
+                      "rightsBoundary": "Explicit public supplement already acquired without subscription access. Main article purchase/protected PDF/permissions request not attempted; no independent data-file licence or original release identity follows from supplement availability.",
+                      "climateTraceExcluded": "The other inventory's cited monthly estimates do not supply Carbon Monitor data and were not pursued. No Climate TRACE request or mining substitution."
+                    }
+                  ],
+                  "releaseYearCells": [
+                    {
+                      "releaseYear": 2024,
+                      "datedOriginalFullScopeDataFile": null,
+                      "qualifiedDailyOrMonthlyNumericRows": 0,
+                      "sourceEvidence": "The author-linked 2024 DOI discusses 2023. Later 2025/2026 publications refer to revised history including 2024, not an authenticated original 2024 file.",
+                      "gasUnit": "CO2 product identity described, but exact original-file unit/time schema unverified.",
+                      "territoryBunkers": "No original 2024 row-level regional/bunker separation qualified.",
+                      "freshness": "No original 2024 row cutoff or sector activity-reference dates validated.",
+                      "rights": "Publisher fair-use policy retained; no exact original-file rights/version identity validated.",
+                      "originAvailability": "Unqualified: no original snapshot or independently dated date-to-file mapping.",
+                      "independentTarget": "Unqualified: no source rows/method-vintage dependency audit for the frozen origins."
+                    },
+                    {
+                      "releaseYear": 2025,
+                      "datedOriginalFullScopeDataFile": null,
+                      "qualifiedDailyOrMonthlyNumericRows": 0,
+                      "sourceEvidence": "Version 1.5 report explicitly references a November 1 data release with observations ending September 30; underlying numerical file not acquired.",
+                      "gasUnit": "Report says fossil/industrial CO2 and Mt CO2/day. Native file columns, complete calendar periods and missingness unvalidated.",
+                      "territoryBunkers": "Report identifies seven sectors/nine regional breakdowns and puts international bunkers in global total and ROW. This is not yet a disjoint ROW versus International transport row crosswalk.",
+                      "freshness": "Activity-based estimates through September 30 are claimed, not validated per-row observations; October–December are explicitly projections and must not be used as realized targets.",
+                      "rights": "Author fair-use statement and private report access do not establish exact original-file version/licence.",
+                      "originAvailability": "Unqualified: report November 18/version 1.5, news November 10 and claimed dataset November 1 refer to different objects. None certifies earlier-origin bytes.",
+                      "independentTarget": "Unqualified: report construction uses power/activity/mobility/fuel inputs and includes projected months; no independent forecast-target dependency audit."
+                    },
+                    {
+                      "releaseYear": 2026,
+                      "datedOriginalFullScopeDataFile": null,
+                      "qualifiedDailyOrMonthlyNumericRows": 0,
+                      "sourceEvidence": "Public supplement reports annual 2025 growth and says its underlying daily data end December 31, 2025. It is not a 2026 daily/monthly data release.",
+                      "gasUnit": "Supplement describes fossil fuel combustion and industrial processes; exact daily file schema and mass-per-period cells unvalidated.",
+                      "territoryBunkers": "No exact 2026 file country/sector/world/ROW/bunker decomposition qualified.",
+                      "freshness": "No 2026 observation cutoff or actual 2026 daily/monthly cell acquired. Annual 2025 growth is not a new daily 2026 observation.",
+                      "rights": "Public supplementary-information access does not authenticate a daily data-file licence or version.",
+                      "originAvailability": "Unqualified: a 2026 publication with revised 2024/2025 history cannot be relabelled their original release vintages.",
+                      "independentTarget": "Unqualified: annual comparison with other inventories is not independent monthly target validation."
+                    }
+                  ],
+                  "crossReleaseContractCells": {
+                    "identity": {
+                      "status": "publisher-identity-qualified-data-release-identity-unqualified",
+                      "why": "Author/report/supplement provenance is pinned; exact original numerical release files are not."
+                    },
+                    "fullScope": {
+                      "status": "report-level-description-qualified-only",
+                      "regionsAsDescribed": [
+                        "China",
+                        "United States",
+                        "India",
+                        "European Union (EU27)",
+                        "Russia",
+                        "Japan",
+                        "Brazil",
+                        "United Kingdom",
+                        "Rest of the World"
+                      ],
+                      "sectorsAsDescribed": [
+                        "Power",
+                        "Industry",
+                        "Ground Transport",
+                        "Residential",
+                        "Domestic Aviation",
+                        "International Aviation",
+                        "International Shipping"
+                      ],
+                      "whyUnqualified": "No complete source-defined regional/sector row matrix, unique calendar dates, finite masses, true-zero/missing distinction or all-sector totals have been validated. Do not assume every region-sector Cartesian combination exists."
+                    },
+                    "territorialAndBunkerCrosswalk": {
+                      "status": "explicit-boundary-difference-located-not-reconciled",
+                      "sourceFact": "2025 report page 7 places international bunkers in global total and ROW.",
+                      "whyUnqualified": "The original seven-account requirement keeps Rest of World and International transport distinct. A direct use of the reported ROW would overlap transport; subtracting guessed bunker shares or summing country totals would not qualify the original accounting boundary. Requires actual source-native bunker sector rows and verified non-overlap, not a headquarters or generic global proxy."
+                    },
+                    "freshIndependentOutcomes": {
+                      "status": "not-qualified-not-globally-rejected",
+                      "sourceFacts": "2025 report page 1 describes hourly/daily power generation, monthly industrial production/indices, daily city mobility, flight/monthly transport data and monthly building fuel corrected with daily temperature.",
+                      "whyUnqualified": "Daily emission labels are modeled estimates using heterogeneous activity frequencies, not automatically independently observed daily CO2. Need row/sector-specific upstream observation dates, disaggregation/extrapolation/revision flags and overlap with forecast inputs. Shared activity/factor inputs cannot be scored as independent target evidence merely because a different publisher supplies the emissions estimate. This does not declare all Carbon Monitor sectors stale or unusable."
+                    },
+                    "projectionExclusion": {
+                      "status": "source-rule-qualified",
+                      "sourceFact": "The 2025 report explicitly projects October 1 through December 31 using data ending September 30.",
+                      "requiredTreatment": "Exclude those projected months from realized-outcome qualification; do not digitize/annualize chart lines or blend them into an observed full-year target."
+                    },
+                    "originRule": {
+                      "status": "not-qualified",
+                      "why": "Original file identities, dates and pre-origin availability not established. Retrieval timestamps/current hashes/publication dates of different objects cannot stand in for archived release bytes. Any future live download is revised history unless separate source evidence proves otherwise."
+                    },
+                    "frozenEstimator": {
+                      "status": "not-ready",
+                      "why": "The retained EIA estimator is fixed to US electric-power CO2 and its exact original issue cells; it cannot be transplanted to Carbon Monitor global seven-sector data. The Carbon Monitor fallback expressly requires separately frozen source-specific boundaries and pre-outcome operational methods. No such complete admitted Carbon Monitor contract exists here.",
+                      "shortHorizonAnnualProtocolReused": false,
+                      "unchangedKayaHoldoutRun": false
+                    }
+                  },
+                  "specificUnattemptedNextDependency": {
+                    "requiredObject": "A directly author-published version archive or original-release file mapping for the 2024, 2025 and 2026 Carbon Monitor releases, including the report-identified November 1, 2025 release, each with immutable file identity/checksum, actual publication/availability date, observation cutoff, applicable file-use rights and complete CO2 country/sector data.",
+                    "specificMissingLocator": "No direct publicly qualified version-history URL or original-release attachment was identified in the retained routes. The known full-dataset URL is live; the author page directs previous-release questions to its contact address. No email/contact/permission request made or fabricated archive URL supplied.",
+                    "nextPermittedAction": "Inspect an independently supplied or newly explicitly published version-history locator once, before data download; qualify dates/rights/size and retrieve only directly declared files within a separately bounded acquisition. Without that dependency, do not repeat the failed/catalogue/rights routes or download latest history merely to call it an original vintage.",
+                    "afterFilesExist": "Validate exact period/region/sector rows, native gas/mass units, freshness and upstream dependencies; reconcile ROW and international bunkers without invented shares. Only if the full original contract and unchanged applicable frozen holdout are actually ready may execution proceed. If a new Carbon Monitor-specific estimator remains needed, freeze it before outcome inspection rather than retrofitting the EIA or annual-curated protocol."
+                  },
+                  "integrityChecks": {
+                    "method": "Local read-only SHA-256 verification against the retained source inventory; no network or raw source republication.",
+                    "sourceAndManifestHashesMatched": true,
+                    "protocolHashes": {
+                      "docs/kaya-highfrequency-source-protocol.json": "d67c812a4b914b8fec77e7986ac792314ef65f42ab490a71b6539ce012a5a692",
+                      "docs/kaya-highfrequency-independent-fallback.json": "c03fcd69f3fbf4361a14fd0613b44234f03bdb92340370e322691769bc0b5bff",
+                      "docs/highfrequency-author-identity-correction.json": "da554d5a2ff1e484f7154d7a77f697f955df8e51295731a7646fc5da1e80babc",
+                      "docs/highfrequency-original-release-freeze.json": "80b69dd4bfa22a7f09c268310e81200d429880860fd77bab5c52278764c5697b",
+                      "docs/kaya-fullbasis-monthly-followup-plan.json": "35cbdd1be5118f6cd2722336602eb6c4f448a4b4aa50c2def903a2c2da696607",
+                      "docs/monthly-co2-last-source-route.json": "524088046401131949a13b7b632a5ab899344382f357646ff56f65abbddde66c",
+                      "docs/Short_Horizon_Emissions_Protocol.md": "4ffa5bbadb433edf53e075ebcf0d353e0bab3ee22b400e17b343752d9cddadba",
+                      "docs/Forecast_Kaya_Protocol.md": "ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f"
+                    },
+                    "latestRelevantEvidence": {
+                      "path": "docs/kaya-fullbasis-monthly-source-evidence.json",
+                      "sha256": "1cdd3ddb8db18ec68ac4ba822b6362bbedbbcf1cd4a00521f9eae2260e4144f0"
+                    },
+                    "scopeLimit": "Hash agreement verifies retained bytes, not their original historical publication availability. No new source freshness or raw-file replay claim."
+                  },
+                  "executionAndPreservation": {
+                    "fits": 0,
+                    "holdoutScores": 0,
+                    "oldDiagnosticsOrKernelsRerun": 0,
+                    "newAppOrStudyCodeChanges": 0,
+                    "sourceHistoryOrFrozenInputsReplaced": false,
+                    "originalPinsChanged": false,
+                    "centralPromotionOrProxyAcceptance": false,
+                    "privateOrRawSourcePublished": false,
+                    "purchasesOrPaidCalls": 0,
+                    "ledgersMatrixCensusOrCiChanges": false,
+                    "appWorkflowOrDeploy": false,
+                    "callbackOrAuthorContact": false,
+                    "onlyNewPublicArtifact": "docs/highfrequency-new-source-evidence.json"
+                  },
+                  "verification": {
+                    "kind": "local-evidence-integrity-and-exact-source-locator-check-only",
+                    "result": "passed",
+                    "initialCheck": "Literal absolute-URL substring check refused the /news link, which is published as a relative href. Corrected the local check to resolve actual hrefs against the original publisher base URL; no source byte, locator destination or scientific rule changed.",
+                    "scope": "Eight protocol hashes, three retained primary body hashes, the 2025 report text hash, fourteen-request inventory hash/count, three exact normalized retained hrefs, actual report bunker/projection/release locators and no-acquisition/no-score controls. This is not a new source-data qualification or forecast test."
+                  }
+                }
+              }
+            ],
+            "coherent_execution": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-12T04:12:00.988974+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 222.724,
+              "counts": {
+                "tests": 1001,
+                "pass": 1001,
+                "fail": 0,
+                "skipped": 0
+              },
+              "log": "/tmp/lifecycle-final-check.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b795f07e7b4ee2241f223fec35927f82237eccccb295f4476c5c68e6a80e795b",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1001,
+                  "pass": 1001,
+                  "fail": 0,
+                  "skipped": 0
+                },
+                "python": {
+                  "tests": 218,
+                  "pass": 218,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "release": {
+              "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+              "ci": "43153785349 success",
+              "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+              "verified_at": "2026-11-12T04:41:14.454237+00:00",
+              "health": 200,
+              "scope": "Code-only; no permanent export/data/owner/scientific activation."
+            }
+          },
+          "files_functions_changed_this_increment": [
+            "docs/highfrequency-new-source-evidence.json"
+          ],
+          "check_scope_this_increment": "Development engineering and source qualification only; no scientific or owner acceptance.",
+          "scientific_decision_this_increment": "No calibration, numeric-history replacement, issuer-case qualification or efficacy promotion."
         },
         {
           "id": "S04-006",
@@ -137066,8 +137478,21 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "release": {
+              "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+              "ci": "43153785349 success",
+              "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+              "verified_at": "2026-11-12T04:41:14.454237+00:00",
+              "health": 200,
+              "scope": "Code-only; no permanent export/data/owner/scientific activation."
             }
-          }
+          },
+          "files_functions_changed_this_increment": [
+            "docs/indicator-issuer-new-evidence.json"
+          ],
+          "check_scope_this_increment": "Development engineering and source qualification only; no scientific or owner acceptance.",
+          "scientific_decision_this_increment": "No calibration, numeric-history replacement, issuer-case qualification or efficacy promotion."
         },
         {
           "id": "S12-018",
@@ -158958,8 +159383,25 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "release": {
+              "github_main": "aa275c272a65c23a1ad2a62713528e52ae57a5fb",
+              "ci": "43153785349 success",
+              "railway_deployment": "ab7205d8-89ee-45f8-b725-824ca92c3158",
+              "verified_at": "2026-11-12T04:41:14.454237+00:00",
+              "health": 200,
+              "scope": "Code-only; no permanent export/data/owner/scientific activation."
             }
-          }
+          },
+          "files_functions_changed_this_increment": [
+            "server/snapshots/prospectiveResultExportLifecycle.ts:captureStoredProspectiveResultExport,readStoredProspectiveResultExport",
+            "server/prospectiveResultExportApi.ts:denyPrivateProspectiveExport,registerProspectiveResultExportBoundary",
+            "script/operator-prospective-result-export.ts",
+            "shared/derivedConsumer.ts:deriveValuationPE",
+            "client/src/lib/derived-consumer-workbook.ts:appendDerivedConsumerWorkbookLineage,verifyDerivedConsumerWorkbook"
+          ],
+          "check_scope_this_increment": "Development engineering and source qualification only; no scientific or owner acceptance.",
+          "scientific_decision_this_increment": "No calibration, numeric-history replacement, issuer-case qualification or efficacy promotion."
         },
         {
           "id": "S16-008",
@@ -168108,6 +168550,14 @@
       "ci": "43144317499 success",
       "railway_deployment": "8def2883-5617-4242-8093-33481e2745ac",
       "verified_at": "2026-11-12T03:17:05.499964+00:00",
+      "health": 200,
+      "scope": "Code-only; no data/owner/scientific activation."
+    },
+    {
+      "github_main": "f49f653411365cf27f16200f25a856be7c88813d",
+      "ci": "43147190897 success",
+      "railway_deployment": "078c93c8-78a7-4404-a058-06aeaabe19fb",
+      "verified_at": "2026-11-12T03:31:54.810115+00:00",
       "health": 200,
       "scope": "Code-only; no data/owner/scientific activation."
     }

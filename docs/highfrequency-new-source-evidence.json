@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "highfrequency-new-source-evidence-1",
+  "status": "retained-Carbon-Monitor-route-inventory-exhausted-for-qualified-dated-fullscope-data-no-new-acquisition",
+  "scope": "One bounded readiness investigation of the original high-frequency CO2 source requirement. Carbon Monitor only; no Climate TRACE mining work, proxy acceptance, revised-history replacement or generic claim of new source progress.",
+  "decision": "No genuinely unattempted, directly identified, permission-qualified 2024–2026 full-scope original release file was found in the inspected retained primary links and attempt inventory. Stop before another request. This is exhaustion of the identified routes, not proof that no Carbon Monitor archive exists anywhere.",
+  "inventoryReadFirst": [
+    "docs/kaya-highfrequency-source-protocol.json",
+    "docs/kaya-highfrequency-independent-fallback.json",
+    "docs/highfrequency-author-identity-correction.json",
+    "docs/highfrequency-original-release-freeze.json",
+    "docs/kaya-highfrequency-source-evidence.json",
+    "docs/kaya-fullbasis-monthly-source-evidence.json",
+    "docs/kaya-fullbasis-monthly-followup-plan.json",
+    "docs/monthly-co2-last-source-route.json",
+    "docs/Short_Horizon_Emissions_Protocol.md",
+    "docs/Forecast_Kaya_Protocol.md",
+    "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+    "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+    "generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.txt",
+    "generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.txt"
+  ],
+  "attemptReconciliation": {
+    "newNetworkRequests": 0,
+    "newRightsRequests": 0,
+    "newSourceFilesAcquired": 0,
+    "newDailyOrMonthlyNumericRowsAcquired": 0,
+    "newFullScopeOriginalReleaseContractsQualified": 0,
+    "priorFullbasisRequestBook": {
+      "path": "generated-artifacts/kaya-fullbasis-monthly/requests.json",
+      "sha256": "c8a1b46524060d4c120c3f580c270dfd81eff0f48af7e4de76da8b248f67917f",
+      "completedRequests": 14,
+      "maximumRequests": 14,
+      "unchanged": true,
+      "notReopened": true
+    },
+    "priorRoutesNotRepeated": [
+      {
+        "route": "https://www.eia.gov/totalenergy/data/monthly/archive/",
+        "priorResult": "403",
+        "action": "Not requested; no PDF guesses, mirrors or header/access workaround."
+      },
+      {
+        "route": "https://api.figshare.com/v2/articles/12142824",
+        "priorResult": "Unrelated syllogistic-reasoning supplement; Carbon Monitor identity rejected.",
+        "action": "Not requested; no neighboring article IDs or files."
+      },
+      {
+        "route": "https://api.figshare.com/v2/articles/search",
+        "priorResult": "One Carbon Monitor latest-ten title search returned broad carbon-related titles, no authenticated original dataset.",
+        "action": "No repeat search, query sweep or claim that the repository has no suitable dataset."
+      },
+      {
+        "route": "https://carbonmonitor.org/",
+        "priorResult": "Publisher identified; fair-use disclaimer, live full-dataset link and current news retained.",
+        "action": "No repeat homepage/rights request or script-bundle/hidden-endpoint investigation."
+      },
+      {
+        "route": "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+        "priorResult": "Report version 1.5 already acquired; annual averages, charts and projections do not supply source data rows.",
+        "action": "Read retained report only; no repeat PDF request, graph digitization or annual-mean-to-daily relabelling."
+      },
+      {
+        "route": "2024/2025/2026 Nature DOI pages and explicit 2026 public supplement",
+        "priorResult": "Already acquired in the exhausted fourteen-request source book.",
+        "action": "Read retained content only; no repeated article, supplement or subscription PDF acquisition."
+      }
+    ],
+    "unattemptedLinksReviewedWithoutFetching": [
+      {
+        "url": "https://datas.carbonmonitor.org/API/downloadFullDataset.php?source=carbon_global",
+        "locator": "Retained author HTML visible href in Download full dataset button",
+        "status": "unattempted-live-updating-history-not-an-original-release-locator",
+        "whyNotReady": "The public link is real, not guessed, but no version parameter, immutable release identifier, original 2024/2025/2026 bytes or date-to-file mapping has been qualified. The existing author disclaimer expressly warns of corrected data and methods. A response could qualify revised history only, not the required original-origin contract. It was not downloaded or declared inaccessible."
+      },
+      {
+        "url": "https://carbonmonitor.org/news",
+        "hrefAsPublished": "/news",
+        "locator": "Retained author HTML public NEWS href; same retained HTML already contains the news state with dated report/article entries",
+        "status": "unattempted-navigation-not-a-new-identified-data-release",
+        "whyNotReady": "No newly identified dated full-scope data attachment follows from the already retained news entries. Re-requesting a different navigation view to re-count those same dates would not acquire original numerical rows or qualify a release snapshot."
+      },
+      {
+        "url": "https://docs.google.com/document/d/1_q4QSUeSbwToR5ePTJnCxUzjsZFN-DbO/edit",
+        "locator": "Retained author public methodology link",
+        "status": "unattempted-methodology-document-not-qualified-versioned-data-file",
+        "whyNotReady": "Methodological clarification alone does not supply the missing dated full-scope 2024–2026 numerical release objects. No rights or dated-data inference made from this unrequested document."
+      }
+    ]
+  },
+  "retainedPrimarySourceEvidence": [
+    {
+      "id": "retained-cm-author",
+      "url": "https://carbonmonitor.org/",
+      "priorRetrievalStartedUTC": "2026-11-11T10:38:40Z",
+      "privatePath": "generated-artifacts/kaya-highfrequency-source/carbonmonitor-author.html",
+      "rawSha256": "aa71a525bf231f0439459844e077a7e0af02dd3fce44ed65701b412cccc86b33",
+      "publicationDate": null,
+      "locator": "Visible disclaimer, full-dataset button, public news links and already retained news state",
+      "qualifiedFacts": [
+        "Author describes freely available public data under a fair-use open-data policy and requests citation of the linked paper.",
+        "Living dataset can change as new information, corrections and calculation-method revisions enter.",
+        "Publisher directs questions about previous-release history to its contact address; no directly qualified versioned history file was established in this page."
+      ],
+      "rightsBoundary": "This is the publisher's stated policy, not a fabricated CC-BY/SPDX licence, general redistribution grant or permission for unrelated partner data. No new rights request/contact performed; complete page remains private/ignored."
+    },
+    {
+      "id": "retained-cm-report-2025",
+      "url": "https://zhudeng.top/files/COP_CM_2025_report.pdf",
+      "privatePath": "generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.body",
+      "rawSha256": "d9fdcd1a6f3acb8c5162d078cdfdc207be344eb9b97c22447ad25107fe9addfd",
+      "privateTextPath": "generated-artifacts/kaya-fullbasis-monthly/cm-2025-report.txt",
+      "textSha256": "314eea70e633459594268e0c635102b06b60b4d86066aefb4df3dc002453621a",
+      "reportPublicationDate": "2025-11-18",
+      "reportVersion": "1.5",
+      "separateAuthorNewsDate": "2025-11-10",
+      "claimedUnderlyingDataRelease": "2025-11-01",
+      "claimedUnderlyingDailyCoverage": ["2019-01-01", "2025-09-30"],
+      "claimedUnderlyingRecords": 175015,
+      "claimedRecordCountActuallyValidated": false,
+      "locators": {
+        "reportVersionAndPublication": "Printed page 1 header",
+        "activityDependencies": "Printed page 1 introduction",
+        "scopeReleaseCoverage": "Printed page 2 Data Notes and Usage Guidance",
+        "projectionBoundary": "Printed page 4 figure footnote",
+        "bunkerBoundary": "Printed page 7 footnote 2"
+      },
+      "rightsBoundary": "Already retained publicly offered author report for private inspection. No report-redistribution licence inferred and no report bytes or charts included in public evidence."
+    },
+    {
+      "id": "retained-cm-supplement-2026",
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs43017-026-00780-4/MediaObjects/43017_2026_780_MOESM1_ESM.pdf",
+      "articleDoi": "10.1038/s43017-026-00780-4",
+      "privatePath": "generated-artifacts/kaya-fullbasis-monthly/cm-2026-public-supplement.body",
+      "rawSha256": "4d8bdebcf46727abe07ba6f0dfac239da9b76978436d75a19116fe771a438002",
+      "originalDataFilePublicationDate": null,
+      "originalDataFileVersion": null,
+      "claimedUnderlyingDailyCoverage": ["2019-01-01", "2025-12-31"],
+      "locator": "Supplementary Table 1, Carbon Monitor column Note; title states annual emission changes in 2025",
+      "qualifiedFrequency": "Annual growth comparison table, not daily/monthly numerical emissions cells",
+      "rightsBoundary": "Explicit public supplement already acquired without subscription access. Main article purchase/protected PDF/permissions request not attempted; no independent data-file licence or original release identity follows from supplement availability.",
+      "climateTraceExcluded": "The other inventory's cited monthly estimates do not supply Carbon Monitor data and were not pursued. No Climate TRACE request or mining substitution."
+    }
+  ],
+  "releaseYearCells": [
+    {
+      "releaseYear": 2024,
+      "datedOriginalFullScopeDataFile": null,
+      "qualifiedDailyOrMonthlyNumericRows": 0,
+      "sourceEvidence": "The author-linked 2024 DOI discusses 2023. Later 2025/2026 publications refer to revised history including 2024, not an authenticated original 2024 file.",
+      "gasUnit": "CO2 product identity described, but exact original-file unit/time schema unverified.",
+      "territoryBunkers": "No original 2024 row-level regional/bunker separation qualified.",
+      "freshness": "No original 2024 row cutoff or sector activity-reference dates validated.",
+      "rights": "Publisher fair-use policy retained; no exact original-file rights/version identity validated.",
+      "originAvailability": "Unqualified: no original snapshot or independently dated date-to-file mapping.",
+      "independentTarget": "Unqualified: no source rows/method-vintage dependency audit for the frozen origins."
+    },
+    {
+      "releaseYear": 2025,
+      "datedOriginalFullScopeDataFile": null,
+      "qualifiedDailyOrMonthlyNumericRows": 0,
+      "sourceEvidence": "Version 1.5 report explicitly references a November 1 data release with observations ending September 30; underlying numerical file not acquired.",
+      "gasUnit": "Report says fossil/industrial CO2 and Mt CO2/day. Native file columns, complete calendar periods and missingness unvalidated.",
+      "territoryBunkers": "Report identifies seven sectors/nine regional breakdowns and puts international bunkers in global total and ROW. This is not yet a disjoint ROW versus International transport row crosswalk.",
+      "freshness": "Activity-based estimates through September 30 are claimed, not validated per-row observations; October–December are explicitly projections and must not be used as realized targets.",
+      "rights": "Author fair-use statement and private report access do not establish exact original-file version/licence.",
+      "originAvailability": "Unqualified: report November 18/version 1.5, news November 10 and claimed dataset November 1 refer to different objects. None certifies earlier-origin bytes.",
+      "independentTarget": "Unqualified: report construction uses power/activity/mobility/fuel inputs and includes projected months; no independent forecast-target dependency audit."
+    },
+    {
+      "releaseYear": 2026,
+      "datedOriginalFullScopeDataFile": null,
+      "qualifiedDailyOrMonthlyNumericRows": 0,
+      "sourceEvidence": "Public supplement reports annual 2025 growth and says its underlying daily data end December 31, 2025. It is not a 2026 daily/monthly data release.",
+      "gasUnit": "Supplement describes fossil fuel combustion and industrial processes; exact daily file schema and mass-per-period cells unvalidated.",
+      "territoryBunkers": "No exact 2026 file country/sector/world/ROW/bunker decomposition qualified.",
+      "freshness": "No 2026 observation cutoff or actual 2026 daily/monthly cell acquired. Annual 2025 growth is not a new daily 2026 observation.",
+      "rights": "Public supplementary-information access does not authenticate a daily data-file licence or version.",
+      "originAvailability": "Unqualified: a 2026 publication with revised 2024/2025 history cannot be relabelled their original release vintages.",
+      "independentTarget": "Unqualified: annual comparison with other inventories is not independent monthly target validation."
+    }
+  ],
+  "crossReleaseContractCells": {
+    "identity": {
+      "status": "publisher-identity-qualified-data-release-identity-unqualified",
+      "why": "Author/report/supplement provenance is pinned; exact original numerical release files are not."
+    },
+    "fullScope": {
+      "status": "report-level-description-qualified-only",
+      "regionsAsDescribed": ["China", "United States", "India", "European Union (EU27)", "Russia", "Japan", "Brazil", "United Kingdom", "Rest of the World"],
+      "sectorsAsDescribed": ["Power", "Industry", "Ground Transport", "Residential", "Domestic Aviation", "International Aviation", "International Shipping"],
+      "whyUnqualified": "No complete source-defined regional/sector row matrix, unique calendar dates, finite masses, true-zero/missing distinction or all-sector totals have been validated. Do not assume every region-sector Cartesian combination exists."
+    },
+    "territorialAndBunkerCrosswalk": {
+      "status": "explicit-boundary-difference-located-not-reconciled",
+      "sourceFact": "2025 report page 7 places international bunkers in global total and ROW.",
+      "whyUnqualified": "The original seven-account requirement keeps Rest of World and International transport distinct. A direct use of the reported ROW would overlap transport; subtracting guessed bunker shares or summing country totals would not qualify the original accounting boundary. Requires actual source-native bunker sector rows and verified non-overlap, not a headquarters or generic global proxy."
+    },
+    "freshIndependentOutcomes": {
+      "status": "not-qualified-not-globally-rejected",
+      "sourceFacts": "2025 report page 1 describes hourly/daily power generation, monthly industrial production/indices, daily city mobility, flight/monthly transport data and monthly building fuel corrected with daily temperature.",
+      "whyUnqualified": "Daily emission labels are modeled estimates using heterogeneous activity frequencies, not automatically independently observed daily CO2. Need row/sector-specific upstream observation dates, disaggregation/extrapolation/revision flags and overlap with forecast inputs. Shared activity/factor inputs cannot be scored as independent target evidence merely because a different publisher supplies the emissions estimate. This does not declare all Carbon Monitor sectors stale or unusable."
+    },
+    "projectionExclusion": {
+      "status": "source-rule-qualified",
+      "sourceFact": "The 2025 report explicitly projects October 1 through December 31 using data ending September 30.",
+      "requiredTreatment": "Exclude those projected months from realized-outcome qualification; do not digitize/annualize chart lines or blend them into an observed full-year target."
+    },
+    "originRule": {
+      "status": "not-qualified",
+      "why": "Original file identities, dates and pre-origin availability not established. Retrieval timestamps/current hashes/publication dates of different objects cannot stand in for archived release bytes. Any future live download is revised history unless separate source evidence proves otherwise."
+    },
+    "frozenEstimator": {
+      "status": "not-ready",
+      "why": "The retained EIA estimator is fixed to US electric-power CO2 and its exact original issue cells; it cannot be transplanted to Carbon Monitor global seven-sector data. The Carbon Monitor fallback expressly requires separately frozen source-specific boundaries and pre-outcome operational methods. No such complete admitted Carbon Monitor contract exists here.",
+      "shortHorizonAnnualProtocolReused": false,
+      "unchangedKayaHoldoutRun": false
+    }
+  },
+  "specificUnattemptedNextDependency": {
+    "requiredObject": "A directly author-published version archive or original-release file mapping for the 2024, 2025 and 2026 Carbon Monitor releases, including the report-identified November 1, 2025 release, each with immutable file identity/checksum, actual publication/availability date, observation cutoff, applicable file-use rights and complete CO2 country/sector data.",
+    "specificMissingLocator": "No direct publicly qualified version-history URL or original-release attachment was identified in the retained routes. The known full-dataset URL is live; the author page directs previous-release questions to its contact address. No email/contact/permission request made or fabricated archive URL supplied.",
+    "nextPermittedAction": "Inspect an independently supplied or newly explicitly published version-history locator once, before data download; qualify dates/rights/size and retrieve only directly declared files within a separately bounded acquisition. Without that dependency, do not repeat the failed/catalogue/rights routes or download latest history merely to call it an original vintage.",
+    "afterFilesExist": "Validate exact period/region/sector rows, native gas/mass units, freshness and upstream dependencies; reconcile ROW and international bunkers without invented shares. Only if the full original contract and unchanged applicable frozen holdout are actually ready may execution proceed. If a new Carbon Monitor-specific estimator remains needed, freeze it before outcome inspection rather than retrofitting the EIA or annual-curated protocol."
+  },
+  "integrityChecks": {
+    "method": "Local read-only SHA-256 verification against the retained source inventory; no network or raw source republication.",
+    "sourceAndManifestHashesMatched": true,
+    "protocolHashes": {
+      "docs/kaya-highfrequency-source-protocol.json": "d67c812a4b914b8fec77e7986ac792314ef65f42ab490a71b6539ce012a5a692",
+      "docs/kaya-highfrequency-independent-fallback.json": "c03fcd69f3fbf4361a14fd0613b44234f03bdb92340370e322691769bc0b5bff",
+      "docs/highfrequency-author-identity-correction.json": "da554d5a2ff1e484f7154d7a77f697f955df8e51295731a7646fc5da1e80babc",
+      "docs/highfrequency-original-release-freeze.json": "80b69dd4bfa22a7f09c268310e81200d429880860fd77bab5c52278764c5697b",
+      "docs/kaya-fullbasis-monthly-followup-plan.json": "35cbdd1be5118f6cd2722336602eb6c4f448a4b4aa50c2def903a2c2da696607",
+      "docs/monthly-co2-last-source-route.json": "524088046401131949a13b7b632a5ab899344382f357646ff56f65abbddde66c",
+      "docs/Short_Horizon_Emissions_Protocol.md": "4ffa5bbadb433edf53e075ebcf0d353e0bab3ee22b400e17b343752d9cddadba",
+      "docs/Forecast_Kaya_Protocol.md": "ab7da56d04fad92c6dab27b3c0f77cfe427518eab87014019105967a12d0a31f"
+    },
+    "latestRelevantEvidence": {
+      "path": "docs/kaya-fullbasis-monthly-source-evidence.json",
+      "sha256": "1cdd3ddb8db18ec68ac4ba822b6362bbedbbcf1cd4a00521f9eae2260e4144f0"
+    },
+    "scopeLimit": "Hash agreement verifies retained bytes, not their original historical publication availability. No new source freshness or raw-file replay claim."
+  },
+  "executionAndPreservation": {
+    "fits": 0,
+    "holdoutScores": 0,
+    "oldDiagnosticsOrKernelsRerun": 0,
+    "newAppOrStudyCodeChanges": 0,
+    "sourceHistoryOrFrozenInputsReplaced": false,
+    "originalPinsChanged": false,
+    "centralPromotionOrProxyAcceptance": false,
+    "privateOrRawSourcePublished": false,
+    "purchasesOrPaidCalls": 0,
+    "ledgersMatrixCensusOrCiChanges": false,
+    "appWorkflowOrDeploy": false,
+    "callbackOrAuthorContact": false,
+    "onlyNewPublicArtifact": "docs/highfrequency-new-source-evidence.json"
+  },
+  "verification": {
+    "kind": "local-evidence-integrity-and-exact-source-locator-check-only",
+    "result": "passed",
+    "initialCheck": "Literal absolute-URL substring check refused the /news link, which is published as a relative href. Corrected the local check to resolve actual hrefs against the original publisher base URL; no source byte, locator destination or scientific rule changed.",
+    "scope": "Eight protocol hashes, three retained primary body hashes, the 2025 report text hash, fourteen-request inventory hash/count, three exact normalized retained hrefs, actual report bunker/projection/release locators and no-acquisition/no-score controls. This is not a new source-data qualification or forecast test."
+  }
+}
