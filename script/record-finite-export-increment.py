@@ -69,7 +69,7 @@ if len(sys.argv) == 4:
         x["current_release"] = release
 
 changed = set(OUTPUTS)
-for args in (["git", "diff", "--name-only", "128cafe", "HEAD"],
+for args in (["git", "diff", "--name-only", "671ee08", "HEAD"],
              ["git", "diff", "--name-only"],
              ["git", "ls-files", "--others", "--exclude-standard"]):
     changed.update(subprocess.check_output(args, text=True).splitlines())
@@ -175,6 +175,10 @@ if len(sys.argv) == 4:
     x["restart"]["unfinished_requirement_ids"] = [
         q["id"] for s in x["stages"] for q in s["requirements"] if q["status"] != "verified"
     ]
+    x["restart"]["next_requirement"] = (
+        "S16-014 remaining original responsive-view acceptance; S04-001 qualified regional "
+        "saturation/joint source inputs; S12-017 actual issuer economics and genuinely dated11–15 corpus"
+    )
     x["restart"]["instruction"] = (
         "Continue ALL original0–17/amendments then actualefficacy, PlanOFF. "
         "S16-007 original finite engineering VERIFIED: all22 requested contracts implemented; "
