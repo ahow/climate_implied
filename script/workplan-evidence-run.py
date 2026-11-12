@@ -18,7 +18,10 @@ FULL_CHECK_COMMAND = [
     "bash", "-c",
     "set -e; "
     "echo '=== Typecheck ==='; npm run check; "
-    "echo '=== Complete TypeScript suite ==='; npx tsx --test --test-reporter=tap script/*.test.ts; "
+    # Several tests spawn additional source-only suites and real calculators.
+    # Bound scheduling, not coverage or SQL/HTTP deadlines: otherwise competing
+    # workers can starve pg's client event loop past its unchanged10s read bound.
+    "echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; "
     "echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; "
     "echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; "
     "echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; "

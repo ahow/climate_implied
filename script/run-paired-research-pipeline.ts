@@ -1,6 +1,7 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { contentHash } from "../server/calculation/analysisManifest";
-import { runPairedResearchPipeline } from "../server/calculation/pairedResearchPipeline";
+import { buildRetainedPairedResearch } from "../server/retainedPairedResearchProjection";
+import { retainedPairedIdentity, writeRetainedPairedArtifact } from "../server/retainedPairedResearchStore";
 import { buildTrackBAdmissionWorkbook } from "../server/calculation/trackBAdmissionWorkbook";
 import { bindTrackBAdmission } from "../shared/trackBAdmissionContract";
 import { trackBPeriodDomainHash } from "../server/trackBDisclosureStore";
@@ -14,7 +15,8 @@ async function main() {
     throw new Error("Usage: npx tsx script/run-paired-research-pipeline.ts frozen-protocol.json PRECOMMITTED_SHA256 retained-corpus.json");
   const protocol = JSON.parse(await readFile(protocolPath, "utf8"));
   const corpus = JSON.parse(await readFile(corpusPath, "utf8"));
-  const result = runPairedResearchPipeline(protocol, expectedHash, corpus);
+  const paired = await buildRetainedPairedResearch(protocol, expectedHash, corpus);
+  const result = paired.pipeline;
   const directory = "generated-artifacts/paired-research-pipeline";
   await mkdir(directory, { recursive: true });
   const path = `${directory}/${contentHash(result)}.json`, text = JSON.stringify(result, null, 2) + "\n";
@@ -46,7 +48,23 @@ async function main() {
     try { await writeFile(file, text, { flag: "wx" }); }
     catch (e) { if ((e as NodeJS.ErrnoException).code !== "EEXIST" || await readFile(file, "utf8") !== text) throw e; }
   }
-  console.log(JSON.stringify({ path, trackBWorkbookPath, reportPath, disclosureDraftPath, assessmentMaterialPath, efficacy: result.efficacy, scientificAcceptance: false,
+  const pairedIdentity = retainedPairedIdentity(paired.report, "0".repeat(64));
+  const { disclosureHash: _draftHash, ...pairedBindings } = pairedIdentity;
+  const pairedDisclosureDraft = {
+    contract: "retained-paired-research-disclosure-1", status: "unpublished",
+    classification: paired.report.classification, ...pairedBindings, providerPayloadIncluded: false,
+    review: { kind: "not-reviewed" }, scientificAcceptance: false, investmentEvidence: false,
+  };
+  await writeRetainedPairedArtifact(directory, pairedIdentity.reportHash, "paired-report", paired.report);
+  await writeRetainedPairedArtifact(directory, pairedIdentity.pipelineResultHash, "paired-inputs", {
+    pipelineResultHash: pairedIdentity.pipelineResultHash, protocol, corpus,
+  });
+  await writeRetainedPairedArtifact(directory, contentHash(pairedDisclosureDraft), "paired-disclosure", pairedDisclosureDraft);
+  console.log(JSON.stringify({ path, trackBWorkbookPath, reportPath, disclosureDraftPath, assessmentMaterialPath,
+    pairedReportPath: `${directory}/${pairedIdentity.reportHash}.paired-report.json`,
+    pairedDisclosureDraftPath: `${directory}/${contentHash(pairedDisclosureDraft)}.paired-disclosure.json`,
+    pairedIdentity: { ...pairedBindings, disclosureHash: contentHash(pairedDisclosureDraft) },
+    efficacy: result.efficacy, scientificAcceptance: false,
     familySize: result.family.familySize, unavailable: result.family.unavailableHypotheses }));
 }
 main().catch(e => { console.error(e instanceof Error ? e.message : "Pipeline failed"); process.exitCode = 1; });

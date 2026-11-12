@@ -66,7 +66,7 @@
     {
       "path": "client/src/components/emissions-candidate-review.tsx",
       "originalSha256": "dea148b9ea1e1ccec6eaa4bb8726c0f2dd6676a3e72b1b2033bc22484d9cffc2",
-      "currentSha256": "05d443e65f16e220e76253da8d5b592e0b360602d2d9a8ef447832c2d2bab555",
+      "currentSha256": "6d904e012243619a9b99998f2cff8a4ff30357a520694e6e3b8ec5322c6b1a7f",
       "exactScanLines": [{"line":68,"text":"            Read-only candidate, not calibrated and not a forecast."}],
       "disposition": "retained",
       "resolution": null
@@ -149,7 +149,7 @@
     {
       "path": "client/src/pages/decarb-gap-signal.tsx",
       "originalSha256": "38e22c96503bd44d3a63cbbe900eb8e0ac3d23b72e4ed12f4915f86ebc6371f9",
-      "currentSha256": "e3c2575c167483675aa8e48fdb959a72641e0cfde4b8bf3629dd6f53bcd6381c",
+      "currentSha256": "496853058738714fa2cb11561bf109a32dbd7c213a22ce87de3ac2511dc131ca",
       "currentSourceRefreshReason": "S16-007 replaces the actual group-gap and paired-backtest chart/export transforms with closed retained-parent chains, mandatory lineage and JSON companions. Explicit native column types preserve the unchanged original cohort and the historical disabled comparison projection. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
         {"line":410,"text":"            Gordon steady-state baselines and peer-relative earnings-yield gaps — not decarbonization estimates"},
@@ -164,7 +164,7 @@
     {
       "path": "client/src/pages/decarb-signal.tsx",
       "originalSha256": "19ad42a6581453abfbc135d6fbaa61c3b3886ef47a8cddd2578cd3a29a14ffa0",
-      "currentSha256": "abc9b57124ea344e3ce712b9c05e6a32640c8611306a380f396d835f070b76bd",
+      "currentSha256": "9fc8ebb2087d89fa633a615cd1ab3396444bdc95ce2c710dd63ae21dcc97b96e",
       "currentSourceRefreshReason": "S16-007 routes actual comparison and signal-backtest chart/export transforms through closed retained-parent chains and mandatory lineage/JSON companions. Warning text, original source hash/scan lines and scientific status are unchanged.",
       "exactScanLines": [
         {"line":198,"text":"  const expectedLabel = \"Physical comparison withheld\";"},
@@ -245,7 +245,7 @@
     "shared/scientificEvidence.ts": "9444f8bf815e7d8212742ad6b4fc4a48ed10f06e7bd1c61474c27555a116d8a4",
     "shared/interimWarningEvidence.ts": "40e47bde7cf9ba4bc76dd4d506c1f55e161dae0bd763c6e92b21418fd974ddc5",
     "client/src/components/scientific-evidence-strands.tsx": "245f4a3ad63ca9ff50ef164573b29ea9a28372490700f53083098467080c2507",
-    "client/src/components/emissions-candidate-review.tsx": "05d443e65f16e220e76253da8d5b592e0b360602d2d9a8ef447832c2d2bab555",
+    "client/src/components/emissions-candidate-review.tsx": "6d904e012243619a9b99998f2cff8a4ff30357a520694e6e3b8ec5322c6b1a7f",
     "client/src/components/published-scenario-references.tsx": "447e616aab116db355eb3b72d1be3967bcc43fe17ff3ffe32ae7a84730e97dfe",
     "client/src/components/financial-review.tsx": "ca8821a43d893a8b93003f0089762315fdfb502783fe025ce44e0bc87349fa0c",
     "server/calculation/readiness.ts": "0006f7c3641ea2d33627d7405370b3d3be610058f9ccb7a26b50d0e90557c0a3",

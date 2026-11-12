@@ -10,8 +10,8 @@ import { warmingReferenceExportDocument } from "../shared/warmingValidationRefer
 
 test("actual domain consumers have source-located expressions and explicit state policies, not placeholder slots", () => {
   const report = componentStateCensus();
-  assert.equal(report.componentCount, 71, "Prior70 plus exact retained producer source-response download link");
-  assert.equal(report.focusedRenderedComponentCount, 71);
+  assert.equal(report.componentCount, 77, "Reviewed prior71 plus2 headline consumers and4 retained paired-research consumers");
+  assert.equal(report.focusedRenderedComponentCount, 77);
   assert.deepEqual(report.individuallyUnrenderedComponentIds, []);
   assert.equal(new Set(report.components.map(component => component.id)).size, report.componentCount);
   assert.equal(report.dynamicExpressionCount, report.components.reduce((sum, component) => sum + component.expressions.length, 0));
@@ -86,7 +86,18 @@ test("imported sibling exports are reachable only through actual component tags"
   const producer = report.components.find(component => component.component === "ProducerDownloadLink")!;
   assert.deepEqual(producer.routes, ["/climate-valuation", "/data-management"]);
   assert.match(producer.contract.focusedEvidence, /producer-download\.test\.ts/);
-  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions].includes(component.id)).length, 60);
+  const integrated = ["HeadlineDrilldownReview", "RetainedHeadlineDrilldown", "RetainedPairedResearch",
+    "RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton"].map(name => {
+      const component = report.components.find(component => component.component === name)!;
+      assert.ok(component, name);
+      assert.deepEqual(component.routes, [name.includes("Headline") ? "/" : "/decarb-gap"]);
+      assert.match(component.contract.focusedEvidence, /(?:headline-drilldown-ui|retained-paired-research-ui)\.test\.ts/);
+      assert.equal(component.contract.inputKind, name === "ReportSkeleton" ? "presentation-control" :
+        ["HeadlineDrilldownReview", "RetainedPairedResearchReport", "EvidenceSection"].includes(name)
+          ? "supplied-result" : "queried-evidence");
+      return component.id;
+    });
+  assert.equal(report.components.filter(component => ![reference.id, trackB.id, stage10.id, money.id, registry.id, strands.id, producer.id, ...additions, ...integrated].includes(component.id)).length, 60);
   assert.equal(reference.fieldBindings.length, 5);
   const html = renderToStaticMarkup(React.createElement(WarmingValidationReference));
   const text = html.replace(/<[^>]*>/g, "");

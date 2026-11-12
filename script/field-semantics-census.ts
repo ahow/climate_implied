@@ -42,6 +42,7 @@ import { resolveOriginalResponseAlias } from "./response-alias-resolution";
 import { producerDownloadSemantics, producerDownloadFieldBindings } from "../shared/producerDownloadSemantics";
 import { derivedConsumerSemantics, derivedConsumerSheetBindings } from "../shared/derivedConsumerSemantics";
 import { valuationPEDerivations } from "../shared/derivedConsumer";
+import { integratedReadOnlySurfaceContracts } from "./integrated-readonly-contracts";
 const relativeSource=(path:string)=>relative(process.cwd(),resolve(path)).split("\\").join("/");
 const config=ts.readConfigFile("tsconfig.json",ts.sys.readFile);
 const parsed=ts.parseJsonConfigFileContent(config.config,ts.sys,".");
@@ -605,6 +606,7 @@ const isBound=(e:typeof unique[number])=>
       (e.surface==='API GET "/api/cv/backtest"' && e.field.startsWith("[].") &&
          outputFieldSemantics.some(f=>f.id===`backtest.${e.field.slice(3)}`)));
 const report={version:"typed-field-census-1",definitions:baseline?16:fieldSemantics.length+outputFieldSemantics.length,
+  ...(!baseline ? { integratedReadOnlySurfaceContracts: integratedReadOnlySurfaceContracts() } : {}),
   resolvedResponseAliases,
   comparableSlotAccounting:{actualUniqueSlots:unique.length,previouslyUnresolvedAliasSlots:resolvedResponseAliases.length,
     slotsIncludingReconciledAliases:unique.length+resolvedResponseAliases.length},

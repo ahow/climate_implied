@@ -27,9 +27,15 @@ import { RegistryMethodology } from "../client/src/components/registry-methodolo
 test("S16-007 public portable AST census includes chart, JSON, direct-link, attachment and custom-sheet paths", () => {
   const census = methodologyDownloadCensus();
   assert.equal(census.centralSites.length, 26);
-  assert.equal(census.downloadLinks.length, 11);
-  assert.equal(census.serverDownloads.flatMap(entry => entry.paths).length, 11);
-  assert.equal(census.attachmentSites.length, 11);
+  assert.equal(census.downloadLinks.length, 13, "Eleven retained links plus selected-headline JSON/XLSX links");
+  assert.equal(census.serverDownloads.flatMap(entry => entry.paths).length, 15, "Eleven retained routes plus2 drilldown modes×2 formats");
+  assert.equal(census.attachmentSites.length, 12, "Eleven retained attachment writers plus the mode/format-bound drilldown writer");
+  assert.deepEqual(census.downloadLinks.filter(site => site.path.endsWith("headline-drilldown.tsx")).map(site => site.href),
+    ['{withDownloadManifest(headlineDrilldownUrl(mode, selection, "json"))}',
+      '{withDownloadManifest(headlineDrilldownUrl(mode, selection, "xlsx"))}']);
+  assert.deepEqual(census.serverDownloads.find(entry => entry.source === "server/headlineDrilldownApi.ts")?.paths,
+    ["/api/headline-drilldown/contributions/export.json", "/api/headline-drilldown/contributions/export.xlsx",
+      "/api/headline-drilldown/sensitivities/export.json", "/api/headline-drilldown/sensitivities/export.xlsx"]);
   assert.ok(census.attachmentSites.every(site => site.registered));
   assert.ok(census.downloadLinks.every(site => site.embeddedManifest), JSON.stringify(census.downloadLinks));
   assert.equal(census.centralSites.filter(site => /chart|histogram|comparison/.test(site.path)).length, 7);

@@ -1,3 +1,92 @@
+<!-- transport-drilldown-increment:start -->
+## Current transport, headline drilldown, retained-report and primary-source increment
+
+Recorded 2026-11-12T11:15:52.834166+00:00. **8 original clauses updated; 0 statuses promoted.** 300 criteria and contract SHA-256 `5e1a09aa71c87286779eb444db2e0b0361015b3d1bfb058e320f836ca46b4de5` preserved.
+
+Counts: {"blocked-production-provisioning": 2, "partial": 241, "verified": 57}. Existing verified runtime remains `6584856eda62dd84e2d951eb767f0d3518f4e075`; new work is local/development only until parent verifies a new release.
+Full check receipt: `generated-artifacts/cache-drilldown-report-full-final.json` SHA-256 `323c0de1718e0a4fbb7c01dd52ca0a35a485039cf55f7072ec3f00b21b199fb2`. Exact commands, statuses, counts, failures and logs are retained verbatim in JSON `latest_increment.transport_drilldown_increment.full_checks_receipt`; no duplicate checks launched.
+
+Final coherent execution: **1129/1129 TypeScript; 248/248 Python; 0 failures/skips; typecheck, all mandatory private validators and production build passed.** Original failed and intermediate receipts/logs remain preserved under `failure_history`, bound to `docs/integrated-contract-repair-evidence.json` SHA-256 `0587f8cd7ee929d9d083c88ce9e0f17b0cd49b658e071c6b703d978ad9e8736a`.
+
+**All 77 reachable consumers reviewed** (prior71 +2 headline +4 retained-paired), with actual focused render/source-policy evidence; no interactive-browser or scientific acceptance claimed.
+
+Parent's restarted `/decarb-gap` preview correctly shows **No authorized retained paired research reports**, without browser errors or forced metrics. This supersedes the worker's earlier pre-restart route error only; it does not authorize a real report or prove science. Regional drilldowns remain partial: Global source only, no source regional allocation.
+
+### S02-009 — retained partial
+**Exact original criterion:** Cold and warm caches return identical values and identities.
+
+Disposable PostgreSQL transport passed: 5 company and 3 projection tests, 0 failed/skipped; 7 cache rows, 13 archive headers, 16 chunks, 5 enabled guards. Company witness: 8 analytical receipts/311 real PostgreSQL queries; namespace witness: 5 receipts/12 queries. Separate route-local mutation/matrix witnesses: 6/18 receipts, no PostgreSQL queries. Only regional default has 24h TTL (TTL-1/exact TTL checked). Prior SQL-literal semicolon and historical-selector fixture failures retained; initial implicit-ES5 scoped typecheck corrected to explicit ES2022 without implementation weakening.
+
+**Remaining original scope:** Real disposable PostgreSQL transport now executed: company HTTP/calculator/material/archive round-trip and persistent helper namespaces passed. Six route-local mutation/TTL matrices remain distinct from PostgreSQL transport; application default MemStorage is not deployed PostgreSQL acceptance. Authorized refresh/DELETE lifecycle remains unexecuted: no genuine supported HTTP principal/importer; DEV/loopback/DB ownership is not authority. No production clear/delete/DDL. Finish exact original cache identity coverage and genuine authorized invalidation without bypass.
+
+**Direct source/function/test/failure/log receipt:** `docs/disposable-cache-transport-evidence.json` SHA-256 `7b73541b1ec6afb5a156d8226fccfff2ba62e46a6c7479576179c1b99c0ccf7d`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S08-005 — retained partial
+**Exact original criterion:** Keep one-at-a-time shocks as sensitivities, with separate endpoints and labels.
+
+Actual constant/transition/dashboard captured native candidates use separate nonadditive sensitivity endpoints/labels and signed additive within-model contribution endpoints; no altered attribution kernel.
+
+**Remaining original scope:** Selected retained native candidates now have separately labelled one-driver-group-at-a-time sensitivity JSON/XLSX endpoints, distinct from additive within-model contributions. This verifies a supported local native-candidate surface only, not every production sensitivity or an accepted ensemble. Retain exact original endpoint/label acceptance for remaining actual consumers.
+
+**Direct source/function/test/failure/log receipt:** `docs/headline-drilldown-evidence.json` SHA-256 `9001ca94623341f42057817890da76a1b8f8dc23f30d6c901976bba0fa7192a8`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S08-006 — retained partial
+**Exact original criterion:** Add region × sector × gas × driver drilldowns and downloads on the headline's manifest.
+
+Actual inventory: 122 source cells; constant 1 coalition/122 rows, transition 32 coalitions/610 rows, dashboard 4 coalitions/244 rows. Maximum per-cell reconciliation errors 0, 5.4569682106375694e-12, 1.8189894035458565e-12 native Mt respectively. Global headline totals 56.81226234083025/46.50375792679074/41.30313582844237 GtCO2e. These are isolated actual retained-producer diagnostics, not published or accepted research.
+
+**Remaining original scope:** Selected retained native candidate sector/gas/driver drilldowns and JSON/XLSX now reconcile to exact parent headline identity. Available source parent is Global only: no source regional allocation, six-region parent or accepted regional ensemble. Unsupported region/international-transport selectors refuse; synthetic signed-land/AIR/SEA controls are not source regional evidence. Full region × sector × gas × driver criterion remains partial.
+
+**Direct source/function/test/failure/log receipt:** `docs/headline-drilldown-evidence.json` SHA-256 `9001ca94623341f42057817890da76a1b8f8dc23f30d6c901976bba0fa7192a8`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S08-009 — retained partial
+**Exact original criterion:** Sensitivities and contributions carry different labels and endpoints; contributions carry the “within-model” label.
+
+Six read-only contribution/sensitivity JSON and XLSX routes plus actual mounted native-review consumer distinguish within-model contributions from nonadditive sensitivity; derived identity never borrows X-Producer-Identity.
+
+**Remaining original scope:** Separate contribution/sensitivity routes, derivation identities and labels are implemented on supported retained native candidates; contributions are explicitly within-model, sensitivities nonadditive, neither causal. Need full actual accepted production UI/API/export coverage; local engineering checks do not establish scientific or owner acceptance.
+
+**Direct source/function/test/failure/log receipt:** `docs/headline-drilldown-evidence.json` SHA-256 `9001ca94623341f42057817890da76a1b8f8dc23f30d6c901976bba0fa7192a8`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S08-010 — retained partial
+**Exact original criterion:** Drilldowns resolve to the headline's manifest.
+
+Exact parent and canonical derived-content browser verification, post-accounting selectors and corruption/lookalike/member/seed/source/model refusals exercised. 12 new drilldown tests plus 1 existing attribution test passed; 14 existing native export regressions passed separately; typecheck passed.
+
+**Remaining original scope:** Supported local retained-native drilldowns verify exact parent result/manifest/material/source/model/member/seed and derived content identity, rejecting mismatches. No accepted six-region headline source allocation or accepted full ensemble supplied. Continue exact accepted-headline and all-consumer scope; isolated immutable storage execution is not production persistence/publication.
+
+**Direct source/function/test/failure/log receipt:** `docs/headline-drilldown-evidence.json` SHA-256 `9001ca94623341f42057817890da76a1b8f8dc23f30d6c901976bba0fa7192a8`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S16-004 — retained partial
+**Exact original criterion:** Backtest page: protocol and prior-exposure disclosure, long-only and long–short results under separate labels, Track A/B (with “unavailable” where applicable), prospective-archive record, factor-adjusted results and robustness.
+
+Existing paired pipeline invoked, not fabricated report metrics: public projection/store/API/browser/renderer and exact eight-pin offline publication boundary. 38 pipeline/frontend/integration tests passed (13 unchanged frontend, 17 unchanged pipeline, 8 new integration); separate 14 Track-B regression tests and typecheck passed. Initial cwd source-module and incomplete two-month CLI engineering-fixture failures corrected; entirely absent periods/artifacts still explicitly unavailable. Parent reports restarted /decarb-gap card now reads 'No authorized retained paired research reports', no browser errors or forced metric; this is local preview, not a new deployed release.
+
+**Remaining original scope:** Actual unchanged paired pipeline is wired through retained public projection, eight-pin reviewed offline publisher, store, HTTP, browser verification and renderer. Real source-reviewed catalog remains empty; no authorized real retained paired research report, original-vintage/Stage9 authentication, independent prospective archives or redistribution approval supplied. WITHHELD; scientificAcceptance/investmentEvidence/authenticityVerified false. Empty catalog and synthetic DEV engineering reports do not satisfy scientific protocol/results/factor/robustness acceptance. Historical runtime/transitive dependency authentication remains unavailable.
+
+**Direct source/function/test/failure/log receipt:** `docs/retained-backtest-surface-evidence.json` SHA-256 `914572a4d8626b1df3fa813c6f414ba3f701f9d48a63a795029ec9de8bf2a331`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S12-017 — retained partial
+**Exact original criterion:** Three worked companies are documented end to end: a utility, an oil and gas producer and an industrial.
+
+Official §45X module credit 7 cents/DC watt; same-facility integrated-component 65% US direct-material-cost condition expressly prospective for taxable years beginning after 2026-12-31. NEER nine-month unaudited USDm categories: equity-method earnings distributions366 operating, differential-member proceeds1334/payments(597) financing, investments(19044), parent net12409 financing. XPLR Q3 adjusted EBITDA471m/FCFBG164m and Class-B/tax-equity cash34m/8m, exact Sep30 ownership appendix, ~85% of ~180MW repowerings and ~400MW rights sold to NEER are scoped positives, not gross NEE cash or commissioning returns. XOM says Nucor Convent is operating/third commercial CCS operation; Rose up-to5Mt/year for13years is prospective capacity, not billed throughput. Source URLs/locators/dates/extraction hashes/rights and exact limitations retained in evidence.
+
+**Remaining original scope:** Six bounded primary-content reviews provide new scoped legal/operating/cash-category findings, but zero qualified original issuer economic-input pairs and zero common-FCFE insertion. FSLR §45X future integrated-component rule must not be backdated to 2026; eligible US watts/BOM/PFE/company eligibility and India grant amount/day/FX/classification remain unknown. NEER category totals/XPLR ownership and payer outflows are known, not named-LLC-to-NEE gross recipient cash, actual reserve/election priorities or commissioning marginal returns. Nucor live CCS status is known, not executed priced subsidiary instruments/novation, invoices/collection/opex/funded common cash waterfall. Preserve historical LLC terms, India receipt month, EnLink expected-recognition schedule and Williams volume in their proper scopes. Original utility/oil-and-gas/industrial requirement and all market/stub/identity/terminal gates remain: 0/3 qualified cases; FSLR does not silently replace original industrial.
+
+**Direct source/function/test/failure/log receipt:** `docs/qualified-primary-inputs-evidence.json` SHA-256 `7ebe881164a34095d7066a05e1e769b70cf45b36517a85cb95712b73fe16f9ab`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+### S04-001 — retained partial
+**Exact original criterion:** Technology diffusion. Fit logistic curves, with Gompertz or Bass as alternatives, to regional adoption data: solar and wind shares of generation, EV share of new car sales, heat-pump sales, battery storage. Estimate saturation (bounded by a sourced prior), midpoint and steepness, with bootstrap intervals. Set a training window per technology: heat pumps and storage may have too little history before 2019, so declare a shorter window or treat them as priors.
+
+New Zealand logistic article discusses uncertain early saturation and capacity ceilings; NewClimate draft's combined VRE 70%/30% scenario ceilings and Denmark historical illustration are not technology-specific regional generation-share priors. No numerical prior borrowed or actual fit run. Five discovery calls/six new primary contents/11 fetch calls (five continuations), no request UTC timestamps recorded; extraction hashes identify transformed markdown, not original authenticated PDF/HTTP bytes. Supplementary appendix not acquired; licensing and joint-draw qualification remain unresolved.
+
+**Remaining original scope:** Two new primary research/policy contents supply contextual capacity/scenario ceilings only, not independently sourced regional solar/wind generation-share K or reviewed machine-readable whole joint source/structural/dependence bundles with rights and immutable binding. Zero newly qualified regional saturations/joint bundles; actual fitting/bootstrap/heldout run UNEXECUTED. Preserve fixed 2010–2018 nine-observation train/2019–2024 six-observation holdout, ten cells, 1000 circular-block-3 replications and seed20261108. Nine original baseline failures and EU-solar point-only win remain. Original EV/heat-pump/storage-specific source/window/interval gates also remain; no arbitrary prior, shortened window, independent marginal synthesis or science/central promotion.
+
+**Direct source/function/test/failure/log receipt:** `docs/qualified-primary-inputs-evidence.json` SHA-256 `7ebe881164a34095d7066a05e1e769b70cf45b36517a85cb95712b73fe16f9ab`. Full original evidence, including source/function lists, commands and unavailable inputs, is embedded under this clause's `transport_drilldown_increment.evidence.detail` in the JSON ledger.
+
+Original1000/1001; previous S16-007/S16-014 verified receipts; all other clauses, original source/amendment hashes and scientific negatives unchanged. Zero eligible histories/zero of three qualified cases; real report catalog empty; all broad current items stay current original scope, no new follow-up tasks.
+<!-- transport-drilldown-increment:end -->
+
 # Finite export contracts and guarded regional joint uncertainty — engineering increment
 
 Original criteria preserved; finite S16-007 engineering is reconciled only after observed runtime evidence. No actual diffusion efficacy or qualified issuer case is claimed.
@@ -5542,6 +5631,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-finite-native-6485e11",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T07:30:23.996684+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-all22-uncertainty-6584856",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T09:54:52.405267+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

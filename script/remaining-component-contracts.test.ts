@@ -1,4 +1,5 @@
 import { captureDownloadSelection, requireUnchangedDownloadSelection } from "../client/src/lib/download-selection";
+import { captureDerivedConsumer } from "../client/src/lib/producer-download";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -176,10 +177,12 @@ test("DownloadDataButton empty/explicit-disabled versus real zero rows; Download
 test("actual XLSX handler catches lazy builder refusal and empty rows, resets busy and never declares completed export", async () => {
   for (const rows of [() => { throw Error("engineering-row-builder-refused"); }, () => []]) {
     const busy: boolean[] = [], errors: unknown[] = [];
-    const click = actualSourceValue("client/src/components/download-data-button.tsx", "handleClick", { rows, captureDownloadSelection, requireUnchangedDownloadSelection,
+    const click = actualSourceValue("client/src/components/download-data-button.tsx", "handleClick", { rows, captureDownloadSelection, requireUnchangedDownloadSelection, captureDerivedConsumer, requireDerivedParent: false,
       setBusy: (v: boolean) => busy.push(v), setError: (v: unknown) => errors.push(v) });
     await click(); assert.deepEqual(busy, [true, false]);
     assert.ok(errors.some(value => typeof value === "string" && value.includes("No completed download")));
+    assert.ok(errors.some(value => typeof value === "string" && value.includes(
+      String(rows).includes("engineering-row-builder-refused") ? "engineering-row-builder-refused" : "no rows returned")));
   }
 });
 test("actual JSON handler validation failure has explicit refusal and does not allocate a download URL", async () => {
@@ -301,6 +304,14 @@ for (const [path, name, unit] of [
 ] as const) test(`${path}#${name} actual tooltip has inactive/absent/invalid-row/null/zero/date/series contracts`, () => {
   const formatDateLabel = actualSourceValue(path, "formatDateLabel");
   const Component = actualSourceValue(path, name, { displayDiagnostic, formatDateLabel, observationTimestamp, tooltipObservation });
+  // Missing or repeated provider chart keys must not generate missing/duplicate
+  // React keys. Presentation identity is not an invented observation/series name.
+  for (const payload of [[{ value: 0 }, { value: 1 }], [{ dataKey: "same", value: 0 }, { dataKey: "same", value: 1 }]]) {
+    const tree = Component({ active: true, payload, label: "2024-01-01" });
+    const children = tree.props.children[1] as React.ReactElement[];
+    assert.equal(new Set(children.map(child => child.key)).size, payload.length);
+    assert.ok(children.every(child => child.key !== null));
+  }
   assert.equal(markup(element(Component, { active: false })), "");
   for (const payload of [undefined, [], [null]]) assert.ok(markup(element(Component, { active: true, payload })).includes("Tooltip series unavailable"));
   const missing = markup(element(Component, { active: true, payload: [{ value: null }] }));

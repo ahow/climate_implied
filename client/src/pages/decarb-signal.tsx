@@ -231,8 +231,8 @@ export default function DecarbSignal() {
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm" data-testid="chart-tooltip">
         <p className="font-medium text-foreground mb-2">{formatDateLabel(label)}</p>
-        {payload.map((entry: any) => (
-          <div key={entry.dataKey} className="flex items-center justify-between gap-4">
+        {payload.map((entry: any, index: number) => (
+          <div key={`${entry.dataKey ?? "unidentified-series"}:${index}`} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
@@ -253,8 +253,8 @@ export default function DecarbSignal() {
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm" data-testid="backtest-tooltip">
         <p className="font-medium text-foreground mb-2">{observationTimestamp(label) === undefined ? "Observation date unavailable" : label}</p>
-        {payload.map((entry: any) => (
-          <div key={entry.dataKey} className="flex items-center justify-between gap-4">
+        {payload.map((entry: any, index: number) => (
+          <div key={`${entry.dataKey ?? "unidentified-series"}:${index}`} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>

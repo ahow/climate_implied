@@ -1,0 +1,63 @@
+{
+  "task": "S16-004 retained paired-research frontend reader",
+  "scope": {
+    "ownedDirectory": "client/src/components",
+    "implementation": "Strict public projection contract, exact-selection browser reader, existing-style React Query research card, focused reader and static-render tests",
+    "backendImplemented": false,
+    "pageIntegrated": false,
+    "scienceCompleted": false,
+    "exportsAdded": false,
+    "authorizationOrSourcePermissionsChanged": false
+  },
+  "commands": [
+    {
+      "command": "npx tsx --test client/src/components/retained-paired-research.test.ts",
+      "exitCode": 0,
+      "count": { "tests": 13, "passed": 13, "failed": 0, "skipped": 0 },
+      "log": "13 isolated engineering-only tests passed: canonical SHA256 parity; eight exact header identities; wrong headers; tampered context; invalid producer/acceptance/nonfinite/missing sections; bounded URL; credentials/signal/no-store; exact HTTP refusal reasons; corrupt/duplicate catalog; required section rendering; empty publication catalog; stale/loading/error/mismatched selection withholding; genuine zero rendering."
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "exitCode": 0,
+      "log": "No TypeScript diagnostics."
+    }
+  ],
+  "source": [
+    {
+      "path": "client/src/components/retained-paired-research.tsx",
+      "sha256": "d0e954102be0357c431b0468a0fe212a346c5a30472900089bb2172ee024bb86"
+    },
+    {
+      "path": "client/src/components/retained-paired-research-reader.ts",
+      "sha256": "575f0f4170fd92bca803e40a78022b623e683edc50f33a2da0266cbf65b34098"
+    },
+    {
+      "path": "client/src/components/retained-paired-research-contract.ts",
+      "sha256": "736dc8d5cd9e6a297f87319b3a289e1d518ad21bae5ce540c92f240bb0ec5c9a"
+    },
+    {
+      "path": "client/src/components/retained-paired-research.test.ts",
+      "sha256": "b50084abd9618b4a1c1601b8870a188b958a5d87c495a7131112450e474bdaaf"
+    }
+  ],
+  "integration": {
+    "catalogEndpoint": "/api/research/paired-research/catalog",
+    "reportEndpoint": "/api/research/paired-research",
+    "exactQueryKeys": [
+      "protocolHash", "reportHash", "disclosureHash", "pipelineResultHash",
+      "corpusHash", "originDomainHash", "sourceContextHash", "codeContextHash"
+    ],
+    "headerConvention": "X-Paired-Research-{kebab-case query key without Hash}-SHA256",
+    "requiredPagePlacement": "Render RetainedPairedResearch once on the existing research/backtest surface, outside the completed company-upload guard. Do not attach its output to legacy intensity or peer-yield backtest identities.",
+    "contractLocation": "client/src/components/retained-paired-research-contract.ts",
+    "requestedFinalEvidenceLocation": "docs/retained-backtest-surface-evidence.json"
+  },
+  "remainingDataGaps": [
+    "Backend adapter, authorization-aware retained store, reviewed public catalog and route registration are outside this frontend worker's permitted directory and remain parent integration work.",
+    "Actual pipeline to retained-store to API to renderer integration has not been exercised by these frontend tests. Fixtures test only the public projection and are explicitly engineering-only.",
+    "An authorized real retained report, exact frozen protocol, original source/vintage context, code context, independent review and publication rights have not been supplied to this worker.",
+    "Missing original-filing/Stage9 authentication, prospective live archives, factor data, borrowing histories or robust sensitivity accounting must retain actual pipeline unavailable reasons, never synthetic metric substitutes.",
+    "No visual browser verification was requested for this delegated frontend task; static rendering and TypeScript checks only.",
+    "Parent must place or merge this evidence in the requested docs path after completing API and existing-page integration; this worker created files only under the permitted components directory."
+  ]
+}

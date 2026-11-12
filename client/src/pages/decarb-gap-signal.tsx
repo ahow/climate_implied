@@ -21,6 +21,7 @@ import { certifyFiniteExport,finiteExportBindings } from "@shared/finiteExportSc
 import { gordonBaselinePct, displayDiagnostic, gordonBaselineLabel, gordonExportNotes, backtestDisplay, backtestDisplayStats, observationTimestamp, hasUndatedObservations, tooltipObservation, selectedGroupGapPp } from "@/lib/valuation-claims";
 import { QueryReadErrors } from "@/components/query-read-errors";
 import { BacktestSummary, fetchBacktest } from "@/components/backtest-summary";
+import { RetainedPairedResearch } from "@/components/retained-paired-research";
 import type { BacktestResponse } from "@shared/backtest";
 import {
   LineChart,
@@ -288,8 +289,8 @@ export default function DecarbGapSignal() {
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
         <p className="font-medium text-foreground mb-2">{formatDateLabel(label)}</p>
-        {payload.map((entry: any) => (
-          <div key={entry.dataKey} className="flex items-center justify-between gap-4">
+        {payload.map((entry: any, index: number) => (
+          <div key={`${entry.dataKey ?? "unidentified-series"}:${index}`} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
@@ -310,8 +311,8 @@ export default function DecarbGapSignal() {
     return (
       <div className="bg-popover border rounded-md p-3 shadow-md text-sm">
         <p className="font-medium text-foreground mb-2">{observationTimestamp(label) === undefined ? "Observation date unavailable" : label}</p>
-        {payload.map((entry: any) => (
-          <div key={entry.dataKey} className="flex items-center justify-between gap-4">
+        {payload.map((entry: any, index: number) => (
+          <div key={`${entry.dataKey ?? "unidentified-series"}:${index}`} className="flex items-center justify-between gap-4">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
               <span className="text-muted-foreground">{entry.name ?? "Series name unavailable"}</span>
@@ -344,6 +345,7 @@ export default function DecarbGapSignal() {
   return (
     <div className="p-4 space-y-4 max-w-full" data-testid="page-decarb-gap-signal">
       <QueryReadErrors prefix="/api/cv" />
+      <RetainedPairedResearch />
       {hasUndatedObservations(selectedMeasureData) && <p role="status">Selected group observation date unavailable. Undated rows are omitted from charts and exports; the latest gap is withheld rather than backfilled.</p>}
       {(hasUndatedObservations(backtestData) || hasUndatedObservations(valuationBacktestData)) && <p role="status">Backtest observation date unavailable. Undated rows are omitted from charts and exports; affected derived period accounting is withheld. No date is substituted.</p>}
       <ReadResultReason label="Company dataset" loading={uploadsLoading} error={uploadsError} available={!!uploadId} emptyReason="No completed company dataset is available. Import and review require the operator CLI." />

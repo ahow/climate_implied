@@ -27,6 +27,9 @@ import { packIndicators, unpackIndicators } from "../server/snapshots/indicatorC
 import { packRegional, unpackRegional } from "../server/snapshots/regionalContract";
 import { requestOverrides, runWithOverrideRows } from "../server/dataIngestion/requestOverrides";
 import { MemStorage } from "../server/storage";
+import { openDisposableCachePostgres } from "./disposable-cache-postgres";
+import { eq } from "drizzle-orm";
+import { projectionCache } from "../shared/schema";
 
 const require = createRequire(import.meta.url);
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
@@ -71,11 +74,12 @@ function productionPieces() {
     "REGIONAL_CACHE_TTL_MS", "historicalTrendCacheResult", "sensitivityCacheResult", "categoryHistoricalTrendCache",
     "routeCacheRevisions", "validRouteCache", "tagRouteCache"]);
   const statements: string[] = [], registrations = new Map<string, string>();
-  let revision = "", indicators = "";
+  let revision = "", indicators = "", projectedRate = "";
   function visit(node: ts.Node) {
     if (ts.isVariableStatement(node) && node.declarationList.declarations.some(d => names.has(d.name.getText(sourceTree))))
       statements.push(node.getText(sourceTree));
     if (ts.isFunctionDeclaration(node) && node.name?.text === "currentProjectionRevision") revision = node.getText(sourceTree);
+    if (ts.isFunctionDeclaration(node) && node.name?.text === "getProjectedRate") projectedRate = node.getText(sourceTree);
     if (ts.isCallExpression(node) && ["app.get", "app.use"].includes(node.expression.getText(sourceTree)) &&
       ts.isStringLiteral(node.arguments[0])) {
       const path = node.arguments[0].text, text = node.getText(sourceTree);
@@ -86,12 +90,13 @@ function productionPieces() {
   }
   visit(sourceTree);
   assert.equal(registrations.size, 6); assert.equal(statements.length, 11); assert.ok(revision && indicators);
-  return { statements, registrations, revision, indicators };
+  assert.ok(projectedRate);
+  return { statements, registrations, revision, indicators, projectedRate };
 }
 
-async function harness() {
+async function harness(store: Pick<MemStorage, "getProjectionCache" | "setProjectionCache"> = new MemStorage()) {
   const scope = new AsyncLocalStorage<Scope>(), events: Event[] = [], responses = new Map<string, any>();
-  const receipts: any[] = [], errors: string[] = [], store = new MemStorage();
+  const receipts: any[] = [], errors: string[] = [];
   let clock = Date.now(), serial = 0, control: any;
   const gates = new Map<string, { promise: Promise<void>; release: () => void }>();
   const app = express();
@@ -185,11 +190,18 @@ async function harness() {
       next();
     } catch (error) { next(error); }
   });
-  const code = [...pieces.statements, pieces.revision, ...Array.from(pieces.registrations.values()),
-    "return { revision: currentProjectionRevision };"].join("\n");
+  const code = [...pieces.statements, pieces.revision, pieces.projectedRate, ...Array.from(pieces.registrations.values()),
+    "return { revision: currentProjectionRevision, projectedRate: getProjectedRate };"].join("\n");
   control = new Function(...Object.keys(bindings), ts.transpile(code, {
     target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS,
   }))(...Object.values(bindings));
+  // Private engineering entry to the actual retained finance helper, not an
+  // application endpoint or invented operator identity.
+  // Reuse an existing indicator-selection-eligible read path in this private
+  // harness; the application's calculation-contract registration is NOT loaded.
+  app.get("/api/calculation-contract", async (_req, res, next) => {
+    try { res.json({ rate: await control.projectedRate() }); } catch (error) { next(error); }
+  });
   app.use((_error: unknown, _req: unknown, res: express.Response, _next: unknown) => res.status(500).json({ error: "Invalid effective inputs refused" }));
   const server = createServer(app);
   await new Promise<void>(done => server.listen(0, "127.0.0.1", done));
@@ -362,3 +374,55 @@ test("six actual route-local caches preserve seeded cold/warm retained/current/c
     });
   } finally { await api.close(); }
 });
+
+test("authorized disposable PostgreSQL preserves actual full/reduced namespaces and revision isolation",
+  { skip: !process.env.COMPANY_CACHE_DISPOSABLE_DATABASE_URL, timeout: 120_000 }, async () => {
+    const transport = await openDisposableCachePostgres();
+    const store = {
+      getProjectionCache: async (key: string) =>
+        (await transport.db.select().from(projectionCache).where(eq(projectionCache.cacheKey, key)))[0],
+      setProjectionCache: async (value: any) =>
+        (await transport.db.insert(projectionCache).values(value).onConflictDoNothing().returning())[0],
+    };
+    const api = await harness(store);
+    const receipts: any[] = [];
+    try {
+      const reduced = await api.request("/api/calculation-contract", "A");
+      assert.equal(reduced.status, 200, JSON.stringify({ body: reduced.body, errors: api.errors }));
+      const reducedWarm = await api.request("/api/calculation-contract", "A");
+      assert.equal(reduced.hash, reducedWarm.hash);
+      assert.ok(!api.events.some(event => event.request === reducedWarm.id && event.phase === "compute"));
+      const full = await api.request("/api/projection", "A");
+      assert.equal(full.status, 200, JSON.stringify({ body: full.body, errors: api.errors }));
+      assert.ok(api.events.some(event => event.request === full.id && event.phase === "compute"));
+      const warm = await api.request("/api/projection", "A");
+      assert.equal(full.hash, warm.hash); assert.deepEqual(full.headers, warm.headers);
+      const changed = await api.request("/api/projection", "B");
+      assert.equal(changed.status, 200);
+      assert.notEqual(full.headers["X-Calculation-Input-Revision"], changed.headers["X-Calculation-Input-Revision"]);
+      assert.ok(api.events.some(event => event.request === changed.id && event.phase === "compute"));
+      // Recreate route-local state: the next A hit MUST come from real JSONB.
+      const fresh = await harness(store);
+      try {
+        const persistent = await fresh.request("/api/projection", "A");
+        assert.equal(persistent.status, 200); assert.equal(full.hash, persistent.hash);
+        assert.deepEqual(full.headers, persistent.headers);
+        assert.ok(fresh.events.some(event => event.request === persistent.id && event.phase === "persistent-lookup" && event.hit));
+        assert.ok(!fresh.events.some(event => event.request === persistent.id && event.phase === "compute"));
+        receipts.push({ persistent, events: fresh.events, receipts: fresh.receipts });
+      } finally { await fresh.close(); }
+      const writes = api.events.filter(event => event.phase === "persistent-write");
+      assert.equal(writes.length, 3);
+      assert.equal(new Set(writes.map(event => event.name)).size, 3,
+        "Reduced A, full A and full B must occupy three distinct production calculation keys");
+      const rows = await transport.db.select().from(projectionCache);
+      assert.ok(writes.every(event => rows.some(row => row.cacheKey === event.name)));
+      save("postgres-namespace", { passed: true, transport: "Actual isolated PostgreSQL JSONB",
+        productionStorageQualification: "Actual production handler/helper storage calls with a Drizzle PostgreSQL I/O adapter; default application storage remains MemStorage.",
+        fullRunCount: 10000, reducedRunCount: 10000,
+        reducedMeans: "Different finance response shape/threshold semantics, not lowered Monte Carlo runs",
+        reduced, reducedWarm, full, warm, changed, persistent: receipts,
+        writes, events: api.events, receipts: api.receipts, databaseOperations: transport.operations,
+        sourceHashes: sourcePins(), ddlDuringTest: 0, deletes: 0, cacheClears: 0 });
+    } finally { await api.close(); await transport.close(); }
+  });

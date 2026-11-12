@@ -10,6 +10,7 @@ import { nativeResidualDiagnosticsSchema } from "@shared/nativeThresholdSchema";
 import { ScientificEvidenceStrands } from "./scientific-evidence-strands";
 import { bindProducerNativeConsumer, exactProducerDownload } from "@/lib/producer-download";
 import { nativeReviewYears } from "@shared/nativeConsumer";
+import { HeadlineDrilldownReview } from "./headline-drilldown";
 
 type CandidateResponse = {
   residualDiagnostics?: NativeResidualDiagnostics;
@@ -107,6 +108,7 @@ export function EmissionsCandidateReview() {
       </div>
 
       <ScientificEvidenceStrands />
+      {!isError && data?.result && <HeadlineDrilldownReview headline={data} />}
       <p className="rounded-md border p-3 text-sm font-medium">
         Package 2 remains incomplete: the native-gas scenarios are not yet calibrated.
         The published CAT references above are independent comparisons, not outputs of this candidate model.

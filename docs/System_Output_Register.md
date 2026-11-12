@@ -25,6 +25,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | POST | "/api/calculation/validate-history" | server/calculation/fairArtifactRoutes.ts |
 | GET | `${CARBON_PASS_THROUGH_ROUTE}${suffix}` | server/carbonPassThroughApi.ts |
 | GET | `${CONDITIONAL_COMPANY_ROUTE}${suffix}` | server/companyConditionalApi.ts |
+| GET | `/api/headline-drilldown/${mode}` | server/headlineDrilldownApi.ts |
+| GET | `/api/headline-drilldown/${mode}/export.${format}` | server/headlineDrilldownApi.ts |
 | GET | "/api/methodology/registry" | server/methodologyApi.ts |
 | GET | "/api/analysis/results/:id/export.json" | server/producerDownload.ts |
 | POST | "/api/calculation/research-contracts" | server/prospectiveResearchApi.ts |
@@ -34,6 +36,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | GET | "/api/development/qualified-missingness/export" | server/qualifiedMissingnessApi.ts |
 | GET | "/api/data/version-diff" | server/readonlyDiffApi.ts |
 | GET | "/api/data/history-types" | server/readonlyDiffApi.ts |
+| GET | "/api/research/paired-research/catalog" | server/retainedPairedResearchApi.ts |
+| GET | "/api/research/paired-research" | server/retainedPairedResearchApi.ts |
 | GET | "/api/calculation/field-semantics" | server/routes.ts |
 | GET | "/api/build-info" | server/routes.ts |
 | GET | "/api/calculation/company-coverage" | server/routes.ts |
@@ -122,6 +126,8 @@ Parameterized URLs remain explicit. Repeated references are retained; not every 
 | client/src/components/qualified-missingness-review.tsx | `/api/development/qualified-missingness/export?revision=${data.revision}` |
 | client/src/components/readonly-version-diff.tsx | `/api/data/version-diff?${new URLSearchParams(selection ?? {}).toString()}` |
 | client/src/components/registry-methodology.tsx | "/api/methodology/registry" |
+| client/src/components/retained-paired-research-reader.ts | "/api/research/paired-research" |
+| client/src/components/retained-paired-research.test.ts | "/api/research/paired-research" |
 | client/src/components/stage10-financial-coverage.tsx | `/api/research/stage10-coverage${suffix}?${new URLSearchParams({ workbookHash: report.workbookHash, cutoff: report.informationCutoff, expectedInputHash: report.inputHash, firstYear: String(report.fiscalYears[0]), lastYear: String(report.fiscalYears.at(-1)), })}` |
 | client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |
 | client/src/components/stage10-financial-coverage.tsx | "/api/research/stage10-coverage" |

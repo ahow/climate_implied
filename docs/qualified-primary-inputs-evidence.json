@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "qualified-primary-inputs-evidence-1",
+  "scope": "Bounded independent public primary-content acquisition for original S04-001 and S12-017; documentary source assessment only. No shared ledger, protocol, issuer cashflow, approval, release, callback, or app changes.",
+  "status": "six-new-public-primary-contents-reviewed-no-qualified-input-bundle",
+  "inventoryReadFirst": {
+    "docs/regional-diffusion-next-evidence.json": "11aac253f273da75ec70f0d681ecc579eaa2bd5d4175691c0189343d32f8942b",
+    "docs/regional-diffusion-uncertainty-evidence.json": "32cc29c693c1c077fb68a55a75826810dad740fcbd57bb47bb63592b35b13863",
+    "docs/issuer-economics-next-evidence.json": "abeb77d3646cc24fbdfb41527bb518d1cb62afa3b59a4d041041d493a22feeb4",
+    "docs/issuer-source-next-evidence.json": "40a2d1a2e4f610dbf872f9871e3d9530e3cc2e8eed7ce527408772989d712994",
+    "docs/issuer-contract-law-evidence.json": "58380bdaf61ed449de4b5c25935ce9163ae41c2460cf118d33cebf02e77f4068",
+    "docs/issuer-cash-source-followup-evidence.json": "e87b78c01ea5030e0e1dcdd4ebf7624209b693bca02685679110574c2bbcabf9",
+    "additionalRetainedContext": [
+      "docs/nee-project-cash-waterfall-evidence.json",
+      "docs/fslr-cohort-integrated-evidence.json"
+    ],
+    "noveltyLimit": "Exact six new URLs were absent from a targeted docs/script/server/shared URL search before acquisition. This does not assert archive-wide novelty of the underlying facts. Previously inspected FSLR interim, NEE/XPLR filings and release, XOM Williams announcement, DOE scenario reports, IRS Notice 2026-15, and denied SEC requests were not reacquired."
+  },
+  "acquisition": {
+    "method": "Unauthenticated webSearch discovery followed by webFetch of six direct publisher/government/author-publication URLs; full publisher markdown extraction inspected in memory. No access-control bypass, purchases, account, connector, private document, media republishing, or unchanged retry.",
+    "discoveryCalls": 5,
+    "discoveryCharacterization": "Search hits are routing only, never source evidence. Four independent questions (FSLR, NEE, XOM, regional) in one batch and one follow-up current-law question.",
+    "primaryUrls": 6,
+    "primaryWebFetchCalls": 11,
+    "continuationCalls": 5,
+    "sourceContentObtained": 6,
+    "requestTimestamps": null,
+    "timestampLimitation": "Exact UTC requests were not recorded at request time; do not backdate. Publisher dates and reporting periods are attributed within each source below, not acquisition timestamps.",
+    "hashMethod": "extractionSha256 is SHA-256 of UTF-8 concatenated webFetch markdown chunks in displayed order. Hashes authenticate this transformed in-memory extraction, NOT original HTTP response/PDF bytes, issuer-authenticated source files, or an independently frozen research receipt. Each extraction was fully read using startIndex continuation where needed. No source bodies or private raw bytes were persisted or published; only concise paraphrases and public URL/locators are retained.",
+    "sourceRights": "Government statute is public legal text; publisher presentations, investor PDFs, issuer website material, study, and draft report retain their respective rights. PMC article expressly states CC BY-NC-ND 4.0; do not alter, republish, or presume commercial adaptation rights. NewClimate draft states © NewClimate Institute 2018 with no open-data reuse grant established. No source grants issuer-specific private cash/BOM contracts or unrestricted reuse of its underlying datasets."
+  },
+  "primaryContentAttempts": [
+    {
+      "id": "S04-NZ-logistic-study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12054581/",
+      "publisher": "Journal of the Royal Society of New Zealand article via NLM PMC",
+      "publicationDate": "2024-07-29",
+      "otherDates": "Received 2024-02-09; accepted 2024-07-10; journal collection 2025",
+      "sourcePeriod": "Aotearoa New Zealand historical deployment and scenarios to 2060; not the fixed five-geography 2010-2018 training / 2019-2024 holdout panel",
+      "locator": "Article introduction, logistic-method description, Table 2, Supplementary Material and copyright note",
+      "extractionUtf8Bytes": 100961,
+      "extractionSha256": "3ab5efaab9ba93075a0c28d4a0ede27b9257f39bfd8cd43e2341cef3fd7a7fcb",
+      "fetchChunks": 3,
+      "httpStatus": null,
+      "positive": "Authors explicitly discuss uncertainty of saturation extrapolation early in growth, and estimate technology-specific cumulative capacity ceilings from New Zealand scenario review and expert judgement. The article identifies an appendix supplementary file; it was not downloaded or licensed for a new numerical model.",
+      "missingForQualification": "Its K is cumulative technology capacity, not independently identified bounded regional share of total electricity generation for the ten frozen cells. No machine-readable, hash-bound nine training shares plus six structural logit offsets and whole cross-region/source draws with sampling law, holdout independence and qualified reuse rights.",
+      "decision": "Contextual primary research only; no regional input or fit."
+    },
+    {
+      "id": "S04-NewClimate-policy-draft",
+      "url": "https://newclimate.org/sites/default/files/2018/12/RE_PolicyTool_TechnicalDocumentatioDRAFT.pdf",
+      "publisher": "NewClimate Institute",
+      "publicationDate": "2018 (© date; exact day not established)",
+      "sourcePeriod": "Policy-tool historical basis includes Denmark 1995-2015 and pre-2018 reference scenarios; prospective policy curves are scenarios, not frozen 2019-2024 observations",
+      "locator": "Technical documentation DRAFT, §§2.2.1.1, 2.2.2.1-2.2.3 and disclaimer",
+      "extractionUtf8Bytes": 110741,
+      "extractionSha256": "6d96bd1998eaf6d7df8531ca9060ac2555a9acf047dbd0232e643937f6d06fbd",
+      "fetchChunks": 3,
+      "httpStatus": null,
+      "positive": "Defines ceiling on combined wind-plus-solar share of total generation: 70% default good-practice and 30% no-policy scenario, expressly adaptable by country conditions. Denmark historical combined VRE share rose from 3.2% (1995) to 50.9% (2015). Authors expressly call the 150-year no-policy growth period expert judgement unsupported by identified literature.",
+      "missingForQualification": "Combined VRE scenario ceilings are not independent solar and wind K by World/US/China/India/EU, nor measured saturations; no reviewed joint revision/structural-offset draws, no cross-region dependence or full required annual panel. Copyright © NewClimate Institute 2018; no qualifying source-draw reuse grant observed.",
+      "decision": "Do not borrow 70%, 30%, Denmark growth, or unsupported 150-year period as regional priors, coefficients, or source uncertainty."
+    },
+    {
+      "id": "S12-FSLR-current-statute",
+      "url": "https://uscode.house.gov/us/usc/t26/s45X/",
+      "publisher": "Office of the Law Revision Counsel, United States Code",
+      "publicationDate": null,
+      "sourceCurrency": "Page says laws in effect through Public Law 119-138, 2026-11-03; page's own publication date not established",
+      "sourcePeriod": "Section 45X current-law text and expressly prospective integrated-component amendment for components sold in taxable years beginning after 2026-12-31",
+      "locator": "26 U.S.C. §45X(b)(1)(E), (c)(1)(C), (d)(4) and Amendment of Subsection (d)(4) / Effective Date of 2025 Amendment notes",
+      "extractionUtf8Bytes": 33361,
+      "extractionSha256": "87c1b4ebd79943529e69e20c6b2d7604277c2eee35999ab107130b66db6acc7b",
+      "fetchChunks": 1,
+      "httpStatus": null,
+      "positive": "Official current text gives solar-module credit as 7 cents per direct-current watt and an eligible-component PFE material-assistance restriction. Crucially, the same-facility primary/secondary integrated-component rule and 65% US-produced primary-component total direct-material-cost threshold appear as an expressly prospective amendment applicable to components sold during taxable years beginning after Dec. 31, 2026; do not silently apply that future clause to 2026 sales.",
+      "missingForQualification": "No First Solar-specific eligible component production/sale watts, bill of materials/direct material costs, foreign-entity/control attestations, qualifying entity, July India grant remittance amount/day/FX or tax-credit transfer cash reconciliation. Statute alone does not establish company compliance or complete all IRS effective-date guidance.",
+      "decision": "Useful legal timing correction/confirmation only. No issuer eligible watt, component cash, or current-company certification inferred."
+    },
+    {
+      "id": "S12-NEE-Q3-issuer-release",
+      "url": "https://www.investor.nexteraenergy.com/~/media/Files/N/NEE-IR/reports-and-fillings/quarterly-earnings/2026/Q3%202026/2026-1021%20NEEQ32026News%20Release%20vFinal.pdf",
+      "publisher": "NextEra Energy, Inc. investor relations",
+      "publicationDate": "2026-10-21 (stated release date)",
+      "sourcePeriod": "Nine months ended 2026-09-30; unaudited",
+      "locator": "NextEra Energy Inc. Condensed Consolidated Statements of Cash Flows, 2026 nine months, FPL/NEER/Corporate-and-Other/parent columns",
+      "extractionUtf8Bytes": 71982,
+      "extractionSha256": "4a74ace61566a617c84eaed390e3e76f39e855d3ef948b249b2ab5510306d2e6",
+      "fetchChunks": 2,
+      "httpStatus": null,
+      "positive": "NEER column explicitly reports USD millions: distributions of earnings from equity method investees 366 (operating), proceeds from differential membership investors 1,334 and payments to them (597) (financing), independent-power and other investments (19,044) (investing), and dividends/capital distributions from/to parent net 12,409 (financing). These category totals and classifications are positive evidence, not absent data.",
+      "missingForQualification": "Aggregates are not dated gross payments per LLC or named NEE receiving subsidiary, cannot identify return-on/return-of-capital by instrument, actual AvailableCash/reserve allocations, commissioning-cohort incremental operating cash and funded construction spend, or marginal project returns. Parent net and NEER segment rows cannot be stacked as separate issuer receipts.",
+      "decision": "Scope-qualified consolidated categories only; no LLC-recipient/common-cash adapter input."
+    },
+    {
+      "id": "S12-XPLR-Q3-investor-presentation",
+      "url": "https://www.investor.xplrinfrastructure.com/~/media/Files/X/xplr-infrastructure-ir/events%20and%20presentation/Q3%202026%20XPLR%20Earnings%20Presentation_vF.pdf",
+      "publisher": "XPLR Infrastructure, LP investor relations",
+      "publicationDate": "2026-11-03 (slide 3 as-of; PDF file-level publication day not independently established)",
+      "sourcePeriod": "Q3 2026, 2026 outlook and forward-looking 2027 expectations",
+      "locator": "Slides: Business Highlights, Q3 GAAP-to-adjusted-EBITDA/FCFBG reconciliation, 2026/2027 expectations and 2026-09-30 operating-asset owner-interest appendix",
+      "extractionUtf8Bytes": 35801,
+      "extractionSha256": "301bd7b8f01ccfd931ddcfcfd8a1054e566c58e279fe1a3f49b47ad91226ba9d",
+      "fetchChunks": 1,
+      "httpStatus": null,
+      "positive": "Reports Q3 adjusted EBITDA USD 471m and FCFBG USD 164m; Q3 cash paid to Class B noncontrolling investors USD 34m and tax-equity investors USD 8m in its FCFBG reconciliation. Says ~85% of planned 2026 ~180 MW repowerings completed and ~400 MW interconnection assets and rights sold to NEER as of Nov. 3. Appendix gives project-level net owner interests at Sep. 30, 2026, including Genesis Solar at 100% XPLR OpCo net ownership. Prior executed LLC priority terms remain valid in their historic contractual scope.",
+      "missingForQualification": "Non-GAAP consolidated payments and asset ownership are not gross named-LLC-to-NEE cash receipts or proof of current legal election/flip/buyout, actual per-LLC reserve priority or NEER recipient ledger. Repowerings and interconnection-right sales are not new project commissioning cash returns; no project-specific funded spend and incremental net cash bridge.",
+      "decision": "Positive scoped holdings and non-GAAP payer outflow evidence; not a gross NEE-recipient cash/commissioning-return pair."
+    },
+    {
+      "id": "S12-XOM-operating-update",
+      "url": "https://corporate.exxonmobil.com/what-we-do/delivering-industrial-solutions/carbon-capture-and-storage/lower-carbon-steel-and-permanent-storage-ccs-expands-across-the-gulf-coast",
+      "publisher": "ExxonMobil corporate",
+      "publicationDate": "2026-09-16 (article date)",
+      "sourcePeriod": "Nucor Convent operations and prospective Rose storage capacity as of article date",
+      "locator": "Article headings Advancing the future of steel, Dedicated storage moves forward at Rose, Momentum continues",
+      "extractionUtf8Bytes": 10694,
+      "extractionSha256": "676e86d4bbe8e9aed1c122c92d01c3a42a1fda126819e28be133c6b7696ab63c",
+      "fetchChunks": 1,
+      "httpStatus": null,
+      "positive": "Company states it is now capturing, transporting and storing captured CO2 from Nucor's Convent facility and characterizes Nucor as its third active commercial CCS operation. Rose is described as future storage capacity up to five million metric tons of CO2 per year for thirteen years, not current billed throughput.",
+      "missingForQualification": "No executed named-operating-subsidiary transportation/storage agreement or novation, fee schedule, actual serviced CO2 by period, invoice/collected cash, transport/storage opex, replacement outlays, debt-funded draws, or ownership waterfall to ExxonMobil common.",
+      "decision": "Operating-status positive only; neither Rose capacity nor 'commercial' establishes collected revenue. No project economics input."
+    }
+  ],
+  "fieldAssessment": {
+    "S04-001": {
+      "newSourceQualifiedRegionalSaturation": 0,
+      "qualifiedReviewedJointBundles": 0,
+      "frozenUncertainty": "1000 replications; circular residual block length 3; seed 20261108; train 2010-2018 (nine complete observations) and heldout 2019-2024 (six complete observations), ten fixed cells",
+      "decision": "UNEXECUTED. Neither source supplies region-and-technology generation-share K and reviewer-qualified machine-readable joint draws, source revisions, structural offsets, sampling law, rights and immutable input binding. No fit/bootstrap/heldout efficacy run; nine prior failures remain and EU solar remains point-only win."
+    },
+    "S12-017": {
+      "FSLR": "Official law text improves time-bound legal context but issuer cash collection, eligible-US component watts, material/PFE cost and actual company eligibility remain unresolved. Preserve July 2026 India receipt month without assuming amount, day, currency/FX or statement classification; Alabama recognition is not cash.",
+      "NEE": "New NEER positive category cash/segment classifications and XPLR ownership/non-GAAP outflows are not gross named recipient cash; preserve executed Renewables II/Genesis priority terms and conditional flip/buyout as known rather than absent. Current holdings beyond exact listed interests, elections, recipient dates, reserves and commissioning marginal returns are unresolved.",
+      "XOM": "New Nucor live-operation status is not executed priced CCS instrument, successor novation, billing, collection, opex, or funded waterfall. Preserve historical EnLink USD 844m expected-recognition schedule and Williams contracted-volume announcement only in their distinct scopes.",
+      "newQualifiedOriginalIssuerEconomicInputPairs": 0,
+      "commonFcfeInsertedUsd": 0,
+      "decision": "No qualified source-specific cashflow adapter integration; no arbitrary prior, conversion of capacity/announced tonnes into revenue, ownership-percentage cash allocation, backdating, double counting, or unsupported valuation change."
+    }
+  },
+  "preservation": "This file only. Publisher contents were read but neither copied in full into docs nor treated as owner permission; no private raw bytes written. No code/test, shared ledger, canonical output, model run, commit, approval, release or callback by this source task."
+}

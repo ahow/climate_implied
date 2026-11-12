@@ -42,10 +42,14 @@
     {"path": "server/calculation/fairArtifactCatalog.ts", "sha256": "448441232d3d9cd6d05442a6ee0756f667ee947308fdc947f94284a322a32e0c"},
     {"path": "script/status-choice-width-increment.test.ts", "sha256": "dfaf71267153a7de549c8ae7a00935fc657f48bbb1e5fbcc9e98d283945f1c08"},
     {"path": "script/validate_status_choice_width_private.py", "sha256": "e983a9c8170d9222eaecfff42dd85471802e7fdad56553d1cb9752e78edd83c2"},
-    {"path": "script/workplan-evidence-run.py", "sha256": "0e5b97f03dec2ef3cabea329ce5bd4d0c5f6b915e0c662b4437d5af7e0d5c870"},
-    {"path": "script/test_workplan_evidence_receipt.py", "sha256": "267806b27e764640de629c631801cfbbf0cd4c3a31717d9a676c6adba9ab4a1d"},
+    {"path": "script/workplan-evidence-run.py", "priorSha256": "0e5b97f03dec2ef3cabea329ce5bd4d0c5f6b915e0c662b4437d5af7e0d5c870", "sha256": "367098e18a1f7b4531c11c5cf85b42ad71542b1c7a14135271f5da326196cf55"},
+    {"path": "script/test_workplan_evidence_receipt.py", "priorSha256": "267806b27e764640de629c631801cfbbf0cd4c3a31717d9a676c6adba9ab4a1d", "sha256": "4fd7eb7fcafa9d08bb560fbb5b874c2cd07c1ae5ce6171f3aa3252583da6a37b"},
     {"path": "server/prospectiveResearchApi.ts", "sha256": "d4ca34c49fded3ca288b49a22119387af466973eca7fff75d9103048011307b6"}
   ],
+  "integratedSchedulerRepair": {
+    "evidence": "docs/integrated-contract-repair-evidence.json",
+    "change": "Only bound the complete TypeScript suite to2 concurrent workers to prevent pg client read-timer starvation from nested calculator/source-only suites. Every wildcard test, unconditional original-document/private validator and build remains mandatory. Add focused assertions for the full wildcard and absence of name/skip filters. Original private checksum, protocols,14 FaIR pins, scientific values and historical execution records are unchanged."
+  },
   "originalClauses": {
     "S07-003": [
       "Keep three evidence strands separate, each with its own status:",

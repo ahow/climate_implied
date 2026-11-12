@@ -21,6 +21,8 @@ import { loadAnalysisResult } from "./snapshots/results";
 import { registerScientificEvidenceApi } from "./scientificEvidenceApi";
 import { registerProspectiveResearchApi } from "./prospectiveResearchApi";
 import { registerProspectiveResultExportBoundary } from "./prospectiveResultExportApi";
+import { registerHeadlineDrilldownApi } from "./headlineDrilldownApi";
+import { registerRetainedPairedResearchRoutes } from "./retainedPairedResearchApi";
 
 const app = express();
 const httpServer = createServer(app);
@@ -83,6 +85,8 @@ app.use((req, res, next) => {
   app.use(producerDownloadMiddleware(loadAnalysisResult));
   registerProspectiveResultExportBoundary(app);
   registerProducerDownloadRoutes(app, loadAnalysisResult);
+  registerHeadlineDrilldownApi(app);
+  registerRetainedPairedResearchRoutes(app);
   registerScientificEvidenceApi(app);
   registerProspectiveResearchApi(app);
   registerMethodologyApi(app);

@@ -34,6 +34,24 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "headline-drilldown.tsx": query("Without unchanged consumed headline producer identity, the review names unavailability and never requests a substitute parent.", {
+    null: "No matched response is explicitly unavailable; signed native values including zero stay data, never fabricated regional allocations.",
+    loading: "useReadQuery suppresses retained drilldown rows and JSON/XLSX links during actual initial or background pending reads.",
+    error: "Read, derivation-hash or exact parent/mode/filter mismatch refuses rows and downloads; no current-input or other-manifest fallback.",
+    selection: "Parent result key remounts controls; mode/year/sector/gas/driver form the exact query and download selection. Browser verifies derived content hash and complete parent identity.",
+    zero: "Signed source-cell zero renders with toPrecision(8); negative land remains signed, not clipped or treated as missing.",
+    refusal: "Global-only source account explicitly refuses inferred six-region/transport allocations. Contributions and nonadditive one-at-a-time sensitivities stay distinct.",
+    scope: "Read-only retained native-parent derivation; no producer relabelling or scientific promotion. Exact JSON/XLSX are separate manifest-qualified attachments.",
+  }),
+  "retained-paired-research.tsx": query("Missing/invalid catalog or report has an explicit reason; valid empty authorized catalog is a publication gap, not a zero result.", {
+    null: "Null origin cutoff/execution/end dates render Unavailable (null), not inferred dates. Unavailable sections retain their exact reasons.",
+    loading: "Catalog and selected report loading suppress retained report content; accessible skeletons name the current read.",
+    error: "Catalog/report errors win over retained success; retries are read-only and malformed or identity-mismatched results are withheld.",
+    selection: "No automatic report selection. Eight exact SHA256 pins bind the reader URL, headers and verified report/origin/source/code content; changed selection never substitutes latest.",
+    zero: "Finite metric zero and origin/training/evaluation count zero render literally; missing metrics are unavailable, not zero efficacy.",
+    refusal: "Scientific acceptance, investment evidence and authenticity remain false. Engineering fixtures stay synthetic; Track A, Track B and prospective evidence remain separate.",
+    scope: "Read-only public authorized projection on /decarb-gap; no private archive, publication control, recomputation or export. Prop children inherit validated parent result.",
+  }),
   "scientific-evidence-strands.tsx": {
     inputKind: "pinned-reference",
     missing: "Shared program-level strand defaults are explicit imported evidence policy, not substitutes for submitted analytical inputs.",
@@ -281,6 +299,8 @@ export const filePolicies: Record<string, Policy> = {
 };
 
 export const focusedRenderComponents = new Set([
+  "HeadlineDrilldownReview", "RetainedHeadlineDrilldown",
+  "RetainedPairedResearch", "RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton",
   "ProducerDownloadLink",
   "ScientificEvidenceStrands",
   "RegistryMethodology",
@@ -321,9 +341,14 @@ const valuationIndicatorCohort = new Set([
 export function contractFor(file: string, name: string) {
   const policy = filePolicies[file.split("/").at(-1)!];
   if (!policy) throw new Error(`No reviewed state policy for actual consumer ${file}#${name}`);
-  const inheritedProps = ["SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);
+  const inheritedProps = ["RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton", "SummaryCount", "SnapshotDate", "Snapshot", "AnalysisSection", "SummaryCard", "DisclosureList", "ConditionalFactRow", "ValuationPETooltip", "IndicatorDetailReadState", "IndicatorSeriesTooltip", "CustomTooltip", "TimeSeriesChartTooltip", "BacktestTooltip", "ThresholdDiagnosticDownload", "VersionDiffResult"].includes(name);
   return {
     ...policy,
+    ...(name === "HeadlineDrilldownReview" ? {
+      inputKind: "supplied-result",
+      loading: "Only the exact retained child performs an asynchronous read; an unbound parent renders a synchronous unavailable state without starting one.",
+      error: "Malformed, cloned or changed supplied producer object is refused before child query construction; child owns exact derivation read failures.",
+    } : {}),
     ...(name === "ProducerDownloadLink" ? {
       missing: "No consumed server-bound response object means no exact retained download link; no current object or query fallback.",
       null: "Null and cloned/derived payloads have no WeakMap proof and render no retained producer link.",
@@ -335,6 +360,15 @@ export function contractFor(file: string, name: string) {
       loading: "Parent read/section owns loading and stale-result suppression; this child renders only supplied fields.",
       error: "Parent read/section owns failed-read reason; this child does not independently fetch.",
       selection: "Current parent-supplied item/value is authoritative; no child query or prior-selection cache.",
+    } : {}),
+    ...(name === "ReportSkeleton" ? {
+      inputKind: "presentation-control",
+      missing: "Skeleton carries only a supplied CSS size; no catalog, report or metric fields are read.",
+      null: "Skeleton has no nullable evidence payload or numeric data.",
+      loading: "Accessible parent status names the catalog/report read; this child displays only a noninteractive visual placeholder.",
+      error: "Parent owns errors and withholds this placeholder when the read fails.",
+      selection: "No independent selection; parent suppresses previously selected results.",
+      zero: "No numeric evidence or metric is consumed.",
     } : {}),
     ...(name === "IndicatorDetailReadState" ? {
       inputKind: "supplied-result",
@@ -373,7 +407,11 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: name === "ScientificEvidenceStrands"
+    focusedEvidence: ["HeadlineDrilldownReview", "RetainedHeadlineDrilldown"].includes(name)
+      ? "script/headline-drilldown-ui.test.ts: actual module SSR with scoped query harness covers unbound parent, loading/error/absent/ready/zero and exact download selection; script/headline-drilldown.test.ts verifies retained producer replay, hash/filter refusals and actual HTTP/JSON/XLSX. No interactive browser coverage claimed."
+      : ["RetainedPairedResearch", "RetainedPairedResearchReport", "EvidenceSection", "ReportSkeleton"].includes(name)
+      ? "client/src/components/retained-paired-research.test.ts (included by script/retained-paired-research-ui.test.ts): actual imported SSR covers catalog/report missing/invalid/loading/error/ready, no default selection, null dates, finite zero and unavailable sections; verified fetch/header/content tests. No browser interaction or genuine publication approval claimed."
+      : name === "ScientificEvidenceStrands"
       ? "script/scientific-strands-warning.test.ts: direct SSR of each shared status/reason; no implied asynchronous branch or input certification."
       : name === "RegistryMethodology"
       ? "script/methodology-download.test.ts: direct SSR of exact registry definitions, historical labels and three independent evidence strands; no asynchronous result branches."

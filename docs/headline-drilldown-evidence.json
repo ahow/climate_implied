@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "kind": "selected-retained-native-headline-drilldown-engineering-evidence",
+  "integratedContractRepair": {
+    "evidence": "docs/integrated-contract-repair-evidence.json",
+    "boundary": "Original execution records below are historical. Source hashes for the shared validator and UI now identify the inspected integrated repair; their previous hashes are retained separately."
+  },
+  "scope": ["S08-005", "S08-006", "S08-009", "S08-010"],
+  "scientificAcceptance": false,
+  "completionBoundary": "Substantive integrated public native-candidate implementation, not full six-region/accepted-ensemble acceptance. No original-vintage, forecast, calibrated-temperature or causal-attribution claim.",
+  "originalClauses": {
+    "source": "docs/reconciliation-stages-04-09.json",
+    "sourceSha256": "bbafc320968bc606d6243dd1e3d66955171fd8ef4209f79669b5d65f0c0f596c",
+    "S08-005": "Keep one-at-a-time shocks as sensitivities, with separate endpoints and labels.",
+    "S08-006": "Add region × sector × gas × driver drilldowns and downloads on the headline's manifest.",
+    "S08-009": "Sensitivities and contributions carry different labels and endpoints; contributions carry the “within-model” label.",
+    "S08-010": "Drilldowns resolve to the headline's manifest."
+  },
+  "sourcesAndFunctions": [
+    {
+      "file": "server/calculation/headlineDrilldown.ts",
+      "sha256": "3dac3a13f5d32c712835518b67c73d4c5bb69518c5665011744e7577243a5b44",
+      "functions": ["deriveHeadlineDrilldown", "headlineSelectionSchema"],
+      "behavior": "Verify exact retained native result and material; replay captured public inventory using actual selected scenario; enumerate complete changed-driver-group coalitions against explicit constant-activity baseline; run exactMemberAttribution per source cell; reconcile every signed cell and global target to selected headline; apply exact filters only after full accounting; refuse unsupported regions and lookalike producers."
+    },
+    {
+      "file": "server/headlineDrilldownApi.ts",
+      "sha256": "32fc2bfc21ed7e594c4da01f7b28bf1a8649844a5c377c42fbbfc8f978cf9d54",
+      "functions": ["headlineDrilldownHandler", "registerHeadlineDrilldownApi"],
+      "behavior": "Six separately registered read-only routes, JSON/XLSX readback and explicit 422 refusals; derived responses carry parent and derivation headers but never borrow X-Producer-Identity."
+    },
+    {
+      "file": "shared/headlineDrilldown.ts",
+      "priorSha256": "9ffdf9de3affb8f903bd8a957a9f3e2b0ae772b324132f43982e0ce65f279bd5",
+      "sha256": "a5c58224689b9dcf512b3d39575def1eb4321c3e10dc2422162d15157b3b0fa6",
+      "functions": ["headlineDrilldownUrl", "requireMatchingHeadlineDrilldown", "headlineDrilldownIdentityText", "verifyHeadlineDrilldownIdentity"],
+      "behavior": "Typed rows with gas-specific native Mt/year and separate GWP100 reporting; exact parent/selection/mode/member/seed/content identity; browser SHA-256 verification; separately labelled within-model contributions and nonadditive one-driver-group-at-a-time sensitivities."
+    },
+    {
+      "file": "client/src/components/headline-drilldown.tsx",
+      "priorSha256": "66638c973247c14efddaf4cb3df6e8bdd93c85f87f0f66b5c65fc0da787b9a02",
+      "sha256": "0db2e221f4c2afb28bf1096ff7da7b158401dba15f9c74ff5c0110cf0d695d41",
+      "functions": ["HeadlineDrilldownReview", "RetainedHeadlineDrilldown"],
+      "behavior": "Mounted inside actual native candidate review; takes captureExactProducerIdentity from selected unchanged response, keys view by retained result, verifies response content and parent, offers year/sector/gas/driver filters and separate contribution/sensitivity JSON/XLSX links; explicit unavailable/error states."
+    },
+    {
+      "file": "server/snapshots/nativeCandidateProducer.ts",
+      "sha256": "75c78e33b766459f283c12ebf43b52a1718aab54791282831f3e4be195b25eed",
+      "functions": ["captureNativeInputs", "replayNativeCandidate", "retainNativeCandidate", "verifyNativeCandidateMaterial"],
+      "changed": false,
+      "behavior": "Real retained producer infrastructure used, including exact material/input/source/model/seed/member verification; not substituted with a caller proof."
+    },
+    {
+      "file": "server/calculation/emissionsCandidate.ts",
+      "sha256": "78cf109699347f907e43a4e2be06e27c6a2f9e89fcc39e3137d244efb35c1673",
+      "functions": ["projectInventoryEmissions", "constantScenario", "sectorOf"],
+      "changed": false,
+      "behavior": "Actual native engine and signed net land cells; no synthetic scenario response or new accepted ensemble."
+    },
+    {
+      "file": "server/calculation/memberAttribution.ts",
+      "sha256": "2780f751b82ff11f19f1f3086564f7c6674676b459219bfe0389ba9880ac3bd1",
+      "functions": ["exactMemberAttribution"],
+      "changed": false,
+      "behavior": "Existing exact paired-member Shapley kernel; each actual deterministic member's cell is calculated in native-GWP-derived reporting units then restored to gas-specific Mt; no cell is misrepresented as an ensemble member."
+    },
+    {
+      "file": "server/index.ts",
+      "functions": ["registerHeadlineDrilldownApi(app)"],
+      "behavior": "Only one import and one separate registration added; server/routes.ts unchanged."
+    },
+    {
+      "file": "shared/serverDownloadRegistry.ts",
+      "behavior": "One finite registry entry for four exact new static attachment paths. Existing closed download middleware, native producer, central download button and producer/consumer registries preserved."
+    }
+  ],
+  "routes": [
+    "/api/headline-drilldown/contributions",
+    "/api/headline-drilldown/contributions/export.json",
+    "/api/headline-drilldown/contributions/export.xlsx",
+    "/api/headline-drilldown/sensitivities",
+    "/api/headline-drilldown/sensitivities/export.json",
+    "/api/headline-drilldown/sensitivities/export.xlsx"
+  ],
+  "requestContract": {
+    "required": ["parent: exact retained result SHA-256", "year: integer 2024..2100"],
+    "optional": ["region: Global only for actual available native parents", "sector: exact available sector", "gas: exact available native gas", "driver: exact available changed driver group"],
+    "unsupported": "Unexpected selectors, unavailable drivers/gases/sectors, non-native producer families, missing/corrupt material, changed code/model/member/seed/result, and non-Global regions refuse without fallback.",
+    "identity": "Parent result/manifest/material/source archive/model/ordered snapshot hashes are retained verbatim. Derived codeHash and derivation.id are distinct from parent identity; rows, selection, member and seed enter derived hash.",
+    "sensitivityComparison": "Target minus the same target with one changed driver group reverted to chosen baseline; revertedDriverNativeMt is explicit. These values are not additive contributions.",
+    "baseline": "constant-activity-control as defined in exact supported captured native engine source; deliberately not presented as another retained headline."
+  },
+  "actualExecution": {
+    "storage": "Isolated immutable in-memory storage replaces storage only. Authentic public inventory, actual dated source resolver, complete calculation source artifact, retained producer packing/verification and engine are used. No production DB/archive mutations or invented scientific fixture.",
+    "reviewYear": 2050,
+    "sourceInventoryCells": 122,
+    "scenarioDiagnostics": [
+      {
+        "scenario": "constant",
+        "changedDriverGroups": [],
+        "coalitions": 1,
+        "rows": 122,
+        "rowDriver": "unchanged-control",
+        "parentResultId": "5b10a49b8a4cf9c0c15d2a88b9df335045ed75faddec349badc768e193a59ef3",
+        "parentManifestId": "2b2d533b40412b026b5016791b007201a807010970b979c6d6b04a17a84e385e",
+        "derivationId": "9c10c903bcd2cd6f08f02136eec699f2bc0319a9db04868d70b7ab9c19880818",
+        "maximumPerCellReconciliationNativeMt": 0,
+        "parentAndTargetReportingGtCO2e": 56.81226234083025
+      },
+      {
+        "scenario": "transition",
+        "changedDriverGroups": ["electricity", "road", "policy", "corporate", "delivery"],
+        "coalitions": 32,
+        "rows": 610,
+        "parentResultId": "7c6efec7da712c2751c6df25ae75da5b2cf80b582ad030753b064d9f18d939e2",
+        "parentManifestId": "fd9cee103997900b406b767572c3d01305537f8b71defd8572135f281abfdf3d",
+        "derivationId": "1eb492d2bb3c58e2086c1dbfffbbb59744a402e928d5e3dc538feec03bf024a3",
+        "maximumPerCellReconciliationNativeMt": 5.4569682106375694e-12,
+        "parentAndTargetReportingGtCO2e": 46.50375792679074
+      },
+      {
+        "scenario": "dashboard",
+        "changedDriverGroups": ["electricity", "road"],
+        "coalitions": 4,
+        "rows": 244,
+        "parentResultId": "4b60c6f75ccf9ff8591183cac69b074f89f7ceeb5de14b4ff5498f0aafffb76a",
+        "parentManifestId": "dcc69bdd945f02b520ec03ebaa529461581cdd93c75bd7838d8b1ce069a5d4de",
+        "derivationId": "099cecfb900f8818e7517cb28027628e3d493fb8b5272d4059a8fdbe1ea4a7ad",
+        "maximumPerCellReconciliationNativeMt": 1.8189894035458565e-12,
+        "parentAndTargetReportingGtCO2e": 41.30313582844237
+      }
+    ],
+    "identityCaveat": "These are actual isolated retained-producer test-run identities, not claims of database persistence or publication. Source archive includes release-local code and can change under concurrent legitimate workspace edits."
+  },
+  "tests": [
+    {
+      "file": "script/headline-drilldown.test.ts",
+      "sha256": "1d214438993818d002e2e964c0e57b8ccabd0674c40f486ff6718683b66afce0",
+      "command": "npx tsx --test script/headline-drilldown.test.ts script/member-attribution.test.ts",
+      "newTests": 12,
+      "existingKernelTests": 1,
+      "passed": 13,
+      "failed": 0,
+      "coverage": [
+        "Actual constant, transition and dated-dashboard producer/manifest/material/source/member/seed matching",
+        "Per-source-cell exact contribution reconciliation and exact selected headline global total",
+        "Nonadditive sensitivities differ from exact Shapley contributions and have different endpoint, label and derivation identity",
+        "Exact filters, unavailable regions/international transport, unavailable selectors and no-fallback refusals",
+        "Wrong/corrupt result, unsupported producer, missing code, changed material/member/seed and stale/lookalike consumer rejection",
+        "Browser-compatible canonical content identity and rejection of changed numeric rows, member, seed and groups",
+        "Actual JSON/XLSX handler plus closed manifest middleware readback; metadata opt-in preserved; derived native producerIdentity remains null",
+        "Explicit synthetic signed-land/AIR/SEA accounting negative controls using existing aggregateRegionalInventory; not production source or a new admitted regional parent",
+        "Actual separate route registration and mounted native review consumer wiring"
+      ],
+      "log": "/tmp/headline-drilldown-test.log",
+      "logSha256": "aec44fb674b1362f4d85be6498cee5bec926451852deacaa07406f3c2cbcd8b3",
+      "summary": "1..13; tests 13; pass 13; fail 0; skipped 0"
+    },
+    {
+      "command": "npx tsx --test script/native-producer-exports.test.ts",
+      "passed": 14,
+      "failed": 0,
+      "log": "/tmp/headline-drilldown-native-regression.log",
+      "logSha256": "f378776ce7cc4eedea14ef7621a9d6839f0398f5d81e4e23ef2287470c2c8434",
+      "summary": "1..14; tests 14; pass 14; fail 0; skipped 0",
+      "outcome": "Existing closed exact native JSON, native consumer XLSX/JSON, identity tamper and stale-selection/source/model/member/seed controls remain passing."
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "outcome": "pass; empty diagnostic output",
+      "log": "/tmp/headline-drilldown-typecheck.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "visualCheck": {
+    "method": "Screenshot of already-running preview only; no workflow start/restart.",
+    "paths": ["screenshots/headline-drilldown-preview.jpg", "screenshots/headline-drilldown-full-preview.jpg"],
+    "outcome": "Dashboard/public reference renders normally. The app uses an inner scroll area, so requested full-page capture did not reach the lower native-candidate drilldown; changed interactive panel not visually verified.",
+    "browserInteraction": "None; screenshot cannot select tabs/filters or scroll the internal pane. No authentication bypass."
+  },
+  "outcomes": {
+    "S08-005": "Integrated engineering delivery for actual retained public deterministic native parents: separate one-driver-group-at-a-time sensitivity endpoint and labels, explicit reversion comparison, no causal or additive-contribution claim.",
+    "S08-006": "Partial: actual selected-native-headline sector × gas × driver table and JSON/XLSX on verified exact parent identity delivered; Global is explicitly the only available region, unsupported regional/international transport drilldowns refuse.",
+    "S08-009": "Integrated engineering delivery: contributions use within-model label and exact Shapley endpoint, sensitivities use separate nonadditive label and endpoint.",
+    "S08-010": "Integrated engineering delivery for actual supported native parents only: consumer verifies exact retained parent and selected filters, derived response carries its own content/code identity and does not borrow parent native producer identity."
+  },
+  "gaps": [
+    "No complete retained accepted six-region producer/material/member graph is exposed by the existing actual public native headline. Global inventory totals cannot provide country allocation or an international bunker split. This implementation refuses those requests rather than assigning global driver identities to regions.",
+    "No accepted physical ensemble, calibrated forecast, temperature contribution, scientific promotion or Stage 8 completion is asserted. Deterministic native member is explicitly not an ensemble member.",
+    "Actual native inventory has a net land source. Negative signed-land and AIR/SEA cases are explicit accounting negative controls, not newly authenticated observations or newly retained scientific production inputs.",
+    "JSON/XLSX derived artifacts are deterministic verified replays, not newly persisted completed-result producer records; parent producerIdentity is intentionally null on derivative transport manifests and exact parent identity remains in the derivative contract.",
+    "Changed interactive drilldown UI not visually verified because preview capture stayed in the app's inner-scroll initial viewport. Live server route mounting after restart is for the parent agent; no workflow was started/restarted here."
+  ],
+  "preservation": {
+    "serverRoutesTsChanged": false,
+    "closedDownloadMiddlewareChanged": false,
+    "existingProducerDownloadOrClientProducerRegistryChanged": false,
+    "ledgerOrSharedReportChanged": false,
+    "privatePublicationOrAuthenticationChanged": false,
+    "databaseOrProductionMutations": false,
+    "commitReleaseOrCallback": false
+  }
+}

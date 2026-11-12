@@ -30,6 +30,9 @@ class WorkplanEvidenceReceiptTests(unittest.TestCase):
             self.assertIn(required, pipeline)
         self.assertNotIn("if ", pipeline)
         self.assertNotIn("||", pipeline)
+        self.assertIn("npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts", pipeline)
+        self.assertNotIn("--test-name-pattern", pipeline)
+        self.assertNotIn("--test-skip-pattern", pipeline)
 
     def test_receipt_only_without_history_or_canonical_ledgers(self):
         with tempfile.TemporaryDirectory() as directory:

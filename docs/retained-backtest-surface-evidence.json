@@ -1,0 +1,176 @@
+{
+  "task": "S16-004 retained paired-research pipeline/store/HTTP/frontend integration",
+  "status": "Implemented and focused tests passed; real publication catalog intentionally empty",
+  "scope": {
+    "backendImplemented": true,
+    "pageIntegrated": true,
+    "actualPipelineStoreHttpBrowserReaderRendererTested": true,
+    "scienceCompleted": false,
+    "realPublicationApproved": false,
+    "newHttpExportsAdded": false,
+    "existingExportsPreserved": true,
+    "frozenStudiesOrScientificAlgorithmsChanged": false,
+    "identityApprovalOrPublicWriteGatesChanged": false,
+    "authorizationOrSourcePermissionsChanged": false,
+    "ledgersCommitsReleasesCallbacksPerformed": false,
+    "workflowStartedOrRestartedByThisWorker": false,
+    "otherWorkersChangesPreserved": "server/index.ts retains headline-drilldown worker registration; this integration adds only its own narrow import and registration. No unrelated working-tree changes were reverted."
+  },
+  "priorFrontendEvidence": {
+    "originalEvidencePath": "client/src/components/retained-backtest-surface-evidence.json",
+    "originalScope": "Strict public projection contract, exact-selection browser reader, existing-style React Query research card, focused reader and static-render tests. Backend and page integration were not yet implemented by that worker.",
+    "commands": [
+      {
+        "command": "npx tsx --test client/src/components/retained-paired-research.test.ts",
+        "exitCode": 0,
+        "count": { "tests": 13, "passed": 13, "failed": 0, "skipped": 0 },
+        "log": "13 isolated engineering-only tests passed: canonical SHA256 parity; eight exact header identities; wrong headers; tampered context; invalid producer/acceptance/nonfinite/missing sections; bounded URL; credentials/signal/no-store; exact HTTP refusal reasons; corrupt/duplicate catalog; required section rendering; empty publication catalog; stale/loading/error/mismatched selection withholding; genuine zero rendering."
+      },
+      {
+        "command": "npx tsc --noEmit --pretty false",
+        "exitCode": 0,
+        "log": "No TypeScript diagnostics."
+      }
+    ],
+    "sourceUnchanged": [
+      { "path": "client/src/components/retained-paired-research.tsx", "sha256": "d0e954102be0357c431b0468a0fe212a346c5a30472900089bb2172ee024bb86" },
+      { "path": "client/src/components/retained-paired-research-reader.ts", "sha256": "575f0f4170fd92bca803e40a78022b623e683edc50f33a2da0266cbf65b34098" },
+      { "path": "client/src/components/retained-paired-research-contract.ts", "sha256": "736dc8d5cd9e6a297f87319b3a289e1d518ad21bae5ce540c92f240bb0ec5c9a" },
+      { "path": "client/src/components/retained-paired-research.test.ts", "sha256": "b50084abd9618b4a1c1601b8870a188b958a5d87c495a7131112450e474bdaaf" }
+    ]
+  },
+  "integration": {
+    "catalogEndpoint": "GET /api/research/paired-research/catalog",
+    "reportEndpoint": "GET /api/research/paired-research",
+    "exactQueryKeys": ["protocolHash", "reportHash", "disclosureHash", "pipelineResultHash", "corpusHash", "originDomainHash", "sourceContextHash", "codeContextHash"],
+    "headerConvention": "X-Paired-Research-{kebab-case query key without Hash}-SHA256",
+    "contractLocation": "client/src/components/retained-paired-research-contract.ts",
+    "page": "client/src/pages/decarb-gap-signal.tsx",
+    "pageRoute": "/decarb-gap",
+    "placement": "RetainedPairedResearch mounted once immediately after QueryReadErrors, outside uploadId guard, independent of legacy backtest identities.",
+    "registration": "server/index.ts imports registerRetainedPairedResearchRoutes and invokes it alongside other read-only research routes.",
+    "defaultResolver": "loadPublishedRetainedPairedResearch, not a default-503 placeholder",
+    "realCatalog": "server/retainedPairedResearchCatalog.ts: Object.freeze([])",
+    "retainedPrivateRoot": "generated-artifacts/paired-research-pipeline",
+    "publicOnlyRoot": "generated-artifacts/paired-research-public",
+    "approvalBoundary": "Same source-reviewed catalog and offline public-disclosure convention as Track B. No HTTP/env/user-path review override. Only exact reviewed source pins authorize publication. DEV injection requires NODE_ENV=development, explicit allowEngineeringFixtures, engineering-fixture classification and synthetic-development-only review.",
+    "producer": "script/run-paired-research-pipeline.ts preserves prior pipeline JSON, Track B JSON/XLSX, assessment material and draft fields; additionally retains strict public paired report, private protocol/corpus input receipt (0600), and unpublished/not-reviewed paired disclosure draft.",
+    "offlinePublisher": "script/publish-retained-paired-research.ts accepts all eight exact hashes, never approval or filesystem arguments. publishPinnedRetainedPairedResearch validates source catalog membership, disclosure authorization and identities, reruns the actual retained protocol/corpus through pairedResearchPipeline, compares pipeline/report/source/code identities, then copies only public report and disclosure.",
+    "httpRefusals": {
+      "400": "Missing/malformed/array pins, unknown keys, paths, review/approval overrides, catalog overrides",
+      "403": "Unpublished/unreviewed/classification mismatch or unauthorized synthetic DEV access",
+      "404": "Unlisted protocol or missing exact public bytes",
+      "409": "Known protocol but changed exact selected pin, never replacement/latest report",
+      "503": "Corrupt/unsafe/schema-invalid/hash-mismatched/ambiguous retained bytes"
+    },
+    "publicPayloadExcludes": ["private corpus payloads", "provider URLs", "issuer/security rows", "holdings", "original filings", "private pipeline", "protocol/corpus input receipt", "assessment inputs"],
+    "scientificLimits": "WITHHELD, scientificAcceptance=false, investmentEvidence=false, authenticityVerified=false. Track B and prospective retain actual pipeline unavailable reasons. Empty source/period/specification sections remain explicitly unavailable. Engineering metrics describe execution/accounting only."
+  },
+  "implementedFunctions": {
+    "server/retainedPairedResearchProjection.ts": ["buildRetainedPairedResearch", "pairedProjectionModules"],
+    "server/retainedPairedResearchStore.ts": ["retainedPairedDisclosureSchema", "RetainedPairedError", "readRetainedPairedArtifact", "retainedPairedIdentity", "validateRetainedPairedPublication", "createRetainedPairedResearchReader", "loadPublishedRetainedPairedResearch", "writeRetainedPairedArtifact", "publishPinnedRetainedPairedResearch"],
+    "server/retainedPairedResearchApi.ts": ["registerRetainedPairedResearchRoutes"],
+    "server/retainedPairedResearchCatalog.ts": ["retainedPairedResearchCatalog", "RETAINED_PAIRED_PREREQUISITE"],
+    "actualUnchangedPipelineInvoked": "server/calculation/pairedResearchPipeline.ts: runPairedResearchPipeline",
+    "actualBrowserVerificationInvoked": ["fetchRetainedPairedCatalog", "fetchRetainedPairedReport", "verifyRetainedPairedReport"],
+    "actualRendererInvoked": "RetainedPairedResearchReport"
+  },
+  "verification": [
+    {
+      "command": "npx tsx --test script/paired-research-pipeline.test.ts script/retained-paired-research.test.ts client/src/components/retained-paired-research.test.ts",
+      "exitCode": 0,
+      "count": { "tests": 38, "passed": 38, "failed": 0, "skipped": 0, "cancelled": 0 },
+      "suiteComposition": { "unchangedFrontendTests": 13, "unchangedPipelineTests": 17, "newIntegrationTests": 8 },
+      "capturedLog": "/tmp/retained-paired-tests.log",
+      "finalLogSummary": "1..38; tests 38; suites 0; pass 38; fail 0; cancelled 0; skipped 0; todo 0",
+      "frontendTestNames": [
+        "browser canonical public report hash agrees with actual analysisManifest hash",
+        "exact reader accepts all eight selection identities and verifies public context bytes",
+        "reader refuses every wrong selection header, including disclosure and code context",
+        "reader rejects changed origin/source/code content even when claimed identity headers match",
+        "reader refuses another producer, missing sections, fabricated acceptance and nonfinite metrics",
+        "reader URL is a fixed route with only exact hash selections, never an arbitrary file path",
+        "real fetch convention includes credentials, signal and no-store; public response is verified",
+        "missing/corrupt/wrong-selection HTTP responses preserve exact server refusal reasons",
+        "catalog refuses invalid shape and duplicate exact selections",
+        "ready report renders actual required sections, prior exposure, exact gaps and no new exports",
+        "empty catalog is a data/publication gap, never scientific completion or automatic fallback",
+        "no default selection, stale pending/error data, invalid reports or mismatched protocol are displayed",
+        "finite true zero metrics are rendered as zero, never suppressed as missing or formatted into fake precision"
+      ],
+      "pipelineTestNames": [
+        "concurrent/repeated frozen requests retain incomplete family cells and paired uncertainty",
+        "frozen long-only variants require origin eligibility and liquidity, never defaults",
+        "Dimensionless strategy kernel never certifies source-capitalisation constraint-variant weights",
+        "cutoff ignores unused future archives but rejects future artifacts used by complete dates",
+        "incomplete outcomes do not relax origin-relative future signal gates",
+        "orchestrates frozen full family, ranks, dated accounting, inference, ablations and separate kernel without fixture acceptance",
+        "zero explicit expenses recover gross; 25bp applies to both legs, not half turnover",
+        "split, FX, distributions, short liability, financing and terminal settlement reconcile",
+        "future execution returns cannot change earlier selected units and weights",
+        "missing universe members and missing specifications remain nonrejections",
+        "same-close, hash substitution, changed models and undeclared specs reject",
+        "future inputs and revised substitutions cannot masquerade as origin archives",
+        "unknown borrow is hypothetical, known unavailable borrow rejects and cannot earn spread support",
+        "completed windows and purged training are enforced; terminal insolvency cannot restart",
+        "missing entire frozen date is not silently selected away; factor and execution reconciliation fail closed",
+        "unchanged long-only kernel retains warm-up and capped past-only tilt",
+        "Absent explicit strategy choice preserves source-cap refusal without aborting independent research endpoints"
+      ],
+      "integrationTestNames": [
+        "actual paired pipeline → offline reviewed DEV publisher → public store → HTTP → browser verification → renderer",
+        "empty real catalog stays honest; strict eight-pin HTTP rejects omissions, arrays, paths, overrides and changed identities",
+        "public store refuses corrupt bytes, wrong schemas, unsafe symlinks, duplicate pins and absent exact files",
+        "unpublished, unreviewed, classification mismatches and production DEV injection never authorize publication",
+        "actual HTTP refuses unpublished and unreviewed public files even when bytes and all eight pins match",
+        "actual pipeline with no periods or artifacts preserves every frozen cell and explicit absent sections, never zero substitutes",
+        "offline publisher refuses unlisted pins, forged pipeline/input/projection and changed code identities",
+        "actual CLI retains pipeline and public projection plus private receipt, only an unpublished not-reviewed draft"
+      ]
+    },
+    {
+      "command": "npx tsx --test script/track-b-admission.test.ts script/methodology-track-b-download.test.ts",
+      "exitCode": 0,
+      "count": { "tests": 14, "passed": 14, "failed": 0, "skipped": 0 },
+      "capturedLog": "/tmp/retained-paired-track-b-regression.log",
+      "finalLogSummary": "1..14; tests 14; pass 14; fail 0; cancelled 0; skipped 0; todo 0",
+      "scope": "Existing Track B CLI immutable JSON/XLSX/draft compatibility, actual DEV publication/store/HTTP/browser/export/SSR, conjunctive Stage9 and original-filing gates, exact criterion and amendment, rights and schema refusals."
+    },
+    {
+      "command": "npx tsc --noEmit --pretty false",
+      "exitCode": 0,
+      "capturedLog": "/tmp/retained-paired-typecheck.log",
+      "finalLogSummary": "No TypeScript diagnostics."
+    }
+  ],
+  "source": [
+    { "path": "server/retainedPairedResearchApi.ts", "sha256": "43b2516ff9495fff226d961d0969bfff6024e443cea8224eca9a662902219da6" },
+    { "path": "server/retainedPairedResearchCatalog.ts", "sha256": "557579448f19bb998c36357cf20d1330580584fa9c5f35dc59e95962a437e289" },
+    { "path": "server/retainedPairedResearchProjection.ts", "sha256": "a4f4efa21b686ba45dfae1a93dc710adc74a23a6f28940d5931cd54591b2b399" },
+    { "path": "server/retainedPairedResearchStore.ts", "sha256": "f6641d5657994edfd2c7d31ecc40900b166bf573a4917775eac4fa5a653247da" },
+    { "path": "script/run-paired-research-pipeline.ts", "sha256": "2fb35c5b8491458dbc1790715aa2506e69e1399ea3b498da779fc45bf429c8dd" },
+    { "path": "script/publish-retained-paired-research.ts", "sha256": "39f9b830d5f0c9ce667b84f51c14f0e950e3321fcacda430157c8df74ca4d498" },
+    { "path": "script/retained-paired-research.test.ts", "sha256": "893627a7f13b7a00810d33ab5bdbc4665d0e7fb3e233ed1d467f681f370203a5" },
+    { "path": "client/src/pages/decarb-gap-signal.tsx", "priorSha256": "9511f3ffcadf350bc3004bad9f83eb80721ba54b13e01b6e42ebf3aea82e211f", "sha256": "496853058738714fa2cb11561bf109a32dbd7c213a22ce87de3ac2511dc131ca", "change": "Only stable presentation keys for missing/duplicate tooltip series IDs; integrated repair execution is recorded in docs/integrated-contract-repair-evidence.json. Prior frontend/backend execution records remain historical." }
+  ],
+  "visualCheck": {
+    "tool": "Screenshot",
+    "path": "/decarb-gap",
+    "savedTo": "screenshots/retained-paired-research-integration.jpg",
+    "observed": "Card renders visibly outside the company upload guard with clear independent retained-report framing. Already-running preview returned HTML for the new catalog route, causing the intended explicit not-valid-JSON error and retry control. The running server predates the new index registration; the owning agent must restart its workflow and recheck the live catalog. This worker was explicitly prohibited from restarting workflows.",
+    "liveIntegratedServerVerified": false,
+    "newRoutesVerifiedByRealIsolatedExpressHttpTests": true,
+    "signedInUiVerified": false
+  },
+  "remainingDataGaps": [
+    "No source-authorized real retained report, independent original-vintage archive review or redistribution authorization has been supplied. The real catalog therefore remains empty, not seeded with DEV artifacts.",
+    "DEV engineering fixtures exercise nonempty and absent pipeline sections but never become scientific or investment evidence.",
+    "Code context binds fixed producer module bytes; historical runtime and transitive dependency authentication remain explicitly missing.",
+    "Original-filing/Stage9 authentication and independently retained prospective archives remain unavailable according to actual pipeline reasons.",
+    "Owning agent must restart the already-running app to pick up the server/index.ts registration and perform the final live preview check; no workflow was restarted by this worker."
+  ],
+  "correctionsDuringVerification": [
+    "An initial regression run found fixed module reads depended on process cwd. Source module reads were changed to resolve against import.meta.url; existing CLI temporary-working-directory and immutable-artifact tests subsequently passed.",
+    "An initial new CLI test used a two-month fixture whose pre-existing pipeline emitted noncanonical empty-window output. No scientific algorithm was changed; the CLI integration test now uses a complete explicit 36-month engineering fixture. Entirely absent period/artifact coverage is separately tested and remains unavailable."
+  ]
+}

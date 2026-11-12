@@ -1,0 +1,236 @@
+{
+  "version": "integrated-contract-repair-1",
+  "scope": "Engineering integration repair only; no scientific acceptance, publication authorization or requirement-ledger completion.",
+  "historicalFailure": {
+    "receipt": "generated-artifacts/cache-drilldown-report-full.json",
+    "receiptSha256": "c4b480d48e2c686a6185d302ed5d9e10e9a474d0558c140ac6fe2269ac4d1296",
+    "log": "generated-artifacts/workplan-completion/20261112T101828061978Z.log",
+    "logSha256": "cd747d5b82b1fbfb4d9962a495b40d1a9d269d4df6dda7bec4b23b7f671aee3e",
+    "counts": { "tests": 1111, "pass": 1100, "fail": 10, "skipped": 1 },
+    "preserved": true,
+    "executionBoundary": "Typecheck succeeded. Complete TypeScript suite failed; set -e prevented Python, mandatory private validators and build from executing in this historical run."
+  },
+  "allHistoricalNotOk": [
+    {
+      "numbers": [195, 196, 197, 198],
+      "tests": [
+        "actual domain consumers have source-located expressions and explicit state policies, not placeholder slots",
+        "state policy denominator exactly matches reachable source files, without unused registry entries",
+        "nested local tooltip JSX is not double-counted in page component denominator",
+        "imported sibling exports are reachable only through actual component tags"
+      ],
+      "cause": "contractFor refused unreviewed HeadlineDrilldownReview. Inspection also found the newly reachable retained paired-research module and its three children lacked reviewed policies, and its colocated tests were outside script/*.test.ts discovery.",
+      "fix": "Review both real files; supply exact missing/null/loading/error/selection/zero/refusal/scope policies, distinguish supplied-result/query/presentation children, bind actual SSR evidence, and test all six newly reachable IDs and their exact routes. Denominator is now77 = prior71 +2 headline +4 paired consumers; every consumer has actual focused render evidence. Include the actual13 colocated reader/SSR tests through a script test entrypoint."
+    },
+    {
+      "numbers": [440, 442],
+      "tests": [
+        "S16-007 full public source and tests pass without Git history or private/generated evidence",
+        "S16-007 public portable AST census includes chart, JSON, direct-link, attachment and custom-sheet paths"
+      ],
+      "cause": "Both failures were the same nested census assertion: actual13 download links versus old11. Further inspection confirmed the finite new2-mode ×2-format attachment routes and one new server attachment writer; the UI's manual metadata suffix did not use the reviewed manifest URL helper.",
+      "fix": "Use actual withDownloadManifest for both exact filtered headline links. Assert the exact two new JSX href expressions and four finite registered routes, not counts alone. Actual central sites26, links13, registered attachment routes15, attachment writers12. The unmodified public-source-only portability harness passes without Git/private/generated evidence."
+    },
+    {
+      "numbers": [524, 554],
+      "tests": [
+        "strict completeness fails on OLD unknown summary JSON, not cured by authenticated new sidecar",
+        "API and download type census must be regenerated when source fields change"
+      ],
+      "cause": "Stale generated field_semantics_census.json prevented both the original strict-negative gate and freshness check from reaching their intended contracts.",
+      "fix": "Regenerate using the supported field-semantics-census script after inspecting real implementations. Add separately identified source-derived new API/interface/Zod-schema inventory, including6 headline routes,2 paired routes,12 catalog paths,141 report branch paths and inspected source hashes. No new field is silently admitted to the frozen original cohort. The original unknown runs[].summary remains unresolved and strict completeness still refuses it."
+    },
+    {
+      "numbers": [558],
+      "tests": ["API, consumer and spreadsheet census is current"],
+      "cause": "System_Output_Register.md omitted newly implemented headline and retained paired handlers and frontend API references.",
+      "fix": "Regenerate with the existing output-register script; inspect the exact4 handler expressions and2 additional frontend references. Keep parameterized expressions visible and retain existing writers."
+    },
+    {
+      "numbers": [848],
+      "tests": ["public evidence report identifies exact original warning lines and current required bindings"],
+      "cause": "Current-source evidence hash for emissions-candidate-review.tsx was stale; continuing inspection exposed another stale hash for decarb-gap-signal.tsx.",
+      "fix": "Reconcile actual inspected source bytes, retaining original authenticated warning lines, dispositions and all removal bindings. Subsequent tooltip-key repair also updates the inspected current hashes of both signal pages. No warning removal or resolution record is invented."
+    }
+  ],
+  "historicalSkip": {
+    "number": 641,
+    "test": "authorized disposable PostgreSQL preserves actual full/reduced namespaces and revision isolation",
+    "cause": "Explicit COMPANY_CACHE_DISPOSABLE_DATABASE_URL was absent. Guarded integration test intentionally refuses ambient production DATABASE_URL; the historical skipped test was not executed.",
+    "resolution": "Run the existing explicit --local-s02-009 isolated Unix-socket PostgreSQL harness. Actual focused transport succeeded with guarded preprovisioned schema. Add --full-checks to keep that independently isolated database alive around workplan-evidence-run --full-checks. Full mode executes both transport files in the complete suite rather than repeating their expensive focused matrices. Bound only suite scheduling to2 workers; all complete suites, validators, scientific gates and existing SQL/HTTP deadlines remain. Require zero skipped TypeScript AND Python tests in the final receipt.",
+    "authorityBoundary": "No production connection, managed resource, public write bypass, invented HTTP principal, cache clear, DELETE, DROP or TRUNCATE. Disposable cluster is stopped by the existing finally block."
+  },
+  "otherInspectedSoftwareFailures": [
+    {
+      "failure": "The first bounded-scheduler full rerun passed the real transport case but exposed stale increment-source hashes at test958: increment evidence hashes and remaining criteria are source-exact, no completion promotion.",
+      "evidence": "generated-artifacts/cache-drilldown-report-full-final-scheduler-evidence-failure.json",
+      "log": "generated-artifacts/workplan-completion/20261112T105742519239Z.log",
+      "counts": { "tests": 1129, "pass": 1128, "fail": 1, "skipped": 0 },
+      "fix": "Inspect the actual scheduler-only runner diff and corresponding strengthened receipt tests. Reconcile their two current hashes in docs/status-choice-width-increment-evidence.json, preserving previous hashes and historical executions. No private document assertion, protocol, scientific value,14 FaIR pin or canonical main-ledger hash is changed. All12 source-exact status/choice/width focused tests pass.",
+      "paths": ["docs/status-choice-width-increment-evidence.json", "script/workplan-evidence-run.py", "script/test_workplan_evidence_receipt.py"]
+    },
+    {
+      "failure": "The first fully provisioned coherent rerun exposed a previously skipped/hidden real-transport failure: legacy-quarter HTTP500 was masked as Unexpected token '<' while parsing Express's HTML error page.1129 tests ran;1128 passed,1 failed,0 skipped.",
+      "evidence": [
+        "generated-artifacts/cache-drilldown-report-full-final-transport-failure.json",
+        "generated-artifacts/cache-drilldown-report-full-final-query-timeout.json",
+        "generated-artifacts/workplan-completion/20261112T104722630152Z.log",
+        "generated-artifacts/workplan-completion/20261112T105323338550Z.log"
+      ],
+      "diagnosis": "An explicit isolated synthetic-server error boundary preserved the underlying Query read timeout from pg's10-second client read timer during the concurrent legacy calculator. The local PostgreSQL server reported no SQL ERROR/statement cancellation. Full default8-worker execution also launches nested source-only suites and calculators, causing client event-loop contention; isolated focused PostgreSQL execution had passed.",
+      "fix": "Keep the exact complete script/*.test.ts suite and every mandatory stage, but set --test-concurrency=2 in the existing coherent runner. Do not increase or remove pg query_timeout/statement_timeout, HTTP deadlines or test deadlines. The receipt-runner tests explicitly require the complete wildcard, bounded scheduler and absence of name/skip filters. The synthetic HTTP error boundary now reports real refusals instead of obscuring them as JSON syntax failures.",
+      "paths": ["script/company-cache-transport.test.ts", "script/workplan-evidence-run.py", "script/test_workplan_evidence_receipt.py"]
+    },
+    {
+      "failure": "Passing lazy-XLSX refusal test accidentally succeeded on ReferenceError: captureDerivedConsumer is not defined.",
+      "fix": "Inject the real production captureDerivedConsumer dependency and actual requireDerivedParent=false default into the extracted real handler. Strengthen assertions to require the intended engineering-row-builder-refused or no rows returned reason, not just generic no-completion. Intermediate focused execution exposed the second missing closure dependency, requireDerivedParent, before both were fixed.",
+      "paths": ["script/remaining-component-contracts.test.ts", "client/src/components/download-data-button.tsx"]
+    },
+    {
+      "failure": "React missing-key warning from actual nested signal tooltip rendering when provider dataKey was absent; duplicate dataKeys had the same identity ambiguity.",
+      "fix": "All four actual signal/gap tooltips use dataKey plus row index for presentation-only React identity. Preserve missing series-name/value/date reasons and all scientific data. Directly inspect real rendered child keys for absent and duplicate dataKeys in each existing tooltip test.",
+      "paths": ["client/src/pages/decarb-signal.tsx", "client/src/pages/decarb-gap-signal.tsx", "script/remaining-component-contracts.test.ts"]
+    },
+    {
+      "failure": "Null headline drilldown envelope previously produced a property-access TypeError during exact-selection validation.",
+      "fix": "Reject null/nonobject or absent derivation/parent/selection envelopes with the named exact-headline refusal before dereferencing. Actual imported SSR covers null, loading, retained background pending, retained error, wrong mode/parent/filter/acceptance, unchanged parent, signed zero/land and exact JSON/XLSX selections.",
+      "paths": ["shared/headlineDrilldown.ts", "script/headline-drilldown-ui.test.ts"]
+    }
+  ],
+  "expectedNegativeOutput": [
+    "engineering-row-builder-refused is an intentionally thrown engineering refusal, not an unfixed export failure.",
+    "The original unknown historical runs[].summary is intentionally not certified by a new sidecar. Original completeness remains false, with no invented missing semantics.",
+    "Empty authorized retained paired catalog is a real publication/data gap, not a test skip, zero efficacy, or authorization to publish."
+  ],
+  "checksBeforeCoherentRun": [
+    {
+      "kind": "focused integration and original-negative gates",
+      "log": "generated-artifacts/integrated-repair-focused.tap",
+      "logSha256": "8abc24bdf3bfef6eff2e4c2f99f4acb99aaa5f31ee15960670ced17b140b5085",
+      "counts": { "tests": 106, "pass": 106, "fail": 0, "skipped": 0 }
+    },
+    {
+      "kind": "public-source-only portable complete and selected custom-report tests",
+      "log": "generated-artifacts/integrated-repair-portable-focused.tap",
+      "logSha256": "63cc1f0452d2b7180294104a621e6a2b8e53ea0cb7cb6681f88f7f3dbcd51a07",
+      "counts": { "tests": 2, "pass": 2, "fail": 0, "skipped": 0 }
+    },
+    {
+      "kind": "final policy classification and actual tooltip-key regressions",
+      "log": "generated-artifacts/integrated-repair-final-focused.tap",
+      "logSha256": "35c0722ca2e8a592ff7d56c7f224ad53d62ed1c71a299e16955272658c848538",
+      "counts": { "tests": 61, "pass": 61, "fail": 0, "skipped": 0 },
+      "unexpectedReferenceErrorsOrReactKeyWarnings": 0
+    },
+    { "command": "npm run check", "exitCode": 0 },
+    { "command": "npx tsx script/field-semantics-census.ts --check", "exitCode": 0 },
+    { "command": "git diff --check", "exitCode": 0 },
+    {
+      "command": "uv run python -m unittest script.test_workplan_evidence_receipt -v",
+      "exitCode": 0,
+      "log": "generated-artifacts/integrated-repair-receipt-focused.log",
+      "logSha256": "f1dd96a58d7dcda7653efd1b60e2eae126aa2f5cd69d3e38228d926ff9a0f374",
+      "counts": { "tests": 3, "pass": 3, "fail": 0, "skipped": 0 }
+    },
+    {
+      "command": "npx tsx --test script/status-choice-width-increment.test.ts",
+      "exitCode": 0,
+      "log": "generated-artifacts/integrated-repair-status-focused.tap",
+      "logSha256": "c1e1536c2a571615279c2db3d0c1733ffacbec5efc101ad65287ef6dc286940c",
+      "counts": { "tests": 12, "pass": 12, "fail": 0, "skipped": 0 }
+    }
+  ],
+  "executionDispatchFailures": [
+    {
+      "kind": "tool supervisory timeout",
+      "log": "generated-artifacts/workplan-completion/20261112T103919018889Z.log",
+      "reason": "The300-second synchronous tool ceiling interrupted a run that redundantly executed focused matrices before coherent checks. No completed receipt or passing claim is made for that attempt. Full-mode dispatch now avoids duplicate focused matrices."
+    },
+    {
+      "receipt": "generated-artifacts/cache-drilldown-report-full-final-dispatch-failure.json",
+      "log": "generated-artifacts/workplan-completion/20261112T104559119858Z.log",
+      "exitCode": 1,
+      "reason": "Detached dispatcher omitted XDG_CONFIG_HOME, so the installed npx wrapper refused before any TypeScript test. Preserve this failed receipt separately; final dispatcher passes only actual nonsecret runtime path/home/XDG configuration."
+    }
+  ],
+  "coherentExecution": {
+    "status": "passed",
+    "receipt": "generated-artifacts/cache-drilldown-report-full-final.json",
+    "receiptSha256": "323c0de1718e0a4fbb7c01dd52ca0a35a485039cf55f7072ec3f00b21b199fb2",
+    "executedAt": "2026-11-12T11:04:49.159160+00:00",
+    "elapsedSeconds": 412.081,
+    "exitCode": 0,
+    "log": "generated-artifacts/workplan-completion/20261112T110449159160Z.log",
+    "logSha256": "3af13bf13bd2786f36d7a5c575f112a00fb8f4c2936b97f987a56ce91be665f0",
+    "typescript": { "tests": 1129, "pass": 1129, "fail": 0, "skipped": 0 },
+    "python": { "tests": 248, "pass": 248, "fail": 0, "skipped": 0 },
+    "mandatoryStagesPassed": [
+      "Typecheck",
+      "Complete TypeScript suite",
+      "Complete Python suite",
+      "Original private choice/width document",
+      "Private monetary integration --private-primary",
+      "Private issuer cashflow",
+      "Private issuer reconciliation",
+      "Production build"
+    ],
+    "runner": "script/workplan-evidence-run.py --receipt-only --full-checks",
+    "setup": "script/run-disposable-cache-transport.ts --local-s02-009 --full-checks",
+    "transportEvidence": "docs/disposable-cache-transport-evidence.json",
+    "transportEvidenceSha256": "7b73541b1ec6afb5a156d8226fccfff2ba62e46a6c7479576179c1b99c0ccf7d",
+    "transportPassed": true,
+    "actualPostgresWitnesses": [
+      { "scope": "HTTP/calculator/material/result archives", "queries": 311, "passed": true },
+      { "scope": "full/reduced projection namespace and revision isolation", "queries": 12, "passed": true }
+    ],
+    "additionalIsolatedRouteWitnesses": 2,
+    "clusterStopped": true,
+    "blockers": [],
+    "unexpectedReferenceErrorsOrReactKeyWarnings": 0
+  },
+  "nonBlockingBuildWarningsInspected": [
+    {
+      "warning": "Vite reports chunks larger than500kB after minification.",
+      "disposition": "Build succeeds. Bundle-size optimization is not a failed scientific/software gate; no chunk-warning limit or gate was relaxed."
+    },
+    {
+      "warning": "esbuild CJS output warns about import.meta.url in server/retainedPairedResearchProjection.ts:45.",
+      "disposition": "The warned source-root expression is inside buildRetainedPairedResearch, the offline source producer. Inspection confirms the public HTTP reader only selects and validates already-authorized retained public artifacts, never calls this producer or reads its private pipeline inputs. The expression executes through the existing tsx ESM offline producer/publisher, not via a supported bundled CJS publisher command. No public read failure or eager module initialization error occurs. Do not claim support for invoking this offline source producer from dist/index.cjs; separating unused offline code from the HTTP bundle is a remaining packaging improvement."
+    }
+  ],
+  "visualCheck": {
+    "route": "/decarb-gap",
+    "viewport": { "width": 1280, "height": 900 },
+    "result": "Already-running preview renders the retained paired reader and exact empty authorized catalog prerequisite outside legacy data guards; no fabricated result or new export. No workflow was started or restarted. Screenshot is static only, not interactive selection coverage."
+  },
+  "currentSourceEvidence": {
+    "script/component-state-contracts.ts": "a570f13f608a78dd1ca78d82e7b21343f4c23b12c3a9b8c386ab0f2113e3bbd3",
+    "script/component-state-census.test.ts": "2b76a4fd7ced466751d211ec039903bce4f0da588c63ce611da68a3a920a9607",
+    "script/headline-drilldown-ui.test.ts": "740ce12e94354a3c3edca23e6355a9e7d1814b26c56dd31ee144228958d60b88",
+    "script/retained-paired-research-ui.test.ts": "2222fb4168bd0917dacee38059a46190e02bed691bbd4f13d1f4de0cd0cae4b5",
+    "script/integrated-readonly-contracts.ts": "b4c796b897857f9201f7816bdc4f9b3354f3cc78041fe5393b87d9ac2ce7f62e",
+    "script/integrated-readonly-contracts.test.ts": "d67288d5a8924daea9b1c8bc85cc05b2d929278d6b7b324a13814527456f6ce8",
+    "script/methodology-download.test.ts": "f88f90e1a41fcd3f3352cf55f35d26f7af5d9de8bbb17a18a45a1b747dcb53d9",
+    "script/remaining-component-contracts.test.ts": "ed1f41ebfacd6869965e342e19d932059661c8820c7dccbde14f1e2055c2220e",
+    "script/run-disposable-cache-transport.ts": "da02923f2d9584437892bddf95e711e5a091eaa4dd1a80d832884d49808b8b10",
+    "script/company-cache-transport.test.ts": "599d20ac9c9d660a59c689b31a0229cc18f2c6e2eebbe80647e7ed06ef5b3db3",
+    "script/workplan-evidence-run.py": "367098e18a1f7b4531c11c5cf85b42ad71542b1c7a14135271f5da326196cf55",
+    "script/test_workplan_evidence_receipt.py": "4fd7eb7fcafa9d08bb560fbb5b874c2cd07c1ae5ce6171f3aa3252583da6a37b",
+    "docs/field_semantics_census.json": "719524ecb81d2779f0ec33b560ba1c976d993d25cb413ce4858c696238fb19c3",
+    "docs/System_Output_Register.md": "9d09e36520ccd53336f1e4b80471e5a43044848cec76debef6b6e1490a4f350e",
+    "docs/scientific-strands-warning-evidence.json": "f1edbe2af19f8a4a7954fc00a544fcc0e059dc0b5800cb5444653669e6f87306",
+    "docs/status-choice-width-increment-evidence.json": "b584c87d477d61c03caa281f1c46b240c77362996ed8ae68d51c848b116aad88"
+  },
+  "preservation": {
+    "originalFailedReceiptAndLogUnchanged": true,
+    "frozenOriginalFieldCohortUnchanged": true,
+    "frozenProtocolsAndScientificValuesChanged": false,
+    "fourteenFairPinsWeakened": false,
+    "mainLedgersEdited": false,
+    "commit": false,
+    "release": false,
+    "callback": false,
+    "privateRawPublication": false,
+    "scientificAcceptance": false
+  }
+}

@@ -1,0 +1,2022 @@
+{
+  "criterion": "S02-009",
+  "startedAt": "2026-11-12T11:04:46.608Z",
+  "finishedAt": "2026-11-12T11:11:41.383Z",
+  "priorAttempts": [
+    {
+      "startedAt": "2026-11-12T10:01:08.596Z",
+      "finishedAt": "2026-11-12T10:01:14.885Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:01:08.598Z",
+          "durationMs": 337.053598,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:08.935Z",
+          "durationMs": 8.798586999999998,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:01:08.944Z",
+          "durationMs": 53.90669300000002,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:08.998Z",
+          "durationMs": 8.203625999999986,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:01:09.007Z",
+          "durationMs": 34.658807000000024,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:09.041Z",
+          "durationMs": 105.79478399999994,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:01:09.147Z",
+          "durationMs": 42.033049000000005,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:09.191Z",
+          "durationMs": 23.423581999999897,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-mGhTlX/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:01:09.214Z",
+          "durationMs": 1070.393342,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/8-initdb.log",
+          "logSha256": "b530aa2684b1fcb829fff4ef3a82e4cef77fdf85bb619b3395dc631ccd231cf0"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-mGhTlX/data",
+            "-l",
+            "/tmp/s02-cache-mGhTlX/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-mGhTlX/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:01:10.285Z",
+          "durationMs": 113.5436850000001,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/company-cache-transport.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:01:10.451Z",
+          "durationMs": 4329.660901,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/10-tsx.log",
+          "logSha256": "434ce76fd364ac49c3d49314cf3eaba0a2f16c2346b9c39a2f7da3688e780620"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-mGhTlX/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:01:14.781Z",
+          "durationMs": 104.10031900000013,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/11-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [
+        "/home/runner/workspace/node_modules/.bin/tsx failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-O58BMW/10-tsx.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-mGhTlX",
+        "privateUnixSocket": "/tmp/s02-cache-mGhTlX/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:01:45.081Z",
+      "finishedAt": "2026-11-12T10:04:57.192Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:01:45.082Z",
+          "durationMs": 36.17448400000001,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:45.119Z",
+          "durationMs": 13.044690000000003,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:01:45.132Z",
+          "durationMs": 34.649339,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:45.167Z",
+          "durationMs": 3.738202000000001,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:01:45.170Z",
+          "durationMs": 35.653143,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:45.206Z",
+          "durationMs": 9.336524999999995,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:01:45.216Z",
+          "durationMs": 38.723089000000016,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:01:45.254Z",
+          "durationMs": 6.805206999999996,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-MFBcpp/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:01:45.261Z",
+          "durationMs": 738.4175600000001,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/8-initdb.log",
+          "logSha256": "1a7173ad9147d4af4de2a5c62258acbfeb8cb277c49897e342ecbc46b4f2ef03"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-MFBcpp/data",
+            "-l",
+            "/tmp/s02-cache-MFBcpp/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-MFBcpp/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:01:46.000Z",
+          "durationMs": 113.09623199999987,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/company-cache-transport.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:01:46.167Z",
+          "durationMs": 34106.954564,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/10-tsx.log",
+          "logSha256": "b8596a56d5abb9673eb2c7c021162ba8dcf4ca0dfe2b06b3aa2ff1f332166670"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/projection-route-cache.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:02:20.274Z",
+          "durationMs": 156793.96096400003,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/11-tsx.log",
+          "logSha256": "32cd7c6b1c9a1ffd052e9d85d8bbb7bef717840b164bc1d5bfab85eb1dd5d5c6"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-MFBcpp/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:04:57.070Z",
+          "durationMs": 122.04168799999752,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/12-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [
+        "/home/runner/workspace/node_modules/.bin/tsx failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-dNwiJi/11-tsx.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-MFBcpp",
+        "privateUnixSocket": "/tmp/s02-cache-MFBcpp/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:05:43.267Z",
+      "finishedAt": "2026-11-12T10:08:57.565Z",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:05:43.272Z",
+          "durationMs": 342.70703899999995,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:05:43.616Z",
+          "durationMs": 90.78586800000005,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:05:43.707Z",
+          "durationMs": 34.41927199999998,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:05:43.741Z",
+          "durationMs": 3.705144999999902,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:05:43.745Z",
+          "durationMs": 35.56046900000001,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:05:43.781Z",
+          "durationMs": 47.459973000000105,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:05:43.828Z",
+          "durationMs": 34.37987200000009,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:05:43.863Z",
+          "durationMs": 23.444835000000012,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-TR7IpD/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:05:43.886Z",
+          "durationMs": 998.803637,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/8-initdb.log",
+          "logSha256": "3d3e14fdae44578fd3e5721441729070b63752e809c36f38799dd91f1fca41e6"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-TR7IpD/data",
+            "-l",
+            "/tmp/s02-cache-TR7IpD/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-TR7IpD/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:05:44.885Z",
+          "durationMs": 114.05744099999993,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/company-cache-transport.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:05:45.053Z",
+          "durationMs": 33743.953123,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/10-tsx.log",
+          "logSha256": "bb3f167aa2fcce4e67a568b5f23450ee5aaded045be28f5c03ef086fe79cdb1f"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/projection-route-cache.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:06:18.798Z",
+          "durationMs": 158657.644811,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/11-tsx.log",
+          "logSha256": "62763b581b70bf73a1c2f2b08afa2e18e0e077074776124938599d12375ee1c5"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-TR7IpD/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:08:57.460Z",
+          "durationMs": 105.26283500000136,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-uN6J5S/12-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-TR7IpD",
+        "privateUnixSocket": "/tmp/s02-cache-TR7IpD/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:31:24.183Z",
+      "finishedAt": "2026-11-12T10:34:43.058Z",
+      "passed": true,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:31:24.187Z",
+          "durationMs": 13.397931000000028,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:31:24.201Z",
+          "durationMs": 122.85911599999997,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:31:24.324Z",
+          "durationMs": 13.698807999999985,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:31:24.338Z",
+          "durationMs": 4.439772000000005,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:31:24.343Z",
+          "durationMs": 9.242815000000007,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:31:24.352Z",
+          "durationMs": 104.81315099999995,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:31:24.457Z",
+          "durationMs": 9.989588000000026,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:31:24.467Z",
+          "durationMs": 20.67252700000006,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-w8iW8Z/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:31:24.488Z",
+          "durationMs": 1140.435397,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/8-initdb.log",
+          "logSha256": "efbb9764c7214562899f7954fa8bf226d8d94fa1b7c9ee7041672e9ce0f0b15a"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-w8iW8Z/data",
+            "-l",
+            "/tmp/s02-cache-w8iW8Z/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-w8iW8Z/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:31:25.628Z",
+          "durationMs": 117.16103699999985,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/company-cache-transport.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:31:25.820Z",
+          "durationMs": 34522.563859,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/10-tsx.log",
+          "logSha256": "fe5d7d4e92111c92f82fecd48a4566d6e3772f802865736765300ffe844f0948"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/projection-route-cache.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:32:00.343Z",
+          "durationMs": 162073.614002,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/11-tsx.log",
+          "logSha256": "cfa50efa6097e0f11e8a7400481648b62247d61e8bb7efb3c046b42507218ddd"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-w8iW8Z/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:34:42.537Z",
+          "durationMs": 520.767061999999,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-h5EjaB/12-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-w8iW8Z",
+        "privateUnixSocket": "/tmp/s02-cache-w8iW8Z/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:42:06.302Z",
+      "finishedAt": "2026-11-12T10:42:06.356Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:42:06.303Z",
+          "durationMs": 52.08298399999998,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-PfstVt/0-bash.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "blockers": [
+        "bash failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-PfstVt/0-bash.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-bTRPmu",
+        "privateUnixSocket": "/tmp/s02-cache-bTRPmu/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": false,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:42:38.158Z",
+      "finishedAt": "2026-11-12T10:46:05.200Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:42:38.160Z",
+          "durationMs": 29.817331000000024,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:42:38.190Z",
+          "durationMs": 8.295457999999996,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:42:38.198Z",
+          "durationMs": 27.30259699999999,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:42:38.226Z",
+          "durationMs": 2.455853999999988,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:42:38.228Z",
+          "durationMs": 30.996643999999947,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:42:38.259Z",
+          "durationMs": 8.60705999999999,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:42:38.268Z",
+          "durationMs": 26.651521000000002,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:42:38.295Z",
+          "durationMs": 6.1366820000000075,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-z77ZUH/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:42:38.301Z",
+          "durationMs": 790.765958,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/8-initdb.log",
+          "logSha256": "3c4ff7447fe352bb32e09687e98ecbdd1a5f46ae39c1731ebccfa337c6941a06"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-z77ZUH/data",
+            "-l",
+            "/tmp/s02-cache-z77ZUH/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-z77ZUH/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:42:39.092Z",
+          "durationMs": 119.05744299999992,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/company-cache-transport.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:42:39.270Z",
+          "durationMs": 33658.901191,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/10-tsx.log",
+          "logSha256": "cc88bd28d91bc5161ce3902026c0f8683f5f514352c0897f1d3ac0b9a23024d9"
+        },
+        {
+          "command": [
+            "/home/runner/workspace/node_modules/.bin/tsx",
+            "--test",
+            "script/projection-route-cache.test.ts"
+          ],
+          "startedAt": "2026-11-12T10:43:12.931Z",
+          "durationMs": 162586.001112,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/11-tsx.log",
+          "logSha256": "b19f69113063d5e4c7035c74f0904992ac9f1e9e5a491e21e5307a09364f0de7"
+        },
+        {
+          "command": [
+            "uv",
+            "run",
+            "python",
+            "script/workplan-evidence-run.py",
+            "--receipt-only",
+            "--full-checks",
+            "--receipt",
+            "generated-artifacts/cache-drilldown-report-full-final.json"
+          ],
+          "startedAt": "2026-11-12T10:45:55.521Z",
+          "durationMs": 9561.52816300001,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/12-uv.log",
+          "logSha256": "d74300385c8444fdab1a5d8ce26b1ace08752871f6efc532ee245b1a2b2fae3c"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-z77ZUH/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:46:05.083Z",
+          "durationMs": 116.94734199999948,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/13-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [
+        "uv failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-3z5Y2o/12-uv.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-z77ZUH",
+        "privateUnixSocket": "/tmp/s02-cache-z77ZUH/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:47:20.903Z",
+      "finishedAt": "2026-11-12T10:51:13.548Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:47:20.904Z",
+          "durationMs": 31.10503099999994,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:47:20.936Z",
+          "durationMs": 79.47262899999998,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:47:21.015Z",
+          "durationMs": 27.506236000000058,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:47:21.043Z",
+          "durationMs": 4.125051999999982,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:47:21.047Z",
+          "durationMs": 28.225008000000003,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:47:21.075Z",
+          "durationMs": 49.60341799999992,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:47:21.125Z",
+          "durationMs": 28.060336000000007,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:47:21.153Z",
+          "durationMs": 24.058224999999993,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-dqxWkM/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:47:21.177Z",
+          "durationMs": 1034.054869,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/8-initdb.log",
+          "logSha256": "561deeefb792f8a8c59a5bb5ef9f108570f30db44b2564d5455d541f2ddc2d2f"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-dqxWkM/data",
+            "-l",
+            "/tmp/s02-cache-dqxWkM/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-dqxWkM/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:47:22.211Z",
+          "durationMs": 115.07218499999999,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "uv",
+            "run",
+            "python",
+            "script/workplan-evidence-run.py",
+            "--receipt-only",
+            "--full-checks",
+            "--receipt",
+            "generated-artifacts/cache-drilldown-report-full-final.json"
+          ],
+          "startedAt": "2026-11-12T10:47:22.380Z",
+          "durationMs": 231061.994217,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/10-uv.log",
+          "logSha256": "1f118209a69317f72494b538952ffb7f0b3762dc46e4299594a636718bdc235b"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-dqxWkM/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:51:13.443Z",
+          "durationMs": 104.92456099999254,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/11-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [
+        "uv failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-zabC9d/10-uv.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-dqxWkM",
+        "privateUnixSocket": "/tmp/s02-cache-dqxWkM/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      }
+    },
+    {
+      "startedAt": "2026-11-12T10:53:22.124Z",
+      "finishedAt": "2026-11-12T10:57:01.473Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:53:22.125Z",
+          "durationMs": 31.139575999999977,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:53:22.157Z",
+          "durationMs": 8.858727000000044,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:53:22.166Z",
+          "durationMs": 27.59220399999998,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:53:22.194Z",
+          "durationMs": 2.6295370000000275,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:53:22.196Z",
+          "durationMs": 28.218142,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:53:22.225Z",
+          "durationMs": 9.774676,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:53:22.235Z",
+          "durationMs": 31.089293999999995,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:53:22.266Z",
+          "durationMs": 5.767219999999952,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-CXEVgv/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:53:22.272Z",
+          "durationMs": 815.683341,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/8-initdb.log",
+          "logSha256": "5b758571fd82a27552da912a806d2562d8470e20e88ffb7e0b8e641ce950be7b"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-CXEVgv/data",
+            "-l",
+            "/tmp/s02-cache-CXEVgv/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-CXEVgv/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:53:23.087Z",
+          "durationMs": 113.23524700000007,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "uv",
+            "run",
+            "python",
+            "script/workplan-evidence-run.py",
+            "--receipt-only",
+            "--full-checks",
+            "--receipt",
+            "generated-artifacts/cache-drilldown-report-full-final.json"
+          ],
+          "startedAt": "2026-11-12T10:53:23.257Z",
+          "durationMs": 218096.803716,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/10-uv.log",
+          "logSha256": "4c5c4fc5b512641391db3b2671dce90a40c60880d7ee7ecae07c0cec0f5182d8"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-CXEVgv/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T10:57:01.354Z",
+          "durationMs": 118.28179199999431,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/11-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [
+        "uv failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-pswCQu/10-uv.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-CXEVgv",
+        "privateUnixSocket": "/tmp/s02-cache-CXEVgv/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      },
+      "witnesses": []
+    },
+    {
+      "startedAt": "2026-11-12T10:57:40.670Z",
+      "finishedAt": "2026-11-12T11:03:18.494Z",
+      "passed": false,
+      "commands": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "initdb"
+          ],
+          "startedAt": "2026-11-12T10:57:40.672Z",
+          "durationMs": 33.703130999999985,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/0-bash.log",
+          "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:57:40.706Z",
+          "durationMs": 96.93706800000007,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/1-initdb.log",
+          "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "pg_ctl"
+          ],
+          "startedAt": "2026-11-12T10:57:40.803Z",
+          "durationMs": 30.072434000000044,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/2-bash.log",
+          "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:57:40.833Z",
+          "durationMs": 2.679881999999907,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/3-pg_ctl.log",
+          "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "postgres"
+          ],
+          "startedAt": "2026-11-12T10:57:40.836Z",
+          "durationMs": 27.99870999999996,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/4-bash.log",
+          "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:57:40.864Z",
+          "durationMs": 63.50371299999995,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/5-postgres.log",
+          "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "command -v \"$1\"",
+            "_",
+            "psql"
+          ],
+          "startedAt": "2026-11-12T10:57:40.927Z",
+          "durationMs": 29.520804,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/6-bash.log",
+          "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+        },
+        {
+          "command": [
+            "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+            "--version"
+          ],
+          "startedAt": "2026-11-12T10:57:40.957Z",
+          "durationMs": 25.370416999999975,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/7-psql.log",
+          "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+        },
+        {
+          "command": [
+            "initdb",
+            "-D",
+            "/tmp/s02-cache-Y9xouS/data",
+            "-U",
+            "s02_cache_owner",
+            "--auth-local=trust",
+            "--auth-host=reject",
+            "--no-locale",
+            "--encoding=UTF8"
+          ],
+          "startedAt": "2026-11-12T10:57:40.983Z",
+          "durationMs": 1083.635889,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/8-initdb.log",
+          "logSha256": "403495bd44494d7fc84eab1c776bf59f39d36db119c714931b981a2943bfd281"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-Y9xouS/data",
+            "-l",
+            "/tmp/s02-cache-Y9xouS/postgres.log",
+            "-o",
+            "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-Y9xouS/socket' -c unix_socket_permissions=0700",
+            "-w",
+            "start"
+          ],
+          "startedAt": "2026-11-12T10:57:42.066Z",
+          "durationMs": 113.86224700000002,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/9-pg_ctl.log",
+          "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+        },
+        {
+          "command": [
+            "uv",
+            "run",
+            "python",
+            "script/workplan-evidence-run.py",
+            "--receipt-only",
+            "--full-checks",
+            "--receipt",
+            "generated-artifacts/cache-drilldown-report-full-final.json"
+          ],
+          "startedAt": "2026-11-12T10:57:42.238Z",
+          "durationMs": 336151.419812,
+          "status": 1,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/10-uv.log",
+          "logSha256": "50a878d027137a40e7172deeba8a290b61b164c9cc68ec5e0c2ea7ad0f343116"
+        },
+        {
+          "command": [
+            "pg_ctl",
+            "-D",
+            "/tmp/s02-cache-Y9xouS/data",
+            "-m",
+            "fast",
+            "-w",
+            "stop"
+          ],
+          "startedAt": "2026-11-12T11:03:18.390Z",
+          "durationMs": 104.33481000002939,
+          "status": 0,
+          "signal": null,
+          "log": "/home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/11-pg_ctl.log",
+          "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+        }
+      ],
+      "blockers": [
+        "uv failed: 1; see /home/runner/workspace/generated-artifacts/disposable-cache-7Imy7j/10-uv.log"
+      ],
+      "isolation": {
+        "database": "s02_009_disposable_cache",
+        "localClusterDirectory": "/tmp/s02-cache-Y9xouS",
+        "privateUnixSocket": "/tmp/s02-cache-Y9xouS/socket",
+        "tcpListening": false,
+        "ambientDatabaseUrlUsed": false,
+        "ambientPgVariablesUsed": false,
+        "productionAccess": false,
+        "paidResources": 0,
+        "productionDDL": 0,
+        "productionDeletes": 0,
+        "cacheClears": 0,
+        "clusterStopped": true,
+        "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+      },
+      "witnesses": []
+    }
+  ],
+  "command": "env -u DATABASE_URL NODE_ENV=test node_modules/.bin/tsx script/run-disposable-cache-transport.ts --local-s02-009 --full-checks",
+  "passed": true,
+  "commands": [
+    {
+      "command": [
+        "bash",
+        "-c",
+        "command -v \"$1\"",
+        "_",
+        "initdb"
+      ],
+      "startedAt": "2026-11-12T11:04:46.612Z",
+      "durationMs": 379.146238,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/0-bash.log",
+      "logSha256": "42a58126947a4b5b5dd7431d02fc8643b7eca41cb8b41e83892bb7bf2ab835eb"
+    },
+    {
+      "command": [
+        "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/initdb",
+        "--version"
+      ],
+      "startedAt": "2026-11-12T11:04:46.992Z",
+      "durationMs": 125.23348299999998,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/1-initdb.log",
+      "logSha256": "dca41f203a8e4afe95d6a0b6b0d86ef14ed8c0a172aec4e78e9ab9af0dc49d74"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "command -v \"$1\"",
+        "_",
+        "pg_ctl"
+      ],
+      "startedAt": "2026-11-12T11:04:47.117Z",
+      "durationMs": 28.585656000000085,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/2-bash.log",
+      "logSha256": "bf3273f428b0ef1171d3e05f108d209e70a3a9bf8c017dacf79e1433cf18d155"
+    },
+    {
+      "command": [
+        "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/pg_ctl",
+        "--version"
+      ],
+      "startedAt": "2026-11-12T11:04:47.146Z",
+      "durationMs": 3.8036319999999932,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/3-pg_ctl.log",
+      "logSha256": "1d78aebf18a4157f6d66b92a57b06ed223c99ab34da9393852bfaea307dfdb71"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "command -v \"$1\"",
+        "_",
+        "postgres"
+      ],
+      "startedAt": "2026-11-12T11:04:47.150Z",
+      "durationMs": 29.66465800000003,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/4-bash.log",
+      "logSha256": "c21b29928a2a1315e343650f9b9b45ecd6ea360e61f1964215b6e84c3096b4f2"
+    },
+    {
+      "command": [
+        "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/postgres",
+        "--version"
+      ],
+      "startedAt": "2026-11-12T11:04:47.180Z",
+      "durationMs": 91.70176500000002,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/5-postgres.log",
+      "logSha256": "a7e1d589c92730ef2b37ee0ecf2a4c36887042f6c37c0aafa052bdb9eff279a8"
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "command -v \"$1\"",
+        "_",
+        "psql"
+      ],
+      "startedAt": "2026-11-12T11:04:47.271Z",
+      "durationMs": 30.99461800000006,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/6-bash.log",
+      "logSha256": "d457996e46db9d38e01a050a4ba0e11b796832611b18a4ed5a5660d6dac090aa"
+    },
+    {
+      "command": [
+        "/nix/store/bgwr5i8jf8jpg75rr53rz3fqv5k8yrwp-postgresql-16.10/bin/psql",
+        "--version"
+      ],
+      "startedAt": "2026-11-12T11:04:47.302Z",
+      "durationMs": 23.32132999999999,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/7-psql.log",
+      "logSha256": "5a497d4960753987c96fa7845ad6056b73ecf1e419b36cf6813ee0c038ed110e"
+    },
+    {
+      "command": [
+        "initdb",
+        "-D",
+        "/tmp/s02-cache-pNia7B/data",
+        "-U",
+        "s02_cache_owner",
+        "--auth-local=trust",
+        "--auth-host=reject",
+        "--no-locale",
+        "--encoding=UTF8"
+      ],
+      "startedAt": "2026-11-12T11:04:47.326Z",
+      "durationMs": 1105.4899110000001,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/8-initdb.log",
+      "logSha256": "c0c6e8e8f3942b708f7cff52339e6b7dd7df666ed10ac0c08fa0fed0d496eecb"
+    },
+    {
+      "command": [
+        "pg_ctl",
+        "-D",
+        "/tmp/s02-cache-pNia7B/data",
+        "-l",
+        "/tmp/s02-cache-pNia7B/postgres.log",
+        "-o",
+        "-c listen_addresses='' -c unix_socket_directories='/tmp/s02-cache-pNia7B/socket' -c unix_socket_permissions=0700",
+        "-w",
+        "start"
+      ],
+      "startedAt": "2026-11-12T11:04:48.432Z",
+      "durationMs": 113.59235599999965,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/9-pg_ctl.log",
+      "logSha256": "66afd0411ccc09366e99fdd99b85f21899c8d2d064f5835126859618802153ad"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "script/workplan-evidence-run.py",
+        "--receipt-only",
+        "--full-checks",
+        "--receipt",
+        "generated-artifacts/cache-drilldown-report-full-final.json"
+      ],
+      "startedAt": "2026-11-12T11:04:48.728Z",
+      "durationMs": 412538.881528,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/10-uv.log",
+      "logSha256": "f7ae354ddfaaa82c32d758ac249a71336a6ef63306db776f0ccd1e6bf7b3abb9"
+    },
+    {
+      "command": [
+        "pg_ctl",
+        "-D",
+        "/tmp/s02-cache-pNia7B/data",
+        "-m",
+        "fast",
+        "-w",
+        "stop"
+      ],
+      "startedAt": "2026-11-12T11:11:41.278Z",
+      "durationMs": 104.16118100000313,
+      "status": 0,
+      "signal": null,
+      "log": "/home/runner/workspace/generated-artifacts/disposable-cache-OuxWR3/11-pg_ctl.log",
+      "logSha256": "ca19178a35ab4153b75b494963b66ce8243e1b94c173107c87b44d09db23652d"
+    }
+  ],
+  "counts": {
+    "cache_rows": 7,
+    "archive_headers": 13,
+    "archive_chunks": 16,
+    "enabled_guard_count": 5
+  },
+  "setupStatements": 12,
+  "blockers": [],
+  "witnesses": [
+    {
+      "path": "/home/runner/workspace/generated-artifacts/company-cache-extension/http-DsrTlM/evidence.json",
+      "sha256": "917ddb32201d946e376cb1f37897834bf47d9655b5eabe317e33e88139b268d6",
+      "passed": true,
+      "postgresqlTransportExecuted": true,
+      "analyticalReceipts": 8,
+      "actualPostgresQueries": 311,
+      "companyPhases": {
+        "lookup-miss": 4,
+        "compute": 4,
+        "write": 4,
+        "lookup-hit": 4
+      }
+    },
+    {
+      "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/mutation-kbQjQf/evidence.json",
+      "sha256": "ef4fc9ada5846439a3560a439f390d52f972cfc1bcb72234ab3ccca240be371c",
+      "passed": true,
+      "postgresqlTransportExecuted": false,
+      "analyticalReceipts": 6,
+      "actualPostgresQueries": 0
+    },
+    {
+      "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/matrix-29GEL1/evidence.json",
+      "sha256": "3c4a2e773a0b35d40d058ecdc9afe4b4590abea59a563e4602bc2fb5de418e3c",
+      "passed": true,
+      "postgresqlTransportExecuted": false,
+      "analyticalReceipts": 18,
+      "actualPostgresQueries": 0,
+      "ttl": "Only default regional response has 24h TTL; tested at TTL-1 and exact TTL. Other five route-local caches have no clock TTL."
+    },
+    {
+      "path": "/home/runner/workspace/generated-artifacts/projection-route-cache/postgres-namespace-zuOzM5/evidence.json",
+      "sha256": "6a461657a13c3153b4ae93206953b2c56d756c8ca6b5d08858dbd45a617fc1cd",
+      "passed": true,
+      "postgresqlTransportExecuted": true,
+      "analyticalReceipts": 5,
+      "actualPostgresQueries": 12,
+      "namespaceKeys": [
+        "finance-projected-rate:135ec499a36f86c5a3eec625805ea409239d79d36b7689afec5dfba614262d6a",
+        "projection:47bfe4f88336db1960d43bd0fb10ac80711f0316e1eca0a732f70cc32fbbe41c",
+        "projection:5d3039308389bdc762bdb513a33d026cab76164b729ab0909477d82865b72f57"
+      ]
+    }
+  ],
+  "isolation": {
+    "database": "s02_009_disposable_cache",
+    "localClusterDirectory": "/tmp/s02-cache-pNia7B",
+    "privateUnixSocket": "/tmp/s02-cache-pNia7B/socket",
+    "tcpListening": false,
+    "ambientDatabaseUrlUsed": false,
+    "ambientPgVariablesUsed": false,
+    "productionAccess": false,
+    "paidResources": 0,
+    "productionDDL": 0,
+    "productionDeletes": 0,
+    "cacheClears": 0,
+    "clusterStopped": true,
+    "cleanup": "Only newly initialized local PostgreSQL stopped. Data retained in private temporary directory; no DELETE, DROP, TRUNCATE or existing database touched."
+  },
+  "scope": [
+    "Existing actual company HTTP/calculator/material/result archive suite on real PostgreSQL, not memory ORM.",
+    "Six completed route-local matrices preserved, plus actual full/reduced helper namespace and persistent JSONB round-trip with fresh route state.",
+    "TTL remains actual regional route cache clock-boundary test, not an invented PostgreSQL row TTL.",
+    "Synthetic declared engineering money/indicator datasets; real calculator values, not real issuer evidence.",
+    "Application default storage is MemStorage. Projection PostgreSQL test substitutes only the storage I/O dependency; this is not deployed PostgreSQL application acceptance."
+  ],
+  "refusals": [
+    {
+      "capability": "Authorized refresh/DELETE invalidation HTTP lifecycle",
+      "executed": false,
+      "reason": "server/operatorContract.ts explicitly declares no existing HTTP authentication, principal or role; no supported disposable mutable HTTP loader. DEV/loopback/database ownership is not operator authority.",
+      "action": "Owner/authentication maintainer must provide the genuine supported disposable DEV principal and importer. No invented token/role or bypass added; no clear/DELETE endpoint invoked."
+    }
+  ],
+  "sourceSha256": {
+    "script/run-disposable-cache-transport.ts": "da02923f2d9584437892bddf95e711e5a091eaa4dd1a80d832884d49808b8b10",
+    "script/disposable-cache-postgres.ts": "36e5b2ac2e8451552aebe1cda2a902d9eafb4801b13fcf2e3776b4b65dd4d99c",
+    "script/company-cache-transport.test.ts": "599d20ac9c9d660a59c689b31a0229cc18f2c6e2eebbe80647e7ed06ef5b3db3",
+    "script/projection-route-cache.test.ts": "7894a32ec8e22ff3ea1737a349840f88e07de20a8d6c1afa29fc6623f9f98cbf",
+    "server/routes.ts": "44f3b7ceaffb042e0c8dc1980cb13c41011dc475d38a49be21aa7468b64fcc97",
+    "server/storage.ts": "c1c84a1304753672fc373b9902231eb56f616dcc309856a7df56b593913f5ecd",
+    "server/operatorContract.ts": "755ca86810b70f84a11d950e2d076ba4d411f326a97fa5376a13ebd8021bd0dc",
+    "shared/schema.ts": "cdac5c19e325d4af3f9c3852b5df61dac9afd0ad0dd4896ec4c8c1687ceb402e",
+    "docs/Snapshot_Database_Guards.md": "125d0cef1d1c2393f3eaa429b3d3db74bb5baf16d2846b423f7ee8f98924f8bf"
+  },
+  "ledgerEdited": false,
+  "release": false,
+  "commit": false,
+  "callback": false
+}

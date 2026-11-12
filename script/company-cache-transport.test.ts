@@ -10,8 +10,7 @@ import ts from "typescript";
 import { PgDialect } from "drizzle-orm/pg-core";
 import { getTableName } from "drizzle-orm";
 import { eq } from "drizzle-orm";
-import { Pool } from "pg";
-import { drizzle } from "drizzle-orm/node-postgres";
+import { openDisposableCachePostgres } from "./disposable-cache-postgres";
 import * as schema from "../shared/schema";
 import { MemStorage } from "../server/storage";
 import { expectedSnapshotGuards } from "../server/snapshots/guards";
@@ -168,40 +167,7 @@ function archiveTransport() {
 async function supportedTransport() {
   const url = process.env.COMPANY_CACHE_DISPOSABLE_DATABASE_URL;
   if (!url) return archiveTransport();
-  if (!["test", "development"].includes(process.env.NODE_ENV ?? "") ||
-    process.env.COMPANY_CACHE_DISPOSABLE_AUTHORIZATION !== "preprovisioned-disposable-no-ddl" ||
-    !/^[a-f0-9]{64}$/.test(process.env.COMPANY_CACHE_DISPOSABLE_DATABASE_HASH ?? ""))
-    throw new Error("Disposable transport needs explicit authorization and exact database identity hash");
-  const operations: ArchiveOperation[] = [];
-  const pool = new Pool({ connectionString: url, max: 4, connectionTimeoutMillis: 10_000,
-    query_timeout: 10_000, statement_timeout: 10_000 });
-  function instrument(target: any) {
-    const query = target.query.bind(target);
-    target.query = (...args: any[]) => {
-      const text = typeof args[0] === "string" ? args[0] : args[0]?.text;
-      if (typeof text !== "string" || !/^\s*(SELECT|INSERT|BEGIN|COMMIT|ROLLBACK|SAVEPOINT|RELEASE|SET)\b/i.test(text))
-        throw new Error("Disposable cache witness refuses DDL, destructive writes and unsupported SQL");
-      operations.push({ operation: text.trim().split(/\s/)[0].toUpperCase() });
-      return query(...args);
-    };
-  }
-  const connect: any = pool.connect.bind(pool);
-  const ready = (client: any) => {
-    if (!(client as any).__cacheWitnessInstrumented) {
-      instrument(client); (client as any).__cacheWitnessInstrumented = true;
-    }
-    return client;
-  };
-  pool.connect = ((callback?: any) => callback ? connect((error: any, client: any, release: any) =>
-    callback(error, client ? ready(client) : client, release)) : connect().then(ready)) as any;
-  try {
-    const identity = await pool.query("SELECT current_database() AS name");
-    if (contentHash({ database: identity.rows[0].name }) !== process.env.COMPANY_CACHE_DISPOSABLE_DATABASE_HASH)
-      throw new Error("Disposable database identity mismatch; no writes authorized");
-    return { db: drizzle(pool, { schema }), operations, kind: "postgres" as "memory" | "postgres",
-      access: "Explicit independently authorized already-provisioned disposable PostgreSQL",
-      close: () => pool.end() };
-  } catch (error) { await pool.end(); throw error; }
+  return openDisposableCachePostgres();
 }
 
 function productionArchiveModules(db: any) {
@@ -433,6 +399,13 @@ test("actual HTTP carbon route + material/result archive functions preserve cold
         "decarb_gap", 2, "absolute", "US", 0, new Map([[2018, 0], [2019, 0], [2020, 0], [2021, 0]])));
       res.json(publicValuationResult(output));
     } catch (error) { next(error); }
+  });
+  app.use((error: Error, req: express.Request, res: express.Response, _next: express.NextFunction) => {
+    // All data in this isolated server is explicitly synthetic. Preserve the
+    // actual underlying refusal for assertions instead of Express's HTML error
+    // page masking it as an unrelated JSON-parser failure.
+    failures.push(`${req.path}: ${error.message}`);
+    res.status(500).json({ error: error.message, testBoundary: "isolated synthetic transport only" });
   });
   const server = createServer(app);
   const results: any[] = [];
