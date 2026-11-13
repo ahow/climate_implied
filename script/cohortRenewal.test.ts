@@ -20,6 +20,34 @@ export function renewalFixture():RenewalDeclaration{
  interestCashUsd:0,debtRaisedUsd:0,debtRepaidUsd:0,nonCommonCashUsd:0}))}};
 }
 const fixture=renewalFixture;
+test("v2 operating accrual versus settlement bridges AP once; cash-paid capital bypasses AP",()=>{
+ const s=fixture().specification;s.years.forEach(y=>y.variableCostPerServiceUsd=2);
+ const model=calculateOperatingCohorts(s),l=cashLedger();
+ l.years.forEach(y=>y.commonDistribution=80);
+ const evidenceIds=["engineering-only"];
+ const a:AccrualSchedule={version:"dated-accrual-2",claimantId:l.claimantId,
+  operatingSettlements:{otherWorkingCapitalBasis:"excludes-receivables-payables-and-tax",alreadyCashPaidComponents:["replacement"],
+   years:s.years.map(y=>({year:y.year,variableCost:10,energyCost:0,evidenceIds}))},
+  payables:s.years.map((y,i)=>({year:y.year,opening:i*10,closing:(i+1)*10})),
+  entries:s.years.flatMap(y=>[{id:`r${y.year}`,on:`${y.year}-06-01`,kind:"revenue" as const,usd:100,evidenceIds},
+   {id:`c${y.year}`,on:`${y.year}-06-01`,kind:"payable" as const,usd:20,evidenceIds}])};
+ const timing:CashTiming[]=s.years.flatMap(y=>(["collections","variableCost","replacement","commonDistribution"] as const)
+  .map(component=>({year:y.year,component,allocations:[{on:`${y.year}-07-01`,fraction:1,evidenceIds}]})));
+ const d={version:"dated-project-cash-1" as const,valuationOn:"2024-01-01",discountRate:.1,convention:"ACT/365.25" as const,claimantId:l.claimantId};
+ const r=reconcileDatedAccruals(model,l,d,timing,a,evidenceIds);
+ assert.deepEqual(r.operatingSettlementBridge.map(y=>y.cashAdjustment),[10,10]);
+ assert.equal(r.accrualDays.at(-1).payables,20);assert.equal(r.accrualDays.at(-1).cash,0);
+ const integrated=fixture();integrated.specification=s;integrated.cashLedger=l;
+ integrated.datedAccounting={declaration:d,timing,accrual:a};
+ const coupled=evaluatePeriodicRenewal(integrated);
+ assert.equal(coupled.conditionalPeriodicProjectValueUsd,null);
+ assert.equal(coupled.cashLedger![0].commonNetCash,80);
+ a.operatingSettlements!.alreadyCashPaidComponents.push("variableCost");
+ assert.throws(()=>reconcileDatedAccruals(model,l,d,timing,a,evidenceIds),/Already cash-paid/);
+ a.operatingSettlements!.alreadyCashPaidComponents=["replacement"];
+ a.entries[1].usd=19;
+ assert.throws(()=>reconcileDatedAccruals(model,l,d,timing,a,evidenceIds),/balance mismatch/);
+});
 test("explicit one-year renewal pays replacement once; independent annuity oracle",()=>{
  const r=evaluatePeriodicRenewal(fixture());
  assert.equal(r.model.rows[0].fcfe,90);

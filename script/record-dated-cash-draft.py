@@ -36,6 +36,11 @@ e["log_hashes"]={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in [
  Path("generated-artifacts/dated-cash/pg-schema-aligned.log"),Path("generated-artifacts/dated-cash/pg-committed.receipt.json"),
  Path("generated-artifacts/dated-cash/accrual-postledger.log")] if f.exists()}
 e["transport_correction"]="Earlier real-PG runs used text company IDs/minimal review columns. Final run aligned company integer identity/name/unique ISIN and review constraints with shared/schema.ts. Earlier receipts retained; no full-schema or genuine-principal claim."
+e["physical_continuation_boundary"]="Reuse existing operatingCohorts daily partial-calendar/degradation and storage charging/loss calculation. Remaining work is its coupling to a certified funded periodic continuation and dated cash boundary; cohortRenewal still refuses partial-calendar/degrading periodicity."
+e["read_only_release_diagnostic"]={"initial":"GET refs/heads/validated returned404; subsequent read failed because no output file existed.",
+ "correction":"Read actual validation.yml; GET refs/heads/production-validated succeeded.",
+ "validated_source":json.loads(Path("generated-artifacts/dated-cash/validated-ref.json").read_text())["object"]["sha"] if Path("generated-artifacts/dated-cash/validated-ref.json").exists() else None,
+ "boundary":"No branch mutation/restart; Railway deployment cause/status not available under current authorization. CI/validated branch do not prove new runtime."}
 x["prior_cash_increment"]=x.get("latest_increment");x["latest_increment"]=e
 x.setdefault("release_history",[]).append(x.get("current_release"))
 x["current_release"]={"runtime":"bff160798d2e795eaaea508cc9bf608ccae2d0ec","ci":43321351329,"conclusion":"success",
@@ -49,6 +54,19 @@ if live.exists() and e.get("release",{}).get("runtime_observation",{}).get("sour
  e["status"]="Application finite dated accounting validated/deployed at1f809c58; subsequent PostgreSQL harness extension locally executed; full S13-004 remains partial"
 x.pop("pending_release",None)
 x["next_action"]="Source1f809c58/CI43327129911 succeeded and exact runtime plus safe1054-row/2108-cell accounting readback verified. Do not repeat promotion. Preserve renewal-v3 finite dated accrual and null periodic value. Local actualPG extension covers eight dependency/review/result faults, concurrent committed stages/decisions, reconnect and atomic rollback; it is not in published1f809c58 and genuine operator reader/access isolation remains. Finish matched partial-calendar/degrading transition/sustainable cycles, explicit cash-versus-accrual cost/AP-otherWC boundaries, certified inverse and admitted consumers. Qualify original issuer inputs; examined government chunks yielded no qualified FSLR payment."
+pending=Path("generated-artifacts/dated-cash/transport-ci.json")
+if pending.exists():
+ rows=json.loads(pending.read_text()).get("workflow_runs",[])
+ if rows:
+  v=rows[0]
+  x["pending_release"]={"source":v["head_sha"],"ci":v["id"],"observed_status":v["status"],"conclusion":v["conclusion"],
+   "observed_at":datetime.fromtimestamp(pending.stat().st_mtime,timezone.utc).isoformat(),
+   "scope":"PostgreSQL harness and receipt publication; do not restart or supersede existing promotion"}
+  final_runtime=Path("generated-artifacts/dated-cash/final-runtime.json")
+  if final_runtime.exists():x["pending_release"]["last_observed_runtime"]=json.loads(final_runtime.read_text())
+  e["transport_publication"]=x["pending_release"]
+  instruction="Verify the pending deployment/readback after successful existing validation" if v["conclusion"]=="success" else "Reconcile existing validation"
+  x["next_action"]=f"{instruction}: CI{v['id']} for published {v['head_sha']} ({v['status']}/{v['conclusion']}); do not restart/supersede. "+x["next_action"].replace("Local actualPG extension","Separately executed PostgreSQL extension, now published in that pending source,")
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:
  for r in s["requirements"]:

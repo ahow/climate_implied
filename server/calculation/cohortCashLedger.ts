@@ -24,15 +24,42 @@ export interface CashTiming {
  year:number;component:CashComponent;allocations:{on:string;fraction:number;evidenceIds:string[]}[];
 }
 export interface AccrualSchedule {
- version:"dated-accrual-1";claimantId:string;
+ version:"dated-accrual-1"|"dated-accrual-2";claimantId:string;
+ /** V2 explicitly separates model operating accruals from settlements.
+  * Neither these amounts nor their timing may be inferred from annual net cash. */
+ operatingSettlements?:{
+  otherWorkingCapitalBasis:"excludes-receivables-payables-and-tax";
+  alreadyCashPaidComponents:CashComponent[];
+  years:{year:number;variableCost:number;energyCost:number;evidenceIds:string[]}[];
+ };
  payables:{year:number;opening:number;closing:number}[];
  entries:{id:string;on:string;kind:"revenue"|"payable"|"tax"|"nonCommon";usd:number;evidenceIds:string[]}[];
 }
 export function reconcileDatedAccruals(model:ReturnType<typeof calculateOperatingCohorts>,ledger:CohortCashLedger,
  declaration:Omit<DatedProjectCash,"events">,timing:CashTiming[],accrual:AccrualSchedule,evidenceIds:string[]){
- const cash=deriveDatedProjectCash(model,ledger,declaration,timing,evidenceIds);
- if(accrual.version!=="dated-accrual-1"||accrual.claimantId!==ledger.claimantId||accrual.payables.length!==ledger.years.length)
+ if(!["dated-accrual-1","dated-accrual-2"].includes(accrual.version)||accrual.claimantId!==ledger.claimantId||accrual.payables.length!==ledger.years.length)
   throw Error("Explicit matching accrual claimant/periods required");
+ let cashModel=model;
+ if(accrual.version==="dated-accrual-2"){
+  const settlement=accrual.operatingSettlements;
+  if(settlement?.otherWorkingCapitalBasis!=="excludes-receivables-payables-and-tax"||
+   settlement.years.length!==model.rows.length||!Array.isArray(settlement.alreadyCashPaidComponents)||
+   new Set(settlement.alreadyCashPaidComponents).size!==settlement.alreadyCashPaidComponents.length||
+   settlement.alreadyCashPaidComponents.some(c=>!["variableCost","energyCost","operatingFixedCash","holdingCash","transactionCash","construction","maintenance","replacement","decommissioning","interest"].includes(c)))
+   throw Error("Explicit separate operating settlement and other-WC basis required");
+  cashModel={...model,rows:model.rows.map((r,i)=>{
+   const p=settlement.years[i];
+   if(p.year!==r.year||![p.variableCost,p.energyCost].every(v=>Number.isFinite(v)&&v>=0)||
+    !p.evidenceIds.length||p.evidenceIds.some(id=>!evidenceIds.includes(id)))throw Error("Missing operating cash settlement amount/period/evidence");
+   const adjustment=r.variableCost+r.energyCost-p.variableCost-p.energyCost;
+   if((settlement.alreadyCashPaidComponents.includes("variableCost")&&p.variableCost!==r.variableCost)||
+    (settlement.alreadyCashPaidComponents.includes("energyCost")&&p.energyCost!==r.energyCost))
+    throw Error("Already cash-paid cost cannot receive an AP adjustment");
+   return {...r,variableCost:p.variableCost,energyCost:p.energyCost,
+    operatingCashBeforeTax:r.operatingCashBeforeTax+adjustment,fcfe:r.fcfe+adjustment};
+  })};
+ }else if(accrual.operatingSettlements)throw Error("Operating settlement bridge requires version2");
+ const cash=deriveDatedProjectCash(cashModel,ledger,declaration,timing,evidenceIds);
  const ids=new Set<string>();
  for(const e of accrual.entries){
   const t=Date.parse(e.on);
@@ -51,6 +78,14 @@ export function reconcileDatedAccruals(model:ReturnType<typeof calculateOperatin
   if(i)eq(p.opening,accrual.payables[i-1].closing);
   const a=accrual.entries.filter(e=>Number(e.on.slice(0,4))===y.year);
   const c=cash.derivedEvents.filter(e=>e.year===y.year);
+  if(accrual.version==="dated-accrual-2"){
+   const r=model.rows[i],v=r.inputs,paid=accrual.operatingSettlements!.alreadyCashPaidComponents;
+   const costs={variableCost:r.variableCost,energyCost:r.energyCost,operatingFixedCash:y.operatingFixedCash,
+    holdingCash:y.holdingCash,transactionCash:y.transactionCash,construction:v.constructionCashUsd,
+    maintenance:v.maintenanceCashUsd,replacement:v.replacementCashUsd,decommissioning:v.decommissioningCashUsd,interest:v.interestCashUsd};
+   eq(a.filter(e=>e.kind==="payable").reduce((s,e)=>s+e.usd,0),
+    Object.entries(costs).filter(([k])=>!paid.includes(k as CashComponent)).reduce((s,[,v])=>s+v,0));
+  }
   for(const [kind,total] of [["revenue",model.rows[i].revenue],["tax",y.taxAccrual],["nonCommon",y.nonCommonAccrual]] as const)
    eq(a.filter(e=>e.kind===kind).reduce((s,e)=>s+e.usd,0),total);
   const b={receivables:y.openingReceivables,payables:p.opening,tax:y.openingUnpaidTax,debt:y.openingDebt,
@@ -70,7 +105,7 @@ export function reconcileDatedAccruals(model:ReturnType<typeof calculateOperatin
     else if(e.component==="otherWorkingCapital")b.otherWC-=e.usd;
     else if(e.component==="commonContribution")b.contributions+=e.usd;
     else if(e.component==="commonDistribution")b.distributions+=e.usd;
-    else b.payables+=e.usd;
+    else if(!accrual.operatingSettlements?.alreadyCashPaidComponents.includes(e.component))b.payables+=e.usd;
    }
    if(Object.values(b).some(v=>v < -1e-9))throw Error("Dated settlement precedes accrued liability/receivable or funding");
    days.push({on,...b});
@@ -80,6 +115,10 @@ export function reconcileDatedAccruals(model:ReturnType<typeof calculateOperatin
    contributions:y.commonContribution,distributions:y.commonDistribution}))eq(b[key as keyof typeof b],total);
  }
  return {...cash,accrualVersion:accrual.version,accrualDays:days,
+  reconciledCashRows:reconcileCohortCash(cashModel,ledger,evidenceIds),
+  operatingSettlementBridge:model.rows.map((r,i)=>({year:r.year,accruedVariableCost:r.variableCost,
+   accruedEnergyCost:r.energyCost,paidVariableCost:cashModel.rows[i].variableCost,paidEnergyCost:cashModel.rows[i].energyCost,
+   cashAdjustment:cashModel.rows[i].fcfe-r.fcfe})),
   accrualQualification:"Explicit dated postings; same-day net settlement, no intraday ordering, prepayment accounts, or complete asset/equity accounting"};
 }
 /** Derives amounts, never dates. Timing schedules require their own evidence.

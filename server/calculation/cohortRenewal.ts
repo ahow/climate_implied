@@ -84,11 +84,11 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
  equal(debt,x.closingDebtUsd);equal(wc,x.closingWorkingCapitalUsd);
  // All cash is explicit annual end-period cash. No additional WC release,
  // liquidation, terminal sale or debt deduction is added a second time.
- const cash=x.cashLedger?reconcileCohortCash(model,x.cashLedger,x.evidenceIds):null;
  if(x.datedAccounting&&(!x.cashLedger||x.transition))
   throw Error("Dated accounting requires a cash ledger; dated transition/periodic boundary not yet certified");
  const datedAccounting=x.datedAccounting?reconcileDatedAccruals(model,x.cashLedger!,x.datedAccounting.declaration,
   x.datedAccounting.timing,x.datedAccounting.accrual,x.evidenceIds):null;
+ const cash=datedAccounting?datedAccounting.reconciledCashRows:x.cashLedger?reconcileCohortCash(model,x.cashLedger,x.evidenceIds):null;
  if(x.cashLedger){
   equal(x.cashLedger.years[0].openingDebt,x.openingDebtUsd);
   equal(x.cashLedger.years[0].openingReceivables+x.cashLedger.years[0].openingOtherWorkingCapital,x.openingWorkingCapitalUsd);

@@ -1,3 +1,96 @@
+# Latest accrued-versus-paid operating integration
+
+{
+  "current_release": {
+    "runtime": "fadd24d8d283579aa25fb98dcb93be63b65cbd94",
+    "ci": 43330611914,
+    "conclusion": "success",
+    "observation": "Supervisor independently verified2026-11-12T23:57:08Z; not rerun by agent",
+    "health": 200,
+    "rows": 1054,
+    "literalCells": 2108,
+    "identity": "6e8c9023920b0bd59b513c850b35f50688bd09b1dd081bf50d8382e031fa45bc",
+    "scope": "Observed2023 accounting, not new accrual-v2/future renewal execution"
+  },
+  "increment": {
+    "at": "2026-11-13T00:10:57.869112+00:00",
+    "scope": "S13-004 partial: version2 explicit accrued operating costs versus cash settlements",
+    "files": {
+      "server/calculation/cohortCashLedger.ts": "0642b6c194f536145de92fac6368fb234b307f8febe7fd491dece80c4c5be899",
+      "server/calculation/cohortRenewal.ts": "339b098cc3941f4bb6a8d19eef1dc5df6c49f3b0ca2020f16b67396494ca038a",
+      "script/cohortRenewal.test.ts": "d5ff7e613d27e09bef798a7c7a9990a7a0f3f3864c9373a6a1466bc1339e8970"
+    },
+    "functions": [
+      "reconcileDatedAccruals",
+      "evaluatePeriodicRenewal"
+    ],
+    "formula": "cashAdjustment=accruedVariableCost+accruedEnergyCost-paidVariableCost-paidEnergyCost; APclosing=APopening+accruals-settlements. Already-cash-paid costs bypass AP; otherWC must explicitly exclude AR/AP/tax.",
+    "oracle": "Each year revenue100, operating accrual20, operating payment10, cash-paid replacement10, distribution80; APclosing10 then20. Periodic value null. Engineering only.",
+    "focused": {
+      "pass": 11,
+      "fail": 0,
+      "skip": 0,
+      "command": "npx tsx --test script/cohortRenewal.test.ts",
+      "log": "generated-artifacts/dated-cash/ap-v2-integrated.log"
+    },
+    "typecheck": {
+      "command": "npm run check",
+      "log": "generated-artifacts/dated-cash/ap-v2-integrated-types.log",
+      "result": "passed"
+    },
+    "full_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-13T00:03:21.959865+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 404.154,
+      "counts": {
+        "tests": 1355,
+        "pass": 1354,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/ap-v2-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "cbe13be734833c560d0b993a4246839e722302228280c55a900a6cac46462113",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1355,
+          "pass": 1354,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "source_attempt": {
+      "url": "https://mnre.gov.in/static/uploads/2026/10/dddd221c6d2f2bb411584c5624c71c4e.pdf",
+      "examined": "Previously unexamined extracted characters100000\u2013150000; still truncated. No FS India/First Solar/PLI-disbursement match in this portion.",
+      "log": "generated-artifacts/dated-cash/mnre-next-extract.md",
+      "qualified_inputs": 0,
+      "boundary": "No whole-document or global-unavailability conclusion; no amount/date/FX/classification inferred."
+    },
+    "science": "No issuer qualification, historical efficacy, periodic certification or market inference. Prior negative studies untouched.",
+    "remaining": [
+      "Daily physical engine exists; matched partial-calendar/degrading periodic continuation remains unsupported",
+      "Admitted API/UI/XLSX consumers and genuine operator access remain incomplete",
+      "Accrual v2 is not full asset/equity accounting, terminal liability settlement or certified inverse"
+    ]
+  }
+}
+
 # Latest finite dated-accounting integration
 
 {
@@ -17,7 +110,7 @@
     "scope": "Agent observed safe accounting readback; no future accounting/issuer execution claim"
   },
   "increment": {
-    "at": "2026-11-12T23:38:18.366115+00:00",
+    "at": "2026-11-12T23:54:17.691010+00:00",
     "status": "Application finite dated accounting validated/deployed at1f809c58; subsequent PostgreSQL harness extension locally executed; full S13-004 remains partial",
     "files": {
       "server/calculation/cohortCashLedger.ts": "b52c08ac06a4482b75a3a76fbfc5256ea8fff35c905a26f88b03cb8cce4366d4",
@@ -179,7 +272,7 @@
       "log": "generated-artifacts/dated-cash/accrual-postledger.log"
     },
     "new_source_attempt": {
-      "at": "2026-11-12T23:38:18.366115+00:00",
+      "at": "2026-11-12T23:54:17.691010+00:00",
       "XPLR": "Targeted legal-party/payment query returned previously examined releases; not reread or counted as new economic evidence.",
       "FSLR": "Targeted Indian government PLI-disbursement query; retrieved first two extracted chunks of https://mnre.gov.in/static/uploads/2026/10/dddd221c6d2f2bb411584c5624c71c4e.pdf. No issuer-specific grant amount/day/classification qualified in examined chunks; remainder not examined, no global unavailability claim.",
       "files": [
@@ -194,7 +287,27 @@
       "generated-artifacts/dated-cash/pg-committed.receipt.json": "a3eb29caef5a6dbe2e8d079fa3a6c664c5f7014878da86ea3a70edd6fb2e595e",
       "generated-artifacts/dated-cash/accrual-postledger.log": "3c4ca9765f99d9e089470b49ae6791176b81ee42f17f9fc8c80970d4f2dbb53e"
     },
-    "transport_correction": "Earlier real-PG runs used text company IDs/minimal review columns. Final run aligned company integer identity/name/unique ISIN and review constraints with shared/schema.ts. Earlier receipts retained; no full-schema or genuine-principal claim."
+    "transport_correction": "Earlier real-PG runs used text company IDs/minimal review columns. Final run aligned company integer identity/name/unique ISIN and review constraints with shared/schema.ts. Earlier receipts retained; no full-schema or genuine-principal claim.",
+    "physical_continuation_boundary": "Reuse existing operatingCohorts daily partial-calendar/degradation and storage charging/loss calculation. Remaining work is its coupling to a certified funded periodic continuation and dated cash boundary; cohortRenewal still refuses partial-calendar/degrading periodicity.",
+    "read_only_release_diagnostic": {
+      "initial": "GET refs/heads/validated returned404; subsequent read failed because no output file existed.",
+      "correction": "Read actual validation.yml; GET refs/heads/production-validated succeeded.",
+      "validated_source": "fadd24d8d283579aa25fb98dcb93be63b65cbd94",
+      "boundary": "No branch mutation/restart; Railway deployment cause/status not available under current authorization. CI/validated branch do not prove new runtime."
+    },
+    "transport_publication": {
+      "source": "fadd24d8d283579aa25fb98dcb93be63b65cbd94",
+      "ci": 43330611914,
+      "observed_status": "completed",
+      "conclusion": "success",
+      "observed_at": "2026-11-12T23:45:38.116209+00:00",
+      "scope": "PostgreSQL harness and receipt publication; do not restart or supersede existing promotion",
+      "last_observed_runtime": {
+        "sourceCommit": "1f809c58607480021ea902797e04cc534bcafa0e",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      }
+    }
   }
 }
 
@@ -9655,6 +9768,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261112-component-cash-2497214",
   "event": "continuation_ready",
   "attempted_at": "2026-11-12T23:01:11.407368+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261112-accrual-pg-fadd24d",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-12T23:55:01.998097+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202
