@@ -6,7 +6,7 @@ import {materialLeaves} from "../server/calculation/companyProjectionAsOf";
 import {packCompanySource} from "../server/calculation/companySourceArchive";
 import {finiteCompanyDocument,finiteCompanyWorkbook} from "../server/finiteCompanyDocument";
 import {spawnSync} from "node:child_process";
-import {readFileSync,statSync,mkdtempSync} from "node:fs";
+import {readFileSync,statSync,mkdtempSync,writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {resolve,join} from "node:path";
 import {randomUUID} from "node:crypto";
@@ -49,7 +49,14 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  assert.throws(()=>finiteCompanyDocument(wrongReview),/review identity mismatch/);
  const wrongCode=structuredClone(first);wrongCode.result.producerManifest.codeId="f".repeat(64);
  assert.throws(()=>finiteCompanyDocument(wrongCode),/proposal\/source identity mismatch/);
- assert.equal(first.result.members[0].finiteAccounting.version,"finite-cohort-accrual-2-daily-bound");
+ assert.equal(first.result.members[0].finiteAccounting.version,input.scenarios[0].finiteAccounting.terminal?
+  "finite-cohort-accrual-3-terminal":"finite-cohort-accrual-2-daily-bound");
+ if(input.scenarios[0].finiteAccounting.terminal){
+  const f=first.result.members[0].finiteAccounting;
+  assert.equal(f.terminal.commonNetCash,-input.scenarios[0].finiteAccounting.terminal.opening.payables);
+  assert.equal(f.combinedFiniteProjectPresentValueUsd,f.finiteCommonCashPvUsd+f.terminal.presentCommonCashUsd);
+  assert.equal(f.periodicValueUsd,null);
+ }
  assert.equal(first.result.members[0].finiteAccounting.periodicValueUsd,null);
  assert.equal(doc.producer.finiteExecution.orderedMembers[0].recognitionLaw,"earned-service-prefix-1");
  const bytes=finiteCompanyWorkbook(doc);
@@ -77,6 +84,7 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  const second=structuredClone(input);second.scenarios[0].finiteAccounting.declaration.discountRate=.12;
  const b=await capture(second);
  const selected=await Promise.all([read(a.decision),read(b.decision),read(a.decision)]);
+ writeFileSync(`${base}-b.json`,JSON.stringify(finiteCompanyDocument(selected[1])),{flag:"wx",mode:0o600});
  assert.deepEqual(selected[0],selected[2]);assert.notEqual(contentHash(selected[0]),contentHash(selected[1]));
  const reconnect=new Pool(pool.options);
  try{assert.deepEqual(await read(a.decision,reconnect),first);}finally{await reconnect.end();}
@@ -92,7 +100,7 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  assert.equal(Number((await pool.query("SELECT count(*) FROM cv_analysis_snapshots")).rows[0].count),before);
  assert.deepEqual(await read(a.decision),first);
  return {passed:true,scope:"New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
-  documentId:doc.id,workbookBytes:bytes.length,cliRows:literal.length,cliLiteralCells:literal.length*2,privateFileMode:"0600",
+  documentId:doc.id,fixtureFiles:{a:`${base}.json`,b:`${base}-b.json`,xlsx:`${base}.xlsx`},workbookBytes:bytes.length,cliRows:literal.length,cliLiteralCells:literal.length*2,privateFileMode:"0600",
   checks:["concurrent idempotent staging","daily-bound retained producer","fresh-process operator CLI JSON/XLSX equality","owner-only files and overwrite refusal",
    "stored retrieval without source checkout","recalculation missing-source refusal","invalid or ambiguous cutoff refusal",
    "ordered physical/code/material/rule identities","literal XLSX writer/readback","A/B/A selection isolation",

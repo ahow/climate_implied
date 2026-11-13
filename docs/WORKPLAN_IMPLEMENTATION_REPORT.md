@@ -1,3 +1,207 @@
+# Latest dated terminal settlement and private local viewer
+
+{
+  "current_release": {
+    "runtime": "ef034ab55a92f4e5b2099a61fe7bc52c2b56e7b0",
+    "ci": 43348563023,
+    "conclusion": "success",
+    "readback": {
+      "passed": true,
+      "at": "2026-11-13T02:07:29.139Z",
+      "source": "ef034ab55a92f4e5b2099a61fe7bc52c2b56e7b0",
+      "health": 200,
+      "identity": "5047ae1945479c50884f47fbbf1b1e1ef5612130373ca0e18f1cbdc85ddc2ab9",
+      "rows": 1054,
+      "cells": 2108,
+      "privateReaderRefusals": 4,
+      "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"
+    },
+    "scope": "Observed2023 and403 only, not future execution"
+  },
+  "increment": {
+    "kind": "terminal-settlement-and-local-viewer",
+    "at": "2026-11-13T02:35:07.775922+00:00",
+    "files": {
+      "server/calculation/terminalSettlement.ts": "772be5d56ad9000cd94627ffefa4df1239ffe7b7274f5e68996afb34c1a4c442",
+      "server/calculation/companyCohortProjection.ts": "75529a653380c9242fe20abd6c6e6bd2176a8aac0220c9401e29d4ceb4e00fd5",
+      "server/snapshots/companyOperatingReview.ts": "1ad87415a428d7abe6e566cecc3eb2fb52dfcc6e19101df70b8b75e6ebadd777",
+      "script/terminal-settlement.test.ts": "b8da7e5797da9134a5486417aff07eb7983bbf4e908768e1888c43a35967a130",
+      "script/futureCohortPostgres.ts": "4acfae6352a8dd162851a8b49724c5d43548a344e2d64f737e2c559d95ad57be",
+      "script/finiteCohortTransport.ts": "5324f8116a287ef67b08fa22c2c5f67e46fb145aa08f4ec500eba6363227c3b0",
+      "client/src/lib/private-finite-reader.ts": "122e9f5a0b2bccbcd8348e3fd8e143c340aed060337a90dc40ead0d92e724593",
+      "client/src/pages/private-finite-viewer.tsx": "69ff47bc4aab63f96881d4b97c78ea97981fb9ac706c10902e29c0fececc655d",
+      "client/src/pages/private-finite-viewer.test.ts": "f8e680c1934a8ba61303a40d76aac01493085ef5ed52b472f4d6b236284e349f",
+      "client/src/App.tsx": "b30e3d204d06ab1a46cb4434d1c80099d72990b6593901592c8acf8a0bccff16",
+      "client/src/components/app-sidebar.tsx": "d48c40942b374df56fbf4f94a5c28deb2529ca143fd5d8f99aba6b166380bfe6",
+      "docs/field_semantics_census.json": "598a75eb9d655715574fe918c504ec4eedcd914a76a98523ec840443e0337ec6",
+      "script/component-state-contracts.ts": "24ecf735eacb0964e4ed16f17d17d4a99221e03abb78173be5bd646bac975588",
+      "script/component-state-census.test.ts": "34bdac9ea1794939e868e654e2afc032a0ffa8180664be328264e877fd73402d"
+    },
+    "functions": [
+      "settleTerminal",
+      "projectCompanyCohorts finite-cohort-accrual-3-terminal",
+      "finiteProducerBinding terminal module",
+      "browser-local private finite reader"
+    ],
+    "formula": "Dated common PV = distributions minus contributions discounted ACT/365.25. Opening cash + collected AR + otherWC - opening liabilities - subsequent accrued costs = common net cash. Default is noncash; debt financing cancels principal once.",
+    "implementation": "Closing daily balances bind to terminal opening, exact physical parent/claim, dated default/recovery/AP/tax/debt/noncommon/otherWC settlement, subsequent classified accrual, funding and common-after-liabilities priority. Original finite/liquidation branches retained; simultaneous legacy liquidation refuses. Combined finite project PV includes terminal once.",
+    "limitations": [
+      "Financial balances only, not disposition/valuation of surviving physical assets",
+      "No intraday ordering or complete legal creditor-priority determination",
+      "Funded sustainable replacement/periodic continuation and compatible full-domain inversion remain partial",
+      "No actual issuer qualification or genuine HTTP principal; private routes403 unchanged"
+    ],
+    "full_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-13T02:27:54.447191+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 372.773,
+      "counts": {
+        "tests": 1361,
+        "pass": 1360,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/terminal-viewer-final-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "a6fd40ff8517cc1a4667fd5aa8276d8b0d5c163ae45734c12ad2cd3ae2240ff1",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1361,
+          "pass": 1360,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "focused": {
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "skip": 0,
+      "command": "npx tsx --test script/terminal-settlement.test.ts client/src/pages/private-finite-viewer.test.ts"
+    },
+    "postgres": {
+      "at": "2026-11-13T02:17:50.204Z",
+      "scope": "New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
+      "passed": true,
+      "documentId": "8422f16f12b2eeb78df57355456326fcf1cbefd3302199e9ca497382479f0897",
+      "fixtureFiles": {
+        "a": "generated-artifacts/private-exports/synthetic-finite-61012209-ca62-4d58-83ea-89e1374b4a4e.json",
+        "b": "generated-artifacts/private-exports/synthetic-finite-61012209-ca62-4d58-83ea-89e1374b4a4e-b.json",
+        "xlsx": "generated-artifacts/private-exports/synthetic-finite-61012209-ca62-4d58-83ea-89e1374b4a4e.xlsx"
+      },
+      "workbookBytes": 179062,
+      "cliRows": 964,
+      "cliLiteralCells": 1928,
+      "privateFileMode": "0600",
+      "checks": [
+        "concurrent idempotent staging",
+        "daily-bound retained producer",
+        "fresh-process operator CLI JSON/XLSX equality",
+        "owner-only files and overwrite refusal",
+        "stored retrieval without source checkout",
+        "recalculation missing-source refusal",
+        "invalid or ambiguous cutoff refusal",
+        "ordered physical/code/material/rule identities",
+        "literal XLSX writer/readback",
+        "A/B/A selection isolation",
+        "committed reconnect equality",
+        "swapped physical parent refusal",
+        "tamper rollback atomicity",
+        "altered stored result refusal",
+        "altered display result refusal",
+        "borrowed review refusal",
+        "borrowed code refusal"
+      ],
+      "headers": 10
+    },
+    "postgres_command": "npx tsx script/futureCohortPostgres.ts --local-disposable --finite-branch --terminal-branch",
+    "browser": {
+      "assignmentId": "eaaaf3cd-7e15-4708-a5d3-5f892b51490b",
+      "jobId": "terminal-local-viewer:2439",
+      "kind": "testing",
+      "name": "terminal-local-viewer",
+      "screenshots": [
+        {
+          "description": "Viewer after Reset, showing the explicit empty state and local file controls.",
+          "id": "24522a"
+        },
+        {
+          "description": "Tampered synthetic copy rejected with the verification error; no prior evidence is displayed.",
+          "id": "87v2uo"
+        },
+        {
+          "description": "390px mobile evidence table with the long producer code hash visibly wrapped inside its value cell.",
+          "id": "zxum2o"
+        }
+      ],
+      "status": "completed",
+      "text": "PASS \u2014 completed the owner-export journey on DEV `/private-finite-viewer` using only the two specified synthetic JSON fixtures and the specified baseline XLSX. No login/role fabrication, database mutation, API write, upload, or persistence action was used.\n\n- Initial/reset state: empty; the boundary copy explicitly says HTTP-operator authentication is unsupported, public retained routes remain denied (403), integrity is not authentication/acceptance, and `scientificAcceptance` / `publicDisclosureAuthorized` are false.\n- A: declared and recalculated identity matched `8422f16f12b2eeb78df57355456326fcf1cbefd3302199e9ca497382479f0897`; `stored`; execution `false`. All 964 rendered pointer/jsonValue pairs matched the actual shared `economicBridgeCells(A)` output in order (0 mismatches). Inputs, calculated values, outputs, equations, units, dates, nulls, and negative terminal common-cash values were present.\n- Baseline XLSX: 964 data rows; all pointer/literal values matched `economicBridgeCells(A)` (0 mismatches).\n- B then A: B identity matched `75a15d4f4a79999bf557c9455aec89980b642d65c168e86c3b2c21aa11b9d2a3`; its 964 rendered pairs matched exactly. None of A\u2019s 21 changed values remained in B. Reloading A restored its identity and exact 964-row match.\n- Tamper/reset: a synthetic in-memory copy with a changed value and unchanged ID produced the integrity error and cleared prior evidence; Reset returned to empty.\n- Browser-local checks: after selection, observed zero outgoing requests and zero local/session-storage mutation calls. At 390px, document/body width was 375px and table width/scrollWidth 326px; the long hash literal wrapped inside its cell without horizontal page overflow.\n\nA final optional recapture was interrupted by a DEV Vite connection restart after the planned checks; the page returned to empty. This did not affect the completed comparisons or tamper/reset verification.",
+      "verdict": "success"
+    },
+    "adverse": [
+      "First terminal PG run failed old exact v2 assertion; retained failure, version3 required only for terminal branch. Original v2 check preserved for nonterminal.",
+      "Intermediate full gate1361 tests:1356pass/4fail/1optionalPGskip due missing two new component policies. First census correction2pass/2fail exposed stale totals96vs98 and preserved original60 cohort. Added exact new component names/policies; final focused census4pass, original60 unchanged.",
+      "Browser mandatory comparisons passed; final optional recapture interrupted by Vite restart, not counted as completed recapture.",
+      "Initial fourth-amendment search returned irrelevant results; direct primary SEC index resolved actual exhibit."
+    ],
+    "log_hashes": {
+      "generated-artifacts/dated-cash/terminal-final-focused.log": "b1af901ed89e5a47528dc29e5307355ea3f284e04e4d3fc99a9d4e9a1178b7bb",
+      "generated-artifacts/dated-cash/terminal-final-types.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "generated-artifacts/dated-cash/terminal-pg.log": "341293ff3e7c43116f6886f0704e3ea5f07ce178fba315d6ee6acc9441717f91",
+      "generated-artifacts/dated-cash/terminal-final-pg.log": "d86583517cd4d96767de8692b3cba3780fdb7ac3208b42088091ee9d0159f648",
+      "generated-artifacts/dated-cash/terminal-viewer-full.log": "0da10e3415c78b029f939f601562bcd580228b4cb8e7fbebf65ee9c9fbfa86c0",
+      "generated-artifacts/dated-cash/terminal-viewer-final-full.log": "a6fd40ff8517cc1a4667fd5aa8276d8b0d5c163ae45734c12ad2cd3ae2240ff1",
+      "generated-artifacts/dated-cash/terminal-census-correction.log": "41c8a6e41353e4f8cf6b4f026cda325da466759b715ad906c095b1be2581c038",
+      "generated-artifacts/dated-cash/terminal-census-final.log": "7df45c6f0bd7b7f37730603703e73ebaccedbf4a851f7ee1e72f697015a8c9d0",
+      "generated-artifacts/dated-cash/terminal-viewer-browser.json": "7f46ddcfb29264e630e808121740a6aa96339904f2c91387836a58f3b3b57747",
+      "generated-artifacts/dated-cash/terminal-fourth-amendment.json": "471f70a188350005d7b036fbe9acd554d62248fc3701a1abc412580c837d589f",
+      "generated-artifacts/dated-cash/terminal-q3-index.json": "e1505beae57a590448c501dd6dfb864faeafdbcfb395fcefdc3804411645fa42",
+      "generated-artifacts/dated-cash/terminal-new-source-search.json": "918ef6d1baafa6d7201d3e3b40a3d145b8ff9793fdaaff503f25e6fa7763a728"
+    },
+    "source": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000039/xplr-q32026xex102d.htm",
+      "filing": "2026-11-03",
+      "effective": "2026-08-28",
+      "locator": "Fourth amendment section1 and replacement ExhibitB",
+      "facts": {
+        "project": "Palo Duro BESS",
+        "outsideContributionDate": "2026-09-30",
+        "governmentalApprovalDeadline": "2027-02-28",
+        "expectedCOD": "2027-11-15",
+        "capacityMWac": 150,
+        "interconnectionAssetValueAsPrinted": "$13,578,528"
+      },
+      "decision": "Contractual future schedule, NOT payment/approved permit/operating capacity/October40m recipient or NEE common cash. No earlier public-vintage use. Printed fee reservations remain unresolved."
+    },
+    "postledger": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "skip": 0,
+      "command": "npx tsx --test script/reconciliation-stages-00-03.test.ts script/reconciliation-stages-14-17.test.ts",
+      "log": "generated-artifacts/dated-cash/terminal-postledger.log",
+      "sha256": "7202d739960f20bd2e777e40bb2890271e1a3f64488c4999005f05c53ab3896c"
+    }
+  }
+}
+
+<!-- terminal-settlement-history -->
 # Latest retained finite reader and source qualification
 
 {
@@ -20,7 +224,7 @@
   },
   "increment": {
     "kind": "retained-finite-reader",
-    "at": "2026-11-13T01:56:20.514655+00:00",
+    "at": "2026-11-13T01:59:57.797594+00:00",
     "files": {
       "server/snapshots/companyOperatingReview.ts": "5d3b71b0b0629572717d3ed361c2d1a644904d665f1a0849b9795b28fc605521",
       "server/finiteCompanyDocument.ts": "e62c38ef713655e1dfb1b4fd4b34dbcb1a75361bf8a6ee9b3e33e423568cec2d",
@@ -181,6 +385,19 @@
       "unit": "$ as printed; no inferred FX conversion or independently established currency code",
       "decision": "Current primary contractual scope only. Printed managing-member fees remain qualified by under-review mechanics/amount/payor footnote. No actual receipt, October40m linkage, final member election/LLCA, budget or NEE common FCFE established. No backdating to2025origin.",
       "next": "Follow exact elected project/member notices, final LLCA/fee resolution and dated settlement/cost/common-claim evidence, not old presentation/payables or assumed dollar distributions."
+    },
+    "publication": {
+      "workspace_code": "a4f5114e045109d8d7779bb890e3183492ea1899",
+      "public_source": "ef034ab55a92f4e5b2099a61fe7bc52c2b56e7b0",
+      "ci": {
+        "id": 43348563023,
+        "head_sha": "ef034ab55a92f4e5b2099a61fe7bc52c2b56e7b0",
+        "status": "in_progress",
+        "conclusion": null,
+        "updated_at": "2026-11-13T01:56:40Z"
+      },
+      "runtime": "bcf87575167c94bfd6de93bbfea4b3439b1754df",
+      "scope": "New stored-mode code published for existing validation; not yet observed deployed. This terminal documentation is local only."
     }
   }
 }
@@ -10322,6 +10539,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261113-physical-accrual-f29deee",
   "event": "continuation_ready",
   "attempted_at": "2026-11-13T00:58:47.959333+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261113-retained-reader-a4f5114",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-13T02:00:35.541532+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202

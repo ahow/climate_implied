@@ -48,6 +48,16 @@ try{
   const finish=fixtureSource.indexOf("  const r=projectCompanyCohorts(x),m=",start);
   assert.ok(start>0&&finish>start);
   const input=Function("storage",`${fixture};${fixtureSource.slice(start,finish).replaceAll(" as const","")};s.finiteAccounting.recognitionLaw="earned-service-prefix-1";return x;`)(true);
+  if(process.argv.includes("--terminal-branch")){
+   const {projectCompanyCohorts}=await import("../server/calculation/companyCohortProjection");
+   const m=projectCompanyCohorts(input).members[0],last=m.finiteAccounting.accrualDays.at(-1);
+   const opening=Object.fromEntries(["cash","receivables","payables","tax","otherWC","debt","nonCommon"].map(k=>[k,last[k]]));
+   input.scenarios[0].finiteAccounting.terminal={version:"terminal-settlement-1",currency:"USD",
+    accrualScope:"complete-declared-post-cutoff-schedule",priority:"common-after-declared-liabilities",
+    claimantId:"fixture-project",physicalParentHash:m.parentResultHash,opening,
+    events:[{id:"late-funding",on:"2028-01-02",kind:"contribution",usd:opening.payables,evidenceIds:["fixture"]},
+     {id:"late-ap",on:"2028-01-02",kind:"payables",usd:opening.payables,evidenceIds:["fixture"]}]};
+  }
   const {readRetainedFiniteInTransaction:read}=await import("../server/snapshots/companyOperatingReview");
   const {finiteCohortTransport}=await import("./finiteCohortTransport");
   Object.assign(receipt,await finiteCohortTransport(pool,input,{stage,decide,read}));

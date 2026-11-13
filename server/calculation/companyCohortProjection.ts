@@ -1,4 +1,5 @@
 import {contentHash} from "./analysisManifest";
+import {settleTerminal,type TerminalSettlement,type TerminalBalances} from "./terminalSettlement";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {calculateCoveredPhysicalPaths,type PhysicalCell,type CoveredPathInput} from "./coveredPhysicalPaths";
 import {evaluatePeriodicRenewal,type RenewalDeclaration} from "./cohortRenewal";
@@ -9,7 +10,7 @@ export interface CompanyCohortInput {
  scenarios:{id:string;specification:CohortSpecification;
    renewal?:RenewalDeclaration;
    finiteAccounting?:{ledger:CohortCashLedger;declaration:Omit<DatedProjectCash,"events">;timing:CashTiming[];accrual:AccrualSchedule;
-    recognitionLaw?:"earned-service-prefix-1"};
+    recognitionLaw?:"earned-service-prefix-1";terminal?:TerminalSettlement};
    physical:(Omit<PhysicalCell,"activity"|"activityUnit"|"parentResultHash"|"parentActivityPointer"|"parentYearPointer"|"parentUnitPointer"> & {cohortId:string;activityChannel:"service"|"charge-energy"})[]}[];
 }
 /** Query a prefix of the SAME physical law. Capped retirement is an integration
@@ -92,6 +93,19 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
    const recognition=assessRecognition(s);
    Object.assign(finiteAccounting,{recognitionAssessment:recognition});
    if(recognition)finiteAccounting.version="finite-cohort-accrual-2-daily-bound";
+   if(f?.terminal){
+    if(s.specification.liquidation)throw Error("Choose one terminal cash inclusion; legacy liquidation cannot be added twice");
+    const last=finiteAccounting.accrualDays.at(-1);
+    if(!last)throw Error("Terminal settlement requires dated closing balances");
+    const closing={} as TerminalBalances;
+    for(const k of ["cash","receivables","payables","tax","otherWC","debt","nonCommon"] as const)closing[k]=last[k];
+    const terminal=settleTerminal(f.terminal,closing,id,f.ledger.claimantId,
+     `${Math.max(...input.years)+1}-01-01`,f.declaration.valuationOn,f.declaration.discountRate,s.specification.evidenceIds);
+    Object.assign(finiteAccounting,{terminal,combinedFiniteProjectPresentValueUsd:
+     finiteAccounting.finiteCommonCashPvUsd+terminal.presentCommonCashUsd,
+     combinedValueClaim:"Finite declared project common cash only; not whole equity"});
+    finiteAccounting.version="finite-cohort-accrual-3-terminal";
+   }
   }
   members.push({id:s.id,physical,parentResultHash:id,...(renewal?{renewal}:{}),...(finiteAccounting?{finiteAccounting}:{})});
   return {id:s.id,assumptions:{specification:s.specification,physical:s.physical,...(s.renewal?{renewal:s.renewal}:{}),

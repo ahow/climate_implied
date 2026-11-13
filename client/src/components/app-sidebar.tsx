@@ -50,6 +50,11 @@ const menuItems = [
     url: "/data-management",
     icon: Database,
   },
+  {
+    title: "Private finite viewer",
+    url: "/private-finite-viewer",
+    icon: BookOpen,
+  },
 ];
 
 export function AppSidebar() {

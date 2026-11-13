@@ -34,6 +34,14 @@ const controls = (scope: string): Policy => ({
   selection: "Changes presentation/control value; it is not a result.", zero: "Not a numeric result consumer.", scope,
 });
 export const filePolicies: Record<string, Policy> = {
+  "private-finite-viewer.tsx": props("No file => explicit empty local-owner view; missing schema fields refuse, not zero.",{
+    null:"Literal null/zero/false values are retained in every ordered pointer/value row.",
+    loading:"Parent clears previous evidence and shows pending while local File.text and WebCrypto verification run; evidence child only mounts after success.",
+    error:"Malformed JSON, unsupported contract, inconsistent execution flag or digest mismatch shows named error and clears previous rows.",
+    refusal:"File integrity is not source/reviewer authentication or scientific acceptance; HTTP operator access remains unsupported/403.",
+    selection:"Generation guard rejects stale A/B/A or reset/unmount completions; no persistence, uploads or network content sends.",
+    scope:"Browser-local rendering of owner-selected JSON; complete literal cells and explicit Input/Calculated/Output formulas, units and dates. No producer execution or approval."
+  }),
   "clean-covered-panel.tsx": query("One provisional observed source reconstruction; no accepted universe, forecast or market inference.",{
     absent:"Missing source response is explicitly unavailable, never zero.",
     partial:"Native CO2 accounting remains separate from null manufacturing/Stage7 results.",
@@ -392,6 +400,7 @@ export const economicBridgeComponentPolicies: Record<string, Policy> = {
 };
 
 export const focusedRenderComponents = new Set([
+  "PrivateFiniteViewer", "PrivateFiniteEvidence",
   "DecarbSignalView", "DecarbGapSignalView", "MethodologyView",
   "CleanCoveredPanel","CleanCoveredPanelContent","CleanCoveredReportView",
   "ProducerReservePanel", "ProducerReservePanelContent", "ProducerReserveReportView", "ReserveLiteral", "Disclosure", "Result",
@@ -508,7 +517,9 @@ export function contractFor(file: string, name: string) {
     ...(["DecarbSignal", "DecarbGapSignal"].includes(name) ? {
       null: "Cumulative benchmark/portfolio null stays unavailable, never −100%. Missing activeReturn/trackingError stays unavailable, not 0%. Nonpositive benchmark withholds ratio/annualization; missing overweight/underweight counts are unavailable. Finite multiplier 1 and TE 0 preserve +0.0% / 0.00%.",
     } : {}),
-    focusedEvidence: economicFile
+    focusedEvidence: basename==="private-finite-viewer.tsx"
+      ? "client/src/pages/private-finite-viewer.test.ts and retained terminal-viewer-browser.json: actual DEV browser A/B/A,964 literal rows and same XLSX, tamper/clear/reset,390px wrapping, no file network/storage writes. Synthetic source, no principal/science acceptance; optional final recapture interrupted."
+      : economicFile
       ? "script/economic-bridge-ui.test.ts imports both actual client SSR suites: current-read loading/refresh/error/absent/null/ready/partial source findings, real worker values, literal zero/null/false, empty arrays, source/domain/count/conversion/approval refusals, exact JSON/XLSX source/identity readback and all-consumer DOM nesting. Hook wrappers are separately mounted with an idle QueryClient cache; child declarations are rendered through actual report trees. No browser clicks, source approval, private bytes or all-field permutations claimed."
       : ["HeadlineDrilldownReview", "RetainedHeadlineDrilldown"].includes(name)
       ? "script/headline-drilldown-ui.test.ts: actual module SSR with scoped query harness covers unbound parent, loading/error/absent/ready/zero and exact download selection; script/headline-drilldown.test.ts verifies retained producer replay, hash/filter refusals and actual HTTP/JSON/XLSX. No interactive browser coverage claimed."

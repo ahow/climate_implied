@@ -58,6 +58,14 @@ x.pop("pending_release",None)
 x["next_action"]="Preserve retained-finite-producer-1 private binding/CLI writer and real disposablePG14checks,18focused/latest fullgate; old eight-fault witness was not rerun. Public diagnostic routes are NOT operator auth: separate finiteCompanyPrivacy403 guard protects both retained operations. Original prospective module restored, pins unchanged. Existing f29/CI43341135045/runtime/1054rows2108cells verified. Reconcile subsequent publication without restarting/superseding. Next: private rendered consumer/genuine HTTP principal boundary, dated terminal liability/common-claim waterfall, funded continuation and compatible inverse; no issuer/science acceptance. New SEC2026 interconnection agreement+3amendments qualify legal parties/funding terms, NOT October40m recipient/cash or printed fee revenue; use exact final LLCA/election/settlement evidence. Continue all original0–17 source/calibration/dated corpus work."
 if stored:x["next_action"]=x["next_action"].replace("PG14checks","PG17checks")+" Preserve stored-exact versus explicit-recalculation modes and outside-checkout CLI witness; this is NOT clean-install/DB-free/genuine-principal recovery."
 x["next_action"]=f"Latest observed runtime {live['source']}, CI{x['current_release']['ci']} success, {live['rows']} literal rows/{live['cells']} cells at {live['at']}; observed accounting only. Stored-mode changes are local until separately promoted and measured. "+x["next_action"]
+if "--terminal" in sys.argv:
+ ci=json.loads((base/"stored-ci.json").read_text())["workflow_runs"][0]
+ x["pending_release"]={k:ci[k] for k in ["id","head_sha","status","conclusion","updated_at"]}
+ x["publication_receipt"]={"workspace_code":"a4f5114e045109d8d7779bb890e3183492ea1899",
+  "public_source":ci["head_sha"],"ci":x["pending_release"],"runtime":live["source"],
+  "scope":"New stored-mode code published for existing validation; not yet observed deployed. This terminal documentation is local only."}
+ x["next_action"]=f"First reconcile existing CI{ci['id']} for {ci['head_sha']} ({ci['status']}/{ci['conclusion']}); no restart/cancel/supersede or receipt-only push. Then verify exact runtime and safe affected routes. "+x["next_action"]
+ e["publication"]=x["publication_receipt"]
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:
  for r in s["requirements"]:

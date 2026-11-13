@@ -15,6 +15,7 @@ import DecarbSignal from "@/pages/decarb-signal";
 import DecarbGapSignal from "@/pages/decarb-gap-signal";
 import NewsSentiment from "@/pages/news-sentiment";
 import DataManagement from "@/pages/data-management";
+import PrivateFiniteViewer from "@/pages/private-finite-viewer";
 import { ValuationNotice } from "@/components/valuation-notice";
 import { AnalysisSelectionControl } from "@/components/analysis-selection";
 
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/decarb-gap" component={DecarbGapSignal} />
       <Route path="/news-sentiment" component={NewsSentiment} />
       <Route path="/data-management" component={DataManagement} />
+      <Route path="/private-finite-viewer" component={PrivateFiniteViewer} />
       <Route component={NotFound} />
     </Switch>
   );

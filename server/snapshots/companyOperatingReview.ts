@@ -36,6 +36,7 @@ export function finiteProducerBinding(input:any,result:any,code:any){
  if(!input.scenarios?.some((s:any)=>s.finiteAccounting))return null;
  const paths=["server/calculation/operatingCohorts.ts","server/calculation/cohortCashLedger.ts",
   "server/calculation/companyCohortProjection.ts","server/snapshots/companyOperatingReview.ts"];
+ if(input.scenarios.some((s:any)=>s.finiteAccounting?.terminal))paths.push("server/calculation/terminalSettlement.ts");
  const moduleContentHashes=Object.fromEntries(paths.map(path=>{
   if(typeof code.files?.[path]!=="string"||!code.files[path].length)throw Error(`Missing finite executable module: ${path}`);
   return [path,contentHash(code.files[path])];
