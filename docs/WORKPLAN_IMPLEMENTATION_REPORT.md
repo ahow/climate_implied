@@ -2,33 +2,35 @@
 
 {
   "current_release": {
-    "runtime": "f29deeee6028bfbb11d380794d85ad70361c91dc",
-    "ci": 43341135045,
+    "runtime": "bcf87575167c94bfd6de93bbfea4b3439b1754df",
+    "ci": 43346352297,
     "conclusion": "success",
     "readback": {
-      "at": "2026-11-13T01:22:39.670Z",
-      "source": "f29deeee6028bfbb11d380794d85ad70361c91dc",
+      "passed": true,
+      "at": "2026-11-13T01:54:42.647Z",
+      "source": "bcf87575167c94bfd6de93bbfea4b3439b1754df",
       "health": 200,
-      "identity": "6823c8afaacfb8eb3e947cd61346347c3f0aeba74a6594be9fa234f21abcd9fc",
+      "identity": "7f4a4630c45b27cae204c9286c02914cb761909717ed6f1a07dc8aaae0956ce2",
       "rows": 1054,
       "cells": 2108,
-      "scope": "Observed2023 accounting only; not future branch/operator/science"
+      "privateReaderRefusals": 4,
+      "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"
     },
     "scope": "Observed2023 only; not retained future execution"
   },
   "increment": {
     "kind": "retained-finite-reader",
-    "at": "2026-11-13T01:37:38.101921+00:00",
+    "at": "2026-11-13T01:56:20.514655+00:00",
     "files": {
-      "server/snapshots/companyOperatingReview.ts": "77867986c8d1ea9dc5b32b1d7ffb9c2e0314621ba540a6e8278d69581c8c6cc2",
-      "server/finiteCompanyDocument.ts": "ab6a8cdcd05ddb86896707085d568404cc690077e42cea7fe007b65797bc0ca0",
+      "server/snapshots/companyOperatingReview.ts": "5d3b71b0b0629572717d3ed361c2d1a644904d665f1a0849b9795b28fc605521",
+      "server/finiteCompanyDocument.ts": "e62c38ef713655e1dfb1b4fd4b34dbcb1a75361bf8a6ee9b3e33e423568cec2d",
       "server/finiteCompanyPrivacy.ts": "e1a3e227b6c292f45b6c5568e3907943acbd9a2d4fc62bccf7c44975b3ce7887",
       "server/index.ts": "beedbfe4bacd3a0a3b05f61ee8fe7f97be845ba5e56431010dfe76b50393d697",
-      "script/company-operating-review.ts": "6b03e1576e3d1a2ddac93dcb89eae2eca72b8a80757d7351ad28a144e1b41eeb",
-      "script/finiteCohortTransport.ts": "22cdb609f204cbb40c5ce8c4f59c1ffaa7d8906f4867b4fcbdc2debe768f5167",
+      "script/company-operating-review.ts": "db8be172326cb5f3ac75ea6ae29edd5994e2ab30affc204d2c65a27a09657bd8",
+      "script/finiteCohortTransport.ts": "1a97012f130508772c6f303087f3959ef8c992b2aaac1d1a2f1ac84da298c3ea",
       "script/futureCohortPostgres.ts": "5c593efcb7a30df661367ea04543eac5cae25ea599675355b226653bd0841056",
       "script/finite-private-reader.test.ts": "04a8778fc6646164b4eedecfc184e72fe5a7f0c2dbd32492454e39c3174a4c77",
-      "docs/field_semantics_census.json": "adb34e7412b4cf7e9c2211eea58d7b8574bc96a50c041f6148aa9b6af2adf1d4"
+      "docs/field_semantics_census.json": "7d165e833fdf84b10d21b1384496cf99b29d4e5f8babac093b865d5b9fc1b7c8"
     },
     "functions": [
       "finiteProducerBinding",
@@ -37,7 +39,7 @@
       "finiteCompanyWorkbook",
       "finiteCompanyPrivacy"
     ],
-    "new_behavior": "Actual retained finite input/result/review/source/code/member/rule binding, private CLI JSON/XLSX, immutable/idempotent transport and tamper refusal. Public retained-reader operations now403, not authenticated by diagnostic allowlisting.",
+    "new_behavior": "Actual retained finite input/result/review/source/code/member/rule binding, private CLI JSON/XLSX, immutable/idempotent transport and tamper refusal. Public retained-reader operations now403, not authenticated by diagnostic allowlisting. Exact stored retrieval validates immutable dependencies without executing current model; explicit recalculation requires current matching source. Strict UTC/calendar cutoff validation.",
     "unchanged": "No new owner/scientific acceptance; original1000/1001,300clauses,65/233/2,0/3issuers,14FaIRpins and closed finite export criteria retained.",
     "full_gate": {
       "command": [
@@ -45,20 +47,20 @@
         "-c",
         "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
       ],
-      "executed_at": "2026-11-13T01:28:52.480560+00:00",
+      "executed_at": "2026-11-13T01:46:50.363061+00:00",
       "exit_code": 0,
-      "elapsed_seconds": 379.256,
+      "elapsed_seconds": 409.33,
       "counts": {
         "tests": 1357,
         "pass": 1356,
         "fail": 0,
         "skipped": 1
       },
-      "log": "generated-artifacts/dated-cash/retained-final-full.log",
+      "log": "generated-artifacts/dated-cash/stored-full.log",
       "workspace_revision": null,
       "worktree_dirty": null,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-      "log_sha256": "656493af6cfd69e613584a5eca6de2ca8111b5dff591d5092f979541607a10f5",
+      "log_sha256": "64cc268821f048a4fc67dbbce140a6a3efe0f498510824ddef9295e606bed570",
       "suite_counts": {
         "typescript": {
           "tests": 1357,
@@ -84,19 +86,22 @@
       "command": "npx tsx --test script/finite-private-reader.test.ts script/companyCohortProjection.test.ts script/status-choice-width-increment.test.ts"
     },
     "postgres": {
-      "at": "2026-11-13T01:32:31.094Z",
+      "at": "2026-11-13T01:46:19.766Z",
       "scope": "New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
       "passed": true,
-      "documentId": "c794c89e60429d413e489cf788f5793ec7a44e099b45db1aacb4c29a702d6461",
-      "workbookBytes": 160048,
-      "cliRows": 856,
-      "cliLiteralCells": 1712,
+      "documentId": "c677e036251a291ae276fd451d743a84767783ff8d315a208b0d417993a8c64c",
+      "workbookBytes": 160268,
+      "cliRows": 858,
+      "cliLiteralCells": 1716,
       "privateFileMode": "0600",
       "checks": [
         "concurrent idempotent staging",
         "daily-bound retained producer",
         "fresh-process operator CLI JSON/XLSX equality",
         "owner-only files and overwrite refusal",
+        "stored retrieval without source checkout",
+        "recalculation missing-source refusal",
+        "invalid or ambiguous cutoff refusal",
         "ordered physical/code/material/rule identities",
         "literal XLSX writer/readback",
         "A/B/A selection isolation",
@@ -113,7 +118,8 @@
     "postgres_command": "npx tsx script/futureCohortPostgres.ts --local-disposable --finite-branch",
     "adverse": [
       "Initial focused18:17pass/1fail pinned prospective module; restored original bytes, separate privacy module, no refreeze",
-      "Initial full1357:1354pass/2fail/1optionalPGskip; stale census. Added actual private Finite accounting sheet inventory only; no original closure"
+      "Initial full1357:1354pass/2fail/1optionalPGskip; stale census. Added actual private Finite accounting sheet inventory only; no original closure",
+      "Stored-reader PG harness initially invoked wrong injected function name; failed before cutoff assertion. Corrected to existing api.read; no assertion weakening."
     ],
     "inventory": "One additional private worksheet inventory; original1001 denominator and opaque historical slot unchanged",
     "scope": "Actual local PostgreSQL and fresh CLI processes, synthetic reviews only. Four public HTTP JSON/XLSX combinations refuse403. No genuine HTTP principal, actual issuer, rendered screen, compiled-binary attestation or scientific acceptance.",
@@ -126,13 +132,18 @@
       "generated-artifacts/dated-cash/xplr-new-agreements.json": "3e047e53daf555d858c58f014d711037ae45bc75226cebc114c03b0cf9929cbc",
       "generated-artifacts/dated-cash/xplr-agreement-tail.json": "52a46c7b2bc6708fd4991cad82a5fdafb350d49ebea90116ee81bbb251603893",
       "generated-artifacts/dated-cash/xplr-filing-indexes.json": "26a19cd25b31d8d4464d10535f1602fa3c19dbf6600a910071bb12ef40ba74f7",
-      "generated-artifacts/dated-cash/xplr-earlier-amendments.json": "99fe798215e4796f03d164d7cb36d2b8cc6d99d177fe66afd2dfdaac4927d918"
+      "generated-artifacts/dated-cash/xplr-earlier-amendments.json": "99fe798215e4796f03d164d7cb36d2b8cc6d99d177fe66afd2dfdaac4927d918",
+      "generated-artifacts/dated-cash/stored-full.log": "64cc268821f048a4fc67dbbce140a6a3efe0f498510824ddef9295e606bed570",
+      "generated-artifacts/dated-cash/stored-focused.log": "e3ff8249eb09c1c34b27e8fc467105af70b848c3a48416ddf820ff275dc532b3",
+      "generated-artifacts/dated-cash/stored-final-pg.log": "037e61c7be4ad8d2af42ec72dc9239b0ab44f524d5a0c716442ef2a531edb7ce",
+      "generated-artifacts/dated-cash/stored-corrected-pg.log": "8fa379f6aed42bf40b174e6d944dacfbde2f0765675c6e539655c0f555efa0a5"
     },
     "remaining": [
       "Private rendered viewer and genuine authenticated HTTP reader are not complete; CLI access is not HTTP authentication",
       "Dated terminal AR/AP/tax/otherWC/debt/noncommon settlement and sustainable funded renewal/inversion remain partial",
       "Actual eligible issuer/driver/historical corpus inputs remain incomplete"
     ],
+    "recovery_scope": "Fresh CLI process outside source checkout succeeded for exact stored JSON; recalculation refused missing source. Reader executable/dependencies and isolated DB remain required; not full clean-install/offline recovery.",
     "source_qualification": {
       "original": "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000007/xplr-q42025xex1019.htm",
       "amendments": [

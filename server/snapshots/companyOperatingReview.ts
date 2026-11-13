@@ -59,7 +59,7 @@ export function finiteProducerBinding(input:any,result:any,code:any){
   inputHash:contentHash(input),assumptionHash:contentHash(input.scenarios),resultHash:contentHash(result),
   approval:false,scientificAcceptance:false};
 }
-async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:string[]){
+async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:string[],mode:"stored"|"recalculate"="recalculate"){
  if(proposal.input?.version!=="company-cohort-input-1")return null;
  const p=proposal.producer;
  if(!p||p.modelVersion!=="company-cohort-projection-2"||p.inputVersion!==proposal.input.version||
@@ -67,14 +67,16 @@ async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:strin
    contentHash(p.sourceIds)!==contentHash(sourceIds))throw Error("Missing/conflicting retained producer manifest");
  const code=await load(tx,p.codeId,"company-cohort-code");
  const result=await load(tx,p.resultId,"company-cohort-result");
+ if(code.version!=="calculation-source-1"||typeof code.nodeVersion!=="string")
+  throw Error("Unsupported retained code schema");
   if(p.modelVersion!==result.version||p.assumptionHash!==result.assumptionHash||
     contentHash(p.modelVersions)!==contentHash(result.modelVersions))
     throw Error("Retained cohort model/assumption manifest mismatch");
- if(contentHash(code)!==readCalculationSourceArtifact().id)throw Error("Pinned cohort code unavailable in this executable; no current-code fallback");
+ if(mode==="recalculate"&&contentHash(code)!==readCalculationSourceArtifact().id)throw Error("Pinned cohort code unavailable in this executable; no current-code fallback");
  const finite=finiteProducerBinding(proposal.input,result,code);
  if(finite&&contentHash(finite)!==contentHash(p.finiteExecution))
   throw Error("Retained finite execution binding mismatch");
- if(contentHash(projectCompanyCohorts(proposal.input))!==contentHash(result))throw Error("Retained cohort result mismatch");
+ if(mode==="recalculate"&&contentHash(projectCompanyCohorts(proposal.input))!==contentHash(result))throw Error("Retained cohort result mismatch");
  if(result.covered.scenarios.some((s:any)=>s.status!=="conditional"))
    throw Error("Incomplete cohort scenario domain cannot be admitted");
  return result;
@@ -164,8 +166,9 @@ export async function decideCompanyOperatingInTransaction(tx:Connection,proposal
   const payload={version:"company-operating-decision-1",proposalId,decision,financialReviewId,financialIdentityArchive,financialReviewedAt,decidedAt,scientificAcceptance:false};
   return {id:await save(tx,"company-operating-decision",payload),...payload};
 }
-export async function projectReviewedCompanyInTransaction(tx:Connection,decisionId:string,cutoff:string){
+export async function projectReviewedCompanyInTransaction(tx:Connection,decisionId:string,cutoff:string,mode:"stored"|"recalculate"="recalculate"){
   await lock(tx);
+  if(!["stored","recalculate"].includes(mode))throw Error("Explicit supported retrieval mode required");
   if(!Number.isFinite(Date.parse(cutoff))) throw new Error("Invalid cutoff");
   const decision=await load(tx,decisionId,"company-operating-decision");
   if(decision.decision!=="approved"||Date.parse(decision.decidedAt)>Date.parse(cutoff)||
@@ -178,24 +181,30 @@ export async function projectReviewedCompanyInTransaction(tx:Connection,decision
     throw new Error("Conflicting archived financial identity");
   const sources=await resolveCompanySourceEvidence(proposal.input,proposal.evidence,cutoff,proposal.identity,id=>load(tx,id,"company-operating-source"));
   if(proposal.input?.version==="company-cohort-input-1"){
-    const result=await validateCohortProducer(tx,proposal,sources.archiveHashes);
+    const result=await validateCohortProducer(tx,proposal,sources.archiveHashes,mode);
     return {...result,operatingDecisionId:decisionId,financialReviewId:decision.financialReviewId,
-      sourceEvidence:sources,producerManifest:proposal.producer,informationCutoff:cutoff,scientificAcceptance:false};
+      sourceEvidence:sources,producerManifest:proposal.producer,informationCutoff:cutoff,
+      retrievalMode:mode,executionVerifiedNow:mode==="recalculate",scientificAcceptance:false};
   }
   return {...projectCompanyMembers(proposal.input),sourceEvidence:sources,operatingDecisionId:decisionId,
     financialReviewId:decision.financialReviewId,informationCutoff:cutoff,scientificAcceptance:false,
     historicalWarning:"Approval after the origin cannot be backdated; source resolution is not original-vintage or calibrated acceptance"};
 }
-export async function readRetainedFiniteInTransaction(tx:Connection,decisionId:string,cutoff:string){
- const result=await projectReviewedCompanyInTransaction(tx,decisionId,cutoff);
+export async function readRetainedFiniteInTransaction(tx:Connection,decisionId:string,cutoff:string,mode:"stored"|"recalculate"="stored"){
+ const instant=new Date(cutoff);
+ if(!/^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z)?$/.test(cutoff)||
+  !Number.isFinite(instant.getTime())||instant.toISOString().slice(0,10)!==cutoff.slice(0,10)||
+  (cutoff.length>10&&instant.toISOString().slice(0,19)!==cutoff.slice(0,19)))
+  throw Error("Explicit valid UTC calendar cutoff required");
+ const result=await projectReviewedCompanyInTransaction(tx,decisionId,cutoff,mode);
  if(!(result as any).producerManifest?.finiteExecution)throw Error("Retained finite execution unavailable");
  const decision=await load(tx,decisionId,"company-operating-decision");
  const proposal=await load(tx,decision.proposalId,"company-operating-proposal");
  const computedResult=await load(tx,proposal.producer.resultId,"company-cohort-result");
  return {input:proposal.input,result,computedResult,decision,proposal,proposalId:decision.proposalId};
 }
-export const readRetainedFinite=(decisionId:string,cutoff:string)=>
- db.transaction(tx=>readRetainedFiniteInTransaction(tx,decisionId,cutoff));
+export const readRetainedFinite=(decisionId:string,cutoff:string,mode:"stored"|"recalculate"="stored")=>
+ db.transaction(tx=>readRetainedFiniteInTransaction(tx,decisionId,cutoff,mode));
 export const stageCompanyOperating=(input:unknown,evidence:unknown,sources:unknown[],identity:{companyId:string;isin:string},cutoff:string)=>
   db.transaction(tx=>stageCompanyOperatingInTransaction(tx,input,evidence,sources,identity,cutoff));
 export const projectReviewedCompany=(id:string,cutoff:string)=>

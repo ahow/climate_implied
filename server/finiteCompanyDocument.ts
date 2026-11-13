@@ -19,7 +19,10 @@ export function finiteCompanyDocument(retained:{input:any;result:any;computedRes
   decision.financialReviewId!==result.financialReviewId||decision.decision!=="approved"||
   Date.parse(decision.decidedAt)>Date.parse(result.informationCutoff))
   throw Error("Finite document review identity mismatch");
+ if(!["stored","recalculate"].includes(result.retrievalMode)||result.executionVerifiedNow!==(result.retrievalMode==="recalculate"))
+  throw Error("Finite retrieval mode mismatch");
  const body={version:"private-finite-company-document-1",decisionId:result.operatingDecisionId,
+  retrievalMode:result.retrievalMode,executionVerifiedNow:result.executionVerifiedNow,
   financialReviewId:result.financialReviewId,cutoff:result.informationCutoff,
   producer:result.producerManifest,sourceIds:result.producerManifest.sourceIds,
   variables:{

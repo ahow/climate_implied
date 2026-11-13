@@ -2380,7 +2380,7 @@
     },
     {
       "source": "server/finiteCompanyDocument.ts",
-      "line": 42,
+      "line": 45,
       "builder": "XLSX.utils.book_append_sheet",
       "sheetExpression": "\"Finite accounting\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"

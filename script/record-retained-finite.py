@@ -1,9 +1,10 @@
 """Current, bounded evidence update; no scientific or owner promotion."""
-import json,hashlib,datetime,subprocess,importlib.util
+import json,hashlib,datetime,subprocess,importlib.util,sys
 from pathlib import Path
 p=Path("docs/workplan_completion_ledger.json");x=json.loads(p.read_text())
 base=Path("generated-artifacts/dated-cash")
-gate=json.loads((base/"retained-final-full.receipt.json").read_text())
+stored="--stored" in sys.argv
+gate=json.loads((base/("stored-full.receipt.json" if stored else "retained-final-full.receipt.json")).read_text())
 assert gate["exit_code"]==0
 files=["server/snapshots/companyOperatingReview.ts","server/finiteCompanyDocument.ts",
  "server/finiteCompanyPrivacy.ts","server/index.ts","script/company-operating-review.ts",
@@ -12,6 +13,7 @@ files=["server/snapshots/companyOperatingReview.ts","server/finiteCompanyDocumen
 logs=["retained-final-full.log","retained-final-focused.log","retained-cli-pg.log",
  "retained-finite-full.log","retained-finite-final-focused.log","xplr-new-agreements.json",
  "xplr-agreement-tail.json","xplr-filing-indexes.json","xplr-earlier-amendments.json"]
+if stored:logs+=["stored-full.log","stored-focused.log","stored-final-pg.log","stored-corrected-pg.log"]
 e={"kind":"retained-finite-reader","at":datetime.datetime.now(datetime.timezone.utc).isoformat(),
  "files":{f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in files},
  "functions":["finiteProducerBinding","readRetainedFiniteInTransaction","finiteCompanyDocument","finiteCompanyWorkbook","finiteCompanyPrivacy"],
@@ -29,6 +31,10 @@ e={"kind":"retained-finite-reader","at":datetime.datetime.now(datetime.timezone.
  "remaining":["Private rendered viewer and genuine authenticated HTTP reader are not complete; CLI access is not HTTP authentication",
  "Dated terminal AR/AP/tax/otherWC/debt/noncommon settlement and sustainable funded renewal/inversion remain partial",
  "Actual eligible issuer/driver/historical corpus inputs remain incomplete"]}
+if stored:
+ e["new_behavior"]+=" Exact stored retrieval validates immutable dependencies without executing current model; explicit recalculation requires current matching source. Strict UTC/calendar cutoff validation."
+ e["adverse"].append("Stored-reader PG harness initially invoked wrong injected function name; failed before cutoff assertion. Corrected to existing api.read; no assertion weakening.")
+ e["recovery_scope"]="Fresh CLI process outside source checkout succeeded for exact stored JSON; recalculation refused missing source. Reader executable/dependencies and isolated DB remain required; not full clean-install/offline recovery."
 source={"original":"https://www.sec.gov/Archives/edgar/data/1603145/000160314526000007/xplr-q42025xex1019.htm",
  "amendments":["https://www.sec.gov/Archives/edgar/data/1603145/000160314526000032/xplr-q22026xex102a.htm",
  "https://www.sec.gov/Archives/edgar/data/1603145/000160314526000032/xplr-q22026xex102b.htm",
@@ -44,12 +50,14 @@ source={"original":"https://www.sec.gov/Archives/edgar/data/1603145/000160314526
 e["source_qualification"]=source
 x["prior_increment"]=x.get("latest_increment");x["latest_increment"]=e
 x["latest_changed_paths"]=files;x["updated_at"]=e["at"]
-live=json.loads((base/"f29-live.json").read_text())
+live=json.loads((base/("bcf-live.json" if (base/"bcf-live.json").exists() else "f29-live.json")).read_text())
 x.setdefault("release_history",[]).append(x.get("current_release"))
-x["current_release"]={"runtime":live["source"],"ci":43341135045,"conclusion":"success","readback":live,
+x["current_release"]={"runtime":live["source"],"ci":43346352297 if live["source"].startswith("bcf875") else 43341135045,"conclusion":"success","readback":live,
  "scope":"Observed2023 only; not retained future execution"}
 x.pop("pending_release",None)
 x["next_action"]="Preserve retained-finite-producer-1 private binding/CLI writer and real disposablePG14checks,18focused/latest fullgate; old eight-fault witness was not rerun. Public diagnostic routes are NOT operator auth: separate finiteCompanyPrivacy403 guard protects both retained operations. Original prospective module restored, pins unchanged. Existing f29/CI43341135045/runtime/1054rows2108cells verified. Reconcile subsequent publication without restarting/superseding. Next: private rendered consumer/genuine HTTP principal boundary, dated terminal liability/common-claim waterfall, funded continuation and compatible inverse; no issuer/science acceptance. New SEC2026 interconnection agreement+3amendments qualify legal parties/funding terms, NOT October40m recipient/cash or printed fee revenue; use exact final LLCA/election/settlement evidence. Continue all original0–17 source/calibration/dated corpus work."
+if stored:x["next_action"]=x["next_action"].replace("PG14checks","PG17checks")+" Preserve stored-exact versus explicit-recalculation modes and outside-checkout CLI witness; this is NOT clean-install/DB-free/genuine-principal recovery."
+x["next_action"]=f"Latest observed runtime {live['source']}, CI{x['current_release']['ci']} success, {live['rows']} literal rows/{live['cells']} cells at {live['at']}; observed accounting only. Stored-mode changes are local until separately promoted and measured. "+x["next_action"]
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:
  for r in s["requirements"]:

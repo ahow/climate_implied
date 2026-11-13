@@ -7,14 +7,14 @@ import {db} from "../server/db";
 import {stageCompanyOperating,stageCompanySourcePacket,decideCompanyOperatingInTransaction,projectReviewedCompany} from "../server/snapshots/companyOperatingReview";
 const [action,arg,extra,output]=process.argv.slice(2);
 try{
-  if(action==="finite-json"||action==="finite-xlsx"){
+  if(["finite-json","finite-xlsx","finite-recalculate-json","finite-recalculate-xlsx"].includes(action)){
     if(!arg||!extra||!output)throw Error("Explicit decision, cutoff and private output required");
     const root=resolve("generated-artifacts/private-exports"),file=resolve(output);
     if(!file.startsWith(root+sep)||dirname(file)!==root)throw Error("Finite exports require a direct file under generated-artifacts/private-exports");
     mkdirSync(root,{recursive:true,mode:0o700});
     if(realpathSync(root)!==root||(statSync(root).mode&0o077)!==0)throw Error("Private export directory must be nonsymlinked and owner-only");
-    const document=finiteCompanyDocument(await readRetainedFinite(arg,extra));
-    const bytes=action==="finite-json"?Buffer.from(JSON.stringify(document,null,2)):finiteCompanyWorkbook(document);
+    const document=finiteCompanyDocument(await readRetainedFinite(arg,extra,action.includes("recalculate")?"recalculate":"stored"));
+    const bytes=action.endsWith("json")?Buffer.from(JSON.stringify(document,null,2)):finiteCompanyWorkbook(document);
     writeFileSync(file,bytes,{flag:"wx",mode:0o600});
     console.log(JSON.stringify({documentId:document.id,bytes:bytes.length,private:true,scientificAcceptance:false}));
   }else if(action==="stage-sources"){

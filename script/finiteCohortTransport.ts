@@ -6,7 +6,9 @@ import {materialLeaves} from "../server/calculation/companyProjectionAsOf";
 import {packCompanySource} from "../server/calculation/companySourceArchive";
 import {finiteCompanyDocument,finiteCompanyWorkbook} from "../server/finiteCompanyDocument";
 import {spawnSync} from "node:child_process";
-import {readFileSync,statSync} from "node:fs";
+import {readFileSync,statSync,mkdtempSync} from "node:fs";
+import {tmpdir} from "node:os";
+import {resolve,join} from "node:path";
 import {randomUUID} from "node:crypto";
 import * as XLSX from "xlsx";
 import {readEconomicBridgeCells} from "../shared/economicBridgeSchema";
@@ -37,6 +39,8 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  const a=await capture(input);
  const read=(d:any,p=pool)=>run(t=>api.read(t,d.id,d.decidedAt),p);
  const first=await read(a.decision),doc=finiteCompanyDocument(first);
+ for(const cutoff of ["2027-02-30T00:00:00Z","2027-01-01T12:00:00"])
+  await assert.rejects(run(tx=>api.read(tx,a.decision.id,cutoff)),/UTC calendar cutoff/);
  for(const target of ["computedResult","result"]){
   const changed=structuredClone(first);changed[target].members[0].physical.rows[0].service++;
   assert.throws(()=>finiteCompanyDocument(changed),/result mismatch/);
@@ -61,6 +65,15 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  const literal=XLSX.utils.sheet_to_json<string[]>(wb.Sheets[wb.SheetNames[0]],{header:1,raw:true}).slice(1);
  assert.deepEqual(readEconomicBridgeCells(literal.map(r=>({pointer:r[0],jsonValue:r[1]}))),doc);
  assert.notEqual(cli("finite-json",`${base}.json`).status,0,"Existing private export must not be overwritten");
+ const empty=mkdtempSync(join(tmpdir(),"stored-finite-reader-"));
+ const outside=(action:string)=>spawnSync(process.execPath,["--import",import.meta.resolve("tsx"),
+  resolve("script/company-operating-review.ts"),action,a.decision.id,a.decision.decidedAt,
+  "generated-artifacts/private-exports/stored.json"],{cwd:empty,encoding:"utf8",timeout:60000,
+   env:{...process.env,TSX_TSCONFIG_PATH:resolve("tsconfig.json")}});
+ const stored=outside("finite-json");assert.equal(stored.status,0,stored.stderr);
+ assert.deepEqual(JSON.parse(readFileSync(join(empty,"generated-artifacts/private-exports/stored.json"),"utf8")),doc);
+ const recalc=outside("finite-recalculate-json");
+ assert.notEqual(recalc.status,0,"Recalculation requires its source checkout, unlike stored retrieval");
  const second=structuredClone(input);second.scenarios[0].finiteAccounting.declaration.discountRate=.12;
  const b=await capture(second);
  const selected=await Promise.all([read(a.decision),read(b.decision),read(a.decision)]);
@@ -81,6 +94,7 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  return {passed:true,scope:"New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
   documentId:doc.id,workbookBytes:bytes.length,cliRows:literal.length,cliLiteralCells:literal.length*2,privateFileMode:"0600",
   checks:["concurrent idempotent staging","daily-bound retained producer","fresh-process operator CLI JSON/XLSX equality","owner-only files and overwrite refusal",
+   "stored retrieval without source checkout","recalculation missing-source refusal","invalid or ambiguous cutoff refusal",
    "ordered physical/code/material/rule identities","literal XLSX writer/readback","A/B/A selection isolation",
    "committed reconnect equality","swapped physical parent refusal","tamper rollback atomicity",
    "altered stored result refusal","altered display result refusal","borrowed review refusal","borrowed code refusal"],headers:before};
