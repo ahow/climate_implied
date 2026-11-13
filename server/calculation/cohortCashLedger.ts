@@ -33,7 +33,7 @@ export interface AccrualSchedule {
   years:{year:number;variableCost:number;energyCost:number;evidenceIds:string[]}[];
  };
  payables:{year:number;opening:number;closing:number}[];
- entries:{id:string;on:string;kind:"revenue"|"payable"|"tax"|"nonCommon";usd:number;evidenceIds:string[]}[];
+ entries:{id:string;on:string;kind:"revenue"|"payable"|"tax"|"nonCommon";component?:CashComponent;usd:number;evidenceIds:string[]}[];
 }
 export function reconcileDatedAccruals(model:ReturnType<typeof calculateOperatingCohorts>,ledger:CohortCashLedger,
  declaration:Omit<DatedProjectCash,"events">,timing:CashTiming[],accrual:AccrualSchedule,evidenceIds:string[]){
@@ -83,6 +83,14 @@ export function reconcileDatedAccruals(model:ReturnType<typeof calculateOperatin
    const costs={variableCost:r.variableCost,energyCost:r.energyCost,operatingFixedCash:y.operatingFixedCash,
     holdingCash:y.holdingCash,transactionCash:y.transactionCash,construction:v.constructionCashUsd,
     maintenance:v.maintenanceCashUsd,replacement:v.replacementCashUsd,decommissioning:v.decommissioningCashUsd,interest:v.interestCashUsd};
+   const classified=a.filter(e=>e.kind==="payable");
+   if(classified.some(e=>e.component!==undefined)){
+    if(classified.some(e=>!e.component||!Object.hasOwn(costs,e.component)||paid.includes(e.component)))
+     throw Error("Complete non-cash-paid payable component classification required");
+    for(const [component,total] of Object.entries(costs))
+     if(!paid.includes(component as CashComponent))
+      eq(classified.filter(e=>e.component===component).reduce((s,e)=>s+e.usd,0),total);
+   }
    eq(a.filter(e=>e.kind==="payable").reduce((s,e)=>s+e.usd,0),
     Object.entries(costs).filter(([k])=>!paid.includes(k as CashComponent)).reduce((s,[,v])=>s+v,0));
   }

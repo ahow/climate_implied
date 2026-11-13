@@ -57,13 +57,24 @@ test("partial-calendar degrading service feeds finite accrual and cash without a
     operatingSettlements:{otherWorkingCapitalBasis:"excludes-receivables-payables-and-tax",alreadyCashPaidComponents:["construction"],
      years:[{year:2027,variableCost:paidVariable,energyCost:paidEnergy,evidenceIds}]},
     entries:[{id:"sales",on:"2027-09-30",kind:"revenue",usd:service*10,evidenceIds},
-     {id:"cost",on:"2027-09-30",kind:"payable",usd:service*.2+accruedEnergy,evidenceIds}]}
+     {id:"cost",on:"2027-09-30",kind:"payable",component:"variableCost",usd:service*.2,evidenceIds},
+     {id:"energy",on:"2027-09-30",kind:"payable",component:"energyCost",usd:accruedEnergy,evidenceIds}]}
   };
   const r=projectCompanyCohorts(x),m=r.members[0];
   assert.ok(Math.abs(m.physical.rows[0].service-service)<1e-9);
   assert.equal(m.physical.rows[0].closing,0);
   assert.equal(m.finiteAccounting.periodicValueUsd,null);
   assert.equal(m.finiteAccounting.version,"finite-cohort-accrual-1");
+  s.finiteAccounting.recognitionLaw="earned-service-prefix-1";
+  const assessed=projectCompanyCohorts(x).members[0].finiteAccounting as any;
+  assert.equal(assessed.version,"finite-cohort-accrual-2-daily-bound");
+  assert.ok(assessed.recognitionAssessment.checks.some((v:any)=>v.component==="revenue"&&Math.abs(v.earnedThroughDayUsd-service*10)<1e-9));
+  s.finiteAccounting.accrual.entries[0].on="2027-06-01";
+  assert.throws(()=>projectCompanyCohorts(x),/precedes modeled physical service/);
+  s.finiteAccounting.accrual.entries[0].on="2027-09-30";
+  s.finiteAccounting.accrual.entries[1].on="2027-06-01";
+  assert.throws(()=>projectCompanyCohorts(x),/precedes modeled physical service/);
+  s.finiteAccounting.accrual.entries[1].on="2027-09-30";
   assert.equal(m.finiteAccounting.physicalParentHash,m.parentResultHash);
   assert.ok(Math.abs(m.finiteAccounting.accrualDays.at(-1).cash)<1e-9);
   assert.equal(r.covered.scenarios[0].status,"conditional");

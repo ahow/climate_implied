@@ -45,6 +45,40 @@ if e["full_gate"].get("exit_code")==0:
  x["next_action"]=x["next_action"].replace("inspect current full gate receipt before promotion","full gate passed1355TS/1354pass/0fail/1optionalPGskip+264Python and mandatory private/type/build; reconcile the new existing promotion and verify its exact runtime")
 if physical.exists():
  x["next_action"]="Preserve independent finiteAccounting branch in companyProjection, partial-calendar/degrading generation/storage oracle, accrued-versus-paid v2 bridge and null periodic value. Latest full gate1356TS/1355pass/0fail/1optionalPGskip+264Python/private/type/build;16focused. Earlier AP release ba209006/CI43335033391 verified live; do not repeat it. Reconcile the subsequent finite-path publication. Finish within-period physical/recognition timing qualification, admitted reader/UI/export journey, terminal liability/common-claim boundaries and funded sustainable continuation/inverse. New finite branch has not been executed through genuine operator/production records; previous PG tests are not evidence of this new branch. Keep original issuer/driver sources and all remaining0–17 clauses advancing; MNRE next portion qualified no issuer payment."
+ci=Path("generated-artifacts/dated-cash/physical-ci.json")
+if ci.exists():
+ rows=json.loads(ci.read_text()).get("workflow_runs",[])
+ if rows:
+  v=rows[0];x["pending_release"]={"source":v["head_sha"],"ci":v["id"],"status":v["status"],"conclusion":v["conclusion"],
+   "last_observed_runtime":json.loads(Path("generated-artifacts/dated-cash/physical-runtime.json").read_text()) if Path("generated-artifacts/dated-cash/physical-runtime.json").exists() else None}
+  e["publication"]=x["pending_release"]
+  x["next_action"]=f"Reconcile existing publication {v['head_sha']}, CI{v['id']} ({v['status']}/{v['conclusion']}); do not restart/supersede. "+x["next_action"]
+latest=Path("generated-artifacts/dated-cash/physical-live.json")
+if latest.exists():
+ observation=json.loads(latest.read_text())
+ if observation["source"]==x.get("pending_release",{}).get("source") and x["pending_release"]["conclusion"]=="success":
+  x.setdefault("release_history",[]).append(x["current_release"])
+  x["current_release"]={"runtime":observation["source"],"ci":x["pending_release"]["ci"],"conclusion":"success","readback":observation,
+   "scope":"Observed2023 accounting only; no future-case/operator/scientific acceptance"}
+  x.pop("pending_release",None)
+  x["next_action"]="Published0bd25f70/CI43337009019 and exact runtime/health/1054-row2108-cell safe readback verified; do not restart or repeat promotion. Preserve finiteAccounting independent of renewal, physical partial-calendar/degrading generation/storage tests, v2 AP/cash classification and single inclusion. Latest full gate1356TS/1355pass/0fail/1optionalPGskip+264Python/private/type/build,16focused and7postledger. Next qualify recognition timing against earned daily service (currently annual totals plus explicit dates), terminal liability/common-claim closure and funded periodic continuation/inverse; exercise changed finite branch through admitted reader/UI/export without fabricated principal. New branch has no real issuer/operator execution; old PG proof is not new-branch proof. Continue original sources/22driver calibration/genuine11–15 corpus; next MNRE portion yielded no issuer payment."
+e["log_hashes"]={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in [
+ Path("generated-artifacts/dated-cash/physical-finite-full.log"),Path("generated-artifacts/dated-cash/physical-finite-corrected.log"),
+ Path("generated-artifacts/dated-cash/physical-finite-types.log"),Path("generated-artifacts/dated-cash/mnre-next-extract.md")] if f.exists()}
+recognition=Path("generated-artifacts/dated-cash/recognition-full.receipt.json")
+if recognition.exists():
+ e["prior_finite_gate"]=e["full_gate"];e["full_gate"]=json.loads(recognition.read_text())
+ e["scope"]+="; optional earned-service-prefix-1 queries the unchanged daily engine through each recognition day, validates payable component totals and refuses recognition before modeled delivery"
+ e["functions"].append("assessRecognition")
+ e["recognition_boundary"]="Capped retirement is a mathematical prefix bound, not a changed source fact. Explicit v2 law permits delayed recognition, not advance revenue/variable/charging-cost recognition. No legal/GAAP, intraday, terminal or whole-equity acceptance."
+ e["focused"]={"pass":16,"fail":0,"skip":0,"command":"npx tsx --test script/companyCohortProjection.test.ts script/cohortRenewal.test.ts","log":"generated-artifacts/dated-cash/recognition-focused.log"}
+ for name in ["recognition-focused.log","recognition-types.log","recognition-full.log"]:
+  f=Path("generated-artifacts/dated-cash")/name;e["log_hashes"][str(f)]=hashlib.sha256(f.read_bytes()).hexdigest()
+ e["remaining"]=["Daily recognition prefix bound is engineering, not source/legal entitlement or actual issuer execution",
+  "Funded sustainable cycles, closing liabilities/common claim and compatible full-domain inverse remain incomplete",
+  "Admitted new-branch operator/API/UI/export execution remains unproven; prior PG evidence is not this branch",
+  "No issuer input qualified from new MNRE excerpt; original issuer/driver/historical source work remains"]
+ x["next_action"]="Preserve earned-service-prefix-1/finite-cohort-accrual-2-daily-bound and legacy finite1;16 focused and latest full gate recorded. Existing0bd25f70/CI43337009019/runtime safe observed2023 readback verified; do not repeat. Reconcile subsequent recognition-rule publication separately. Continue actual admitted reader/UI/export branch, terminal liability/common-claim and funded renewal/inversion; daily bound is not GAAP/issuer/science acceptance. Original source/22driver/dated11–15 work remains; MNRE newly examined portion qualified no payment."
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:
  for r in s["requirements"]:
@@ -53,7 +87,9 @@ for s in x["stages"]:
    r["remaining_gaps"]=e["remaining"]
 p.write_text(json.dumps(x,indent=2)+"\n")
 r=Path("docs/WORKPLAN_IMPLEMENTATION_REPORT.md")
-r.write_text("# Latest accrued-versus-paid operating integration\n\n"+json.dumps({"current_release":x["current_release"],"increment":e},indent=2)+"\n\n"+r.read_text())
+marker="<!-- accrued-paid-history -->\n";history=r.read_text()
+if marker in history:history=history.split(marker,1)[1]
+r.write_text("# Latest accrued-versus-paid operating integration\n\n"+json.dumps({"current_release":x["current_release"],"increment":e},indent=2)+"\n\n"+marker+history)
 subprocess.run(["python","script/completion-ledger.py"],check=True)
 s=importlib.util.spec_from_file_location("m","script/merge-clause-reconciliation.py");m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 Path("docs/WORKPLAN_ACCEPTANCE_MATRIX.md").write_text(m.matrix(x))

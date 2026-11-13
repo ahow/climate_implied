@@ -2,6 +2,211 @@
 
 {
   "current_release": {
+    "runtime": "0bd25f70e7ab49aaff10ccc97ab9d31924eefdbe",
+    "ci": 43337009019,
+    "conclusion": "success",
+    "readback": {
+      "at": "2026-11-13T00:43:11.136Z",
+      "source": "0bd25f70e7ab49aaff10ccc97ab9d31924eefdbe",
+      "health": 200,
+      "identity": "a489eca338b36be4d76df621991461474d97de4ea491ad7b2c9e6b6d0083138c",
+      "rows": 1054,
+      "cells": 2108,
+      "scope": "Observed2023 accounting only; not future-case/operator/science acceptance",
+      "externalLinks": 0
+    },
+    "scope": "Observed2023 accounting only; no future-case/operator/scientific acceptance"
+  },
+  "increment": {
+    "at": "2026-11-13T00:56:57.383215+00:00",
+    "scope": "S13-004 partial: version2 explicit accrued operating costs versus cash settlements; finiteAccounting now connects companyProjection's actual partial-calendar/degrading physical model independently of renewal; optional earned-service-prefix-1 queries the unchanged daily engine through each recognition day, validates payable component totals and refuses recognition before modeled delivery",
+    "files": {
+      "server/calculation/cohortCashLedger.ts": "b59e5f30b3be73ad658b57fbcdc7cccca60685cf61b480440d8beed78160e8dc",
+      "server/calculation/cohortRenewal.ts": "339b098cc3941f4bb6a8d19eef1dc5df6c49f3b0ca2020f16b67396494ca038a",
+      "script/cohortRenewal.test.ts": "d5ff7e613d27e09bef798a7c7a9990a7a0f3f3864c9373a6a1466bc1339e8970",
+      "server/calculation/companyCohortProjection.ts": "6eb2d20c3972c6c32035c2dcbc3e3896bdc449ff33e6d03ca4b186fd1585e1e0",
+      "script/companyCohortProjection.test.ts": "b41065f1b2a85c230095487778e43de73eab4f41cccf9a115ee74ffca5c54a43"
+    },
+    "functions": [
+      "reconcileDatedAccruals",
+      "evaluatePeriodicRenewal",
+      "projectCompanyCohorts",
+      "assessRecognition"
+    ],
+    "formula": "cashAdjustment=accruedVariableCost+accruedEnergyCost-paidVariableCost-paidEnergyCost; APclosing=APopening+accruals-settlements. Already-cash-paid costs bypass AP; otherWC must explicitly exclude AR/AP/tax.",
+    "oracle": "Each year revenue100, operating accrual20, operating payment10, cash-paid replacement10, distribution80; APclosing10 then20. Periodic value null. Engineering only.",
+    "focused": {
+      "pass": 16,
+      "fail": 0,
+      "skip": 0,
+      "command": "npx tsx --test script/companyCohortProjection.test.ts script/cohortRenewal.test.ts",
+      "log": "generated-artifacts/dated-cash/recognition-focused.log"
+    },
+    "typecheck": {
+      "command": "npm run check",
+      "log": "generated-artifacts/dated-cash/ap-v2-integrated-types.log",
+      "result": "passed"
+    },
+    "full_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-13T00:50:41.196511+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 369.493,
+      "counts": {
+        "tests": 1356,
+        "pass": 1355,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/recognition-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "153345371e2482151b8fefd997e29708c821c5f2512084229e0e41cf5f6d6a2e",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1356,
+          "pass": 1355,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "source_attempt": {
+      "url": "https://mnre.gov.in/static/uploads/2026/10/dddd221c6d2f2bb411584c5624c71c4e.pdf",
+      "examined": "Previously unexamined extracted characters100000\u2013150000; still truncated. No FS India/First Solar/PLI-disbursement match in this portion.",
+      "log": "generated-artifacts/dated-cash/mnre-next-extract.md",
+      "qualified_inputs": 0,
+      "boundary": "No whole-document or global-unavailability conclusion; no amount/date/FX/classification inferred."
+    },
+    "science": "No issuer qualification, historical efficacy, periodic certification or market inference. Prior negative studies untouched.",
+    "remaining": [
+      "Daily recognition prefix bound is engineering, not source/legal entitlement or actual issuer execution",
+      "Funded sustainable cycles, closing liabilities/common claim and compatible full-domain inverse remain incomplete",
+      "Admitted new-branch operator/API/UI/export execution remains unproven; prior PG evidence is not this branch",
+      "No issuer input qualified from new MNRE excerpt; original issuer/driver/historical source work remains"
+    ],
+    "prior_accrual_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-13T00:03:21.959865+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 404.154,
+      "counts": {
+        "tests": 1355,
+        "pass": 1354,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/ap-v2-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "cbe13be734833c560d0b993a4246839e722302228280c55a900a6cac46462113",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1355,
+          "pass": 1354,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "physical_oracle": "92 daily exposures sum(0.9^(day/365.25)); storage charge=service/0.8. Explicit20 contribution before construction20; accrual and settlement are separate. Early funding refuses; periodic value null; matching physical parent and complete assumptions retained.",
+    "adverse": {
+      "initial_types": "TS2783 duplicate version overwritten by spread",
+      "log": "generated-artifacts/dated-cash/physical-finite-types.log",
+      "fix": "Set finite-cohort-accrual-1 after spread; explicit assertion added; no compiler relaxation"
+    },
+    "publication": {
+      "source": "0bd25f70e7ab49aaff10ccc97ab9d31924eefdbe",
+      "ci": 43337009019,
+      "status": "completed",
+      "conclusion": "success",
+      "last_observed_runtime": {
+        "sourceCommit": "0bd25f70e7ab49aaff10ccc97ab9d31924eefdbe",
+        "calculationVersion": "historical-diagnostics-7",
+        "sourceCommitMeaning": "hosting-supplied Git revision; null means not recorded"
+      }
+    },
+    "log_hashes": {
+      "generated-artifacts/dated-cash/physical-finite-full.log": "f9cc1b1a1ade07f41720db47e4801e7064d7544215f27a96d97b512df258929c",
+      "generated-artifacts/dated-cash/physical-finite-corrected.log": "5d8dab6cc0493ad4e551f048fe671b1b0cbd93c7359642b9a08165ec7bb81dab",
+      "generated-artifacts/dated-cash/physical-finite-types.log": "3b45e28ce3c7291dd5d9a3b203a79f3ac527aadabb16f204947ffd0bbd12d6a9",
+      "generated-artifacts/dated-cash/mnre-next-extract.md": "857cdcbb8d796631172c57edb82f041d481af50f45d579ad78641d120f5bba86",
+      "generated-artifacts/dated-cash/recognition-focused.log": "e3560109048995d1718519e40d2ddf99840fc721bb48c02851668089d6443831",
+      "generated-artifacts/dated-cash/recognition-types.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "generated-artifacts/dated-cash/recognition-full.log": "153345371e2482151b8fefd997e29708c821c5f2512084229e0e41cf5f6d6a2e"
+    },
+    "prior_finite_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-13T00:16:01.132354+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 379.939,
+      "counts": {
+        "tests": 1356,
+        "pass": 1355,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/physical-finite-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "f9cc1b1a1ade07f41720db47e4801e7064d7544215f27a96d97b512df258929c",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1356,
+          "pass": 1355,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "recognition_boundary": "Capped retirement is a mathematical prefix bound, not a changed source fact. Explicit v2 law permits delayed recognition, not advance revenue/variable/charging-cost recognition. No legal/GAAP, intraday, terminal or whole-equity acceptance."
+  }
+}
+
+<!-- accrued-paid-history -->
+# Latest accrued-versus-paid operating integration
+
+{
+  "current_release": {
     "runtime": "ba2090066efb85c7f206baafea01947a7771d537",
     "ci": 43335033391,
     "conclusion": "success",
