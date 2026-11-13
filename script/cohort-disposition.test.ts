@@ -31,4 +31,24 @@ test("dated residual stock and explicit unknown economics are conserved, never f
  assert.equal(compiled.recognition![0].assetSaleReceivableUsd,100); // no second 50% ownership multiplier
  p.assets[0].obligations![0].alreadyAccrued=true;
  assert.equal(compileDispositionSettlement(s,p,terminal,closing).compiled,null);
+ p.version="cohort-disposition-2-rights";
+ const sold=assessCohortDisposition(s,p,"fixture").rightsLedger![0];
+ assert.equal(sold.openingOwnedUnits,1);assert.equal(sold.transferredOwnedUnits,1);
+ assert.equal(sold.closingOwnedUnits,0);assert.equal(sold.closingGrossPhysicalUnits,2);
+ assert.equal(sold.otherOwnersUnitsAfter,2);assert.equal(sold.authorityNotValidatedHere,true);
+ assert.equal(sold.avoidedEmissions,null);
+ p.assets[0].outcome="retire";
+ const unauth=assessCohortDisposition(s,p,"fixture");assert.equal(unauth.rightsLedger![0].closingGrossPhysicalUnits,null);
+ assert.ok(unauth.missing.some(r=>r.includes("not authority")));
+ p.assets[0].retirementAuthorityEvidenceIds=["fixture"];
+ assert.equal(assessCohortDisposition(s,p,"fixture").rightsLedger![0].closingGrossPhysicalUnits,null);
+ p.assets[0].retirementBoundary="remove-physical-unit-and-end-owned-unit-rights";
+ const retired=assessCohortDisposition(s,p,"fixture").rightsLedger![0];
+ assert.equal(retired.retiredGrossUnits,2);assert.equal(retired.retiredOwnedUnits,1);assert.equal(retired.closingGrossPhysicalUnits,0);
+ p.assets[0].obligations![0].alreadyAccrued=false;
+ const retirementCash=compileDispositionSettlement(s,p,terminal,closing);
+ assert.ok(retirementCash.compiled);
+ assert.equal(settleTerminal(retirementCash.compiled!,retirementCash.closing!,"physical","fixture","2028-01-01","2027-01-01",.1,["fixture"]).commonNetCash,75);
+ p.assets[0].outcome="retain";
+ assert.equal(assessCohortDisposition(s,p,"fixture").rightsLedger![0].closingOwnedUnits,1);
 });

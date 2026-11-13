@@ -26,7 +26,7 @@ async function main(){
    const escape=(s:string)=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#x27;");
    assert.ok(html.includes(escape(c.jsonValue)),c.pointer);
   }
-  assert.ok(html.includes("assetSaleReceivableUsd"));assert.ok(html.includes("finite-cohort-accrual-4-disposition"));
+  assert.ok(html.includes("assetSaleReceivableUsd"));assert.ok(html.includes("finite-cohort-accrual-4-disposition")||html.includes("finite-cohort-accrual-5-rights"));
  }
  console.log(JSON.stringify({passed:true,rows:cells.length,literalCells:cells.length*2,renderedSelections:3,scope:"Synthetic retained asset branch, actual component SSR/JSON/XLSX. Not browser interaction/principal/source acceptance."}));
 }

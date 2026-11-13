@@ -75,6 +75,7 @@ try{
       outcome:"dispose",on:"2028-01-01",cashOn:"2028-02-29",proceedsUsd:100,proceedsEvidenceIds:["fixture"],obligationCompletenessEvidenceIds:["fixture"],
       obligations:[{id:"restore",kind:"restoration",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:20,evidenceIds:["fixture"],alreadyAccrued:false},
        {id:"tax",kind:"tax",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:5,evidenceIds:["fixture"],alreadyAccrued:false}]}]};
+    if(process.argv.includes("--rights-branch"))f.assetDisposition.version="cohort-disposition-2-rights";
     const wrong=structuredClone(input);wrong.scenarios[0].finiteAccounting.assetDisposition.assets[0].ownedFraction=.75;
     assert.throws(()=>projectCompanyCohorts(wrong),/ownership contradict/);
    }

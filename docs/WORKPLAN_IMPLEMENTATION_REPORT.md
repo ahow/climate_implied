@@ -2,15 +2,15 @@
 
 {
   "current_release": {
-    "runtime": "217b0f9ebc6041e03d5368265dfac19d84f33fa4",
-    "ci": 43353222176,
+    "runtime": "74988dcc4216663051a7cb2119f4b7fa5d29e516",
+    "ci": 43356930092,
     "conclusion": "success",
     "readback": {
       "passed": true,
-      "at": "2026-11-13T02:49:40.484Z",
-      "source": "217b0f9ebc6041e03d5368265dfac19d84f33fa4",
+      "at": "2026-11-13T03:22:39.170Z",
+      "source": "74988dcc4216663051a7cb2119f4b7fa5d29e516",
       "health": 200,
-      "identity": "8b336e69932ac65ebaac41a2226890218849281beeb626853978ca7733728475",
+      "identity": "1e473049f9555797a170e73a38b2a7b1098ec1143546f1cc50694b93495287b9",
       "rows": 1054,
       "cells": 2108,
       "privateReaderRefusals": 4,
@@ -23,28 +23,30 @@
         "privacyMarker": true
       }
     ],
-    "scope": "Previous terminal/viewer release, observed2023 and served JS only; not new asset branch or future/issuer/science execution"
+    "scope": "Previously verified release, observed2023 and viewer JS only; not new rights branch or future/issuer/science execution"
   },
   "increment": {
-    "kind": "cutoff-asset-disposition",
-    "at": "2026-11-13T03:08:12.879527+00:00",
+    "kind": "asset-rights-ledger",
+    "at": "2026-11-13T03:48:57.863244+00:00",
     "files": {
-      "server/calculation/cohortDisposition.ts": "7680c984da4880f11df9c04c41a62d6f2748b52493edc1c2ca055dbe0d9323dd",
-      "server/calculation/companyCohortProjection.ts": "1e55c37d22e80b95f7adb180247de6f2a3a4430532a43394ab55e8650692573c",
+      "server/calculation/cohortDisposition.ts": "4f57e432cee02a29711bd9ad7dce3e9f2b09f800715704ee9a8e8979be076aa6",
+      "server/calculation/companyCohortProjection.ts": "a5029b8dd275a42c091307b6ee1aa13d951188abe81de3137c2efcb021784a58",
       "server/snapshots/companyOperatingReview.ts": "887d4681dcd2854a92c1a0d6790653131388406df3dc915292b23b1e262a0973",
-      "script/cohort-disposition.test.ts": "a5fc84538b8a48d79dbad4b675f2a32b16d66b8ed454444fd0123e40fada3421",
-      "script/futureCohortPostgres.ts": "9d55b03d27010b550378c27f75e02622628fa5a62db550b8954fd82ebb8abe86",
-      "script/finiteCohortTransport.ts": "c50d5d3da10af2ec75787f32b71256efd4380fd3e31e172b40abb14220974e9a",
-      "script/disposition-render-readback.ts": "611f3c83e455c864590300bf7e4bb6e299b404ac944700b69e5825835e0eda29"
+      "script/cohort-disposition.test.ts": "4cf362597431057daa6095ac084eb390aa441c4701077cdfb83472168b55abe4",
+      "script/futureCohortPostgres.ts": "8201bc3f1fd4f90829c6c8ac915444f5671c74d3764b3ad7c1e1f3265062d099",
+      "script/finiteCohortTransport.ts": "ddec1b6635f0b1e17aa9e1b19356ae8a982adc60b6e6bdb9b7644a6f1949bd8a",
+      "script/disposition-render-readback.ts": "8c067ff2d8cc298d450c4f53d6c7e4508b66dcd4007d6bcf08fe4b3c9f4c4b1f"
     },
     "functions": [
       "assessCohortDisposition",
       "compileDispositionSettlement",
       "projectCompanyCohorts finite-cohort-accrual-4-disposition",
-      "finiteProducerBinding asset module"
+      "finiteProducerBinding asset module",
+      "assessCohortDisposition version2 rightsLedger",
+      "projectCompanyCohorts finite-cohort-accrual-5-rights"
     ],
-    "scope": "Immediate cutoff asset exit only; explicit owned-claim proceeds, complete declared obligations, financial posting and independent original finite computation. Synthetic evidence is not issuer/science acceptance.",
-    "formula": "Closing gross units reconcile to exact physical parent; owned units = gross units \u00d7 declared ownership once. Sale creates AR, not operating revenue/taxable gain. Dated receipt and explicit liability accrual/payment feed terminal cash once. 100 owned-claim proceeds \u221220 restoration \u22125 tax =75 common cash, NOT37.5.",
+    "scope": "Version2 adds a conditional issuer-rights/physical-stock ledger, preserving version1. Sale transfers ownership without removing physical plant; retirement requires a separately declared authority reference. No legal/source acceptance inferred.",
+    "formula": "Closing gross units reconcile to exact physical parent; owned units = gross units \u00d7 declared ownership once. Sale creates AR, not operating revenue/taxable gain. Dated receipt and explicit liability accrual/payment feed terminal cash once. 100 owned-claim proceeds \u221220 restoration \u22125 tax =75 common cash, NOT37.5. Rights oracle:2gross units\u00d750%=1issuer unit; sale=>0issuer/2physical/2other-owner units. Declared whole-unit retirement=>0physical; missing authority=>null, not zero.",
     "assumptions": [
       "USD, full-unit-before-ownership physical basis, owned-claim cash basis",
       "Constant ownership must agree with supplied physical cells; ownership transitions not implemented",
@@ -57,20 +59,20 @@
         "-c",
         "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
       ],
-      "executed_at": "2026-11-13T02:58:52.052206+00:00",
+      "executed_at": "2026-11-13T03:42:14.390841+00:00",
       "exit_code": 0,
-      "elapsed_seconds": 359.182,
+      "elapsed_seconds": 376.75,
       "counts": {
         "tests": 1362,
         "pass": 1361,
         "fail": 0,
         "skipped": 1
       },
-      "log": "generated-artifacts/dated-cash/disposition-final-full.log",
+      "log": "generated-artifacts/dated-cash/rights-final-full.log",
       "workspace_revision": null,
       "worktree_dirty": null,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-      "log_sha256": "c92ffea644c4123d38ffd1fbb8a708bdecf54e393241964fa14b44bacdd0c07d",
+      "log_sha256": "6b20ea662c06aa231c842fffc19d53ff36f856adbb533d76fd01ac8c185c1d3f",
       "suite_counts": {
         "typescript": {
           "tests": 1362,
@@ -93,7 +95,8 @@
       "pass": 5,
       "fail": 0,
       "skip": 0,
-      "command": "npx tsx --test script/reconciliation-stages-00-03.test.ts script/reconciliation-stages-14-17.test.ts"
+      "command": "npx tsx --test script/reconciliation-stages-00-03.test.ts script/reconciliation-stages-14-17.test.ts",
+      "log": "generated-artifacts/dated-cash/rights-postledger.log"
     },
     "focused": {
       "tests": 1,
@@ -103,18 +106,18 @@
       "command": "npx tsx --test script/cohort-disposition.test.ts"
     },
     "postgres": {
-      "at": "2026-11-13T02:58:16.821Z",
+      "at": "2026-11-13T03:41:22.974Z",
       "scope": "New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
       "passed": true,
-      "documentId": "a1d90ec27e5b39b4255251ab787561d7928eef731c1e5cf333f6215b58653118",
+      "documentId": "a701f5e59b0a7a112e0564be91e463c901d5e1ddee7c66adf4b48097a29db923",
       "fixtureFiles": {
-        "a": "generated-artifacts/private-exports/synthetic-finite-3cb5dcec-0760-4982-bbe1-b6414134fb26.json",
-        "b": "generated-artifacts/private-exports/synthetic-finite-3cb5dcec-0760-4982-bbe1-b6414134fb26-b.json",
-        "xlsx": "generated-artifacts/private-exports/synthetic-finite-3cb5dcec-0760-4982-bbe1-b6414134fb26.xlsx"
+        "a": "generated-artifacts/private-exports/synthetic-finite-496a67ea-4851-45bb-a813-7f506c33b0da.json",
+        "b": "generated-artifacts/private-exports/synthetic-finite-496a67ea-4851-45bb-a813-7f506c33b0da-b.json",
+        "xlsx": "generated-artifacts/private-exports/synthetic-finite-496a67ea-4851-45bb-a813-7f506c33b0da.xlsx"
       },
-      "workbookBytes": 224589,
-      "cliRows": 1208,
-      "cliLiteralCells": 2416,
+      "workbookBytes": 230082,
+      "cliRows": 1234,
+      "cliLiteralCells": 2468,
       "privateFileMode": "0600",
       "checks": [
         "concurrent idempotent staging",
@@ -137,11 +140,11 @@
       ],
       "headers": 10
     },
-    "postgres_command": "npx tsx script/futureCohortPostgres.ts --local-disposable --finite-branch --terminal-branch --asset-branch",
+    "postgres_command": "npx tsx script/futureCohortPostgres.ts --local-disposable --finite-branch --terminal-branch --asset-branch --rights-branch",
     "rendered": {
       "passed": true,
-      "rows": 1208,
-      "literalCells": 2416,
+      "rows": 1234,
+      "literalCells": 2468,
       "renderedSelections": 3,
       "scope": "Synthetic retained asset branch, actual component SSR/JSON/XLSX. Not browser interaction/principal/source acceptance."
     },
@@ -165,7 +168,11 @@
       "generated-artifacts/dated-cash/disposition-new-source-search.json": "98698882856bd00198f6e5cfe05fbef31e7b61cb2118e4307911557c2677e439",
       "generated-artifacts/dated-cash/disposition-nucor-ex992.json": "f2ff7918c972cc2d5f7340d969545663349266b98320a0d1c58d831808424aed",
       "generated-artifacts/dated-cash/disposition-nucor-index.json": "9559256ab1d3a1dc6ddb50b4f90c317519ee544848f8ac9ae5155b89ae92b88c",
-      "generated-artifacts/dated-cash/disposition-postledger.log": "cc106461b129099ef6799ea6b388e91eb4b3fd9f2f04953b393d6bbcd65087a8"
+      "generated-artifacts/dated-cash/disposition-postledger.log": "cc106461b129099ef6799ea6b388e91eb4b3fd9f2f04953b393d6bbcd65087a8",
+      "generated-artifacts/dated-cash/rights-boundary-focused.log": "fb3b2dfdc4b2109b913ee41b2dea1dea7f7cf28a90e5173debe4ab8f02eb0c4e",
+      "generated-artifacts/dated-cash/rights-boundary-pg.log": "f7b4dd731490fbe896c1623c8e5d9a36845f37f61b35c4389a864acb7365e1aa",
+      "generated-artifacts/dated-cash/rights-boundary-render.log": "37885e26e8109906b3005e4de2c57680dadb4b6c23b42cf9572d4d445ace8379",
+      "generated-artifacts/dated-cash/rights-final-full.log": "6b20ea662c06aa231c842fffc19d53ff36f856adbb533d76fd01ac8c185c1d3f"
     },
     "source": {
       "url": "https://www.sec.gov/Archives/edgar/data/73309/000119312526432117/d129328dex992.htm",
@@ -176,11 +183,51 @@
       "decision": "No priced executed instrument, billing amount/calendar, operating cost, funding or common-claim cash resolved. Capacity is not actual throughput. About80% comparison concerns DRI vs blast-furnace pig iron, not issuer cash or total emissions. Existing XOM payment direction unchanged; no backdating."
     },
     "remaining": [
+      "Rights ledger is a conditional plan, not a source-qualified legal determination or an executed post-cutoff service/energy/cash interval",
       "Delayed disposition needs explicit post-cutoff operating/cash interval; retain outcomes have no automatic periodic value",
       "Already-accrued obligations need item-level opening-liability reconciliation; unavailable rather than re-accrued",
       "Dated ownership transitions, recovery-eligibility/legal priority evidence, funded sustainable cycles/full-domain inversion incomplete",
       "Genuine principal, actual issuer economics and acceptance remain unavailable; no public publication of private inputs"
-    ]
+    ],
+    "retirement_boundary": "Ordinary service withdrawal is not physical disposal or extinction of owned-unit rights. Version2 requires an explicit complete-removal boundary and declared authority; neither is legal acceptance.",
+    "earlier_gate": {
+      "command": [
+        "bash",
+        "-c",
+        "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+      ],
+      "executed_at": "2026-11-13T03:34:03.887679+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 377.613,
+      "counts": {
+        "tests": 1362,
+        "pass": 1361,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "generated-artifacts/dated-cash/rights-full.log",
+      "workspace_revision": null,
+      "worktree_dirty": null,
+      "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+      "log_sha256": "fb6525a57ea93d1eb8d752d8035501f2414155a280bb00bef71766f665d13e87",
+      "suite_counts": {
+        "typescript": {
+          "tests": 1362,
+          "pass": 1361,
+          "fail": 0,
+          "skipped": 1
+        },
+        "python": {
+          "tests": 264,
+          "pass": 264,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      "canonical_ledgers_modified": false,
+      "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+    },
+    "source_reuse": "Same-turn primary examination retained; this second engineering unit adds no new qualified economic source."
   }
 }
 

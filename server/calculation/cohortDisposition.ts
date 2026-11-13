@@ -3,22 +3,23 @@ import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCoh
 import type {TerminalSettlement,TerminalBalances} from "./terminalSettlement";
 type Obligation={id:string;kind:"decommissioning"|"restoration"|"recycling"|"tax";accruedOn:string;paidOn:string;usd:number;evidenceIds:string[];alreadyAccrued:boolean};
 export interface CohortDisposition {
- version:"cohort-disposition-1";specificationHash:string;claimantId:string;currency:"USD";stockBasis:"full-unit-before-ownership";
+ version:"cohort-disposition-1"|"cohort-disposition-2-rights";specificationHash:string;claimantId:string;currency:"USD";stockBasis:"full-unit-before-ownership";
  assets:{cohortId:string;ownedFraction:number;amountBasis:"owned-claim-USD";rightsEvidenceIds:string[];outcome:"retain"|"dispose"|"retire";
   on:string;cashOn:string|null;proceedsUsd:number|null;proceedsEvidenceIds:string[];
-  obligations:Obligation[]|null;obligationCompletenessEvidenceIds:string[]}[];
+  obligations:Obligation[]|null;obligationCompletenessEvidenceIds:string[];retirementAuthorityEvidenceIds?:string[];
+  retirementBoundary?:"remove-physical-unit-and-end-owned-unit-rights"}[];
 }
 function day(s:string){if(!/^\d{4}-\d{2}-\d{2}$/.test(s)||!Number.isFinite(Date.parse(s))||new Date(s).toISOString().slice(0,10)!==s)throw Error("Invalid disposition civil date");return Date.parse(s);}
 /** Inventory and explicit instructions only. No book-value salvage inference,
  * no automatic cash posting and no implied continuing operation after cutoff. */
 export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposition,claimant:string){
  const physical=calculateOperatingCohorts(spec);
- if(p.version!=="cohort-disposition-1"||p.stockBasis!=="full-unit-before-ownership"||p.specificationHash!==contentHash(spec)||p.claimantId!==claimant||p.currency!=="USD"||spec.liquidation)
+ if(!["cohort-disposition-1","cohort-disposition-2-rights"].includes(p.version)||p.stockBasis!=="full-unit-before-ownership"||p.specificationHash!==contentHash(spec)||p.claimantId!==claimant||p.currency!=="USD"||spec.liquidation)
   throw Error("Disposition parent/claim mismatch or duplicate legacy liquidation");
  if(spec.timing!=="utc-civil-day-service")throw Error("Dated asset boundaries required");
  const cutoff=`${spec.years.at(-1)!.year+1}-01-01`,t=day(cutoff),ids=new Set<string>(),obligations=new Set<string>();
  const survivors=spec.cohorts.filter(c=>day(c.dated!.commissionedOn)<t&&day(c.dated!.retiredOn)>=t);
- const evidence=(a:string[])=>a.length>0&&a.every(id=>spec.evidenceIds.includes(id));
+ const evidence=(a:unknown):boolean=>Array.isArray(a)&&a.length>0&&a.every(id=>typeof id==="string"&&spec.evidenceIds.includes(id));
  if(p.assets.length!==survivors.length)throw Error("Every surviving cohort needs exactly one outcome");
  const rows=p.assets.map(a=>{
   const c=survivors.find(c=>c.id===a.cohortId);
@@ -28,6 +29,10 @@ export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposi
    !["retain","dispose","retire"].includes(a.outcome))throw Error("Explicit ownership/rights/outcome/date required");
   const missing:string[]=[];
   if(a.on!==cutoff)missing.push("Delayed disposition requires an explicit matched post-cutoff operating interval");
+  if(p.version==="cohort-disposition-2-rights"&&a.outcome==="retire"&&!evidence(a.retirementAuthorityEvidenceIds))
+   missing.push("Ownership is not authority to retire the whole physical unit");
+  if(p.version==="cohort-disposition-2-rights"&&a.outcome==="retire"&&a.retirementBoundary!=="remove-physical-unit-and-end-owned-unit-rights")
+   missing.push("Service withdrawal alone does not remove the physical asset or extinguish owned unit rights; explicit retirement boundary required");
   if(a.outcome==="retain")missing.push("Retained stock requires a separate funded continuation; no automatic periodic value");
   if(a.outcome!=="retain"&&(a.proceedsUsd===null||a.cashOn===null||!evidence(a.proceedsEvidenceIds)))missing.push("Source-supported proceeds and receipt date unavailable; book value is not salvage");
   if(a.proceedsUsd!==null&&(!Number.isFinite(a.proceedsUsd)||a.proceedsUsd<0))throw Error("Invalid proceeds");
@@ -51,7 +56,28 @@ export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposi
  });
  const total=rows.reduce((n,r)=>n+r.installedUnits,0);
  if(Math.abs(total-physical.rows.at(-1)!.closing)>1e-9*Math.max(1,total))throw Error("Closing stock does not reconcile");
- return {version:p.version,identity:contentHash({spec,p}),cutoff,rows,closingGrossUnits:total,
+ const rightsLedger=p.version==="cohort-disposition-2-rights"?rows.map(r=>{
+  const a=r.instructions,authorizedRetirement=a.outcome==="retire"&&evidence(a.retirementAuthorityEvidenceIds)&&a.retirementBoundary==="remove-physical-unit-and-end-owned-unit-rights";
+  const transferredOwnedUnits=a.outcome==="dispose"?r.ownedUnits:0;
+  const retiredGrossUnits=authorizedRetirement?r.installedUnits:0;
+  const retiredOwnedUnits=authorizedRetirement?r.ownedUnits:0;
+  const unresolved=a.outcome==="retire"&&!authorizedRetirement;
+  const closingOwnedUnits=unresolved?null:r.ownedUnits-transferredOwnedUnits-retiredOwnedUnits;
+  const closingGrossPhysicalUnits=unresolved?null:r.installedUnits-retiredGrossUnits;
+  if(closingOwnedUnits!==null&&Math.abs(r.ownedUnits-transferredOwnedUnits-retiredOwnedUnits-closingOwnedUnits)>1e-12)
+   throw Error("Issuer rights do not conserve");
+  return {cohortId:r.cohortId,on:r.on,unit:r.capacityUnit,openingGrossPhysicalUnits:r.installedUnits,
+   openingOwnedUnits:r.ownedUnits,transferredOwnedUnits,retiredGrossUnits,retiredOwnedUnits,closingOwnedUnits,closingGrossPhysicalUnits,
+   otherOwnersUnitsBefore:r.installedUnits-r.ownedUnits,
+   otherOwnersUnitsAfter:closingGrossPhysicalUnits===null||closingOwnedUnits===null?null:closingGrossPhysicalUnits-closingOwnedUnits,
+   rightsEvidenceIds:a.rightsEvidenceIds,retirementAuthorityEvidenceIds:a.retirementAuthorityEvidenceIds??null,retirementBoundary:a.retirementBoundary??null,
+   authorityNotValidatedHere:true,futureActivity:null,avoidedEmissions:null,
+   equations:["owned units = gross installed units × declared ownership once",
+    "closing issuer rights = opening issuer rights − transferred rights − retired rights",
+    "closing gross physical stock = opening gross physical stock − retired gross units; sale does not remove physical stock"],
+   scope:"Conditional stock/rights plan only. Sale transfers rights, not physical retirement; no future service, global emissions or legal acceptance inferred."};
+ }):undefined;
+ return {version:p.version,identity:contentHash({spec,p}),cutoff,rows,closingGrossUnits:total,...(rightsLedger?{rightsLedger}:{}),
   missing:rows.flatMap(r=>r.missing),cashPosted:false,periodicValueUsd:null,wholeEquityValueUsd:null,
   scientificAcceptance:false,scope:"Source-declared disposition instructions; financial posting and delayed operating intervals not yet executed"};
 }

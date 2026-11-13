@@ -110,7 +110,7 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     if(disposition&&!disposition.compiled){
      Object.assign(finiteAccounting,{assetDisposition:disposition,terminal:null,combinedFiniteProjectPresentValueUsd:null,
       terminalUnavailableReasons:disposition.assessment.missing});
-     finiteAccounting.version="finite-cohort-accrual-4-disposition";
+     finiteAccounting.version=f.assetDisposition?.version==="cohort-disposition-2-rights"?"finite-cohort-accrual-5-rights":"finite-cohort-accrual-4-disposition";
     }else{
     const terminal=settleTerminal(disposition?.compiled??f.terminal,disposition?.closing??closing,id,f.ledger.claimantId,
      `${Math.max(...input.years)+1}-01-01`,f.declaration.valuationOn,f.declaration.discountRate,s.specification.evidenceIds);
@@ -118,7 +118,7 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
      finiteAccounting.finiteCommonCashPvUsd+terminal.presentCommonCashUsd,
      combinedValueClaim:"Finite declared project common cash only; not whole equity"});
     finiteAccounting.version="finite-cohort-accrual-3-terminal";
-    if(disposition){Object.assign(finiteAccounting,{assetDisposition:disposition});finiteAccounting.version="finite-cohort-accrual-4-disposition";}
+    if(disposition){Object.assign(finiteAccounting,{assetDisposition:disposition});finiteAccounting.version=f.assetDisposition?.version==="cohort-disposition-2-rights"?"finite-cohort-accrual-5-rights":"finite-cohort-accrual-4-disposition";}
     }
    }
   }
