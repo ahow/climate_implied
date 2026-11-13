@@ -43,6 +43,15 @@ try{
  const begin=fixtureSource.indexOf("export function cohortFixture()");
  const end=fixtureSource.indexOf("\n}\n",begin)+2;
  const fixture=fixtureSource.slice(begin,end).replace("export function cohortFixture():CompanyCohortInput","function cohortFixture()").replaceAll(" as const","");
+ if(process.argv.includes("--finite-branch")){
+  const start=fixtureSource.indexOf("  const x=cohortFixture(),s=x.scenarios[0],c=");
+  const finish=fixtureSource.indexOf("  const r=projectCompanyCohorts(x),m=",start);
+  assert.ok(start>0&&finish>start);
+  const input=Function("storage",`${fixture};${fixtureSource.slice(start,finish).replaceAll(" as const","")};s.finiteAccounting.recognitionLaw="earned-service-prefix-1";return x;`)(true);
+  const {readRetainedFiniteInTransaction:read}=await import("../server/snapshots/companyOperatingReview");
+  const {finiteCohortTransport}=await import("./finiteCohortTransport");
+  Object.assign(receipt,await finiteCohortTransport(pool,input,{stage,decide,read}));
+ }else{
  const renewalStart=fixtureSource.indexOf(" const x=cohortFixture(),s=x.scenarios[0]");
  const renewalEnd=fixtureSource.indexOf(" const result=projectCompanyCohorts(x);",renewalStart);
  assert.ok(renewalStart>0&&renewalEnd>renewalStart);
@@ -176,10 +185,12 @@ try{
   boundary:"Committed synthetic fixtures remain only in the newly created private local cluster, which is stopped. No production/HTTP principal proof."};
  receipt.schemaScope="Company and financial-review columns/constraints aligned to shared/schema.ts; snapshot guards from documented local setup. Not the full application schema.";
  receipt.passed=true;
+ }
 }catch(e){receipt.error=String(e);process.exitCode=1;}
 finally{
  if(pool)await pool.end();if(running)run("pg_ctl",["-D",data,"-m","fast","-w","stop"]);
  const out=resolve("generated-artifacts/renewal-cash");mkdirSync(out,{recursive:true});
- writeFileSync(join(out,"future-postgres.json"),JSON.stringify(receipt,null,2));
- writeFileSync(join(out,"future-postgres-setup.log"),logs.join("\n"));console.log(receipt);
+ const prefix=process.argv.includes("--finite-branch")?"finite-postgres":"future-postgres";
+ writeFileSync(join(out,`${prefix}.json`),JSON.stringify(receipt,null,2));
+ writeFileSync(join(out,`${prefix}-setup.log`),logs.join("\n"));console.log(receipt);
 }

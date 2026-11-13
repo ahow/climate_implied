@@ -79,6 +79,13 @@ if recognition.exists():
   "Admitted new-branch operator/API/UI/export execution remains unproven; prior PG evidence is not this branch",
   "No issuer input qualified from new MNRE excerpt; original issuer/driver/historical source work remains"]
  x["next_action"]="Preserve earned-service-prefix-1/finite-cohort-accrual-2-daily-bound and legacy finite1;16 focused and latest full gate recorded. Existing0bd25f70/CI43337009019/runtime safe observed2023 readback verified; do not repeat. Reconcile subsequent recognition-rule publication separately. Continue actual admitted reader/UI/export branch, terminal liability/common-claim and funded renewal/inversion; daily bound is not GAAP/issuer/science acceptance. Original source/22driver/dated11–15 work remains; MNRE newly examined portion qualified no payment."
+ current_ci=Path("generated-artifacts/dated-cash/recognition-ci.json")
+ if current_ci.exists():
+  runs=json.loads(current_ci.read_text()).get("workflow_runs",[])
+  if runs:
+   v=runs[0];x["pending_release"]={"source":v["head_sha"],"ci":v["id"],"status":v["status"],"conclusion":v["conclusion"]}
+   e["publication"]=x["pending_release"]
+   x["next_action"]=f"Existing CI{v['id']} for {v['head_sha']} is {v['status']}/{v['conclusion']}; reconcile without restart/cancellation/superseding, then verify exact runtime and safe affected readback. "+x["next_action"]
 x.setdefault("restart",{})["instruction"]=x["next_action"]
 for s in x["stages"]:
  for r in s["requirements"]:

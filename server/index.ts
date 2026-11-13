@@ -20,6 +20,7 @@ import { producerDownloadMiddleware, registerProducerDownloadRoutes } from "./pr
 import { loadAnalysisResult } from "./snapshots/results";
 import { registerScientificEvidenceApi } from "./scientificEvidenceApi";
 import { registerProspectiveResearchApi } from "./prospectiveResearchApi";
+import {finiteCompanyPrivacy} from "./finiteCompanyPrivacy";
 import { registerProspectiveResultExportBoundary } from "./prospectiveResultExportApi";
 import { registerHeadlineDrilldownApi } from "./headlineDrilldownApi";
 import { registerRetainedPairedResearchRoutes } from "./retainedPairedResearchApi";
@@ -88,6 +89,7 @@ app.use((req, res, next) => {
   registerHeadlineDrilldownApi(app);
   registerRetainedPairedResearchRoutes(app);
   registerScientificEvidenceApi(app);
+  app.use(finiteCompanyPrivacy);
   registerProspectiveResearchApi(app);
   registerMethodologyApi(app);
   app.use(quantityDescriptionMiddleware());

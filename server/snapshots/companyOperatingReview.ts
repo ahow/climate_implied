@@ -30,6 +30,35 @@ async function load(tx:Connection,id:string,kind:string){
     throw new Error("Missing or corrupt operating archive");
   return r.rows[0].payload as any;
 }
+/** Bound to the actual computation and archived executable source, not a caller attestation.
+ * This is private retained-result metadata, not a disclosure/owner approval. */
+export function finiteProducerBinding(input:any,result:any,code:any){
+ if(!input.scenarios?.some((s:any)=>s.finiteAccounting))return null;
+ const paths=["server/calculation/operatingCohorts.ts","server/calculation/cohortCashLedger.ts",
+  "server/calculation/companyCohortProjection.ts","server/snapshots/companyOperatingReview.ts"];
+ const moduleContentHashes=Object.fromEntries(paths.map(path=>{
+  if(typeof code.files?.[path]!=="string"||!code.files[path].length)throw Error(`Missing finite executable module: ${path}`);
+  return [path,contentHash(code.files[path])];
+ }));
+ const orderedMembers=input.scenarios.map((s:any,index:number)=>{
+  const m=result.members[index];
+  if(!m||m.id!==s.id)throw Error("Finite producer member ordering mismatch");
+  if(!s.finiteAccounting)return {id:s.id,finite:false};
+  const f=m.finiteAccounting;
+  if(!f||f.physicalParentHash!==m.parentResultHash)throw Error("Finite physical parent mismatch");
+  const law=s.finiteAccounting.recognitionLaw??null;
+  if((f.recognitionAssessment?.version??null)!==law)throw Error("Finite recognition rule mismatch");
+  return {id:s.id,finite:true,physicalParentHash:m.parentResultHash,
+   inputHash:contentHash(s.finiteAccounting),cashResultHash:contentHash(f),recognitionLaw:law,
+   recognitionAssessmentHash:contentHash(f.recognitionAssessment??null),modelVersion:f.version,
+   periodicValue:f.periodicValueUsd,claim:s.finiteAccounting.ledger.claim,
+   claimantId:s.finiteAccounting.ledger.claimantId};
+ });
+ if(result.members.length!==orderedMembers.length)throw Error("Unexpected finite producer members");
+ return {version:"retained-finite-producer-1",codeId:contentHash(code),moduleContentHashes,orderedMembers,
+  inputHash:contentHash(input),assumptionHash:contentHash(input.scenarios),resultHash:contentHash(result),
+  approval:false,scientificAcceptance:false};
+}
 async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:string[]){
  if(proposal.input?.version!=="company-cohort-input-1")return null;
  const p=proposal.producer;
@@ -42,6 +71,9 @@ async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:strin
     contentHash(p.modelVersions)!==contentHash(result.modelVersions))
     throw Error("Retained cohort model/assumption manifest mismatch");
  if(contentHash(code)!==readCalculationSourceArtifact().id)throw Error("Pinned cohort code unavailable in this executable; no current-code fallback");
+ const finite=finiteProducerBinding(proposal.input,result,code);
+ if(finite&&contentHash(finite)!==contentHash(p.finiteExecution))
+  throw Error("Retained finite execution binding mismatch");
  if(contentHash(projectCompanyCohorts(proposal.input))!==contentHash(result))throw Error("Retained cohort result mismatch");
  if(result.covered.scenarios.some((s:any)=>s.status!=="conditional"))
    throw Error("Incomplete cohort scenario domain cannot be admitted");
@@ -87,6 +119,7 @@ export async function stageCompanyOperatingInTransaction(tx:Connection,input:any
     modelVersion:cohortProjection.version,inputVersion:input.version,
     assumptionHash:contentHash(input.scenarios),modelVersions:cohortProjection.modelVersions,inputHash:contentHash(input),
     sourceIds:resolved.archiveHashes,
+    ...(input.scenarios.some((s:any)=>s.finiteAccounting)?{finiteExecution:finiteProducerBinding(input,projection,readCalculationSourceArtifact().payload)}:{}),
   }:null;
   return save(tx,"company-operating-proposal",{version:"company-operating-proposal-1",identity,input,evidence,cutoff,
     ...(producer?{producer}:{}),
@@ -153,6 +186,16 @@ export async function projectReviewedCompanyInTransaction(tx:Connection,decision
     financialReviewId:decision.financialReviewId,informationCutoff:cutoff,scientificAcceptance:false,
     historicalWarning:"Approval after the origin cannot be backdated; source resolution is not original-vintage or calibrated acceptance"};
 }
+export async function readRetainedFiniteInTransaction(tx:Connection,decisionId:string,cutoff:string){
+ const result=await projectReviewedCompanyInTransaction(tx,decisionId,cutoff);
+ if(!(result as any).producerManifest?.finiteExecution)throw Error("Retained finite execution unavailable");
+ const decision=await load(tx,decisionId,"company-operating-decision");
+ const proposal=await load(tx,decision.proposalId,"company-operating-proposal");
+ const computedResult=await load(tx,proposal.producer.resultId,"company-cohort-result");
+ return {input:proposal.input,result,computedResult,decision,proposal,proposalId:decision.proposalId};
+}
+export const readRetainedFinite=(decisionId:string,cutoff:string)=>
+ db.transaction(tx=>readRetainedFiniteInTransaction(tx,decisionId,cutoff));
 export const stageCompanyOperating=(input:unknown,evidence:unknown,sources:unknown[],identity:{companyId:string;isin:string},cutoff:string)=>
   db.transaction(tx=>stageCompanyOperatingInTransaction(tx,input,evidence,sources,identity,cutoff));
 export const projectReviewedCompany=(id:string,cutoff:string)=>
