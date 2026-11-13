@@ -31,6 +31,47 @@ test("future activity comes from real cohort computation; complete declared rang
  const y=cohortFixture();y.scenarios[0].physical[0].cohortId="forged";
  assert.throws(()=>projectCompanyCohorts(y),/Missing genuine/);
 });
+test("partial-calendar degrading service feeds finite accrual and cash without a renewal claim",()=>{
+ for(const storage of [false,true]){
+  const x=cohortFixture(),s=x.scenarios[0],c=s.specification.cohorts[0],y=s.specification.years[0],evidenceIds=["fixture"];
+  s.specification.timing="utc-civil-day-service";
+  Object.assign(c,{retiredYear:2027,annualDegradation:.1,servicePerInstalledUnitPerYear:365,
+   capacityUnit:storage?"kWh-storage":"MW",serviceUnit:storage?"kWh-delivered":"MWh",
+   dated:{commissionedOn:"2027-07-01",retiredOn:"2027-10-01",degradationDayBasis:365.25,roundTripEfficiency:.8}});
+  Object.assign(y,{pricePerServiceUsd:10,variableCostPerServiceUsd:.2,constructionCashUsd:20,...(storage?{chargeEnergyPriceUsdPerKwh:2}:{})});
+  const service=Array.from({length:92},(_,day)=>Math.pow(.9,day/365.25)).reduce((a,b)=>a+b,0);
+  const paidEnergy=storage?service*1.25:0,accruedEnergy=paidEnergy*2,paidVariable=service*.1;
+  const distribution=service*10-paidVariable-paidEnergy;
+  const unit=storage?"kWh-delivered":"MWh",p=s.physical[0];
+  p.intensityDenominator=unit;p.activitySource.unit=unit;p.intensitySource.unit=`tonnes-CO2/${unit}`;
+  s.finiteAccounting={
+   ledger:{version:"cohort-cash-ledger-1",currency:"USD",claimantId:"fixture-project",claim:"declared-project-common-distribution-not-whole-equity",distributionRightsEvidenceId:"fixture",
+    years:[{year:2027,openingReceivables:0,closingReceivables:0,collections:service*10,
+     openingOtherWorkingCapital:0,closingOtherWorkingCapital:0,openingUnpaidTax:0,closingUnpaidTax:0,taxAccrual:0,
+     openingDebt:0,closingDebt:0,openingNonCommonLiability:0,closingNonCommonLiability:0,nonCommonAccrual:0,
+     operatingFixedCash:0,holdingCash:0,transactionCash:0,openingCash:0,closingCash:0,commonContribution:20,commonDistribution:distribution,evidenceIds}]},
+   declaration:{version:"dated-project-cash-1",valuationOn:"2027-01-01",discountRate:.1,convention:"ACT/365.25",claimantId:"fixture-project"},
+   timing:(["commonContribution","construction","collections","variableCost","energyCost","commonDistribution"] as const).map(component=>({year:2027,component,
+    allocations:[{on:component==="commonContribution"?"2027-06-30":component==="construction"?"2027-07-01":"2027-12-01",fraction:1,evidenceIds}]})),
+   accrual:{version:"dated-accrual-2",claimantId:"fixture-project",payables:[{year:2027,opening:0,closing:paidVariable+paidEnergy}],
+    operatingSettlements:{otherWorkingCapitalBasis:"excludes-receivables-payables-and-tax",alreadyCashPaidComponents:["construction"],
+     years:[{year:2027,variableCost:paidVariable,energyCost:paidEnergy,evidenceIds}]},
+    entries:[{id:"sales",on:"2027-09-30",kind:"revenue",usd:service*10,evidenceIds},
+     {id:"cost",on:"2027-09-30",kind:"payable",usd:service*.2+accruedEnergy,evidenceIds}]}
+  };
+  const r=projectCompanyCohorts(x),m=r.members[0];
+  assert.ok(Math.abs(m.physical.rows[0].service-service)<1e-9);
+  assert.equal(m.physical.rows[0].closing,0);
+  assert.equal(m.finiteAccounting.periodicValueUsd,null);
+  assert.equal(m.finiteAccounting.version,"finite-cohort-accrual-1");
+  assert.equal(m.finiteAccounting.physicalParentHash,m.parentResultHash);
+  assert.ok(Math.abs(m.finiteAccounting.accrualDays.at(-1).cash)<1e-9);
+  assert.equal(r.covered.scenarios[0].status,"conditional");
+  if(storage)assert.ok(Math.abs(m.physical.rows[0].chargeEnergyKwh-service/0.8)<1e-9);
+  s.finiteAccounting.timing[0].allocations[0].on="2027-08-01";
+  assert.throws(()=>projectCompanyCohorts(x),/funding/);
+ }
+});
 test("renewal enters company projection with matching physical source and full assumption identity",()=>{
  const x=cohortFixture(),s=x.scenarios[0],base=structuredClone(s.physical[0]);
  x.years=[2027,2028];
