@@ -1,5 +1,6 @@
 import {contentHash} from "./analysisManifest";
 import {settleTerminal,type TerminalSettlement,type TerminalBalances} from "./terminalSettlement";
+import {compileDispositionSettlement,type CohortDisposition} from "./cohortDisposition";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {calculateCoveredPhysicalPaths,type PhysicalCell,type CoveredPathInput} from "./coveredPhysicalPaths";
 import {evaluatePeriodicRenewal,type RenewalDeclaration} from "./cohortRenewal";
@@ -10,7 +11,7 @@ export interface CompanyCohortInput {
  scenarios:{id:string;specification:CohortSpecification;
    renewal?:RenewalDeclaration;
    finiteAccounting?:{ledger:CohortCashLedger;declaration:Omit<DatedProjectCash,"events">;timing:CashTiming[];accrual:AccrualSchedule;
-    recognitionLaw?:"earned-service-prefix-1";terminal?:TerminalSettlement};
+    recognitionLaw?:"earned-service-prefix-1";terminal?:TerminalSettlement;assetDisposition?:CohortDisposition};
    physical:(Omit<PhysicalCell,"activity"|"activityUnit"|"parentResultHash"|"parentActivityPointer"|"parentYearPointer"|"parentUnitPointer"> & {cohortId:string;activityChannel:"service"|"charge-energy"})[]}[];
 }
 /** Query a prefix of the SAME physical law. Capped retirement is an integration
@@ -82,6 +83,12 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
    renewal=evaluatePeriodicRenewal(s.renewal);
   }
   const f=s.finiteAccounting;
+  if(f?.assetDisposition&&!f.terminal)throw Error("Asset disposition requires explicit terminal funding/claim settlement");
+  for(const asset of f?.assetDisposition?.assets??[]){
+   const sourceCells=s.physical.filter(c=>c.cohortId===asset.cohortId);
+   if(sourceCells.some(c=>c.basis!==f!.assetDisposition!.stockBasis||c.ownership!==asset.ownedFraction))
+    throw Error("Asset rights/ownership contradict declared physical source cells");
+  }
   const finiteAccounting=f?{
    physicalParentHash:id,
    physicalCashBasis:"Model cost basis before explicit settlement bridge; not whole-equity FCFE",
@@ -99,12 +106,20 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     if(!last)throw Error("Terminal settlement requires dated closing balances");
     const closing={} as TerminalBalances;
     for(const k of ["cash","receivables","payables","tax","otherWC","debt","nonCommon"] as const)closing[k]=last[k];
-    const terminal=settleTerminal(f.terminal,closing,id,f.ledger.claimantId,
+    const disposition=f.assetDisposition?compileDispositionSettlement(s.specification,f.assetDisposition,f.terminal,closing):undefined;
+    if(disposition&&!disposition.compiled){
+     Object.assign(finiteAccounting,{assetDisposition:disposition,terminal:null,combinedFiniteProjectPresentValueUsd:null,
+      terminalUnavailableReasons:disposition.assessment.missing});
+     finiteAccounting.version="finite-cohort-accrual-4-disposition";
+    }else{
+    const terminal=settleTerminal(disposition?.compiled??f.terminal,disposition?.closing??closing,id,f.ledger.claimantId,
      `${Math.max(...input.years)+1}-01-01`,f.declaration.valuationOn,f.declaration.discountRate,s.specification.evidenceIds);
     Object.assign(finiteAccounting,{terminal,combinedFiniteProjectPresentValueUsd:
      finiteAccounting.finiteCommonCashPvUsd+terminal.presentCommonCashUsd,
      combinedValueClaim:"Finite declared project common cash only; not whole equity"});
     finiteAccounting.version="finite-cohort-accrual-3-terminal";
+    if(disposition){Object.assign(finiteAccounting,{assetDisposition:disposition});finiteAccounting.version="finite-cohort-accrual-4-disposition";}
+    }
    }
   }
   members.push({id:s.id,physical,parentResultHash:id,...(renewal?{renewal}:{}),...(finiteAccounting?{finiteAccounting}:{})});

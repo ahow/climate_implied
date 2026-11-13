@@ -49,11 +49,11 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any){
  assert.throws(()=>finiteCompanyDocument(wrongReview),/review identity mismatch/);
  const wrongCode=structuredClone(first);wrongCode.result.producerManifest.codeId="f".repeat(64);
  assert.throws(()=>finiteCompanyDocument(wrongCode),/proposal\/source identity mismatch/);
- assert.equal(first.result.members[0].finiteAccounting.version,input.scenarios[0].finiteAccounting.terminal?
+ assert.equal(first.result.members[0].finiteAccounting.version,input.scenarios[0].finiteAccounting.assetDisposition?"finite-cohort-accrual-4-disposition":input.scenarios[0].finiteAccounting.terminal?
   "finite-cohort-accrual-3-terminal":"finite-cohort-accrual-2-daily-bound");
  if(input.scenarios[0].finiteAccounting.terminal){
   const f=first.result.members[0].finiteAccounting;
-  assert.equal(f.terminal.commonNetCash,-input.scenarios[0].finiteAccounting.terminal.opening.payables);
+  assert.equal(f.terminal.commonNetCash,input.scenarios[0].finiteAccounting.assetDisposition?75:-input.scenarios[0].finiteAccounting.terminal.opening.payables);
   assert.equal(f.combinedFiniteProjectPresentValueUsd,f.finiteCommonCashPvUsd+f.terminal.presentCommonCashUsd);
   assert.equal(f.periodicValueUsd,null);
  }

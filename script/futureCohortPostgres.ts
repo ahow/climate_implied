@@ -48,6 +48,15 @@ try{
   const finish=fixtureSource.indexOf("  const r=projectCompanyCohorts(x),m=",start);
   assert.ok(start>0&&finish>start);
   const input=Function("storage",`${fixture};${fixtureSource.slice(start,finish).replaceAll(" as const","")};s.finiteAccounting.recognitionLaw="earned-service-prefix-1";return x;`)(true);
+  if(process.argv.includes("--asset-branch")){
+   const s=input.scenarios[0],f=s.finiteAccounting;
+   s.specification.cohorts[0].retiredYear=2030;s.specification.cohorts[0].dated.retiredOn="2030-01-01";
+   for(const y of s.specification.years)for(const k of Object.keys(y))if(k!=="year"&&k!=="utilization")y[k]=0;
+   for(const y of f.ledger.years)for(const k of Object.keys(y))if(k!=="year"&&typeof y[k]==="number")y[k]=0;
+   for(const y of f.accrual.payables){y.opening=0;y.closing=0;}
+   for(const y of f.accrual.operatingSettlements.years)for(const k of Object.keys(y))if(k!=="year"&&typeof y[k]==="number")y[k]=0;
+   for(const e of f.accrual.entries)e.usd=0;
+  }
   if(process.argv.includes("--terminal-branch")){
    const {projectCompanyCohorts}=await import("../server/calculation/companyCohortProjection");
    const m=projectCompanyCohorts(input).members[0],last=m.finiteAccounting.accrualDays.at(-1);
@@ -57,6 +66,18 @@ try{
     claimantId:"fixture-project",physicalParentHash:m.parentResultHash,opening,
     events:[{id:"late-funding",on:"2028-01-02",kind:"contribution",usd:opening.payables,evidenceIds:["fixture"]},
      {id:"late-ap",on:"2028-01-02",kind:"payables",usd:opening.payables,evidenceIds:["fixture"]}]};
+   if(process.argv.includes("--asset-branch")){
+    const {contentHash}=await import("../server/calculation/analysisManifest");
+    const s=input.scenarios[0],f=s.finiteAccounting;
+    f.terminal.events=[{id:"common",on:"2028-03-01",kind:"distribution",usd:75,evidenceIds:["fixture"]}];
+    f.assetDisposition={version:"cohort-disposition-1",stockBasis:"full-unit-before-ownership",specificationHash:contentHash(s.specification),claimantId:"fixture-project",currency:"USD",
+     assets:[{cohortId:s.specification.cohorts[0].id,ownedFraction:.5,amountBasis:"owned-claim-USD",rightsEvidenceIds:["fixture"],
+      outcome:"dispose",on:"2028-01-01",cashOn:"2028-02-29",proceedsUsd:100,proceedsEvidenceIds:["fixture"],obligationCompletenessEvidenceIds:["fixture"],
+      obligations:[{id:"restore",kind:"restoration",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:20,evidenceIds:["fixture"],alreadyAccrued:false},
+       {id:"tax",kind:"tax",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:5,evidenceIds:["fixture"],alreadyAccrued:false}]}]};
+    const wrong=structuredClone(input);wrong.scenarios[0].finiteAccounting.assetDisposition.assets[0].ownedFraction=.75;
+    assert.throws(()=>projectCompanyCohorts(wrong),/ownership contradict/);
+   }
   }
   const {readRetainedFiniteInTransaction:read}=await import("../server/snapshots/companyOperatingReview");
   const {finiteCohortTransport}=await import("./finiteCohortTransport");
