@@ -56,6 +56,19 @@ e["pg"]=[json.loads(Path(q).read_text()) for q in ["generated-artifacts/renewal-
 e["pg_scope"]="V2:17 checks/237126rows474252cells; V3 earned:17 checks/237152rows474304cells. Actual disposable PostgreSQL/committed reconnect/fresh-process CLI/rollback, synthetic reviews only. No genuine principal, production provisioning or issuer acceptance."
 e["browser_scope"]="New kind V2 interactive A/B/A/corrupt/reset/reload; exact SHA identity,500-row pagination, zero file uploads. Three locator caps preserved. V3 separate actual browser load matched005b62c989c553c2233d1c6ca3e95ff52e2145e4d2e017881784d437b6f2ced6 and237152 rows; five version/recognition pointers observed, four on unvisited pages not independently located. Two explicit64-byte private guard POSTs both403, no file content. No production/principal/science acceptance."
 e["receipts"]={"local_before_commit":subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(),"published_and_runtime_last_verified":"d4f59575ef31e8bc1ac59bea435fe751858201cc","new_ci":"not started","new_deployment":"not asserted"}
+live=Path("generated-artifacts/dated-cash/funded-earned-live-confirmed.json")
+if live.exists():
+ receipt=json.loads(live.read_text())
+ previous=x.get("current_release")
+ if previous and previous.get("runtime")!=receipt["source"]:
+  x.setdefault("release_observations",[]).append(previous)
+ x["current_release"]={"runtime":receipt["source"],"ci":43561156132,"conclusion":"success","readback":receipt,
+  "scope":receipt["scope"],"railway_github_deployment":7783163945}
+ e["receipts"].update(implementation_local="5300377f1ddd07d6dadadb4b8388e6a357190be4",
+  public_source=receipt["source"],new_ci=43561156132,new_ci_conclusion="success",
+  new_deployment=receipt,previous_runtime="d4f59575ef31e8bc1ac59bea435fe751858201cc",
+  initial_readback="live-readback.log failed exact-SHA assertion while Railway was still serving d4; later success does not erase it",
+  railway="GitHub deployment7783163945 in_progress05:27:42Z→success05:32:38Z; no restart/cancellation/superseding")
 x["latest_increment"]["local_deployment_draft"]=e
 x["next_action"]=e["remaining"]+" Preserve final local gate/private V2 and V3 transport/browser scopes separately from CI/runtime; continue ALL original0–17."
 x["restart"]["instruction"]=x["next_action"]
@@ -63,6 +76,12 @@ for s in x["stages"]:
  for r in s["requirements"]:
   if r["id"]=="S13-004":r["deployment_draft"]=e;r["next_action"]=x["next_action"];r["remaining_gaps"]=[e["remaining"]]
   if r["id"]=="S12-017":r["latest_bounded_source_attempt"]=e["source_qualification"]
+  if r["id"] in ["S13-007","S13-017","S13-020"]:
+   r["latest_funded_scope"]={"at":e["at"],"public_source":e["receipts"].get("public_source"),
+    "engineering":"Funded finite/periodic join and earned recognition retained/transport/viewer checks passed; synthetic, not actual issuer/ensemble acceptance.",
+    "remaining":{"S13-007":"No certified physical-deployment-growth inverse or full-domain identification; inverse remains null.",
+     "S13-017":"Renewal-only family accounting is not cross-map coverage. Reconcile all declared reserve/retirement/manufacturing/cohort/renewal sets, including failed/missing/incompatible bases.",
+     "S13-020":"Synthetic covered fixture reconciliation is not sourced covered/expanded universe reconciliation; no global scaling inferred."}[r["id"]]}
 p.write_text(json.dumps(x,indent=2)+"\n")
 q=Path("docs/WORKPLAN_IMPLEMENTATION_REPORT.md");q.write_text("# "+e["scope"]+"\n\n"+json.dumps(e,indent=2)+"\n\n"+q.read_text())
 subprocess.run(["python","script/completion-ledger.py"],check=True)
@@ -75,3 +94,7 @@ Path("docs/TERMINAL_VIEWER_HANDOFF.md").write_text("# Funded transition compact 
  "Browser V2 A/B/A/corrupt/reset/reload with3locator caps; V3 load+five markers+two403, four unvisited-page markers not individually located. "+
  "New issuer source2026-10-28 Gaffney release: international-started modules/forecastnameplate, NOT eligible watts/BOM/PFE/cash. "+
  "Before publication last verified runtime d4f59575; new CI/deploy not yet asserted. No callback sent yet. All300/65verified233partial2blocked/0of3/original1000of1001/14FaIRpins unchanged.")
+if live.exists():
+ with Path("docs/TERMINAL_VIEWER_HANDOFF.md").open("a") as h:
+  h.write("\n\nFINAL supersedes prepublication sentence: implementation5300377; public/runtime e97b8796133e0b30d253b8036e786b7bf6e10e80, CI43561156132 success; Railway deployment7783163945 success05:32:38Z. Fresh05:33:08Z health200, observed2023 API/JSON/XLSX1054rows2108cells, eight403, funded assets. No private future/principal/science acceptance. Initial stale-d4 readback failure retained. Do not repromote/restart this completed release. Final receipt documents remain LOCAL until a future coherent implementation publication; no receipt-only push.\n"+
+   "NEXT code: predeclared all-map family accounting across producerReserveModel, utilityRetirement, cleanManufacturingMap, companyCohortProjection and renewalFamily with missing/failed/incompatible sets explicit; existing renewable-only range is not complete Tier1 coverage. Also debt/recovery/partial rights and genuinely physical-growth inverse remain missing; do not relabel loan join/price shift as identification. All prior next_action applies. Preserve V2 browser caps and V3 four-unvisited-marker scope. No background jobs remain from this work.")

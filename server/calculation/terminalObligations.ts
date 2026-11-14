@@ -2,10 +2,19 @@ import {contentHash} from "./analysisManifest";
 import type {TerminalBalances,TerminalSettlement} from "./terminalSettlement";
 
 export interface OpeningObligationRegister {
- version:"opening-obligations-1";closingHash:string;claimantId:string;legalEntityId:string;currency:"USD";asOf:string;
+ version:"opening-obligations-1"|"opening-obligations-2-recovery";definitionHash?:string;
+ closingHash:string;claimantId:string;legalEntityId:string;currency:"USD";asOf:string;
  items:{id:string;sourceId:string;legalEntityId:string;claimantId:string;currency:"USD";accruedOn:string;
-  account:"payables"|"tax"|"debt"|"nonCommon";openingUsd:number}[];
+  account:"payables"|"tax"|"debt"|"nonCommon";openingUsd:number;counterparty?:string;priority?:"before-common"}[];
  allocations:{eventId:string;obligationId:string;usd:number}[];
+ recoveries?:{id:string;entitlementId:string;obligationId:string;sourceId:string;counterparty:string;recipient:string;
+  legalEntityId:string;currency:"USD";priority:"common-after-declared-liabilities";
+  eligibility:"declared-enforceable-reimbursement";eligibleOn:string;capUsd:number;
+  recognitionEventId:string;collectionEventId:string}[];
+}
+export function freezeOpeningObligations(input:OpeningObligationRegister){
+ const {definitionHash:_,...definition}=structuredClone(input);
+ return {...definition,definitionHash:contentHash(definition)};
 }
 /** Item matching is accounting evidence, not creditor priority or legal approval.
  * This version supports payment of existing liabilities only; no inferred
@@ -14,9 +23,13 @@ export function reconcileOpeningObligations(p:OpeningObligationRegister,closing:
  terminal:TerminalSettlement,cutoff:string,evidence:string[]){
  const day=(s:string)=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s)||!Number.isFinite(Date.parse(s))||
   new Date(s).toISOString().slice(0,10)!==s)throw Error("Exact obligation date required");return Date.parse(s);};
- if(p.version!=="opening-obligations-1"||p.closingHash!==contentHash(closing)||p.currency!=="USD"||
+ if(!["opening-obligations-1","opening-obligations-2-recovery"].includes(p.version)||p.closingHash!==contentHash(closing)||p.currency!=="USD"||
   !p.legalEntityId||p.claimantId!==terminal.claimantId||p.asOf!==cutoff)
   throw Error("Opening obligation parent/entity/claim mismatch");
+ if(p.version==="opening-obligations-2-recovery"&&
+  (freezeOpeningObligations(p).definitionHash!==p.definitionHash||terminal.version!=="terminal-settlement-3-recovery"))
+  throw Error("Frozen recovery definition and compatible settlement required");
+ if(p.version==="opening-obligations-1"&&p.recoveries!==undefined)throw Error("Recovery needs version2");
  const ids=new Set<string>(),remaining=new Map<string,number>();
  const accounts=["payables","tax","debt","nonCommon"] as const;
  for(const i of p.items){
@@ -25,6 +38,8 @@ export function reconcileOpeningObligations(p:OpeningObligationRegister,closing:
    day(i.accruedOn)>=day(cutoff)||!Number.isFinite(i.openingUsd)||i.openingUsd<0)
    throw Error("Duplicate/invalid/borrowed opening obligation");
   ids.add(i.id);remaining.set(i.id,i.openingUsd);
+  if(p.version==="opening-obligations-2-recovery"&&(!i.counterparty||i.priority!=="before-common"))
+   throw Error("Explicit obligation counterparty/priority required");
  }
  for(const a of accounts){
   const amount=p.items.filter(i=>i.account===a).reduce((v,i)=>v+i.openingUsd,0);
@@ -47,7 +62,28 @@ export function reconcileOpeningObligations(p:OpeningObligationRegister,closing:
   if(allocated>e.usd+1e-9)throw Error("Allocation exceeds actual cash payment");
  }
  if(Array.from(remaining.values()).some(v=>Math.abs(v)>1e-9))throw Error("Opening obligations remain unmatched/unsettled");
- return {version:p.version,inputHash:contentHash(p),rows,newExpenseUsd:0,
+ const used=new Set<string>(),entitlements=new Set<string>(),recoveryRows=[];
+ for(const r of p.recoveries??[]){
+  const item=p.items.find(i=>i.id===r.obligationId),recognition=terminal.events.find(e=>e.id===r.recognitionEventId),
+   collection=terminal.events.find(e=>e.id===r.collectionEventId);
+  if(!r.id||!r.entitlementId||entitlements.has(r.entitlementId)||used.has(r.id)||used.has(r.recognitionEventId)||used.has(r.collectionEventId)||
+   !item||!r.counterparty||r.recipient!==p.claimantId||r.legalEntityId!==p.legalEntityId||r.currency!==p.currency||
+   r.priority!=="common-after-declared-liabilities"||r.eligibility!=="declared-enforceable-reimbursement"||
+   !evidence.includes(r.sourceId)||!Number.isFinite(r.capUsd)||r.capUsd<0||
+   !recognition||!collection||recognition.kind!=="recovery-accrual"||collection.kind!=="receivables"||
+   recognition.id===collection.id||day(r.eligibleOn)>day(recognition.on)||day(collection.on)<day(recognition.on)||
+   !recognition.evidenceIds.includes(r.sourceId)||!collection.evidenceIds.includes(r.sourceId)||
+   recognition.usd!==collection.usd||recognition.usd>r.capUsd)
+   throw Error("Missing/duplicate/ineligible recovery claim or cash binding");
+  const paid=rows.filter(row=>row.obligationId===item.id&&row.on<=recognition.on).reduce((n,row)=>n+row.settledUsd,0);
+  const prior=recoveryRows.filter(row=>row.obligationId===item.id).reduce((n,row)=>n+row.recoveredUsd,0);
+  if(recognition.usd+prior>paid+1e-9)throw Error("Recovery exceeds actually settled obligation");
+  [r.id,r.recognitionEventId,r.collectionEventId].forEach(id=>used.add(id));
+  entitlements.add(r.entitlementId);
+  recoveryRows.push({id:r.id,obligationId:item.id,recognizedOn:recognition.on,collectedOn:collection.on,recoveredUsd:collection.usd,newExpenseUsd:0});
+ }
+ if(terminal.events.some(e=>e.kind==="recovery-accrual"&&!used.has(e.id)))throw Error("Unbound recovery accrual");
+ return {version:p.version,inputHash:contentHash(p),rows,...(p.version==="opening-obligations-2-recovery"?{recoveryRows}:{}),newExpenseUsd:0,
   scope:"Existing liability payments only; new costs remain separately accrued. Recovery/default/priority not inferred.",
   formula:"Closing item = opening item − explicitly allocated settlement; settlement is not a new expense"};
 }

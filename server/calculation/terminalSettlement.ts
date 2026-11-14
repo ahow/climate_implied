@@ -2,11 +2,11 @@ import {contentHash} from "./analysisManifest";
 import {reconcileOpeningObligations,type OpeningObligationRegister} from "./terminalObligations";
 export type TerminalBalances={cash:number;receivables:number;payables:number;tax:number;otherWC:number;debt:number;nonCommon:number};
 export interface TerminalSettlement{
- version:"terminal-settlement-1"|"terminal-settlement-2-operations";currency:"USD";claimantId:string;physicalParentHash:string;
+ version:"terminal-settlement-1"|"terminal-settlement-2-operations"|"terminal-settlement-3-recovery";currency:"USD";claimantId:string;physicalParentHash:string;
  accrualScope:"complete-declared-post-cutoff-schedule";priority:"common-after-declared-liabilities";
  opening:TerminalBalances;
  openingObligations?:OpeningObligationRegister;
- events:{id:string;on:string;kind:"receivables"|"receivable-default"|"payables"|"tax"|"otherWC"|"debt"|"nonCommon"|"contribution"|"distribution"|"debt-funding"|"payable-accrual"|"tax-accrual"|"nonCommon-accrual"|"revenue-accrual"|"asset-receivable-accrual"|"cash-operating-cost"|"capital-spend"|"otherWC-invest";usd:number;evidenceIds:string[];
+ events:{id:string;on:string;kind:"recovery-accrual"|"receivables"|"receivable-default"|"payables"|"tax"|"otherWC"|"debt"|"nonCommon"|"contribution"|"distribution"|"debt-funding"|"payable-accrual"|"tax-accrual"|"nonCommon-accrual"|"revenue-accrual"|"asset-receivable-accrual"|"cash-operating-cost"|"capital-spend"|"otherWC-invest";usd:number;evidenceIds:string[];
   component?:"variableCost"|"energyCost"|"fixedCashCost"|"construction"|"maintenance"|"replacement"|"decommissioning"|"interest";
   costBasis?:"retirement"|"remediation"|"interest"|"holding"|"other-operating"}[];
 }
@@ -17,7 +17,7 @@ export function settleTerminal(p:TerminalSettlement,closing:TerminalBalances,par
  const day=(s:string)=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s)||!Number.isFinite(Date.parse(s))||
   new Date(s).toISOString().slice(0,10)!==s)throw Error("Exact terminal date required");return Date.parse(s);};
  const end=day(cutoff),origin=day(valuationOn);
- if(!["terminal-settlement-1","terminal-settlement-2-operations"].includes(p.version)||p.currency!=="USD"||p.claimantId!==claimant||
+ if(!["terminal-settlement-1","terminal-settlement-2-operations","terminal-settlement-3-recovery"].includes(p.version)||p.currency!=="USD"||p.claimantId!==claimant||
   p.accrualScope!=="complete-declared-post-cutoff-schedule"||p.priority!=="common-after-declared-liabilities"||
   p.physicalParentHash!==parent||!claimant||origin>end||!Number.isFinite(rate)||rate<0||rate>=1)
   throw Error("Terminal claim/physical/valuation mismatch");
@@ -27,6 +27,10 @@ export function settleTerminal(p:TerminalSettlement,closing:TerminalBalances,par
  const ids=new Set<string>(),events=p.events.slice().sort((a,b)=>a.on.localeCompare(b.on)||a.id.localeCompare(b.id));
  const kinds=["receivables","receivable-default","payables","tax","otherWC","debt","nonCommon","contribution","distribution","debt-funding","payable-accrual","tax-accrual","nonCommon-accrual"];
  if(p.version==="terminal-settlement-2-operations")kinds.push("revenue-accrual","asset-receivable-accrual","cash-operating-cost","capital-spend","otherWC-invest");
+ if(p.version==="terminal-settlement-3-recovery"){
+  if(p.openingObligations?.version!=="opening-obligations-2-recovery")throw Error("Item-level recovery register required");
+  kinds.push("recovery-accrual");
+ }
  for(const e of events){
   if(!e.id||ids.has(e.id)||!kinds.includes(e.kind)||day(e.on)<end||!Number.isFinite(e.usd)||e.usd<0||
    !e.evidenceIds.length||e.evidenceIds.some(id=>!evidence.includes(id)))throw Error("Invalid terminal event/source/date");
@@ -34,13 +38,14 @@ export function settleTerminal(p:TerminalSettlement,closing:TerminalBalances,par
   if(e.kind==="payable-accrual"&&!["retirement","remediation","interest","holding","other-operating"].includes(e.costBasis!))
    throw Error("Explicit post-cutoff payable cost basis required");
  }
- let pv=0,common=0,defaults=0,subsequentCost=0,revenue=0,assetReceivables=0,capital=0;
+ let pv=0,common=0,defaults=0,subsequentCost=0,revenue=0,assetReceivables=0,capital=0,recovery=0;
  const rows=[];
  for(const on of Array.from(new Set(events.map(e=>e.on)))){
   const opening={...b};let net=0;
   // Intraday priority is not inferred: only civil-day batches are supported.
   for(const e of events.filter(e=>e.on===on)){
-   if(e.kind==="revenue-accrual"){b.receivables+=e.usd;revenue+=e.usd;}
+   if(e.kind==="recovery-accrual"){b.receivables+=e.usd;recovery+=e.usd;}
+   else if(e.kind==="revenue-accrual"){b.receivables+=e.usd;revenue+=e.usd;}
    else if(e.kind==="asset-receivable-accrual"){b.receivables+=e.usd;assetReceivables+=e.usd;}
    else if(e.kind==="cash-operating-cost"){b.cash-=e.usd;subsequentCost+=e.usd;}
    else if(e.kind==="capital-spend"){b.cash-=e.usd;capital+=e.usd;}
@@ -62,13 +67,16 @@ export function settleTerminal(p:TerminalSettlement,closing:TerminalBalances,par
   common+=net;pv+=present;rows.push({on,opening,closing:{...b},commonNetCash:net,presentCommonCash:present});
  }
  if(Object.values(b).some(v=>Math.abs(v)>1e-9))throw Error("Terminal balances remain unsettled");
- const conserved=closing.cash+closing.receivables+closing.otherWC-closing.payables-closing.tax-closing.debt-closing.nonCommon-defaults-subsequentCost+revenue+assetReceivables-capital;
+ const conserved=closing.cash+closing.receivables+closing.otherWC-closing.payables-closing.tax-closing.debt-closing.nonCommon-defaults-subsequentCost+revenue+assetReceivables+recovery-capital;
  if(Math.abs(common-conserved)>1e-9*Math.max(1,Math.abs(common),Math.abs(conserved)))throw Error("Terminal cash conservation failed");
  const openingObligations=p.openingObligations?reconcileOpeningObligations(p.openingObligations,closing,p,cutoff,evidence):undefined;
  return {version:p.version,inputHash:contentHash(p),physicalParentHash:parent,rows,closing:b,...(openingObligations?{openingObligations}:{}),
   commonNetCash:common,presentCommonCashUsd:pv,receivableDefaultsUsd:defaults,subsequentAccruedCostUsd:subsequentCost,
+  ...(p.version==="terminal-settlement-3-recovery"?{recoveryReceivableUsd:recovery}:{}),
   ...(p.version==="terminal-settlement-2-operations"?{operatingRevenueAccruedUsd:revenue,assetReceivablesRecognizedUsd:assetReceivables,capitalSpentUsd:capital}:{}),
   periodicValueUsd:null,wholeEquityValueUsd:null,scientificAcceptance:false,
+  ...(p.version==="terminal-settlement-3-recovery"?{recoveryBoundary:"Source-declared reimbursement of paid opening liabilities; not operating revenue, new expense, legal approval or automatic issuer entitlement",
+   recoveryFormula:"Opening net balances + uniquely recognized eligible recovery − defaults − new costs = distributions − contributions; collection settles the same recovery receivable once"}:{}),
   claim:"declared-project-common-distribution-not-whole-equity",
   scope:p.version==="terminal-settlement-2-operations"?"Declared operating and asset-sale accrual/cash; physical linkage belongs to the interval producer. Finite project cash, not whole-equity or legal acceptance":"Declared financial balances only; not valuation or disposition of surviving physical assets",
   formula:p.version==="terminal-settlement-2-operations"?"Opening net balances + operating revenue accrual + asset-sale receivable recognition - defaults - accrued/paid costs - capital spending = distributions - contributions; AR/AP/tax/otherWC and financing settle once":"Opening cash + collected receivables + otherWC release - opening liabilities - subsequent accrued costs = distributions - contributions; defaults are noncash; financing principal cancels once"};

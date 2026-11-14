@@ -119,6 +119,24 @@ try{
   }
   const {readRetainedFiniteInTransaction:read}=await import("../server/snapshots/companyOperatingReview");
   const {finiteCohortTransport}=await import("./finiteCohortTransport");
+  if(process.argv.includes("--recovery-branch")){
+   const t=input.scenarios[0].finiteAccounting.terminal;
+   assert.ok(t&&t.opening.payables>=5&&!input.scenarios[0].finiteAccounting.assetDisposition);
+   const {freezeOpeningObligations}=await import("../server/calculation/terminalObligations");
+   t.version="terminal-settlement-3-recovery";
+   const accounts=["payables","tax","debt","nonCommon"];
+   t.openingObligations=freezeOpeningObligations({version:"opening-obligations-2-recovery",
+    closingHash:contentHash(t.opening),claimantId:t.claimantId,legalEntityId:"synthetic-entity",currency:"USD",asOf:"2028-01-01",
+    items:accounts.map(account=>({id:account,sourceId:"fixture",legalEntityId:"synthetic-entity",claimantId:t.claimantId,currency:"USD",
+     accruedOn:"2027-12-31",account:account as any,openingUsd:t.opening[account],counterparty:"synthetic-creditor",priority:"before-common" as const})),
+    allocations:accounts.flatMap(account=>t.events.filter((e:any)=>e.kind===account).map((e:any)=>({eventId:e.id,obligationId:account,usd:e.usd}))),
+    recoveries:[{id:"synthetic-recovery",entitlementId:"synthetic-contract",obligationId:"payables",sourceId:"fixture",counterparty:"synthetic-insurer",
+     recipient:t.claimantId,legalEntityId:"synthetic-entity",currency:"USD",priority:"common-after-declared-liabilities",
+     eligibility:"declared-enforceable-reimbursement",eligibleOn:"2028-03-02",capUsd:5,recognitionEventId:"recovery-earned",collectionEventId:"recovery-collected"}]});
+   t.events.push({id:"recovery-earned",on:"2028-03-02",kind:"recovery-accrual",usd:5,evidenceIds:["fixture"]},
+    {id:"recovery-collected",on:"2028-03-03",kind:"receivables",usd:5,evidenceIds:["fixture"]},
+    {id:"recovery-distribution",on:"2028-03-03",kind:"distribution",usd:5,evidenceIds:["fixture"]});
+  }
   Object.assign(receipt,await finiteCohortTransport(pool,input,{stage,decide,read}));
  }else{
  const renewalStart=fixtureSource.indexOf(" const x=cohortFixture(),s=x.scenarios[0]");
@@ -259,7 +277,7 @@ try{
 finally{
  if(pool)await pool.end();if(running)run("pg_ctl",["-D",data,"-m","fast","-w","stop"]);
  const out=resolve("generated-artifacts/renewal-cash");mkdirSync(out,{recursive:true});
- const prefix=process.argv.includes("--funded-branch")?`funded-postgres-${Date.now()}`:process.argv.includes("--renewal-branch")?"gregorian-postgres":process.argv.includes("--finite-branch")?"finite-postgres":"future-postgres";
+ const prefix=process.argv.includes("--recovery-branch")?`recovery-postgres-${Date.now()}`:process.argv.includes("--funded-branch")?`funded-postgres-${Date.now()}`:process.argv.includes("--renewal-branch")?"gregorian-postgres":process.argv.includes("--finite-branch")?"finite-postgres":"future-postgres";
  writeFileSync(join(out,`${prefix}.json`),JSON.stringify(receipt,null,2));
  writeFileSync(join(out,`${prefix}-setup.log`),logs.join("\n"));console.log(receipt);
 }
