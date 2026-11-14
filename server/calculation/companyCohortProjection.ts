@@ -92,7 +92,7 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
    if(sourceCells.some(c=>c.basis!==f!.assetDisposition!.stockBasis||c.ownership!==asset.ownedFraction))
     throw Error("Asset rights/ownership contradict declared physical source cells");
   }
-  const financialSpec=f?.postCutoff?ownedFinancialSpecification(s.specification,f.assetDisposition!,false):s.specification;
+  const financialSpec=f?.postCutoff?ownedFinancialSpecification(s.specification,f.assetDisposition!,false,f.postCutoff.priorRetiredOwnership):s.specification;
   const financialPhysical=f?.postCutoff?calculateOperatingCohorts(financialSpec):physical;
   const finiteAccounting=f?{
    physicalParentHash:id,

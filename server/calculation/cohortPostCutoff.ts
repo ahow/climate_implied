@@ -8,15 +8,28 @@ export interface PostCutoffInterval{
  workingCapitalBasis:"otherWC-excludes-AR-AP-tax";
  inputClassification:"declared-conditional-forecast";coverageFrom:string;coverageThrough:string;
  years:CohortYear[];events:TerminalSettlement["events"];
+ priorRetiredOwnership?:{cohortId:string;specificationHash:string;ownedFraction:number;evidenceIds:string[]}[];
 }
 const day=(s:string)=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s)||!Number.isFinite(Date.parse(s))||new Date(s).toISOString().slice(0,10)!==s)throw Error("Exact interval date required");return Date.parse(s);};
 /** Owned exposure is a calculation transform, never a rewritten physical source. */
-export function ownedFinancialSpecification(spec:CohortSpecification,p:CohortDisposition,capRights:boolean){
+export function ownedFinancialSpecification(spec:CohortSpecification,p:CohortDisposition,capRights:boolean,
+ prior:NonNullable<PostCutoffInterval["priorRetiredOwnership"]>=[],original=spec){
+ const cutoff=`${original.years.at(-1)!.year+1}-01-01`;
+ const ids=new Set<string>();
+ for(const o of prior){
+  const c=original.cohorts.find(c=>c.id===o.cohortId);
+  if(ids.has(o.cohortId)||!c?.dated||c.dated.retiredOn>cutoff||p.assets.some(a=>a.cohortId===o.cohortId)||
+   o.specificationHash!==contentHash(original)||!Number.isFinite(o.ownedFraction)||o.ownedFraction<=0||o.ownedFraction>1||
+   !o.evidenceIds.length||o.evidenceIds.some(id=>!c.evidenceIds.includes(id)||!original.evidenceIds.includes(id)))
+   throw Error("Prior-retired ownership needs its own matched cohort/specification/source");
+  ids.add(o.cohortId);
+ }
  return {...spec,cohorts:spec.cohorts.map(c=>{
   const a=p.assets.find(a=>a.cohortId===c.id);
-  if(!a)throw Error("Explicit ownership for every financial cohort required");
-  const retiredOn=capRights&&a.on<c.dated!.retiredOn?a.on:c.dated!.retiredOn;
-  return {...c,installedUnits:c.installedUnits*a.ownedFraction,retiredYear:Number(retiredOn.slice(0,4)),
+  const historical=prior.find(o=>o.cohortId===c.id);
+  if(!a&&!historical)throw Error("Explicit ownership for every financial cohort required");
+  const retiredOn=capRights&&a&&a.on<c.dated!.retiredOn?a.on:c.dated!.retiredOn;
+  return {...c,installedUnits:c.installedUnits*(a?.ownedFraction??historical!.ownedFraction),retiredYear:Number(retiredOn.slice(0,4)),
    dated:{...c.dated!,retiredOn}};
  })};
 }
@@ -33,13 +46,13 @@ export function calculatePostCutoff(spec:CohortSpecification,p:CohortDisposition
  if(p.assets.some(a=>a.on>x.coverageThrough)||x.years.at(-1)!.year!==Number(x.coverageThrough.slice(0,4)))
   throw Error("No extrapolation outside declared interval coverage");
  const future={...spec,years:x.years};delete future.liquidation;
- const ownedSpec=ownedFinancialSpecification(future,p,true),owned=calculateOperatingCohorts(ownedSpec);
+ const ownedSpec=ownedFinancialSpecification(future,p,true,x.priorRetiredOwnership,spec),owned=calculateOperatingCohorts(ownedSpec);
  // Gross operating exposure retains sold assets; a withdrawal/removal changes
  // operating activity only where explicitly declared. Material/title state stays
  // in the separate disposition ledger, not inferred from operating capacity.
  const gross=calculateOperatingCohorts({...future,cohorts:future.cohorts.map(c=>{
-  const a=p.assets.find(a=>a.cohortId===c.id)!;
-  if(a.outcome!=="retire"||a.on>=c.dated!.retiredOn)return c;
+  const a=p.assets.find(a=>a.cohortId===c.id);
+  if(!a||a.outcome!=="retire"||a.on>=c.dated!.retiredOn)return c;
   return {...c,retiredYear:Number(a.on.slice(0,4)),dated:{...c.dated!,retiredOn:a.on}};
  })});
  const e=structuredClone(x.events);

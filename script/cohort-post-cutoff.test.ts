@@ -79,3 +79,16 @@ test("capital and otherWC have separate dated cash treatment, not duplicate oper
  const r=run(f);assert.equal(r.cash.commonNetCash,490);assert.equal(r.cash.capitalSpentUsd,10);
  assert.equal(r.cash.subsequentAccruedCostUsd,200);assert.equal(r.cash.closing.otherWC,0);
 });
+test("prior-retired ownership is independently source-bound, never borrowed from a survivor",()=>{
+ const f=fixture(),old=structuredClone(f.spec.cohorts[0]);old.id="old";old.commissionedYear=2025;old.retiredYear=2027;
+ old.dated!.commissionedOn="2025-01-01";old.dated!.retiredOn="2027-01-01";
+ f.spec.cohorts.push(old);f.p.specificationHash=contentHash(f.spec);f.x.priorSpecificationHash=contentHash(f.spec);
+ assert.throws(()=>run(f),/ownership/);
+ f.x.priorRetiredOwnership=[{cohortId:"old",specificationHash:contentHash(f.spec),ownedFraction:.25,evidenceIds:["fixture"]}];
+ assert.equal(run(f).cash.commonNetCash,500);
+ for(const change of [
+  (o:any)=>{o.specificationHash="borrowed";},(o:any)=>{o.evidenceIds=["unmatched"];},
+  (o:any)=>{o.cohortId="battery";}
+ ]){const g=structuredClone(f);change(g.x.priorRetiredOwnership![0]);assert.throws(()=>run(g),/matched/);}
+ f.x.priorRetiredOwnership.push({...f.x.priorRetiredOwnership[0]});assert.throws(()=>run(f),/matched/);
+});

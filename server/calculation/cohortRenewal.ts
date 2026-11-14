@@ -1,6 +1,7 @@
 import {contentHash} from "./analysisManifest";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {reconcileCohortCash,reconcileDatedAccruals,type CohortCashLedger,type DatedProjectCash,type CashTiming,type AccrualSchedule} from "./cohortCashLedger";
+import {reconcileRenewalClosure,type RenewalClosureDeclaration} from "./renewalClosure";
 
 /** Exact periodic renewal only. Not a growth perpetuity or issuer valuation.
  * Two explicit adjacent cycles demonstrate the declared stock/energy/cash law;
@@ -20,6 +21,7 @@ export interface RenewalDeclaration {
  evidenceIds:string[];
  cashLedger?:CohortCashLedger;
  datedAccounting?:{declaration:Omit<DatedProjectCash,"events">;timing:CashTiming[];accrual:AccrualSchedule};
+ wholeStateCycle?:RenewalClosureDeclaration;
  transition?:{
   specification:CohortSpecification;
   openingDebtUsd:number;openingWorkingCapitalUsd:number;
@@ -88,6 +90,9 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
   throw Error("Dated accounting requires a cash ledger; dated transition/periodic boundary not yet certified");
  const datedAccounting=x.datedAccounting?reconcileDatedAccruals(model,x.cashLedger!,x.datedAccounting.declaration,
   x.datedAccounting.timing,x.datedAccounting.accrual,x.evidenceIds):null;
+ if(x.wholeStateCycle&&!datedAccounting)throw Error("Whole-state closure requires executed dated accounting");
+ const wholeStateClosure=x.wholeStateCycle?reconcileRenewalClosure(x.specification,x.cashLedger!,datedAccounting!,
+  x.wholeStateCycle,x.datedAccounting!.accrual):null;
  const cash=datedAccounting?datedAccounting.reconciledCashRows:x.cashLedger?reconcileCohortCash(model,x.cashLedger,x.evidenceIds):null;
  if(x.cashLedger){
   equal(x.cashLedger.years[0].openingDebt,x.openingDebtUsd);
@@ -146,6 +151,7 @@ export function evaluatePeriodicRenewal(input:RenewalDeclaration){
  }
  return {version:datedAccounting?"renewal-3-finite-dated-accounting":cash||x.specification.timing==="utc-civil-day-service"?"periodic-renewal-2-cash-dated":x.version,inputHash:contentHash(x),model,cyclePv,
   datedAccounting,
+  ...(wholeStateClosure?{wholeStateClosure}:{}),
   cashLedger:cash,cashBasis:cash?"declared-common-distributions-net-contributions":"project-FCFE-not-distribution-qualified",
   valuationBoundary:`${firstYear}-01-01 before first-cycle cash`,
   cashCountingRule:"Repeated cycles verify the law; do not add their cash again to the periodic value",

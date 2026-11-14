@@ -4,6 +4,7 @@ import {evaluatePeriodicRenewal,type RenewalDeclaration} from "../server/calcula
 import {reconcileCohortCash,valueDatedProjectCash,deriveDatedProjectCash,type CashTiming,type CohortCashLedger,type DatedProjectCash} from "../server/calculation/cohortCashLedger";
 import {calculateOperatingCohorts} from "../server/calculation/operatingCohorts";
 import {reconcileDatedAccruals,type AccrualSchedule} from "../server/calculation/cohortCashLedger";
+import {contentHash} from "../server/calculation/analysisManifest";
 export function renewalFixture():RenewalDeclaration{
  return {version:"periodic-renewal-1",claim:"conditional-project-common-residual",cycleYears:1,discountRate:0.1,
  openingAgeStock:[1],closingAgeStock:[1],openingDebtUsd:0,closingDebtUsd:0,
@@ -20,6 +21,36 @@ export function renewalFixture():RenewalDeclaration{
  interestCashUsd:0,debtRaisedUsd:0,debtRepaidUsd:0,nonCommonCashUsd:0}))}};
 }
 const fixture=renewalFixture;
+function wholeFixture():RenewalDeclaration{
+ const x=fixture();x.specification.timing="utc-civil-day-service";
+ for(const c of x.specification.cohorts){c.commissionedYear+=2;c.retiredYear+=2;
+  c.dated={commissionedOn:`${c.commissionedYear}-01-01`,retiredOn:`${c.retiredYear}-01-01`,degradationDayBasis:365.25};}
+ x.specification.years.forEach(y=>y.year+=2);x.cashLedger=cashLedger();x.cashLedger.years.forEach(y=>y.year+=2);
+ x.datedAccounting={declaration:{version:"dated-project-cash-1",valuationOn:"2026-01-01",discountRate:.1,convention:"ACT/365.25",claimantId:x.cashLedger.claimantId},
+  timing:[2026,2027].flatMap(year=>(["collections","replacement","commonDistribution"] as const).map(component=>({year,component,allocations:[{on:`${year}-07-01`,fraction:1,evidenceIds:["engineering-only"]}]}))),
+  accrual:{version:"dated-accrual-1",claimantId:x.cashLedger.claimantId,payables:[2026,2027].map(year=>({year,opening:0,closing:0})),
+   entries:[2026,2027].flatMap(year=>[{id:`r${year}`,on:`${year}-06-01`,kind:"revenue" as const,usd:100,evidenceIds:["engineering-only"]},
+    {id:`p${year}`,on:`${year}-01-01`,kind:"payable" as const,usd:10,evidenceIds:["engineering-only"]}])}};
+ x.wholeStateCycle={version:"dated-whole-state-1",specificationHash:contentHash(x.specification),claimantId:x.cashLedger.claimantId,
+  boundaries:["2026-01-01","2027-01-01","2028-01-01"],openingPaidCapitalUsd:10,
+  rights:x.specification.cohorts.map(c=>({cohortId:c.id,slot:"plant",entity:"conditional-owner",ownedFraction:1,evidenceIds:["engineering-only"]})),
+  commonCash:[2026,2027].map(year=>({on:`${year}-07-01`,contributionUsd:0,distributionUsd:90,capitalReturnedUsd:0,evidenceIds:["engineering-only"]}))};
+ return x;
+}
+test("executed renewal boundaries reconcile rights/age and all dated cash accounts without granting perpetuity",()=>{
+ const r=evaluatePeriodicRenewal(wholeFixture()),s=r.wholeStateClosure!.states;
+ assert.equal(s.length,3);for(const b of s){assert.equal(b.physical[0].ageDays,365);assert.equal(b.physical[0].units,1);assert.equal(b.paidCapital,10);
+  for(const v of Object.values(b.financial))assert.equal(v,0);}
+ assert.equal(r.conditionalPeriodicProjectValueUsd,null);
+});
+test("physical closure cannot excuse capital drift or a changed rights holder",()=>{
+ const a=wholeFixture();a.wholeStateCycle!.commonCash[0].capitalReturnedUsd=1;
+ assert.throws(()=>evaluatePeriodicRenewal(a),/drift/);
+ const b=wholeFixture();b.wholeStateCycle!.rights[1].entity="other-owner";
+ assert.throws(()=>evaluatePeriodicRenewal(b),/rights drift/);
+ const c=wholeFixture();c.datedAccounting!.timing.find(t=>t.component==="replacement")!.allocations[0].on="2026-01-01";
+ assert.throws(()=>evaluatePeriodicRenewal(c),/funding/);
+});
 test("v2 operating accrual versus settlement bridges AP once; cash-paid capital bypasses AP",()=>{
  const s=fixture().specification;s.years.forEach(y=>y.variableCostPerServiceUsd=2);
  const model=calculateOperatingCohorts(s),l=cashLedger();
