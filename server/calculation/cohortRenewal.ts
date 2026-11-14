@@ -2,6 +2,8 @@ import {contentHash} from "./analysisManifest";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {reconcileCohortCash,reconcileDatedAccruals,type CohortCashLedger,type DatedProjectCash,type CashTiming,type AccrualSchedule} from "./cohortCashLedger";
 import {reconcileRenewalClosure,type RenewalClosureDeclaration} from "./renewalClosure";
+import {evaluateGregorianRenewal,type GregorianRenewalDeclaration} from "./gregorianRenewal";
+export type {GregorianRenewalDeclaration} from "./gregorianRenewal";
 
 /** Exact periodic renewal only. Not a growth perpetuity or issuer valuation.
  * Two explicit adjacent cycles demonstrate the declared stock/energy/cash law;
@@ -28,7 +30,8 @@ export interface RenewalDeclaration {
   cashLedger?:CohortCashLedger;
  };
 }
-export function evaluatePeriodicRenewal(input:RenewalDeclaration){
+export function evaluatePeriodicRenewal(input:RenewalDeclaration|GregorianRenewalDeclaration){
+ if(input.version==="gregorian-renewal-1")return evaluateGregorianRenewal(input);
  const x:RenewalDeclaration=JSON.parse(JSON.stringify(input));
  const n=x.cycleYears;
  if(x.version!=="periodic-renewal-1"||x.claim!=="conditional-project-common-residual"||

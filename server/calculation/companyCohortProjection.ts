@@ -2,15 +2,17 @@ import {contentHash} from "./analysisManifest";
 import {settleTerminal,type TerminalSettlement,type TerminalBalances} from "./terminalSettlement";
 import {compileDispositionSettlement,type CohortDisposition} from "./cohortDisposition";
 import {calculatePostCutoff,ownedFinancialSpecification,type PostCutoffInterval} from "./cohortPostCutoff";
+import {invertGregorianRenewal,type GregorianInverseProtocol} from "./gregorianInverse";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {calculateCoveredPhysicalPaths,type PhysicalCell,type CoveredPathInput} from "./coveredPhysicalPaths";
-import {evaluatePeriodicRenewal,type RenewalDeclaration} from "./cohortRenewal";
+import {evaluatePeriodicRenewal,type RenewalDeclaration,type GregorianRenewalDeclaration} from "./cohortRenewal";
 import {reconcileDatedAccruals,type CohortCashLedger,type DatedProjectCash,type CashTiming,type AccrualSchedule} from "./cohortCashLedger";
 export interface CompanyCohortInput {
  version:"company-cohort-input-1";companyId:string;cutoff:string;
  years:number[];cells:CoveredPathInput["cells"];
  scenarios:{id:string;specification:CohortSpecification;
-   renewal?:RenewalDeclaration;
+   renewal?:RenewalDeclaration|GregorianRenewalDeclaration;
+   renewalInverse?:GregorianInverseProtocol;
    finiteAccounting?:{ledger:CohortCashLedger;declaration:Omit<DatedProjectCash,"events">;timing:CashTiming[];accrual:AccrualSchedule;
     recognitionLaw?:"earned-service-prefix-1";terminal?:TerminalSettlement;assetDisposition?:CohortDisposition;postCutoff?:PostCutoffInterval};
    physical:(Omit<PhysicalCell,"activity"|"activityUnit"|"parentResultHash"|"parentActivityPointer"|"parentYearPointer"|"parentUnitPointer"> & {cohortId:string;activityChannel:"service"|"charge-energy"})[]}[];
@@ -78,11 +80,17 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     parentYearPointer:`/activity/${i}/year`,parentUnitPointer:`/activity/${i}/unit`};
   });
   let renewal;
+  let renewalInverse;
   if(s.renewal){
    const boundary=s.renewal.transition?.specification??s.renewal.specification;
    if(contentHash(boundary)!==contentHash(s.specification))throw Error("Swapped renewal/producer physical boundary");
    renewal=evaluatePeriodicRenewal(s.renewal);
+   if(s.renewalInverse){
+    if(s.renewal.version!=="gregorian-renewal-1")throw Error("Inverse requires the matching Gregorian cash branch");
+    renewalInverse=invertGregorianRenewal(s.renewal,s.renewalInverse);
+   }
   }
+  else if(s.renewalInverse)throw Error("Inverse without its executable renewal parent");
   const f=s.finiteAccounting;
   if(f?.postCutoff&&(!f.assetDisposition||!f.terminal||f.recognitionLaw!=="earned-service-prefix-1"))
    throw Error("Delayed operations require explicit asset/terminal/daily recognition contracts");
@@ -137,9 +145,9 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     }
    }
   }
-  members.push({id:s.id,physical,parentResultHash:id,...(renewal?{renewal}:{}),...(finiteAccounting?{finiteAccounting}:{})});
+  members.push({id:s.id,physical,parentResultHash:id,...(renewal?{renewal}:{}),...(renewalInverse?{renewalInverse}:{}),...(finiteAccounting?{finiteAccounting}:{})});
   return {id:s.id,assumptions:{specification:s.specification,physical:s.physical,...(s.renewal?{renewal:s.renewal}:{}),
-   ...(f?{finiteAccounting:f}:{})},cells};
+   ...(f?{finiteAccounting:f}:{}),...(s.renewalInverse?{renewalInverse:s.renewalInverse}:{})},cells};
  });
  const covered=calculateCoveredPhysicalPaths({cutoff:input.cutoff,population:[input.companyId],
   years:input.years,cells:input.cells,parents,scenarios});
