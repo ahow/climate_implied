@@ -56,6 +56,10 @@ try{
    for(const y of f.accrual.payables){y.opening=process.argv.includes("--obligations-branch")?20:0;y.closing=y.opening;}
    for(const y of f.accrual.operatingSettlements.years)for(const k of Object.keys(y))if(k!=="year"&&typeof y[k]==="number")y[k]=0;
    for(const e of f.accrual.entries)e.usd=0;
+   if(process.argv.includes("--delayed-branch")){
+    const c=s.specification.cohorts[0];c.installedUnits=2;c.annualDegradation=0;c.servicePerInstalledUnitPerYear=366;
+    c.commissionedYear=2027;c.dated.commissionedOn="2027-01-01";c.dated.roundTripEfficiency=.8;
+   }
   }
   if(process.argv.includes("--terminal-branch")){
    const {projectCompanyCohorts}=await import("../server/calculation/companyCohortProjection");
@@ -76,6 +80,22 @@ try{
       obligations:[{id:"restore",kind:"restoration",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:20,evidenceIds:["fixture"],alreadyAccrued:false},
        {id:"tax",kind:"tax",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:5,evidenceIds:["fixture"],alreadyAccrued:false}]}]};
     if(process.argv.includes("--rights-branch"))f.assetDisposition.version="cohort-disposition-2-rights";
+    if(process.argv.includes("--delayed-branch")){
+     const a=f.assetDisposition.assets[0];a.on="2028-03-01";a.cashOn="2028-07-01";
+     a.obligations=a.obligations.filter((o:any)=>o.kind==="tax");a.obligations[0].accruedOn="2028-03-01";
+     f.terminal.events=[];
+     f.postCutoff={version:"post-cutoff-interval-1",priorSpecificationHash:contentHash(s.specification),claimantId:f.terminal.claimantId,
+      cashBasis:"owned-service-and-owned-nonvolume-cash",workingCapitalBasis:"otherWC-excludes-AR-AP-tax",inputClassification:"declared-conditional-forecast",coverageFrom:"2028-01-01",coverageThrough:"2028-12-31",
+      years:[{...s.specification.years[0],year:2028,utilization:1,pricePerServiceUsd:10,variableCostPerServiceUsd:2,chargeEnergyPriceUsdPerKwh:1}],
+      events:[
+       {id:"revenue",on:"2028-02-29",kind:"revenue-accrual",usd:600,evidenceIds:["fixture"]},
+       {id:"variable",on:"2028-02-29",kind:"payable-accrual",component:"variableCost",costBasis:"other-operating",usd:120,evidenceIds:["fixture"]},
+       {id:"energy",on:"2028-02-29",kind:"payable-accrual",component:"energyCost",costBasis:"other-operating",usd:75,evidenceIds:["fixture"]},
+       {id:"fund",on:"2028-02-29",kind:"contribution",usd:5,evidenceIds:["fixture"]},
+       {id:"collection",on:"2028-06-01",kind:"receivables",usd:600,evidenceIds:["fixture"]},
+       {id:"payment",on:"2028-06-01",kind:"payables",usd:195,evidenceIds:["fixture"]},
+       {id:"common",on:"2028-07-01",kind:"distribution",usd:505,evidenceIds:["fixture"]}]};
+    }
     if(process.argv.includes("--obligations-branch")){
      const o=f.assetDisposition.assets[0].obligations[0];o.alreadyAccrued=true;o.accruedOn="2026-12-31";
      f.terminal.openingObligations={version:"opening-obligations-1",closingHash:contentHash(opening),

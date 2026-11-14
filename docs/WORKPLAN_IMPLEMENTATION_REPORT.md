@@ -1,3 +1,89 @@
+# Latest matched delayed interval
+
+{
+  "kind": "matched-delayed-interval",
+  "recorded_at": "2026-11-14T01:54:43.686372+00:00",
+  "scope": "Conditional S13-004 delayed owned daily exposure to classified accrual and dated common cash; not complete sustainable renewal or issuer valuation",
+  "files_functions": {
+    "server/calculation/cohortPostCutoff.ts": "529baf844c6c033a4d83171d10086745009b330a8368b147610cf39da7e80863",
+    "server/calculation/terminalSettlement.ts": "c3b62c00f580170745f2f5dfd8f51b8df8283cdeb4f685c9b85158a1dd9f9aec",
+    "server/calculation/companyCohortProjection.ts": "fb221de5a5b08240432ef97294958911dad641e39841f0a96f266a5636e13ba3",
+    "server/snapshots/companyOperatingReview.ts": "c6001fe460f1dab195da78c0a1c3a90ff3d7966d8d45a7943fb86badbd30a437",
+    "script/cohort-post-cutoff.test.ts": "5a46af64da403abd306ca67abd62da168fe5d5f755fdb2e78e094fe9a0657a76",
+    "script/futureCohortPostgres.ts": "fb4b990a7c45c0faffae8e021f08e0becde7a54f0891e00c150a03bceb57eef2",
+    "script/finiteCohortTransport.ts": "b4427026f1533d915c86c09df99d0b69ce5ef8cf697150ede9b3f31bda1e0225",
+    "script/disposition-render-readback.ts": "8dc7bcef71fad245af95ce77f42dcc2e921d559896008b9a2f8932950c7c2c16"
+  },
+  "functions": [
+    "ownedFinancialSpecification",
+    "calculatePostCutoff",
+    "settleTerminal",
+    "projectCompanyCohorts",
+    "finiteProducerBinding"
+  ],
+  "gates": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-14T01:48:23.776526+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 379.377,
+    "counts": {
+      "tests": 1371,
+      "pass": 1370,
+      "fail": 0,
+      "skipped": 1
+    },
+    "log": "generated-artifacts/dated-cash/delayed-full.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "ae7414819ea8b346adc70a289e44dc357cf70ef01660482c9c0a3a0ac203f97a",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1371,
+        "pass": 1370,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 264,
+        "pass": 264,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "log_hashes": {
+    "generated-artifacts/dated-cash/delayed-focused.log": "72f353a1d82d8332572b539fb18be1e59900f871436baca037807692b077eda9",
+    "generated-artifacts/dated-cash/delayed-focused-fixed.log": "fbbece0fbb286fdeaa54e2d046bff0d9b120f77a438c04449acbab83ca744d5d",
+    "generated-artifacts/dated-cash/delayed-focused-frozen.log": "a2b4c4ba46aa7ed0874332a5aaa4688b15be8c5b2a8db409c2270a52ffa72c65",
+    "generated-artifacts/dated-cash/delayed-type-frozen.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+    "generated-artifacts/dated-cash/delayed-pg-frozen.log": "845f114c061d6676eb16c3e77179240fac21de445f744aa81bbeaedbcacd3fb9",
+    "generated-artifacts/dated-cash/delayed-render-frozen.log": "b5767c2f4f551dee4272cccab6bb88a7671f60e4c10a556f11756a12bc7e391a",
+    "generated-artifacts/dated-cash/delayed-full.log": "ae7414819ea8b346adc70a289e44dc357cf70ef01660482c9c0a3a0ac203f97a"
+  },
+  "inputs": "Synthetic USD conditional forecast, captured original specification/ownership/claim, explicit2028 source-assumption coverage and events; UTC civil days, ACT/365.25,10%discount. Owned service prices and owned non-volume costs; otherWC explicitly excludes AR/AP/tax. No dates or amounts inferred from annual net cash.",
+  "numerics": "Leap Jan1\u2013Mar1 exclusive:60owned delivered kWh,75charging kWh,15loss,600operating revenue accrual,100separate asset receivable,195operating cost+5tax=500net common cash. PV=505/1.1^(182/365.25)\u22125/1.1^(59/365.25). 10%age degradation independent daily oracle; booked20 gives480common with200NEW expense, not220. Default100 gives400; restoration1000 gives\u2212500; separatecapital10 and intrayearotherWC30 roundtrip gives490. Relative reconciliation1e-9, stock/energy oracle1e-10.",
+  "engineering": "10focused tests pass; new actualPG branch17checks,1465orderedrows2930literalcells; actual component SSR A/B/A/JSON/XLSX. Not interactive browser, genuine principal, source or scientific acceptance.",
+  "failures": "Initial delayed positive cases2fail/1pass from undefined optional properties violating canonical JSON; removed absent properties, retained strict canonical rule. Opening-obligation TS2802 earlier retained. No compiler/private/scientific gate weakened.",
+  "remaining": [
+    "Funded whole physical/financial cycle closure and compatible certified inverse not completed; periodic/whole-equity values remain null",
+    "Bounded delayed branch requires explicit ownership for every modeled financial cohort; previously retired cohorts absent from disposition ownership remain unsupported",
+    "Independent legal/source authority, item-level otherWC/recovery/adjustment eligibility and actual creditor priority remain unearned",
+    "Interest accrual beyond explicit cash interest requires an additional settlement contract; no implicit extrapolation outside declared operating coverage",
+    "Genuine private principal/production provisioning, source-complete issuer cases and historical efficacy remain unavailable/unearned"
+  ]
+}
+
+Verified previous release: {"runtime": "70b12e8dafa1a7a22f1e53471a47a2eb886f1e83", "ci": 43541522533, "conclusion": "success", "readback": {"passed": true, "at": "2026-11-14T01:49:45.841Z", "source": "70b12e8dafa1a7a22f1e53471a47a2eb886f1e83", "health": 200, "identity": "9669d5c6d8984cf0d8aed454f7bc232cfaa31f80aaeed0fe150e6f008a10774b", "rows": 1054, "cells": 2108, "privateReaderRefusals": 4, "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"}, "scope": "Opening-obligation source; observed2023/public403 readback only. Delayed source still local until separately promoted."}
+
+Next: Continue ALL original0–17. Preserve opening-obligations1/finite6 and post-cutoff-interval1/finite7, original branches and stored-exact retrieval. Reconcile delayed-source CI/runtime separately from verified70b12e8. NEXT whole physical/financial funded cycle closure and exact-branch bounded inverse; prior-retired ownership and recovery/adjustment gaps explicit. New FSLR Q3 presentation remains context, not eligible watts/cash; no new issuer accepted.65verified233partial2blocked/all300/0of3 unchanged.
+
 # Latest opening-obligation implementation
 
 {
