@@ -6,6 +6,7 @@ import {packCompanySource,resolveCompanySourceEvidence} from "../calculation/com
 import {projectCompanyMembers} from "../calculation/companyProjection";
 import {projectCompanyCohorts} from "../calculation/companyCohortProjection";
 import {readCalculationSourceArtifact} from "./materialInputs";
+import {renewalProducerBinding} from "../calculation/renewalProducer";
 type Connection=Pick<typeof db,"execute">;
 async function lock(tx:Connection){
   if(!await snapshotsAvailable(tx)) throw new Error("Immutable operating review storage unavailable");
@@ -80,6 +81,9 @@ async function validateCohortProducer(tx:Connection,proposal:any,sourceIds:strin
  const finite=finiteProducerBinding(proposal.input,result,code);
  if(finite&&contentHash(finite)!==contentHash(p.finiteExecution))
   throw Error("Retained finite execution binding mismatch");
+ const renewal=renewalProducerBinding(proposal.input,result,code);
+ if(renewal&&contentHash(renewal)!==contentHash(p.renewalExecution))
+  throw Error("Retained renewal execution binding mismatch");
  if(mode==="recalculate"&&contentHash(projectCompanyCohorts(proposal.input))!==contentHash(result))throw Error("Retained cohort result mismatch");
  if(result.covered.scenarios.some((s:any)=>s.status!=="conditional"))
    throw Error("Incomplete cohort scenario domain cannot be admitted");
@@ -126,6 +130,7 @@ export async function stageCompanyOperatingInTransaction(tx:Connection,input:any
     assumptionHash:contentHash(input.scenarios),modelVersions:cohortProjection.modelVersions,inputHash:contentHash(input),
     sourceIds:resolved.archiveHashes,
     ...(input.scenarios.some((s:any)=>s.finiteAccounting)?{finiteExecution:finiteProducerBinding(input,projection,readCalculationSourceArtifact().payload)}:{}),
+    ...(input.scenarios.some((s:any)=>s.renewal?.version==="gregorian-renewal-1")?{renewalExecution:renewalProducerBinding(input,projection,readCalculationSourceArtifact().payload)}:{}),
   }:null;
   return save(tx,"company-operating-proposal",{version:"company-operating-proposal-1",identity,input,evidence,cutoff,
     ...(producer?{producer}:{}),
@@ -194,14 +199,14 @@ export async function projectReviewedCompanyInTransaction(tx:Connection,decision
     financialReviewId:decision.financialReviewId,informationCutoff:cutoff,scientificAcceptance:false,
     historicalWarning:"Approval after the origin cannot be backdated; source resolution is not original-vintage or calibrated acceptance"};
 }
-export async function readRetainedFiniteInTransaction(tx:Connection,decisionId:string,cutoff:string,mode:"stored"|"recalculate"="stored"){
+export async function readRetainedFiniteInTransaction(tx:Connection,decisionId:string,cutoff:string,mode:"stored"|"recalculate"="stored",binding:"finiteExecution"|"renewalExecution"="finiteExecution"){
  const instant=new Date(cutoff);
  if(!/^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z)?$/.test(cutoff)||
   !Number.isFinite(instant.getTime())||instant.toISOString().slice(0,10)!==cutoff.slice(0,10)||
   (cutoff.length>10&&instant.toISOString().slice(0,19)!==cutoff.slice(0,19)))
   throw Error("Explicit valid UTC calendar cutoff required");
  const result=await projectReviewedCompanyInTransaction(tx,decisionId,cutoff,mode);
- if(!(result as any).producerManifest?.finiteExecution)throw Error("Retained finite execution unavailable");
+ if(!(result as any).producerManifest?.[binding])throw Error("Requested retained execution unavailable");
  const decision=await load(tx,decisionId,"company-operating-decision");
  const proposal=await load(tx,decision.proposalId,"company-operating-proposal");
  const computedResult=await load(tx,proposal.producer.resultId,"company-cohort-result");
@@ -209,6 +214,10 @@ export async function readRetainedFiniteInTransaction(tx:Connection,decisionId:s
 }
 export const readRetainedFinite=(decisionId:string,cutoff:string,mode:"stored"|"recalculate"="stored")=>
  db.transaction(tx=>readRetainedFiniteInTransaction(tx,decisionId,cutoff,mode));
+export const readRetainedRenewalInTransaction=(tx:Connection,id:string,cutoff:string,mode:"stored"|"recalculate"="stored")=>
+ readRetainedFiniteInTransaction(tx,id,cutoff,mode,"renewalExecution");
+export const readRetainedRenewal=(id:string,cutoff:string,mode:"stored"|"recalculate"="stored")=>
+ db.transaction(tx=>readRetainedRenewalInTransaction(tx,id,cutoff,mode));
 export const stageCompanyOperating=(input:unknown,evidence:unknown,sources:unknown[],identity:{companyId:string;isin:string},cutoff:string)=>
   db.transaction(tx=>stageCompanyOperatingInTransaction(tx,input,evidence,sources,identity,cutoff));
 export const projectReviewedCompany=(id:string,cutoff:string)=>

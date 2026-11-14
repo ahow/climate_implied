@@ -9,6 +9,9 @@ import {
 
 export function PrivateFiniteEvidence({ evidence }: { evidence: VerifiedPrivateFinite }) {
   const { document, recalculatedId, cells } = evidence;
+  const [page,setPage]=useState(0);
+  const pageSize=document.version==="private-renewal-company-document-1"?500:cells.length;
+  const pages=Math.max(1,Math.ceil(cells.length/pageSize)),current=Math.min(page,pages-1),offset=current*pageSize;
   return <div className="space-y-5" data-testid="private-finite-ready">
     <Card><CardContent className="p-4 space-y-4 text-sm [overflow-wrap:anywhere]">
       <h2 className="font-semibold">Document identity · integrity matched</h2>
@@ -26,7 +29,14 @@ export function PrivateFiniteEvidence({ evidence }: { evidence: VerifiedPrivateF
     <section className="space-y-3" aria-labelledby="finite-cells-title">
       <div>
         <h2 id="finite-cells-title" className="font-semibold">Complete literal evidence</h2>
-        <p className="text-sm text-muted-foreground">All {cells.length} ordered pointer/jsonValue rows, including the root (empty pointer), container types, manifest, source IDs, Input / Calculated / Output, equations, units and dates. Periodic, whole-equity and terminal nested balances remain exactly as exported; null is never replaced by zero. No rows are filtered or shortened.</p>
+        <p className="text-sm text-muted-foreground">All {cells.length} ordered pointer/jsonValue rows, including the root (empty pointer), container types, manifest, source IDs, Input / Calculated / Output, equations, units and dates. Periodic, whole-equity and terminal nested balances remain exactly as exported; null is never replaced by zero. No underlying rows are filtered or shortened. Large renewal documents use local pages of500 rows.</p>
+        {pages>1&&<div className="flex flex-wrap items-center gap-3 text-sm">
+          <Button variant="outline" disabled={current===0} onClick={()=>setPage(current-1)}>Previous rows</Button>
+          <label>Page <input aria-label="Literal row page" data-testid="private-renewal-page" className="w-24 rounded border p-2" type="number" min={1} max={pages} value={current+1}
+            onChange={e=>{const n=Number(e.target.value);if(Number.isInteger(n))setPage(Math.max(0,Math.min(pages-1,n-1)));}}/> of {pages}</label>
+          <Button variant="outline" disabled={current===pages-1} onClick={()=>setPage(current+1)}>Next rows</Button>
+          <span data-testid="private-renewal-range">Rows {offset+1}–{Math.min(offset+pageSize,cells.length)} of {cells.length}</span>
+        </div>}
       </div>
       <div className="rounded-md border">
         <table className="w-full table-fixed text-xs" data-testid="private-finite-cells">
@@ -35,7 +45,7 @@ export function PrivateFiniteEvidence({ evidence }: { evidence: VerifiedPrivateF
             <th scope="col" className="w-2/5 p-3 text-left font-medium">pointer</th>
             <th scope="col" className="p-3 text-left font-medium">jsonValue</th>
           </tr></thead>
-          <tbody>{cells.map((cell, index) => <tr key={cell.pointer} className="border-b last:border-0 align-top" data-testid="private-finite-cell-row" data-row-index={index} data-pointer={cell.pointer}>
+          <tbody>{cells.slice(offset,offset+pageSize).map((cell, index) => <tr key={cell.pointer} className="border-b last:border-0 align-top" data-testid="private-finite-cell-row" data-row-index={offset+index} data-pointer={cell.pointer}>
             <td className="p-3"><code className="whitespace-pre-wrap [overflow-wrap:anywhere]" data-testid="private-finite-cell-pointer">{cell.pointer}</code></td>
             <td className="p-3"><code className="whitespace-pre-wrap [overflow-wrap:anywhere]" data-testid="private-finite-cell-value">{cell.jsonValue}</code></td>
           </tr>)}</tbody>
@@ -77,7 +87,7 @@ export default function PrivateFiniteViewer() {
   }
   return <div className="p-4 md:p-6 space-y-6 max-w-7xl mx-auto min-w-0" data-testid="private-finite-viewer">
     <div className="space-y-1">
-      <h1 className="text-2xl font-semibold tracking-tight">Private finite document viewer</h1>
+      <h1 className="text-2xl font-semibold tracking-tight">Private finite and renewal document viewer</h1>
       <p className="text-sm text-muted-foreground">Browser-local inspection of archived owner-export calculation evidence.</p>
     </div>
     <aside role="note" className="rounded-md border bg-muted/40 p-4 space-y-2 text-sm" data-testid="private-finite-boundary">
@@ -88,7 +98,7 @@ export default function PrivateFiniteViewer() {
     </aside>
     <Card><CardContent className="p-4 space-y-4">
       <div className="flex items-center gap-2 text-sm font-semibold"><FileJson className="h-4 w-4 text-primary" />Open a local owner export</div>
-      <p className="text-sm text-muted-foreground" id="private-finite-file-help">Select private-finite-company-document-1 JSON. File contents stay in this page's memory: no upload, persistence, analytics or network sends. New selections, failed loads and Reset clear prior evidence.</p>
+      <p className="text-sm text-muted-foreground" id="private-finite-file-help">Select private-finite-company-document-1 or private-renewal-company-document-1 JSON. Renewal values are conditional stationary cash and price-domain results, not implied deployment growth. File contents stay in this page's memory: no upload, persistence, analytics or network sends. New selections, failed loads and Reset clear prior evidence.</p>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="flex-1 min-w-0 space-y-2">
           <label htmlFor="private-finite-file" className="text-sm font-medium">Owner-export JSON file</label>
@@ -110,6 +120,6 @@ export default function PrivateFiniteViewer() {
       <p className="text-sm">The file may contain invalid JSON, an unsupported contract, inconsistent retrieval flags, nonfinite values, unsupported literal cells or a mismatched SHA-256 ID. WebCrypto also requires a secure browser context. No previous evidence is retained.</p>
       <Button variant="outline" onClick={() => inputRef.current?.click()}>Choose JSON again</Button>
     </div>}
-    {status === "ready" && evidence && <PrivateFiniteEvidence evidence={evidence} />}
+    {status === "ready" && evidence && <PrivateFiniteEvidence key={evidence.document.id} evidence={evidence} />}
   </div>;
 }

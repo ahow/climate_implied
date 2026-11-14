@@ -2380,9 +2380,9 @@
     },
     {
       "source": "server/finiteCompanyDocument.ts",
-      "line": 45,
+      "line": 57,
       "builder": "XLSX.utils.book_append_sheet",
-      "sheetExpression": "\"Finite accounting\"",
+      "sheetExpression": "document.version===\"private-renewal-company-document-1\"?\"Renewal accounting\":\"Finite accounting\"",
       "coverage": "Source-level builder inventory only; conditional/loop sheet names, serialized JSON payloads, metadata sheets and test fixtures require separate runtime domain/readback verification; no original slot closure"
     },
     {
@@ -10421,86 +10421,116 @@
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 16,
+      "line": 19,
       "expression": "document.id",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 17,
+      "line": 20,
       "expression": "recalculatedId",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 18,
+      "line": 21,
       "expression": "document.retrievalMode",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 19,
+      "line": 22,
       "expression": "JSON.stringify(document.executionVerifiedNow)",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 20,
+      "line": 23,
       "expression": "document.cutoff",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 22,
+      "line": 25,
       "expression": "document.retrievalMode === \"stored\"\n        ? \"Stored evidence: the export does not claim execution was verified at retrieval.\"\n        : \"Recalculated evidence: the export claims execution was verified at retrieval, not by this browser.\"",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 29,
+      "line": 32,
       "expression": "cells.length",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 38,
-      "expression": "cells.map((cell, index) => <tr key={cell.pointer} className=\"border-b last:border-0 align-top\" data-testid=\"private-finite-cell-row\" data-row-index={index} data-pointer={cell.pointer}>\n            <td className=\"p-3\"><code className=\"whitespace-pre-wrap [overflow-wrap:anywhere]\" data-testid=\"private-finite-cell-pointer\">{cell.pointer}</code></td>\n            <td className=\"p-3\"><code className=\"whitespace-pre-wrap [overflow-wrap:anywhere]\" data-testid=\"private-finite-cell-value\">{cell.jsonValue}</code></td>\n          </tr>)",
+      "line": 33,
+      "expression": "pages>1&&<div className=\"flex flex-wrap items-center gap-3 text-sm\">\n          <Button variant=\"outline\" disabled={current===0} onClick={()=>setPage(current-1)}>Previous rows</Button>\n          <label>Page <input aria-label=\"Literal row page\" data-testid=\"private-renewal-page\" className=\"w-24 rounded border p-2\" type=\"number\" min={1} max={pages} value={current+1}\n            onChange={e=>{const n=Number(e.target.value);if(Number.isInteger(n))setPage(Math.max(0,Math.min(pages-1,n-1)));}}/> of {pages}</label>\n          <Button variant=\"outline\" disabled={current===pages-1} onClick={()=>setPage(current+1)}>Next rows</Button>\n          <span data-testid=\"private-renewal-range\">Rows {offset+1}–{Math.min(offset+pageSize,cells.length)} of {cells.length}</span>\n        </div>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 39,
+      "line": 36,
+      "expression": "pages",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/private-finite-viewer.tsx",
+      "line": 38,
+      "expression": "offset+1",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/private-finite-viewer.tsx",
+      "line": 38,
+      "expression": "Math.min(offset+pageSize,cells.length)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/private-finite-viewer.tsx",
+      "line": 38,
+      "expression": "cells.length",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/private-finite-viewer.tsx",
+      "line": 48,
+      "expression": "cells.slice(offset,offset+pageSize).map((cell, index) => <tr key={cell.pointer} className=\"border-b last:border-0 align-top\" data-testid=\"private-finite-cell-row\" data-row-index={offset+index} data-pointer={cell.pointer}>\n            <td className=\"p-3\"><code className=\"whitespace-pre-wrap [overflow-wrap:anywhere]\" data-testid=\"private-finite-cell-pointer\">{cell.pointer}</code></td>\n            <td className=\"p-3\"><code className=\"whitespace-pre-wrap [overflow-wrap:anywhere]\" data-testid=\"private-finite-cell-value\">{cell.jsonValue}</code></td>\n          </tr>)",
+      "explicitSemanticAncestor": false
+    },
+    {
+      "source": "client/src/pages/private-finite-viewer.tsx",
+      "line": 49,
       "expression": "cell.pointer",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 40,
+      "line": 50,
       "expression": "cell.jsonValue",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 102,
+      "line": 112,
       "expression": "status === \"empty\" && <div className=\"rounded-md border border-dashed p-8 text-center space-y-2\" data-testid=\"private-finite-empty\">\n      <h2 className=\"font-medium\">No private document loaded</h2><p className=\"text-sm text-muted-foreground\">Choose an owner-export JSON file to check its document ID and inspect its complete read-only evidence.</p>\n    </div>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 105,
+      "line": 115,
       "expression": "status === \"pending\" && <div role=\"status\" aria-busy=\"true\" className=\"space-y-3\" data-testid=\"private-finite-pending\">\n      <p className=\"text-sm text-muted-foreground\">Reading local JSON and checking canonical SHA-256…</p><Skeleton className=\"h-16 w-full\" /><Skeleton className=\"h-28 w-full\" />\n    </div>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 108,
+      "line": 118,
       "expression": "status === \"error\" && <div role=\"alert\" className=\"rounded-md border border-destructive/40 p-4 space-y-2\" data-testid=\"private-finite-error\">\n      <h2 className=\"font-semibold text-destructive\">Document could not be verified</h2>\n      <p className=\"text-sm\">The file may contain invalid JSON, an unsupported contract, inconsistent retrieval flags, nonfinite values, unsupported literal cells or a mismatched SHA-256 ID. WebCrypto also requires a secure browser context. No previous evidence is retained.</p>\n      <Button variant=\"outline\" onClick={() => inputRef.current?.click()}>Choose JSON again</Button>\n    </div>",
       "explicitSemanticAncestor": false
     },
     {
       "source": "client/src/pages/private-finite-viewer.tsx",
-      "line": 113,
-      "expression": "status === \"ready\" && evidence && <PrivateFiniteEvidence evidence={evidence} />",
+      "line": 123,
+      "expression": "status === \"ready\" && evidence && <PrivateFiniteEvidence key={evidence.document.id} evidence={evidence} />",
       "explicitSemanticAncestor": false
     },
     {

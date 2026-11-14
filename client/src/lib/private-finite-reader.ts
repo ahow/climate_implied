@@ -16,7 +16,7 @@ export function canonicalFiniteJson(value: unknown): string {
 const text = z.string().min(1);
 const present = z.custom<unknown>(value => value !== undefined);
 const schema = z.object({
-  version: z.literal("private-finite-company-document-1"),
+  version: z.enum(["private-finite-company-document-1","private-renewal-company-document-1"]),
   id: z.string().regex(/^[a-f0-9]{64}$/),
   decisionId: text,
   retrievalMode: z.enum(["stored", "recalculate"]),
@@ -52,7 +52,7 @@ export async function readPrivateFiniteDocument(raw: string): Promise<VerifiedPr
   try { value = JSON.parse(raw); }
   catch { throw new Error("Invalid JSON. Choose a complete owner-export JSON document."); }
   const parsed = schema.safeParse(value);
-  if (!parsed.success) throw new Error("Unsupported or incomplete private-finite-company-document-1 document.");
+  if (!parsed.success) throw new Error("Unsupported or incomplete private finite/renewal document.");
   // Keep exact parsed bytes' values, including additive fields; never hash a stripped schema result.
   const document = value as PrivateFiniteDocument;
   if (document.executionVerifiedNow !== (document.retrievalMode === "recalculate"))

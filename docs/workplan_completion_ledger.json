@@ -1,58 +1,56 @@
 {
   "schema_version": 1,
   "latest_increment": {
-    "kind": "conditional-gregorian-renewal-and-affine-inverse",
-    "at": "2026-11-14T02:53:42.219957+00:00",
-    "files": {
-      "server/calculation/gregorianRenewal.ts": "5c7ad841f16c4d27d41ed499afb3cc4fcb0b5ec448170c17bac39fa60d5e2664",
-      "server/calculation/gregorianInverse.ts": "768a86eb85021e1f21e2e31510208063a5d4a9e74771bad826fec473e12bb340",
-      "server/calculation/cohortRenewal.ts": "2cb3b78af4e365f2c55ad8844cdd67435922f7546666f2bfe80578375996d0b0",
-      "server/calculation/companyCohortProjection.ts": "d224a30769c73faa6922450be04ce9a027353cade0332c0fde73a3ce94f4502a",
-      "script/gregorian-renewal.test.ts": "1f228e301bb836eca4d1a9973af828e38c87626ca3ed9fc6e359d9c0ec6fc55e"
-    },
-    "functions": [
-      "evaluateGregorianRenewal",
-      "invertGregorianRenewal",
-      "evaluatePeriodicRenewal",
-      "projectCompanyCohorts"
+    "kind": "private-retained-gregorian-renewal-consumers",
+    "at": "2026-11-14T03:48:44.130912+00:00",
+    "local_source": "c1c1d0825de0e624a451b74840d281d660428e71",
+    "files_functions": [
+      "server/calculation/renewalProducer.ts",
+      "server/calculation/renewalFamily.ts",
+      "server/calculation/companySourceArchive.ts",
+      "server/calculation/coveredPhysicalPaths.ts",
+      "server/calculation/companyCohortProjection.ts",
+      "server/snapshots/companyOperatingReview.ts",
+      "server/finiteCompanyDocument.ts",
+      "server/finiteCompanyPrivacy.ts",
+      "script/company-operating-review.ts",
+      "script/renewalTransportFixture.ts",
+      "script/finiteCohortTransport.ts",
+      "script/renewalTransportRecovery.ts",
+      "client/src/lib/private-finite-reader.ts",
+      "client/src/pages/private-finite-viewer.tsx"
     ],
-    "scope": "NEW conditional engineering, no issuer/owner/auth/scientific acceptance. Existing annual/finite branches unchanged.",
-    "law": "Explicit prospective stationary Gregorian400-year repeat law, checked across800 supplied conditional years.146097days repeats leap/calendar structure. It is NOT a fitted horizon, shortened empirical holdout or independently authenticated future source. Full profiles/accrual/cash/common-capital repeat; positive replacement capital tied to each commissioning; explicit conditional complete removal/zero salvage/no unmodelled liabilities. No such facts asserted for an actual issuer.",
-    "formulas": "PV=dated first-period net common cash PV / (1-(1+r)^(-146097/365.25)); opening state already funded. No extra opening cash/debt deduction. Stationary nominalUSD, not replacement for original2.5–4% whole-equity terminal.",
-    "oracles": {
-      "annualCommon": 77.5,
-      "periodDays": 146097,
-      "rate": 0.1,
-      "referencePvUsd": 775.231323361313,
-      "toleranceUsd": 1e-08
-    },
-    "results": "July replacement/retirement, leap years, storageRTE0.8 and0/1% annual degradation; annual base service10, charge12.5, loss2.5, revenue100, replacement10, common77.5. Reference PV775.231323361313 matched within1e-8. Same-claim additive price inverse root0.5 within1e-10; residual tolerance1e-7. No-root, funding-domain/borrowed-parent/overflow refusal; financial drift and missing replacement capital refuse. Fixtures are synthetic.",
-    "inverse": "Pre-execution definition hash, declared domain, fixed physical/nonprice inputs, explicit zero tax, coincident year-end revenue/collections/distributions and no capital returns. Constant positive slope proves only this affine domain; endpoint execution checks arithmetic/constraints. No general nonlinear/tangency/discontinuity or market-identification certificate; owner width/dual-threshold gates unchanged.",
-    "focused": "23pass0fail0skip before overflow protection;3pass0fail0skip after domain correction. Full final gate below is authoritative.",
-    "gates": {
+    "implementation": [
+      "renewalProducerBinding captures law/domain/certificate, physical/specification/ownership/claim and archived executable modules; stored retrieval validates immutable dependencies without execution; explicit recalculation still requires matching source.",
+      "reconcileRenewalFamily rejects duplicate/undeclared/conflicting sets and preserves missing/refusal rows, grouped by compatible claim/date/currency/unit/law.",
+      "Private renewal CLI JSON/XLSX uses0600/exclusive writes. New document version, public403 and browser-local integrity-only reader. Pagination500 retains all rows, selection resets, no upload/storage.",
+      "Validated source and physical parents indexed once after full duplicate/hash validation; no evidence or scientific gates removed."
+    ],
+    "formulas": "Existing Gregorian stationary nominal400-year/146097day law and affine price inverse unchanged; no deployment-growth or whole-equity inference. Document IDs=canonical SHA256; literal cells=ordered economicBridgeCells. No roots or study refits performed on actual issuer data.",
+    "gate": {
       "command": [
         "bash",
         "-c",
         "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
       ],
-      "executed_at": "2026-11-14T02:46:47.413565+00:00",
+      "executed_at": "2026-11-14T03:41:48.384344+00:00",
       "exit_code": 0,
-      "elapsed_seconds": 408.882,
+      "elapsed_seconds": 388.376,
       "counts": {
-        "tests": 1377,
-        "pass": 1376,
+        "tests": 1378,
+        "pass": 1377,
         "fail": 0,
         "skipped": 1
       },
-      "log": "generated-artifacts/gregorian-renewal/final-full.log",
+      "log": "generated-artifacts/renewal-retained/final-full.log",
       "workspace_revision": null,
       "worktree_dirty": null,
       "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
-      "log_sha256": "19169cf97eb030895c8f67da428ea9640e1c0c8c2c4fc340da4f622d4a037f2b",
+      "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
       "suite_counts": {
         "typescript": {
-          "tests": 1377,
-          "pass": 1376,
+          "tests": 1378,
+          "pass": 1377,
           "fail": 0,
           "skipped": 1
         },
@@ -66,26 +64,88 @@
       "canonical_ledgers_modified": false,
       "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
     },
-    "logs": {
-      "generated-artifacts/gregorian-renewal/type.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
-      "generated-artifacts/gregorian-renewal/focused.log": "9c5b11673d47de59d31e70ed3ba196b8af2b3467549a4d524eaff0a1f39631f1",
-      "generated-artifacts/gregorian-renewal/type-final.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
-      "generated-artifacts/gregorian-renewal/focused-final.log": "e727906c055d261122d8174924668f221d9b44768dccda4058ae0b96dca97190",
-      "generated-artifacts/gregorian-renewal/full.log": "ccf0c7eb34d2f5f1bf2c68b78c99a0811b59e4e903034436be7b63e9c90b1a46",
-      "generated-artifacts/gregorian-renewal/base-live.log": "ae03c34d820cc3a2a14b95ad2b37b89f606520de9c8daa5435a670b7be7844f0",
-      "generated-artifacts/gregorian-renewal/type-domain.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
-      "generated-artifacts/gregorian-renewal/domain-focused.log": "e3c8a5250d019b7b86547256c197193acd23c1210ba5ac8e51e25139d1279fd6",
-      "generated-artifacts/gregorian-renewal/final-full.log": "19169cf97eb030895c8f67da428ea9640e1c0c8c2c4fc340da4f622d4a037f2b",
-      "generated-artifacts/gregorian-renewal/record.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    "pg_focused_recovery": {
+      "at": "2026-11-14T03:44:53.744Z",
+      "passed": true,
+      "scope": "Focused recovery of final failed assertion; actual existing disposable PostgreSQL, synthetic review only",
+      "checks": 7,
+      "faults": [
+        "physical parent",
+        "law",
+        "certificate"
+      ],
+      "headers": 14,
+      "documentId": "4f26f514fe3a72427a5052ffb28e2b5dab8c3397f93fe42d680b855439bc22a9",
+      "priorFailure": "pg-phases.log retained; old finite error regex rejected correct renewal refusal"
     },
-    "adverse": "Initial2tests:1pass1fail because unfunded case correctly refused funding shortfall before expected payable-date refusal; assertion corrected to exact actual guard. Pre-domain full gate retained separately; source/domain guard changed afterward, so it is NOT the final release gate.",
-    "remaining": [
-      "Actual source-qualified issuer/future law, operator principal, scientific/owner acceptance and3worked cases remain absent",
-      "New renewal/inverse changed retained producer/reader/privatePG/document/XLSX/viewer journey still needs integration/evidence; prior finitePG/SSR is NOT reused as proof",
-      "Partial ownership, nonstationary exogenous law, general interest/recovery eligibility, transition into this400-year law and nonzero-tax/nonlinear inverse remain unsupported",
-      "General full-domain/width/control-family identification and original terminal/reinvestment issuer requirements remain partial; no whole-equity/market inference"
+    "pg_scope": "Initial actual-PG run reached concurrent staging, stored reads, privateCLI, all literal XLSX, A/B/C/A and reconnect; failed final regex expecting finite rather than renewal refusal. Focused recovery checks altered physical/law/certificate and atomic rollback separately. Not a clean single17-pass run.",
+    "consumer_results": {
+      "A_rows": 659286,
+      "A_literal_cells": 1318572,
+      "B_rows": 659281,
+      "C_rows": 659278,
+      "A_workbook_bytes": 121433406,
+      "browser": "Interactive synthetic A/B/A/corrupt/reset/C. Page2,last,page621 literal comparisons;0mismatches. Initial navigation timeout retried. C arrived later, so not exact A/B/C/A order. No nonstatic requests or data storage during interaction. Not genuine operator authentication."
+    },
+    "source": {
+      "url": "https://sansad.in/getFile/annex/271/AU684_PN7hbh.pdf?source=pqars",
+      "publication": "2026-07-24",
+      "period": "through2026-03-31",
+      "facts": "INR35354crore total PLI disbursement across14sectors; solar64873crore investment and14794employment.",
+      "finding": "No First Solar/FSIndia mention; aggregate amounts are NOT issuer grant receipt/eligible watts/paymentday/FX. No2025 backdating."
+    },
+    "failures": [
+      "Interrupted CPU-heavy attempts pg.log/pg-indexed.log; scope2 invalid versus2-location; foreground timeout pg-location.log; pg-phases.log incorrect finite-error regex.",
+      "First full gate1378TS=1375pass/2fail/1skip: stale generated field census. Regenerated actual descriptors; original1000/1001 and unresolved1 unchanged.",
+      "Recovery attempts: missing socket startup options, omitted explicit cutoff, then current-source code refusal during approval. Stored-only corruption tests use original synthetic decision copies in rolled-back disposable transactions; no real approval."
     ],
-    "source": "This turn's SECI source findings retained in preceding increment:1700MW eligible capacity, not produced watts or cash; no new duplicate fetch."
+    "remaining": [
+      "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
+      "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps.",
+      "Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals.",
+      "No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification.",
+      "Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved."
+    ],
+    "scientific_acceptance": false,
+    "logs_sha256": {
+      "type.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "focused.log": "81f7ddfab7ed279fae9c243d04b249b267be9fc10de0128c01293f1270d1274f",
+      "type2.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "pg.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source-search.json": "74403b6901966dfe3dff5f6ca90a405d661166b0f3f52643223b054de8510266",
+      "source-au684.json": "9e707b1e374e72122f61af9b00d6cef081dc7ccf0cc81131a8b2a4296dabc31e",
+      "aborted-cleanup.log": "ad199c8bf70a73cf5104eecaa6dcb9f1d85d71d62f793285d9e9a9a73130d7c9",
+      "type-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "viewer-new.log": "0fc9cb0249ddf6793977d800be4f1acb65823ae06020b438934ea87cb382d8c1",
+      "type3.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "type-final.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "focused-final.log": "7dea0f5503d931f819158772e50b6f8b1788b3325396214e985c831fe178f2ba",
+      "pg-indexed.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "prior-ci.json": "3461ad72185e42e33af77a4a9823edafe5716aa822821541f76fe01995f7c1f0",
+      "prior-live.log": "460e06261ab26fafc45291ffc1527561b28bf128ec822bcf0cae7643f913aeb0",
+      "type-parent-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+      "parent-check.log": "da84918b67f3740b13483e4fe9c84bf1d123cdef7c8311d9d733d38339b49c42",
+      "pg-parent-indexed.log": "984d3e1b6f16da2fcd5b96efacff37a63bc877aa900aa9678686f203902209c8",
+      "domain-failure.log": "f3ed19b417465635c8a955f0507a61c7ba2519086c4017f3195f4391c5ebf923",
+      "domain-corrected.log": "3b83fc9ac2dd62c6b054a1c8fccddab6c16a781770ba6c6761fdb0cce50d0c23",
+      "pg-location.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pg-phases.log": "14410b8af9bb11b876835e279b3dc6c83721993e3dcf874e7b5a3c5c050dedd1",
+      "full.log": "e39e7c448092a27d9a0c8a710939b436ebf276771af87518f35226db993dd2bd",
+      "full.receipt.json": "a8e603ade63b4da3b6e975d84ccb85797567b888763bc970d56362450c49c59f",
+      "census.log": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+      "recovery.log": "3060c80d231705b9dc873eb63bcdcf8395af6cde753fae94dd5895a4c44a20fa",
+      "final-full.log": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+      "recovery-socket.log": "ca0453c6c3fbe85511c7b77c2cea58c8118f5fcbeb97c7f8585ef3f0b0724388",
+      "browser.json": "599334537c0370fcda756774c106c66f4ddf6f7972d7a1da2e2c99277edab5a7",
+      "recovery-final.log": "e5747bbe16657202871d0c13ad62434295e41fe08ca62d3a49f9f50058067692",
+      "recovery-stored.log": "49d5608b9f832142b223b468fdf9bc204fc63e43beef2f6084866f95aeb84a91",
+      "recovery.json": "2b44871b49e397d86a988666d9f226ba4eaa47ddbf4c5eafed642c68ea503c8c",
+      "consumer-final.log": "f71dd7d538d10aa98d56ba1536158559795cca9bc78cacc96a490a93708c3c9e",
+      "consumer-corrected.log": "309b5d558187955491ff4fda1862527a1cb9bc8f11324531e00890c8e8cab52d",
+      "privacy-final.log": "4db5b426f13a674e38fdbff011d0b84f797146f14286f5d9e141693518619226",
+      "final-full.receipt.json": "20a649bd69d3affed0647bc9d3f830474521d8386d560d6a051aec3038eda68b",
+      "ledger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
   },
   "prior_native_fleet_increment": {
     "scope": "2026-11-10 field semantics increment; stages 1/3/16 remain incomplete. Original plan/amendment hashes rechecked unchanged.",
@@ -169,21 +229,21 @@
     }
   },
   "current_release": {
-    "runtime": "b8774031425d61fc16ad44ff04ef3e37d766d232",
-    "ci": 43545983675,
+    "runtime": "59c0fb8a60034313f254624c77c1c770a228b4be",
+    "ci": 43548780317,
     "conclusion": "success",
     "readback": {
       "passed": true,
-      "at": "2026-11-14T02:42:35.286Z",
-      "source": "b8774031425d61fc16ad44ff04ef3e37d766d232",
+      "at": "2026-11-14T03:16:26.624Z",
+      "source": "59c0fb8a60034313f254624c77c1c770a228b4be",
       "health": 200,
-      "identity": "4fbf01c1cf5071caa1a0329ef4e36117419cb68ced1589b6f3a983377dcb0ce4",
+      "identity": "3c933f4b67369d85a424bf3e3316077ad53cbc0fce1bcfa49a68941d80c1a7bf",
       "rows": 1054,
       "cells": 2108,
       "privateReaderRefusals": 4,
       "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"
     },
-    "scope": "Prior necessary-boundary implementation. Observed2023/public403 only, not current Gregorian future execution"
+    "scope": "Prior Gregorian release, observed2023/public403 only; not NEW private consumers"
   },
   "created_at": "2026-11-09T22:07:59.864731+00:00",
   "updated_at": "2026-11-13T01:59:57.797594+00:00",
@@ -150954,6 +151014,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-14T03:41:48.384344+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 388.376,
+              "counts": {
+                "tests": 1378,
+                "pass": 1377,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/renewal-retained/final-full.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1378,
+                  "pass": 1377,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": "July replacement/retirement, leap years, storageRTE0.8 and0/1% annual degradation; annual base service10, charge12.5, loss2.5, revenue100, replacement10, common77.5. Reference PV775.231323361313 matched within1e-8. Same-claim additive price inverse root0.5 within1e-10; residual tolerance1e-7. No-root, funding-domain/borrowed-parent/overflow refusal; financial drift and missing replacement capital refuse. Fixtures are synthetic.",
@@ -150961,12 +151058,13 @@
           "git_commit": "e42252979249538a8ace301b834a85b806f2e614",
           "deployment_revision": "e42252979249538a8ace301b834a85b806f2e614",
           "remaining_gaps": [
-            "Actual source-qualified issuer/future law, operator principal, scientific/owner acceptance and3worked cases remain absent",
-            "New renewal/inverse changed retained producer/reader/privatePG/document/XLSX/viewer journey still needs integration/evidence; prior finitePG/SSR is NOT reused as proof",
-            "Partial ownership, nonstationary exogenous law, general interest/recovery eligibility, transition into this400-year law and nonzero-tax/nonlinear inverse remain unsupported",
-            "General full-domain/width/control-family identification and original terminal/reinvestment issuer requirements remain partial; no whole-equity/market inference"
+            "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
+            "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps.",
+            "Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals.",
+            "No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification.",
+            "Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved."
           ],
-          "next_action": "Continue ALL original0–17. New Gregorian conditional forward/affine inverse passed final local gate; verify any new code/CI/runtime separately. Finish changed retained producer/reader/CLI/literalXLSX/localviewer for NEW renewal result, then supported transition/interest/recovery and original source/issuer work. Do not rerun unchanged finitePG/SSR. No genuine principal/owner/source/science acceptance.65verified233partial2blocked/all300/0of3 unchanged.",
+          "next_action": "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
           "blockers": [],
           "stage": 13,
           "check_type": "judgement",
@@ -154411,6 +154509,153 @@
               "General full-domain/width/control-family identification and original terminal/reinvestment issuer requirements remain partial; no whole-equity/market inference"
             ],
             "source": "This turn's SECI source findings retained in preceding increment:1700MW eligible capacity, not produced watts or cash; no new duplicate fetch."
+          },
+          "retained_renewal_increment": {
+            "kind": "private-retained-gregorian-renewal-consumers",
+            "at": "2026-11-14T03:48:44.130912+00:00",
+            "local_source": "c1c1d0825de0e624a451b74840d281d660428e71",
+            "files_functions": [
+              "server/calculation/renewalProducer.ts",
+              "server/calculation/renewalFamily.ts",
+              "server/calculation/companySourceArchive.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/calculation/companyCohortProjection.ts",
+              "server/snapshots/companyOperatingReview.ts",
+              "server/finiteCompanyDocument.ts",
+              "server/finiteCompanyPrivacy.ts",
+              "script/company-operating-review.ts",
+              "script/renewalTransportFixture.ts",
+              "script/finiteCohortTransport.ts",
+              "script/renewalTransportRecovery.ts",
+              "client/src/lib/private-finite-reader.ts",
+              "client/src/pages/private-finite-viewer.tsx"
+            ],
+            "implementation": [
+              "renewalProducerBinding captures law/domain/certificate, physical/specification/ownership/claim and archived executable modules; stored retrieval validates immutable dependencies without execution; explicit recalculation still requires matching source.",
+              "reconcileRenewalFamily rejects duplicate/undeclared/conflicting sets and preserves missing/refusal rows, grouped by compatible claim/date/currency/unit/law.",
+              "Private renewal CLI JSON/XLSX uses0600/exclusive writes. New document version, public403 and browser-local integrity-only reader. Pagination500 retains all rows, selection resets, no upload/storage.",
+              "Validated source and physical parents indexed once after full duplicate/hash validation; no evidence or scientific gates removed."
+            ],
+            "formulas": "Existing Gregorian stationary nominal400-year/146097day law and affine price inverse unchanged; no deployment-growth or whole-equity inference. Document IDs=canonical SHA256; literal cells=ordered economicBridgeCells. No roots or study refits performed on actual issuer data.",
+            "gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-14T03:41:48.384344+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 388.376,
+              "counts": {
+                "tests": 1378,
+                "pass": 1377,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/renewal-retained/final-full.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1378,
+                  "pass": 1377,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "pg_focused_recovery": {
+              "at": "2026-11-14T03:44:53.744Z",
+              "passed": true,
+              "scope": "Focused recovery of final failed assertion; actual existing disposable PostgreSQL, synthetic review only",
+              "checks": 7,
+              "faults": [
+                "physical parent",
+                "law",
+                "certificate"
+              ],
+              "headers": 14,
+              "documentId": "4f26f514fe3a72427a5052ffb28e2b5dab8c3397f93fe42d680b855439bc22a9",
+              "priorFailure": "pg-phases.log retained; old finite error regex rejected correct renewal refusal"
+            },
+            "pg_scope": "Initial actual-PG run reached concurrent staging, stored reads, privateCLI, all literal XLSX, A/B/C/A and reconnect; failed final regex expecting finite rather than renewal refusal. Focused recovery checks altered physical/law/certificate and atomic rollback separately. Not a clean single17-pass run.",
+            "consumer_results": {
+              "A_rows": 659286,
+              "A_literal_cells": 1318572,
+              "B_rows": 659281,
+              "C_rows": 659278,
+              "A_workbook_bytes": 121433406,
+              "browser": "Interactive synthetic A/B/A/corrupt/reset/C. Page2,last,page621 literal comparisons;0mismatches. Initial navigation timeout retried. C arrived later, so not exact A/B/C/A order. No nonstatic requests or data storage during interaction. Not genuine operator authentication."
+            },
+            "source": {
+              "url": "https://sansad.in/getFile/annex/271/AU684_PN7hbh.pdf?source=pqars",
+              "publication": "2026-07-24",
+              "period": "through2026-03-31",
+              "facts": "INR35354crore total PLI disbursement across14sectors; solar64873crore investment and14794employment.",
+              "finding": "No First Solar/FSIndia mention; aggregate amounts are NOT issuer grant receipt/eligible watts/paymentday/FX. No2025 backdating."
+            },
+            "failures": [
+              "Interrupted CPU-heavy attempts pg.log/pg-indexed.log; scope2 invalid versus2-location; foreground timeout pg-location.log; pg-phases.log incorrect finite-error regex.",
+              "First full gate1378TS=1375pass/2fail/1skip: stale generated field census. Regenerated actual descriptors; original1000/1001 and unresolved1 unchanged.",
+              "Recovery attempts: missing socket startup options, omitted explicit cutoff, then current-source code refusal during approval. Stored-only corruption tests use original synthetic decision copies in rolled-back disposable transactions; no real approval."
+            ],
+            "remaining": [
+              "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
+              "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps.",
+              "Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals.",
+              "No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification.",
+              "Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved."
+            ],
+            "scientific_acceptance": false,
+            "logs_sha256": {
+              "type.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "focused.log": "81f7ddfab7ed279fae9c243d04b249b267be9fc10de0128c01293f1270d1274f",
+              "type2.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "pg.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "source-search.json": "74403b6901966dfe3dff5f6ca90a405d661166b0f3f52643223b054de8510266",
+              "source-au684.json": "9e707b1e374e72122f61af9b00d6cef081dc7ccf0cc81131a8b2a4296dabc31e",
+              "aborted-cleanup.log": "ad199c8bf70a73cf5104eecaa6dcb9f1d85d71d62f793285d9e9a9a73130d7c9",
+              "type-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "viewer-new.log": "0fc9cb0249ddf6793977d800be4f1acb65823ae06020b438934ea87cb382d8c1",
+              "type3.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "type-final.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "focused-final.log": "7dea0f5503d931f819158772e50b6f8b1788b3325396214e985c831fe178f2ba",
+              "pg-indexed.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "prior-ci.json": "3461ad72185e42e33af77a4a9823edafe5716aa822821541f76fe01995f7c1f0",
+              "prior-live.log": "460e06261ab26fafc45291ffc1527561b28bf128ec822bcf0cae7643f913aeb0",
+              "type-parent-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "parent-check.log": "da84918b67f3740b13483e4fe9c84bf1d123cdef7c8311d9d733d38339b49c42",
+              "pg-parent-indexed.log": "984d3e1b6f16da2fcd5b96efacff37a63bc877aa900aa9678686f203902209c8",
+              "domain-failure.log": "f3ed19b417465635c8a955f0507a61c7ba2519086c4017f3195f4391c5ebf923",
+              "domain-corrected.log": "3b83fc9ac2dd62c6b054a1c8fccddab6c16a781770ba6c6761fdb0cce50d0c23",
+              "pg-location.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "pg-phases.log": "14410b8af9bb11b876835e279b3dc6c83721993e3dcf874e7b5a3c5c050dedd1",
+              "full.log": "e39e7c448092a27d9a0c8a710939b436ebf276771af87518f35226db993dd2bd",
+              "full.receipt.json": "a8e603ade63b4da3b6e975d84ccb85797567b888763bc970d56362450c49c59f",
+              "census.log": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+              "recovery.log": "3060c80d231705b9dc873eb63bcdcf8395af6cde753fae94dd5895a4c44a20fa",
+              "final-full.log": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "recovery-socket.log": "ca0453c6c3fbe85511c7b77c2cea58c8118f5fcbeb97c7f8585ef3f0b0724388",
+              "browser.json": "599334537c0370fcda756774c106c66f4ddf6f7972d7a1da2e2c99277edab5a7",
+              "recovery-final.log": "e5747bbe16657202871d0c13ad62434295e41fe08ca62d3a49f9f50058067692",
+              "recovery-stored.log": "49d5608b9f832142b223b468fdf9bc204fc63e43beef2f6084866f95aeb84a91",
+              "recovery.json": "2b44871b49e397d86a988666d9f226ba4eaa47ddbf4c5eafed642c68ea503c8c",
+              "consumer-final.log": "f71dd7d538d10aa98d56ba1536158559795cca9bc78cacc96a490a93708c3c9e",
+              "consumer-corrected.log": "309b5d558187955491ff4fda1862527a1cb9bc8f11324531e00890c8e8cab52d",
+              "privacy-final.log": "4db5b426f13a674e38fdbff011d0b84f797146f14286f5d9e141693518619226",
+              "final-full.receipt.json": "20a649bd69d3affed0647bc9d3f830474521d8386d560d6a051aec3038eda68b",
+              "ledger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
           }
         },
         {
@@ -155969,6 +156214,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-14T03:41:48.384344+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 388.376,
+              "counts": {
+                "tests": 1378,
+                "pass": 1377,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/renewal-retained/final-full.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1378,
+                  "pass": 1377,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": [
@@ -155982,9 +156264,9 @@
           "git_commit": null,
           "deployment_revision": null,
           "remaining_gaps": [
-            "No full pre-result segment identification protocol/tests are evidenced."
+            "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law."
           ],
-          "next_action": "Predeclare the identification assessment before segment results.",
+          "next_action": "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
           "blockers": [],
           "stage": 13,
           "check_type": "judgement",
@@ -156273,6 +156555,153 @@
               "General full-domain/width/control-family identification and original terminal/reinvestment issuer requirements remain partial; no whole-equity/market inference"
             ],
             "source": "This turn's SECI source findings retained in preceding increment:1700MW eligible capacity, not produced watts or cash; no new duplicate fetch."
+          },
+          "retained_renewal_increment": {
+            "kind": "private-retained-gregorian-renewal-consumers",
+            "at": "2026-11-14T03:48:44.130912+00:00",
+            "local_source": "c1c1d0825de0e624a451b74840d281d660428e71",
+            "files_functions": [
+              "server/calculation/renewalProducer.ts",
+              "server/calculation/renewalFamily.ts",
+              "server/calculation/companySourceArchive.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/calculation/companyCohortProjection.ts",
+              "server/snapshots/companyOperatingReview.ts",
+              "server/finiteCompanyDocument.ts",
+              "server/finiteCompanyPrivacy.ts",
+              "script/company-operating-review.ts",
+              "script/renewalTransportFixture.ts",
+              "script/finiteCohortTransport.ts",
+              "script/renewalTransportRecovery.ts",
+              "client/src/lib/private-finite-reader.ts",
+              "client/src/pages/private-finite-viewer.tsx"
+            ],
+            "implementation": [
+              "renewalProducerBinding captures law/domain/certificate, physical/specification/ownership/claim and archived executable modules; stored retrieval validates immutable dependencies without execution; explicit recalculation still requires matching source.",
+              "reconcileRenewalFamily rejects duplicate/undeclared/conflicting sets and preserves missing/refusal rows, grouped by compatible claim/date/currency/unit/law.",
+              "Private renewal CLI JSON/XLSX uses0600/exclusive writes. New document version, public403 and browser-local integrity-only reader. Pagination500 retains all rows, selection resets, no upload/storage.",
+              "Validated source and physical parents indexed once after full duplicate/hash validation; no evidence or scientific gates removed."
+            ],
+            "formulas": "Existing Gregorian stationary nominal400-year/146097day law and affine price inverse unchanged; no deployment-growth or whole-equity inference. Document IDs=canonical SHA256; literal cells=ordered economicBridgeCells. No roots or study refits performed on actual issuer data.",
+            "gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-14T03:41:48.384344+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 388.376,
+              "counts": {
+                "tests": 1378,
+                "pass": 1377,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/renewal-retained/final-full.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1378,
+                  "pass": 1377,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "pg_focused_recovery": {
+              "at": "2026-11-14T03:44:53.744Z",
+              "passed": true,
+              "scope": "Focused recovery of final failed assertion; actual existing disposable PostgreSQL, synthetic review only",
+              "checks": 7,
+              "faults": [
+                "physical parent",
+                "law",
+                "certificate"
+              ],
+              "headers": 14,
+              "documentId": "4f26f514fe3a72427a5052ffb28e2b5dab8c3397f93fe42d680b855439bc22a9",
+              "priorFailure": "pg-phases.log retained; old finite error regex rejected correct renewal refusal"
+            },
+            "pg_scope": "Initial actual-PG run reached concurrent staging, stored reads, privateCLI, all literal XLSX, A/B/C/A and reconnect; failed final regex expecting finite rather than renewal refusal. Focused recovery checks altered physical/law/certificate and atomic rollback separately. Not a clean single17-pass run.",
+            "consumer_results": {
+              "A_rows": 659286,
+              "A_literal_cells": 1318572,
+              "B_rows": 659281,
+              "C_rows": 659278,
+              "A_workbook_bytes": 121433406,
+              "browser": "Interactive synthetic A/B/A/corrupt/reset/C. Page2,last,page621 literal comparisons;0mismatches. Initial navigation timeout retried. C arrived later, so not exact A/B/C/A order. No nonstatic requests or data storage during interaction. Not genuine operator authentication."
+            },
+            "source": {
+              "url": "https://sansad.in/getFile/annex/271/AU684_PN7hbh.pdf?source=pqars",
+              "publication": "2026-07-24",
+              "period": "through2026-03-31",
+              "facts": "INR35354crore total PLI disbursement across14sectors; solar64873crore investment and14794employment.",
+              "finding": "No First Solar/FSIndia mention; aggregate amounts are NOT issuer grant receipt/eligible watts/paymentday/FX. No2025 backdating."
+            },
+            "failures": [
+              "Interrupted CPU-heavy attempts pg.log/pg-indexed.log; scope2 invalid versus2-location; foreground timeout pg-location.log; pg-phases.log incorrect finite-error regex.",
+              "First full gate1378TS=1375pass/2fail/1skip: stale generated field census. Regenerated actual descriptors; original1000/1001 and unresolved1 unchanged.",
+              "Recovery attempts: missing socket startup options, omitted explicit cutoff, then current-source code refusal during approval. Stored-only corruption tests use original synthetic decision copies in rolled-back disposable transactions; no real approval."
+            ],
+            "remaining": [
+              "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
+              "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps.",
+              "Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals.",
+              "No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification.",
+              "Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved."
+            ],
+            "scientific_acceptance": false,
+            "logs_sha256": {
+              "type.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "focused.log": "81f7ddfab7ed279fae9c243d04b249b267be9fc10de0128c01293f1270d1274f",
+              "type2.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "pg.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "source-search.json": "74403b6901966dfe3dff5f6ca90a405d661166b0f3f52643223b054de8510266",
+              "source-au684.json": "9e707b1e374e72122f61af9b00d6cef081dc7ccf0cc81131a8b2a4296dabc31e",
+              "aborted-cleanup.log": "ad199c8bf70a73cf5104eecaa6dcb9f1d85d71d62f793285d9e9a9a73130d7c9",
+              "type-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "viewer-new.log": "0fc9cb0249ddf6793977d800be4f1acb65823ae06020b438934ea87cb382d8c1",
+              "type3.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "type-final.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "focused-final.log": "7dea0f5503d931f819158772e50b6f8b1788b3325396214e985c831fe178f2ba",
+              "pg-indexed.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "prior-ci.json": "3461ad72185e42e33af77a4a9823edafe5716aa822821541f76fe01995f7c1f0",
+              "prior-live.log": "460e06261ab26fafc45291ffc1527561b28bf128ec822bcf0cae7643f913aeb0",
+              "type-parent-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "parent-check.log": "da84918b67f3740b13483e4fe9c84bf1d123cdef7c8311d9d733d38339b49c42",
+              "pg-parent-indexed.log": "984d3e1b6f16da2fcd5b96efacff37a63bc877aa900aa9678686f203902209c8",
+              "domain-failure.log": "f3ed19b417465635c8a955f0507a61c7ba2519086c4017f3195f4391c5ebf923",
+              "domain-corrected.log": "3b83fc9ac2dd62c6b054a1c8fccddab6c16a781770ba6c6761fdb0cce50d0c23",
+              "pg-location.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "pg-phases.log": "14410b8af9bb11b876835e279b3dc6c83721993e3dcf874e7b5a3c5c050dedd1",
+              "full.log": "e39e7c448092a27d9a0c8a710939b436ebf276771af87518f35226db993dd2bd",
+              "full.receipt.json": "a8e603ade63b4da3b6e975d84ccb85797567b888763bc970d56362450c49c59f",
+              "census.log": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+              "recovery.log": "3060c80d231705b9dc873eb63bcdcf8395af6cde753fae94dd5895a4c44a20fa",
+              "final-full.log": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "recovery-socket.log": "ca0453c6c3fbe85511c7b77c2cea58c8118f5fcbeb97c7f8585ef3f0b0724388",
+              "browser.json": "599334537c0370fcda756774c106c66f4ddf6f7972d7a1da2e2c99277edab5a7",
+              "recovery-final.log": "e5747bbe16657202871d0c13ad62434295e41fe08ca62d3a49f9f50058067692",
+              "recovery-stored.log": "49d5608b9f832142b223b468fdf9bc204fc63e43beef2f6084866f95aeb84a91",
+              "recovery.json": "2b44871b49e397d86a988666d9f226ba4eaa47ddbf4c5eafed642c68ea503c8c",
+              "consumer-final.log": "f71dd7d538d10aa98d56ba1536158559795cca9bc78cacc96a490a93708c3c9e",
+              "consumer-corrected.log": "309b5d558187955491ff4fda1862527a1cb9bc8f11324531e00890c8e8cab52d",
+              "privacy-final.log": "4db5b426f13a674e38fdbff011d0b84f797146f14286f5d9e141693518619226",
+              "final-full.receipt.json": "20a649bd69d3affed0647bc9d3f830474521d8386d560d6a051aec3038eda68b",
+              "ledger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
           }
         },
         {
@@ -160195,6 +160624,43 @@
               },
               "canonical_ledgers_modified": false,
               "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-14T03:41:48.384344+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 388.376,
+              "counts": {
+                "tests": 1378,
+                "pass": 1377,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/renewal-retained/final-full.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1378,
+                  "pass": 1377,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
             }
           ],
           "numerical_results": "Synthetic2MW×100MWh/MW/year×0.5 gives100 then90MWh with10% degradation; retired stock produces0. Independent cash660USD matches existing FCFE engine within1e-9USD. Separate finite project110USD year1 discounted10%=100USD; declared replication u=1 yields target100;u=1.5 yields150 and165MWh. These are engineering fixtures, not actual issuer economics.",
@@ -160202,9 +160668,9 @@
           "git_commit": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "deployment_revision": "8835a42d906a7c578c306eaf2225d43b852727e4",
           "remaining_gaps": [
-            "Complete assumption-set accounting across remaining actual producer maps; keep failed/missing sets visible."
+            "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps."
           ],
-          "next_action": "Preserve coveredPhysicalPaths full-declared-set/null-range tests; finish completeness audit of actual producer-map assumption manifests and admitted consumers against this finite criterion, without adding unrelated scientific/owner acceptance.",
+          "next_action": "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps.",
           "blockers": [],
           "stage": 13,
           "check_type": "exact",
@@ -162101,6 +162567,153 @@
               "General full-domain/width/control-family identification and original terminal/reinvestment issuer requirements remain partial; no whole-equity/market inference"
             ],
             "source": "This turn's SECI source findings retained in preceding increment:1700MW eligible capacity, not produced watts or cash; no new duplicate fetch."
+          },
+          "retained_renewal_increment": {
+            "kind": "private-retained-gregorian-renewal-consumers",
+            "at": "2026-11-14T03:48:44.130912+00:00",
+            "local_source": "c1c1d0825de0e624a451b74840d281d660428e71",
+            "files_functions": [
+              "server/calculation/renewalProducer.ts",
+              "server/calculation/renewalFamily.ts",
+              "server/calculation/companySourceArchive.ts",
+              "server/calculation/coveredPhysicalPaths.ts",
+              "server/calculation/companyCohortProjection.ts",
+              "server/snapshots/companyOperatingReview.ts",
+              "server/finiteCompanyDocument.ts",
+              "server/finiteCompanyPrivacy.ts",
+              "script/company-operating-review.ts",
+              "script/renewalTransportFixture.ts",
+              "script/finiteCohortTransport.ts",
+              "script/renewalTransportRecovery.ts",
+              "client/src/lib/private-finite-reader.ts",
+              "client/src/pages/private-finite-viewer.tsx"
+            ],
+            "implementation": [
+              "renewalProducerBinding captures law/domain/certificate, physical/specification/ownership/claim and archived executable modules; stored retrieval validates immutable dependencies without execution; explicit recalculation still requires matching source.",
+              "reconcileRenewalFamily rejects duplicate/undeclared/conflicting sets and preserves missing/refusal rows, grouped by compatible claim/date/currency/unit/law.",
+              "Private renewal CLI JSON/XLSX uses0600/exclusive writes. New document version, public403 and browser-local integrity-only reader. Pagination500 retains all rows, selection resets, no upload/storage.",
+              "Validated source and physical parents indexed once after full duplicate/hash validation; no evidence or scientific gates removed."
+            ],
+            "formulas": "Existing Gregorian stationary nominal400-year/146097day law and affine price inverse unchanged; no deployment-growth or whole-equity inference. Document IDs=canonical SHA256; literal cells=ordered economicBridgeCells. No roots or study refits performed on actual issuer data.",
+            "gate": {
+              "command": [
+                "bash",
+                "-c",
+                "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+              ],
+              "executed_at": "2026-11-14T03:41:48.384344+00:00",
+              "exit_code": 0,
+              "elapsed_seconds": 388.376,
+              "counts": {
+                "tests": 1378,
+                "pass": 1377,
+                "fail": 0,
+                "skipped": 1
+              },
+              "log": "generated-artifacts/renewal-retained/final-full.log",
+              "workspace_revision": null,
+              "worktree_dirty": null,
+              "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+              "log_sha256": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "suite_counts": {
+                "typescript": {
+                  "tests": 1378,
+                  "pass": 1377,
+                  "fail": 0,
+                  "skipped": 1
+                },
+                "python": {
+                  "tests": 264,
+                  "pass": 264,
+                  "fail": 0,
+                  "skipped": 0
+                }
+              },
+              "canonical_ledgers_modified": false,
+              "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+            },
+            "pg_focused_recovery": {
+              "at": "2026-11-14T03:44:53.744Z",
+              "passed": true,
+              "scope": "Focused recovery of final failed assertion; actual existing disposable PostgreSQL, synthetic review only",
+              "checks": 7,
+              "faults": [
+                "physical parent",
+                "law",
+                "certificate"
+              ],
+              "headers": 14,
+              "documentId": "4f26f514fe3a72427a5052ffb28e2b5dab8c3397f93fe42d680b855439bc22a9",
+              "priorFailure": "pg-phases.log retained; old finite error regex rejected correct renewal refusal"
+            },
+            "pg_scope": "Initial actual-PG run reached concurrent staging, stored reads, privateCLI, all literal XLSX, A/B/C/A and reconnect; failed final regex expecting finite rather than renewal refusal. Focused recovery checks altered physical/law/certificate and atomic rollback separately. Not a clean single17-pass run.",
+            "consumer_results": {
+              "A_rows": 659286,
+              "A_literal_cells": 1318572,
+              "B_rows": 659281,
+              "C_rows": 659278,
+              "A_workbook_bytes": 121433406,
+              "browser": "Interactive synthetic A/B/A/corrupt/reset/C. Page2,last,page621 literal comparisons;0mismatches. Initial navigation timeout retried. C arrived later, so not exact A/B/C/A order. No nonstatic requests or data storage during interaction. Not genuine operator authentication."
+            },
+            "source": {
+              "url": "https://sansad.in/getFile/annex/271/AU684_PN7hbh.pdf?source=pqars",
+              "publication": "2026-07-24",
+              "period": "through2026-03-31",
+              "facts": "INR35354crore total PLI disbursement across14sectors; solar64873crore investment and14794employment.",
+              "finding": "No First Solar/FSIndia mention; aggregate amounts are NOT issuer grant receipt/eligible watts/paymentday/FX. No2025 backdating."
+            },
+            "failures": [
+              "Interrupted CPU-heavy attempts pg.log/pg-indexed.log; scope2 invalid versus2-location; foreground timeout pg-location.log; pg-phases.log incorrect finite-error regex.",
+              "First full gate1378TS=1375pass/2fail/1skip: stale generated field census. Regenerated actual descriptors; original1000/1001 and unresolved1 unchanged.",
+              "Recovery attempts: missing socket startup options, omitted explicit cutoff, then current-source code refusal during approval. Stored-only corruption tests use original synthetic decision copies in rolled-back disposable transactions; no real approval."
+            ],
+            "remaining": [
+              "Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law.",
+              "S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps.",
+              "Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals.",
+              "No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification.",
+              "Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved."
+            ],
+            "scientific_acceptance": false,
+            "logs_sha256": {
+              "type.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "focused.log": "81f7ddfab7ed279fae9c243d04b249b267be9fc10de0128c01293f1270d1274f",
+              "type2.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "pg.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "source-search.json": "74403b6901966dfe3dff5f6ca90a405d661166b0f3f52643223b054de8510266",
+              "source-au684.json": "9e707b1e374e72122f61af9b00d6cef081dc7ccf0cc81131a8b2a4296dabc31e",
+              "aborted-cleanup.log": "ad199c8bf70a73cf5104eecaa6dcb9f1d85d71d62f793285d9e9a9a73130d7c9",
+              "type-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "viewer-new.log": "0fc9cb0249ddf6793977d800be4f1acb65823ae06020b438934ea87cb382d8c1",
+              "type3.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "type-final.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "focused-final.log": "7dea0f5503d931f819158772e50b6f8b1788b3325396214e985c831fe178f2ba",
+              "pg-indexed.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "prior-ci.json": "3461ad72185e42e33af77a4a9823edafe5716aa822821541f76fe01995f7c1f0",
+              "prior-live.log": "460e06261ab26fafc45291ffc1527561b28bf128ec822bcf0cae7643f913aeb0",
+              "type-parent-index.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+              "parent-check.log": "da84918b67f3740b13483e4fe9c84bf1d123cdef7c8311d9d733d38339b49c42",
+              "pg-parent-indexed.log": "984d3e1b6f16da2fcd5b96efacff37a63bc877aa900aa9678686f203902209c8",
+              "domain-failure.log": "f3ed19b417465635c8a955f0507a61c7ba2519086c4017f3195f4391c5ebf923",
+              "domain-corrected.log": "3b83fc9ac2dd62c6b054a1c8fccddab6c16a781770ba6c6761fdb0cce50d0c23",
+              "pg-location.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "pg-phases.log": "14410b8af9bb11b876835e279b3dc6c83721993e3dcf874e7b5a3c5c050dedd1",
+              "full.log": "e39e7c448092a27d9a0c8a710939b436ebf276771af87518f35226db993dd2bd",
+              "full.receipt.json": "a8e603ade63b4da3b6e975d84ccb85797567b888763bc970d56362450c49c59f",
+              "census.log": "54812df0259202af0fbd65c6c0122fd76fab1365d7f6719ca25a001771c40f85",
+              "recovery.log": "3060c80d231705b9dc873eb63bcdcf8395af6cde753fae94dd5895a4c44a20fa",
+              "final-full.log": "b529657dc4dcfb0f6f7d6cec4bdcacdfe87516d2852b19cf0c0b94974abd5a30",
+              "recovery-socket.log": "ca0453c6c3fbe85511c7b77c2cea58c8118f5fcbeb97c7f8585ef3f0b0724388",
+              "browser.json": "599334537c0370fcda756774c106c66f4ddf6f7972d7a1da2e2c99277edab5a7",
+              "recovery-final.log": "e5747bbe16657202871d0c13ad62434295e41fe08ca62d3a49f9f50058067692",
+              "recovery-stored.log": "49d5608b9f832142b223b468fdf9bc204fc63e43beef2f6084866f95aeb84a91",
+              "recovery.json": "2b44871b49e397d86a988666d9f226ba4eaa47ddbf4c5eafed642c68ea503c8c",
+              "consumer-final.log": "f71dd7d538d10aa98d56ba1536158559795cca9bc78cacc96a490a93708c3c9e",
+              "consumer-corrected.log": "309b5d558187955491ff4fda1862527a1cb9bc8f11324531e00890c8e8cab52d",
+              "privacy-final.log": "4db5b426f13a674e38fdbff011d0b84f797146f14286f5d9e141693518619226",
+              "final-full.receipt.json": "20a649bd69d3affed0647bc9d3f830474521d8386d560d6a051aec3038eda68b",
+              "ledger.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
           }
         },
         {
@@ -197903,13 +198516,13 @@
       "S17-014",
       "S17-015"
     ],
-    "instruction": "Continue ALL original0–17. New Gregorian conditional forward/affine inverse passed final local gate; verify any new code/CI/runtime separately. Finish changed retained producer/reader/CLI/literalXLSX/localviewer for NEW renewal result, then supported transition/interest/recovery and original source/issuer work. Do not rerun unchanged finitePG/SSR. No genuine principal/owner/source/science acceptance.65verified233partial2blocked/all300/0of3 unchanged.",
+    "instruction": "Continue ALL original0–17. New private renewal consumers locally validated; reconcile next Git/CI/runtime separately. Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law. S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps. Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals. No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification. Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved.",
     "background_tasks": []
   },
   "last_handoff": {
-    "checkpoint_id": "ckpt-20261114-delayed-obligations-d8f4386",
+    "checkpoint_id": "ckpt-20261114-gregorian-cash-59c0fb8",
     "event": "continuation_ready",
-    "attempted_at": "2026-11-14T01:59:26.433104+00:00",
+    "attempted_at": "2026-11-14T02:54:57.763369+00:00",
     "outcome": "transport-accepted",
     "continuation_matched": "unverified",
     "http_status": 202
@@ -199695,6 +200308,23 @@
         "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"
       },
       "scope": "Observed2023 accounting/privacy only, not private rights execution"
+    },
+    {
+      "runtime": "b8774031425d61fc16ad44ff04ef3e37d766d232",
+      "ci": 43545983675,
+      "conclusion": "success",
+      "readback": {
+        "passed": true,
+        "at": "2026-11-14T02:42:35.286Z",
+        "source": "b8774031425d61fc16ad44ff04ef3e37d766d232",
+        "health": 200,
+        "identity": "4fbf01c1cf5071caa1a0329ef4e36117419cb68ced1589b6f3a983377dcb0ce4",
+        "rows": 1054,
+        "cells": 2108,
+        "privateReaderRefusals": 4,
+        "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"
+      },
+      "scope": "Prior necessary-boundary implementation. Observed2023/public403 only, not current Gregorian future execution"
     }
   ],
   "latest_changed_paths": [
@@ -200086,7 +200716,7 @@
       "failure_history": "Initial live verification against the local current whole archive refused, correctly: the local and deployed whole archives are distinct. Subsequent verification checked all own identity hashes, actual167code-closure file hashes, report, JSON and literal XLSX within the deployed identity; no cross-archive replay or gate weakening."
     }
   ],
-  "next_action": "Continue ALL original0–17. New Gregorian conditional forward/affine inverse passed final local gate; verify any new code/CI/runtime separately. Finish changed retained producer/reader/CLI/literalXLSX/localviewer for NEW renewal result, then supported transition/interest/recovery and original source/issuer work. Do not rerun unchanged finitePG/SSR. No genuine principal/owner/source/science acceptance.65verified233partial2blocked/all300/0of3 unchanged.",
+  "next_action": "Continue ALL original0–17. New private renewal consumers locally validated; reconcile next Git/CI/runtime separately. Original S13-004 implied DEPLOYMENT growth is not the stationary price-shift inverse. Next: predeclare a compatible physical deployment parameterization/claim/domain and supported finite-to-renewal transition, interest and eligible recovery; do not widen the frozen affine law. S13-017 now retains every declared renewal set, including missing/finite/no-root/unsupported. Numeric groups describe available comparable forward values, not a complete missing-family bound or all other Tier1 producer maps. Genuine HTTP principal/issuer/source review and production provisioning remain unavailable; public403 unchanged. Synthetic local PostgreSQL decisions are not real approvals. No original issuer case qualified. AU684 supplies aggregate PLI disbursement/investment context, not First Solar collections, eligible watts, FX or classification. Continue original22driver/full-window/joint inputs and authentic dated11–15 corpus; all original scientific/owner/domain gates and negative studies preserved.",
   "prior_renewal_draft_increment": {
     "at": "2026-11-12T22:09:43.975775+00:00",
     "status": "local integrated calculation; remaining engineering and scientific scope open",
@@ -200765,5 +201395,25 @@
     },
     "release": "CI43543357754 completed success; attempted expected d8f438 runtime readback still observed70b12e8. Failure preserved; no promotion restarted or new source pushed.",
     "remaining": "Whole dated physical/financial cycle closure, funded replacement, interest/recovery/otherWC contracts and exact-branch inverse remain unimplemented/partial. New source qualification not attempted this short continuation."
+  },
+  "pending_release": {
+    "code_local": "f73c757",
+    "integration_local": "8ebfd933b399f616c1eec0864f5241affdd65c7f",
+    "public": "59c0fb8a60034313f254624c77c1c770a228b4be",
+    "ci": {
+      "at": "2026-11-14T02:54:09.976578+00:00",
+      "runs": [
+        {
+          "id": 43548780317,
+          "head_sha": "59c0fb8a60034313f254624c77c1c770a228b4be",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/ahow/climate_implied/actions/runs/43548780317"
+        }
+      ]
+    },
+    "observed_runtime": "b8774031425d61fc16ad44ff04ef3e37d766d232",
+    "readback_failure": "generated-artifacts/gregorian-renewal/final-live.log",
+    "scope": "New promotion in progress; expected-new-SHA readback correctly refused old runtime. No new deployment claimed. This terminal receipt is LOCAL ONLY."
   }
 }

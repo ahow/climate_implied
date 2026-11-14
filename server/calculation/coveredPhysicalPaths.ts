@@ -56,17 +56,21 @@ export function calculateCoveredPhysicalPaths(raw: CoveredPathInput) {
   const coordinate=(c:CoveredPathInput["cells"][number])=>JSON.stringify([c.issuer,c.unitId,c.year,c.scope,c.gas]);
   if(!input.cells.length||!unique(input.cells.map(coordinate))||input.cells.some(c=>!input.population.includes(c.issuer)||!input.years.includes(c.year)))
     throw Error("Invalid complete cell domain");
+  const parentIndex=new Map(input.parents.map(p=>[p.hash,p]));
+  const cellIndex=new Map(input.cells.map(c=>[coordinate(c),c]));
   const scenarios=input.scenarios.map(s=>{
     const reasons:string[]=[], seen=new Set<string>(), ownership=new Map<string,number>();
     const unitBases=new Map<string,string>();
     if(!s.id || !Object.keys(s.assumptions).length) reasons.push("Missing explicit assumption set");
     const rows=s.cells.map(c=>{
       const key=JSON.stringify([c.issuer,c.unitId,c.year,c.scope,c.gas]);
-      const declared=input.cells.find(d=>coordinate(d)===key);
+      const declared=cellIndex.get(key);
       if(!declared||declared.geography!==c.geography||declared.channel!==c.channel)reasons.push(`Undeclared cell/boundary ${key}`);
-      const parent=input.parents.find(p=>p.hash===c.parentResultHash);
+      const parent=parentIndex.get(c.parentResultHash);
       const activity=pointer(parent?.payload,c.parentActivityPointer);
-      if(!parent||contentHash(parent.payload)!==parent.hash||activity!==c.activity)
+      // Parent hashes were verified above on the private JSON clone. Neither
+      // this loop nor pointer() mutates it; avoid rehashing the whole series/cell.
+      if(!parent||activity!==c.activity)
         reasons.push(`Missing/corrupt/mismatched activity parent ${key}`);
       const unit=pointer(parent?.payload,c.parentUnitPointer);
       const equivalent:Record<string,string>={"solar-module-W-shipped":"module-W-shipped","EV-shipped":"vehicle"};

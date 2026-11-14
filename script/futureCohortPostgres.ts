@@ -43,7 +43,12 @@ try{
  const begin=fixtureSource.indexOf("export function cohortFixture()");
  const end=fixtureSource.indexOf("\n}\n",begin)+2;
  const fixture=fixtureSource.slice(begin,end).replace("export function cohortFixture():CompanyCohortInput","function cohortFixture()").replaceAll(" as const","");
- if(process.argv.includes("--finite-branch")){
+ if(process.argv.includes("--renewal-branch")){
+  const {renewalTransportFixture}=await import("./renewalTransportFixture");
+  const {readRetainedRenewalInTransaction:read}=await import("../server/snapshots/companyOperatingReview");
+  const {finiteCohortTransport}=await import("./finiteCohortTransport");
+  Object.assign(receipt,await finiteCohortTransport(pool,renewalTransportFixture(),{stage,decide,read},true));
+ }else if(process.argv.includes("--finite-branch")){
   const start=fixtureSource.indexOf("  const x=cohortFixture(),s=x.scenarios[0],c=");
   const finish=fixtureSource.indexOf("  const r=projectCompanyCohorts(x),m=",start);
   assert.ok(start>0&&finish>start);
@@ -249,7 +254,7 @@ try{
 finally{
  if(pool)await pool.end();if(running)run("pg_ctl",["-D",data,"-m","fast","-w","stop"]);
  const out=resolve("generated-artifacts/renewal-cash");mkdirSync(out,{recursive:true});
- const prefix=process.argv.includes("--finite-branch")?"finite-postgres":"future-postgres";
+ const prefix=process.argv.includes("--renewal-branch")?"gregorian-postgres":process.argv.includes("--finite-branch")?"finite-postgres":"future-postgres";
  writeFileSync(join(out,`${prefix}.json`),JSON.stringify(receipt,null,2));
  writeFileSync(join(out,`${prefix}-setup.log`),logs.join("\n"));console.log(receipt);
 }

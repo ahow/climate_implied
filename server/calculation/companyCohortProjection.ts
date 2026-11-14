@@ -3,11 +3,13 @@ import {settleTerminal,type TerminalSettlement,type TerminalBalances} from "./te
 import {compileDispositionSettlement,type CohortDisposition} from "./cohortDisposition";
 import {calculatePostCutoff,ownedFinancialSpecification,type PostCutoffInterval} from "./cohortPostCutoff";
 import {invertGregorianRenewal,type GregorianInverseProtocol} from "./gregorianInverse";
+import {reconcileRenewalFamily,type RenewalFamily} from "./renewalFamily";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {calculateCoveredPhysicalPaths,type PhysicalCell,type CoveredPathInput} from "./coveredPhysicalPaths";
 import {evaluatePeriodicRenewal,type RenewalDeclaration,type GregorianRenewalDeclaration} from "./cohortRenewal";
 import {reconcileDatedAccruals,type CohortCashLedger,type DatedProjectCash,type CashTiming,type AccrualSchedule} from "./cohortCashLedger";
 export interface CompanyCohortInput {
+ renewalFamily?:RenewalFamily;
  version:"company-cohort-input-1";companyId:string;cutoff:string;
  years:number[];cells:CoveredPathInput["cells"];
  scenarios:{id:string;specification:CohortSpecification;
@@ -154,6 +156,8 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
  return {version:"company-cohort-projection-2",status:"conditional-cohort-projection",members,covered,inputHash:contentHash(input),
   assumptionHash:contentHash(input.scenarios),
   modelVersions:members.map(m=>({scenarioId:m.id,cohort:m.physical.version,liquidation:m.physical.liquidation?.version??null,...(m.renewal?{renewal:m.renewal.version}:{}),
+   ...(m.renewalInverse?{renewalInverse:m.renewalInverse.version}:{}),
    ...(m.finiteAccounting?{finiteAccounting:m.finiteAccounting.version,accrual:m.finiteAccounting.accrualVersion}:{})})),
+  ...(members.some(m=>m.renewal)||("renewalFamily" in input)?{renewalFamilyCoverage:reconcileRenewalFamily(input,members)}:{}),
   scientificAcceptance:false,marketIdentified:false};
 }

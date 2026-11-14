@@ -111,3 +111,20 @@ test("monotonic load tickets reject stale A/B/A work and invalidate work on rese
   guard.next(); // reset / unmount
   assert.equal(guard.isCurrent(secondA), false);
 });
+test("renewal document A/B/A rendering retains explicit price-domain outcomes without authentication claims",async()=>{
+ const documents=["unique-supported-affine-root","no-root","unsupported"].map(status=>{
+  const {id,...body}=fixture();
+  const changed:any={...body,version:"private-renewal-company-document-1",
+   variables:{...body.variables,Calculated:{...body.variables.Calculated,value:[{renewal:{conditionalPeriodicProjectValueUsd:775.231323361313},
+    renewalInverse:{status,parameter:"price shift NOT deployment growth"}}]}}};
+  return {...changed,id:createHash("sha256").update(canonicalFiniteJson(changed)).digest("hex")};
+ });
+ const ids=[];
+ for(const d of [documents[0],documents[1],documents[2],documents[0]]){
+  const evidence=await readPrivateFiniteDocument(JSON.stringify(d));ids.push(evidence.document.id);
+  const html=renderToStaticMarkup(React.createElement(PrivateFiniteEvidence,{evidence}));
+  assert.match(html,/price shift NOT deployment growth/);
+  assert.match(html,new RegExp(d.variables.Calculated.value[0].renewalInverse.status));
+ }
+ assert.equal(ids[0],ids[3]);assert.notEqual(ids[0],ids[1]);
+});

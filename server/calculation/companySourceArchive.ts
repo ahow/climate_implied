@@ -57,11 +57,14 @@ export async function resolveCompanySourceEvidence(input:unknown,evidence:unknow
   const manifest=validateCompanyInputEvidence(input,evidence,cutoff);
   const sources=new Map<string,ReturnType<typeof unpackCompanySource>>();
   for(const id of manifest.sourceArchiveIds) sources.set(id,unpackCompanySource(id,await load(id)));
+  // unpackCompanySource already rejects duplicate paths. Indexing preserves that
+  // strict contract while avoiding a quadratic scan over large retained inputs.
+  const claimsByArchive=new Map(Array.from(sources,([id,source])=>[id,new Map(source.claims.map(c=>[c.path,c]))]));
   for(const row of evidence as EvidenceRow[]) {
     const source=sources.get(row.sourceArchiveId)!;
     if(source.companyId!==identity.companyId||source.isin!==identity.isin)
       throw new Error("Source company identity mismatch");
-    const claim=source.claims.find(c=>c.path===row.path);
+    const claim=claimsByArchive.get(row.sourceArchiveId)!.get(row.path);
     if(!claim||claim.valueHash!==row.valueHash||Date.parse(claim.availableAt)!==Date.parse(row.availableAt)||claim.basis!==row.basis)
       throw new Error("Missing or conflicting archived claim");
     if(source.publishedAt&&Date.parse(source.publishedAt)>Date.parse(cutoff)) throw new Error("Future source publication");
