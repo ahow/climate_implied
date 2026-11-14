@@ -53,7 +53,7 @@ try{
    s.specification.cohorts[0].retiredYear=2030;s.specification.cohorts[0].dated.retiredOn="2030-01-01";
    for(const y of s.specification.years)for(const k of Object.keys(y))if(k!=="year"&&k!=="utilization")y[k]=0;
    for(const y of f.ledger.years)for(const k of Object.keys(y))if(k!=="year"&&typeof y[k]==="number")y[k]=0;
-   for(const y of f.accrual.payables){y.opening=0;y.closing=0;}
+   for(const y of f.accrual.payables){y.opening=process.argv.includes("--obligations-branch")?20:0;y.closing=y.opening;}
    for(const y of f.accrual.operatingSettlements.years)for(const k of Object.keys(y))if(k!=="year"&&typeof y[k]==="number")y[k]=0;
    for(const e of f.accrual.entries)e.usd=0;
   }
@@ -76,6 +76,13 @@ try{
       obligations:[{id:"restore",kind:"restoration",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:20,evidenceIds:["fixture"],alreadyAccrued:false},
        {id:"tax",kind:"tax",accruedOn:"2028-01-01",paidOn:"2028-03-01",usd:5,evidenceIds:["fixture"],alreadyAccrued:false}]}]};
     if(process.argv.includes("--rights-branch"))f.assetDisposition.version="cohort-disposition-2-rights";
+    if(process.argv.includes("--obligations-branch")){
+     const o=f.assetDisposition.assets[0].obligations[0];o.alreadyAccrued=true;o.accruedOn="2026-12-31";
+     f.terminal.openingObligations={version:"opening-obligations-1",closingHash:contentHash(opening),
+      claimantId:f.terminal.claimantId,legalEntityId:"synthetic-entity",currency:"USD",asOf:"2028-01-01",
+      items:[{id:"restore",sourceId:"fixture",legalEntityId:"synthetic-entity",claimantId:f.terminal.claimantId,
+       currency:"USD",accruedOn:o.accruedOn,account:"payables",openingUsd:20}],allocations:[]};
+    }
     const wrong=structuredClone(input);wrong.scenarios[0].finiteAccounting.assetDisposition.assets[0].ownedFraction=.75;
     assert.throws(()=>projectCompanyCohorts(wrong),/ownership contradict/);
    }

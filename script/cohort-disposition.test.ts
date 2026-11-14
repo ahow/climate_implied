@@ -51,4 +51,17 @@ test("dated residual stock and explicit unknown economics are conserved, never f
  assert.equal(settleTerminal(retirementCash.compiled!,retirementCash.closing!,"physical","fixture","2028-01-01","2027-01-01",.1,["fixture"]).commonNetCash,75);
  p.assets[0].outcome="retain";
  assert.equal(assessCohortDisposition(s,p,"fixture").rightsLedger![0].closingOwnedUnits,1);
+ p.assets[0].outcome="dispose";
+ p.assets[0].obligations![0].alreadyAccrued=true;
+ p.assets[0].obligations![0].accruedOn="2027-12-31";
+ closing.payables=20;
+ terminal.openingObligations={version:"opening-obligations-1",closingHash:contentHash(closing),
+  claimantId:"fixture",legalEntityId:"synthetic-entity",currency:"USD",asOf:"2028-01-01",
+  items:[{id:"restoration",sourceId:"fixture",legalEntityId:"synthetic-entity",claimantId:"fixture",currency:"USD",
+   accruedOn:"2027-12-31",account:"payables",openingUsd:20}],allocations:[]};
+ const booked=compileDispositionSettlement(s,p,terminal,closing);assert.ok(booked.compiled);
+ const bookedCash=settleTerminal(booked.compiled!,booked.closing!,"physical","fixture","2028-01-01","2027-01-01",.1,["fixture"]);
+ assert.equal(bookedCash.commonNetCash,75);assert.equal(bookedCash.subsequentAccruedCostUsd,5);
+ assert.equal(bookedCash.openingObligations!.rows[0].settledUsd,20);
+ assert.equal(terminal.openingObligations.allocations.length,0);
 });

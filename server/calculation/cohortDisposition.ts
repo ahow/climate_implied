@@ -1,6 +1,7 @@
 import {contentHash} from "./analysisManifest";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import type {TerminalSettlement,TerminalBalances} from "./terminalSettlement";
+import type {OpeningObligationRegister} from "./terminalObligations";
 type Obligation={id:string;kind:"decommissioning"|"restoration"|"recycling"|"tax";accruedOn:string;paidOn:string;usd:number;evidenceIds:string[];alreadyAccrued:boolean};
 export interface CohortDisposition {
  version:"cohort-disposition-1"|"cohort-disposition-2-rights";specificationHash:string;claimantId:string;currency:"USD";stockBasis:"full-unit-before-ownership";
@@ -12,7 +13,7 @@ export interface CohortDisposition {
 function day(s:string){if(!/^\d{4}-\d{2}-\d{2}$/.test(s)||!Number.isFinite(Date.parse(s))||new Date(s).toISOString().slice(0,10)!==s)throw Error("Invalid disposition civil date");return Date.parse(s);}
 /** Inventory and explicit instructions only. No book-value salvage inference,
  * no automatic cash posting and no implied continuing operation after cutoff. */
-export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposition,claimant:string){
+export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposition,claimant:string,opening?:OpeningObligationRegister){
  const physical=calculateOperatingCohorts(spec);
  if(!["cohort-disposition-1","cohort-disposition-2-rights"].includes(p.version)||p.stockBasis!=="full-unit-before-ownership"||p.specificationHash!==contentHash(spec)||p.claimantId!==claimant||p.currency!=="USD"||spec.liquidation)
   throw Error("Disposition parent/claim mismatch or duplicate legacy liquidation");
@@ -43,7 +44,11 @@ export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposi
     !Number.isFinite(o.usd)||o.usd<0||!evidence(o.evidenceIds)||typeof o.alreadyAccrued!=="boolean"||
     day(o.paidOn)<day(o.accruedOn)||day(o.paidOn)<t)throw Error("Duplicate/invalid obligation or settlement date");
    obligations.add(o.id);
-   if(o.alreadyAccrued)missing.push(`Obligation ${o.id} requires exact opening-liability reconciliation; do not accrue twice`);
+   if(o.alreadyAccrued){
+    const item=opening?.items.find(i=>i.id===o.id);
+    if(!item||item.openingUsd!==o.usd||item.accruedOn!==o.accruedOn||item.account!==(o.kind==="tax"?"tax":"payables")||
+     !o.evidenceIds.includes(item.sourceId))missing.push(`Obligation ${o.id} requires exact opening-liability reconciliation; do not accrue twice`);
+   }
    else if(day(o.accruedOn)<t)throw Error("Past obligation must reconcile to opening liabilities");
   }
   const ageDays=(t-day(c.dated!.commissionedOn))/86400000;
@@ -85,11 +90,13 @@ export function assessCohortDisposition(spec:CohortSpecification,p:CohortDisposi
  * never gross assets multiplied a second time. Recognition is a sale receivable,
  * NOT operating revenue or an inferred taxable gain. */
 export function compileDispositionSettlement(spec:CohortSpecification,p:CohortDisposition,terminal:TerminalSettlement,closing:TerminalBalances){
- const assessment=assessCohortDisposition(spec,p,terminal.claimantId);
+ const assessment=assessCohortDisposition(spec,p,terminal.claimantId,terminal.openingObligations);
  if(assessment.missing.length)return {assessment,compiled:null};
  for(const k of Object.keys(closing) as (keyof TerminalBalances)[])
   if(terminal.opening[k]!==closing[k])throw Error("Swapped financial opening before asset recognition");
  const compiled=structuredClone(terminal),augmented={...closing};
+ if(compiled.openingObligations&&compiled.openingObligations.closingHash!==contentHash(closing))
+  throw Error("Swapped opening obligation financial parent");
  const recognition=[];
  for(const a of p.assets){
   if(a.outcome==="retain")throw Error("Retention is not disposition");
@@ -97,12 +104,19 @@ export function compileDispositionSettlement(spec:CohortSpecification,p:CohortDi
   recognition.push({cohortId:a.cohortId,on:assessment.cutoff,assetSaleReceivableUsd:usd,amountBasis:a.amountBasis,evidenceIds:a.proceedsEvidenceIds});
   compiled.events.push({id:`asset:${a.cohortId}:receipt`,on:a.cashOn!,kind:"receivables",usd,evidenceIds:a.proceedsEvidenceIds});
   for(const o of a.obligations!){
+   if(o.alreadyAccrued){
+    const eventId=`asset:${a.cohortId}:${o.id}:payment`;
+    compiled.events.push({id:eventId,on:o.paidOn,kind:o.kind==="tax"?"tax":"payables",usd:o.usd,evidenceIds:o.evidenceIds});
+    compiled.openingObligations!.allocations.push({eventId,obligationId:o.id,usd:o.usd});
+    continue;
+   }
    compiled.events.push({id:`asset:${a.cohortId}:${o.id}:accrual`,on:o.accruedOn,kind:o.kind==="tax"?"tax-accrual":"payable-accrual",
     usd:o.usd,evidenceIds:o.evidenceIds,...(o.kind==="tax"?{}:{costBasis:o.kind==="decommissioning"?"retirement" as const:"remediation" as const})},
     {id:`asset:${a.cohortId}:${o.id}:payment`,on:o.paidOn,kind:o.kind==="tax"?"tax":"payables",usd:o.usd,evidenceIds:o.evidenceIds});
   }
  }
  compiled.opening=augmented;
+ if(compiled.openingObligations)compiled.openingObligations.closingHash=contentHash(augmented);
  return {assessment,compiled,closing:augmented,recognition,
   boundary:"Immediate cutoff asset exit; no post-disposal activity. Sale receivable is not operating revenue/taxable gain; tax schedule must be explicit."};
 }

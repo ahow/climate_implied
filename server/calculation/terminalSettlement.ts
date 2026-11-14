@@ -1,9 +1,11 @@
 import {contentHash} from "./analysisManifest";
+import {reconcileOpeningObligations,type OpeningObligationRegister} from "./terminalObligations";
 export type TerminalBalances={cash:number;receivables:number;payables:number;tax:number;otherWC:number;debt:number;nonCommon:number};
 export interface TerminalSettlement{
  version:"terminal-settlement-1";currency:"USD";claimantId:string;physicalParentHash:string;
  accrualScope:"complete-declared-post-cutoff-schedule";priority:"common-after-declared-liabilities";
  opening:TerminalBalances;
+ openingObligations?:OpeningObligationRegister;
  events:{id:string;on:string;kind:"receivables"|"receivable-default"|"payables"|"tax"|"otherWC"|"debt"|"nonCommon"|"contribution"|"distribution"|"debt-funding"|"payable-accrual"|"tax-accrual"|"nonCommon-accrual";usd:number;evidenceIds:string[];
   costBasis?:"retirement"|"remediation"|"interest"|"holding"|"other-operating"}[];
 }
@@ -55,7 +57,8 @@ export function settleTerminal(p:TerminalSettlement,closing:TerminalBalances,par
  if(Object.values(b).some(v=>Math.abs(v)>1e-9))throw Error("Terminal balances remain unsettled");
  const conserved=closing.cash+closing.receivables+closing.otherWC-closing.payables-closing.tax-closing.debt-closing.nonCommon-defaults-subsequentCost;
  if(Math.abs(common-conserved)>1e-9*Math.max(1,Math.abs(common),Math.abs(conserved)))throw Error("Terminal cash conservation failed");
- return {version:p.version,inputHash:contentHash(p),physicalParentHash:parent,rows,closing:b,
+ const openingObligations=p.openingObligations?reconcileOpeningObligations(p.openingObligations,closing,p,cutoff,evidence):undefined;
+ return {version:p.version,inputHash:contentHash(p),physicalParentHash:parent,rows,closing:b,...(openingObligations?{openingObligations}:{}),
   commonNetCash:common,presentCommonCashUsd:pv,receivableDefaultsUsd:defaults,subsequentAccruedCostUsd:subsequentCost,
   periodicValueUsd:null,wholeEquityValueUsd:null,scientificAcceptance:false,
   claim:"declared-project-common-distribution-not-whole-equity",

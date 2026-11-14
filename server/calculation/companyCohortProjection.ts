@@ -119,6 +119,7 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
      combinedValueClaim:"Finite declared project common cash only; not whole equity"});
     finiteAccounting.version="finite-cohort-accrual-3-terminal";
     if(disposition){Object.assign(finiteAccounting,{assetDisposition:disposition});finiteAccounting.version=f.assetDisposition?.version==="cohort-disposition-2-rights"?"finite-cohort-accrual-5-rights":"finite-cohort-accrual-4-disposition";}
+    if(terminal.openingObligations)finiteAccounting.version="finite-cohort-accrual-6-opening-obligations";
     }
    }
   }

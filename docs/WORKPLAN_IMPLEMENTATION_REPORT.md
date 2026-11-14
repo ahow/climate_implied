@@ -1,3 +1,135 @@
+# Latest opening-obligation implementation
+
+{
+  "kind": "opening-obligation-items",
+  "recorded_at": "2026-11-14T01:34:28.827026+00:00",
+  "scope": "Partial S13-004: item-level payment of opening payables/tax/debt/noncommon, not complete delayed operations/recovery/cycles",
+  "files_functions": {
+    "server/calculation/terminalObligations.ts": "ef93e0badfffad01a3b4914f0e219bb8b9cc596c66e369314eeed01ad102e2a1",
+    "server/calculation/terminalSettlement.ts": "d3a32e52139b0c853e2960099f9de092ea56f67eba2abb68017648ce7fcdaec3",
+    "server/calculation/cohortDisposition.ts": "0c9b6093236def523cc7dc956c7df13b6e90238c3adb90ec0918c495ac4335a9",
+    "server/calculation/companyCohortProjection.ts": "5fb53cc391c1bbe116361048998ff0485a77aa0d975017f5763dcfd9e3218298",
+    "server/snapshots/companyOperatingReview.ts": "5d03b5024b70ab3b5bbe3a7b270ee49e7226d82f8a93542b8dda72a987f4abe2",
+    "script/terminal-obligations.test.ts": "9c7c0abd627c3376036cb5ee270c161242e5b11daaf0378e7c6ee78d51a97311",
+    "script/cohort-disposition.test.ts": "68c9421495ed769eee74806ed3211bfd784ab313c1c15f84a68af3e1f5d73b21",
+    "script/futureCohortPostgres.ts": "42a04971d660a4fc09232b635b317f1c29eb74a9a00e0f2fa884bea067399961",
+    "script/finiteCohortTransport.ts": "367bc221f3b9281d0ce0b938d60a387753b9404e77b4bc770e9591cd86752200"
+  },
+  "functions": [
+    "reconcileOpeningObligations",
+    "settleTerminal",
+    "compileDispositionSettlement",
+    "projectCompanyCohorts",
+    "finiteProducerBinding"
+  ],
+  "gates": {
+    "command": [
+      "bash",
+      "-c",
+      "set -e; echo '=== Typecheck ==='; npm run check; echo '=== Complete TypeScript suite ==='; npx tsx --test --test-concurrency=2 --test-reporter=tap script/*.test.ts; echo '=== Complete Python suite ==='; uv run python -m unittest discover -s script -p 'test_*.py'; echo '=== Mandatory original choice/width document ==='; uv run python script/validate_status_choice_width_private.py; echo '=== Mandatory private valuation rule chronology ==='; npx tsx --test script/validate-valuation-rule-chronology-private.ts; echo '=== Mandatory private producer reserve source and freeze ==='; npx tsx script/producerReserve-validate-private.ts; npx tsx script/producerReserve-run.ts calculate; npx tsx --test script/producerReserve-private.ts; echo '=== Mandatory private producer primary authentication ==='; npx tsx script/validate-producer-primary-authentication-private.ts --private-primary; echo '=== Mandatory private location electricity sources ==='; npx tsx script/locationElectricity-validate-private.ts; echo '=== Mandatory private retirement unit source ==='; npx tsx script/validate-retirement-source-private.ts; echo '=== Mandatory private covered primary source ==='; npx tsx script/validate-clean-covered-private.ts; echo '=== Mandatory private monetary integration ==='; NODE_ENV=development npx tsx script/validate-workbook-money-integration-private.ts --private-primary; echo '=== Mandatory private issuer cashflow ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-private.ts; echo '=== Mandatory private issuer reconciliation ==='; NODE_ENV=development npx tsx script/validate-issuer-cashflow-reconciliation-private.ts; echo '=== Production build ==='; npm run build"
+    ],
+    "executed_at": "2026-11-14T01:26:23.160917+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 401.057,
+    "counts": {
+      "tests": 1365,
+      "pass": 1364,
+      "fail": 0,
+      "skipped": 1
+    },
+    "log": "generated-artifacts/dated-cash/obligations-full.log",
+    "workspace_revision": null,
+    "worktree_dirty": null,
+    "scope": "Execution evidence only; does not establish scientific validity or full requirement acceptance",
+    "log_sha256": "f8387054944c36f855ac9ab7ad351e645cb5b0a2ced13ccd58b0af0540f04d8a",
+    "suite_counts": {
+      "typescript": {
+        "tests": 1365,
+        "pass": 1364,
+        "fail": 0,
+        "skipped": 1
+      },
+      "python": {
+        "tests": 264,
+        "pass": 264,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "canonical_ledgers_modified": false,
+    "revision_boundary": "Receipt-only source execution; no Git/history lookup, deployment or scientific acceptance claim"
+  },
+  "log_hashes": {
+    "generated-artifacts/dated-cash/obligations-focused-final.log": "0ef4f6dc98b0c10c2ea33b8ed14586ec334d04b4fcc42f0f69bc0c6779dc985d",
+    "generated-artifacts/dated-cash/obligations-type.log": "09ec255c86e9667d83843e0d4c640a39ca603f6e14f1150699a32b9a501a0272",
+    "generated-artifacts/dated-cash/obligations-type-fixed.log": "a3524d5e43d767e9b4be9b919cafac7158a8650a095963e00ef859ff7f4eaf27",
+    "generated-artifacts/dated-cash/obligations-pg.log": "91bd782b527a081eeff6da2a641a3e033a0a623ceb1d77344b4e8cd7046e1083",
+    "generated-artifacts/dated-cash/obligations-render.log": "b7844535c8f94970a4cf35534e3836bb6d6b6cdaaa3a6189c05d8177278d3ae0",
+    "generated-artifacts/dated-cash/obligations-full.log": "f8387054944c36f855ac9ab7ad351e645cb5b0a2ced13ccd58b0af0540f04d8a",
+    "generated-artifacts/dated-cash/obligations-source-presentation.json": "e0ccd7f3902684d7bb5da791e49b28ad5f29dc75f6caef00063173aa84c7df79",
+    "generated-artifacts/dated-cash/obligations-source-slides.json": "14db14318a59f85ad0487f3490dd7ab20df4ee5dd03378d36c02e2d6e194767a"
+  },
+  "numerics": "Opening AR100 minus AP20/tax5/debt10/noncommon5 gives common60; PV60/(1.1^(60/365.25)), tolerance1e-10. Full AR default plus explicit funding40 yields net common\u221240. Asset proceeds100 minus already-booked restoration20 and NEW tax5 gives75, new expense only5.",
+  "engineering": "Four focused tests (three new and changed existing disposition), actualPG17 checks/1301rows2602literal cells; actual component SSR A/B/A/JSON/XLSX, not interactive browser or genuine principal.",
+  "failures": "Initial TS2802 MapIterator incompatibility; repaired with Array.from, compiler unchanged. No original/private gates weakened.",
+  "remaining": [
+    "Matched delayed physical/service/accrual/cash interval remains unimplemented",
+    "Item register does not establish external entity/source/legal validity",
+    "OtherWC classification, adjustments, recovery/default eligibility and creditor priority remain unsupported beyond existing explicitly declared terminal model",
+    "Funded sustainable whole-state cycles/full-domain inverse remain partial",
+    "Genuine principal, qualified issuer cases and actual efficacy remain unearned"
+  ],
+  "source": {
+    "url": "https://s202.q4cdn.com/499595574/files/content_files/Q3-26-Earnings-Presentation-VF-Secured.pdf",
+    "publication": "2026-10-29",
+    "locator": "Q3\u201926 Financial Performance; Summarized Balance Sheet; Q4 Preview",
+    "finding": "New examined primary presentation reports3.9GW U.S./0.2GW India under net sales and98%/87% utilization; these are NOT proof of eligible US-produced watts/BOM/PFE. Grant receivables1875m vs625m are balances, not collections. Q4 preview assumes no2026Section45X credit sales, not no credit cash of every kind.",
+    "missing": "India PLI payment amount/day/FX/classification and eligible component/material-assistance costs remain unresolved. Not a2025-origin input; no model rerun or backdating."
+  }
+}
+
+Next: Continue ALL original0–17. Preserve opening-obligations-1/finite6 and old branches; matched existing liability payment creates no new expense. NEXT matched delayed physical/service/accrual/cash interval, otherWC/adjustment/recovery eligibility, whole-state funded cycles and compatible inverse. No source/principal/issuer/science acceptance. Reconcile new source validation/promotion only when published; e422529 remains prior verified runtime. Do not repeat unchanged rights/PG/studies. New FSLR Q3 presentation examined; volume/context is not eligible production/cash.65verified233partial2blocked/all300/0of3 unchanged.
+
+# Current rights-ledger publication receipt
+
+{
+  "current_release": {
+    "runtime": "e42252979249538a8ace301b834a85b806f2e614",
+    "ci": 43361503385,
+    "conclusion": "success",
+    "readback": {
+      "passed": true,
+      "at": "2026-11-13T04:00:28.366Z",
+      "source": "e42252979249538a8ace301b834a85b806f2e614",
+      "health": 200,
+      "identity": "e593e6880e7be8be18e471e05512f3f92b381a5990b712b86e5f519feecced56",
+      "rows": 1054,
+      "cells": 2108,
+      "privateReaderRefusals": 4,
+      "scope": "Observed2023 accounting and private-reader403 only; not future execution, owner or science acceptance"
+    },
+    "scope": "Observed2023 accounting/privacy only, not private rights execution"
+  },
+  "pending_release": null,
+  "publication": {
+    "public_source": "e42252979249538a8ace301b834a85b806f2e614",
+    "workspace_code": "80d563d609a4716ed58d26baff75aa04856f8e56",
+    "ci": [
+      {
+        "id": 43361503385,
+        "head_sha": "e42252979249538a8ace301b834a85b806f2e614",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/ahow/climate_implied/actions/runs/43361503385",
+        "updated_at": "2026-11-13T03:55:14Z"
+      }
+    ],
+    "scope": "Code and local tests; CI status is observed separately. No real future/issuer/science acceptance."
+  },
+  "next_action": "Runtimee422529/CI43361503385/health200/safe observedJSON-XLSX verified; not private future execution. No unchanged rerun. Continue ALL original0\u201317; preserve disposition2-rights/finite5 and v1/v4. Sale=>issuer rights0 but physical stock retained; retirement needs declared authority AND complete physical-removal/owned-unit-rights-end boundary; service withdrawal alone refuses. No legal/science acceptance. Rights PG17/1234rows2468cells and SSR A/B/A are synthetic engineering. NEXT actual matched delayed operating/accrual/cash interval, item-level already-accrued obligations/recovery, funded whole-state sustainable cycles and compatible inverse. Preserve all300/65verified233partial2blocked/0of3/14pins/original1000of1001/frozen negatives. Existing promotion only; distinguish source/CI/runtime. No unchanged reruns or owner/principal fabrication."
+}
+
+<!-- rights-publication-history -->
 # Latest cutoff asset disposition
 
 {
@@ -10843,6 +10975,17 @@ Context boundary, not completion.39verified259partial2blocked0unreconciled,0/3qu
   "checkpoint_id": "ckpt-20261113-terminal-viewer-217b0f9",
   "event": "continuation_ready",
   "attempted_at": "2026-11-13T02:40:18.539982+00:00",
+  "outcome": "transport-accepted",
+  "continuation_matched": "unverified",
+  "http_status": 202
+}
+
+## Continuation transport receipt (matching not verified)
+
+{
+  "checkpoint_id": "ckpt-20261113-asset-rights-e422529",
+  "event": "continuation_ready",
+  "attempted_at": "2026-11-13T04:03:47.742762+00:00",
   "outcome": "transport-accepted",
   "continuation_matched": "unverified",
   "http_status": 202
