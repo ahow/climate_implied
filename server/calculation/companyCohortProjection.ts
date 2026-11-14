@@ -4,6 +4,9 @@ import {compileDispositionSettlement,type CohortDisposition} from "./cohortDispo
 import {calculatePostCutoff,ownedFinancialSpecification,type PostCutoffInterval} from "./cohortPostCutoff";
 import {invertGregorianRenewal,type GregorianInverseProtocol} from "./gregorianInverse";
 import {reconcileRenewalFamily,type RenewalFamily} from "./renewalFamily";
+import {freezeFundedDeploymentTransition,evaluateFundedDeploymentTransition,type FundedDeploymentTransition} from "./fundedDeploymentTransition";
+import {compileDeploymentGrowth,freezeDeploymentGrowth} from "./deploymentGrowth";
+import {assessCohortRecognition} from "./cohortRecognition";
 import {calculateOperatingCohorts,type CohortSpecification} from "./operatingCohorts";
 import {calculateCoveredPhysicalPaths,type PhysicalCell,type CoveredPathInput} from "./coveredPhysicalPaths";
 import {evaluatePeriodicRenewal,type RenewalDeclaration,type GregorianRenewalDeclaration} from "./cohortRenewal";
@@ -15,6 +18,7 @@ export interface CompanyCohortInput {
  scenarios:{id:string;specification:CohortSpecification;
    renewal?:RenewalDeclaration|GregorianRenewalDeclaration;
    renewalInverse?:GregorianInverseProtocol;
+   fundedTransition?:FundedDeploymentTransition;
    finiteAccounting?:{ledger:CohortCashLedger;declaration:Omit<DatedProjectCash,"events">;timing:CashTiming[];accrual:AccrualSchedule;
     recognitionLaw?:"earned-service-prefix-1";terminal?:TerminalSettlement;assetDisposition?:CohortDisposition;postCutoff?:PostCutoffInterval};
    physical:(Omit<PhysicalCell,"activity"|"activityUnit"|"parentResultHash"|"parentActivityPointer"|"parentYearPointer"|"parentUnitPointer"> & {cohortId:string;activityChannel:"service"|"charge-energy"})[]}[];
@@ -22,32 +26,7 @@ export interface CompanyCohortInput {
 /** Query a prefix of the SAME physical law. Capped retirement is an integration
  * bound only, never a replacement source fact or a reported retirement date. */
 function assessRecognition(s:CompanyCohortInput["scenarios"][number]){
- const f=s.finiteAccounting!;
- if(f.recognitionLaw===undefined)return null;
- if(f.recognitionLaw!=="earned-service-prefix-1"||s.specification.timing!=="utc-civil-day-service"||
-  f.accrual.version!=="dated-accrual-2")throw Error("Explicit supported daily recognition law required");
- if(f.accrual.entries.some(e=>e.kind==="payable"&&!e.component))
-  throw Error("Classify payable components before physical recognition assessment");
- const checks=[];
- for(const on of Array.from(new Set(f.accrual.entries.map(e=>e.on))).sort()){
-  const year=Number(on.slice(0,4)),yearStart=`${year}-01-01`;
-  const cap=new Date(Date.parse(on)+86400000).toISOString().slice(0,10);
-  const cohorts=s.specification.cohorts.filter(c=>c.dated!.commissionedOn<cap&&c.dated!.retiredOn>yearStart)
-   .map(c=>{const retiredOn=c.dated!.retiredOn<cap?c.dated!.retiredOn:cap;
-    return {...c,retiredYear:Number(retiredOn.slice(0,4)),dated:{...c.dated!,retiredOn}};});
-  const annual=s.specification.years.find(y=>y.year===year)!;
-  const prefix=cohorts.length?calculateOperatingCohorts({...s.specification,liquidation:undefined,years:[annual],cohorts}).rows[0]:null;
-  for(const component of ["revenue","variableCost","energyCost"] as const){
-   const recognized=f.accrual.entries.filter(e=>e.on.startsWith(`${year}-`)&&e.on<=on&&
-    (component==="revenue"?e.kind==="revenue":e.kind==="payable"&&e.component===component)).reduce((v,e)=>v+e.usd,0);
-   const earned=prefix?.[component]??0;
-   if(recognized-earned>1e-9*Math.max(1,Math.abs(earned),Math.abs(recognized)))
-    throw Error(`Recognition precedes modeled physical service: ${on}/${component}`);
-   checks.push({on,component,recognizedUsd:recognized,earnedThroughDayUsd:earned,unrecognizedUsd:earned-recognized});
-  }
- }
- return {version:f.recognitionLaw,checks,
-  boundary:"End-of-UTC-day service prefix; delayed recognition allowed. Not legal/GAAP acceptance, intraday proof or complete balance-sheet accounting."};
+ return assessCohortRecognition(s.specification,s.finiteAccounting!.accrual,s.finiteAccounting!.recognitionLaw);
 }
 /** Executed by the existing operating review lifecycle. Calling this calculation
  * directly is NOT approval or trusted producer admission. */
@@ -56,7 +35,7 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     input.cells.some(c=>c.issuer!==input.companyId))throw Error("Explicit issuer/domain required");
  const parents:CoveredPathInput["parents"]=[],members:any[]=[];
  const scenarios=input.scenarios.map(s=>{
-  if(s.renewal&&s.finiteAccounting)throw Error("Choose one cash inclusion: finite accounting or renewal");
+  if([s.renewal,s.finiteAccounting,s.fundedTransition].filter(Boolean).length>1)throw Error("Choose one cash inclusion: finite accounting, renewal or funded transition");
   const physical=calculateOperatingCohorts(s.specification);
   if(physical.rows.map(r=>r.year).join(",")!==input.years.join(","))throw Error("Complete declared cohort years required");
   const activity=physical.rows.flatMap(row=>s.specification.cohorts.flatMap(c=>[{
@@ -83,6 +62,14 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
   });
   let renewal;
   let renewalInverse;
+  let fundedTransition;
+  if(s.fundedTransition){
+   const x=s.fundedTransition;
+   if(x.deployment.baselineBinding.cutoff!==input.cutoff.slice(0,10)||
+    contentHash(compileDeploymentGrowth(freezeDeploymentGrowth(x.deployment),x.growth).specification)!==contentHash(s.specification))
+    throw Error("Swapped funded transition/producer source cutoff or physical boundary");
+   fundedTransition=evaluateFundedDeploymentTransition(freezeFundedDeploymentTransition(x));
+  }
   if(s.renewal){
    const boundary=s.renewal.transition?.specification??s.renewal.specification;
    if(contentHash(boundary)!==contentHash(s.specification))throw Error("Swapped renewal/producer physical boundary");
@@ -147,9 +134,9 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
     }
    }
   }
-  members.push({id:s.id,physical,parentResultHash:id,...(renewal?{renewal}:{}),...(renewalInverse?{renewalInverse}:{}),...(finiteAccounting?{finiteAccounting}:{})});
+  members.push({id:s.id,physical,parentResultHash:id,...(fundedTransition?{fundedTransition}:{}),...(renewal?{renewal}:{}),...(renewalInverse?{renewalInverse}:{}),...(finiteAccounting?{finiteAccounting}:{})});
   return {id:s.id,assumptions:{specification:s.specification,physical:s.physical,...(s.renewal?{renewal:s.renewal}:{}),
-   ...(f?{finiteAccounting:f}:{}),...(s.renewalInverse?{renewalInverse:s.renewalInverse}:{})},cells};
+   ...(s.fundedTransition?{fundedTransition:s.fundedTransition}:{}),...(f?{finiteAccounting:f}:{}),...(s.renewalInverse?{renewalInverse:s.renewalInverse}:{})},cells};
  });
  const covered=calculateCoveredPhysicalPaths({cutoff:input.cutoff,population:[input.companyId],
   years:input.years,cells:input.cells,parents,scenarios});
@@ -157,6 +144,7 @@ export function projectCompanyCohorts(input:CompanyCohortInput){
   assumptionHash:contentHash(input.scenarios),
   modelVersions:members.map(m=>({scenarioId:m.id,cohort:m.physical.version,liquidation:m.physical.liquidation?.version??null,...(m.renewal?{renewal:m.renewal.version}:{}),
    ...(m.renewalInverse?{renewalInverse:m.renewalInverse.version}:{}),
+   ...(m.fundedTransition?{fundedTransition:m.fundedTransition.version,domainHash:m.fundedTransition.definitionHash}:{}),
    ...(m.finiteAccounting?{finiteAccounting:m.finiteAccounting.version,accrual:m.finiteAccounting.accrualVersion}:{})})),
   ...(members.some(m=>m.renewal)||("renewalFamily" in input)?{renewalFamilyCoverage:reconcileRenewalFamily(input,members)}:{}),
   scientificAcceptance:false,marketIdentified:false};

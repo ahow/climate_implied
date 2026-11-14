@@ -9,8 +9,12 @@ export function finiteCompanyDocument(retained:{input:any;result:any;computedRes
 export function renewalCompanyDocument(retained:Parameters<typeof finiteCompanyDocument>[0]){
  return companyDocument(retained,true);
 }
-function companyDocument(retained:Parameters<typeof finiteCompanyDocument>[0],renewal:boolean){
- const {input,result,computedResult,decision,proposal,proposalId}=retained,binding=result.producerManifest?.[renewal?"renewalExecution":"finiteExecution"];
+export function fundedCompanyDocument(retained:Parameters<typeof finiteCompanyDocument>[0]){
+ return companyDocument(retained,"funded");
+}
+function companyDocument(retained:Parameters<typeof finiteCompanyDocument>[0],renewal:boolean|"funded"){
+ const funded=renewal==="funded";
+ const {input,result,computedResult,decision,proposal,proposalId}=retained,binding=result.producerManifest?.[funded?"fundedExecution":renewal?"renewalExecution":"finiteExecution"];
  if(!binding||binding.inputHash!==contentHash(input))throw Error("Finite document material mismatch");
  if(contentHash(proposal)!==proposalId||contentHash(proposal.input)!==contentHash(input)||
   contentHash(proposal.producer)!==contentHash(result.producerManifest)||
@@ -27,14 +31,20 @@ function companyDocument(retained:Parameters<typeof finiteCompanyDocument>[0],re
   throw Error("Finite document review identity mismatch");
  if(!["stored","recalculate"].includes(result.retrievalMode)||result.executionVerifiedNow!==(result.retrievalMode==="recalculate"))
   throw Error("Finite retrieval mode mismatch");
- const body={version:renewal?"private-renewal-company-document-1":"private-finite-company-document-1",decisionId:result.operatingDecisionId,
+ const body={version:funded?"private-funded-company-document-1":renewal?"private-renewal-company-document-1":"private-finite-company-document-1",decisionId:result.operatingDecisionId,
   retrievalMode:result.retrievalMode,executionVerifiedNow:result.executionVerifiedNow,
   financialReviewId:result.financialReviewId,cutoff:result.informationCutoff,
   producer:result.producerManifest,sourceIds:result.producerManifest.sourceIds,
   variables:{
    Input:{value:input,editable:"Declared assumptions require a NEW proposal/review; immutable result is read-only"},
    Calculated:{value:computedResult.members,editable:false,units:"USD cash/accrual; physical units declared per cohort; UTC dates",
-    equations:renewal?["service = dated exposure × utilization × degradation",
+    equations:funded?["commissioned flow(k) = baseline × (1+g)^k; not manufacturer shipments",
+     "earned version3: revenue and operating-cost recognition cannot precede the same daily physical service prefix",
+     "daily interest = closing principal × fixed rate /365.25; recognition cannot precede earned interest",
+     "common cash = collected operating cash − capital − interest − principal + dated funding",
+     "value = finite common cash PV + funded periodic value discounted from exact matched state boundary",
+     "opening cash/debt/capital is not deducted twice; no physical-growth inverse is certified"]:
+    renewal?["service = dated exposure × utilization × degradation",
      "charging = delivered service / round-trip efficiency; losses = charging − delivery",
      "periodic value = dated146097day net common cash PV / (1 − (1+r)^(-146097/365.25))",
      "affine inverse varies declared price only, NOT deployment growth",
@@ -44,8 +54,9 @@ function companyDocument(retained:Parameters<typeof finiteCompanyDocument>[0],re
      "closing AP = opening AP + payable accrual − classified settlements",
      "other WC excludes AR/AP/tax already bridged",
      "recognition ≤ modeled service earned through end of recognition day under earned-service-prefix-1"]},
-   Output:{value:{covered:computedResult.covered,modelVersions:computedResult.modelVersions,...(renewal?{renewalFamilyCoverage:computedResult.renewalFamilyCoverage}:{})},editable:false,
-    claim:renewal?"Conditional stationary project cash and price-domain result; NOT implied deployment growth, whole equity, source/owner/science acceptance":
+   Output:{value:{covered:computedResult.covered,modelVersions:computedResult.modelVersions,...(renewal===true?{renewalFamilyCoverage:computedResult.renewalFamilyCoverage}:{})},editable:false,
+    claim:funded?"Conditional financed finite-to-periodic project cash; NOT whole equity, certified deployment inversion or source/owner/science acceptance":
+    renewal?"Conditional stationary project cash and price-domain result; NOT implied deployment growth, whole equity, source/owner/science acceptance":
     "Conditional finite project distributions, not whole equity/FCFE, market identification, legal/GAAP acceptance or calibrated science"}
   },scientificAcceptance:false,publicDisclosureAuthorized:false};
  return {...body,id:contentHash(body)};
@@ -54,7 +65,7 @@ export function finiteCompanyWorkbook(document:ReturnType<typeof finiteCompanyDo
  const {id,...body}=document;if(contentHash(body)!==id)throw Error("Finite document hash mismatch");
  const cells=economicBridgeCells(document);
  const sheet=XLSX.utils.aoa_to_sheet([["pointer","jsonValue"],...cells.map(c=>[c.pointer,c.jsonValue])]);
- const book=XLSX.utils.book_new();XLSX.utils.book_append_sheet(book,sheet,document.version==="private-renewal-company-document-1"?"Renewal accounting":"Finite accounting");
+ const book=XLSX.utils.book_new();XLSX.utils.book_append_sheet(book,sheet,document.version==="private-funded-company-document-1"?"Funded accounting":document.version==="private-renewal-company-document-1"?"Renewal accounting":"Finite accounting");
  const bytes=XLSX.write(book,{type:"buffer",bookType:"xlsx"});
  const read=XLSX.read(bytes,{type:"buffer"}),rows=XLSX.utils.sheet_to_json<string[]>(read.Sheets[read.SheetNames[0]],{header:1,raw:true});
  const reconstructed=readEconomicBridgeCells(rows.slice(1).map(r=>({pointer:r[0],jsonValue:r[1]})));

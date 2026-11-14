@@ -10,7 +10,7 @@ import {
 export function PrivateFiniteEvidence({ evidence }: { evidence: VerifiedPrivateFinite }) {
   const { document, recalculatedId, cells } = evidence;
   const [page,setPage]=useState(0);
-  const pageSize=document.version==="private-renewal-company-document-1"?500:cells.length;
+  const pageSize=document.version==="private-finite-company-document-1"?cells.length:500;
   const pages=Math.max(1,Math.ceil(cells.length/pageSize)),current=Math.min(page,pages-1),offset=current*pageSize;
   return <div className="space-y-5" data-testid="private-finite-ready">
     <Card><CardContent className="p-4 space-y-4 text-sm [overflow-wrap:anywhere]">
@@ -98,7 +98,7 @@ export default function PrivateFiniteViewer() {
     </aside>
     <Card><CardContent className="p-4 space-y-4">
       <div className="flex items-center gap-2 text-sm font-semibold"><FileJson className="h-4 w-4 text-primary" />Open a local owner export</div>
-      <p className="text-sm text-muted-foreground" id="private-finite-file-help">Select private-finite-company-document-1 or private-renewal-company-document-1 JSON. Renewal values are conditional stationary cash and price-domain results, not implied deployment growth. File contents stay in this page's memory: no upload, persistence, analytics or network sends. New selections, failed loads and Reset clear prior evidence.</p>
+      <p className="text-sm text-muted-foreground" id="private-finite-file-help">Select private finite, renewal or funded company document JSON. Funded transitions are conditional project cash, not certified deployment growth or whole equity. Renewal price shifts are not physical growth. File contents stay in this page's memory: no upload, persistence, analytics or network sends. New selections, failed loads and Reset clear prior evidence.</p>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="flex-1 min-w-0 space-y-2">
           <label htmlFor="private-finite-file" className="text-sm font-medium">Owner-export JSON file</label>

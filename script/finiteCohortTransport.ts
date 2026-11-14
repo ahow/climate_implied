@@ -4,7 +4,7 @@ import {PgDialect} from "drizzle-orm/pg-core";
 import {contentHash} from "../server/calculation/analysisManifest";
 import {materialLeaves} from "../server/calculation/companyProjectionAsOf";
 import {packCompanySource} from "../server/calculation/companySourceArchive";
-import {finiteCompanyDocument as finiteDocument,renewalCompanyDocument,finiteCompanyWorkbook} from "../server/finiteCompanyDocument";
+import {finiteCompanyDocument as finiteDocument,renewalCompanyDocument,fundedCompanyDocument,finiteCompanyWorkbook} from "../server/finiteCompanyDocument";
 import {spawnSync} from "node:child_process";
 import {readFileSync,statSync,mkdtempSync,writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
@@ -13,9 +13,10 @@ import {randomUUID} from "node:crypto";
 import * as XLSX from "xlsx";
 import {readEconomicBridgeCells} from "../shared/economicBridgeSchema";
 /** Runs only inside the existing explicitly disposable local harness. */
-export async function finiteCohortTransport(pool:Pool,input:any,api:any,renewal=false){
- const finiteCompanyDocument=renewal?renewalCompanyDocument:finiteDocument;
- const action=(name:string)=>renewal?name.replace("finite","renewal"):name;
+export async function finiteCohortTransport(pool:Pool,input:any,api:any,mode:boolean|"funded"=false){
+ const renewal=mode===true,funded=mode==="funded";
+ const finiteCompanyDocument=funded?fundedCompanyDocument:renewal?renewalCompanyDocument:finiteDocument;
+ const action=(name:string)=>funded?name.replace("finite","funded"):renewal?name.replace("finite","renewal"):name;
  const run=async(fn:(tx:any,c:any)=>Promise<any>,p=pool)=>{
   const c=await p.connect(),d=new PgDialect();
   const tx={execute:(q:any)=>{const v=d.sqlToQuery(q);return c.query(v.sql,v.params);}};
@@ -54,7 +55,8 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any,renewal=
  assert.throws(()=>finiteCompanyDocument(wrongReview),/review identity mismatch/);
  const wrongCode=structuredClone(first);wrongCode.result.producerManifest.codeId="f".repeat(64);
  assert.throws(()=>finiteCompanyDocument(wrongCode),/proposal\/source identity mismatch/);
- if(renewal)assert.equal(first.result.members[0].renewal.version,"gregorian-renewal-1");
+ if(funded)assert.equal(first.result.members[0].fundedTransition.version,input.scenarios[0].fundedTransition.version);
+ else if(renewal)assert.equal(first.result.members[0].renewal.version,"gregorian-renewal-1");
  else assert.equal(first.result.members[0].finiteAccounting.version,input.scenarios[0].finiteAccounting.postCutoff?"finite-cohort-accrual-7-delayed":input.scenarios[0].finiteAccounting.terminal?.openingObligations?"finite-cohort-accrual-6-opening-obligations":input.scenarios[0].finiteAccounting.assetDisposition?.version==="cohort-disposition-2-rights"?"finite-cohort-accrual-5-rights":input.scenarios[0].finiteAccounting.assetDisposition?"finite-cohort-accrual-4-disposition":input.scenarios[0].finiteAccounting.terminal?
   "finite-cohort-accrual-3-terminal":"finite-cohort-accrual-2-daily-bound");
  if(input.scenarios[0].finiteAccounting?.terminal){
@@ -74,12 +76,13 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any,renewal=
   assert.equal(f.combinedFiniteProjectPresentValueUsd,f.finiteCommonCashPvUsd+f.terminal.presentCommonCashUsd);
   assert.equal(f.periodicValueUsd,null);
  }
- if(renewal){assert.ok(first.result.members[0].renewal.conditionalPeriodicProjectValueUsd>0);assert.equal(doc.producer.renewalExecution.version,"retained-renewal-producer-1");}
+ if(funded){assert.ok(first.result.members[0].fundedTransition.conditionalProjectValueUsd>0);assert.equal(doc.producer.fundedExecution.version,"retained-funded-producer-1");}
+ else if(renewal){assert.ok(first.result.members[0].renewal.conditionalPeriodicProjectValueUsd>0);assert.equal(doc.producer.renewalExecution.version,"retained-renewal-producer-1");}
  else {assert.equal(first.result.members[0].finiteAccounting.periodicValueUsd,null);
  assert.equal(doc.producer.finiteExecution.orderedMembers[0].recognitionLaw,"earned-service-prefix-1");}
  const bytes=finiteCompanyWorkbook(doc);
  if(renewal)console.log("renewal transport: workbook built",new Date().toISOString(),bytes.length);
- const base=`generated-artifacts/private-exports/synthetic-${renewal?"renewal":"finite"}-${randomUUID()}`;
+ const base=`generated-artifacts/private-exports/synthetic-${funded?"funded":renewal?"renewal":"finite"}-${randomUUID()}`;
  const cli=(format:string,path:string)=>spawnSync(process.execPath,["--import","tsx","script/company-operating-review.ts",
   action(format),a.decision.id,a.decision.decidedAt,path],{encoding:"utf8",timeout:180000,env:process.env});
  for(const [format,suffix] of [["finite-json","json"],["finite-xlsx","xlsx"]]){
@@ -102,7 +105,8 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any,renewal=
  const recalc=outside("finite-recalculate-json");
  assert.notEqual(recalc.status,0,"Recalculation requires its source checkout, unlike stored retrieval");
  const second=structuredClone(input);
- if(renewal){second.scenarios[0].renewal.discountRate=.12;second.scenarios[0].renewal.datedAccounting.declaration.discountRate=.12;
+ if(funded){const x=second.scenarios[0].fundedTransition;x.periodic.discountRate=.12;x.periodic.datedAccounting.declaration.discountRate=.12;x.debt.declaration.discountRate=.12;}
+ else if(renewal){second.scenarios[0].renewal.discountRate=.12;second.scenarios[0].renewal.datedAccounting.declaration.discountRate=.12;
  second.scenarios[0].renewalInverse.baseInputHash=contentHash(second.scenarios[0].renewal);}
  else second.scenarios[0].finiteAccounting.declaration.discountRate=.12;
  const b=await capture(second);
@@ -125,15 +129,15 @@ export async function finiteCohortTransport(pool:Pool,input:any,api:any,renewal=
  const before=Number((await pool.query("SELECT count(*) FROM cv_analysis_snapshots")).rows[0].count);
  await assert.rejects(()=>run(async(t,c)=>{
   const proposal=(await c.query("SELECT payload FROM cv_analysis_chunks WHERE snapshot_id=$1",[a.proposalId])).rows[0].payload;
-  proposal.producer[renewal?"renewalExecution":"finiteExecution"].orderedMembers[0].physicalParentHash="f".repeat(64);
+  proposal.producer[funded?"fundedExecution":renewal?"renewalExecution":"finiteExecution"].orderedMembers[0].physicalParentHash="f".repeat(64);
   const id=contentHash(proposal);
   await c.query("INSERT INTO cv_analysis_snapshots(id,kind,company_count,observation_count,chunk_count,source_note) VALUES($1,'company-operating-proposal',1,1,1,'synthetic tamper')",[id]);
   await c.query("INSERT INTO cv_analysis_chunks(snapshot_id,ordinal,payload) VALUES($1,0,$2)",[id,JSON.stringify(proposal)]);
   await api.decide(t,id,"approved","synthetic-finite");
- }),renewal?/renewal execution binding mismatch/:/finite execution binding mismatch/);
+ }),funded?/funded execution binding mismatch/:renewal?/renewal execution binding mismatch/:/finite execution binding mismatch/);
  assert.equal(Number((await pool.query("SELECT count(*) FROM cv_analysis_snapshots")).rows[0].count),before);
  assert.deepEqual(await read(a.decision),first);
- return {passed:true,scope:renewal?"NEW Gregorian branch, actual disposable PostgreSQL; synthetic review only, NOT genuine HTTP principal/owner acceptance":"New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
+ return {passed:true,scope:funded?"NEW funded transition, actual disposable PostgreSQL; synthetic review only, NOT genuine HTTP principal/owner acceptance":renewal?"NEW Gregorian branch, actual disposable PostgreSQL; synthetic review only, NOT genuine HTTP principal/owner acceptance":"New daily-bound branch, actual disposable PostgreSQL; synthetic review only, NOT genuine principal/owner acceptance",
   documentId:doc.id,fixtureFiles:{a:`${base}.json`,b:`${base}-b.json`,xlsx:`${base}.xlsx`},workbookBytes:bytes.length,cliRows:literal.length,cliLiteralCells:literal.length*2,privateFileMode:"0600",
   checks:["concurrent idempotent staging","daily-bound retained producer","fresh-process operator CLI JSON/XLSX equality","owner-only files and overwrite refusal",
    "stored retrieval without source checkout","recalculation missing-source refusal","invalid or ambiguous cutoff refusal",

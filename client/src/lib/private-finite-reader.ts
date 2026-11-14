@@ -16,7 +16,7 @@ export function canonicalFiniteJson(value: unknown): string {
 const text = z.string().min(1);
 const present = z.custom<unknown>(value => value !== undefined);
 const schema = z.object({
-  version: z.enum(["private-finite-company-document-1","private-renewal-company-document-1"]),
+  version: z.enum(["private-finite-company-document-1","private-renewal-company-document-1","private-funded-company-document-1"]),
   id: z.string().regex(/^[a-f0-9]{64}$/),
   decisionId: text,
   retrievalMode: z.enum(["stored", "recalculate"]),

@@ -2,6 +2,15 @@ import ts from "typescript";
 import {readFileSync} from "node:fs";
 import {contentHash} from "../server/calculation/analysisManifest";
 import {evaluateGregorianRenewal} from "../server/calculation/gregorianRenewal";
+import {freezeDeploymentGrowth} from "../server/calculation/deploymentGrowth";
+/** Reuse the explicit test fixture without importing/registering its tests twice. */
+export function transitionTransportFixture(){
+ const src=readFileSync("script/deployment-transition.test.ts","utf8");
+ const start=src.indexOf("export function transitionFixture"),end=src.indexOf("\ntest(",start);
+ if(start<0||end<0)throw Error("Explicit synthetic transition fixture unavailable");
+ const js=ts.transpile(src.slice(start,end).replace("export function","function"),{target:ts.ScriptTarget.ES2022});
+ return Function("renewalTransportFixture","freezeDeploymentGrowth",`${js};return transitionFixture();`)(renewalTransportFixture,freezeDeploymentGrowth);
+}
 export function renewalTransportFixture(){
  const src=readFileSync("script/gregorian-renewal.test.ts","utf8"),start=src.indexOf("export function gregorianFixture"),end=src.indexOf('\ntest(',start);
  if(start<0||end<0)throw Error("Explicit synthetic fixture unavailable");
